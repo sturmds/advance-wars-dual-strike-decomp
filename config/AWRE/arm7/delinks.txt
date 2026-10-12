@@ -1916,7 +1916,7 @@ src/arm7/sdk/rtc/func_arm7_027d64b8.c:
     complete
     .text       start:0x027d64b8 end:0x027d6570
 
-src/arm7/sdk/os/v_blank_intr_arm7.c:
+src/arm7/sdk/os/vblank_intr_arm7.c:
     complete
     .text       start:0x037f8000 end:0x037f802c
 
@@ -2168,7 +2168,7 @@ src/arm7/sdk/os/lock_id_handshake_and_free_ids_arm7.c:
     complete
     .text       start:0x037fbabc end:0x037fbb34
 
-src/arm7/sdk/func_arm7_037fbb34.c:
+src/arm7/sdk/os/func_arm7_037fbb34.c:
     complete
     .text       start:0x037fbb34 end:0x037fbb38
 
@@ -2180,7 +2180,7 @@ src/arm7/sdk/os/thread_hold_switching_arm7.c:
     complete
     .text       start:0x037fbb70 end:0x037fbba8
 
-src/arm7/sdk/func_arm7_037fbba8.c:
+src/arm7/sdk/os/func_arm7_037fbba8.c:
     complete
     .text       start:0x037fbba8 end:0x037fbbdc
 
@@ -2512,7 +2512,7 @@ src/arm7/sdk/os/cpu_busy_wait_cycles_arm7.c:
     complete
     .text       start:0x037fdbe4 end:0x037fdc04
 
-src/arm7/sdk/func_arm7_037fdc04.c:
+src/arm7/sdk/os/func_arm7_037fdc04.c:
     complete
     .text       start:0x037fdc04 end:0x037fdc10
 
@@ -2524,7 +2524,7 @@ src/arm7/sdk/os/reset_quiesce_and_restart_arm7.c:
     complete
     .text       start:0x037fdc24 end:0x037fdc78
 
-src/arm7/sdk/func_arm7_037fdc78.c:
+src/arm7/sdk/os/func_arm7_037fdc78.c:
     complete
     .text       start:0x037fdc78 end:0x037fdca8
 
@@ -2604,7 +2604,7 @@ src/arm7/sdk/pxi/fifo_reset_and_handshake_arm7.c:
     complete
     .text       start:0x037fe304 end:0x037fe3e0
 
-src/arm7/sdk/func_arm7_037fe3e0.c:
+src/arm7/sdk/pad/func_arm7_037fe3e0.c:
     complete
     .text       start:0x037fe3e0 end:0x037fe3fc
 
@@ -2624,7 +2624,7 @@ src/arm7/sdk/snd/snd_hw_set_output_control.c:
     complete
     .text       start:0x037fe4fc end:0x037fe534
 
-src/arm7/sdk/func_arm7_037fe534.c:
+src/arm7/sdk/snd/func_arm7_037fe534.c:
     complete
     .text       start:0x037fe534 end:0x037fe544
 
@@ -2632,7 +2632,7 @@ src/arm7/sdk/snd/snd_hw_enable.c:
     complete
     .text       start:0x037fe544 end:0x037fe58c
 
-src/arm7/sdk/func_arm7_037fe58c.c:
+src/arm7/sdk/snd/func_arm7_037fe58c.c:
     complete
     .text       start:0x037fe58c end:0x037fe598
 
@@ -2640,7 +2640,7 @@ src/arm7/sdk/snd/snd_hw_disable.c:
     complete
     .text       start:0x037fe598 end:0x037fe5dc
 
-src/arm7/sdk/func_arm7_037fe5dc.c:
+src/arm7/sdk/snd/func_arm7_037fe5dc.c:
     complete
     .text       start:0x037fe5dc end:0x037fe5e8
 
@@ -2648,11 +2648,11 @@ src/arm7/sdk/snd/snd_hw_reset.c:
     complete
     .text       start:0x037fe5e8 end:0x037fe63c
 
-src/arm7/sdk/func_arm7_037fe63c.c:
+src/arm7/sdk/snd/func_arm7_037fe63c.c:
     complete
     .text       start:0x037fe63c end:0x037fe654
 
-src/arm7/sdk/func_arm7_037fe654.c:
+src/arm7/sdk/snd/func_arm7_037fe654.c:
     complete
     .text       start:0x037fe654 end:0x037fe66c
 
@@ -2664,7 +2664,7 @@ src/arm7/sdk/snd/snd_hw_set_pan_edge_attenuation.c:
     complete
     .text       start:0x037fe6d8 end:0x037fe73c
 
-src/arm7/sdk/func_arm7_037fe73c.c:
+src/arm7/sdk/snd/func_arm7_037fe73c.c:
     complete
     .text       start:0x037fe73c end:0x037fe74c
 
@@ -2680,7 +2680,7 @@ src/arm7/sdk/snd/snd_hw_set_channel_pan.c:
     complete
     .text       start:0x037fe7cc end:0x037fe848
 
-src/arm7/sdk/func_arm7_037fe848.c:
+src/arm7/sdk/snd/func_arm7_037fe848.c:
     complete
     .text       start:0x037fe848 end:0x037fe860
 
@@ -2716,7 +2716,7 @@ src/arm7/sdk/snd/sound_decibel_to_hw_volume_arm7.c:
     complete
     .text       start:0x037febe8 end:0x037fec60
 
-src/arm7/sdk/func_arm7_037fec60.c:
+src/arm7/sdk/snd/func_arm7_037fec60.c:
     complete
     .text       start:0x037fec60 end:0x037fec6c
 
@@ -2724,7 +2724,7 @@ src/arm7/sdk/snd/sound_pitch_shift_timer_arm7.c:
     complete
     .text       start:0x037fec6c end:0x037fed94
 
-src/arm7/sdk/func_arm7_037fed94.c:
+src/arm7/sdk/snd/func_arm7_037fed94.c:
     complete
     .text       start:0x037fed94 end:0x037feda0
 
@@ -2812,11 +2812,11 @@ src/arm7/sdk/snd/snd_lfo_update.c:
     complete
     .text       start:0x037ff350 end:0x037ff3b4
 
-src/arm7/sdk/func_arm7_037ff3b4.c:
+src/arm7/sdk/snd/func_arm7_037ff3b4.c:
     complete
     .text       start:0x037ff3b4 end:0x037ff3c4
 
-src/arm7/sdk/func_arm7_037ff3c4.c:
+src/arm7/sdk/snd/func_arm7_037ff3c4.c:
     complete
     .text       start:0x037ff3c4 end:0x037ff3e8
 
@@ -2840,7 +2840,7 @@ src/arm7/sdk/snd/snd_ex_channel_stop_unlocked_channels.c:
     complete
     .text       start:0x037ff5c4 end:0x037ff68c
 
-src/arm7/sdk/func_arm7_037ff68c.c:
+src/arm7/sdk/snd/func_arm7_037ff68c.c:
     complete
     .text       start:0x037ff68c end:0x037ff6a0
 
@@ -2848,23 +2848,23 @@ src/arm7/sdk/snd/snd_ex_channel_alloc.c:
     complete
     .text       start:0x037ff6a0 end:0x037ff7d8
 
-src/arm7/sdk/func_arm7_037ff7d8.c:
+src/arm7/sdk/snd/func_arm7_037ff7d8.c:
     complete
     .text       start:0x037ff7d8 end:0x037ff7e8
 
-src/arm7/sdk/func_arm7_037ff7e8.c:
+src/arm7/sdk/snd/func_arm7_037ff7e8.c:
     complete
     .text       start:0x037ff7e8 end:0x037ff7f4
 
-src/arm7/sdk/func_arm7_037ff7f4.c:
+src/arm7/sdk/snd/func_arm7_037ff7f4.c:
     complete
     .text       start:0x037ff7f4 end:0x037ff810
 
-src/arm7/sdk/func_arm7_037ff810.c:
+src/arm7/sdk/snd/func_arm7_037ff810.c:
     complete
     .text       start:0x037ff810 end:0x037ff818
 
-src/arm7/sdk/func_arm7_037ff818.c:
+src/arm7/sdk/snd/func_arm7_037ff818.c:
     complete
     .text       start:0x037ff818 end:0x037ff834
 
@@ -2960,7 +2960,7 @@ src/arm7/sdk/snd/snd_player_setup.c:
     complete
     .text       start:0x0380103c end:0x038010e4
 
-src/arm7/sdk/func_arm7_038010e4.c:
+src/arm7/sdk/snd/func_arm7_038010e4.c:
     complete
     .text       start:0x038010e4 end:0x038010f8
 
@@ -3048,7 +3048,7 @@ src/arm7/sdk/snd/snd_arm7_note_on.c:
     complete
     .text       start:0x03801b20 end:0x03801c28
 
-src/arm7/sdk/func_arm7_03801c28.c:
+src/arm7/sdk/snd/func_arm7_03801c28.c:
     complete
     .text       start:0x03801c28 end:0x03801c70
 
@@ -3060,7 +3060,7 @@ src/arm7/sdk/snd/snd_arm7_update_shared_work.c:
     complete
     .text       start:0x03801df4 end:0x03801e94
 
-src/arm7/sdk/func_arm7_03801e94.c:
+src/arm7/sdk/snd/func_arm7_03801e94.c:
     complete
     .text       start:0x03801e94 end:0x03801eb0
 
@@ -3112,7 +3112,7 @@ src/arm7/sdk/snd/snd_arm7_set_channel_timer.c:
     complete
     .text       start:0x03802354 end:0x0380239c
 
-src/arm7/sdk/func_arm7_0380239c.c:
+src/arm7/sdk/snd/func_arm7_0380239c.c:
     complete
     .text       start:0x0380239c end:0x038023b4
 
@@ -3132,7 +3132,7 @@ src/arm7/sdk/fs/file_sys_set_up_once_arm7.c:
     complete
     .text       start:0x03802894 end:0x038028c8
 
-src/arm7/sdk/func_arm7_038028c8.c:
+src/arm7/sdk/fs/func_arm7_038028c8.c:
     complete
     .text       start:0x038028c8 end:0x038028d4
 
@@ -3144,7 +3144,7 @@ src/arm7/sdk/card/card_set_thread_priority.c:
     complete
     .text       start:0x0380292c end:0x03802974
 
-src/arm7/sdk/func_arm7_03802974.c:
+src/arm7/sdk/card/func_arm7_03802974.c:
     complete
     .text       start:0x03802974 end:0x03802984
 
@@ -3204,7 +3204,7 @@ src/arm7/sdk/card/card_spi_move_bytes.c:
     complete
     .text       start:0x0380311c end:0x038031ac
 
-src/arm7/sdk/func_arm7_038031ac.c:
+src/arm7/sdk/card/func_arm7_038031ac.c:
     complete
     .text       start:0x038031ac end:0x038031c4
 
@@ -3212,7 +3212,7 @@ src/arm7/sdk/card/card_save_wait_until_idle.c:
     complete
     .text       start:0x038031c4 end:0x038032a4
 
-src/arm7/sdk/func_arm7_038032a4.c:
+src/arm7/sdk/card/func_arm7_038032a4.c:
     complete
     .text       start:0x038032a4 end:0x038032b4
 
@@ -3256,47 +3256,47 @@ src/arm7/sdk/card/card_rom_take_from_buffered_page_arm7.c:
     complete
     .text       start:0x03803750 end:0x038037e8
 
-src/arm7/sdk/func_arm7_038037e8.c:
+src/arm7/sdk/card/func_arm7_038037e8.c:
     complete
     .text       start:0x038037e8 end:0x038037fc
 
-src/arm7/sdk/func_arm7_038037fc.c:
+src/arm7/sdk/card/func_arm7_038037fc.c:
     complete
     .text       start:0x038037fc end:0x03803818
 
-src/arm7/sdk/func_arm7_03803818.c:
+src/arm7/sdk/card/func_arm7_03803818.c:
     complete
     .text       start:0x03803818 end:0x03803834
 
-src/arm7/sdk/func_arm7_03803834.c:
+src/arm7/sdk/card/func_arm7_03803834.c:
     complete
     .text       start:0x03803834 end:0x03803850
 
-src/arm7/sdk/func_arm7_03803850.c:
+src/arm7/sdk/card/func_arm7_03803850.c:
     complete
     .text       start:0x03803850 end:0x0380386c
 
-src/arm7/sdk/func_arm7_0380386c.c:
+src/arm7/sdk/card/func_arm7_0380386c.c:
     complete
     .text       start:0x0380386c end:0x0380388c
 
-src/arm7/sdk/func_arm7_0380388c.c:
+src/arm7/sdk/card/func_arm7_0380388c.c:
     complete
     .text       start:0x0380388c end:0x038038a8
 
-src/arm7/sdk/func_arm7_038038a8.c:
+src/arm7/sdk/card/func_arm7_038038a8.c:
     complete
     .text       start:0x038038a8 end:0x038038ac
 
-src/arm7/sdk/func_arm7_038038ac.c:
+src/arm7/sdk/card/func_arm7_038038ac.c:
     complete
     .text       start:0x038038ac end:0x038038b0
 
-src/arm7/sdk/func_arm7_038038b0.c:
+src/arm7/sdk/card/func_arm7_038038b0.c:
     complete
     .text       start:0x038038b0 end:0x038038b4
 
-src/arm7/sdk/func_arm7_038038b4.c:
+src/arm7/sdk/card/func_arm7_038038b4.c:
     complete
     .text       start:0x038038b4 end:0x038038c4
 
@@ -3304,7 +3304,7 @@ src/arm7/sdk/card/card_push_removal_tag_word_arm7.c:
     complete
     .text       start:0x038038c4 end:0x0380390c
 
-src/arm7/sdk/func_arm7_0380390c.c:
+src/arm7/sdk/card/func_arm7_0380390c.c:
     complete
     .text       start:0x0380390c end:0x0380392c
 
@@ -3528,11 +3528,11 @@ src/arm7/sdk/pm/power_reset_driver_state_arm7.c:
     complete
     .text       start:0x03805100 end:0x0380513c
 
-src/arm7/sdk/func_arm7_0380513c.c:
+src/arm7/sdk/pm/func_arm7_0380513c.c:
     complete
     .text       start:0x0380513c end:0x03805168
 
-src/arm7/sdk/func_arm7_03805168.c:
+src/arm7/sdk/pm/func_arm7_03805168.c:
     complete
     .text       start:0x03805168 end:0x03805198
 
@@ -3552,7 +3552,7 @@ src/arm7/sdk/pm/pmi_set_register.c:
     complete
     .text       start:0x03805278 end:0x038052e8
 
-src/arm7/sdk/func_arm7_038052e8.c:
+src/arm7/sdk/pm/func_arm7_038052e8.c:
     complete
     .text       start:0x038052e8 end:0x03805304
 
@@ -3568,11 +3568,11 @@ src/arm7/sdk/pm/power_sleep_until_trigger.c:
     complete
     .text       start:0x038054a0 end:0x0380566c
 
-src/arm7/sdk/func_arm7_0380566c.c:
+src/arm7/sdk/pm/func_arm7_0380566c.c:
     complete
     .text       start:0x0380566c end:0x03805678
 
-src/arm7/sdk/func_arm7_03805678.c:
+src/arm7/sdk/pm/func_arm7_03805678.c:
     complete
     .text       start:0x03805678 end:0x03805688
 
@@ -3584,7 +3584,7 @@ src/arm7/sdk/pm/power_led_step_pattern.c:
     complete
     .text       start:0x038056ac end:0x038057d4
 
-src/arm7/sdk/func_arm7_038057d4.c:
+src/arm7/sdk/pm/func_arm7_038057d4.c:
     complete
     .text       start:0x038057d4 end:0x03805878
 
@@ -3676,11 +3676,11 @@ src/arm7/sdk/ctrdg/cartridge_zero_state_take_lock_id_arm7.c:
     complete
     .text       start:0x03806770 end:0x038067b0
 
-src/arm7/sdk/func_arm7_038067b0.c:
+src/arm7/sdk/ctrdg/func_arm7_038067b0.c:
     complete
     .text       start:0x038067b0 end:0x038067bc
 
-src/arm7/sdk/func_arm7_038067bc.c:
+src/arm7/sdk/ctrdg/func_arm7_038067bc.c:
     complete
     .text       start:0x038067bc end:0x038067dc
 
@@ -3716,7 +3716,7 @@ src/arm7/sdk/runtime/ll_sdiv_arm7.c:
     complete
     .text       start:0x03806b8c end:0x03806d4c
 
-src/arm7/sdk/func_arm7_03806d4c.c:
+src/arm7/sdk/runtime/func_arm7_03806d4c.c:
     complete
     .text       start:0x03806d4c end:0x03806f58
 
