@@ -9,7 +9,7 @@ WmspSlot *Wmsp_TakeFlaggedSlot(void)
     WmspSlot *found = NULL;
     int i;
     int irqState = func_arm7_037fdb80();
-    WmspArm7Buf *buf = data_arm7_027d7c44.arm7Buf;
+    WmspBuf *buf = data_arm7_027d7c44.buf;
 
     if (buf != NULL) {
         for (i = 0; i < WMSP_SLOT_COUNT; i++) {

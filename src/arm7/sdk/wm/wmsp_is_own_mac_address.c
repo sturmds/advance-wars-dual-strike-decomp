@@ -3,7 +3,7 @@
 
 BOOL Wmsp_IsOwnMacAddress(const u8 *macAddress)
 {
-    WMStatus *status = data_arm7_027d7c44.arm7Buf->status;
+    WMStatus *status = data_arm7_027d7c44.buf->status;
 
     if (macAddress[0] == status->macAddress[0]
         && macAddress[1] == status->macAddress[1]

@@ -55,8 +55,6 @@ typedef struct WmspBuf {
     WmspSlot slots[WMSP_SLOT_COUNT];
 } WmspBuf;
 
-typedef WmspBuf WmspArm7Buf;
-
 /* What the ARM9 sends for a request that carries one value. */
 typedef struct WmspRequest {
     u16 apiid;
@@ -71,7 +69,7 @@ typedef struct WmspState {
     u32 unk_50c;
     u32 unk_510;
     u32 unk_514;
-    WmspArm7Buf *arm7Buf;
+    WmspBuf *buf;
     u8 history[16];
     volatile u32 historyIndex;  /* volatile: needed to match, the original reloads it */
     u32 threadPriority[2][3];  /* [1] is what the WMSP threads were created with */

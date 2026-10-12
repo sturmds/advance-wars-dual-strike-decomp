@@ -16,7 +16,7 @@ void Wmsp_ReceiveRequest(int tag, WmspRequest *request, BOOL error)
     if (func_arm7_037fc44c(&data_arm7_027d6ca8, request, 0)) {
         return;
     }
-    if (data_arm7_027d7c44.arm7Buf == NULL) {
+    if (data_arm7_027d7c44.buf == NULL) {
         return;
     }
     reply = Wmsp_GetCallbackBuffer();
