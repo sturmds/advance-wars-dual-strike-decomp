@@ -4,5 +4,5 @@
 #include "maps/map_data.h"
 
 /* gMapUnits: the pre-deployed unit lists of every map, generated from
- * assets/maps/ by tools/maps.py pack (docs/maps.md). */
+ * the unpacked maps by tools/maps.py pack (docs/maps.md). */
 #include "maps/map_units.inc"

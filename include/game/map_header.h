@@ -31,7 +31,7 @@ struct MapScript;
   ((id) >= MAP_CUSTOM_FIRST && (id) < MAP_CUSTOM_FIRST + MAP_CUSTOM_COUNT)
 
 /* MapHeader.mapCase: which menu offers the map. The map select lists one
- * case per list kind (MapSelect_ListKindToMapCase). assets/maps/ keeps one
+ * case per list kind (MapSelect_ListKindToMapCase). The unpacked maps keep one
  * directory per group of cases. */
 enum MapCase {
   MAP_CASE_CAMPAIGN = 0, /* campaign missions */

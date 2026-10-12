@@ -7,7 +7,7 @@
 
 ## Problem
 
-`assets/maps/` covers each map's header, tiles and units, but not its scripts. `MapHeader.script`, `termsScript` and `hintScript` hold symbol names (`data_ov001_02364af0`), and the data they point to is still copied from the ROM as undelinked bytes in ov001. A map's events (dialogue, reinforcements, win conditions) cannot be read or changed in the map files.
+The unpacked map files cover each map's header, tiles and units, but not its scripts. `MapHeader.script`, `termsScript` and `hintScript` hold symbol names (`data_ov001_02364af0`), and the data they point to is still copied from the ROM as undelinked bytes in ov001. A map's events (dialogue, reinforcements, win conditions) cannot be read or changed in the map files.
 
 ## What we know
 
@@ -25,4 +25,4 @@
 
 ## Done when
 
-The scripts of every map are in `assets/maps/` as named triggers and commands, the build makes ov001's script data from them, and `make release` passes.
+The scripts of every map are unpacked next to the map files as named triggers and commands, the build makes ov001's script data from them, and `make release` passes.

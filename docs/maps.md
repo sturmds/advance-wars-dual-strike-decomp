@@ -1,6 +1,6 @@
 # Map data
 
-The campaign, Versus, War Room and Survival maps are not files in the ROM's file system. Their headers, tiles and pre-deployed units are data in overlay 0 (ov000), the overlay loaded during menus and battles. This repo keeps them as one YAML file per map under `assets/maps/`, and `make` builds ov000's map tables from those files. Combat mode's four maps are separate files (`/combat/%03x`) and are not covered here (issue 0050).
+The campaign, Versus, War Room and Survival maps are not files in the ROM's file system. Their headers, tiles and pre-deployed units are data in overlay 0 (ov000), the overlay loaded during menus and battles. The map content is game data, so it never enters git (tenet 9). `make setup` unpacks it from your own ROM into one YAML file per map under `extracted/AWRE/assets/maps/` (gitignored), and `make` builds ov000's map tables from those files. Git holds only what says how to read and order them: the legend and the three glue files in `assets/maps/`. Combat mode's four maps are separate files (`/combat/%03x`) and are not covered here (issue 0050).
 
 ## Where the game reads them
 
@@ -20,11 +20,13 @@ A tile is a u16 code. A table loaded from `/bmap/003` turns the code into a terr
 ## Files
 
 ```
-assets/maps/
+assets/maps/                    committed
   maps.txt        map id and YAML file, one line per entry of Ov000_gMapHeaders
   tiles.txt       YAML file and `tiles` or `hardTiles`, in the order the blocks sit in .rodata
   units.txt       YAML file and `units` or `hardUnits`, in the order the lists sit in .data
   legend.yaml     the token each tile code is written as (`o` for 0x02a, sea)
+
+extracted/AWRE/assets/maps/     gitignored, written by `make setup`
   campaign/       MapHeader.mapCase 0 and 1: missions and the second maps of two-map missions
   versus/         cases 2-6
   warroom/        cases 7 and 8
@@ -85,9 +87,9 @@ Tokens can be renamed in `legend.yaml` (one word, not starting with `@`, one tok
 
 ## Editing a map
 
-Edit the YAML file and run `make`. A change that alters the size of a tile block or unit list moves everything after it in ov000. Such a build no longer matches retail: it belongs in the mod build (issue 0023), not in a commit here.
+Edit the YAML file under `extracted/` and run `make`. `make setup` unpacks the maps again and overwrites such edits, so keep edited maps in the mod build and point `maps.py pack --maps` at them. A change that alters the size of a tile block or unit list moves everything after it in ov000. Such a build no longer matches retail: it belongs in the mod build (issue 0023), not in a commit here.
 
-To regenerate every file from the ROM: `python3 tools/maps.py unpack`. It reads `extract/` and the field offsets in `build/dsindex.json` (`tools/dsindex.py`), and overwrites `assets/maps/` except `legend.yaml`, which it writes only when there is none.
+To regenerate the map files from the ROM: `make assets` (or `python3 tools/maps.py unpack`). It reads `extract/` and the field offsets in `build/dsindex.json` (`tools/dsindex.py`) and overwrites `extracted/AWRE/assets/maps/`. It reads `legend.yaml` and writes it only when there is none. It checks the three glue files against the ROM's order and stops if they differ; `--write-glue` rewrites them.
 
 ## Python packages
 

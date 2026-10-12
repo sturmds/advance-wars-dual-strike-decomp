@@ -1,6 +1,6 @@
 # Map terrain: large objects and their tile codes
 
-A survey of the map data in `assets/maps/` (all 260 tile blocks), for the terrain ids that make up the large objects. The ids and names are in `enum TerrainId` (`include/game/terrain.h`); the names in quotes are what the terrain panel shows. Tile codes go through `/bmap/003` (`/bmap/002` for map 0xf8) to give a terrain id and an owner (`docs/maps.md`).
+A survey of the map data unpacked by `make setup` (all 260 tile blocks), for the terrain ids that make up the large objects. The ids and names are in `enum TerrainId` (`include/game/terrain.h`); the names in quotes are what the terrain panel shows. Tile codes go through `/bmap/003` (`/bmap/002` for map 0xf8) to give a terrain id and an owner (`docs/maps.md`).
 
 ## How a large object is laid out
 

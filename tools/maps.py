@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
-"""Maps in assets/maps/: unpack them from the ROM, and pack them for the build.
+"""Maps: unpack them from the ROM into extracted/, and pack them for the build.
 
-    maps.py unpack [--out assets/maps]   ROM (extract/) -> one YAML file per map, plus the glue files
-    maps.py pack [--out build/gen/maps]  assets/maps -> C that src/game/ov000/map/ compiles
-    maps.py lcf LCF                      define the symbols inside Ov000_gMapHeaders in a linker script
+    maps.py unpack [--out extracted/AWRE/assets/maps]   ROM (extract/) -> one YAML file per map
+    maps.py pack [--out build/gen/maps]                 the map files -> C that src/game/ov000/map/ compiles
+    maps.py lcf LCF                                     define the symbols inside Ov000_gMapHeaders in a linker script
 
-Layout (docs/maps.md has the details):
+Map content comes from the builder's own ROM and never enters git; only the
+files that say how to read and order it are committed (docs/maps.md has the
+details):
 
   assets/maps/maps.txt     map id -> YAML file, in Ov000_gMapHeaders order
   assets/maps/tiles.txt    tile blocks in .rodata order (YAML file + `tiles` or `hardTiles`)
   assets/maps/units.txt    unit lists in .data order (YAML file + `units` or `hardUnits`)
   assets/maps/legend.yaml  tile tokens (`o`, `C1`) and the tile code each stands for
-  assets/maps/<group>/NNN_<name>.yaml
+  extracted/AWRE/assets/maps/<group>/NNN_<name>.yaml   (gitignored, written by `make setup`)
       header:    the MapHeader fields by their C names (include/game/map_header.h)
       tiles, hardTiles:  the map as a block of tokens, one line per row
       units, hardUnits:  the PredeployedUnit rows of each army
@@ -24,7 +26,7 @@ include/; any other word is a symbol, declared `extern char NAME[]`.
 `unpack` reads field offsets from build/dsindex.json (tools/dsindex.py),
 which the compiler fills from the same headers.
 
-Tile blocks are LZ77 (type 0x10, the SDK's Unpack_Lz77ByHalfwords format). The
+Tile blocks are LZ77 (type 0x10, the BIOS LZ77 format). The
 compressor takes the longest match and, among equal ones, the nearest; that
 gives the ROM's bytes for all 260 blocks.
 """
@@ -38,7 +40,8 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
-ASSETS = Path("assets/maps")
+ASSETS = Path("assets/maps")                 # committed: legend and glue files
+EXTRACTED = Path("extracted/AWRE/assets/maps")  # gitignored: one YAML file per map
 GEN = Path("build/gen/maps")
 EXTRACT = Path("extract")
 CONFIG = Path("config/AWRE/arm9")
@@ -511,6 +514,7 @@ def cmd_unpack(args) -> int:
     count = define("game/map_header.h", "MAP_COUNT")
     offsets = {f["name"]: f["offset"] for f in structs["MapHeader"]["fields"]}
     out = ROOT / args.out
+    assets = ROOT / args.assets
     docs: list[tuple[str, str, int, dict]] = []
     usage: dict[str, dict[int, int]] = {}
     paths: list[str] = []
@@ -541,27 +545,35 @@ def cmd_unpack(args) -> int:
                 unit_lists.append((addr, rel, key))
         docs.append((rel, title, map_id, doc))
         paths.append(rel)
-    if (out / LEGEND).exists():
-        legend = load_legend(out / LEGEND)
+    if (assets / LEGEND).exists():
+        legend = load_legend(assets / LEGEND)
     else:
         legend = make_legend(usage)
-        out.mkdir(parents=True, exist_ok=True)
-        write_legend(out / LEGEND, legend)
+        assets.mkdir(parents=True, exist_ok=True)
+        write_legend(assets / LEGEND, legend)
     for rel, title, map_id, doc in docs:
         for key in TILE_KEYS:
             if key in doc:
                 t = doc[key]
                 t["rows"] = tile_block(t.pop("codes"), legend[t["legend"]])
         write_map(out / rel, title, map_id, doc)
-    (out / "maps.txt").write_text(
-        "# Map header table (Ov000_gMapHeaders): one map id and YAML file per line, in id order.\n"
-        + "".join(f"{i:#05x} {p}\n" for i, p in enumerate(paths)))
-    (out / "tiles.txt").write_text(
-        "# Tile blocks in ov000 .rodata order: YAML file and section.\n"
-        + "".join(f"{p} {k}\n" for _, p, k in sorted(tile_blocks)))
-    (out / "units.txt").write_text(
-        "# Pre-deployed unit lists in ov000 .data order: YAML file and section.\n"
-        + "".join(f"{p} {k}\n" for _, p, k in sorted(unit_lists)))
+    glue_files = {
+        "maps.txt": "# Map header table (Ov000_gMapHeaders): one map id and YAML file per line, in id order.\n"
+        + "".join(f"{i:#05x} {p}\n" for i, p in enumerate(paths)),
+        "tiles.txt": "# Tile blocks in ov000 .rodata order: YAML file and section.\n"
+        + "".join(f"{p} {k}\n" for _, p, k in sorted(tile_blocks)),
+        "units.txt": "# Pre-deployed unit lists in ov000 .data order: YAML file and section.\n"
+        + "".join(f"{p} {k}\n" for _, p, k in sorted(unit_lists)),
+    }
+    # The glue files are committed. They are rewritten only on request, so a
+    # mismatch (a renamed map, a changed slug) shows up instead of a silent edit.
+    for name, text in glue_files.items():
+        path = assets / name
+        if args.write_glue or not path.exists():
+            path.write_text(text)
+        elif path.read_text() != text:
+            sys.exit(f"error: {path.relative_to(ROOT)} differs from the ROM's order; rerun with --write-glue to rewrite it")
+    (out / ".unpacked").write_text("")
     print(f"unpack: {len(paths)} maps, {len(tile_blocks)} tile blocks, {len(unit_lists)} unit lists in {args.out}")
     return 0
 
@@ -670,13 +682,16 @@ def write_if_changed(path: Path, text: str) -> None:
 
 def cmd_pack(args) -> int:
     assets = ROOT / args.assets
+    map_dir = ROOT / args.maps
+    if not (map_dir / ".unpacked").exists():
+        sys.exit(f"error: no maps in {args.maps}; run `make setup` (it unpacks them from your ROM)")
     loader = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
     maps: dict[str, dict] = {}
     order: list[tuple[int, str]] = []
     for map_id, rel, where in glue(assets / "maps.txt"):
         if int(map_id, 0) != len(order):
             sys.exit(f"error: {where}: map id {map_id}, expected {len(order):#05x}")
-        maps[rel] = yaml.load((assets / rel).read_text(), Loader=loader)
+        maps[rel] = yaml.load((map_dir / rel).read_text(), Loader=loader)
         order.append((int(map_id, 0), rel))
 
     def member(rel: str, key: str) -> str:
@@ -701,7 +716,7 @@ def cmd_pack(args) -> int:
     legend = load_legend(assets / LEGEND)
     tiles = placed("tiles.txt", TILE_KEYS)
     units = placed("units.txt", UNIT_KEYS)
-    generated_note = "/* Generated by tools/maps.py pack from assets/maps/. Do not edit. */\n"
+    generated_note = "/* Generated by tools/maps.py pack from the unpacked maps. Do not edit. */\n"
 
     h = [generated_note, "#ifndef MAPS_MAP_DATA_H", "#define MAPS_MAP_DATA_H", "",
          '#include "types.h"', '#include "game/predeployed_unit.h"', "",
@@ -794,11 +809,14 @@ def cmd_lcf(args) -> int:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     sub = parser.add_subparsers(required=True)
-    p = sub.add_parser("unpack", help="write assets/maps/ from extract/")
-    p.add_argument("--out", default=str(ASSETS))
+    p = sub.add_parser("unpack", help="write the map files from extract/")
+    p.add_argument("--out", default=str(EXTRACTED))
+    p.add_argument("--assets", default=str(ASSETS), help="legend and glue files")
+    p.add_argument("--write-glue", action="store_true", help="rewrite maps.txt, tiles.txt and units.txt")
     p.set_defaults(func=cmd_unpack)
     p = sub.add_parser("pack", help="write the C for the map tables")
-    p.add_argument("--assets", default=str(ASSETS))
+    p.add_argument("--assets", default=str(ASSETS), help="legend and glue files")
+    p.add_argument("--maps", default=str(EXTRACTED), help="the unpacked map files")
     p.add_argument("--out", default=str(GEN))
     p.set_defaults(func=cmd_pack)
     p = sub.add_parser("lcf", help="define the symbols inside Ov000_gMapHeaders in a linker script")

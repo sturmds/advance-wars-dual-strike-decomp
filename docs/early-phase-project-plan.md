@@ -16,7 +16,7 @@ Background:
 | `make release` works as the first command after cloning, and works offline after the first `make setup`. | D2, D6 |
 | Every commit passes `make release`, enforced by a git hook in the repo. | D4 |
 | Private and local. No decomp.me, no decomp.dev, no public repo, no contributors. | D4, D6 |
-| Git holds only what we write. The ROM, raw asset files, compiler and SDK files never enter git. Game data we have reversed into a text form we edit, such as the maps in `assets/maps/`, is ours like the C and goes into git (sturmds, 2026-10-11). | D5 |
+| Git holds only what we write. The ROM, raw asset files, compiler and SDK files never enter git, and neither does game data in a text form we edit: the maps are unpacked from the builder's ROM into `extracted/` by `make setup`, the way zeldaret/oot handles its assets. Committed are only the files that say how to read and order the data (`assets/maps/legend.yaml` and the glue files). | D5 |
 | Mostly automated matching, steered by sturmds. Generated code passes `make release` and an automated review before it is offered. | D7 |
 
 ## Milestone 0: Foundations
@@ -108,7 +108,7 @@ Mostly sprinting on decomp and keeping the repo in working order along the way.
 - Revisit the deferred items when they start to matter:
   - ~~ARM7 built from objects instead of copied (D1)~~: done 2026-10-11 (issue 0013). dsd cannot delink ARM7 alone, so `tools/arm7.py` runs it on a stand-in ROM. Decompiling ARM7 to C follows the plan in issue 0042.
   - The DS Download Play child in the file system, a second program with its own ARM9 and ARM7 (issue 0049).
-  - Asset extraction into editable forms (D5, issue 0050). Maps done: `assets/maps/`, `docs/maps.md`.
+  - Asset extraction into editable forms (D5, issue 0050). Maps done: unpacked into `extracted/` by `make setup`, `docs/maps.md`.
   - Proper CI with a self-hosted runner that holds the ROM (D4).
 
 ## Milestone 3: Automated QA through emulation

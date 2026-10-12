@@ -4,7 +4,7 @@
 Pipeline:
   orig/AWRE.nds --dsd rom extract--> extract/
   config/AWRE/arm9 + extract --dsd delink--> build/delinks/**.o (original bytes)
-  assets/maps/** --tools/maps.py pack--> build/gen/maps/ (C included by src/game/ov000/map/)
+  assets/maps/ + extracted/AWRE/assets/maps/ --tools/maps.py pack--> build/gen/maps/ (C included by src/game/ov000/map/)
   src/**.c marked `complete` in a delinks.txt --mwccarm--> build/src/**.o
                              --dsd lcf-----> build/arm9.lcf, build/objects.txt
                              --lcf_absolute.py--> ARM9_ABSOLUTE_SYMBOLS added to build/arm9.lcf
@@ -85,8 +85,11 @@ MAP_SOURCES = [f"src/game/ov000/map/map_{n}.c" for n in ("headers", "tiles", "un
 
 
 def map_inputs() -> list[str]:
-    files = sorted((ROOT / maps.ASSETS).rglob("*.yaml")) + sorted((ROOT / maps.ASSETS).glob("*.txt"))
-    return [p.relative_to(ROOT).as_posix() for p in files]
+    """The committed legend and glue files, the unpacked maps (`make setup`) and
+    the stamp unpack writes last, so a missing unpack fails the build by name."""
+    files = sorted((ROOT / maps.ASSETS).glob("*.yaml")) + sorted((ROOT / maps.ASSETS).glob("*.txt"))
+    files += sorted((ROOT / maps.EXTRACTED).rglob("*.yaml"))
+    return [p.relative_to(ROOT).as_posix() for p in files] + [(maps.EXTRACTED / ".unpacked").as_posix()]
 
 
 def config_inputs() -> list[str]:

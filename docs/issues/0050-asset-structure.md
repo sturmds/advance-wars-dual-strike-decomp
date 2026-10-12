@@ -14,7 +14,7 @@ The file system (1,799 files, 30 MB in `extract/files/`) is copied into the buil
 - The plan lists "asset extraction into editable forms, kept outside git (D5)" under M2. This issue tracks it.
 - Top-level directories: `battle`, `bmap`, `boot`, `combat`, `combat_st`, `commo`, `data`, `icon`, `info`, `mapedit`, `mu`, `national`, `ohashi`, `rikiishi`, `syogun`, `sys`, `xinfo`. `data/sound_data.sdat` holds the sound data. `boot/` holds the Download Play child (issue 0049), which is a program, not an asset.
 - D5 (changed 2026-10-11): game data that we have reversed into a text form we edit enters git, the same as our C; raw asset files still do not. What git can hold: the formats we work out, the tools that unpack and repack them, the text forms, and a map from each file to the functions that load it.
-- The campaign, Versus, War Room and Survival maps are not files: their headers, tiles and units are in ov000. They are in `assets/maps/` now (`docs/maps.md`, `tools/maps.py`). Combat mode's four maps are files, `/combat/%03x` (`CombatSetup_LoadMapPreviews`): LZ77 `MapData` with their own tile code table (`/combat/res_combat_pnl`). They are still copied.
+- The campaign, Versus, War Room and Survival maps are not files: their headers, tiles and units are in ov000. They are unpacked into `extracted/AWRE/assets/maps/` by `make setup` now (`docs/maps.md`, `tools/maps.py`). Combat mode's four maps are files, `/combat/%03x` (`CombatSetup_LoadMapPreviews`): LZ77 `MapData` with their own tile code table (`/combat/res_combat_pnl`). They are still copied.
 - A repacked file must match the original byte for byte, the same as the code.
 
 ## Done when

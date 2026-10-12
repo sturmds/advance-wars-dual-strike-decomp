@@ -1,5 +1,7 @@
-# Every target goes through here (D2). `make release` is the first command
-# to run after cloning: it runs setup, builds and checks.
+# Every target goes through here (D2). After cloning and linking your ROM at
+# orig/AWRE.nds: `make setup` (tools, hooks, and the map files unpacked from
+# your ROM into extracted/), then `make` and `make check`. `make release` runs
+# all of it.
 
 ROM      := orig/AWRE.nds
 ROM_SHA1 := config/AWRE/rom.sha1
@@ -16,7 +18,7 @@ DSD      := .cache/tools/dsd/dsd
 LOCKED_NINJA := mkdir -p build && flock build/.ninja.lock $(NINJA)
 
 
-.PHONY: all configure fnindex dsindex progress setup release pnc-check check check-rom check-modules check-out hooks extract test clean shift emu-smoke format format-check
+.PHONY: all configure fnindex dsindex progress setup tools assets release pnc-check check check-rom check-modules check-out hooks extract test clean shift emu-smoke format format-check
 
 all: check-rom configure
 	@$(LOCKED_NINJA)
@@ -25,9 +27,17 @@ all: check-rom configure
 configure:
 	@$(PYTHON) tools/configure.py
 
+# Tools and hooks, then the game data the build needs from your ROM (docs/maps.md).
+setup: tools assets
+
 # Downloads tools.lock entries into .cache/ once; offline after that.
-setup: hooks
+tools: hooks
 	@$(PYTHON) tools/setup.py
+
+# Map files are game data: unpacked from the ROM into extracted/, never committed.
+assets: tools extract
+	@$(MAKE) --no-print-directory dsindex
+	@$(PYTHON) tools/maps.py unpack
 
 hooks:
 	@if [ "$$(git config --get core.hooksPath)" != hooks ]; then \
@@ -73,10 +83,10 @@ progress: all
 
 # clang-format on src/ and include/, style in .clang-format. format rewrites
 # files; format-check only reports and is part of release.
-format: setup
+format: tools
 	@$(PYTHON) tools/format.py
 
-format-check: setup
+format-check: tools
 	@$(PYTHON) tools/format.py --check
 
 # Tenet 8: no tracked file matches a private pattern (.git/info/pnc-patterns).
