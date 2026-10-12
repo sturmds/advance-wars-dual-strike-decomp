@@ -21221,6 +21221,7 @@ src/sdk/os/os_set_irq_mask.c:
     .text       start:0x0210cd74 end:0x0210cda8
 
 src/sdk/os/timer_install_irq_slot.c:
+    complete
     .text       start:0x0210cda8 end:0x0210cdf4
 
 src/sdk/os/os_set_dma_irq_handler.c:

@@ -6,7 +6,7 @@
 
 extern vu64 gOsiTickCounter;
 extern u32 gOsiNeedResetTimer;
-void func_0210cda8(int timer, void (*handler)(void *), void *arg);
+void Timer_InstallIrqSlot(int timer, void (*handler)(void *), void *arg);
 
 /* Timer 0 overflow handler: counts one more overflow and arms itself for the next. */
 void OSi_CountUpTick(void *arg)
@@ -18,5 +18,5 @@ void OSi_CountUpTick(void *arg)
         REG_TM0CNT_H = 0xc1;
         gOsiNeedResetTimer = 0;
     }
-    func_0210cda8(0, OSi_CountUpTick, NULL);
+    Timer_InstallIrqSlot(0, OSi_CountUpTick, NULL);
 }
