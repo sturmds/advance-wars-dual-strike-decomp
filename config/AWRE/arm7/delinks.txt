@@ -27,6 +27,10 @@ src/arm7/sdk/wm/wmsp_set_normal_thread_priorities.c:
     complete
     .text       start:0x027c0104 end:0x027c0164
 
+src/arm7/sdk/wm/wmsp_rssi_to_link_level.c:
+    complete
+    .text       start:0x027c0164 end:0x027c018c
+
 src/arm7/sdk/func_arm7_027c05e0.c:
     complete
     .text       start:0x027c05e0 end:0x027c05ec
