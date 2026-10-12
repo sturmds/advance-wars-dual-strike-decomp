@@ -717,7 +717,7 @@ Tick_OnTimer0Overflow_Arm7 kind:function(arm,size=0x88) addr:0x037fcf38
 func_arm7_037fcfc0 kind:function(arm,size=0x10) addr:0x037fcfc0
 Tick_StartTimer0_Arm7 kind:function(arm,size=0x94) addr:0x037fcfd0
 Alarm_OnTimer1Irq_Arm7 kind:function(arm,size=0x10) addr:0x037fd064
-func_arm7_037fd074 kind:function(arm,size=0x100) addr:0x037fd074
+Alarm_FireDueAndRearm_Arm7 kind:function(arm,size=0x100) addr:0x037fd074
 func_arm7_037fd174 kind:function(arm,size=0x90) addr:0x037fd174
 func_arm7_037fd204 kind:function(arm,size=0x7c) addr:0x037fd204
 func_arm7_037fd280 kind:function(arm,size=0x74) addr:0x037fd280
@@ -1104,7 +1104,7 @@ data_arm7_03807a7c kind:bss addr:0x03807a7c
 gOsiNeedResetTimer_Arm7 kind:bss addr:0x03807a80
 gOsiTickCounter_Arm7 kind:bss addr:0x03807a84
 data_arm7_03807a8c kind:bss addr:0x03807a8c
-data_arm7_03807a90 kind:bss addr:0x03807a90
+gOsiAlarmQueue_Arm7 kind:bss addr:0x03807a90
 data_arm7_03807a98 kind:bss addr:0x03807a98
 data_arm7_03807a9c kind:bss addr:0x03807a9c
 data_arm7_03807aa0 kind:bss addr:0x03807aa0

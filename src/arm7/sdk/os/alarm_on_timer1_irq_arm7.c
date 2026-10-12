@@ -1,6 +1,6 @@
 #include "types.h"
 
-void func_arm7_037fd074(void);
+void Alarm_FireDueAndRearm_Arm7(void);
 
 /*
  * Timer 1 interrupt handler of the alarm system. Kept as asm: from C the
@@ -10,7 +10,7 @@ void func_arm7_037fd074(void);
 asm void Alarm_OnTimer1Irq_Arm7(void *arg)
 {
     stmfd sp!, {lr}
-    bl func_arm7_037fd074
+    bl Alarm_FireDueAndRearm_Arm7
     ldmfd sp!, {lr}
     bx lr
 }

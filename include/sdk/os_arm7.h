@@ -22,6 +22,37 @@ typedef volatile u64 vu64;
 #define IRQ_MASK_TIMER0 0x8
 /* Timer control: start, interrupt on overflow, count at the system clock / 64. */
 #define TMCNT_START_IRQ_DIV64 0xc1
+#define REG_TM1CNT_L (*(vu16 *)0x04000104)
+#define REG_TM1CNT_H (*(vu16 *)0x04000106)
+#define IRQ_MASK_TIMER1 0x10
+/* Interrupts the SDK waits for, set by the handlers (ARM7 copy of the DTCM flags on ARM9). */
+#define WRAM_IRQ_SEEN_BITS (*(vu32 *)0x0380fff8)
+
+/* Ticks of Tick_Read64_Arm7: system clock / 64. */
+typedef u64 OSTick;
+
+typedef struct OSAlarm OSAlarm;
+typedef void (*OSAlarmHandler)(void *arg);
+
+/* A timer 1 alarm. A periodic one has period != 0 and fires at start + n * period. */
+struct OSAlarm {
+    OSAlarmHandler handler;        /* NULL while the alarm is not set */
+    void *arg;
+    u32 tag;
+    OSTick fire;
+    OSAlarm *prev;
+    OSAlarm *next;
+    OSTick period;
+    OSTick start;
+};
+
+/* Set alarms, soonest first. */
+typedef struct AlarmList {
+    OSAlarm *head;
+    OSAlarm *tail;
+} AlarmList;
+
+OSTick Tick_Read64_Arm7(void);
 
 typedef struct OSThread OSThread;
 typedef struct OSMutex OSMutex;
