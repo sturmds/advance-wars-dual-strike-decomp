@@ -712,6 +712,10 @@ src/arm7/sdk/wl/wifi_tx_enqueue_groupcast.c:
     complete
     .text       start:0x027cb58c end:0x027cb5f0
 
+src/arm7/sdk/wl/wifi_station_look_up_or_create.c:
+    complete
+    .text       start:0x027cb5f0 end:0x027cb738
+
 src/arm7/sdk/wl/wifi_station_index_of_mac.c:
     complete
     .text       start:0x027cb738 end:0x027cb7e0
