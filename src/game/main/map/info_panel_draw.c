@@ -38,7 +38,7 @@ void func_020cb0f4(u16 x, u16 y);
 BOOL UnitType_HidesCargo(int type, int player, int slot);
 void InfoPanel_DrawHiddenCargoMark(s16 x, s16 y, int slot);
 void* Task_FindByScript(void* script);
-void func_020cb848(int panelX, int panelY, int side);
+void InfoPanel_DrawDamageForecast(int panelX, int panelY, int side);
 void Oam_PutSprite(int x, int y, void* shape, int tile);
 int MainLoop_GetFrameCount(void);
 
@@ -183,7 +183,7 @@ void InfoPanel_Draw(void) {
   }
 
   if (Task_FindByScript(data_02166430)) {
-    func_020cb848(panelX, panelY, side);
+    InfoPanel_DrawDamageForecast(panelX, panelY, side);
   }
 
   /* Window 0 frames the panel; the edge on the screen side is 0. 0x2000

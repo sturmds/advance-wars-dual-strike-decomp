@@ -14731,7 +14731,8 @@ src/game/main/map/info_panel_count_unit_boxes.c:
     complete
     .text       start:0x020cb770 end:0x020cb848
 
-src/game/main/map/func_020cb848.c:
+src/game/main/map/info_panel_draw_damage_forecast.c:
+    complete
     .text       start:0x020cb848 end:0x020cb9f4
 
 src/game/main/map/info_panel_draw.c:

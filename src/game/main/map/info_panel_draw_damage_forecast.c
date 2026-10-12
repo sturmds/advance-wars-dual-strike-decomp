@@ -23,7 +23,7 @@ void func_020d2df0(int x, int y, int value, int tile);
  * the damage it would deal from its destination tile to the unit under the
  * cursor (over the unit box), or to a map object or tile with hp (over the
  * terrain box). The number bobs with Anim_GetPulseFrame. */
-void func_020cb848(int panelX, int panelY, int side) {
+void InfoPanel_DrawDamageForecast(int panelX, int panelY, int side) {
   int pulse = Anim_GetPulseFrame();
   u8 target = UNIT_AT_CURSOR;
   int kind = Map_GetHitTargetKind(STATE->cursorX, STATE->cursorY);
@@ -40,5 +40,8 @@ void func_020cb848(int panelX, int panelY, int side) {
     func_020d2df0((u16)(panelX + data_0216635c[(s16)side][0] + 24),
                   (u16)(panelY - 20 - pulse),
                   (u16)STATE->combatants[0].damageNoLuck, 0x70);
+    /* Needed to match: without it mwcc loads the data_027c0284 address
+     * earlier in this branch. */
+    return;
   }
 }
