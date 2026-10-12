@@ -1240,6 +1240,10 @@ src/arm7/sdk/snd/snd_drv_thread.c:
     complete
     .text       start:0x037feda0 end:0x037fee20
 
+src/arm7/sdk/snd/snd_drv_on_interval_alarm.c:
+    complete
+    .text       start:0x037fee20 end:0x037fee6c
+
 src/arm7/sdk/func_arm7_037fee6c.c:
     complete
     .text       start:0x037fee6c end:0x037fee70
