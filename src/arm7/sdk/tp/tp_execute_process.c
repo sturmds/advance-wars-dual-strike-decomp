@@ -7,7 +7,7 @@ void func_arm7_037fdb94(int state);               /* restore interrupts */
 BOOL func_arm7_03803e68(u32 device);              /* SPI bus free? */
 void func_arm7_03803e50(int device);              /* take the SPI bus */
 void func_arm7_03803e0c(u32 device);              /* release the SPI bus */
-void func_arm7_037fd8ac(OSVAlarm *alarm, s16 count, s16 delay, OSVAlarmHandler handler, void *arg);
+void LineAlarm_ArmEveryFrame_Arm7(OSVAlarm *alarm, s16 count, s16 delay, OSVAlarmHandler handler, void *arg);
 void LineAlarm_WithdrawTagged_Arm7(u32 tag);              /* cancel the V alarms with this tag */
 
 /* Runs one touch panel job on the SPI thread: a sample (one-shot or from
@@ -54,8 +54,8 @@ void TP_ExecuteProcess(SerialBusJob *entry)
             /* arg[0] alarms per frame, spaced evenly from line arg[1] */
             for (i = 0; i < entry->arg[0]; i++) {
                 tpWork.vCount[i] = (entry->arg[1] + i * TOUCH_SCANLINES_PER_FRAME / entry->arg[0]) % TOUCH_SCANLINES_PER_FRAME;
-                func_arm7_037fd8ac(&tpWork.vAlarm[i], tpWork.vCount[i], TOUCH_LINE_ALARM_SLACK,
-                                   Touch_QueueAutoSample, (void *)i);
+                LineAlarm_ArmEveryFrame_Arm7(&tpWork.vAlarm[i], tpWork.vCount[i], TOUCH_LINE_ALARM_SLACK,
+                                          Touch_QueueAutoSample, (void *)i);
             }
             func_arm7_03803e84(entry->process, TOUCH_REPLY_OK);
             tpWork.status = TOUCH_SAMPLER_PERIODIC;
