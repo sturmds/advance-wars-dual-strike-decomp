@@ -1272,6 +1272,10 @@ src/arm7/sdk/snd/snd_init_interval_timer.c:
     complete
     .text       start:0x037fef28 end:0x037fef60
 
+src/arm7/sdk/snd/snd_create_thread.c:
+    complete
+    .text       start:0x037fef60 end:0x037fefa8
+
 src/arm7/sdk/func_arm7_037ff3b4.c:
     complete
     .text       start:0x037ff3b4 end:0x037ff3c4
