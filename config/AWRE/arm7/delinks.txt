@@ -2162,6 +2162,10 @@ src/arm7/sdk/wl/wifi_buffer_give_to_host.c:
     complete
     .text       start:0x037f8d74 end:0x037f8e04
 
+src/arm7/sdk/wl/wifi_open_session.c:
+    complete
+    .text       start:0x037f8e04 end:0x037f92c8
+
 src/arm7/sdk/wl/wifi_close_session.c:
     complete
     .text       start:0x037f92c8 end:0x037f9380

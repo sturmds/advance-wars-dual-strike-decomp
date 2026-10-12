@@ -9,7 +9,7 @@ int func_arm7_027c94ac(int value);
 void WifiRf_TuneChannel(u16 channel, int arg);
 void func_arm7_027cbfc8(void);
 u32 WifiFlash_ValidateRadioBlock(u32 *crcs);
-void func_arm7_037f8e04(void);
+void Wifi_OpenSession(void);
 void Wifi_CloseSession(void);
 
 /*
@@ -51,7 +51,7 @@ void WifiMlme_RunChannelSurvey(void)
         }
         if (job->state == 0x80) {
             WifiRf_TuneChannel(channel, 0);
-            func_arm7_037f8e04();
+            Wifi_OpenSession();
             job->savedReg040 = WIFI_MAC_REGISTER(0x40);
             func_arm7_027c94ac(0x8000);
         } else {

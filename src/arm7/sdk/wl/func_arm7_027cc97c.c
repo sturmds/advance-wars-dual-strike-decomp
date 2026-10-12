@@ -10,7 +10,7 @@ void WifiParam_ChangeListenPeriod(int value);
 void WifiParam_ChangeBeaconPeriod(int value);
 void WifiParam_StoreSsid(int length, u8 *ssid);
 void WifiParam_LoadBssid(u16 *address);
-void func_arm7_037f8e04(void);
+void Wifi_OpenSession(void);
 
 /*
  * Checks a request of network settings (a 1-32 byte SSID, a channel, ranged
@@ -85,6 +85,6 @@ int func_arm7_027cc97c(WlBssSettings *request, WlReply *reply)
     WifiParam_StoreRates(request->unk_38);
     func_arm7_027c926c(request->unk_3c, request->unk_3e);
     link->unk_a4 = 0;
-    func_arm7_037f8e04();
+    Wifi_OpenSession();
     return 0;
 }

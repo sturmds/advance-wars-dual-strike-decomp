@@ -7,7 +7,7 @@ void WifiRf_TuneChannel(u16 channel, int arg);
 void *WifiFrame_NewProbeAsk(u16 *peer);
 void WifiTx_EnqueueMgmt(void *frame);
 u32 WifiFlash_ValidateRadioBlock(u32 *crcs);
-void func_arm7_037f8e04(void);
+void Wifi_OpenSession(void);
 void Wifi_CloseSession(void);
 void Wifi_SwitchMode(int arg);
 
@@ -60,7 +60,7 @@ void WifiMlme_RunScan(void)
         }
         if (job->state == 0x10) {
             WifiRf_TuneChannel(channel, 0);
-            func_arm7_037f8e04();
+            Wifi_OpenSession();
         } else {
             WifiRf_TuneChannel(channel, 0);
         }
