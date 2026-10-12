@@ -483,6 +483,10 @@ src/arm7/sdk/os/thread_link_by_priority_arm7.c:
     complete
     .text       start:0x037fc1d4 end:0x037fc23c
 
+src/arm7/sdk/os/thread_first_free_id_arm7.c:
+    complete
+    .text       start:0x037fc23c end:0x037fc270
+
 src/arm7/sdk/func_arm7_037fc270.c:
     complete
     .text       start:0x037fc270 end:0x037fc2d4
