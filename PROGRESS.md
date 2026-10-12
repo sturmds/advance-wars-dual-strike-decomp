@@ -52,10 +52,10 @@ objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 00
 
 | Code | Functions | Bytes | Rows that match |
 |---|---:|---:|---:|
-| ARM9 game | 17 | 12220 | 2814 / 3070 (91.66%) |
+| ARM9 game | 17 | 12220 | 2827 / 3070 (92.08%) |
 | ARM9 SDK/library | 12 | 10396 | 1896 / 2683 (70.67%) |
 | ARM7 SDK/library | 2 | 636 | 148 / 159 (93.08%) |
-| all | 31 | 23252 | 4858 / 5912 (82.17%) |
+| all | 31 | 23252 | 4871 / 5912 (82.39%) |
 
 | Rows that differ | Functions | Bytes |
 |---|---:|---:|
@@ -79,20 +79,20 @@ Closest first.
 | `src/game/main/units/move_path_follow_cursor.c` | MovePath_FollowCursor | 916 | 10 | 99.74% |
 | `src/game/main/link/func_0207f550.c` | func_0207f550 | 668 | 10 | 99.64% |
 | `src/game/ov002/func_ov002_02352754.c` | func_ov002_02352754 | 2564 | 11 | 99.91% |
+| `src/game/ov004/func_ov004_022bacd8.c` | func_ov004_022bacd8 | 212 | 12 | 94.79% |
 | `src/game/ov003/func_ov003_02361c7c.c` | func_ov003_02361c7c | 700 | 13 | 99.46% |
 | `src/game/ov002/battle_fx_start_a.c` | func_ov002_02357e5c | 492 | 14 | 95.83% |
 | `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | UnitInfoPanel_DrawPage | 300 | 14 | 89.08% |
-| `src/game/ov004/func_ov004_022bacd8.c` | func_ov004_022bacd8 | 212 | 15 | 94.13% |
 | `src/game/main/menus/func_0204f0c0.c` | func_0204f0c0 | 160 | 17 | 85.97% |
 | `src/sdk/msl/__fp_trap_f.c` | __fp_trap_f | 72 | 17 | 52.39% |
 | `src/sdk/msl/__fp_trap_ff.c` | __fp_trap_ff | 76 | 18 | 54.63% |
 | `src/sdk/msl/func_02121ea8.c` | func_02121ea8 | 76 | 18 | 54.63% |
 | `src/sdk/msl/__fp_trap_d.c` | __fp_trap_d | 80 | 19 | 56.65% |
+| `src/game/ov004/ov004_blit_block_with_flags.c` | Ov004_BlitBlockWithFlags | 256 | 20 | 91.56% |
 | `src/sdk/msl/func_02121d58.c` | func_02121d58 | 88 | 21 | 60.14% |
 | `src/sdk/msl/__fp_trap_dd.c` | __fp_trap_dd | 92 | 22 | 61.65% |
 | `src/game/ov004/func_ov004_022ad71c.c` | func_ov004_022ad71c | 352 | 25 | 94.72% |
 | `src/game/ov004/func_ov004_022b1f98.c` | func_ov004_022b1f98 | 1736 | 26 | 99.70% |
-| `src/game/ov004/ov004_blit_block_with_flags.c` | Ov004_BlitBlockWithFlags | 256 | 30 | 90.39% |
 | `src/sdk/msl/__fp_trap.c` | __fp_trap | 256 | 30 | 84.98% |
 | `src/game/main/menus/combat_map_draw_preview_block.c` | CombatMap_DrawPreviewBlock | 556 | 42 | 98.06% |
 | `src/sdk/isd/isd_double_divide_by_ten.c` | func_0211fe0c | 1168 | 44 | 96.78% |

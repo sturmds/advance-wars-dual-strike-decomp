@@ -4,15 +4,15 @@
 /* Copies a 33 x 25 tile window of the tile map, starting at the scroll
  * position, into BG screen blocks at dest. Rows wrap at 32; columns past
  * 32 go into the next screen block (+0x400 entries). Not matched yet
- * (94.4%): the original finishes destRow before srcRow, and destRow and the
- * row * stride step swap registers. The declaration order came from a sweep
- * script. */
+ * (94.8%): the original finishes the destination row offset before srcRow,
+ * and the two land in other registers. Needed for the registers so far: the
+ * destination row offset is kept in viewX, which is dead by then. */
 void func_ov004_022bacd8(Unk_ov004_022bf158* state, u16* dest) {
   int row;
+  int col;
   int viewY;
   int stride;
   int viewX;
-  int col;
   u32 tileX;
   int srcRowStart;
   int tileY;
@@ -27,17 +27,22 @@ void func_ov004_022bacd8(Unk_ov004_022bf158* state, u16* dest) {
   state->viewScrollY = viewY & 0xff;
   srcRowStart += tileX;
   for (row = 0; row < 25; row++) {
-    int destRow = ((tileY + row) & 31) << 5;
-    int srcRow = (srcRowStart + row * stride) * 2;
+    int srcRow;
+
+    viewX = ((tileY + row) & 31) << 5;
+    srcRow = (srcRowStart + row * stride) * 2;
 
     for (col = 0; col < 33; col++) {
-      int screenBlock = 0;
-      int x = tileX + col;
+      int screenBlock;
+      int x;
+
+      screenBlock = 0;
+      x = tileX + col;
 
       if (x & 32) {
         screenBlock += 0x400;
       }
-      dest[screenBlock + (x & 31) + destRow] =
+      dest[screenBlock + (x & 31) + viewX] =
           ((u16*)(srcRow + (u8*)state->tileMap))[col];
     }
   }
