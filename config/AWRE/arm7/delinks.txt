@@ -1292,6 +1292,10 @@ src/arm7/sdk/wl/wifi_frame_put_game_info_element.c:
     complete
     .text       start:0x027cf190 end:0x027cf2b4
 
+src/arm7/sdk/wl/wifi_frame_put_channel_element.c:
+    complete
+    .text       start:0x027cf2b4 end:0x027cf2fc
+
 src/arm7/sdk/func_arm7_027d00b4.c:
     complete
     .text       start:0x027d00b4 end:0x027d00dc
