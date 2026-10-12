@@ -572,6 +572,7 @@ u32 WifiParam_ChannelAllowed(u32 bit);
 // a and b are 6-byte MAC addresses, read as three halfwords.
 BOOL WifiMac_Equal(const u16 *a, const u16 *b);
 void WifiStats_Accumulate(void);
+void WifiStats_Zero(void);
 
 /* Wireless hardware registers, 0x04808000 + offset. */
 #define WIFI_MAC_REGISTER(offset) (*(volatile u16 *)(0x04808000 + (offset)))
