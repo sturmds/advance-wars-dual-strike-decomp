@@ -136,6 +136,17 @@ typedef struct WmspSetWepKeyRequest {
     u32 keyId;
 } WmspSetWepKeyRequest;
 
+/* The arguments of WM_SetGameInfo's request. */
+typedef struct WmspSetGameInfoRequest {
+    u16 apiid;
+    u8 pad_02[2];
+    u16 *userGameInfo;
+    u32 userGameInfoLength;
+    u32 ggid;
+    u32 tgid;
+    u32 attribute;                     /* WIRELESS_BEACON_BIT_* in the low byte */
+} WmspSetGameInfoRequest;
+
 /* The arguments of WM_SetLifeTime. The lifetimes count 100 ms steps. */
 typedef struct WmspSetLifeTimeRequest {
     u16 apiid;
