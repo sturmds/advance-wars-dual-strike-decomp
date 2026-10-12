@@ -303,6 +303,17 @@ void OSi_InitVramExclusive(void);
 /* ARM7 WRAM flag word that the IRQ wait routines poll, 8 bytes below the end of WRAM. */
 #define OS7_IRQ_CHECK_FLAGS (*(volatile u32 *)0x0380fff8)
 
+/* Two words in shared main RAM: bit set = ARM7 lock ID free (IDs 0x80 to 0xbf). */
+#define OS7_LOCK_ID_FREE_MAP ((volatile u32 *)0x027fffb8)
+
+/*
+ * Lock word the two CPUs use to start up in step: the ARM9 sets ownerID to
+ * 0x7f once it has set up its locks, the ARM7 answers with 0xbf in extension.
+ */
+#define BOOT_HANDSHAKE_WORD ((volatile OSLockWord *)0x027ffff0)
+#define BOOT_HANDSHAKE_ARM9_READY 0x7f
+#define BOOT_HANDSHAKE_ARM7_READY 0xbf
+
 /* An alarm that fires when the LCD reaches a given line (V count). */
 typedef void (*OSVAlarmHandler)(void *arg);
 
