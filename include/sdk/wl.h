@@ -268,14 +268,17 @@ typedef struct WlState {
     u8 pad_b0[0xb2 - 0xb0];
     u16 ringSize;                  /* length of the MAC RAM ring that ends at WIFI_RX_RING_LIMIT */
     void *unk_b4;
-    u8 pad_b8[0xc0 - 0xb8];
+    u8 pad_b8[0xbe - 0xb8];
+    u16 unk_be;
     u32 periodicCount;             /* periodic alarm firings */
     u8 pad_c4[4];
     u16 unk_c8;
     u8 pad_ca[0xd8 - 0xca];
     u16 unk_d8[16];
     WlCurrentRequest current;
-    u8 pad_100[0x178 - 0x100];
+    u8 pad_100[0x13c - 0x100];
+    u16 unk_13c;
+    u8 pad_13e[0x178 - 0x13e];
     u16 unk_178;
     u8 pad_17a[6];
     WlTxFrame *txFrame;
@@ -574,6 +577,8 @@ typedef struct WlStationTable {
 #define IO_WIRELESS_TALLY_BYTES ((volatile u16 *)0x048081b0)
 #define IO_WIRELESS_STATION_ID_4BIT (*(volatile u16 *)0x04808028)
 #define IO_WIRELESS_STATION_ID (*(volatile u16 *)0x0480802a)
+#define WIFI_MAC_WAKE_CONTROL (*(volatile u16 *)0x04808038)
+#define WIFI_MAC_POWER_AUX (*(volatile u16 *)0x04808048)
 
 BOOL WifiRf_AwaitSerialIdle(void);
 // Returns 0 once the RF port is idle, 1 on timeout.
