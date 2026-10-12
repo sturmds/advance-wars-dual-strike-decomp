@@ -88,6 +88,9 @@ extern SndPlayer data_arm7_038085d0[SND_PLAYER_COUNT];
 #define SEQ_TRACKS_SHARED_TOTAL 32
 extern SndTrack data_arm7_03808810[SEQ_TRACKS_SHARED_TOTAL];
 
+/* Attenuation in tenths of a decibel (-723 to 0) for each volume 0-127. */
+extern s16 data_arm7_03807180[128];
+
 /* Sequence data is read through a 16-byte window that is copied from the data when a read falls outside it. */
 typedef struct SndSeqCache {
     u8 *start;
@@ -130,6 +133,9 @@ typedef struct SndWaveData {
 #define VOICE_TYPE_SQUARE_WAVE 1
 #define VOICE_TYPE_NOISE 2
 
+/* SndPlayer.tracks entry of an unused track slot. */
+#define SEQ_TRACK_SLOT_EMPTY 0xFF
+
 /* Channel timer at which a PSG or noise channel plays middle C (key 60): 16.76 MHz / 8006 / 8 steps = 261.6 Hz. */
 #define VOICE_SQUARE_KEY60_RELOAD 0x1F46
 
@@ -144,9 +150,11 @@ typedef struct SndWaveData {
 #define VOICE_DONE 1
 
 /* SndExChannel.unk_03_3: hardware updates the driver still has to make for the channel. */
+#define VOICE_DIRTY_START 1
 #define VOICE_DIRTY_STOP 2
 #define VOICE_DIRTY_TIMER 4
 #define VOICE_DIRTY_VOLUME 8
+#define VOICE_DIRTY_PAN 16
 
 typedef void (*SndExChannelCallback)(SndExChannel *channel, int status, void *arg);
 

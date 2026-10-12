@@ -6,7 +6,7 @@ void SndHw_SetOutputControl(int leftOutput, int rightOutput, int ch1Direct, int 
 void func_arm7_037fe534(int volume);   /* writes the master volume register */
 int func_arm7_037fe654(void);         /* sets the master enable bit */
 void func_arm7_037ff9e8(BOOL periodic);
-void func_arm7_037ffcf4(void);
+void SndExChannel_Update(void);
 void func_arm7_037ffee0(void);
 void SndArm7_SeqMain(BOOL periodic);
 void SndArm7_InitSeq(void);
@@ -37,7 +37,7 @@ void SndDrv_Thread(void *arg)
         case SOUND_THREAD_MSG_NEW_REQUESTS:
             break;
         }
-        func_arm7_037ffcf4();
+        SndExChannel_Update();
         func_arm7_03802408();
         SndArm7_SeqMain(periodic);
         func_arm7_037ff9e8(periodic);

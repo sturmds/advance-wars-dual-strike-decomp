@@ -120,7 +120,8 @@ typedef struct SndArm7Alarm {
 /* The driver's state block; its first 0x1180 bytes are copied into the shared work. */
 typedef struct SndArm7Work {
     SndExChannel channels[16];
-    u8 pad_0540[0xa40];
+    SndPlayer players[SND_PLAYER_COUNT];
+    SndTrack tracks[SEQ_TRACKS_SHARED_TOTAL];
     SndArm7Alarm alarms[SOUND_TIMER_SLOTS_ARM7];
 } SndArm7Work;
 
