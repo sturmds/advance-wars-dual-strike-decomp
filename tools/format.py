@@ -27,7 +27,8 @@ BATCH = 200
 def tracked_sources() -> list[Path]:
     out = subprocess.run(["git", "ls-files", "-z", "--", "src", "include"],
                          cwd=ROOT, check=True, capture_output=True, text=True).stdout
-    return [ROOT / p for p in out.split("\0") if p.endswith((".c", ".h"))]
+    # A file renamed in the work tree stays in the index until it is staged.
+    return [ROOT / p for p in out.split("\0") if p.endswith((".c", ".h")) and (ROOT / p).exists()]
 
 
 def has_asm_function(path: Path) -> bool:
