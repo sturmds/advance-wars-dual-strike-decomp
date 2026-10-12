@@ -5,7 +5,7 @@ extern u32 BuildInfo[];     /* module parameters the linker fills in */
 void OS_IrqHandler(void);
 void main(void);
 void func_02000900(u32 data, void *dest, int size);
-void func_02000914(void *compressedEnd);
+void MIi_UncompressBackward(void *bottom);
 void func_020009b8(void);
 void func_02000a14(void);
 void func_02000afc(void);
@@ -56,7 +56,7 @@ asm void Entry(void)
     bl func_02000900
     ldr r1, =BuildInfo
     ldr r0, [r1, #0x14]
-    bl func_02000914
+    bl MIi_UncompressBackward
     bl func_020009b8
     ldr r0, =BuildInfo
     ldr r1, [r0, #0xc]

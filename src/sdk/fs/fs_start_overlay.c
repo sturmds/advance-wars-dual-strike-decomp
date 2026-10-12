@@ -9,7 +9,7 @@ extern OverlayHmacBytes gOverlayExpectedHmacsEnd[];
 u32 Overlay_FileReadSize(const FSOverlayInfo *info);
 BOOL Overlay_CheckKeyedHash(const u8 *expected, const void *data, u32 size);
 void MI_CpuFill8(void *dest, u8 value, u32 size);
-void func_02000914(void *bottom);              /* looks like MIi_UncompressBackward */
+void MIi_UncompressBackward(void *bottom);
 void DC_FlushRange(const void *start, u32 size);
 /* Debugger support library: records the overlay's range for the debugger. */
 int Isd_RegisterOverlay(MIProcessor target, void *address, u32 fileOffset, u32 size);
@@ -39,7 +39,7 @@ void FS_StartOverlay(FSOverlayInfo *info)
         }
     }
     if (info->header.flag & OVERLAY_STORED_PACKED) {
-        func_02000914(info->header.ram_address + binarySize);
+        MIi_UncompressBackward(info->header.ram_address + binarySize);
     }
     DC_FlushRange(info->header.ram_address, info->header.ram_size);
     {
