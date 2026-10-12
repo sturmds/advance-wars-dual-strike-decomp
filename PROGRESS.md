@@ -12,13 +12,13 @@ add both CPUs.
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
 | ARM9 game | 6675 / 6700 | 1525736 / 1553840 | 98.19% | 0 | 0 |
-| ARM9 SDK/library | 643 / 833 | 103292 / 135226 | 76.38% | 176 | 20718 |
-| ARM9 all | 7318 / 7533 | 1629028 / 1689066 | 96.45% | 176 | 20718 |
+| ARM9 SDK/library | 644 / 833 | 103860 / 135226 | 76.80% | 176 | 20718 |
+| ARM9 all | 7319 / 7533 | 1629596 / 1689066 | 96.48% | 176 | 20718 |
 | ARM7 SDK/library | 949 / 1020 | 148704 / 154300 | 96.37% | 69 | 4960 |
 | ARM7 all | 949 / 1020 | 148704 / 154300 | 96.37% | 69 | 4960 |
 | game | 6675 / 6700 | 1525736 / 1553840 | 98.19% | 0 | 0 |
-| SDK/library | 1592 / 1853 | 251996 / 289526 | 87.04% | 245 | 25678 |
-| all | 8267 / 8553 | 1777732 / 1843366 | 96.44% | 245 | 25678 |
+| SDK/library | 1593 / 1853 | 252564 / 289526 | 87.23% | 245 | 25678 |
+| all | 8268 / 8553 | 1778300 / 1843366 | 96.47% | 245 | 25678 |
 
 ## By module
 
@@ -27,7 +27,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
 | main | game | 5167 / 5180 | 1065284 / 1082632 | 98.40% | 0 |
-| main | SDK/library | 636 / 822 | 102380 / 133690 | 76.58% | 172 |
+| main | SDK/library | 637 / 822 | 102948 / 133690 | 77.01% | 172 |
 | itcm | game | 102 / 102 | 21896 / 21896 | 100.00% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -53,15 +53,15 @@ objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 00
 | Code | Functions | Bytes | Rows that match |
 |---|---:|---:|---:|
 | ARM9 game | 25 | 28104 | 6632 / 7047 (94.11%) |
-| ARM9 SDK/library | 14 | 11216 | 2076 / 2890 (71.83%) |
+| ARM9 SDK/library | 13 | 10648 | 1949 / 2747 (70.95%) |
 | ARM7 SDK/library | 2 | 636 | 148 / 159 (93.08%) |
-| all | 41 | 39956 | 8856 / 10096 (87.72%) |
+| all | 40 | 39388 | 8729 / 9953 (87.70%) |
 
 | Rows that differ | Functions | Bytes |
 |---|---:|---:|
 | 1 to 2 | 1 | 252 |
 | 3 to 10 | 12 | 7388 |
-| 11 to 50 | 25 | 24300 |
+| 11 to 50 | 24 | 23732 |
 | more than 50 | 3 | 8016 |
 
 Closest first.
@@ -87,7 +87,6 @@ Closest first.
 | `src/game/main/ai/ai_unit_upgrade_wait_action.c` | AiUnit_UpgradeWaitAction | 3924 | 15 | 99.98% |
 | `src/game/ov003/func_ov003_02361c7c.c` | func_ov003_02361c7c | 700 | 15 | 97.22% |
 | `src/game/ov004/func_ov004_022bacd8.c` | func_ov004_022bacd8 | 212 | 15 | 94.13% |
-| `src/sdk/pm/pm_go_sleep_mode.c` | func_02114ae8 | 568 | 16 | 97.27% |
 | `src/game/main/menus/func_0204f0c0.c` | func_0204f0c0 | 160 | 17 | 85.97% |
 | `src/sdk/msl/__fp_trap_f.c` | __fp_trap_f | 72 | 17 | 52.39% |
 | `src/sdk/msl/__fp_trap_ff.c` | __fp_trap_ff | 76 | 18 | 54.63% |

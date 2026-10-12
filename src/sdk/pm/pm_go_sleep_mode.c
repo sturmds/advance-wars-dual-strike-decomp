@@ -11,7 +11,9 @@ int PM_GetBackLight(int* topBackLight, int* bottomBackLight);
 int PM_ForceToPowerOff(void);
 int PM_SetBackLight(int target, int value);
 int func_02114ee8(int led);
-int Power_AskArm7ToSleep(u32 trigger, u32 keys);
+/* The definition takes u32 parameters; u16 here is needed to match (the caller
+ * narrows both arguments itself). */
+int Power_AskArm7ToSleep(u16 trigger, u16 keys);
 
 #define IRQ_CARD_IREQ 0x100000
 
@@ -21,11 +23,12 @@ static inline u16 SetIme(u16 value) {
   return previous;
 }
 
-/* Not matched yet (97%): the original keeps keyPattern in r11 until the sleep
- * request and saves nine registers; ours reuses its register for command. */
-void func_02114ae8(u32 trigger, u16 logic, u16 keyPattern) {
+/* Puts the system to sleep until one of the wake-up triggers fires, and
+ * restores interrupts, displays and backlights afterwards. The declaration
+ * order of cardEjected and command is needed to match (register choice). */
+void PM_GoSleepMode(u32 trigger, u16 logic, u16 keyPattern) {
   u16 savedIme;
-  u16 command;
+  BOOL cardEjected;
   volatile int savedInterrupts; /* volatile: needed to match (stack slot) */
   u32 savedDispcnt;
   u32 savedSubDispcnt;
@@ -33,7 +36,7 @@ void func_02114ae8(u32 trigger, u16 logic, u16 keyPattern) {
   vu32 savedIrqMask;
   volatile BOOL lcdWasOn;
   int topBackLight;
-  BOOL cardEjected;
+  u16 command;
   int bottomBackLight;
   vu32 tick;
 
@@ -80,8 +83,7 @@ void func_02114ae8(u32 trigger, u16 logic, u16 keyPattern) {
   } while (tick == now);
 
   command = trigger | (topBackLight << 5) | (bottomBackLight << 6);
-  logic = logic | keyPattern;
-  while (Power_AskArm7ToSleep(command, logic) != 0) {
+  while (Power_AskArm7ToSleep(command, logic | keyPattern) != 0) {
   }
 
   OS_Halt();

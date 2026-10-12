@@ -22401,6 +22401,7 @@ src/sdk/pm/power_switch_lcds.c:
     .text       start:0x021149f8 end:0x02114ae8
 
 src/sdk/pm/pm_go_sleep_mode.c:
+    complete
     .text       start:0x02114ae8 end:0x02114d20
 
 src/sdk/pm/pm_send_pxi_data.c:
