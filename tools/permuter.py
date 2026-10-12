@@ -7,7 +7,9 @@
 For each function, it sets up build/permuter/NAME/ and runs decomp-permuter
 (tools.lock; docs/third-party/decomp-permuter.md) on it for --seconds:
 
-  base.c       the function's file after `mwccarm -E` (#line lines removed)
+  pre.c        the function's file after `mwccarm -E` (#line lines removed)
+  base.c       pre.c with each line decomp-permuter's C parser rejects (an
+               `asm` declaration) hidden in a pragma, see parser_safe
   target.o     the original, from build/delinks/ (build/arm7/delinks/ for ARM7)
   compile.sh   the build's compiler and flags (tools/configure.py)
   settings.toml  the function name, compiler_type mwcc, and an objdump
@@ -30,6 +32,7 @@ decomp-permuter needs the `toml` module; a shim over the standard library's
 tomllib in build/permuter/_shim/ stands in for it.
 """
 import argparse
+import base64
 import difflib
 import inspect
 import json
@@ -92,6 +95,40 @@ sys.stdout.write("\\n".join(canon_line(line, addrs) for line in out.splitlines()
 """
 
 
+# mwcc syntax that decomp-permuter's C parser (pycparser) rejects: `asm void
+# _ll_udiv_common(void);` in include/sdk/runtime.h (issue 0068).
+MWCC_ONLY = re.compile(r"^[ \t]*asm\b[^;{}]*;[ \t]*$", re.M)
+
+
+def parser_safe(text: str) -> str:
+    """text with each MWCC_ONLY line replaced by `#pragma _permuter b64literal`.
+    The parser keeps the pragma, and decomp-permuter writes the original line
+    back when it prints the base or a candidate, so mwcc still compiles the
+    real text. One line stays one line, so line numbers in errors still hold."""
+    def hide(m):
+        return "#pragma _permuter b64literal " + base64.b64encode(m.group(0).strip().encode()).decode()
+    return MWCC_ONLY.sub(hide, text)
+
+
+def permuter_modules() -> None:
+    """Make decomp-permuter's src package importable."""
+    for p in (str(WORK / "_shim"), str(PERMUTER.parent)):
+        if p not in sys.path:
+            sys.path.insert(0, p)
+
+
+def parse_error(text: str):
+    """decomp-permuter's parse error for text as base.c, or None if it parses."""
+    permuter_modules()
+    from src import ast_util  # noqa: E402
+    from src.error import CandidateConstructionFailure  # noqa: E402
+    try:
+        ast_util.parse_c(text)
+    except CandidateConstructionFailure as e:
+        return e.message
+    return None
+
+
 def symbol_map(d: Path) -> dict:
     """Addresses of the symbols that base.c or target.o can name."""
     known = fn.symbol_addresses()
@@ -123,8 +160,9 @@ def setup(name: str) -> tuple[Path, str, str]:
                          cwd=ROOT, capture_output=True, text=True)
     if pre.returncode:
         sys.exit(f"error: mwccarm -E failed on {path}:\n{pre.stdout}{pre.stderr}")
-    text = "\n".join(line for line in pre.stdout.splitlines() if not line.startswith("#line"))
-    (d / "base.c").write_text(text + "\n")
+    text = "\n".join(line for line in pre.stdout.splitlines() if not line.startswith("#line")) + "\n"
+    (d / "pre.c").write_text(text)
+    (d / "base.c").write_text(parser_safe(text))
     shutil.copyfile(target, d / "target.o")
     (d / "compile.sh").write_text(
         "#!/bin/bash\n"
@@ -141,6 +179,10 @@ def setup(name: str) -> tuple[Path, str, str]:
     shim = WORK / "_shim"
     shim.mkdir(exist_ok=True)
     (shim / "toml.py").write_text(SHIM)
+    err = parse_error((d / "base.c").read_text())
+    if err:
+        sys.exit(f"error: decomp-permuter cannot parse {(d / 'base.c').relative_to(ROOT)} "
+                 f"(add the construct to MWCC_ONLY in tools/permuter.py):\n{err}")
     return d, path, f.module
 
 
@@ -201,7 +243,7 @@ def statements(code: str) -> list:
 def printed_base(d: Path, name: str) -> str:
     """base.c as decomp-permuter prints an unchanged candidate, so it is
     formatted like the outputs (it adds parentheses and its own spacing)."""
-    sys.path[:0] = [str(WORK / "_shim"), str(PERMUTER.parent)]
+    permuter_modules()
     from src import ast_util  # noqa: E402
     ast = ast_util.parse_c((d / "base.c").read_text())
     fn_def, _ = ast_util.extract_fn(ast, name)
@@ -226,7 +268,7 @@ def rescore(d: Path, name: str, module: str, index) -> list:
     outs.sort()
     rows = []
     for score, o in [(None, d)] + outs[:5]:
-        src = o / ("base.c" if o == d else "source.c")
+        src = o / ("pre.c" if o == d else "source.c")
         res = fnindex.check(index, src, name, module, tmpdir=d)
         rows.append((res.differ if res.message != "compile error" else 10 ** 6, score, o, res))
     return rows
@@ -243,6 +285,9 @@ def one(name: str, seconds: int, jobs: int, index, verbose: bool = False) -> dic
     start = time.time()
     with open(d / "permuter.log", "w") as log:
         code = run(d, seconds, jobs, log, verbose)
+    if base_score(d) is None:
+        tail = "\n".join((d / "permuter.log").read_text(errors="replace").splitlines()[-20:])
+        sys.exit(f"error: decomp-permuter stopped before scoring {name} (exit {code}):\n{tail}")
     rows = rescore(d, name, module, index)
     base = rows[0]
     # A match wins; otherwise decomp-permuter's score, which aligns the two
@@ -263,12 +308,12 @@ def explain(name: str) -> None:
     """decomp-permuter's view of base.c against target.o: its score and the
     normalised lines that differ."""
     d, _, _ = setup(name)
-    sys.path[:0] = [str(WORK / "_shim"), str(PERMUTER.parent)]
+    permuter_modules()
     from src.objdump import objdump, get_arch  # noqa: E402
     from src.scorer import Scorer  # noqa: E402
     cmd = f"{sys.executable} {d / 'objdump.py'} {name}"
     obj = d / "base.o"
-    subprocess.run(["bash", str(d / "compile.sh"), str(d / "base.c"), "-o", str(obj)], check=True)
+    subprocess.run(["bash", str(d / "compile.sh"), str(d / "pre.c"), "-o", str(obj)], check=True)
     score, _ = Scorer(str(d / "target.o"), stack_differences=True, algorithm="difflib", debug_mode=False,
                       ign_branch_targets=True, objdump_command=cmd).score(str(obj))
     arch = get_arch(str(d / "target.o"))

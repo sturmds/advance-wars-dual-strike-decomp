@@ -95,3 +95,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0065](0065-tile-shape-names.md) | Tile tokens for shapes (coasts, bends) are numbers, not names | open | docs | M2 |
 | [0066](0066-map-scripts.md) | Map event scripts are bytes in ov001, not in the map files | open | decomp | M2 |
 | [0067](0067-partials-ranked-by-objdiff-percent.md) | Partials are ranked by objdiff's percentage, which favours register differences over a closer match | closed | loop | M2 |
+| [0068](0068-permuter-asm-declarations.md) | permuter.py reports "0 outputs" on files with `asm` declarations, without running | closed | tools | M2 |

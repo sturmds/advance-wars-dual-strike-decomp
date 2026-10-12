@@ -9,6 +9,10 @@
 2. The objdump script written for decomp-permuter compiles.
 3. parked_names reads the first column of the parked table.
 4. function_text finds one definition, braces nested inside it included.
+5. parser_safe hides an `asm` declaration from decomp-permuter's C parser,
+   keeps the line count, and the parser accepts the result and prints the
+   declaration back unchanged (issue 0068). Skipped when decomp-permuter is
+   not in .cache/ (make setup fetches it).
 """
 
 import sys
@@ -61,6 +65,27 @@ Not a row | here |
     body = permuter.function_text(src, "Foo")
     check("function text", body.startswith("int Foo(int a)") and body.endswith("return 0;\n}"), repr(body))
     check("declaration is not a definition", permuter.function_text(src, "Other") == "")
+
+    base = "typedef unsigned int u32;\nasm void _ll_udiv_common(void);\n  asm void _ll_div_core(void);\n" \
+           "u32 Div(u32 a, u32 b)\n{\n    return a / b;\n}\n"
+    safe = permuter.parser_safe(base)
+    check("asm lines hidden", "asm" not in safe and safe.count("#pragma _permuter b64literal") == 2, safe)
+    check("line count kept", safe.count("\n") == base.count("\n"))
+    check("other lines kept", safe.splitlines()[0] == "typedef unsigned int u32;" and safe.endswith("return a / b;\n}\n"))
+    if permuter.PERMUTER.exists():
+        with tempfile.TemporaryDirectory() as tmp:
+            permuter.WORK = Path(tmp)
+            (permuter.WORK / "_shim").mkdir()
+            (permuter.WORK / "_shim" / "toml.py").write_text(permuter.SHIM)
+            raw = permuter.parse_error(base)
+            check("parser rejects the raw asm declaration", raw is not None and "Syntax error" in raw, str(raw))
+            check("parser accepts the hidden form", permuter.parse_error(safe) is None, str(permuter.parse_error(safe)))
+            from src import ast_util  # noqa: E402
+            printed = ast_util.to_c(ast_util.parse_c(safe))
+            check("printed source has the asm declarations back",
+                  "asm void _ll_udiv_common(void);" in printed and "asm void _ll_div_core(void);" in printed, printed)
+    else:
+        print("parser checks: skipped, decomp-permuter is missing (make setup)")
 
     if failures:
         print(f"test_permuter: {len(failures)} failed", file=sys.stderr)
