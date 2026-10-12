@@ -2,7 +2,7 @@
 #include "sdk/wl.h"
 
 u8 WL_ReadByte(const void *addr);
-u16 func_arm7_027c8318(u32 byte, u32 crc);   /* CRC-16 of one more byte */
+u16 Wifi_Crc16FeedByte(u32 byte, u32 crc);   /* CRC-16 of one more byte */
 
 /* Checks the length and CRC of the loaded wifi block (WIFI_RADIO_BLOCK_*).
  * With crcs, also stores the stored CRC in the low half and the computed
@@ -22,7 +22,7 @@ u32 WifiFlash_ValidateRadioBlock(u32 *crcs)
     src = (const u8 *)&WIFI_DRIVER_STATE->limits.wifiConfig->length;
     crc = 0;
     while (length != 0) {
-        crc = func_arm7_027c8318(WL_ReadByte(src++) & 0xff, (u16)crc);
+        crc = Wifi_Crc16FeedByte(WL_ReadByte(src++) & 0xff, (u16)crc);
         length--;
     }
 

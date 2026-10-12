@@ -1,7 +1,7 @@
 #include "sdk/wl.h"
 
 void WifiFlash_ReadRadioBytes(u32 offset, u32 size, void *dest);
-u16 func_arm7_027c8318(u32 byte, u32 crc);
+u16 Wifi_Crc16FeedByte(u32 byte, u32 crc);
 
 /*
  * CRC of the 105 baseband start values at firmware 0x64, with only bit 7 of
@@ -22,7 +22,7 @@ u16 WifiBaseband_ChecksumStartValues(void)
         if (i == 1) {
             value &= 0x80;
         }
-        crc = func_arm7_027c8318(value & 0xff, crc);
+        crc = Wifi_Crc16FeedByte(value & 0xff, crc);
     }
     return crc;
 }

@@ -174,7 +174,7 @@ WifiTx_RepairDamagedQueues kind:function(arm,size=0x100) addr:0x027c80f4
 WifiTx_ResendQueueHead kind:function(arm,size=0x4c) addr:0x027c81f4
 WifiTx_HaltAndSettle kind:function(arm,size=0x44) addr:0x027c8240
 WifiTx_RestoreGuardWords kind:function(arm,size=0x94) addr:0x027c8284
-func_arm7_027c8318 kind:function(arm,size=0x78) addr:0x027c8318
+Wifi_Crc16FeedByte kind:function(arm,size=0x78) addr:0x027c8318
 Wifi_StepLcg kind:function(arm,size=0x38) addr:0x027c8390
 func_arm7_027c83c8 kind:function(arm,size=0x18) addr:0x027c83c8
 Wifi_SeedLcg kind:function(arm,size=0x3c) addr:0x027c83e0
@@ -544,7 +544,7 @@ data_arm7_027d6690 kind:data(any) addr:0x027d6690
 data_arm7_027d6698 kind:data(any) addr:0x027d6698
 gWifiRateHalfMbps kind:data(any) addr:0x027d66a0
 gWlDefaultWords58 kind:data(any) addr:0x027d66c0
-data_arm7_027d66e0 kind:data(any) addr:0x027d66e0
+gWlCrc16Table kind:data(any) addr:0x027d66e0
 gWlFirmwareRegOffsets kind:data(any) addr:0x027d6700
 gWlDefaultWifiRamBlocks kind:data(any) addr:0x027d6720
 gWlRegDefaults kind:data(any) addr:0x027d6770

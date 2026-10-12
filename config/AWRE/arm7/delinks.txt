@@ -652,6 +652,10 @@ src/arm7/sdk/wl/wifi_tx_restore_guard_words.c:
     complete
     .text       start:0x027c8284 end:0x027c8318
 
+src/arm7/sdk/wl/wifi_crc16_feed_byte.c:
+    complete
+    .text       start:0x027c8318 end:0x027c8390
+
 src/arm7/sdk/wl/wifi_step_lcg.c:
     complete
     .text       start:0x027c8390 end:0x027c83c8
