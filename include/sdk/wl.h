@@ -247,6 +247,7 @@ typedef struct WlLink {
     u16 pendingEvents; /* WlState.unk_c8: event bits task 21 sends to the host */
     u8 pad_b2[0xb8 - 0xb2];
     u16 unk_b8;        /* WlState.unk_d0 */
+    u16 wepRestarts;   /* times WifiIrq_TxErrorCounted restarted the WEP engine */
 } WlLink;
 
 // Entry inside the frame payload at a running offset.
@@ -1003,8 +1004,8 @@ typedef struct WlBufferLists {
 // View from work offset 0x400, as WifiCmd_ArmMpReply addresses the MP reply slots
 // (WlState.mpReplySlots).
 typedef struct WlMpReplyView {
-    WlMpReplySlot txSlots[2];
-    u8 pad_28[0x50 - 0x28];
+    WlMpReplySlot txSlots[3];
+    u8 pad_3c[0x50 - 0x3c];
     WlMpReplySlot slots[2];
     u8 pad_78[0x80 - 0x78];
     WlTxFrame *txFrame;  /* WlState.txFrame */
@@ -1129,6 +1130,8 @@ typedef struct Unk_027cb9e4 {
 #define W_TXBUF_RESET_REPLY1 0x80
 /* Wi-Fi RF serial status: bit 0 set while a transfer to the RF chip runs. */
 #define REG_W_RF_BUSY (*(volatile u16 *)0x04808180)
+/* Wi-Fi WEP engine control: bit 15 enables it. */
+#define REG_W_WEP_CNT (*(volatile u16 *)0x04808032)
 
 /* Wireless interrupt causes: bits of WIFI_IRQ_PENDING_FLAGS (W_IF, set) and WIFI_IRQ_ENABLE_MASK
    (W_IE, enabled). Names from GBATEK. */

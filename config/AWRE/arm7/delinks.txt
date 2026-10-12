@@ -2024,6 +2024,10 @@ src/arm7/sdk/wl/wifi_irq_stats_half_full.c:
     complete
     .text       start:0x037f98e4 end:0x037f9920
 
+src/arm7/sdk/wl/wifi_irq_tx_error_counted.c:
+    complete
+    .text       start:0x037f9920 end:0x037f9a44
+
 src/arm7/sdk/os/irq_dispatch_lowest_pending_arm7.c:
     complete
     .text       start:0x037fb340 end:0x037fb394
