@@ -2,7 +2,7 @@
 
 extern const u16 gWlFirmwareRegOffsets[16];
 
-void func_arm7_027d422c(u32 offset, u32 size, void *dest);
+void WifiFlash_ReadRadioBytes(u32 offset, u32 size, void *dest);
 void func_arm7_027c8b64(u32 entry);
 
 void WifiRf_LoadStartValues(void)
@@ -18,7 +18,7 @@ void WifiRf_LoadStartValues(void)
     /* Firmware 0x44-0x63: start values for 16 registers listed in the table. */
     value = 0;
     for (i = 0; i < 16; i++) {
-        func_arm7_027d422c(0x44 + i * 2, 2, &value);
+        WifiFlash_ReadRadioBytes(0x44 + i * 2, 2, &value);
         WIFI_MAC_REGISTER(gWlFirmwareRegOffsets[i]) = value;
     }
 
@@ -37,17 +37,17 @@ void WifiRf_LoadStartValues(void)
     count = rf->entryCount;
     if (rf->type == 3) {
         /* Type 3: one byte per entry, sent with its index; one more byte after them. */
-        func_arm7_027d422c(count + 0xce, 1, &rf->unk_08);
+        WifiFlash_ReadRadioBytes(count + 0xce, 1, &rf->unk_08);
         for (i = 0; i < count; i++, offset++) {
             entry = 0;
-            func_arm7_027d422c(offset, 1, &entry);
+            WifiFlash_ReadRadioBytes(offset, 1, &entry);
             entry |= 0x50000 + (i << 8);
             func_arm7_027c8b64(entry);
         }
     } else {
         entry = 0;
         while (count != 0) {
-            func_arm7_027d422c(offset, bytesPerEntry, &entry);
+            WifiFlash_ReadRadioBytes(offset, bytesPerEntry, &entry);
             func_arm7_027c8b64(entry);
             if (rf->type == 2 && (entry >> 18) == 9) {
                 rf->unk_0c = entry & ~0x7c00;

@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
 
-void func_arm7_027d422c(u32 offset, u32 size, void *dest);
+void WifiFlash_ReadRadioBytes(u32 offset, u32 size, void *dest);
 u16 func_arm7_027c8318(u32 byte, u32 crc);
 
 /*
@@ -18,7 +18,7 @@ u16 WifiBaseband_ChecksumStartValues(void)
     crc = 0;
     value = 0;
     for (i = 0; i < 105; offset++, i++) {
-        func_arm7_027d422c(offset, 1, &value);
+        WifiFlash_ReadRadioBytes(offset, 1, &value);
         if (i == 1) {
             value &= 0x80;
         }
