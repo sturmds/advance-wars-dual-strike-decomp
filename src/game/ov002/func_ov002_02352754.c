@@ -4,6 +4,7 @@
 #include "game/menu_state.h"
 #include "game/BattleSideData.h"
 #include "game/unit_stats.h"
+#include "sdk/os.h"
 
 extern MenuState gMenuState;
 
@@ -14,7 +15,6 @@ void GX_EndLoadTex(void);              /* guess: undoes GX_BeginLoadTex */
 void GX_BeginLoadTexPltt(void);
 void GX_EndLoadTexPltt(void);
 void File_ReadTo(void *dest, const char *path);
-void DC_FlushRange(void *start, u32 size);
 void GX_LoadTexPltt(const void *src, u32 offset, u32 size);
 
 extern char data_ov002_023600e4[];

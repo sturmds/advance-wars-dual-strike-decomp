@@ -1,7 +1,7 @@
 #include "sdk/fs.h"
+#include "sdk/os.h"
 
 void IC_InvalidateRange(void *start, u32 size);
-void DC_InvalidateRange(void *start, u32 size);
 void MI_CpuFill8(void *dest, u8 value, u32 size);
 
 /* Drops the cache lines over the overlay's memory and zeroes its bss. */

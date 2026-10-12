@@ -2,8 +2,6 @@
 #include "sdk/wm.h"
 #include "sdk/pxi.h"
 
-void DC_InvalidateRange(void *start, u32 size);
-void DC_StoreRange(void *start, u32 size);
 void MI_DmaFill32(u32 dmaNo, void *dest, u32 data, u32 size);
 void OS_InitMessageQueue(OSMessageQueue *queue, OSMessage *messages, int count);
 BOOL OS_SendMessage(OSMessageQueue *queue, OSMessage msg, int flags);

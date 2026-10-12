@@ -2,9 +2,9 @@
 #include "game/sound_heap.h"
 #include "game/sound_wave_arc.h"
 #include "sdk/snd.h"
+#include "sdk/os.h"
 
 u32 func_02110a90(SoundWaveArc *wave);
-void DC_StoreRange(void *start, u32 size);
 s32 SoundArc_ReadFile(u32 fileNo, void *dest, u32 size, u32 offset);
 void *SoundHeap_AllocItem(SoundHeap *heap, u32 size, void (*onUnload)(void *payload, u32 arg1, u32 arg2, u32 arg3), u32 arg3, u32 arg4);
 void SoundWaveArc_UnloadWave(void *data, u32 size, SoundWaveArc *wave, u32 waveNo);

@@ -1,6 +1,5 @@
 #include "sdk/wm.h"
-
-void DC_InvalidateRange(void *start, u32 size);
+#include "sdk/os.h"
 
 extern WMArm9Buf *data_022ac32c;
 

@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/wm.h"
-
-void DC_InvalidateRange(void *start, u32 size);
+#include "sdk/os.h"
 
 /* Stops the MP exchange of a parent or child. */
 int WM_EndMP(WMCallbackFunc callback)

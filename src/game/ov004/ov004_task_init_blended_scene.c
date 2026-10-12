@@ -2,6 +2,7 @@
 #include "game/screen_other_map.h"
 #include "game/task.h"
 #include "game/Unk_ov004_022bf158.h"
+#include "sdk/os.h"
 
 #define REG_DISPCNT (*(volatile u32 *)0x04000000)
 
@@ -11,7 +12,6 @@ void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void File_ReadTo(void *dest, const char *fileName);
 void Mem_Fill32(u32 value, void *dst, u32 size);
-void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void GX_BeginLoadTex(void);
 void GX_LoadTex(const void *src, u32 offset, u32 size);  /* guess: copies to texture VRAM */
 void GX_EndLoadTex(void);

@@ -2,12 +2,11 @@
 /* Needed to match: the CARD library was built with propagation off, which keeps the flags below as values. */
 #pragma opt_propagation off
 #include "sdk/card.h"
+#include "sdk/os.h"
 
 extern u8 Oam_GetShapeCells[];   /* start of ITCM: the first function placed there */
 
 u32 Cp15_DataTcmBase(void);         /* start of DTCM */
-void DC_StoreRange(void *start, u32 size);
-void DC_InvalidateRange(void *start, u32 size);
 void IC_InvalidateRange(void *start, u32 size);
 void DC_WaitWriteBufferEmpty(void);
 void CardRom_OnPageDmaDone(void);

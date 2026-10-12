@@ -5,6 +5,7 @@
 #include "game/play_records.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "sdk/os.h"
 
 void Data_Unpack(const void *src, void *dest);
 const char *File_LocalizePath(const char *path);
@@ -61,7 +62,6 @@ void GX_LoadTexPltt(const void *src, u32 offset, u32 size);
 void GX_BeginLoadTexPltt(void);
 void GX_EndLoadTex(void);
 void GX_BeginLoadTex(void);
-void DC_FlushRange(const void *start, u32 size);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;

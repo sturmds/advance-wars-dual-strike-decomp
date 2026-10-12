@@ -1,9 +1,9 @@
 #include "types.h"
 #include "sdk/snd.h"
+#include "sdk/os.h"
 
 void func_0210fec0(void);
 void func_0210fed4(void);
-void DC_StoreRange(void *start, u32 size);
 
 /* Links wave archive arc into slot index of bank. Takes the link out of the
  * archive it pointed to before, if any, and flushes the changed words from the

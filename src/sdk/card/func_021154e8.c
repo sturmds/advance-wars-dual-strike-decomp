@@ -1,5 +1,6 @@
 #pragma opt_propagation off
 #include "sdk/card.h"
+#include "sdk/os.h"
 
 extern CARDiCommandArg data_022ab960;
 extern u8 data_022ab9a0[0x160];
@@ -7,7 +8,6 @@ extern u8 data_022ac0e0[];
 
 void MIi_CpuClearFast(u32 value, void *dst, u32 size);
 void Mem_CopyBytes(const void *src, void *dst, u32 size);
-void DC_FlushRange(const void *start, u32 size);
 void OS_CreateThread(OSThread *thread, void (*proc)(void *), void *arg, void *stack, u32 stackSize, u32 priority);
 void OS_WakeupThreadDirect(OSThread *thread);
 void PXI_SetFifoRecvCallback(int tag, void (*callback)(int tag, u32 data, int err));

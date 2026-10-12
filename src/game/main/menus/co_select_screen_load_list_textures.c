@@ -1,10 +1,10 @@
 #include "types.h"
 #include "game/co_select_screen.h"
+#include "sdk/os.h"
 
 void *Mem_Alloc(u32 size);
 void Mem_Free(void *ptr);
 void Mem_Fill32(u32 value, void *dst, u32 size);
-void DC_FlushRange(const void *start, u32 size);
 void Co_LoadTexture(int coId, u32 texOffset, u32 paletteOffset);
 void Gfx_LoadTexPalette(const void *src, u32 offset, u32 size);
 BOOL CoSelect_IsCoAvailable(u8 co);

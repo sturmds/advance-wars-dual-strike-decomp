@@ -2,11 +2,11 @@
 #pragma opt_propagation off
 #include "sdk/card.h"
 #include "sdk/ctrdg.h"
+#include "sdk/os.h"
 
 /* needed to match: the original reloads the flag at each use */
 #define FLAG(c) (*(volatile u32 *)&(c)->flag)
 
-void DC_FlushRange(const void *start, u32 size);
 void DC_WaitWriteBufferEmpty(void);
 void OS_SleepThread(OSThreadQueue *queue);
 int PXI_SendWordByFifo(int tag, u32 word, int err);

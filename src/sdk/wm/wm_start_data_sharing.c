@@ -1,8 +1,8 @@
 #include "types.h"
 #include "sdk/math.h"
 #include "sdk/wm.h"
+#include "sdk/os.h"
 
-void DC_InvalidateRange(void *start, u32 size);
 void MIi_CpuClearFast(u32 value, void *dst, u32 size);
 void DataShare_OnParentPortRecv(void *arg);
 void DataShare_OnChildPortRecv(void *arg);

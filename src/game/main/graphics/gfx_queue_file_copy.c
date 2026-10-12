@@ -1,7 +1,7 @@
 #include "types.h"
+#include "sdk/os.h"
 
 void *File_Load(const char *path);
-void DC_FlushRange(void *data, u32 size);
 void GfxQueue_AddKind4(const void *src, void *dst, u32 size);
 
 /* Loads a file and queues its first size bytes as a kind 4 copy to dest

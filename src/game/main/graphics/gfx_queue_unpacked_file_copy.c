@@ -1,10 +1,10 @@
 #include "types.h"
+#include "sdk/os.h"
 
 void *File_Load(const char *path);
 void *Mem_Alloc(s32 size);
 void Mem_Free(void *ptr);
 void Data_Unpack(const void *src, void *dst);
-void DC_FlushRange(void *data, u32 size);
 void GfxQueue_AddKind3(const void *src, void *dst, u32 size);
 
 /* Loads a compressed file, unpacks it (the top 24 bits of its first word

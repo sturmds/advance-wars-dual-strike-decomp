@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/co_graphics.h"
+#include "sdk/os.h"
 
 void *Mem_Alloc(u32 size);
 void Mem_Free(void *ptr);
@@ -7,7 +8,6 @@ int Co_GetPictureVariant(int coId);
 int Co_GetSavedPaletteVariant(int coId);
 void Gfx_LoadTexPalette(const void *src, u32 offset, u32 size);
 void Gfx_LoadTexImage(const void *src, u32 offset, u32 size);
-void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void Image4bpp_UntileStrip(const u8 *src, u8 *dest, int tiles);
 
 /* Picture tile pointers at gCoGraphics + 0x40, one row per CO. */

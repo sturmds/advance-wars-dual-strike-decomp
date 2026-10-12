@@ -1,9 +1,9 @@
 #include "types.h"
+#include "sdk/os.h"
 
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void File_ReadTo(void *dest, const char *fileName);
-void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void GX_BeginLoadTex(void);
 void GX_LoadTex(const void *src, u32 offset, u32 size);  /* guess: copies to texture VRAM, between begin and end calls */
 void GX_EndLoadTex(void);

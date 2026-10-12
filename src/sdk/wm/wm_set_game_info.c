@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/wm.h"
+#include "sdk/os.h"
 
-void DC_StoreRange(void *start, u32 size);
 void MIi_CpuCopy16(const void *src, void *dest, u32 size);
 
 extern u8 gWmGameInfoBuf[0x80];

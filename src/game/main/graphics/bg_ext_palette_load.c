@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "sdk/os.h"
 
-void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void GX_BeginLoadBGExtPltt(void);                          /* guess: begins a background extended palette load */
 void GX_LoadBGExtPltt(const void *src, u32 offset, u32 size);
 void GX_EndLoadBGExtPltt(void);                          /* guess: ends the load */

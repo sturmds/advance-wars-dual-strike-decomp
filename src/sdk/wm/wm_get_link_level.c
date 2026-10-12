@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/wm.h"
-
-void DC_InvalidateRange(void *start, u32 size);
+#include "sdk/os.h"
 
 /* Signal strength of the current link; 0 when not connected. A parent with no
  * children reports 0. */

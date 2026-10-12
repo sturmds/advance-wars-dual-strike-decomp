@@ -1,6 +1,5 @@
 #include "sdk/snd.h"
-
-void DC_FlushRange(const void *start, u32 size);
+#include "sdk/os.h"
 
 void Sound_ResetArm7StatusBlock(SndSharedWork *work)
 {

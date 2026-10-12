@@ -2,11 +2,11 @@
 #include "game/Unk_0215fe84.h"
 #include "game/Unk_0229c960.h"
 #include "sdk/wm.h"
+#include "sdk/os.h"
 
 extern u32 data_0229c880;
 extern WMBssDesc *gWirelessScanBuffer;
 
-void DC_InvalidateRange(void *start, u32 size);
 int func_02079180(void);
 int Wireless_EndScan(void);
 int Wireless_PrepareScan(void);

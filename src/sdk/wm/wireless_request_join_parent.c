@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/wm.h"
+#include "sdk/os.h"
 
-void DC_StoreRange(void *start, u32 size);
 void Mem_CopyBytes(const void *src, void *dest, u32 size);
 void MI_CpuFill8(void *dest, u8 value, u32 size);
 

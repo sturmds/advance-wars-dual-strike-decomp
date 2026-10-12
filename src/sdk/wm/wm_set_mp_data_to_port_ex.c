@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/wm.h"
-
-void DC_InvalidateRange(void *start, u32 size);
-void DC_StoreRange(const void *start, u32 size);
+#include "sdk/os.h"
 
 /* Queues data to send to the children in destBitmap (or to the parent) on a
  * port during the running MP exchange. callback runs with arg once it is

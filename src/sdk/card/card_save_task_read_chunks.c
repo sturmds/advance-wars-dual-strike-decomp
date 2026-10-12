@@ -1,9 +1,9 @@
 /* needed to match: the original was built without copy propagation */
 #pragma opt_propagation off
 #include "sdk/card.h"
+#include "sdk/os.h"
 
 void Mem_CopyBytes(const void *src, void *dst, u32 size);
-void DC_InvalidateRange(const void *start, u32 size);
 BOOL CARDi_Request(CARDiCommon *common, u32 command, int tries);   /* sends one command to the backup chip */
 void CardSave_FinishTaskAndNotify(CARDiCommon *common);
 

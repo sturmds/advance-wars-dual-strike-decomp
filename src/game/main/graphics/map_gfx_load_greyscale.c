@@ -1,12 +1,12 @@
 #include "types.h"
 #include "game/Unk_022a7c5c.h"
+#include "sdk/os.h"
 
 const char *MapGfx_GetPaletteFile(int variant, int style);  /* guess: path of the map palette file */
 void MapGfx_LoadTextures(int variant, int style);         /* guess: loads the map graphics */
 u16 Rgb_ToGrey(u16 red, u16 green, u16 blue);
 u16 *File_Load(const char *path);
 void Mem_Free(void *block);
-void DC_FlushRange(const void *start, u32 size);
 void GX_BeginLoadTexPltt(void);
 void GX_LoadTexPltt(const void *src, u32 offset, u32 size);
 void GX_EndLoadTexPltt(void);

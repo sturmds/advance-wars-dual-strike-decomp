@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/wm.h"
-
-void DC_InvalidateRange(void *start, u32 size);
+#include "sdk/os.h"
 
 /* Drops a connection. A parent names the child's aid (1 to 15); a child
  * passes 0 to leave its parent. */

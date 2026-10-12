@@ -10,7 +10,6 @@ u32 Overlay_FileReadSize(const FSOverlayInfo *info);
 BOOL Overlay_CheckKeyedHash(const u8 *expected, const void *data, u32 size);
 void MI_CpuFill8(void *dest, u8 value, u32 size);
 void MIi_UncompressBackward(void *bottom);
-void DC_FlushRange(const void *start, u32 size);
 /* Debugger support library: records the overlay's range for the debugger. */
 int Isd_RegisterOverlay(MIProcessor target, void *address, u32 fileOffset, u32 size);
 

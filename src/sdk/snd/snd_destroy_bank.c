@@ -1,9 +1,9 @@
 #include "types.h"
 #include "sdk/snd.h"
+#include "sdk/os.h"
 
 void func_0210fec0(void);
 void func_0210fed4(void);
-void DC_StoreRange(void *start, u32 size);
 
 /* Takes the four wave archive links of bank out of the archives they are
  * chained in. */

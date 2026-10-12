@@ -3,8 +3,6 @@
 #include "sdk/os.h"
 #include "sdk/wm.h"
 
-void DC_InvalidateRange(void *start, u32 size);
-void DC_StoreRange(void *start, u32 size);
 void MI_DmaCopy32(int dmaNo, const void *src, void *dst, u32 size);
 BOOL OS_ReceiveMessage(OSMessageQueue *queue, OSMessage *msg, int flags);
 BOOL OS_SendMessage(OSMessageQueue *queue, OSMessage msg, int flags);

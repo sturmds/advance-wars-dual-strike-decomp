@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/wm.h"
-
-void DC_InvalidateRange(void *start, u32 size);
+#include "sdk/os.h"
 
 /* Bytes for the MP receive buffer of a parent or child, 32-byte aligned and
  * doubled. 0 when the state is wrong or MP is running. */

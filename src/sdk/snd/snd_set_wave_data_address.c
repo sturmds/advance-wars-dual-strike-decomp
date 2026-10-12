@@ -1,9 +1,9 @@
 #include "types.h"
 #include "sdk/snd.h"
+#include "sdk/os.h"
 
 void func_0210fec0(void);
 void func_0210fed4(void);
-void DC_StoreRange(void *start, u32 size);
 
 /* Records where wave waveNo is loaded (NULL to forget it) and flushes the entry
  * from the data cache for the sound driver. */

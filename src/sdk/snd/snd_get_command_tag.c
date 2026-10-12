@@ -1,6 +1,5 @@
 #include "sdk/snd.h"
-
-void DC_InvalidateRange(void *start, u32 size);
+#include "sdk/os.h"
 
 extern SndSharedWork *data_022ab7a0;
 

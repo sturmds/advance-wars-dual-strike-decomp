@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/sound_arc.h"
 #include "game/sound_wave_arc.h"
+#include "sdk/os.h"
 
 void *SoundArc_GetFileAddress(int fileId);
 SoundArc *SoundArc_GetCurrent(void);
@@ -11,7 +12,6 @@ void *SoundHeap_AllocItem(void *heap, u32 size, void (*onUnload)(void *payload, 
 void SoundWaveArc_OnUnload(void *payload, u32 size, SoundArc *arc, int fileId);
 void Mem_CopyBytes(const void *src, void *dest, u32 size);
 void MI_CpuFill8(void *dest, int value, u32 size);
-void DC_StoreRange(void *start, u32 size);
 
 extern SoundWaveArc gWaveArcHeader;         /* header of the wave archive being loaded */
 

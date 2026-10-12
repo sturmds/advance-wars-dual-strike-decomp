@@ -1,8 +1,6 @@
 #include "sdk/wm.h"
 #include "sdk/os.h"
 
-void DC_InvalidateRange(void *start, u32 size);
-void DC_StoreRange(void *start, u32 size);
 void Mem_CopyBytes(const void *src, void *dest, u32 size);
 void MIi_CpuCopy16(const void *src, void *dest, int size);
 void MIi_CpuClear16(u16 data, void *dest, int size);

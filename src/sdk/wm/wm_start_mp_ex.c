@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/wm.h"
-
-void DC_InvalidateRange(void *start, u32 size);
+#include "sdk/os.h"
 
 /* Starts the MP exchange (the parent polls its children every frame) with the
  * given receive and send buffers. Both must be at least the size WM asks for:

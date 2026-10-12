@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/wm.h"
-
-void DC_StoreRange(void *start, u32 size);
+#include "sdk/os.h"
 
 /* Gives the ARM7 the settings to use when this DS acts as a parent. */
 int WM_SetParentParameter(WMCallbackFunc callback, WMParentParam *param)

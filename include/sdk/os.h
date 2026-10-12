@@ -158,6 +158,11 @@ typedef enum OSArenaId {
 
 void OS_InitContext(OSContext *context, u32 pc, u32 sp);
 
+/* Data cache maintenance over a byte range. */
+void DC_FlushRange(const void *start, u32 size);
+void DC_InvalidateRange(void *start, u32 size);
+void DC_StoreRange(const void *start, u32 size);
+
 u32 OS_GetThreadPriority(const OSThread *thread);
 BOOL OS_SetThreadPriority(OSThread *thread, u32 priority);
 

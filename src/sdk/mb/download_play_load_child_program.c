@@ -2,6 +2,7 @@
 #include "sdk/fs.h"
 #include "sdk/mb.h"
 #include "sdk/rom_header.h"
+#include "sdk/os.h"
 
 extern const RomRegion *gMbArm9CopyRegions;
 extern const char gMbRomArchiveName[];
@@ -13,7 +14,6 @@ extern const char gMbRomArchiveName[];
 #pragma opt_loop_invariants off
 
 void AutoloadCallback(int arg);
-void DC_FlushRange(const void *start, u32 size);
 void Mem_CopyBytes(const void *src, void *dest, u32 size);
 void func_0211daf4(DlPlayHeldProgram *cache);        /* clear the cache */
 void MbCache_Add(DlPlayHeldProgram *cache, u32 address, u32 size, u8 *buffer, u32 state);

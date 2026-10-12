@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/Unk_ov005_0235b574.h"
+#include "sdk/os.h"
 
 void func_ov005_0235b5dc(Unk_ov005_0235b574 *work, int x, int y);
-void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void GX_BeginLoadTex(void);                          /* guess: begins a VRAM load */
 void GX_LoadTex(const void *src, u32 offset, u32 size);
 void GX_EndLoadTex(void);                          /* guess: ends the load */

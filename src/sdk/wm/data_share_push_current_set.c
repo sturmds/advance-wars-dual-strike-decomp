@@ -2,7 +2,6 @@
 #include "sdk/os.h"
 #include "sdk/wm.h"
 
-void DC_InvalidateRange(void *start, u32 size);
 void MIi_CpuClear16(u16 data, void *dest, u32 size);
 int WM_SetMPDataToPortEx(WMCallbackFunc callback, void *arg, const void *sendData, u16 sendDataSize,
                          u16 destBitmap, u16 port, u16 prio);

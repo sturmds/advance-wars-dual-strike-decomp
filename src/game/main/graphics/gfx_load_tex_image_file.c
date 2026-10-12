@@ -1,10 +1,10 @@
 #include "types.h"
+#include "sdk/os.h"
 
 void *File_Load(const char *path);
 void *Mem_Alloc(u32 size);
 void Mem_Free(void *ptr);
 void Data_Unpack(const void *src, void *dst);
-void DC_FlushRange(void *data, u32 size);
 void Gfx_LoadTexImage(const void *src, u32 offset, u32 size);  /* guess: copies to texture image VRAM, twin of Gfx_LoadTexPalette */
 
 /* Loads a compressed file and copies the unpacked image to offset in texture

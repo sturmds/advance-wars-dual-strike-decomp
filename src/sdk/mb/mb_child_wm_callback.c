@@ -8,7 +8,6 @@ extern DlPlayStationArea *data_022aced8;
 extern u16 data_022aced0;
 extern WMScanParam data_022acee0;
 
-void DC_InvalidateRange(void *start, u32 size);
 void MI_DmaCopy16(u32 dmaNo, const void *src, void *dest, u32 size);
 void MIi_CpuCopy16(const void *src, void *dst, u32 size);
 void MbParent_ReportError(u16 apiid, int errcode);

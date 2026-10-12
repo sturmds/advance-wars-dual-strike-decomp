@@ -1,6 +1,6 @@
 #include "types.h"
+#include "sdk/os.h"
 
-void DC_FlushRange(const void *start, u32 size);
 void DC_WaitWriteBufferEmpty(void);
 int MbParent_SendMpData(void *data, int size, int bitmap);
 

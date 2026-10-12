@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/wm.h"
+#include "sdk/os.h"
 
-void DC_InvalidateRange(void *start, u32 size);
 void MIi_CpuCopy16(const void *src, void *dest, int size);
 
 /* Port callback of a data-sharing child: stores each set the parent sends

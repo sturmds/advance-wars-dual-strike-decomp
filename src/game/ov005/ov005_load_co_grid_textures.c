@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bba8.h"
+#include "sdk/os.h"
 
 /* Needed to match: the original keeps the unused `loaded` count. */
 #pragma opt_dead_assignments off
@@ -8,7 +9,6 @@
 void *Mem_Alloc(u32 size);
 void Mem_Free(void *block);
 void Mem_Fill32(u32 value, void *dst, u32 size);
-void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void func_02028808(void);
 void Co_LoadTexture(int coId, int tileOffset, int paletteOffset);
 void Gfx_LoadTexPalette(void *palette, int start, int offset);

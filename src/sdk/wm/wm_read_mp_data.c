@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/wm.h"
-
-void DC_InvalidateRange(void *start, u32 size);
+#include "sdk/os.h"
 
 /* The data the child with this aid sent in the last MP exchange, or NULL when
  * the aid is not connected. */

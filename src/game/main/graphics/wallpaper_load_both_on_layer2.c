@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "sdk/os.h"
 
 void Gfx_RequestLayerCopy(int bg);
 void Data_Unpack(const void *src, void *dest);
@@ -10,7 +11,6 @@ u8 *File_Load(const char *path);
 void Mem_Free(void *res);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void FS_ChangeDir(const char *dir);
-void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void GX_BeginLoadBGExtPltt(void);                          /* guess: begins a background extended palette load */
 void GX_LoadBGExtPltt(const void *src, u32 offset, u32 size);
 void GX_EndLoadBGExtPltt(void);                          /* guess: ends the load */

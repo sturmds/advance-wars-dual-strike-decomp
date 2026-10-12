@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/sound_stream.h"
+#include "sdk/os.h"
 
 extern s16 data_0214d410[];            /* ADPCM step sizes, 89 entries */
 extern s8 data_0214d400[];             /* ADPCM step index change per nibble */
@@ -7,7 +8,6 @@ extern u8 *data_022a8aa4;              /* buffer that ADPCM data is read into */
 
 void MI_CpuFill8(void *dest, int value, u32 size);
 void Mem_CopyBytes(const void *src, void *dest, u32 size);
-void DC_FlushRange(const void *start, u32 size);
 void SoundStream_SetupNext(SoundStream *stream);
 
 /* IMA ADPCM: decode one 4-bit code with a channel's state and store the
