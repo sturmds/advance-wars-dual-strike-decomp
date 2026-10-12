@@ -835,6 +835,10 @@ src/arm7/sdk/snd/snd_hw_is_channel_busy.c:
     complete
     .text       start:0x037fe7b0 end:0x037fe7cc
 
+src/arm7/sdk/snd/snd_hw_set_channel_pan.c:
+    complete
+    .text       start:0x037fe7cc end:0x037fe848
+
 src/arm7/sdk/func_arm7_037fe848.c:
     complete
     .text       start:0x037fe848 end:0x037fe860
