@@ -572,6 +572,7 @@ typedef struct WlTask1Job {
 #define WIFI_ANSWER_NO_RESPONSE 7
 #define WIFI_ANSWER_NO_MEMORY 8  /* the frame could not be allocated */
 #define WIFI_ANSWER_FLASH_BLOCK_BAD 14  /* WifiFlash_ValidateRadioBlock failed */
+#define WIFI_ANSWER_PEER_SAID_NO 12  /* the peer answered with a nonzero status, in WlReply.value */
 #define WIFI_ANSWER_LATER 0x80 /* the request stays in WlMlme; the reply comes later */
 
 /* Request that names a destination station by MAC address. Bit 0 of the
