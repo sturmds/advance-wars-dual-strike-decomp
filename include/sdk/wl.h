@@ -296,7 +296,7 @@ typedef struct WlTxQueue {
     u16 busy;
     u8 pad_02[6];
     WlRamFrame *frame;
-    u8 *unk_0c;     /* 16 bytes into a block func_arm7_027d0ee8 reads */
+    u8 *unk_0c;     /* 16 bytes into a block WifiTx_PlaceFrameInRam reads */
     u8 pad_10[4];
 } WlTxQueue;
 
