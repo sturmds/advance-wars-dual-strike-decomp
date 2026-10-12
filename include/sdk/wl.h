@@ -464,10 +464,15 @@ typedef struct WlPeerJob {
 /* Authentication frame from WifiFrame_NewAuthentication: the 802.11 header starts at
    0x14 (frame control 0xb0), the body at 0x2c. */
 typedef struct WlAuthFrame {
-    u8 pad_00[0x2c];
+    u8 pad_00[2];
+    u16 station;         /* as in WlTxFrame and WlRxFrame */
+    u8 pad_04[0x28];
     u16 algorithm;
     u16 sequence;
     u16 status;
+    u8 challengeId;      /* challenge text element, shared key only */
+    u8 challengeLength;
+    u16 challenge[1];
 } WlAuthFrame;
 
 /* Request checked and applied by func_arm7_027cc97c. */
