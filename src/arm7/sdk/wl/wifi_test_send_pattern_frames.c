@@ -4,7 +4,6 @@
 void func_arm7_037f8e04(void);
 void func_arm7_037f92c8(void);
 u16 func_arm7_027c8bcc(int reg);
-int func_arm7_027c8b8c(int reg, int value);
 void func_arm7_027c963c(int channel, int arg1);
 void func_arm7_027c87b8(int a0);
 
@@ -21,7 +20,7 @@ void WifiTest_SendPatternFrames(WlTestModeRequest *request)
     func_arm7_037f92c8();
     link->savedBbReg6 = func_arm7_027c8bcc(6);
     if (request->signal == 4) {
-        func_arm7_027c8b8c(6, 0);
+        WifiBaseband_Put(6, 0);
     }
     {
         volatile u16 zero = 0;

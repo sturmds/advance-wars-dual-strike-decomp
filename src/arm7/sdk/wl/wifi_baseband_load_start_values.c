@@ -1,7 +1,6 @@
 #include "sdk/wl.h"
 
 void WifiFlash_ReadRadioBytes(u32 offset, u32 size, void *dest);
-int func_arm7_027c8b8c(u32 index, u32 value);
 
 /* Firmware 0x64-0xcc holds the start values of the 105 baseband registers. */
 void WifiBaseband_LoadStartValues(void)
@@ -17,6 +16,6 @@ void WifiBaseband_LoadStartValues(void)
     value = 0;
     for (; i < 105; offset++, i++) {
         WifiFlash_ReadRadioBytes(offset, 1, &value);
-        func_arm7_027c8b8c(i, value);
+        WifiBaseband_Put(i, value);
     }
 }

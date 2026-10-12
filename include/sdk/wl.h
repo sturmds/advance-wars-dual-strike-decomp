@@ -516,6 +516,8 @@ typedef struct WlStationTable {
 BOOL WifiRf_AwaitSerialIdle(void);
 // Returns 0 once the RF port is idle, 1 on timeout.
 int WifiRf_SendWord(u32 value);
+// Returns 0, or 0xffffffff when WifiBaseband_AwaitReady times out.
+u32 WifiBaseband_Put(u32 index, u32 value);
 
 /* Wireless hardware registers, 0x04808000 + offset. */
 #define WIFI_MAC_REGISTER(offset) (*(volatile u16 *)(0x04808000 + (offset)))
