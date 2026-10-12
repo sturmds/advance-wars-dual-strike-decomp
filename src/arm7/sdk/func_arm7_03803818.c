@@ -9,10 +9,10 @@ struct Unk_03803818_0 {
     int unk_14;
 };
 
-void func_arm7_03802d2c(int, int, int);
+void CARDi_WriteBackup(int, int, int);
 
 void func_arm7_03803818(Unk_03803818_0 **a0)
 {
     Unk_03803818_0 *t0 = *a0;
-    func_arm7_03802d2c(t0->unk_10, t0->unk_c, t0->unk_14);
+    CARDi_WriteBackup(t0->unk_10, t0->unk_c, t0->unk_14);
 }
