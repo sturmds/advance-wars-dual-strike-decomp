@@ -10,7 +10,7 @@ BOOL Cartridge_HeaderStillMatches(void);
 int PM_GetBackLight(int *topBackLight, int *bottomBackLight);
 int PM_ForceToPowerOff(void);
 int PM_SetBackLight(int target, int value);
-int func_02114ee8(int backlight);
+int func_02114ee8(int led);
 int Power_AskArm7ToSleep(u32 trigger, u32 keys);
 
 #define IRQ_CARD_IREQ 0x100000

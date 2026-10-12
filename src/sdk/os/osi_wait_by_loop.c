@@ -2,7 +2,7 @@
 
 void OS_SpinWait(int);
 
-void func_0210cf78(void)
+void OSi_WaitByLoop(void)
 {
     OS_SpinWait(0x1000);
 }

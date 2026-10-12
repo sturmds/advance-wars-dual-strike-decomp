@@ -14,9 +14,9 @@ struct Unk_0210d21c {
 
 extern u32 data_022a991c;
 
-void func_0210cf78(void);
-void func_0210d114(int tag, void *block, int arg);
-void func_0210d1b4(int tag, void *block, int arg);
+void OSi_WaitByLoop(void);
+void OS_UnlockByWord(int tag, void *block, int arg);
+void OS_LockByWord(int tag, void *block, int arg);
 void MIi_CpuClear32(u32 value, void *dest, u32 size);
 
 void func_0210d21c(void)
@@ -29,10 +29,10 @@ void func_0210d21c(void)
     }
     data_022a991c = 1;
     SHARED_BLOCK->unk_0 = 0;
-    func_0210d1b4(0x7e, SHARED_BLOCK, 0);
+    OS_LockByWord(0x7e, SHARED_BLOCK, 0);
     block = SHARED_BLOCK;
     while (block->unk_6 != 0) {
-        func_0210cf78();
+        OSi_WaitByLoop();
     }
     *(vu32 *)0x027fffb0 = -1;
     *(vu32 *)0x027fffb4 = -0x10000;
@@ -40,6 +40,6 @@ void func_0210d21c(void)
     MIi_CpuClear32(zero, (void *)0x027fffc0, 0x28);
     REG_EXMEMCNT |= 0x800;
     REG_EXMEMCNT |= 0x80;
-    func_0210d114(0x7e, SHARED_BLOCK, 0);
-    func_0210d1b4(0x7f, SHARED_BLOCK, 0);
+    OS_UnlockByWord(0x7e, SHARED_BLOCK, 0);
+    OS_LockByWord(0x7f, SHARED_BLOCK, 0);
 }

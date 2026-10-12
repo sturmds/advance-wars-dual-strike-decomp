@@ -21255,11 +21255,11 @@ src/sdk/os/os_release_lock_id.c:
     complete
     .text       start:0x0210cf48 end:0x0210cf78
 
-src/game/main/func_0210cf78.c:
+src/sdk/os/osi_wait_by_loop.c:
     complete
     .text       start:0x0210cf78 end:0x0210cf88
 
-src/game/main/func_0210cf88.c:
+src/sdk/os/os_read_owner_of_lock_word.c:
     complete
     .text       start:0x0210cf88 end:0x0210cf90
 
@@ -21291,7 +21291,7 @@ src/sdk/os/osi_allocate_cartridge_bus.c:
     complete
     .text       start:0x0210d02c end:0x0210d044
 
-src/sdk/os/os_lock_cartridge.c:
+src/sdk/os/os_try_lock_cartridge.c:
     complete
     .text       start:0x0210d044 end:0x0210d064
 
@@ -21299,15 +21299,15 @@ src/sdk/os/os_unlock_cartridge.c:
     complete
     .text       start:0x0210d064 end:0x0210d084
 
-src/game/main/func_0210d084.c:
+src/sdk/os/os_try_lock_by_word.c:
     complete
     .text       start:0x0210d084 end:0x0210d094
 
-src/sdk/os/os_do_lock_by_word.c:
+src/sdk/os/osi_do_try_lock_by_word.c:
     complete
     .text       start:0x0210d094 end:0x0210d114
 
-src/game/main/func_0210d114.c:
+src/sdk/os/os_unlock_by_word.c:
     complete
     .text       start:0x0210d114 end:0x0210d124
 
@@ -21315,11 +21315,11 @@ src/sdk/os/os_do_unlock_by_word.c:
     complete
     .text       start:0x0210d124 end:0x0210d1b4
 
-src/game/main/func_0210d1b4.c:
+src/sdk/os/os_lock_by_word.c:
     complete
     .text       start:0x0210d1b4 end:0x0210d1c4
 
-src/sdk/os/func_0210d1c4.c:
+src/sdk/os/osi_do_lock_by_word.c:
     complete
     .text       start:0x0210d1c4 end:0x0210d21c
 
@@ -22418,7 +22418,7 @@ src/sdk/pm/func_02114ee8.c:
     complete
     .text       start:0x02114ee8 end:0x02114f24
 
-src/sdk/pm/power_send_led_state_async.c:
+src/sdk/pm/power_request_led_state.c:
     complete
     .text       start:0x02114f24 end:0x02114f8c
 

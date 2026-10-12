@@ -44,7 +44,11 @@ void PowerHook_CallAll(PowerHookEntry *list);
 void Power_SaveSyncResult(u32 result, u32 *dest);
 int Power_SpinUntilIdle(void);
 BOOL Power_LcdsPowered(void);
-BOOL Power_SwitchLcds(int on, int backlight, BOOL force, BOOL sync);
+/* led: POWER_LIGHT_* state to set with the LCD, 0 to leave the LED alone. */
+BOOL Power_SwitchLcds(int on, int led, BOOL force, BOOL sync);
+
+/* Sends a power LED state (POWER_LIGHT_*) to the ARM7. */
+int Power_RequestLedState(int led, PMCallback callback, u32 *arg);
 
 
 /* ARM7 side: the power chip driver that answers the requests above. */

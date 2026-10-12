@@ -76,11 +76,11 @@ u32 MI_SwapWord(u32 setData, volatile u32 *destp);
 
 /*
  * Take and give back a lock word. ctrl, when given, runs while the lock
- * changes hands (for the cartridge it flips the bus owner). Lock returns the
- * old lock flag (0 means it was free and is now ours); unlock returns
- * LOCK_NOT_OWNER if lockID is not the owner, else 0.
+ * changes hands (for the cartridge it hands over the bus). Try takes the
+ * lock once and returns the old lock flag (0 means it was free and is now
+ * ours); unlock returns LOCK_NOT_OWNER if lockID is not the owner, else 0.
  */
-u32 OSi_DoLockByWord(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL disableFiq);
+u32 OSi_DoTryLockByWord(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL disableFiq);
 int OSi_DoUnlockByWord(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL disableFiq);
 
 /* Busy-waits about cycles CPU cycles. */

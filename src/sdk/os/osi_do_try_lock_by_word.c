@@ -1,6 +1,6 @@
 #include "sdk/os.h"
 
-u32 OSi_DoLockByWord(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL disableFiq)
+u32 OSi_DoTryLockByWord(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL disableFiq)
 {
     OSIntrMode intr;
     u32 lockFlag;

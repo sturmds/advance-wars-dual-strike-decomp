@@ -10,8 +10,8 @@
 #define SLOT2_NO_MATCH 0x02000000
 
 int OS_GetLockID(void);
-u16 func_0210cf88(void *lock);
-int OS_LockCartridge(u16 lockId);
+u16 OS_ReadOwnerOfLockWord(void *lock);
+int OS_TryLockCartridge(u16 lockId);
 void OS_UnlockCartridge(u16 lockId);
 
 /*
@@ -35,7 +35,7 @@ u32 func_0210db18(void)
         lockResult = -1;
         irqState = OS_DisableInterrupts();
 
-        if ((func_0210cf88(SLOTLOCK_WORD) & 0x40) != 0 || (lockResult = OS_LockCartridge(lockId)) == 0) {
+        if ((OS_ReadOwnerOfLockWord(SLOTLOCK_WORD) & 0x40) != 0 || (lockResult = OS_TryLockCartridge(lockId)) == 0) {
             if (SLOT2_WORD_0 == SLOT2_MAGIC_0 && SLOT2_WORD_1 == SLOT2_MAGIC_1) {
                 result = SLOT2_MATCH;
             } else {

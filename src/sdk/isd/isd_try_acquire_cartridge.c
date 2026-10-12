@@ -5,8 +5,8 @@
 
 #define CARTRIDGE_LOCK_WORD ((void *)0x027fffe8)
 
-int OS_LockCartridge(u16 lockId);
-u16 func_0210cf88(void *lock);
+int OS_TryLockCartridge(u16 lockId);
+u16 OS_ReadOwnerOfLockWord(void *lock);
 
 /*
  * Tries to take the cartridge lock (id 0x70) and, if the bus is ours, stores in *saved
@@ -20,10 +20,10 @@ BOOL Isd_TryAcquireCartridge(u32 *saved)
     BOOL locked = FALSE;
     BOOL lockedByUs = FALSE;
 
-    if (OS_LockCartridge(0x70) == 0) {
+    if (OS_TryLockCartridge(0x70) == 0) {
         lockedByUs = TRUE;
         locked = lockedByUs;
-    } else if (func_0210cf88(CARTRIDGE_LOCK_WORD) & 0x40) {
+    } else if (OS_ReadOwnerOfLockWord(CARTRIDGE_LOCK_WORD) & 0x40) {
         locked = TRUE;
     }
     if (locked) {

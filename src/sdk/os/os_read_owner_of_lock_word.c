@@ -7,7 +7,7 @@ struct Unk_0210cf88 {
     u16 unk_4;
 };
 
-u16 func_0210cf88(Unk_0210cf88 *a0)
+u16 OS_ReadOwnerOfLockWord(Unk_0210cf88 *a0)
 {
     return a0->unk_4;
 }
