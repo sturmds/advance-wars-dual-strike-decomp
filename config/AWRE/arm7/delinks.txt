@@ -1171,6 +1171,10 @@ src/arm7/sdk/svc/bios_checksum_crc16_arm7.c:
     complete
     .text       start:0x03803bc4 end:0x03803bc8
 
+src/arm7/sdk/svc/bios_running_on_dev_unit_arm7.c:
+    complete
+    .text       start:0x03803bc8 end:0x03803bcc
+
 src/arm7/sdk/func_arm7_03803e50.c:
     complete
     .text       start:0x03803e50 end:0x03803e68
