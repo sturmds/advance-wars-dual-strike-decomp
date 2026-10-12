@@ -24,5 +24,5 @@ void Wmsp_ReceiveRequest(int tag, WmspRequest *request, BOOL error)
     reply->errcode = WM_ERRCODE_FIFO_ERROR;
     reply->wlCmdID = 0;
     reply->wlResult = 0;
-    func_arm7_038076e8(reply);
+    Wmsp_SendReply(reply);
 }

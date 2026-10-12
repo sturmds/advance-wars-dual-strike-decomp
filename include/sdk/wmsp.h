@@ -94,6 +94,10 @@ extern WmspState data_arm7_027d7c44;
 /* Held while a reply buffer is filled and sent. */
 extern OSMutex data_arm7_027d813c;
 
+/* Take the buffer for a reply to the ARM9, fill it, and send it. */
+void *Wmsp_GetCallbackBuffer(void);
+void Wmsp_SendReply(void *reply);
+
 /* The same 16 bytes as WmspState.history; the original names them apart. */
 extern u8 data_arm7_027d8160[16];
 
@@ -109,7 +113,7 @@ void func_arm7_027c6eb4(u16 arg);
 void func_arm7_027c6f68(u16 arg);
 void func_arm7_027c70f8(void);
 void *Wmsp_GetCallbackBuffer(void);
-void func_arm7_038076e8(void *reply);
+void Wmsp_SendReply(void *reply);
 
 /* Copies halfwords (ARM7's MI_CpuCopy16-like helper). */
 void func_arm7_037fde40(const void *src, void *dest, int size);

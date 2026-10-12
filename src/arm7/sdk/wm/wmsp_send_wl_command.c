@@ -21,7 +21,7 @@ WlCommand *Wmsp_SendWlCommand(WlCommand *command)
         indication->apiid = WM_APIID_INDICATION;
         indication->errcode = WM_ERRCODE_FLASH_ERROR;
         indication->state = 23;
-        func_arm7_038076e8(indication);
+        Wmsp_SendReply(indication);
         SndHw_Disable();
         func_arm7_037fdc10();
     }
