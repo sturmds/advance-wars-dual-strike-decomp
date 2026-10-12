@@ -484,6 +484,10 @@ src/arm7/sdk/wl/wifi_cmd_report_beacon_forwarding.c:
     complete
     .text       start:0x027cd580 end:0x027cd5bc
 
+src/arm7/sdk/wl/wifi_cmd_report_antenna_switching.c:
+    complete
+    .text       start:0x027cd5bc end:0x027cd61c
+
 src/arm7/sdk/wl/func_arm7_027cdadc.c:
     complete
     .text       start:0x027cdadc end:0x027cdb28
