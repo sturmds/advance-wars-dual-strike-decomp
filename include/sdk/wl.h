@@ -36,7 +36,8 @@ typedef struct WlStation {
     u16 macAddress[3];
     u8 pad_0a[0x6];
     u16 unk_10; /* bit 1: send to this station at 2 Mbit/s */
-    u8 pad_12[0x4];
+    u8 pad_12[0x2];
+    u16 unk_14; /* set to 0xffff for a new station */
     u16 queuedFrames;
     u16 unk_18; /* reloaded from unk_1a */
     u16 unk_1a;

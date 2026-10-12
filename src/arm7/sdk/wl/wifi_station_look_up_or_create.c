@@ -3,7 +3,7 @@
 /* Stations below this state can be replaced by a new one. */
 #define WIFI_PEER_REPLACEABLE_BELOW 0x30
 
-void func_arm7_027cab94(u32 station, const u16 *macAddress);
+void WifiStation_SetUpEntry(u32 station, const u16 *macAddress);
 
 /*
  * Returns the index of the station with this MAC address, setting up a new
@@ -67,6 +67,6 @@ u32 WifiStation_LookUpOrCreate(const u16 *macAddress)
             return WIFI_NO_PEER;
         }
     }
-    func_arm7_027cab94(index, macAddress);
+    WifiStation_SetUpEntry(index, macAddress);
     return index;
 }
