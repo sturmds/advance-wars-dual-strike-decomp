@@ -3,7 +3,7 @@
 #include "sdk/tp.h"
 #include "sdk/os_arm7.h"
 
-void func_arm7_027d43dc(SerialBusJob *entry);   /* NVRAM job */
+void NVRAM_ExecuteProcess(SerialBusJob *entry);   /* NVRAM job */
 void func_arm7_03805aa8(SerialBusJob *entry);   /* microphone job */
 void PM_ExecuteProcess(SerialBusJob *entry);   /* power chip job */
 
@@ -27,7 +27,7 @@ void SerialDev_WorkerLoop(void *arg)
             PM_ExecuteProcess(entry);
             break;
         case SERIAL_OWNER_FLASH:
-            func_arm7_027d43dc(entry);
+            NVRAM_ExecuteProcess(entry);
             break;
         }
     }
