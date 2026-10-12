@@ -1584,6 +1584,10 @@ src/arm7/sdk/snd/snd_player_stop.c:
     complete
     .text       start:0x03800df4 end:0x03800e30
 
+src/arm7/sdk/snd/snd_player_close_track.c:
+    complete
+    .text       start:0x03800e30 end:0x03800e84
+
 src/arm7/sdk/func_arm7_03800e84.c:
     complete
     .text       start:0x03800e84 end:0x03800ea4
