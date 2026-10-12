@@ -7,38 +7,34 @@ void Ov004_UnpackResource(const char *name, void *dst);
  * each entry as it copies the block into the big map at (blockX, blockY).
  * With flag 0x400 (horizontal flip) each row is copied mirrored. */
 void Ov004_BlitBlockWithFlags(Unk_ov004_022bf158 *state, int blockX, int blockY, const char *name, u16 flags) {
-    u16 *dstRow;
-    u16 *block;
-    u16 *dst;
-    int stride;
-    int origin;
     u16 *map;
+    u16 *dst;
+    u16 *block;
+    int stride;
     int col;
     int row;
+    int origin;
 
-    /* Not matched yet (89.0%): registers differ from the start (orig keeps
-     * stride in r5, map in r7, flags in r2). The source row read as
-     * (block + row * 32)[col] gives the original index-first address. */
-    stride = state->blocksWide;
+    /* Not matched yet (90.4%): flags lands in r1 where the original has r2,
+     * and in the flip branch dst shares map's register. Both rows written as
+     * (base + row * n)[i] give the original's index-first addresses. */
+    stride = state->blocksWide * 32;
     block = state->mapBlock;
     map = state->tileMap;
-    stride <<= 5;
     origin = stride * (blockY << 5) + (blockX << 5);
     Ov004_UnpackResource(name, block);
     if (flags & 0x400) {
         dst = map + origin;
         for (row = 0; row < 32; row++) {
-            dstRow = dst + row * stride;
             for (col = 0; col < 32; col++) {
-                dstRow[31 - col] = (block + row * 32)[col] | flags;
+                (dst + row * stride)[31 - col] = (block + row * 32)[col] | flags;
             }
         }
     } else {
-        dst = map + origin;
+        map += origin;
         for (row = 0; row < 32; row++) {
-            dstRow = dst + row * stride;
             for (col = 0; col < 32; col++) {
-                dstRow[col] = (block + row * 32)[col] | flags;
+                (map + row * stride)[col] = (block + row * 32)[col] | flags;
             }
         }
     }
