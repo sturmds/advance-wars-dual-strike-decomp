@@ -21935,7 +21935,7 @@ src/sdk/snd/sound_reset_arm7_status_block.c:
     complete
     .text       start:0x02110880 end:0x02110900
 
-src/sdk/snd/snd_get_command_tag.c:
+src/sdk/snd/sound_last_done_command_tag.c:
     complete
     .text       start:0x02110900 end:0x02110934
 
@@ -22986,7 +22986,7 @@ src/sdk/mb/download_play_parent_running.c:
     complete
     .text       start:0x0211bdbc end:0x0211bddc
 
-src/sdk/mb/mb_parent_get_flags.c:
+src/sdk/mb/mb_parent_get_non_zero_mask.c:
     complete
     .text       start:0x0211bddc end:0x0211be3c
 
@@ -22998,7 +22998,7 @@ src/sdk/func_0211be50.c:
     complete
     .text       start:0x0211be50 end:0x0211be64
 
-src/sdk/mb/mb_parent_send.c:
+src/sdk/mb/mb_parent_send_mp_data.c:
     complete
     .text       start:0x0211be64 end:0x0211bf68
 
