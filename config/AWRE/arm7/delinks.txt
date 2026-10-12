@@ -348,6 +348,10 @@ src/arm7/sdk/func_arm7_027c3408.c:
     complete
     .text       start:0x027c3408 end:0x027c342c
 
+src/arm7/sdk/wm/wmsp_reply_end_scan_failed.c:
+    complete
+    .text       start:0x027c3b90 end:0x027c3bcc
+
 src/arm7/sdk/wm/wmsp_set_mp_data.c:
     complete
     .text       start:0x027c4a10 end:0x027c4b24
