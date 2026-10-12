@@ -201,7 +201,12 @@ typedef struct WlPayloadEntry {
 typedef struct WlTxFrame {
     u16 unk_00;
     u16 station;
-    u8 pad_04[0x24 - 0x04];
+    u8 pad_04[2];
+    u16 unk_06;
+    u16 result; /* set when the frame is done, returned in the reply */
+    u8 pad_0a[0x12 - 0x0a];
+    u16 unk_12;
+    u8 pad_14[0x24 - 0x14];
     u8 payload[10];
     u16 unk_2e;
 } WlTxFrame;
@@ -313,6 +318,15 @@ typedef struct WlBufferList {
     u16 id;
 } WlBufferList;
 
+// Host buffer that carries a frame to send. The reply sits replyOffset
+// halfwords after the start of frame.
+typedef struct WlTxRequest {
+    WlBuffer header;
+    u16 command;
+    u16 replyOffset;
+    WlTxFrame frame;
+} WlTxRequest;
+
 /* Where buffers come from. kind 0: Heap_TakeFirstFit_Arm7(arena, heap, size).
    kind 1: the alloc and free callbacks. */
 typedef struct WlBufferAllocator {
@@ -358,7 +372,7 @@ typedef struct WlWork {
     WlTask tasks[24];
     WlBufferAllocator allocator;
     WlBufferList unk_15c;          /* holds the wifi config buffer */
-    u8 pad_168[0x180 - 0x168];
+    WlBufferList txQueues[2]; /* TX queues 0 and 1; queue 2 is multicastQueue */
     /* Multicast and broadcast frames; TIM bit 0 is set while it is not empty. */
     WlBufferList multicastQueue;
     u8 pad_18c[0x1c8 - 0x18c];
