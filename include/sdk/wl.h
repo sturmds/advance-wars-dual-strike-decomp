@@ -198,13 +198,14 @@ typedef struct WlLink {
     u16 mode;
     u8 pad_0a[2];
     u16 unk_0c;
-    u8 pad_0e[0x10 - 0x0e];
+    u16 unk_0e;
     u16 unk_10;     /* set to 1 on each pre-beacon interrupt */
     u16 unk_12;
-    u8 pad_14[0x16 - 0x14];
+    u16 unk_14;
     u16 testRate;   /* 10 or 20, from the WifiCmd_RunRadioTest request */
     u16 testTxActive;
-    u8 pad_1a[4];
+    u16 unk_1a;
+    u8 pad_1c[2];
     u16 ssidLength;
     u8 ssid[32];
     u8 pad_40[0x60 - 0x40];
@@ -216,7 +217,9 @@ typedef struct WlLink {
     u16 beaconInterval; /* sent in probe responses */
     u16 listenInterval; /* sent in association requests */
     u16 unk_72;
-    u8 pad_74[0x7c - 0x74];
+    u16 unk_74;
+    u16 unk_76;          /* counts down from unk_74 - 1 once per beacon */
+    u8 pad_78[0x7c - 0x78];
     u16 flags_7c;
     u16 unk_7e;          /* WlState.unk_96: pre-beacons between runs of task 13 */
     u16 unk_80;          /* WlState.unk_98: pre-beacons counted towards unk_7e */
@@ -233,7 +236,8 @@ typedef struct WlLink {
     u16 gameInfoLength;
     u16 unk_a2;         /* bit 0: gameInfo starts one byte later */
     u16 unk_a4;
-    u8 pad_a6[6];
+    u8 pad_a6[2];
+    u32 periodicCount;  /* WlState.periodicCount */
     u16 savedBbReg6; /* baseband register 6 before WifiTest_SendPatternFrames changed it */
     u8 pad_ae[2];
     u16 pendingEvents; /* WlState.unk_c8: event bits task 21 sends to the host */
@@ -273,7 +277,8 @@ typedef struct WlMpReplySlot {
     u16 count;    /* frames set up in this slot */
     u8 pad_04[4];
     WlRamFrame *frame;
-    u8 pad_0c[8];
+    struct WlTxFrame *txFrame; /* the frame as the driver built it */
+    u8 pad_10[4];
 } WlMpReplySlot;
 
 /*
@@ -886,8 +891,15 @@ typedef struct WlBufferLists {
 // View from work offset 0x400, as WifiCmd_ArmMpReply addresses the MP reply slots
 // (WlState.mpReplySlots).
 typedef struct WlMpReplyView {
-    u8 pad_00[0x50];
+    WlMpReplySlot txSlots[2];
+    u8 pad_28[0x50 - 0x28];
     WlMpReplySlot slots[2];
+    u8 pad_78[0x80 - 0x78];
+    WlTxFrame *txFrame;  /* WlState.txFrame */
+    u8 pad_84[0x8c - 0x84];
+    u32 unk_8c;
+    u8 pad_90[0xb0 - 0x90];
+    u16 txTimeouts;      /* TX slot frames dropped by WifiIrq_BeaconSent */
 } WlMpReplyView;
 
 #define WIFI_REPLY_SLOTS_VIEW_OF(work) ((WlMpReplyView *)((u8 *)(work) + 0x400))

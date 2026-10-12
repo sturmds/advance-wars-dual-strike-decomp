@@ -1884,6 +1884,10 @@ src/arm7/sdk/wl/wifi_irq_before_beacon.c:
     complete
     .text       start:0x037f9500 end:0x037f958c
 
+src/arm7/sdk/wl/wifi_irq_beacon_sent.c:
+    complete
+    .text       start:0x037f958c end:0x037f9868
+
 src/arm7/sdk/os/irq_dispatch_lowest_pending_arm7.c:
     complete
     .text       start:0x037fb340 end:0x037fb394
