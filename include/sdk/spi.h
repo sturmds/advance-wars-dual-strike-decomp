@@ -53,6 +53,11 @@ enum {
     SPI_PXI_RESULT_EXCLUSIVE = 4   /* the bus or the job queue is busy */
 };
 
+/* The bus registers; sdk/tp.h has the same definitions. */
+#define REG_SPICNT  (*(volatile u16 *)0x040001c0)
+#define REG_SPIDATA (*(volatile u16 *)0x040001c2)
+#define SPICNT_BUSY 0x0080
+
 #define SERIAL_JOB_ARGS 4
 
 /* One job the SPI thread runs: a device, its request id and arguments. */
