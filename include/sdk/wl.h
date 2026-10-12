@@ -140,6 +140,7 @@ typedef struct WlTestModeRequest {
 #define WIFI_MODE_FRAME_TEST 18 /* sends the frame in WIFI_PACKET_RAM again on every TX done */
 #define WIFI_MODE_JOINED 64 /* set when an association response reports success */
 #define WIFI_MODE_READY 32     /* entered by Wifi_CloseSession */
+#define WIFI_MODE_AUTH_DONE 48 /* set when an authentication response reports success */
 
 // Entries of the table at WlLimits.unk_f0, indexed from 1 (see func_arm7_027cdd18).
 typedef struct Unk_027cdd18 {
@@ -856,6 +857,13 @@ typedef struct WlDefragSlot {
 #define WIFI_IEEE_STATUS_FAILURE 1
 #define WIFI_IEEE_STATUS_CAPS_UNSUPPORTED 10
 #define WIFI_IEEE_STATUS_RATES_UNSUPPORTED 18
+/* 802.11 status codes of authentication responses. */
+#define WIFI_IEEE_STATUS_ALG_UNSUPPORTED 13
+#define WIFI_IEEE_STATUS_SEQ_OUT_OF_ORDER 14
+#define WIFI_IEEE_STATUS_CHALLENGE_WRONG 15
+/* 802.11 authentication algorithms. */
+#define WIFI_AUTHALG_OPEN 0
+#define WIFI_AUTHALG_CHALLENGE 1
 /* 802.11 reason code: a frame came from a station that has not authenticated. */
 #define WIFI_REASON_UNAUTHED_SENDER 6
 
