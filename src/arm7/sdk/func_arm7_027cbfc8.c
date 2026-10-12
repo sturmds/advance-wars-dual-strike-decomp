@@ -7,11 +7,11 @@ struct Unk_027cbfc8_0 {
     u16 unk_3d8;
 };
 
-void func_arm7_037f8510(int, int);
+void WifiTask_Schedule(int, int);
 
 void func_arm7_027cbfc8(void)
 {
     Unk_027cbfc8_0 *t0 = *((Unk_027cbfc8_0 **)0x380fff4);
     t0->unk_3d8 = 131;
-    func_arm7_037f8510(2, 5);
+    WifiTask_Schedule(2, 5);
 }

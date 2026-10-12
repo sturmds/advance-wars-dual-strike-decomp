@@ -684,9 +684,57 @@ src/arm7/sdk/func_arm7_037f8444.c:
     complete
     .text       start:0x037f8444 end:0x037f8450
 
+src/arm7/sdk/wl/wifi_task_thread_main.c:
+    complete
+    .text       start:0x037f8450 end:0x037f8510
+
+src/arm7/sdk/wl/wifi_task_schedule.c:
+    complete
+    .text       start:0x037f8510 end:0x037f85d0
+
+src/arm7/sdk/wl/wifi_task_pop_next.c:
+    complete
+    .text       start:0x037f85d0 end:0x037f8648
+
+src/arm7/sdk/wl/wifi_task_wait_for_host.c:
+    complete
+    .text       start:0x037f8648 end:0x037f868c
+
+src/arm7/sdk/wl/wifi_host_take_inbox_buffer.c:
+    complete
+    .text       start:0x037f868c end:0x037f86cc
+
+src/arm7/sdk/wl/wifi_buf_list_push_tail.c:
+    complete
+    .text       start:0x037f86cc end:0x037f8744
+
+src/arm7/sdk/wl/wifi_buf_list_unlink.c:
+    complete
+    .text       start:0x037f8744 end:0x037f8828
+
+src/arm7/sdk/wl/wifi_buffer_new.c:
+    complete
+    .text       start:0x037f8828 end:0x037f88d0
+
+src/arm7/sdk/wl/wifi_buffer_release.c:
+    complete
+    .text       start:0x037f88d0 end:0x037f8954
+
+src/arm7/sdk/wl/wifi_buffer_transfer.c:
+    complete
+    .text       start:0x037f8954 end:0x037f89c8
+
+src/arm7/sdk/wl/wifi_buf_list_push_tail_if_loose.c:
+    complete
+    .text       start:0x037f89c8 end:0x037f8a5c
+
 src/arm7/sdk/func_arm7_037f8a5c.c:
     complete
     .text       start:0x037f8a5c end:0x037f8a64
+
+src/arm7/sdk/wl/wifi_buffer_give_to_host.c:
+    complete
+    .text       start:0x037f8d74 end:0x037f8e04
 
 src/arm7/sdk/os/func_arm7_037fb340.c:
     complete
