@@ -2,7 +2,7 @@
 #include "sdk/gx.h"
 
 void func_0210ac20(int mask);
-void func_0210ab74(int mask);
+void GX_SetBankForSubBG(int mask);
 void func_0210aaf8(int mask);
 
 /* Puts the main engine on the top screen, then calls what look like per-bank
@@ -16,6 +16,6 @@ void Ov004_InitVramBanks(void) {
     GX_SetBankForOBJ(16);
     GX_SetBankForTexPltt(32);
     GX_SetBankForBGExtPltt(64);
-    func_0210ab74(128);
+    GX_SetBankForSubBG(128);
     func_0210aaf8(256);
 }
