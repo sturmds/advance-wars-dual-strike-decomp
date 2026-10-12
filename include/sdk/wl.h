@@ -1509,6 +1509,7 @@ u16 WifiStation_LastSeqOf(u32 station);
 u16 WifiStation_ChallengeSeedOf(u32 station);
 u16 *WifiStation_MacOf(u32 station);
 u16 WifiStation_StateOf(u32 station);
+u16 WifiStation_SendRateOf(u32 station); /* WIFI_RATE_CODE_* from rates bit 1 */
 void WifiStation_StoreChallengeSeed(u32 station, u32 challengeSeed);
 void WifiStation_StoreLastSeq(u32 station, u32 lastSequence);
 void WifiStation_StoreCapability(u32 station, u32 capability);

@@ -2,7 +2,6 @@
 
 u32 WifiStation_IndexOfMac(const u16 *macAddress);
 /* Needed to match: the station index is passed without narrowing to u16. */
-u16 WifiStation_SendRateOf(u32 station);
 void func_arm7_027c90ec(u16 *dest, const u16 *src);
 void WifiTx_EnqueueGroupcast(WlBufferList *from, WlBuffer *buffer);
 void WifiStation_CountQueuedFrame(WlTxFrame *frame);
