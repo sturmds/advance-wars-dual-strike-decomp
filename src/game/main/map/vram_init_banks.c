@@ -9,7 +9,7 @@ void GX_SetBankForBGExtPltt(int mask);
 void func_0210ab74(int mask);
 void func_0210aaf8(int mask);
 void func_0210aa6c(int mask);
-void func_0210a9e0(int mask);
+void GX_SetBankForSubOBJExtPltt(int mask);
 
 /* Sets up the VRAM banks: one call per bank, each with
  * its bank bit (1 to 0x100). The calls look like the SDK's per-bank VRAM
@@ -25,5 +25,5 @@ void Vram_InitBanks(void)
     func_0210ab74(4);
     func_0210aaf8(8);
     func_0210aa6c(128);
-    func_0210a9e0(256);
+    GX_SetBankForSubOBJExtPltt(256);
 }

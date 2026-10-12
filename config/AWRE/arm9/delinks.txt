@@ -20977,6 +20977,7 @@ src/sdk/gx/vram_return_banks_to_lcdc.c:
     .text       start:0x0210a9a8 end:0x0210a9e0
 
 src/sdk/gx/gx_set_bank_for_sub_obj_ext_pltt.c:
+    complete
     .text       start:0x0210a9e0 end:0x0210aa6c
 
 src/sdk/gx/gx_set_bank_for_sub_bg_ext_pltt.c:
