@@ -2,7 +2,7 @@
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
-void func_arm7_03801df4(void);
+void SndArm7_UpdateSharedWork(void);
 
 #define AUDIO_CH_CTRL_TOP_BYTE(channel) (*(u8 *)(0x04000403 + ((channel) << 4)))
 #define AUDIO_RECORD_PAIR_CNT (*(u16 *)0x04000508)
@@ -32,5 +32,5 @@ void SndArm7_StartTimer(u32 channelMask, u32 captureMask, u32 alarmMask)
         }
     }
     func_arm7_037fdb94(irqState);
-    func_arm7_03801df4();
+    SndArm7_UpdateSharedWork();
 }

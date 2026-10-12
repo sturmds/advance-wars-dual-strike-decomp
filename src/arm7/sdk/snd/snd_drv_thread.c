@@ -10,7 +10,7 @@ void func_arm7_037ffcf4(void);
 void func_arm7_037ffee0(void);
 void SndArm7_SeqMain(BOOL periodic);
 void SndArm7_InitSeq(void);
-void func_arm7_03801df4(void);
+void SndArm7_UpdateSharedWork(void);
 void func_arm7_03802408(void);
 
 #define SOUND_MAIN_LOUDNESS_FULL 127
@@ -41,7 +41,7 @@ void SndDrv_Thread(void *arg)
         func_arm7_03802408();
         SndArm7_SeqMain(periodic);
         func_arm7_037ff9e8(periodic);
-        func_arm7_03801df4();
+        SndArm7_UpdateSharedWork();
         SndDrv_NextRandom();
     }
 }

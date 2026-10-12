@@ -1656,6 +1656,10 @@ src/arm7/sdk/snd/snd_arm7_read_inst_data.c:
     complete
     .text       start:0x03801c70 end:0x03801df4
 
+src/arm7/sdk/snd/snd_arm7_update_shared_work.c:
+    complete
+    .text       start:0x03801df4 end:0x03801e94
+
 src/arm7/sdk/func_arm7_03801e94.c:
     complete
     .text       start:0x03801e94 end:0x03801eb0

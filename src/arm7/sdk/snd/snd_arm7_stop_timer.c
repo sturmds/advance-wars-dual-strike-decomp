@@ -3,7 +3,7 @@
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
 void SndHw_StopChannel(int channel, int hold);
-void func_arm7_03801df4(void);
+void SndArm7_UpdateSharedWork(void);
 void func_arm7_03801f00(int alarmNo);
 
 void SndArm7_StopTimer(u32 channelMask, u32 captureMask, u32 alarmMask, int hold)
@@ -28,5 +28,5 @@ void SndArm7_StopTimer(u32 channelMask, u32 captureMask, u32 alarmMask, int hold
         AUDIO_RECORD1_CNT = 0;
     }
     func_arm7_037fdb94(irqState);
-    func_arm7_03801df4();
+    SndArm7_UpdateSharedWork();
 }
