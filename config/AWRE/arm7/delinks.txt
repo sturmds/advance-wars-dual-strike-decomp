@@ -132,6 +132,10 @@ src/arm7/sdk/wm/wmsp_indicate_beacon_lost.c:
     complete
     .text       start:0x027c18b0 end:0x027c1900
 
+src/arm7/sdk/wm/wmsp_indicate_beacon_recv.c:
+    complete
+    .text       start:0x027c1900 end:0x027c1a44
+
 src/arm7/sdk/func_arm7_027c1a94.c:
     complete
     .text       start:0x027c1a94 end:0x027c1a98
