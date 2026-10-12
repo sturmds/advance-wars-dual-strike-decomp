@@ -542,6 +542,14 @@ typedef struct WlMacRequest {
     u16 mac[3];
     u16 reason; /* 802.11 reason code */
 } WlMacRequest;
+
+/* Request to (re)associate with the access point at mac. */
+typedef struct WlAssociateRequest {
+    u8 pad_00[0x10];
+    u16 mac[3];
+    u16 listenInterval; /* 1-255 */
+    u16 timeoutMs;      /* 10-2000: how long to wait for the response */
+} WlAssociateRequest;
 #define WIFI_ANSWER_FLASH_BLOCK_BAD 14  /* WifiFlash_ValidateRadioBlock failed */
 
 typedef struct WlMlmeJob {
