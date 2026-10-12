@@ -22,7 +22,7 @@ int MbParent_SendMpData(void *data, int size, int bitmap)
     }
     switch (work->unk_524) {
     case 1:
-        result = MbParent_SetMpData(work->sendCallback, data, size16, work->unk_52c == 0 ? 1000 : 0, bitmap16);
+        result = MbParent_SetMpData(work->wmCallback, data, size16, work->unk_52c == 0 ? 1000 : 0, bitmap16);
         if (result == WM_ERRCODE_OPERATING) {
             data_022aced8->sendQueued = 1;
         }

@@ -104,7 +104,7 @@ void MbParent_CommCallback(u16 type, void *arg)
         break;
     }
 
-    case DLPLAY_EVENT_RADIO_FAULT:
+    case DLPLAY_EVENT_CALL_REFUSED:
         switch (((DlPlayFailedCall *)arg)->errcode) {
         case WM_ERRCODE_FAILED:
         case WM_ERRCODE_WM_DISABLE:
@@ -130,7 +130,7 @@ void MbParent_CommCallback(u16 type, void *arg)
         }
         break;
 
-    case DLPLAY_EVENT_RADIO_FAULT_OLD:
+    case DLPLAY_EVENT_RADIO_FAULT:
         /* By WM API id: failures of these calls end Download Play. */
         switch (((WMCallback *)arg)->apiid) {
         case 0:

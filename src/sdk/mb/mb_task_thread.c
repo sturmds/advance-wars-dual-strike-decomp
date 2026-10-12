@@ -22,13 +22,13 @@ void MbTask_ThreadMain(void *arg)
         int enabledAfter;                  /* needed to match: not the same variable as enabled */
         void (*callback)(DlPlayWorkerJob *info);
 
-        while (MbTask_List(work) == NULL) {
+        while (work->list == NULL) {
             OS_SetThreadPriority(&work->thread, 0);
             OS_SleepThread(NULL);
         }
-        info = MbTask_List(work);
-        MbTask_List(work) = MbTask_List(work)->next;
-        OS_SetThreadPriority(&work->thread, info->unk_04_1);
+        info = work->list;
+        work->list = work->list->next;
+        OS_SetThreadPriority(&work->thread, info->priority);
         OS_RestoreInterrupts(enabled);
 
         if (info->task != NULL) {
@@ -38,10 +38,10 @@ void MbTask_ThreadMain(void *arg)
         enabledAfter = OS_DisableInterrupts();
         callback = info->callback;
         current = func_0210d354(&work->thread);
-        if (MbTask_List(work) == NULL) {
+        if (work->list == NULL) {
             next = 0;
-        } else if (current < MbTask_List(work)->unk_04_1) {
-            next = MbTask_List(work)->unk_04_1;
+        } else if (current < work->list->priority) {
+            next = work->list->priority;
         } else {
             next = current;
         }
@@ -49,7 +49,7 @@ void MbTask_ThreadMain(void *arg)
             OS_SetThreadPriority(&work->thread, next);
         }
         info->next = NULL;
-        info->loading = 0;
+        info->busy = 0;
         if (callback != NULL) {
             callback(info);
         }

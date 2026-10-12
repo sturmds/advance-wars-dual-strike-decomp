@@ -21,7 +21,7 @@ void MbTask_Start(DlPlayWorkerArea *work, u32 size)
 
         data_022acf00 = work;
         func_0211dd04(work->queue);
-        work->unk_94 = 0;
+        work->list = NULL;
         stackSize = (size - DLPLAY_WORKER_STACK_AT) & ~3;
         OS_CreateThread((OSThread *)work, MbTask_ThreadMain, work, work->stack + stackSize, stackSize, 0);
         OS_WakeupThreadDirect((OSThread *)work);

@@ -53,8 +53,8 @@ int MbParent_StartCore(int channel)
     MI_CpuFill8(data_022aced4->childRequests, 0, sizeof(data_022aced4->childRequests));
 
     data_022aced8->unk_524 = 1;
-    data_022aced8->errorCallback = MbParent_CommCallback;
-    data_022aced8->sendCallback = MbParent_WmCallback;
+    data_022aced8->callback = MbParent_CommCallback;
+    data_022aced8->wmCallback = MbParent_WmCallback;
     /* WM's MP buffer sizes: a 4-byte header per packet, 32-byte aligned; the
      * receive buffer holds one packet from each child, twice. */
     data_022aced8->parentMaxSize = data_022aced8->sendSize;

@@ -25,16 +25,16 @@ int MbParent_InitWm(void)
         int result;
 
         do {
-            result = WM_Initialize(data_022acedc, data_022aced8->sendCallback, data_022aced0);
+            result = WM_Initialize(data_022acedc, data_022aced8->wmCallback, data_022aced0);
         } while (result == WM_ERRCODE_WM_DISABLE);
         if (result != WM_ERRCODE_OPERATING) {
             return 8;
         }
-        WM_SetIndCallback(data_022aced8->sendCallback);
+        WM_SetIndCallback(data_022aced8->wmCallback);
         data_022aced8->unk_50d = 1;
         return 0;
     }
-    WM_SetIndCallback(data_022aced8->sendCallback);
+    WM_SetIndCallback(data_022aced8->wmCallback);
     data_022aced8->unk_50d = 1;
     MbParent_SetIndAndLifeTime();
     return 0;

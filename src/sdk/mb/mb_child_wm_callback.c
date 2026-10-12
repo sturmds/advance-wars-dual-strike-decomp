@@ -39,7 +39,7 @@ static inline void MbChild_ScanAgain(DlPlayStationArea *work)
 
 /* WM callback of the Download Play child side: after WM_Initialize it sets
  * the life times, scans for parents and keeps each one found, connects to
- * connectBssDesc, then starts MP. Each step is reported to errorCallback. */
+ * connectBssDesc, then starts MP. Each step is reported to work->callback. */
 void MbChild_WmCallback(void *arg)
 {
     WMCallback *cb = arg;
@@ -48,16 +48,16 @@ void MbChild_WmCallback(void *arg)
     switch (cb->apiid) {
     case WM_APIID_INITIALIZE:
         if (cb->errcode != WM_ERRCODE_SUCCESS) {
-            work->errorCallback(DLPLAY_EVENT_RADIO_FAULT_OLD, arg);
+            work->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
             return;
         }
-        work->errorCallback(DLPLAY_EVENT_STARTUP_DONE, arg);
+        work->callback(DLPLAY_EVENT_STARTUP_DONE, arg);
         MbParent_ReportError(WM_APIID_SET_LIFETIME, WM_SetLifeTime(MbChild_WmCallback, 0xffff, 40, 5, 40));
         return;
 
     case WM_APIID_SET_LIFETIME:
         if (cb->errcode != WM_ERRCODE_SUCCESS) {
-            work->errorCallback(DLPLAY_EVENT_RADIO_FAULT_OLD, arg);
+            work->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
             return;
         }
         data_022acee0.scanBuf = &work->scanBuffer;
@@ -85,7 +85,7 @@ void MbChild_WmCallback(void *arg)
         int i;
 
         if (scan->errcode != WM_ERRCODE_SUCCESS) {
-            work->errorCallback(DLPLAY_EVENT_RADIO_FAULT_OLD, arg);
+            work->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
             return;
         }
         switch (scan->state) {
@@ -119,22 +119,22 @@ void MbChild_WmCallback(void *arg)
                 work->lastFoundIndex = i;
             }
         notify:
-            work->errorCallback(DLPLAY_EVENT_SCAN_HIT, arg);
+            work->callback(DLPLAY_EVENT_SCAN_HIT, arg);
             MbChild_ScanAgain(work);
             return;
         case WM_STATECODE_PARENT_NOT_FOUND:
-            work->errorCallback(DLPLAY_EVENT_SCAN_MISS, arg);
+            work->callback(DLPLAY_EVENT_SCAN_MISS, arg);
             MbChild_ScanAgain(work);
             return;
         default:
-            work->errorCallback(DLPLAY_EVENT_RADIO_FAULT_OLD, arg);
+            work->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
             return;
         }
     }
 
     case WM_APIID_END_SCAN:
         if (cb->errcode != WM_ERRCODE_SUCCESS) {
-            work->errorCallback(DLPLAY_EVENT_RADIO_FAULT_OLD, arg);
+            work->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
             return;
         }
         MbParent_ReportError(WM_APIID_START_CONNECT,
@@ -146,7 +146,7 @@ void MbChild_WmCallback(void *arg)
 
         if (connect->errcode != WM_ERRCODE_SUCCESS) {
             work->foundCount = 0;
-            work->errorCallback(DLPLAY_EVENT_JOIN_REFUSED, arg);
+            work->callback(DLPLAY_EVENT_JOIN_REFUSED, arg);
             return;
         }
         switch (connect->state) {
@@ -156,7 +156,7 @@ void MbChild_WmCallback(void *arg)
             return;
         case WM_STATECODE_CONNECTED:
             work->aid = connect->aid;
-            work->errorCallback(DLPLAY_EVENT_JOINED_HOST, arg);
+            work->callback(DLPLAY_EVENT_JOINED_HOST, arg);
             work->unk_52a = 1;
             if (WM_SetPortCallback(DLPLAY_WIRELESS_PORT, (WMCallbackFunc)MbParent_PortCallback, NULL) != WM_ERRCODE_SUCCESS) {
                 return;
@@ -167,12 +167,12 @@ void MbChild_WmCallback(void *arg)
                                               work->unk_52c == 0, 0, FALSE, FALSE, TRUE, TRUE));
             return;
         case WM_STATECODE_DISCONNECTED:
-            work->errorCallback(DLPLAY_EVENT_LOST_HOST, arg);
+            work->callback(DLPLAY_EVENT_LOST_HOST, arg);
             work->unk_52a = 0;
             work->unk_528 = 0;
             return;
         default:
-            work->errorCallback(DLPLAY_EVENT_RADIO_FAULT_OLD, arg);
+            work->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
             return;
         }
     }
@@ -184,14 +184,14 @@ void MbChild_WmCallback(void *arg)
         case WM_STATECODE_MP_START:
             work->unk_528 = 1;
             if (MbParent_CanSendMpData()) {
-                work->errorCallback(DLPLAY_EVENT_MAY_TRANSMIT, NULL);
+                work->callback(DLPLAY_EVENT_MAY_TRANSMIT, NULL);
             }
             return;
         case WM_STATECODE_MP_IND:
         case WM_STATECODE_MPACK_IND:
             return;
         default:
-            work->errorCallback(DLPLAY_EVENT_RADIO_FAULT_OLD, arg);
+            work->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
             return;
         }
     }
@@ -199,19 +199,19 @@ void MbChild_WmCallback(void *arg)
     case WM_APIID_SET_MP_DATA:
         work->sendQueued = 0;
         if (cb->errcode == WM_ERRCODE_SUCCESS) {
-            work->errorCallback(DLPLAY_EVENT_CHILD_FRAME_OUT, arg);
+            work->callback(DLPLAY_EVENT_CHILD_FRAME_OUT, arg);
         } else if (cb->errcode == WM_ERRCODE_TIMEOUT) {
-            work->errorCallback(DLPLAY_EVENT_CHILD_FRAME_LATE, arg);
+            work->callback(DLPLAY_EVENT_CHILD_FRAME_LATE, arg);
         } else {
-            work->errorCallback(DLPLAY_EVENT_CHILD_FRAME_FAILED, arg);
+            work->callback(DLPLAY_EVENT_CHILD_FRAME_FAILED, arg);
         }
-        work->errorCallback(DLPLAY_EVENT_MAY_TRANSMIT, NULL);
+        work->callback(DLPLAY_EVENT_MAY_TRANSMIT, NULL);
         return;
 
     case WM_APIID_RESET:
         if (cb->errcode != WM_ERRCODE_SUCCESS) {
             work->unk_526 = 0;
-            work->errorCallback(DLPLAY_EVENT_RADIO_FAULT_OLD, arg);
+            work->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
             return;
         }
         work->unk_52a = 0;
@@ -222,17 +222,17 @@ void MbChild_WmCallback(void *arg)
     case WM_APIID_END:
         if (cb->errcode != WM_ERRCODE_SUCCESS) {
             work->unk_526 = 0;
-            work->errorCallback(DLPLAY_EVENT_RADIO_FAULT_OLD, arg);
+            work->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
             return;
         }
         work->unk_50d = 0;
         data_022aced4->unk_1316 = 0;   /* MB no longer runs */
-        work->errorCallback(DLPLAY_EVENT_SHUTDOWN_DONE, arg);
+        work->callback(DLPLAY_EVENT_SHUTDOWN_DONE, arg);
         return;
 
     case WM_APIID_START_KS:
         if (MbParent_CanSendMpData()) {
-            work->errorCallback(DLPLAY_EVENT_MAY_TRANSMIT, NULL);
+            work->callback(DLPLAY_EVENT_MAY_TRANSMIT, NULL);
         }
         return;
 
@@ -243,7 +243,7 @@ void MbChild_WmCallback(void *arg)
         return;
 
     default:
-        work->errorCallback(DLPLAY_EVENT_RADIO_FAULT_OLD, arg);
+        work->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
         return;
     }
 }

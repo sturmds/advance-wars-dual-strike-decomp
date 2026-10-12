@@ -16,7 +16,7 @@ int WM_End(WMCallbackFunc callback);
 
 /* The parent's WM callback. It steps WM through its start-up (initialize, life
  * times, parent parameters, beacon indications, start parent), starts MP when
- * the first child connects, and passes WM events to errorCallback. */
+ * the first child connects, and passes WM events to the work callback. */
 void MbParent_WmCallback(void *arg)
 {
     WMCallback *cb = arg;
@@ -24,26 +24,26 @@ void MbParent_WmCallback(void *arg)
     switch (cb->apiid) {
     case WM_APIID_INITIALIZE:
         if (cb->errcode != WM_ERRCODE_SUCCESS) {
-            data_022aced8->errorCallback(DLPLAY_EVENT_CALL_REFUSED, arg);
+            data_022aced8->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
             return;
         }
         MbParent_SetIndAndLifeTime();
         break;
     case WM_APIID_SET_LIFETIME:
         if (cb->errcode != WM_ERRCODE_SUCCESS) {
-            data_022aced8->errorCallback(DLPLAY_EVENT_CALL_REFUSED, arg);
+            data_022aced8->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
             return;
         }
         MbParent_ReportError(WM_APIID_SET_P_PARAM,
                              WM_SetParentParameter(MbParent_WmCallback, (WMParentParam *)data_022aced8));
         break;
     case WM_APIID_SET_P_PARAM:
-        data_022aced8->errorCallback(DLPLAY_EVENT_HOST_SETTINGS_DONE, arg);
+        data_022aced8->callback(DLPLAY_EVENT_HOST_SETTINGS_DONE, arg);
         MbParent_ReportError(WM_APIID_SET_BEACON_IND, WM_SetBeaconIndication(MbParent_WmCallback, 1));
         break;
     case WM_APIID_SET_BEACON_IND:
         if (cb->errcode != WM_ERRCODE_SUCCESS) {
-            data_022aced8->errorCallback(DLPLAY_EVENT_CALL_REFUSED, arg);
+            data_022aced8->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
             return;
         }
         MbParent_ReportError(WM_APIID_START_PARENT, WM_StartParent(MbParent_WmCallback));
@@ -52,7 +52,7 @@ void MbParent_WmCallback(void *arg)
         WMStartParentCallback *parent = arg;
 
         if (cb->errcode != WM_ERRCODE_SUCCESS) {
-            data_022aced8->errorCallback(DLPLAY_EVENT_CALL_REFUSED, arg);
+            data_022aced8->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
             return;
         }
         switch (parent->state) {
@@ -65,7 +65,7 @@ void MbParent_WmCallback(void *arg)
                 return;
             }
             data_022aced8->unk_52a |= 1 << parent->aid;
-            data_022aced8->errorCallback(DLPLAY_EVENT_CHILD_JOINED, arg);
+            data_022aced8->callback(DLPLAY_EVENT_CHILD_JOINED, arg);
             if (data_022aced8->unk_528 == 0 && data_022aced4->mpStarting == 0) {
                 data_022aced4->mpStarting = 1;
                 MbParent_ReportError(WM_APIID_START_MP,
@@ -75,21 +75,21 @@ void MbParent_WmCallback(void *arg)
                                                   data_022aced8->unk_52c ? 0 : 1, 0, FALSE, FALSE, TRUE,
                                                   TRUE));
             } else if (MbParent_CanSendMpData()) {
-                data_022aced8->errorCallback(DLPLAY_EVENT_MAY_TRANSMIT, NULL);
+                data_022aced8->callback(DLPLAY_EVENT_MAY_TRANSMIT, NULL);
             }
             break;
         case WM_STATECODE_DISCONNECTED:
             data_022aced8->unk_52a &= ~(1 << parent->aid);
-            data_022aced8->errorCallback(DLPLAY_EVENT_CHILD_LEFT, arg);
+            data_022aced8->callback(DLPLAY_EVENT_CHILD_LEFT, arg);
             break;
         case WM_STATECODE_BEACON_SENT:
             if (data_022aced8->unk_526 == 1) {
                 return;
             }
-            data_022aced8->errorCallback(DLPLAY_EVENT_BEACON_OUT, arg);
+            data_022aced8->callback(DLPLAY_EVENT_BEACON_OUT, arg);
             break;
         default:
-            data_022aced8->errorCallback(DLPLAY_EVENT_CALL_REFUSED, arg);
+            data_022aced8->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
             break;
         }
         break;
@@ -101,13 +101,13 @@ void MbParent_WmCallback(void *arg)
         switch (mp->state) {
         case WM_STATECODE_MP_START:
             data_022aced8->unk_528 = 1;
-            data_022aced8->errorCallback(DLPLAY_EVENT_MAY_TRANSMIT, NULL);
+            data_022aced8->callback(DLPLAY_EVENT_MAY_TRANSMIT, NULL);
             break;
         case WM_STATECODE_MPEND_IND:
-            data_022aced8->errorCallback(DLPLAY_EVENT_HOST_FRAME_IN, mp->recvBuf);
+            data_022aced8->callback(DLPLAY_EVENT_HOST_FRAME_IN, mp->recvBuf);
             break;
         default:
-            data_022aced8->errorCallback(DLPLAY_EVENT_CALL_REFUSED, arg);
+            data_022aced8->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
             break;
         }
         break;
@@ -131,20 +131,20 @@ void MbParent_WmCallback(void *arg)
         }
         data_022aced8->sendQueued = 0;
         if (cb->errcode == WM_ERRCODE_SUCCESS) {
-            data_022aced8->errorCallback(DLPLAY_EVENT_HOST_FRAME_OUT, arg);
-            data_022aced8->errorCallback(DLPLAY_EVENT_MAY_TRANSMIT, NULL);
+            data_022aced8->callback(DLPLAY_EVENT_HOST_FRAME_OUT, arg);
+            data_022aced8->callback(DLPLAY_EVENT_MAY_TRANSMIT, NULL);
         } else if (cb->errcode == WM_ERRCODE_SEND_QUEUE_FULL) {
-            data_022aced8->errorCallback(DLPLAY_EVENT_OUTBOX_FULL, arg);
+            data_022aced8->callback(DLPLAY_EVENT_OUTBOX_FULL, arg);
         } else {
-            data_022aced8->errorCallback(DLPLAY_EVENT_TRANSMIT_FAILED, arg);
-            data_022aced8->errorCallback(DLPLAY_EVENT_MAY_TRANSMIT, NULL);
+            data_022aced8->callback(DLPLAY_EVENT_TRANSMIT_FAILED, arg);
+            data_022aced8->callback(DLPLAY_EVENT_MAY_TRANSMIT, NULL);
         }
         break;
     case WM_APIID_RESET:
         if (data_022aced4->unk_1320 == 0) {
             if (cb->errcode != WM_ERRCODE_SUCCESS) {
                 data_022aced8->unk_526 = 0;
-                data_022aced8->errorCallback(DLPLAY_EVENT_CALL_REFUSED, arg);
+                data_022aced8->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
                 return;
             }
             data_022aced8->unk_52a = 0;
@@ -158,12 +158,12 @@ void MbParent_WmCallback(void *arg)
     case WM_APIID_END:
         if (cb->errcode != WM_ERRCODE_SUCCESS) {
             data_022aced8->unk_526 = 0;
-            data_022aced8->errorCallback(DLPLAY_EVENT_CALL_REFUSED, arg);
+            data_022aced8->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
             return;
         }
         data_022aced8->unk_50d = 0;
         data_022aced4->unk_1316 = 0;
-        data_022aced8->errorCallback(DLPLAY_EVENT_SHUTDOWN_DONE, arg);
+        data_022aced8->callback(DLPLAY_EVENT_SHUTDOWN_DONE, arg);
         break;
     case WM_APIID_DISCONNECT:
         if (cb->errcode != WM_ERRCODE_SUCCESS) {
@@ -174,16 +174,16 @@ void MbParent_WmCallback(void *arg)
     case WM_APIID_INDICATION:
         switch (((RadioNotice *)arg)->state) {
         case WIRELESS_NOTICE_HEARD_BEACON:
-            data_022aced8->errorCallback(DLPLAY_EVENT_HEARD_BEACON, arg);
+            data_022aced8->callback(DLPLAY_EVENT_HEARD_BEACON, arg);
             break;
         case WIRELESS_NOTICE_STATION_DROPPED:
-            data_022aced8->errorCallback(DLPLAY_EVENT_STATION_DROPPED, arg);
+            data_022aced8->callback(DLPLAY_EVENT_STATION_DROPPED, arg);
             break;
         case WIRELESS_NOTICE_STATION_BACK:
-            data_022aced8->errorCallback(DLPLAY_EVENT_STATION_REJOINED, arg);
+            data_022aced8->callback(DLPLAY_EVENT_STATION_REJOINED, arg);
             break;
         case WIRELESS_NOTICE_AUTHED:
-            data_022aced8->errorCallback(DLPLAY_EVENT_STATION_AUTHED, arg);
+            data_022aced8->callback(DLPLAY_EVENT_STATION_AUTHED, arg);
             break;
         case WIRELESS_NOTICE_QUEUE_REFUSED:
             OS_Terminate();
@@ -191,7 +191,7 @@ void MbParent_WmCallback(void *arg)
         }
         break;
     default:
-        data_022aced8->errorCallback(DLPLAY_EVENT_CALL_REFUSED, arg);
+        data_022aced8->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
         break;
     }
 }

@@ -148,13 +148,13 @@ typedef struct DlPlayStationArea {
     u16 sendSize;                      /* set by DownloadPlay_SetSendSizeAndChildren */
     u16 unk_502;
     u16 *mpRecvBuffer;                 /* given to WM_StartMPEx */
-    void (*sendCallback)(void);        /* callback for the MP send */
+    void (*wmCallback)(void);          /* given to WM_Initialize, WM_SetIndCallback, WM_Reset and the MP send */
     u8 sendQueued;                     /* set to 1 once MbParent_Send queued the data */
     u8 unk_50d;
     u8 pad_50e[0x518 - 0x50e];
     u16 mpSendSize;                    /* sizes given to WM_StartMPEx */
     u16 mpRecvSize;
-    void (*errorCallback)(u32 type, void *arg);
+    void (*callback)(u32 type, void *arg);   /* gets every DLPLAY_EVENT_* event, not only errors */
     WMBssDesc *connectBssDesc;         /* the parent the child connects to */
     u16 unk_524;
     u16 unk_526;
@@ -186,7 +186,7 @@ typedef struct DlPlayBufferArea {
 #define DLPLAY_RESULT_OK 0
 #define DLPLAY_RESULT_WRONG_PHASE 2
 
-/* Event types of the parent's callbacks (errorCallback, MbParent_CommCallback). */
+/* Event types of the parent's callbacks (DlPlayStationArea.callback, MbParent_CommCallback). */
 #define DLPLAY_EVENT_CHILD_JOINED 0
 #define DLPLAY_EVENT_CHILD_LEFT 1
 #define DLPLAY_EVENT_HOST_FRAME_OUT 2
@@ -202,11 +202,8 @@ typedef struct DlPlayBufferArea {
 #define DLPLAY_EVENT_STATION_REJOINED 32
 #define DLPLAY_EVENT_STATION_AUTHED 33
 #define DLPLAY_EVENT_OUTBOX_FULL 42
-#define DLPLAY_EVENT_CALL_REFUSED 0x100        /* a WM call failed or sent an unexpected state */
-#define DLPLAY_EVENT_RADIO_FAULT_OLD 0x100         /* a WM call failed; the argument is its WMCallback */
-
-/* What errorCallback receives for type DLPLAY_EVENT_RADIO_FAULT. */
-#define DLPLAY_EVENT_RADIO_FAULT 0xff
+#define DLPLAY_EVENT_RADIO_FAULT 0x100            /* a WM call failed or sent an unexpected state; the argument is its WMCallback */
+#define DLPLAY_EVENT_CALL_REFUSED 0xff         /* a WM call returned an error; the argument is an DlPlayFailedCall */
 #define DLPLAY_EVENT_PORT_DATA 9            /* data arrived on the MB port */
 
 /* More callback types, as the child side's WM callback sends them. The
@@ -270,14 +267,10 @@ typedef struct DlPlayLiveCodePatch {
 
 typedef struct DlPlayWorkerArea {
     OSThread thread;
-    u32 unk_94;                        /* cleared when the thread starts */
+    struct DlPlayWorkerJob *volatile list;  /* tasks waiting to run, sorted by priority; volatile to match: each use reads it again */
     u8 queue[0x20];
     u8 stack[1];                       /* the thread's stack runs to the end of the work area */
 } DlPlayWorkerArea;
-
-/* unk_94 holds the tasks waiting to run, sorted by priority. Read it as
- * volatile to match: each use reads it again. */
-#define MbTask_List(work) (*(struct DlPlayWorkerJob *volatile *)&(work)->unk_94)
 
 /* Download Play comm layer, parent side. */
 #define DLPLAY_OFFER_SLOTS 16
@@ -486,8 +479,8 @@ typedef struct DlPlayHeldProgram {
 /* A task for the task thread: task runs on the thread, then callback. */
 typedef struct DlPlayWorkerJob {
     struct DlPlayWorkerJob *next;
-    u32 loading : 1;                   /* a page load is queued or running */
-    u32 unk_04_1 : 31;
+    u32 busy : 1;                      /* queued or running */
+    u32 priority : 31;                 /* thread priority, or DLPLAY_JOB_PRIO_HIGHER/BELOW/NORMAL */
     void (*task)(struct DlPlayWorkerJob *info);
     void (*callback)(struct DlPlayWorkerJob *info);
     DlPlayHeldBlock *page;

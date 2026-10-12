@@ -11,7 +11,7 @@ void MbParent_ReportError(u16 apiid, int errcode);
  * returns the WM error code, with "still running" counted as success. */
 int MbParent_ResetWm(void)
 {
-    int result = WM_Reset(data_022aced8->sendCallback);
+    int result = WM_Reset(data_022aced8->wmCallback);
 
     MbParent_ReportError(WM_APIID_RESET, result);
     if (result == WM_ERRCODE_OPERATING) {

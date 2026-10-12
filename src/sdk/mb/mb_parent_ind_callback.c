@@ -4,7 +4,7 @@
 
 extern DlPlayStationArea *data_022aced8;
 
-/* Port callback: tells errorCallback when data arrives on the MB port. Errors and
+/* Port callback: tells the work callback when data arrives on the MB port. Errors and
  * connect/disconnect events are ignored. */
 void MbParent_PortCallback(RadioNotice *ind)
 {
@@ -16,7 +16,7 @@ void MbParent_PortCallback(RadioNotice *ind)
     case WM_STATECODE_DISCONNECTED:
         break;
     case WM_STATECODE_PORT_RECV:
-        data_022aced8->errorCallback(DLPLAY_EVENT_PORT_DATA, ind);
+        data_022aced8->callback(DLPLAY_EVENT_PORT_DATA, ind);
         break;
     }
 }

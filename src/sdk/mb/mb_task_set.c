@@ -20,7 +20,7 @@ void MbTask_Set(DlPlayWorkerJob *info, void (*task)(DlPlayWorkerJob *info), void
     if (!func_0211dd18()) {
         OS_Terminate();
     }
-    if (info->loading) {
+    if (info->busy) {
         OS_Terminate();
     }
     if (priority > DLPLAY_JOB_PRIO_BOTTOM) {
@@ -37,18 +37,18 @@ void MbTask_Set(DlPlayWorkerJob *info, void (*task)(DlPlayWorkerJob *info), void
         }
     }
     enabled = OS_DisableInterrupts();
-    info->loading = 1;
-    info->unk_04_1 = priority;
+    info->busy = 1;
+    info->priority = priority;
     info->task = task;
     info->callback = callback;
-    if (MbTask_List(work) == NULL) {
+    if (work->list == NULL) {
         if ((u8 *)info == work->queue) {
             data_022acf00 = NULL;
         }
-        MbTask_List(work) = info;
+        work->list = info;
         OS_WakeupThreadDirect(&work->thread);
     } else {
-        DlPlayWorkerJob *prev = MbTask_List(work);
+        DlPlayWorkerJob *prev = work->list;
 
         if ((u8 *)info == work->queue) {
             while (prev->next != NULL) {
@@ -56,13 +56,13 @@ void MbTask_Set(DlPlayWorkerJob *info, void (*task)(DlPlayWorkerJob *info), void
             }
             prev->next = info;
             data_022acf00 = NULL;
-        } else if (prev->unk_04_1 > priority) {
-            MbTask_List(work) = info;
+        } else if (prev->priority > priority) {
+            work->list = info;
             info->next = prev;
         } else {
             DlPlayWorkerJob *next;
 
-            while ((next = prev->next) != NULL && next->unk_04_1 <= priority) {
+            while ((next = prev->next) != NULL && next->priority <= priority) {
                 prev = next;
             }
             info->next = next;

@@ -15,5 +15,5 @@ void MbParent_ReportError(u16 apiid, int errcode)
     }
     error.apiid = apiid;
     error.errcode = errcode;
-    data_022aced8->errorCallback(DLPLAY_EVENT_RADIO_FAULT, &error);
+    data_022aced8->callback(DLPLAY_EVENT_CALL_REFUSED, &error);
 }
