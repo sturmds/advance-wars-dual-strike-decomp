@@ -1,7 +1,5 @@
 #include "sdk/wl.h"
 
-void func_arm7_027cb3c8(u16 station, u16 rssi);
-
 u32 WifiStation_IndexOfMac(const u16 *macAddress);
 void func_arm7_027cb364(u16 station, u32 set);
 void func_arm7_027c90ec(u16 *dest, const u16 *src); /* copies a 6-byte MAC address */
@@ -114,9 +112,9 @@ void WifiTask_DeliverData(void)
     }
     if (!drop) {
         frame->station = station;
-        func_arm7_027cb3c8(station, frame->unk_12 & 0xff);
+        WifiStation_StoreSignal(station, frame->unk_12 & 0xff);
         WifiStation_StoreLastSeq(station, frame->sequence);
-        func_arm7_027cb27c(station);
+        WifiStation_RefreshTimeout(station);
         frame->bodyLength = frame->length - WIFI_80211_HEADER_BYTES;
         buffer->command = 0x180;
         buffer->length = (frame->bodyLength + 45u) >> 1;

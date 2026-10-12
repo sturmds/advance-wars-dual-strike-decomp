@@ -2,8 +2,6 @@
 #include "sdk/mi.h"
 #include "sdk/wl.h"
 
-void func_arm7_027cb2d0(u32 station, u32 rates);
-
 void WifiStation_ChangeState(u16 station, u16 state);
 WlTxFrame *WifiFrame_NewDeauthentication(const u16 *dest, u32 reason);
 WlTxFrame *WifiFrame_NewAssocAnswer(u16 station, u16 status, const u8 *element);
@@ -65,7 +63,7 @@ void WifiParent_AnswerAssocAsk(WlRxFrame *frame)
         } else if (!(elements.result & WIFI_IE_FITS_RATES)) {
             status = WIFI_IEEE_STATUS_RATES_UNSUPPORTED;
         } else {
-            func_arm7_027cb2d0(station, elements.supportedRates);
+            WifiStation_StoreRates(station, elements.supportedRates);
             status = WIFI_IEEE_STATUS_OK;
         }
     }

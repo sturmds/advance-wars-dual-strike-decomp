@@ -40,7 +40,7 @@ int WifiChild_ForwardMpPoll(WlRxFrame *frame)
             child->replyFlags |= WIFI_POLL_ANSWER_READY;
         }
     }
-    func_arm7_027cb27c(link->unk_88);
+    WifiStation_RefreshTimeout(link->unk_88);
     frame->bodyLength = frame->length - WIFI_HEADER_PLUS_CHECKSUM;
     buffer = WIFI_RX_HOLDER_OF(frame);
     buffer->command = 0x182;

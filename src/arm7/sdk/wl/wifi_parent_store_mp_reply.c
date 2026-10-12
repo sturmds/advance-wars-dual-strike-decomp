@@ -49,7 +49,7 @@ void WifiParent_StoreMpReply(WlRxFrame *frame)
         return;
     }
     func_arm7_027cb364(station, WIFI_FRAMECTL_FIELDS(frame->frameControl)->powerManagement);
-    func_arm7_027cb27c(station);
+    WifiStation_RefreshTimeout(station);
     bit = 1 << WifiStation_AssocIdOf(station);
     if (bit & slots->mpReceived) {
         return;

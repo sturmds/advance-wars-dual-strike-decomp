@@ -2,8 +2,6 @@
 #include "sdk/os_arm7.h"
 #include "sdk/wl.h"
 
-void func_arm7_027cb3c8(u16 station, u16 rssi);
-
 u32 WifiStation_LookUpOrCreate(const u16 *macAddress);
 void WifiRx_HandleDeauthFrame(WlRxFrame *frame);
 void WifiParent_ServePsPoll(WlRxFrame *frame);
@@ -72,7 +70,7 @@ void WifiTask_RouteMgmtFrame(void)
             }
         }
     } else {
-        func_arm7_027cb3c8(station, frame->unk_12 & 0xff);
+        WifiStation_StoreSignal(station, frame->unk_12 & 0xff);
         if (type == 0) {
             sequence = frame->sequence;
             if (sequence == WifiStation_LastSeqOf(station)) {

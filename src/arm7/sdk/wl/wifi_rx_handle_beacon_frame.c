@@ -3,18 +3,15 @@
 #include "sdk/wl.h"
 
 u32 WifiStation_LookUpOrCreate(const u16 *macAddress);
-void func_arm7_027cb3c8(u16 station, u32 rssi);
 void WifiRx_ScanElements(WlElements *elements);
 u8 WL_ReadByte(const void *addr);
 void WifiScan_RecordHeardNetwork(WlRxFrame *frame, WlElements *elements);
 void func_arm7_027c8594(void);                      /* cancels the one-shot alarm */
 int WifiRf_TuneChannel(u16 channel, int fromFlash);
-void func_arm7_027cb2d0(u32 station, u32 rates);    /* sets WlStation.unk_10 */
 int WifiParam_StorePostBeaconTime(u16 value, int writeReg);
 int WifiParam_ChangeListenPeriod(u16 interval);
 int WifiParam_ChangeBeaconPeriod(u16 interval);
 void func_arm7_027c90ec(u16 *dest, const u16 *src); /* copies a 6-byte MAC address */
-void func_arm7_027cb27c(u32 station);
 u64 _ll_udiv_Arm7(u64 dividend, u64 divisor);
 void WifiTx_FirePsPoll(void);
 int func_arm7_027c94c0(int value);
@@ -65,7 +62,7 @@ void WifiRx_HandleBeaconFrame(WlRxFrame *frame)
     if (station == WIFI_NO_PEER) {
         return;
     }
-    func_arm7_027cb3c8(station, frame->unk_12);
+    WifiStation_StoreSignal(station, frame->unk_12);
     body = frame->body;
     bodyLength = frame->bodyLength;
     if (bodyLength <= 12) {
@@ -127,7 +124,7 @@ void WifiRx_HandleBeaconFrame(WlRxFrame *frame)
             if ((elements.unk_0c & WIFI_IE_SEEN_DS_SET) && !(elements.result & WIFI_IE_FITS_CHANNEL)) {
                 WifiRf_TuneChannel(elements.unk_12, 0);
             }
-            func_arm7_027cb2d0(station, elements.supportedRates);
+            WifiStation_StoreRates(station, elements.supportedRates);
             if (link->unk_0c == 2) {
                 element = elements.nintendo;
                 if (element != NULL) {
@@ -177,7 +174,7 @@ void WifiRx_HandleBeaconFrame(WlRxFrame *frame)
         /* fall through */
     case 3:
         link->unk_80 = 0;
-        func_arm7_027cb27c(station);
+        WifiStation_RefreshTimeout(station);
 
         /* next target beacon time: the timestamp rounded up to the next beacon interval */
         next = *(u64 *)WIFI_MANAGEMENT_FIELDS_OF(frame)->probeResponse.timestamp;

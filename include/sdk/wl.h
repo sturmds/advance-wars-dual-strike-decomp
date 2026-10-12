@@ -1508,7 +1508,12 @@ u16 WifiStation_StateOf(u32 station);
 void WifiStation_StoreChallengeSeed(u32 station, u32 challengeSeed);
 void WifiStation_StoreLastSeq(u32 station, u32 lastSequence);
 void WifiStation_StoreCapability(u32 station, u32 capability);
-void func_arm7_027cb27c(u32 station);
+void WifiStation_StoreRates(u32 station, u32 rates);
+void WifiStation_StoreSignal(u16 station, u16 rssi);
+
+void WifiStation_RefreshTimeout(u32 station);
+
+/* Set the station's bit in WlStationBits.unk_04; clear it while the station is in WIFI_PEER_ASSOCIATED. */
 void func_arm7_027cb300(u32 station);
 void func_arm7_027cb324(u32 station);
 
