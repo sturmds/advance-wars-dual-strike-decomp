@@ -185,10 +185,17 @@ static inline void Touch_WaitBusIdle(void)
     }
 }
 
+/* Sends one byte and waits until it is out. */
 static inline void Touch_ShiftOutByte(u16 data)
 {
-    REG_SPIDATA = data;
+    REG_SPIDATA = (u16)(data & 0xff);
     Touch_WaitBusIdle();
+}
+
+/* The byte that came in during the last transfer. */
+static inline u16 Touch_LastByteIn(void)
+{
+    return (u16)(REG_SPIDATA & 0xff);
 }
 
 /* Pen state as the ARM7 sampler reads it; TP_TOUCH_OFF and TP_TOUCH_ON

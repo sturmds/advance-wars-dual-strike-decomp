@@ -3,7 +3,7 @@
 
 void func_arm7_037fdc10(void);                   /* halt: disable interrupts and stop for good */
 u32 func_arm7_03804c48(void);
-u32 func_arm7_03804a50(u16 *pos, s32 range, int axis, u16 *density);
+u32 Touch_MeasureAxis(u16 *pos, s32 range, int axis, u16 *density);
 
 extern u16 tpLastTouch;
 
@@ -33,9 +33,9 @@ void TP_ExecSampling(SPITpData *data, s32 range, u16 *density)
         return;
     }
 
-    data->e.validity = func_arm7_03804a50(&pos, range, TOUCH_MEASURE_HORIZONTAL, &densityX);
+    data->e.validity = Touch_MeasureAxis(&pos, range, TOUCH_MEASURE_HORIZONTAL, &densityX);
     data->e.x = pos;
-    if (func_arm7_03804a50(&pos, range, TOUCH_MEASURE_VERTICAL, &densityY) == TP_VALIDITY_INVALID_Y) {
+    if (Touch_MeasureAxis(&pos, range, TOUCH_MEASURE_VERTICAL, &densityY) == TP_VALIDITY_INVALID_Y) {
         data->e.validity |= TP_VALIDITY_INVALID_Y;
     }
     data->e.y = pos;
