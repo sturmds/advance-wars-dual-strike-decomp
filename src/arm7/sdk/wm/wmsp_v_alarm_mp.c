@@ -53,7 +53,7 @@ void WMSP_VAlarmMp(WmspRequest *request)
     } else if (status->state == WM_STATE_MP_CHILD) {
         send = FALSE;
         irqState = Cpu_MaskIrq_Arm7();
-        if (status->unk_32 == 1 && status->unk_72c != 1) {
+        if (status->unk_32 == 1 && status->sendQueueInUse != 1) {
             send = TRUE;
             status->unk_32 = 0;
         }

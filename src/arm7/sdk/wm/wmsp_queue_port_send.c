@@ -45,7 +45,7 @@ int WMSP_QueuePortSend(u16 childBitmap, u16 prio, u16 port, u32 destBitmap, cons
     entry->arg = arg;
     entry->next = WIRELESS_OUTBOX_NO_ENTRY;
     entry->seqNo = WIRELESS_OUTBOX_NO_ENTRY;
-    entry->unk_12 = status->unk_98;
+    entry->retryCount = status->unk_98;
     if (queue->tail == WIRELESS_OUTBOX_NO_ENTRY) {
         queue->head = index;
     } else {

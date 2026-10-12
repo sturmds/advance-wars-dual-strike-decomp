@@ -408,11 +408,11 @@ typedef struct RadioOutboxEntry {
     u16 destBitmap;
     u16 restBitmap;                    /* children the data has not reached yet */
     u16 sentBitmap;
-    u16 unk_0a;                        /* 0 when queued */
+    u16 unk_0a;                        /* stations the frame in flight goes to; 0 when queued */
     u8 pad_0c[2];
     u16 size;
     u16 seqNo;
-    u16 unk_12;                        /* WMStatus.unk_98 when queued */
+    u16 retryCount;                    /* resends left; WMStatus.unk_98 when queued */
     const u16 *data;
     void (*callback)(void *arg);
     void *arg;
@@ -516,7 +516,7 @@ typedef struct WMStatus {
     RadioOutboxList sendQueue[WIRELESS_URGENCY_LEVELS];
     RadioOutboxList readyQueue[WIRELESS_URGENCY_LEVELS];
     OSMutex sendQueueMutex;
-    u32 unk_72c;
+    u32 sendQueueInUse;                /* 1 from WMSP_BuildMpSendData until WMSP_UpdateSendQueue */
     u64 mpLastRecvTick[16];            /* tick of the last MP frame from each aid, bit 0 set */
     u64 unk_7b0;
 } WMStatus;

@@ -47,7 +47,7 @@ void WMSP_StartMP(WmspStartMPRequest *request)
         status->unk_88 = 0;
         status->unk_9a = 0;
         status->unk_9c = 60;
-        status->unk_72c = 0;
+        status->sendQueueInUse = 0;
         status->unk_8a = 0;
         status->unk_8c = 0;
         status->unk_8e = 0;

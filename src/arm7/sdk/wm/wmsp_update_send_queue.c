@@ -39,7 +39,7 @@ BOOL WMSP_UpdateSendQueue(BOOL failed, u16 missedBitmap)
     }
 
     Mutex_Take_Arm7(&status->sendQueueMutex);
-    if (status->unk_72c == 0) {
+    if (status->sendQueueInUse == 0) {
         Mutex_Release_Arm7(&status->sendQueueMutex);
         return FALSE;
     }
@@ -68,10 +68,10 @@ BOOL WMSP_UpdateSendQueue(BOOL failed, u16 missedBitmap)
             entry->restBitmap &= stationBitmap;
             entry->unk_0a = 0;
 
-            if (entry->restBitmap != 0 && ((entry->port & 8) || entry->unk_12 != 0)) {
+            if (entry->restBitmap != 0 && ((entry->port & 8) || entry->retryCount != 0)) {
                 resend = TRUE;
-                if (entry->unk_12 != 0) {
-                    entry->unk_12--;
+                if (entry->retryCount != 0) {
+                    entry->retryCount--;
                 }
                 if (entry->next == WIRELESS_OUTBOX_NO_ENTRY) {
                     queue->tail = WIRELESS_OUTBOX_NO_ENTRY;
@@ -128,7 +128,7 @@ BOOL WMSP_UpdateSendQueue(BOOL failed, u16 missedBitmap)
         }
     }
 
-    status->unk_72c = 0;
+    status->sendQueueInUse = 0;
     Mutex_Release_Arm7(&status->sendQueueMutex);
     return resend;
 }

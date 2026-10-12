@@ -70,11 +70,11 @@ int WMSP_BuildMpSendData(u32 pollBitmap, u32 childBitmap, u32 readyBitmap, int s
     first = TRUE;
 
     Mutex_Take_Arm7(&status->sendQueueMutex);
-    if (status->unk_72c == 1) {
+    if (status->sendQueueInUse == 1) {
         Mutex_Release_Arm7(&status->sendQueueMutex);
         return 1;
     }
-    status->unk_72c = 1;
+    status->sendQueueInUse = 1;
     queueData = status->sendQueueData;
 
     for (prio = 0, ready = status->readyQueue, send = status->sendQueue; prio < WIRELESS_URGENCY_LEVELS && space > 2;
