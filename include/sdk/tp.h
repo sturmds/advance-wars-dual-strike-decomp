@@ -158,7 +158,16 @@ typedef struct TouchSamplerState {
 
 extern TouchSamplerState tpWork;
 
+/* TPData.validity and SPITpData.e.validity bits */
+#define TP_VALIDITY_VALID     0
+#define TP_VALIDITY_INVALID_X 1
+#define TP_VALIDITY_INVALID_Y 2
+#define TP_VALIDITY_INVALID_XY (TP_VALIDITY_INVALID_X | TP_VALIDITY_INVALID_Y)
+
 /* SPI driver calls the touch panel code uses. The SPI code has no C yet. */
+#define SERIAL_OWNER_TOUCH 0
 void func_arm7_03803e84(u16 command, u16 result);    /* send a reply word to the ARM9 */
+/* Queue a job for the SPI thread; FALSE when the queue is full. */
+BOOL func_arm7_03803d38(u32 device, u32 process, u16 paramCount, ...);
 
 #endif
