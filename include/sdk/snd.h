@@ -5,6 +5,7 @@
 #include "sdk/os.h"
 #include "game/sound_bank.h"
 #include "game/sound_wave_arc.h"
+#include "sdk/snd_seq.h"
 
 /* One request for the ARM7 sound driver. The ARM9 fills it in and pushes it. */
 typedef struct SndCommand {
@@ -118,7 +119,8 @@ typedef struct SndArm7Alarm {
 
 /* The driver's state block; its first 0x1180 bytes are copied into the shared work. */
 typedef struct SndArm7Work {
-    u8 pad_0000[0xf80];
+    SndExChannel channels[16];
+    u8 pad_0540[0xa40];
     SndArm7Alarm alarms[SOUND_TIMER_SLOTS_ARM7];
 } SndArm7Work;
 

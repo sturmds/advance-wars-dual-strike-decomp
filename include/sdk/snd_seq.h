@@ -110,28 +110,84 @@ typedef struct SndChannelLfo {
     u16 counter;
 } SndChannelLfo;
 
+/* How a PCM sample plays: format, loop and the channel timer for its rate. */
+typedef struct SndWaveParam {
+    u8 format;
+    u8 loop;
+    u16 rate;
+    u16 timer;
+    u16 loopStart;
+    u32 loopLength;
+} SndWaveParam;
+
+/* SndExChannel.type */
+#define VOICE_TYPE_SAMPLED 0
+#define VOICE_TYPE_SQUARE_WAVE 1
+#define VOICE_TYPE_NOISE 2
+
+/* SndExChannel.envStatus */
+#define ENV_STAGE_RISE 0
+#define ENV_STAGE_FALL 1
+#define ENV_STAGE_HOLD 2
+#define ENV_STAGE_FADE 3
+
+/* Reason passed to a channel's callback. */
+#define VOICE_STOLEN 0   /* taken by a request of higher priority */
+#define VOICE_DONE 1
+
+/* SndExChannel.unk_03_3: hardware updates the driver still has to make for the channel. */
+#define VOICE_DIRTY_STOP 2
+#define VOICE_DIRTY_TIMER 4
+#define VOICE_DIRTY_VOLUME 8
+
+typedef void (*SndExChannelCallback)(SndExChannel *channel, int status, void *arg);
+
 /* A hardware channel as the driver's channel allocator sees it. Only the fields the code read so far are named. */
 
 struct SndExChannel {
-    u8 pad_00[2];
+    u8 id;   /* hardware channel number */
+    u8 type; /* VOICE_* */
     u8 envStatus;
     u8 active : 1;
     u8 start : 1;
     u8 autoSweep : 1; /* advance the sweep on each periodic update */
     u8 unk_03_3 : 5;
-    u8 pad_04[0xc];
+    u8 panRange;
+    u8 originalKey;
+    s16 userDecay2;
+    u8 key;
+    u8 velocity;
+    s8 initPan;
+    s8 userPan;
+    s16 userDecay;
+    s16 userPitch;
     s32 envAttenuation; /* envelope level, in 1/128 steps of SND_CalcChannelVolume's volume; -723 * 128 is silent */
     s32 sweepCounter;
     s32 sweepLength;
-    u8 pad_1c[0x22 - 0x1c];
-    u8 unk_22;
+    u8 attack; /* multiplier applied to the level each tick of the attack */
+    u8 sustain;
+    u16 decay;
+    u16 release;
+    u8 unk_22; /* priority: allocation replaces the lowest */
+    u8 pan;
     u16 volume; /* bits 0-7 hardware volume, bits 8-9 volume shift */
-    u8 pad_26[2];
+    u16 timer;
     SndChannelLfo lfo;
     s16 sweepPitch; /* pitch offset at the start of the sweep; it falls to 0 over sweepLength */
     s32 length;
-    u8 pad_38[0x50 - 0x38];
+    SndWaveParam wave;
+    const void *data; /* PCM: the sample; PSG: the duty cycle */
+    SndExChannelCallback callback;
+    void *callbackArg;
     SndExChannel *next; /* next channel of the same track */
 };
+
+/* Locked channels: allocation never takes them. */
+extern u32 data_arm7_0380806c;
+/* Weakly locked channels: only an allocation marked strong may take them. Also the top of the driver thread's stack. */
+extern u32 data_arm7_03808068;
+
+/* Lock flags: bit 0 selects the weak lock. */
+#define VOICE_RESERVE_SOFT 1
 
 #endif
