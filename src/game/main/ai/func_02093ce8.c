@@ -16,8 +16,9 @@ BOOL Player_HasHq(int player);
 
 /* TRUE when the current player has an HQ and a base of owner unk_04 lies
  * within BASE_NEAR_HQ_RANGE tiles of it (Manhattan distance).
- * WIP, 96.6%: the bounds setup before the loops allocates r0/r1 the other
- * way round (hqX + 4 is computed before the width load). */
+ * WIP, 98.3%: hqRight before the width load is closer (96.6% without it,
+ * found by tools/permuter.py); the width load still comes first in the
+ * original, and the two temps swap r0 and r1. */
 BOOL func_02093ce8(void)
 {
     int maxY;
@@ -27,6 +28,7 @@ BOOL func_02093ce8(void)
     int minX;
     int x;
     int dist;
+    int hqRight;
     int hqY;
 
     if (!Player_HasHq(STATE->currentPlayer)) {
@@ -41,9 +43,10 @@ BOOL func_02093ce8(void)
     if (minY < 0) {
         minY = 0;
     }
+    hqRight = HQ_X + BASE_NEAR_HQ_RANGE;
     maxX = STATE->unk_1c4->mapWidth - 1;
-    if (HQ_X + BASE_NEAR_HQ_RANGE < maxX) {
-        maxX = HQ_X + BASE_NEAR_HQ_RANGE;
+    if (hqRight < maxX) {
+        maxX = hqRight;
     }
     maxY = STATE->unk_1c4->mapHeight - 1;
     if (hqY + BASE_NEAR_HQ_RANGE < maxY) {
