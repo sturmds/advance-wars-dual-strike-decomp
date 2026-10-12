@@ -2,14 +2,13 @@
 #include "sdk/os_arm7.h"
 #include "sdk/wl.h"
 
+void func_arm7_027cb3c8(u16 station, u16 rssi);
+
 u32 WifiStation_LookUpOrCreate(const u16 *macAddress);
 void WifiRx_HandleDeauthFrame(WlRxFrame *frame);
 void WifiParent_ServePsPoll(WlRxFrame *frame);
 void WifiRx_HandleDisassocFrame(WlRxFrame *frame);
 void func_arm7_027cb364(u16 station, u32 set);
-u16 func_arm7_027cb0ac(u32 station);
-void func_arm7_027cb2b8(int station, int sequence);
-void func_arm7_027cb3c8(u16 station, u16 value);
 void func_arm7_027d2090(WlRxFrame *frame);
 void WifiRx_HandleAuthFrame(WlRxFrame *frame);
 void WifiScan_RecordHeardNetwork(WlRxFrame *frame, WlElements *elements);
@@ -76,11 +75,11 @@ void WifiTask_RouteMgmtFrame(void)
         func_arm7_027cb3c8(station, frame->unk_12 & 0xff);
         if (type == 0) {
             sequence = frame->sequence;
-            if (sequence == func_arm7_027cb0ac(station)) {
+            if (sequence == WifiStation_LastSeqOf(station)) {
                 counters->unk_3c++;
                 goto done;
             }
-            func_arm7_027cb2b8(station, sequence);
+            WifiStation_StoreLastSeq(station, sequence);
         }
         switch (phase) {
         case 1: /* we are the access point */

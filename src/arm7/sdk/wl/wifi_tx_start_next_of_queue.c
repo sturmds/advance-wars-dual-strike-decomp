@@ -4,11 +4,7 @@ void WifiTx_PlaceFrameInRam(WlRamFrame *dest, WlTxBuffer *buffer);
 void WifiStation_UncountQueuedFrame(WlTxFrame *frame);
 void WifiHost_ReturnSentFrame(WlBufferList *list, WlTxRequest *request);
 int func_arm7_027c94c0(int value);
-/* Returns WifiStation_Entry(station)->queuedFrames; its definition takes no argument yet. */
-u16 func_arm7_027cb04c(u16 station);
 int func_arm7_027cb120(int station);
-/* Returns WifiStation_Entry(station)->state; its definition takes no argument yet. */
-u16 func_arm7_027cb140(u16 station);
 /* Returns buffer->next; its definition still says int. */
 int func_arm7_037f8a5c(WlBuffer *buffer);
 
@@ -66,11 +62,11 @@ void WifiTx_StartNextOfQueue(int queue)
             slot->onDone(frame, FALSE);
             continue;
         }
-        if (queue == 0 || (queue == 1 && func_arm7_027cb140(station) == WIFI_PEER_ASSOCIATED)) {
+        if (queue == 0 || (queue == 1 && WifiStation_StateOf(station) == WIFI_PEER_ASSOCIATED)) {
             if (!func_arm7_027cb120(station)) {
                 continue;
             }
-            if (func_arm7_027cb140(station) != WIFI_PEER_ASSOCIATED) {
+            if (WifiStation_StateOf(station) != WIFI_PEER_ASSOCIATED) {
                 frame->result = WIFI_SEND_RESULT_UNSENT;
                 /* needed to match: the request address is taken from frame */
                 WifiHost_ReturnSentFrame(list, WIFI_HOST_TX_REQUEST_OF(frame));
@@ -88,7 +84,7 @@ void WifiTx_StartNextOfQueue(int queue)
         func_arm7_027c94c0(2);
     }
     WifiTx_PlaceFrameInRam(dest, buffer);
-    if (link->unk_0c == 1 && func_arm7_027cb04c(station) > 1) {
+    if (link->unk_0c == 1 && WifiStation_PendingTxOf(station) > 1) {
         dest->frameControl |= WIFI_FRAMECTL_MORE_BUFFERED;
     }
     frameControl = frame->frameControl;

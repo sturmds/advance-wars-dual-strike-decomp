@@ -1088,11 +1088,11 @@ src/arm7/sdk/wl/wifi_station_entry.c:
     complete
     .text       start:0x027cb030 end:0x027cb04c
 
-src/arm7/sdk/func_arm7_027cb04c.c:
+src/arm7/sdk/wl/wifi_station_pending_tx_of.c:
     complete
     .text       start:0x027cb04c end:0x027cb068
 
-src/arm7/sdk/func_arm7_027cb068.c:
+src/arm7/sdk/wl/wifi_station_assoc_id_of.c:
     complete
     .text       start:0x027cb068 end:0x027cb084
 
@@ -1100,15 +1100,15 @@ src/arm7/sdk/wl/wifi_station_send_rate_of.c:
     complete
     .text       start:0x027cb084 end:0x027cb0ac
 
-src/arm7/sdk/func_arm7_027cb0ac.c:
+src/arm7/sdk/wl/wifi_station_last_seq_of.c:
     complete
     .text       start:0x027cb0ac end:0x027cb0c8
 
-src/arm7/sdk/func_arm7_027cb0c8.c:
+src/arm7/sdk/wl/wifi_station_challenge_seed_of.c:
     complete
     .text       start:0x027cb0c8 end:0x027cb0e4
 
-src/arm7/sdk/func_arm7_027cb0e4.c:
+src/arm7/sdk/wl/wifi_station_mac_of.c:
     complete
     .text       start:0x027cb0e4 end:0x027cb100
 
@@ -1120,7 +1120,7 @@ src/arm7/sdk/func_arm7_027cb120.c:
     complete
     .text       start:0x027cb120 end:0x027cb140
 
-src/arm7/sdk/func_arm7_027cb140.c:
+src/arm7/sdk/wl/wifi_station_state_of.c:
     complete
     .text       start:0x027cb140 end:0x027cb15c
 
@@ -1136,19 +1136,19 @@ src/arm7/sdk/wl/func_arm7_027cb27c.c:
     complete
     .text       start:0x027cb27c end:0x027cb2a0
 
-src/arm7/sdk/func_arm7_027cb2a0.c:
+src/arm7/sdk/wl/wifi_station_store_challenge_seed.c:
     complete
     .text       start:0x027cb2a0 end:0x027cb2b8
 
-src/arm7/sdk/func_arm7_027cb2b8.c:
+src/arm7/sdk/wl/wifi_station_store_last_seq.c:
     complete
     .text       start:0x027cb2b8 end:0x027cb2d0
 
-src/arm7/sdk/func_arm7_027cb2d0.c:
+src/arm7/sdk/wl/func_arm7_027cb2d0.c:
     complete
     .text       start:0x027cb2d0 end:0x027cb2e8
 
-src/arm7/sdk/func_arm7_027cb2e8.c:
+src/arm7/sdk/wl/wifi_station_store_capability.c:
     complete
     .text       start:0x027cb2e8 end:0x027cb300
 
@@ -1164,7 +1164,7 @@ src/arm7/sdk/wl/func_arm7_027cb364.c:
     complete
     .text       start:0x027cb364 end:0x027cb3c8
 
-src/arm7/sdk/func_arm7_027cb3c8.c:
+src/arm7/sdk/wl/func_arm7_027cb3c8.c:
     complete
     .text       start:0x027cb3c8 end:0x027cb3e0
 

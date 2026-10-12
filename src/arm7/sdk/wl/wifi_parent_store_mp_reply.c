@@ -1,8 +1,5 @@
 #include "sdk/wl.h"
 
-u16 func_arm7_027cb140(u32 station); /* the station's state */
-u16 func_arm7_027cb068(u32 station); /* the station's AID */
-void func_arm7_027cb27c(u32 station); /* the original passes station without narrowing it */
 void func_arm7_027cb364(u16 station, u32 set);
 u32 WifiStation_IndexOfMac(const u16 *macAddress);
 WlTxFrame *WifiFrame_NewDeauthentication(const u16 *dest, u32 reason);
@@ -44,7 +41,7 @@ void WifiParent_StoreMpReply(WlRxFrame *frame)
     if (station == WIFI_NO_PEER || station == 0) {
         return;
     }
-    if (func_arm7_027cb140(station) != WIFI_PEER_ASSOCIATED) {
+    if (WifiStation_StateOf(station) != WIFI_PEER_ASSOCIATED) {
         WlTxFrame *deauth = WifiFrame_NewDeauthentication(frame->addr2, 7);
         if (deauth != NULL) {
             WifiTx_EnqueueMgmt(deauth);
@@ -53,7 +50,7 @@ void WifiParent_StoreMpReply(WlRxFrame *frame)
     }
     func_arm7_027cb364(station, WIFI_FRAMECTL_FIELDS(frame->frameControl)->powerManagement);
     func_arm7_027cb27c(station);
-    bit = 1 << func_arm7_027cb068(station);
+    bit = 1 << WifiStation_AssocIdOf(station);
     if (bit & slots->mpReceived) {
         return;
     }

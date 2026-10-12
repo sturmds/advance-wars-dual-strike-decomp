@@ -2,9 +2,6 @@
 #include "sdk/mi.h"
 #include "sdk/wl.h"
 
-u16 func_arm7_027cb140(u32 station);                  /* station state */
-u16 func_arm7_027cb0c8(u32 station);                  /* station's challenge seed */
-void func_arm7_027cb2a0(int station, int seed);       /* keeps the station's challenge seed */
 void func_arm7_027c8594(void);                        /* cancels the one-shot alarm */
 void WifiStation_ChangeState(u16 station, u16 state);
 void Wifi_SwitchMode(int mode);
@@ -61,17 +58,17 @@ void WifiRx_HandleAuthFrame(WlRxFrame *frame)
         goto send;
     }
     if (link->unk_0c == 1) {
-        if (func_arm7_027cb140(station) > WIFI_PEER_KNOWN_ONLY) {
+        if (WifiStation_StateOf(station) > WIFI_PEER_KNOWN_ONLY) {
             WifiStation_ChangeState(station, WIFI_PEER_KNOWN_ONLY);
             WifiHost_TellDeauthenticated((const u8 *)frame->addr2, 1);
         }
         /* RX header bit 10: probably a frame the WEP engine could not decrypt. */
-        if ((frame->unk_08 & 0x400) && func_arm7_027cb0c8(station) != 0) {
+        if ((frame->unk_08 & 0x400) && WifiStation_ChallengeSeedOf(station) != 0) {
             reply = TRUE;
             body->auth.algorithm = WIFI_AUTHALG_CHALLENGE;
             status = WIFI_IEEE_STATUS_CHALLENGE_WRONG;
             sequence = 4;
-            func_arm7_027cb2a0(station, 0);
+            WifiStation_StoreChallengeSeed(station, 0);
             goto send;
         }
     }
@@ -117,20 +114,20 @@ void WifiRx_HandleAuthFrame(WlRxFrame *frame)
                     WifiTx_EnqueueMgmt(tx);
                 }
             } else if (body->auth.sequence == 3) {
-                if (func_arm7_027cb140(station) != WIFI_PEER_KNOWN_ONLY || func_arm7_027cb0c8(station) == 0) {
+                if (WifiStation_StateOf(station) != WIFI_PEER_KNOWN_ONLY || WifiStation_ChallengeSeedOf(station) == 0) {
                     status = WIFI_IEEE_STATUS_FAILURE;
                     reply = TRUE;
                 } else if (!WifiAuth_VerifyChallengeReply((WlAuthFrame *)frame)) {
                     status = WIFI_IEEE_STATUS_CHALLENGE_WRONG;
                     reply = TRUE;
-                    func_arm7_027cb2a0(station, 0);
+                    WifiStation_StoreChallengeSeed(station, 0);
                 } else {
-                    func_arm7_027cb2a0(station, 0);
+                    WifiStation_StoreChallengeSeed(station, 0);
                     status = WIFI_IEEE_STATUS_OK;
                     reply = TRUE;
                 }
             } else {
-                func_arm7_027cb2a0(station, 0);
+                WifiStation_StoreChallengeSeed(station, 0);
                 status = WIFI_IEEE_STATUS_SEQ_OUT_OF_ORDER;
                 sequence = 2;
                 reply = TRUE;

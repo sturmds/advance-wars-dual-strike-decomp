@@ -1,6 +1,5 @@
 #include "sdk/wl.h"
 
-u16 func_arm7_027cb140(u32 station); /* the station's state */
 void WifiStation_ChangeState(u16 station, u16 state);
 void WifiTx_DropStationFrames(u32 station);
 WlTxFrame *WifiFrame_NewDisassociation(const u16 *dest, u32 reason);
@@ -25,7 +24,7 @@ void WifiRx_HandleDisassocFrame(WlRxFrame *frame)
 
     switch (link->unk_0c) {
     case 1:
-        state = func_arm7_027cb140(station);
+        state = WifiStation_StateOf(station);
         if (state == WIFI_PEER_ASSOCIATED) {
             WifiStation_ChangeState(station, WIFI_PEER_AUTH_DONE);
             WifiHost_TellDisassociated((const u8 *)frame->addr2, frame->body[0]);

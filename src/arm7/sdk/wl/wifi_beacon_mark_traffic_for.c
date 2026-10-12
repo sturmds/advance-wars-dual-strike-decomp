@@ -1,7 +1,5 @@
 #include "sdk/wl.h"
 
-u16 func_arm7_027cb068(u16 station);
-u16 func_arm7_027cb140(u16 station);
 u8 WL_ReadByte(const void *addr);
 void WL_WriteByte(void *addr, u32 value);
 
@@ -18,7 +16,7 @@ void WifiBeacon_MarkTrafficFor(u16 station)
     u32 bits;
     u32 aid;
 
-    if (func_arm7_027cb140(station) != WIFI_PEER_ASSOCIATED) {
+    if (WifiStation_StateOf(station) != WIFI_PEER_ASSOCIATED) {
         return;
     }
     tim = (u8 *)(WIFI_DRIVER_STATE->state.timOffset + WIFI_RAM_TIM_BASE);
@@ -28,7 +26,7 @@ void WifiBeacon_MarkTrafficFor(u16 station)
         /* Needed to match: the original narrows the value at the call. */
         WL_WriteByte(tim + 4, (u8)bits);
     } else {
-        aid = func_arm7_027cb068(station);
+        aid = WifiStation_AssocIdOf(station);
         address = tim + 5 + (aid >> 3);
         bits = WL_ReadByte(address) | (1 << (aid & 7));
         WL_WriteByte(address, (u8)bits);

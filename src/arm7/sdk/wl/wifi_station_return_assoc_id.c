@@ -2,7 +2,6 @@
 
 void func_arm7_027c92e8(void);
 void WifiBeacon_UnmarkTrafficFor(u16 station);
-u16 func_arm7_027cb068(u16 station);
 
 void WifiStation_ReturnAssocId(u16 station)
 {
@@ -10,7 +9,7 @@ void WifiStation_ReturnAssocId(u16 station)
     u32 aid;
 
     WifiBeacon_UnmarkTrafficFor(station);
-    aid = func_arm7_027cb068(station);
+    aid = WifiStation_AssocIdOf(station);
     WifiStation_Entry(station)->aid = 0;
     work->stationBits.aidMask &= ~(1 << aid);
     work->stationBits.aidCount--;

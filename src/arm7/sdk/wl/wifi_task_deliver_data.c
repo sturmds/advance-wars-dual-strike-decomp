@@ -1,11 +1,8 @@
 #include "sdk/wl.h"
 
-u32 WifiStation_IndexOfMac(const u16 *macAddress);
-u16 func_arm7_027cb140(u32 station); /* the station's state */
-u16 func_arm7_027cb0ac(u32 station); /* the station's last sequence number */
-void func_arm7_027cb2b8(u32 station, u32 sequence);
 void func_arm7_027cb3c8(u16 station, u16 rssi);
-void func_arm7_027cb27c(u32 station);
+
+u32 WifiStation_IndexOfMac(const u16 *macAddress);
 void func_arm7_027cb364(u16 station, u32 set);
 void func_arm7_027c90ec(u16 *dest, const u16 *src); /* copies a 6-byte MAC address */
 int func_arm7_027c94c0(int value);
@@ -68,10 +65,10 @@ void WifiTask_DeliverData(void)
             break;
         }
         station = WifiStation_IndexOfMac(frame->addr2);
-        if (station == WIFI_NO_PEER || func_arm7_027cb140(station) != WIFI_PEER_ASSOCIATED) {
+        if (station == WIFI_NO_PEER || WifiStation_StateOf(station) != WIFI_PEER_ASSOCIATED) {
             WlTxFrame *reply;
 
-            if (func_arm7_027cb140(station) == WIFI_PEER_AUTH_DONE) {
+            if (WifiStation_StateOf(station) == WIFI_PEER_AUTH_DONE) {
                 reply = WifiFrame_NewDisassociation(frame->addr2, 7);
             } else {
                 reply = WifiFrame_NewDeauthentication(frame->addr2, 7);
@@ -82,7 +79,7 @@ void WifiTask_DeliverData(void)
             break;
         }
         func_arm7_027cb364(station, WIFI_FRAMECTL_FIELDS(frame->frameControl)->powerManagement);
-        if (frame->sequence == func_arm7_027cb0ac(station)) {
+        if (frame->sequence == WifiStation_LastSeqOf(station)) {
             counters[15]++;
             break;
         }
@@ -106,7 +103,7 @@ void WifiTask_DeliverData(void)
             }
         }
         station = link->unk_88;
-        if (frame->sequence == func_arm7_027cb0ac(station)) {
+        if (frame->sequence == WifiStation_LastSeqOf(station)) {
             counters[15]++;
             break;
         }
@@ -118,7 +115,7 @@ void WifiTask_DeliverData(void)
     if (!drop) {
         frame->station = station;
         func_arm7_027cb3c8(station, frame->unk_12 & 0xff);
-        func_arm7_027cb2b8(station, frame->sequence);
+        WifiStation_StoreLastSeq(station, frame->sequence);
         func_arm7_027cb27c(station);
         frame->bodyLength = frame->length - WIFI_80211_HEADER_BYTES;
         buffer->command = 0x180;

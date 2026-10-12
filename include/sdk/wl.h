@@ -34,10 +34,12 @@ typedef struct WlStation {
     u16 state;
     u16 aid;
     u16 macAddress[3];
-    u8 pad_0a[0x6];
-    u16 unk_10; /* bit 1: send to this station at 2 Mbit/s */
+    u16 rssi;          /* low byte of WlRxFrame.unk_12 of its last frame */
+    u16 capability;    /* capability word of its (re)association request */
+    u16 challengeSeed; /* seed of the shared-key challenge text, 0 when none */
+    u16 rates;         /* supported rates; bit 1: send to this station at 2 Mbit/s */
     u8 pad_12[0x2];
-    u16 unk_14; /* set to 0xffff for a new station */
+    u16 lastSequence;  /* set to 0xffff for a new station */
     u16 queuedFrames;
     u16 unk_18; /* reloaded from unk_1a */
     u16 unk_1a;
@@ -1501,7 +1503,21 @@ typedef struct Unk_027cb9e4 {
 /* Interrupt mask bit of the wireless interrupt; WL masks it around queue changes. */
 #define IRQ_MASK_WIRELESS 0x1000000
 
-WlStation *WifiStation_Entry(u16 index);
+WlStation *WifiStation_Entry(u32 index);
+
+/* Getters and setters for one WlStation field each. */
+u16 WifiStation_PendingTxOf(u32 station);
+u16 WifiStation_AssocIdOf(u32 station);
+u16 WifiStation_LastSeqOf(u32 station);
+u16 WifiStation_ChallengeSeedOf(u32 station);
+u16 *WifiStation_MacOf(u32 station);
+u16 WifiStation_StateOf(u32 station);
+void WifiStation_StoreChallengeSeed(u32 station, u32 challengeSeed);
+void WifiStation_StoreLastSeq(u32 station, u32 lastSequence);
+void WifiStation_StoreCapability(u32 station, u32 capability);
+void func_arm7_027cb27c(u32 station);
+void func_arm7_027cb300(u32 station);
+void func_arm7_027cb324(u32 station);
 
 /* Station index returned when no station fits. */
 #define WIFI_NO_PEER 0xff

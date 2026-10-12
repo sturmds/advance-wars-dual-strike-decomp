@@ -3,7 +3,6 @@
 void WifiTx_FillHeader(WlTxFrame *frame, const u16 *dest);
 u32 WifiFrame_PutRatesElement(u8 *dest);
 u32 WifiStation_GiveAssocId(u16 station);
-u16 *func_arm7_027cb0e4(u16 station); /* WifiStation_Entry(station)->macAddress */
 u8 WL_ReadByte(const void *addr);
 void WL_WriteByte(void *addr, u32 value);
 
@@ -37,7 +36,7 @@ WlTxFrame *WifiFrame_NewReassocAnswer(u16 station, u16 status, const u8 *element
     } else {
         aid = 0;
     }
-    WifiTx_FillHeader(frame, func_arm7_027cb0e4(station));
+    WifiTx_FillHeader(frame, WifiStation_MacOf(station));
     WIFI_MANAGEMENT_FIELDS_OF(frame)->assocResponse.capability = WIFI_DRIVER_STATE->state.capability;
     WIFI_MANAGEMENT_FIELDS_OF(frame)->assocResponse.status = status;
     WIFI_MANAGEMENT_FIELDS_OF(frame)->assocResponse.aid = aid | WIFI_ASSOC_ID_TOP_BITS;

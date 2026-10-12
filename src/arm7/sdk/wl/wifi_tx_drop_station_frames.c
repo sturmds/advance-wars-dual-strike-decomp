@@ -1,6 +1,5 @@
 #include "sdk/wl.h"
 
-u16 func_arm7_027cb04c(u32 station); /* WifiStation_Entry(station)->queuedFrames */
 WlBuffer *func_arm7_037f8a5c(WlBuffer *buffer); /* returns buffer->next */
 void WifiStation_UncountQueuedFrame(WlTxFrame *frame);
 void WifiHost_ReturnSentFrame(WlBufferList *list, WlTxRequest *request);
@@ -18,7 +17,7 @@ void WifiTx_DropStationFrames(u32 station)
     u32 queue;
 
     found = FALSE;
-    if (func_arm7_027cb04c(station) == 0) {
+    if (WifiStation_PendingTxOf(station) == 0) {
         return;
     }
     for (queue = 0; queue < WIFI_SEND_QUEUE_TOTAL; queue += 2) {

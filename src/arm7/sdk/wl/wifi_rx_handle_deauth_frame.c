@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/wl.h"
 
-u16 func_arm7_027cb140(u32 station);   /* station state */
 void WifiStation_ChangeState(u16 station, u16 state);
 void WifiTx_DropStationFrames(u32 station);  /* ends the frames queued for the station */
 void Wifi_SwitchMode(int mode);
@@ -18,7 +17,7 @@ void WifiRx_HandleDeauthFrame(WlRxFrame *frame)
 
     switch (link->unk_0c) {
     case 1:
-        if (func_arm7_027cb140(station) > WIFI_PEER_KNOWN_ONLY) {
+        if (WifiStation_StateOf(station) > WIFI_PEER_KNOWN_ONLY) {
             WifiStation_ChangeState(station, WIFI_PEER_KNOWN_ONLY);
             WifiHost_TellDeauthenticated((const u8 *)frame->addr2, frame->body[0]);
             WifiTx_DropStationFrames(station);

@@ -1,8 +1,6 @@
 #include "sdk/wl.h"
 
 int func_arm7_027cb100(int station);
-void func_arm7_027cb324(u32 station);
-u16 func_arm7_027cb140(u32 station); /* the station's state */
 void WifiStation_ChangeState(u16 station, u16 state);
 void WifiStation_ReturnAssocId(u16 station);
 void Wifi_SwitchMode(int mode); /* switches WlLink.mode */
@@ -82,12 +80,12 @@ void WifiTx_MgmtSlotDone(WlTxFrame *frame, int sendNext)
     case WIFI_FRAMECTL_DISASSOCIATION:
         if (link->unk_0c == 1) {
             if (station != 0) {
-                if (func_arm7_027cb140(station) > WIFI_PEER_AUTH_DONE) {
+                if (WifiStation_StateOf(station) > WIFI_PEER_AUTH_DONE) {
                     WifiStation_ChangeState(station, WIFI_PEER_AUTH_DONE);
                 }
             } else if (frame->addr1[0] & 1) {
                 for (i = 1; i < WIFI_PEER_TABLE_INFO->count; i++) {
-                    if (func_arm7_027cb140(i) > WIFI_PEER_AUTH_DONE) {
+                    if (WifiStation_StateOf(i) > WIFI_PEER_AUTH_DONE) {
                         WifiStation_ChangeState(i, WIFI_PEER_AUTH_DONE);
                     }
                 }
@@ -109,12 +107,12 @@ void WifiTx_MgmtSlotDone(WlTxFrame *frame, int sendNext)
     case WIFI_FRAMECTL_DEAUTHENTICATION:
         if (link->unk_0c == 1) {
             if (station != 0) {
-                if (func_arm7_027cb140(station) > WIFI_PEER_KNOWN_ONLY) {
+                if (WifiStation_StateOf(station) > WIFI_PEER_KNOWN_ONLY) {
                     WifiStation_ChangeState(station, WIFI_PEER_KNOWN_ONLY);
                 }
             } else if (frame->addr1[0] & 1) {
                 for (i = 1; i < WIFI_PEER_TABLE_INFO->count; i++) {
-                    if (func_arm7_027cb140(i) > WIFI_PEER_KNOWN_ONLY) {
+                    if (WifiStation_StateOf(i) > WIFI_PEER_KNOWN_ONLY) {
                         WifiStation_ChangeState(i, WIFI_PEER_KNOWN_ONLY);
                     }
                 }

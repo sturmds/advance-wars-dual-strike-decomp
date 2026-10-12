@@ -4,7 +4,6 @@
 u8 WL_ReadByte(const void *addr);
 u16 Wifi_StepLcg(void);
 void func_arm7_027c83c8(int seed);               /* sets WlWork.random.value */
-void func_arm7_027cb2a0(int station, int seed);  /* keeps the station's challenge seed */
 
 /*
  * Shared key authentication: picks a nonzero seed from the hardware random
@@ -23,7 +22,7 @@ void WifiAuth_FillChallenge(int station, WlAuthFrame *frame)
         seed = 1;
     }
     func_arm7_027c83c8(seed);
-    func_arm7_027cb2a0(station, seed);
+    WifiStation_StoreChallengeSeed(station, seed);
     text = frame->challenge;
     length = WL_ReadByte(&frame->challengeLength);
     for (i = 0; i < length; i += 2) {

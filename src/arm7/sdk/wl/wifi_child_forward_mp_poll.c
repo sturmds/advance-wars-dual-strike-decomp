@@ -1,6 +1,5 @@
 #include "sdk/wl.h"
 
-void func_arm7_027cb27c(u32 station);
 
 /*
  * Handles a received MP poll (frame control 0x228: data + CF-Poll from the

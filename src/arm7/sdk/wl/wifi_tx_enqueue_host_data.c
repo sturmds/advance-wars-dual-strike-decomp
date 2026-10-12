@@ -1,7 +1,6 @@
 #include "sdk/wl.h"
 
 u32 WifiStation_IndexOfMac(const u16 *macAddress);
-u16 func_arm7_027cb140(u32 station);
 /* Needed to match: the station index is passed without narrowing to u16. */
 u16 WifiStation_SendRateOf(u32 station);
 void func_arm7_027c90ec(u16 *dest, const u16 *src);
@@ -27,7 +26,7 @@ int WifiTx_EnqueueHostData(WlTxBuffer *buffer)
     }
     if (view->state.phase == 1) {
         station = WifiStation_IndexOfMac(frame->addr1);
-        if (station == WIFI_NO_PEER || func_arm7_027cb140(station) != WIFI_PEER_ASSOCIATED) {
+        if (station == WIFI_NO_PEER || WifiStation_StateOf(station) != WIFI_PEER_ASSOCIATED) {
             return 10;
         }
     } else {

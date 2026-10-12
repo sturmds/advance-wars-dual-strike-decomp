@@ -2,9 +2,8 @@
 #include "sdk/mi.h"
 #include "sdk/wl.h"
 
-u16 func_arm7_027cb140(u32 station);                   /* station state */
-void func_arm7_027cb2d0(u32 station, u32 rates);       /* sets WlStation.unk_10 */
-void func_arm7_027cb2e8(u32 station, u32 capability);  /* sets the station's capability word */
+void func_arm7_027cb2d0(u32 station, u32 rates);
+
 void WifiStation_ChangeState(u16 station, u16 state);
 WlTxFrame *WifiFrame_NewDeauthentication(const u16 *dest, u32 reason);
 WlTxFrame *WifiFrame_NewAssocAnswer(u16 station, u16 status, const u8 *element);
@@ -38,14 +37,14 @@ void WifiParent_AnswerAssocAsk(WlRxFrame *frame)
         return;
     }
     station = frame->station;
-    if (station == 0 || func_arm7_027cb140(station) < WIFI_PEER_AUTH_DONE) {
+    if (station == 0 || WifiStation_StateOf(station) < WIFI_PEER_AUTH_DONE) {
         response = WifiFrame_NewDeauthentication(frame->addr2, WIFI_REASON_UNAUTHED_SENDER);
         if (response != NULL) {
             WifiTx_EnqueueMgmt(response);
         }
         return;
     }
-    if (func_arm7_027cb140(station) == WIFI_PEER_ASSOCIATED) {
+    if (WifiStation_StateOf(station) == WIFI_PEER_ASSOCIATED) {
         WifiStation_ChangeState(station, WIFI_PEER_AUTH_DONE);
         WifiHost_TellDisassociated((const u8 *)frame->addr2, 1);
     }
@@ -60,7 +59,7 @@ void WifiParent_AnswerAssocAsk(WlRxFrame *frame)
         (view->state.flags.bit2 == 1 && !capability->shortPreamble)) {
         status = WIFI_IEEE_STATUS_CAPS_UNSUPPORTED;
     } else {
-        func_arm7_027cb2e8(station, capability->raw);
+        WifiStation_StoreCapability(station, capability->raw);
         if (!(elements.result & WIFI_IE_FITS_SSID)) {
             status = WIFI_IEEE_STATUS_FAILURE;
         } else if (!(elements.result & WIFI_IE_FITS_RATES)) {
