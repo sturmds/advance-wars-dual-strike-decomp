@@ -329,7 +329,8 @@ typedef struct WlState {
     u8 pad_b0[0xb2 - 0xb0];
     u16 ringSize;                  /* length of the MAC RAM ring that ends at WIFI_RX_RING_LIMIT */
     void *unk_b4;
-    u8 pad_b8[0xbe - 0xb8];
+    u16 unk_b8;                    /* same halfword as WlLink.gameInfoLength */
+    u8 pad_ba[0xbe - 0xba];
     u16 unk_be;
     u32 periodicCount;             /* periodic alarm firings */
     u8 pad_c4[4];
@@ -591,6 +592,8 @@ typedef struct WlMpReplyView {
 #define WIFI_REPLY_SLOTS_VIEW_OF(work) ((WlMpReplyView *)((u8 *)(work) + 0x400))
 
 #define WIFI_DRIVER_STATE (*(WlWork **)0x0380fff4)
+/* Halfword WL copies into the Nintendo beacon element after WlState.unk_10. */
+#define WIFI_SHARED_GAME_WORD (*(u16 *)0x0380fff0)
 
 /* WlState from 0x18 on as a block of its own: some code addresses these
    fields from a pointer to 0x18, so the original nests a struct there.
