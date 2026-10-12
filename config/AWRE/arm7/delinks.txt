@@ -1818,6 +1818,10 @@ src/arm7/sdk/wl/wifi_task_age_networks.c:
     complete
     .text       start:0x027d3f04 end:0x027d3f54
 
+src/arm7/sdk/wl/wifi_scan_forget_networks.c:
+    complete
+    .text       start:0x027d3f54 end:0x027d3f8c
+
 src/arm7/sdk/wl/wifi_flash_fetch_radio_block.c:
     complete
     .text       start:0x027d40e8 end:0x027d41dc
