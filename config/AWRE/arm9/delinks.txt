@@ -11467,7 +11467,8 @@ src/game/main/ai/ai_enemy_has_air_unit.c:
     complete
     .text       start:0x02093bfc end:0x02093ce8
 
-src/game/main/ai/func_02093ce8.c:
+src/game/main/ai/ai_has_own_base_near_hq.c:
+    complete
     .text       start:0x02093ce8 end:0x02093ef4
 
 src/game/main/ai/ai_site_choose_unit_to_build.c:

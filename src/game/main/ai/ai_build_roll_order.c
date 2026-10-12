@@ -6,7 +6,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-BOOL func_02093ce8(void);
+BOOL Ai_HasOwnBaseNearHq(void);
 BOOL Ai_HasEnemyWithin(s16 x, s16 y, int radius);
 int Rng_Next(void);
 
@@ -19,7 +19,7 @@ int Rng_Next(void);
 /* Picks the MapUnit.aiOrder (0-6) of a unit type about to be built, at
  * random with the weights in gAiProfile->units[unitType - 1].orderWeights. Bits of
  * `excluded` give orders weight 0. Order 6 is also left out when the current
- * player has a base near the HQ (func_02093ce8) and no enemy within
+ * player has a base near the HQ (Ai_HasOwnBaseNearHq) and no enemy within
  * HQ_SAFE_RADIUS of the HQ. Returns 0 for sea units and for types whose first
  * weight is negative. The caller passes the result through gUnitAction.unk_07
  * to AiBuild_BuyAtSite. */
@@ -37,7 +37,7 @@ u8 AiBuild_RollOrder(int unitType, u8 excluded)
     if (Ov000_gUnitStats[index + 1].moveGroup & MOVE_GROUP_SEA) {
         return 0;
     }
-    if (func_02093ce8() == TRUE) {
+    if (Ai_HasOwnBaseNearHq() == TRUE) {
         if (!Ai_HasEnemyWithin(CURRENT_PLAYER.hqX & 0x7f, CURRENT_PLAYER.hqY & 0x7f, HQ_SAFE_RADIUS)) {
             excluded |= 1 << 6;
         }

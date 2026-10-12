@@ -15,11 +15,11 @@ BOOL Player_HasHq(int player);
 #define BASE_NEAR_HQ_RANGE 4
 
 /* TRUE when the current player has an HQ and a base of owner unk_04 lies
- * within BASE_NEAR_HQ_RANGE tiles of it (Manhattan distance).
- * WIP, 98.3%: hqRight before the width load is closer (96.6% without it,
- * found by tools/permuter.py); the width load still comes first in the
- * original, and the two temps swap r0 and r1. */
-BOOL func_02093ce8(void)
+ * within BASE_NEAR_HQ_RANGE tiles of it (Manhattan distance). Same body as
+ * Ai_HasOwnBaseWithin, with the HQ read again at each use.
+ * Needed to match: hqRight and hqBottom are computed before the map width
+ * and height loads (hqRight found by tools/permuter.py). */
+BOOL Ai_HasOwnBaseNearHq(void)
 {
     int maxY;
     int maxX;
@@ -30,6 +30,7 @@ BOOL func_02093ce8(void)
     int dist;
     int hqRight;
     int hqY;
+    int hqBottom;
 
     if (!Player_HasHq(STATE->currentPlayer)) {
         return FALSE;
@@ -48,9 +49,10 @@ BOOL func_02093ce8(void)
     if (hqRight < maxX) {
         maxX = hqRight;
     }
+    hqBottom = hqY + BASE_NEAR_HQ_RANGE;
     maxY = STATE->unk_1c4->mapHeight - 1;
-    if (hqY + BASE_NEAR_HQ_RANGE < maxY) {
-        maxY = hqY + BASE_NEAR_HQ_RANGE;
+    if (hqBottom < maxY) {
+        maxY = hqBottom;
     }
     for (y = minY; y <= maxY; y++) {
         for (x = minX; x <= maxX; x++) {

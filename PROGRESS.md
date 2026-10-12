@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6663 / 6700 | 1512952 / 1553840 | 97.37% | 0 | 0 |
+| ARM9 game | 6664 / 6700 | 1513476 / 1553840 | 97.40% | 0 | 0 |
 | ARM9 SDK/library | 640 / 833 | 101304 / 135226 | 74.91% | 176 | 20718 |
-| ARM9 all | 7303 / 7533 | 1614256 / 1689066 | 95.57% | 176 | 20718 |
+| ARM9 all | 7304 / 7533 | 1614780 / 1689066 | 95.60% | 176 | 20718 |
 | ARM7 SDK/library | 932 / 1020 | 135968 / 154300 | 88.12% | 69 | 4960 |
 | ARM7 all | 932 / 1020 | 135968 / 154300 | 88.12% | 69 | 4960 |
-| game | 6663 / 6700 | 1512952 / 1553840 | 97.37% | 0 | 0 |
+| game | 6664 / 6700 | 1513476 / 1553840 | 97.40% | 0 | 0 |
 | SDK/library | 1572 / 1853 | 237272 / 289526 | 81.95% | 245 | 25678 |
-| all | 8235 / 8553 | 1750224 / 1843366 | 94.95% | 245 | 25678 |
+| all | 8236 / 8553 | 1750748 / 1843366 | 94.98% | 245 | 25678 |
 
 ## By module
 
@@ -26,7 +26,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 5157 / 5180 | 1054052 / 1082632 | 97.36% | 0 |
+| main | game | 5158 / 5180 | 1054576 / 1082632 | 97.41% | 0 |
 | main | SDK/library | 633 / 822 | 100392 / 133690 | 75.09% | 172 |
 | itcm | game | 102 / 102 | 21896 / 21896 | 100.00% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
@@ -55,7 +55,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/ai/ai_oozium_move_to_target.c` | AiOozium_MoveToTarget | 1568 |
 | `src/game/main/ai/ai_site_group_rate_surroundings.c` | AiSiteGroup_RateSurroundings | 1584 |
 | `src/game/main/ai/ai_unit_upgrade_wait_action.c` | AiUnit_UpgradeWaitAction | 3924 |
-| `src/game/main/ai/func_02093ce8.c` | func_02093ce8 | 524 |
 | `src/game/main/ai/func_02099ba0.c` | func_02099ba0 | 524 |
 | `src/game/main/ai/func_020a6ac4.c` | func_020a6ac4 | 620 |
 | `src/game/main/func_02058b1c.c` | func_02058b1c | 1000 |
