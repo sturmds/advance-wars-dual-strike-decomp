@@ -235,7 +235,7 @@ typedef struct WlLink {
     u8 *gameInfo;       /* sent in the Nintendo element of the beacon */
     u16 gameInfoLength;
     u16 unk_a2;         /* bit 0: gameInfo starts one byte later */
-    u16 unk_a4;
+    u16 unk_a4;         /* 1 once gameInfo changes, 0 once the beacon has it */
     u8 pad_a6[2];
     u32 periodicCount;  /* WlState.periodicCount */
     u16 savedBbReg6; /* baseband register 6 before WifiTest_SendPatternFrames changed it */
