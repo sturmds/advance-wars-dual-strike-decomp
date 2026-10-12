@@ -31,6 +31,12 @@ typedef struct WlCommand {
     u16 words[1];
 } WlCommand;
 
+/* Stack space a WMSP handler gives a WL command and its reply. */
+typedef union WlCommandBuf {
+    WlCommand command;
+    u8 bytes[0x200];
+} WlCommandBuf;
+
 /* The ARM9 asks the ARM7 to start WM with these pointers (the arguments of
    WM_Initialize's request). */
 typedef struct WmspInitRequest {
@@ -66,6 +72,16 @@ typedef struct WmspRequest {
     u8 pad_02[2];
     u32 arg;
 } WmspRequest;
+
+/* The arguments of WM_SetLifeTime. The lifetimes count 100 ms steps. */
+typedef struct WmspSetLifeTimeRequest {
+    u16 apiid;
+    u8 pad_02[2];
+    u32 tgid;
+    u32 camLifeTime;
+    u32 frameLifeTime;
+    u32 mpLifeTime;
+} WmspSetLifeTimeRequest;
 
 /* What the ARM9 sends for a request about one station. */
 typedef struct WmspMacRequest {

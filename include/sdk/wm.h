@@ -408,7 +408,7 @@ typedef struct WMStatus {
     RadioOutboxList sendQueue[WIRELESS_URGENCY_LEVELS];
     RadioOutboxList readyQueue[WIRELESS_URGENCY_LEVELS];
     u8 sendQueueMutex[0x18];           /* an OSMutex; wm.h does not include os.h */
-    u8 pad_730[0x80];
+    u64 mpLastRecvTick[16];            /* tick of the last MP frame from each aid, bit 0 set */
     u64 unk_7b0;
 } WMStatus;
 
