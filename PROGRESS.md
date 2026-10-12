@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6655 / 6700 | 1507020 / 1553840 | 96.99% | 0 | 0 |
+| ARM9 game | 6657 / 6700 | 1509780 / 1553840 | 97.16% | 0 | 0 |
 | ARM9 SDK/library | 640 / 833 | 101304 / 135226 | 74.91% | 176 | 20718 |
-| ARM9 all | 7295 / 7533 | 1608324 / 1689066 | 95.22% | 176 | 20718 |
+| ARM9 all | 7297 / 7533 | 1611084 / 1689066 | 95.38% | 176 | 20718 |
 | ARM7 SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | ARM7 all | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
-| game | 6655 / 6700 | 1507020 / 1553840 | 96.99% | 0 | 0 |
+| game | 6657 / 6700 | 1509780 / 1553840 | 97.16% | 0 | 0 |
 | SDK/library | 640 / 1847 | 101304 / 289522 | 34.99% | 176 | 20718 |
-| all | 7295 / 8547 | 1608324 / 1843362 | 87.25% | 176 | 20718 |
+| all | 7297 / 8547 | 1611084 / 1843362 | 87.40% | 176 | 20718 |
 
 ## By module
 
@@ -26,7 +26,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 5149 / 5180 | 1048120 / 1082632 | 96.81% | 0 |
+| main | game | 5151 / 5180 | 1050880 / 1082632 | 97.07% | 0 |
 | main | SDK/library | 633 / 822 | 100392 / 133690 | 75.09% | 172 |
 | itcm | game | 102 / 102 | 21896 / 21896 | 100.00% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
@@ -55,9 +55,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/ai/func_02093ce8.c` | func_02093ce8 | 524 |
 | `src/game/main/ai/func_02099ba0.c` | func_02099ba0 | 524 |
 | `src/game/main/ai/func_020a6ac4.c` | func_020a6ac4 | 620 |
-| `src/game/main/copowers/func_02055f84.c` | func_02055f84 | 1412 |
 | `src/game/main/func_02058b1c.c` | func_02058b1c | 1000 |
-| `src/game/main/func_020593c8.c` | func_020593c8 | 1348 |
 | `src/game/main/graphics/quad/quad_sprite_draw.c` | AnimSpriteTask_Draw | 484 |
 | `src/game/main/link/func_0207f550.c` | func_0207f550 | 668 |
 | `src/game/main/map/design_map_build_record.c` | DesignMap_BuildRecord | 796 |

@@ -42,7 +42,7 @@ extern u8 gTagChangePalette[];             /* palette rows 3-5 as loaded, from r
     data_027c0280->dispCnt |= 0x1000
 
 #define WHITEN_PALETTES(palWeight, colorWeight)                                \
-    Mem_Copy32(gTagChangePalette, data_027c0280->paletteBuffer + 0x60, 0x60);      \
+    Mem_Copy32(palette, data_027c0280->paletteBuffer + 0x60, 0x60);            \
     for (i = 0; i < 3; i++) {                                                  \
         Palette_BlendWithColor((u16 *)(data_027c0280->paletteBuffer + (i + 3) * 32), 0x7fff, \
                                palWeight, colorWeight);                        \
@@ -56,12 +56,13 @@ extern u8 gTagChangePalette[];             /* palette rows 3-5 as loaded, from r
  * fading BG0 in. Frames 17-25 blend palette rows 3-5 (saved in
  * gTagChangePalette) toward white on both screens; frame 26 makes them fully
  * white and resumes the script.
- * WIP (98%): the first Mem_Copy32 and both blend loops differ in register
- * choice and scheduling, the same diff as func_020593c8. */
+ * Needed to match: gTagChangePalette goes through a local set after the first
+ * Screen_SetCurrentBoth (found by tools/permuter.py). */
 void func_02055f84(Task *task)
 {
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
+    u8 *palette;                    /* gTagChangePalette, read once for both screens */
     int i;
     int level;
 
@@ -130,6 +131,7 @@ void func_02055f84(Task *task)
     saved0280 = data_027c0280;
     saved027c = data_027c027c;
     Screen_SetCurrentBoth(data_027c0288.unk_00);
+    palette = gTagChangePalette;
     WHITEN_PALETTES(16 - level, level);
     Screen_SetCurrentBoth(data_027c0288.unk_04);
     WHITEN_PALETTES(16 - level, level);

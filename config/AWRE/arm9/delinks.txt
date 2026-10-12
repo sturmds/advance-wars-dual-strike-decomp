@@ -7317,6 +7317,7 @@ src/game/main/copowers/tag_power_screen_fade_to_white.c:
     .text       start:0x02055e50 end:0x02055f84
 
 src/game/main/copowers/func_02055f84.c:
+    complete
     .text       start:0x02055f84 end:0x02056508
 
 src/game/main/copowers/tag_break_end_blend_with_side_pieces.c:
@@ -7407,6 +7408,7 @@ src/game/main/copowers/tag_break_fade_to_white.c:
     .text       start:0x02059294 end:0x020593c8
 
 src/game/main/func_020593c8.c:
+    complete
     .text       start:0x020593c8 end:0x0205990c
 
 src/game/main/copowers/tag_break_end_blend.c:
