@@ -78,13 +78,29 @@ void CampaignMap_Init(Unk_0204f960 *task)
         CampaignMap_MarkMissionDone();
     }
     CampaignMap_FindTopCos();
-    /* COs of the map's last player slot (probably the enemy). The (u8) casts get within
-     * one instruction of the original, which copies the count with
-     * "add rN, r0, #0" instead of "and rN, r0, #0xff". */
+    /* COs of the map's last player slot (probably the enemy).
+     *
+     * Not matched yet: one instruction differs. The original copies each
+     * count out of r0 with "add rN, r0, #0", which mwcc writes for a zero
+     * it only finds after it has stopped folding "+ 0" (docs/workflow.md,
+     * "Missing or extra instructions").
+     *
+     * Second half: "playerCount = 0" and the call inside the index give
+     * the add with the original's registers.
+     *
+     * First half: the same shape makes mwcc load mapId once, before the
+     * call; the original loads it again after the call, so the call has
+     * to be a statement of its own. Every zero we know for that statement
+     * ("n = 0; n += call", "call + (v - v)", "(call + 1) - 1", an inline
+     * helper) gives the add but puts the count in r4 and moves the other
+     * registers. The (u8) cast keeps every register and gives
+     * "and r2, r0, #0xff" instead of "add r2, r0, #0" at 0x64.
+     * work/partials-tried.md lists what else was
+     * tried. */
     playerCount = Map_GetPlayerCount(gCampaignMissions[gCampaignMapState.mission].mapId);
     gMenuState.campaignMap.enemyCos[0] = Ov000_gMapHeaders[gCampaignMissions[gCampaignMapState.mission].mapId].co[(u8)playerCount][0];
-    playerCount = Map_GetPlayerCount(gCampaignMissions[gCampaignMapState.mission].mapId);
-    gMenuState.campaignMap.enemyCos[1] = Ov000_gMapHeaders[gCampaignMissions[gCampaignMapState.mission].mapId].co[(u8)playerCount][1];
+    playerCount = 0;
+    gMenuState.campaignMap.enemyCos[1] = Ov000_gMapHeaders[gCampaignMissions[gCampaignMapState.mission].mapId].co[playerCount + Map_GetPlayerCount(gCampaignMissions[gCampaignMapState.mission].mapId)][1];
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
