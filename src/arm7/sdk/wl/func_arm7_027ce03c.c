@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
 
-int func_arm7_027ca340(void *);
+int WifiParam_StoreOwnMac(void *);
 
 int func_arm7_027ce03c(WlRequest *request, WlReply *reply)
 {
@@ -8,5 +8,5 @@ int func_arm7_027ce03c(WlRequest *request, WlReply *reply)
     if (WIFI_DRIVER_STATE->state.mode != 16) {
         return 1;
     }
-    return func_arm7_027ca340(&request->unk_10);
+    return WifiParam_StoreOwnMac(&request->unk_10);
 }
