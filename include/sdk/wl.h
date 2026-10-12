@@ -1293,7 +1293,6 @@ int WifiHost_TellDeauthenticated(const u8 *mac, u16 value);
 int WifiHost_TellAuthenticated(const u8 *mac, u16 value);
 void WifiHost_ReturnCurrentRequest(void);
 void WifiRf_AwaitQuietAir(void);
-void WifiTx_EnqueueMgmt(WlTxFrame *frame);
 void WifiTx_DrainQueue(int queue, BOOL toHost);
 void WifiTx_HaltSlot(int index);
 void WifiTx_ReportSlotResult(int index);

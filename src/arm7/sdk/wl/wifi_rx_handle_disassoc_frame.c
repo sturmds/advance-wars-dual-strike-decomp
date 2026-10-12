@@ -5,7 +5,7 @@ void WifiStation_ChangeState(u16 station, u16 state);
 void func_arm7_027d0424(u32 station);
 WlTxFrame *WifiFrame_NewDisassociation(const u16 *dest, u32 reason);
 WlTxFrame *WifiFrame_NewDeauthentication(const u16 *dest, u32 reason);
-void func_arm7_027d01c4(void *frame);
+void WifiTx_EnqueueMgmt(void *frame);
 void Wifi_SwitchMode(int mode); /* switches WlLink.mode */
 
 /*
@@ -37,7 +37,7 @@ void WifiRx_HandleDisassocFrame(WlRxFrame *frame)
                 reply = WifiFrame_NewDeauthentication(frame->addr2, 7);
             }
             if (reply != NULL) {
-                func_arm7_027d01c4(reply);
+                WifiTx_EnqueueMgmt(reply);
             }
         }
         break;

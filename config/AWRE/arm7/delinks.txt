@@ -1612,6 +1612,10 @@ src/arm7/sdk/wl/wifi_tx_fire_ps_poll.c:
     complete
     .text       start:0x027d0128 end:0x027d01c4
 
+src/arm7/sdk/wl/wifi_tx_enqueue_mgmt.c:
+    complete
+    .text       start:0x027d01c4 end:0x027d0240
+
 src/arm7/sdk/wl/wifi_task_sort_data_frame.c:
     complete
     .text       start:0x027d182c end:0x027d1948

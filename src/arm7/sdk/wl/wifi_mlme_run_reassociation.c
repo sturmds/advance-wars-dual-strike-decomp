@@ -3,7 +3,7 @@
 void Wifi_ArmOneShotMs(u32 milliseconds, OSAlarmHandler handler);
 void WifiMlme_ReassociationTimedOut(void *arg);
 void *WifiFrame_NewReassocAsk(u16 *peer);
-void func_arm7_027d01c4(void *frame);
+void WifiTx_EnqueueMgmt(void *frame);
 void func_arm7_027d0240(int a, int b);
 void func_arm7_027d0590(int a);
 
@@ -26,7 +26,7 @@ void WifiMlme_RunReassociation(void)
             WifiTask_Schedule(2, 4);
         } else {
             job->state = 0x61;
-            func_arm7_027d01c4(frame);
+            WifiTx_EnqueueMgmt(frame);
             Wifi_ArmOneShotMs(job->request->timeoutMs, WifiMlme_ReassociationTimedOut);
         }
         break;

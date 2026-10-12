@@ -1,7 +1,7 @@
 #include "sdk/wl.h"
 
 WlTxFrame *WifiFrame_NewDisassociation(const u16 *dest, u32 reason);
-void func_arm7_027d01c4(WlTxFrame *frame);
+void WifiTx_EnqueueMgmt(WlTxFrame *frame);
 void func_arm7_027d03c0(const u16 *mac);
 void func_arm7_027d1034(void);
 void WifiTx_EnqueueGroupcast(WlBufferList *from, WlBuffer *buffer);
@@ -38,7 +38,7 @@ int WifiCmd_SendDisassoc(WlMacRequest *request, WlReply *reply)
         }
     } else {
         func_arm7_027d03c0(request->mac);
-        func_arm7_027d01c4(frame);
+        WifiTx_EnqueueMgmt(frame);
     }
     return WIFI_ANSWER_LATER;
 }

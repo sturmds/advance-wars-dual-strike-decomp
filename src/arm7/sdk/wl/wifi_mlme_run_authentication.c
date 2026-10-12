@@ -3,7 +3,7 @@
 void Wifi_ArmOneShotMs(u32 milliseconds, OSAlarmHandler handler);
 void WifiMlme_AuthenticationTimedOut(void *arg);
 WlAuthFrame *WifiFrame_NewAuthentication(u16 *peer, int arg);
-void func_arm7_027d01c4(void *frame);
+void WifiTx_EnqueueMgmt(void *frame);
 void func_arm7_027d0240(int a, int b);
 void func_arm7_027d0500(int a);
 void func_arm7_027d0590(int a);
@@ -31,7 +31,7 @@ void WifiMlme_RunAuthentication(void)
             frame->sequence = 1;
             frame->status = 0;
             job->state = 0x31;
-            func_arm7_027d01c4(frame);
+            WifiTx_EnqueueMgmt(frame);
             Wifi_ArmOneShotMs(job->request->timeoutMs, WifiMlme_AuthenticationTimedOut);
         }
         break;

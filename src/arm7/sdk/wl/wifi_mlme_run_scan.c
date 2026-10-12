@@ -5,7 +5,7 @@ void Wifi_ArmOneShotMs(u32 milliseconds, OSAlarmHandler handler);
 void WifiScan_TickAlarm(void *arg);
 void WifiRf_TuneChannel(u16 channel, int arg);
 void *WifiFrame_NewProbeAsk(u16 *peer);
-void func_arm7_027d01c4(void *frame);
+void WifiTx_EnqueueMgmt(void *frame);
 u32 WifiFlash_ValidateRadioBlock(u32 *crcs);
 void func_arm7_037f8e04(void);
 void Wifi_CloseSession(void);
@@ -76,7 +76,7 @@ void WifiMlme_RunScan(void)
                 requeue = TRUE;
                 break;
             }
-            func_arm7_027d01c4(frame);
+            WifiTx_EnqueueMgmt(frame);
         }
         Wifi_ArmOneShotMs(job->probeIntervalMs, WifiScan_TickAlarm);
         break;
