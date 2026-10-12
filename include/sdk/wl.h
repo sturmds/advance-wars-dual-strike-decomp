@@ -501,6 +501,7 @@ int WifiHost_TellBeaconLost(const u8 *mac);
 int WifiHost_TellDisassociated(const u8 *mac, u16 value);
 int WifiHost_TellReassociated(const u8 *mac, u16 value, const u8 *ssidElement);
 int WifiHost_TellAssociated(const u8 *mac, u16 value, const u8 *ssidElement);
+int WifiHost_TellDeauthenticated(const u8 *mac, u16 value);
 void WifiRf_AwaitQuietAir(void);
 
 #endif
