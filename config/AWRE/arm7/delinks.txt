@@ -360,6 +360,10 @@ src/arm7/sdk/wm/wmsp_reply_start_connect_failed.c:
     complete
     .text       start:0x027c3c64 end:0x027c3ca0
 
+src/arm7/sdk/wm/wmsp_reply_auto_disconnect_failed.c:
+    complete
+    .text       start:0x027c4228 end:0x027c4274
+
 src/arm7/sdk/wm/wmsp_set_mp_data.c:
     complete
     .text       start:0x027c4a10 end:0x027c4b24
