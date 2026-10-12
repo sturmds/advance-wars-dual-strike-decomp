@@ -1,16 +1,11 @@
 #include "types.h"
 #include "sdk/ctrdg.h"
 
-void func_arm7_03806520(int lockID, GbaSlotLockRecord *lock);
-void func_arm7_038064f8(int lockID, GbaSlotLockRecord *lock);
-void func_arm7_038065c4(GbaSlotWaitStates *saved);
-void func_arm7_03806590(GbaSlotWaitStates *timing);
-
 /* ARM7 side state of the library. */
 extern CTRDGWork data_arm7_0380afc0;
 
 /* ARM7 copy of Cartridge_HeaderStillMatches. */
-BOOL func_arm7_0380660c(void)
+BOOL Cartridge_HeaderStillMatches_Arm7(void)
 {
     GbaSlotLockRecord lock;
     GbaSlotWaitStates timing;
@@ -25,8 +20,8 @@ BOOL func_arm7_0380660c(void)
     if (info->pulledOut == 1) {
         return FALSE;
     }
-    func_arm7_03806520(data_arm7_0380afc0.lockID, &lock);
-    func_arm7_038065c4(&timing);
+    Cartridge_SpinUntilSlotOwned_Arm7(data_arm7_0380afc0.lockID, &lock);
+    Cartridge_StashAndSlowRomWaits_Arm7(&timing);
     header = GBA_SLOT_HEADER_PTR;
     fixedValue = header->fixedValue;
     if (fixedValue == GBA_HEADER_MAGIC_BYTE) {
@@ -44,7 +39,7 @@ changed:
         info->pulledOut = 1;
         unchanged = FALSE;
     }
-    func_arm7_03806590(&timing);
-    func_arm7_038064f8(data_arm7_0380afc0.lockID, &lock);
+    Cartridge_RestoreRomWaits_Arm7(&timing);
+    Cartridge_ReleaseSlotIfTaken_Arm7(data_arm7_0380afc0.lockID, &lock);
     return unchanged;
 }

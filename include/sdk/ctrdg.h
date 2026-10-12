@@ -126,4 +126,20 @@ u32 Cartridge_GbaGameCodeOrZero(void);
 /* The same, 0 also when the cartridge was pulled out. */
 u32 CTRDG_GetAgbGameCode(void);
 
+/* ARM7 side. The bus lock copies take the lock ID as u16, as the ARM7 OS lock functions do. */
+void Cartridge_SetUpOnce_Arm7(void);
+void Cartridge_ZeroStateTakeLockId_Arm7(void);
+void Cartridge_SendWordUntilTaken_Arm7(u32 word);
+void Cartridge_SpinUntilSlotOwned_Arm7(u16 lockID, GbaSlotLockRecord *lock);
+void Cartridge_ReleaseSlotIfTaken_Arm7(u16 lockID, GbaSlotLockRecord *lock);
+void Cartridge_RestoreRomWaits_Arm7(GbaSlotWaitStates *timing);
+void Cartridge_StashAndSlowRomWaits_Arm7(GbaSlotWaitStates *saved);
+BOOL Cartridge_HeaderStillMatches_Arm7(void);
+BOOL CTRDG_IsPulledOut(void);
+void Cartridge_CheckRemovedEveryTenFrames(void);
+BOOL Cartridge_LogoMatchesBios(const u16 *logo);
+void Cartridge_CheckLogoFromArm9Once(void);
+void Cartridge_StoreInitDoneWord(u32 tag, u32 data, int err);
+void Cartridge_OnShutdownMessage(u32 tag, u32 data, int err);
+
 #endif

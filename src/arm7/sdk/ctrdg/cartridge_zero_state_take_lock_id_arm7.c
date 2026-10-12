@@ -10,7 +10,7 @@ void func_arm7_038067b0(const void *src, void *dest, u32 control);   /* SVC_CpuS
 extern CTRDGWork data_arm7_0380afc0;
 
 /* ARM7 copy of Cartridge_ZeroStateTakeLockId. */
-void func_arm7_03806770(void)
+void Cartridge_ZeroStateTakeLockId_Arm7(void)
 {
     u32 zero = 0;
 

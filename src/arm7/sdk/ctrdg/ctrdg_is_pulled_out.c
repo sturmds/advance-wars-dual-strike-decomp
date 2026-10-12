@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/ctrdg.h"
 
-BOOL func_arm7_0380660c(void);
-
 /* TRUE once the cartridge seen at start-up was pulled out; FALSE when there was none. */
 BOOL CTRDG_IsPulledOut(void)
 {
@@ -12,7 +10,7 @@ BOOL CTRDG_IsPulledOut(void)
         return FALSE;
     }
     if (!info->pulledOut) {
-        func_arm7_0380660c();
+        Cartridge_HeaderStillMatches_Arm7();
     }
     return info->pulledOut;
 }

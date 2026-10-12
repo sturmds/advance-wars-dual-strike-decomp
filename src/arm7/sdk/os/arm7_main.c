@@ -1,6 +1,7 @@
 #include "sdk/os_arm7.h"
 #include "sdk/gx.h"
 #include "sdk/pxi.h"
+#include "sdk/ctrdg.h"
 
 #define DISPSTAT_VBLANK_IRQ 0x8
 #define IRQ_VBLANK 0x1
@@ -15,7 +16,6 @@ void func_arm7_038028c8(int a0);
 void Card_CheckRemovedEveryTenFrames(void);
 void SPI_Init(int a0);
 void func_arm7_038058b0(int heap);
-void Cartridge_CheckRemovedEveryTenFrames(void);
 void VBlankIntr_Arm7(void);
 
 /*

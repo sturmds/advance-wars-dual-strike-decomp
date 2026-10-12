@@ -3,8 +3,6 @@
 #include "sdk/os_arm7.h"
 
 void func_arm7_037fdc04(u32 count);             /* SVC_WaitByLoop through a veneer */
-void func_arm7_038064b0(u32 word);              /* Cartridge_SendWordUntilTaken */
-BOOL Cartridge_LogoMatchesBios(const u16 *logo);
 
 /* POSTFLG: bit 0 is set once the ARM7 and ARM9 finished their boot. */
 #define REG_POSTFLG (*(vu16 *)0x04000300)
@@ -52,7 +50,7 @@ void Cartridge_CheckLogoFromArm9Once(void)
     logoOk = Cartridge_LogoMatchesBios(header->logo);
     info = GBA_SLOT_SNAPSHOT_PTR;
     info->isAgb = logoOk;
-    func_arm7_038064b0(GBA_SLOT_MSG_SETUP_ACK);
+    Cartridge_SendWordUntilTaken_Arm7(GBA_SLOT_MSG_SETUP_ACK);
     (void)*REG_IME;
     *REG_IME = oldIme;
     Irq_ReplaceEnableBits_Arm7(oldIrqMask);

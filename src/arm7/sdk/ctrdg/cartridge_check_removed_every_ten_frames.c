@@ -4,9 +4,6 @@
 #include "sdk/os_arm7.h"
 #include "sdk/pxi.h"
 
-BOOL CTRDG_IsPulledOut(void);
-BOOL func_arm7_0380660c(void);
-
 extern u32 gCtrdgFirstPoll;       /* 1 until the first check ran */
 extern u32 gCtrdgNextPollFrame;   /* VBlank count of the next check; 0xffffffff before the first call */
 extern u32 gCtrdgPollStopped;     /* set when no cartridge was there at the first check */
@@ -34,7 +31,7 @@ void Cartridge_CheckRemovedEveryTenFrames(void)
     }
     gCtrdgNextPollFrame = *SHARED_FRAME_COUNTER + 10;
     gCtrdgPulledOut = CTRDG_IsPulledOut();
-    if (!func_arm7_0380660c()) {
+    if (!Cartridge_HeaderStillMatches_Arm7()) {
         if (gCtrdgFirstPoll != 0) {
             gCtrdgPollStopped = 1;
             return;
