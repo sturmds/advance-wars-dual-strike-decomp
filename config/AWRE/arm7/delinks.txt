@@ -440,6 +440,10 @@ src/arm7/sdk/rtc/func_arm7_027d5150.c:
     complete
     .text       start:0x027d5150 end:0x027d51c8
 
+src/arm7/sdk/rtc/func_arm7_027d51c8.c:
+    complete
+    .text       start:0x027d51c8 end:0x027d5244
+
 src/arm7/sdk/rtc/func_arm7_027d5dbc.c:
     complete
     .text       start:0x027d5dbc end:0x027d5de8
