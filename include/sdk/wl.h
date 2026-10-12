@@ -303,6 +303,11 @@ typedef struct WlWork {
 
 #define WIFI_DRIVER_STATE (*(WlWork **)0x0380fff4)
 
+/* Wi-Fi transmit request registers: writing a bit clears or sets that request. */
+#define REG_W_TXREQ_RESET (*(volatile u16 *)0x048080ac)
+#define REG_W_TXREQ_SET (*(volatile u16 *)0x048080ae)
+#define W_TXREQ_LOC3 0x8
+
 /* Interrupt mask bit of the wireless interrupt; WL masks it around queue changes. */
 #define IRQ_MASK_WIRELESS 0x1000000
 
