@@ -8,7 +8,8 @@ src/game/ov004/ov004_send_textured_quad256.c:
     complete
     .text       start:0x022ad560 end:0x022ad71c
 
-src/game/ov004/func_ov004_022ad71c.c:
+src/game/ov004/ov004_send_centred_quad.c:
+    complete
     .text       start:0x022ad71c end:0x022ad87c
 
 src/game/ov004/ov004_send_textured_quad.c:

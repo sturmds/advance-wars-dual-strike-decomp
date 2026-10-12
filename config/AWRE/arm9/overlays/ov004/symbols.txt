@@ -1,5 +1,5 @@
 Ov004_SendTexturedQuad256 kind:function(arm,size=0x1bc) addr:0x022ad560
-func_ov004_022ad71c kind:function(arm,size=0x160) addr:0x022ad71c
+Ov004_SendCentredQuad kind:function(arm,size=0x160) addr:0x022ad71c
 Ov004_SendTexturedQuad kind:function(arm,size=0x194) addr:0x022ad87c
 func_ov004_022ada10 kind:function(arm,size=0x24) addr:0x022ada10
 Ov004_Init3d kind:function(arm,size=0xe4) addr:0x022ada34

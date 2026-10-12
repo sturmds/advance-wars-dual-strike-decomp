@@ -60,8 +60,8 @@ void Task_ResumeScript(void* task);
 void Ov004_Init3d(void);
 void Ov004_SendTexturedQuad(int x, int y, int z, int sSize, int tSize, int w,
                             int h, int s0, int t0, u32 texAddr, u32 palAddr);
-void func_ov004_022ad71c(int x, int y, int z, int sSize, int tSize, int w,
-                         int h, u32 texAddr, u32 palAddr, int shade);
+void Ov004_SendCentredQuad(int x, int y, int z, int sSize, int tSize, int w,
+                           int h, u32 texAddr, u32 palAddr, int shade);
 int func_ov004_022ada10(void);
 void func_ov004_022bb1d8(Unk_ov004_022bf158* state);
 void Ov004_ShowLoadedBg3(
@@ -366,9 +366,9 @@ void Ov004Task_RunSceneTimeline(Ov004Task* task) {
       *REG_MTX_SCALE = 0x3000;
       *REG_MTX_SCALE = 0x3000;
       *REG_MTX_SCALE = 0x1000;
-      func_ov004_022ad71c(entry->x, entry->y + state->unk_900, 300, 3, 4,
-                          entry->width, entry->height,
-                          (entry->texSlot << 12) + 0x10000, 192, entry->shade);
+      Ov004_SendCentredQuad(
+          entry->x, entry->y + state->unk_900, 300, 3, 4, entry->width,
+          entry->height, (entry->texSlot << 12) + 0x10000, 192, entry->shade);
       *REG_MTX_POP = 1;
     }
   }

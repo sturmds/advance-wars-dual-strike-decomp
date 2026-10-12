@@ -13,20 +13,28 @@
 
 /* Draws a w by h textured quad centred in a 64 by 128 cell at (x, y).
  * sSize and tSize are the texture size codes (TEXIMAGE_PARAM bits 20-25), shade a
- * grey level 0-31. Partial match: register allocation differs. */
-void func_ov004_022ad71c(int x, int y, int z, int sSize, int tSize, int w,
-                         int h, u32 texAddr, u32 palAddr, int shade) {
-  s16 x0 = x + ((64 - w) >> 1);
-  s16 y0 = y + ((128 - h) >> 1);
-  u32 gray = shade | (shade << 5) | (shade << 10);
-  s16 z0 = z;
-  s16 y1 = y0 + h;
-  s16 x1 = x + ((64 - w) >> 1) + w; /* not x0 + w: closer to the original */
+ * grey level 0-31. */
+void Ov004_SendCentredQuad(int x, int y, int z, int sSize, int tSize, int w,
+                           int h, u32 texAddr, u32 palAddr, int shade) {
+  int left;
+  s16 x0, y0, z0, x1, y1;
+  u32 gray;
 
   *GXFIFO_TEXIMAGE_PARAM =
       (texAddr >> 3) | 0x4c000000 | (sSize << 20) | (tSize << 23) | 0x20000000;
   *GXFIFO_PLTT_BASE = palAddr >> 4;
   *GXFIFO_BEGIN_VTXS = 1;
+
+  /* Needed to match: the corners are computed after the three writes above.
+   * Computed before them, mwcc assigns the registers in another order. */
+  left = x + ((64 - w) >> 1);
+  y += (128 - h) >> 1;
+  x0 = left;
+  y0 = y;
+  z0 = z;
+  x1 = left + w;
+  y1 = y + h;
+  gray = shade | (shade << 5) | (shade << 10);
   *GXFIFO_COLOR = (u16)gray;
 
   *GXFIFO_TEXCOORD = TEXCOORD(0, 0);
