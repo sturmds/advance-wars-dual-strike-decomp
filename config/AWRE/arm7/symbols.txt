@@ -195,7 +195,7 @@ func_arm7_027c87b8 kind:function(arm,size=0x14) addr:0x027c87b8
 func_arm7_027c87cc kind:function(arm,size=0x18) addr:0x027c87cc
 func_arm7_027c87e4 kind:function(arm,size=0xc) addr:0x027c87e4
 Wifi_CreateAlarms kind:function(arm,size=0x54) addr:0x027c87f0
-func_arm7_027c8844 kind:function(arm,size=0x190) addr:0x027c8844
+WifiRf_LoadStartValues kind:function(arm,size=0x190) addr:0x027c8844
 func_arm7_027c89d4 kind:function(arm,size=0x64) addr:0x027c89d4
 func_arm7_027c8a38 kind:function(arm,size=0x38) addr:0x027c8a38
 func_arm7_027c8a70 kind:function(arm,size=0x84) addr:0x027c8a70
@@ -545,7 +545,7 @@ data_arm7_027d6698 kind:data(any) addr:0x027d6698
 data_arm7_027d66a0 kind:data(any) addr:0x027d66a0
 data_arm7_027d66c0 kind:data(any) addr:0x027d66c0
 data_arm7_027d66e0 kind:data(any) addr:0x027d66e0
-data_arm7_027d6700 kind:data(any) addr:0x027d6700
+gWlFirmwareRegOffsets kind:data(any) addr:0x027d6700
 data_arm7_027d6720 kind:data(any) addr:0x027d6720
 data_arm7_027d6770 kind:data(any) addr:0x027d6770
 data_arm7_027d67d4 kind:data(any) addr:0x027d67d4

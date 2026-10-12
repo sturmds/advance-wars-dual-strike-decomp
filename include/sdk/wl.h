@@ -250,6 +250,9 @@ typedef struct WlWork {
 
 #define WIFI_DRIVER_STATE (*(WlWork **)0x0380fff4)
 
+/* Wireless hardware registers, 0x04808000 + offset. */
+#define WIFI_MAC_REGISTER(offset) (*(volatile u16 *)(0x04808000 + (offset)))
+
 /* End of the MAC RAM ring buffer read by WifiRx_CopyFromRingWrapped. */
 #define WIFI_RX_RING_LIMIT 0x04805f60
 
