@@ -583,6 +583,7 @@ BOOL WifiMac_Equal(const u16 *a, const u16 *b);
 void WifiStats_Accumulate(void);
 void WifiStats_Zero(void);
 void WifiLink_DropAssocId(void);
+void WifiLink_TakeAssocId(u16 aid);
 void WifiMac_CopyAddressPair(u16 *dest, const u16 *addr1, const u16 *addr2);
 void WifiMac_CopyAddressTriple(u16 *dest, const u16 *addr1, const u16 *addr2, const u16 *addr3);
 
