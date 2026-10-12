@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
 
-int func_arm7_027ca244(int);
+int WifiParam_StoreRole(int);
 
 int func_arm7_027cdf80(WlRequest *request, WlReply *reply)
 {
@@ -11,5 +11,5 @@ int func_arm7_027cdf80(WlRequest *request, WlReply *reply)
     if (WIFI_DRIVER_STATE->state.mode == 32 && WIFI_DRIVER_STATE->state.unk_2a != 0) {
         return 1;
     }
-    return func_arm7_027ca244(request->unk_10);
+    return WifiParam_StoreRole(request->unk_10);
 }
