@@ -1259,6 +1259,7 @@ typedef struct Unk_027cb9e4 {
 #define REG_W_RXTX_ADDR     (*(volatile u16 *)0x04808268) /* halfword the hardware reads or writes now */
 #define REG_W_TXBUF_REPLY2  (*(volatile u16 *)0x04808098) /* MP reply frame being sent */
 #define REG_W_US_COUNT0     (*(volatile u16 *)0x048080f8) /* microsecond counter, low half */
+#define REG_W_TX_SEQNO      (*(volatile u16 *)0x04808210) /* sequence number of the last frame sent */
 
 /* Wireless interrupt causes: bits of WIFI_IRQ_PENDING_FLAGS (W_IF, set) and WIFI_IRQ_ENABLE_MASK
    (W_IE, enabled). Names from GBATEK. */

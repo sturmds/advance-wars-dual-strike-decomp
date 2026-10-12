@@ -2124,6 +2124,10 @@ src/arm7/sdk/wl/wifi_tx_pause_data_slots.c:
     complete
     .text       start:0x037fa4cc end:0x037fa554
 
+src/arm7/sdk/wl/wifi_mp_reply_wait_expired.c:
+    complete
+    .text       start:0x037fa554 end:0x037fa5c0
+
 src/arm7/sdk/os/irq_dispatch_lowest_pending_arm7.c:
     complete
     .text       start:0x037fb340 end:0x037fb394
