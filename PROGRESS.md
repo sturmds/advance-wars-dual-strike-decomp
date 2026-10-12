@@ -14,11 +14,11 @@ add both CPUs.
 | ARM9 game | 6658 / 6700 | 1510584 / 1553840 | 97.22% | 0 | 0 |
 | ARM9 SDK/library | 640 / 833 | 101304 / 135226 | 74.91% | 176 | 20718 |
 | ARM9 all | 7298 / 7533 | 1611888 / 1689066 | 95.43% | 176 | 20718 |
-| ARM7 SDK/library | 377 / 1014 | 30936 / 154296 | 20.05% | 53 | 3020 |
-| ARM7 all | 377 / 1014 | 30936 / 154296 | 20.05% | 53 | 3020 |
+| ARM7 SDK/library | 389 / 1014 | 32676 / 154296 | 21.18% | 53 | 3020 |
+| ARM7 all | 389 / 1014 | 32676 / 154296 | 21.18% | 53 | 3020 |
 | game | 6658 / 6700 | 1510584 / 1553840 | 97.22% | 0 | 0 |
-| SDK/library | 1017 / 1847 | 132240 / 289522 | 45.68% | 229 | 23738 |
-| all | 7675 / 8547 | 1642824 / 1843362 | 89.12% | 229 | 23738 |
+| SDK/library | 1029 / 1847 | 133980 / 289522 | 46.28% | 229 | 23738 |
+| all | 7687 / 8547 | 1644564 / 1843362 | 89.22% | 229 | 23738 |
 
 ## By module
 
@@ -37,7 +37,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | ov004 | game | 232 / 236 | 64808 / 67364 | 96.21% | 0 |
 | ov005 | game | 264 / 266 | 96316 / 96684 | 99.62% | 0 |
 | ov006 | game | 320 / 321 | 104988 / 105588 | 99.43% | 0 |
-| arm7 | SDK/library | 377 / 1014 | 30936 / 154296 | 20.05% | 53 |
+| arm7 | SDK/library | 389 / 1014 | 32676 / 154296 | 21.18% | 53 |
 
 Modules with nothing done: none.
 
@@ -47,6 +47,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 
 | File | Functions | Bytes |
 |---|---|---:|
+| `src/arm7/sdk/os/arena_default_high_end_arm7.c` | Arena_DefaultHighEnd_Arm7 | 112 |
 | `src/game/main/ai/ai_build_rate_site_danger.c` | AiBuild_RateSiteDanger | 1736 |
 | `src/game/main/ai/ai_oozium_move_to_target.c` | AiOozium_MoveToTarget | 1568 |
 | `src/game/main/ai/ai_site_group_rate_surroundings.c` | AiSiteGroup_RateSurroundings | 1584 |

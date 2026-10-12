@@ -4,7 +4,7 @@
 extern u16 data_arm7_03807a7c;
 extern vu64 gOsiTickCounter_Arm7;
 extern u32 gOsiNeedResetTimer_Arm7;
-void func_arm7_037fce6c(int timer);
+void Timer_MarkInUse_Arm7(int timer);
 void func_arm7_037fb748(u32 mask, void (*handler)(void *));
 void func_arm7_037fb690(u32 mask);
 void Tick_OnTimer0Overflow_Arm7(void *arg);
@@ -19,7 +19,7 @@ void Tick_StartTimer0_Arm7(void)
         return;
     }
     data_arm7_03807a7c = 1;
-    func_arm7_037fce6c(0);
+    Timer_MarkInUse_Arm7(0);
     gOsiTickCounter_Arm7 = 0;
     REG_TM0CNT_H = 0;
     REG_TM0CNT_L = 0;
