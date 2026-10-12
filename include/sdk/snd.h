@@ -117,11 +117,6 @@ typedef struct SndArm7Alarm {
 
 #define SOUND_TIMER_SLOTS_ARM7 8
 
-/* SndExChannel.sync: hardware updates the driver still has to make for the channel. */
-#define VOICE_DIRTY_STOP 2
-#define VOICE_DIRTY_TIMER 4
-#define VOICE_DIRTY_VOLUME 8
-
 /* The driver's state block; its first 0x1180 bytes are copied into the shared work. */
 typedef struct SndArm7Work {
     SndExChannel channels[16];

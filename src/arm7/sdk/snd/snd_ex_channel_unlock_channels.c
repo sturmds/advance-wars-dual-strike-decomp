@@ -1,4 +1,4 @@
-#include "sdk/snd.h"
+#include "sdk/snd_seq.h"
 
 void SndExChannel_UnlockChannels(u32 channelMask, u32 flags)
 {

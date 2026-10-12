@@ -1,4 +1,4 @@
-#include "sdk/snd.h"
+#include "sdk/snd_seq.h"
 
 u32 SndExChannel_GetLockedChannels(u32 flags)
 {
