@@ -1236,6 +1236,10 @@ src/arm7/sdk/func_arm7_037fed94.c:
     complete
     .text       start:0x037fed94 end:0x037feda0
 
+src/arm7/sdk/snd/snd_drv_thread.c:
+    complete
+    .text       start:0x037feda0 end:0x037fee20
+
 src/arm7/sdk/func_arm7_037fee6c.c:
     complete
     .text       start:0x037fee6c end:0x037fee70
