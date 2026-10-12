@@ -1377,6 +1377,10 @@ src/arm7/sdk/ctrdg/ctrdg_is_pulled_out.c:
     complete
     .text       start:0x03806718 end:0x03806770
 
+src/arm7/sdk/ctrdg/func_arm7_03806770.c:
+    complete
+    .text       start:0x03806770 end:0x038067b0
+
 src/arm7/sdk/func_arm7_038067b0.c:
     complete
     .text       start:0x038067b0 end:0x038067bc
