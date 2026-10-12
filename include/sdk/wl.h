@@ -313,6 +313,8 @@ typedef struct WlWork {
 #define REG_W_TXREQ_RESET (*(volatile u16 *)0x048080ac)
 #define REG_W_TXREQ_SET (*(volatile u16 *)0x048080ae)
 #define W_TXREQ_LOC3 0x8
+/* Wi-Fi RF serial status: bit 0 set while a transfer to the RF chip runs. */
+#define REG_W_RF_BUSY (*(volatile u16 *)0x04808180)
 
 /* Interrupt mask bit of the wireless interrupt; WL masks it around queue changes. */
 #define IRQ_MASK_WIRELESS 0x1000000

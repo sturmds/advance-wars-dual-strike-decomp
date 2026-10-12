@@ -720,6 +720,10 @@ src/arm7/sdk/wl/wifi_station_index_of_mac.c:
     complete
     .text       start:0x027cb738 end:0x027cb7e0
 
+src/arm7/sdk/wl/wifi_rf_await_serial_idle.c:
+    complete
+    .text       start:0x027cb7e0 end:0x027cb814
+
 src/arm7/sdk/func_arm7_027cb920.c:
     complete
     .text       start:0x027cb920 end:0x027cb93c
