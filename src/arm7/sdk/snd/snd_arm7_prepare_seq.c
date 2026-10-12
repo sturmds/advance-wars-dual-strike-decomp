@@ -1,7 +1,7 @@
 #include "sdk/snd.h"
 #include "sdk/snd_seq.h"
 
-void func_arm7_03800df4(SndPlayer *player);
+void SndPlayer_Stop(SndPlayer *player);
 void SndPlayer_Setup(SndPlayer *player, u32 bank);
 int SndTrack_Alloc(void);
 void SndTrack_Init(SndTrack *track);
@@ -23,7 +23,7 @@ void SndArm7_PrepareSeq(int playerNo, u8 *seqBase, u32 seqOffset, u32 bank)
     u8 cmd;
 
     if (player->active) {
-        func_arm7_03800df4(player);
+        SndPlayer_Stop(player);
     }
     SndPlayer_Setup(player, bank);
     trackNo = SndTrack_Alloc();
