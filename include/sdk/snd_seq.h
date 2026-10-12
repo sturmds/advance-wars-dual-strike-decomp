@@ -125,6 +125,9 @@ typedef struct SndWaveParam {
 #define VOICE_TYPE_SQUARE_WAVE 1
 #define VOICE_TYPE_NOISE 2
 
+/* Channel timer at which a PSG or noise channel plays middle C (key 60): 16.76 MHz / 8006 / 8 steps = 261.6 Hz. */
+#define VOICE_SQUARE_KEY60_RELOAD 0x1F46
+
 /* SndExChannel.envStatus */
 #define ENV_STAGE_RISE 0
 #define ENV_STAGE_FALL 1
