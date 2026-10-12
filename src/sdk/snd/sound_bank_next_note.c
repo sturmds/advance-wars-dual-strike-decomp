@@ -1,18 +1,6 @@
 #include "types.h"
 #include "sdk/snd.h"
 
-/* Instrument types, from the low byte of a bank's instrument entry. Types 1
- * to 5 are one note each; 16 is a drum set (one note per key in a range) and
- * 17 a key split with up to 8 regions. */
-#define INST_TYPE_DRUM_SET  16
-#define INST_TYPE_KEY_SPLIT 17
-
-/* The five halfwords of a note after its type. Needed to match: the original
- * copies them as one struct, which pairs the loads and stores. */
-typedef struct SoundBankWaveParams {
-    u16 v[5];
-} SoundBankWaveParams;
-
 /* Returns the next note of the bank after the position in iter and moves iter
  * past it, or FALSE when no notes are left. The loops that always return on
  * their first pass are needed to match. */
