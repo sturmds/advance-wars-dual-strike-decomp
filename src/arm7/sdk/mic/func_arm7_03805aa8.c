@@ -41,7 +41,7 @@ void func_arm7_03805aa8(SerialBusJob *entry)
             MIC_SYSTEM_WORK->lastAddress = &MIC_SYSTEM_WORK->lastSample;
         }
         func_arm7_03803e84(entry->command, MIC_PXI_RESULT_SUCCESS);
-        func_arm7_03803e0c(SERIAL_JOB_MICROPHONE);
+        SPIi_ReleaseException(SERIAL_JOB_MICROPHONE);
         break;
 
     case MIC_PXI_COMMAND_AUTO_START:

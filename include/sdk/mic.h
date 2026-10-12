@@ -120,7 +120,7 @@ typedef struct SerialBusJob {
 /* ARM7 SPI manager calls (not decompiled yet). */
 BOOL SPIi_CheckEntry(void);         /* a request is waiting in the queue */
 BOOL SPIi_SetEntry(int device, int command, int argCount, ...);  /* queue a request; FALSE when full */
-void func_arm7_03803e0c(int device);   /* release the exclusive lock */
+void SPIi_ReleaseException(int device);   /* release the exclusive lock */
 void func_arm7_03803e50(int device);   /* take the exclusive lock */
 int func_arm7_03803e68(int device);    /* nonzero when no device holds the lock */
 void func_arm7_03803e84(u16 command, u16 result);  /* PXI reply to the ARM9 */

@@ -61,5 +61,6 @@ void func_arm7_03803e84(u16 command, u16 result);    /* send a reply word to the
 /* Queue a job for the SPI thread; FALSE when the queue is full. */
 BOOL SPIi_SetEntry(u32 device, u32 process, u16 paramCount, ...);
 BOOL SPIi_CheckEntry(void);   /* TRUE when a job is queued */
+void SPIi_ReleaseException(u32 device);   /* free the bus if device holds it */
 
 #endif

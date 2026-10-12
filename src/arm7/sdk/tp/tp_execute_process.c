@@ -6,7 +6,6 @@ int func_arm7_037fdb80(void);                     /* disable interrupts */
 void func_arm7_037fdb94(int state);               /* restore interrupts */
 BOOL func_arm7_03803e68(u32 device);              /* SPI bus free? */
 void func_arm7_03803e50(int device);              /* take the SPI bus */
-void func_arm7_03803e0c(u32 device);              /* release the SPI bus */
 void LineAlarm_ArmEveryFrame_Arm7(OSVAlarm *alarm, s16 count, s16 delay, OSVAlarmHandler handler, void *arg);
 void LineAlarm_WithdrawTagged_Arm7(u32 tag);              /* cancel the V alarms with this tag */
 
@@ -45,7 +44,7 @@ void TP_ExecuteProcess(SerialBusJob *entry)
         } else {
             func_arm7_03803e84(entry->process, entry->arg[0] & 0xff);
         }
-        func_arm7_03803e0c(SERIAL_OWNER_TOUCH);
+        SPIi_ReleaseException(SERIAL_OWNER_TOUCH);
         break;
     }
 
