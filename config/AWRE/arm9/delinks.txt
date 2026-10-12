@@ -21908,6 +21908,7 @@ src/sdk/snd/snd_recv_command_reply.c:
     .text       start:0x02110554 end:0x02110688
 
 src/sdk/snd/snd_command_init.c:
+    complete
     .text       start:0x02110688 end:0x021107a0
 
 src/sdk/snd/sound_alarm_run_if_tag_matches.c:
