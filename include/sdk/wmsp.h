@@ -126,6 +126,16 @@ typedef struct WmspSetDCFDataRequest {
     u32 size;
 } WmspSetDCFDataRequest;
 
+/* The arguments of WM_SetWEPKey's and WM_SetWEPKeyEx's requests; only the
+   second has keyId. */
+typedef struct WmspSetWepKeyRequest {
+    u16 apiid;
+    u8 pad_02[2];
+    u32 wepMode;
+    const u8 *wepKey;
+    u32 keyId;
+} WmspSetWepKeyRequest;
+
 /* The arguments of WM_SetLifeTime. The lifetimes count 100 ms steps. */
 typedef struct WmspSetLifeTimeRequest {
     u16 apiid;

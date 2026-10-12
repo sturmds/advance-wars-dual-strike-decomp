@@ -340,6 +340,11 @@ typedef struct WMDataSharingInfo {
 } WMDataSharingInfo;
 
 /* What WMStatus.state holds. */
+#define WM_WEPMODE_NO 0
+#define WIRELESS_CIPHER_KEY5 1
+#define WIRELESS_CIPHER_KEY13 2
+#define WIRELESS_CIPHER_KEY16 3
+
 #define WIRELESS_BITRATE_ONE 1
 #define WIRELESS_BITRATE_TWO 2
 
@@ -412,7 +417,7 @@ typedef struct WMStatus {
     u16 linkLevel;
     u8 pad_ba[4];
     u16 unk_be;
-    u8 pad_c0[2];
+    u16 wepKeyId;
     u16 unk_c2;                        /* WM_SetMPDataToPortEx needs 1 */
     u8 pad_c4[6];
     u16 unk_ca;
@@ -428,7 +433,9 @@ typedef struct WMStatus {
     u8 pad_186[8];
     u16 unk_18e;
     u16 unk_190;
-    u8 pad_192[0x56];
+    u16 wepMode;                       /* WIRELESS_CIPHER_* */
+    u32 wepFlag;                       /* 1 while a WEP mode is set */
+    u8 wepKey[80];
     u16 unk_1e8;
     u16 unk_1ea;
     u8 pad_1ec[4];
