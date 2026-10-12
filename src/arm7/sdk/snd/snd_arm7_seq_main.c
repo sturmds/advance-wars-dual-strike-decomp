@@ -1,7 +1,7 @@
 #include "sdk/snd.h"
 #include "sdk/snd_seq.h"
 
-void func_arm7_03800ed0(SndPlayer *player);
+void SndPlayer_Advance(SndPlayer *player);
 void SndPlayer_UpdateChannels(SndPlayer *player);
 
 /* stepSequence is FALSE on driver runs between sequence ticks: only the channels are updated then.
@@ -16,7 +16,7 @@ void SndArm7_SeqMain(BOOL stepSequence)
         player = &data_arm7_038085d0[i];
         if (player->active) {
             if (stepSequence && !player->prepared) {
-                func_arm7_03800ed0(player);
+                SndPlayer_Advance(player);
             }
             SndPlayer_UpdateChannels(player);
             if (player->active) {

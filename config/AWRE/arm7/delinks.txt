@@ -1596,6 +1596,10 @@ src/arm7/sdk/snd/snd_player_get_track.c:
     complete
     .text       start:0x03800ea4 end:0x03800ed0
 
+src/arm7/sdk/snd/snd_player_advance.c:
+    complete
+    .text       start:0x03800ed0 end:0x03800f90
+
 src/arm7/sdk/snd/snd_track_free_channels.c:
     complete
     .text       start:0x03800f90 end:0x03800fcc
