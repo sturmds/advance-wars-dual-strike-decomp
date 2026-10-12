@@ -1536,6 +1536,10 @@ src/arm7/sdk/wl/wifi_frame_new_probe_ask.c:
     complete
     .text       start:0x027cf6e0 end:0x027cf770
 
+src/arm7/sdk/wl/wifi_frame_new_reassoc_answer.c:
+    complete
+    .text       start:0x027cf770 end:0x027cf8dc
+
 src/arm7/sdk/func_arm7_027d00b4.c:
     complete
     .text       start:0x027d00b4 end:0x027d00dc
