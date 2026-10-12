@@ -11393,6 +11393,7 @@ src/game/main/ai/func_02091eb0.c:
     .text       start:0x02091eb0 end:0x02091fbc
 
 src/game/main/ai/ai_sites_collect.c:
+    complete
     .text       start:0x02091fbc end:0x02092134
 
 src/game/main/ai/func_02092134.c:

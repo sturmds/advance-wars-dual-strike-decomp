@@ -27,7 +27,6 @@ int AiSites_Collect(void)
         if (Map_IsFreeDeployCity(property->x, property->y) != 1) {
             continue;
         }
-        count++;
         site->x = property->x;
         site->y = property->y;
         site->type = gTerrainFactoryKind[TILE_TERRAIN(property->x, property->y)];
@@ -44,6 +43,7 @@ int AiSites_Collect(void)
         site->unk_0a = 0xff;
         site->score = 0;
         site++;
+        count++;
     }
     site->x = 0xff;
     return count;

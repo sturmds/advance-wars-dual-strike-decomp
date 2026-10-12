@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6661 / 6700 | 1511780 / 1553840 | 97.29% | 0 | 0 |
+| ARM9 game | 6662 / 6700 | 1512156 / 1553840 | 97.32% | 0 | 0 |
 | ARM9 SDK/library | 640 / 833 | 101304 / 135226 | 74.91% | 176 | 20718 |
-| ARM9 all | 7301 / 7533 | 1613084 / 1689066 | 95.50% | 176 | 20718 |
+| ARM9 all | 7302 / 7533 | 1613460 / 1689066 | 95.52% | 176 | 20718 |
 | ARM7 SDK/library | 870 / 1020 | 107948 / 154300 | 69.96% | 69 | 4960 |
 | ARM7 all | 870 / 1020 | 107948 / 154300 | 69.96% | 69 | 4960 |
-| game | 6661 / 6700 | 1511780 / 1553840 | 97.29% | 0 | 0 |
+| game | 6662 / 6700 | 1512156 / 1553840 | 97.32% | 0 | 0 |
 | SDK/library | 1510 / 1853 | 209252 / 289526 | 72.27% | 245 | 25678 |
-| all | 8171 / 8553 | 1721032 / 1843366 | 93.36% | 245 | 25678 |
+| all | 8172 / 8553 | 1721408 / 1843366 | 93.38% | 245 | 25678 |
 
 ## By module
 
@@ -26,7 +26,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 5155 / 5180 | 1052880 / 1082632 | 97.25% | 0 |
+| main | game | 5156 / 5180 | 1053256 / 1082632 | 97.29% | 0 |
 | main | SDK/library | 633 / 822 | 100392 / 133690 | 75.09% | 172 |
 | itcm | game | 102 / 102 | 21896 / 21896 | 100.00% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
@@ -50,7 +50,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/ai/ai_build_rate_site_danger.c` | AiBuild_RateSiteDanger | 1736 |
 | `src/game/main/ai/ai_oozium_move_to_target.c` | AiOozium_MoveToTarget | 1568 |
 | `src/game/main/ai/ai_site_group_rate_surroundings.c` | AiSiteGroup_RateSurroundings | 1584 |
-| `src/game/main/ai/ai_sites_collect.c` | AiSites_Collect | 376 |
 | `src/game/main/ai/ai_unit_upgrade_wait_action.c` | AiUnit_UpgradeWaitAction | 3924 |
 | `src/game/main/ai/func_02093ce8.c` | func_02093ce8 | 524 |
 | `src/game/main/ai/func_02099ba0.c` | func_02099ba0 | 524 |
