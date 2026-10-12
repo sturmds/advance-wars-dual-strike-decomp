@@ -21,7 +21,7 @@ void func_ov004_022ad71c(int x, int y, int z, int sSize, int tSize, int w, int h
     u32 gray = shade | (shade << 5) | (shade << 10);
     s16 z0 = z;
     s16 y1 = y0 + h;
-    s16 x1 = x0 + w;
+    s16 x1 = x + ((64 - w) >> 1) + w;   /* not x0 + w: closer to the original */
 
     *GXFIFO_TEXIMAGE_PARAM = (texAddr >> 3) | 0x4c000000 | (sSize << 20) | (tSize << 23) | 0x20000000;
     *GXFIFO_PLTT_BASE = palAddr >> 4;
