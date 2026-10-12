@@ -1228,6 +1228,10 @@ src/arm7/sdk/func_arm7_037fec60.c:
     complete
     .text       start:0x037fec60 end:0x037fec6c
 
+src/arm7/sdk/snd/sound_pitch_shift_timer_arm7.c:
+    complete
+    .text       start:0x037fec6c end:0x037fed94
+
 src/arm7/sdk/func_arm7_037fed94.c:
     complete
     .text       start:0x037fed94 end:0x037feda0
