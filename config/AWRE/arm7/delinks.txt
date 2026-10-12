@@ -787,9 +787,17 @@ src/arm7/sdk/func_arm7_037fe534.c:
     complete
     .text       start:0x037fe534 end:0x037fe544
 
+src/arm7/sdk/snd/snd_hw_enable.c:
+    complete
+    .text       start:0x037fe544 end:0x037fe58c
+
 src/arm7/sdk/func_arm7_037fe58c.c:
     complete
     .text       start:0x037fe58c end:0x037fe598
+
+src/arm7/sdk/snd/snd_hw_disable.c:
+    complete
+    .text       start:0x037fe598 end:0x037fe5dc
 
 src/arm7/sdk/func_arm7_037fe5dc.c:
     complete
