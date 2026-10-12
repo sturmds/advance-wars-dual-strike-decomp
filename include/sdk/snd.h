@@ -121,6 +121,10 @@ typedef struct SndArm7Work {
     SndArm7Alarm alarms[SOUND_TIMER_SLOTS_ARM7];
 } SndArm7Work;
 
+/* Sound capture control registers (REG_SNDCAP0CNT and REG_SNDCAP1CNT). */
+#define AUDIO_RECORD0_CNT (*(u8 *)0x04000508)
+#define AUDIO_RECORD1_CNT (*(u8 *)0x04000509)
+
 /* Copy of the driver's state, written to a buffer the ARM9 passed in. */
 typedef struct SndArm7Snapshot {
     SndArm7Work work;
