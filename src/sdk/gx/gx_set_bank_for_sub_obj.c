@@ -5,13 +5,8 @@ extern u16 gGxVramBankMasks[13];
 
 void func_0210aaf8(int bank)
 {
-    u32 oldBank;
-    u32 lcdc;
-    lcdc = gGxVramBankMasks[0];
-    oldBank = gGxVramBankMasks[10];
-
+    gGxVramBankMasks[0] = ~bank & (gGxVramBankMasks[0] | gGxVramBankMasks[10]);
     gGxVramBankMasks[10] = bank;
-    gGxVramBankMasks[0] = (oldBank | lcdc) & ~bank;
     if (bank != 0) {
         switch (bank) {
         case 8:
