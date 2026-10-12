@@ -14,6 +14,42 @@ typedef struct SndCommand {
     u32 args[4];
 } SndCommand;
 
+/* SndCommand.id, as the ARM7 driver handles them. */
+enum {
+    SND_COMMAND_START_SEQ = 0,
+    SND_COMMAND_STOP_SEQ = 1,
+    SND_COMMAND_PAUSE_SEQ = 2,
+    SND_COMMAND_SKIP_SEQ = 3,
+    SND_COMMAND_PLAYER_PARAM = 4,
+    SND_COMMAND_TRACK_PARAM = 5,
+    SND_COMMAND_MUTE_TRACK = 6,
+    SOUND_REQ_LIMIT_TRACK_CHANNELS = 7,
+    SOUND_REQ_SET_PLAYER_VAR = 8,
+    SOUND_REQ_SET_SHARED_VAR = 9,
+    SND_COMMAND_START_TIMER = 10,
+    SND_COMMAND_STOP_TIMER = 11,
+    SND_COMMAND_SETUP_CHANNEL_PCM = 12,
+    SND_COMMAND_SETUP_CHANNEL_PSG = 13,
+    SND_COMMAND_SETUP_CHANNEL_NOISE = 14,
+    SND_COMMAND_SETUP_CAPTURE = 15,
+    SND_COMMAND_SETUP_ALARM = 16,
+    SND_COMMAND_CHANNEL_TIMER = 17,
+    SND_COMMAND_CHANNEL_VOLUME = 18,
+    SND_COMMAND_CHANNEL_PAN = 19,
+    SOUND_REQ_EDGE_PAN_DIP = 20,
+    SND_COMMAND_MASTER_VOLUME = 21,
+    SOUND_REQ_FORCE_ALL_PAN = 22,
+    SOUND_REQ_MIXER_ROUTING = 23,
+    SND_COMMAND_LOCK_CHANNEL = 24,
+    SND_COMMAND_UNLOCK_CHANNEL = 25,
+    SND_COMMAND_STOP_UNLOCKED_CHANNEL = 26,
+    SND_COMMAND_SHARED_WORK = 27,
+    SND_COMMAND_INVALIDATE_SEQ = 28,
+    SND_COMMAND_INVALIDATE_BANK = 29,
+    SND_COMMAND_INVALIDATE_WAVE = 30,
+    SOUND_REQ_DUMP_DRIVER_STATE = 31
+};
+
 /* Status block the ARM7 sound driver writes and the ARM9 reads after invalidating its cache lines. */
 typedef struct SndPlayerInfo {
     s16 variable[16];
@@ -180,6 +216,7 @@ void SndArm7_InvalidateSeq(u32 start, u32 end);
 BOOL SndArm7_NoteOn(SndExChannel *channel, int key, int velocity, s32 length, SoundBank *bank, SoundBankNote *note);
 void SndArm7_PauseSeq(int playerNo, BOOL pause);
 void SndArm7_PrepareSeq(int playerNo, u8 *seqBase, u32 seqOffset, SoundBank *bank);
+void SndArm7_ProcessCommands(void);
 BOOL SndArm7_ReadInstData(SoundBank *bank, int programNo, int key, SoundBankNote *note);
 void SndArm7_SeqMain(BOOL stepSequence);
 void SndArm7_SetChannelPan(u32 channelMask, int pan);
@@ -192,7 +229,7 @@ void SndArm7_SetTrackMute(int playerNo, u32 trackMask, int mute);
 void SndArm7_SetTrackParam(int playerNo, u32 trackMask, int offset, u32 value, int size);
 void SndArm7_SetupAlarm(int alarmNo, u64 start, u64 period, int tag);
 void SndArm7_SkipSeq(int playerNo, u32 ticks);
-void SndArm7_StartTimer(u32 channelMask, u32 captureMask, u32 alarmMask);
+void SndArm7_StartTimer(u32 channelMask, u32 captureMask, u32 alarmMask, u32 flags);
 void SndArm7_StopAlarm(int alarmNo);
 void SndArm7_StopSeq(int playerNo);
 void SndArm7_StopTimer(u32 channelMask, u32 captureMask, u32 alarmMask, int hold);

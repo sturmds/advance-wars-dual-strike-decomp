@@ -3104,6 +3104,10 @@ src/arm7/sdk/snd/snd_arm7_on_pxi_receive.c:
     complete
     .text       start:0x038023b4 end:0x03802408
 
+src/arm7/sdk/snd/snd_arm7_process_commands.c:
+    complete
+    .text       start:0x03802408 end:0x03802854
+
 src/arm7/sdk/snd/snd_arm7_init.c:
     complete
     .text       start:0x03802854 end:0x03802894

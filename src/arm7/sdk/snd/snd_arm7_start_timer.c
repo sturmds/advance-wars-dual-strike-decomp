@@ -4,7 +4,7 @@
 #define AUDIO_CH_CTRL_TOP_BYTE(channel) (*(u8 *)(0x04000403 + ((channel) << 4)))
 #define AUDIO_RECORD_PAIR_CNT (*(u16 *)0x04000508)
 
-void SndArm7_StartTimer(u32 channelMask, u32 captureMask, u32 alarmMask)
+void SndArm7_StartTimer(u32 channelMask, u32 captureMask, u32 alarmMask, u32 flags)
 {
     int irqState = Cpu_MaskIrq_Arm7();
     int bit;
