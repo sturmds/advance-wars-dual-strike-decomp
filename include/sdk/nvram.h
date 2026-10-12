@@ -38,5 +38,6 @@ static inline void NVRAM_SpiWait(void)
 void NVRAM_EraseSector(u32 address);
 void NVRAM_ErasePage(u32 address);
 void NVRAM_ProgramPage(u32 address, u16 size, const u8 *src);
+void NVRAM_WritePage(u32 address, u16 size, const u8 *src);
 
 #endif
