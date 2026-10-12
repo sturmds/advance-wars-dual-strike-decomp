@@ -580,7 +580,7 @@ data_arm7_027d81d4 kind:bss addr:0x027d81d4
 data_arm7_027d82b0 kind:bss addr:0x027d82b0
 data_arm7_027d834c kind:bss addr:0x027d834c
 data_arm7_027d84fc kind:bss addr:0x027d84fc
-func_arm7_037f8000 kind:function(arm,size=0x2c) addr:0x037f8000
+VBlankIntr_Arm7 kind:function(arm,size=0x2c) addr:0x037f8000
 func_arm7_037f802c kind:function(arm,size=0x80) addr:0x037f802c
 func_arm7_037f80ac kind:function(arm,size=0xc0) addr:0x037f80ac
 func_arm7_037f816c kind:function(arm,size=0x174) addr:0x037f816c

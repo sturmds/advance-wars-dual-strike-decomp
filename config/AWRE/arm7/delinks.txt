@@ -544,6 +544,10 @@ src/arm7/sdk/rtc/func_arm7_027d60a8.c:
     complete
     .text       start:0x027d60a8 end:0x027d60fc
 
+src/arm7/sdk/os/v_blank_intr_arm7.c:
+    complete
+    .text       start:0x037f8000 end:0x037f802c
+
 src/arm7/sdk/func_arm7_037f8444.c:
     complete
     .text       start:0x037f8444 end:0x037f8450
