@@ -2,7 +2,7 @@
 
 void func_arm7_037fde70(const void *src, void *dest, int size);
 int func_arm7_037fe73c(int channel);
-u32 func_arm7_037ff470(int arg);
+u32 SndExChannel_GetLockedChannels(int arg);
 
 void SndArm7_WriteSnapshot(SndArm7Snapshot *snapshot)
 {
@@ -13,5 +13,5 @@ void SndArm7_WriteSnapshot(SndArm7Snapshot *snapshot)
     for (i = 0; i < 16; i++) {
         snapshot->channelControl[i] = func_arm7_037fe73c(i);
     }
-    snapshot->unk_11C4 = func_arm7_037ff470(0);
+    snapshot->unk_11C4 = SndExChannel_GetLockedChannels(0);
 }
