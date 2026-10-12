@@ -6,7 +6,7 @@ extern OSThreadInfo OSi_ThreadInfo;
 
 void OS_SleepThread(OSThreadQueue* queue);
 void func_021154ac(void);
-void CARDi_SetBackupSpec(int type);
+void CardSave_FillGeometryFromType(int type);
 int CARDi_Request(CARDiCommon* common, int command, int retries);
 void CardSave_FinishTaskAndNotify(CARDiCommon* common);
 
@@ -25,7 +25,7 @@ void CARD_IdentifyBackup(int type) {
   common->flag |= CARD_STAT_BUSY;
   OS_RestoreInterrupts(state);
 
-  CARDi_SetBackupSpec(type);
+  CardSave_FillGeometryFromType(type);
   common->callback = NULL;
   common->callbackArg = NULL;
   data_022abb00.waiter = OSi_ThreadInfo.current;

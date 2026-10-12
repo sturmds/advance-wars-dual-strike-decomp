@@ -2,7 +2,7 @@
 
 void MI_CpuFill8(void* dst, u32 value, u32 size);
 
-void CARDi_SetBackupSpec(int type) {
+void CardSave_FillGeometryFromType(int type) {
   CARDiCommandArg* cmd = data_022abb00.cmd;
   u32 size;
 

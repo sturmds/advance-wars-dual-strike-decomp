@@ -22543,7 +22543,7 @@ src/sdk/card/card_on_request_tag_message.c:
     complete
     .text       start:0x02115808 end:0x02115858
 
-src/sdk/card/cardi_set_backup_spec.c:
+src/sdk/card/card_save_fill_geometry_from_type.c:
     complete
     .text       start:0x02115858 end:0x02115a30
 
