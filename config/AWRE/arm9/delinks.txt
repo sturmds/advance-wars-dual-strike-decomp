@@ -23496,6 +23496,10 @@ src/sdk/msl/__cnt_trail_zeros.c:
     complete
     .text       start:0x02125718 end:0x02125794
 
+src/sdk/runtime/ffix.c:
+    complete
+    .text       start:0x0212839c end:0x02128438
+
 src/sdk/msl/func_0212950c.c:
     complete
     .text       start:0x0212950c end:0x02129540
