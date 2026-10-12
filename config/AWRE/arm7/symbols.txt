@@ -256,7 +256,7 @@ WifiParam_StoreOwnMac kind:function(arm,size=0x60) addr:0x027ca340
 Wifi_ClearSessionArea kind:function(arm,size=0x98) addr:0x027ca3a0
 WifiSelfTest_Baseband kind:function(arm,size=0x2f8) addr:0x027ca438
 WifiSelfTest_Ram kind:function(arm,size=0x184) addr:0x027ca730
-func_arm7_027ca8b4 kind:function(arm,size=0x1ac) addr:0x027ca8b4
+WifiSelfTest_MacRegisters kind:function(arm,size=0x1ac) addr:0x027ca8b4
 func_arm7_027caa60 kind:function(arm,size=0x28) addr:0x027caa60
 func_arm7_027caa88 kind:function(arm,size=0x2c) addr:0x027caa88
 func_arm7_027caab4 kind:function(arm,size=0x68) addr:0x027caab4
@@ -549,10 +549,10 @@ gWlFirmwareRegOffsets kind:data(any) addr:0x027d6700
 gWlDefaultWifiRamBlocks kind:data(any) addr:0x027d6720
 gWlRegDefaults kind:data(any) addr:0x027d6770
 gWlRateBits kind:data(any) addr:0x027d67d4
-data_arm7_027d68c4 kind:data(any) addr:0x027d68c4
+gWlTestPatterns kind:data(any) addr:0x027d68c4
 gWlBbSkipRegsRf5 kind:data(any) addr:0x027d68cc
 gWlBbSkipRegs kind:data(any) addr:0x027d6900
-data_arm7_027d6938 kind:data(any) addr:0x027d6938
+gWlTestRegs kind:data(any) addr:0x027d6938
 data_arm7_027d69a4 kind:data(any) addr:0x027d69a4
 data_arm7_027d69cc kind:data(any) addr:0x027d69cc
 data_arm7_027d69fc kind:data(any) addr:0x027d69fc

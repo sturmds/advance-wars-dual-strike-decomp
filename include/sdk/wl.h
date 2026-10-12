@@ -1543,6 +1543,13 @@ typedef struct WlRegValue {
     u16 value;
 } WlRegValue;
 
+/* One entry of the register self-test table: the bits of WIFI_MAC_REGISTER(offset)
+   that read back what was written. */
+typedef struct WlRegMask {
+    u16 offset;
+    u16 mask;
+} WlRegMask;
+
 /* End of the MAC RAM ring buffer read by WifiRx_CopyFromRingWrapped. */
 #define WIFI_RX_RING_LIMIT 0x04805f60
 /* p, moved back by the ring size once it reaches WIFI_RX_RING_LIMIT. */

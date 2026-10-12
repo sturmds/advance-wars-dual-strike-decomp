@@ -17,7 +17,7 @@ void func_arm7_027cb9ac(void);
 void func_arm7_027cacec(void);
 void Wifi_CreateAlarms(void);
 void WifiRf_ReadChipFormat(void);
-void func_arm7_027ca8b4(void);
+void WifiSelfTest_MacRegisters(void);
 void func_arm7_027c93a4(void);
 void WifiMac_LoadRegisterTable(void);
 void WifiRf_LoadStartValues(void);
@@ -67,7 +67,7 @@ u16 Wifi_StartDriver(Unk_arm7_038057d4 *params)
         WIFI_DRIVER_STATE->state.unk_12 |= 0x80;
     } else {
         WifiRf_ReadChipFormat();
-        func_arm7_027ca8b4();
+        WifiSelfTest_MacRegisters();
         func_arm7_027c93a4();
         WifiMac_LoadRegisterTable();
         WifiRf_LoadStartValues();
