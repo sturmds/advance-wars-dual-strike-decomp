@@ -26,6 +26,9 @@ extern char data_ov002_023604a4[];
 extern char data_ov002_023604a8[];
 
 #define BATTLE (gMenuState.battle)
+/* Needed to match: through this cast mwcc keeps &gMenuState in a register and adds the
+ * palette offsets at run time. */
+#define MENU ((MenuState*)&gMenuState)
 #define SCENE Ov002_gBattleScene
 
 /* VRAM bank A while it is mapped to the CPU, in 32-byte tiles. */
@@ -59,9 +62,8 @@ extern char data_ov002_023604a8[];
  * from tile 0x300 on, and keeps the first tile and the sprite table of each in MenuState.
  * Most files come in one version per army style. Then loads each side's palette by army,
  * with a copy brightened halfway to white, and copies both to palette memory.
- * Partial match (99.9%): in the palette loop, menu and the side * 12 offset swap registers.
- * The palette loop has its own counter (palSide) because that fixes the other registers. */
-void func_ov002_02352754(void) {
+ * Needed to match: the palette loop counts with side too. */
+void Battle_LoadSideGraphics(void) {
   u8 weapon;
   int tile;
   int side;
@@ -70,9 +72,6 @@ void func_ov002_02352754(void) {
   BOOL isFirst;
   u8 otherWeapon;
   const u16* palette;
-  MenuState*
-      menu; /* needed to match: the palette offsets are added at run time */
-  int palSide;
 
   tile = 0x300;
   FS_ChangeDir(data_ov002_023600e4);
@@ -228,27 +227,25 @@ void func_ov002_02352754(void) {
   }
   GX_EndLoadTex();
   GX_BeginLoadTexPltt();
-  menu = &gMenuState;
 
-  for (palSide = 0; palSide < 2; palSide++) {
-    File_ReadTo(menu->battle.unk_450,
-                menu->battle.unk_27c[palSide]
-                    ->paletteFiles[SCENE->sides[palSide].army - 1]);
+  for (side = 0; side < 2; side++) {
+    File_ReadTo(
+        MENU->battle.unk_450,
+        MENU->battle.unk_27c[side]->paletteFiles[SCENE->sides[side].army - 1]);
     /* Each colour halfway to white. */
-    /* needed to match: the offset as a number keeps the add at run time */
-    palette = (const u16*)((u8*)menu + (u32) & ((MenuState*)0)->battle.unk_450);
+    palette = MENU->battle.unk_450;
     for (i = 0; i < 32; i++) {
       int colour = palette[i];
 
-      menu->battle.unk_410[i] = ((((colour & 0x7c00) >> 10) + 31) >> 1) << 10 |
+      MENU->battle.unk_410[i] = ((((colour & 0x7c00) >> 10) + 31) >> 1) << 10 |
                                 ((((colour & 0x3e0) >> 5) + 31) >> 1) << 5 |
                                 (((colour & 31) + 31) >> 1);
     }
-    DC_FlushRange(menu->battle.unk_410,
-                  sizeof(menu->battle.unk_410) + sizeof(menu->battle.unk_450));
-    isFirst = palSide == 0 ? TRUE : FALSE;
-    GX_LoadTexPltt(menu->battle.unk_450, (isFirst ? 0 : 2) * 32, 64);
-    GX_LoadTexPltt(menu->battle.unk_410, (isFirst ? 4 : 6) * 32, 64);
+    DC_FlushRange(MENU->battle.unk_410,
+                  sizeof(MENU->battle.unk_410) + sizeof(MENU->battle.unk_450));
+    isFirst = side == 0 ? TRUE : FALSE;
+    GX_LoadTexPltt(MENU->battle.unk_450, (isFirst ? 0 : 2) * 32, 64);
+    GX_LoadTexPltt(MENU->battle.unk_410, (isFirst ? 4 : 6) * 32, 64);
   }
   File_ReadTo((void*)0x06890100, data_ov002_023604a4);
   File_ReadTo((void*)0x06890100, data_ov002_023604a4);
