@@ -14,7 +14,7 @@ void Battle_ReleaseSideTasks(void);
 void BattleCellSprites_Move(void);
 void Battle_UpdateFx(void);
 void BattleCells_RunImpactList(Task *task);
-void func_ov002_02358c40(Task *task);
+void BattleCells_RunStepList(Task *task);
 void BattleCells_RunSequence(Task *task);
 void BattleCells_PushStep2(void);
 void BattleCells_PushStep(void);
@@ -38,7 +38,7 @@ void Battle_TaskUpdate(Task *task)
         BattleCells_PushStep2();
     }
     BattleCells_RunSequence(task);
-    func_ov002_02358c40(task);
+    BattleCells_RunStepList(task);
     BattleCells_RunImpactList(task);
     if (data_0229fb30.unk_10 != 0xffff) {
         MENU->battle.frames++;
