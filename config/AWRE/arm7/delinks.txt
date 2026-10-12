@@ -600,6 +600,10 @@ src/arm7/sdk/wl/wifi_cmd_set_station_capacity.c:
     complete
     .text       start:0x027cdcc0 end:0x027cdd18
 
+src/arm7/sdk/wl/func_arm7_027cdd18.c:
+    complete
+    .text       start:0x027cdd18 end:0x027cde24
+
 src/arm7/sdk/func_arm7_027cde24.c:
     complete
     .text       start:0x027cde24 end:0x027cde44

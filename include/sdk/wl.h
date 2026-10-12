@@ -11,6 +11,7 @@ typedef struct WlRequest {
     u16 unk_0e;
     u16 unk_10;
     u16 unk_12;
+    u16 unk_14;
 } WlRequest;
 
 typedef struct WlReply {
@@ -43,6 +44,13 @@ typedef struct WlStatusReply {
     u16 flag2;
     u16 state06;
 } WlStatusReply;
+
+// Entries of the table at WlLimits.unk_f0, indexed from 1 (see func_arm7_027cdd18).
+typedef struct Unk_027cdd18 {
+    u8 pad_00[0x18];
+    u16 unk_18;
+    u16 unk_1a;
+} Unk_027cdd18;
 
 typedef struct WlLimits {
     u8 pad_00[0xd8];
