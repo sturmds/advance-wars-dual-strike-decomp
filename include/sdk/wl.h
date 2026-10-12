@@ -365,7 +365,7 @@ typedef struct WlWork {
     };
     u8 pad_484[0x504 - 0x484];
     WlStationBits stationBits;
-    u8 pad_510[0x5c4 - 0x510];
+    u32 counters[45]; /* totals of the hardware event counters, see WifiCmd_ReportStatistics */
     WlRandom random;
     u8 pad_5ca[2];
     WlRfConfig rf;
