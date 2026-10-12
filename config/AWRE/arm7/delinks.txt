@@ -416,6 +416,10 @@ src/arm7/sdk/wm/wmsp_v_alarm_handler.c:
     complete
     .text       start:0x027c5cb0 end:0x027c5d38
 
+src/arm7/sdk/wm/wmsp_start_mp_v_alarm.c:
+    complete
+    .text       start:0x027c5d38 end:0x027c5de8
+
 src/arm7/sdk/wm/func_arm7_027c5de8.c:
     complete
     .text       start:0x027c5de8 end:0x027c5e10
