@@ -1540,6 +1540,10 @@ src/arm7/sdk/snd/snd_ex_channel_start_psg.c:
     complete
     .text       start:0x037ff958 end:0x037ff9ac
 
+src/arm7/sdk/snd/snd_ex_channel_start_pcm.c:
+    complete
+    .text       start:0x037ff9ac end:0x037ff9e8
+
 src/arm7/sdk/func_arm7_03800e84.c:
     complete
     .text       start:0x03800e84 end:0x03800ea4
