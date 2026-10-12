@@ -28,11 +28,13 @@ typedef struct RtcIntRegister {
     u16 unk_8 : 8;
 } RtcIntRegister;
 
-/* Register 0 (status 1). powerOn and lowVoltage report a lost clock;
+/* Register 0 (status 1). hour24 selects 24-hour mode. powerOn and
+ * lowVoltage report a lost clock;
  * int1 and int2 report a fired interrupt. */
 typedef struct RtcStatus1 {
     u16 reset : 1;
-    u16 unk_1 : 3;
+    u16 hour24 : 1;
+    u16 unk_2 : 2;
     u16 int1 : 1;
     u16 int2 : 1;
     u16 lowVoltage : 1;
