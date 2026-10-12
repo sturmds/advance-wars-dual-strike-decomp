@@ -3,7 +3,7 @@
 u64 Tick_Read64_Arm7(void);
 void Alarm_Withdraw_Arm7(void *alarm);
 void Alarm_ArmRepeating_Arm7(void *alarm, u64 start, u64 period, void (*handler)(int), int arg);
-void func_arm7_037fd280(void *alarm, u64 start, void (*handler)(int), int arg);
+void Alarm_ArmOneShot_Arm7(void *alarm, u64 start, void (*handler)(int), int arg);
 void func_arm7_037fd424(void *alarm);
 void func_arm7_03801ed0(int arg);
 
@@ -24,7 +24,7 @@ void SndArm7_StartAlarm(int alarmNo)
     arg = alarmNo | (alarm->tag << 8);
     func_arm7_037fd424(alarm->osAlarm);
     if (period == 0) {
-        func_arm7_037fd280(alarm->osAlarm, start, func_arm7_03801ed0, arg);
+        Alarm_ArmOneShot_Arm7(alarm->osAlarm, start, func_arm7_03801ed0, arg);
     } else {
         Alarm_ArmRepeating_Arm7(alarm->osAlarm, start + Tick_Read64_Arm7(), period, func_arm7_03801ed0, arg);
     }
