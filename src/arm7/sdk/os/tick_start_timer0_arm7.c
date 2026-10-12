@@ -1,0 +1,30 @@
+#include "types.h"
+#include "sdk/os_arm7.h"
+
+extern u16 data_arm7_03807a7c;
+extern vu64 gOsiTickCounter_Arm7;
+extern u32 gOsiNeedResetTimer_Arm7;
+void func_arm7_037fce6c(int timer);
+void func_arm7_037fb748(u32 mask, void (*handler)(void *));
+void func_arm7_037fb690(u32 mask);
+void Tick_OnTimer0Overflow_Arm7(void *arg);
+
+/*
+ * ARM7 copy of OS_InitTick. Once only: zeroes the tick counter and starts
+ * timer 0, counting up with an interrupt on overflow.
+ */
+void Tick_StartTimer0_Arm7(void)
+{
+    if (data_arm7_03807a7c != 0) {
+        return;
+    }
+    data_arm7_03807a7c = 1;
+    func_arm7_037fce6c(0);
+    gOsiTickCounter_Arm7 = 0;
+    REG_TM0CNT_H = 0;
+    REG_TM0CNT_L = 0;
+    REG_TM0CNT_H = TMCNT_START_IRQ_DIV64;
+    func_arm7_037fb748(IRQ_MASK_TIMER0, Tick_OnTimer0Overflow_Arm7);
+    func_arm7_037fb690(IRQ_MASK_TIMER0);
+    gOsiNeedResetTimer_Arm7 = 0;
+}
