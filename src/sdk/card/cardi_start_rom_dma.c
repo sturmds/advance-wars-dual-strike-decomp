@@ -1,6 +1,9 @@
+/* WIP, 99.7%: only dst and len swap registers (r4/r8). */
+/* Needed to match: the CARD library was built with propagation off, which keeps the flags below as values. */
+#pragma opt_propagation off
 #include "sdk/card.h"
 
-extern u8 Oam_GetShapeCells[];   /* start of ITCM; the symbol is the first function placed there */
+extern u8 Oam_GetShapeCells[];   /* start of ITCM: the first function placed there */
 
 u32 Cp15_DataTcmBase(void);         /* start of DTCM */
 void DC_StoreRange(void *start, u32 size);
@@ -15,6 +18,9 @@ void CardRom_StartPageDma(void);
 #define DTCM_SIZE 0x4000
 #define HEADER_COPY_ROM_CTRL_WORD (*(volatile u32 *)0x027ffe60)   /* card control word from the ROM header */
 
+/* Probably CardRom_ReadViaDmaIfAligned: uses DMA when dst is word aligned, the channel
+ * is 0-3, dst..dst+len is outside ITCM and DTCM, and src and len are whole
+ * pages; then starts the first page read. */
 BOOL func_021162d8(CARDiRomPage *page)
 {
     CARDiCommon *common = &data_022abb00;
@@ -22,16 +28,22 @@ BOOL func_021162d8(CARDiRomPage *page)
     BOOL useDma = FALSE;
     BOOL pageAligned = FALSE;
     BOOL rangeOk = FALSE;
-    BOOL dmaChannel;
+    BOOL dmaChannel = useDma;     /* needed to match: FALSE, but copied from useDma */
     int state;
 
-    dmaChannel = (dst & 3) == 0 && common->unk_24 <= 3;
+    if ((dst & 3) == 0 && common->unk_24 <= 3) {
+        dmaChannel = TRUE;
+    }
     if (dmaChannel) {
         u32 len = common->len;
         u32 dtcm = Cp15_DataTcmBase();
-        u32 end = dst + len;
         BOOL overlaps = TRUE;
-        BOOL inItcm = end > ITCM_START && dst < ITCM_END;
+        u32 end = len + dst;
+        BOOL inItcm = FALSE;
+
+        if (end > ITCM_START && dst < ITCM_END) {
+            inItcm = overlaps;    /* needed to match: TRUE, but copied from overlaps */
+        }
 
         if (!inItcm) {
             if (dtcm >= end || dtcm + DTCM_SIZE <= dst) {
