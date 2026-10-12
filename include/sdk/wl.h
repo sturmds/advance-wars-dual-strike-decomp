@@ -1247,6 +1247,7 @@ typedef struct Unk_027cb9e4 {
 #define REG_W_RXBUF_READCSR (*(volatile u16 *)0x0480805a)
 #define REG_W_TXREQ_READ    (*(volatile u16 *)0x048080b0)
 #define REG_W_RXSTAT_INC_IF (*(volatile u16 *)0x048081a8)
+#define REG_W_RXTX_ADDR     (*(volatile u16 *)0x04808268) /* halfword the hardware reads or writes now */
 
 /* Wireless interrupt causes: bits of WIFI_IRQ_PENDING_FLAGS (W_IF, set) and WIFI_IRQ_ENABLE_MASK
    (W_IE, enabled). Names from GBATEK. */
