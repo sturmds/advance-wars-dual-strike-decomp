@@ -276,6 +276,10 @@ src/arm7/sdk/wm/wmsp_reset_status.c:
     complete
     .text       start:0x027c73a4 end:0x027c74e8
 
+src/arm7/sdk/wm/wmsp_enable.c:
+    complete
+    .text       start:0x027c74e8 end:0x027c7554
+
 src/arm7/sdk/func_arm7_027c7a8c.c:
     complete
     .text       start:0x027c7a8c end:0x027c7aa0
