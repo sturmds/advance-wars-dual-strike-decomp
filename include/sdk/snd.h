@@ -302,6 +302,7 @@ u16 SndTrack_ReadU16(SndTrack *track);
 u32 SndTrack_ReadU24(SndTrack *track);
 u32 SndTrack_ReadVarLength(SndTrack *track);
 void SndTrack_ReleaseChannels(SndTrack *track, SndPlayer *player, int release);
+int SndTrack_Step(SndTrack *track, SndPlayer *player, int trackNo, int play);
 void SndTrack_UpdateChannels(SndTrack *track, SndPlayer *player, BOOL release);
 
 /* Taken around reads of sound data the ARM9 may change; both are empty in this build. */

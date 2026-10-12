@@ -52,7 +52,8 @@ typedef struct SndTrack {
     u32 unk_20;
     u8 *base;   /* start of the track's sequence data */
     u8 *cursor; /* next byte to read */
-    u8 pad_2c[0x0f];
+    u8 *callStack[3]; /* return addresses of calls, and starts of loops */
+    u8 loopCount[3];  /* loops left for each loop on the call stack; 0 loops forever */
     u8 unk_3b;
     SndExChannel *channels;
 } SndTrack;

@@ -3168,6 +3168,10 @@ src/arm7/sdk/snd/snd_player_step_tracks.c:
     complete
     .text       start:0x037fffc8 end:0x03800048
 
+src/arm7/sdk/snd/snd_track_step.c:
+    complete
+    .text       start:0x03800048 end:0x038009fc
+
 src/arm7/sdk/snd/snd_track_note_on.c:
     complete
     .text       start:0x038009fc end:0x03800c08

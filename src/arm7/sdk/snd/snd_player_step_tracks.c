@@ -1,7 +1,5 @@
 #include "sdk/snd.h"
 
-int func_arm7_03800048(SndTrack *track, SndPlayer *player, int trackNo, int play);
-
 /* Runs one tick of every track of the player; play is FALSE when skipping ahead without starting notes. Returns TRUE once all tracks have ended. */
 BOOL SndPlayer_StepTracks(SndPlayer *player, int play)
 {
@@ -11,7 +9,7 @@ BOOL SndPlayer_StepTracks(SndPlayer *player, int play)
     for (i = 0; i < SND_TRACK_COUNT; i++) {
         SndTrack *track = SndPlayer_GetTrack(player, i);
         if (track != NULL && track->cursor != NULL) {
-            if (func_arm7_03800048(track, player, i, play) == 0) {
+            if (SndTrack_Step(track, player, i, play) == 0) {
                 playing = TRUE;
             } else {
                 SndPlayer_CloseTrack(player, i);
