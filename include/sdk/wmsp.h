@@ -272,6 +272,10 @@ typedef struct WmspSetLifeTimeRequest {
     u32 mpLifeTime;
 } WmspSetLifeTimeRequest;
 
+/* The request handlers, by apiid; the request thread runs one per request. */
+#define WMSP_API_COUNT 43
+extern void (*gWmspRequestHandlers[WMSP_API_COUNT])(void *request);
+
 /* What the ARM9 sends for a request about one station. */
 typedef struct WmspMacRequest {
     u16 apiid;

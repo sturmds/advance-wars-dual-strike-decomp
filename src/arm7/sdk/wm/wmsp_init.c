@@ -20,7 +20,7 @@ extern u8 data_arm7_027d7d3c[];
 
 void Wmsp_ReceiveRequest(int tag, WmspRequest *request, BOOL error);
 void Wmsp_WlReceiveThread(void *arg);
-void func_arm7_027c1cf8(void *arg);
+void Wmsp_RequestThread(void *arg);
 u16 Wifi_StartDriver(Unk_arm7_038057d4 *params);
 
 /* Sets up WMSP: its queues, reply mutex and two threads, the ARM9 request callback, then starts WL. */
@@ -51,7 +51,7 @@ void Wmsp_Init(Unk_arm7_038057d4 *params, Unk_arm7_038057d4_2 *priorities)
     Thread_Spawn_Arm7(&data_arm7_0380749c, Wmsp_WlReceiveThread, NULL, &data_arm7_027d813c, 0x400,
                          priorities->unk_04);
     Thread_MakeReady_Arm7(&data_arm7_0380749c);
-    Thread_Spawn_Arm7(&data_arm7_03807424, func_arm7_027c1cf8, NULL, data_arm7_027d7d3c, 0x1000,
+    Thread_Spawn_Arm7(&data_arm7_03807424, Wmsp_RequestThread, NULL, data_arm7_027d7d3c, 0x1000,
                          priorities->unk_0c);
     Thread_MakeReady_Arm7(&data_arm7_03807424);
 

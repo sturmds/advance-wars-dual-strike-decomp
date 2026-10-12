@@ -38,7 +38,7 @@ Wmsp_FreeIndication kind:function(arm,size=0x3c) addr:0x027c1a98
 Wmsp_DispatchIndication kind:function(arm,size=0x188) addr:0x027c1ad4
 Wmsp_WlReceiveThread kind:function(arm,size=0x98) addr:0x027c1c5c
 func_arm7_027c1cf4 kind:function(arm,size=0x4) addr:0x027c1cf4
-func_arm7_027c1cf8 kind:function(arm,size=0xb8) addr:0x027c1cf8
+Wmsp_RequestThread kind:function(arm,size=0xb8) addr:0x027c1cf8
 func_arm7_027c1db0 kind:function(arm,size=0x50) addr:0x027c1db0
 func_arm7_027c1e00 kind:function(arm,size=0x74) addr:0x027c1e00
 func_arm7_027c1e74 kind:function(arm,size=0x14) addr:0x027c1e74
@@ -535,7 +535,7 @@ func_arm7_027d6384 kind:function(arm,size=0x34) addr:0x027d6384
 func_arm7_027d63b8 kind:function(arm,size=0x70) addr:0x027d63b8
 func_arm7_027d6428 kind:function(arm,size=0x90) addr:0x027d6428
 func_arm7_027d64b8 kind:function(arm,size=0xb8) addr:0x027d64b8
-data_arm7_027d6570 kind:data(any) addr:0x027d6570
+gWmspRequestHandlers kind:data(any) addr:0x027d6570
 gWlTaskHandlers kind:data(any) addr:0x027d661c
 data_arm7_027d667c kind:data(any) addr:0x027d667c
 data_arm7_027d6680 kind:data(any) addr:0x027d6680
