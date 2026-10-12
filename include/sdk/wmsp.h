@@ -37,7 +37,16 @@ typedef struct WmspBuf {
     WMStatus *status;
     u8 pad_04[4];
     WmspReply *replyBuf;
+    u8 pad_0c[0xc4];
+    u8 unk_d0[0x24];                   /* three words are cleared by func_arm7_037fd9dc */
 } WmspBuf;
+
+/* What the ARM9 sends for a request that carries one value. */
+typedef struct WmspRequest {
+    u16 apiid;
+    u8 pad_02[2];
+    u32 arg;
+} WmspRequest;
 
 typedef struct WmspWork {
     u8 unk_0000[0x1518];
@@ -48,6 +57,10 @@ WmspWork *func_arm7_027c05e0(void);
 void func_arm7_027c73a4(void);
 int func_arm7_027c75fc(u16 *a, u16 *b);
 void func_arm7_03805688(int arg);
+void func_arm7_037fd9dc(void *object);
+void func_arm7_027c6eb4(u16 arg);
+void func_arm7_027c6f68(u16 arg);
+void func_arm7_027c70f8(void);
 WmspReply *func_arm7_03807640(void);
 void func_arm7_038076e8(void);
 
