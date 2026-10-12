@@ -1312,6 +1312,10 @@ src/arm7/sdk/wl/wifi_tx_build_ps_poll.c:
     complete
     .text       start:0x027cf484 end:0x027cf4d8
 
+src/arm7/sdk/wl/wifi_frame_new_deauthentication.c:
+    complete
+    .text       start:0x027cf4d8 end:0x027cf55c
+
 src/arm7/sdk/func_arm7_027d00b4.c:
     complete
     .text       start:0x027d00b4 end:0x027d00dc
