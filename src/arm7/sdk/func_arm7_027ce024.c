@@ -13,10 +13,10 @@ struct Unk_027ce024_a1 {
     u16 unk_2;
 };
 
-void func_arm7_027ca30c(int, void *, int);
+void WifiParam_StoreRetryLimit(int, void *, int);
 
 void func_arm7_027ce024(Unk_027ce024 *a0, Unk_027ce024_a1 *a1)
 {
     a1->unk_2 = 1;
-    func_arm7_027ca30c(a0->unk_10, a1, 1);
+    WifiParam_StoreRetryLimit(a0->unk_10, a1, 1);
 }

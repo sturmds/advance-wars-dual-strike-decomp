@@ -376,6 +376,10 @@ src/arm7/sdk/wl/wifi_param_store_allowed_channels.c:
     complete
     .text       start:0x027ca2cc end:0x027ca30c
 
+src/arm7/sdk/wl/wifi_param_store_retry_limit.c:
+    complete
+    .text       start:0x027ca30c end:0x027ca340
+
 src/arm7/sdk/func_arm7_027cab80.c:
     complete
     .text       start:0x027cab80 end:0x027cab94

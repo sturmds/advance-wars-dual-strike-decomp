@@ -166,7 +166,8 @@ typedef struct WlWork {
     WlBufferList inbox;  /* buffers received from the host */
     u8 pad_1e0[0x20];
     WlLimits limits;
-    u8 pad_2f8[8];
+    u8 pad_2f8[6];
+    u16 unk_2fe;
     WlState state;
 } WlWork;
 
@@ -174,6 +175,7 @@ typedef struct WlWork {
 #define WIFI_MAC_PREAMBLE_BITS (*(volatile u16 *)0x048080bc)
 #define WIFI_POST_BEACON_TIMER (*(volatile u16 *)0x04808134)
 #define WIFI_MAC_MODE_AND_WEP (*(volatile u16 *)0x04808006)
+#define WIFI_MAC_RETRY_LIMIT (*(volatile u16 *)0x0480802c)
 
 #define WIFI_LINK_VIEW_OF(work) ((WlLink *)(work)->state.pad_18)
 
