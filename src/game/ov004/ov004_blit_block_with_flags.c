@@ -16,9 +16,11 @@ void Ov004_BlitBlockWithFlags(Unk_ov004_022bf158* state, int blockX, int blockY,
   int row;
   int origin;
 
-  /* Not matched yet (90.4%): flags lands in r1 where the original has r2,
-     * and in the flip branch dst shares map's register. Both rows written as
-     * (base + row * n)[i] give the original's index-first addresses. */
+  /* Not matched yet (91.6%): in the flip branch dst shares map's register,
+     * and the else branch's row steps swap registers. Both rows written as
+     * (base + row * n)[i] give the original's index-first addresses. The
+     * else branch counts rows in blockX: that puts flags in r2 as in the
+     * original. */
   stride = state->blocksWide * 32;
   block = state->mapBlock;
   map = state->tileMap;
@@ -33,9 +35,9 @@ void Ov004_BlitBlockWithFlags(Unk_ov004_022bf158* state, int blockX, int blockY,
     }
   } else {
     map += origin;
-    for (row = 0; row < 32; row++) {
+    for (blockX = 0; blockX < 32; blockX++) {
       for (col = 0; col < 32; col++) {
-        (map + row * stride)[col] = (block + row * 32)[col] | flags;
+        (map + blockX * stride)[col] = (block + blockX * 32)[col] | flags;
       }
     }
   }
