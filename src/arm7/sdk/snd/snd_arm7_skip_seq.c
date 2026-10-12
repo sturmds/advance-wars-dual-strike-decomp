@@ -6,7 +6,7 @@ void SndTrack_ReleaseChannels(SndTrack *track, SndPlayer *player, int release);
 void SndTrack_FreeChannels(SndTrack *track);
 void func_arm7_037feebc(void);
 void SND_StartIntervalTimer(void);
-BOOL func_arm7_037fffc8(SndPlayer *player, BOOL doPeriodic);
+BOOL SndPlayer_StepTracks(SndPlayer *player, BOOL doPeriodic);
 void func_arm7_03800df4(SndPlayer *player);
 
 /* Moves the player's sequence ticks ticks forward without playing it: releases
@@ -26,7 +26,7 @@ void SndArm7_SkipSeq(int playerNo, u32 ticks)
     }
     func_arm7_037feebc();
     for (tick = 0; tick < ticks; tick++) {
-        if (func_arm7_037fffc8(player, FALSE)) {
+        if (SndPlayer_StepTracks(player, FALSE)) {
             func_arm7_03800df4(player);
             break;
         }
