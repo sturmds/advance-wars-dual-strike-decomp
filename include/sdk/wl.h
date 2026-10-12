@@ -276,7 +276,10 @@ typedef struct WlWork {
     WlTask tasks[24];
     WlBufferAllocator allocator;
     WlBufferList unk_15c;          /* holds the wifi config buffer */
-    u8 pad_168[0x1c8 - 0x168];
+    u8 pad_168[0x180 - 0x168];
+    /* Multicast and broadcast frames; TIM bit 0 is set while it is not empty. */
+    WlBufferList multicastQueue;
+    u8 pad_18c[0x1c8 - 0x18c];
     WlBufferList outbox; /* buffers waiting to go to the host */
     WlBufferList inbox;  /* buffers received from the host */
     u8 pad_1e0[0x20];
