@@ -141,4 +141,76 @@ struct CARDiRomPage {
 };
 extern CARDiRomPage data_022ac100;
 
+/*
+ * ARM7 side. Save chip access goes through the card SPI port; the ROM is read
+ * through the same registers as on the ARM9.
+ */
+#define IO_GAMECARD_SPI_CTRL (*(volatile u16 *)0x040001a0)
+#define IO_GAMECARD_SPI_BYTE (*(volatile u16 *)0x040001a2)
+
+#define CARD_SPI_ENABLE 0x8000
+#define SAVE_SPI_SELECT_PORT 0x2000           /* SPI port instead of the ROM bus */
+#define CARD_SPI_HOLD 0x0040           /* keep the chip select low after this byte */
+#define CARD_SPI_BUSY 0x0080
+
+#define CARD_RESULT_TIMEOUT 4
+
+/* Scanlines in one frame; used to count elapsed time from VCOUNT. */
+#define GAMECARD_TIMER_FRAME_LINES 263
+
+/* One SPI transaction: bytes left in all, and where the current transfer reads and writes. */
+typedef struct CARDiSpiTransfer CARDiSpiTransfer;
+struct CARDiSpiTransfer {
+    int remaining;                 /* the chip select is released on the last byte */
+    const u8 *src;
+    u8 *dst;
+};
+
+typedef void (*CARDiSpiByteFunction)(CARDiSpiTransfer *transfer);
+
+/* Time left in a wait counted in scanlines. */
+typedef struct CARDiLineTimer {
+    u16 lastLine;
+    int remaining;
+} CARDiLineTimer;
+
+extern CARDiSpiTransfer data_arm7_03809860;
+
+/*
+ * The ARM7 library state, data_arm7_03809280. It has the shape of CARDiCommon
+ * with a different OS thread: the offsets from src on are 4 higher, and the
+ * thread is 0x78 bytes.
+ */
+typedef struct CARDiArm7ThreadQueue {
+    void *head;
+    void *tail;
+} CARDiArm7ThreadQueue;
+
+typedef struct CARDiArm7Common {
+    CARDiCommandArg *cmd;
+    u8 unk_04[0x18];
+    u32 src;                       /* ROM read: address, destination and bytes left */
+    u8 *dst;
+    u32 len;
+    u32 dmaNo;                     /* DMA channel for the copy to RAM, 4 or more when none */
+    CARDCallback callback;
+    void *callbackArg;
+    u32 unk_34;
+    volatile u32 flag;             /* GAMECARD_FLAG_*; volatile is needed to match */
+    u32 unk_3C;
+    u8 thread[0x78];               /* the card thread */
+    void *waiter;                  /* thread to wake when the request ends */
+    CARDiArm7ThreadQueue queue;    /* threads waiting for CARD_STAT_BUSY to clear */
+} CARDiArm7Common;
+
+extern CARDiArm7Common data_arm7_03809280;
+
+/* ROM commands the ARM7 sends. The ROM control word for a 4 byte answer has all block size bits set. */
+#define GAMECARD_OP_GET_CHIP_ID 0xb8
+#define GAMECARD_REPLY_LEN_4 0x07000000
+#define GAMECARD_GAP_CLOCK_BITS 0x1fff        /* gap and clock fields of the control word */
+
+/* ROM control word the card header holds for normal reads. */
+#define BOOT_HEADER_CARD_TIMING (*(volatile u32 *)0x027ffe60)
+
 #endif
