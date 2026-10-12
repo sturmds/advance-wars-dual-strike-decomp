@@ -113,7 +113,7 @@ void Wmsp_SendReply(void *reply);
 extern u8 data_arm7_027d8160[16];
 
 WmspWork *func_arm7_027c05e0(void);
-void func_arm7_027c73a4(void);
+void WMSP_ResetStatus(void);
 int func_arm7_027c75fc(u16 *a, u16 *b);
 void func_arm7_037fd9dc(void *object);
 void func_arm7_027c6eb4(u16 arg);

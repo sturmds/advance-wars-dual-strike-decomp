@@ -347,21 +347,33 @@ typedef struct WMStatus {
     u16 state;                         /* WIRELESS_PHASE_* */
     u8 pad_02[0x0a];
     u32 mpFlag;                        /* 1 while MP runs */
-    u8 pad_10[0x0c];
+    u32 unk_10;
+    u32 unk_14;
+    u8 pad_18[4];
     u32 unk_1c;                        /* 1: MP sends set flag 0x8000 */
     u8 pad_20[0x26];
     u16 mpRecvBufSize;                 /* bytes in an MP receive buffer */
     u8 pad_48[8];
     const void *unk_50;                /* WM_SetMPDataToPortEx refuses this buffer */
-    u8 pad_54[0x32];
+    u8 pad_54[4];
+    u8 unk_58[0xc];                    /* two words cleared by func_arm7_037fd424 */
+    u8 pad_64[0x22];
     u16 mpReadyBitmap;                 /* the children that take part in MP */
     u8 pad_88[2];
     u16 unk_8a;
-    u8 pad_8c[0x2c];
+    u8 pad_8c[6];
+    u16 unk_92;
+    u16 unk_94;
+    u16 unk_96;
+    u8 pad_98[0x20];
     u16 linkLevel;
-    u8 pad_ba[8];
+    u8 pad_ba[4];
+    u16 unk_be;
+    u8 pad_c0[2];
     u16 unk_c2;                        /* WM_SetMPDataToPortEx needs 1 */
-    u8 pad_c4[0x18];
+    u8 pad_c4[6];
+    u16 unk_ca;
+    u8 pad_cc[0x10];
     u8 macAddress[6];
     u8 pad_e2[2];
     u8 pparam[0x10];                   /* start of the WMParentParam the parent runs with; unk_f4 is its maxEntry */
@@ -373,7 +385,8 @@ typedef struct WMStatus {
     u8 pad_186[8];
     u16 unk_18e;
     u16 unk_190;
-    u8 pad_192[0x162];
+    u8 pad_192[0x62];
+    u16 portSeqNo[16][8];              /* per station and port; reset to 1 */
     RadioOutboxEntry sendQueueData[WIRELESS_OUTBOX_ENTRIES];
     RadioOutboxList sendQueueFreeList;
     RadioOutboxList sendQueue[WIRELESS_URGENCY_LEVELS];
