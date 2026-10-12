@@ -12,6 +12,10 @@ src/sdk/svc/bios_unpack_lz77_by_bytes.c:
     complete
     .text       start:0x020000dc end:0x020000e0
 
+src/sdk/svc/svc_soft_reset.c:
+    complete
+    .text       start:0x02000136 end:0x0200013a
+
 src/sdk/svc/bios_unpack_huffman.c:
     complete
     .text       start:0x0200019c end:0x020001a0
@@ -20,17 +24,53 @@ src/sdk/svc/bios_unpack_lz77_by_halfwords.c:
     complete
     .text       start:0x020001fc end:0x02000200
 
+src/sdk/svc/bios_unpack_run_length_by_halfwords.c:
+    complete
+    .text       start:0x02000266 end:0x0200026a
+
+src/sdk/svc/svc_cpu_set.c:
+    complete
+    .text       start:0x020002e6 end:0x020002ea
+
+src/sdk/svc/svc_div_rem.c:
+    complete
+    .text       start:0x02000350 end:0x02000356
+
 src/sdk/svc/bios_await_irq_flags.c:
     complete
     .text       start:0x020003a8 end:0x020003ac
+
+src/sdk/svc/svc_unpack_bits.c:
+    complete
+    .text       start:0x0200041e end:0x02000422
 
 src/sdk/svc/svc_get_crc16.c:
     complete
     .text       start:0x02000480 end:0x02000484
 
+src/sdk/svc/svc_sqrt.c:
+    complete
+    .text       start:0x020004f2 end:0x020004f6
+
+src/sdk/svc/svc_halt.c:
+    complete
+    .text       start:0x0200055a end:0x0200055e
+
+src/sdk/svc/svc_wait_vblank_intr.c:
+    complete
+    .text       start:0x020005ba end:0x020005c0
+
+src/sdk/svc/bios_unpack_run_length_by_bytes.c:
+    complete
+    .text       start:0x02000626 end:0x0200062a
+
 src/sdk/svc/svc_cpu_fast_set.c:
     complete
     .text       start:0x020006a4 end:0x020006a8
+
+src/sdk/svc/svc_wait_by_loop.c:
+    complete
+    .text       start:0x02000716 end:0x0200071a
 
 src/sdk/svc/svc_div.c:
     complete
