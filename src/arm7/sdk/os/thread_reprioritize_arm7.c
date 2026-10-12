@@ -7,7 +7,7 @@ extern OSThread data_arm7_03807960;    /* where ARM9 checks for its idle thread;
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
 void func_arm7_037fc1d4(OSThread *thread);
-void func_arm7_037fbcf8(void);
+void Thread_SwitchToFirstReady_Arm7(void);
 
 /*
  * ARM7 copy of OS_SetThreadPriority: moves thread to its place in the list
@@ -40,7 +40,7 @@ BOOL Thread_Reprioritize_Arm7(OSThread *thread, u32 priority)
         }
         thread->priority = priority;
         func_arm7_037fc1d4(thread);
-        func_arm7_037fbcf8();
+        Thread_SwitchToFirstReady_Arm7();
     }
     func_arm7_037fdb94(irqState);
     return TRUE;
