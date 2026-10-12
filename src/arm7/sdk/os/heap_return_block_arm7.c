@@ -9,7 +9,7 @@ HeapBlockHeader *Heap_UnlinkBlock(HeapBlockHeader *list, HeapBlockHeader *cell);
 HeapBlockHeader *Heap_MergeIntoFreeList(HeapBlockHeader *list, HeapBlockHeader *cell);
 
 /* ARM7 copy of OS_FreeToHeap. Moves the block at ptr from the heap's used list to its free list. A negative heap means the current one. */
-void Heap_ReturnBlock_Arm7(ArenaRegionArm7 id, s32 heap, void *ptr)
+void Heap_ReturnBlock_Arm7(OSArenaId id, s32 heap, void *ptr)
 {
     OSHeapInfo *info;
     HeapRecord *desc;

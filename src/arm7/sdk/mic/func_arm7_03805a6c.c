@@ -8,6 +8,6 @@ void func_arm7_03805904(void);
 void func_arm7_03805a6c(void)
 {
     func_arm7_03805904();
-    WRAM_IRQ_SEEN_BITS |= IRQ_MASK_TIMER3;
-    REG_IF = IRQ_MASK_TIMER3;
+    OS7_IRQ_CHECK_FLAGS |= IRQ_MASK_TIMER3;
+    *REG_IF = IRQ_MASK_TIMER3;
 }

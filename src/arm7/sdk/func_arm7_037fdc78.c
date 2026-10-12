@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 int func_arm7_037fe1cc(u32 tag, u32 data, int err);
 

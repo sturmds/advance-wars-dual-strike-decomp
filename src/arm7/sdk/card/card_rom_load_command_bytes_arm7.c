@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/card.h"
+#include "sdk/card_arm7.h"
 
 /* Waits for the ROM port, then loads the 8 command bytes, most significant first. */
 void CardRom_LoadCommandBytes_Arm7(u32 commandHigh, u32 commandLow)

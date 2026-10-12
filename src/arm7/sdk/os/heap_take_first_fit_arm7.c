@@ -14,7 +14,7 @@ HeapBlockHeader *Heap_LinkAtFront(HeapBlockHeader *list, HeapBlockHeader *cell);
  * block, and returns the memory after the header. NULL if the arena has no
  * heaps or nothing fits. A negative heap means the current one.
  */
-void *Heap_TakeFirstFit_Arm7(ArenaRegionArm7 id, s32 heap, s32 size)
+void *Heap_TakeFirstFit_Arm7(OSArenaId id, s32 heap, s32 size)
 {
     OSHeapInfo *info;
     HeapRecord *desc;

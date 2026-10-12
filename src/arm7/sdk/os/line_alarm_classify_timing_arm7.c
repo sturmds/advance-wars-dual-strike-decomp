@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 /*
  * Compares frame and vcount (now) with the alarm's frame and line. Returns

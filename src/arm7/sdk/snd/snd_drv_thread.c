@@ -1,4 +1,5 @@
-#include "sdk/snd_drv.h"
+#include "sdk/os_arm7.h"
+#include "sdk/snd.h"
 
 void SndArm7_InitAlarms(void);
 u16 SndDrv_NextRandom(void);

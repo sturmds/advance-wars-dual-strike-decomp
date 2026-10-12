@@ -1,4 +1,4 @@
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 extern OSThreadInfo data_arm7_0380790c;   /* ARM7 OSi_ThreadInfo */
 

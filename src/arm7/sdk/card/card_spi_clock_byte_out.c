@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/card.h"
+#include "sdk/card_arm7.h"
 
 /* Clocks one byte out to the save chip. */
 void CardSpi_ClockByteOut(CARDiSpiTransfer *transfer)

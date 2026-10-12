@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 extern OSThreadInfo data_arm7_0380790c;
 int func_arm7_037fdb80(void);

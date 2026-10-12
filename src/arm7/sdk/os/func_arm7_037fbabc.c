@@ -1,4 +1,4 @@
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 extern BOOL data_arm7_038078f8;   /* set once the locks are set up */
 void func_arm7_037fb8e4(void);    /* spins for 0x1000 cycles */

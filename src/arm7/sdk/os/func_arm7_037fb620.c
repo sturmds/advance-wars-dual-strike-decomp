@@ -1,4 +1,4 @@
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 /* ARM7 copy of OS_ResetRequestIrqMask: writing a 1 bit to IF clears that pending interrupt. Returns the old IF. */
 OSIrqMask func_arm7_037fb620(OSIrqMask mask)

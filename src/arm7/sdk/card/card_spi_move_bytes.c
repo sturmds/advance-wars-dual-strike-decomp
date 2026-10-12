@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/card.h"
+#include "sdk/card_arm7.h"
 
 /* Moves count bytes with transferByte. The chip select stays held until the last byte of the whole transaction, so a command and its answer take two calls. */
 void CardSpi_MoveBytes(const u8 *src, u8 *dst, int count, CARDiSpiByteFunction transferByte)

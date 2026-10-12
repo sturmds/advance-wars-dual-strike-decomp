@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/card.h"
+#include "sdk/card_arm7.h"
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
@@ -35,7 +35,7 @@ void Card_ServiceThread_Arm7(void *arg)
             } else if (common->flag & CARD_STAT_TASK) {
                 break;
             }
-            common->waiter = common->thread;
+            common->waiter = &common->thread;
             Thread_WaitOnQueue_Arm7(NULL);
         }
         func_arm7_037fdb94(interrupts);
@@ -49,7 +49,7 @@ void Card_ServiceThread_Arm7(void *arg)
             common->flag &= ~(CARD_STAT_BUSY | CARD_STAT_TASK);
             Thread_ReadyAllWaiters_Arm7(&common->queue);
             if (common->flag & GAMECARD_FLAG_PEER_JOB_PENDING) {
-                Thread_MakeReady_Arm7(common->thread);
+                Thread_MakeReady_Arm7(&common->thread);
             }
             func_arm7_037fdb94(interrupts);
         } else {

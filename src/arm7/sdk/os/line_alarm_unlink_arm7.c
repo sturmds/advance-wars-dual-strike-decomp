@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 extern OSVAlarmQueue gOsiVAlarmQueue_Arm7;
 

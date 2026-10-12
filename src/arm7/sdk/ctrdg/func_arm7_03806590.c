@@ -1,6 +1,6 @@
 #include "types.h"
 #include "sdk/ctrdg.h"
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 void func_arm7_03806590(GbaSlotWaitStates *timing)
 {

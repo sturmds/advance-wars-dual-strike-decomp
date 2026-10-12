@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 asm OSIntrMode func_arm7_037fdbc0(OSIntrMode state)
 {

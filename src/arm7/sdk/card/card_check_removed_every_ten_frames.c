@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/card.h"
+#include "sdk/card_arm7.h"
 #include "sdk/pm.h"
 
 void Card_PushRemovalTagWord_Arm7(u32 word, u32 waitCount);

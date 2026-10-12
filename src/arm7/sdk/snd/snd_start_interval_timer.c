@@ -1,4 +1,5 @@
-#include "sdk/snd_drv.h"
+#include "sdk/os_arm7.h"
+#include "sdk/snd.h"
 
 void Alarm_ArmRepeating_Arm7(OSAlarm *alarm, OSTick start, OSTick period, OSAlarmHandler handler, void *arg);
 void SndDrv_OnIntervalAlarm(void *arg);

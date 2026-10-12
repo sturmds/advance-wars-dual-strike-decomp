@@ -1,4 +1,4 @@
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 void func_arm7_037fb8e4(void);   /* spins for 0x1000 cycles */
 u32 func_arm7_037fb964(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL disableFiq);   /* ARM7 OSi_DoLockByWord */

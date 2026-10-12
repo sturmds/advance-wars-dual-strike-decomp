@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/card.h"
+#include "sdk/card_arm7.h"
 
 void func_arm7_038031ac(void);
 void func_arm7_038032a4(u32 byteCount);

@@ -1,4 +1,4 @@
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 extern OSIrqFunction data_arm7_03807750[];   /* handlers for the interrupts that have no slot, indexed by IE bit */
 extern IrqSlotEntry data_arm7_038078ec;          /* data_arm7_0380788c[OS7_IRQ_SLOT_VBLANK] */

@@ -11,7 +11,7 @@ void func_arm7_037fdb94(int state);
  * the OSHeapInfo, then maxHeaps unused heap slots. Returns the first byte
  * after them, 32-byte aligned; heaps are made from there to end.
  */
-void *Heap_SetUpArenaTable_Arm7(ArenaRegionArm7 id, void *start, void *end, s32 maxHeaps)
+void *Heap_SetUpArenaTable_Arm7(OSArenaId id, void *start, void *end, s32 maxHeaps)
 {
     int irqState = func_arm7_037fdb80();
     OSHeapInfo *info = start;

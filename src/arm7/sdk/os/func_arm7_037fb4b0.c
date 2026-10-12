@@ -1,4 +1,4 @@
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 #include "sdk/pm.h"
 
 /* VBlank interrupt handler, entry 0 of the ARM7 IRQ table: counts the frame and runs the VBlank slot's handler. */

@@ -12,7 +12,7 @@ void func_arm7_037fdb94(int state);
  * counted), or -1 if anything is wrong or the blocks do not add up to the
  * heap's size.
  */
-s32 Heap_VerifyAndCountFree_Arm7(ArenaRegionArm7 id, s32 heap)
+s32 Heap_VerifyAndCountFree_Arm7(OSArenaId id, s32 heap)
 {
     OSHeapInfo *info;
     HeapRecord *desc;

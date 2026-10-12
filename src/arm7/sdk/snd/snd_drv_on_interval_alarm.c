@@ -1,4 +1,5 @@
-#include "sdk/snd_drv.h"
+#include "sdk/os_arm7.h"
+#include "sdk/snd.h"
 
 BOOL func_arm7_037fc44c(OSMessageQueue *queue, OSMessage msg, int flags);
 

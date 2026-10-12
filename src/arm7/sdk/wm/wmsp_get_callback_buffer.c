@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 #include "sdk/wmsp.h"
 
 void func_arm7_037fc624(OSMutex *mutex);

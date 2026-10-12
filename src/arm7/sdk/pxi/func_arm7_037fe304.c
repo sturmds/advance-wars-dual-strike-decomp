@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 #include "sdk/pxi.h"
 
 extern u16 data_arm7_03807ab4;

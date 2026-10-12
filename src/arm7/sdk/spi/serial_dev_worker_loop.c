@@ -1,8 +1,8 @@
 #include "types.h"
 #include "sdk/spi_thread.h"
+#include "sdk/tp.h"
 
 BOOL func_arm7_037fc3ac(OSMessageQueue *queue, OSMessage *msg, int flags); /* OS_ReceiveMessage */
-void TP_ExecuteProcess(SerialBusJob *entry);
 void func_arm7_027d43dc(SerialBusJob *entry);   /* NVRAM job */
 void func_arm7_03805aa8(SerialBusJob *entry);   /* microphone job */
 void PM_ExecuteProcess(SerialBusJob *entry);   /* power chip job */

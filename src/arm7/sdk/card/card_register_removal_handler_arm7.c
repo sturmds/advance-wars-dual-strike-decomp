@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/card.h"
+#include "sdk/card_arm7.h"
 #include "sdk/pxi.h"
 
 void func_arm7_037fe0a0(void);                                  /* PXI_Init */

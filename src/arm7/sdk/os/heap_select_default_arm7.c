@@ -7,7 +7,7 @@ int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
 
 /* ARM7 copy of OS_SetCurrentHeap. Picks the arena's default heap and returns the previous one. */
-s32 Heap_SelectDefault_Arm7(ArenaRegionArm7 id, s32 heap)
+s32 Heap_SelectDefault_Arm7(OSArenaId id, s32 heap)
 {
     int irqState = func_arm7_037fdb80();
     OSHeapInfo *info = data_arm7_03807a54[id];

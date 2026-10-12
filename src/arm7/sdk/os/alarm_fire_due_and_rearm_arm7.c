@@ -20,7 +20,7 @@ void Alarm_FireDueAndRearm_Arm7(void)
 
     REG_TM1CNT_H = 0;
     func_arm7_037fb654(IRQ_MASK_TIMER1);
-    WRAM_IRQ_SEEN_BITS |= IRQ_MASK_TIMER1;
+    OS7_IRQ_CHECK_FLAGS |= IRQ_MASK_TIMER1;
     now = Tick_Read64_Arm7();
 
     alarm = gOsiAlarmQueue_Arm7.head;

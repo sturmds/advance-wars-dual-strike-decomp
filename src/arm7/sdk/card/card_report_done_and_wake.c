@@ -1,7 +1,7 @@
 /* needed to match: the original was built without copy propagation */
 #pragma opt_propagation off
 #include "types.h"
-#include "sdk/card.h"
+#include "sdk/card_arm7.h"
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
@@ -21,7 +21,7 @@ void Card_ReportDoneAndWake(void)
     common->flag &= ~(CARD_STAT_BUSY | CARD_STAT_TASK);
     Thread_ReadyAllWaiters_Arm7(&common->queue);
     if (common->flag & GAMECARD_FLAG_WORKER_SLEEPS) {
-        Thread_MakeReady_Arm7(common->thread);
+        Thread_MakeReady_Arm7(&common->thread);
     }
     func_arm7_037fdb94(interrupts);
     if (callback != NULL) {

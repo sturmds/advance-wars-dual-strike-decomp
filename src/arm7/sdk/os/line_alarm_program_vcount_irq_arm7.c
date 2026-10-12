@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 #include "sdk/gx.h"
 
 OSIrqMask func_arm7_037fb690(OSIrqMask mask);

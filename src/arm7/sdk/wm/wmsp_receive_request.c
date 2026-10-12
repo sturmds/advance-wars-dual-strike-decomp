@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 #include "sdk/wmsp.h"
 
 extern OSMessageQueue data_arm7_027d6ca8;

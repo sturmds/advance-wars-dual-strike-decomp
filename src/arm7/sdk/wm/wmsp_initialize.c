@@ -1,3 +1,4 @@
+#include "sdk/pm.h"
 #include "sdk/wmsp.h"
 
 void WMSP_Initialize(WmspInitRequest *request)

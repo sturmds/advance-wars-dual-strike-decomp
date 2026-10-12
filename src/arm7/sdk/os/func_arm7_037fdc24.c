@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 void func_arm7_037fdd34(u32 dmaNo);
 OSIrqMask func_arm7_037fb6c8(OSIrqMask mask);

@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/card.h"
+#include "sdk/card_arm7.h"
 
 void Thread_MakeReady_Arm7(void *thread);                /* looks like OS_WakeupThreadDirect */
 
@@ -52,7 +52,7 @@ void Card_OnRequestTagMessage_Arm7(int tag, u32 data, int err)
         if (common->flag & CARD_STAT_BUSY) {
             Thread_MakeReady_Arm7(common->waiter);
         } else {
-            Thread_MakeReady_Arm7(common->thread);
+            Thread_MakeReady_Arm7(&common->thread);
         }
     }
 }

@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/card.h"
+#include "sdk/card_arm7.h"
 
 void CardRom_LoadCommandBytes_Arm7(u32 commandHigh, u32 commandLow);
 int CardRom_TakeFromBufferedPage_Arm7(CARDiRomPage *page);

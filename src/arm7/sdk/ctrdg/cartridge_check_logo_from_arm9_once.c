@@ -1,6 +1,6 @@
 #include "types.h"
 #include "sdk/ctrdg.h"
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 OSIrqMask func_arm7_037fb6c8(OSIrqMask mask);   /* OS_SetIrqMask */
 void func_arm7_037fdc04(u32 count);             /* SVC_WaitByLoop through a veneer */

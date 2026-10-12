@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/card.h"
+#include "sdk/card_arm7.h"
 #include "sdk/gx.h"
 
 int func_arm7_037fdbe4(int arg);

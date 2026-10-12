@@ -16,17 +16,17 @@ void SndArm7_StartAlarm(int alarmNo)
     int arg;
     alarm = &data_arm7_03809010[alarmNo];
     if (alarm->active != 0) {
-        Alarm_Withdraw_Arm7(alarm->osAlarm);
+        Alarm_Withdraw_Arm7(&alarm->osAlarm);
         alarm->active = 0;
     }
     start = alarm->start;
     period = alarm->period;
     arg = alarmNo | (alarm->tag << 8);
-    func_arm7_037fd424(alarm->osAlarm);
+    func_arm7_037fd424(&alarm->osAlarm);
     if (period == 0) {
-        Alarm_ArmOneShot_Arm7(alarm->osAlarm, start, SndArm7_AlarmHandler, arg);
+        Alarm_ArmOneShot_Arm7(&alarm->osAlarm, start, SndArm7_AlarmHandler, arg);
     } else {
-        Alarm_ArmRepeating_Arm7(alarm->osAlarm, start + Tick_Read64_Arm7(), period, SndArm7_AlarmHandler, arg);
+        Alarm_ArmRepeating_Arm7(&alarm->osAlarm, start + Tick_Read64_Arm7(), period, SndArm7_AlarmHandler, arg);
     }
     alarm->active = 1;
 }

@@ -1,4 +1,5 @@
-#include "sdk/snd_drv.h"
+#include "sdk/os_arm7.h"
+#include "sdk/snd.h"
 
 /* Message queue init; the definition types the buffer as int. */
 void func_arm7_037fc4e0(OSMessageQueue *queue, int buffer, int count);

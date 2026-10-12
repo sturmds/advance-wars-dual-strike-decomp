@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/card.h"
+#include "sdk/card_arm7.h"
 
 /*
  * TRUE once the game card was found removed. Until then each call checks

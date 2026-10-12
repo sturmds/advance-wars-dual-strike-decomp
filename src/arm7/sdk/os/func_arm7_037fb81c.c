@@ -1,4 +1,4 @@
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 /*
  * ARM7 copy of OS_GetLockID: finds a free lock ID in the ARM7's two-word map

@@ -1,4 +1,4 @@
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 extern OSIrqFunction data_arm7_03807750[];   /* handler table, one entry per interrupt bit */
 void func_arm7_037fb394(void);

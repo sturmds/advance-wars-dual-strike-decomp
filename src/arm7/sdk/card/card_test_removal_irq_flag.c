@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/card.h"
+#include "sdk/card_arm7.h"
 
 /* Card removal check by interrupt: the card line interrupt flag means the card is gone. */
 BOOL Card_TestRemovalIrqFlag(void)

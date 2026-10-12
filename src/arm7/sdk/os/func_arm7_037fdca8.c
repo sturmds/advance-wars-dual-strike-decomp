@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 /* Set to 1 when the ARM9 sends the reset command; func_arm7_037fdce4 reads it. */
 extern u16 data_arm7_03807ab0;

@@ -1,4 +1,4 @@
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 /* ARM7 copy of OS_EnableIrqMask: sets the mask bits in IE with IME off. Returns the old IE. */
 OSIrqMask func_arm7_037fb690(OSIrqMask mask)

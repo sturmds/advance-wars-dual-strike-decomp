@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/card.h"
+#include "sdk/card_arm7.h"
 #include "sdk/gx.h"
 
 /* Counts down the scanlines since the last call, handling the wrap from the last line to 0. Returns whether time is left. */

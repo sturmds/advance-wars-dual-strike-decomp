@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 #include "sdk/wmsp.h"
 
 extern OSThread data_arm7_0380749c;

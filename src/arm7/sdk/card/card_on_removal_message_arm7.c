@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/card.h"
+#include "sdk/card_arm7.h"
 
 void func_arm7_0380390c(void);   /* stops sound, then the system */
 void func_arm7_037fdc10(void);   /* OS_Terminate */

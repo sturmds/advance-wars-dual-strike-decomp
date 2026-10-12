@@ -7,8 +7,8 @@
 
 /* The SPI thread: it takes jobs from a message queue and runs them one at a
  * time. A device holds the bus while it runs a job; SPI_Lock lets other ARM7
- * code take it too. sdk/tp.h pulls in the ARM9 sdk/os.h, so files that
- * include this header declare the TP calls they need themselves. */
+ * code take it too. SerialBusThreadState holds an ARM7 OSThread, so it is kept out of
+ * sdk/spi.h, which the ARM9 TP code includes. */
 
 #define SERIAL_THREAD_STACK_BYTES 0x200
 #define SERIAL_JOB_QUEUE_DEPTH 16           /* jobs waiting at once */

@@ -1,4 +1,4 @@
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 int func_arm7_037fdb80(void);                           /* ARM7 OS_DisableInterrupts */
 void func_arm7_037fdb94(int state);                     /* ARM7 OS_RestoreInterrupts */

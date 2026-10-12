@@ -3,89 +3,12 @@
 
 #include "types.h"
 #include "sdk/os.h"
-
-/* Game card registers. */
-#define IO_GAMECARD_MASTER (*(volatile u8 *)0x040001a1)
-#define IO_GAMECARD_ROM_CTRL (*(volatile u32 *)0x040001a4)
-#define IO_GAMECARD_CMD_BYTES ((volatile u8 *)0x040001a8)   /* 8 command bytes, sent first byte first */
-#define IO_GAMECARD_READ_PORT (*(volatile u32 *)0x04100010)
-
-/* MASTERCNT: card enable, with interrupts off and ROM (not backup) mode. */
-#define CARDMST_ENABLE 0x80
-#define CARDMST_IRQ 0x40
-
-/* GAMECARD_ROM_CTRL bits. */
-#define CARD_DATA_READY 0x00800000
-#define CARD_COMMAND_MASK 0x07000000   /* block size field */
-#define GAMECARD_XFER_ONE_PAGE 0x01000000         /* one 512-byte block */
-#define CARD_RESET_HI 0x20000000
-#define CARD_START 0x80000000
-
-/* Card command: read one 512-byte page. */
-#define CARD_CMD_READ_PAGE 0xb7
-
-#define GAMECARD_ROM_PAGE_BYTES 512
-
-/*
- * Backup memory (save chip) support. A backup type packs the chip kind in
- * bits 0-7 and log2 of its size in bytes in bits 8-15.
- */
-#define SAVE_CHIP_TYPE_EEPROM 1
-#define SAVE_CHIP_TYPE_FLASH 2
-#define SAVE_CHIP_TYPE_FRAM 3
-
-/* Chip geometry and timings that CardSave_FillGeometryFromType fills from the type. */
-typedef struct CARDiBackupSpec {
-    u32 totalSize;
-    u32 sectorSize;
-    u32 pageSize;
-    u32 addrWidth;          /* bytes in a chip address */
-    u32 unk_10;
-    u32 unk_14;
-    u32 unk_18;
-    u32 unk_1C;
-    u32 unk_20;
-    u32 unk_24;
-} CARDiBackupSpec;
-
-/* What the card thread sends to the other CPU for one backup request. */
-typedef struct CARDiCommandArg {
-    int result;                    /* GAMECARD_STATUS_*; 0 means success */
-    u32 type;                      /* backup type */
-    u32 unk_08;
-    u32 unk_0C;
-    u32 unk_10;
-    u32 unk_14;
-    CARDiBackupSpec spec;
-} CARDiCommandArg;
-
-#define CARD_RESULT_SUCCESS 0
-#define CARD_RESULT_UNSUPPORTED 3
-
-/* Lock targets of CARDi_LockResource and CARDi_UnlockResource. */
-#define CARD_TARGET_ROM 1
-#define CARD_TARGET_BACKUP 2
-
-/* CARDiCommon.flag bits. */
-#define CARD_STAT_INIT 0x01            /* CARD_Init has run */
-#define GAMECARD_FLAG_PEER_GREETED 0x02        /* the other CPU has been sent its first request */
-#define CARD_STAT_BUSY 0x04            /* a request is running */
-#define CARD_STAT_TASK 0x08            /* the card thread has a task to run */
-#define GAMECARD_FLAG_WORKER_SLEEPS 0x10     /* the card thread sleeps until the request ends */
-#define GAMECARD_FLAG_AWAIT_PEER_REPLY 0x20        /* waiting for the other CPU's answer */
-
-/* CARDiCommon.priorityMode: base priority, or follow the requester's. */
-#define GAMECARD_PRIO_OUTRANK_CALLER 32
-#define GAMECARD_PRIO_YIELD_TO_CALLER 33
-
-#define GAMECARD_WORKER_STACK_BYTES 0x400
-#define GAMECARD_BOUNCE_BUF_BYTES 0x100
+#include "sdk/card_common.h"
 
 typedef struct CARDiCommon CARDiCommon;
 typedef void (*GameCardTaskStep)(CARDiCommon *common);
-typedef void (*CARDCallback)(void *arg);
 
-/* CARD library state, data_022abb00 (0x5e0 bytes with the thread stack). */
+/* ARM9 CARD library state, data_022abb00 (0x5e0 bytes with the thread stack). */
 struct CARDiCommon {
     CARDiCommandArg *cmd;
     u32 unk_04;
@@ -112,147 +35,10 @@ struct CARDiCommon {
 
 extern CARDiCommon data_022abb00;
 
-/* PXI messages. Tag 11 carries backup requests; tag 14 the card removal notice. */
-#define FIFO_TAG_CARD_SERVICE 11
-#define FIFO_TAG_CARD_REMOVAL 14
-#define GAMECARD_MSG_REMOVED 17
-#define GAMECARD_REQ_HANDSHAKE 0
-#define GAMECARD_STATUS_RESEND 4       /* the other CPU asks for the request to be sent again */
-
 /* Set once the other CPU reports the card removed, and the game's handler for that. */
 extern BOOL data_022ac320;
 extern BOOL (*data_022ac324)(void);
 
-/* Status halfword set by the other CPU: bit 15 asks for a power off after card removal. */
-#define REMOVAL_HALT_STATUS_WORD (*(volatile u16 *)0x027fffa8)
-#define REMOVAL_HALT_POWER_BIT 0x8000
-
-/* IRQ mask bit: a card data transfer ended. */
-#define IRQ_CARD_DATA 0x80000
-
-/* ROM read work, data_022ac100: the page being read and its control word. */
-typedef struct CARDiRomPage CARDiRomPage;
-struct CARDiRomPage {
-    void (*readPages)(CARDiRomPage *page);   /* reads the pages left after the first copy */
-    u32 control;                        /* IO_GAMECARD_ROM_CTRL value that starts a page read */
-    u32 address;                        /* ROM address of the page held in data */
-    u8 unk_0C[20];
-    u8 data[GAMECARD_ROM_PAGE_BYTES];
-};
 extern CARDiRomPage data_022ac100;
-
-/*
- * ARM7 side. Save chip access goes through the card SPI port; the ROM is read
- * through the same registers as on the ARM9.
- */
-#define IO_GAMECARD_SPI_CTRL (*(volatile u16 *)0x040001a0)
-#define IO_GAMECARD_SPI_BYTE (*(volatile u16 *)0x040001a2)
-
-#define CARD_SPI_ENABLE 0x8000
-#define SAVE_SPI_SELECT_PORT 0x2000           /* SPI port instead of the ROM bus */
-#define CARD_SPI_HOLD 0x0040           /* keep the chip select low after this byte */
-#define CARD_SPI_BUSY 0x0080
-
-#define CARD_RESULT_TIMEOUT 4
-#define CARD_RESULT_FAILURE 1          /* verify found a byte that differs */
-
-/* Save chip commands. */
-#define SAVE_CHIP_OP_FILL_ERASED_PAGE 0x02   /* write a page that was erased */
-#define SAVE_CHIP_OP_FETCH_BYTES 0x03
-#define SAVE_CHIP_OP_ERASE_AND_WRITE 0x0a   /* erase and write a page (flash) */
-#define SAVE_CHIP_OP_WIPE_SECTOR 0xd8
-
-/* Scanlines in one frame; used to count elapsed time from VCOUNT. */
-#define GAMECARD_TIMER_FRAME_LINES 263
-
-/* One SPI transaction: bytes left in all, and where the current transfer reads and writes. */
-typedef struct CARDiSpiTransfer CARDiSpiTransfer;
-struct CARDiSpiTransfer {
-    int remaining;                 /* the chip select is released on the last byte */
-    const u8 *src;
-    u8 *dst;
-    BOOL verifyOk;                 /* verify: no byte has differed so far */
-};
-
-typedef void (*CARDiSpiByteFunction)(CARDiSpiTransfer *transfer);
-
-/* Time left in a wait counted in scanlines. */
-typedef struct CARDiLineTimer {
-    u16 lastLine;
-    int remaining;
-} CARDiLineTimer;
-
-extern CARDiSpiTransfer data_arm7_03809860;
-
-/*
- * The ARM7 library state, data_arm7_03809280. It has the shape of CARDiCommon
- * with a different OS thread: the offsets from src on are 4 higher, and the
- * thread is 0x78 bytes.
- */
-typedef struct CARDiArm7ThreadQueue {
-    void *head;
-    void *tail;
-} CARDiArm7ThreadQueue;
-
-typedef struct CARDiArm7Common {
-    CARDiCommandArg *cmd;
-    u32 command;                   /* request from the other CPU: index into the request table */
-    u32 recvStep;                  /* 0: the next PXI word is a request; 1: the command block address */
-    int lockOwner;                 /* OS lock id of the owner, OS_LOCK_ID_ERROR when free */
-    int lockCount;
-    u16 lockQueue;                 /* threads waiting for the lock, as a mask of thread ids */
-    u8 pad_16[2];
-    u32 lockTarget;
-    u32 src;                    /* ROM read: address, destination and bytes left */
-    u8 *dst;
-    u32 len;
-    u32 dmaNo;                     /* DMA channel for the copy to RAM, 4 or more when none */
-    CARDCallback callback;
-    void *callbackArg;
-    void (*task)(struct CARDiArm7Common *common);   /* run by the card thread for CARD_STAT_TASK */
-    volatile u32 flag;             /* GAMECARD_FLAG_*; volatile is needed to match */
-    u32 priority;                  /* card thread priority */
-    u8 thread[0x78];               /* the card thread */
-    void *waiter;                  /* thread to wake when the request ends */
-    CARDiArm7ThreadQueue queue;    /* threads waiting for CARD_STAT_BUSY to clear */
-} CARDiArm7Common;
-
-extern CARDiArm7Common data_arm7_03809280;
-
-/* ARM7 meaning of flag bit 0x10: a request from the other CPU waits for the card thread. */
-#define GAMECARD_FLAG_PEER_JOB_PENDING 0x10
-
-/* ROM commands the ARM7 sends. The ROM control word for a 4 byte answer has all block size bits set. */
-#define GAMECARD_OP_GET_CHIP_ID 0xb8
-#define GAMECARD_REPLY_LEN_4 0x07000000
-#define GAMECARD_GAP_CLOCK_BITS 0x1fff        /* gap and clock fields of the control word */
-
-/* ROM control word the card header holds for normal reads. */
-#define BOOT_HEADER_CARD_TIMING (*(volatile u32 *)0x027ffe60)
-
-/*
- * Card removal check on the ARM7. The chip ID read at boot sits at the start
- * of one of two copies of a boot info block; the halfword at 0x027ffc10 picks
- * the copy (0: the one at 0x027ff800). Bit 0 of the byte at 0x027ffc1f asks
- * for the check by chip ID instead of by the card interrupt.
- */
-#define BOOT_CHIP_ID_COPY_SELECT (*(volatile u16 *)0x027ffc10)
-#define BOOT_CHIP_ID_FIRST_COPY ((volatile u32 *)0x027ff800)
-#define BOOT_CHIP_ID_SECOND_COPY ((volatile u32 *)0x027ffc00)
-#define BOOT_REMOVAL_TEST_MODE (*(volatile u8 *)0x027ffc1f)
-#define REMOVAL_TEST_USES_CHIP_ID 0x01
-
-/* IE and IF bit: the card raised its interrupt line (it does when pulled out). */
-#define IRQ_CARD_IREQ 0x100000
-
-/* PXI word from the ARM9 under FIFO_TAG_CARD_REMOVAL: the card was removed, shut down. */
-#define GAMECARD_MSG_POWER_DOWN 1
-#define CARD_PXI_COMMAND_MASK 0x3f    /* command bits of a word under that tag */
-
-/* Set once a check found the card removed; the checks return TRUE while the card is there. */
-extern BOOL gCardRemoved;
-BOOL Card_TestRemovalIrqFlag(void);
-BOOL Card_CompareChipIdWithBoot(void);
-BOOL CARD_IsPulledOut(void);
 
 #endif

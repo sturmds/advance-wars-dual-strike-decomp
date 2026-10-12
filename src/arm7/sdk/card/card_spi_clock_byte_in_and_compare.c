@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/card.h"
+#include "sdk/card_arm7.h"
 
 /*
  * Clocks one byte in from the save chip and compares it with the next source

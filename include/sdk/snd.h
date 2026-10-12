@@ -2,7 +2,7 @@
 #define SDK_SND_H
 
 #include "types.h"
-#include "sdk/os.h"
+#include "sdk/os_common.h"
 #include "game/sound_bank.h"
 #include "game/sound_wave_arc.h"
 #include "sdk/snd_seq.h"
@@ -112,7 +112,7 @@ typedef struct SndArm7Alarm {
     u8 pad_02[2];
     u64 start; /* delay before the first firing, in ticks */
     u64 period; /* 0 for a one-shot alarm */
-    u8 osAlarm[44];
+    OSAlarm osAlarm;
 } SndArm7Alarm;
 
 #define SOUND_TIMER_SLOTS_ARM7 8
@@ -148,5 +148,20 @@ void SndArm7_StartAlarm(int alarmNo);
 
 /* The ARM7's pointer to the ARM9's shared work; NULL until the ARM9 sends it. */
 extern SndSharedWork *data_arm7_0380808c;
+
+/* Thread of the ARM7 sound driver and the alarm that wakes it every 2728 ticks (about 5.2 ms). */
+
+/* Messages the driver thread waits for. */
+enum {
+    SOUND_THREAD_MSG_TICK = 1, /* the interval alarm fired: run sequences and envelopes */
+    SOUND_THREAD_MSG_NEW_REQUESTS = 2    /* the ARM9 sent commands */
+};
+
+extern OSMessageQueue data_arm7_03807b90; /* messages to the driver thread */
+extern OSAlarm data_arm7_03807bc4;        /* the interval alarm */
+
+void SND_InitIntervalTimer(void);
+void SND_StartIntervalTimer(void);
+OSMessage SND_WaitForIntervalTimer(void);
 
 #endif

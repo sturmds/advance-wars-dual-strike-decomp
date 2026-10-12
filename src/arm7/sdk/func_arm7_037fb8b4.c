@@ -1,4 +1,4 @@
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 asm void func_arm7_037fb8b4(int lockID)
 {

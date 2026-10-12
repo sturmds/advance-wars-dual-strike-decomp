@@ -5,8 +5,8 @@ extern BOOL data_arm7_03807a50;    /* set once the arenas are set up */
 
 void func_arm7_037fc6fc(int id, int lo);    /* OS_SetArenaLo; lo is an address */
 void func_arm7_037fc710(int id, int hi);    /* OS_SetArenaHi; hi is an address */
-void *Arena_DefaultHighEnd_Arm7(ArenaRegionArm7 id);
-void *Arena_DefaultLowEnd_Arm7(ArenaRegionArm7 id);
+void *Arena_DefaultHighEnd_Arm7(OSArenaId id);
+void *Arena_DefaultLowEnd_Arm7(OSArenaId id);
 
 /* ARM7 copy of OS_InitArena. Gives each ARM7 arena its default bounds, once. */
 void Arena_ApplyDefaults_Arm7(void)

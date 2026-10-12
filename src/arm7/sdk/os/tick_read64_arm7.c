@@ -17,7 +17,7 @@ u64 Tick_Read64_Arm7(void)
     overflows = gOsiTickCounter_Arm7 & 0x0000ffffffffffffULL;
 
     /* The overflow interrupt is pending but has not been counted yet. */
-    if ((REG_IF & IRQ_MASK_TIMER0) && !(counter & 0x8000)) {
+    if ((*REG_IF & IRQ_MASK_TIMER0) && !(counter & 0x8000)) {
         overflows++;
     }
     func_arm7_037fdb94(irqState);

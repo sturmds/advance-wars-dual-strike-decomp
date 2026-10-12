@@ -1,4 +1,4 @@
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 #include "sdk/gx.h"
 
 #define DISPSTAT_VBLANK_IRQ 0x8

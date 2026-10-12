@@ -1,4 +1,4 @@
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 extern u16 data_arm7_0380773c[];   /* IE bit of each ARM7 IRQ slot */
 OSIrqMask func_arm7_037fb654(OSIrqMask mask);

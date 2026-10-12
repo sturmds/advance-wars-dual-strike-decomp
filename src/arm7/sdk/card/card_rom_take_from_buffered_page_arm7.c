@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/card.h"
+#include "sdk/card_arm7.h"
 
 void func_arm7_037fdf68(const void *src, void *dest, u32 size);
 

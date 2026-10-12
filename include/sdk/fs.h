@@ -2,7 +2,7 @@
 #define SDK_FS_H
 
 #include "types.h"
-#include "sdk/os.h"
+#include "sdk/os_common.h"
 
 typedef struct FSArchive FSArchive;
 typedef struct FSFile FSFile;

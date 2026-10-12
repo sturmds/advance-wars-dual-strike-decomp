@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/card.h"
+#include "sdk/card_arm7.h"
 
 int func_arm7_037fe1cc(u32 tag, u32 data, int err);   /* PXI_SendWordByFifo: 0 once queued */
 void func_arm7_037fdc04(int count);                   /* SVC_WaitByLoop through a veneer */

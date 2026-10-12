@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 asm void func_arm7_037fc270(OSContext *context, u32 pc, u32 sp)
 {

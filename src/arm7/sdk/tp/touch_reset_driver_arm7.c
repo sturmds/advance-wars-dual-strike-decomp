@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 #include "sdk/tp.h"
 
 #define TOUCH_START_STABILITY_RANGE 20

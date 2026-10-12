@@ -2,7 +2,7 @@
 #define SDK_WMSP_H
 
 #include "types.h"
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 #include "sdk/wm.h"
 
 // WMSP is the ARM7 half of WM. It runs the requests the ARM9 sends and
@@ -99,27 +99,18 @@ void Wmsp_SendReply(void *reply);
 /* The same 16 bytes as WmspState.history; the original names them apart. */
 extern u8 data_arm7_027d8160[16];
 
-/* Held while a reply buffer is filled and sent. */
-extern OSMutex data_arm7_027d813c;
-
 WmspWork *func_arm7_027c05e0(void);
 void func_arm7_027c73a4(void);
 int func_arm7_027c75fc(u16 *a, u16 *b);
-void PowerLed_SelectPattern(int arg);
 void func_arm7_037fd9dc(void *object);
 void func_arm7_027c6eb4(u16 arg);
 void func_arm7_027c6f68(u16 arg);
 void func_arm7_027c70f8(void);
-void *Wmsp_GetCallbackBuffer(void);
-void Wmsp_SendReply(void *reply);
 
 /* Copies halfwords (ARM7's MI_CpuCopy16-like helper). */
 void func_arm7_037fde40(const void *src, void *dest, int size);
 
 /* Sends the command to the firmware and returns its answer. */
 WlCommand *Wmsp_SendWlCommand(WlCommand *command);
-
-/* The compiler's signed divide (see os_arm7.h): quotient in the low word. */
-u64 func_arm7_03806d4c(s32 dividend, s32 divisor);
 
 #endif

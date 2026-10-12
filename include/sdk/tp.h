@@ -2,7 +2,7 @@
 #define SDK_TP_H
 
 #include "types.h"
-#include "sdk/os.h"
+#include "sdk/os_common.h"
 #include "sdk/spi.h"
 
 /* One touch panel reading. Raw readings are 12-bit panel units;

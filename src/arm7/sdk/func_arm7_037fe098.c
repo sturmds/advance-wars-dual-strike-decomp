@@ -1,4 +1,4 @@
-#include "sdk/os.h"
+#include "sdk/os_arm7.h"
 
 asm u32 func_arm7_037fe098(u32 setData, volatile u32 *destp)
 {

@@ -12,7 +12,7 @@ void func_arm7_037fdb94(int state);
  * array, as one free block. Returns the heap's handle, or -1 if every slot
  * is in use.
  */
-s32 Heap_CarveFromRange_Arm7(ArenaRegionArm7 id, void *start, void *end)
+s32 Heap_CarveFromRange_Arm7(OSArenaId id, void *start, void *end)
 {
     int irqState = func_arm7_037fdb80();
     OSHeapInfo *info = data_arm7_03807a54[id];
