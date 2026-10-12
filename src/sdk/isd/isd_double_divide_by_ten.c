@@ -26,6 +26,8 @@ double func_0211fe0c(double x, int keepFraction) {
   u64 mantissa;
   int k;
   int count;
+  int padBits;
+  int fractionBits;
   int shiftBits;
   u64 fifth;
   int integerBits;
@@ -70,8 +72,9 @@ double func_0211fe0c(double x, int keepFraction) {
     fifth <<= 1;
     remainder <<= 1;
     shifted = mantissa;
+    j = 0;
     count = 52 - i;
-    for (j = 0; j < count; j++) {
+    for (; j < count; j++) {
       shifted >>= 1;
     }
     if (shifted & 1) {
@@ -85,8 +88,8 @@ double func_0211fe0c(double x, int keepFraction) {
   if (remainder != 0) {
     fifth += 1;
   }
-  count = 53 - i;
-  for (j = 0; j < count; j++) {
+  padBits = 53 - i;
+  for (j = 0; j < padBits; j++) {
     fifth <<= 1;
   }
 
@@ -98,11 +101,11 @@ double func_0211fe0c(double x, int keepFraction) {
   mantissa -= fifth;
   /* Clear the bits below the point. */
   if (!keepFraction) {
-    count = 53 - integerBits;
-    for (j = 0; j < count; j++) {
+    fractionBits = 53 - integerBits;
+    for (j = 0; j < fractionBits; j++) {
       mantissa >>= 1;
     }
-    for (j = 0; j < count; j++) {
+    for (j = 0; j < fractionBits; j++) {
       mantissa <<= 1;
     }
   }
