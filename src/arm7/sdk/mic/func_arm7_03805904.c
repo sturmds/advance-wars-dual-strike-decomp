@@ -23,7 +23,7 @@ asm void func_arm7_03805904(void)
     ldrh r6, [r4, #0x38]
     ldrneh r7, [r4, #0x3a]
     ldreq r7, =0xffff
-    bl func_arm7_03803d10
+    bl SPIi_CheckEntry
     cmp r0, #0
     bne store
     mov r0, #SERIAL_JOB_MICROPHONE
