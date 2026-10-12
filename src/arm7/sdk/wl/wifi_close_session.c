@@ -4,7 +4,7 @@ void func_arm7_027c8714(void); /* cancels the periodic alarm */
 void func_arm7_027c8594(void); /* cancels the one-shot alarm */
 void Wifi_SwitchMode(int mode);
 int func_arm7_027d00b4(void);
-void func_arm7_027d02d8(void);
+void WifiTx_DrainEveryQueue(void);
 void WifiBuffer_ReleaseWorkLists(void);
 
 /* Stops the current session: alarms off, mode 32, wireless interrupts and
@@ -29,6 +29,6 @@ void Wifi_CloseSession(void)
     }
     REG_W_TXREQ_RESET = 0xffff;
     WIFI_MAC_REGISTER(0x0b4) = 0xffff;
-    func_arm7_027d02d8();
+    WifiTx_DrainEveryQueue();
     WifiBuffer_ReleaseWorkLists();
 }
