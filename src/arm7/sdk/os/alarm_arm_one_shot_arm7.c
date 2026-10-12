@@ -4,7 +4,7 @@
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
 void func_arm7_037fdc10(void);
-void func_arm7_037fd2f4(OSAlarm *alarm, OSTick fire);
+void Alarm_QueueByFireTime_Arm7(OSAlarm *alarm, OSTick fire);
 
 /*
  * ARM7 copy of OS_SetAlarm: the handler runs once, delay ticks from now.
@@ -21,6 +21,6 @@ void Alarm_ArmOneShot_Arm7(OSAlarm *alarm, OSTick delay, OSAlarmHandler handler,
     alarm->period = 0;
     alarm->handler = handler;
     alarm->arg = arg;
-    func_arm7_037fd2f4(alarm, Tick_Read64_Arm7() + delay);
+    Alarm_QueueByFireTime_Arm7(alarm, Tick_Read64_Arm7() + delay);
     func_arm7_037fdb94(irqState);
 }

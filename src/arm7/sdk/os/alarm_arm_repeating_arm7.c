@@ -4,7 +4,7 @@
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
 void func_arm7_037fdc10(void);
-void func_arm7_037fd2f4(OSAlarm *alarm, OSTick fire);
+void Alarm_QueueByFireTime_Arm7(OSAlarm *alarm, OSTick fire);
 
 /*
  * ARM7 copy of OS_SetPeriodicAlarm: the handler runs at start + n * period.
@@ -22,6 +22,6 @@ void Alarm_ArmRepeating_Arm7(OSAlarm *alarm, OSTick start, OSTick period, OSAlar
     alarm->start = start;
     alarm->handler = handler;
     alarm->arg = arg;
-    func_arm7_037fd2f4(alarm, 0);
+    Alarm_QueueByFireTime_Arm7(alarm, 0);
     func_arm7_037fdb94(irqState);
 }

@@ -717,6 +717,10 @@ src/arm7/sdk/os/alarm_arm_one_shot_arm7.c:
     complete
     .text       start:0x037fd280 end:0x037fd2f4
 
+src/arm7/sdk/os/alarm_queue_by_fire_time_arm7.c:
+    complete
+    .text       start:0x037fd2f4 end:0x037fd424
+
 src/arm7/sdk/func_arm7_037fd424.c:
     complete
     .text       start:0x037fd424 end:0x037fd434

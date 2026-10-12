@@ -4,7 +4,7 @@
 extern AlarmList gOsiAlarmQueue_Arm7;
 u32 func_arm7_037fb654(u32 mask);
 void func_arm7_037fd494(OSAlarm *alarm);
-void func_arm7_037fd2f4(OSAlarm *alarm, OSTick fire);
+void Alarm_QueueByFireTime_Arm7(OSAlarm *alarm, OSTick fire);
 
 /*
  * Runs on timer 1: stops the timer, fires the first alarm if it is due,
@@ -49,7 +49,7 @@ void Alarm_FireDueAndRearm_Arm7(void)
     }
     if (alarm->period != 0) {
         alarm->handler = handler;
-        func_arm7_037fd2f4(alarm, 0);
+        Alarm_QueueByFireTime_Arm7(alarm, 0);
     }
 
     if (gOsiAlarmQueue_Arm7.head != NULL) {
