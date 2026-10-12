@@ -364,6 +364,11 @@ typedef struct WlWork {
 
 #define WIFI_DRIVER_STATE (*(WlWork **)0x0380fff4)
 
+/* Wireless hardware registers (names from GBATEK). */
+#define REG_W_BB_BUSY   (*(volatile u16 *)0x0480815e) /* bit 0: baseband serial transfer busy */
+#define REG_W_RF_PINS   (*(volatile u16 *)0x0480819c) /* bit 0: carrier sense, bit 7: RX on */
+#define REG_W_RF_STATUS (*(volatile u16 *)0x04808214)
+
 /* Wi-Fi transmit request registers: writing a bit clears or sets that request. */
 #define REG_W_TXREQ_RESET (*(volatile u16 *)0x048080ac)
 #define REG_W_TXREQ_SET (*(volatile u16 *)0x048080ae)
@@ -429,5 +434,6 @@ WlBuffer *WifiBuffer_New(WlBufferList *list, int size);
 int WifiBuffer_Release(WlBufferList *list, WlBuffer *buffer);
 int WifiBuffer_Transfer(WlBufferList *from, WlBufferList *to, WlBuffer *buffer);
 void WifiBuffer_GiveToHost(WlBufferList *list, WlBuffer *buffer);
+int WifiBaseband_AwaitReady(void);
 
 #endif
