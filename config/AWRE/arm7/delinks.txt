@@ -364,6 +364,10 @@ src/arm7/sdk/wl/wifi_param_store_wep_mode.c:
     complete
     .text       start:0x027ca154 end:0x027ca208
 
+src/arm7/sdk/wl/wifi_param_store_rate_mode.c:
+    complete
+    .text       start:0x027ca208 end:0x027ca244
+
 src/arm7/sdk/func_arm7_027cab80.c:
     complete
     .text       start:0x027cab80 end:0x027cab94
