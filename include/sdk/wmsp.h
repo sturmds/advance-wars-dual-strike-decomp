@@ -388,6 +388,8 @@ extern u8 data_arm7_027d8160[16];
 WmspWork *func_arm7_027c05e0(void);
 /* Sends the WL parameters kept in WMStatus; on failure replies to apiid and returns FALSE. */
 BOOL WMSP_SetAllParams(int apiid, WlCommand *cmd);
+/* The failed reply of both scan requests; extended picks START_SCAN_EX. */
+void WMSP_ReplyStartScanFailed(u16 wlCmdID, u16 wlResult, BOOL extended);
 void WMSP_ResetStatus(void);
 int WMSP_InitWl(u16 *wlCmdID, u16 *wlResult);
 void func_arm7_027c6eb4(u16 arg);
