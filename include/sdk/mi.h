@@ -25,6 +25,7 @@ typedef struct DmaChannel {
 /* DMA control bits: enable, and the start timing field. */
 #define DMA_ENABLE 0x80000000
 #define DMA_START_MASK 0x38000000
+#define DMA7_START_MASK 0x30000000   /* the ARM7's start timing field has two bits */
 #define DMA_REPEAT 0x02000000
 #define DMA_32BIT 0x04000000
 #define DMA_IRQ 0x40000000
