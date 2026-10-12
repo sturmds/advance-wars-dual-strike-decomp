@@ -1540,6 +1540,10 @@ src/arm7/sdk/snd/snd_arm7_set_player_param.c:
     complete
     .text       start:0x038014d4 end:0x03801520
 
+src/arm7/sdk/snd/snd_arm7_invalidate_bank.c:
+    complete
+    .text       start:0x03801520 end:0x0380157c
+
 src/arm7/sdk/func_arm7_03801c28.c:
     complete
     .text       start:0x03801c28 end:0x03801c70
