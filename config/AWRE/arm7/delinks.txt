@@ -299,6 +299,10 @@ src/arm7/sdk/rtc/func_arm7_027d5f1c.c:
     complete
     .text       start:0x027d5f1c end:0x027d5f68
 
+src/arm7/sdk/rtc/func_arm7_027d5f68.c:
+    complete
+    .text       start:0x027d5f68 end:0x027d5fb4
+
 src/arm7/sdk/func_arm7_037f8444.c:
     complete
     .text       start:0x037f8444 end:0x037f8450
