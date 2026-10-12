@@ -565,6 +565,10 @@ src/arm7/sdk/wm/wmsp_parse_port_packet.c:
 src/arm7/sdk/wm/func_arm7_027c632c.c:
     .text       start:0x027c632c end:0x027c6510
 
+src/arm7/sdk/wm/wmsp_update_send_queue.c:
+    complete
+    .text       start:0x027c6510 end:0x027c6824
+
 src/arm7/sdk/wm/wmsp_queue_port_send.c:
     complete
     .text       start:0x027c6824 end:0x027c698c

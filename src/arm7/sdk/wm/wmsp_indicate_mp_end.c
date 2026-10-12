@@ -7,7 +7,7 @@ WmspSlot *Wmsp_TakeFlaggedSlot(void);
 void Wmsp_WaitCallbackFree(void);
 // The original passes three arguments; Wmsp_UpdateMinRssi reads two.
 void Wmsp_UpdateMinRssi(WlMpEndIndication *ind, u16 bitmap, u16 unk_92);
-int func_arm7_027c6510(BOOL timedOut, u16 polledAgain);
+int WMSP_UpdateSendQueue(BOOL timedOut, u16 polledAgain);
 
 /* WIFI_HOSTMSG_POLL_FINISHED on a parent: the children's replies to an MP frame arrived.
    If a child's reply failed, queues request 42 and stops. Otherwise copies
@@ -113,7 +113,7 @@ void Wmsp_IndicateMpEnd(WlMpEndIndication *ind)
         }
     }
 
-    func_arm7_027c6510(FALSE, recvBuf->bitmap);
+    WMSP_UpdateSendQueue(FALSE, recvBuf->bitmap);
     if (recvBuf->bitmap != 0 && status->unk_96 == 0 && status->unk_34 != 0) {
         resendMissing = TRUE;
     }

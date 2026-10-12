@@ -5,7 +5,7 @@
 #include "sdk/mi.h"
 
 WmspSlot *Wmsp_TakeFlaggedSlot(void);
-int func_arm7_027c6510(BOOL timedOut, u16 polledAgain);
+int WMSP_UpdateSendQueue(BOOL timedOut, u16 polledAgain);
 
 /*
  * WIFI_HOSTMSG_POLL_ACKED: the ack that ends an MP exchange, or one Wmsp_PostMpAckTimeout
@@ -71,7 +71,7 @@ void Wmsp_IndicateMpAck(WlMpAckIndication *ind)
     }
     if (status->unk_8e != 0) {
         status->unk_8e = 0;
-        result = func_arm7_027c6510(timedOut, polledAgain ? 1 : 0);
+        result = WMSP_UpdateSendQueue(timedOut, polledAgain ? 1 : 0);
     }
 
     callback = Wmsp_GetCallbackBuffer();

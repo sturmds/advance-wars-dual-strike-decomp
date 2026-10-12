@@ -5,7 +5,7 @@
 u8 Wmsp_DecodeRssi(int rawRssi);
 void Wmsp_WaitCallbackFree(void);
 void Wmsp_PostMpAckTimeout(void *arg);
-int func_arm7_027c6510(BOOL timedOut, u16 polledAgain);
+int WMSP_UpdateSendQueue(BOOL timedOut, u16 polledAgain);
 
 /* WL indication WIFI_HOSTMSG_POLL_HEARD on a child: an MP frame from the parent arrived.
    Copies it into the next receive buffer, waits for the parent's ack with an
@@ -75,7 +75,7 @@ void Wmsp_IndicateMp(WlMpIndication *ind)
 
     if (wasWaiting) {
         if (oldUnk_8e == 1) {
-            func_arm7_027c6510(wasWaiting, 0);
+            WMSP_UpdateSendQueue(wasWaiting, 0);
         }
         reply = Wmsp_GetCallbackBuffer();
         reply->apiid = WM_APIID_START_MP;
