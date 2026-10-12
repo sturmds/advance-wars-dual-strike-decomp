@@ -278,7 +278,9 @@ typedef struct WmspWork {
     OSMessage wlReplyMessages[4];
     OSMessageQueue requestQueue;       /* requests from the ARM9 (Wmsp_ReceiveRequest) and the ARM7 itself */
     OSMessage requestMessages[32];
-    u8 pad_f8[0x1518 - 0xf8];
+    u8 pad_f8[0x1510 - 0xf8];
+    s32 heapArena;                     /* where WMSP allocates from: Heap_TakeFirstFit_Arm7(heapArena, heap, size) */
+    s32 heap;
     WmspBuf *buf;
 } WmspWork;
 
