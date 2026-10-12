@@ -6,7 +6,7 @@ u16 *func_arm7_027c22a8(WlCommand *cmd, u16 arg0, u16 arg1, u16 arg2, u16 arg3, 
 
 /*
  * Request slot 42 on a parent: issues WL command 0x102 again for the children in
- * arg, with the sizes and flags func_arm7_027c6f68 kept from the last MP send and
+ * arg, with the sizes and flags WMSP_SendMp kept from the last MP send and
  * 0x800c as the first word instead of the data.
  */
 void WMSP_ResendMp(u16 arg)

@@ -41,7 +41,7 @@ void WMSP_VAlarmMp(WmspRequest *request)
         send = wasEmpty && status->unk_36 != 0;
         Cpu_RestoreIrqBit_Arm7(irqState);
         if (send) {
-            func_arm7_027c6f68(0xffff);
+            WMSP_SendMp(0xffff);
         }
         if (status->unk_92 == 1) {
             status->unk_9c--;

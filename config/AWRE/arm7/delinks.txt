@@ -555,6 +555,10 @@ src/arm7/sdk/wm/wmsp_resend_mp.c:
     complete
     .text       start:0x027c6eb4 end:0x027c6f68
 
+src/arm7/sdk/wm/wmsp_send_mp.c:
+    complete
+    .text       start:0x027c6f68 end:0x027c70f8
+
 src/arm7/sdk/wm/func_arm7_027c70f8.c:
     complete
     .text       start:0x027c70f8 end:0x027c71c0

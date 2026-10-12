@@ -443,7 +443,7 @@ void WMSP_ReplyDisconnectFailed(u16 wlCmdID, u16 wlResult, u16 tryBitmap, u16 di
 void WMSP_ResetStatus(void);
 int WMSP_InitWl(u16 *wlCmdID, u16 *wlResult);
 void WMSP_ResendMp(u16 arg);
-void func_arm7_027c6f68(u16 arg);
+void WMSP_SendMp(u16 arg);
 void func_arm7_027c70f8(void);
 
 
