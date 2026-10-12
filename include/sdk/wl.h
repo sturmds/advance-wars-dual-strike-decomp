@@ -573,6 +573,7 @@ u32 WifiParam_ChannelAllowed(u32 bit);
 BOOL WifiMac_Equal(const u16 *a, const u16 *b);
 void WifiStats_Accumulate(void);
 void WifiStats_Zero(void);
+void WifiMac_CopyAddressTriple(u16 *dest, const u16 *addr1, const u16 *addr2, const u16 *addr3);
 
 /* Wireless hardware registers, 0x04808000 + offset. */
 #define WIFI_MAC_REGISTER(offset) (*(volatile u16 *)(0x04808000 + (offset)))
