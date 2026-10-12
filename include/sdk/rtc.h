@@ -82,7 +82,6 @@ typedef struct RtcState {
     OSMessageQueue queue;   /* requests for the RTC thread */
     OSMessage messages[4];
     OSThread thread;
-    u8 unk_8c[0x10];
     u32 stack[CLOCK_WORKER_STACK_LEN];
     u32 busy;               /* a request is being handled */
     u16 command;            /* the request being handled */

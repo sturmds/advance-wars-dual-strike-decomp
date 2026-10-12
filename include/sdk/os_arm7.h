@@ -76,7 +76,8 @@ typedef struct OSThreadQueue {
 
 enum {
     OS_THREAD_STATE_WAITING = 0,
-    OS_THREAD_STATE_READY = 1
+    OS_THREAD_STATE_READY = 1,
+    OS_THREAD_STATE_TERMINATED = 2
 };
 
 /* Mutexes a thread holds, oldest first. */
@@ -94,6 +95,10 @@ struct OSThread {
     void *profiler;
     OSMutex *mutex;                /* the mutex this thread is waiting for */
     OSMutexQueue mutexQueue;
+    u32 stackTop;                  /* lowest address of the stack */
+    u32 stackBottom;               /* one past its highest address */
+    u32 stackWarningOffset;
+    OSThreadQueue joinQueue;
 };
 
 struct OSMutex {
