@@ -5,7 +5,7 @@ void WifiBeacon_Build(void);
 void WifiTx_DataSlotDone(WlTxFrame *frame, int sendNext);
 void WifiTx_Loc3SlotDone(WlRamFrame *frame);
 void WifiTx_GroupSlotDone(WlTxFrame *frame, int arg);
-void func_arm7_027d0924(WlTxFrame *frame, int arg);
+void WifiTx_MgmtSlotDone(WlTxFrame *frame, int arg);
 
 #define RAM_FRAME(offset) ((WlRamFrame *)((u32)WIFI_PACKET_RAM + (offset)))
 #define RAM_WORD(offset) (*(volatile u16 *)((u32)WIFI_PACKET_RAM + (offset)))
@@ -46,7 +46,7 @@ void WifiTx_LayOutSlots(void)
         slots->slot[1].frame = RAM_FRAME(0x028);
         slots->slot[2].frame = RAM_FRAME(0x000);
         slots->slot[0].onDone = WifiTx_DataSlotDone;
-        slots->slot[1].onDone = func_arm7_027d0924;
+        slots->slot[1].onDone = WifiTx_MgmtSlotDone;
         /* the LOC3 handler takes the WIFI_PACKET_RAM frame, not the queued one */
         slots->slot[2].onDone = (void *)WifiTx_Loc3SlotDone;
         SET_MARKS(0x028);
@@ -60,7 +60,7 @@ void WifiTx_LayOutSlots(void)
         slots->slot[1].frame = RAM_FRAME(0x958);
         slots->slot[2].frame = RAM_FRAME(0x334);
         slots->slot[0].onDone = WifiTx_DataSlotDone;
-        slots->slot[1].onDone = func_arm7_027d0924;
+        slots->slot[1].onDone = WifiTx_MgmtSlotDone;
         slots->slot[2].onDone = WifiTx_GroupSlotDone;
         slots->slot[6].frame = RAM_FRAME(0x238);
         slots->slot[3].frame = RAM_FRAME(0x000);
@@ -78,7 +78,7 @@ void WifiTx_LayOutSlots(void)
         slots->slot[1].frame = RAM_FRAME(0x490);
         slots->slot[2].frame = RAM_FRAME(0x468);
         slots->slot[0].onDone = WifiTx_DataSlotDone;
-        slots->slot[1].onDone = func_arm7_027d0924;
+        slots->slot[1].onDone = WifiTx_MgmtSlotDone;
         slots->slot[2].onDone = (void *)WifiTx_Loc3SlotDone;
         slots->slot[4].frame = RAM_FRAME(0x000);
         slots->slot[5].frame = RAM_FRAME(0x234);
@@ -95,7 +95,7 @@ void WifiTx_LayOutSlots(void)
         slots->slot[1].frame = RAM_FRAME(0x028);
         slots->slot[2].frame = RAM_FRAME(0x000);
         slots->slot[0].onDone = WifiTx_DataSlotDone;
-        slots->slot[1].onDone = func_arm7_027d0924;
+        slots->slot[1].onDone = WifiTx_MgmtSlotDone;
         slots->slot[2].onDone = (void *)WifiTx_Loc3SlotDone;
         SET_MARKS(0x028);
         SET_MARKS(0x170);

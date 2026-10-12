@@ -1,7 +1,7 @@
 #include "sdk/wl.h"
 
 void WifiStation_CountQueuedFrame(WlTxFrame *frame);
-void func_arm7_027d0924(WlTxFrame *frame, int arg);
+void WifiTx_MgmtSlotDone(WlTxFrame *frame, int arg);
 void WifiHost_ReturnSentFrame(WlBufferList *list, WlTxRequest *request);
 void WifiTx_StartNextOfQueue(int queue);
 void WifiBeacon_UnmarkTrafficFor(u16 station);
@@ -22,7 +22,7 @@ void WifiTx_GroupSlotDone(WlTxFrame *frame, int arg)
     if (WIFI_FRAMECTL_FIELDS(frame->frameControl)->type == 0) {
         WifiStation_CountQueuedFrame(frame);
         WifiBuffer_Transfer(multicast, &pool->lists[1], &WIFI_HOST_TX_REQUEST_OF(frame)->header);
-        func_arm7_027d0924(frame, 0);
+        WifiTx_MgmtSlotDone(frame, 0);
     } else {
         WifiHost_ReturnSentFrame(multicast, WIFI_HOST_TX_REQUEST_OF(frame));
     }
