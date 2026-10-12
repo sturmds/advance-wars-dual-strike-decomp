@@ -56,6 +56,10 @@ src/sdk/AutoloadCallback.c:
     complete
     .text       start:0x02000a10 end:0x02000a14
 
+src/sdk/crt0/init_cp15.c:
+    complete
+    .text       start:0x02000a14 end:0x02000afc
+
 src/game/main/main.c:
     complete
     .text       start:0x02000b24 end:0x02000cfc

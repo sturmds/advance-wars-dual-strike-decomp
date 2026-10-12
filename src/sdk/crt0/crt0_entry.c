@@ -7,7 +7,7 @@ void main(void);
 void func_02000900(u32 data, void *dest, int size);
 void MIi_UncompressBackward(void *bottom);
 void do_autoload(void);
-void func_02000a14(void);
+void init_cp15(void);
 void func_02000afc(void);
 void func_0212950c(void);
 void __call_static_initializers(void);
@@ -25,7 +25,7 @@ asm void Entry(void)
 {
     mov r12, #0x4000000
     str r12, [r12, #0x208]
-    bl func_02000a14
+    bl init_cp15
     mov r0, #0x13
     msr CPSR_c, r0
     ldr r0, =data_027c0000

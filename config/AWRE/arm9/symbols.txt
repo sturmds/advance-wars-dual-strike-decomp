@@ -21,7 +21,7 @@ func_02000900 kind:function(arm,size=0x14) addr:0x02000900
 MIi_UncompressBackward kind:function(arm,size=0xa4) addr:0x02000914
 do_autoload kind:function(arm,size=0x58) addr:0x020009b8
 AutoloadCallback kind:function(arm,size=0x4) addr:0x02000a10
-func_02000a14 kind:function(arm,size=0xe8) addr:0x02000a14
+init_cp15 kind:function(arm,size=0xe8) addr:0x02000a14
 func_02000afc kind:function(arm,size=0x4) addr:0x02000afc
 BuildInfo kind:data(any) addr:0x02000b00
 main kind:function(arm,size=0x1d8) addr:0x02000b24
