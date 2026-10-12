@@ -2,7 +2,6 @@
 #include "sdk/card.h"
 #include "sdk/pm.h"
 
-BOOL func_arm7_03803a98(void);
 void Card_PushRemovalTagWord_Arm7(u32 word, u32 waitCount);
 
 extern u32 gCardPulledOut;   /* set once the card was found pulled out */
@@ -30,7 +29,7 @@ void Card_CheckRemovedEveryTenFrames(void)
         return;
     }
     gCardNextPollFrame = *SHARED_FRAME_COUNTER + 10;
-    if (func_arm7_03803a98()) {
+    if (CARD_IsPulledOut()) {
         gCardPulledOut = 1;
         if (gCardFirstPoll != 0) {
             return;
