@@ -63,22 +63,26 @@ void func_0209c1f8(void); /* rebuilds the AI threat maps */
  *   in another direction than the first. */
 void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8* action, u8* target, u8* arg) {
   /* needed to match: each search has its own variables, while count,
-     * unit and chart are shared */
+     * unit and chart are shared. The spilled unloadMaxY..unloadStartX take
+     * stack slots in declaration order, except that a variable set by a
+     * ternary or an if/else takes the lowest slot: hence the plain ifs on
+     * unloadMinY and unloadStartX. Not matching yet: the original sets
+     * unloadStartX with a conditional store on both paths. */
   MapUnit* best = NULL;
   MapUnit* unit;
   int count = 0;
   int unloadEndX;
   int unloadStartY;
   int unloadMaxX;
-  int unloadMinX;
-  int unloadMinY;
   int unloadX;
   int unloadY;
   int unloadDist;
   int unload2X;
   int unload2Dist;
-  int unloadEndY;
   int unloadMaxY;
+  int unloadMinY;
+  int unloadMinX;
+  int unloadEndY;
   int unloadStartX;
   int repairMaxY;
   int repairMaxX;
@@ -392,10 +396,9 @@ void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8* action, u8* target, u8* arg) {
       }
       func_0209c1f8();
       unloadMinX = x - 1;
+      unloadStartX = unloadMinX;
       if (unloadMinX < 0) {
         unloadStartX = 0;
-      } else {
-        unloadStartX = unloadMinX;
       }
       unloadMinY = y - 1;
       if (unloadMinY < 0) {
@@ -465,8 +468,9 @@ void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8* action, u8* target, u8* arg) {
       if (unloadMinX < 0) {
         unloadMinX = 0;
       }
-      unloadMinY =
-          unloadMinY < 0 ? 0 : unloadMinY; /* needed to match: not an if */
+      if (unloadMinY < 0) {
+        unloadMinY = 0;
+      }
       unloadMaxX = STATE->unk_1c4->mapWidth - 1;
       if (x + 1 < unloadMaxX) {
         unloadMaxX = x + 1;
