@@ -48,17 +48,18 @@ typedef struct StepListsView {
  * entries (unk_6 set only on the last step of a cell whose fill ends at 0), then the cells
  * of unk_2a0 that empty and are not in it yet. Otherwise it takes the emptying cells of
  * unk_2a0, or one entry for cell 0 when BattleSideData.unk_48 is 1 and every cell empties;
- * each entry's key is raised to the latest matching step. Partial match (99.9%): cell
- * swaps registers with the search counter in the unk_2a0 loop of the first branch.
- * The defender key reads its offset into a u8 local first, like func_ov002_023552d0;
- * sum also counts the search loop, as the original's registers show. */
+ * each entry's key is raised to the latest matching step.
+ * The defender key reads its offset into a u8 local first, like func_ov002_023552d0.
+ * Needed to match: one local, value, holds the fill sums and, in the first branch's
+ * unk_2a0 loop, the cell, which j then searches for; with cell and a separate counter
+ * the two swap registers. */
 void func_ov002_023549c8(void) {
   int side;
   int i;
   int j;
   int cell;
   int added;
-  int sum;
+  int value;
   u8 offset;
   BattleHitFlags* flags;
   const void** profile1;
@@ -96,18 +97,18 @@ void func_ov002_023549c8(void) {
       if (BATTLE.unk_27c[side]->unk_48 != 1) {
         added = 0;
         for (i = 0; i < 5; i++) {
-          cell = (BATTLE.unk_2a0[side] >> (i * 3)) & 7;
+          value = (BATTLE.unk_2a0[side] >> (i * 3)) & 7;
 
-          if (BATTLE.unk_310[side][cell].fillBefore == 0 ||
-              BATTLE.unk_310[side][cell].fillAfter != 0) {
+          if (BATTLE.unk_310[side][value].fillBefore == 0 ||
+              BATTLE.unk_310[side][value].fillAfter != 0) {
             continue;
           }
-          for (sum = 0; sum < LIST->count; sum++) {
-            if (cell == LIST->flags[sum].cell && LIST->flags[sum].unk_6 == 1) {
+          for (j = 0; j < LIST->count; j++) {
+            if (value == LIST->flags[j].cell && LIST->flags[j].unk_6 == 1) {
               goto next;
             }
           }
-          LIST->flags[LIST->count].cell = cell;
+          LIST->flags[LIST->count].cell = value;
           LIST->flags[LIST->count].unk_6 = 1;
           if (side == Ov002_gBattleScene->attackerSide) {
             LIST->key[LIST->count] = ATTACKER_KEY(added, profile1);
@@ -122,11 +123,11 @@ void func_ov002_023549c8(void) {
         }
       }
     } else if (BATTLE.unk_27c[side]->unk_48 == 1) {
-      sum = 0;
+      value = 0;
       for (cell = 0; cell < 5; cell++) {
-        sum += BATTLE.unk_310[side][cell].fillAfter;
+        value += BATTLE.unk_310[side][cell].fillAfter;
       }
-      if (sum == 0) {
+      if (value == 0) {
         LIST->flags[LIST->count].cell = 0;
         LIST->flags[LIST->count].unk_6 = 1;
         LIST->flags[LIST->count].unk_3 = 7;
@@ -174,11 +175,11 @@ void func_ov002_023549c8(void) {
     }
     Battle_SortHitList(LIST);
     if (BATTLE.unk_27c[side]->unk_48 == 1) {
-      sum = 0;
+      value = 0;
       for (cell = 0; cell < 5; cell++) {
-        sum += BATTLE.unk_310[side][cell].fillAfter;
+        value += BATTLE.unk_310[side][cell].fillAfter;
       }
-      if (sum == 0 && LIST->count != 0) {
+      if (value == 0 && LIST->count != 0) {
         LIST->flags[LIST->count - 1].unk_6 = 1;
       }
     }

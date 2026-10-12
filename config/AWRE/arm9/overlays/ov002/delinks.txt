@@ -196,6 +196,7 @@ src/game/ov002/battle_init_hp_display.c:
     .text       start:0x023548ec end:0x023549c8
 
 src/game/ov002/func_ov002_023549c8.c:
+    complete
     .text       start:0x023549c8 end:0x023552d0
 
 src/game/ov002/func_ov002_023552d0.c:

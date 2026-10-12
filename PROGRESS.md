@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6693 / 6700 | 1548796 / 1553840 | 99.68% | 0 | 0 |
+| ARM9 game | 6694 / 6700 | 1551108 / 1553840 | 99.82% | 0 | 0 |
 | ARM9 SDK/library | 645 / 833 | 104112 / 135226 | 76.99% | 176 | 20718 |
-| ARM9 all | 7338 / 7533 | 1652908 / 1689066 | 97.86% | 176 | 20718 |
+| ARM9 all | 7339 / 7533 | 1655220 / 1689066 | 98.00% | 176 | 20718 |
 | ARM7 SDK/library | 949 / 1020 | 148704 / 154300 | 96.37% | 69 | 4960 |
 | ARM7 all | 949 / 1020 | 148704 / 154300 | 96.37% | 69 | 4960 |
-| game | 6693 / 6700 | 1548796 / 1553840 | 99.68% | 0 | 0 |
+| game | 6694 / 6700 | 1551108 / 1553840 | 99.82% | 0 | 0 |
 | SDK/library | 1594 / 1853 | 252816 / 289526 | 87.32% | 245 | 25678 |
-| all | 8287 / 8553 | 1801612 / 1843366 | 97.73% | 245 | 25678 |
+| all | 8288 / 8553 | 1803924 / 1843366 | 97.86% | 245 | 25678 |
 
 ## By module
 
@@ -32,7 +32,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
 | ov001 | game | 76 / 76 | 7472 / 7472 | 100.00% | 0 |
-| ov002 | game | 162 / 164 | 61404 / 64208 | 95.63% | 0 |
+| ov002 | game | 163 / 164 | 63716 / 64208 | 99.23% | 0 |
 | ov003 | game | 235 / 235 | 82696 / 82696 | 100.00% | 0 |
 | ov004 | game | 234 / 236 | 66896 / 67364 | 99.31% | 0 |
 | ov005 | game | 266 / 266 | 96684 / 96684 | 100.00% | 0 |
@@ -52,15 +52,15 @@ objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 00
 
 | Code | Functions | Bytes | Rows that match |
 |---|---:|---:|---:|
-| ARM9 game | 7 | 5044 | 1149 / 1269 (90.54%) |
+| ARM9 game | 6 | 2732 | 579 / 691 (83.79%) |
 | ARM9 SDK/library | 12 | 10396 | 1896 / 2683 (70.67%) |
 | ARM7 SDK/library | 2 | 636 | 148 / 159 (93.08%) |
-| all | 21 | 16076 | 3193 / 4111 (77.67%) |
+| all | 20 | 13764 | 2623 / 3533 (74.24%) |
 
 | Rows that differ | Functions | Bytes |
 |---|---:|---:|
 | 1 to 2 | 0 | 0 |
-| 3 to 10 | 5 | 4336 |
+| 3 to 10 | 4 | 2024 |
 | 11 to 50 | 13 | 3724 |
 | more than 50 | 3 | 8016 |
 
@@ -70,7 +70,6 @@ Closest first.
 |---|---|---:|---:|---:|
 | `src/arm7/sdk/wm/func_arm7_027c6020.c` | func_arm7_027c6020 | 152 | 3 | 99.47% |
 | `src/sdk/card/cardi_set_backup_spec.c` | func_02115858 | 472 | 3 | 97.80% |
-| `src/game/ov002/func_ov002_023549c8.c` | func_ov002_023549c8 | 2312 | 8 | 99.92% |
 | `src/arm7/sdk/wm/func_arm7_027c632c.c` | func_arm7_027c632c | 484 | 8 | 99.63% |
 | `src/game/main/units/move_path_follow_cursor.c` | MovePath_FollowCursor | 916 | 10 | 99.74% |
 | `src/game/ov004/func_ov004_022bacd8.c` | func_ov004_022bacd8 | 212 | 12 | 94.79% |
