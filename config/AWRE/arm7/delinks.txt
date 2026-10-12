@@ -19,6 +19,14 @@ src/arm7/sdk/wm/wmsp_reply_failed.c:
     complete
     .text       start:0x027c0070 end:0x027c00a4
 
+src/arm7/sdk/wm/wmsp_set_alt_thread_priorities.c:
+    complete
+    .text       start:0x027c00a4 end:0x027c0104
+
+src/arm7/sdk/wm/wmsp_set_normal_thread_priorities.c:
+    complete
+    .text       start:0x027c0104 end:0x027c0164
+
 src/arm7/sdk/func_arm7_027c05e0.c:
     complete
     .text       start:0x027c05e0 end:0x027c05ec

@@ -4,8 +4,8 @@ func_arm7_0238011c kind:function(arm,size=0x3c) addr:0x0238011c
 data_arm7_02380158 kind:data(any) addr:0x02380158
 Wmsp_TakeFlaggedSlot kind:function(arm,size=0x70) addr:0x027c0000
 Wmsp_ReplyFailed kind:function(arm,size=0x34) addr:0x027c0070
-func_arm7_027c00a4 kind:function(arm,size=0x60) addr:0x027c00a4
-func_arm7_027c0104 kind:function(arm,size=0x60) addr:0x027c0104
+Wmsp_SetAltThreadPriorities kind:function(arm,size=0x60) addr:0x027c00a4
+Wmsp_SetNormalThreadPriorities kind:function(arm,size=0x60) addr:0x027c0104
 func_arm7_027c0164 kind:function(arm,size=0x28) addr:0x027c0164
 func_arm7_027c018c kind:function(arm,size=0x3c) addr:0x027c018c
 func_arm7_027c01c8 kind:function(arm,size=0x38) addr:0x027c01c8
