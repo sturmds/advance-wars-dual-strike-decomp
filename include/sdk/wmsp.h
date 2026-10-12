@@ -33,7 +33,7 @@ typedef struct WmspSlot {
 #define WIFI_HOSTMSG_PEER_LEFT 0x88
 #define WIFI_HOSTMSG_DATA_FRAME 0x180
 #define WIFI_HOSTMSG_POLL_ACKED 0x185
-#define WIFI_HOSTMSG_EVENT_BITS 0x186
+#define WIFI_HOSTMSG_EVENT_BITS 0x186  /* best guess: WMSP disconnects every link on it */
 
 typedef struct WlIndication {
     u8 bufferHeader[12];               /* the WlBuffer list links */

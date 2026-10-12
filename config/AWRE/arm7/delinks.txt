@@ -104,6 +104,10 @@ src/arm7/sdk/wm/wmsp_indicate_disassociate.c:
     complete
     .text       start:0x027c0bdc end:0x027c0c10
 
+src/arm7/sdk/wm/wmsp_auto_disconnect_all.c:
+    complete
+    .text       start:0x027c0c10 end:0x027c0ce8
+
 src/arm7/sdk/func_arm7_027c1a94.c:
     complete
     .text       start:0x027c1a94 end:0x027c1a98
