@@ -45,7 +45,7 @@ void WifiMlme_RunChannelSurvey(void)
             break;
         }
         if (WifiFlash_ValidateRadioBlock(NULL) != WIFI_RADIO_BLOCK_VALID) {
-            job->result = 14;
+            job->result = WIFI_ANSWER_FLASH_BLOCK_BAD;
             job->state = 0x84;
             break;
         }

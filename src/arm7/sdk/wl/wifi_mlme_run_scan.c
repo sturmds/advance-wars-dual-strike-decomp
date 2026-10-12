@@ -12,8 +12,8 @@ void func_arm7_037f92c8(void);
 void func_arm7_037f9380(int arg);
 
 /*
- * Scan request, run as WL task 0. For each channel of the request it stays
- * request->channelTimeMs. Unless request->unk_38 is set it sends a probe
+ * Scan request, run as WL task 0. It spends request->channelTimeMs on each
+ * channel of the request. Unless request->unk_38 is set it sends a probe
  * request (frame control 0x40) every quarter of that time, at least every
  * 10 ms. States: 0x10 start, 0x11 next channel, 0x13 send a probe and wait
  * for WifiScan_TickAlarm, 0x15 end and reply.
@@ -53,7 +53,7 @@ void WifiMlme_RunScan(void)
         job->channelIndex++;
         job->elapsedMs = 0;
         if (WifiFlash_ValidateRadioBlock(NULL) != WIFI_RADIO_BLOCK_VALID) {
-            job->reply->unk_04 = 14;
+            job->reply->unk_04 = WIFI_ANSWER_FLASH_BLOCK_BAD;
             job->state = 0x15;
             requeue = TRUE;
             break;

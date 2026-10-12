@@ -216,7 +216,8 @@ typedef struct WlLink {
     u8 *gameInfo;       /* sent in the Nintendo element of the beacon */
     u16 gameInfoLength;
     u16 unk_a2;         /* bit 0: gameInfo starts one byte later */
-    u8 pad_a4[0xac - 0xa4];
+    u16 unk_a4;
+    u8 pad_a6[6];
     u16 savedBbReg6; /* baseband register 6 before WifiTest_SendPatternFrames changed it */
 } WlLink;
 
@@ -333,6 +334,19 @@ typedef struct WlAuthFrame {
     u16 status;
 } WlAuthFrame;
 
+/* Request checked and applied by func_arm7_027cc97c. */
+typedef struct WlBssSettings {
+    u8 pad_00[0x10];
+    u16 ssidLength;      /* 1-32 */
+    u8 ssid[32];
+    u16 unk_32;          /* 10-1000 */
+    u16 unk_34;          /* 1-255 */
+    u16 channel;
+    u16 unk_38[2];       /* nonzero 12-bit masks */
+    u16 unk_3c;          /* length of unk_3e, at most 128 */
+    u8 unk_3e[128];
+} WlBssSettings;
+
 /* Scan request (task 0, WifiMlme_RunScan). */
 typedef struct WlScanRequest {
     u8 pad_00[0x10];
@@ -376,6 +390,7 @@ typedef struct WlTask1Job {
 #define WIFI_ANSWER_OUT_OF_RANGE 5
 #define WIFI_ANSWER_NO_RESPONSE 7
 #define WIFI_ANSWER_NO_MEMORY 8  /* the frame could not be allocated */
+#define WIFI_ANSWER_FLASH_BLOCK_BAD 14  /* WifiFlash_ValidateRadioBlock failed */
 
 typedef struct WlMlmeJob {
     u16 state;
@@ -805,6 +820,18 @@ typedef struct WlStationTable {
 
 #define WIFI_PEER_TABLE_INFO ((WlStationTable *)&WIFI_DRIVER_STATE->limits.unk_f0)
 #define WIFI_PEER_ARRAY (WIFI_PEER_TABLE_INFO->stations)
+
+/* Work offsets 0x2f0-0x317 seen as one struct (Wifi_ClearSessionArea clears them in
+   one go); func_arm7_027cc97c reaches phase and macAddress through it. */
+typedef struct WlHead {
+    WlStationTable stationTable;
+    u16 macAddress[3];   /* WlWork.macAddress */
+    u16 unk_0e;
+    u16 unk_10;
+    u16 phase;           /* WlState.phase */
+} WlHead;
+
+#define WIFI_SESSION_HEAD_OF(work) ((WlHead *)&(work)->limits.unk_f0)
 
 /* TX header rate codes, in 100 kbit/s. */
 #define WIFI_RATE_CODE_1M 10
