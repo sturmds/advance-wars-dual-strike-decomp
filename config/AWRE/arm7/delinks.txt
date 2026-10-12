@@ -796,6 +796,10 @@ src/arm7/sdk/wl/wifi_baseband_await_ready.c:
     complete
     .text       start:0x027cb814 end:0x027cb848
 
+src/arm7/sdk/wl/wifi_rf_await_quiet_air.c:
+    complete
+    .text       start:0x027cb848 end:0x027cb880
+
 src/arm7/sdk/func_arm7_027cb920.c:
     complete
     .text       start:0x027cb920 end:0x027cb93c
