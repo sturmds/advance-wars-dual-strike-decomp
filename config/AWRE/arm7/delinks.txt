@@ -1300,6 +1300,10 @@ src/arm7/sdk/wl/wifi_frame_put_rates_element.c:
     complete
     .text       start:0x027cf2fc end:0x027cf3b4
 
+src/arm7/sdk/wl/wifi_frame_put_ssid_element.c:
+    complete
+    .text       start:0x027cf3b4 end:0x027cf428
+
 src/arm7/sdk/func_arm7_027d00b4.c:
     complete
     .text       start:0x027d00b4 end:0x027d00dc
