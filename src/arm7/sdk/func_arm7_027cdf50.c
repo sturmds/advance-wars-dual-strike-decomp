@@ -13,10 +13,10 @@ struct Unk_027cdf50_a1 {
     u16 unk_2;
 };
 
-void func_arm7_027ca154(int, void *, int);
+void WifiParam_StoreWepMode(int, void *, int);
 
 void func_arm7_027cdf50(Unk_027cdf50 *a0, Unk_027cdf50_a1 *a1)
 {
     a1->unk_2 = 1;
-    func_arm7_027ca154(a0->unk_10, a1, 1);
+    WifiParam_StoreWepMode(a0->unk_10, a1, 1);
 }

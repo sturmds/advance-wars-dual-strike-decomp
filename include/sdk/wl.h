@@ -173,6 +173,7 @@ typedef struct WlWork {
 #define WIFI_ANTENNA_SELECT (*(volatile u16 *)0x04808290)
 #define WIFI_MAC_PREAMBLE_BITS (*(volatile u16 *)0x048080bc)
 #define WIFI_POST_BEACON_TIMER (*(volatile u16 *)0x04808134)
+#define WIFI_MAC_MODE_AND_WEP (*(volatile u16 *)0x04808006)
 
 #define WIFI_LINK_VIEW_OF(work) ((WlLink *)(work)->state.pad_18)
 
