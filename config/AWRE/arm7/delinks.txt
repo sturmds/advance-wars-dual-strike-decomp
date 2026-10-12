@@ -564,6 +564,10 @@ src/arm7/sdk/os/init_wram_heap.c:
     complete
     .text       start:0x037f82e0 end:0x037f838c
 
+src/arm7/sdk/os/arm7_main.c:
+    complete
+    .text       start:0x037f838c end:0x037f8444
+
 src/arm7/sdk/func_arm7_037f8444.c:
     complete
     .text       start:0x037f8444 end:0x037f8450

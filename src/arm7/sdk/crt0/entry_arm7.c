@@ -4,7 +4,7 @@ extern u32 BuildInfo_Arm7[];    /* module parameters the linker fills in */
 void do_autoload_Arm7(void);
 void DetectMainMemorySize(void);
 void func_arm7_037fb340(void);    /* IRQ handler */
-void func_arm7_037f838c(void);    /* ARM7 main */
+void Arm7Main(void);
 
 /*
  * ARM7 entry point from the cartridge header (crt0). Turns interrupts off
@@ -54,7 +54,7 @@ clear_bss:
     ldr r1, =0x0380fffc
     ldr r0, =func_arm7_037fb340
     str r0, [r1]
-    ldr r1, =func_arm7_037f838c
+    ldr r1, =Arm7Main
     ldr lr, =0xffff0000
     bx r1
 }
