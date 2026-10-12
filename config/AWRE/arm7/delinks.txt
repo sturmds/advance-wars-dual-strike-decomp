@@ -1179,6 +1179,10 @@ src/arm7/sdk/svc/bios_widen_bit_depth_arm7.c:
     complete
     .text       start:0x03803bcc end:0x03803bd0
 
+src/arm7/sdk/svc/bios_unpack_lz77_by_bytes_arm7.c:
+    complete
+    .text       start:0x03803bd0 end:0x03803bd4
+
 src/arm7/sdk/func_arm7_03803e50.c:
     complete
     .text       start:0x03803e50 end:0x03803e68
