@@ -393,8 +393,6 @@ void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8 *action, u8 *target, u8 *arg)
             unloadEndY = y + 1;
         }
         for (unloadY = unloadStartY; unloadY <= unloadEndY; unloadY++) {
-            /* needed to match: set inside the loop */
-            chart = (const s8 (*)[32])gCoTable[0].blocks[0].movementCost[MOVE_CHART_DEFAULT];
             for (unloadX = unloadStartX; unloadX <= unloadEndX; unloadX++) {
                 unloadDist = 0;
                 if (x - unloadX > 0) {
@@ -410,7 +408,11 @@ void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8 *action, u8 *target, u8 *arg)
                 if (unloadDist < 1 || unloadDist > 1) {
                     continue;
                 }
-                if (MOVE_COST(unit, unloadX, unloadY) == -1) {
+                /* closer to the original read in place than through chart
+                 * (found by tools/permuter.py) */
+                if (((const s8 (*)[32])gCoTable[0].blocks[0].movementCost[MOVE_CHART_DEFAULT])
+                        [Ov000_gUnitStats[unit->type].moveType]
+                        [MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE_INDEX(unloadX, unloadY)])] == -1) {
                     continue;
                 }
                 if (STATE->mapTiles->unitAt[TILE_INDEX(unloadX, unloadY)] != 0) {
