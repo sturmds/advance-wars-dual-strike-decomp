@@ -1,6 +1,5 @@
 #include "sdk/wl.h"
 
-u16 *func_arm7_037fa5c0(u16 *p);
 void func_arm7_027cab1c(void);
 
 /* Frame control of an MP poll from the parent (data + CF-Poll, from the DS),
@@ -54,12 +53,12 @@ void WifiIrq_RxBegun(void)
     }
     start = REG_W_RXBUF_WRCSR;
     /* skip the 12-byte RX header to the frame control */
-    p = func_arm7_037fa5c0((u16 *)&WIFI_PACKET_RAM[start] + 4);
-    p = func_arm7_037fa5c0(p + 2);
+    p = WifiRx_FoldRingPointer((u16 *)&WIFI_PACKET_RAM[start] + 4);
+    p = WifiRx_FoldRingPointer(p + 2);
     if ((*p & WIFI_FRAMECTL_IGNORE_RETRY_PM) != WIFI_FRAMECTL_PARENT_POLL) {
         return;
     }
-    p = func_arm7_037fa5c0(p + 1);
+    p = WifiRx_FoldRingPointer(p + 1);
     t0 = REG_W_US_COUNT0 - 0x10000; /* needed to match: the 0x10000 */
     /* wait (up to 64 us) until addr2 has arrived */
     while (1) {
@@ -73,13 +72,13 @@ void WifiIrq_RxBegun(void)
     }
     p += 4;
     for (i = 0; i < 3; i++) {
-        u16 *q = func_arm7_037fa5c0(p);
+        u16 *q = WifiRx_FoldRingPointer(p);
         p = q + 1;
         if (*q != link->bssid[i]) {
             return;
         }
     }
-    p = func_arm7_037fa5c0(p + 5);
+    p = WifiRx_FoldRingPointer(p + 5);
     /* wait (up to 112 us) until the child bitmap has arrived */
     while (1) {
         received = WifiRx_HalfwordsSoFar(link, start);

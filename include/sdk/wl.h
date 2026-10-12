@@ -1382,6 +1382,8 @@ typedef struct WlRegValue {
 
 /* End of the MAC RAM ring buffer read by WifiRx_CopyFromRingWrapped. */
 #define WIFI_RX_RING_LIMIT 0x04805f60
+/* p, moved back by the ring size once it reaches WIFI_RX_RING_LIMIT. */
+u16 *WifiRx_FoldRingPointer(u16 *p);
 
 /*
  * 32-bit time to OS tick conversions. Ticks run at the
