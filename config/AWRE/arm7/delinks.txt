@@ -348,6 +348,10 @@ src/arm7/sdk/wm/wmsp_v_alarm_line240.c:
     complete
     .text       start:0x027c5884 end:0x027c59b4
 
+src/arm7/sdk/wm/wmsp_v_alarm_line208.c:
+    complete
+    .text       start:0x027c59b4 end:0x027c5a0c
+
 src/arm7/sdk/wm/func_arm7_027c5de8.c:
     complete
     .text       start:0x027c5de8 end:0x027c5e10
