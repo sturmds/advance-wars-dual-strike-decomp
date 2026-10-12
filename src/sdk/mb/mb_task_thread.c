@@ -2,8 +2,6 @@
 #include "sdk/mb.h"
 #include "sdk/os.h"
 
-int func_0210d354(OSThread *thread);
-BOOL OS_SetThreadPriority(OSThread *thread, u32 priority);
 void OS_SleepThread(OSThreadQueue *queue);
 void OS_ExitThread(void);
 
@@ -37,7 +35,7 @@ void MbTask_ThreadMain(void *arg)
 
         enabledAfter = OS_DisableInterrupts();
         callback = info->callback;
-        current = func_0210d354(&work->thread);
+        current = OS_GetThreadPriority(&work->thread);
         if (work->list == NULL) {
             next = 0;
         } else if (current < work->list->priority) {
@@ -53,7 +51,7 @@ void MbTask_ThreadMain(void *arg)
         if (callback != NULL) {
             callback(info);
         }
-        if ((u8 *)info == work->queue) {
+        if (info == &work->endTask) {
             break;
         }
         OS_RestoreInterrupts(enabledAfter);

@@ -5,9 +5,7 @@
 extern DlPlayStationArea *data_022aced8;
 
 int MbParent_ResetWm(void);
-void func_0211c090(void);
-int func_0211dd18(void);
-void MbTask_Post(void (*callback)(void));
+void MbParent_ResetWmCallback(DlPlayWorkerJob *info);
 
 /* Ends the parent: WM goes back to the idle state. Returns 1 when this was already
  * requested, else 0 or the WM error code. With the task queue active the reset runs
@@ -20,8 +18,8 @@ int DownloadPlay_RequestWmReset(void)
     if (data_022aced8->unk_526 == 0) {
         data_022aced8->unk_5e4 = 0;
         data_022aced8->unk_526 = 1;
-        if (func_0211dd18()) {
-            MbTask_Post(func_0211c090);
+        if (MbTask_IsAvailable()) {
+            MbTask_End(MbParent_ResetWmCallback);
             result = 0;
         } else {
             result = MbParent_ResetWm();

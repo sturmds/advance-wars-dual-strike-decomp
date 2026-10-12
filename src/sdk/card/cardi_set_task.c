@@ -2,8 +2,6 @@
 
 extern OSThreadInfo OSi_ThreadInfo;
 
-u32 func_0210d354(OSThread *thread);   /* returns the thread's priority */
-void OS_SetThreadPriority(OSThread *thread, u32 priority);
 void OS_WakeupThreadDirect(OSThread *thread);
 
 void CARDi_SetTask(GameCardTaskStep task)
@@ -13,13 +11,13 @@ void CARDi_SetTask(GameCardTaskStep task)
 
     switch (priority) {
     case GAMECARD_PRIO_OUTRANK_CALLER:
-        priority = func_0210d354(OSi_ThreadInfo.current);
+        priority = OS_GetThreadPriority(OSi_ThreadInfo.current);
         if (priority != 0) {
             priority--;
         }
         break;
     case GAMECARD_PRIO_YIELD_TO_CALLER:
-        priority = func_0210d354(OSi_ThreadInfo.current);
+        priority = OS_GetThreadPriority(OSi_ThreadInfo.current);
         if (priority < 31) {
             priority++;
         }

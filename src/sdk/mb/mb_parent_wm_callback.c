@@ -161,7 +161,7 @@ void MbParent_WmCallback(void *arg)
             data_022aced8->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
             return;
         }
-        data_022aced8->unk_50d = 0;
+        data_022aced8->started = 0;
         data_022aced4->unk_1316 = 0;
         data_022aced8->callback(DLPLAY_EVENT_SHUTDOWN_DONE, arg);
         break;

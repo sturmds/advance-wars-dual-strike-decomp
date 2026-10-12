@@ -12,7 +12,7 @@ int DownloadPlay_SetSendSizeAndChildren(u16 sendSize, u16 maxChildren)
 {
     OSIntrMode enabled = OS_DisableInterrupts();
 
-    if (data_022aced8->unk_50d) {
+    if (data_022aced8->started) {
         OS_RestoreInterrupts(enabled);
         return 0;
     }

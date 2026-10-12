@@ -150,7 +150,7 @@ typedef struct DlPlayStationArea {
     u16 *mpRecvBuffer;                 /* given to WM_StartMPEx */
     void (*wmCallback)(void);          /* given to WM_Initialize, WM_SetIndCallback, WM_Reset and the MP send */
     u8 sendQueued;                     /* set to 1 once MbParent_Send queued the data */
-    u8 unk_50d;
+    u8 started;                        /* 1 from MbParent_InitWm until WM ends */
     u8 pad_50e[0x518 - 0x50e];
     u16 mpSendSize;                    /* sizes given to WM_StartMPEx */
     u16 mpRecvSize;
@@ -260,17 +260,6 @@ typedef struct DlPlayLiveCodePatch {
 #define DLPLAY_SOURCE_ROM_OFFSETS_AT 0x258
 
 #define DLPLAY_WORKER_STACK_BYTES 0x800
-
-/* The task thread's work area, behind data_022acf00: an OSThread, then the
- * queue of tasks it runs. */
-#define DLPLAY_WORKER_STACK_AT 0xb8
-
-typedef struct DlPlayWorkerArea {
-    OSThread thread;
-    struct DlPlayWorkerJob *volatile list;  /* tasks waiting to run, sorted by priority; volatile to match: each use reads it again */
-    u8 queue[0x20];
-    u8 stack[1];                       /* the thread's stack runs to the end of the work area */
-} DlPlayWorkerArea;
 
 /* Download Play comm layer, parent side. */
 #define DLPLAY_OFFER_SLOTS 16
@@ -485,7 +474,26 @@ typedef struct DlPlayWorkerJob {
     void (*callback)(struct DlPlayWorkerJob *info);
     DlPlayHeldBlock *page;
     DlPlayHeldProgram *cache;
+    u8 pad_18[8];
 } DlPlayWorkerJob;
+
+/* The task thread's work area, behind data_022acf00: an OSThread, the list
+ * of tasks waiting, the end task, then the thread's stack. */
+#define DLPLAY_WORKER_STACK_AT 0xb8
+
+typedef struct DlPlayWorkerArea {
+    OSThread thread;
+    DlPlayWorkerJob *volatile list;         /* sorted by priority; volatile to match: each use reads it again */
+    DlPlayWorkerJob endTask;                /* posted by MbTask_End; runs last and stops the thread */
+    u8 stack[1];                       /* the thread's stack runs to the end of the work area */
+} DlPlayWorkerArea;
+
+BOOL MbTask_IsAvailable(void);
+void MbTask_InitInfo(DlPlayWorkerJob *info);
+void MbTask_Set(DlPlayWorkerJob *info, void (*task)(DlPlayWorkerJob *info), void (*callback)(DlPlayWorkerJob *info),
+               u32 priority);
+void MbTask_End(void (*callback)(DlPlayWorkerJob *info));
+int MbTask_IsBusy(DlPlayWorkerJob *task);
 
 /* One file the parent offers. */
 typedef struct DlPlayOfferedFile {
@@ -537,7 +545,6 @@ typedef struct DlPlayHostLinkArea {
     u8 pad_74cc[0x74e0 - 0x74cc];
     u8 taskThreadStack[DLPLAY_WORKER_STACK_BYTES];
     DlPlayWorkerJob task;
-    u8 pad_7cf8[0x7d00 - 0x7cf8];
 } DlPlayHostLinkArea;
 
 int MbComm_IsChildAid(u32 aid);

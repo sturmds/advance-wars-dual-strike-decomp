@@ -225,7 +225,7 @@ void MbChild_WmCallback(void *arg)
             work->callback(DLPLAY_EVENT_RADIO_FAULT, arg);
             return;
         }
-        work->unk_50d = 0;
+        work->started = 0;
         data_022aced4->unk_1316 = 0;   /* MB no longer runs */
         work->callback(DLPLAY_EVENT_SHUTDOWN_DONE, arg);
         return;

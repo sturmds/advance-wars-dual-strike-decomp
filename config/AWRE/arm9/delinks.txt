@@ -21321,7 +21321,7 @@ src/sdk/os/os_set_switch_thread_callback.c:
     complete
     .text       start:0x0210d320 end:0x0210d354
 
-src/game/main/func_0210d354.c:
+src/sdk/os/os_get_thread_priority.c:
     complete
     .text       start:0x0210d354 end:0x0210d35c
 
@@ -22975,7 +22975,7 @@ src/sdk/mb/mb_parent_report_error.c:
     complete
     .text       start:0x0211bd64 end:0x0211bdbc
 
-src/game/main/func_0211bdbc.c:
+src/sdk/mb/download_play_parent_running.c:
     complete
     .text       start:0x0211bdbc end:0x0211bddc
 
@@ -23011,7 +23011,7 @@ src/sdk/mb/download_play_request_wm_reset.c:
     complete
     .text       start:0x0211c008 end:0x0211c090
 
-src/sdk/func_0211c090.c:
+src/sdk/mb/mb_parent_reset_wm_callback.c:
     complete
     .text       start:0x0211c090 end:0x0211c09c
 
@@ -23083,7 +23083,7 @@ src/game/main/func_0211daf4.c:
     complete
     .text       start:0x0211daf4 end:0x0211db08
 
-src/sdk/mb/mb_task_post.c:
+src/sdk/mb/mb_task_end.c:
     complete
     .text       start:0x0211db08 end:0x0211db5c
 
@@ -23095,11 +23095,11 @@ src/sdk/mb/mb_task_is_busy.c:
     complete
     .text       start:0x0211dcec end:0x0211dd04
 
-src/game/main/func_0211dd04.c:
+src/sdk/mb/mb_task_init_info.c:
     complete
     .text       start:0x0211dd04 end:0x0211dd18
 
-src/game/main/func_0211dd18.c:
+src/sdk/mb/mb_task_is_available.c:
     complete
     .text       start:0x0211dd18 end:0x0211dd34
 

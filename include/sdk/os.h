@@ -158,6 +158,9 @@ typedef enum OSArenaId {
 
 void OS_InitContext(OSContext *context, u32 pc, u32 sp);
 
+u32 OS_GetThreadPriority(const OSThread *thread);
+BOOL OS_SetThreadPriority(OSThread *thread, u32 priority);
+
 #define OS_LOCK_ID_ERROR (-3) /* OS_GetLockID found no free id */
 
 /* Disables interrupts and halts the CPU for good. */

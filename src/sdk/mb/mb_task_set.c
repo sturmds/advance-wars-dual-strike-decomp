@@ -4,8 +4,6 @@
 
 extern DlPlayWorkerArea *data_022acf00;
 
-int func_0211dd18(void);
-int func_0210d354(OSThread *thread);
 void OS_WakeupThreadDirect(OSThread *thread);
 
 /* Queues info on the task thread's list, sorted by priority. The thread's own
@@ -17,14 +15,14 @@ void MbTask_Set(DlPlayWorkerJob *info, void (*task)(DlPlayWorkerJob *info), void
     DlPlayWorkerArea *work = data_022acf00;
     int enabled;
 
-    if (!func_0211dd18()) {
+    if (!MbTask_IsAvailable()) {
         OS_Terminate();
     }
     if (info->busy) {
         OS_Terminate();
     }
     if (priority > DLPLAY_JOB_PRIO_BOTTOM) {
-        u32 current = func_0210d354(&work->thread);
+        u32 current = OS_GetThreadPriority(&work->thread);
 
         if (priority == DLPLAY_JOB_PRIO_HIGHER) {
             priority = current != 0 ? current - 1 : 0;
@@ -42,7 +40,7 @@ void MbTask_Set(DlPlayWorkerJob *info, void (*task)(DlPlayWorkerJob *info), void
     info->task = task;
     info->callback = callback;
     if (work->list == NULL) {
-        if ((u8 *)info == work->queue) {
+        if (info == &work->endTask) {
             data_022acf00 = NULL;
         }
         work->list = info;
@@ -50,7 +48,7 @@ void MbTask_Set(DlPlayWorkerJob *info, void (*task)(DlPlayWorkerJob *info), void
     } else {
         DlPlayWorkerJob *prev = work->list;
 
-        if ((u8 *)info == work->queue) {
+        if (info == &work->endTask) {
             while (prev->next != NULL) {
                 prev = prev->next;
             }

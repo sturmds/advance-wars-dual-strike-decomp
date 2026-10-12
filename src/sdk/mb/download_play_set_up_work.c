@@ -74,7 +74,7 @@ int DownloadPlay_SetUpWork(void *work, const DlPlayPlayerBadge *user, u32 ggid, 
     parent->beaconPeriod = MbParent_GetBeaconJitter() + 200;
     parent->maxChildren = DLPLAY_CHILD_SLOTS;
     parent->sendQueued = 0;
-    parent->unk_50d = 0;
+    parent->started = 0;
     comm->unk_1316 = 1;
     comm->mpStarting = 0;
     OS_RestoreInterrupts(enabled);

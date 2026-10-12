@@ -31,11 +31,11 @@ int MbParent_InitWm(void)
             return 8;
         }
         WM_SetIndCallback(data_022aced8->wmCallback);
-        data_022aced8->unk_50d = 1;
+        data_022aced8->started = 1;
         return 0;
     }
     WM_SetIndCallback(data_022aced8->wmCallback);
-    data_022aced8->unk_50d = 1;
+    data_022aced8->started = 1;
     MbParent_SetIndAndLifeTime();
     return 0;
 }

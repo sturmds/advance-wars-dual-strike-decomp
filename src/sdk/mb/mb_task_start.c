@@ -6,7 +6,6 @@ extern DlPlayWorkerArea *data_022acf00;
 
 void OS_CreateThread(OSThread *thread, void (*proc)(void *), void *arg, void *stack, u32 stackSize, u32 priority);
 void OS_WakeupThreadDirect(OSThread *thread);
-void func_0211dd04(void *queue);
 void MbTask_ThreadMain(void *arg);
 
 /* Starts the task thread in work, which is size bytes long: the OSThread at
@@ -20,7 +19,7 @@ void MbTask_Start(DlPlayWorkerArea *work, u32 size)
         u32 stackSize;
 
         data_022acf00 = work;
-        func_0211dd04(work->queue);
+        MbTask_InitInfo(&work->endTask);
         work->list = NULL;
         stackSize = (size - DLPLAY_WORKER_STACK_AT) & ~3;
         OS_CreateThread((OSThread *)work, MbTask_ThreadMain, work, work->stack + stackSize, stackSize, 0);

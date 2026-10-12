@@ -5,13 +5,11 @@
 extern DlPlayHostLinkArea *data_022aced4;
 extern u8 gMbGameSequence;
 
-BOOL func_0211bdbc(void);              /* MB started */
+BOOL DownloadPlay_ParentRunning(void);
 void MbFile_MakeDownloadInfo(void *downloadInfo, const void *buffer);
 BOOL MbFile_MakeBlockTable(DlPlaySegmentStarts *table, const DlPlayProgramLayout *header);
 void MbGame_Init(DlPlayGameEntry *game, const DlPlayGameSource *registry, const void *userParam);
 void MbBeacon_AppendGame(DlPlayGameEntry *game);
-BOOL func_0211dd18(void);              /* task thread running */
-void func_0211dd04(void *task);        /* clear a task */
 void MbTask_Start(void *stack, u32 size);   /* start the task thread */
 
 /* Adds a child program to the files the parent offers and puts its game on
@@ -25,7 +23,7 @@ BOOL DownloadPlay_OfferChildProgram(const DlPlayGameSource *registry, const void
     u8 i;
     int state = OS_DisableInterrupts();
 
-    if (!func_0211bdbc()) {
+    if (!DownloadPlay_ParentRunning()) {
         OS_RestoreInterrupts(state);
         return FALSE;
     }
@@ -63,8 +61,8 @@ BOOL DownloadPlay_OfferChildProgram(const DlPlayGameSource *registry, const void
     data_022aced4->files[fileId].source = buffer;
     data_022aced4->files[fileId].cache = (DlPlayHeldProgram *)((u8 *)buffer + DLPLAY_SOURCE_HELD_AT);
     data_022aced4->files[fileId].segmentRomAddresses = (u32 *)((u8 *)buffer + DLPLAY_SOURCE_ROM_OFFSETS_AT);
-    if (data_022aced4->files[fileId].cache->pages[3].state != 0 && !func_0211dd18()) {
-        func_0211dd04(&data_022aced4->task);
+    if (data_022aced4->files[fileId].cache->pages[3].state != 0 && !MbTask_IsAvailable()) {
+        MbTask_InitInfo(&data_022aced4->task);
         MbTask_Start(data_022aced4->taskThreadStack, DLPLAY_WORKER_STACK_BYTES);
     }
     data_022aced4->files[fileId].active = 1;
