@@ -1135,6 +1135,8 @@ typedef struct Unk_027cb9e4 {
 /* TX locations: WIFI_PACKET_RAM halfword offset of a frame, bit 15 enables it. */
 #define REG_W_TXBUF_BEACON (*(volatile u16 *)0x04808080)
 #define REG_W_TXBUF_LOC3 (*(volatile u16 *)0x048080a8)
+/* LOC1-3 in a row, one per TX slot 0-2 (4 bytes apart). */
+#define REG_W_TXBUF_LOC(slot) ((volatile u16 *)(0x048080a0 + (slot) * 4))
 #define W_TXBUF_ENABLE 0x8000
 /* Writing a bit stops that TX location: the W_TXREQ_* bits, and the reply slots. */
 #define REG_W_TXBUF_RESET (*(volatile u16 *)0x048080b4)

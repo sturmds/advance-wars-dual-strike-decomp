@@ -3,7 +3,7 @@
 void WifiStation_CountQueuedFrame(WlTxFrame *frame);
 void func_arm7_027d0924(WlTxFrame *frame, int arg);
 void WifiHost_ReturnSentFrame(WlBufferList *list, WlTxRequest *request);
-void func_arm7_027d10f4(int queue);
+void WifiTx_StartNextOfQueue(int queue);
 void func_arm7_027caedc(u16 station);
 
 /*
@@ -32,16 +32,16 @@ void WifiTx_GroupSlotDone(WlTxFrame *frame, int arg)
         REG_W_TXREQ_SET = W_TXREQ_LOC1 | W_TXREQ_LOC2;
         if (arg) {
             if (pool->lists[1].count) {
-                func_arm7_027d10f4(1);
+                WifiTx_StartNextOfQueue(1);
             }
             if (pool->lists[0].count) {
-                func_arm7_027d10f4(0);
+                WifiTx_StartNextOfQueue(0);
             }
         }
     }
     if (multicast->count) {
         if (arg) {
-            func_arm7_027d10f4(WIFI_SEND_QUEUE_GROUP);
+            WifiTx_StartNextOfQueue(WIFI_SEND_QUEUE_GROUP);
         }
     } else {
         func_arm7_027caedc(0);

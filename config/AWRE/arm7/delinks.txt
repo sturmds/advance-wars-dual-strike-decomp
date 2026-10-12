@@ -1676,6 +1676,10 @@ src/arm7/sdk/wl/wifi_tx_start_next_groupcast.c:
     complete
     .text       start:0x027d1034 end:0x027d10f4
 
+src/arm7/sdk/wl/wifi_tx_start_next_of_queue.c:
+    complete
+    .text       start:0x027d10f4 end:0x027d1324
+
 src/arm7/sdk/wl/wifi_task_sort_data_frame.c:
     complete
     .text       start:0x027d182c end:0x027d1948

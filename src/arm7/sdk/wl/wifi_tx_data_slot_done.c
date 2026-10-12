@@ -7,7 +7,7 @@ void func_arm7_027cb324(u16 station);
 /* Returns WifiStation_Entry(station)->queuedFrames; its definition takes no argument yet. */
 u16 func_arm7_027cb04c(u16 station);
 int func_arm7_027c94c0(int value);
-void func_arm7_027d10f4(int queue);
+void WifiTx_StartNextOfQueue(int queue);
 
 // TX done callback of the LOC1 slot, which sends TX queue 0: counts the
 // result, answers the host, frees the slot and, when sendNext is set, starts
@@ -50,7 +50,7 @@ void WifiTx_DataSlotDone(WlTxFrame *frame, int sendNext)
     }
     if (sendNext) {
         if (queue->count) {
-            func_arm7_027d10f4(0);
+            WifiTx_StartNextOfQueue(0);
         } else if ((link->unk_0c == 2 || link->unk_0c == 3) && link->mode == WIFI_MODE_JOINED
                    && link->unk_0e && func_arm7_027cb04c(link->unk_88) == 0 && link->unk_8e == 0) {
             func_arm7_027c94c0(1);

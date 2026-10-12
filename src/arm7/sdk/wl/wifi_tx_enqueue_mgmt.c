@@ -2,7 +2,7 @@
 
 u32 WifiStation_IndexOfMac(const u16 *macAddress);
 void WifiStation_CountQueuedFrame(WlTxFrame *frame);
-void func_arm7_027d10f4(int queue);
+void WifiTx_StartNextOfQueue(int queue);
 
 /*
  * Queues a frame on TX queue 1 for the station it is addressed to (station 0
@@ -20,5 +20,5 @@ void WifiTx_EnqueueMgmt(WlTxFrame *frame)
     }
     WifiStation_CountQueuedFrame(frame);
     WifiBuffer_Transfer(&WIFI_DRIVER_STATE->unk_15c, &WIFI_DRIVER_STATE->txQueues[1], &WIFI_HOST_TX_REQUEST_OF(frame)->header);
-    func_arm7_027d10f4(1);
+    WifiTx_StartNextOfQueue(1);
 }

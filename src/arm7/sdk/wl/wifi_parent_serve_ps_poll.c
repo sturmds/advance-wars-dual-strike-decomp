@@ -3,7 +3,7 @@
 
 u16 func_arm7_027cb140(u16 station);   /* station state */
 void func_arm7_027cb300(u16 station);  /* sets the station's bit in stationBits.unk_04 */
-void func_arm7_027d10f4(int queue);    /* sends what waits in WlWork.txQueues[queue] */
+void WifiTx_StartNextOfQueue(int queue);    /* sends what waits in WlWork.txQueues[queue] */
 
 /*
  * PS-Poll from an associated station: marks the station and sends what
@@ -17,10 +17,10 @@ void WifiParent_ServePsPoll(WlRxFrame *frame)
     if (func_arm7_027cb140(station) == WIFI_PEER_ASSOCIATED) {
         func_arm7_027cb300(station);
         if (lists->txQueues[1].count != 0) {
-            func_arm7_027d10f4(1);
+            WifiTx_StartNextOfQueue(1);
         }
         if (lists->txQueues[0].count != 0) {
-            func_arm7_027d10f4(0);
+            WifiTx_StartNextOfQueue(0);
         }
     }
 }

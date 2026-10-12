@@ -8,7 +8,7 @@ void func_arm7_027c90ec(u16 *dest, const u16 *src);
 void WifiTx_EnqueueGroupcast(WlBufferList *from, WlBuffer *buffer);
 void WifiStation_CountQueuedFrame(WlTxFrame *frame);
 void WifiTx_StartNextGroupcast(void);
-void func_arm7_027d10f4(int arg);
+void WifiTx_StartNextOfQueue(int arg);
 
 // Fills in the station, rate, frame control and addresses of a data frame from
 // the host and queues it: on the parent (phase 1) to a station or, for station
@@ -65,7 +65,7 @@ int WifiTx_EnqueueHostData(WlTxBuffer *buffer)
         } else {
             WifiStation_CountQueuedFrame(frame);
             WifiBuffer_Transfer(&lists->inbox, &lists->txQueues[0], &buffer->header);
-            func_arm7_027d10f4(0);
+            WifiTx_StartNextOfQueue(0);
         }
         break;
     case 2:
@@ -74,7 +74,7 @@ int WifiTx_EnqueueHostData(WlTxBuffer *buffer)
         func_arm7_027c90ec(frame->addr1, link->bssid);
         WifiStation_CountQueuedFrame(frame);
         WifiBuffer_Transfer(&lists->inbox, &lists->txQueues[0], &buffer->header);
-        func_arm7_027d10f4(0);
+        WifiTx_StartNextOfQueue(0);
         break;
     }
     return 0x81;
