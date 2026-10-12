@@ -454,4 +454,37 @@ void DataShare_StoreStationBlock(WMDataSharingInfo *dsInfo, u16 aid, u16 *data);
 BOOL Wireless_ParentSettingsValid(WMParentParam *param);
 int WM_SetPortCallback(int port, WMCallbackFunc callback, void *arg);
 
+/*
+ * ARM7 side: the two parameter blocks the ARM7 main passes to the wireless
+ * library's init (func_arm7_027c05ec). Field meanings are not known yet; the
+ * values look like stack addresses, stack sizes and thread priorities.
+ */
+typedef struct Unk_arm7_038057d4 Unk_arm7_038057d4;
+struct Unk_arm7_038057d4 {
+    void *unk_00;
+    void *unk_04;
+    u32 unk_08;
+    u32 unk_0c;
+    u32 unk_10;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1c;
+    u32 unk_20;
+    u32 unk_24;
+    u32 unk_28;
+    void *unk_2c;
+    u32 unk_30;
+};
+
+typedef struct Unk_arm7_038057d4_2 Unk_arm7_038057d4_2;
+struct Unk_arm7_038057d4_2 {
+    u32 unk_00;
+    u32 unk_04;
+    u32 unk_08;
+    u32 unk_0c;
+    u32 unk_10;
+    u32 unk_14;
+    u32 unk_18;
+};
+
 #endif
