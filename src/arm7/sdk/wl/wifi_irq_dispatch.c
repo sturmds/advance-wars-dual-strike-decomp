@@ -1,7 +1,7 @@
 #include "sdk/wl.h"
 
 void WifiIrq_TxBegun(void);
-void func_arm7_037fa270(void);
+void WifiIrq_RxBegun(void);
 void WifiIrq_BeforeBeacon(void);
 void WifiIrq_BeaconSent(void);
 void WifiIrq_AfterBeacon(void);
@@ -28,7 +28,7 @@ void WifiIrq_Dispatch(void)
             WifiIrq_TxBegun();
         }
         if (causes & W_IRQ_RX_START) {
-            func_arm7_037fa270();
+            WifiIrq_RxBegun();
         }
         if (causes & W_IRQ_PRE_BEACON) {
             WifiIrq_BeforeBeacon();

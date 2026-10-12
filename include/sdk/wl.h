@@ -236,7 +236,8 @@ typedef struct WlLink {
     u16 ssidOffset;                /* SSID element in the tx frame payload */
     u8 pad_94[0x96 - 0x94];
     u16 gameInfoOffset; /* Nintendo element offset in the beacon, same halfword as WlState.unk_ae */
-    u8 pad_98[0x9c - 0x98];
+    u8 pad_98[0x9a - 0x98];
+    u16 ringSize;       /* WlState.ringSize */
     u8 *gameInfo;       /* sent in the Nintendo element of the beacon */
     u16 gameInfoLength;
     u16 unk_a2;         /* bit 0: gameInfo starts one byte later */
@@ -249,6 +250,8 @@ typedef struct WlLink {
     u8 pad_b2[0xb8 - 0xb2];
     u16 unk_b8;        /* WlState.unk_d0 */
     u16 wepRestarts;   /* times WifiIrq_TxErrorCounted restarted the WEP engine */
+    u8 pad_bc[2];
+    u16 mpRepliesCancelled; /* MP replies taken back because the poll left us out */
 } WlLink;
 
 // Entry inside the frame payload at a running offset.
@@ -992,7 +995,9 @@ typedef struct WlWork {
     };
     u8 pad_484[0x4a2 - 0x484];
     u16 aidBit; /* 1 << state.aid */
-    u8 pad_4a4[0x4b4 - 0x4a4];
+    u8 pad_4a4[2];
+    u16 savedMpReply; /* REG_W_TXBUF_REPLY2 taken back by WifiIrq_RxBegun, 0xffff when none */
+    u8 pad_4a8[0x4b4 - 0x4a8];
     WlWepWatch wepWatch;
     u8 pad_4b8[0x4ba - 0x4b8];
     u16 unk_4ba; /* ORed into the RX header word of an MP ack sent to the host */
@@ -1100,6 +1105,10 @@ typedef struct WlTxSlots {
     u8 pad_94[4];
     u16 mpExpected; /* bit n: a reply from AID n is expected */
     u16 mpReceived; /* bit n: the reply from AID n came in */
+    u8 pad_9c[0xa2 - 0x9c];
+    u16 aidBit;       /* WlWork.aidBit */
+    u8 pad_a4[2];
+    u16 savedMpReply; /* WlWork.savedMpReply */
 } WlTxSlots;
 
 /* One reply slot in a WlMpCommand, filled from a received MP reply. */
@@ -1248,6 +1257,8 @@ typedef struct Unk_027cb9e4 {
 #define REG_W_TXREQ_READ    (*(volatile u16 *)0x048080b0)
 #define REG_W_RXSTAT_INC_IF (*(volatile u16 *)0x048081a8)
 #define REG_W_RXTX_ADDR     (*(volatile u16 *)0x04808268) /* halfword the hardware reads or writes now */
+#define REG_W_TXBUF_REPLY2  (*(volatile u16 *)0x04808098) /* MP reply frame being sent */
+#define REG_W_US_COUNT0     (*(volatile u16 *)0x048080f8) /* microsecond counter, low half */
 
 /* Wireless interrupt causes: bits of WIFI_IRQ_PENDING_FLAGS (W_IF, set) and WIFI_IRQ_ENABLE_MASK
    (W_IE, enabled). Names from GBATEK. */

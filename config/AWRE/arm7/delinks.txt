@@ -2116,6 +2116,10 @@ src/arm7/sdk/wl/wifi_irq_tx_begun.c:
     complete
     .text       start:0x037fa1bc end:0x037fa270
 
+src/arm7/sdk/wl/wifi_irq_rx_begun.c:
+    complete
+    .text       start:0x037fa270 end:0x037fa4cc
+
 src/arm7/sdk/os/irq_dispatch_lowest_pending_arm7.c:
     complete
     .text       start:0x037fb340 end:0x037fb394
