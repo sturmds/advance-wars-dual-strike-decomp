@@ -1155,6 +1155,10 @@ src/arm7/sdk/svc/bios_remainder_arm7.c:
     complete
     .text       start:0x03803bb2 end:0x03803bb8
 
+src/arm7/sdk/svc/bios_fill_or_copy_arm7.c:
+    complete
+    .text       start:0x03803bb8 end:0x03803bbc
+
 src/arm7/sdk/func_arm7_03803e50.c:
     complete
     .text       start:0x03803e50 end:0x03803e68

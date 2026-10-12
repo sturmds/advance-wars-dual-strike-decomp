@@ -55,6 +55,7 @@ void Bios_RampSoundBiasUp_Arm7(int delay);
 void Bios_RampSoundBiasDown_Arm7(int delay);
 int Bios_Quotient_Arm7(int numerator, int denominator);
 int Bios_Remainder_Arm7(int numerator, int denominator);
+void Bios_FillOrCopy_Arm7(const void *src, void *dst, u32 control);
 
 int Sha1_ResetState(SVCSHA1Context *context);
 int Sha1_FeedBytes(SVCSHA1Context *context, const u8 *data, u32 length);
