@@ -23,6 +23,17 @@ typedef struct WlReply {
     u16 words[16];
 } WlReply;
 
+/* The wifi block of the firmware flash header, from offset 0x2a: a CRC-16
+ * of the bytes from length on, then the length, then the data. */
+#define WIFI_RADIO_BLOCK_FLASH_OFFSET 0x2a
+#define WIFI_RADIO_BLOCK_SIZE_LOW 0xa4
+#define WIFI_RADIO_BLOCK_SIZE_HIGH 0x1d6
+
+typedef struct WlWifiConfig {
+    u16 crc;
+    u16 length;
+} WlWifiConfig;
+
 // Reply of WifiCmd_ReportAllSettings. Field names give the WL work offset each one
 // is copied from.
 typedef struct WlStatusReply {
@@ -57,7 +68,9 @@ typedef struct WlLimits {
     u8 pad_00[0xd8];
     struct OSMessageQueue *toHost;   /* buffers the driver hands to the host side */
     struct OSMessageQueue *fromHost; /* buffers the host side hands to the driver */
-    u8 pad_e0[0xf0 - 0xe0];
+    u8 pad_e0[0xe8 - 0xe0];
+    u32 spiLockId;                 /* 0xe8 id WL passes to SPI_Lock */
+    WlWifiConfig *wifiConfig;      /* 0xec copy of the flash wifi block, or NULL */
     u32 unk_f0;
     u16 unk_f4;
     u16 unk_f6;
@@ -223,7 +236,8 @@ typedef struct WlWork {
     u8 pad_016[0x7a];
     WlTask tasks[24];
     WlBufferAllocator allocator;
-    u8 pad_15c[0x6c];
+    WlBufferList unk_15c;          /* holds the wifi config buffer */
+    u8 pad_168[0x1c8 - 0x168];
     WlBufferList outbox; /* buffers waiting to go to the host */
     WlBufferList inbox;  /* buffers received from the host */
     u8 pad_1e0[0x20];
