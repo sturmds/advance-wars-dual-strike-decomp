@@ -11,13 +11,15 @@ void Battle_SortHitList(BattleHitList* list);
   ((u8*)&gMenuState + (u32) & ((MenuState*)0)->battle.field)
 
 #define TIMES(i) ((const BattleHitTimes*)gMenuState.battle.drainProfile[i])
+/* TIMES(i), storing the address of the profile pointer in p on the way. */
+#define TIMES_VIA(p, i) \
+  ((const BattleHitTimes*)*((p) = &gMenuState.battle.drainProfile[i]))
 
 /* Builds the step list of each side (stepLists) from the
  * other side's hit list: first one step per hit, taking entries from unk_2a0 in turn (those
  * with fillBefore set, or all when unk_48 is 1), then one step for each entry whose fill
  * changes and is not in the list yet. Keys come from the drain profiles; the list is then
- * sorted by key. Partial (98.7%): the attacker's key in the last loop loads the two
- * profiles in the other order. */
+ * sorted by key. */
 void func_ov002_023552d0(void) {
   int entry;
   int side;
@@ -28,6 +30,7 @@ void func_ov002_023552d0(void) {
   int j;
   int i;
   int stepEntry;
+  const void** profile;
 
   for (side = 0; side < 2; side++) {
     BattleHitList* list = (BattleHitList*)BATTLE_FIELD(stepLists) + side;
@@ -104,8 +107,11 @@ void func_ov002_023552d0(void) {
         list->flags[list->count].unk_6 = 0;
       }
       if (side == Ov002_gBattleScene->attackerSide) {
-        list->key[list->count] = (TIMES(0)->unk_0f[n] - TIMES(1)->unk_04) +
-                                 (TIMES(0)->unk_04 + TIMES(1)->unk_08);
+        /* Needed to match: the last two terms as `- -x`, and TIMES_VIA on the last one;
+         * a plain sum adds the terms in another order and loads unk_08 earlier. */
+        list->key[list->count] = TIMES(0)->unk_0f[n] - TIMES(1)->unk_04 -
+                                 (-TIMES(0)->unk_04) -
+                                 (-TIMES_VIA(profile, 1)->unk_08);
       } else {
         j = TIMES(0)->unk_0a[n];
         list->key[list->count] = j + TIMES(0)->unk_08;
