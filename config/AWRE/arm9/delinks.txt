@@ -23532,6 +23532,10 @@ src/sdk/runtime/fflt.c:
     complete
     .text       start:0x02128514 end:0x021285e0
 
+src/sdk/runtime/fmul.c:
+    complete
+    .text       start:0x021285e0 end:0x02128ac0
+
 src/sdk/runtime/fsub.c:
     complete
     .text       start:0x02128acc end:0x02128f14

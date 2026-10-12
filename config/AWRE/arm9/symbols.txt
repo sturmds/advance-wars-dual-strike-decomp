@@ -5925,7 +5925,7 @@ _dls kind:label(arm) addr:0x02127788
 _fdiv kind:function(arm,size=0x380) addr:0x02127cac
 _ffix kind:function(arm,size=0x9c) addr:0x0212839c
 func_02128438 kind:function(arm,size=0x5c) addr:0x02128438
-_fmul kind:function(arm,size=0x1ec) addr:0x021285e0
+_fmul kind:function(arm,size=0x4e0) addr:0x021285e0
 _fsub kind:function(arm,size=0x448) addr:0x02128acc
 _ull_mod kind:function(arm,size=0x8) addr:0x02128f20
 _ll_sdiv kind:function(arm,size=0x10) addr:0x02128f6c
