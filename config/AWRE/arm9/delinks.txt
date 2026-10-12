@@ -23504,6 +23504,10 @@ src/sdk/runtime/ll_ufrom_d.c:
     complete
     .text       start:0x02125e7c end:0x02125fe8
 
+src/sdk/runtime/dfltu.c:
+    complete
+    .text       start:0x02125fe8 end:0x02126024
+
 src/sdk/runtime/ffix.c:
     complete
     .text       start:0x0212839c end:0x02128438
