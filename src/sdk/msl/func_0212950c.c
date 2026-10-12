@@ -1,7 +1,7 @@
 #include "types.h"
 
-extern void func_02129748(void);
-extern void func_02129754(void);
+extern u8 *func_02129748(void);
+extern u8 *func_02129754(void);
 
 /*
  * Called from Entry. Clears the word func_02129748 returns and the five words

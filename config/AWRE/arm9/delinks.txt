@@ -23480,6 +23480,14 @@ src/sdk/msl/func_0212950c.c:
     complete
     .text       start:0x0212950c end:0x02129540
 
+src/sdk/msl/func_02129540.c:
+    complete
+    .text       start:0x02129540 end:0x02129568
+
+src/sdk/msl/func_02129568.c:
+    complete
+    .text       start:0x02129568 end:0x021295b4
+
 src/sdk/func_021295b4.c:
     complete
     .text       start:0x021295b4 end:0x021295c0
