@@ -91,5 +91,6 @@ void NVRAM_WriteDisable(void);
 BOOL NVRAM_IsWriteEnabled(void);   /* idle, with the write enable latch set */
 BOOL NVRAM_IsIdle(void);   /* no write or erase running */
 void NVRAM_SoftwareReset(void);
+void NVRAM_ReadId(u8 *id);   /* the first two id bytes */
 
 #endif
