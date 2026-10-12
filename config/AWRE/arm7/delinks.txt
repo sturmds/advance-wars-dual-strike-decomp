@@ -887,6 +887,10 @@ src/arm7/sdk/os/heap_verify_and_count_free_arm7.c:
     complete
     .text       start:0x037fc8b8 end:0x037fca5c
 
+src/arm7/sdk/os/heap_carve_from_range_arm7.c:
+    complete
+    .text       start:0x037fca5c end:0x037fcb04
+
 src/arm7/sdk/os/tick_read64_arm7.c:
     complete
     .text       start:0x037fce88 end:0x037fcf38

@@ -10,7 +10,7 @@ void func_arm7_037fc6fc(int arena, int lo);     /* set arena low end */
 int func_arm7_037fc7ec(int arena);              /* arena low end */
 int func_arm7_037fc800(int arena);              /* arena high end */
 void Heap_VerifyAndCountFree_Arm7(int arena, int heap);
-int func_arm7_037fca5c(int arena, int lo, int hi);              /* create heap */
+int Heap_CarveFromRange_Arm7(int arena, int lo, int hi);              /* create heap */
 int func_arm7_037fcb04(int arena, int lo, int hi, int maxHeaps); /* init allocator */
 void func_arm7_037fcbac(int arena, int heap);   /* set current heap */
 void func_arm7_037fdc10(void);                  /* halt */
@@ -32,7 +32,7 @@ int InitWramHeap(void)
     func_arm7_037fded4((void *)lo, 0, func_arm7_037fc800(ARENA_WRAM_SUB_PRIVATE) - lo);
     func_arm7_037fc6fc(ARENA_WRAM_SUB_PRIVATE, lo);
     hi = func_arm7_037fc800(ARENA_WRAM_SUB_PRIVATE);
-    heap = func_arm7_037fca5c(ARENA_WRAM_SUB_PRIVATE, func_arm7_037fc7ec(ARENA_WRAM_SUB_PRIVATE), hi);
+    heap = Heap_CarveFromRange_Arm7(ARENA_WRAM_SUB_PRIVATE, func_arm7_037fc7ec(ARENA_WRAM_SUB_PRIVATE), hi);
     if (heap < 0) {
         func_arm7_037fdc10();
     }
