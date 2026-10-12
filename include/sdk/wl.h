@@ -195,7 +195,9 @@ typedef union WlFlags {
 typedef struct WlLink {
     u8 pad_00[8];
     u16 mode;
-    u8 pad_0a[0xc];
+    u8 pad_0a[2];
+    u16 unk_0c;
+    u8 pad_0e[0x16 - 0x0e];
     u16 testRate;   /* 10 or 20, from the WifiCmd_RunRadioTest request */
     u16 testTxActive;
     u8 pad_1a[4];
@@ -278,6 +280,47 @@ typedef struct WlTxFrame {
     };
     u16 unk_2e;
 } WlTxFrame;
+
+// The MLME request in progress, in WlState.unk_d8 (work offset 0x3d8; reach
+// it with WIFI_ACTIVE_JOB_OF). Its handler runs again
+// as a WL task until state goes back to 0, then it fills the reply. Each kind
+// of request keeps its own fields after state.
+
+typedef struct WlMeasureChannelRequest {
+    u8 pad_00[0x12];
+    u16 reg13Value;
+    u16 reg35Value;
+    u16 sampleMs;      /* time spent on each channel */
+    u8 channels[16];   /* 0 ends the list */
+} WlMeasureChannelRequest;
+
+typedef struct WlMeasureChannelJob {
+    u16 state;
+    u8 pad_02[2];
+    u32 sampleCount;
+    u32 busyTotal;     /* 100 for each sample that found the channel busy */
+    u16 savedReg040;
+    u16 savedReg13;
+    u16 savedReg35;
+    u8 pad_12[2];
+    u16 index;
+    u16 result;
+    WlMeasureChannelRequest *request;
+    WlReply *reply;
+} WlMeasureChannelJob;
+
+typedef struct WlMlmeJob {
+    u16 state;
+    u8 pad_02[0x16];
+    void *request;
+    WlReply *reply;
+} WlMlmeJob;
+
+typedef union WlMlme {
+    u16 state;
+    WlMlmeJob any;
+    WlMeasureChannelJob measure;
+} WlMlme;
 
 /* The host request being handled; task 11 takes it from the inbox. */
 typedef struct WlCurrentRequest {
@@ -558,6 +601,7 @@ typedef struct WlStateD8 {
 #define WIFI_JOB_AREA_OF(work) ((WlStateD8 *)(work)->state.unk_d8)
 
 #define WIFI_LINK_VIEW_OF(work) ((WlLink *)(work)->state.pad_18)
+#define WIFI_ACTIVE_JOB_OF(work) ((WlMlme *)(work)->state.unk_d8)
 
 // Third view of the work area, starting at work offset 0x2f0 (the station
 // table), as some functions address it.
