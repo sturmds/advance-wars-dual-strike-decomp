@@ -36,7 +36,7 @@ BOOL MapSelect_FillWarRoomList(MapList *list, int kind)
     kind = MapSelect_ListKindToMapCase(6);
     header = Ov000_gMapHeaders;
     for (mapId = 0; mapId < MAP_COUNT; mapId++, header++) {
-        if (kind != header->unk_26) {
+        if (kind != header->mapCase) {
             continue;
         }
         if (list->unk_64 == KIND_WAR_ROOM_VARIANTS) {

@@ -32,7 +32,7 @@ void MapObjects_TickCountdowns(void)
         case 1:
         case MAP_OBJECT_BLACK_CANNON:
         case MAP_OBJECT_MINICANNON:
-        case MAP_OBJECT_KIND_5:
+        case MAP_OBJECT_DEATHRAY:
             if (STATE->players[STATE->currentPlayer].armyColour == ARMY_BLACK_HOLE) {
                 object->state--;
             }

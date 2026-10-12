@@ -16076,7 +16076,7 @@ src/game/main/map/map_find_object_of_kind.c:
     complete
     .text       start:0x020daa44 end:0x020daaa8
 
-src/game/main/map/map_add_kind5_object.c:
+src/game/main/map/map_add_deathray_object.c:
     complete
     .text       start:0x020daaa8 end:0x020dab24
 
@@ -16096,7 +16096,7 @@ src/game/main/map/map_add_volcano_object.c:
     complete
     .text       start:0x020dac7c end:0x020dacf8
 
-src/game/main/map/map_add_kind8_object.c:
+src/game/main/map/map_add_blocked_object.c:
     complete
     .text       start:0x020dacf8 end:0x020dad64
 

@@ -4,9 +4,11 @@
 Pipeline:
   orig/AWRE.nds --dsd rom extract--> extract/
   config/AWRE/arm9 + extract --dsd delink--> build/delinks/**.o (original bytes)
+  assets/maps/** --tools/maps.py pack--> build/gen/maps/ (C included by src/game/ov000/map/)
   src/**.c marked `complete` in a delinks.txt --mwccarm--> build/src/**.o
                              --dsd lcf-----> build/arm9.lcf, build/objects.txt
                              --lcf_absolute.py--> ARM9_ABSOLUTE_SYMBOLS added to build/arm9.lcf
+                             --maps.py lcf--> the symbols inside Ov000_gMapHeaders added to build/arm9.lcf
                              --lcf_align2.py lcf--> ALIGNALL(2) around objects at 2 mod 4
                              --lcf_align2.py objects--> build/objects.link.txt, build/align2/**.o
   compiled objects, plus delinked ones for everything else --mwldarm--> build/arm9.elf, build/build/*.bin (one per module)
@@ -27,6 +29,8 @@ import sys
 import tomllib
 from pathlib import Path
 
+import maps
+
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG = Path("config/AWRE/arm9")
 CONFIG7 = Path("config/AWRE/arm7")
@@ -40,12 +44,12 @@ SKREW_BIN = ".cache/tools/metroskrew/bin"
 # for DS 1.2 base package.
 CC = f"{SKREW_BIN}/mwccarm-2.0-72.exe"
 LD = f"{SKREW_BIN}/mwldarm-2.0-72.exe"
-CFLAGS = "-O4,p -proc arm946e -interworking -nostdinc -i include -msgstyle gcc"
+CFLAGS = "-O4,p -proc arm946e -interworking -nostdinc -i include -i build/gen -msgstyle gcc"
 LDFLAGS = "-proc arm946e -interworking -map closure,unused -msgstyle gcc -nodead -nostdlib -m Entry"
 
 # ARM7 (docs/awre-facts.md, "ARM7"): the same compiler, built for size.
 CC7 = CC
-CFLAGS7 = "-O4,s -proc arm7tdmi -interworking -nostdinc -i include -msgstyle gcc"
+CFLAGS7 = "-O4,s -proc arm7tdmi -interworking -nostdinc -i include -i build/gen -msgstyle gcc"
 LDFLAGS7 = "-proc arm7tdmi -interworking -map closure,unused -msgstyle gcc -nodead -nostdlib -m Entry"
 
 # Symbols with a fixed value, written into build/arm9.lcf after dsd lcf
@@ -72,6 +76,17 @@ def absolute_symbols(module: str | None) -> dict[str, int]:
     """The link-time constants of a module's lcf: ARM7's for `arm7`,
     ARM9's for every other module."""
     return ARM7_ABSOLUTE_SYMBOLS if module == "arm7" else ARM9_ABSOLUTE_SYMBOLS
+
+
+# The map tables (tools/maps.py, docs/maps.md): what `maps.py pack` writes,
+# and the sources that include it.
+MAP_OUTPUTS = [f"build/gen/maps/{n}" for n in ("map_data.h", "map_headers.inc", "map_tiles.inc", "map_units.inc")]
+MAP_SOURCES = [f"src/game/ov000/map/map_{n}.c" for n in ("headers", "tiles", "units")]
+
+
+def map_inputs() -> list[str]:
+    files = sorted((ROOT / maps.ASSETS).rglob("*.yaml")) + sorted((ROOT / maps.ASSETS).glob("*.txt"))
+    return [p.relative_to(ROOT).as_posix() for p in files]
 
 
 def config_inputs() -> list[str]:
@@ -154,6 +169,11 @@ def main() -> int:
         "  depfile = $out_d",
         "  deps = gcc",
         "",
+        "rule maps",
+        "  command = $python tools/maps.py pack",
+        "  description = MAPS",
+        "  restat = 1",
+        "",
         "rule objdiff_json",
         "  command = $dsd objdiff -c $cfg -o . > /dev/null",
         "  description = OBJDIFF JSON",
@@ -164,6 +184,7 @@ def main() -> int:
         "",
         "rule lcf",
         "  command = $dsd lcf -c $cfg > /dev/null && $python tools/lcf_absolute.py $lcf $absolute"
+        " && $python tools/maps.py lcf $lcf"
         " && $python tools/lcf_align2.py lcf $lcf config/AWRE/arm9/delinks.txt",
         "  description = LCF",
         "",
@@ -223,10 +244,12 @@ def main() -> int:
         f"build build/delink.stamp: delink {' '.join(config_inputs())} | extract/config.yaml $dsd",
         f"  cfg = {cfg}",
         "",
-        "build build/arm9.lcf build/objects.txt: lcf build/delink.stamp | $dsd tools/lcf_absolute.py tools/lcf_align2.py",
+        "build build/arm9.lcf build/objects.txt: lcf build/delink.stamp | $dsd tools/lcf_absolute.py tools/lcf_align2.py tools/maps.py",
         f"  cfg = {cfg}",
         "  lcf = build/arm9.lcf",
         "  absolute = " + " ".join(f"{k}={v:#x}" for k, v in ARM9_ABSOLUTE_SYMBOLS.items()),
+        "",
+        f"build {' '.join(MAP_OUTPUTS)}: maps {' '.join(map_inputs())} | tools/maps.py",
         "",
         f"build build/arm9.elf: link build/arm9.lcf build/objects.txt | $ld tools/link.py tools/lcf_align2.py {' '.join(objs)}",
         "",
@@ -259,7 +282,8 @@ def main() -> int:
         "",
     ]
     for src, obj in zip(sources, objs):
-        lines += [f"build {obj}: cc {src}", f"  out_d = {obj[:-2]}.d", ""]
+        generated = f" | {' '.join(MAP_OUTPUTS)}" if src in MAP_SOURCES else ""
+        lines += [f"build {obj}: cc {src}{generated}", f"  out_d = {obj[:-2]}.d", ""]
     for src, obj in zip(sources7, objs7):
         lines += [f"build {obj}: cc7 {src}", f"  out_d = {obj[:-2]}.d", ""]
     # The Makefile runs this before every build (new src/ files have to be

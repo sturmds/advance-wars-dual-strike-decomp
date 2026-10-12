@@ -89,7 +89,7 @@ void Map3d_DrawMapTile(VecFx32 *pos, int x, int y, int graphic, u8 tile, int hig
                 MapTile3d_DrawQuadB(pos, MapTile3d_GetTextureOffset(graphic), palette, shaded);
                 break;
             case MAP_OBJECT_VOLCANO:
-            case MAP_OBJECT_KIND_8:
+            case MAP_OBJECT_BLOCKED:
                 MapTile3d_DrawQuadA(pos, MapTile3d_GetTextureOffset(graphic), palette, 0);
                 break;
             }

@@ -25,8 +25,8 @@ enum MapObjectKind {
     MAP_OBJECT_VOLCANO = 2,            /* terrain 28 */
     MAP_OBJECT_BLACK_CANNON = 3,       /* terrain 26 */
     MAP_OBJECT_MINICANNON = 4,         /* terrain 21 */
-    MAP_OBJECT_KIND_5 = 5,             /* terrain 30 */
-    MAP_OBJECT_KIND_8 = 8,             /* terrain 31 */
+    MAP_OBJECT_DEATHRAY = 5,           /* terrain 30 */
+    MAP_OBJECT_BLOCKED = 8,            /* terrain 31: a missile platform or fortress, created with 0 HP */
     MAP_OBJECT_BLACK_CRYSTAL = 9,      /* terrain 23 */
     MAP_OBJECT_BLACK_OBELISK = 10,     /* terrain 29 */
     MAP_OBJECT_GRAND_BOLT_WEAK_POINT = 11  /* terrain 24; 11 to 13, one per owner */

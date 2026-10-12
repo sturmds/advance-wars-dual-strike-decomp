@@ -52,12 +52,12 @@ void MapPreview_DrawLowerHalf(u16 *dst)
                     colour = 0;
                 }
                 terrain = MAP_TILE_TERRAIN(tile);
-                if (terrain == TERRAIN_MINICANNON || terrain == 24 || terrain == TERRAIN_VOLCANO) {
+                if (terrain == TERRAIN_MINICANNON || terrain == TERRAIN_GRAND_BOLT_WEAK_POINT || terrain == TERRAIN_VOLCANO) {
                     colour = 0;
                 }
-                if (terrain == 9 && row > 0) {
+                if (terrain == TERRAIN_OBJECT_PART && row > 0) {
                     above = data_027c027c->unk_48[data_027c0284]->tileCodeTerrain[data_0229eadc->tileCodes[data_0229b058 + col - data_0229eadc->width]];
-                    if (above == TERRAIN_BLACK_CANNON || above == 30) {
+                    if (above == TERRAIN_BLACK_CANNON || above == TERRAIN_DEATHRAY) {
                         base = 31;
                     } else {
                         base = data_02166e3c[terrain];

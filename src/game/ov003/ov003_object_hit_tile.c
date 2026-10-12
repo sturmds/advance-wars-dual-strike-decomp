@@ -59,7 +59,7 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
         }
         targetType = 6;
         break;
-    case 9:
+    case TERRAIN_OBJECT_PART:
         /* a structure over several tiles: damage goes to its main tile */
         structure = Ov003_FindMarkerAtTile(x, y);
         x = structure->x;

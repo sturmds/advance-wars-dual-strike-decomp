@@ -63,8 +63,8 @@ void Ov003_DrawTexturedQuad(int x, int y, int depth, int arg3, int arg4, int til
 
 /* Draws map tile (x, y) when it is on screen: its lower half into layers 3
  * and 2, its upper half into layer 1 one row up, and the sprites that stand
- * on it (trees, reefs, building tops). Terrain ids 9 and 25 have no name in
- * terrain.h yet. For a Minicannon the owner bits pick one of four sprites. */
+ * on it (trees, reefs, building tops). For a Minicannon the owner bits pick
+ * one of four sprites. */
 void Ov003_DrawTile(u8 x, u8 y)
 {
     Ov003Marker *object;
@@ -84,7 +84,7 @@ void Ov003_DrawTile(u8 x, u8 y)
     mark = MAP->marks[TILE_AT(x, y)];
     info = data_ov003_02365d10[code];
     terrain = info & 31;
-    if (terrain == 9 || terrain == TERRAIN_MINICANNON || terrain == TERRAIN_BLACK_CANNON) {
+    if (terrain == TERRAIN_OBJECT_PART || terrain == TERRAIN_MINICANNON || terrain == TERRAIN_BLACK_CANNON) {
         object = Ov003_FindMarkerAtTile(x, y);
     }
 
@@ -96,7 +96,7 @@ void Ov003_DrawTile(u8 x, u8 y)
             sx -= 16;
             sy += 16;
         }
-        if (terrain == 9 || terrain == TERRAIN_MINICANNON || terrain == TERRAIN_BLACK_CANNON) {
+        if (terrain == TERRAIN_OBJECT_PART || terrain == TERRAIN_MINICANNON || terrain == TERRAIN_BLACK_CANNON) {
             if (object->unk_09_6) {
                 PUT_TILE(layer3Map, CELL(sx, sy), data_ov003_02367110, code, 13);
             } else {
@@ -107,9 +107,9 @@ void Ov003_DrawTile(u8 x, u8 y)
         }
 
         switch (terrain) {
-        case 9:
+        case TERRAIN_OBJECT_PART:
         case TERRAIN_MINICANNON:
-        case 25:
+        case TERRAIN_LASER:
         case TERRAIN_BLACK_CANNON:
             PUT_TILE(layer2Map, CELL(sx, sy), data_ov003_02367110, code, 12);
             break;
@@ -241,9 +241,9 @@ void Ov003_DrawTile(u8 x, u8 y)
     }
     terrain = info & 31;
     switch (terrain) {
-    case 9:
+    case TERRAIN_OBJECT_PART:
     case TERRAIN_MINICANNON:
-    case 25:
+    case TERRAIN_LASER:
     case TERRAIN_BLACK_CANNON:
         PUT_TILE(layer1Map, CELL(sx, sy), data_ov003_02366110, code, 12);
         break;

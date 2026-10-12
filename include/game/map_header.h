@@ -29,6 +29,21 @@ struct MapScript;
 #define MAP_CUSTOM_COUNT 12
 #define MAP_IS_CUSTOM(id) ((id) >= MAP_CUSTOM_FIRST && (id) < MAP_CUSTOM_FIRST + MAP_CUSTOM_COUNT)
 
+/* MapHeader.mapCase: which menu offers the map. The map select lists one
+ * case per list kind (MapSelect_ListKindToMapCase). assets/maps/ keeps one
+ * directory per group of cases. */
+enum MapCase {
+    MAP_CASE_CAMPAIGN = 0,             /* campaign missions */
+    MAP_CASE_CAMPAIGN_SECOND = 1,      /* the second map of a two-map campaign mission */
+    MAP_CASE_VERSUS_FIRST = 2,         /* cases 2-6: the Versus map lists */
+    MAP_CASE_VERSUS_LAST = 6,
+    MAP_CASE_WAR_ROOM = 7,
+    MAP_CASE_WAR_ROOM_DS = 8,          /* listed with case 7 by MapSelect_FillList; names end in "DS" */
+    MAP_CASE_SURVIVAL = 9,             /* the maps of gSurvivalMapsMode0-5 */
+    MAP_CASE_DESIGN = 10,              /* Design Room slots, no map data */
+    MAP_CASE_NONE = 0xffff             /* map 0 */
+};
+
 /* Two flag bytes per player slot at MapHeader.slotFlags, ORed into
  * Player.unk_2f and unk_30 by Map_ApplySlotFlags. 0xff in unk_0: none. */
 typedef struct MapSlotFlags {
@@ -56,7 +71,7 @@ typedef struct MapHeader {
     const u8 *coList;                  /* COs offered on this map, see LoadMapCoList */
     u8 playerCount;
     u8 pad_25[0x26 - 0x25];
-    u16 unk_26;                        /* "map case" */
+    u16 mapCase;                       /* enum MapCase */
     u8 unk_28[0x08];
     u16 unk_30[2];                     /* indexed by Campaign_IsHardMode */
     u16 unk_34[2];                     /* indexed by Campaign_IsHardMode */

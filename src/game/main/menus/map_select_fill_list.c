@@ -7,9 +7,6 @@ u8 Map_GetPlayerCount(u16 mapId);
 int MapSelect_ListKindToMapCase(int kind);
 u8 func_02101964(u32 id);
 
-#define MAP_CASE_WAR_ROOM_FIRST 7
-#define MAP_CASE_WAR_ROOM_SECOND 8
-
 /* Fills the list of one kind with the pickable maps of its map case. Nothing
  * is listed while the unlock flag of that case (func_02101964) is clear.
  * Case 7 also takes case 8. Returns 1 when the list has maps. */
@@ -26,11 +23,11 @@ int MapSelect_FillList(MapList *list, int kind, int playerCount)
     }
     header = Ov000_gMapHeaders;
     for (mapId = 0; mapId < MAP_COUNT; mapId++, header++) {
-        if (kind == MAP_CASE_WAR_ROOM_FIRST) {
-            if (header->unk_26 != MAP_CASE_WAR_ROOM_FIRST && header->unk_26 != MAP_CASE_WAR_ROOM_SECOND) {
+        if (kind == MAP_CASE_WAR_ROOM) {
+            if (header->mapCase != MAP_CASE_WAR_ROOM && header->mapCase != MAP_CASE_WAR_ROOM_DS) {
                 continue;
             }
-        } else if (kind != header->unk_26) {
+        } else if (kind != header->mapCase) {
             continue;
         }
         if (!MapSelect_IsMapPickable(mapId)) {

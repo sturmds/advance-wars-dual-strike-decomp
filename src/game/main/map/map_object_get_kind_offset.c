@@ -6,13 +6,13 @@ void MapObject_GetKindOffset(int kind, s16 *offset)
 {
     switch (kind) {
     case MAP_OBJECT_BLACK_CANNON:
-    case MAP_OBJECT_KIND_5:
+    case MAP_OBJECT_DEATHRAY:
     case MAP_OBJECT_BLACK_OBELISK:
         offset[0] = 1;
         offset[1] = 1;
         break;
     case MAP_OBJECT_VOLCANO:
-    case MAP_OBJECT_KIND_8:
+    case MAP_OBJECT_BLOCKED:
         offset[0] = 1;
         offset[1] = 2;
         break;

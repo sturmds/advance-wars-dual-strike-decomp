@@ -17,12 +17,12 @@ extern u16 data_ov000_022dbd52[];
 
 MapObject *Map_FindObjectCovering(int x, int y);
 void MapObjects_ClearHead(void);
-void Map_AddKind5Object(int x, int y, int w, int h, int a, int b);
+void Map_AddDeathrayObject(int x, int y, int w, int h, int a, int b);
 void Map_AddBlackObeliskObject(int x, int y);
 void Map_AddMinicannonObject(int x, int y, int a, int b, int owner);
 void Map_AddBlackCannonObject(int x, int y, int w, int h, int a, int b, int owner);
 void Map_AddVolcanoObject(int x, int y, int w, int h, int a, int b, int c);
-void Map_AddKind8Object(int x, int y, int w, int h);
+void Map_AddBlockedObject(int x, int y, int w, int h);
 void Map_AddGrandBoltWeakPointObject(int x, int y, int owner);
 void Map_AddBlackCrystalObject(int x, int y);
 
@@ -43,13 +43,13 @@ void Map_DrawSpecialTerrain(void)
             }
             tile = STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]];
             switch (MAP_TILE_TERRAIN(tile)) {
-            case 23:
+            case TERRAIN_BLACK_CRYSTAL:
                 Map_AddBlackCrystalObject(x, y);
                 break;
-            case 21:
+            case TERRAIN_MINICANNON:
                 Map_AddMinicannonObject(x, y, mapA, mapB, MAP_TILE_OWNER(tile));
                 break;
-            case 28:
+            case TERRAIN_VOLCANO:
                 switch (MAP_TILE_OWNER(tile)) {
                 case 0:
                     Map_AddVolcanoObject(x, y, 4, 4, 0, 2, 0);
@@ -62,19 +62,19 @@ void Map_DrawSpecialTerrain(void)
                     break;
                 }
                 break;
-            case 26:
+            case TERRAIN_BLACK_CANNON:
                 Map_AddBlackCannonObject(x, y, 3, 3, mapA, mapB, MAP_TILE_OWNER(tile));
                 break;
-            case 31:
-                Map_AddKind8Object(x, y, 4, 4);
+            case TERRAIN_BLOCKED:
+                Map_AddBlockedObject(x, y, 4, 4);
                 break;
-            case 24:
+            case TERRAIN_GRAND_BOLT_WEAK_POINT:
                 Map_AddGrandBoltWeakPointObject(x, y, MAP_TILE_OWNER(tile));
                 break;
-            case 30:
-                Map_AddKind5Object(x, y, 3, 3, 7, 7);
+            case TERRAIN_DEATHRAY:
+                Map_AddDeathrayObject(x, y, 3, 3, 7, 7);
                 break;
-            case 29:
+            case TERRAIN_BLACK_OBELISK:
                 Map_AddBlackObeliskObject(x, y);
                 break;
             }

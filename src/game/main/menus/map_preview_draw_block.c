@@ -87,7 +87,7 @@ void MapPreview_DrawBlock(u16 *dst, int x, int y, int width, u16 height)
                     base = data_02166e3c[terrain];
                     colour = 0;
                     break;
-                case 9:
+                case TERRAIN_OBJECT_PART:
                     base = data_02166e3c[terrain];
                     if (y > 0) {
                         int above = MAP_TILE_TERRAIN(data_027c027c->unk_48[data_027c0284]->tileCodeTerrain[data_0229eadc->tileCodes[rowStart + col - data_0229eadc->width]]);

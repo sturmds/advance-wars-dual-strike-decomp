@@ -1,0 +1,83 @@
+# Map data
+
+The campaign, Versus, War Room and Survival maps are not files in the ROM's file system. Their headers, tiles and pre-deployed units are data in overlay 0 (ov000), the overlay loaded during menus and battles. This repo keeps them as one YAML file per map under `assets/maps/`, and `make` builds ov000's map tables from those files. Combat mode's four maps are separate files (`/combat/%03x`) and are not covered here (issue 0050).
+
+## Where the game reads them
+
+| What | Where in the ROM | C |
+|---|---|---|
+| Header table, 0x10d entries of 0xa0 bytes, indexed by map id | ov000 `.data` 0x022dbd28-0x022e6548 | `Ov000_gMapHeaders`, `MapHeader` (`include/game/map_header.h`) |
+| Tiles: one LZ77 block per map, plus 4 hard-mode blocks | ov000 `.rodata` 0x022b386c-0x022c9254 | `MapHeader.mapData`, `hardMapData`; `Map_LoadData` unpacks them into `MapData` |
+| Pre-deployed units: 137 lists | ov000 `.data` 0x022e6548-0x022f4498 | `MapHeader.units`, `hardUnits`; `PredeployedUnit` (`include/game/predeployed_unit.h`) |
+| Event scripts, Terms and Hint scripts | ov001 | `MapHeader.script`, `termsScript`, `hintScript`; kept as bytes, referenced by symbol |
+| CO lists | main | `MapHeader.coList`; referenced by symbol |
+| Map names | ov000 text banks (`Text_Get`) | `MapHeader.name` |
+
+Map ids 0x101-0x10c are the Design Room slots. Their headers are in the table, but their tiles and units come from the save (`DesignMapRecord`).
+
+A tile is a u16 code. A table loaded from `/bmap/003` turns the code into a terrain id (bits 0-4) and an owner (bits 5-7); the bottom map of Means to an End (0xf8) uses `/bmap/002` (`TileCodeTable_Load`). `docs/map-terrain.md` lists the codes of the large objects.
+
+## Files
+
+```
+assets/maps/
+  maps.txt        map id and YAML file, one line per entry of Ov000_gMapHeaders
+  tiles.txt       YAML file and `tiles` or `hardTiles`, in the order the blocks sit in .rodata
+  units.txt       YAML file and `units` or `hardUnits`, in the order the lists sit in .data
+  campaign/       MapHeader.mapCase 0 and 1: missions and the second maps of two-map missions
+  versus/         cases 2-6
+  warroom/        cases 7 and 8
+  survival/       case 9 (the maps of gSurvivalMapsMode0-5)
+  other/          map 0 (case 0xffff) and the Design Room slots (case 10)
+```
+
+Each YAML file is named `NNN_name.yaml`, with the map id in hex and the map's name from the game text. The three `.txt` files decide the order of everything in ov000; the order of the unit lists is not the order of the map ids.
+
+A map file:
+
+```yaml
+# Example Island (map 0x0ff, made-up values)
+header:
+  script: null                       # pointer fields: a symbol from symbols.txt, or null
+  name: {index: 0x123, group: 0xc000}
+  playerCount: 2
+  mapCase: 7
+  co: [[CO_NONE, CO_NONE], [CO_ANDY, CO_NONE], ...]
+  ...
+tiles:
+  width: 16
+  height: 12
+  rows:
+  - 001 001 001 ...                  # one row per line, 3 hex digits per tile code
+hardTiles: ...                       # only on the 4 maps that have them
+units:
+- army: 1                            # player slot of the rows that follow
+  rows:
+  - {x: 3, y: 2, type: UNIT_TANK, flags: 0, hp: 100, ammo: 9, fuel: 70, cargo: [0, 0], aiOrder: 0, unk_0a: 0, aiTargetX: 3, aiTargetY: 2}
+hardUnits: ...
+```
+
+- `header` holds every `MapHeader` field by its C name, except `mapData`, `hardMapData`, `units` and `hardUnits`: those point at the `tiles`, `hardTiles`, `units` and `hardUnits` sections. `pad_` fields may be left out; they are zero.
+- A word in capitals is a constant from `include/` (`CO_ANDY`, `UNIT_TANK`). Any other word is a symbol, written into the C as `extern char NAME[]`.
+- A unit list is written to the ROM as an army row (`PREDEPLOYED_ARMY`, slot) before each army's rows, then an end row. A list can be empty (`units: []`): the header still points at an end row.
+- When a header field gets a new name in `include/`, rename the key in the YAML files too; `pack` stops on a key the struct does not have.
+
+## Build
+
+1. `tools/maps.py pack` (the `MAPS` step) reads the files above and writes `build/gen/maps/`: `map_data.h` (the `MapTileData` and `MapUnitData` structs, one member per block or list), `map_tiles.inc`, `map_units.inc` and `map_headers.inc`.
+2. `src/game/ov000/map/map_tiles.c`, `map_headers.c` and `map_units.c` include those files. `config/AWRE/arm9/overlays/ov000/delinks.txt` gives them the three ranges in the table above. `configure.py` adds `-i build/gen` to the compiler flags.
+3. `tools/maps.py lcf` writes the symbols that other code uses inside `Ov000_gMapHeaders` (field bases such as `data_ov000_022dbd50`) into `build/arm9.lcf` as `Ov000_gMapHeaders + offset`, right after the line that places `map_headers.o`. Above that line the linker takes the table's address as 0.
+
+`pack` compresses each tile block itself: longest match within 0x1000 bytes, the nearest of equal matches. That gives the ROM's bytes for all 260 blocks. It reads the field lists of `MapHeader`, `PredeployedUnit`, `MapSlotFlags` and `TextRef` from `include/` and writes the initializers in declaration order, because mwccarm 2.0 has no designated initializers (`{ .x = 1 }` is "illegal initialization").
+
+`config/AWRE/arm9/overlays/ov000/symbols.txt` still names each block and list by address (`data_ov000_022c67dc`). dsd needs a symbol at every relocation target in `relocs.txt`, and the header table's relocations point at them. The build itself refers to the blocks as members of `gMapTiles` and `gMapUnits`.
+
+## Editing a map
+
+Edit the YAML file and run `make`. A change that alters the size of a tile block or unit list moves everything after it in ov000. Such a build no longer matches retail: it belongs in the mod build (issue 0023), not in a commit here.
+
+To regenerate every file from the ROM: `python3 tools/maps.py unpack`. It reads `extract/` and the field offsets in `build/dsindex.json` (`tools/dsindex.py`), and overwrites `assets/maps/`.
+
+## Python packages
+
+`tools/maps.py` and `tools/configure.py` need PyYAML (`python3-yaml` on Ubuntu).

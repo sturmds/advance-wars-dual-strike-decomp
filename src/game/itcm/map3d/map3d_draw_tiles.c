@@ -133,7 +133,7 @@ void Map3d_DrawTiles(VecFx32 *origin, int border)
                     int terrain = MAP_TILE_TERRAIN(tile);
 
                     /* tiles of a large map object: lit when the object's target tile is in range */
-                    if (terrain == 9 || terrain == TERRAIN_BLACK_CANNON || terrain == TERRAIN_BLACK_OBELISK) {
+                    if (terrain == TERRAIN_OBJECT_PART || terrain == TERRAIN_BLACK_CANNON || terrain == TERRAIN_BLACK_OBELISK) {
                         if (data_022a7c60 != 0 && Map_IsObjectTargetInRange(x, y)) {
                             highlight = 1;
                             brightness = 31;

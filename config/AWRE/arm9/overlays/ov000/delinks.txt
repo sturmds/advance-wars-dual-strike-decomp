@@ -4,6 +4,18 @@
     .data       start:0x022db560 end:0x02350320 kind:data align:32
     .bss        start:0x02350320 end:0x02350560 kind:bss align:32
 
+src/game/ov000/map/map_tiles.c:
+    complete
+    .rodata     start:0x022b386c end:0x022c9254
+
+src/game/ov000/map/map_headers.c:
+    complete
+    .data       start:0x022dbd28 end:0x022e6548
+
+src/game/ov000/map/map_units.c:
+    complete
+    .data       start:0x022e6548 end:0x022f4498
+
 src/game/ov000/task/unit_path_count_steps.c:
     complete
     .text       start:0x022ad560 end:0x022ad5cc

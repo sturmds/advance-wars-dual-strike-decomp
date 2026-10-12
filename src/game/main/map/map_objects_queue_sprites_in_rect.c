@@ -53,7 +53,7 @@ void MapObjects_QueueSpritesInRect(int left, int top, int width, int height)
             }
             Map_QueueTileSprite(object->x, object->y, sprite, 8, 0);
             break;
-        case MAP_OBJECT_KIND_8:
+        case MAP_OBJECT_BLOCKED:
             Map_QueueTileSprite(object->x, object->y, data_02168238, 8, 0);
             break;
         case MAP_OBJECT_VOLCANO:
