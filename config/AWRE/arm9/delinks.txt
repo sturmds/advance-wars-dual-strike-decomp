@@ -23492,6 +23492,18 @@ src/sdk/func_021295b4.c:
     complete
     .text       start:0x021295b4 end:0x021295c0
 
+src/sdk/msl/semihost_write_char.c:
+    complete
+    .text       start:0x021295c0 end:0x021295d4
+
+src/sdk/msl/semihost_read_char.c:
+    complete
+    .text       start:0x021295d4 end:0x021295e8
+
+src/sdk/msl/func_021295e8.c:
+    complete
+    .text       start:0x021295e8 end:0x021295f8
+
 src/sdk/func_021295f8.c:
     complete
     .text       start:0x021295f8 end:0x02129600
