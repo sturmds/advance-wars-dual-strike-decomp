@@ -48,4 +48,22 @@ BOOL Power_SwitchLcds(int on, int backlight, BOOL force, BOOL sync);
 /* Frame counter in shared main RAM, raised by the VBlank interrupt. */
 #define SHARED_FRAME_COUNTER ((volatile u32 *)0x027ffc3c)
 
+/* ARM7 side: the power chip sits on the SPI bus. */
+#define REG_SPI_CNT ((volatile u16 *)0x040001c0)
+#define REG_SPI_DATA ((volatile u16 *)0x040001c2)
+#define SPI_BUSY 0x80
+
+/* Set in the first SPI byte to read a power chip register instead of writing it. */
+#define POWER_CHIP_READ_BIT 0x80
+
+/* Power chip register 0 holds the control bits (LCD, backlights, sound, LED). */
+#define POWER_SWITCHES_REG_INDEX 0
+
+/* Sets up SPICNT for the power chip; continuous holds chip select for another byte. */
+int func_arm7_038052e8(int continuous);
+u8 PMi_GetRegister(int reg);
+void PMi_SetRegister(int reg, int value);
+void PMi_SetControl(int bits);
+void PMi_ResetControl(int bits);
+
 #endif
