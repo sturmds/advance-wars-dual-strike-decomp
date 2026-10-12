@@ -77,6 +77,13 @@ typedef struct CTRDGWork {
 
 extern CTRDGWork data_022acf14;
 
+/* ARM7: the init word from the ARM9 (header address and command), kept by the PXI callback. */
+typedef struct GbaSlotInitWord {
+    u32 word;                      /* the PXI word as received */
+    u8 pad_04[0xc];
+    u32 received;                  /* set to 1 once word holds the init command */
+} GbaSlotInitWord;
+
 /* Busy-waits for roughly the given number of loop passes (Thumb code in the SDK). */
 void SVC_WaitByLoop(u32 count);
 
