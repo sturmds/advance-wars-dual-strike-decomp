@@ -1057,6 +1057,10 @@ src/arm7/sdk/func_arm7_038028c8.c:
     complete
     .text       start:0x038028c8 end:0x038028d4
 
+src/arm7/sdk/fs/file_sys_start_card_access_arm7.c:
+    complete
+    .text       start:0x038028d4 end:0x0380292c
+
 src/arm7/sdk/func_arm7_03802974.c:
     complete
     .text       start:0x03802974 end:0x03802984
