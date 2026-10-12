@@ -20,7 +20,11 @@ hash differ only in what they call or load.
 temporary object and compares one function against the index: bytes outside
 relocations, relocation offsets and kinds, and relocation targets as
 addresses. A relocation to `Table+0x1c` equals one to the symbol dsd placed
-at that address (issue 0017). `fn.py check` is the command-line front end.
+at that address (issue 0017). That decides the match. When it fails and
+the last build left the original's delinked object for the function's file,
+objdiff-cli runs on that object and ours, and `differ` counts the rows
+`fn.py diff` would mark | (issue 0070); otherwise it counts instructions
+that differ by position. `fn.py check` is the command-line front end.
 It never runs ninja or dsd and never writes to config/. An `arm7` function
 is compiled with the ARM7 flags (configure.CFLAGS7).
 
@@ -322,21 +326,30 @@ class Result:
     name: str
     ok: bool
     units: int          # instructions (ARM words or Thumb halfwords) compared
-    differ: int         # of those, how many differ
+    # How many differ: the rows `fn.py diff` marks | when `check()` could
+    # run objdiff-cli (`percent` is then set), else by position (issue 0070).
+    differ: int
     bytes_differ: int
     message: str = ""
     # Relocations that reach the right address under another name, like
     # Table+0x1c for dsd's data_xxx (issue 0017). They count as matching.
     renamed: int = 0
     compiler_output: str = ""
+    percent: float | None = None   # objdiff's, as `fn.py diff` prints it
+    by_position: int | None = None  # units that differ by position
 
     def __str__(self):
         if self.ok:
             return f"{self.name}: match"
         if not self.units:
             return f"{self.name}: {self.message}"
-        return (f"{self.name}: {self.differ} of {self.units} instructions differ "
-                f"({self.bytes_differ} bytes){'; ' + self.message if self.message else ''}")
+        note = f"; {self.message}" if self.message else ""
+        if self.percent is not None:
+            return (f"{self.name}: {self.differ} differ, {self.percent}% match "
+                    f"({self.by_position} of {self.units} instructions differ by position, "
+                    f"{self.bytes_differ} bytes){note}")
+        return (f"{self.name}: {self.differ} of {self.units} instructions differ by position "
+                f"({self.bytes_differ} bytes){note}")
 
 
 def compile_c(src: Path, obj: Path, module: str | None = None) -> subprocess.CompletedProcess:
@@ -437,16 +450,53 @@ def compile_object(src: Path, tmpdir: Path | None = None, module: str | None = N
         return (None if r.returncode else obj.read_bytes()), r.stdout + r.stderr
 
 
+def original_object(want: dict) -> Path | None:
+    """The original's object from the last build's `dsd delink` for the file
+    that covers the function, if there is one."""
+    if not want.get("file"):
+        return None
+    base = "build/arm7/delinks" if want["module"] == "arm7" else "build/delinks"
+    obj = ROOT / base / Path(want["file"]).with_suffix(".o")
+    return obj if obj.is_file() else None
+
+
+def count_rows(res: Result, want: dict, obj_data: bytes, tmpdir: Path | None = None) -> Result:
+    """Count the differing rows as `fn.py diff` does, with objdiff-cli on
+    the delinked original (about 10 ms; issue 0070). Position by position,
+    an inserted instruction makes every one after it differ, where objdiff
+    lines the two listings up first. Leaves `res` as it is when there is no
+    delinked object for the function, or objdiff-cli fails."""
+    target = original_object(want)
+    if res.ok or not res.units or target is None:
+        return res
+    with tempfile.TemporaryDirectory(dir=tmpdir) as d:
+        ours = Path(d) / "check.o"
+        ours.write_bytes(obj_data)
+        data = fn.objdiff(target, ours, res.name)
+    scored = fn.score_rows(data, res.name, want["module"]) if data else None
+    if scored is None or not scored[0]:
+        return res
+    left, right, same, percent = scored
+    res.by_position, res.percent = res.differ, percent
+    # A difference objdiff does not see, like a relocation to the wrong
+    # address under the same name, still counts.
+    res.differ = max(1, fn.count_differ(left, right, same))
+    return res
+
+
 def check(index: Index, src: Path, name: str, module: str | None = None, tmpdir: Path | None = None) -> Result:
-    """Compile src and compare function `name` with the original."""
+    """Compile src and compare function `name` with the original. `differ`
+    counts rows as `fn.py diff` does when the build has the original's
+    delinked object."""
     try:
-        target_module = index.func(name, module)["module"]
+        want = index.func(name, module)
     except KeyError:
-        target_module = module
-    obj, output = compile_object(src, tmpdir, target_module)
+        want = None
+    obj, output = compile_object(src, tmpdir, want["module"] if want else module)
     if obj is None:
         return Result(name, False, 0, 0, 0, "compile error", 0, output)
-    return compare(index, obj, name, module)
+    res = compare(index, obj, name, module)
+    return count_rows(res, want, obj, tmpdir) if want else res
 
 
 def main() -> int:

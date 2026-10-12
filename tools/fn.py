@@ -11,7 +11,8 @@
     fn.py add NAME src/PATH.c                  add a delinks.txt entry covering the function
     fn.py diff NAME [--color WHEN]             compile its file and compare with the original
     fn.py check FILE.c NAME                    fast yes/no: compile FILE.c alone and compare NAME
-                                               with build/fnindex.json (tools/fnindex.py)
+                                               with build/fnindex.json (tools/fnindex.py); counts
+                                               differing rows as diff does (issue 0070)
     fn.py lines NAME [FILE.c]                  our compiled code for NAME, each run of instructions
                                                under the C line it comes from (mwcc -g line table)
     fn.py finish NAME                          mark its file `complete` (linked from our C)
@@ -29,11 +30,11 @@ configure.py (ARM9_ABSOLUTE_SYMBOLS, ARM7_ABSOLUTE_SYMBOLS) with the original
 word's value, and count as matching), and exits 0 only at 100%. Its last line,
 `NAME: N differ, P% match`, gives the rows marked | and objdiff's percentage.
 Rank attempts by N, then P (issue 0067): objdiff's score charges one wrong
-opcode as much as 12 wrong registers, and charges for = rows too. N can
-differ from `fn.py check`'s count: check compares by position, so one
-missing or extra instruction makes it count every one after it, while
-objdiff lines the listings up first and may show a changed instruction as
-one row each side has alone. They agree when the listings line up one to one.
+opcode as much as 12 wrong registers, and charges for = rows too.
+`fn.py check` prints the same N and P when the last build left a delinked
+original for the function's file (it runs objdiff-cli on that object and
+its own; issue 0070); otherwise it counts by position, so one missing or
+extra instruction makes it count every one after it.
 
 `pick --families` is based on khdays-decomp tools/pick_family.py
 (CC0 1.0, commit ba2de370; see docs/third-party/khdays-decomp.md).
@@ -603,43 +604,19 @@ def cmd_diff(args) -> int:
     if r.returncode:
         sys.stdout.write(r.stdout + r.stderr)
         return 1
-    data = json.loads(r.stdout)
-
-    def side(key):
-        for s in (data.get(key) or {}).get("symbols", []):
-            if s.get("name") == f.name:
-                return s
-        return {}
-
-    orig, ours_sym = side("left"), side("right")
-    if not ours_sym:
+    scored = score_rows(json.loads(r.stdout), f.name, f.module)
+    if scored is None:
         print(f"error: {path} does not define {f.name}. Check the function name in the C file.")
         return 1
-    percent = orig.get("match_percent", ours_sym.get("match_percent"))
-
-    def rows(s):
-        out = []
-        for ins in s.get("instructions", []):
-            i = ins.get("instruction")
-            text = f"{int(i.get('address', 0)):4x}: {i['formatted']}" if i else ""
-            out.append((text, ins.get("diff_kind")))
-        return out
-
-    left, right = rows(orig), rows(ours_sym)
-    # objdiff compares relocations by symbol name. Rows where both sides
-    # point at the same address under different names (issue 0017) match,
-    # and so do words relocated to an absolute symbol of the original value.
-    same = {i for i, (a, b) in enumerate(zip(orig.get("instructions", []), ours_sym.get("instructions", [])))
-            if a.get("diff_kind") and (same_target(data, a, b) or absolute_word(data, a, b, f.module))}
+    left, right, same, percent = scored
     width = max((len(t) for t, _ in left), default=10) + 2
     paint = painter(args.color)
     print(paint("1", f"{'original':<{width}}   ours"))
-    differ = 0
+    differ = count_differ(left, right, same)
     for i in range(max(len(left), len(right))):
         a, ka = left[i] if i < len(left) else ("", "missing")
         b, kb = right[i] if i < len(right) else ("", "missing")
         mark = "=" if i in same else "|" if (ka or kb) else " "
-        differ += mark == "|"
         # Colours as in `git diff`: the original in red, ours in green.
         # Pad before colouring so the columns stay aligned.
         if mark == "|":
@@ -655,6 +632,53 @@ def cmd_diff(args) -> int:
               " or an absolute symbol of the same value; counted as matching.")
     print(f"\n{f.name}: {differ} differ, {percent if percent is not None else '?'}% match")
     return 0 if percent == 100.0 else 1
+
+
+def objdiff(target: Path, base: Path, name: str) -> dict | None:
+    """objdiff-cli's JSON for function `name`, with `target` the original's
+    object and `base` ours. None when objdiff-cli fails."""
+    r = subprocess.run([OBJDIFF, "diff", "-1", str(target), "-2", str(base), "-o", "-", "--format", "json", name],
+                       cwd=ROOT, capture_output=True, text=True)
+    return None if r.returncode else json.loads(r.stdout)
+
+
+def score_rows(data: dict, name: str, module: str | None):
+    """The rows `fn.py diff` prints, from objdiff-cli's JSON: (original
+    rows, our rows, indices of the rows marked =, objdiff's percentage).
+    A row is (text, objdiff's diff kind). None when our object does not
+    define `name`."""
+    def side(key):
+        for s in (data.get(key) or {}).get("symbols", []):
+            if s.get("name") == name:
+                return s
+        return {}
+
+    orig, ours = side("left"), side("right")
+    if not ours:
+        return None
+    percent = orig.get("match_percent", ours.get("match_percent"))
+
+    def rows(s):
+        out = []
+        for ins in s.get("instructions", []):
+            i = ins.get("instruction")
+            text = f"{int(i.get('address', 0)):4x}: {i['formatted']}" if i else ""
+            out.append((text, ins.get("diff_kind")))
+        return out
+
+    # objdiff compares relocations by symbol name. Rows where both sides
+    # point at the same address under different names (issue 0017) match,
+    # and so do words relocated to an absolute symbol of the original value.
+    same = {i for i, (a, b) in enumerate(zip(orig.get("instructions", []), ours.get("instructions", [])))
+            if a.get("diff_kind") and (same_target(data, a, b) or absolute_word(data, a, b, module))}
+    return rows(orig), rows(ours), same, percent
+
+
+def count_differ(left, right, same) -> int:
+    """How many rows `fn.py diff` marks |."""
+    return sum(1 for i in range(max(len(left), len(right)))
+               if i not in same and ((left[i][1] if i < len(left) else "missing")
+                                     or (right[i][1] if i < len(right) else "missing")))
 
 
 @dataclass

@@ -290,9 +290,8 @@ def one(name: str, seconds: int, jobs: int, index, verbose: bool = False) -> dic
         sys.exit(f"error: decomp-permuter stopped before scoring {name} (exit {code}):\n{tail}")
     rows = rescore(d, name, module, index)
     base = rows[0]
-    # A match wins; otherwise decomp-permuter's score, which aligns the two
-    # listings, so a variant that fixes the order of instructions counts even
-    # when fn.py check (position by position) shows no change.
+    # A match wins; otherwise decomp-permuter's score, then fn.py check's
+    # count of differing rows.
     best = min(rows, key=lambda r: (not r[3].ok, r[1] if r[1] is not None else base_score(d), r[0]))
     out = {"name": name, "file": path, "seconds": round(time.time() - start), "exit": code,
            "base": base[0], "best": best[0], "units": best[3].units, "ok": best[3].ok,
@@ -381,7 +380,7 @@ def main() -> int:
 def markdown(results: list, seconds: int, jobs: int) -> str:
     out = ["# decomp-permuter run", "",
            f"Written by `tools/permuter.py`: {seconds} s per function, {jobs} jobs. Before and best:",
-           "instructions that differ by `fn.py check` (position by position), and decomp-permuter's",
+           "rows that differ by `fn.py check` (counted as `fn.py diff` counts them), and decomp-permuter's",
            "score (aligned; 0 is a match). Check each best variant by hand: some change behaviour.", "",
            "| Function | Before | Best | Instructions | Score before | Score best | Outputs | Best variant |",
            "|---|---:|---:|---:|---:|---:|---:|---|"]

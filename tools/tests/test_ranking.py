@@ -86,8 +86,24 @@ def test_propagate_better():
     assert not propagate.better({"status": "compile-error"}, r(SEVEN_REGS))
 
 
+def test_count_differ():
+    """fn.count_differ, which `fn.py check` and `fn.py diff` share (issue
+    0070), counts the sample's rows as the sample's last line does."""
+    left = [(a, None if m == " " else "DIFF_ARG_MISMATCH") for a, _, m in ROWS]
+    right = [(b, None if m == " " else "DIFF_ARG_MISMATCH") for _, b, m in ROWS if b]
+    same = {i for i, r in enumerate(ROWS) if r[2] == "="}
+    assert fn.count_differ(left, right, same) == fn.parse_diff(SAMPLE).differ == 2
+    # One extra instruction in ours: objdiff gives it a row of its own and
+    # lines up the rest, so one row differs where a compare by position
+    # counts every instruction after it.
+    ins = [("0: mov r0, #0", None), ("4: add r0, r0, #1", None), ("8: bx lr", None)]
+    ours = [ins[0], ("4: nop", "DIFF_INSERT"), ins[1], ins[2]]
+    theirs = [ins[0], ("", "DIFF_INSERT"), ins[1], ins[2]]
+    assert fn.count_differ(theirs, ours, set()) == 1
+
+
 def main() -> int:
-    tests = [test_parse, test_rank, test_triage_sort, test_propagate_better]
+    tests = [test_parse, test_rank, test_triage_sort, test_propagate_better, test_count_differ]
     for t in tests:
         t()
     print(f"test_ranking: {len(tests)} checks passed")

@@ -604,7 +604,7 @@ def main() -> int:
                     r = {"name": cand["name"], "template": tpl.f["name"], "status": "compile-error",
                          "why": res.compiler_output.strip().splitlines()[0] if res.compiler_output.strip() else ""}
                 else:
-                    pct = 100.0 * (res.units - res.differ) / res.units
+                    pct = res.percent if res.percent is not None else 100.0 * (res.units - res.differ) / res.units
                     r = {"name": cand["name"], "template": tpl.f["name"], "status": "differ", "differ": res.differ,
                          "percent": round(pct, 2), "why": str(res)}
                 if better(r, best):
