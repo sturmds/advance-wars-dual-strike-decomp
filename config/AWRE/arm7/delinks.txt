@@ -516,6 +516,10 @@ src/arm7/sdk/wl/wifi_cmd_report_post_beacon_time.c:
     complete
     .text       start:0x027cd74c end:0x027cd774
 
+src/arm7/sdk/wl/wifi_cmd_report_beacons_per_run.c:
+    complete
+    .text       start:0x027cd774 end:0x027cd79c
+
 src/arm7/sdk/wl/func_arm7_027cdadc.c:
     complete
     .text       start:0x027cdadc end:0x027cdb28
