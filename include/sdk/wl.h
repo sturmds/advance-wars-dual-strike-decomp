@@ -333,6 +333,22 @@ typedef struct WlAuthFrame {
     u16 status;
 } WlAuthFrame;
 
+/* Task 1 (func_arm7_027cc5ac): waits for the receive path to fill result. */
+typedef struct WlTask1Request {
+    u8 pad_00[0x10];
+    u16 timeoutMs;
+} WlTask1Request;
+
+typedef struct WlTask1Job {
+    u16 state;
+    u8 pad_02[2];
+    u16 result;
+    u16 unk_06;
+    u8 pad_08[0x10];
+    WlTask1Request *request;
+    WlReply *reply;
+} WlTask1Job;
+
 /* Values of WlReply.unk_04 set by the MLME steps. */
 #define WIFI_ANSWER_OK 0
 #define WIFI_ANSWER_OUT_OF_RANGE 5
@@ -351,6 +367,7 @@ typedef union WlMlme {
     WlMlmeJob any;
     WlMeasureChannelJob measure;
     WlPeerJob peer;
+    WlTask1Job task1;
 } WlMlme;
 
 /* The host request being handled; task 11 takes it from the inbox. */
