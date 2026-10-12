@@ -1276,7 +1276,8 @@ typedef struct WlMpReplyEntry {
    AID from 1 up, in AID order. */
 typedef struct WlMpPoll {
     u16 pendingAids; /* bit n: no reply from AID n yet */
-    u8 pad_02[4];
+    u16 unk_02;      /* pendingAids ^ WlRamFrame.unk_02 once the poll was sent */
+    u8 pad_04[2];
     u16 replySize;   /* bytes per reply slot, WlMpReplyEntry header included */
     u8 pad_08[2];
     u8 replies[1];

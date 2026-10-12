@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
 
-void func_arm7_037fac44(void); /* in a handler table; probably the CMD TX done handler */
+void WifiTask_FinishMpPoll(void); /* in a handler table; probably the CMD TX done handler */
 
 /* Stops the CMD TX slot and finishes a frame it was sending. */
 void WifiTx_AbortCmdSlot(void)
@@ -10,7 +10,7 @@ void WifiTx_AbortCmdSlot(void)
 
     REG_W_TXBUF_RESET = W_TXREQ_CMD;
     if (slots[WIFI_TXLOC_MP_POLL].busy) {
-        func_arm7_037fac44();
+        WifiTask_FinishMpPoll();
     }
     Irq_SetEnableBits_Arm7(irqMask);
 }

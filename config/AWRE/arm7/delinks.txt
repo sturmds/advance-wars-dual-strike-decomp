@@ -2230,6 +2230,10 @@ src/arm7/sdk/wl/wifi_task_collect_tx_results.c:
     complete
     .text       start:0x037fa680 end:0x037fa880
 
+src/arm7/sdk/wl/wifi_task_finish_mp_poll.c:
+    complete
+    .text       start:0x037fac44 end:0x037fad28
+
 src/arm7/sdk/os/irq_dispatch_lowest_pending_arm7.c:
     complete
     .text       start:0x037fb340 end:0x037fb394
