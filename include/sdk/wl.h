@@ -494,10 +494,12 @@ typedef struct WlBssSettings {
 typedef struct WlScanRequest {
     u8 pad_00[0x10];
     u16 peer[3];         /* address handed to the probe request builder */
-    u8 pad_16[0x38 - 0x16];
+    u16 ssidLength;      /* up to 32 */
+    u8 ssid[32];
     u16 unk_38;          /* nonzero: send no probe requests */
     u8 channels[16];     /* 0 ends the list */
     u16 channelTimeMs;   /* time spent on each channel */
+    u16 unk_4c;          /* up to 16 */
 } WlScanRequest;
 
 typedef struct WlScanJob {
@@ -1154,7 +1156,9 @@ typedef struct WlStationTable {
  */
 typedef struct WlPendingRequest {
     u16 command;
-    u8 pad_02[0x16];
+    u8 pad_02[2];
+    u16 unk_04;
+    u8 pad_06[0x12];
     void *request;
     WlReply *reply;
 } WlPendingRequest;

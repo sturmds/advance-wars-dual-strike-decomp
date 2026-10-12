@@ -1244,6 +1244,10 @@ src/arm7/sdk/wl/wifi_cmd_start_join.c:
     complete
     .text       start:0x027ccfc4 end:0x027cd170
 
+src/arm7/sdk/wl/wifi_cmd_start_scan.c:
+    complete
+    .text       start:0x027cd170 end:0x027cd2b4
+
 src/arm7/sdk/wl/wifi_cmd_report_assoc_listen.c:
     complete
     .text       start:0x027cd484 end:0x027cd4ac
