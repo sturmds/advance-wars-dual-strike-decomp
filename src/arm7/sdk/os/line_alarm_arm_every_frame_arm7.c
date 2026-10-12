@@ -6,7 +6,7 @@ int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
 void func_arm7_037fdc10(void);
 s32 func_arm7_037fd530(s32 vcount);
-void func_arm7_037fda6c(OSVAlarm *alarm);
+void LineAlarm_QueueByFrameLine_Arm7(OSVAlarm *alarm);
 
 /*
  * The handler runs every frame when VCOUNT reaches line, up to delay lines
@@ -34,6 +34,6 @@ void LineAlarm_ArmEveryFrame_Arm7(OSVAlarm *alarm, s16 line, s16 delay, OSVAlarm
     alarm->handler = handler;
     alarm->arg = arg;
     alarm->canceled = FALSE;
-    func_arm7_037fda6c(alarm);
+    LineAlarm_QueueByFrameLine_Arm7(alarm);
     func_arm7_037fdb94(irqState);
 }
