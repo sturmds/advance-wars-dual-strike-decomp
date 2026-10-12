@@ -573,6 +573,9 @@ src/arm7/sdk/wm/wmsp_queue_port_send.c:
     complete
     .text       start:0x027c6824 end:0x027c698c
 
+src/arm7/sdk/wm/func_arm7_027c698c.c:
+    .text       start:0x027c698c end:0x027c6eb4
+
 src/arm7/sdk/wm/wmsp_resend_mp.c:
     complete
     .text       start:0x027c6eb4 end:0x027c6f68
