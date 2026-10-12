@@ -51,6 +51,16 @@ typedef struct RtcDateTime {
     u32 unk_4;
 } RtcDateTime;
 
+/* An alarm register (command registers 0x10 and 0x50), 3 bytes. The hour
+ * is BCD; pm marks an afternoon hour in 12-hour mode and any hour from 12
+ * on in 24-hour mode. */
+typedef struct RtcAlarm {
+    u32 unk_0 : 8;
+    u32 hour : 6;
+    u32 pm : 1;
+    u32 unk_15 : 17;
+} RtcAlarm;
+
 /* PXI protocol with the ARM9. A reply word holds the result in bits 0-7,
  * the command it answers in bits 8-14, and bit 15 set. */
 #define PXI_FIFO_TAG_RTC 5
