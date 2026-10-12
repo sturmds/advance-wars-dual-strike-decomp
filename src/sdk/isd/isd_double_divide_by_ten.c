@@ -36,7 +36,7 @@ double func_0211fe0c(double x, int keepFraction) {
   int j;
   char* readPtr;
   u64 shifted;
-  BOOL integerOnly;
+  u32 integerOnly;
   char* topByte;
   int byte;
   int i;
@@ -60,11 +60,11 @@ double func_0211fe0c(double x, int keepFraction) {
   } else {
     exponent = 0;
   }
+  mantissa |= 0x0010000000000000ULL;
   fifth = 0;
   remainder = 0;
   i = 0;
   integerOnly = keepFraction == 0 ? TRUE : FALSE;
-  mantissa |= 0x0010000000000000ULL;
   /* Long division of the mantissa bits by 5, top bit first; the remainder rounds the fifth up. */
   for (; i < ((integerBits <= 53 && integerOnly) ? integerBits : 53); i++) {
     fifth <<= 1;
