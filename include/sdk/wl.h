@@ -782,6 +782,24 @@ typedef struct WlRxBuffer {
     WlRxFrame frame;
 } WlRxBuffer;
 
+/* The WlRxFrame whose unk_08 (hardware RX header) rxHeader points to. */
+#define WIFI_RX_FRAME_FROM_HEADER(rxHeader) ((WlRxFrame *)((u8 *)(rxHeader) - 8))
+
+/*
+ * One of three slots where a fragmented frame is put back together: the
+ * addresses and sequence of its first fragment, and the buffer that grows
+ * with each fragment.
+ */
+typedef struct WlDefragSlot {
+    u16 ticks;        /* nonzero while in use; task 17 frees the buffer when it reaches 0 */
+    u16 fragmentSize; /* length of one fragment's body */
+    WlRxAddrs addrs;
+    u8 pad_12[2];
+    WlRxBuffer *buffer;
+} WlDefragSlot;
+
+#define WIFI_REASSEMBLY_SLOTS 3
+
 /* The WlRxBuffer that holds a received frame. */
 #define WIFI_RX_HOLDER_OF(rxFrame) ((WlRxBuffer *)((u8 *)(rxFrame) - (u32)&((WlRxBuffer *)0)->frame))
 
@@ -1002,7 +1020,7 @@ typedef struct WlWork {
     WlWepWatch wepWatch;
     u8 pad_4b8[0x4ba - 0x4b8];
     u16 unk_4ba; /* ORed into the RX header word of an MP ack sent to the host */
-    u8 pad_4bc[0x504 - 0x4bc];
+    WlDefragSlot defragSlots[WIFI_REASSEMBLY_SLOTS];
     WlStationBits stationBits;
     u32 counters[45]; /* totals of the hardware event counters, see WifiCmd_ReportStatistics */
     WlRandom random;
