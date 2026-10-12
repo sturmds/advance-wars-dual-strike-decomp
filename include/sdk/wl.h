@@ -1099,7 +1099,8 @@ typedef struct WlWepWatch {
    WlWork.unk_4ba. */
 typedef struct WlMpChild {
     u16 lastSequence; /* sequence number of the last MP poll taken */
-    u8 pad_02[4];
+    u8 pad_02[2];
+    u16 rxReadCursor; /* RX ring read position in halfwords, as REG_W_RXBUF_READCSR */
     u16 replyFlags;   /* ORed into the RX header word of MP frames sent to the host */
 } WlMpChild;
 
@@ -1407,6 +1408,7 @@ typedef struct Unk_027cb9e4 {
 #define REG_W_RXBUF_WRCSR   (*(volatile u16 *)0x04808054) /* write cursor, in halfwords */
 #define REG_W_RXBUF_WR_ADDR (*(volatile u16 *)0x04808056)
 #define REG_W_RXBUF_READCSR (*(volatile u16 *)0x0480805a)
+#define REG_W_RXBUF_GAP     (*(volatile u16 *)0x04808062)
 #define REG_W_TXREQ_READ    (*(volatile u16 *)0x048080b0)
 #define REG_W_RXSTAT_INC_IF (*(volatile u16 *)0x048081a8)
 #define REG_W_RXTX_ADDR     (*(volatile u16 *)0x04808268) /* halfword the hardware reads or writes now */

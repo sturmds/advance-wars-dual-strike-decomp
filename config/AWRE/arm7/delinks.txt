@@ -2242,6 +2242,10 @@ src/arm7/sdk/wl/wifi_rx_take_from_ring.c:
     complete
     .text       start:0x037fade4 end:0x037fae58
 
+src/arm7/sdk/wl/wifi_rx_set_up_ring.c:
+    complete
+    .text       start:0x037fb204 end:0x037fb340
+
 src/arm7/sdk/os/irq_dispatch_lowest_pending_arm7.c:
     complete
     .text       start:0x037fb340 end:0x037fb394
