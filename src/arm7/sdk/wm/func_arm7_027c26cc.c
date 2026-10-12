@@ -20,6 +20,6 @@ u16 *func_arm7_027c26cc(WlCommand *cmd, const void *src, int arg0, int arg1)
     reply = slot + 8;
     slot[8] = cmd->length;
     reply[1] = 6;
-    func_arm7_027c0560(cmd);
+    Wmsp_SendWlCommand(cmd);
     return reply;
 }
