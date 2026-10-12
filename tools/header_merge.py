@@ -20,6 +20,10 @@ reads both versions as declarations instead of lines:
 - A struct the commit names differently from mainline (both sides declare
   the same extern with it) is merged into mainline's struct.
 - Fields that overlap without matching are reported as conflicts.
+- A field the base has and one side removed stays removed, and so does the
+  base's size when one side shrank the struct (b23/mb6: the commit's older
+  copy put back DlPlayHostMsgHead.pad_06). If the other side changed that
+  field, it is a conflict.
 
 The base (the commit's parent version, empty for a header both sides
 added) tells an edit from an addition: where mainline still has the base's
@@ -412,10 +416,10 @@ def merge_body(kind: str, ours: list[str], theirs: list[str], base: list[str] | 
     o_chs, o_tail = chunks("".join(ours))
     o_items, o_size, o_align = layout(o_chs, kind, sides.ours)
     t_items, t_size, _ = layout(chunks("".join(theirs))[0], kind, sides.theirs)
-    b_items = layout(chunks("".join(base))[0], kind, sides.base)[0] if base else []
+    b_items, b_size, _ = layout(chunks("".join(base))[0], kind, sides.base) if base else ([], None, 1)
     if kind == "union":
         return merge_union(o_items, t_items, b_items, o_tail, sides, rep, where)
-    named = [it for it in o_items if it.name]
+    named = [it for it in o_items if it.name and not removed(it, t_items, b_items)]
     for t in t_items:
         if not t.name:
             continue
@@ -428,10 +432,19 @@ def merge_body(kind: str, ours: list[str], theirs: list[str], base: list[str] | 
             continue
         merge_field(named, t, b_items, sides, rep, where)
     pads = {(p.offset, p.offset + p.size): p for p in t_items + o_items if p.name is None}
-    end = max([o_size, t_size] + [it.offset + it.size for it in named])
+    # The size changes as in a 3-way merge: the side that kept the base's
+    # size follows the other one. Fields still decide the least size.
+    sizes = [t_size] if o_size == b_size else [o_size] if t_size == b_size else [o_size, t_size]
+    end = max(sizes + [it.offset + it.size for it in named])
     body = render(named, end, max(o_align, *(it.align for it in named), 1), pads, o_items) + o_tail
     check_layout(body, named, end, sides.ours)
     return body
+
+
+def removed(o: Item, theirs: list[Item], base: list[Item]) -> bool:
+    """Whether the commit removed mainline's field o: o is as the base had
+    it, and no named field of the commit covers its bytes."""
+    return unchanged(o, base) and not any(t.name and overlaps(o, t) for t in theirs)
 
 
 def simple(name: str) -> bool:
@@ -449,6 +462,13 @@ def merge_field(named: list[Item], t: Item, base: list[Item], sides: Sides, rep:
         merge_same(named, same, t, base, sides, rep, where)
         return
     clash = [o for o in named if overlaps(o, t)]
+    gone = [b for b in base if b.name and overlaps(b, t)] if not clash else []
+    if gone:
+        # Mainline removed the base's field here, and the commit changed it.
+        names = ", ".join(f"{b.name} (0x{b.offset:x}, {b.size} bytes)" for b in gone)
+        rep.conflicts.append(f"{where}.{t.name} (0x{t.offset:x}, {t.size} bytes): mainline removed"
+                             f" the base's {names}, and the commit changed it")
+        return
     if not clash:
         dup = [o for o in named if o.name == t.name]
         if dup:
@@ -529,11 +549,19 @@ def merge_union(ours: list[Item], theirs: list[Item], base: list[Item], tail: li
                 sides: Sides, rep: Report, where: str) -> list[str]:
     """Members of a union all start at 0: merge them by name. Two versions
     of an anonymous struct member are merged field by field."""
-    out = list(ours)
-    by_name = {it.name: it for it in out}
+    t_names = {it.name for it in theirs}
     based = {it.name: it for it in base}
+    # A member the commit removed and mainline left as it was goes.
+    out = [it for it in ours if not (it.name not in t_names and it.name in based
+                                     and based[it.name].text == it.text)]
+    by_name = {it.name: it for it in out}
     for t in theirs:
         o = by_name.get(t.name)
+        if o is None and t.name in based:
+            if based[t.name].text != t.text:
+                rep.conflicts.append(f"{where}.{t.name}: mainline removed it from the union,"
+                                     f" and the commit changed it")
+            continue  # mainline removed it
         if o is None:
             out.append(t)
             rep.added_fields += 1

@@ -187,6 +187,51 @@ class EmbeddedStructSizeTest(RepoCase):
         self.assertNotIn("unk_40", text)
 
 
+class RemovedFieldTest(RepoCase):
+    """b23/mb8 and b23/mb6: mainline removed DlPlayHostMsgHead.pad_06 and
+    the struct shrank to 6 bytes; a commit made on the older header put it
+    back, and the ROM stopped matching."""
+    HEAD = "    u8 type;\n    u8 pad_01;\n    u16 fileId;\n"
+
+    def test_mainline_removal_stays(self):
+        r = self.repo.replay(
+            base={"include/mb.h": struct("Hdr", self.HEAD + "    u16 unk_04;\n    u8 pad_06[2];\n")},
+            ours={"include/mb.h": struct("Hdr", self.HEAD + "    u16 unk_04;\n")},
+            theirs={"include/mb.h": struct("Hdr", self.HEAD + "    u16 block;\n    u8 pad_06[2];\n")})
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("merged include/mb.h", r.stdout)
+        text = self.repo.read("include/mb.h")
+        self.assertIn("u16 block;", text)
+        self.assertNotIn("pad_06", text)
+
+    def test_commit_removal_stays(self):
+        r = self.repo.replay(
+            base={"include/mb.h": struct("Hdr", self.HEAD + "    u16 unk_04;\n    u16 unk_06;\n")},
+            ours={"include/mb.h": struct("Hdr", self.HEAD + "    u16 block;\n    u16 unk_06;\n")},
+            theirs={"include/mb.h": struct("Hdr", self.HEAD + "    u16 unk_04;\n")})
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        text = self.repo.read("include/mb.h")
+        self.assertIn("u16 block;", text)
+        self.assertNotIn("unk_06", text)
+
+    def test_removal_against_change(self):
+        r = self.repo.replay(
+            base={"include/mb.h": struct("Hdr", self.HEAD + "    u16 unk_04;\n    u16 unk_06;\n")},
+            ours={"include/mb.h": struct("Hdr", self.HEAD + "    u16 block;\n")},
+            theirs={"include/mb.h": struct("Hdr", self.HEAD + "    u16 unk_04;\n    u16 count;\n")})
+        self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
+        self.assertIn("Hdr.count (0x6, 2 bytes): mainline removed the base's unk_06", r.stderr)
+
+    def test_union_member_removal(self):
+        view = "    union {{\n        u32 word;\n{0}    }};\n    u8 {1};\n"
+        r = self.repo.replay(
+            base={"include/mb.h": struct("Hdr", view.format("        u16 half;\n", "unk_4"))},
+            ours={"include/mb.h": struct("Hdr", view.format("", "kind"))},
+            theirs={"include/mb.h": struct("Hdr", view.format("        u8 half;\n", "unk_4"))})
+        self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
+        self.assertIn("Hdr.half: mainline removed it from the union", r.stderr)
+
+
 def header(body: str) -> str:
     return f'#ifndef T_H\n#define T_H\n\n#include "types.h"\n\n{body}\n#endif\n'
 
