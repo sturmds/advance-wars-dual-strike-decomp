@@ -4,18 +4,17 @@
 
 extern DlPlayHostLinkArea *data_022aced4;
 
-void MbParentFile_AdvanceBlock(u8 fileId);
+void MbParentFile_AdvanceBlock(int fileIndex);
 BOOL MbFile_GetBlockInfo(DlPlayBlockSpot *info, const DlPlaySegmentStarts *table, u16 block, const DlPlayProgramLayout *header);
 u8 *MbComm_WriteParentMessage(DlPlayHostMsgHead *header, u8 *buffer);
 void MbCache_LoadPage(DlPlayWorkerJob *task);
-int func_0211b458(u32 size, u16 bitmap, u8 *buffer);
+int func_0211b458(int size, int bitmap, void *data);
 
 /* Sends the next block of the next file that children are receiving. The
  * block comes from the file's cache; on a miss it starts a load of the
  * page into the oldest ready cache page and sends nothing.
- * Not matched yet (99.14%): in the address computation the original keeps
- * the work pointer in r5 and the file index in r2; ours uses r7 and r5. */
-int func_021193fc(void)
+ * The address computation reads the file through MbComm_GetFile to match. */
+int MbParent_SendFileBlock(void)
 {
     DlPlayHostMsgHead header;
     DlPlayBlockSpot block;
@@ -52,9 +51,9 @@ int func_021193fc(void)
     data = MbComm_WriteParentMessage(&header, data_022aced4->sendBuffer);
     {
         DlPlayHostLinkArea *work = data_022aced4;
-        u32 address = block.offset - work->files[work->currentFile].blockTable.segmentOffsets[block.segment]
-                    + work->files[work->currentFile].segmentRomAddresses[block.segment];
-        DlPlayHeldProgram *cache = work->files[work->currentFile].cache;
+        u32 address = block.offset - MbComm_GetFile(work, work->currentFile)->blockTable.segmentOffsets[block.segment]
+                    + MbComm_GetFile(work, work->currentFile)->segmentRomAddresses[block.segment];
+        DlPlayHeldProgram *cache = MbComm_GetFile(work, work->currentFile)->cache;
 
         if (!MbCache_Read(cache, address, data, block.size)) {
             DlPlayWorkerJob *task = &data_022aced4->task;
@@ -78,7 +77,7 @@ int func_021193fc(void)
                 page->address = address & ~31;
                 task->page = page;
                 task->cache = cache;
-                MbTask_Set(task, MbCache_LoadPage, 0, 4);
+                MbTask_Set(task, MbCache_LoadPage, NULL, 4);
             }
             return DLPLAY_NOTHING_TRANSMITTED;
         }

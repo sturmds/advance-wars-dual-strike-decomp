@@ -6,7 +6,7 @@ extern DlPlayHostLinkArea *data_022aced4;
 void MIi_CpuClear16(u16 value, void *dst, u32 size);
 int MbParent_SendHeaderOnly(u8 type, u16 bitmap);
 int MbParent_SendFileInfo(void);
-int func_021193fc(void);
+int MbParent_SendFileBlock(void);
 
 /* Children in each comm state, one bit per aid. */
 typedef struct DlPlayChildrenByState {
@@ -60,7 +60,7 @@ int MbParent_SendCommData(void)
     } else if (bitmaps.accepted != 0) {
         result = MbParent_SendFileInfo();
     } else {
-        result = func_021193fc();
+        result = MbParent_SendFileBlock();
     }
     if (result == DLPLAY_NOTHING_TRANSMITTED) {
         return MbParent_SendHeaderOnly(DLPLAY_TO_CHILD_EMPTY, 0xffff);
