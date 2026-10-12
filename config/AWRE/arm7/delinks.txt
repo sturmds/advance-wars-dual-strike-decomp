@@ -2246,6 +2246,10 @@ src/arm7/sdk/wl/wifi_rx_take_from_ring.c:
     complete
     .text       start:0x037fade4 end:0x037fae58
 
+src/arm7/sdk/wl/wifi_tx_lay_out_slots.c:
+    complete
+    .text       start:0x037fae58 end:0x037fb204
+
 src/arm7/sdk/wl/wifi_rx_set_up_ring.c:
     complete
     .text       start:0x037fb204 end:0x037fb340

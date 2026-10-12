@@ -8,7 +8,7 @@ void func_arm7_027c92e8(void);
 int func_arm7_027c94c0(int value);
 void func_arm7_027cac58(void);
 void WifiScan_ForgetNetworks(void);
-void func_arm7_037fae58(void);
+void WifiTx_LayOutSlots(void);
 void WifiRx_SetUpRing(void);
 u64 _ll_udiv_Arm7(u64 dividend, u64 divisor);
 
@@ -48,7 +48,7 @@ void Wifi_OpenSession(void)
     WIFI_MAC_WAKE_CONTROL = 15;
     func_arm7_027cac58();
     WifiScan_ForgetNetworks();
-    func_arm7_037fae58();
+    WifiTx_LayOutSlots();
     WifiRx_SetUpRing();
     REG_W_RXCNT = 0x8000;
     WIFI_IRQ_PENDING_FLAGS = 0xffff;
