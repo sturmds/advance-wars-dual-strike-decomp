@@ -80,7 +80,7 @@ src/arm7/sdk/wm/wmsp_send_wl_command.c:
     complete
     .text       start:0x027c0560 end:0x027c05e0
 
-src/arm7/sdk/func_arm7_027c05e0.c:
+src/arm7/sdk/wm/func_arm7_027c05e0.c:
     complete
     .text       start:0x027c05e0 end:0x027c05ec
 
@@ -148,7 +148,7 @@ src/arm7/sdk/wm/wmsp_indicate_beacon_sent.c:
     complete
     .text       start:0x027c1a44 end:0x027c1a94
 
-src/arm7/sdk/func_arm7_027c1a94.c:
+src/arm7/sdk/wm/func_arm7_027c1a94.c:
     complete
     .text       start:0x027c1a94 end:0x027c1a98
 
@@ -164,7 +164,7 @@ src/arm7/sdk/wm/wmsp_wl_receive_thread.c:
     complete
     .text       start:0x027c1c5c end:0x027c1cf4
 
-src/arm7/sdk/func_arm7_027c1cf4.c:
+src/arm7/sdk/wm/func_arm7_027c1cf4.c:
     complete
     .text       start:0x027c1cf4 end:0x027c1cf8
 
@@ -180,47 +180,47 @@ src/arm7/sdk/wm/func_arm7_027c1e00.c:
     complete
     .text       start:0x027c1e00 end:0x027c1e74
 
-src/arm7/sdk/func_arm7_027c1e74.c:
+src/arm7/sdk/wm/func_arm7_027c1e74.c:
     complete
     .text       start:0x027c1e74 end:0x027c1e88
 
-src/arm7/sdk/func_arm7_027c1e88.c:
+src/arm7/sdk/wm/func_arm7_027c1e88.c:
     complete
     .text       start:0x027c1e88 end:0x027c1ea0
 
-src/arm7/sdk/func_arm7_027c1ea0.c:
+src/arm7/sdk/wm/func_arm7_027c1ea0.c:
     complete
     .text       start:0x027c1ea0 end:0x027c1eb8
 
-src/arm7/sdk/func_arm7_027c1eb8.c:
+src/arm7/sdk/wm/func_arm7_027c1eb8.c:
     complete
     .text       start:0x027c1eb8 end:0x027c1ed0
 
-src/arm7/sdk/func_arm7_027c1ed0.c:
+src/arm7/sdk/wm/func_arm7_027c1ed0.c:
     complete
     .text       start:0x027c1ed0 end:0x027c1ee4
 
-src/arm7/sdk/func_arm7_027c1ee4.c:
+src/arm7/sdk/wm/func_arm7_027c1ee4.c:
     complete
     .text       start:0x027c1ee4 end:0x027c1efc
 
-src/arm7/sdk/func_arm7_027c1efc.c:
+src/arm7/sdk/wm/func_arm7_027c1efc.c:
     complete
     .text       start:0x027c1efc end:0x027c1f14
 
-src/arm7/sdk/func_arm7_027c1f14.c:
+src/arm7/sdk/wm/func_arm7_027c1f14.c:
     complete
     .text       start:0x027c1f14 end:0x027c1f2c
 
-src/arm7/sdk/func_arm7_027c1f2c.c:
+src/arm7/sdk/wm/func_arm7_027c1f2c.c:
     complete
     .text       start:0x027c1f2c end:0x027c1f40
 
-src/arm7/sdk/func_arm7_027c1f40.c:
+src/arm7/sdk/wm/func_arm7_027c1f40.c:
     complete
     .text       start:0x027c1f40 end:0x027c1f58
 
-src/arm7/sdk/func_arm7_027c1f58.c:
+src/arm7/sdk/wm/func_arm7_027c1f58.c:
     complete
     .text       start:0x027c1f58 end:0x027c1f70
 
@@ -352,7 +352,7 @@ src/arm7/sdk/wm/wmsp_reply_start_scan_failed.c:
     complete
     .text       start:0x027c33bc end:0x027c3408
 
-src/arm7/sdk/func_arm7_027c3408.c:
+src/arm7/sdk/wm/func_arm7_027c3408.c:
     complete
     .text       start:0x027c3408 end:0x027c342c
 
@@ -641,11 +641,11 @@ src/arm7/sdk/wm/wmsp_set_beacon_period.c:
     complete
     .text       start:0x027c7a28 end:0x027c7a8c
 
-src/arm7/sdk/func_arm7_027c7a8c.c:
+src/arm7/sdk/wm/func_arm7_027c7a8c.c:
     complete
     .text       start:0x027c7a8c end:0x027c7aa0
 
-src/arm7/sdk/func_arm7_027c7aa0.c:
+src/arm7/sdk/wm/func_arm7_027c7aa0.c:
     complete
     .text       start:0x027c7aa0 end:0x027c7ab4
 
@@ -673,7 +673,7 @@ src/arm7/sdk/wl/wifi_buffer_set_up_lists.c:
     complete
     .text       start:0x027c7e30 end:0x027c7f14
 
-src/arm7/sdk/func_arm7_027c7f14.c:
+src/arm7/sdk/wl/func_arm7_027c7f14.c:
     complete
     .text       start:0x027c7f14 end:0x027c7f30
 
@@ -717,7 +717,7 @@ src/arm7/sdk/wl/wifi_step_lcg.c:
     complete
     .text       start:0x027c8390 end:0x027c83c8
 
-src/arm7/sdk/func_arm7_027c83c8.c:
+src/arm7/sdk/wl/func_arm7_027c83c8.c:
     complete
     .text       start:0x027c83c8 end:0x027c83e0
 
@@ -741,11 +741,11 @@ src/arm7/sdk/wl/wifi_tx_copy_header_and_body.c:
     complete
     .text       start:0x027c84a4 end:0x027c84e0
 
-src/arm7/sdk/func_arm7_027c84e0.c:
+src/arm7/sdk/wl/func_arm7_027c84e0.c:
     complete
     .text       start:0x027c84e0 end:0x027c84f4
 
-src/arm7/sdk/func_arm7_027c84f4.c:
+src/arm7/sdk/wl/func_arm7_027c84f4.c:
     complete
     .text       start:0x027c84f4 end:0x027c8510
 
@@ -753,7 +753,7 @@ src/arm7/sdk/wl/wifi_rx_copy_from_ring_wrapped.c:
     complete
     .text       start:0x027c8510 end:0x027c8594
 
-src/arm7/sdk/func_arm7_027c8594.c:
+src/arm7/sdk/wl/func_arm7_027c8594.c:
     complete
     .text       start:0x027c8594 end:0x027c85b8
 
@@ -769,7 +769,7 @@ src/arm7/sdk/wl/wifi_every_hundred_ms.c:
     complete
     .text       start:0x027c8694 end:0x027c8714
 
-src/arm7/sdk/func_arm7_027c8714.c:
+src/arm7/sdk/wl/func_arm7_027c8714.c:
     complete
     .text       start:0x027c8714 end:0x027c8738
 
@@ -777,15 +777,15 @@ src/arm7/sdk/wl/wifi_arm_periodic_ms.c:
     complete
     .text       start:0x027c8738 end:0x027c87b8
 
-src/arm7/sdk/func_arm7_027c87b8.c:
+src/arm7/sdk/wl/func_arm7_027c87b8.c:
     complete
     .text       start:0x027c87b8 end:0x027c87cc
 
-src/arm7/sdk/func_arm7_027c87cc.c:
+src/arm7/sdk/wl/func_arm7_027c87cc.c:
     complete
     .text       start:0x027c87cc end:0x027c87e4
 
-src/arm7/sdk/func_arm7_027c87e4.c:
+src/arm7/sdk/wl/func_arm7_027c87e4.c:
     complete
     .text       start:0x027c87e4 end:0x027c87f0
 
@@ -861,7 +861,7 @@ src/arm7/sdk/wl/wifi_mac_copy_address_pair.c:
     complete
     .text       start:0x027c90b8 end:0x027c90ec
 
-src/arm7/sdk/func_arm7_027c90ec.c:
+src/arm7/sdk/wl/func_arm7_027c90ec.c:
     complete
     .text       start:0x027c90ec end:0x027c9108
 
@@ -901,11 +901,11 @@ src/arm7/sdk/wl/func_arm7_027c9438.c:
     complete
     .text       start:0x027c9438 end:0x027c94ac
 
-src/arm7/sdk/func_arm7_027c94ac.c:
+src/arm7/sdk/wl/func_arm7_027c94ac.c:
     complete
     .text       start:0x027c94ac end:0x027c94c0
 
-src/arm7/sdk/func_arm7_027c94c0.c:
+src/arm7/sdk/wl/func_arm7_027c94c0.c:
     complete
     .text       start:0x027c94c0 end:0x027c94ec
 
@@ -1056,7 +1056,7 @@ src/arm7/sdk/wl/wifi_tx_free_slot_if_sent.c:
 src/arm7/sdk/wl/func_arm7_027cab1c.c:
     .text       start:0x027cab1c end:0x027cab80
 
-src/arm7/sdk/func_arm7_027cab80.c:
+src/arm7/sdk/wl/func_arm7_027cab80.c:
     complete
     .text       start:0x027cab80 end:0x027cab94
 
@@ -1112,11 +1112,11 @@ src/arm7/sdk/wl/wifi_station_mac_of.c:
     complete
     .text       start:0x027cb0e4 end:0x027cb100
 
-src/arm7/sdk/func_arm7_027cb100.c:
+src/arm7/sdk/wl/func_arm7_027cb100.c:
     complete
     .text       start:0x027cb100 end:0x027cb120
 
-src/arm7/sdk/func_arm7_027cb120.c:
+src/arm7/sdk/wl/func_arm7_027cb120.c:
     complete
     .text       start:0x027cb120 end:0x027cb140
 
@@ -1212,7 +1212,7 @@ src/arm7/sdk/wl/wifi_rf_await_receiver_on.c:
     complete
     .text       start:0x027cb8f4 end:0x027cb920
 
-src/arm7/sdk/func_arm7_027cb920.c:
+src/arm7/sdk/wl/func_arm7_027cb920.c:
     complete
     .text       start:0x027cb920 end:0x027cb93c
 
@@ -1220,7 +1220,7 @@ src/arm7/sdk/wl/wifi_task_drain_outbox.c:
     complete
     .text       start:0x027cb93c end:0x027cb9a4
 
-src/arm7/sdk/func_arm7_027cb9a4.c:
+src/arm7/sdk/wl/func_arm7_027cb9a4.c:
     complete
     .text       start:0x027cb9a4 end:0x027cb9ac
 
@@ -1264,11 +1264,11 @@ src/arm7/sdk/wl/wifi_host_return_current_request.c:
     complete
     .text       start:0x027cbf54 end:0x027cbfa4
 
-src/arm7/sdk/func_arm7_027cbfa4.c:
+src/arm7/sdk/wl/func_arm7_027cbfa4.c:
     complete
     .text       start:0x027cbfa4 end:0x027cbfc8
 
-src/arm7/sdk/func_arm7_027cbfc8.c:
+src/arm7/sdk/wl/func_arm7_027cbfc8.c:
     complete
     .text       start:0x027cbfc8 end:0x027cbff4
 
@@ -1480,11 +1480,11 @@ src/arm7/sdk/wl/func_arm7_027cdb6c.c:
     complete
     .text       start:0x027cdb6c end:0x027cdbb0
 
-src/arm7/sdk/func_arm7_027cdbb0.c:
+src/arm7/sdk/wl/func_arm7_027cdbb0.c:
     complete
     .text       start:0x027cdbb0 end:0x027cdbd0
 
-src/arm7/sdk/func_arm7_027cdbd0.c:
+src/arm7/sdk/wl/func_arm7_027cdbd0.c:
     complete
     .text       start:0x027cdbd0 end:0x027cdbe8
 
@@ -1508,31 +1508,31 @@ src/arm7/sdk/wl/func_arm7_027cdd18.c:
     complete
     .text       start:0x027cdd18 end:0x027cde24
 
-src/arm7/sdk/func_arm7_027cde24.c:
+src/arm7/sdk/wl/func_arm7_027cde24.c:
     complete
     .text       start:0x027cde24 end:0x027cde44
 
-src/arm7/sdk/func_arm7_027cde44.c:
+src/arm7/sdk/wl/func_arm7_027cde44.c:
     complete
     .text       start:0x027cde44 end:0x027cde5c
 
-src/arm7/sdk/func_arm7_027cde5c.c:
+src/arm7/sdk/wl/func_arm7_027cde5c.c:
     complete
     .text       start:0x027cde5c end:0x027cde74
 
-src/arm7/sdk/func_arm7_027cde74.c:
+src/arm7/sdk/wl/func_arm7_027cde74.c:
     complete
     .text       start:0x027cde74 end:0x027cde8c
 
-src/arm7/sdk/func_arm7_027cde8c.c:
+src/arm7/sdk/wl/func_arm7_027cde8c.c:
     complete
     .text       start:0x027cde8c end:0x027cdea8
 
-src/arm7/sdk/func_arm7_027cdea8.c:
+src/arm7/sdk/wl/func_arm7_027cdea8.c:
     complete
     .text       start:0x027cdea8 end:0x027cdec0
 
-src/arm7/sdk/func_arm7_027cdec0.c:
+src/arm7/sdk/wl/func_arm7_027cdec0.c:
     complete
     .text       start:0x027cdec0 end:0x027cded8
 
@@ -1540,19 +1540,19 @@ src/arm7/sdk/wl/func_arm7_027cded8.c:
     complete
     .text       start:0x027cded8 end:0x027cdf20
 
-src/arm7/sdk/func_arm7_027cdf20.c:
+src/arm7/sdk/wl/func_arm7_027cdf20.c:
     complete
     .text       start:0x027cdf20 end:0x027cdf38
 
-src/arm7/sdk/func_arm7_027cdf38.c:
+src/arm7/sdk/wl/func_arm7_027cdf38.c:
     complete
     .text       start:0x027cdf38 end:0x027cdf50
 
-src/arm7/sdk/func_arm7_027cdf50.c:
+src/arm7/sdk/wl/func_arm7_027cdf50.c:
     complete
     .text       start:0x027cdf50 end:0x027cdf68
 
-src/arm7/sdk/func_arm7_027cdf68.c:
+src/arm7/sdk/wl/func_arm7_027cdf68.c:
     complete
     .text       start:0x027cdf68 end:0x027cdf80
 
@@ -1564,7 +1564,7 @@ src/arm7/sdk/wl/func_arm7_027cdfdc.c:
     complete
     .text       start:0x027cdfdc end:0x027ce024
 
-src/arm7/sdk/func_arm7_027ce024.c:
+src/arm7/sdk/wl/func_arm7_027ce024.c:
     complete
     .text       start:0x027ce024 end:0x027ce03c
 
@@ -1712,7 +1712,7 @@ src/arm7/sdk/wl/wifi_beacon_build.c:
     complete
     .text       start:0x027cfd48 end:0x027d00b4
 
-src/arm7/sdk/func_arm7_027d00b4.c:
+src/arm7/sdk/wl/func_arm7_027d00b4.c:
     complete
     .text       start:0x027d00b4 end:0x027d00dc
 
@@ -1828,7 +1828,7 @@ src/arm7/sdk/wl/wifi_rx_scan_elements.c:
     complete
     .text       start:0x027d1d84 end:0x027d2090
 
-src/arm7/sdk/func_arm7_027d2090.c:
+src/arm7/sdk/wl/func_arm7_027d2090.c:
     complete
     .text       start:0x027d2090 end:0x027d2094
 
@@ -2224,7 +2224,7 @@ src/arm7/sdk/wl/wifi_buf_list_push_tail_if_loose.c:
     complete
     .text       start:0x037f89c8 end:0x037f8a5c
 
-src/arm7/sdk/func_arm7_037f8a5c.c:
+src/arm7/sdk/wl/func_arm7_037f8a5c.c:
     complete
     .text       start:0x037f8a5c end:0x037f8a64
 
