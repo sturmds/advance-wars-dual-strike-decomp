@@ -728,6 +728,7 @@ src/game/ov003/ov003_exit.c:
     .text       start:0x02361c18 end:0x02361c7c
 
 src/game/ov003/func_ov003_02361c7c.c:
+    complete
     .text       start:0x02361c7c end:0x02361f38
 
 src/game/ov003/ov003_is_current_slot_row_open.c:

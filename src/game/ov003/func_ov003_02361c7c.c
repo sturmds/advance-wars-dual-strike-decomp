@@ -10,27 +10,15 @@ void func_ov003_0236249c(void);
 #define LINK_ROW(i) (((Unk_02160ac0_Row*)data_02160ac0)[i])
 #define RECORD_MAX 999999
 
-/* Byte 1 of an Ov003Slot. The last loop reads the slot row through
- * STATE + 0x139 kept in a register, as the original does. */
-#define SLOT_ROWS ((RowView*)((u8*)STATE + 0x139))
-typedef struct RowView {
-  u8 row : 4;
-  u8 hi : 4;
-  u8 pad[3];
-} RowView;
-
 /* Copies what overlay 3 knows about a row (1 to 5) into data_02160abc: the
  * row number, the co and color of the row and of the other of rows 1 and
  * 2, and Ov003Row.unk_28. For link play (data_02160ac0->unk_7c clear) and row 1
  * it also copies the cells of every row, with units (state 2) as state 1.
- * Then it updates two play counters. Not matched yet: in the last loop the
- * original keeps the total in r6 and the counter in r1. */
+ * Then it updates two play counters. */
 void func_ov003_02361c7c(int row) {
   u8 other;
   int i;
   int j;
-  int k;
-  RowView* slots;
 
   if (row != 1) {
     other = 1;
@@ -62,17 +50,12 @@ void func_ov003_02361c7c(int row) {
       gPlayRecords.unk_440++;
     }
   }
-  /* Closer to the original: slots is never read, and the empty test emits
-   * no code; both change the order and registers of the loop set-up. */
-  slots = SLOT_ROWS;
-  for (k = 0; k < 6; k++) {
-    if (gPlayRecords.unk_43c && k) {
-    }
+  for (i = 0; i < 6; i++) {
     if (gPlayRecords.unk_43c +
-            STATE->rows[SLOT_ROWS[STATE->currentSlot].row - 1].unk_28[k] <
+            STATE->rows[STATE->slots[STATE->currentSlot].row - 1].unk_28[i] <
         RECORD_MAX) {
       gPlayRecords.unk_43c +=
-          STATE->rows[SLOT_ROWS[STATE->currentSlot].row - 1].unk_28[k];
+          STATE->rows[STATE->slots[STATE->currentSlot].row - 1].unk_28[i];
     } else {
       gPlayRecords.unk_43c = RECORD_MAX;
     }
