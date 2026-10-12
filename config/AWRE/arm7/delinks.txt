@@ -31,6 +31,10 @@ src/arm7/sdk/wm/wmsp_rssi_to_link_level.c:
     complete
     .text       start:0x027c0164 end:0x027c018c
 
+src/arm7/sdk/wm/wmsp_get_link_level.c:
+    complete
+    .text       start:0x027c018c end:0x027c01c8
+
 src/arm7/sdk/func_arm7_027c05e0.c:
     complete
     .text       start:0x027c05e0 end:0x027c05ec
