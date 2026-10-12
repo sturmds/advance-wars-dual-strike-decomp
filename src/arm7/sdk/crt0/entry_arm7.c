@@ -1,7 +1,7 @@
 #include "types.h"
 
 extern u32 BuildInfo_Arm7[];    /* module parameters the linker fills in */
-void func_arm7_023800c0(void);
+void do_autoload_Arm7(void);
 void func_arm7_0238011c(void);
 void func_arm7_037fb340(void);    /* IRQ handler */
 void func_arm7_037f838c(void);    /* ARM7 main */
@@ -41,7 +41,7 @@ clear_wram:
     mov r0, #0x1f
     msr CPSR_fsxc, r0
     sub sp, r1, #4
-    bl func_arm7_023800c0
+    bl do_autoload_Arm7
     ldr r0, =BuildInfo_Arm7
     ldr r1, [r0, #0xc]
     ldr r2, [r0, #0x10]

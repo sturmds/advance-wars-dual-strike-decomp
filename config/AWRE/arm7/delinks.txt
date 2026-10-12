@@ -16,6 +16,10 @@ src/arm7/sdk/crt0/entry_arm7.c:
     complete
     .text       start:0x02380000 end:0x023800c0
 
+src/arm7/sdk/crt0/do_autoload_arm7.c:
+    complete
+    .text       start:0x023800c0 end:0x0238011c
+
 src/arm7/sdk/wm/wmsp_take_flagged_slot.c:
     complete
     .text       start:0x027c0000 end:0x027c0070
