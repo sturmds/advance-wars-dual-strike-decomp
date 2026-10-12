@@ -1,7 +1,7 @@
 #include "sdk/snd_seq.h"
 
 u16 SndDrv_NextRandom(void);
-s16 *func_arm7_037fff84(SndPlayer *player, int index);
+s16 *SndPlayer_GetVariablePtr(SndPlayer *player, int index);
 u32 SndTrack_ReadVarLength(SndTrack *track);
 u16 SndTrack_ReadU16(SndTrack *track);
 u8 SndSeq_ReadByte(u8 *address);
@@ -30,7 +30,7 @@ int SndTrack_ReadArg(SndTrack *track, SndPlayer *player, int type)
     case SEQ_ARG_FROM_PLAYER_VAR:
         index = SndSeq_ReadByte(track->cursor);
         track->cursor++;
-        variable = func_arm7_037fff84(player, index);
+        variable = SndPlayer_GetVariablePtr(player, index);
         if (variable != NULL) {
             value = *variable;
         }

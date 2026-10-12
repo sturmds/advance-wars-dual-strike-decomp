@@ -1556,6 +1556,10 @@ src/arm7/sdk/snd/snd_track_alloc.c:
     complete
     .text       start:0x037fff40 end:0x037fff84
 
+src/arm7/sdk/snd/snd_player_get_variable_ptr.c:
+    complete
+    .text       start:0x037fff84 end:0x037fffc8
+
 src/arm7/sdk/func_arm7_03800e84.c:
     complete
     .text       start:0x03800e84 end:0x03800ea4
