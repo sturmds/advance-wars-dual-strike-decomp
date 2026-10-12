@@ -290,6 +290,19 @@ void OSi_UnlockVram(u16 banks, u16 lockID);
 /* Forgets every VRAM bank lock. */
 void OSi_InitVramExclusive(void);
 
+/*
+ * ARM7 side. The ARM7 copy of gOsIrqSlots: 0-3 DMA, 4-7 timers, 8 VBlank.
+ * Most ARM7 code loads these addresses as plain numbers with no relocation,
+ * so they stay numbers to match.
+ */
+#define OS7_IRQ_SLOTS ((IrqSlotEntry *)0x0380788c)
+#define OS7_IRQ_SLOTS_KEEP ((IrqSlotKeepAlias *)0x03807890)
+#define OS7_IRQ_SLOTS_ARG ((IrqSlotArgAlias *)0x03807894)
+#define OS7_IRQ_SLOT_VBLANK 8
+
+/* ARM7 WRAM flag word that the IRQ wait routines poll, 8 bytes below the end of WRAM. */
+#define OS7_IRQ_CHECK_FLAGS (*(volatile u32 *)0x0380fff8)
+
 /* An alarm that fires when the LCD reaches a given line (V count). */
 typedef void (*OSVAlarmHandler)(void *arg);
 
