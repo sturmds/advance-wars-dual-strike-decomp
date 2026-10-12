@@ -12,6 +12,9 @@ typedef struct SoundBankIter {
 } SoundBankIter;
 
 #define SOUND_NOTE_WAVE 1              /* note plays a wave from a wave archive */
+#define SOUND_NOTE_PSG 2               /* square wave; waveNo holds the duty */
+#define SOUND_NOTE_NOISE 3
+#define SOUND_NOTE_DIRECT_WAVE 4       /* waveNo and waveArcSlot hold the wave's address, low half first */
 
 /* One note of a bank instrument, 12 bytes as the bank walker returns it. */
 typedef struct SoundBankNote {
@@ -19,9 +22,12 @@ typedef struct SoundBankNote {
     u8 unk_01;
     u16 waveNo;                        /* wave number inside the wave archive */
     u16 waveArcSlot;                   /* which of the bank's four wave archives */
-    u16 unk_06;
-    u16 unk_08;
-    u16 unk_0a;
+    u8 originalKey;                    /* key the wave was recorded at */
+    u8 attack;
+    u8 decay;
+    u8 sustain;
+    u8 release;
+    u8 pan;                            /* 0 to 127, 64 is the centre */
 } SoundBankNote;
 
 /* A bank file as loaded in memory (SBNK), only the fields the code in src/

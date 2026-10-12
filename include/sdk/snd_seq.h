@@ -120,6 +120,11 @@ typedef struct SndWaveParam {
     u32 loopLength;
 } SndWaveParam;
 
+typedef struct SndWaveData {
+    SndWaveParam param;
+    u8 samples[1];
+} SndWaveData;
+
 /* SndExChannel.type */
 #define VOICE_TYPE_SAMPLED 0
 #define VOICE_TYPE_SQUARE_WAVE 1
