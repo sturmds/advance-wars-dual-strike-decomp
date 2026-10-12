@@ -1177,6 +1177,23 @@ typedef struct WlHead {
 
 #define WIFI_SESSION_HEAD_OF(work) ((WlHead *)&(work)->limits.unk_f0)
 
+/* Request to authenticate with the access point at mac. */
+typedef struct WlAuthenticateRequest {
+    u8 pad_00[0x10];
+    u16 mac[3];
+    u16 algorithm; /* 802.11 authentication algorithm: 0 open system, 1 shared key */
+    u16 timeoutMs; /* 10-2000: how long to wait for the response */
+} WlAuthenticateRequest;
+
+typedef struct WlAuthenticateReply {
+    u16 unk_00;
+    u16 status;
+    u16 unk_04;
+    u16 unk_06;
+    u16 mac[3];
+    u16 algorithm;
+} WlAuthenticateReply;
+
 /* TX header rate codes, in 100 kbit/s. */
 #define WIFI_RATE_CODE_1M 10
 #define WIFI_RATE_CODE_2M 20
