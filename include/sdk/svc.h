@@ -43,6 +43,11 @@ void Bios_UnpackHuffman(const void *src, void *dst);
 void Bios_UnpackRunLengthByBytes(const void *src, void *dst);
 void Bios_UnpackRunLengthByHalfwords(const void *src, void *dst);
 
+/* ARM7 BIOS system calls (the ARM7 build has its own copies). */
+void Bios_RebootSoft_Arm7(void);
+void Bios_DelayLoop_Arm7(int count);
+void Bios_AwaitIrqFlags_Arm7(int clearFlags, u32 intrFlags);
+
 int Sha1_ResetState(SVCSHA1Context *context);
 int Sha1_FeedBytes(SVCSHA1Context *context, const u8 *data, u32 length);
 int Sha1_FinishDigest(SVCSHA1Context *context, u8 *digest);

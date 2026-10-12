@@ -495,6 +495,10 @@ src/arm7/sdk/func_arm7_037fdbe4.c:
     complete
     .text       start:0x037fdbe4 end:0x037fdc04
 
+src/arm7/sdk/func_arm7_037fdc04.c:
+    complete
+    .text       start:0x037fdc04 end:0x037fdc10
+
 src/arm7/sdk/func_arm7_037fdc10.c:
     complete
     .text       start:0x037fdc10 end:0x037fdc24
@@ -574,6 +578,14 @@ src/arm7/sdk/func_arm7_037fe73c.c:
 src/arm7/sdk/func_arm7_037fe848.c:
     complete
     .text       start:0x037fe848 end:0x037fe860
+
+src/arm7/sdk/func_arm7_037fec60.c:
+    complete
+    .text       start:0x037fec60 end:0x037fec6c
+
+src/arm7/sdk/func_arm7_037fed94.c:
+    complete
+    .text       start:0x037fed94 end:0x037feda0
 
 src/arm7/sdk/func_arm7_037fee6c.c:
     complete
@@ -707,6 +719,18 @@ src/arm7/sdk/func_arm7_0380390c.c:
     complete
     .text       start:0x0380390c end:0x0380392c
 
+src/arm7/sdk/svc/bios_reboot_soft_arm7.c:
+    complete
+    .text       start:0x03803b74 end:0x03803b78
+
+src/arm7/sdk/svc/bios_delay_loop_arm7.c:
+    complete
+    .text       start:0x03803b78 end:0x03803b7c
+
+src/arm7/sdk/svc/bios_await_irq_flags_arm7.c:
+    complete
+    .text       start:0x03803b7c end:0x03803b8c
+
 src/arm7/sdk/func_arm7_03803e50.c:
     complete
     .text       start:0x03803e50 end:0x03803e68
@@ -742,6 +766,10 @@ src/arm7/sdk/func_arm7_038064f8.c:
 src/arm7/sdk/func_arm7_038065c4.c:
     complete
     .text       start:0x038065c4 end:0x0380660c
+
+src/arm7/sdk/func_arm7_038067b0.c:
+    complete
+    .text       start:0x038067b0 end:0x038067bc
 
 src/arm7/sdk/func_arm7_038067bc.c:
     complete
