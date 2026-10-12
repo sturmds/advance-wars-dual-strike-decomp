@@ -98,6 +98,7 @@ test:
 	@$(PYTHON) tools/tests/test_propagate.py
 	@$(PYTHON) tools/tests/test_loop_state.py
 	@$(PYTHON) tools/tests/test_fnshow.py
+	@$(PYTHON) tools/tests/test_fnadd.py
 	@$(PYTHON) tools/tests/test_ds.py
 	@$(PYTHON) tools/tests/test_pragmas.py
 	@$(PYTHON) tools/tests/test_protocheck.py

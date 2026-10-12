@@ -90,6 +90,7 @@ class Module:
     dir: Path
     funcs: list[Func] = field(default_factory=list)
     syms: dict[int, str] = field(default_factory=dict)  # addr -> name, any kind
+    starts: list[int] = field(default_factory=list)  # sorted addrs of function, data and bss symbols
     relocs: list[tuple[int, str, int, str]] = field(default_factory=list)
     addends: dict[int, int] = field(default_factory=dict)  # from -> relocs.txt `add:`
     text: tuple[int, int] = (0, 0)
@@ -150,6 +151,9 @@ def load_module(name: str, d: Path) -> Module:
         m = ANY_SYM.match(line)
         if m:
             mod.syms.setdefault(int(m.group(3), 16), m.group(1))
+            # A label (`_drsb`) is an entry point inside a function, not a new object.
+            if not m.group(2).startswith("label"):
+                mod.starts.append(int(m.group(3), 16))
     for line in (d / "relocs.txt").read_text().splitlines():
         m = RELOC.match(line)
         if m:
@@ -158,6 +162,7 @@ def load_module(name: str, d: Path) -> Module:
                 mod.addends[int(m.group(1), 16)] = int(m.group(4), 16)
     mod.text, mod.files = parse_delinks(d / "delinks.txt", mod.texts)
     mod.funcs.sort(key=lambda f: f.addr)
+    mod.starts = sorted(set(mod.starts))
     mod.relocs.sort()
     return mod
 
@@ -300,14 +305,36 @@ def interesting() -> list[str]:
     return [ln.split("#")[0].strip() for ln in INTERESTING.read_text().splitlines() if ln.split("#")[0].strip()]
 
 
-def next_start(f: Func) -> int:
+def next_object(f: Func) -> int:
+    """Where the next object after f starts: the next function, data or bss
+    symbol, or the end of f's .text section if that comes first."""
     mod = all_modules()[f.module]
-    later = [g.addr for g in mod.funcs if g.addr > f.addr]
     if f.module == "arm7":
         # The end of the .text section that holds f: ARM7 has one per part.
         end = next(e for s, e in mod.texts if s <= f.addr < e)
-        return min([a for a in later if a < end] + [end])
-    return min(later + [mod.text[1]])
+    else:
+        end = mod.text[1]
+    i = bisect.bisect_right(mod.starts, f.addr)
+    return min(mod.starts[i], end) if i < len(mod.starts) else end
+
+
+def next_start(f: Func) -> int:
+    """The end of f's delinks.txt range: f's symbol size, cut at the next
+    object (issue 0051). When the next object starts within the padding to
+    the next 4-byte boundary (a Thumb function that ends on a halfword,
+    MTX_RotY43_), the range takes the padding in: the compiled object holds
+    it too. Bytes from the end to next_object(f) otherwise stay out, and
+    trailing_gap() reports them."""
+    stop = next_object(f)
+    return stop if f.end <= stop <= (f.end + 3) & ~3 else min(f.end, stop)
+
+
+def trailing_gap(f: Func) -> tuple[int, int] | None:
+    """The bytes after f's range that no symbol names, as (start, end), or
+    None. They may be data, or f's own literal pool or code when dsd sized
+    the symbol too small (issue 0060); only a look at them can tell."""
+    end, stop = next_start(f), next_object(f)
+    return (end, stop) if end < stop else None
 
 
 # ---------------------------------------------------------------- commands
@@ -466,6 +493,11 @@ def cmd_add(args) -> int:
     blocks.sort(key=block_start)
     delinks.write_text(head + "\n\n" + "\n\n".join(blocks) + "\n")
     print(f"added {path}: .text 0x{start:08x}-0x{end:08x} to {delinks.relative_to(ROOT)}")
+    gap = trailing_gap(f)
+    if gap:
+        print(f"note: 0x{gap[0]:08x}-0x{gap[1]:08x} after {f.name} has no symbol and stays out of the range."
+              f" If it is {f.name}'s literal pool or code (issue 0060), extend the symbol size and the range.",
+              file=sys.stderr)
     return 0
 
 

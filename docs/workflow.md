@@ -39,7 +39,7 @@ src/game/pack_nibbles.c:
     .text       start:0x020803fc end:0x02080440
 ```
 
-`end` is the next function's address, so alignment padding stays inside the file. A file can hold several neighbouring functions; start with one, and merge files as evidence appears (shared static data, functions that always sit together).
+`end` is the end of the function by its size in `symbols.txt`, or the next symbol of any kind if that comes first; padding up to a 4-byte boundary stays inside the file when the next symbol starts there. If unnamed bytes follow the function, `add` prints them and leaves them out: when they are the function's literal pool or code (issue 0060), extend the symbol size and `end` by hand. A file can hold several neighbouring functions; start with one, and merge files as evidence appears (shared static data, functions that always sit together).
 
 Rename the function in `symbols.txt` once you know what it does (TENETS 4). Rename data symbols it uses the same way. C code refers to symbols by these names.
 

@@ -78,7 +78,7 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0048](0048-lost-attempt-tokens-not-counted.md) | Token totals leave out the attempts lost in a session crash | open | loop | M1 |
 | [0049](0049-download-play-child.md) | The DS Download Play child program has no C and is not built | open | decomp | later |
 | [0050](0050-asset-structure.md) | Game assets have no structure beyond the extracted file tree | open | build | M2 |
-| [0051](0051-fn-add-includes-trailing-data.md) | `fn.py add` includes data after a function in its delinks.txt range | open | tools | M1 |
+| [0051](0051-fn-add-includes-trailing-data.md) | `fn.py add` includes data after a function in its delinks.txt range | closed | tools | M1 |
 | [0052](0052-partials-strategy.md) | The game partials need a better tool than permute.py and agent retries | open | tools | M2 |
 | [0053](0053-duplicate-data-symbol-name.md) | Two data symbols with the same name break the arm9 checksum during a replay | open | loop | M1 |
 | [0054](0054-arm7-unrelocated-pointers.md) | 25 ARM7 words that look like pointers have no relocation | open | decomp | M2 |
@@ -90,7 +90,7 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0060](0060-dsd-symbol-sizes-too-small.md) | dsd symbol sizes too small for runtime functions, and tails split off as functions | open | tools | M1 |
 | [0061](0061-msl-by-value-struct-frame.md) | MSL functions that mwccarm 2.0-72 cannot match because of the by-value struct frame | open | decomp | M2 |
 | [0062](0062-protocheck-reports-left.md) | About 190 `protocheck.py` reports left in files touched only by renames | open | decomp | M2 |
-| [0063](0063-trivial-arm7-tailcall-breaks-module-hash.md) | `trivial.py --arm7` output for `func_arm7_03807408` passes the fast check but breaks the arm7 module hash | open | tools | M2 |
+| [0063](0063-trivial-arm7-tailcall-breaks-module-hash.md) | `trivial.py --arm7` output for `func_arm7_03807408` passes the fast check but breaks the arm7 module hash | closed | tools | M2 |
 | [0064](0064-terrain-stats-start.md) | `Ov000_gTerrainStats` starts 8 bytes after the real table: names belong to the next terrain id | open | decomp | M2 |
 | [0065](0065-tile-shape-names.md) | Tile tokens for shapes (coasts, bends) are numbers, not names | open | docs | M2 |
 | [0066](0066-map-scripts.md) | Map event scripts are bytes in ov001, not in the map files | open | decomp | M2 |

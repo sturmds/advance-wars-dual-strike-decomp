@@ -1,6 +1,6 @@
 # 0051: `fn.py add` includes data after a function in its delinks.txt range
 
-- **Status:** open
+- **Status:** closed
 - **Area:** tools
 - **Opened:** 2026-10-11
 - **Milestone:** M1
@@ -25,3 +25,9 @@ After `fn.py add`, look for a gap between the last instruction and the next symb
 - Stop the range at the last instruction of the function (dsd knows where the code ends) instead of the next symbol.
 - When the next symbol is more than a literal pool away, print the gap and ask for a decision.
 - Related: 0041 (no tool shows data structures).
+
+## Fix (2026-10-12)
+
+`fn.py add` ends the range at the function's size in `symbols.txt`, or at the next function, data or bss symbol if that comes first (`fn.next_start`). When the next symbol starts within the padding to a 4-byte boundary, the range takes the padding in. Unnamed bytes after the function stay out of the range, and `add` prints them (`fn.trailing_gap`): they may be data, or the function's literal pool or code when dsd sized the symbol too small (0060). `trivial.py` and `propagate.py` add files through `fn.py add`, so they get the same range; `propagate.py` no longer skips functions with data after them.
+
+Tests: `make test` (`tools/tests/test_fnadd.py`).

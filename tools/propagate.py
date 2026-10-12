@@ -507,15 +507,6 @@ def src_path(f: dict) -> str:
 
 # ---------------------------------------------------------------- driver
 
-def data_after(f: dict) -> bool:
-    """True if a symbol lies between the function's end and the next
-    function. `fn.py add` covers that gap, and our file defines nothing
-    there (func_02000afc is followed by BuildInfo, which dsd needs)."""
-    func = fn.Func(f["module"], f["name"], f["mode"], f["addr"], f["size"])
-    stop = fn.next_start(func)
-    return any(func.end <= a < stop for a in fn.all_modules()[f["module"]].syms)
-
-
 def fn_cli(*args) -> subprocess.CompletedProcess:
     return subprocess.run([sys.executable, str(ROOT / "tools/fn.py"), *args], cwd=ROOT,
                           capture_output=True, text=True)
@@ -573,8 +564,7 @@ def main() -> int:
 
     todo = [f for f in funcs if f["status"] == "none"
             and (f["module"] == args.module if args.module else f["module"] != "arm7")
-            and (only is None or f["name"] in only)
-            and not data_after(f)]
+            and (only is None or f["name"] in only)]
     todo.sort(key=lambda f: (f["module"], f["addr"]))
 
     failed: dict[str, dict] = {}  # candidate -> best failed attempt
