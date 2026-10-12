@@ -4,7 +4,7 @@
    Its meaning is not known yet. */
 #define WRAM_380FFF0 (*(vu16 *)0x0380fff0)
 
-void func_arm7_027c5b4c(void);
+void WMSP_CalcFrameOffset(void);
 
 void WMSP_VAlarmLine200(void)
 {
@@ -15,7 +15,7 @@ void WMSP_VAlarmLine200(void)
     status = buf->status;
     if (status->unk_d0 != status->unk_cc) {
         status->unk_d0 = status->unk_cc;
-        func_arm7_027c5b4c();
+        WMSP_CalcFrameOffset();
     }
     status = buf->status;
     if (status->unk_d4 > 127) {
