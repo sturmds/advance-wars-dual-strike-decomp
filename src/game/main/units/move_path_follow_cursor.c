@@ -46,6 +46,7 @@ void MovePath_FollowCursor(void) {
   int co;
   int i;
   s8 lastX;
+  int lastY;
 
   state = GAME;
   y = state->cursorY;
@@ -82,7 +83,9 @@ void MovePath_FollowCursor(void) {
           [Ov000_gUnitStats[state->actingUnit->type].moveType][MAP_TILE_TERRAIN(
               state->mapTiles->tiles[x + state->mapTiles->rowStart[y]])]) {
     lastX = PATH->x[i];
-    if ((ABS(lastX - x) == 1 && PATH->y[i] == y) ||
+    /* Needed to match: through lastY, mwcc compares the path tile first
+     * (cmp tile, y); the plain field read puts y first. */
+    if ((ABS(lastX - x) == 1 && (lastY = PATH->y[i], lastY == y)) ||
         (ABS(PATH->y[i] - y) == 1 && lastX == x)) {
       MovePath_AddTile(x, y);
       GAME->unk_46 = PATH->startMoves - PATH->movesLeft[PATH->lastTile];
