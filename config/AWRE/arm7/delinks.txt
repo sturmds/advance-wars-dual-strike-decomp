@@ -624,6 +624,10 @@ src/arm7/sdk/func_arm7_027cb068.c:
     complete
     .text       start:0x027cb068 end:0x027cb084
 
+src/arm7/sdk/wl/wifi_station_send_rate_of.c:
+    complete
+    .text       start:0x027cb084 end:0x027cb0ac
+
 src/arm7/sdk/func_arm7_027cb0ac.c:
     complete
     .text       start:0x027cb0ac end:0x027cb0c8
