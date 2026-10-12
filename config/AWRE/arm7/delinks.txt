@@ -685,6 +685,10 @@ src/arm7/sdk/os/tick_read64_arm7.c:
     complete
     .text       start:0x037fce88 end:0x037fcf38
 
+src/arm7/sdk/os/tick_on_timer0_overflow_arm7.c:
+    complete
+    .text       start:0x037fcf38 end:0x037fcfc0
+
 src/arm7/sdk/func_arm7_037fcfc0.c:
     complete
     .text       start:0x037fcfc0 end:0x037fcfd0

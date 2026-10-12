@@ -713,7 +713,7 @@ func_arm7_037fce28 kind:function(arm,size=0x28) addr:0x037fce28
 func_arm7_037fce50 kind:function(arm,size=0x1c) addr:0x037fce50
 func_arm7_037fce6c kind:function(arm,size=0x1c) addr:0x037fce6c
 Tick_Read64_Arm7 kind:function(arm,size=0xb0) addr:0x037fce88
-func_arm7_037fcf38 kind:function(arm,size=0x88) addr:0x037fcf38
+Tick_OnTimer0Overflow_Arm7 kind:function(arm,size=0x88) addr:0x037fcf38
 func_arm7_037fcfc0 kind:function(arm,size=0x10) addr:0x037fcfc0
 func_arm7_037fcfd0 kind:function(arm,size=0x94) addr:0x037fcfd0
 func_arm7_037fd064 kind:function(arm,size=0x10) addr:0x037fd064
@@ -1101,7 +1101,7 @@ data_arm7_03807a50 kind:bss addr:0x03807a50
 data_arm7_03807a54 kind:bss addr:0x03807a54
 data_arm7_03807a78 kind:bss addr:0x03807a78
 data_arm7_03807a7c kind:bss addr:0x03807a7c
-data_arm7_03807a80 kind:bss addr:0x03807a80
+gOsiNeedResetTimer_Arm7 kind:bss addr:0x03807a80
 gOsiTickCounter_Arm7 kind:bss addr:0x03807a84
 data_arm7_03807a8c kind:bss addr:0x03807a8c
 data_arm7_03807a90 kind:bss addr:0x03807a90

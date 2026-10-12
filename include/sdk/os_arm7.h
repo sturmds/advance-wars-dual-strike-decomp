@@ -20,6 +20,8 @@ typedef volatile u64 vu64;
 #define REG_TM0CNT_L (*(vu16 *)0x04000100)
 #define REG_TM0CNT_H (*(vu16 *)0x04000102)
 #define IRQ_MASK_TIMER0 0x8
+/* Timer control: start, interrupt on overflow, count at the system clock / 64. */
+#define TMCNT_START_IRQ_DIV64 0xc1
 
 typedef struct OSThread OSThread;
 typedef struct OSMutex OSMutex;
