@@ -128,6 +128,21 @@ void PowerLed_SelectPattern(int pattern);
 /* Last state given to PMi_SetLED. */
 extern int gPowerLedLastState;
 
+/* PM command that sets the LED state; the ARM7 queues it for its SPI thread under SERIAL_JOB_POWER_CHIP. */
+#define POWER_MSG_LED_STATE 0x66
+#define SERIAL_JOB_POWER_CHIP 3
+
+/*
+ * Patterns 4 to 15 blink the LED by table: bit 63 downwards of bits gives on (set)
+ * or blink (clear) for each step, and each step lasts framesPerStep ticks.
+ */
+typedef struct PowerLedBlinkScript PowerLedBlinkScript;
+struct PowerLedBlinkScript {
+    u64 bits;
+    u16 stepCount;
+    u16 framesPerStep;
+};
+
 /* LED patterns: the current one and the step it has reached. */
 #define POWER_LIGHT_LAST_PATTERN 15
 extern u32 data_arm7_0380a02c;

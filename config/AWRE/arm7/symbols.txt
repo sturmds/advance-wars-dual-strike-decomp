@@ -1016,7 +1016,7 @@ Power_SleepUntilTrigger kind:function(arm,size=0x1cc) addr:0x038054a0
 func_arm7_0380566c kind:function(arm,size=0xc) addr:0x0380566c
 func_arm7_03805678 kind:function(arm,size=0x10) addr:0x03805678
 PowerLed_SelectPattern kind:function(arm,size=0x24) addr:0x03805688
-func_arm7_038056ac kind:function(arm,size=0x128) addr:0x038056ac
+PowerLed_StepPattern kind:function(arm,size=0x128) addr:0x038056ac
 func_arm7_038057d4 kind:function(arm,size=0xa4) addr:0x038057d4
 func_arm7_03805878 kind:function(arm,size=0x38) addr:0x03805878
 func_arm7_038058b0 kind:function(arm,size=0x54) addr:0x038058b0
@@ -1080,7 +1080,7 @@ data_arm7_038077c0 kind:data(any) addr:0x038077c0
 data_arm7_038077e4 kind:data(any) addr:0x038077e4
 data_arm7_038077e8 kind:data(any) addr:0x038077e8
 gPowerLedLastState kind:data(any) addr:0x038077ec
-data_arm7_038077f0 kind:data(any) addr:0x038077f0
+gPowerLedBlinkTable kind:data(any) addr:0x038077f0
 gCtrdgFirstPoll kind:data(any) addr:0x03807880
 gCtrdgNextPollFrame kind:data(any) addr:0x03807884
 data_arm7_038078bc kind:bss addr:0x038078bc

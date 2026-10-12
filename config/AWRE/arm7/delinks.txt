@@ -1572,6 +1572,10 @@ src/arm7/sdk/pm/power_led_select_pattern.c:
     complete
     .text       start:0x03805688 end:0x038056ac
 
+src/arm7/sdk/pm/power_led_step_pattern.c:
+    complete
+    .text       start:0x038056ac end:0x038057d4
+
 src/arm7/sdk/ctrdg/func_arm7_038064b0.c:
     complete
     .text       start:0x038064b0 end:0x038064f8
