@@ -1068,7 +1068,7 @@ func_arm7_03807408 kind:function(arm,size=0x1c) addr:0x03807408
 data_arm7_03807424 kind:data(any) addr:0x03807424
 data_arm7_0380749c kind:data(any) addr:0x0380749c
 func_arm7_03807514 kind:function(arm,size=0x12c) addr:0x03807514
-func_arm7_03807640 kind:function(arm,size=0x5c) addr:0x03807640
+Wmsp_GetCallbackBuffer kind:function(arm,size=0x5c) addr:0x03807640
 func_arm7_0380769c kind:function(arm,size=0x4c) addr:0x0380769c
 func_arm7_038076e8 kind:function(arm,size=0x54) addr:0x038076e8
 data_arm7_0380773c kind:data(any) addr:0x0380773c

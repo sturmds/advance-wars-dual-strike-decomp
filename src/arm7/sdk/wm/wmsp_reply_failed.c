@@ -3,7 +3,7 @@
 
 void Wmsp_ReplyFailed(int apiid, int wlCmdID, int wlResult)
 {
-    WmspReply *reply = func_arm7_03807640();
+    WmspReply *reply = Wmsp_GetCallbackBuffer();
 
     reply->apiid = apiid;
     reply->errcode = WM_ERRCODE_FAILED;

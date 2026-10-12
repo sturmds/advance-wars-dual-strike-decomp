@@ -19,7 +19,7 @@ void Wmsp_ReceiveRequest(int tag, WmspRequest *request, BOOL error)
     if (data_arm7_027d7c44.arm7Buf == NULL) {
         return;
     }
-    reply = func_arm7_03807640();
+    reply = Wmsp_GetCallbackBuffer();
     reply->apiid = request->apiid;
     reply->errcode = WM_ERRCODE_FIFO_ERROR;
     reply->wlCmdID = 0;

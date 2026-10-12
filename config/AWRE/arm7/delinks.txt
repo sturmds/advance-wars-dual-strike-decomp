@@ -1516,3 +1516,7 @@ src/arm7/sdk/ctrdg/func_arm7_03806ae8.c:
 src/arm7/sdk/func_arm7_03806d4c.c:
     complete
     .text       start:0x03806d4c end:0x03806f58
+
+src/arm7/sdk/wm/wmsp_get_callback_buffer.c:
+    complete
+    .text       start:0x03807640 end:0x0380769c

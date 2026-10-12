@@ -2,7 +2,7 @@
 
 void WMSP_ReplyResetFailed(u16 wlCmdID, u16 wlResult)
 {
-    WmspReply *reply = func_arm7_03807640();
+    WmspReply *reply = Wmsp_GetCallbackBuffer();
 
     reply->apiid = WM_APIID_RESET;
     reply->errcode = WM_ERRCODE_FAILED;
