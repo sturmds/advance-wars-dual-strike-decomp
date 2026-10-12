@@ -29,7 +29,7 @@ void TP_AnalyzeCommand(u32 data)
         break;
 
     case TP_REQUEST_COMMAND_SAMPLING:
-        if (!func_arm7_03803d38(SERIAL_OWNER_TOUCH, command, 0)) {
+        if (!SPIi_SetEntry(SERIAL_OWNER_TOUCH, command, 0)) {
             func_arm7_03803e84(command, TOUCH_REPLY_BUS_TAKEN);
         }
         break;
@@ -49,7 +49,7 @@ void TP_AnalyzeCommand(u32 data)
             func_arm7_03803e84(command, TOUCH_REPLY_BAD_ARGUMENT);
             return;
         }
-        if (!func_arm7_03803d38(SERIAL_OWNER_TOUCH, command, 2, frequency, vCount)) {
+        if (!SPIi_SetEntry(SERIAL_OWNER_TOUCH, command, 2, frequency, vCount)) {
             func_arm7_03803e84(command, TOUCH_REPLY_BUS_TAKEN);
             return;
         }
@@ -61,7 +61,7 @@ void TP_AnalyzeCommand(u32 data)
             func_arm7_03803e84(command, TOUCH_REPLY_WRONG_STATE);
             return;
         }
-        if (!func_arm7_03803d38(SERIAL_OWNER_TOUCH, command, 0)) {
+        if (!SPIi_SetEntry(SERIAL_OWNER_TOUCH, command, 0)) {
             func_arm7_03803e84(command, TOUCH_REPLY_BUS_TAKEN);
             return;
         }

@@ -92,7 +92,7 @@ queue_stop:
     mov r0, #SERIAL_JOB_MICROPHONE
     mov r1, #MIC_PXI_COMMAND_AUTO_STOP
     mov r2, #0
-    bl func_arm7_03803d38
+    bl SPIi_SetEntry
     cmp r0, #0
     bne stop_timer
     mov r0, #MIC_PXI_NOTICE_BUFFER_FULL

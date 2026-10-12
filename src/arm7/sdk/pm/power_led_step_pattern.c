@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/pm.h"
 
-BOOL func_arm7_03803d38(int type, int command, int count, int arg);
+BOOL SPIi_SetEntry(int type, int command, int count, int arg);
 
 /* Patterns 4 to POWER_LIGHT_LAST_PATTERN. */
 extern PowerLedBlinkScript gPowerLedBlinkTable[];
@@ -15,7 +15,7 @@ void PowerLed_StepPattern(void)
     int status;
 
     if (pattern == 0) {
-        if (func_arm7_03803d38(SERIAL_JOB_POWER_CHIP, POWER_MSG_LED_STATE, 1, PM_LED_ON)) {
+        if (SPIi_SetEntry(SERIAL_JOB_POWER_CHIP, POWER_MSG_LED_STATE, 1, PM_LED_ON)) {
             PowerLed_SelectPattern(PM_LED_ON);
         }
         return;
@@ -23,7 +23,7 @@ void PowerLed_StepPattern(void)
     if (pattern < 4) {
         /* patterns 1 to 3 are the LED states themselves */
         if (pattern != gPowerLedLastState) {
-            func_arm7_03803d38(SERIAL_JOB_POWER_CHIP, POWER_MSG_LED_STATE, 1, pattern);
+            SPIi_SetEntry(SERIAL_JOB_POWER_CHIP, POWER_MSG_LED_STATE, 1, pattern);
         }
         return;
     }
@@ -35,6 +35,6 @@ void PowerLed_StepPattern(void)
         gPowerLedStepCounter = 0;
     }
     if (status != gPowerLedLastState) {
-        func_arm7_03803d38(SERIAL_JOB_POWER_CHIP, POWER_MSG_LED_STATE, 1, status);
+        SPIi_SetEntry(SERIAL_JOB_POWER_CHIP, POWER_MSG_LED_STATE, 1, status);
     }
 }

@@ -8,7 +8,7 @@ void Touch_QueueAutoSample(void *arg)
 {
     SPITpData sample;
 
-    if (!func_arm7_03803d38(SERIAL_OWNER_TOUCH, TP_REQUEST_COMMAND_AUTO_SAMPLING, 1, (u32)arg)) {
+    if (!SPIi_SetEntry(SERIAL_OWNER_TOUCH, TP_REQUEST_COMMAND_AUTO_SAMPLING, 1, (u32)arg)) {
         sample.e.validity = TP_VALIDITY_INVALID_XY;
         TOUCH_SHARED_LATEST_LOW = sample.halfs[0];
         TOUCH_SHARED_LATEST_HIGH = sample.halfs[1];

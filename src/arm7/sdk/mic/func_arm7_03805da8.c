@@ -29,7 +29,7 @@ void func_arm7_03805da8(u32 data)
     command = (data_arm7_0380af74.command[0] & 0xff00) >> 8;
     switch (command) {
     case MIC_PXI_COMMAND_ONE_SAMPLE:
-        if (!func_arm7_03803d38(SERIAL_JOB_MICROPHONE, command, 1, data_arm7_0380af74.command[0] & 0xff)) {
+        if (!SPIi_SetEntry(SERIAL_JOB_MICROPHONE, command, 1, data_arm7_0380af74.command[0] & 0xff)) {
             func_arm7_03803e84(command, MIC_PXI_RESULT_EXCLUSIVE);
         }
         MIC_SYSTEM_WORK->lastSample = 0;
@@ -60,7 +60,7 @@ void func_arm7_03805da8(u32 data)
         }
         data_arm7_0380af74.offset = 0;
         data_arm7_0380af74.mode = data_arm7_0380af74.type & 7;
-        if (!func_arm7_03803d38(SERIAL_JOB_MICROPHONE, command, 0)) {
+        if (!SPIi_SetEntry(SERIAL_JOB_MICROPHONE, command, 0)) {
             func_arm7_03803e84(command, MIC_PXI_RESULT_EXCLUSIVE);
             break;
         }
@@ -74,7 +74,7 @@ void func_arm7_03805da8(u32 data)
             func_arm7_03803e84(command, MIC_PXI_RESULT_ILLEGAL_STATUS);
             break;
         }
-        if (!func_arm7_03803d38(SERIAL_JOB_MICROPHONE, command, 0)) {
+        if (!SPIi_SetEntry(SERIAL_JOB_MICROPHONE, command, 0)) {
             func_arm7_03803e84(command, MIC_PXI_RESULT_EXCLUSIVE);
             break;
         }
