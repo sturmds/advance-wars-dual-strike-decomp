@@ -515,6 +515,10 @@ src/arm7/sdk/func_arm7_037fc4e0.c:
     complete
     .text       start:0x037fc4e0 end:0x037fc500
 
+src/arm7/sdk/os/mutex_pop_oldest_held_arm7.c:
+    complete
+    .text       start:0x037fc500 end:0x037fc528
+
 src/arm7/sdk/func_arm7_037fc6b0.c:
     complete
     .text       start:0x037fc6b0 end:0x037fc6c4
