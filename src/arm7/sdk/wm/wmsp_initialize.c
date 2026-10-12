@@ -16,7 +16,7 @@ void WMSP_Initialize(WmspInitRequest *request)
     WMSP_ResetStatus();
     PowerLed_SelectPattern(15);
     buf->status->state = WM_STATE_STOP;
-    if (func_arm7_027c75fc(&wlCmdID, &wlResult) == 0) {
+    if (WMSP_InitWl(&wlCmdID, &wlResult) == 0) {
         reply = Wmsp_GetCallbackBuffer();
         reply->apiid = WM_APIID_INITIALIZE;
         reply->errcode = WM_ERRCODE_FAILED;

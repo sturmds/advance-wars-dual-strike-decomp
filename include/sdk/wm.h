@@ -351,7 +351,11 @@ typedef struct WMStatus {
     u32 unk_14;
     u8 pad_18[4];
     u32 unk_1c;                        /* 1: MP sends set flag 0x8000 */
-    u8 pad_20[0x26];
+    u8 wlVersion[8];                   /* firmware version, from WL command 0x306 */
+    u16 macVersion;
+    u16 rfVersion;
+    u16 bbpVersion[2];
+    u8 pad_30[0x16];
     u16 mpRecvBufSize;                 /* bytes in an MP receive buffer */
     u8 pad_48[8];
     const void *unk_50;                /* WM_SetMPDataToPortEx refuses this buffer */
@@ -385,13 +389,20 @@ typedef struct WMStatus {
     u8 pad_186[8];
     u16 unk_18e;
     u16 unk_190;
-    u8 pad_192[0x62];
+    u8 pad_192[0x56];
+    u16 unk_1e8;
+    u16 unk_1ea;
+    u8 pad_1ec[4];
+    u16 enableChannel;                 /* bit n set: channel n usable (WL command 0x283) */
+    u16 allowedChannel;                /* bit 0 for channel 1; PickWirelessChannels' pick */
     u16 portSeqNo[16][8];              /* per station and port; reset to 1 */
     RadioOutboxEntry sendQueueData[WIRELESS_OUTBOX_ENTRIES];
     RadioOutboxList sendQueueFreeList;
     RadioOutboxList sendQueue[WIRELESS_URGENCY_LEVELS];
     RadioOutboxList readyQueue[WIRELESS_URGENCY_LEVELS];
     u8 sendQueueMutex[0x18];           /* an OSMutex; wm.h does not include os.h */
+    u8 pad_730[0x80];
+    u64 unk_7b0;
 } WMStatus;
 
 /* Arguments of the connect command, written into WMArm9Buf.requestBuf. */

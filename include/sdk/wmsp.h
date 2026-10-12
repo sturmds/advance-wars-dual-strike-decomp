@@ -119,7 +119,7 @@ extern u8 data_arm7_027d8160[16];
 
 WmspWork *func_arm7_027c05e0(void);
 void WMSP_ResetStatus(void);
-int func_arm7_027c75fc(u16 *a, u16 *b);
+int WMSP_InitWl(u16 *wlCmdID, u16 *wlResult);
 void func_arm7_037fd9dc(void *object);
 void func_arm7_027c6eb4(u16 arg);
 void func_arm7_027c6f68(u16 arg);

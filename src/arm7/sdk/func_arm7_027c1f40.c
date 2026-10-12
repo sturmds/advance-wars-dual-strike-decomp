@@ -1,8 +1,9 @@
-#include "types.h"
+#include "sdk/wmsp.h"
 
-void func_arm7_027c1db0(int, int, int);
+u16 *func_arm7_027c1db0(WlCommand *cmd, int id, int replyLength);
 
-void func_arm7_027c1f40(int a0)
+/* WL command 0x283, no arguments. Returns the reply header. */
+u16 *func_arm7_027c1f40(WlCommand *cmd)
 {
-    func_arm7_027c1db0(a0, 0x283, 3);
+    return func_arm7_027c1db0(cmd, 0x283, 3);
 }
