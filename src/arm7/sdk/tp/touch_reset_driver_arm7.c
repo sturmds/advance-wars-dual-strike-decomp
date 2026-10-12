@@ -5,7 +5,7 @@
 #define TOUCH_START_STABILITY_RANGE 20
 
 u16 func_arm7_037fdaf4(void);                    /* V alarms set up? */
-void func_arm7_037fdb04(void);                   /* set up V alarms */
+void LineAlarm_SetUpQueue_Arm7(void);                   /* set up V alarms */
 void func_arm7_037fd9dc(OSVAlarm *alarm);        /* clear an alarm */
 void LineAlarm_AssignTag_Arm7(OSVAlarm *alarm, u32 tag);
 
@@ -23,7 +23,7 @@ void Touch_ResetDriver_Arm7(void)
     }
 
     if (!func_arm7_037fdaf4()) {
-        func_arm7_037fdb04();
+        LineAlarm_SetUpQueue_Arm7();
     }
     for (i = 0; i < TOUCH_MAX_SAMPLES_PER_FRAME; i++) {
         func_arm7_037fd9dc(&tpWork.vAlarm[i]);
