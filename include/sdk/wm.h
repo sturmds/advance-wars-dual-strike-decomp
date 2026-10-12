@@ -92,6 +92,7 @@ typedef struct WMCallback {
 #define WM_APIID_MEASURE_CHANNEL 30
 #define WM_APIID_SET_ENTRY 33
 #define WM_APIID_AUTO_DEAUTH 34
+#define WM_APIID_SET_BEACON_PERIOD 36      /* best guess from the neighbouring request ids */
 #define WM_NUM_OF_CALLBACK 41              /* ids below this have a slot in callbackTable */
 #define WM_APIID_INDICATION 0x80
 #define WM_APIID_PORT_SEND 0x81
