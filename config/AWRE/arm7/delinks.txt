@@ -697,6 +697,10 @@ src/arm7/sdk/os/tick_start_timer0_arm7.c:
     complete
     .text       start:0x037fcfd0 end:0x037fd064
 
+src/arm7/sdk/os/alarm_on_timer1_irq_arm7.c:
+    complete
+    .text       start:0x037fd064 end:0x037fd074
+
 src/arm7/sdk/func_arm7_037fd424.c:
     complete
     .text       start:0x037fd424 end:0x037fd434
