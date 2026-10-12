@@ -1234,17 +1234,38 @@ typedef struct WlBufferLists {
 
 #define WIFI_LISTS_VIEW_OF(work) ((WlBufferLists *)&(work)->allocator)
 
+// Buffer of MP child replies: entries of entrySize bytes from 0x1a, one for
+// each bit set in WlMpReplyView.unk_98.
+typedef struct WlMpChildEntry {
+    u8 pad_00[6];
+    u16 unk_06;
+} WlMpChildEntry;
+
+typedef struct WlMpBuffer {
+    u8 pad_00[0x16];
+    u16 entrySize;
+    u16 unk_18;
+    u8 entries[1];
+} WlMpBuffer;
+
 // View from work offset 0x400, as WifiCmd_ArmMpReply addresses the MP reply slots
 // (WlState.mpReplySlots).
 typedef struct WlMpReplyView {
-    WlMpReplySlot txSlots[3];
-    u8 pad_3c[0x50 - 0x3c];
+    WlMpReplySlot txSlots[4]; /* [3]: the MP command; its frame's unk_02 holds one bit per child */
     WlMpReplySlot slots[2];
     u8 pad_78[0x80 - 0x78];
     WlTxFrame *txFrame;  /* WlState.txFrame */
     u8 pad_84[0x8c - 0x84];
     u32 unk_8c;
-    u8 pad_90[0xb0 - 0x90];
+    WlMpBuffer *mpBuffer;
+    u8 pad_94[0x98 - 0x94];
+    u16 unk_98;          /* one bit per child with an entry in mpBuffer */
+    u8 pad_9a[0x9e - 0x9a];
+    u16 unk_9e;
+    u8 pad_a0[0xaa - 0xa0];
+    u16 unk_aa;
+    u16 unk_ac;
+    u16 unk_ae;
     u16 txTimeouts;      /* TX slot frames dropped by WifiIrq_BeaconSent */
 } WlMpReplyView;
 
@@ -1419,6 +1440,12 @@ typedef struct Unk_027cb9e4 {
 #define REG_W_RXBUF_GAP     (*(volatile u16 *)0x04808062)
 #define REG_W_TXREQ_READ    (*(volatile u16 *)0x048080b0)
 #define REG_W_RXSTAT_INC_IF (*(volatile u16 *)0x048081a8)
+/* Wi-Fi transmit status; bits 8-11 tell which frame finished. */
+#define REG_W_TXSTAT (*(volatile u16 *)0x048080b8)
+#define W_TXSTAT_KIND      0x0f00
+#define W_TXSTAT_LOC3      0x0300
+#define W_TXSTAT_MP_CMD    0x0800 /* the MP command went out */
+#define W_TXSTAT_MP_REPLY  0x0b00 /* the MP reply window ended */
 #define REG_W_RXTX_ADDR     (*(volatile u16 *)0x04808268) /* halfword the hardware reads or writes now */
 #define REG_W_TXBUF_REPLY1  (*(volatile u16 *)0x04808094)
 #define REG_W_TXBUF_REPLY2  (*(volatile u16 *)0x04808098) /* MP reply frame being sent */

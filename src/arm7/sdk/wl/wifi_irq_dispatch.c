@@ -10,7 +10,7 @@ void WifiIrq_TxErrorCounted(void);
 void WifiIrq_RxEventCounted(void);
 void func_arm7_037f9e28(void);
 void WifiIrq_StatsHalfFull(void);
-void func_arm7_037f9c00(void);
+void WifiIrq_TxFinished(void);
 void func_arm7_037fa0b4(int arg);
 
 /* Wireless interrupt handler: runs the handler of each pending, enabled
@@ -55,7 +55,7 @@ void WifiIrq_Dispatch(void)
             WifiIrq_StatsHalfFull();
         }
         if (causes & W_IRQ_TX_DONE) {
-            func_arm7_037f9c00();
+            WifiIrq_TxFinished();
         }
         if (causes & W_IRQ_MP_END) {
             func_arm7_037fa0b4(1);

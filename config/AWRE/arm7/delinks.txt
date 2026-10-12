@@ -2236,6 +2236,10 @@ src/arm7/sdk/wl/wifi_irq_rx_event_counted.c:
     complete
     .text       start:0x037f9a44 end:0x037f9c00
 
+src/arm7/sdk/wl/wifi_irq_tx_finished.c:
+    complete
+    .text       start:0x037f9c00 end:0x037f9e28
+
 src/arm7/sdk/wl/wifi_irq_tx_begun.c:
     complete
     .text       start:0x037fa1bc end:0x037fa270
