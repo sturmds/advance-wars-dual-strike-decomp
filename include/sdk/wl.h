@@ -344,7 +344,8 @@ typedef struct WlRxFrame {
     u16 unk_04;
     u16 bodyLength;
     u16 unk_08;         /* first word of the hardware RX header */
-    u8 pad_0a[0x10 - 0x0a];
+    u8 pad_0a[0x0e - 0x0a];
+    u16 rate;           /* WIFI_RATE_CODE_* */
     u16 length;         /* 802.11 header and body */
     u16 unk_12;
     u16 frameControl;
@@ -796,6 +797,8 @@ typedef struct WlRxBuffer {
 /* 802.11 header (24 bytes) and frame check sequence (4 bytes): WlTxFrame.unk_12
    is the body length WlTxFrame.unk_06 plus this. */
 #define WIFI_HEADER_PLUS_CHECKSUM 28
+/* The 802.11 header alone: WlRxFrame.length minus this is the body length. */
+#define WIFI_80211_HEADER_BYTES 24
 
 /* 802.11 element ID of the challenge text in shared-key authentication. */
 #define WIFI_CHALLENGE_IE_ID 16
@@ -1078,7 +1081,37 @@ typedef struct WlTxSlots {
     WlTxSlot slot[7];
     u8 pad_8c[4];
     WlBuffer *cmdBuffer;
+    u8 pad_94[4];
+    u16 mpExpected; /* bit n: a reply from AID n is expected */
+    u16 mpReceived; /* bit n: the reply from AID n came in */
 } WlTxSlots;
+
+/* One reply slot in a WlMpCommand, filled from a received MP reply. */
+typedef struct WlMpReplyEntry {
+    u16 length;  /* body bytes; data holds them */
+    u8 rate;     /* low byte of WlRxFrame.rate */
+    u8 rssi;     /* low byte of WlRxFrame.unk_12 */
+    u8 pad_04[4];
+    u8 data[1];
+} WlMpReplyEntry;
+
+/* The body of the host buffer the CMD slot sends (an MP poll), with room
+   for the replies after it: one slot of replySize bytes for each expected
+   AID from 1 up, in AID order. */
+typedef struct WlMpPoll {
+    u16 pendingAids; /* bit n: no reply from AID n yet */
+    u8 pad_02[4];
+    u16 replySize;   /* bytes per reply slot, WlMpReplyEntry header included */
+    u8 pad_08[2];
+    u8 replies[1];
+} WlMpPoll;
+
+typedef struct WlMpCommand {
+    WlBuffer header;
+    u16 command;
+    u16 length;
+    WlMpPoll poll;
+} WlMpCommand;
 
 #define WIFI_TX_LOCATIONS_OF(work) ((WlTxSlots *)(work)->state.pad_100)
 /* One slot, its offset from work in one constant (as some code adds it). */

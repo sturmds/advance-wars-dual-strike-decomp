@@ -27,11 +27,11 @@ void WifiRx_HandleDisassocFrame(WlRxFrame *frame)
     case 1:
         state = func_arm7_027cb140(station);
         if (state == WIFI_PEER_ASSOCIATED) {
-            WifiStation_ChangeState(station, 0x30);
+            WifiStation_ChangeState(station, WIFI_PEER_AUTH_DONE);
             WifiHost_TellDisassociated((const u8 *)frame->addr2, frame->body[0]);
             WifiTx_DropStationFrames(station);
         } else {
-            if (state == 0x30) {
+            if (state == WIFI_PEER_AUTH_DONE) {
                 reply = WifiFrame_NewDisassociation(frame->addr2, 7);
             } else {
                 reply = WifiFrame_NewDeauthentication(frame->addr2, 7);
