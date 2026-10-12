@@ -340,6 +340,10 @@ src/arm7/sdk/func_arm7_027c84f4.c:
     complete
     .text       start:0x027c84f4 end:0x027c8510
 
+src/arm7/sdk/wl/wifi_rx_copy_from_ring_wrapped.c:
+    complete
+    .text       start:0x027c8510 end:0x027c8594
+
 src/arm7/sdk/func_arm7_027c8594.c:
     complete
     .text       start:0x027c8594 end:0x027c85b8
