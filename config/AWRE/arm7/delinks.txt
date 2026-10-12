@@ -2136,6 +2136,10 @@ src/arm7/sdk/wl/wifi_mp_free_sent_reply_slot.c:
     complete
     .text       start:0x037fa5e8 end:0x037fa62c
 
+src/arm7/sdk/wl/wifi_task_refresh_beacon.c:
+    complete
+    .text       start:0x037fa62c end:0x037fa680
+
 src/arm7/sdk/os/irq_dispatch_lowest_pending_arm7.c:
     complete
     .text       start:0x037fb340 end:0x037fb394
