@@ -340,7 +340,9 @@ typedef struct WMStatus {
     u16 linkLevel;
     u8 pad_ba[8];
     u16 unk_c2;                        /* WM_SetMPDataToPortEx needs 1 */
-    u8 pad_c4[0x30];
+    u8 pad_c4[0x18];
+    u8 macAddress[6];
+    u8 pad_e2[0x12];
     u16 unk_f4;
     u8 pad_f6[0x88];
     u16 childBitmap;                   /* bit n set: the child with aid n is connected */
