@@ -216,7 +216,8 @@ typedef struct WlLink {
     u16 currentAp[3];   /* MAC address sent in reassociation requests */
     u16 unk_88; /* station index of data frames sent outside phase 1 */
     u16 flags_8a;
-    u8 pad_8c[0x96 - 0x8c];
+    u16 unk_8c;                    /* WlState.unk_a4 */
+    u8 pad_8e[0x96 - 0x8e];
     u16 gameInfoOffset; /* Nintendo element offset in the beacon, same halfword as WlState.unk_ae */
     u8 pad_98[0x9c - 0x98];
     u8 *gameInfo;       /* sent in the Nintendo element of the beacon */
@@ -429,7 +430,7 @@ typedef struct WlState {
     u16 unk_06;
     u16 unk_08;
     u16 unk_0a;
-    u8 pad_0c[2];
+    u16 unk_0c;
     WlFlags flags;
     u16 unk_10;
     u16 unk_12;                    /* bit 0x40: no alarm could be set up */
@@ -441,12 +442,13 @@ typedef struct WlState {
     u16 unk_26;
     u8 pad_28[2];
     u16 unk_2a;
-    u8 pad_2c[0xa];
+    u16 unk_2c;
+    u8 pad_2e[8];
     u16 unk_36;
     u16 words[16];
     u16 words_58[16];
     u16 unk_78;
-    u8 pad_7a[0x7c - 0x7a];
+    u16 unk_7a;
     u16 unk_7c[3];
     u16 aid; /* association ID */
     u8 pad_84[0x2];
@@ -459,7 +461,10 @@ typedef struct WlState {
     u16 capability; /* same halfword as WlLink.flags_7c */
     u16 unk_96;
     u16 unk_98;
-    u8 pad_9a[0xac - 0x9a];
+    u8 pad_9a[0xa];
+    u16 unk_a4;
+    u8 pad_a6[4];
+    u16 unk_aa;
     /* Wi-Fi RAM offset of the beacon frame that holds the TIM element. */
     u16 timOffset;
     u16 unk_ae;
@@ -908,6 +913,8 @@ typedef struct WlHead {
     u16 unk_0e;
     u16 unk_10;
     u16 phase;           /* WlState.phase */
+    u8 pad_14[8];
+    u16 unk_1c;                    /* WlState.unk_0c */
 } WlHead;
 
 #define WIFI_SESSION_HEAD_OF(work) ((WlHead *)&(work)->limits.unk_f0)
