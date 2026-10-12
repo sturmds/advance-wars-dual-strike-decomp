@@ -54,6 +54,11 @@ void Screen_PrepareHBlankRegs(void)
     data_027c0264 = BgOffset(VGFX->bgScrollX[1], VGFX->bgScrollY[1]);
     data_027c0274 = BgOffset(VGFX->bgScrollX[2], VGFX->bgScrollY[2]);
 
+    /* Needed to match: an empty two-term condition here makes mwcc give
+     * the BG1CNT terms the original's registers (found by tools/permuter.py).
+     * It emits no code. */
+    if (!GFX->bgCnt[1].charBase && !GFX->bgCnt[1].charBase) {
+    }
     data_027c0254 = (GFX->bgCnt[1].screenSize << 14) | (*REG_BG1CNT & 0x40) | (GFX->bgCnt[1].colorMode << 7) |
                     (GFX->bgCnt[1].screenBase << 8) | (GFX->bgCnt[1].charBase << 2) | GFX->bgCnt[1].priority;
 
