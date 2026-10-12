@@ -636,6 +636,10 @@ src/arm7/sdk/wl/wifi_host_raise_event_bits.c:
     complete
     .text       start:0x027c80b0 end:0x027c80f4
 
+src/arm7/sdk/wl/wifi_tx_repair_damaged_queues.c:
+    complete
+    .text       start:0x027c80f4 end:0x027c81f4
+
 src/arm7/sdk/wl/wifi_step_lcg.c:
     complete
     .text       start:0x027c8390 end:0x027c83c8

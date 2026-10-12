@@ -207,7 +207,8 @@ typedef struct WlLink {
     u16 basicRates;     /* bit n: rate n of the rate table is a basic rate */
     u16 supportedRates; /* bit n: rate n of the rate table is supported */
     u16 bssid[3];
-    u8 pad_6a[0x6e - 0x6a];
+    u16 aid;            /* passed to WifiTx_BuildPsPoll */
+    u8 pad_6c[0x6e - 0x6c];
     u16 beaconInterval; /* sent in probe responses */
     u16 listenInterval; /* sent in association requests */
     u8 pad_72[0x7c - 0x72];
@@ -230,6 +231,8 @@ typedef struct WlLink {
     u16 savedBbReg6; /* baseband register 6 before WifiTest_SendPatternFrames changed it */
     u8 pad_ae[2];
     u16 pendingEvents; /* WlState.unk_c8: event bits task 21 sends to the host */
+    u8 pad_b2[0xb8 - 0xb2];
+    u16 unk_b8;        /* WlState.unk_d0 */
 } WlLink;
 
 // Entry inside the frame payload at a running offset.
@@ -266,6 +269,26 @@ typedef struct WlMpReplySlot {
     WlRamFrame *frame;
     u8 pad_0c[8];
 } WlMpReplySlot;
+
+/*
+ * The seven TX queue records at WlState offset 0x100, seen as one array
+ * (WIFI_SEND_QUEUE_RECORDS_OF). Record 2's frame is WlState.psPollFrame, records 4 and 5
+ * are WlState.mpReplySlots, record 6 starts at WlState.unk_178.
+ */
+typedef struct WlTxQueue {
+    u16 busy;
+    u8 pad_02[6];
+    WlRamFrame *frame;
+    u8 *unk_0c;     /* 16 bytes into a block func_arm7_027d0ee8 reads */
+    u8 pad_10[4];
+} WlTxQueue;
+
+#define WIFI_SEND_QUEUE_RECORDS_OF(work) ((WlTxQueue *)(work)->state.pad_100)
+
+/* The two halfwords kept just before each queued frame in WIFI_PACKET_RAM; a frame
+   found without them is rewritten as a 1-byte frame with them as header. */
+#define WIFI_GUARD_WORD_A 0xb6b8
+#define WIFI_GUARD_WORD_B 0x1d46
 
 // Frame buffer the driver builds; the payload starts at 0x24.
 typedef struct WlTxFrame {
@@ -478,7 +501,10 @@ typedef struct WlState {
     u32 periodicCount;             /* periodic alarm firings */
     u8 pad_c4[4];
     u16 unk_c8;
-    u8 pad_ca[0xd8 - 0xca];
+    u8 pad_ca[0xce - 0xca];
+    u16 unk_ce;                    /* counts frames found with their marks overwritten */
+    u16 unk_d0;                    /* counts TX queue restarts */
+    u8 pad_d2[0xd8 - 0xd2];
     u16 unk_d8[16];
     WlCurrentRequest current;
     u8 pad_100[0x130 - 0x100];
