@@ -181,9 +181,9 @@ typedef struct WlParamSetAllCommand {
     u8 pad_1a[2];
     u16 unk_1c;                        /* WMStatus.unk_e2 */
     u16 unk_1e;                        /* WMStatus.unk_1e8 */
-    u16 unk_20;                        /* WMStatus.wepMode */
-    u16 unk_22;                        /* WMStatus.wepKeyId */
-    u8 unk_24[0x50];                   /* WMStatus.wepKey */
+    u16 wepMode;
+    u16 wepKeyId;
+    u8 wepKey[0x50];
     u16 unk_74;
     u16 unk_76;
     u16 unk_78;                        /* 0 when WMStatus.unk_e2 is 1, else 16 */
@@ -191,7 +191,7 @@ typedef struct WlParamSetAllCommand {
     u8 unk_7c[8];                      /* cleared */
     u8 unk_84[24];                     /* filled with 0xff */
     u16 unk_9c;                        /* WMStatus.unk_1ea */
-    u16 unk_9e;                        /* 1 when WMStatus.wepFlag is set */
+    u16 wepFlag;
 } WlParamSetAllCommand;
 
 /* The ARM9 asks the ARM7 to start WM with these pointers (the arguments of
@@ -286,6 +286,13 @@ typedef struct WmspSetGameInfoRequest {
     u32 tgid;
     u32 attribute;                     /* WIRELESS_BEACON_BIT_* in the low byte */
 } WmspSetGameInfoRequest;
+
+/* The argument of WM_SetParentParameter's request. */
+typedef struct WmspSetParentParamRequest {
+    u16 apiid;
+    u8 pad_02[2];
+    const WMParentParam *param;
+} WmspSetParentParamRequest;
 
 /* The arguments of WM_SetLifeTime. The lifetimes count 100 ms steps. */
 typedef struct WmspSetLifeTimeRequest {

@@ -22,17 +22,17 @@ BOOL WMSP_SetAllParams(int apiid, WlCommand *cmd)
     param->unk_1e = buf->status->unk_1e8;
     param->unk_1c = buf->status->unk_e2;
     if (buf->status->wepFlag == 0) {
-        param->unk_20 = 0;
-        param->unk_22 = 0;
+        param->wepMode = 0;
+        param->wepKeyId = 0;
         zero = 0;
-        Mem_FillHalfwords_Arm7(zero, param->unk_24, sizeof(param->unk_24));
-        param->unk_9e = 0;
+        Mem_FillHalfwords_Arm7(zero, param->wepKey, sizeof(param->wepKey));
+        param->wepFlag = 0;
     } else {
         func_arm7_027c05e0();                   /* result unused, as in the original */
-        param->unk_20 = buf->status->wepMode;
-        param->unk_22 = buf->status->wepKeyId;
-        Mem_CopyBytes_Arm7(buf->status->wepKey, param->unk_24, sizeof(param->unk_24));
-        param->unk_9e = 1;
+        param->wepMode = buf->status->wepMode;
+        param->wepKeyId = buf->status->wepKeyId;
+        Mem_CopyBytes_Arm7(buf->status->wepKey, param->wepKey, sizeof(param->wepKey));
+        param->wepFlag = 1;
     }
     param->unk_74 = 1;
     param->unk_76 = 1;
