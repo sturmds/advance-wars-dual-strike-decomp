@@ -132,6 +132,10 @@ src/arm7/sdk/wm/wmsp_update_min_rssi.c:
     complete
     .text       start:0x027c1418 end:0x027c14a8
 
+src/arm7/sdk/wm/wmsp_indicate_mp_end.c:
+    complete
+    .text       start:0x027c14a8 end:0x027c18b0
+
 src/arm7/sdk/wm/wmsp_indicate_beacon_lost.c:
     complete
     .text       start:0x027c18b0 end:0x027c1900

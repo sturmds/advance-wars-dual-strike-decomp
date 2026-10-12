@@ -11,7 +11,7 @@ void Wmsp_IndicateBeaconSent(WlIndicationHeader *ind);
 void Wmsp_IndicateBeaconRecv(WlBeaconIndication *ind);
 void Wmsp_IndicateDcfData(WlDataIndication *ind);
 void Wmsp_IndicateMp(WlMpIndication *ind);
-void func_arm7_027c14a8(WlMpEndIndication *ind);
+void Wmsp_IndicateMpEnd(WlMpEndIndication *ind);
 void Wmsp_IndicateMpAck(WlMpAckIndication *ind);
 void Wmsp_AutoDisconnectAll(WlIndicationHeader *ind);
 void func_arm7_027c1a94(WlIndicationHeader *ind); /* empty */
@@ -60,7 +60,7 @@ void Wmsp_DispatchIndication(WlIndicationHeader *ind)
         Wmsp_IndicateMp((WlMpIndication *)ind);
         break;
     case WIFI_HOSTMSG_POLL_FINISHED:
-        func_arm7_027c14a8((WlMpEndIndication *)ind);
+        Wmsp_IndicateMpEnd((WlMpEndIndication *)ind);
         break;
     case WIFI_HOSTMSG_POLL_ACKED:
         Wmsp_IndicateMpAck((WlMpAckIndication *)ind);

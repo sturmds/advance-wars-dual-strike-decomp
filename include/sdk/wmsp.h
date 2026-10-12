@@ -135,6 +135,7 @@ typedef struct WmspAutoDisconnectRequest {
 
 typedef struct WmspInternalRequest {
     u32 apiid;
+    u32 arg;                           /* requests 40 and 42: one argument */
 } WmspInternalRequest;
 
 /* ARM7 side of WM: a command for the wireless (WL) firmware.
