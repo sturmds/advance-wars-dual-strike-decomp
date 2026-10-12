@@ -15,6 +15,7 @@
 #define CLOCK_SEL_ADDR3 0x30
 #define CLOCK_SEL_STATUS_B 0x40
 #define CLOCK_SEL_INT2_ALARM 0x50
+#define CLOCK_SEL_TIME_ONLY 0x60
 #define CLOCK_SEL_ADDR7 0x70
 
 /* Register 4 (alarm and interrupt mode): the low nibble selects the
