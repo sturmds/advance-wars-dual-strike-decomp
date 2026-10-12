@@ -7,7 +7,7 @@ void func_arm7_037fbf60(void *thread, void (*func)(void *), void *arg, void *sta
 void func_arm7_037fbdf8(void *thread);                        /* looks like OS_WakeupThreadDirect */
 void func_arm7_037fe298(int tag, void (*callback)(int tag, u32 data, int err));   /* looks like PXI_SetFifoRecvCallback */
 void func_arm7_03802974(u32 state);
-void func_arm7_03802a2c(void *arg);
+void Card_ServiceThread_Arm7(void *arg);
 void func_arm7_03802b50(int tag, u32 data, int err);
 
 #define GAMECARD_WORKER_PRIO_ARM7 4
@@ -29,7 +29,7 @@ void CARDi_InitCommon(void)
     *(u16 *)&common->queue = 0;           /* an ARM7 thread queue is a 16-bit mask of thread ids */
     common->priority = GAMECARD_WORKER_PRIO_ARM7;
     /* The stack ends where the SPI transfer state starts. */
-    func_arm7_037fbf60(common->thread, func_arm7_03802a2c, NULL, &data_arm7_03809860, GAMECARD_WORKER_STACK_BYTES,
+    func_arm7_037fbf60(common->thread, Card_ServiceThread_Arm7, NULL, &data_arm7_03809860, GAMECARD_WORKER_STACK_BYTES,
                        common->priority);
     func_arm7_037fbdf8(common->thread);
     func_arm7_037fe298(FIFO_TAG_CARD_SERVICE, func_arm7_03802b50);

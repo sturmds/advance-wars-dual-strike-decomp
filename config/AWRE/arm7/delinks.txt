@@ -1173,6 +1173,10 @@ src/arm7/sdk/card/cardi_init_common.c:
     complete
     .text       start:0x03802984 end:0x03802a2c
 
+src/arm7/sdk/card/card_service_thread_arm7.c:
+    complete
+    .text       start:0x03802a2c end:0x03802b50
+
 src/arm7/sdk/card/card_spi_clock_byte_out.c:
     complete
     .text       start:0x0380308c end:0x038030d8

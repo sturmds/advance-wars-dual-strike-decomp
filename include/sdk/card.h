@@ -211,6 +211,9 @@ typedef struct CARDiArm7Common {
 
 extern CARDiArm7Common data_arm7_03809280;
 
+/* ARM7 meaning of flag bit 0x10: a request from the other CPU waits for the card thread. */
+#define GAMECARD_FLAG_PEER_JOB_PENDING 0x10
+
 /* ROM commands the ARM7 sends. The ROM control word for a 4 byte answer has all block size bits set. */
 #define GAMECARD_OP_GET_CHIP_ID 0xb8
 #define GAMECARD_REPLY_LEN_4 0x07000000
