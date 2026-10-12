@@ -1980,6 +1980,10 @@ src/arm7/sdk/pm/pm_analyze_command.c:
     complete
     .text       start:0x03804f2c end:0x03805100
 
+src/arm7/sdk/pm/power_reset_driver_state_arm7.c:
+    complete
+    .text       start:0x03805100 end:0x0380513c
+
 src/arm7/sdk/func_arm7_0380513c.c:
     complete
     .text       start:0x0380513c end:0x03805168

@@ -6,7 +6,7 @@
 void Touch_ResetDriver_Arm7(void);
 void func_arm7_027d485c(void);    /* NVRAM init */
 void func_arm7_0380607c(void);    /* microphone init */
-void func_arm7_03805100(void);    /* power chip init */
+void Power_PrepareDriver_Arm7(void);    /* power chip init */
 void func_arm7_037fe0a0(void);    /* PXI init */
 void func_arm7_037fe298(u32 tag, PXIFifoCallback callback);           /* PXI_SetFifoRecvCallback */
 void func_arm7_037fc4e0(OSMessageQueue *queue, OSMessage *msgArray, s32 count);  /* OS_InitMessageQueue */
@@ -33,7 +33,7 @@ void SPI_Init(u32 priority)
     Touch_ResetDriver_Arm7();
     func_arm7_027d485c();
     func_arm7_0380607c();
-    func_arm7_03805100();
+    Power_PrepareDriver_Arm7();
     func_arm7_037fe0a0();
     func_arm7_037fe298(FIFO_TAG_TOUCH, SerialDev_OnFifoMessage);
     func_arm7_037fe298(PXI_FIFO_TAG_MIC, SerialDev_OnFifoMessage);
