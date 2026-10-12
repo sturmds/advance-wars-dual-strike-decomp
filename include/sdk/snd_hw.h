@@ -46,8 +46,11 @@ typedef struct SndHwChannel {
 #define AUDIO_CH_BALANCE_BYTE(blockOffset) (*(u8 *)(0x4000402 + (blockOffset)))
 #define AUDIO_CH_LOUDNESS_DIVIDER(blockOffset) (*(u16 *)(0x4000400 + (blockOffset)))
 #define AUDIO_CH_CTRL_WORD(blockOffset) (*(u32 *)(0x4000400 + (blockOffset)))
+#define AUDIO_CH_RATE_RELOAD(blockOffset) (*(u16 *)(0x4000408 + (blockOffset)))
 #define AUDIO_CH_PLAY_BIT 0x80000000
 #define AUDIO_CH_KEEP_LAST_SAMPLE 0x8000
+/* Format field of the control word (bits 29-30): 3 selects PSG or noise. */
+#define AUDIO_CH_FORMAT_TONE_GEN 0x60000000
 #define AUDIO_CH_PLAYING_FLAG 0x80
 
 /* Channels 1 and 3 can feed the mixer directly, so volume scaling skips them. */
