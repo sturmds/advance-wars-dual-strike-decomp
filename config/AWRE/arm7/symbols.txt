@@ -410,7 +410,7 @@ WifiCmd_ArmMpReply kind:function(arm,size=0x178) addr:0x027cee38
 WifiTx_EnqueueHostData kind:function(arm,size=0x1e0) addr:0x027cefb0
 WifiFrame_PutGameInfoElement kind:function(arm,size=0x124) addr:0x027cf190
 WifiFrame_PutChannelElement kind:function(arm,size=0x48) addr:0x027cf2b4
-func_arm7_027cf2fc kind:function(arm,size=0xb8) addr:0x027cf2fc
+WifiFrame_PutRatesElement kind:function(arm,size=0xb8) addr:0x027cf2fc
 func_arm7_027cf3b4 kind:function(arm,size=0x74) addr:0x027cf3b4
 func_arm7_027cf428 kind:function(arm,size=0x5c) addr:0x027cf428
 func_arm7_027cf484 kind:function(arm,size=0x54) addr:0x027cf484
@@ -542,7 +542,7 @@ data_arm7_027d6680 kind:data(any) addr:0x027d6680
 data_arm7_027d6688 kind:data(any) addr:0x027d6688
 data_arm7_027d6690 kind:data(any) addr:0x027d6690
 data_arm7_027d6698 kind:data(any) addr:0x027d6698
-data_arm7_027d66a0 kind:data(any) addr:0x027d66a0
+gWifiRateHalfMbps kind:data(any) addr:0x027d66a0
 data_arm7_027d66c0 kind:data(any) addr:0x027d66c0
 data_arm7_027d66e0 kind:data(any) addr:0x027d66e0
 gWlFirmwareRegOffsets kind:data(any) addr:0x027d6700
