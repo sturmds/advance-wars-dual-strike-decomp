@@ -2,6 +2,7 @@
 #define SDK_RTC_H
 
 #include "types.h"
+#include "sdk/os_arm7.h"
 
 /* ARM7 real-time clock. A transfer sends a command byte (mode plus
  * register number in the high nibble) and then moves bytes in or out. */
@@ -60,6 +61,22 @@ typedef struct RtcDateTime {
 #define RTC_PXI_RESULT_INVALID_COMMAND 1
 #define RTC_PXI_RESULT_BUSY 3
 #define RTC_PXI_RESULT_FATAL_ERROR 4
+
+/*
+ * The library's statics. The original reaches them all from the queue's
+ * address (the busy flag as an offset from it), so one struct describes them.
+ */
+typedef struct RtcState {
+    OSMessageQueue queue;   /* requests for the RTC thread */
+    OSMessage messages[4];
+    OSThread thread;
+    u8 unk_8c[0x10];
+    u32 stack[0x40];
+    u32 busy;               /* a request is being handled */
+    u16 command;            /* the request being handled */
+} RtcState;
+
+extern RtcState data_arm7_027d81b0;
 
 /* Sends `result` for `command` to the ARM9, retrying until the FIFO takes it. */
 void func_arm7_027d58a8(int command, int result);
