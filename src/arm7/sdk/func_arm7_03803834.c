@@ -9,10 +9,10 @@ struct Unk_03803834_0 {
     int unk_14;
 };
 
-void func_arm7_03802dfc(int, int, int);
+void CardSave_ProgramPagesNoErase(int, int, int);
 
 void func_arm7_03803834(Unk_03803834_0 **a0)
 {
     Unk_03803834_0 *t0 = *a0;
-    func_arm7_03802dfc(t0->unk_10, t0->unk_c, t0->unk_14);
+    CardSave_ProgramPagesNoErase(t0->unk_10, t0->unk_c, t0->unk_14);
 }
