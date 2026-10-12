@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/wm.h"
 
-void func_arm7_027c05ec(Unk_arm7_038057d4 *params, Unk_arm7_038057d4_2 *params2);
+void Wmsp_Init(Unk_arm7_038057d4 *params, Unk_arm7_038057d4_2 *params2);
 
 /* A 0x600-byte stack; the library gets its top. Written as base + size because the original has two pool entries for 0x0380a874. */
 extern u8 data_arm7_0380a274[];
@@ -32,5 +32,5 @@ void func_arm7_038057d4(u32 arg)
     params2.unk_04 = 7;
     params2.unk_14 = 8;
     params2.unk_0c = 9;
-    func_arm7_027c05ec(&params, &params2);
+    Wmsp_Init(&params, &params2);
 }

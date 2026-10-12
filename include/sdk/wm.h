@@ -563,7 +563,7 @@ int WM_SetPortCallback(int port, WMCallbackFunc callback, void *arg);
 
 /*
  * ARM7 side: the two parameter blocks the ARM7 main passes to the wireless
- * library's init (func_arm7_027c05ec). Field meanings are not known yet; the
+ * library's init (Wmsp_Init). Field meanings are not known yet; the
  * values look like stack addresses, stack sizes and thread priorities.
  */
 typedef struct Unk_arm7_038057d4 Unk_arm7_038057d4;
