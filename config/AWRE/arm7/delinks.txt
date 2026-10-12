@@ -144,6 +144,10 @@ src/arm7/sdk/func_arm7_027c1a94.c:
     complete
     .text       start:0x027c1a94 end:0x027c1a98
 
+src/arm7/sdk/wm/wmsp_free_indication.c:
+    complete
+    .text       start:0x027c1a98 end:0x027c1ad4
+
 src/arm7/sdk/func_arm7_027c1cf4.c:
     complete
     .text       start:0x027c1cf4 end:0x027c1cf8

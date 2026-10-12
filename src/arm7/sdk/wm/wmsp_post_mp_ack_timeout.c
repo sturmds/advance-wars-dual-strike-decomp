@@ -3,7 +3,7 @@
 #include "sdk/wm.h"
 #include "sdk/wmsp.h"
 
-void func_arm7_027c1a98(WlIndicationHeader *ind);
+void Wmsp_FreeIndication(WlIndicationHeader *ind);
 
 /*
  * Alarm handler for a missing MP ack: queues a made-up WIFI_HOSTMSG_POLL_ACKED with
@@ -17,7 +17,7 @@ void Wmsp_PostMpAckTimeout(void *arg)
     ind->command = WIFI_HOSTMSG_POLL_ACKED;
     ind->length = 0;
     if (!MsgQueue_PushBack_Arm7(&work->indicationQueue, ind, OS_MESSAGE_NOBLOCK)) {
-        func_arm7_027c1a98(ind);
+        Wmsp_FreeIndication(ind);
         if (work->buf != NULL) {
             RadioNotice *error = Wmsp_GetCallbackBuffer();
 
