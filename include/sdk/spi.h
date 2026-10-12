@@ -33,6 +33,11 @@ enum {
     SERIAL_REQ_GROUP_POWER = 0x60      /* 0x60-0x7f */
 };
 
+/* A request arrives as up to 16 PXI words, each holding one halfword and
+ * its index; the start bit marks the first word and the end bit the last. */
+#define SERIAL_MSG_SLOT_BITS  0x000f0000
+#define SERIAL_MSG_SLOT_POS 16
+
 /* A reply word: bits 8-15 hold the request id with bit 7 set, bits 0-7
  * the result; the start and end bits mark a one-word message. */
 #define SERIAL_MSG_ANSWER_BIT 0x80
