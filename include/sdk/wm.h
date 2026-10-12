@@ -432,12 +432,15 @@ typedef struct WMStatus {
     u16 unk_32;
     u16 unk_34;                        /* a limit set by request 35; 0 there means 16 */
     u16 unk_36;                        /* kept at or below unk_34 */
-    u8 pad_38[0xc];
+    u32 unk_38;
+    u16 unk_3c;
+    u16 unk_3e;
+    u8 pad_40[4];
     u16 mpRecvBufSel;                  /* which of mpRecvBuf gets the next frame */
     u16 mpRecvBufSize;                 /* bytes in an MP receive buffer */
     RadioChildFrameBuffer *mpRecvBuf[2];
     const void *unk_50;                /* WM_SetMPDataToPortEx refuses this buffer */
-    u8 pad_54[2];
+    u16 unk_54;                        /* START_MP: the send buffer's size */
     u16 unk_56;                        /* MP ack deadline, in the wireless microsecond counter / 16 */
     OSAlarm mpAckAlarm;
     u16 mpWaitAckFlag;                 /* nonzero while an MP ack is awaited */
@@ -450,7 +453,9 @@ typedef struct WMStatus {
     u16 unk_92;
     u16 unk_94;
     u16 unk_96;
-    u8 pad_98[0x9e - 0x98];
+    u16 unk_98;                        /* START_MP: defaultRetryCount */
+    u16 unk_9a;
+    u16 unk_9c;                        /* START_MP sets 60 */
     u8 dcfDestAdr[6];
     const u16 *dcfSendData;
     u16 dcfSendSize;
@@ -460,7 +465,7 @@ typedef struct WMStatus {
     u16 tgid;                          /* the parent's tgid, compared with each beacon */
     u16 linkLevel;
     u16 unk_ba;
-    u8 pad_bc[2];
+    u16 unk_bc;                        /* START_MP sets 4 */
     u16 unk_be;
     u16 wepKeyId;
     u16 unk_c2;                        /* WM_SetMPDataToPortEx needs 1 */
@@ -497,7 +502,7 @@ typedef struct WMStatus {
     RadioOutboxList sendQueue[WIRELESS_URGENCY_LEVELS];
     RadioOutboxList readyQueue[WIRELESS_URGENCY_LEVELS];
     OSMutex sendQueueMutex;
-    u8 pad_72c[4];
+    u32 unk_72c;
     u64 mpLastRecvTick[16];            /* tick of the last MP frame from each aid, bit 0 set */
     u64 unk_7b0;
 } WMStatus;

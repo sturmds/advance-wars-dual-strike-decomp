@@ -223,7 +223,9 @@ typedef struct WmspBuf {
     WMStatus *status;
     u8 pad_04[4];
     WmspReply *replyBuf;
-    u8 pad_0c[0xc4];
+    u8 pad_0c[0x3a];
+    u16 unk_46;                        /* WMSP_StartMP checks it against allowedChannel */
+    u8 pad_48[0x88];
     OSVAlarm vAlarm;
     WmspSlot slots[WMSP_SLOT_COUNT];
 } WmspBuf;
@@ -293,6 +295,22 @@ typedef struct WmspSetParentParamRequest {
     u8 pad_02[2];
     const WMParentParam *param;
 } WmspSetParentParamRequest;
+
+/* The arguments of WM_StartMPEx's request, all widened to words. */
+typedef struct WmspStartMPRequest {
+    u16 apiid;
+    u8 pad_02[2];
+    void *recvBuf;
+    u32 recvBufSize;
+    const void *sendBuf;
+    u32 sendBufSize;
+    u32 mpFreq;
+    u32 defaultRetryCount;
+    u32 minPollBmpMode;
+    u32 singlePacketMode;
+    u32 fixFreqMode;
+    u32 ignoreFatalError;
+} WmspStartMPRequest;
 
 /* The arguments of WM_SetLifeTime. The lifetimes count 100 ms steps. */
 typedef struct WmspSetLifeTimeRequest {
