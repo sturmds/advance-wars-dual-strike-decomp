@@ -28,4 +28,14 @@ asm void _ll_udiv_common(void);
 asm void _ll_sdiv_common(void);
 asm void _ll_div_core(void);
 
+/* The ARM7's copies of the same helpers. */
+u64 _ll_udiv_Arm7(u64 dividend, u64 divisor);
+u64 _ull_mod_Arm7(u64 dividend, u64 divisor);
+s64 _ll_sdiv_Arm7(s64 dividend, s64 divisor);
+s64 _ll_mod_Arm7(s64 dividend, s64 divisor);
+u32 _u32_div_not_0_f_Arm7(u32 dividend, u32 divisor);
+asm void _ll_udiv_common_Arm7(void);
+asm void _ll_sdiv_common_Arm7(void);
+asm void _ll_div_core_Arm7(void);
+
 #endif

@@ -1047,11 +1047,9 @@ Cartridge_OnShutdownMessage kind:function(arm,size=0x2c) addr:0x0380699c
 Cartridge_StoreInitDoneWord kind:function(arm,size=0x38) addr:0x038069c8
 Cartridge_CheckLogoFromArm9Once kind:function(arm,size=0xe8) addr:0x03806a00
 func_arm7_03806ae8 kind:function(arm,size=0x5c) addr:0x03806ae8
-func_arm7_03806b44 kind:function(arm,size=0x58) addr:0x03806b44
-func_arm7_03806b9c kind:function(arm,size=0x1b0) addr:0x03806b9c
 func_arm7_03806d4c kind:function(arm,size=0x20c) addr:0x03806d4c
 _u32_div_f kind:function(arm,size=0x1e4) addr:0x03806f58
-.L_03806f60 kind:label(arm) addr:0x03806f60
+_u32_div_not_0_f_Arm7 kind:label(arm) addr:0x03806f60
 gCrc16NibbleTable kind:data(any) addr:0x0380713c
 gSndSineQuarterTable kind:data(any) addr:0x0380715c
 data_arm7_03807180 kind:data(any) addr:0x03807180
@@ -1189,3 +1187,10 @@ data_arm7_03807890 kind:bss addr:0x03807890
 data_arm7_03807894 kind:bss addr:0x03807894
 data_arm7_0380a274 kind:bss addr:0x0380a274
 IrqNest_DispatchByPriority kind:function(arm,size=0x184) addr:0x0380624c
+_ll_udiv_Arm7 kind:function(arm,size=0xc) addr:0x03806b44
+_ull_mod_Arm7 kind:function(arm,size=0x8) addr:0x03806b50
+_ll_udiv_common_Arm7 kind:function(arm,size=0x34) addr:0x03806b58
+_ll_mod_Arm7 kind:function(arm,size=0x10) addr:0x03806b8c
+_ll_sdiv_Arm7 kind:function(arm,size=0x10) addr:0x03806b9c
+_ll_sdiv_common_Arm7 kind:function(arm,size=0x64) addr:0x03806bac
+_ll_div_core_Arm7 kind:function(arm,size=0x13c) addr:0x03806c10

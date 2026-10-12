@@ -3,7 +3,7 @@
 
 extern AlarmList gOsiAlarmQueue_Arm7;
 void Alarm_StartTimer1ForDue_Arm7(OSAlarm *alarm);
-u64 func_arm7_03806b44(u64 dividend, u64 divisor);
+u64 _ll_udiv_Arm7(u64 dividend, u64 divisor);
 
 /*
  * Puts an alarm into the queue, sorted by fire time. A periodic alarm
@@ -22,7 +22,7 @@ void Alarm_QueueByFireTime_Arm7(OSAlarm *alarm, OSTick fire)
             OSTick period = alarm->period;
 
             /* The compiler's 64-bit unsigned divide, called by name in the original. */
-            fire += period * (func_arm7_03806b44(now - fire, period) + 1);
+            fire += period * (_ll_udiv_Arm7(now - fire, period) + 1);
         }
     }
     alarm->fire = fire;

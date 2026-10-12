@@ -1,7 +1,7 @@
 #include "sdk/snd_seq.h"
 
 /* The compiler's signed 64-bit divide (ARM7 copy of _ll_sdiv). The original calls it by this name. */
-s64 func_arm7_03806b9c(s64 dividend, s64 divisor);
+s64 _ll_sdiv_Arm7(s64 dividend, s64 divisor);
 
 /*
  * Returns the channel's sweep pitch offset: sweepPitch at the start, falling
@@ -18,7 +18,7 @@ int SndExChannel_UpdateSweep(SndExChannel *channel, BOOL update)
     if (channel->sweepCounter >= channel->sweepLength) {
         return 0;
     }
-    offset = func_arm7_03806b9c((s64)channel->sweepPitch * (channel->sweepLength - channel->sweepCounter),
+    offset = _ll_sdiv_Arm7((s64)channel->sweepPitch * (channel->sweepLength - channel->sweepCounter),
                                 channel->sweepLength);
     if (update && channel->autoSweep) {
         channel->sweepCounter++;
