@@ -8,11 +8,14 @@
 u16 func_arm7_027c6020(u32 parentSize, u32 childSize, u32 childBitmap) {
   u32 needed = (parentSize + 34) * 4 + 96 +
                (childSize * MATH_CountPopulation_Arm7(childBitmap) + 904);
-  int lines = 258 - *REG_VCOUNT;
+  int vcount = *REG_VCOUNT;
+  int lines;
   int time;
 
-  if (lines < 0) {
-    lines += 263;
+  if (258 - vcount < 0) {
+    lines = 258 - vcount + 263;
+  } else {
+    lines = 258 - vcount;
   }
   time = lines * 127 / 20;
   return time * 10 < needed ? 0 : time;

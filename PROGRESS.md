@@ -54,13 +54,13 @@ objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 00
 |---|---:|---:|---:|
 | ARM9 game | 6 | 2732 | 579 / 691 (83.79%) |
 | ARM9 SDK/library | 11 | 9924 | 1780 / 2564 (69.42%) |
-| ARM7 SDK/library | 2 | 636 | 148 / 159 (93.08%) |
-| all | 19 | 13292 | 2507 / 3414 (73.43%) |
+| ARM7 SDK/library | 2 | 636 | 149 / 159 (93.71%) |
+| all | 19 | 13292 | 2508 / 3414 (73.46%) |
 
 | Rows that differ | Functions | Bytes |
 |---|---:|---:|
-| 1 to 2 | 0 | 0 |
-| 3 to 10 | 3 | 1552 |
+| 1 to 2 | 1 | 152 |
+| 3 to 10 | 2 | 1400 |
 | 11 to 50 | 13 | 3724 |
 | more than 50 | 3 | 8016 |
 
@@ -68,7 +68,7 @@ Closest first.
 
 | File | Function | Bytes | Differ | Match |
 |---|---|---:|---:|---:|
-| `src/arm7/sdk/wm/func_arm7_027c6020.c` | func_arm7_027c6020 | 152 | 3 | 99.47% |
+| `src/arm7/sdk/wm/func_arm7_027c6020.c` | func_arm7_027c6020 | 152 | 2 | 98.39% |
 | `src/arm7/sdk/wm/func_arm7_027c632c.c` | func_arm7_027c632c | 484 | 8 | 99.63% |
 | `src/game/main/units/move_path_follow_cursor.c` | MovePath_FollowCursor | 916 | 10 | 99.74% |
 | `src/game/ov004/func_ov004_022bacd8.c` | func_ov004_022bacd8 | 212 | 12 | 94.79% |
