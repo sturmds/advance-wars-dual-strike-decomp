@@ -1892,6 +1892,10 @@ src/arm7/sdk/math/math_count_population.c:
     complete
     .text       start:0x03803bf0 end:0x03803c34
 
+src/arm7/sdk/spi/serial_dev_on_fifo_message.c:
+    complete
+    .text       start:0x03803c34 end:0x03803ca4
+
 src/arm7/sdk/func_arm7_03803e50.c:
     complete
     .text       start:0x03803e50 end:0x03803e68

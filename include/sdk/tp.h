@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "sdk/os.h"
+#include "sdk/spi.h"
 
 /* One touch panel reading. Raw readings are 12-bit panel units;
  * TP_GetCalibratedPoint turns them into screen pixels. The game's
@@ -81,9 +82,6 @@ typedef struct TPiWork {
 } TPiWork;
 
 extern TPiWork tpState;
-
-/* PXI FIFO tag of the touch panel driver. */
-#define FIFO_TAG_TOUCH 6
 
 /* Ask the ARM7 for one sample. */
 #define TOUCH_ASK_ONE_SAMPLE 0x03000000
@@ -215,19 +213,6 @@ enum {
 #define TP_VALIDITY_INVALID_X 1
 #define TP_VALIDITY_INVALID_Y 2
 #define TP_VALIDITY_INVALID_XY (TP_VALIDITY_INVALID_X | TP_VALIDITY_INVALID_Y)
-
-/* SPI driver calls the touch panel code uses. The SPI code has no C yet. */
-#define SERIAL_OWNER_TOUCH 0
-
-/* One job the SPI thread runs: a device, its request id and arguments. */
-typedef struct SerialBusJob {
-    u32 device;                    /* SERIAL_OWNER_* */
-    u32 process;                   /* request id, TOUCH_JOB_* for the touch panel */
-    u32 arg[4];
-} SerialBusJob;
-void func_arm7_03803e84(u16 command, u16 result);    /* send a reply word to the ARM9 */
-/* Queue a job for the SPI thread; FALSE when the queue is full. */
-BOOL func_arm7_03803d38(u32 device, u32 process, u16 paramCount, ...);
 
 void Touch_ResetDriver_Arm7(void);
 void TP_AnalyzeCommand(u32 data);
