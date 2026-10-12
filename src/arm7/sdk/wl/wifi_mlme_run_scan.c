@@ -4,7 +4,7 @@ u8 WL_ReadByte(const void *addr);
 void Wifi_ArmOneShotMs(u32 milliseconds, OSAlarmHandler handler);
 void WifiScan_TickAlarm(void *arg);
 void WifiRf_TuneChannel(u16 channel, int arg);
-void *func_arm7_027cf6e0(u16 *peer);
+void *WifiFrame_NewProbeAsk(u16 *peer);
 void func_arm7_027d01c4(void *frame);
 u32 WifiFlash_ValidateRadioBlock(u32 *crcs);
 void func_arm7_037f8e04(void);
@@ -69,7 +69,7 @@ void WifiMlme_RunScan(void)
     case 0x13:
         job->state = 0x13;
         if (job->request->unk_38 == 0) {
-            frame = func_arm7_027cf6e0(job->request->peer);
+            frame = WifiFrame_NewProbeAsk(job->request->peer);
             if (frame == NULL) {
                 job->reply->unk_04 = WIFI_ANSWER_NO_MEMORY;
                 job->state = 0x15;
