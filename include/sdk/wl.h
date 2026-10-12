@@ -102,6 +102,20 @@ typedef struct WlParamsRequest {
     u16 value06;
 } WlParamsRequest;
 
+// Request of WifiCmd_RunRadioTest.
+typedef struct WlTestModeRequest {
+    u8 pad_00[0x10];
+    u16 start;   /* 1 starts a test transmission, 0 stops it */
+    u16 signal;  /* 0-2: WIFI_MODE_CARRIER_TEST, 3-4: WIFI_MODE_FRAME_TEST */
+    u16 rate;    /* 10 or 20 */
+    u16 channel;
+} WlTestModeRequest;
+
+// WlLink.mode values. Modes 0x10-0x1f are the ones where WifiCmd_RunRadioTest may run.
+#define WIFI_MODE_RADIO_ON 16
+#define WIFI_MODE_CARRIER_TEST 17
+#define WIFI_MODE_FRAME_TEST 18 /* sends the frame in WIFI_PACKET_RAM again on every TX done */
+
 // Entries of the table at WlLimits.unk_f0, indexed from 1 (see func_arm7_027cdd18).
 typedef struct Unk_027cdd18 {
     u8 pad_00[0x18];
@@ -154,10 +168,15 @@ typedef union WlFlags {
 typedef struct WlLink {
     u8 pad_00[8];
     u16 mode;
-    u8 pad_0a[0x72];
+    u8 pad_0a[0xc];
+    u16 testRate;   /* 10 or 20, from the WifiCmd_RunRadioTest request */
+    u16 testTxActive;
+    u8 pad_1a[0x62];
     u16 flags_7c;
     u8 pad_7e[0xc];
     u16 flags_8a;
+    u8 pad_8c[0x20];
+    u16 savedBbReg6; /* baseband register 6 before WifiTest_SendPatternFrames changed it */
 } WlLink;
 
 // Entry inside the frame payload at a running offset.
@@ -326,6 +345,20 @@ typedef struct WlWork {
 #define WIFI_MAC_MODE_AND_WEP (*(volatile u16 *)0x04808006)
 #define WIFI_MAC_RETRY_LIMIT (*(volatile u16 *)0x0480802c)
 #define WIFI_OWN_MAC_REGISTERS ((u16 *)0x04808018)
+#define WIFI_MAC_RUN (*(volatile u16 *)0x04808004)
+#define WIFI_IRQ_PENDING_FLAGS (*(volatile u16 *)0x04808010)
+#define WIFI_IRQ_ENABLE_MASK (*(volatile u16 *)0x04808012)
+#define WIFI_MAC_FORCE_POWER (*(volatile u16 *)0x04808040)
+#define WIFI_TX_LOC1_FRAME_ADDR (*(volatile u16 *)0x048080a0)
+#define WIFI_TX_REQUEST_CLEAR (*(volatile u16 *)0x048080ac)
+#define WIFI_TX_REQUEST_RAISE (*(volatile u16 *)0x048080ae)
+#define WIFI_TX_HEADER_CONTROL (*(volatile u16 *)0x04808194)
+#define WIFI_TEST_TX_CONTROL (*(volatile u16 *)0x048081a0)
+#define WIFI_TEST_TX_PATTERN (*(volatile u16 *)0x048081a2)
+#define WIFI_TEST_TX_RATE (*(volatile u16 *)0x048081a4)
+
+// Wireless RAM, as halfwords.
+#define WIFI_PACKET_RAM ((volatile u16 *)0x04804000)
 
 #define WIFI_LINK_VIEW_OF(work) ((WlLink *)(work)->state.pad_18)
 

@@ -952,6 +952,10 @@ src/arm7/sdk/wl/wifi_cmd_apply_all_settings.c:
     complete
     .text       start:0x027ce084 end:0x027ce178
 
+src/arm7/sdk/wl/wifi_test_resend_or_halt.c:
+    complete
+    .text       start:0x027ce178 end:0x027ce220
+
 src/arm7/sdk/func_arm7_027d00b4.c:
     complete
     .text       start:0x027d00b4 end:0x027d00dc
