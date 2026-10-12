@@ -6,6 +6,10 @@
 
 /* ARM7 real-time clock. A transfer sends a command byte (mode plus
  * register number in the high nibble) and then moves bytes in or out. */
+/* The serial lines: data in bit 0, clock in bit 1, chip select in bit 2;
+ * bits 4-6 set the matching line to output. */
+#define REG_RTC (*(volatile u16 *)0x04000138)
+
 #define CLOCK_XFER_TO_CHIP 0x06
 #define CLOCK_XFER_FROM_CHIP 0x86
 
