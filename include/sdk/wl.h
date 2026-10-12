@@ -1194,6 +1194,21 @@ typedef struct WlAuthenticateReply {
     u16 algorithm;
 } WlAuthenticateReply;
 
+/* Request to join the BSS it describes (fields as in a beacon). */
+typedef struct WlJoinRequest {
+    u8 pad_00[0x10];
+    u16 timeoutMs;      /* up to 2000 */
+    u8 pad_12[6];
+    u16 bssid[3];
+    u16 ssidLength;     /* 1-32 */
+    u8 ssid[WIFI_SSID_LONGEST];
+    u16 capability;     /* 802.11 capability field */
+    WlRateSet rates;    /* bits 0-11 */
+    u16 beaconInterval; /* 10-1000 */
+    u16 dtimPeriod;     /* up to 255 */
+    u16 channel;        /* 0-15, and allowed in WlState.unk_00 */
+} WlJoinRequest;
+
 /* TX header rate codes, in 100 kbit/s. */
 #define WIFI_RATE_CODE_1M 10
 #define WIFI_RATE_CODE_2M 20
