@@ -119,6 +119,10 @@ src/arm7/sdk/wm/func_arm7_027c5de8.c:
     complete
     .text       start:0x027c5de8 end:0x027c5e10
 
+src/arm7/sdk/wm/func_arm7_027c5e10.c:
+    complete
+    .text       start:0x027c5e10 end:0x027c5e4c
+
 src/arm7/sdk/func_arm7_027c7a8c.c:
     complete
     .text       start:0x027c7a8c end:0x027c7aa0
