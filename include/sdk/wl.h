@@ -460,19 +460,35 @@ typedef struct WlElements {
     u16 capability;
     u16 length;
     u16 result;           /* WIFI_IE_* bits */
-    u16 unk_0c;           /* some callers set 0x800 before parsing */
+    u16 unk_0c;           /* WIFI_IE_SEEN_* bits; some callers set 0x800 before parsing */
     u8 pad_0e[0x12 - 0x0e];
     u16 unk_12;           /* WlScanEntry.unk_36 */
     u16 unk_14;           /* WlScanEntry.unk_2e */
     u16 supportedRates;   /* stored in WlStation.unk_10 on association */
-    const u8 *unk_18;     /* element handed to the response builder */
+    const u8 *unk_18;     /* SSID element, handed to the response builder */
     const u8 *unk_1c;     /* element whose byte 3 goes to WlScanEntry.unk_38 */
     const u8 *unk_20;     /* element whose byte 3 goes to WlScanEntry.unk_34 */
     const u8 *nintendo;   /* Nintendo element: game info from byte 10 */
 } WlElements;
 
 #define WIFI_IE_FITS_SSID 0x1  /* probe and association requests are answered only with it */
+#define WIFI_IE_FITS_CHANNEL 0x2 /* same channel as the join request */
 #define WIFI_IE_FITS_RATES 0x4 /* association is refused with status 18 without it */
+#define WIFI_IE_FITS_BSSID 0x8
+#define WIFI_IE_FITS_NET_KIND 0x10 /* ESS and IBSS capability bits as ours */
+#define WIFI_IE_FITS_PRIVACY 0x20  /* privacy capability bit as ours */
+
+/* WlElements.unk_0c bits: which elements the frame has. Element pointers
+   point at the element's ID byte. */
+#define WIFI_IE_SEEN_NETWORK_NAME 0x1
+#define WIFI_IE_SEEN_DS_SET 0x2
+#define WIFI_IE_SEEN_RATE_LIST 0x4
+#define WIFI_IE_WANT_BSSID_TEST 0x8
+#define WIFI_IE_WANT_CAPS_TEST 0x30
+#define WIFI_IE_SEEN_TRAFFIC_MAP 0x100
+#define WIFI_IE_SEEN_CF_SET 0x200
+#define WIFI_IE_SEEN_VENDOR 0x400
+#define WIFI_IE_EMPTY_SSID_PASSES 0x800 /* a missing or empty SSID matches */
 
 /* 802.11 frame control, as bitfields. */
 typedef union WlFrameControl {
@@ -1456,47 +1472,6 @@ typedef struct WlAuthenticateReply {
     u16 mac[3];
     u16 algorithm;
 } WlAuthenticateReply;
-
-/*
- * Information elements of a received management frame, as
- * WifiRx_ScanElements reads them. The caller sets elements, length,
- * capability and the WIFI_IE_BLANK_SSID_PASSES bit of found; the parser fills
- * the rest. Element pointers point at the element's ID byte.
- */
-typedef struct WlRxElements {
-    const u8 *elements;
-    u16 unk_04;         /* bit 15 checked with WIFI_IE_ASK_BSSID_TEST */
-    u16 capability;     /* 802.11 capability field of the frame */
-    u16 length;         /* bytes of elements */
-    u16 matched;        /* WIFI_IE_AGREES_* */
-    u16 found;          /* WIFI_IE_SPOTTED_* */
-    u8 pad_0e[0x12 - 0x0e];
-    u16 channel;        /* from the DS parameter set, else ours */
-    WlRateSet rates;
-    const u8 *ssid;
-    const u8 *cfParams;
-    const u8 *tim;
-    const u8 *nintendo; /* vendor element with Nintendo's OUI 00:09:bf, type 0 */
-} WlRxElements;
-
-/* WlRxElements.found bits. */
-#define WIFI_IE_SPOTTED_NETWORK_NAME 0x1
-#define WIFI_IE_SPOTTED_DS_SET 0x2
-#define WIFI_IE_SPOTTED_RATE_LIST 0x4
-#define WIFI_IE_ASK_BSSID_TEST 0x8
-#define WIFI_IE_ASK_CAPS_TEST 0x30
-#define WIFI_IE_SPOTTED_TRAFFIC_MAP 0x100
-#define WIFI_IE_SPOTTED_CF_SET 0x200
-#define WIFI_IE_SPOTTED_VENDOR 0x400
-#define WIFI_IE_BLANK_SSID_PASSES 0x800 /* a missing or empty SSID matches */
-
-/* WlRxElements.matched bits. */
-#define WIFI_IE_AGREES_SSID 0x1
-#define WIFI_IE_AGREES_CHANNEL 0x2
-#define WIFI_IE_AGREES_RATES 0x4
-#define WIFI_IE_AGREES_BSSID 0x8
-#define WIFI_IE_AGREES_NET_KIND 0x10 /* ESS and IBSS capability bits as ours */
-#define WIFI_IE_AGREES_PRIVACY 0x20  /* privacy capability bit as ours */
 
 /* Request to join the BSS it describes (fields as in a beacon). */
 typedef struct WlJoinRequest {
