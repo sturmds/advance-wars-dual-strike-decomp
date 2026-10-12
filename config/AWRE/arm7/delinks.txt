@@ -203,6 +203,10 @@ src/arm7/sdk/wl/wifi_cmd_report_assoc_listen.c:
     complete
     .text       start:0x027cd484 end:0x027cd4ac
 
+src/arm7/sdk/wl/wifi_cmd_report_listen_period.c:
+    complete
+    .text       start:0x027cd4ac end:0x027cd4d4
+
 src/arm7/sdk/func_arm7_027cdbb0.c:
     complete
     .text       start:0x027cdbb0 end:0x027cdbd0
