@@ -324,6 +324,10 @@ src/arm7/sdk/wl/wifi_baseband_set_cca_params.c:
     complete
     .text       start:0x027c9e08 end:0x027c9e50
 
+src/arm7/sdk/wl/func_arm7_027c9e50.c:
+    complete
+    .text       start:0x027c9e50 end:0x027c9e74
+
 src/arm7/sdk/func_arm7_027cab80.c:
     complete
     .text       start:0x027cab80 end:0x027cab94
