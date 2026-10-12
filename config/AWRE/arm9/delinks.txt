@@ -6145,6 +6145,7 @@ src/game/main/menus/co_select_screen_init.c:
     .text       start:0x02044228 end:0x02044854
 
 src/game/main/menus/co_select_screen_refresh_cell_skills.c:
+    complete
     .text       start:0x02044854 end:0x020448d8
 
 src/game/main/menus/co_select_screen_clear_cell_skills.c:

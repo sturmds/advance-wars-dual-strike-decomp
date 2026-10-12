@@ -17,5 +17,8 @@ void CoSelectScreen_RefreshCellSkills(int column, int row)
     if (Skills_AreDisabled() == 1) {
         return;
     }
-    Co_ListDefaultSkills(data_0229c73c->cellSkills[left][row], (&data_0229c73c->coGrid[left * 2])[row]);
+    /* Needed to match: unsigned left and row in these two indexes (found by
+     * tools/permuter.py). */
+    Co_ListDefaultSkills(data_0229c73c->cellSkills[(u32)left][row],
+                         (&data_0229c73c->coGrid[left * 2])[(u32)row]);
 }
