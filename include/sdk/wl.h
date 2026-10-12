@@ -25,6 +25,9 @@ typedef struct WlReply {
 
 /* WlStation.state value checked before WL marks or clears a station's bits; meaning not known yet. */
 #define WIFI_PEER_ASSOCIATED 0x40
+/* Station states below WIFI_PEER_ASSOCIATED, as the frame handlers set them. */
+#define WIFI_PEER_KNOWN_ONLY 0x20 /* set on a deauthentication */
+#define WIFI_PEER_AUTH_DONE 0x30   /* association requests are refused below this */
 
 /* One entry of the station table (28 bytes), reached by index. */
 typedef struct WlStation {
@@ -135,7 +138,6 @@ typedef struct WlTestModeRequest {
 #define WIFI_MODE_RADIO_ON 16
 #define WIFI_MODE_CARRIER_TEST 17
 #define WIFI_MODE_FRAME_TEST 18 /* sends the frame in WIFI_PACKET_RAM again on every TX done */
-#define WIFI_MODE_SESSION_DOWN 32         /* a deauthentication sets the link back to this mode */
 #define WIFI_MODE_JOINED 64 /* set when an association response reports success */
 #define WIFI_MODE_READY 32     /* entered by Wifi_CloseSession */
 

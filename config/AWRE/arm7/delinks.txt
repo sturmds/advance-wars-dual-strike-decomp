@@ -1588,6 +1588,10 @@ src/arm7/sdk/wl/wifi_parent_serve_ps_poll.c:
     complete
     .text       start:0x027d2094 end:0x027d20fc
 
+src/arm7/sdk/wl/wifi_rx_handle_deauth_frame.c:
+    complete
+    .text       start:0x027d20fc end:0x027d21b8
+
 src/arm7/sdk/wl/wifi_flash_fetch_radio_block.c:
     complete
     .text       start:0x027d40e8 end:0x027d41dc
