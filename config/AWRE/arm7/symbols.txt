@@ -582,7 +582,7 @@ data_arm7_027d834c kind:bss addr:0x027d834c
 data_arm7_027d84fc kind:bss addr:0x027d84fc
 VBlankIntr_Arm7 kind:function(arm,size=0x2c) addr:0x037f8000
 CalcCrc16 kind:function(arm,size=0x80) addr:0x037f802c
-func_arm7_037f80ac kind:function(arm,size=0xc0) addr:0x037f80ac
+UserSettings_ChooseCopy kind:function(arm,size=0xc0) addr:0x037f80ac
 func_arm7_037f816c kind:function(arm,size=0x174) addr:0x037f816c
 func_arm7_037f82e0 kind:function(arm,size=0xac) addr:0x037f82e0
 func_arm7_037f838c kind:function(arm,size=0xb8) addr:0x037f838c
