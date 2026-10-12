@@ -355,7 +355,10 @@ typedef struct WMStatus {
     u16 macVersion;
     u16 rfVersion;
     u16 bbpVersion[2];
-    u8 pad_30[0x16];
+    u8 pad_30[4];
+    u16 unk_34;                        /* a limit set by request 35; 0 there means 16 */
+    u16 unk_36;                        /* kept at or below unk_34 */
+    u8 pad_38[0xe];
     u16 mpRecvBufSize;                 /* bytes in an MP receive buffer */
     u8 pad_48[8];
     const void *unk_50;                /* WM_SetMPDataToPortEx refuses this buffer */
