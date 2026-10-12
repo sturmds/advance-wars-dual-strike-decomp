@@ -356,6 +356,10 @@ src/arm7/sdk/wm/wmsp_end_scan.c:
     complete
     .text       start:0x027c3bcc end:0x027c3c64
 
+src/arm7/sdk/wm/wmsp_reply_start_connect_failed.c:
+    complete
+    .text       start:0x027c3c64 end:0x027c3ca0
+
 src/arm7/sdk/wm/wmsp_set_mp_data.c:
     complete
     .text       start:0x027c4a10 end:0x027c4b24
