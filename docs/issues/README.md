@@ -98,3 +98,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0068](0068-permuter-asm-declarations.md) | permuter.py reports "0 outputs" on files with `asm` declarations, without running | closed | tools | M2 |
 | [0069](0069-wt-setup-extracted.md) | wt_setup.sh did not provide extracted/ to a new worktree | closed | loop | M2 |
 | [0070](0070-check-and-diff-count-differently.md) | `fn.py check` and `fn.py diff` count a different number of differing instructions for the same C | closed | tools | M2 |
+| [0071](0071-decomp-dev-onboarding.md) | Remaining work to list the project on decomp.dev | open | tools | later |

@@ -15,4 +15,4 @@ Facts read from its source, used by `tools/decomp_dev_report.py`:
 
 ## What we do not take
 
-No code. We do not upload anything to it; publishing is issue 0070.
+No code. We do not upload anything to it; publishing is issue 0071.

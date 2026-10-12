@@ -30,7 +30,7 @@ name with no public source (tenet 10), the checks of tools/pnc_check.py.
 
 `make release` runs this after `make check`. The artifact name and the two
 measures come from decomp.dev's source (docs/third-party/decomp-dev.md).
-Uploading it is issue 0070.
+Uploading it is issue 0071.
 """
 
 import json
