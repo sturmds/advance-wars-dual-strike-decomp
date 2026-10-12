@@ -4,10 +4,9 @@
 
 extern DlPlayStationArea *data_022aced8;
 
-int WM_Reset(void (*callback)(void));
 void MbParent_ReportError(u16 apiid, int errcode);
 
-/* Calls WM_Reset (WM_Reset) with the parent's WM callback, reports a failure and
+/* Calls WM_Reset with the parent's WM callback, reports a failure and
  * returns the WM error code, with "still running" counted as success. */
 int MbParent_ResetWm(void)
 {

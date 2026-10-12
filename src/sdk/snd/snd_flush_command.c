@@ -1,7 +1,7 @@
 #include "sdk/snd.h"
 #include "sdk/os.h"
+#include "sdk/pxi.h"
 
-int PXI_SendWordByFifo(int tag, u32 data, int err);
 
 /* Sends the queued commands to the ARM7. Returns 1 when sent, 0 when it would
    have to wait and SOUND_SEND_WAIT_IF_FULL is not set. */

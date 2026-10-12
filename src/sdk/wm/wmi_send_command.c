@@ -1,13 +1,13 @@
 #include "stdarg.h"
 
 #include "sdk/os.h"
+#include "sdk/pxi.h"
 #include "sdk/wm.h"
 
 void MI_DmaCopy32(int dmaNo, const void *src, void *dst, u32 size);
 BOOL OS_ReceiveMessage(OSMessageQueue *queue, OSMessage *msg, int flags);
 BOOL OS_SendMessage(OSMessageQueue *queue, OSMessage msg, int flags);
 BOOL OS_JamMessage(OSMessageQueue *queue, OSMessage msg, int flags);
-int PXI_SendWordByFifo(int tag, u32 data, BOOL err);
 
 extern WMArm9Buf *data_022ac32c;
 extern OSMessageQueue data_022ac330;

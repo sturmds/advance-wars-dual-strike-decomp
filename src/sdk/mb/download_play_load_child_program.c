@@ -15,8 +15,6 @@ extern const char gMbRomArchiveName[];
 
 void AutoloadCallback(int arg);
 void Mem_CopyBytes(const void *src, void *dest, u32 size);
-void func_0211daf4(DlPlayHeldProgram *cache);        /* clear the cache */
-void MbCache_Add(DlPlayHeldProgram *cache, u32 address, u32 size, u8 *buffer, u32 state);
 void MbSegment_CopySecureArea(DlPlayLiveCodePatch *copy, u32 start, u32 end, BOOL clear);
 
 /* Fills buffer with what DownloadPlay_OfferChildProgram needs to offer a child program:
@@ -81,7 +79,7 @@ BOOL DownloadPlay_LoadChildProgram(FSFile *file, void *buffer, u32 length)
             int nameLength;
 
             cache = (DlPlayHeldProgram *)next;
-            func_0211daf4(cache);
+            MbCache_Init(cache);
             next += sizeof(DlPlayHeldProgram);
             rest -= sizeof(DlPlayHeldProgram);
             MbCache_Add(cache, 0, sizeof(RomHeader), buffer, DLPLAY_HELD_BLOCK_PINNED);

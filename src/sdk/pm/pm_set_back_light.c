@@ -1,7 +1,6 @@
 #include "sdk/pm.h"
 
 int PM_SetBackLightAsync(int target, int order, void (*callback)(u32 result, u32 *dest), u32 *dest);
-void Power_SpinUntilIdle(void);
 
 int PM_SetBackLight(int target, int order)
 {

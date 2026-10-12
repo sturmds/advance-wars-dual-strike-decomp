@@ -1,6 +1,7 @@
 #include "types.h"
 #include "sdk/mb.h"
 #include "sdk/os.h"
+#include "sdk/pxi.h"
 #include "sdk/wm.h"
 
 extern DlPlayHostLinkArea *data_022aced4;
@@ -8,11 +9,10 @@ extern DlPlayStationArea *data_022aced8;
 extern void *data_022acedc;
 
 void MIi_CpuClear16(u16 value, void *dst, u32 size);
-void MI_CpuFill8(void *dst, u8 value, u32 size);
-BOOL PXI_IsCallbackReady(int tag, int proc);
+void MI_CpuFill8(void *dest, u32 data, u32 size);
 void MbPieces_SetSize(u32 childMaxSize);
 void MbParent_CommCallback(u32 type, void *arg);
-void MbParent_WmCallback(void);
+void MbParent_WmCallback(void *arg);
 void MbBeacon_Init(void);
 int MbParent_InitWm(void);
 

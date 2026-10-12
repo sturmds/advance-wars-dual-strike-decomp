@@ -148,7 +148,7 @@ typedef struct DlPlayStationArea {
     u16 sendSize;                      /* set by DownloadPlay_SetSendSizeAndChildren */
     u16 unk_502;
     u16 *mpRecvBuffer;                 /* given to WM_StartMPEx */
-    void (*wmCallback)(void);          /* given to WM_Initialize, WM_SetIndCallback, WM_Reset and the MP send */
+    WMCallbackFunc wmCallback;         /* given to WM_Initialize, WM_SetIndCallback, WM_Reset and the MP send */
     u8 sendQueued;                     /* set to 1 once MbParent_Send queued the data */
     u8 started;                        /* 1 from MbParent_InitWm until WM ends */
     u8 pad_50e[0x518 - 0x50e];
@@ -464,6 +464,10 @@ typedef struct DlPlayHeldProgram {
     u8 pad_18[0x30 - 0x18];
     DlPlayHeldBlock pages[DLPLAY_HELD_BLOCK_SLOTS];
 } DlPlayHeldProgram;
+
+void MbCache_Init(DlPlayHeldProgram *cache);
+void MbCache_Add(DlPlayHeldProgram *cache, u32 address, u32 size, u8 *buffer, u32 state);
+int MbCache_Read(DlPlayHeldProgram *cache, u32 address, void *dst, u32 size);
 
 #define DLPLAY_JOB_PRIO_BOTTOM 31          /* thread priorities 0 (highest) to 31 */
 #define DLPLAY_JOB_PRIO_HIGHER 32           /* one above the task thread's priority */

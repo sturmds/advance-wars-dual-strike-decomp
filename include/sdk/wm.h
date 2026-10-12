@@ -429,6 +429,9 @@ int WMi_CheckStateEx(int count, ...);
 int func_02116df4(void);
 int Wireless_SetUpWorkArea(void *workArea, u16 dmaNo, u32 size);
 int WM_Init(void *workArea, u16 dmaNo);
+int WM_Initialize(void *workArea, WMCallbackFunc callback, u16 dmaNo);
+int WM_Reset(WMCallbackFunc callback);
+int WM_SetIndCallback(WMCallbackFunc callback);
 int WM_SetEntry(WMCallbackFunc callback, int entryFlag);
 int WM_Finish(void);                    /* only while READY; clears the WM work area pointer */
 int WMi_CheckIdle(void);                /* illegal state while READY or STOP */

@@ -8,10 +8,9 @@ extern void *data_022acedc;
 extern u16 data_022aced0;
 
 void func_0211bfb8(int);
-int WM_Initialize(void *workArea, void (*callback)(void), u16 dmaNo);
 void MbParent_SetIndAndLifeTime(void);
 
-/* Clears the parent's progress, then brings WM up (WM_Initialize, WM_Initialize)
+/* Clears the parent's progress, then brings WM up (WM_Initialize)
  * unless the game started Download Play earlier, and installs the indication
  * callback. Returns 0, or 8 when WM_Initialize fails. */
 int MbParent_InitWm(void)
