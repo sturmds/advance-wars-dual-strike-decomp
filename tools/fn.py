@@ -9,7 +9,7 @@
     fn.py show NAME|ADDR                       location, callers, callees, data, other references
                                                (pointer tables, callbacks), disassembly
     fn.py add NAME src/PATH.c                  add a delinks.txt entry covering the function
-    fn.py diff NAME                            compile its file and compare with the original
+    fn.py diff NAME [--color WHEN]             compile its file and compare with the original
     fn.py check FILE.c NAME                    fast yes/no: compile FILE.c alone and compare NAME
                                                with build/fnindex.json (tools/fnindex.py)
     fn.py finish NAME                          mark its file `complete` (linked from our C)
@@ -33,6 +33,7 @@ word's value, and count as matching), and exits 0 only at 100%.
 import argparse
 import bisect
 import json
+import os
 import re
 import subprocess
 import sys
@@ -619,14 +620,22 @@ def cmd_diff(args) -> int:
     same = {i for i, (a, b) in enumerate(zip(orig.get("instructions", []), ours_sym.get("instructions", [])))
             if a.get("diff_kind") and (same_target(data, a, b) or absolute_word(data, a, b, f.module))}
     width = max((len(t) for t, _ in left), default=10) + 2
-    print(f"{'original':<{width}}   ours")
+    paint = painter(args.color)
+    print(paint("1", f"{'original':<{width}}   ours"))
     differ = 0
     for i in range(max(len(left), len(right))):
         a, ka = left[i] if i < len(left) else ("", "missing")
         b, kb = right[i] if i < len(right) else ("", "missing")
         mark = "=" if i in same else "|" if (ka or kb) else " "
         differ += mark == "|"
-        print(f"{a:<{width}} {mark} {b}")
+        # Colours as in `git diff`: the original in red, ours in green.
+        # Pad before colouring so the columns stay aligned.
+        if mark == "|":
+            print(f"{paint('31', f'{a:<{width}}')} {mark} {paint('32', b)}")
+        elif mark == "=":
+            print(f"{a:<{width}} {paint('36', mark)} {b}")
+        else:
+            print(f"{a:<{width}} {mark} {b}")
     if same and not differ:
         percent = 100.0
     if same:
@@ -634,6 +643,14 @@ def cmd_diff(args) -> int:
               " or an absolute symbol of the same value; counted as matching.")
     print(f"\n{f.name}: {percent if percent is not None else '?'}% match")
     return 0 if percent == 100.0 else 1
+
+
+def painter(when: str):
+    """A function that wraps text in an ANSI colour code. `auto` colours
+    only on a terminal and when NO_COLOR is unset, so tools that read the
+    output through a pipe (triage_partials.py, propagate.py) get plain text."""
+    on = when == "always" or (when == "auto" and sys.stdout.isatty() and not os.environ.get("NO_COLOR"))
+    return (lambda code, text: f"\033[{code}m{text}\033[m") if on else (lambda code, text: text)
 
 
 def cmd_check(args) -> int:
@@ -735,6 +752,8 @@ def main() -> int:
     p.set_defaults(fn=cmd_add)
     p = sub.add_parser("diff")
     p.add_argument("name")
+    p.add_argument("--color", choices=["auto", "always", "never"], default="auto",
+                   help="colour differing lines as git diff does (default: on a terminal only)")
     p.set_defaults(fn=cmd_diff)
     p = sub.add_parser("check")
     p.add_argument("file")

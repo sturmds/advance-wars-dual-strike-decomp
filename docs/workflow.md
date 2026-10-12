@@ -57,7 +57,7 @@ Put the file at the path from step 2. Shared types go in `include/`; SDK declara
 python3 tools/fn.py diff PackNibblePairs
 ```
 
-This compiles the file, rebuilds the original's delinked object, and runs `objdiff-cli`. Lines marked `|` differ; relocations are compared by symbol name. The exit code is 0 only at 100%.
+This compiles the file, rebuilds the original's delinked object, and runs `objdiff-cli`. Lines marked `|` differ; relocations are compared by symbol name. The exit code is 0 only at 100%. On a terminal, differing lines are coloured as in `git diff`, the original in red and ours in green; `--color always|never` overrides that, and so does `NO_COLOR`.
 
 Some library code tests constants that the original link set (`SDK_SYS_STACKSIZE`, `SDK_IRQ_STACKSIZE`, `SDK_SECTION_ARENA_DTCM_START`). The ROM holds their values in literal pools, and the C must declare them as `extern char NAME[];` and use them as numbers, or mwcc folds them. `ARM9_ABSOLUTE_SYMBOLS` in `tools/configure.py` gives each one its value, and `tools/lcf_absolute.py` writes them into `build/arm9.lcf`. ARM7 has its own list, `ARM7_ABSOLUTE_SYMBOLS`, written into `build/arm7/arm7.lcf`: its `SDK_SYS_STACKSIZE` is 0x400 where ARM9's is 0. `configure.absolute_symbols(module)` picks the list, and `diff` and `check` use the one for the function's module. Add a constant to the right list when a function needs one. `diff` marks such a word `=` and counts it as matching when the original word holds the symbol's value; `check` does the same.
 
