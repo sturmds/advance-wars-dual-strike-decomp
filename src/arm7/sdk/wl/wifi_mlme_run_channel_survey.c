@@ -6,7 +6,7 @@ int WifiBaseband_SetCcaParams(int reg13Value, int reg35Value);
 u8 WL_ReadByte(const void *addr);
 void Wifi_ArmOneShotMs(u32 milliseconds, OSAlarmHandler handler);
 int func_arm7_027c94ac(int value);
-void func_arm7_027c963c(u16 channel, int arg);
+void WifiRf_TuneChannel(u16 channel, int arg);
 void func_arm7_027cbfc8(void);
 u32 WifiFlash_ValidateRadioBlock(u32 *crcs);
 void func_arm7_037f8e04(void);
@@ -50,12 +50,12 @@ void WifiMlme_RunChannelSurvey(void)
             break;
         }
         if (job->state == 0x80) {
-            func_arm7_027c963c(channel, 0);
+            WifiRf_TuneChannel(channel, 0);
             func_arm7_037f8e04();
             job->savedReg040 = WIFI_MAC_REGISTER(0x40);
             func_arm7_027c94ac(0x8000);
         } else {
-            func_arm7_027c963c(channel, 0);
+            WifiRf_TuneChannel(channel, 0);
         }
         job->state = 0x82;
         Wifi_ArmOneShotMs(job->request->sampleMs, (OSAlarmHandler)func_arm7_027cbfc8);

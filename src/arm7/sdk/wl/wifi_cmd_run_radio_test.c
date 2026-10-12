@@ -3,7 +3,7 @@
 u32 WifiFlash_ValidateRadioBlock(u32 *crcs);
 void WifiFlash_ReadLocked(u32 address, u32 size, u8 *dest);
 void func_arm7_027c87b8(int a0);
-void func_arm7_027c963c(int channel, int arg1);
+void WifiRf_TuneChannel(int channel, int arg1);
 void func_arm7_027c8714(void);
 void WifiTest_SendPatternFrames(WlTestModeRequest *request);
 
@@ -53,7 +53,7 @@ int WifiCmd_RunRadioTest(WlTestModeRequest *request, WlReply *reply)
         case 1:
         case 2:
             link->mode = WIFI_MODE_CARRIER_TEST;
-            func_arm7_027c963c(request->channel, 1);
+            WifiRf_TuneChannel(request->channel, 1);
             WIFI_MAC_FORCE_POWER = 0x8000;
             func_arm7_027c87b8(1500);
             link->testRate = request->rate;

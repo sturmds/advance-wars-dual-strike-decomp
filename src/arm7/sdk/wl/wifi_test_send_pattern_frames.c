@@ -3,7 +3,7 @@
 
 void func_arm7_037f8e04(void);
 void func_arm7_037f92c8(void);
-void func_arm7_027c963c(int channel, int arg1);
+void WifiRf_TuneChannel(int channel, int arg1);
 void func_arm7_027c87b8(int a0);
 
 // Builds a frame of 0x5555 halfwords in WIFI_PACKET_RAM and starts sending it (signal
@@ -35,7 +35,7 @@ void WifiTest_SendPatternFrames(WlTestModeRequest *request)
     WIFI_TX_HEADER_CONTROL = 6;
     link->mode = WIFI_MODE_FRAME_TEST;
     link->testTxActive = 1;
-    func_arm7_027c963c(request->channel, 1);
+    WifiRf_TuneChannel(request->channel, 1);
     WIFI_MAC_FORCE_POWER = 0x8000;
     func_arm7_027c87b8(1500);
     WIFI_IRQ_ENABLE_MASK = 2;

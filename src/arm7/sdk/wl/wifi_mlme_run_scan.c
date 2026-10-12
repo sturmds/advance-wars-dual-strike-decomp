@@ -3,7 +3,7 @@
 u8 WL_ReadByte(const void *addr);
 void Wifi_ArmOneShotMs(u32 milliseconds, OSAlarmHandler handler);
 void WifiScan_TickAlarm(void *arg);
-void func_arm7_027c963c(u16 channel, int arg);
+void WifiRf_TuneChannel(u16 channel, int arg);
 void *func_arm7_027cf6e0(u16 *peer);
 void func_arm7_027d01c4(void *frame);
 u32 WifiFlash_ValidateRadioBlock(u32 *crcs);
@@ -59,10 +59,10 @@ void WifiMlme_RunScan(void)
             break;
         }
         if (job->state == 0x10) {
-            func_arm7_027c963c(channel, 0);
+            WifiRf_TuneChannel(channel, 0);
             func_arm7_037f8e04();
         } else {
-            func_arm7_027c963c(channel, 0);
+            WifiRf_TuneChannel(channel, 0);
         }
         job->state = 0x12;
     case 0x12:
