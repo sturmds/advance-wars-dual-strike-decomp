@@ -12,6 +12,8 @@
     fn.py diff NAME [--color WHEN]             compile its file and compare with the original
     fn.py check FILE.c NAME                    fast yes/no: compile FILE.c alone and compare NAME
                                                with build/fnindex.json (tools/fnindex.py)
+    fn.py lines NAME [FILE.c]                  our compiled code for NAME, each run of instructions
+                                               under the C line it comes from (mwcc -g line table)
     fn.py finish NAME                          mark its file `complete` (linked from our C)
     fn.py rename OLD NEW                       rename a symbol in symbols.txt, src/ and include/;
                                                moves src/.../OLD.c to NEW.c as well, and updates
@@ -44,6 +46,7 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 from dataclasses import dataclass, field
 from functools import cache
 from pathlib import Path
@@ -698,6 +701,92 @@ def painter(when: str):
     return (lambda code, text: f"\033[{code}m{text}\033[m") if on else (lambda code, text: text)
 
 
+def cmd_lines(args) -> int:
+    f = find(args.name)
+    if args.file:
+        src = Path(args.file).resolve()
+    else:
+        fi = file_of(f)
+        if not fi:
+            sys.exit(f"error: {f.name} is not inside any delinks.txt file. Run fn.py add first, or give FILE.c.")
+        src = ROOT / fi[0]
+    import configure
+    cc, cflags = configure.compiler_for(src, f.module)
+    with tempfile.TemporaryDirectory() as d:
+        obj = Path(d) / "lines.o"
+        # -g adds the line table and leaves .text as it is.
+        r = subprocess.run([str(ROOT / cc), "-c", *cflags.split(), "-g", "-o", str(obj), str(src)],
+                           cwd=ROOT, capture_output=True, text=True)
+        if r.returncode:
+            sys.stdout.write(r.stdout + r.stderr)
+            return 1
+        # -z: a pool word is 0 until linked, and objdump would fold those into "...".
+        cmd = [OBJDUMP, "-dlrz", "-marmv5te", "--no-show-raw-insn", f"--disassemble={f.name}", str(obj)]
+        if f.mode == "thumb":
+            cmd.insert(1, "-Mforce-thumb")
+        out = subprocess.run(cmd, capture_output=True, text=True, check=True).stdout
+    sources: dict[Path, list[str]] = {}
+    blocks = []  # [header, [asm lines]]
+    for line in out.splitlines():
+        if m := re.match(r"(\S.*?):(\d+)(?: \(discriminator \d+\))?$", line):
+            path = source_path(m.group(1))
+            n = int(m.group(2))
+            text = ""
+            if path:
+                if path not in sources:
+                    sources[path] = path.read_text(errors="replace").splitlines()
+                if n <= len(sources[path]):
+                    text = sources[path][n - 1].strip()
+            where = str(n) if path == src else f"{rel(path) if path else m.group(1)}:{n}"
+            blocks.append([f"{where}: {text}", []])
+        elif m := re.match(r"\s+([0-9a-f]+):\s+(R_ARM_\w+)\s+(\S+)", line):
+            # A relocation: show its target instead of the placeholder.
+            addr, kind, target = int(m.group(1), 16), m.group(2), m.group(3)
+            asm, i = next(((a, i) for _, a in reversed(blocks) for i, x in enumerate(a)
+                           if int(x.split(":", 1)[0], 16) == addr), (None, None))
+            if asm is not None:
+                if kind in ("R_ARM_PC24", "R_ARM_CALL", "R_ARM_JUMP24", "R_ARM_THM_CALL", "R_ARM_THM_PC22"):
+                    asm[i] = re.sub(r"\s\S+ <.*>$", " " + re.sub(r"-0x[48]$", "", target), asm[i])
+                elif asm[i].split(":", 1)[1].strip().startswith(".word"):
+                    asm[i] = re.sub(r"\.word\s+\S+", ".word " + target, asm[i])
+                else:
+                    asm[i] += f"  ; {target}"
+        elif m := re.match(r"\s+([0-9a-f]+):\s+(.*)", line):
+            if not blocks:
+                blocks.append(["?: (no line)", []])
+            blocks[-1][1].append(f"{int(m.group(1), 16):4x}: {m.group(2).strip()}")
+    # Name what a pc-relative load reads: the pool word's relocation target
+    # or its value, as `ldr r1, =gCampaignMapState`.
+    pool = {}
+    for _, asm in blocks:
+        for a in asm:
+            if m := re.match(r"\s*([0-9a-f]+): \.word\s+(\S+)", a):
+                pool[int(m.group(1), 16)] = m.group(2)
+    for _, asm in blocks:
+        for i, a in enumerate(asm):
+            if (m := re.search(r"\[pc, #-?\d+\]\s+@ ([0-9a-f]+) <[^>]*>$", a)) and int(m.group(1), 16) in pool:
+                asm[i] = a[:m.start()] + "=" + pool[int(m.group(1), 16)]
+    print("\n\n".join(f"{head}\n---\n" + "\n".join(asm) for head, asm in blocks if asm))
+    return 0
+
+
+def source_path(name: str) -> Path | None:
+    r"""The source file a line-table entry names. mwcc writes Windows-style
+    paths and joins the directory twice (`\a\b\/\a\b\/x.c`), so try each
+    tail of the path, longest first, until one exists."""
+    parts = [p for p in name.replace("\\", "/").split("/") if p]
+    for i in range(len(parts)):
+        for base in (Path("/"), ROOT):
+            p = base.joinpath(*parts[i:])
+            if p.is_file():
+                return p.resolve()
+    return None
+
+
+def rel(path: Path) -> str:
+    return str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else str(path)
+
+
 def cmd_check(args) -> int:
     import fnindex
     index = fnindex.load()
@@ -805,6 +894,10 @@ def main() -> int:
     p.add_argument("name")
     p.add_argument("--module", help="for a name defined in several modules")
     p.set_defaults(fn=cmd_check)
+    p = sub.add_parser("lines")
+    p.add_argument("name")
+    p.add_argument("file", nargs="?", help="compile this file instead of the function's own")
+    p.set_defaults(fn=cmd_lines)
     # Not "complete": the worktree sandbox refuses commands containing that word.
     p = sub.add_parser("finish")
     p.add_argument("name")

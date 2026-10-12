@@ -71,6 +71,14 @@ python3 tools/fn.py check src/game/pack_nibbles.c PackNibblePairs
 
 It compares the bytes outside relocations, the relocation offsets and kinds, and the relocation targets as addresses, so `Table+0x1c` equals dsd's symbol at that address (issue 0017). A relocation to a symbol it cannot place (a string or `static` data the object defines, missing from `symbols.txt`) counts as a difference. `tools/tests/test_fncheck.py` checks that it never says yes where `diff` says no. Use it to try many variants, then run `diff` and `make release` on the one that matches.
 
+### Which C line made which instruction
+
+```sh
+python3 tools/fn.py lines CampaignMap_Init [FILE.c]
+```
+
+`lines` compiles the function's file (or FILE.c) with `-g`, which adds a line table and leaves `.text` as it is, and prints our code in runs: the C line, `---`, then the instructions mwcc assigned to it. Calls and literal-pool loads show their targets (`bl Map_GetPlayerCount`, `ldr r1, =gCampaignMapState`). mwcc's scheduler mixes the instructions of neighbouring statements, so a line can come back several times, and a load is listed where it ended up rather than under the statement that uses it. A line that makes no code (`playerCount = 0;` folded into the next one) is missing. The original has no line table: compare its instructions with `diff`. In `asm` functions the line table can be one line off.
+
 `build/fnindex.json` lists every function: module, mode, address, size, original bytes, relocations, a masked hash (equal for functions that differ only in what they call or load), the mnemonics before the literal pool, and whether a C file covers it. `make fnindex` builds it in about a second; `check` rebuilds it when `symbols.txt`, `relocs.txt` or `extract/` change. It does not watch `delinks.txt`, so `status` can lag behind `fn.py add` until the next `make fnindex`. Tools can `import fnindex` and call `fnindex.load()` once, then `fnindex.check(index, path, name)` per variant.
 
 ## Tools that match many functions
@@ -244,6 +252,7 @@ A mod that changes code size moves every later address. The linker fixes an addr
 | `python3 tools/fn.py show NAME\|ADDR` | Location, callers, table references and original disassembly |
 | `python3 tools/fn.py diff NAME` | Compile, diff, exit 0 on a full match |
 | `python3 tools/fn.py check FILE.c NAME` | Compile one file, compare one function with the index, exit 0 on a match |
+| `python3 tools/fn.py lines NAME [FILE.c]` | Our compiled code for one function, grouped under the C line each instruction comes from |
 | `python3 tools/pragmas.py FILE.c NAME` | Score one function under each optimisation pragma |
 | `python3 tools/triage_partials.py --out FILE.md` | Classify the unlinked functions' diffs, with pragma sweep and pragma'd neighbours |
 | `nice -n 19 python3 tools/permuter.py NAME` | decomp-permuter on one function, best variant rescored with `fn.py check` |
