@@ -364,6 +364,10 @@ src/arm7/sdk/func_arm7_027c8714.c:
     complete
     .text       start:0x027c8714 end:0x027c8738
 
+src/arm7/sdk/wl/wifi_arm_periodic_ms.c:
+    complete
+    .text       start:0x027c8738 end:0x027c87b8
+
 src/arm7/sdk/func_arm7_027c87b8.c:
     complete
     .text       start:0x027c87b8 end:0x027c87cc
