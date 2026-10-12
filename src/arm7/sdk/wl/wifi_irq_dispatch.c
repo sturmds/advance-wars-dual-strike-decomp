@@ -1,0 +1,65 @@
+#include "sdk/wl.h"
+
+void func_arm7_037fa1bc(void);
+void func_arm7_037fa270(void);
+void func_arm7_037f9500(void);
+void func_arm7_037f958c(void);
+void func_arm7_037f9868(void);
+int func_arm7_027cab80(void); /* acknowledges W_IRQ_RF_WAKEUP */
+void func_arm7_037f9920(void);
+void func_arm7_037f9a44(void);
+void func_arm7_037f9e28(void);
+void func_arm7_037f98e4(void);
+void func_arm7_037f9c00(void);
+void func_arm7_037fa0b4(int arg);
+
+/* Wireless interrupt handler: runs the handler of each pending, enabled
+   cause until none is left. */
+void WifiIrq_Dispatch(void)
+{
+    int causes;
+
+    for (;;) { /* needed to match: a while loop tests at the bottom */
+        causes = WIFI_IRQ_PENDING_FLAGS & WIFI_IRQ_ENABLE_MASK;
+        if (causes == 0) {
+            break;
+        }
+        if (causes & W_IRQ_TX_START) {
+            func_arm7_037fa1bc();
+        }
+        if (causes & W_IRQ_RX_START) {
+            func_arm7_037fa270();
+        }
+        if (causes & W_IRQ_PRE_BEACON) {
+            func_arm7_037f9500();
+        }
+        if (causes & W_IRQ_BEACON) {
+            func_arm7_037f958c();
+        }
+        if (causes & W_IRQ_POST_BEACON) {
+            func_arm7_037f9868();
+        }
+        if (causes & W_IRQ_RF_WAKEUP) {
+            func_arm7_027cab80();
+        }
+        if (causes & W_IRQ_TX_COUNT) {
+            func_arm7_037f9920();
+        }
+        if (causes & W_IRQ_RX_COUNT) {
+            func_arm7_037f9a44();
+        }
+        if (causes & W_IRQ_RX_DONE) {
+            func_arm7_037f9e28();
+        }
+        if (causes & W_IRQ_COUNT_OVERFLOW) {
+            func_arm7_037f98e4();
+        }
+        if (causes & W_IRQ_TX_DONE) {
+            func_arm7_037f9c00();
+        }
+        if (causes & W_IRQ_MP_END) {
+            func_arm7_037fa0b4(1);
+        }
+    }
+    OS7_IRQ_CHECK_FLAGS |= IRQ_MASK_WIRELESS;
+}

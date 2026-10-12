@@ -1002,6 +1002,21 @@ typedef struct Unk_027cb9e4 {
 /* Wi-Fi RF serial status: bit 0 set while a transfer to the RF chip runs. */
 #define REG_W_RF_BUSY (*(volatile u16 *)0x04808180)
 
+/* Wireless interrupt causes: bits of WIFI_IRQ_PENDING_FLAGS (W_IF, set) and WIFI_IRQ_ENABLE_MASK
+   (W_IE, enabled). Names from GBATEK. */
+#define W_IRQ_RX_DONE        0x0001
+#define W_IRQ_TX_DONE        0x0002
+#define W_IRQ_RX_COUNT       0x0004 /* a receive event counter went up */
+#define W_IRQ_TX_COUNT       0x0008 /* a transmit error counter went up */
+#define W_IRQ_COUNT_OVERFLOW 0x0030 /* RX and TX counters half full */
+#define W_IRQ_RX_START       0x0040
+#define W_IRQ_TX_START       0x0080
+#define W_IRQ_RF_WAKEUP      0x0800
+#define W_IRQ_MP_END         0x1000 /* multiplay command finished */
+#define W_IRQ_POST_BEACON    0x2000
+#define W_IRQ_BEACON         0x4000
+#define W_IRQ_PRE_BEACON     0x8000
+
 /* Interrupt mask bit of the wireless interrupt; WL masks it around queue changes. */
 #define IRQ_MASK_WIRELESS 0x1000000
 
