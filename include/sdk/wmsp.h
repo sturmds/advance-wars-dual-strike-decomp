@@ -119,4 +119,7 @@ void func_arm7_037fde40(const void *src, void *dest, int size);
 /* Sends the command to the firmware and returns its answer. */
 WlCommand *Wmsp_SendWlCommand(WlCommand *command);
 
+/* The compiler's signed divide (see os_arm7.h): quotient in the low word. */
+u64 func_arm7_03806d4c(s32 dividend, s32 divisor);
+
 #endif
