@@ -1,13 +1,13 @@
 #include "sdk/wl.h"
 
-void func_arm7_037fa880(void);
+void WifiTask_DrainRxRing(void);
 void func_arm7_027c92e8(void);
 
 /* The MP poll the CMD slot sent, read again at each use as the original does. */
 #define WIFI_SENT_POLL_OF(slots) (&((WlMpCommand *)(slots)->cmdBuffer)->poll)
 
 // Task 16, also run by WifiTx_AbortCmdSlot: finishes the CMD slot. Runs
-// func_arm7_037fa880 when the hardware's AID word in the TX header differs
+// WifiTask_DrainRxRing when the hardware's AID word in the TX header differs
 // from the poll's pendingAids, adds the retry count to counters[25] (at least
 // 1), records which AIDs changed, frees the slot and hands the poll buffer
 // back to the host.
@@ -20,7 +20,7 @@ void WifiTask_FinishMpPoll(void)
         return;
     }
     if (WIFI_SENT_POLL_OF(slots)->pendingAids != slots->slot[WIFI_TXLOC_MP_POLL].frame->unk_02) {
-        func_arm7_037fa880();
+        WifiTask_DrainRxRing();
     }
     retries = slots->slot[WIFI_TXLOC_MP_POLL].frame->unk_04 & 0xff;
     if (retries != 0) {

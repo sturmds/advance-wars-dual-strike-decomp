@@ -13,23 +13,22 @@ void WifiParent_StoreMpReply(WlRxFrame *frame);
  * task 6, management and PS-Poll to task 7, beacons and MP frames to their
  * handlers. With bit 0 of unk_638 set it overwrites the ring header with
  * 0xffff after each frame.
- *
- * WIP, 98%: the original keeps cursor * 2 live across the first call and has
- * the constant 1 and next/freeIt in r8/r9 the other way round.
  */
-void func_arm7_037fa880(void)
+void WifiTask_DrainRxRing(void)
 {
-    u16 next;
-    WlRxState *rx;
-    WlBufferPool *pool;
-    u16 *ramFrame;
     u32 count;
-    WlRxFrame *frame;
+    WlRxState *rx;
     u32 i;
-    u16 cursor;
-    int freeIt;
     u16 length;
-    rx = &WIFI_DRIVER_STATE->wepWatch;
+    WlBufferPool *pool;
+    u16 cursor;
+    u16 *ramFrame;
+    WlRxFrame *frame;
+    u16 next;
+    int freeIt;
+    u32 rxStatus;
+
+    rx =&WIFI_DRIVER_STATE->wepWatch;
     pool = (WlBufferPool *)&WIFI_DRIVER_STATE->allocator;
 
     for (count = 0;; count++) {
@@ -37,9 +36,10 @@ void func_arm7_037fa880(void)
         if (cursor == rx->readPos) {
             break;
         }
-        ramFrame = (u16 *)&WIFI_PACKET_RAM[cursor];
+        /* Needed to match: the byte offset written out twice, so mwcc keeps cursor * 2 across the call. */
+        ramFrame = (u16 *)((u32)WIFI_PACKET_RAM + cursor * 2);
         next = *WifiRx_FoldRingPointer(ramFrame + 1);
-        if (WIFI_PACKET_RAM[cursor] == 0xffff) {
+        if (*(vu16 *)((u32)WIFI_PACKET_RAM + cursor * 2) == 0xffff) {
             REG_W_RXBUF_READCSR = next;
             continue;
         }
@@ -59,15 +59,16 @@ void func_arm7_037fa880(void)
                 rx->busyCount = 0;
             }
         }
+        rxStatus = frame->unk_08;
         freeIt = TRUE;
-        if (frame->unk_08 & 0x200) {
+        if (rxStatus & 0x200) {
             if (WIFI_FRAMECTL_FIELDS(frame->frameControl)->moreFragments == 1 || frame->fragment != 0) {
                 freeIt = FALSE;
                 WifiBuffer_Transfer(&pool->newBuffers, &pool->lists[7], &WIFI_RX_HOLDER_OF(frame)->header);
                 WifiTask_Schedule(2, 9);
             }
         } else {
-            switch (frame->unk_08 & 0xf) {
+            switch (rxStatus & 0xf) {
             case 8:
                 if ((frame->frameControl & 0xf) == 8) {
                     freeIt = FALSE;

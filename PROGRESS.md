@@ -14,11 +14,11 @@ add both CPUs.
 | ARM9 game | 6665 / 6700 | 1514096 / 1553840 | 97.44% | 0 | 0 |
 | ARM9 SDK/library | 642 / 833 | 102952 / 135226 | 76.13% | 176 | 20718 |
 | ARM9 all | 7307 / 7533 | 1617048 / 1689066 | 95.74% | 176 | 20718 |
-| ARM7 SDK/library | 946 / 1020 | 146680 / 154300 | 95.06% | 69 | 4960 |
-| ARM7 all | 946 / 1020 | 146680 / 154300 | 95.06% | 69 | 4960 |
+| ARM7 SDK/library | 947 / 1020 | 147644 / 154300 | 95.69% | 69 | 4960 |
+| ARM7 all | 947 / 1020 | 147644 / 154300 | 95.69% | 69 | 4960 |
 | game | 6665 / 6700 | 1514096 / 1553840 | 97.44% | 0 | 0 |
-| SDK/library | 1588 / 1853 | 249632 / 289526 | 86.22% | 245 | 25678 |
-| all | 8253 / 8553 | 1763728 / 1843366 | 95.68% | 245 | 25678 |
+| SDK/library | 1589 / 1853 | 250596 / 289526 | 86.55% | 245 | 25678 |
+| all | 8254 / 8553 | 1764692 / 1843366 | 95.73% | 245 | 25678 |
 
 ## By module
 
@@ -37,7 +37,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | ov004 | game | 232 / 236 | 64808 / 67364 | 96.21% | 0 |
 | ov005 | game | 264 / 266 | 96316 / 96684 | 99.62% | 0 |
 | ov006 | game | 320 / 321 | 104988 / 105588 | 99.43% | 0 |
-| arm7 | SDK/library | 946 / 1020 | 146680 / 154300 | 95.06% | 69 |
+| arm7 | SDK/library | 947 / 1020 | 147644 / 154300 | 95.69% | 69 |
 
 Modules with nothing done: none.
 
@@ -48,7 +48,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | File | Functions | Bytes |
 |---|---|---:|
 | `src/arm7/sdk/wl/func_arm7_027cab1c.c` | func_arm7_027cab1c | 100 |
-| `src/arm7/sdk/wl/func_arm7_037fa880.c` | func_arm7_037fa880 | 964 |
 | `src/arm7/sdk/wm/func_arm7_027c6020.c` | func_arm7_027c6020 | 152 |
 | `src/arm7/sdk/wm/func_arm7_027c632c.c` | func_arm7_027c632c | 484 |
 | `src/arm7/sdk/wm/wmsp_start_scan_ex.c` | func_arm7_027c342c | 960 |

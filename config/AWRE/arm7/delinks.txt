@@ -2320,7 +2320,8 @@ src/arm7/sdk/wl/wifi_task_collect_tx_results.c:
     complete
     .text       start:0x037fa680 end:0x037fa880
 
-src/arm7/sdk/wl/func_arm7_037fa880.c:
+src/arm7/sdk/wl/wifi_task_drain_rx_ring.c:
+    complete
     .text       start:0x037fa880 end:0x037fac44
 
 src/arm7/sdk/wl/wifi_task_finish_mp_poll.c:
