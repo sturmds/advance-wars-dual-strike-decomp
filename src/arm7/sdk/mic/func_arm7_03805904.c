@@ -86,7 +86,7 @@ advance:
     bne queue_stop
     mov r0, #MIC_PXI_NOTICE_BUFFER_FULL
     mov r1, #MIC_PXI_RESULT_SUCCESS
-    bl func_arm7_03803e84
+    bl SPIi_ReturnResult
     b done
 queue_stop:
     mov r0, #SERIAL_JOB_MICROPHONE
@@ -97,7 +97,7 @@ queue_stop:
     bne stop_timer
     mov r0, #MIC_PXI_NOTICE_BUFFER_FULL
     mov r1, #MIC_PXI_RESULT_EXCLUSIVE
-    bl func_arm7_03803e84
+    bl SPIi_ReturnResult
     b done
 stop_timer:
     mov r0, #MIC_STATUS_END_WAIT

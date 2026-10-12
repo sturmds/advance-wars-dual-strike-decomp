@@ -20,7 +20,7 @@ void func_arm7_03805aa8(SerialBusJob *entry)
         irqState = func_arm7_037fdb80();
         if (!func_arm7_03803e68(SERIAL_JOB_MICROPHONE)) {
             func_arm7_037fdb94(irqState);
-            func_arm7_03803e84(entry->command, MIC_PXI_RESULT_EXCLUSIVE);
+            SPIi_ReturnResult(entry->command, MIC_PXI_RESULT_EXCLUSIVE);
             break;
         }
         func_arm7_03803e50(SERIAL_JOB_MICROPHONE);
@@ -40,7 +40,7 @@ void func_arm7_03805aa8(SerialBusJob *entry)
             MIC_SYSTEM_WORK->lastSample = sample;
             MIC_SYSTEM_WORK->lastAddress = &MIC_SYSTEM_WORK->lastSample;
         }
-        func_arm7_03803e84(entry->command, MIC_PXI_RESULT_SUCCESS);
+        SPIi_ReturnResult(entry->command, MIC_PXI_RESULT_SUCCESS);
         SPIi_ReleaseException(SERIAL_JOB_MICROPHONE);
         break;
 
@@ -55,10 +55,10 @@ void func_arm7_03805aa8(SerialBusJob *entry)
             REG_TM3CNT_L = data_arm7_0380af74.timerReload;
             REG_TM3CNT_H = data_arm7_0380af74.timerControl | TIMER_ENABLE | TIMER_IRQ_ENABLE;
             func_arm7_037fdb94(irqState);
-            func_arm7_03803e84(entry->command, MIC_PXI_RESULT_SUCCESS);
+            SPIi_ReturnResult(entry->command, MIC_PXI_RESULT_SUCCESS);
             data_arm7_0380af74.status = MIC_STATUS_AUTO_SAMPLING;
         } else {
-            func_arm7_03803e84(entry->command, MIC_PXI_RESULT_ILLEGAL_STATUS);
+            SPIi_ReturnResult(entry->command, MIC_PXI_RESULT_ILLEGAL_STATUS);
         }
         break;
 
@@ -70,15 +70,15 @@ void func_arm7_03805aa8(SerialBusJob *entry)
             func_arm7_038063d0();
             func_arm7_037fdb94(irqState);
             if (data_arm7_0380af74.status == MIC_STATUS_AUTO_END) {
-                func_arm7_03803e84(MIC_PXI_COMMAND_AUTO_STOP, MIC_PXI_RESULT_SUCCESS);
+                SPIi_ReturnResult(MIC_PXI_COMMAND_AUTO_STOP, MIC_PXI_RESULT_SUCCESS);
             } else {
-                func_arm7_03803e84(MIC_PXI_NOTICE_BUFFER_FULL, MIC_PXI_RESULT_SUCCESS);
+                SPIi_ReturnResult(MIC_PXI_NOTICE_BUFFER_FULL, MIC_PXI_RESULT_SUCCESS);
             }
             data_arm7_0380af74.status = MIC_STATUS_READY;
         } else if (data_arm7_0380af74.status == MIC_STATUS_AUTO_END) {
-            func_arm7_03803e84(MIC_PXI_COMMAND_AUTO_STOP, MIC_PXI_RESULT_ILLEGAL_STATUS);
+            SPIi_ReturnResult(MIC_PXI_COMMAND_AUTO_STOP, MIC_PXI_RESULT_ILLEGAL_STATUS);
         } else {
-            func_arm7_03803e84(MIC_PXI_NOTICE_BUFFER_FULL, MIC_PXI_RESULT_ILLEGAL_STATUS);
+            SPIi_ReturnResult(MIC_PXI_NOTICE_BUFFER_FULL, MIC_PXI_RESULT_ILLEGAL_STATUS);
         }
         break;
     }

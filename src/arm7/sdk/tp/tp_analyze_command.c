@@ -30,27 +30,27 @@ void TP_AnalyzeCommand(u32 data)
 
     case TP_REQUEST_COMMAND_SAMPLING:
         if (!SPIi_SetEntry(SERIAL_OWNER_TOUCH, command, 0)) {
-            func_arm7_03803e84(command, TOUCH_REPLY_BUS_TAKEN);
+            SPIi_ReturnResult(command, TOUCH_REPLY_BUS_TAKEN);
         }
         break;
 
     case TP_REQUEST_COMMAND_AUTO_ON:
         if (tpWork.status != TOUCH_SAMPLER_IDLE) {
-            func_arm7_03803e84(command, TOUCH_REPLY_WRONG_STATE);
+            SPIi_ReturnResult(command, TOUCH_REPLY_WRONG_STATE);
             return;
         }
         frequency = tpWork.command[0] & 0xff;
         if (frequency == 0 || frequency > TOUCH_MAX_SAMPLES_PER_FRAME) {
-            func_arm7_03803e84(command, TOUCH_REPLY_BAD_ARGUMENT);
+            SPIi_ReturnResult(command, TOUCH_REPLY_BAD_ARGUMENT);
             return;
         }
         vCount = tpWork.command[1];
         if (vCount >= TOUCH_SCANLINES_PER_FRAME) {
-            func_arm7_03803e84(command, TOUCH_REPLY_BAD_ARGUMENT);
+            SPIi_ReturnResult(command, TOUCH_REPLY_BAD_ARGUMENT);
             return;
         }
         if (!SPIi_SetEntry(SERIAL_OWNER_TOUCH, command, 2, frequency, vCount)) {
-            func_arm7_03803e84(command, TOUCH_REPLY_BUS_TAKEN);
+            SPIi_ReturnResult(command, TOUCH_REPLY_BUS_TAKEN);
             return;
         }
         tpWork.status = TOUCH_SAMPLER_ALARMS_PENDING;
@@ -58,18 +58,18 @@ void TP_AnalyzeCommand(u32 data)
 
     case TP_REQUEST_COMMAND_AUTO_OFF:
         if (tpWork.status != TOUCH_SAMPLER_PERIODIC) {
-            func_arm7_03803e84(command, TOUCH_REPLY_WRONG_STATE);
+            SPIi_ReturnResult(command, TOUCH_REPLY_WRONG_STATE);
             return;
         }
         if (!SPIi_SetEntry(SERIAL_OWNER_TOUCH, command, 0)) {
-            func_arm7_03803e84(command, TOUCH_REPLY_BUS_TAKEN);
+            SPIi_ReturnResult(command, TOUCH_REPLY_BUS_TAKEN);
             return;
         }
         tpWork.status = TOUCH_SAMPLER_STOPPING;
         break;
 
     default:
-        func_arm7_03803e84(command, TOUCH_REPLY_UNKNOWN_REQUEST);
+        SPIi_ReturnResult(command, TOUCH_REPLY_UNKNOWN_REQUEST);
         break;
     }
 }

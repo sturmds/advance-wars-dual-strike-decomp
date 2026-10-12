@@ -1920,6 +1920,10 @@ src/arm7/sdk/func_arm7_03803e68.c:
     complete
     .text       start:0x03803e68 end:0x03803e84
 
+src/arm7/sdk/spi/spii_return_result.c:
+    complete
+    .text       start:0x03803e84 end:0x03803f58
+
 src/arm7/sdk/tp/touch_apply_stability_request.c:
     complete
     .text       start:0x03804148 end:0x03804190

@@ -28,7 +28,7 @@ void TP_ExecuteProcess(SerialBusJob *entry)
 
         if (!func_arm7_03803e68(SERIAL_OWNER_TOUCH)) {
             func_arm7_037fdb94(intr);
-            func_arm7_03803e84(entry->process, TOUCH_REPLY_BUS_TAKEN);
+            SPIi_ReturnResult(entry->process, TOUCH_REPLY_BUS_TAKEN);
             return;
         }
         func_arm7_03803e50(SERIAL_OWNER_TOUCH);
@@ -40,9 +40,9 @@ void TP_ExecuteProcess(SerialBusJob *entry)
         TOUCH_SHARED_LATEST_HIGH = sample.halfs[1];
 
         if (entry->process == TP_REQUEST_COMMAND_SAMPLING) {
-            func_arm7_03803e84(entry->process, TOUCH_REPLY_OK);
+            SPIi_ReturnResult(entry->process, TOUCH_REPLY_OK);
         } else {
-            func_arm7_03803e84(entry->process, entry->arg[0] & 0xff);
+            SPIi_ReturnResult(entry->process, entry->arg[0] & 0xff);
         }
         SPIi_ReleaseException(SERIAL_OWNER_TOUCH);
         break;
@@ -56,20 +56,20 @@ void TP_ExecuteProcess(SerialBusJob *entry)
                 LineAlarm_ArmEveryFrame_Arm7(&tpWork.vAlarm[i], tpWork.vCount[i], TOUCH_LINE_ALARM_SLACK,
                                           Touch_QueueAutoSample, (void *)i);
             }
-            func_arm7_03803e84(entry->process, TOUCH_REPLY_OK);
+            SPIi_ReturnResult(entry->process, TOUCH_REPLY_OK);
             tpWork.status = TOUCH_SAMPLER_PERIODIC;
         } else {
-            func_arm7_03803e84(entry->process, TOUCH_REPLY_WRONG_STATE);
+            SPIi_ReturnResult(entry->process, TOUCH_REPLY_WRONG_STATE);
         }
         break;
 
     case TP_REQUEST_COMMAND_AUTO_OFF:
         if (tpWork.status == TOUCH_SAMPLER_STOPPING) {
             LineAlarm_WithdrawTagged_Arm7(TOUCH_LINE_ALARM_ID);
-            func_arm7_03803e84(entry->process, TOUCH_REPLY_OK);
+            SPIi_ReturnResult(entry->process, TOUCH_REPLY_OK);
             tpWork.status = TOUCH_SAMPLER_IDLE;
         } else {
-            func_arm7_03803e84(entry->process, TOUCH_REPLY_WRONG_STATE);
+            SPIi_ReturnResult(entry->process, TOUCH_REPLY_WRONG_STATE);
         }
         break;
     }

@@ -123,7 +123,7 @@ BOOL SPIi_SetEntry(int device, int command, int argCount, ...);  /* queue a requ
 void SPIi_ReleaseException(int device);   /* release the exclusive lock */
 void func_arm7_03803e50(int device);   /* take the exclusive lock */
 int func_arm7_03803e68(int device);    /* nonzero when no device holds the lock */
-void func_arm7_03803e84(u16 command, u16 result);  /* PXI reply to the ARM9 */
+void SPIi_ReturnResult(u16 command, u16 result);  /* PXI reply to the ARM9 */
 
 u16 func_arm7_038060bc(void);
 u16 func_arm7_03806184(void);

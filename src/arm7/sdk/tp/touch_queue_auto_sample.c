@@ -12,6 +12,6 @@ void Touch_QueueAutoSample(void *arg)
         sample.e.validity = TP_VALIDITY_INVALID_XY;
         TOUCH_SHARED_LATEST_LOW = sample.halfs[0];
         TOUCH_SHARED_LATEST_HIGH = sample.halfs[1];
-        func_arm7_03803e84(TP_REQUEST_COMMAND_AUTO_SAMPLING, (u32)arg & 0xff);
+        SPIi_ReturnResult(TP_REQUEST_COMMAND_AUTO_SAMPLING, (u32)arg & 0xff);
     }
 }
