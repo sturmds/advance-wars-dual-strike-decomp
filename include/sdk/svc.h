@@ -60,6 +60,7 @@ void Bios_FastFillOrCopy_Arm7(const void *src, void *dst, u32 control);
 u32 Bios_SquareRoot_Arm7(u32 value);
 u16 Bios_ChecksumCrc16_Arm7(u32 initial, const void *data, u32 size);
 int Bios_RunningOnDevUnit_Arm7(void);
+void Bios_WidenBitDepth_Arm7(const void *src, void *dst, const void *params);
 
 int Sha1_ResetState(SVCSHA1Context *context);
 int Sha1_FeedBytes(SVCSHA1Context *context, const u8 *data, u32 length);
