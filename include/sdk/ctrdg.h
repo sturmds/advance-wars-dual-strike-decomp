@@ -32,9 +32,13 @@ typedef struct GbaSlotWaitStates {
 #define GBA_SLOT_MSG_SETUP_ACK 1     /* answer to the init command */
 #define GBA_SLOT_MSG_REMOVED 17   /* the cartridge was pulled out */
 
+#define GBA_LOGO_LEN_HALFWORDS (0x9c / 2)
+
 /* Header at the start of a GBA cartridge ROM (only the fields the library reads). */
 typedef struct GbaRomHeader {
-    u8 pad_00[0xac];
+    u8 pad_00[4];
+    u16 logo[GBA_LOGO_LEN_HALFWORDS]; /* 0x04: Nintendo logo */
+    u8 pad_a0[0xc];
     u32 gameCode;                  /* 0xac */
     u16 makerCode;                 /* 0xb0 */
     u8 fixedValue;                 /* 0xb2: 0x96 on real cartridges */
