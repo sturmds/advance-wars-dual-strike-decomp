@@ -819,9 +819,21 @@ src/arm7/sdk/snd/snd_hw_scale_volume_for_pan.c:
     complete
     .text       start:0x037fe66c end:0x037fe6d8
 
+src/arm7/sdk/snd/snd_hw_set_pan_edge_attenuation.c:
+    complete
+    .text       start:0x037fe6d8 end:0x037fe73c
+
 src/arm7/sdk/func_arm7_037fe73c.c:
     complete
     .text       start:0x037fe73c end:0x037fe74c
+
+src/arm7/sdk/snd/snd_hw_set_pan_override.c:
+    complete
+    .text       start:0x037fe74c end:0x037fe7b0
+
+src/arm7/sdk/snd/snd_hw_is_channel_busy.c:
+    complete
+    .text       start:0x037fe7b0 end:0x037fe7cc
 
 src/arm7/sdk/func_arm7_037fe848.c:
     complete
