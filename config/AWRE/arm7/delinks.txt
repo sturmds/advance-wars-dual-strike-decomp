@@ -1049,6 +1049,10 @@ src/arm7/sdk/snd/snd_arm7_init.c:
     complete
     .text       start:0x03802854 end:0x03802894
 
+src/arm7/sdk/fs/file_sys_set_up_once_arm7.c:
+    complete
+    .text       start:0x03802894 end:0x038028c8
+
 src/arm7/sdk/func_arm7_038028c8.c:
     complete
     .text       start:0x038028c8 end:0x038028d4
