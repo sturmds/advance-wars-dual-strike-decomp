@@ -1010,7 +1010,7 @@ PMi_SetControl kind:function(arm,size=0x24) addr:0x038051c4
 PMi_GetRegister kind:function(arm,size=0x90) addr:0x038051e8
 PMi_SetRegister kind:function(arm,size=0x70) addr:0x03805278
 func_arm7_038052e8 kind:function(arm,size=0x1c) addr:0x038052e8
-func_arm7_03805304 kind:function(arm,size=0x68) addr:0x03805304
+PMi_SetLED kind:function(arm,size=0x68) addr:0x03805304
 func_arm7_0380536c kind:function(arm,size=0x134) addr:0x0380536c
 func_arm7_038054a0 kind:function(arm,size=0x1cc) addr:0x038054a0
 func_arm7_0380566c kind:function(arm,size=0xc) addr:0x0380566c
@@ -1079,7 +1079,7 @@ gSndRandomSeed kind:data(any) addr:0x038077bc
 data_arm7_038077c0 kind:data(any) addr:0x038077c0
 data_arm7_038077e4 kind:data(any) addr:0x038077e4
 data_arm7_038077e8 kind:data(any) addr:0x038077e8
-data_arm7_038077ec kind:data(any) addr:0x038077ec
+gPowerLedLastState kind:data(any) addr:0x038077ec
 data_arm7_038077f0 kind:data(any) addr:0x038077f0
 gCtrdgFirstPoll kind:data(any) addr:0x03807880
 gCtrdgNextPollFrame kind:data(any) addr:0x03807884

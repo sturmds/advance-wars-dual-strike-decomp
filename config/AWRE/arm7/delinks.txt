@@ -1548,6 +1548,10 @@ src/arm7/sdk/func_arm7_038052e8.c:
     complete
     .text       start:0x038052e8 end:0x03805304
 
+src/arm7/sdk/pm/pmi_set_led.c:
+    complete
+    .text       start:0x03805304 end:0x0380536c
+
 src/arm7/sdk/func_arm7_0380566c.c:
     complete
     .text       start:0x0380566c end:0x03805678

@@ -56,8 +56,22 @@ BOOL Power_SwitchLcds(int on, int backlight, BOOL force, BOOL sync);
 /* Set in the first SPI byte to read a power chip register instead of writing it. */
 #define POWER_CHIP_READ_BIT 0x80
 
-/* Power chip register 0 holds the control bits (LCD, backlights, sound, LED). */
+/* Power chip register 0 holds the control bits below. */
 #define POWER_SWITCHES_REG_INDEX 0
+
+/* Bits of the control register. */
+#define POWER_SWITCH_AMPLIFIER 0x01
+#define POWER_SWITCH_SILENCE 0x02
+#define POWER_SWITCH_LOWER_LAMP 0x04
+#define POWER_SWITCH_UPPER_LAMP 0x08
+#define POWER_SWITCH_LED_FLASHING 0x10
+#define POWER_SWITCH_LED_QUICK_RATE 0x20
+#define POWER_SWITCH_CUT_SUPPLY 0x40
+
+/* Power LED states. */
+#define PM_LED_ON 1
+#define POWER_LIGHT_SLOW_FLASH 2
+#define POWER_LIGHT_QUICK_FLASH 3
 
 /* Sets up SPICNT for the power chip; continuous holds chip select for another byte. */
 int func_arm7_038052e8(int continuous);
@@ -65,5 +79,9 @@ u8 PMi_GetRegister(int reg);
 void PMi_SetRegister(int reg, int value);
 void PMi_SetControl(int bits);
 void PMi_ResetControl(int bits);
+void PMi_SetLED(int status);
+
+/* Last state given to PMi_SetLED. */
+extern int gPowerLedLastState;
 
 #endif
