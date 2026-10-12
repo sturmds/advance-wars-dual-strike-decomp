@@ -335,8 +335,17 @@ struct OSVAlarm {
     BOOL canceled;
 };
 
+/* Set V-count alarms, soonest first. */
+typedef struct OSVAlarmQueue {
+    OSVAlarm *head;
+    OSVAlarm *tail;
+} OSVAlarmQueue;
+
 /* V count lines per frame, blanking included. */
 #define LINE_ALARM_FRAME_LINES 263
+#define IRQ_BIT_LINE_MATCH 0x4
+/* DISPSTAT: interrupt when VCOUNT reaches the line in bits 7 (line bit 8) and 8-15. */
+#define DISPSTAT_VCOUNT_IRQ 0x20
 
 /* Where now stands against a V-count alarm's frame and line. */
 enum {

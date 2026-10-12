@@ -728,7 +728,7 @@ Alarm_SetUpTimer1Queue_Arm7 kind:function(arm,size=0x50) addr:0x037fd444
 Alarm_StartTimer1ForDue_Arm7 kind:function(arm,size=0x9c) addr:0x037fd494
 func_arm7_037fd530 kind:function(arm,size=0x4c) addr:0x037fd530
 LineAlarm_ClassifyTiming_Arm7 kind:function(arm,size=0x50) addr:0x037fd57c
-func_arm7_037fd5cc kind:function(arm,size=0x188) addr:0x037fd5cc
+LineAlarm_OnVcountIrq_Arm7 kind:function(arm,size=0x188) addr:0x037fd5cc
 func_arm7_037fd754 kind:function(arm,size=0x7c) addr:0x037fd754
 func_arm7_037fd7d0 kind:function(arm,size=0x54) addr:0x037fd7d0
 func_arm7_037fd824 kind:function(arm,size=0x2c) addr:0x037fd824
@@ -1108,7 +1108,7 @@ gOsiAlarmQueue_Arm7 kind:bss addr:0x03807a90
 data_arm7_03807a98 kind:bss addr:0x03807a98
 data_arm7_03807a9c kind:bss addr:0x03807a9c
 data_arm7_03807aa0 kind:bss addr:0x03807aa0
-data_arm7_03807aa4 kind:bss addr:0x03807aa4
+gOsiVAlarmQueue_Arm7 kind:bss addr:0x03807aa4
 data_arm7_03807aac kind:bss addr:0x03807aac
 data_arm7_03807ab0 kind:bss addr:0x03807ab0
 data_arm7_03807ab4 kind:bss addr:0x03807ab4
