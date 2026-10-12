@@ -1,6 +1,6 @@
 # AWDS Decomp: Early-Phase Project Plan
 
-Plan for a private, local matching decompilation of *Advance Wars: Dual Strike*, US/AUS cartridge (game code `AWRE`). The goal of this plan is not a 100% decompiled project with perfect translation. The goal is a repo that rebuilds the game byte for byte, grows C where it is useful, and eventually serves as a base for modding the game.
+Plan for a matching decompilation of *Advance Wars: Dual Strike*, US/AUS cartridge (game code `AWRE`). The goal of this plan is not a 100% decompiled project with perfect translation. The goal is a repo that rebuilds the game byte for byte, grows C where it is useful, and eventually serves as a base for modding the game.
 
 Background:
 
@@ -15,7 +15,7 @@ Background:
 | Linux only. No Windows executables, no wine, no wibo. Every tool locked to an exact version and hash. | D2 |
 | `make release` works as the first command after cloning, and works offline after the first `make setup`. | D2, D6 |
 | Every commit passes `make release`, enforced by a git hook in the repo. | D4 |
-| Private and local. No decomp.me, no decomp.dev, no public repo, no contributors. | D4, D6 |
+| Developed locally, without decomp.me or decomp.dev. The repo is published by sturmds only after its whole history passes the privacy checks (tenets 8-10). Agents never push. | D4, D6 |
 | Git holds only what we write. The ROM, raw asset files, compiler and SDK files never enter git, and neither does game data in a text form we edit: the maps are unpacked from the builder's ROM into `extracted/` by `make setup`, the way zeldaret/oot handles its assets. Committed are only the files that say how to read and order the data (`assets/maps/legend.yaml` and the glue files). | D5 |
 | Mostly automated matching, steered by sturmds. Generated code passes `make release` and an automated review before it is offered. | D7 |
 

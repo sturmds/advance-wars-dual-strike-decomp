@@ -1,8 +1,8 @@
 # advance-wars-dual-strike-decomp
 
-Private, local, matching decompilation of *Advance Wars: Dual Strike*, US/AUS cartridge (game code `AWRE`). Matching means the C in this repo, compiled with the original Metrowerks compiler and flags, rebuilds the retail ROM byte for byte. `advance-wars-dual-strike-decomp` is a working code name.
+Matching decompilation of *Advance Wars: Dual Strike*, US/AUS cartridge (game code `AWRE`). Matching means the C in this repo, compiled with the original Metrowerks compiler and flags, rebuilds the retail ROM byte for byte.
 
-The plan is in `docs/early-phase-project-plan.md` (edit that copy). The rules it follows (D1–D7) come from the NDS decomp survey linked at the top of the plan. The owner, sturmds, is new to game decompilation: explain DS and decomp terms briefly when they come up.
+The plan is in `docs/early-phase-project-plan.md` (edit that copy). The rules it follows (D1–D7) come from an NDS decomp survey that is not in the repo; the plan sums them up. The owner, sturmds, is new to game decompilation: explain DS and decomp terms briefly when they come up.
 
 ## Build and test
 
@@ -36,7 +36,7 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 - Every commit passes `make release`. `hooks/pre-commit` runs it, and `make setup` installs the hooks through `core.hooksPath`. Do not bypass hooks with `--no-verify`.
 - Git holds only what we write (tenet 9). Game data never enters git, not even in a text form we edit: `make setup` unpacks the maps from the builder's ROM into `extracted/`. The ROM, extracted files, objects, built ROMs, compilers and SDK files never enter git (`orig/`, `extract/`, `extracted/`, `build/`, `.cache/`, `work/` are gitignored, and `pre-commit` refuses those paths, per-map files under `assets/maps/`, and `.nds`, `.bin`, `.o`, `.exe`). No cracked or patched license files.
 - A build passes only if the whole ROM's SHA-1 equals the retail `AWRE` SHA-1 and every per-module hash matches. No exemption for header CRC bytes.
-- 100% private and local. No decomp.me, no decomp.dev, no remote, no pushing. Network access is only for downloading tools listed in `tools.lock`.
+- Work stays local. No decomp.me, no decomp.dev. Agents never add remotes or push; only sturmds publishes, and only history that passed the privacy checks (tenets 8-10, `make pnc-check`). Network access is only for downloading tools listed in `tools.lock`.
 - No sudo. If a system package is missing, give sturmds the exact `sudo apt install ...` line and wait. Never build toolchains or dependencies from source.
 - Ask before installing anything or making outward-facing changes. Commit only when asked or as part of an agreed task.
 
