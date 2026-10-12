@@ -84,6 +84,10 @@ typedef struct SndPlayer {
 
 extern SndPlayer data_arm7_038085d0[SND_PLAYER_COUNT];
 
+/* Tracks are taken from one pool shared by all players. */
+#define SEQ_TRACKS_SHARED_TOTAL 32
+extern SndTrack data_arm7_03808810[SEQ_TRACKS_SHARED_TOTAL];
+
 /* Sequence data is read through a 16-byte window that is copied from the data when a read falls outside it. */
 typedef struct SndSeqCache {
     u8 *start;

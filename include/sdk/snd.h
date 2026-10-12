@@ -143,4 +143,7 @@ extern OSMessage data_arm7_03809224[8];
 
 void SndArm7_StartAlarm(int alarmNo);
 
+/* The ARM7's pointer to the ARM9's shared work; NULL until the ARM9 sends it. */
+extern SndSharedWork *data_arm7_0380808c;
+
 #endif
