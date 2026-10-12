@@ -370,6 +370,31 @@ typedef struct WlTask {
     void (*handler)(void);
 } WlTask;
 
+/* WlWork.counters seen field by field: running totals of the hardware's 8-bit
+   statistic counters (IO_WIRELESS_TALLY_BYTES). Each unk_XX field adds one counter byte. */
+typedef struct WlCounters {
+    u8 pad_00[0xc];
+    u32 unk_0c;
+    u8 pad_10[0x10];
+    u32 unk_20;
+    u8 pad_24[0xc];
+    u32 unk_30;
+    u8 pad_34[4];
+    u32 unk_38;
+    u32 unk_3c;
+    u32 unk_40;
+    u32 unk_44;
+    u32 unk_48;
+    u32 unk_4c;
+    u32 unk_50;
+    u32 unk_54;
+    u32 unk_58;
+    u32 unk_5c;
+    u32 unk_60;
+    u8 pad_64[0x14];
+    u32 cmdStat[15]; /* counter bytes 0x21-0x2f: 0x048081d1-0x048081df */
+} WlCounters;
+
 typedef struct WlWork {
     u16 queueHead[WIFI_TASK_LEVELS];
     u16 queueTail[WIFI_TASK_LEVELS];
@@ -533,6 +558,8 @@ typedef struct WlStationTable {
 #define IO_WIRELESS_BASEBAND_IN (*(volatile u16 *)0x0480815c)
 #define IO_WIRELESS_RADIO_WORD_HI (*(volatile u16 *)0x0480817c)  /* high half of the RF word */
 #define IO_WIRELESS_RADIO_WORD_LO (*(volatile u16 *)0x0480817e)  /* low half; writing DATA2 starts the transfer */
+// 8-bit statistic counters, two per halfword: 0x048081b0-0x048081c1 and 0x048081d0-0x048081df.
+#define IO_WIRELESS_TALLY_BYTES ((volatile u16 *)0x048081b0)
 
 BOOL WifiRf_AwaitSerialIdle(void);
 // Returns 0 once the RF port is idle, 1 on timeout.
@@ -544,6 +571,7 @@ u16 WifiBaseband_Get(u32 index);
 u32 WifiParam_ChannelAllowed(u32 bit);
 // a and b are 6-byte MAC addresses, read as three halfwords.
 BOOL WifiMac_Equal(const u16 *a, const u16 *b);
+void WifiStats_Accumulate(void);
 
 /* Wireless hardware registers, 0x04808000 + offset. */
 #define WIFI_MAC_REGISTER(offset) (*(volatile u16 *)(0x04808000 + (offset)))
