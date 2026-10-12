@@ -93,6 +93,24 @@ typedef struct WmspSetMPDataRequest {
     void *arg;
 } WmspSetMPDataRequest;
 
+/* The arguments of WM_StartDCF's request. */
+typedef struct WmspStartDCFRequest {
+    u16 apiid;
+    u8 pad_02[2];
+    void *recvBuf;
+    u32 recvBufSize;                   /* in bytes; split in two halves */
+} WmspStartDCFRequest;
+
+/* The arguments of WM_SetDCFData's request. */
+typedef struct WmspSetDCFDataRequest {
+    u16 apiid;
+    u8 pad_02[2];
+    u8 destAdr[6];                     /* sent as two words */
+    u8 pad_0a[2];
+    const u16 *data;
+    u32 size;
+} WmspSetDCFDataRequest;
+
 /* The arguments of WM_SetLifeTime. The lifetimes count 100 ms steps. */
 typedef struct WmspSetLifeTimeRequest {
     u16 apiid;

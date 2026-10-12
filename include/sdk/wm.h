@@ -35,6 +35,7 @@ typedef struct WMCallback {
 #define WIRELESS_NOTICE_STATION_DROPPED 17
 #define WIRELESS_NOTICE_STATION_BACK 18
 #define WIRELESS_NOTICE_AUTHED 19
+#define WIRELESS_NOTICE_DCF_BEGUN 14
 #define WM_STATECODE_PORT_SEND 20
 #define WM_STATECODE_PORT_RECV 21
 #define WIRELESS_NOTICE_QUEUE_REFUSED 22
@@ -86,6 +87,12 @@ typedef struct WMCallback {
 #define WM_APIID_START_MP 14
 #define WM_APIID_SET_MP_DATA 15
 #define WM_APIID_END_MP 16
+#define WM_APIID_START_DCF 17
+#define WM_APIID_SET_DCF_DATA 18
+#define WM_APIID_END_DCF 19
+#define WM_APIID_SET_WEPKEY 20
+#define WM_APIID_START_TESTMODE 26
+#define WM_APIID_SET_WEPKEY_EX 39
 #define WM_APIID_START_KS 21                /* best guess from the neighbouring request ids */
 #define WM_APIID_SET_GAMEINFO 24
 #define WM_APIID_SET_BEACON_IND 25
@@ -122,6 +129,13 @@ typedef struct RadioNotice {
     u16 errcode;
     u16 state;                         /* WIRELESS_NOTICE_* */
 } RadioNotice;
+
+/* Start of the reply to the DCF start command. */
+typedef struct RadioDcfReply {
+    u16 apiid;
+    u16 errcode;
+    u16 state;                         /* WIRELESS_NOTICE_DCF_BEGUN */
+} RadioDcfReply;
 
 typedef struct WMGameInfo {
     u16 magicNumber;
@@ -326,6 +340,9 @@ typedef struct WMDataSharingInfo {
 } WMDataSharingInfo;
 
 /* What WMStatus.state holds. */
+#define WIRELESS_BITRATE_ONE 1
+#define WIRELESS_BITRATE_TWO 2
+
 #define WM_STATE_READY 0                   /* initialised, not enabled yet */
 #define WM_STATE_STOP 1                    /* enabled, wireless hardware off */
 #define WM_STATE_IDLE 2
@@ -361,7 +378,7 @@ typedef struct WMStatus {
     u32 mpFlag;                        /* 1 while MP runs */
     u32 unk_10;
     u32 unk_14;
-    u8 pad_18[4];
+    u32 dcfSendFlag;                   /* 1 while a DCF frame is being sent */
     u32 unk_1c;                        /* 1: MP sends set flag 0x8000 */
     u8 wlVersion[8];                   /* firmware version, from WL command 0x306 */
     u16 macVersion;
@@ -384,7 +401,14 @@ typedef struct WMStatus {
     u16 unk_92;
     u16 unk_94;
     u16 unk_96;
-    u8 pad_98[0x20];
+    u8 pad_98[0x9e - 0x98];
+    u8 dcfDestAdr[6];
+    const u16 *dcfSendData;
+    u16 dcfSendSize;
+    u16 dcfRecvBufSel;
+    void *dcfRecvBuf[2];               /* two halves of the buffer given to WM_StartDCF */
+    u16 dcfRecvBufSize;
+    u8 pad_b6[2];
     u16 linkLevel;
     u8 pad_ba[4];
     u16 unk_be;
