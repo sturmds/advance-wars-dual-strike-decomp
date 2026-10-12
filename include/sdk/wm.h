@@ -446,7 +446,8 @@ typedef struct WMStatus {
     u32 unk_38;
     u16 unk_3c;
     u16 unk_3e;
-    u8 pad_40[4];
+    u16 unk_40;                        /* the child size of the last MP send command */
+    u16 unk_42;                        /* the parent size of the last MP send command */
     u16 mpRecvBufSel;                  /* which of mpRecvBuf gets the next frame */
     u16 mpRecvBufSize;                 /* bytes in an MP receive buffer */
     RadioChildFrameBuffer *mpRecvBuf[2];
