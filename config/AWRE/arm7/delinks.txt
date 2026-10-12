@@ -344,6 +344,10 @@ src/arm7/sdk/wl/wifi_param_store_beacons_per_run.c:
     complete
     .text       start:0x027ca024 end:0x027ca05c
 
+src/arm7/sdk/wl/wifi_param_set_probe_needs_ssid.c:
+    complete
+    .text       start:0x027ca05c end:0x027ca094
+
 src/arm7/sdk/func_arm7_027cab80.c:
     complete
     .text       start:0x027cab80 end:0x027cab94

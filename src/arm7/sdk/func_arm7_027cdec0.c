@@ -13,10 +13,10 @@ struct Unk_027cdec0_a1 {
     u16 unk_2;
 };
 
-void func_arm7_027ca05c(int, void *, int);
+void WifiParam_SetProbeNeedsSsid(int, void *, int);
 
 void func_arm7_027cdec0(Unk_027cdec0 *a0, Unk_027cdec0_a1 *a1)
 {
     a1->unk_2 = 1;
-    func_arm7_027ca05c(a0->unk_10, a1, 1);
+    WifiParam_SetProbeNeedsSsid(a0->unk_10, a1, 1);
 }
