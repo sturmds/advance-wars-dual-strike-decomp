@@ -74,6 +74,10 @@ typedef struct MICSystemWork {
 /* Timer 3 paces the samples. */
 #define REG_TM3CNT_L (*(volatile u16 *)0x0400010c)
 #define REG_TM3CNT_H (*(volatile u16 *)0x0400010e)
+#define TIMER_PRESCALER_1    0
+#define TIMER_PRESCALER_64   1
+#define TIMER_PRESCALER_256  2
+#define TIMER_PRESCALER_1024 3
 #define TIMER_IRQ_ENABLE 0x0040
 #define TIMER_ENABLE     0x0080
 
