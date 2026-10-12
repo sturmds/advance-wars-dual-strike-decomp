@@ -880,7 +880,8 @@ src/arm7/sdk/os/thread_spawn_arm7.c:
     complete
     .text       start:0x037fbf60 end:0x037fc060
 
-src/arm7/sdk/os/func_arm7_037fc060.c:
+src/arm7/sdk/os/thread_set_up_table_once_arm7.c:
+    complete
     .text       start:0x037fc060 end:0x037fc18c
 
 src/arm7/sdk/os/thread_unlink_arm7.c:

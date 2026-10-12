@@ -676,7 +676,7 @@ Thread_ReadyAllWaiters_Arm7 kind:function(arm,size=0x70) addr:0x037fbe2c
 Thread_WaitOnQueue_Arm7 kind:function(arm,size=0x68) addr:0x037fbe9c
 Thread_EndCurrent_Arm7 kind:function(arm,size=0x5c) addr:0x037fbf04
 Thread_Spawn_Arm7 kind:function(arm,size=0x100) addr:0x037fbf60
-func_arm7_037fc060 kind:function(arm,size=0x12c) addr:0x037fc060
+Thread_SetUpTableOnce_Arm7 kind:function(arm,size=0x12c) addr:0x037fc060
 func_arm7_037fc18c kind:function(arm,size=0x48) addr:0x037fc18c
 func_arm7_037fc1d4 kind:function(arm,size=0x68) addr:0x037fc1d4
 func_arm7_037fc23c kind:function(arm,size=0x34) addr:0x037fc23c
@@ -1090,13 +1090,13 @@ data_arm7_038078ec kind:bss addr:0x038078ec
 data_arm7_038078f8 kind:bss addr:0x038078f8
 gSchedulerHoldDepth_Arm7 kind:bss addr:0x038078fc
 gRunningThreadRef_Arm7 kind:bss addr:0x03807900
-data_arm7_03807904 kind:bss addr:0x03807904
+gThreadTableReady_Arm7 kind:bss addr:0x03807904
 data_arm7_03807908 kind:bss addr:0x03807908
 data_arm7_0380790c kind:bss addr:0x0380790c
 data_arm7_03807914 kind:bss addr:0x03807914
 data_arm7_03807920 kind:bss addr:0x03807920
 data_arm7_03807960 kind:bss addr:0x03807960
-data_arm7_038079d8 kind:bss addr:0x038079d8
+gBootThread_Arm7 kind:bss addr:0x038079d8
 data_arm7_03807a50 kind:bss addr:0x03807a50
 data_arm7_03807a54 kind:bss addr:0x03807a54
 data_arm7_03807a78 kind:bss addr:0x03807a78

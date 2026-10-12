@@ -10,7 +10,7 @@ int InitWramHeap(void);
 void func_arm7_037f8444(void);                                  /* BIOS Halt (svc 6) */
 OSIrqMask func_arm7_037fb690(OSIrqMask mask);                   /* enable IRQs in mask */
 void func_arm7_037fb748(u32 mask, void (*handler)(void));       /* set IRQ handler */
-void func_arm7_037fc060(void);
+void Thread_SetUpTableOnce_Arm7(void);
 void func_arm7_037fc6c4(void);
 int func_arm7_037fdb6c(void);
 void func_arm7_037fdc24(void);
@@ -38,7 +38,7 @@ void Arm7Main(void)
     int heap;
 
     func_arm7_037fc6c4();
-    func_arm7_037fc060();
+    Thread_SetUpTableOnce_Arm7();
     UserSettings_LoadFromFlash();
     func_arm7_037fe0a0();
     heap = InitWramHeap();
