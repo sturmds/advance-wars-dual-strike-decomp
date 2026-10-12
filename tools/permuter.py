@@ -181,6 +181,41 @@ def function_text(source: str, name: str) -> str:
     return source[m.start():]
 
 
+TOKEN = re.compile(r"0[xX][0-9a-fA-F]+[uUlL]*|\d+[uUlL]*|[A-Za-z_]\w*|->|\+\+|--|<<=?|>>=?|[<>!=]=|&&|\|\||\S")
+
+
+def statements(code: str) -> list:
+    """The code as one statement per line, spacing made uniform, so a diff
+    shows what decomp-permuter changed and not how it reformatted."""
+    out, cur = [], []
+    for t in TOKEN.findall(code):
+        cur.append(t)
+        if t in (";", "{", "}"):
+            out.append(" ".join(cur))
+            cur = []
+    if cur:
+        out.append(" ".join(cur))
+    return out
+
+
+def printed_base(d: Path, name: str) -> str:
+    """base.c as decomp-permuter prints an unchanged candidate, so it is
+    formatted like the outputs (it adds parentheses and its own spacing)."""
+    sys.path[:0] = [str(WORK / "_shim"), str(PERMUTER.parent)]
+    from src import ast_util  # noqa: E402
+    ast = ast_util.parse_c((d / "base.c").read_text())
+    fn_def, _ = ast_util.extract_fn(ast, name)
+    ast_util.normalize_ast(fn_def, ast)
+    return ast_util.to_c(ast)
+
+
+def write_diff(d: Path, name: str) -> None:
+    base = statements(function_text(printed_base(d, name), name))
+    best = statements(function_text((d / "best.c").read_text(), name))
+    diff = difflib.unified_diff(base, best, "base.c", "best.c", lineterm="", n=2)
+    (d / "best.diff").write_text("\n".join(diff) + "\n")
+
+
 def rescore(d: Path, name: str, module: str, index) -> list:
     """[(differ, permuter score, output dir, Result)] for the best five outputs and base.c."""
     outs = []
@@ -211,10 +246,7 @@ def one(name: str, seconds: int, jobs: int, index, verbose: bool = False) -> dic
     if best[2] != d:
         src = (best[2] / "source.c").read_text()
         shutil.copyfile(best[2] / "source.c", d / "best.c")
-        diff = difflib.unified_diff(function_text((d / "base.c").read_text(), name).splitlines(),
-                                    function_text(src, name).splitlines(),
-                                    "base.c", "best.c", lineterm="", n=2)
-        (d / "best.diff").write_text("\n".join(diff) + "\n")
+        write_diff(d, name)
     return out
 
 
@@ -261,6 +293,8 @@ def main() -> int:
     ap.add_argument("--seconds", type=int, default=600, help="time per function")
     ap.add_argument("--jobs", type=int, default=4)
     ap.add_argument("--show-errors", action="store_true", help="log the compiler errors of variants")
+    ap.add_argument("--diff", action="store_true",
+                    help="only rewrite build/permuter/NAME/best.diff from best.c")
     ap.add_argument("--explain", action="store_true",
                     help="set up only, and print decomp-permuter's score and line diff of base.c")
     a = ap.parse_args()
@@ -269,6 +303,11 @@ def main() -> int:
         ap.error("give function names or --parked FILE")
     if not PERMUTER.exists():
         sys.exit("error: decomp-permuter is missing; run make setup")
+    if a.diff:
+        for n in names:
+            write_diff(WORK / n, n)
+            print((WORK / n / "best.diff").read_text())
+        return 0
     if a.explain:
         for n in names:
             explain(n)
