@@ -35,7 +35,10 @@ BOOL func_02099ba0(void)
     u32 frontCharge;
     int current;
 
-    RELOAD_STATE(state);
+    /* Needed to match: the first index read goes through frontCharge, which
+     * gets its real value later (7 differing instructions without it, 4 with) */
+    frontCharge = *(volatile int *)&data_027c0284;
+    state = data_027c027c->unk_48[frontCharge];
     if (state->coEffectsOn == 0) {
         return FALSE;
     }
