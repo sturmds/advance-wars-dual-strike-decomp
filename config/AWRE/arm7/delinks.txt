@@ -1123,6 +1123,10 @@ src/arm7/sdk/tp/touch_reset_driver_arm7.c:
     complete
     .text       start:0x038046f0 end:0x03804800
 
+src/arm7/sdk/tp/tp_exec_sampling.c:
+    complete
+    .text       start:0x03804800 end:0x03804a50
+
 src/arm7/sdk/func_arm7_0380513c.c:
     complete
     .text       start:0x0380513c end:0x03805168

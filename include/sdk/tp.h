@@ -191,6 +191,17 @@ static inline void Touch_ShiftOutByte(u16 data)
     Touch_WaitBusIdle();
 }
 
+/* Pen state as the ARM7 sampler reads it; TP_TOUCH_OFF and TP_TOUCH_ON
+ * come first. The pen was down, the line now reads up, and a second look
+ * says down again: */
+#define PEN_UP_GLITCH 2
+
+/* Axes the sampler measures. */
+enum {
+    TOUCH_MEASURE_HORIZONTAL = 0,
+    TOUCH_MEASURE_VERTICAL = 1
+};
+
 /* TPData.validity and SPITpData.e.validity bits */
 #define TP_VALIDITY_VALID     0
 #define TP_VALIDITY_INVALID_X 1

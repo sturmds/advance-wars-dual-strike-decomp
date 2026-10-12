@@ -997,7 +997,7 @@ TP_ExecuteProcess kind:function(arm,size=0x234) addr:0x03804208
 Touch_TuneStabilityRange kind:function(arm,size=0xf4) addr:0x0380443c
 TP_AnalyzeCommand kind:function(arm,size=0x1c0) addr:0x03804530
 Touch_ResetDriver_Arm7 kind:function(arm,size=0x110) addr:0x038046f0
-func_arm7_03804800 kind:function(arm,size=0x250) addr:0x03804800
+TP_ExecSampling kind:function(arm,size=0x250) addr:0x03804800
 func_arm7_03804a50 kind:function(arm,size=0x1f8) addr:0x03804a50
 func_arm7_03804c48 kind:function(arm,size=0x15c) addr:0x03804c48
 func_arm7_03804da4 kind:function(arm,size=0x188) addr:0x03804da4
@@ -1162,7 +1162,7 @@ tpValidCount kind:bss addr:0x03809f10
 tpInvalidCount kind:bss addr:0x03809f14
 tpWork kind:bss addr:0x03809f18
 data_arm7_03809f44 kind:bss addr:0x03809f44
-data_arm7_03809fec kind:bss addr:0x03809fec
+tpLastTouch kind:bss addr:0x03809fec
 data_arm7_03809ff0 kind:bss addr:0x03809ff0
 data_arm7_03809ff4 kind:bss addr:0x03809ff4
 data_arm7_03809ff8 kind:bss addr:0x03809ff8
