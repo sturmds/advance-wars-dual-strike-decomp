@@ -6,7 +6,7 @@
 #include "sdk/mi.h"
 
 void Touch_ResetDriver_Arm7(void);
-void func_arm7_027d485c(void);    /* NVRAM init */
+void NVRAM_Init(void);    /* NVRAM init */
 void func_arm7_0380607c(void);    /* microphone init */
 void Power_ResetDriverState_Arm7(void);    /* power chip init */
 
@@ -26,7 +26,7 @@ void SPI_Init(u32 priority)
     data_arm7_03809ab0.busLocked = FALSE;
     data_arm7_03809ab0.lockDevice = SERIAL_OWNER_NOBODY;
     Touch_ResetDriver_Arm7();
-    func_arm7_027d485c();
+    NVRAM_Init();
     func_arm7_0380607c();
     Power_ResetDriverState_Arm7();
     Fifo_SetUp_Arm7();

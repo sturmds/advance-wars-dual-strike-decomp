@@ -872,6 +872,10 @@ src/arm7/sdk/spi/nvram_analyze_command.c:
     complete
     .text       start:0x027d46b8 end:0x027d485c
 
+src/arm7/sdk/spi/nvram_init.c:
+    complete
+    .text       start:0x027d485c end:0x027d4884
+
 src/arm7/sdk/spi/nvram_erase_sector.c:
     complete
     .text       start:0x027d4a20 end:0x027d4ae4
