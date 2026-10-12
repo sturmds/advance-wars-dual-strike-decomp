@@ -1754,6 +1754,10 @@ src/arm7/sdk/wl/wifi_rx_handle_auth_frame.c:
     complete
     .text       start:0x027d21b8 end:0x027d26c4
 
+src/arm7/sdk/wl/wifi_scan_record_heard_network.c:
+    complete
+    .text       start:0x027d26c4 end:0x027d2a04
+
 src/arm7/sdk/wl/wifi_parent_answer_probe.c:
     complete
     .text       start:0x027d2a04 end:0x027d2aac

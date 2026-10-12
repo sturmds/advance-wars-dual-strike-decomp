@@ -404,14 +404,19 @@ typedef union WlCapability {
    func_arm7_027d1d84 parses them. Callers fill data, length and unk_0c. */
 typedef struct WlElements {
     const u8 *data;
-    u8 pad_04[4];
+    u16 unk_04;           /* first word of the frame's RX header */
+    u16 capability;
     u16 length;
     u16 result;           /* WIFI_IE_* bits */
     u16 unk_0c;           /* some callers set 0x800 before parsing */
-    u8 pad_0e[0x16 - 0x0e];
+    u8 pad_0e[0x12 - 0x0e];
+    u16 unk_12;           /* WlScanEntry.unk_36 */
+    u16 unk_14;           /* WlScanEntry.unk_2e */
     u16 supportedRates;   /* stored in WlStation.unk_10 on association */
     const u8 *unk_18;     /* element handed to the response builder */
-    u8 pad_1c[0x28 - 0x1c];
+    const u8 *unk_1c;     /* element whose byte 3 goes to WlScanEntry.unk_38 */
+    const u8 *unk_20;     /* element whose byte 3 goes to WlScanEntry.unk_34 */
+    const u8 *nintendo;   /* Nintendo element: game info from byte 10 */
 } WlElements;
 
 #define WIFI_IE_FITS_SSID 0x1  /* probe and association requests are answered only with it */
@@ -544,6 +549,7 @@ typedef struct WlScanRequest {
     u8 channels[16];     /* 0 ends the list */
     u16 channelTimeMs;   /* time spent on each channel */
     u16 unk_4c;          /* up to 16 */
+    u16 bssids[16][3];   /* unk_4c of them; seen ones set a bit in WlReply.value */
 } WlScanRequest;
 
 typedef struct WlStopSessionRequest {
@@ -572,6 +578,27 @@ typedef struct WlScanJob {
     WlScanRequest *request;
     WlReply *reply;
 } WlScanJob;
+
+/* One network found by a scan, as WifiScan_RecordHeardNetwork appends it to the reply
+   from WlReply.words[1] on (words[0] counts them). */
+typedef struct WlScanEntry {
+    u16 length;          /* in halfwords, game info included */
+    u16 rssi;            /* low byte of the RX header's unk_12 */
+    u16 bssid[3];
+    u16 ssidLength;
+    u8 ssid[32];
+    u16 capability;
+    u16 unk_2e;
+    u16 supportedRates;
+    u16 beaconInterval;
+    u16 unk_34;
+    u16 unk_36;
+    u16 unk_38;
+    u8 pad_3a[2];
+    u16 gameInfoLength;
+    u8 pad_3e[2];
+    u8 gameInfo[1];
+} WlScanEntry;
 
 /* Task 1 (func_arm7_027cc5ac): waits for the receive path to fill result. */
 typedef struct WlTask1Request {

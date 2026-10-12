@@ -458,7 +458,7 @@ func_arm7_027d2090 kind:function(arm,size=0x4) addr:0x027d2090
 WifiParent_ServePsPoll kind:function(arm,size=0x68) addr:0x027d2094
 WifiRx_HandleDeauthFrame kind:function(arm,size=0xbc) addr:0x027d20fc
 WifiRx_HandleAuthFrame kind:function(arm,size=0x50c) addr:0x027d21b8
-func_arm7_027d26c4 kind:function(arm,size=0x340) addr:0x027d26c4
+WifiScan_RecordHeardNetwork kind:function(arm,size=0x340) addr:0x027d26c4
 WifiParent_AnswerProbe kind:function(arm,size=0xa8) addr:0x027d2a04
 WifiChild_TakeReassocAnswer kind:function(arm,size=0x12c) addr:0x027d2aac
 WifiParent_AnswerReassocAsk kind:function(arm,size=0x174) addr:0x027d2bd8
@@ -540,7 +540,7 @@ gWlTaskHandlers kind:data(any) addr:0x027d661c
 gWlDefaultRateSet kind:data(any) addr:0x027d667c
 data_arm7_027d6680 kind:data(any) addr:0x027d6680
 data_arm7_027d6688 kind:data(any) addr:0x027d6688
-data_arm7_027d6690 kind:data(any) addr:0x027d6690
+gWlZeroMacAddr kind:data(any) addr:0x027d6690
 data_arm7_027d6698 kind:data(any) addr:0x027d6698
 gWifiRateHalfMbps kind:data(any) addr:0x027d66a0
 gWlDefaultWords58 kind:data(any) addr:0x027d66c0
