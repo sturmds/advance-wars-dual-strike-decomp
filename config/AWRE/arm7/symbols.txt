@@ -796,8 +796,8 @@ SndHw_StopChannel kind:function(arm,size=0x2c) addr:0x037fe8e4
 SndHw_SetupNoise kind:function(arm,size=0xb0) addr:0x037fe910
 SndHw_SetupPsg kind:function(arm,size=0xb8) addr:0x037fe9c0
 SndHw_SetupPcm kind:function(arm,size=0xd0) addr:0x037fea78
-func_arm7_037feb48 kind:function(arm,size=0x34) addr:0x037feb48
-func_arm7_037feb7c kind:function(arm,size=0x6c) addr:0x037feb7c
+SndDrv_NextRandom kind:function(arm,size=0x34) addr:0x037feb48
+SndDrv_SineWave kind:function(arm,size=0x6c) addr:0x037feb7c
 func_arm7_037febe8 kind:function(arm,size=0x78) addr:0x037febe8
 func_arm7_037fec60 kind:function(arm,size=0xc) addr:0x037fec60
 func_arm7_037fec6c kind:function(arm,size=0x128) addr:0x037fec6c
@@ -1054,7 +1054,7 @@ func_arm7_03806d4c kind:function(arm,size=0x20c) addr:0x03806d4c
 _u32_div_f kind:function(arm,size=0x1e4) addr:0x03806f58
 .L_03806f60 kind:label(arm) addr:0x03806f60
 data_arm7_0380713c kind:data(any) addr:0x0380713c
-data_arm7_0380715c kind:data(any) addr:0x0380715c
+gSndSineQuarterTable kind:data(any) addr:0x0380715c
 data_arm7_03807180 kind:data(any) addr:0x03807180
 data_arm7_03807280 kind:data(any) addr:0x03807280
 data_arm7_03807284 kind:data(any) addr:0x03807284
@@ -1075,7 +1075,7 @@ data_arm7_0380773c kind:data(any) addr:0x0380773c
 data_arm7_03807750 kind:data(any) addr:0x03807750
 data_arm7_038077b4 kind:data(any) addr:0x038077b4
 gSndHwPanOverride kind:data(any) addr:0x038077b8
-data_arm7_038077bc kind:data(any) addr:0x038077bc
+gSndRandomSeed kind:data(any) addr:0x038077bc
 data_arm7_038077c0 kind:data(any) addr:0x038077c0
 data_arm7_038077e4 kind:data(any) addr:0x038077e4
 data_arm7_038077e8 kind:data(any) addr:0x038077e8
