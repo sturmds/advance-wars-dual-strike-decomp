@@ -485,7 +485,8 @@ typedef struct WMStatus {
     u16 childBitmap;                   /* bit n set: the child with aid n is connected */
     u8 pad_180[4];
     u16 aid;                           /* this station's aid, 0 on a parent */
-    u8 pad_186[8];
+    u8 parentMacAddress[6];            /* the parent this child is connected to */
+    u8 pad_18c[2];
     u16 unk_18e;
     u16 unk_190;
     u16 wepMode;                       /* WIRELESS_CIPHER_* */

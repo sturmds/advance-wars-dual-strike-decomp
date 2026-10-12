@@ -308,6 +308,10 @@ src/arm7/sdk/wm/wmsp_reply_reset_failed.c:
     complete
     .text       start:0x027c2a00 end:0x027c2a38
 
+src/arm7/sdk/wm/wmsp_reset.c:
+    complete
+    .text       start:0x027c2a38 end:0x027c2d48
+
 src/arm7/sdk/wm/wmsp_reply_end_failed.c:
     complete
     .text       start:0x027c2d48 end:0x027c2d84
