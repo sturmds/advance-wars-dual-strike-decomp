@@ -1,8 +1,8 @@
 #include "types.h"
 #include "sdk/wm.h"
 #include "sdk/wmsp.h"
+#include "sdk/mi.h"
 
-void Mem_CopyBytes_Arm7(const void *src, void *dest, u32 size);
 u8 Wmsp_DecodeRssi(int rawRssi);
 void Wmsp_PushRssiSample(u8 rssi);
 int Wmsp_GetLinkLevel(void);

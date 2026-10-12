@@ -2,8 +2,6 @@
 #include "sdk/os_arm7.h"
 #include "sdk/wl.h"
 
-BOOL MsgQueue_PushBack_Arm7(OSMessageQueue *queue, OSMessage message, int flags); /* OS_SendMessage */
-
 /*
  * Hands a buffer to the host side. While the outbox holds older buffers, or
  * when the host queue is full, it joins the outbox and task 19 is queued.

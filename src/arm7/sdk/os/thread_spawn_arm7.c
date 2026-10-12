@@ -8,8 +8,6 @@
 
 extern OSThread *data_arm7_03807920[];   /* OSThreadInfo.threads, under its own symbol */
 
-void func_arm7_037fc270(OSContext *context, u32 pc, u32 sp);
-
 /*
  * ARM7 copy of OS_CreateThread. stack is the top of the stack (it grows
  * down). The thread starts waiting; it returns into Thread_EndCurrent_Arm7.
@@ -42,7 +40,7 @@ void Thread_Spawn_Arm7(OSThread *thread, void (*func)(void *), void *arg, void *
     thread->joinQueue.head = 0;
 
     context = &thread->context;
-    func_arm7_037fc270(context, (u32)func, (u32)stack - 4);
+    Context_PrepareForEntry_Arm7(context, (u32)func, (u32)stack - 4);
     context->r[0] = (u32)arg;
     context->lr = (u32)Thread_EndCurrent_Arm7;
 

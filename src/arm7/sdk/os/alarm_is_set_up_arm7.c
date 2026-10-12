@@ -2,7 +2,7 @@
 
 extern u16 data_arm7_03807a8c;
 
-u16 func_arm7_037fd434(void)
+BOOL Alarm_IsSetUp_Arm7(void)
 {
     return data_arm7_03807a8c;
 }

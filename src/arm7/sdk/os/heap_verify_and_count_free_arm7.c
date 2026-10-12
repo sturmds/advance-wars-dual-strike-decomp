@@ -9,7 +9,7 @@ extern OSHeapInfo *data_arm7_03807a54[];    /* heap info of each arena, by arena
  * counted), or -1 if anything is wrong or the blocks do not add up to the
  * heap's size.
  */
-s32 Heap_VerifyAndCountFree_Arm7(OSArenaId id, s32 heap)
+s32 Heap_VerifyAndCountFree_Arm7(int id, s32 heap)
 {
     OSHeapInfo *info;
     HeapRecord *desc;

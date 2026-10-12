@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
 
-void Alarm_QueueByFireTime_Arm7(OSAlarm *alarm, OSTick fire);
-
 /*
  * ARM7 copy of OS_SetPeriodicAlarm: the handler runs at start + n * period.
  * Stops the system if the alarm is NULL or already set.

@@ -4,8 +4,6 @@
 extern u16 data_arm7_03807a7c;
 extern vu64 gOsiTickCounter_Arm7;
 extern u32 gOsiNeedResetTimer_Arm7;
-void Timer_MarkInUse_Arm7(int timer);
-void Tick_OnTimer0Overflow_Arm7(void *arg);
 
 /*
  * ARM7 copy of OS_InitTick. Once only: zeroes the tick counter and starts

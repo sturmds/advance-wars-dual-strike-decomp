@@ -2,8 +2,6 @@
 #include "sdk/os_arm7.h"
 #include "sdk/gx.h"
 
-void LineAlarm_OnVcountIrq_Arm7(void);
-
 /* Sets the V-count interrupt to fire on the alarm's line and turns it on. */
 void LineAlarm_ProgramVcountIrq_Arm7(OSVAlarm *alarm)
 {

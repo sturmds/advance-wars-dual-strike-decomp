@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
 
-asm void func_arm7_037fc270(OSContext *context, u32 pc, u32 sp)
+asm void Context_PrepareForEntry_Arm7(OSContext *context, u32 pc, u32 sp)
 {
     add r1, r1, #4
     str r1, [r0, #0x40]      

@@ -1,6 +1,5 @@
 #include "sdk/wl.h"
-
-void Mem_CopyHalfwords_Arm7(const void *src, void *dest, int size);
+#include "sdk/mi.h"
 
 /*
  * Copies size bytes (rounded up to even) out of the MAC RAM ring buffer.

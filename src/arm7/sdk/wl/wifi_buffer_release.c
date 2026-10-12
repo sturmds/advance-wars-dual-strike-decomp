@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/wl.h"
-
-void Heap_ReturnBlock_Arm7(s32 id, s32 heap, void *ptr);
+#include "sdk/os_arm7.h"
 
 /* Takes a buffer out of its list and frees it. Returns the error of WifiBufList_Unlink, 0 when the buffer was freed. */
 int WifiBuffer_Release(WlBufferList *list, WlBuffer *buffer)

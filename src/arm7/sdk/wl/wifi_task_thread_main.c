@@ -4,10 +4,6 @@
 
 #define WIFI_TASKQ_LOCK_IRQS 0x01000010
 
-BOOL MsgQueue_PopOldest_Arm7(OSMessageQueue *queue, OSMessage *message, int flags); /* OS_ReceiveMessage */
-u32 Irq_ClearEnableBits_Arm7(u32 mask); /* ARM7 OS_DisableIrqMask */
-u32 Irq_SetEnableBits_Arm7(u32 mask); /* ARM7 OS_EnableIrqMask */
-
 /* Thread body of the driver: runs the queued tasks, most urgent priority first. */
 void WifiTask_ThreadMain(void)
 {

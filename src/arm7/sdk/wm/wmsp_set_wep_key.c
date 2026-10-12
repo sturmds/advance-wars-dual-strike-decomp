@@ -1,6 +1,5 @@
 #include "sdk/wmsp.h"
-
-void Mem_CopyBytes_Arm7(const void *src, void *dest, u32 size);
+#include "sdk/mi.h"
 
 void WMSP_SetWepKey(WmspSetWepKeyRequest *request)
 {

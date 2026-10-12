@@ -14,7 +14,7 @@ extern char SDK_IRQ_STACKSIZE[];
 #define ARM7_WRAM_IRQ_STACK_CEIL 0x0380ff80
 
 /* ARM7 copy of OS_GetInitArenaHi. Initial high end of each arena; NULL for an id with no arena. */
-void *Arena_DefaultHighEnd_Arm7(OSArenaId id)
+void *Arena_DefaultHighEnd_Arm7(int id)
 {
     u32 irqStackLo;
 

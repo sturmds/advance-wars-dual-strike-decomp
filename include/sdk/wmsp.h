@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "sdk/os_arm7.h"
+#include "sdk/mi.h"
 #include "sdk/wm.h"
 
 // WMSP is the ARM7 half of WM. It runs the requests the ARM9 sends and
@@ -172,8 +173,7 @@ typedef struct WmspBuf {
     u8 pad_04[4];
     WmspReply *replyBuf;
     u8 pad_0c[0xc4];
-    u8 unk_d0[0x24];                   /* three words are cleared by func_arm7_037fd9dc */
-    u8 pad_f4[4];
+    OSVAlarm vAlarm;
     WmspSlot slots[WMSP_SLOT_COUNT];
 } WmspBuf;
 
@@ -299,10 +299,10 @@ static inline WMParentParam *Wmsp_ParentParam(WMStatus *status)
 
 void func_arm7_027c5cb0(void *line);
 
-/* Sets the alarm in WmspBuf.unk_d0 for line, with the line as the handler's argument. */
+/* Sets WmspBuf.vAlarm for line, with the line as the handler's argument. */
 static inline void Wmsp_SetVAlarm(WmspBuf *buf, s16 line)
 {
-    LineAlarm_ArmOneShot_Arm7((OSVAlarm *)buf->unk_d0, line, WMSP_VALARM_DELAY, func_arm7_027c5cb0, (void *)line);
+    LineAlarm_ArmOneShot_Arm7(&buf->vAlarm, line, WMSP_VALARM_DELAY, func_arm7_027c5cb0, (void *)line);
 }
 
 /* Held while a reply buffer is filled and sent. */
@@ -318,13 +318,10 @@ extern u8 data_arm7_027d8160[16];
 WmspWork *func_arm7_027c05e0(void);
 void WMSP_ResetStatus(void);
 int WMSP_InitWl(u16 *wlCmdID, u16 *wlResult);
-void func_arm7_037fd9dc(void *object);
 void func_arm7_027c6eb4(u16 arg);
 void func_arm7_027c6f68(u16 arg);
 void func_arm7_027c70f8(void);
 
-/* Copies halfwords (ARM7's MI_CpuCopy16-like helper). */
-void Mem_CopyHalfwords_Arm7(const void *src, void *dest, int size);
 
 /* Sends the command to the firmware and returns its answer. */
 WlCommand *Wmsp_SendWlCommand(WlCommand *command);

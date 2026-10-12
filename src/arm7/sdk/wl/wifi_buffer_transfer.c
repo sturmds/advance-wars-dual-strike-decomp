@@ -1,10 +1,8 @@
 #include "types.h"
 #include "sdk/wl.h"
+#include "sdk/os_arm7.h"
 
 #define WIFI_LIST_LOCK_IRQS 0x01000000
-
-u32 Irq_ClearEnableBits_Arm7(u32 mask); /* ARM7 OS_DisableIrqMask */
-u32 Irq_SetEnableBits_Arm7(u32 mask); /* ARM7 OS_EnableIrqMask */
 
 /* Moves a buffer from one list to another. Returns the first error of the two list calls, or 0. */
 int WifiBuffer_Transfer(WlBufferList *from, WlBufferList *to, WlBuffer *buffer)

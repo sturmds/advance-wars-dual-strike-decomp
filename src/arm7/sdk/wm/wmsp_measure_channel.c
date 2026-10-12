@@ -1,4 +1,5 @@
 #include "sdk/wmsp.h"
+#include "sdk/mi.h"
 
 /* WL command ids, named after what the handler does around them. */
 #define WIFI_REQ_CHANNEL_BUSY_RATIO 10
@@ -14,7 +15,6 @@ u16 *func_arm7_027c1efc(WlCommand *cmd);
 u16 *func_arm7_027c2890(WlCommand *cmd, int arg0, int arg1, int arg2);
 u16 *func_arm7_027c2468(WlCommand *cmd, u16 arg1, u16 arg2, u16 arg3, const void *data);
 BOOL func_arm7_027c0248(int apiid, WlCommand *cmd);
-void Mem_FillBytes_Arm7(void *dest, u32 data, u32 size);
 void WMSP_ReplyMeasureChannelFailed(u16 wlCmdID, u16 wlResult);
 
 void WMSP_MeasureChannel(WMMeasureChannelReq *req)

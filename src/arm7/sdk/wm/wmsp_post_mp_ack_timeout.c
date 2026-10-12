@@ -3,7 +3,6 @@
 #include "sdk/wm.h"
 #include "sdk/wmsp.h"
 
-void *Heap_TakeFirstFit_Arm7(s32 id, s32 heap, s32 size); /* as in wifi_buffer_new.c: an OSArenaId parameter adds a byte mask */
 void func_arm7_027c1a98(WlIndication *ind);
 
 /*

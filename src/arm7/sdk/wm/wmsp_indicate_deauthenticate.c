@@ -2,9 +2,8 @@
 #include "sdk/os_arm7.h"
 #include "sdk/wm.h"
 #include "sdk/wmsp.h"
+#include "sdk/mi.h"
 
-void Mem_CopyBytes_Arm7(const void *src, void *dest, u32 size);
-void LineAlarm_Withdraw_Arm7(OSVAlarm *alarm);
 void Wmsp_SetNormalThreadPriorities(void);
 void func_arm7_027c632c(u16 aidBitmap);
 
@@ -65,7 +64,7 @@ void Wmsp_IndicateDeauthenticate(WlDeauthIndication *ind)
         if (status->mpFlag == 1) {
             status->mpFlag = 0;
             wasMp = TRUE;
-            LineAlarm_Withdraw_Arm7((OSVAlarm *)buf->unk_d0);
+            LineAlarm_Withdraw_Arm7(&buf->vAlarm);
             Wmsp_SetNormalThreadPriorities();
         }
         status->childBitmap = 0;

@@ -1,7 +1,6 @@
 #include "sdk/wmsp.h"
+#include "sdk/mi.h"
 
-void Mem_FillHalfwords_Arm7(u16 data, void *dest, u32 size);
-void Mem_CopyBytes_Arm7(const void *src, void *dest, u32 size);
 u16 *func_arm7_027c23b0(WlCommand *cmd, WlTxFrame *frame);
 
 /* Needed to match: the original stores the zero on the stack and loads it back. */

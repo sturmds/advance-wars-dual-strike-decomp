@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
 
-void Alarm_OnTimer1Irq_Arm7(void *arg);
-
 /*
  * Starts timer 1 so that it overflows when the alarm is due. Timer 1 counts
  * up from the loaded value at the same rate as the tick counter. An alarm

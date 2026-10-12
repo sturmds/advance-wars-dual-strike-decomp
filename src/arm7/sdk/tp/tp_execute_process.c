@@ -4,8 +4,6 @@
 
 BOOL func_arm7_03803e68(u32 device);              /* SPI bus free? */
 void func_arm7_03803e50(int device);              /* take the SPI bus */
-void LineAlarm_ArmEveryFrame_Arm7(OSVAlarm *alarm, s16 count, s16 delay, OSVAlarmHandler handler, void *arg);
-void LineAlarm_WithdrawTagged_Arm7(u32 tag);              /* cancel the V alarms with this tag */
 
 /* Runs one touch panel job on the SPI thread: a sample (one-shot or from
  * auto sampling), or starting and stopping auto sampling. */

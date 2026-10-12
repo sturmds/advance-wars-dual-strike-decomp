@@ -1,11 +1,9 @@
 #include "sdk/wmsp.h"
+#include "sdk/os_arm7.h"
+#include "sdk/mi.h"
 
-void LineAlarm_Withdraw_Arm7(OSVAlarm *alarm);
 void Wmsp_SetNormalThreadPriorities(void);
 void func_arm7_027c632c(u32 aidBitmap);
-void Mem_FillHalfwords_Arm7(u16 data, void *dest, int size); /* MIi_CpuClear16 */
-void func_arm7_037fd424(void *object);
-void func_arm7_037fc6b0(OSMutex *mutex);        /* clears the queue, owner and count */
 void func_arm7_027c5de8(void);
 
 /* Stops MP if it runs, clears the connection fields of WMStatus, frees every
@@ -22,7 +20,7 @@ void WMSP_ResetStatus(void)
     if (buf->status->mpFlag == 1) {
         buf->status->mpFlag = 0;
         mpWasOn = TRUE;
-        LineAlarm_Withdraw_Arm7((OSVAlarm *)buf->unk_d0);
+        LineAlarm_Withdraw_Arm7(&buf->vAlarm);
         Wmsp_SetNormalThreadPriorities();
     }
     buf->status->childBitmap = 0;
@@ -47,7 +45,7 @@ void WMSP_ResetStatus(void)
     }
     one = 1;
     Mem_FillHalfwords_Arm7(one, buf->status->portSeqNo, sizeof(buf->status->portSeqNo));
-    func_arm7_037fd424(buf->status->unk_58);
-    func_arm7_037fc6b0((OSMutex *)buf->status->sendQueueMutex);
+    Alarm_Clear_Arm7(&buf->status->mpAckAlarm);
+    Mutex_Clear_Arm7(&buf->status->sendQueueMutex);
     func_arm7_027c5de8();
 }

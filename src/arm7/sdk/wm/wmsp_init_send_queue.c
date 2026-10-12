@@ -1,6 +1,5 @@
 #include "sdk/wmsp.h"
-
-void Mem_FillHalfwords_Arm7(u16 data, void *dest, int size); /* MIi_CpuClear16 */
+#include "sdk/mi.h"
 
 /* Needed to match: the zero goes through a halfword on the stack. */
 static inline void MI_CpuClear16(void *dest, u32 size)
@@ -17,7 +16,7 @@ void WMSP_InitSendQueue(void)
     WMStatus *status = func_arm7_027c05e0()->buf->status;
     u16 i;
 
-    Mutex_Take_Arm7((OSMutex *)status->sendQueueMutex);
+    Mutex_Take_Arm7(&status->sendQueueMutex);
     MI_CpuClear16(status->sendQueueData, sizeof(status->sendQueueData));
     for (i = 0; i < WIRELESS_OUTBOX_ENTRIES - 1; i++) {
         status->sendQueueData[i].next = i + 1;
@@ -31,5 +30,5 @@ void WMSP_InitSendQueue(void)
         status->sendQueue[i].head = WIRELESS_OUTBOX_NO_ENTRY;
         status->sendQueue[i].tail = WIRELESS_OUTBOX_NO_ENTRY;
     }
-    Mutex_Release_Arm7((OSMutex *)status->sendQueueMutex);
+    Mutex_Release_Arm7(&status->sendQueueMutex);
 }

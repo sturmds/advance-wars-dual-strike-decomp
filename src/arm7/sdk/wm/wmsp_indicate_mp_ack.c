@@ -2,9 +2,8 @@
 #include "sdk/os_arm7.h"
 #include "sdk/wm.h"
 #include "sdk/wmsp.h"
+#include "sdk/mi.h"
 
-void Mem_CopyBytes_Arm7(const void *src, void *dest, u32 size);
-void Alarm_Withdraw_Arm7(OSAlarm *alarm);
 WmspSlot *Wmsp_TakeFlaggedSlot(void);
 int func_arm7_027c6510(BOOL timedOut, u16 polledAgain);
 
@@ -55,7 +54,7 @@ void Wmsp_IndicateMpAck(WlMpAckIndication *ind)
     }
     status->mpWaitAckFlag = 0;
     wasPolled = status->unk_90;
-    Alarm_Withdraw_Arm7((OSAlarm *)status->unk_58); /* the MP ack alarm; wm.h types it as bytes */
+    Alarm_Withdraw_Arm7(&status->mpAckAlarm);
     Cpu_RestoreIrqBit_Arm7(irqState);
 
     polledAgain = TRUE;

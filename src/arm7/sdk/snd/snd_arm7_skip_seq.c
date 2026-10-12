@@ -4,8 +4,6 @@
 SndTrack *SndPlayer_GetTrack(SndPlayer *player, int trackIndex);
 void SndTrack_ReleaseChannels(SndTrack *track, SndPlayer *player, int release);
 void SndTrack_FreeChannels(SndTrack *track);
-void func_arm7_037feebc(void);
-void SND_StartIntervalTimer(void);
 BOOL SndPlayer_StepTracks(SndPlayer *player, BOOL doPeriodic);
 void SndPlayer_Stop(SndPlayer *player);
 
@@ -24,7 +22,7 @@ void SndArm7_SkipSeq(int playerNo, u32 ticks)
             SndTrack_FreeChannels(track);
         }
     }
-    func_arm7_037feebc();
+    SND_StopIntervalTimer();
     for (tick = 0; tick < ticks; tick++) {
         if (SndPlayer_StepTracks(player, FALSE)) {
             SndPlayer_Stop(player);

@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
+#include "sdk/mi.h"
 
-void Mem_FillHalfwords_Arm7(u16 data, void *dest, int size);
 void WifiFlash_ReadRadioBytes(u32 offset, u32 size, void *dest);
 
 /* Clears the RF settings and reads the RF chip type and entry format from firmware 0x40-0x43. */

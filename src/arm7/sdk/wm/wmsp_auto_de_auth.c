@@ -1,6 +1,6 @@
 #include "sdk/wmsp.h"
+#include "sdk/mi.h"
 
-void Mem_CopyBytes_Arm7(const void *src, void *dest, u32 size); /* copy bytes */
 u16 *func_arm7_027c2648(WlCommand *cmd, const void *src, int arg);
 
 /* Deauthenticates the station with the given MAC address (WL command 5,

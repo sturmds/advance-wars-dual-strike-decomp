@@ -2,7 +2,6 @@
 #include "sdk/os_arm7.h"
 
 extern AlarmList gOsiAlarmQueue_Arm7;
-void Alarm_StartTimer1ForDue_Arm7(OSAlarm *alarm);
 
 /* ARM7 copy of OS_CancelAlarm: takes a set alarm out of the queue. */
 void Alarm_Withdraw_Arm7(OSAlarm *alarm)

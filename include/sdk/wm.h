@@ -2,6 +2,7 @@
 #define SDK_WM_H
 
 #include "types.h"
+#include "sdk/os_common.h"
 
 /* WM flags in the system work area shared with the ARM7 (the field
  * OSSystemWork.wm_callback_control). */
@@ -415,8 +416,7 @@ typedef struct WMStatus {
     const void *unk_50;                /* WM_SetMPDataToPortEx refuses this buffer */
     u8 pad_54[2];
     u16 unk_56;                        /* MP ack deadline, in the wireless microsecond counter / 16 */
-    u8 unk_58[0xc];                    /* two words cleared by func_arm7_037fd424 */
-    u8 pad_64[0x20];
+    OSAlarm mpAckAlarm;
     u16 mpWaitAckFlag;                 /* nonzero while an MP ack is awaited */
     u16 mpReadyBitmap;                 /* the children that take part in MP */
     u16 unk_88;
@@ -473,7 +473,8 @@ typedef struct WMStatus {
     RadioOutboxList sendQueueFreeList;
     RadioOutboxList sendQueue[WIRELESS_URGENCY_LEVELS];
     RadioOutboxList readyQueue[WIRELESS_URGENCY_LEVELS];
-    u8 sendQueueMutex[0x18];           /* an OSMutex; wm.h does not include os.h */
+    OSMutex sendQueueMutex;
+    u8 pad_72c[4];
     u64 mpLastRecvTick[16];            /* tick of the last MP frame from each aid, bit 0 set */
     u64 unk_7b0;
 } WMStatus;

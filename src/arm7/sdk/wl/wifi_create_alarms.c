@@ -1,16 +1,14 @@
 #include "sdk/wl.h"
-
-u16 func_arm7_037fd434(void);
-void func_arm7_037fd424(OSAlarm *alarm);
+#include "sdk/os_arm7.h"
 
 void Wifi_CreateAlarms(void)
 {
     WlWork *work = WIFI_DRIVER_STATE;
 
-    if (!func_arm7_037fd434()) {
+    if (!Alarm_IsSetUp_Arm7()) {
         work->state.unk_12 |= 0x40;
     } else {
-        func_arm7_037fd424(&work->periodicAlarm);
-        func_arm7_037fd424(&work->oneShotAlarm);
+        Alarm_Clear_Arm7(&work->periodicAlarm);
+        Alarm_Clear_Arm7(&work->oneShotAlarm);
     }
 }

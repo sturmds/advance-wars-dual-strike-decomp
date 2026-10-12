@@ -8,7 +8,7 @@ extern OSHeapInfo *data_arm7_03807a54[];    /* heap info of each arena, by arena
  * the OSHeapInfo, then maxHeaps unused heap slots. Returns the first byte
  * after them, 32-byte aligned; heaps are made from there to end.
  */
-void *Heap_SetUpArenaTable_Arm7(OSArenaId id, void *start, void *end, s32 maxHeaps)
+void *Heap_SetUpArenaTable_Arm7(int id, void *start, void *end, s32 maxHeaps)
 {
     int irqState = Cpu_MaskIrq_Arm7();
     OSHeapInfo *info = start;

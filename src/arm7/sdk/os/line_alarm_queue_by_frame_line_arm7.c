@@ -2,8 +2,6 @@
 #include "sdk/os_arm7.h"
 
 extern OSVAlarmQueue gOsiVAlarmQueue_Arm7;
-void LineAlarm_ProgramVcountIrq_Arm7(OSVAlarm *alarm);
-void LineAlarm_PushTail_Arm7(OSVAlarm *alarm);
 
 /*
  * Puts the alarm in the V-alarm queue by frame, then line, after alarms that

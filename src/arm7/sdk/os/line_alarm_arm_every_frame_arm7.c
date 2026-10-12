@@ -3,7 +3,6 @@
 #include "sdk/gx.h"
 
 s32 func_arm7_037fd530(s32 vcount);
-void LineAlarm_QueueByFrameLine_Arm7(OSVAlarm *alarm);
 
 /*
  * The handler runs every frame when VCOUNT reaches line, up to delay lines

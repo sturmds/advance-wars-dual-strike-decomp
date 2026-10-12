@@ -32,7 +32,6 @@
  */
 #define OS7_IRQ_CHECK_FLAGS (*(vu32 *)0x0380fff8)
 
-OSTick Tick_Read64_Arm7(void);
 
 /* Saved CPU registers of a thread. */
 typedef struct OSContext {
@@ -58,6 +57,61 @@ struct OSThread {
     u32 stackWarningOffset;
     OSThreadQueue joinQueue;
 };
+
+void Context_PrepareForEntry_Arm7(OSContext *context, u32 pc, u32 sp);
+void Mutex_Clear_Arm7(OSMutex *mutex);
+
+/*
+ * Arenas and heaps. id is an OSArenaId, passed as int: enums take one byte
+ * here, and callers pass the id without masking it. A negative heap
+ * argument means the arena's current heap.
+ */
+void Arena_ApplyDefaults_Arm7(void);
+void *Arena_DefaultLowEnd_Arm7(int id);
+void *Arena_DefaultHighEnd_Arm7(int id);
+void *Arena_LowEnd_Arm7(int id);
+void *Arena_HighEnd_Arm7(int id);
+void Arena_SetLowEnd_Arm7(int id, void *lo);
+void Arena_SetHighEnd_Arm7(int id, void *hi);
+void *Heap_SetUpArenaTable_Arm7(int id, void *start, void *end, s32 maxHeaps);
+s32 Heap_CarveFromRange_Arm7(int id, void *start, void *end);
+s32 Heap_SelectDefault_Arm7(int id, s32 heap);
+void *Heap_TakeFirstFit_Arm7(int id, s32 heap, s32 size);
+void Heap_ReturnBlock_Arm7(int id, s32 heap, void *ptr);
+s32 Heap_VerifyAndCountFree_Arm7(int id, s32 heap);
+
+/* Tick (timer 0) and alarms (timer 1). */
+void Tick_StartTimer0_Arm7(void);
+OSTick Tick_Read64_Arm7(void);
+BOOL Tick_IsRunning_Arm7(void);
+void Tick_OnTimer0Overflow_Arm7(void *arg);
+void Timer_MarkInUse_Arm7(int timer);
+void Alarm_SetUpTimer1Queue_Arm7(void);
+BOOL Alarm_IsSetUp_Arm7(void);
+void Alarm_Clear_Arm7(OSAlarm *alarm);
+void Alarm_ArmOneShot_Arm7(OSAlarm *alarm, OSTick delay, OSAlarmHandler handler, void *arg);
+void Alarm_ArmRepeating_Arm7(OSAlarm *alarm, OSTick start, OSTick period, OSAlarmHandler handler, void *arg);
+void Alarm_Withdraw_Arm7(OSAlarm *alarm);
+void Alarm_QueueByFireTime_Arm7(OSAlarm *alarm, OSTick fire);
+void Alarm_StartTimer1ForDue_Arm7(OSAlarm *alarm);
+void Alarm_FireDueAndRearm_Arm7(void);
+void Alarm_OnTimer1Irq_Arm7(void *arg);
+
+/* V-count alarms. */
+void LineAlarm_SetUpQueue_Arm7(void);
+BOOL LineAlarm_IsSetUp_Arm7(void);
+void LineAlarm_Clear_Arm7(OSVAlarm *alarm);
+void LineAlarm_ArmOneShot_Arm7(OSVAlarm *alarm, s16 line, s16 delay, OSVAlarmHandler handler, void *arg);
+void LineAlarm_ArmEveryFrame_Arm7(OSVAlarm *alarm, s16 line, s16 delay, OSVAlarmHandler handler, void *arg);
+void LineAlarm_AssignTag_Arm7(OSVAlarm *alarm, u32 tag);
+void LineAlarm_Withdraw_Arm7(OSVAlarm *alarm);
+void LineAlarm_WithdrawTagged_Arm7(u32 tag);
+void LineAlarm_OnVcountIrq_Arm7(void);
+void LineAlarm_QueueByFrameLine_Arm7(OSVAlarm *alarm);
+void LineAlarm_PushTail_Arm7(OSVAlarm *alarm);
+void LineAlarm_Unlink_Arm7(OSVAlarm *alarm);
+void LineAlarm_ProgramVcountIrq_Arm7(OSVAlarm *alarm);
+int LineAlarm_ClassifyTiming_Arm7(OSVAlarm *alarm, s32 frame, s32 vcount);
 
 /* Interrupts. The mask functions return the previous value of the register they change. */
 void Irq_ResetWakeMaskAndFrames_Arm7(void);

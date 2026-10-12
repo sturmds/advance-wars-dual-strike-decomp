@@ -1,4 +1,5 @@
 #include "sdk/wmsp.h"
+#include "sdk/mi.h"
 
 u16 *func_arm7_027c1ea0(WlCommand *cmd);
 u16 *func_arm7_027c1ed0(WlCommand *cmd);
@@ -9,7 +10,6 @@ u16 *func_arm7_027c2124(WlCommand *cmd, u16 arg0, u16 arg1, u16 arg2);
 u16 *func_arm7_027c2064(WlCommand *cmd, u16 arg);
 void WMSP_InitConfigRegisters(void);
 u16 PickWirelessChannels(u16 value);
-void Mem_CopyBytes_Arm7(const void *src, void *dest, u32 size); /* copy bytes */
 
 /* Runs the WL start-up commands and reads the usable channels, the firmware
    versions and the MAC address into WMStatus. On a failed command, returns

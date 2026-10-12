@@ -1,6 +1,6 @@
 #include "sdk/wmsp.h"
+#include "sdk/os_arm7.h"
 
-void LineAlarm_Withdraw_Arm7(OSVAlarm *alarm);
 void Wmsp_SetNormalThreadPriorities(void);
 u16 *func_arm7_027c224c(WlCommand *cmd, u16 arg);
 void func_arm7_027c632c(int aidBitmap);
@@ -29,7 +29,7 @@ void WMSP_EndMP(void)
         wasRunning = TRUE;
     }
     status->mpFlag = 0;
-    LineAlarm_Withdraw_Arm7((OSVAlarm *)work->buf->unk_d0);
+    LineAlarm_Withdraw_Arm7(&work->buf->vAlarm);
     Wmsp_SetNormalThreadPriorities();
     if (status->state == WM_STATE_MP_CHILD) {
         status->state = WM_STATE_CHILD;

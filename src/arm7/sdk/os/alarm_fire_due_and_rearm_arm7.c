@@ -2,8 +2,6 @@
 #include "sdk/os_arm7.h"
 
 extern AlarmList gOsiAlarmQueue_Arm7;
-void Alarm_StartTimer1ForDue_Arm7(OSAlarm *alarm);
-void Alarm_QueueByFireTime_Arm7(OSAlarm *alarm, OSTick fire);
 
 /*
  * Runs on timer 1: stops the timer, fires the first alarm if it is due,

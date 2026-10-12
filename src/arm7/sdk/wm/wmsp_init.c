@@ -18,8 +18,6 @@ extern OSThread data_arm7_03807424;
 /* Bottom of the first thread's stack and top of the second's. */
 extern u8 data_arm7_027d7d3c[];
 
-void func_arm7_037fc6b0(OSMutex *mutex);
-void Thread_Spawn_Arm7(OSThread *thread, void (*func)(void *), void *arg, void *stackTop, u32 stackSize, u32 priority);
 void Wmsp_ReceiveRequest(int tag, WmspRequest *request, BOOL error);
 void func_arm7_027c1c5c(void *arg);
 void func_arm7_027c1cf8(void *arg);
@@ -47,7 +45,7 @@ void Wmsp_Init(Unk_arm7_038057d4 *params, Unk_arm7_038057d4_2 *priorities)
     data_arm7_027d7c44.threadPriority[1][0] = priorities->unk_04;
     data_arm7_027d7c44.threadPriority[1][1] = priorities->unk_14;
     data_arm7_027d7c44.threadPriority[1][2] = priorities->unk_0c;
-    func_arm7_037fc6b0(&data_arm7_027d813c);
+    Mutex_Clear_Arm7(&data_arm7_027d813c);
 
     /* The reply mutex starts where this 0x400-byte stack ends, so the thread gets its address as stack top. */
     Thread_Spawn_Arm7(&data_arm7_0380749c, func_arm7_027c1c5c, NULL, &data_arm7_027d813c, 0x400,

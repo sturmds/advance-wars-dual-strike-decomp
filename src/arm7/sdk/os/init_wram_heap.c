@@ -2,41 +2,27 @@
 #include "sdk/os_arm7.h"
 #include "sdk/mi.h"
 
-/* The last of the nine arena slots (low ends at 0x027ffda0, high ends at
-   0x027ffdc4): ARM7 private WRAM in arena id order. */
-#define ARENA_WRAM_SUB_PRIVATE 8
-
-/* Arena and heap calls, roles guessed from their arguments and the SDK
-   layout; their own files still take and return addresses as int. */
-void func_arm7_037fc6fc(int arena, int lo);     /* set arena low end */
-int func_arm7_037fc7ec(int arena);              /* arena low end */
-int func_arm7_037fc800(int arena);              /* arena high end */
-void Heap_VerifyAndCountFree_Arm7(int arena, int heap);
-int Heap_CarveFromRange_Arm7(int arena, int lo, int hi);              /* create heap */
-int Heap_SetUpArenaTable_Arm7(int arena, int lo, int hi, int maxHeaps); /* init allocator */
-void Heap_SelectDefault_Arm7(int arena, int heap);   /* set current heap */
-
 /*
  * Sets up the allocator in the ARM7 private WRAM arena with room for one
  * heap, clears the rest of the arena, makes one heap over it and selects
  * it. Halts if the heap cannot be made. Returns the heap handle.
  */
-int InitWramHeap(void)
+s32 InitWramHeap(void)
 {
-    int hi;
-    int lo;
-    int heap;
+    void *hi;
+    void *lo;
+    s32 heap;
 
-    hi = func_arm7_037fc800(ARENA_WRAM_SUB_PRIVATE);
-    lo = Heap_SetUpArenaTable_Arm7(ARENA_WRAM_SUB_PRIVATE, func_arm7_037fc7ec(ARENA_WRAM_SUB_PRIVATE), hi, 1);
-    Mem_FillBytes_Arm7((void *)lo, 0, func_arm7_037fc800(ARENA_WRAM_SUB_PRIVATE) - lo);
-    func_arm7_037fc6fc(ARENA_WRAM_SUB_PRIVATE, lo);
-    hi = func_arm7_037fc800(ARENA_WRAM_SUB_PRIVATE);
-    heap = Heap_CarveFromRange_Arm7(ARENA_WRAM_SUB_PRIVATE, func_arm7_037fc7ec(ARENA_WRAM_SUB_PRIVATE), hi);
+    hi = Arena_HighEnd_Arm7(OS_ARENA_WRAM_SUBPRIV);
+    lo = Heap_SetUpArenaTable_Arm7(OS_ARENA_WRAM_SUBPRIV, Arena_LowEnd_Arm7(OS_ARENA_WRAM_SUBPRIV), hi, 1);
+    Mem_FillBytes_Arm7(lo, 0, (u32)Arena_HighEnd_Arm7(OS_ARENA_WRAM_SUBPRIV) - (u32)lo);
+    Arena_SetLowEnd_Arm7(OS_ARENA_WRAM_SUBPRIV, lo);
+    hi = Arena_HighEnd_Arm7(OS_ARENA_WRAM_SUBPRIV);
+    heap = Heap_CarveFromRange_Arm7(OS_ARENA_WRAM_SUBPRIV, Arena_LowEnd_Arm7(OS_ARENA_WRAM_SUBPRIV), hi);
     if (heap < 0) {
         Cpu_HaltForever_Arm7();
     }
-    Heap_SelectDefault_Arm7(ARENA_WRAM_SUB_PRIVATE, heap);
-    Heap_VerifyAndCountFree_Arm7(ARENA_WRAM_SUB_PRIVATE, heap);
+    Heap_SelectDefault_Arm7(OS_ARENA_WRAM_SUBPRIV, heap);
+    Heap_VerifyAndCountFree_Arm7(OS_ARENA_WRAM_SUBPRIV, heap);
     return heap;
 }

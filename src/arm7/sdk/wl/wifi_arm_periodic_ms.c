@@ -1,7 +1,5 @@
 #include "sdk/wl.h"
-
-void Alarm_Withdraw_Arm7(OSAlarm *alarm);
-void Alarm_ArmRepeating_Arm7(OSAlarm *alarm, OSTick start, OSTick period, OSAlarmHandler handler, void *arg);
+#include "sdk/os_arm7.h"
 
 void Wifi_ArmPeriodicMs(u32 milliseconds, OSAlarmHandler handler)
 {

@@ -1,7 +1,5 @@
 #include "sdk/wl.h"
-
-void Alarm_Withdraw_Arm7(OSAlarm *alarm);
-void Alarm_ArmOneShot_Arm7(OSAlarm *alarm, OSTick delay, OSAlarmHandler handler, void *arg);
+#include "sdk/os_arm7.h"
 
 void Wifi_ArmOneShotMs(u32 milliseconds, OSAlarmHandler handler)
 {

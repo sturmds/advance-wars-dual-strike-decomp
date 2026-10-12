@@ -156,6 +156,14 @@ typedef enum OSArenaId {
     OS_ARENA_WRAM_SUBPRIV = 8      /* ARM7's own WRAM */
 } OSArenaId;
 
+/* Arena bounds, indexed by OSArenaId, in shared main RAM. */
+typedef struct OSArenaInfo {
+    void *lo[9];
+    void *hi[9];
+} OSArenaInfo;
+
+#define ARENA_BOUNDS_TABLE ((OSArenaInfo *)0x027ffda0)
+
 /*
  * OS heaps carved out of an arena. Each block, used or free, starts with an
  * HeapBlockHeader header padded to HEAP_BLOCK_HEADER_BYTES; sizes include the header

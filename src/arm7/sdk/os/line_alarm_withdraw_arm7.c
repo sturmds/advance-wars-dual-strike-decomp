@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
 
-void LineAlarm_Unlink_Arm7(OSVAlarm *alarm);
-
 /*
  * Takes a V-count alarm out of the queue if it is set. Marks it canceled
  * either way, so a periodic alarm whose handler is running is not set again.

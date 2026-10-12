@@ -1,9 +1,8 @@
 #include "types.h"
 #include "sdk/wl.h"
+#include "sdk/os_arm7.h"
 
 #define WIFI_MSG_BUFFER_HEAD_BYTES 12
-
-void *Heap_TakeFirstFit_Arm7(s32 id, s32 heap, s32 size);
 
 /* Allocates a buffer with size bytes of payload and adds it to a list. NULL if size is 0 or nothing is left. */
 WlBuffer *WifiBuffer_New(WlBufferList *list, int size)

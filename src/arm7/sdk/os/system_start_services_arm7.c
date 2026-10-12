@@ -3,10 +3,6 @@
 #include "sdk/pxi.h"
 #include "sdk/ctrdg.h"
 
-void Arena_ApplyDefaults_Arm7(void);
-void Tick_StartTimer0_Arm7(void);
-void Alarm_SetUpTimer1Queue_Arm7(void);
-
 void System_StartServices_Arm7(void)
 {
     Arena_ApplyDefaults_Arm7();

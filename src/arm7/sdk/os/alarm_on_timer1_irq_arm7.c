@@ -1,6 +1,5 @@
 #include "types.h"
-
-void Alarm_FireDueAndRearm_Arm7(void);
+#include "sdk/os_arm7.h"
 
 /*
  * Timer 1 interrupt handler of the alarm system. Kept as asm: from C the

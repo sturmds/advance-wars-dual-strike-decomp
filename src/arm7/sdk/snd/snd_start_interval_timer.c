@@ -1,7 +1,6 @@
 #include "sdk/os_arm7.h"
 #include "sdk/snd.h"
 
-void Alarm_ArmRepeating_Arm7(OSAlarm *alarm, OSTick start, OSTick period, OSAlarmHandler handler, void *arg);
 void SndDrv_OnIntervalAlarm(void *arg);
 
 /* Ticks between driver updates: 2728 * 64 / 33.5 MHz, about 5.2 ms. */

@@ -5,10 +5,6 @@
 #define WIFI_TASKQ_LOCK_IRQS 0x01000010
 #define WIFI_TASK_LEVEL_IDLE 3
 
-BOOL MsgQueue_PushBack_Arm7(OSMessageQueue *queue, OSMessage message, int flags); /* OS_SendMessage */
-u32 Irq_ClearEnableBits_Arm7(u32 mask); /* ARM7 OS_DisableIrqMask */
-u32 Irq_SetEnableBits_Arm7(u32 mask); /* ARM7 OS_EnableIrqMask */
-
 /* Puts a task at the back of its priority queue, unless it is queued already. */
 void WifiTask_Schedule(int priority, int task)
 {

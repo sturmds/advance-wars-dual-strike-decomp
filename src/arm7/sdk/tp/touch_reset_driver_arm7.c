@@ -4,11 +4,6 @@
 
 #define TOUCH_START_STABILITY_RANGE 20
 
-u16 func_arm7_037fdaf4(void);                    /* V alarms set up? */
-void LineAlarm_SetUpQueue_Arm7(void);                   /* set up V alarms */
-void func_arm7_037fd9dc(OSVAlarm *alarm);        /* clear an alarm */
-void LineAlarm_AssignTag_Arm7(OSVAlarm *alarm, u32 tag);
-
 /* Resets the ARM7 touch panel driver, prepares its auto sampling alarms and
  * leaves the controller ready to report the pen. */
 void Touch_ResetDriver_Arm7(void)
@@ -22,11 +17,11 @@ void Touch_ResetDriver_Arm7(void)
         tpWork.command[i] = 0;
     }
 
-    if (!func_arm7_037fdaf4()) {
+    if (!LineAlarm_IsSetUp_Arm7()) {
         LineAlarm_SetUpQueue_Arm7();
     }
     for (i = 0; i < TOUCH_MAX_SAMPLES_PER_FRAME; i++) {
-        func_arm7_037fd9dc(&tpWork.vAlarm[i]);
+        LineAlarm_Clear_Arm7(&tpWork.vAlarm[i]);
         LineAlarm_AssignTag_Arm7(&tpWork.vAlarm[i], TOUCH_LINE_ALARM_ID);
     }
 

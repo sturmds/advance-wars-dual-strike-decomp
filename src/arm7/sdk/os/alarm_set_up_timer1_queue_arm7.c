@@ -3,7 +3,6 @@
 
 extern u16 data_arm7_03807a8c;
 extern AlarmList gOsiAlarmQueue_Arm7;
-void Timer_MarkInUse_Arm7(int timer);
 
 /*
  * ARM7 copy of OS_InitAlarm. Once only: reserves timer 1, empties the alarm

@@ -2,9 +2,8 @@
 #include "sdk/os_arm7.h"
 #include "sdk/wm.h"
 #include "sdk/wmsp.h"
+#include "sdk/mi.h"
 
-void Mem_FillHalfwords_Arm7(u16 data, void *dest, u32 size);
-void Mem_CopyBytes_Arm7(const void *src, void *dest, u32 size);
 WmspSlot *Wmsp_TakeFlaggedSlot(void);
 
 /*

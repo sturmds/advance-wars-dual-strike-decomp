@@ -1,10 +1,8 @@
 #include "types.h"
 #include "sdk/wl.h"
+#include "sdk/os_arm7.h"
 
 #define WIFI_LIST_LOCK_IRQS 0x01000000
-
-u32 Irq_ClearEnableBits_Arm7(u32 mask); /* ARM7 OS_DisableIrqMask */
-u32 Irq_SetEnableBits_Arm7(u32 mask); /* ARM7 OS_EnableIrqMask */
 
 /* Takes a buffer out of a list. Returns 1 if it is not a WL buffer, 2 if it is in another list, else 0. */
 int WifiBufList_Unlink(WlBufferList *list, WlBuffer *buffer)

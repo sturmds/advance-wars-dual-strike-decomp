@@ -1,6 +1,6 @@
 #include "sdk/wmsp.h"
+#include "sdk/mi.h"
 
-void Mem_CopyBytes_Arm7(const void *src, void *dest, u32 size);
 u16 *func_arm7_027c2190(WlCommand *cmd, u16 arg);
 void WMSP_ReplySetWepKeyFailed(u16 wlCmdID, u16 wlResult);
 

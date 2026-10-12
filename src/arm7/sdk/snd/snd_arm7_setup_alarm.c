@@ -1,6 +1,5 @@
 #include "sdk/snd.h"
-
-void Alarm_Withdraw_Arm7(void *alarm);
+#include "sdk/os_arm7.h"
 
 void SndArm7_SetupAlarm(int alarmNo, u64 start, u64 period, int tag)
 {

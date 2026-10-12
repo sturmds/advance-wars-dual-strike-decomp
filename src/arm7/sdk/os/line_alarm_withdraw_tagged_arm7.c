@@ -2,7 +2,6 @@
 #include "sdk/os_arm7.h"
 
 extern OSVAlarmQueue gOsiVAlarmQueue_Arm7;
-void LineAlarm_Withdraw_Arm7(OSVAlarm *alarm);
 
 /* Cancels every set V-count alarm with this tag. Stops the system if tag is 0. */
 void LineAlarm_WithdrawTagged_Arm7(u32 tag)

@@ -8,7 +8,7 @@
 
 void func_arm7_027d5a24(int a0);
 void UserSettings_LoadFromFlash(void);
-int InitWramHeap(void);
+s32 InitWramHeap(void);
 BOOL func_arm7_037fe45c(void);
 void Sound_StartDriver_Arm7(int a0);
 void FileSys_SetUpOnce_Arm7(u32 dmaNo);

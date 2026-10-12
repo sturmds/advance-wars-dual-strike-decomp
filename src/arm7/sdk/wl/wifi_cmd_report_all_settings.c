@@ -1,7 +1,7 @@
 #include "sdk/wl.h"
+#include "sdk/mi.h"
 
 void func_arm7_027c90ec(u16 *dst, u16 *src);
-void Mem_CopyHalfwords_Arm7(const void *src, void *dest, int size);
 
 int WifiCmd_ReportAllSettings(WlRequest *request, WlStatusReply *reply)
 {

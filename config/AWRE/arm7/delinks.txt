@@ -1664,7 +1664,7 @@ src/arm7/sdk/os/thread_first_free_id_arm7.c:
     complete
     .text       start:0x037fc23c end:0x037fc270
 
-src/arm7/sdk/func_arm7_037fc270.c:
+src/arm7/sdk/os/context_prepare_for_entry_arm7.c:
     complete
     .text       start:0x037fc270 end:0x037fc2d4
 
@@ -1716,7 +1716,7 @@ src/arm7/sdk/os/mutex_take_arm7.c:
     complete
     .text       start:0x037fc624 end:0x037fc6b0
 
-src/arm7/sdk/func_arm7_037fc6b0.c:
+src/arm7/sdk/os/mutex_clear_arm7.c:
     complete
     .text       start:0x037fc6b0 end:0x037fc6c4
 
@@ -1724,11 +1724,11 @@ src/arm7/sdk/os/system_start_services_arm7.c:
     complete
     .text       start:0x037fc6c4 end:0x037fc6fc
 
-src/arm7/sdk/func_arm7_037fc6fc.c:
+src/arm7/sdk/os/arena_set_low_end_arm7.c:
     complete
     .text       start:0x037fc6fc end:0x037fc710
 
-src/arm7/sdk/func_arm7_037fc710.c:
+src/arm7/sdk/os/arena_set_high_end_arm7.c:
     complete
     .text       start:0x037fc710 end:0x037fc724
 
@@ -1740,11 +1740,11 @@ src/arm7/sdk/os/arena_default_high_end_arm7.c:
     complete
     .text       start:0x037fc77c end:0x037fc7ec
 
-src/arm7/sdk/func_arm7_037fc7ec.c:
+src/arm7/sdk/os/arena_low_end_arm7.c:
     complete
     .text       start:0x037fc7ec end:0x037fc800
 
-src/arm7/sdk/func_arm7_037fc800.c:
+src/arm7/sdk/os/arena_high_end_arm7.c:
     complete
     .text       start:0x037fc800 end:0x037fc814
 
@@ -1800,7 +1800,7 @@ src/arm7/sdk/os/tick_on_timer0_overflow_arm7.c:
     complete
     .text       start:0x037fcf38 end:0x037fcfc0
 
-src/arm7/sdk/func_arm7_037fcfc0.c:
+src/arm7/sdk/os/tick_is_running_arm7.c:
     complete
     .text       start:0x037fcfc0 end:0x037fcfd0
 
@@ -1832,11 +1832,11 @@ src/arm7/sdk/os/alarm_queue_by_fire_time_arm7.c:
     complete
     .text       start:0x037fd2f4 end:0x037fd424
 
-src/arm7/sdk/func_arm7_037fd424.c:
+src/arm7/sdk/os/alarm_clear_arm7.c:
     complete
     .text       start:0x037fd424 end:0x037fd434
 
-src/arm7/sdk/func_arm7_037fd434.c:
+src/arm7/sdk/os/alarm_is_set_up_arm7.c:
     complete
     .text       start:0x037fd434 end:0x037fd444
 
@@ -1884,7 +1884,7 @@ src/arm7/sdk/os/line_alarm_arm_one_shot_arm7.c:
     complete
     .text       start:0x037fd944 end:0x037fd9dc
 
-src/arm7/sdk/func_arm7_037fd9dc.c:
+src/arm7/sdk/os/line_alarm_clear_arm7.c:
     complete
     .text       start:0x037fd9dc end:0x037fd9f0
 
@@ -1900,7 +1900,7 @@ src/arm7/sdk/os/line_alarm_queue_by_frame_line_arm7.c:
     complete
     .text       start:0x037fda6c end:0x037fdaf4
 
-src/arm7/sdk/func_arm7_037fdaf4.c:
+src/arm7/sdk/os/line_alarm_is_set_up_arm7.c:
     complete
     .text       start:0x037fdaf4 end:0x037fdb04
 
@@ -2176,7 +2176,7 @@ src/arm7/sdk/snd/snd_wait_for_interval_timer.c:
     complete
     .text       start:0x037fee90 end:0x037feebc
 
-src/arm7/sdk/func_arm7_037feebc.c:
+src/arm7/sdk/snd/snd_stop_interval_timer.c:
     complete
     .text       start:0x037feebc end:0x037feed0
 
