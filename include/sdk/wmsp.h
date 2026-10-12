@@ -15,6 +15,7 @@
 
 #define WMSP_SLOT_COUNT 32
 #define WMSP_SLOT_FLAG 0x8000
+#define WMSP_WL_BUF_WORDS 128          /* a request handler's WL command buffer on the stack */
 
 typedef struct WmspSlot {
     u32 flags;
