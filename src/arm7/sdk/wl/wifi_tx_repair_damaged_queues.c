@@ -2,7 +2,7 @@
 
 void WifiTx_ResendQueueHead(WlTxQueue *queue);
 void WifiTx_HaltAndSettle(void);
-BOOL func_arm7_027c8284(WlTxQueue *queue);
+BOOL WifiTx_RestoreGuardWords(WlTxQueue *queue);
 void WifiTx_BuildPsPoll(u32 aid);
 void func_arm7_027cfd48(void);
 
@@ -20,17 +20,17 @@ void WifiTx_RepairDamagedQueues(void)
 
     switch (work->state.unk_24) {
     case 1:
-        if (func_arm7_027c8284(&queues[6])) {
+        if (WifiTx_RestoreGuardWords(&queues[6])) {
             WifiTx_HaltAndSettle();
             func_arm7_027cfd48();
         }
-        if (func_arm7_027c8284(&queues[2])) {
+        if (WifiTx_RestoreGuardWords(&queues[2])) {
             WifiTx_ResendQueueHead(&queues[2]);
         }
         break;
     case 2:
-        func_arm7_027c8284(&queues[5]);
-        if (func_arm7_027c8284(&queues[2])) {
+        WifiTx_RestoreGuardWords(&queues[5]);
+        if (WifiTx_RestoreGuardWords(&queues[2])) {
             if (queues[2].busy != 0) {
                 WifiTx_HaltAndSettle();
             }
@@ -41,10 +41,10 @@ void WifiTx_RepairDamagedQueues(void)
     case 3: /* needed to match: the original compares with 3 */
         break;
     }
-    if (func_arm7_027c8284(&queues[1])) {
+    if (WifiTx_RestoreGuardWords(&queues[1])) {
         WifiTx_ResendQueueHead(&queues[1]);
     }
-    if (func_arm7_027c8284(&queues[0])) {
+    if (WifiTx_RestoreGuardWords(&queues[0])) {
         WifiTx_ResendQueueHead(&queues[0]);
     }
     if (WIFI_MAC_RUN == 0) {
