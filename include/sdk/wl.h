@@ -102,6 +102,18 @@ typedef struct WlParamsRequest {
     u16 value06;
 } WlParamsRequest;
 
+// Reply of WifiCmd_ReportFirmwareInfo.
+typedef struct WlVersionReply {
+    u16 unk_00;
+    u16 status;
+    u16 unk_04;
+    char version[8]; /* "2.39.00" */
+    u16 chipId;      /* WIFI_MAC_REGISTER(0x000) */
+    u16 bbChipId;    /* baseband register 0 */
+    u16 bbCrc;       /* WifiBaseband_ChecksumStartValues */
+    u16 rfType;
+} WlVersionReply;
+
 // Request of WifiCmd_RunRadioTest.
 typedef struct WlTestModeRequest {
     u8 pad_00[0x10];
