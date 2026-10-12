@@ -23516,6 +23516,10 @@ src/sdk/runtime/dflt.c:
     complete
     .text       start:0x02126024 end:0x02126064
 
+src/sdk/runtime/_dmul.c:
+    complete
+    .text       start:0x02126064 end:0x0212676c
+
 src/sdk/runtime/_dsub.c:
     complete
     .text       start:0x0212676c end:0x02126cd4

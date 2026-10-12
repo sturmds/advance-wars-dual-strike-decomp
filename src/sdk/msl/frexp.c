@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/msl.h"
 
-double func_02126064(double a, double b);
+double _dmul(double a, double b);
 
 double frexp(double x, int *exponent)
 {
@@ -14,8 +14,8 @@ double frexp(double x, int *exponent)
         return x;
     }
     if (highAbs < 0x00100000) {
-        /* Subnormal: scale by 2^54 (func_02126064 is the double multiply) and note it in the exponent. */
-        x = func_02126064(x, 18014398509481984.0);
+        /* Subnormal: scale by 2^54 and note it in the exponent. */
+        x = _dmul(x, 18014398509481984.0);
         high = ((int *)&x)[1];
         highAbs = high & 0x7FFFFFFF;
         *exponent = -54;

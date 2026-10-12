@@ -2,7 +2,7 @@
 #include "sdk/msl.h"
 
 /* Double multiply of the soft-float runtime. */
-double func_02126064(double a, double b);
+double _dmul(double a, double b);
 
 #define HUGE 1.0e300
 #define TINY 1.0e-300
@@ -28,11 +28,11 @@ double ldexp(double x, int n)
             return x;
         }
         /* Subnormal: normalise first. Needed to match: the cast makes the compiler reload x from the stack. */
-        x = func_02126064(*(double *)&x, TWO_POW_54);
+        x = _dmul(*(double *)&x, TWO_POW_54);
         hx = ((int *)&x)[1];
         k = ((hx & 0x7FF00000) >> 20) - 54;
         if (n < -50000) {
-            return func_02126064(TINY, x);
+            return _dmul(TINY, x);
         }
     }
     if (k == 0x7FF) {
@@ -40,7 +40,7 @@ double ldexp(double x, int n)
     }
     k = k + n;
     if (k > 0x7FE) { /* overflow */
-        return func_02126064(HUGE, copysign(HUGE, x));
+        return _dmul(HUGE, copysign(HUGE, x));
     }
     if (k > 0) {
         ((int *)&x)[1] = (hx & 0x800FFFFF) | (k << 20);
@@ -49,13 +49,13 @@ double ldexp(double x, int n)
     if (k <= -54) {
         /* n > 50000 means k + n wrapped around */
         if (n > 50000) {
-            return func_02126064(HUGE, copysign(HUGE, x));
+            return _dmul(HUGE, copysign(HUGE, x));
         } else {
-            return func_02126064(TINY, copysign(TINY, x));
+            return _dmul(TINY, copysign(TINY, x));
         }
     }
     /* subnormal result */
     k += 54;
     ((int *)&x)[1] = (hx & 0x800FFFFF) | (k << 20);
-    return func_02126064(TWO_POW_MINUS_54, x);
+    return _dmul(TWO_POW_MINUS_54, x);
 }

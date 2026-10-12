@@ -5916,7 +5916,6 @@ _dfix kind:function(arm,size=0x144) addr:0x02125d30
 _ll_ufrom_d kind:function(arm,size=0x16c) addr:0x02125e7c
 _dfltu kind:function(arm,size=0x3c) addr:0x02125fe8
 _dflt kind:function(arm,size=0x40) addr:0x02126024
-func_02126064 kind:function(arm,size=0x2dc) addr:0x02126064
 _dsub kind:function(arm,size=0x10) addr:0x0212676c
 _fadd kind:function(arm,size=0x460) addr:0x02126cd4
 func_02127134 kind:function(arm,size=0x44) addr:0x02127134
@@ -9168,3 +9167,5 @@ FCmp_CallTrap kind:function(arm,size=0x14) addr:0x02127c6c
 DCmp_CallTrap kind:function(arm,size=0x20) addr:0x02127c80
 __dadd_same_sign kind:function(arm,size=0x58c) addr:0x021257a4
 __dsub_same_sign kind:function(arm,size=0x558) addr:0x0212677c
+_dmul kind:function(arm,size=0x6f0) addr:0x02126064
+_drsb kind:label(arm) addr:0x02126754
