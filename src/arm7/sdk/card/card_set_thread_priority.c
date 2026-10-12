@@ -2,10 +2,10 @@
 #pragma opt_propagation off
 #include "types.h"
 #include "sdk/card_arm7.h"
+#include "sdk/os_arm7.h"
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
-void Thread_Reprioritize_Arm7(void *thread, u32 priority);
 
 /* Sets the card thread's priority and returns the old one. */
 u32 CARD_SetThreadPriority(u32 priority)

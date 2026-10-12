@@ -4,8 +4,6 @@
 
 extern OSMessageQueue data_arm7_027d6ca8;
 
-BOOL func_arm7_037fc44c(OSMessageQueue *queue, void *message, int flags);
-
 void Wmsp_ReceiveRequest(int tag, WmspRequest *request, BOOL error)
 {
     WmspReply *reply;
@@ -13,7 +11,7 @@ void Wmsp_ReceiveRequest(int tag, WmspRequest *request, BOOL error)
     if (error) {
         return;
     }
-    if (func_arm7_037fc44c(&data_arm7_027d6ca8, request, 0)) {
+    if (MsgQueue_PushBack_Arm7(&data_arm7_027d6ca8, request, 0)) {
         return;
     }
     if (data_arm7_027d7c44.buf == NULL) {

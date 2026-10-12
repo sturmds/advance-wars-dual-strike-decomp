@@ -6,7 +6,7 @@
  * r0 to r12, sp and lr into context, plus the supervisor sp. Like setjmp,
  * it returns 0 now and 1 when the saved context is loaded later.
  */
-asm int func_arm7_037fc2d4(OSContext *context)
+asm int Context_Capture_Arm7(OSContext *context)
 {
     add r1, r0, #0
     mrs r2, CPSR

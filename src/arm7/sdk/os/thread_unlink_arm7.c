@@ -3,7 +3,7 @@
 
 extern OSThreadInfo data_arm7_0380790c;
 
-void func_arm7_037fc18c(OSThread *thread)
+void Thread_Unlink_Arm7(OSThread *thread)
 {
     OSThread *cur = data_arm7_0380790c.list;
     OSThread *prev = NULL;

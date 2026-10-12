@@ -1,5 +1,6 @@
 #include "sdk/pad.h"
 #include "sdk/rtc.h"
+#include "sdk/os_arm7.h"
 
 extern u16 data_arm7_027d81ac;
 
@@ -12,9 +13,6 @@ void func_arm7_027d58e8(u32 tag, u32 data, BOOL err);
  * FIFO init func_arm7_037fe304, which takes none. */
 void func_arm7_037fe0a0(void);
 void func_arm7_037fe298(u32 tag, void (*callback)(u32 tag, u32 data, BOOL err));
-void func_arm7_037fc4e0(OSMessageQueue *queue, int buffer, int count); /* the definition types the buffer as int */
-void Thread_Spawn_Arm7(OSThread *thread, void (*func)(void *), void *arg, void *stackTop, u32 stackSize, u32 priority);
-void Thread_MakeReady_Arm7(OSThread *thread);
 void func_arm7_037fe3fc(u16 mask, u16 value);
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
@@ -40,7 +38,7 @@ void func_arm7_027d5a24(u32 priority)
 
     func_arm7_037fe0a0();
     func_arm7_037fe298(PXI_FIFO_TAG_RTC, func_arm7_027d58e8);
-    func_arm7_037fc4e0(&data_arm7_027d81b0.queue, (int)data_arm7_027d81b0.messages, 4);
+    MsgQueue_SetUpRing_Arm7(&data_arm7_027d81b0.queue, data_arm7_027d81b0.messages, 4);
     Thread_Spawn_Arm7(&data_arm7_027d81b0.thread, func_arm7_027d53f4, NULL,
                        data_arm7_027d81b0.stack + CLOCK_WORKER_STACK_LEN,
                        sizeof(data_arm7_027d81b0.stack), priority);

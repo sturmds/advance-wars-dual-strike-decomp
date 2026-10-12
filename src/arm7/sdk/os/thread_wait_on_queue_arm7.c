@@ -5,7 +5,6 @@ extern OSThread **gRunningThreadRef_Arm7;
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
-void Thread_SwitchToFirstReady_Arm7(void);
 
 /*
  * ARM7 copy of OS_SleepThread: the current thread waits until it is woken.

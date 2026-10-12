@@ -1,6 +1,5 @@
 #include "sdk/rtc.h"
-
-BOOL func_arm7_037fc44c(OSMessageQueue *queue, OSMessage msg, int flags);
+#include "sdk/os_arm7.h"
 
 /*
  * PXI callback for tag 5: hands a request from the ARM9 to the RTC thread,
@@ -42,7 +41,7 @@ void func_arm7_027d58e8(u32 tag, u32 data, BOOL err)
         } else {
             data_arm7_027d81b0.busy = TRUE;
             data_arm7_027d81b0.command = command;
-            if (!func_arm7_037fc44c(&data_arm7_027d81b0.queue, NULL, OS_MESSAGE_NOBLOCK)) {
+            if (!MsgQueue_PushBack_Arm7(&data_arm7_027d81b0.queue, NULL, OS_MESSAGE_NOBLOCK)) {
                 func_arm7_027d58a8(command, RTC_PXI_RESULT_FATAL_ERROR);
             }
         }

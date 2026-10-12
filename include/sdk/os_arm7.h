@@ -59,6 +59,42 @@ struct OSThread {
     OSThreadQueue joinQueue;
 };
 
+/* Threads. Thread queues are bit masks of thread ids. */
+void Thread_SetUpTableOnce_Arm7(void);
+void Thread_Spawn_Arm7(OSThread *thread, void (*func)(void *), void *arg, void *stack, u32 stackSize, u32 priority);
+void Thread_EndCurrent_Arm7(void);
+void Thread_WaitOnQueue_Arm7(OSThreadQueue *queue);
+void Thread_ReadyAllWaiters_Arm7(OSThreadQueue *queue);
+void Thread_MakeReady_Arm7(OSThread *thread);
+BOOL Thread_Reprioritize_Arm7(OSThread *thread, u32 priority);
+void Thread_SwitchToFirstReady_Arm7(void);
+u32 Thread_HoldSwitching_Arm7(void);
+u32 Thread_ReleaseSwitching_Arm7(void);
+void Thread_NapMilliseconds_Arm7(u32 msec);
+void Thread_WakeAfterNap_Arm7(void *thread);
+OSThread *Thread_FirstRunnable_Arm7(void);
+void Thread_LinkByPriority_Arm7(OSThread *thread);
+void Thread_Unlink_Arm7(OSThread *thread);
+int Thread_FirstFreeId_Arm7(void);
+
+/* Save returns 0 when it saves and 1 when Context_Resume_Arm7 resumes the context. */
+int Context_Capture_Arm7(OSContext *context);
+void Context_Resume_Arm7(OSContext *context);
+
+/* Message queues; flags is OS_MESSAGE_BLOCK or OS_MESSAGE_NOBLOCK. */
+void MsgQueue_SetUpRing_Arm7(OSMessageQueue *queue, OSMessage *msgArray, s32 msgCount);
+BOOL MsgQueue_PushBack_Arm7(OSMessageQueue *queue, OSMessage msg, int flags);
+BOOL MsgQueue_PopOldest_Arm7(OSMessageQueue *queue, OSMessage *msg, int flags);
+BOOL MsgQueue_PeekOldest_Arm7(OSMessageQueue *queue, OSMessage *msg, int flags);
+
+/* Mutexes. */
+void Mutex_Take_Arm7(OSMutex *mutex);
+void Mutex_Release_Arm7(OSMutex *mutex);
+void Mutex_AppendToOwner_Arm7(OSThread *thread, OSMutex *mutex);
+void Mutex_UnlinkFromOwner_Arm7(OSThread *thread, OSMutex *mutex);
+OSMutex *Mutex_PopOldestHeld_Arm7(OSThread *thread);
+void Mutex_ReleaseAllHeld_Arm7(OSThread *thread);
+
 /*
  * data_arm7_0380788c is the ARM7 copy of gOsIrqSlots: 0-3 DMA, 4-7 timers,
  * 8 VBlank. IrqSlot_CallAndClear loads the slot fields through their own literals,

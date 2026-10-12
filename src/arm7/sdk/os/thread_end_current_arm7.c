@@ -6,10 +6,6 @@ extern OSThread *data_arm7_03807920[];   /* OSThreadInfo.threads, under its own 
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdc10(void);
-void func_arm7_037fc574(OSThread *thread);
-void func_arm7_037fc18c(OSThread *thread);
-void Thread_ReadyAllWaiters_Arm7(OSThreadQueue *queue);
-void Thread_SwitchToFirstReady_Arm7(void);
 
 /*
  * ARM7 copy of OS_ExitThread: ends the current thread. It frees its
@@ -21,8 +17,8 @@ void Thread_EndCurrent_Arm7(void)
 
     func_arm7_037fdb80();
     current = *gRunningThreadRef_Arm7;
-    func_arm7_037fc574(current);
-    func_arm7_037fc18c(current);
+    Mutex_ReleaseAllHeld_Arm7(current);
+    Thread_Unlink_Arm7(current);
     data_arm7_03807920[current->id] = NULL;
     current->state = OS_THREAD_STATE_TERMINATED;
     Thread_ReadyAllWaiters_Arm7(&current->joinQueue);

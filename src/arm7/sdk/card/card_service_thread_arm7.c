@@ -1,11 +1,9 @@
 #include "types.h"
 #include "sdk/card_arm7.h"
+#include "sdk/os_arm7.h"
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
-void Thread_WaitOnQueue_Arm7(void *queue);                 /* looks like OS_SleepThread */
-void Thread_ReadyAllWaiters_Arm7(void *queue);                 /* looks like OS_WakeupThread */
-void Thread_MakeReady_Arm7(void *thread);                /* looks like OS_WakeupThreadDirect */
 int func_arm7_037fe1cc(u32 tag, u32 data, int err);   /* looks like PXI_SendWordByFifo */
 
 /* Request handlers, indexed by CARDiArm7Common.command. */

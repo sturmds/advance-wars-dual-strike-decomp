@@ -1,9 +1,9 @@
 #include "types.h"
 #include "sdk/spi_thread.h"
+#include "sdk/os_arm7.h"
 
 int func_arm7_037fdb80(void);                    /* OS_DisableInterrupts */
 void func_arm7_037fdb94(int state);              /* OS_RestoreInterrupts */
-void Thread_WaitOnQueue_Arm7(OSThreadQueue *queue);
 void func_arm7_03803e50(int device);             /* take the bus */
 
 /* Takes the SPI bus for ARM7 code outside the SPI thread, sleeping until it

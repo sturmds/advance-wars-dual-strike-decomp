@@ -1000,7 +1000,7 @@ src/arm7/sdk/func_arm7_037fbba8.c:
     complete
     .text       start:0x037fbba8 end:0x037fbbdc
 
-src/arm7/sdk/func_arm7_037fbbdc.c:
+src/arm7/sdk/os/thread_wake_after_nap_arm7.c:
     complete
     .text       start:0x037fbbdc end:0x037fbbe8
 
@@ -1080,7 +1080,7 @@ src/arm7/sdk/os/msg_queue_push_back_arm7.c:
     complete
     .text       start:0x037fc44c end:0x037fc4e0
 
-src/arm7/sdk/func_arm7_037fc4e0.c:
+src/arm7/sdk/os/msg_queue_set_up_ring_arm7.c:
     complete
     .text       start:0x037fc4e0 end:0x037fc500
 
@@ -1560,7 +1560,7 @@ src/arm7/sdk/func_arm7_037fee70.c:
     complete
     .text       start:0x037fee70 end:0x037fee74
 
-src/arm7/sdk/func_arm7_037fee74.c:
+src/arm7/sdk/snd/snd_send_wakeup_message.c:
     complete
     .text       start:0x037fee74 end:0x037fee90
 

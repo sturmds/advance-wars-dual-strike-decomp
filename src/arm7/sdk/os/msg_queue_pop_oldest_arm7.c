@@ -3,14 +3,12 @@
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
-void Thread_ReadyAllWaiters_Arm7(OSThreadQueue *queue);
-void Thread_WaitOnQueue_Arm7(OSThreadQueue *queue);
 
 /*
  * ARM7 copy of OS_ReceiveMessage; main already has that symbol. Takes the
  * oldest message. With OS_MESSAGE_BLOCK it waits for one to arrive.
  */
-BOOL func_arm7_037fc3ac(OSMessageQueue *queue, OSMessage *msg, int flags)
+BOOL MsgQueue_PopOldest_Arm7(OSMessageQueue *queue, OSMessage *msg, int flags)
 {
     int irqState = func_arm7_037fdb80();
     int block = flags & OS_MESSAGE_BLOCK;

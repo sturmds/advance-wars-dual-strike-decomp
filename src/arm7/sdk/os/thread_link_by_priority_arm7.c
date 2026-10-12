@@ -4,7 +4,7 @@
 extern OSThreadInfo data_arm7_0380790c;
 
 /* ARM7 copy of OSi_InsertThreadToList; main already has that symbol. */
-void func_arm7_037fc1d4(OSThread *thread)
+void Thread_LinkByPriority_Arm7(OSThread *thread)
 {
     OSThread *cur;
     OSThread *prev;

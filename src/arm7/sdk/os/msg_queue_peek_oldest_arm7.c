@@ -3,13 +3,12 @@
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
-void Thread_WaitOnQueue_Arm7(OSThreadQueue *queue);
 
 /*
  * Copies the oldest message without removing it. With OS_MESSAGE_BLOCK it
  * waits for one to arrive.
  */
-BOOL OS_ReadMessage(OSMessageQueue *queue, OSMessage *msg, int flags)
+BOOL MsgQueue_PeekOldest_Arm7(OSMessageQueue *queue, OSMessage *msg, int flags)
 {
     int irqState = func_arm7_037fdb80();
     int block = flags & OS_MESSAGE_BLOCK;

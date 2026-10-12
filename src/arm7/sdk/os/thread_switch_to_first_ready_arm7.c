@@ -9,9 +9,6 @@ extern ThreadSwapHook data_arm7_03807908;  /* called on every switch, before inf
 extern OSThreadInfo data_arm7_0380790c;
 
 u32 func_arm7_037fdbd8(void);
-OSThread *Thread_FirstRunnable_Arm7(void);
-int func_arm7_037fc2d4(OSContext *context);
-void func_arm7_037fc308(OSContext *context);
 
 /*
  * ARM7 copy of OS_RescheduleThread: switches to the first ready thread in
@@ -36,7 +33,7 @@ void Thread_SwitchToFirstReady_Arm7(void)
     if (current == next || next == NULL) {
         return;
     }
-    if (func_arm7_037fc2d4(&current->context) != 0) {
+    if (Context_Capture_Arm7(&current->context) != 0) {
         return;
     }
     if (data_arm7_03807908 != NULL) {
@@ -46,5 +43,5 @@ void Thread_SwitchToFirstReady_Arm7(void)
         info->switchCallback(current, next);
     }
     data_arm7_0380790c.current = next;
-    func_arm7_037fc308(&next->context);
+    Context_Resume_Arm7(&next->context);
 }

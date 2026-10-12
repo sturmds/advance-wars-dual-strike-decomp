@@ -2,7 +2,7 @@
 #include "sdk/os_arm7.h"
 #include "sdk/wl.h"
 
-BOOL func_arm7_037fc44c(OSMessageQueue *queue, OSMessage message, int flags); /* OS_SendMessage */
+BOOL MsgQueue_PushBack_Arm7(OSMessageQueue *queue, OSMessage message, int flags); /* OS_SendMessage */
 
 /*
  * Hands a buffer to the host side. While the outbox holds older buffers, or
@@ -13,7 +13,7 @@ void WifiBuffer_GiveToHost(WlBufferList *list, WlBuffer *buffer)
     if (WIFI_DRIVER_STATE->outbox.count != 0) {
         WifiBuffer_Transfer(list, &WIFI_DRIVER_STATE->outbox, buffer);
         WifiTask_Schedule(2, 19);
-    } else if (func_arm7_037fc44c(WIFI_DRIVER_STATE->limits.toHost, buffer, OS_MESSAGE_NOBLOCK)) {
+    } else if (MsgQueue_PushBack_Arm7(WIFI_DRIVER_STATE->limits.toHost, buffer, OS_MESSAGE_NOBLOCK)) {
         WifiBufList_Unlink(list, buffer);
     } else {
         WifiBuffer_Transfer(list, &WIFI_DRIVER_STATE->outbox, buffer);

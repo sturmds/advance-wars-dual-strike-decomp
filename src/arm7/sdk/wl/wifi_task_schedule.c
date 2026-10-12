@@ -5,7 +5,7 @@
 #define WIFI_TASKQ_LOCK_IRQS 0x01000010
 #define WIFI_TASK_LEVEL_IDLE 3
 
-BOOL func_arm7_037fc44c(OSMessageQueue *queue, OSMessage message, int flags); /* OS_SendMessage */
+BOOL MsgQueue_PushBack_Arm7(OSMessageQueue *queue, OSMessage message, int flags); /* OS_SendMessage */
 u32 func_arm7_037fb654(u32 mask); /* ARM7 OS_DisableIrqMask */
 u32 func_arm7_037fb690(u32 mask); /* ARM7 OS_EnableIrqMask */
 
@@ -32,6 +32,6 @@ void WifiTask_Schedule(int priority, int task)
     }
     func_arm7_037fb690(irqState);
     if (priority != WIFI_TASK_LEVEL_IDLE && work->runPriority == WIFI_TASK_LEVEL_IDLE) {
-        func_arm7_037fc44c(WIFI_DRIVER_STATE->limits.fromHost, NULL, OS_MESSAGE_NOBLOCK);
+        MsgQueue_PushBack_Arm7(WIFI_DRIVER_STATE->limits.fromHost, NULL, OS_MESSAGE_NOBLOCK);
     }
 }

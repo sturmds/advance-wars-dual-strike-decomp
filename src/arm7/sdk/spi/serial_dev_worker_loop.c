@@ -1,8 +1,8 @@
 #include "types.h"
 #include "sdk/spi_thread.h"
 #include "sdk/tp.h"
+#include "sdk/os_arm7.h"
 
-BOOL func_arm7_037fc3ac(OSMessageQueue *queue, OSMessage *msg, int flags); /* OS_ReceiveMessage */
 void func_arm7_027d43dc(SerialBusJob *entry);   /* NVRAM job */
 void func_arm7_03805aa8(SerialBusJob *entry);   /* microphone job */
 void PM_ExecuteProcess(SerialBusJob *entry);   /* power chip job */
@@ -14,7 +14,7 @@ void SerialDev_WorkerLoop(void *arg)
     SerialBusJob *entry;
 
     while (TRUE) {
-        func_arm7_037fc3ac(&data_arm7_03809ab0.msgQ, &msg, OS_MESSAGE_BLOCK);
+        MsgQueue_PopOldest_Arm7(&data_arm7_03809ab0.msgQ, &msg, OS_MESSAGE_BLOCK);
         entry = (SerialBusJob *)msg;
         switch (entry->device) {
         case SERIAL_OWNER_TOUCH:

@@ -6,7 +6,7 @@
  * supervisor mode and resumes the context that OS_SaveContext saved. The
  * saved r0 is 1, so OS_SaveContext appears to return 1.
  */
-asm void func_arm7_037fc308(OSContext *context)
+asm void Context_Resume_Arm7(OSContext *context)
 {
     mrs r1, CPSR
     bic r1, r1, #0x1f

@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/card_arm7.h"
-
-void Thread_MakeReady_Arm7(void *thread);                /* looks like OS_WakeupThreadDirect */
+#include "sdk/os_arm7.h"
 
 /*
  * PXI tag 11 message from the other CPU. The first word is a request number;

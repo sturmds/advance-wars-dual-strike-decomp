@@ -5,7 +5,6 @@ extern OSThreadInfo data_arm7_0380790c;
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
-void Thread_SwitchToFirstReady_Arm7(void);
 
 /*
  * ARM7 copy of OS_WakeupThread: makes every thread waiting on queue ready.

@@ -1,9 +1,9 @@
 #include "types.h"
 #include "sdk/card_arm7.h"
+#include "sdk/os_arm7.h"
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
-void Thread_WaitOnQueue_Arm7(CARDiArm7ThreadQueue *queue);
 u32 CardRom_IssueChipIdCommand(void);
 void Card_ReportDoneAndWake(void);
 

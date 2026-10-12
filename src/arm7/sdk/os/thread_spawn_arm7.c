@@ -9,11 +9,8 @@ extern OSThread *data_arm7_03807920[];   /* OSThreadInfo.threads, under its own 
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
-int func_arm7_037fc23c(void);
-void func_arm7_037fc1d4(OSThread *thread);
 void func_arm7_037fc270(OSContext *context, u32 pc, u32 sp);
 void func_arm7_037fde5c(u32 data, void *dest, int size);
-void Thread_EndCurrent_Arm7(void);
 
 /*
  * ARM7 copy of OS_CreateThread. stack is the top of the stack (it grows
@@ -27,7 +24,7 @@ void Thread_Spawn_Arm7(OSThread *thread, void (*func)(void *), void *arg, void *
     volatile u32 zero; /* needed to match: the fill value goes through the stack */
 
     irqState = func_arm7_037fdb80();
-    id = func_arm7_037fc23c();
+    id = Thread_FirstFreeId_Arm7();
     if (id < 0) {
         func_arm7_037fdb94(irqState);
         return;
@@ -37,7 +34,7 @@ void Thread_Spawn_Arm7(OSThread *thread, void (*func)(void *), void *arg, void *
     thread->state = OS_THREAD_STATE_WAITING;
     thread->profiler = NULL;
     data_arm7_03807920[id] = thread;
-    func_arm7_037fc1d4(thread);
+    Thread_LinkByPriority_Arm7(thread);
 
     thread->stackBottom = (u32)stack;
     thread->stackTop = (u32)stack - stackSize;

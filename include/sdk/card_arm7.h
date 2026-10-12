@@ -52,11 +52,6 @@ extern CARDiSpiTransfer data_arm7_03809860;
  * The ARM7 library state, data_arm7_03809280. It has the shape of CARDiCommon
  * with the smaller ARM7 OSThread; the offsets from src on are 4 higher.
  */
-typedef struct CARDiArm7ThreadQueue {
-    void *head;
-    void *tail;
-} CARDiArm7ThreadQueue;
-
 typedef struct CARDiArm7Common {
     CARDiCommandArg *cmd;
     u32 command;                   /* request from the other CPU: index into the request table */
@@ -77,7 +72,7 @@ typedef struct CARDiArm7Common {
     u32 priority;                  /* card thread priority */
     OSThread thread;               /* the card thread */
     OSThread *waiter;              /* thread to wake when the request ends */
-    CARDiArm7ThreadQueue queue;    /* threads waiting for CARD_STAT_BUSY to clear */
+    OSThreadQueue queue;           /* threads waiting for CARD_STAT_BUSY to clear */
 } CARDiArm7Common;
 
 extern CARDiArm7Common data_arm7_03809280;

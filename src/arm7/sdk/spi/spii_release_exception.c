@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/spi_thread.h"
-
-void Thread_ReadyAllWaiters_Arm7(OSThreadQueue *queue);
+#include "sdk/os_arm7.h"
 
 /* Frees the SPI bus if this device holds it, and wakes the threads waiting in SPI_Lock. */
 void SPIi_ReleaseException(u32 device)

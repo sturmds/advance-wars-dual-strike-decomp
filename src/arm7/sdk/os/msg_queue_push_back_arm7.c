@@ -3,14 +3,12 @@
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
-void Thread_ReadyAllWaiters_Arm7(OSThreadQueue *queue);
-void Thread_WaitOnQueue_Arm7(OSThreadQueue *queue);
 
 /*
  * ARM7 copy of OS_SendMessage; main already has that symbol. Puts a message
  * at the back of the queue. With OS_MESSAGE_BLOCK it waits for room.
  */
-BOOL func_arm7_037fc44c(OSMessageQueue *queue, OSMessage msg, int flags)
+BOOL MsgQueue_PushBack_Arm7(OSMessageQueue *queue, OSMessage msg, int flags)
 {
     int irqState = func_arm7_037fdb80();
     int block = flags & OS_MESSAGE_BLOCK;

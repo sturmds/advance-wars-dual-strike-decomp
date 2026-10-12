@@ -1,4 +1,5 @@
 #include "types.h"
+#include "sdk/os_arm7.h"
 
 void Arena_ApplyDefaults_Arm7(void);
 void func_arm7_037fdcf4(void);
@@ -8,7 +9,6 @@ void func_arm7_037fe0a0(void);
 void func_arm7_037fb7f0(void);
 void func_arm7_037fbabc(void);
 void func_arm7_03806ae8(void);
-void Thread_SetUpTableOnce_Arm7(void);
 
 void func_arm7_037fc6c4(void)
 {

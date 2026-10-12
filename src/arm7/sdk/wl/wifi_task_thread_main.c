@@ -4,7 +4,7 @@
 
 #define WIFI_TASKQ_LOCK_IRQS 0x01000010
 
-BOOL func_arm7_037fc3ac(OSMessageQueue *queue, OSMessage *message, int flags); /* OS_ReceiveMessage */
+BOOL MsgQueue_PopOldest_Arm7(OSMessageQueue *queue, OSMessage *message, int flags); /* OS_ReceiveMessage */
 u32 func_arm7_037fb654(u32 mask); /* ARM7 OS_DisableIrqMask */
 u32 func_arm7_037fb690(u32 mask); /* ARM7 OS_EnableIrqMask */
 
@@ -18,7 +18,7 @@ void WifiTask_ThreadMain(void)
     work->topPriority = 0;
     work->runTask = 0;
     while (TRUE) {
-        if (func_arm7_037fc3ac(WIFI_DRIVER_STATE->limits.fromHost, &message, OS_MESSAGE_NOBLOCK)) {
+        if (MsgQueue_PopOldest_Arm7(WIFI_DRIVER_STATE->limits.fromHost, &message, OS_MESSAGE_NOBLOCK)) {
             WifiHost_TakeInboxBuffer(&message);
         }
         irqState = func_arm7_037fb654(WIFI_TASKQ_LOCK_IRQS);

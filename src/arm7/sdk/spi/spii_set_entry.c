@@ -1,10 +1,10 @@
 #include "types.h"
 #include "stdarg.h"
 #include "sdk/spi_thread.h"
+#include "sdk/os_arm7.h"
 
 int func_arm7_037fdb80(void);                /* OS_DisableInterrupts */
 void func_arm7_037fdb94(int state);          /* OS_RestoreInterrupts */
-BOOL func_arm7_037fc44c(OSMessageQueue *queue, OSMessage msg, int flags); /* OS_SendMessage */
 
 /* Fills the next job slot with a device, a request id and up to
  * SERIAL_JOB_ARGS u32 arguments, then queues it for the SPI thread.
@@ -32,5 +32,5 @@ BOOL SPIi_SetEntry(u32 device, u32 process, u16 paramCount, ...)
     data_arm7_03809ab0.entryIndex = (index + 1) & (SERIAL_JOB_QUEUE_DEPTH - 1);
     func_arm7_037fdb94(intr);
 
-    return func_arm7_037fc44c(&data_arm7_03809ab0.msgQ, &data_arm7_03809ab0.entry[index], OS_MESSAGE_NOBLOCK);
+    return MsgQueue_PushBack_Arm7(&data_arm7_03809ab0.msgQ, &data_arm7_03809ab0.entry[index], OS_MESSAGE_NOBLOCK);
 }

@@ -2,8 +2,6 @@
 #include "sdk/snd.h"
 
 /* OS_CreateThread and OS_WakeupThreadDirect, by their arguments and the ARM9 copies. */
-void Thread_Spawn_Arm7(OSThread *thread, void (*func)(void *), void *arg, void *stack, u32 stackSize, u32 priority);
-void Thread_MakeReady_Arm7(OSThread *thread);
 
 void SndDrv_Thread(void *arg);
 

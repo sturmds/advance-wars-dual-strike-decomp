@@ -2,7 +2,7 @@
 #include "sdk/os_arm7.h"
 
 /* ARM7 copy of Mutex_UnlinkFromOwner; main already has that symbol. Removes one mutex from anywhere in the thread's list. */
-void func_arm7_037fc528(OSThread *thread, OSMutex *mutex)
+void Mutex_UnlinkFromOwner_Arm7(OSThread *thread, OSMutex *mutex)
 {
     OSMutex *next = mutex->next;
     OSMutex *prev = mutex->prev;

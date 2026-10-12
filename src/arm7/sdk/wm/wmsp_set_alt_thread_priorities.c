@@ -8,9 +8,6 @@ extern OSThread data_arm7_03807424;
 int func_arm7_027c7aa0(void);
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
-void Thread_ReleaseSwitching_Arm7(void);
-int Thread_HoldSwitching_Arm7(void);
-BOOL Thread_Reprioritize_Arm7(OSThread *thread, u32 priority);
 
 void Wmsp_SetAltThreadPriorities(void)
 {

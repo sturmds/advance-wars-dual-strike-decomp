@@ -4,7 +4,7 @@
 extern OSThreadInfo data_arm7_0380790c;
 
 /* ARM7 copy of OSi_GetUnusedThreadId; main already has that symbol. Returns -1 when all 16 ids are taken. */
-int func_arm7_037fc23c(void)
+int Thread_FirstFreeId_Arm7(void)
 {
     int id;
 

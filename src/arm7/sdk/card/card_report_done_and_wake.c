@@ -2,11 +2,10 @@
 #pragma opt_propagation off
 #include "types.h"
 #include "sdk/card_arm7.h"
+#include "sdk/os_arm7.h"
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
-void Thread_ReadyAllWaiters_Arm7(CARDiArm7ThreadQueue *queue);
-void Thread_MakeReady_Arm7(void *thread);
 
 /* Ends the running request: reports success, wakes the waiters and calls the callback. */
 void Card_ReportDoneAndWake(void)
