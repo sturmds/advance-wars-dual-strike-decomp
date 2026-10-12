@@ -396,7 +396,8 @@ src/game/ov005/ov005_upload_tile_buffer.c:
     complete
     .text       start:0x0235b574 end:0x0235b5dc
 
-src/game/ov005/func_ov005_0235b5dc.c:
+src/game/ov005/ov005_draw_glyph_to_texture.c:
+    complete
     .text       start:0x0235b5dc end:0x0235b698
 
 src/game/ov005/ov005_char_to_glyph_index.c:
