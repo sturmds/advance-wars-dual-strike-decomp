@@ -1440,6 +1440,10 @@ src/arm7/sdk/snd/snd_ex_channel_update_lfo.c:
     complete
     .text       start:0x037ff050 end:0x037ff0ec
 
+src/arm7/sdk/snd/snd_ex_channel_update_sweep.c:
+    complete
+    .text       start:0x037ff0ec end:0x037ff15c
+
 src/arm7/sdk/func_arm7_037ff3b4.c:
     complete
     .text       start:0x037ff3b4 end:0x037ff3c4
