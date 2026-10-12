@@ -63,5 +63,6 @@ BOOL SPIi_SetEntry(u32 device, u32 process, u16 paramCount, ...);
 BOOL SPIi_CheckEntry(void);   /* TRUE when a job is queued */
 void SPIi_ReleaseException(u32 device);   /* free the bus if device holds it */
 void SPI_Unlock(u32 id);   /* give back the bus taken with this id */
+void SPI_Lock(u32 id);   /* take the bus, sleeping until it is free */
 
 #endif
