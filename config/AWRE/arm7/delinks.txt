@@ -751,6 +751,10 @@ src/arm7/sdk/pxi/func_arm7_037fe1cc.c:
     complete
     .text       start:0x037fe1cc end:0x037fe270
 
+src/arm7/sdk/pxi/func_arm7_037fe270.c:
+    complete
+    .text       start:0x037fe270 end:0x037fe298
+
 src/arm7/sdk/func_arm7_037fe3e0.c:
     complete
     .text       start:0x037fe3e0 end:0x037fe3fc
