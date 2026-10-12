@@ -240,6 +240,10 @@ src/arm7/sdk/func_arm7_027c3408.c:
     complete
     .text       start:0x027c3408 end:0x027c342c
 
+src/arm7/sdk/wm/wmsp_set_mp_data.c:
+    complete
+    .text       start:0x027c4a10 end:0x027c4b24
+
 src/arm7/sdk/wm/wmsp_stop_test_mode.c:
     complete
     .text       start:0x027c523c end:0x027c5268

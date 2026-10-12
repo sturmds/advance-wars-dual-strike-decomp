@@ -35,6 +35,7 @@ typedef struct WMCallback {
 #define WIRELESS_NOTICE_STATION_DROPPED 17
 #define WIRELESS_NOTICE_STATION_BACK 18
 #define WIRELESS_NOTICE_AUTHED 19
+#define WM_STATECODE_PORT_SEND 20
 #define WM_STATECODE_PORT_RECV 21
 #define WIRELESS_NOTICE_QUEUE_REFUSED 22
 
@@ -249,9 +250,16 @@ typedef struct WMPortRecvCallback {
 typedef struct WMPortSendCallback {
     u16 apiid;
     u16 errcode;
-    u8 pad_04[6];
+    u16 wlCmdID;
+    u16 wlResult;
+    u16 state;                         /* WM_STATECODE_PORT_SEND */
     u16 port;
-    u8 pad_0c[0x0e];
+    u16 destBitmap;
+    u16 restBitmap;                    /* children the data has not reached yet */
+    u16 sentBitmap;
+    u8 pad_12[2];
+    const u16 *data;
+    u16 size;
     u16 seqNo;
     void (*callback)(void *arg);       /* run when the data has been sent */
     void *arg;                         /* what the sender passed with the data */

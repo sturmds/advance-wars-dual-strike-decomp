@@ -79,6 +79,19 @@ typedef struct WmspRequest {
     u32 arg;
 } WmspRequest;
 
+/* The arguments of WM_SetMPDataToPortEx's request. */
+typedef struct WmspSetMPDataRequest {
+    u16 apiid;
+    u8 pad_02[2];
+    const u16 *data;
+    u32 size;
+    u32 destBitmap;
+    u32 port;
+    u32 prio;
+    void (*callback)(void *arg);
+    void *arg;
+} WmspSetMPDataRequest;
+
 /* The arguments of WM_SetLifeTime. The lifetimes count 100 ms steps. */
 typedef struct WmspSetLifeTimeRequest {
     u16 apiid;
