@@ -31,6 +31,7 @@ typedef struct WMCallback {
 #define WM_STATECODE_MPEND_IND 11
 #define WM_STATECODE_MP_IND 12
 #define WM_STATECODE_MPACK_IND 13
+#define WIRELESS_NOTICE_DCF_FRAME 15
 #define WIRELESS_NOTICE_HEARD_BEACON 16
 #define WIRELESS_NOTICE_STATION_DROPPED 17
 #define WIRELESS_NOTICE_STATION_BACK 18
@@ -138,6 +139,8 @@ typedef struct RadioDcfReply {
     u16 apiid;
     u16 errcode;
     u16 state;                         /* WIRELESS_NOTICE_DCF_BEGUN */
+    u8 pad_06[2];
+    void *recvBuf;                     /* DCF_IND: the buffer the frame was copied into */
 } RadioDcfReply;
 
 typedef struct WMGameInfo {
@@ -224,6 +227,13 @@ typedef struct WMStartMPCallback {
     u16 state;
     u8 pad_06[2];
     void *recvBuf;
+    u16 timeStamp;                     /* MPACK_IND: copied from the ack frame */
+    u16 rate_rssi;
+    u8 destAdrs[6];
+    u8 srcAdrs[6];
+    u16 seqNum;
+    u16 tmptt;
+    u16 pollbmp;
 } WMStartMPCallback;
 
 /* Start of the reply to the disconnect command; only these fields are read. */
@@ -244,6 +254,7 @@ typedef struct WMStartConnectCallback {
     u16 wlResult;
     u16 state;
     u16 aid;                           /* the id the parent gave this child */
+    u16 reason;
 } WMStartConnectCallback;
 
 typedef struct WMPortRecvCallback {
@@ -394,20 +405,25 @@ typedef struct WMStatus {
     u16 macVersion;
     u16 rfVersion;
     u16 bbpVersion[2];
-    u8 pad_30[4];
+    u16 unk_30;
+    u16 unk_32;
     u16 unk_34;                        /* a limit set by request 35; 0 there means 16 */
     u16 unk_36;                        /* kept at or below unk_34 */
     u8 pad_38[0xe];
     u16 mpRecvBufSize;                 /* bytes in an MP receive buffer */
     u8 pad_48[8];
     const void *unk_50;                /* WM_SetMPDataToPortEx refuses this buffer */
-    u8 pad_54[4];
+    u8 pad_54[2];
+    u16 unk_56;                        /* MP ack deadline, in the wireless microsecond counter / 16 */
     u8 unk_58[0xc];                    /* two words cleared by func_arm7_037fd424 */
-    u8 pad_64[0x22];
+    u8 pad_64[0x20];
+    u16 mpWaitAckFlag;                 /* nonzero while an MP ack is awaited */
     u16 mpReadyBitmap;                 /* the children that take part in MP */
-    u8 pad_88[2];
+    u16 unk_88;
     u16 unk_8a;
-    u8 pad_8c[6];
+    u16 unk_8c;
+    u16 unk_8e;
+    u16 unk_90;
     u16 unk_92;
     u16 unk_94;
     u16 unk_96;
@@ -420,7 +436,8 @@ typedef struct WMStatus {
     u16 dcfRecvBufSize;
     u8 pad_b6[2];
     u16 linkLevel;
-    u8 pad_ba[4];
+    u16 unk_ba;
+    u8 pad_bc[2];
     u16 unk_be;
     u16 wepKeyId;
     u16 unk_c2;                        /* WM_SetMPDataToPortEx needs 1 */
@@ -430,12 +447,13 @@ typedef struct WMStatus {
     u32 unk_d0;
     u32 unk_d4;
     u16 unk_d8;
-    u8 pad_da[2];
+    u16 unk_da;                        /* 1: a WL fatal error does not disconnect */
     u8 macAddress[6];
     u16 unk_e2;                        /* WMSP_MeasureChannel sets 2 */
     u8 pparam[0x10];                   /* start of the WMParentParam the parent runs with; unk_f4 is its maxEntry */
     u16 unk_f4;
-    u8 pad_f6[0x88];
+    u8 pad_f6[0x2e];
+    u8 childMacAddress[15][6];         /* [aid - 1] */
     u16 childBitmap;                   /* bit n set: the child with aid n is connected */
     u8 pad_180[4];
     u16 aid;                           /* this station's aid, 0 on a parent */

@@ -24,6 +24,89 @@ typedef struct WmspSlot {
     u8 pad_0c[4];
 } WmspSlot;
 
+/* An indication the WL driver sends up to WMSP in one of its message buffers
+   (a WlBuffer in sdk/wl.h): code says what happened, the body follows. */
+#define WIFI_HOSTMSG_PEER_AUTHED 0x84
+#define WIFI_HOSTMSG_PEER_UNAUTHED 0x85
+#define WIFI_HOSTMSG_PEER_JOINED 0x86
+#define WIFI_HOSTMSG_PEER_REJOINED 0x87
+#define WIFI_HOSTMSG_PEER_LEFT 0x88
+#define WIFI_HOSTMSG_DATA_FRAME 0x180
+#define WIFI_HOSTMSG_POLL_ACKED 0x185
+#define WIFI_HOSTMSG_EVENT_BITS 0x186
+
+typedef struct WlIndication {
+    u8 bufferHeader[12];               /* the WlBuffer list links */
+    u16 code;          /* WIFI_HOSTMSG_* */
+    u16 unk_0e;        /* WIFI_HOSTMSG_POLL_ACKED: 0 when WMSP made it up after a timeout */
+} WlIndication;
+
+typedef struct WlDeauthIndication {
+    WlIndication ind;
+    u8 macAddress[6];  /* the station that left */
+    u16 reason;
+} WlDeauthIndication;
+
+typedef struct WlAssocIndication {
+    WlIndication ind;
+    u8 macAddress[6];  /* the station that joined */
+    u16 aid;
+    u8 pad_18[10];
+    u8 ssid[24];
+} WlAssocIndication;
+
+/* A received data frame: a 0x2c-byte header, then length bytes of data. */
+typedef struct WlDataFrame {
+    u8 pad_00[6];
+    u16 length;
+    u8 pad_08[7];
+    u8 rssi;           /* raw, see Wmsp_DecodeRssi */
+    u8 pad_10[8];
+    u8 destAdrs[6];
+    u8 srcAdrs[6];
+    u8 pad_24[8];
+} WlDataFrame;
+
+typedef struct WlDataIndication {
+    WlIndication ind;
+    WlDataFrame frame;
+} WlDataIndication;
+
+/* The ack that ends an MP exchange. */
+typedef struct WlMpAckFrame {
+    u8 pad_00[0xc];
+    u16 timeStamp;
+    u16 rate_rssi;
+    u8 pad_10[8];
+    u8 destAdrs[6];
+    u8 srcAdrs[6];
+    u8 pad_24[6];
+    u16 seqNum;
+    u16 tmptt;
+    u16 pollbmp;       /* bit n set: the child with aid n was polled */
+} WlMpAckFrame;
+
+typedef struct WlMpAckIndication {
+    WlIndication ind;
+    WlMpAckFrame frame;
+} WlMpAckIndication;
+
+/* Requests WMSP queues for itself in a slot from Wmsp_TakeFlaggedSlot. */
+typedef struct WmspAutoDeauthRequest {
+    u32 apiid;                         /* WM_APIID_AUTO_DEAUTH */
+    u8 macAddress[6];                  /* the station to deauthenticate */
+} WmspAutoDeauthRequest;
+
+typedef struct WmspAutoDisconnectRequest {
+    u32 apiid;                         /* WM_APIID_AUTO_DISCONNECT */
+    u32 aidBitmap;                     /* the stations to disconnect */
+    u32 reason;
+} WmspAutoDisconnectRequest;
+
+typedef struct WmspInternalRequest {
+    u32 apiid;
+} WmspInternalRequest;
+
 /* ARM7 side of WM: a command for the wireless (WL) firmware.
    words[] holds the arguments, then the reply header at words[index]:
    the argument count, then the command id. WL fills in the reply. */
@@ -185,9 +268,13 @@ typedef struct WmspState {
 typedef struct WmspWork {
     OSMessageQueue wlQueue;            /* commands for the WL driver */
     OSMessage wlMessages[2];
-    u8 pad_1c[0x64 - 0x1c];
+    OSMessageQueue indicationQueue;    /* indications from the WL driver */
+    OSMessage indicationMessages[4];
+    OSMessageQueue wlReplyQueue;       /* the WL driver's answers to commands */
+    OSMessage wlReplyMessages[4];
     OSMessageQueue requestQueue;       /* requests from the ARM9 (Wmsp_ReceiveRequest) and the ARM7 itself */
-    u8 pad_78[0x1518 - 0x78];
+    OSMessage requestMessages[32];
+    u8 pad_f8[0x1518 - 0xf8];
     WmspBuf *buf;
 } WmspWork;
 
