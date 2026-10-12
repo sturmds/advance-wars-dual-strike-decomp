@@ -25,6 +25,7 @@ typedef volatile u64 vu64;
 #define REG_TM1CNT_L (*(vu16 *)0x04000104)
 #define REG_TM1CNT_H (*(vu16 *)0x04000106)
 #define IRQ_MASK_TIMER1 0x10
+#define IRQ_MASK_TIMER3 0x40
 /* Interrupts the SDK waits for, set by the handlers (ARM7 copy of the DTCM flags on ARM9). */
 #define WRAM_IRQ_SEEN_BITS (*(vu32 *)0x0380fff8)
 
