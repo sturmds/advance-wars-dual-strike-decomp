@@ -96,6 +96,10 @@ src/arm7/sdk/wm/wmsp_indicate_associate.c:
     complete
     .text       start:0x027c0a24 end:0x027c0ba8
 
+src/arm7/sdk/wm/wmsp_indicate_reassociate.c:
+    complete
+    .text       start:0x027c0ba8 end:0x027c0bdc
+
 src/arm7/sdk/func_arm7_027c1a94.c:
     complete
     .text       start:0x027c1a94 end:0x027c1a98
