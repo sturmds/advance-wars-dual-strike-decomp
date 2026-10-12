@@ -848,6 +848,10 @@ src/arm7/sdk/wl/wifi_rf_tune_channel.c:
     complete
     .text       start:0x027c963c end:0x027c98d8
 
+src/arm7/sdk/wl/wifi_param_load_defaults.c:
+    complete
+    .text       start:0x027c98d8 end:0x027c9a20
+
 src/arm7/sdk/wl/wifi_param_set_antenna_switching.c:
     complete
     .text       start:0x027c9cc4 end:0x027c9da0

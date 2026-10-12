@@ -24,7 +24,7 @@ void WifiRf_LoadStartValues(void);
 void func_arm7_027ca730(void);
 void func_arm7_027ca438(void);
 void WifiBaseband_LoadStartValues(void);
-void func_arm7_027c98d8(void);
+void WifiParam_LoadDefaults(void);
 void func_arm7_027c9438(void);
 void func_arm7_027caa88(void);
 
@@ -74,7 +74,7 @@ u16 Wifi_StartDriver(Unk_arm7_038057d4 *params)
         func_arm7_027ca730();
         func_arm7_027ca438();
         WifiBaseband_LoadStartValues();
-        func_arm7_027c98d8();
+        WifiParam_LoadDefaults();
         func_arm7_027c9438();
     }
     Thread_Spawn_Arm7(&WIFI_DRIVER_STATE->thread, (void (*)(void *))WifiTask_ThreadMain, NULL, params->unk_04, params->unk_08,

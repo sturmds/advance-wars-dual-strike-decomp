@@ -9,7 +9,7 @@ void WifiTask_ClearQueues(void);
 void func_arm7_027cb920(void);
 void func_arm7_027cb9ac(void);
 void func_arm7_027cacec(void);
-void func_arm7_027c98d8(void);
+void WifiParam_LoadDefaults(void);
 
 /* Part of the setup Wifi_StartDriver does, again, with the values Wifi_StartDriver stored. */
 void Wifi_RestartDriver(void)
@@ -23,5 +23,5 @@ void Wifi_RestartDriver(void)
     func_arm7_027cb920();
     func_arm7_027cb9ac();
     func_arm7_027cacec();
-    func_arm7_027c98d8();
+    WifiParam_LoadDefaults();
 }
