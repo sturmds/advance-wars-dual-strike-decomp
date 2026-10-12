@@ -88,8 +88,8 @@ emu-smoke: shift
 	@$(PYTHON) tools/emu_smoke.py $(ROM) $(OUT) build/shift/AWRE.nds
 
 # Tests of the landing tools on throwaway repos, of propagate.py's C text
-# handling, of ds.py, of pragmas.py, of absolute symbols and of ARM7's address
-# moves (tools/arm7.py); no ROM or build
+# handling, of ds.py, of pragmas.py, of absolute symbols, of 2-byte alignment
+# (tools/lcf_align2.py) and of ARM7's address moves (tools/arm7.py); no ROM or build
 # needed (test_ds.py, test_pragmas.py and test_absolute.py use the compiler
 # from make setup; test_ds.py checks more
 # when extract/ exists).
@@ -103,6 +103,7 @@ test:
 	@$(PYTHON) tools/tests/test_protocheck.py
 	@$(PYTHON) tools/tests/test_permuter.py
 	@$(PYTHON) tools/tests/test_absolute.py
+	@$(PYTHON) tools/tests/test_align2.py
 	@$(PYTHON) tools/tests/test_arm7.py
 
 clean:

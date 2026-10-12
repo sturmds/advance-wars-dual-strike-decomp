@@ -149,7 +149,7 @@ def main() -> int:
     if args.pad % 32:
         raise SystemExit("error: --pad must be a multiple of 32, the largest section alignment in the build")
     os.chdir(ROOT)
-    for need in ("build/arm9.lcf", "build/objects.txt", "build/arm9.elf.xMAP", "build/arm9.elf"):
+    for need in ("build/arm9.lcf", "build/objects.link.txt", "build/arm9.elf.xMAP", "build/arm9.elf"):
         if not Path(need).exists():
             raise SystemExit(f"error: {need} is missing, run `make` first")
     OUT.mkdir(parents=True, exist_ok=True)
@@ -160,7 +160,7 @@ def main() -> int:
     lcf = write_lcf(obj, args.pad)
     cfg = write_config()
     elf = OUT / "arm9.elf"
-    run([sys.executable, "tools/link.py", configure.LD, str(elf), str(lcf), "build/objects.txt",
+    run([sys.executable, "tools/link.py", configure.LD, str(elf), str(lcf), "build/objects.link.txt",
          *configure.LDFLAGS.split()])
     run([configure.DSD, "rom", "config", "-e", str(elf), "-c", str(cfg)])
     raw = OUT / "AWRE.raw.nds"

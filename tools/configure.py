@@ -7,6 +7,8 @@ Pipeline:
   src/**.c marked `complete` in a delinks.txt --mwccarm--> build/src/**.o
                              --dsd lcf-----> build/arm9.lcf, build/objects.txt
                              --lcf_absolute.py--> ARM9_ABSOLUTE_SYMBOLS added to build/arm9.lcf
+                             --lcf_align2.py lcf--> ALIGNALL(2) around objects at 2 mod 4
+                             --lcf_align2.py objects--> build/objects.link.txt, build/align2/**.o
   compiled objects, plus delinked ones for everything else --mwldarm--> build/arm9.elf, build/build/*.bin (one per module)
   ELF --dsd rom config--> build/build/rom_config.yaml (files from extract/)
   --dsd rom build--> build/AWRE.raw.nds --fix_header.py--> build/AWRE.nds
@@ -147,13 +149,18 @@ def main() -> int:
         "  description = DELINK",
         "",
         "rule lcf",
-        "  command = $dsd lcf -c $cfg > /dev/null && $python tools/lcf_absolute.py $lcf $absolute",
+        "  command = $dsd lcf -c $cfg > /dev/null && $python tools/lcf_absolute.py $lcf $absolute"
+        " && $python tools/lcf_align2.py lcf $lcf config/AWRE/arm9/delinks.txt",
         "  description = LCF",
         "",
         # tools/link.py runs mwldarm from a short directory under /tmp: its
         # link time grows with objects^2 x path length (docs/tool-issues.md).
         "rule link",
-        "  command = $python tools/link.py $ld $out build/arm9.lcf build/objects.txt $ldflags",
+        # tools/lcf_align2.py copies the objects that start at 2 mod 4 with
+        # .text alignment 2 and lists the copies in build/objects.link.txt.
+        "  command = $python tools/lcf_align2.py objects build/arm9.lcf build/objects.txt"
+        " build/objects.link.txt build/align2"
+        " && $python tools/link.py $ld $out build/arm9.lcf build/objects.link.txt $ldflags",
         "  description = LINK $out",
         "",
         "rule arm7_prepare",
@@ -197,12 +204,12 @@ def main() -> int:
         f"build build/delink.stamp: delink {' '.join(config_inputs())} | extract/config.yaml $dsd",
         f"  cfg = {cfg}",
         "",
-        "build build/arm9.lcf build/objects.txt: lcf build/delink.stamp | $dsd tools/lcf_absolute.py",
+        "build build/arm9.lcf build/objects.txt: lcf build/delink.stamp | $dsd tools/lcf_absolute.py tools/lcf_align2.py",
         f"  cfg = {cfg}",
         "  lcf = build/arm9.lcf",
         "  absolute = " + " ".join(f"{k}={v:#x}" for k, v in ARM9_ABSOLUTE_SYMBOLS.items()),
         "",
-        f"build build/arm9.elf: link build/arm9.lcf build/objects.txt | $ld tools/link.py {' '.join(objs)}",
+        f"build build/arm9.elf: link build/arm9.lcf build/objects.txt | $ld tools/link.py tools/lcf_align2.py {' '.join(objs)}",
         "",
         f"build objdiff.json: objdiff_json build/delink.stamp",
         f"  cfg = {cfg}",
