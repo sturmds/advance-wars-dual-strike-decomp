@@ -552,6 +552,34 @@ typedef struct WMStartScanReq {
     u8 bssid[6];
 } WMStartScanReq;
 
+/* Arguments of the extended scan command. */
+typedef struct RadioChannelSweepRequest {
+    u16 apiid;
+    u16 channelList;                   /* bit 0 for channel 1 */
+    WMBssDesc *scanBuf;
+    u16 scanBufSize;                   /* bytes, at least 64 */
+    u16 maxChannelTime;                /* milliseconds spent on each channel */
+    u8 bssid[6];                       /* all 0xff scans for any parent */
+    u16 scanType;                      /* 1: passive, no probe requests */
+    u16 ssidLength;
+    u8 ssid[32];
+} RadioChannelSweepRequest;
+
+/* Reply to the extended scan: every parent found, written one after the
+   other into scanBuf. */
+typedef struct RadioChannelSweepReply {
+    u16 apiid;
+    u16 errcode;
+    u16 wlCmdID;
+    u16 wlResult;
+    u16 state;
+    u16 channelList;                   /* the channels scanned, bit 0 for channel 1 */
+    u8 pad_0c[2];
+    u16 bssDescCount;
+    WMBssDesc *bssDesc[16];
+    u16 linkLevel[16];
+} RadioChannelSweepReply;
+
 /* What WM_SetParentParameter reads (0x40 bytes). */
 typedef struct WMParentParam {
     u16 *userGameInfo;
