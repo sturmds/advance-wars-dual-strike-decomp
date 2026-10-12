@@ -596,6 +596,10 @@ src/arm7/sdk/wl/wifi_baseband_put.c:
     complete
     .text       start:0x027c8b8c end:0x027c8bcc
 
+src/arm7/sdk/wl/wifi_baseband_get.c:
+    complete
+    .text       start:0x027c8bcc end:0x027c8c00
+
 src/arm7/sdk/func_arm7_027c90ec.c:
     complete
     .text       start:0x027c90ec end:0x027c9108

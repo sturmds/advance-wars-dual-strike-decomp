@@ -518,6 +518,7 @@ BOOL WifiRf_AwaitSerialIdle(void);
 int WifiRf_SendWord(u32 value);
 // Returns 0, or 0xffffffff when WifiBaseband_AwaitReady times out.
 u32 WifiBaseband_Put(u32 index, u32 value);
+u16 WifiBaseband_Get(u32 index);
 
 /* Wireless hardware registers, 0x04808000 + offset. */
 #define WIFI_MAC_REGISTER(offset) (*(volatile u16 *)(0x04808000 + (offset)))

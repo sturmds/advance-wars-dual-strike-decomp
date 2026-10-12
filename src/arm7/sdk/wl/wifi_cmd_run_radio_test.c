@@ -3,7 +3,6 @@
 u16 func_arm7_027c8d08(int channel);
 u32 WifiFlash_ValidateRadioBlock(u32 *crcs);
 void WifiFlash_ReadLocked(u32 address, u32 size, u8 *dest);
-u16 func_arm7_027c8bcc(int reg);
 void func_arm7_027c87b8(int a0);
 void func_arm7_027c963c(int channel, int arg1);
 void func_arm7_027c8714(void);
@@ -46,7 +45,7 @@ int WifiCmd_RunRadioTest(WlTestModeRequest *request, WlReply *reply)
         regValue = 0;
         WifiFlash_ReadLocked(0x65, 1, (u8 *)&regValue);
         bbReg1 = regValue;
-        if (bbReg1 != func_arm7_027c8bcc(1)) {
+        if (bbReg1 != WifiBaseband_Get(1)) {
             WifiBaseband_Put(1, bbReg1);
             func_arm7_027c87b8(5000);
         }
@@ -59,7 +58,7 @@ int WifiCmd_RunRadioTest(WlTestModeRequest *request, WlReply *reply)
             WIFI_MAC_FORCE_POWER = 0x8000;
             func_arm7_027c87b8(1500);
             link->testRate = request->rate;
-            regValue = func_arm7_027c8bcc(2);
+            regValue = WifiBaseband_Get(2);
             if (request->signal <= 1) {
                 regValue |= 0x10;
             }
@@ -85,7 +84,7 @@ int WifiCmd_RunRadioTest(WlTestModeRequest *request, WlReply *reply)
             WIFI_TEST_TX_CONTROL = 0;
             WIFI_TEST_TX_PATTERN = 1;
             WIFI_MAC_FORCE_POWER = 0;
-            regValue = func_arm7_027c8bcc(2);
+            regValue = WifiBaseband_Get(2);
             regValue &= ~0x30;
             WifiBaseband_Put(2, regValue);
         } else if (link->mode == WIFI_MODE_FRAME_TEST) {
