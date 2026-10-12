@@ -107,6 +107,10 @@ src/arm7/sdk/wm/wmsp_reply_end_failed.c:
     complete
     .text       start:0x027c2d48 end:0x027c2d84
 
+src/arm7/sdk/wm/wmsp_reply_set_parent_param_failed.c:
+    complete
+    .text       start:0x027c2e28 end:0x027c2e64
+
 src/arm7/sdk/func_arm7_027c3408.c:
     complete
     .text       start:0x027c3408 end:0x027c342c
