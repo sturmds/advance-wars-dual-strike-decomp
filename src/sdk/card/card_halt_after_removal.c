@@ -1,12 +1,13 @@
 #include "sdk/card.h"
 #include "sdk/pm.h"
+#include "sdk/pad.h"
 
 void Card_PushRemovalTagWord(u32 word, u32 waitCount);
 
-/* The card was removed: tells the other CPU, then stops the system (or powers off if flagged). */
+/* The card was removed: powers off if the lid is closed, else tells the other CPU and stops the system. */
 void Card_HaltAfterRemoval(void)
 {
-    if ((REMOVAL_HALT_STATUS_WORD & REMOVAL_HALT_POWER_BIT) >> 15) {
+    if ((*EXTRA_KEYS_MIRROR & EXTRA_KEYS_LID_CLOSED) >> 15) {
         PM_ForceToPowerOff();
     }
     Card_PushRemovalTagWord(1, 1);

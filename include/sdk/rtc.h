@@ -23,11 +23,11 @@
 #define CLOCK_SEL_ADDR7 0x70
 
 /* Register 4 (alarm and interrupt mode): the low nibble selects the
- * interrupt mode, bit 6 enables alarm 1. */
+ * INT1 interrupt mode, bit 6 enables the INT2 alarm (cleared when INT2 fires). */
 typedef struct RtcIntRegister {
     u16 mode : 4;
     u16 unk_4 : 2;
-    u16 alarm1Enabled : 1;
+    u16 int2Enabled : 1;
     u16 test : 1;
     u16 unk_8 : 8;
 } RtcIntRegister;

@@ -24,7 +24,7 @@ void func_arm7_027d5364(void)
         }
         if (status.int2) {
             fired |= 2;
-            intReg.alarm1Enabled = 0;
+            intReg.int2Enabled = 0;
         }
         func_arm7_027d5e6c(&intReg);
         func_arm7_027d58a8(RTC_PXI_COMMAND_INTERRUPT, fired);

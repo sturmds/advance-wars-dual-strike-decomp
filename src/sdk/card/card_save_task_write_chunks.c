@@ -21,9 +21,9 @@ void CardSave_TaskWriteChunks(CARDiCommon *common)
         Mem_CopyBytes((void *)common->src, common->pageBuffer, chunk);
         DC_FlushRange(common->pageBuffer, chunk);
         DC_WaitWriteBufferEmpty();
-        common->cmd->unk_0C = (u32)common->pageBuffer;
-        common->cmd->unk_10 = common->dst;
-        common->cmd->unk_14 = chunk;
+        common->cmd->src = (u32)common->pageBuffer;
+        common->cmd->dst = common->dst;
+        common->cmd->len = chunk;
         if (!CARDi_Request(common, 7, 10)) {
             break;
         }

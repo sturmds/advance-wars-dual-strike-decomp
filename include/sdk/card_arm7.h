@@ -32,7 +32,7 @@
 /* One SPI transaction: bytes left in all, and where the current transfer reads and writes. */
 typedef struct CARDiSpiTransfer CARDiSpiTransfer;
 struct CARDiSpiTransfer {
-    int remaining;                 /* the chip select is released on the last byte */
+    u32 remaining;                 /* the chip select is released on the last byte */
     const u8 *src;
     u8 *dst;
     BOOL verifyOk;                 /* verify: no byte has differed so far */

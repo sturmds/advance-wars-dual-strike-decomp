@@ -18,9 +18,9 @@ void CardSave_TaskReadChunks(CARDiCommon *common)
             chunk = GAMECARD_BOUNCE_BUF_BYTES;
         }
         DC_InvalidateRange(common->pageBuffer, GAMECARD_BOUNCE_BUF_BYTES);
-        common->cmd->unk_0C = common->src;
-        common->cmd->unk_10 = (u32)common->pageBuffer;
-        common->cmd->unk_14 = chunk;
+        common->cmd->src = common->src;
+        common->cmd->dst = (u32)common->pageBuffer;
+        common->cmd->len = chunk;
         if (!CARDi_Request(common, 6, 1)) {
             break;
         }

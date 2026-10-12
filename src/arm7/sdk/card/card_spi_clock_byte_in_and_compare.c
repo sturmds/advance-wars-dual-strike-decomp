@@ -14,8 +14,7 @@ void CardSpi_ClockByteInAndCompare(CARDiSpiTransfer *transfer)
     /* the chip answers in the low byte of the data register */
     if ((u8)IO_GAMECARD_SPI_BYTE != *transfer->src) {
         transfer->verifyOk = FALSE;
-        /* needed to match: the original compares remaining unsigned */
-        if ((u32)transfer->remaining > 1) {
+        if (transfer->remaining > 1) {
             transfer->remaining = 1;
         }
     }

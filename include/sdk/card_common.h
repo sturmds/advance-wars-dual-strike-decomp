@@ -54,9 +54,9 @@ typedef struct CARDiCommandArg {
     int result;                    /* GAMECARD_STATUS_*; 0 means success */
     u32 type;                      /* backup type */
     u32 unk_08;
-    u32 unk_0C;
-    u32 unk_10;
-    u32 unk_14;
+    u32 src;                       /* backup transfer: source address */
+    u32 dst;                       /* destination address */
+    u32 len;                       /* bytes */
     CARDiBackupSpec spec;
 } CARDiCommandArg;
 
@@ -91,9 +91,6 @@ typedef void (*CARDCallback)(void *arg);
 #define GAMECARD_REQ_HANDSHAKE 0
 #define GAMECARD_STATUS_RESEND 4       /* the other CPU asks for the request to be sent again */
 
-/* Status halfword set by the other CPU: bit 15 asks for a power off after card removal. */
-#define REMOVAL_HALT_STATUS_WORD (*(volatile u16 *)0x027fffa8)
-#define REMOVAL_HALT_POWER_BIT 0x8000
 
 /* IRQ mask bit: a card data transfer ended. */
 #define IRQ_CARD_DATA 0x80000

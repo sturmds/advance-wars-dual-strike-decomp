@@ -34,7 +34,7 @@ void func_arm7_027d5244(void)
     }
     if (status.int1 || status.int2) {
         intReg.mode = 0;
-        intReg.alarm1Enabled = 0;
+        intReg.int2Enabled = 0;
         func_arm7_027d5e6c(&intReg);
     }
     func_arm7_027d61d8(&now);
