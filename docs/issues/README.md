@@ -94,3 +94,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0064](0064-terrain-stats-start.md) | `Ov000_gTerrainStats` starts 8 bytes after the real table: names belong to the next terrain id | open | decomp | M2 |
 | [0065](0065-tile-shape-names.md) | Tile tokens for shapes (coasts, bends) are numbers, not names | open | docs | M2 |
 | [0066](0066-map-scripts.md) | Map event scripts are bytes in ov001, not in the map files | open | decomp | M2 |
+| [0067](0067-partials-ranked-by-objdiff-percent.md) | Partials are ranked by objdiff's percentage, which favours register differences over a closer match | open | loop | M2 |

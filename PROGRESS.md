@@ -50,10 +50,10 @@ they do not match. Each one is compiled and compared with the original by `fn.py
 
 | Code | Functions | Bytes | Rows that match |
 |---|---:|---:|---:|
-| ARM9 game | 35 | 39744 | 9455 / 9967 (94.86%) |
+| ARM9 game | 35 | 39744 | 9456 / 9967 (94.87%) |
 | ARM9 SDK/library | 15 | 11556 | 2138 / 2975 (71.87%) |
 | ARM7 SDK/library | 4 | 1696 | 335 / 424 (79.01%) |
-| all | 54 | 52996 | 11928 / 13366 (89.24%) |
+| all | 54 | 52996 | 11929 / 13366 (89.25%) |
 
 | Rows that differ | Functions | Bytes |
 |---|---:|---:|
@@ -66,8 +66,8 @@ Closest first.
 
 | File | Function | Bytes | Match | Differ |
 |---|---|---:|---:|---:|
+| `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 | 99.91% | 1 |
 | `src/game/main/ai/ai_site_group_rate_surroundings.c` | AiSiteGroup_RateSurroundings | 1584 | 99.99% | 2 |
-| `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 | 99.83% | 2 |
 | `src/sdk/card/func_021154e8.c` | func_021154e8 | 252 | 96.83% | 2 |
 | `src/arm7/sdk/wm/func_arm7_027c6020.c` | func_arm7_027c6020 | 152 | 99.47% | 3 |
 | `src/sdk/card/cardi_set_backup_spec.c` | func_02115858 | 472 | 97.80% | 3 |
