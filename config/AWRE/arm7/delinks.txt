@@ -500,6 +500,10 @@ src/arm7/sdk/wl/wifi_cmd_read_baseband_pair.c:
     complete
     .text       start:0x027cd684 end:0x027cd6b8
 
+src/arm7/sdk/wl/wifi_cmd_report_open_auth_ban.c:
+    complete
+    .text       start:0x027cd6b8 end:0x027cd6e0
+
 src/arm7/sdk/wl/func_arm7_027cdadc.c:
     complete
     .text       start:0x027cdadc end:0x027cdb28
