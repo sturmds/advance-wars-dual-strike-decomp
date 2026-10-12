@@ -1256,6 +1256,10 @@ src/arm7/sdk/wl/wifi_cmd_end_session.c:
     complete
     .text       start:0x027cd360 end:0x027cd3a0
 
+src/arm7/sdk/wl/wifi_cmd_report_extra_data.c:
+    complete
+    .text       start:0x027cd3a0 end:0x027cd484
+
 src/arm7/sdk/wl/wifi_cmd_report_assoc_listen.c:
     complete
     .text       start:0x027cd484 end:0x027cd4ac

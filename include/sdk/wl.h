@@ -507,6 +507,15 @@ typedef struct WlStopSessionRequest {
     u16 clearCounters; /* 0 or 1 */
 } WlStopSessionRequest;
 
+/* Reply that carries the WlUnk318 data block. */
+typedef struct WlDataReply {
+    u16 unk_00;
+    u16 length;     /* reply length in halfwords: room on entry, used on return */
+    u16 unk_04;
+    u16 dataLength; /* in bytes */
+    u8 data[1];
+} WlDataReply;
+
 typedef struct WlScanJob {
     u16 state;
     u8 pad_02[4];
@@ -537,6 +546,7 @@ typedef struct WlTask1Job {
 
 /* Values of WlReply.unk_04 set by the MLME steps. */
 #define WIFI_ANSWER_OK 0
+#define WIFI_ANSWER_ROOM_SHORT 4
 #define WIFI_ANSWER_OUT_OF_RANGE 5
 #define WIFI_ANSWER_NO_RESPONSE 7
 #define WIFI_ANSWER_NO_MEMORY 8  /* the frame could not be allocated */
