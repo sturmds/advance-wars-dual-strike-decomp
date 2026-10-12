@@ -6,8 +6,6 @@
 BOOL func_arm7_03803e68(u32 device);   /* TRUE when nobody holds the SPI bus; its definition leaves out device */
 void func_arm7_03803e50(int device);   /* take the SPI bus for device */
 
-void func_arm7_027d49e0(void);
-
 /* Runs one NVRAM job on the SPI thread and replies to the ARM9. Reads need
  * an idle flash; writes and erases also need the write enable latch. */
 void NVRAM_ExecuteProcess(SerialBusJob *entry)
@@ -82,7 +80,7 @@ void NVRAM_ExecuteProcess(SerialBusJob *entry)
         NVRAM_EraseSector(entry->arg[0]);
         break;
     case FLASH_REQ_SLEEP:
-        func_arm7_027d49e0();
+        NVRAM_DeepPowerDown();
         break;
     case FLASH_REQ_WAKE:
         NVRAM_ReleasePowerDown();

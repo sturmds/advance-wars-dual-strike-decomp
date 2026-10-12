@@ -93,6 +93,7 @@ BOOL NVRAM_IsIdle(void);   /* no write or erase running */
 void NVRAM_SoftwareReset(void);
 void NVRAM_ReadId(u8 *id);   /* the first two id bytes */
 void NVRAM_ChipErase(void);
+void NVRAM_DeepPowerDown(void);
 void NVRAM_ReleasePowerDown(void);
 
 #endif
