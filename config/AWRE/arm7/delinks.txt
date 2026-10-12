@@ -1716,6 +1716,10 @@ src/arm7/sdk/wl/wifi_parent_answer_reassoc_ask.c:
     complete
     .text       start:0x027d2bd8 end:0x027d2d4c
 
+src/arm7/sdk/wl/wifi_child_take_assoc_answer.c:
+    complete
+    .text       start:0x027d2d4c end:0x027d2e70
+
 src/arm7/sdk/wl/wifi_rx_handle_disassoc_frame.c:
     complete
     .text       start:0x027d3014 end:0x027d3104
