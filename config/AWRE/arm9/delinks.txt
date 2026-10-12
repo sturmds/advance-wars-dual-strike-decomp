@@ -4772,6 +4772,7 @@ src/game/main/menus/map_preview_draw_block_units.c:
     .text       start:0x0202c5a0 end:0x0202c760
 
 src/game/main/menus/map_preview_draw_block.c:
+    complete
     .text       start:0x0202c760 end:0x0202ca74
 
 src/game/main/map/map_load_army_colours.c:

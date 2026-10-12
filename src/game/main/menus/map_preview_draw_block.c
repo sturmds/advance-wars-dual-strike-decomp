@@ -21,10 +21,9 @@ extern u16 data_02149080[];           /* pictures, 4 halfwords each, 2 halfwords
  * tile into dst. Used for the map preview: MapPreview_Draw calls it for
  * each block of the preview. Tiles outside the map get data_022a6b40. A
  * property takes the picture for its owner's army colour (gArmyColours).
- * Not matching yet (97.9%): startY is spilled before the loop guard instead
- * of after it. picture, code and tile are declared at function scope, and
- * the first store adds rowOff to cell in place, because that fixes the other
- * registers. */
+ * Needed to match: picture, code and tile are declared at function scope,
+ * the first store adds rowOff to cell in place, and the row index uses an
+ * unsigned y ((u32)y - startY; found by tools/permuter.py). */
 void MapPreview_DrawBlock(u16 *dst, int x, int y, int width, u16 height)
 {
     u16 rowStart;
@@ -105,7 +104,7 @@ void MapPreview_DrawBlock(u16 *dst, int x, int y, int width, u16 height)
                 picture = data_02149080 + data_021587e0[base + colour];
             }
             cell = dst + gMapPreviewColumnOffsets[col - x];
-            rowOff = rowTable[y - startY];
+            rowOff = rowTable[(u32)y - startY];
             *(cell += rowOff) = picture[0];
             cell[2] = picture[2];
             cell[4] = picture[4];
