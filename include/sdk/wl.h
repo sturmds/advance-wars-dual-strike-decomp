@@ -148,6 +148,12 @@ typedef struct WlLimits {
     u16 unk_f6;
 } WlLimits;
 
+/* 802.11 rates as bit masks, one bit per rate (bit 0 1 Mbit/s, bit 1 2 Mbit/s, ...). */
+typedef struct WlRateSet {
+    u16 basic;
+    u16 supported;
+} WlRateSet;
+
 /*
  * Per-station bitmasks (bit n for station n) and the association IDs handed
  * out (bit n of aidMask set while AID n is in use).
