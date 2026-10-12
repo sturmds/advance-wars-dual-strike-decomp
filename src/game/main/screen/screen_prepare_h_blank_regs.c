@@ -78,6 +78,12 @@ void Screen_PrepareHBlankRegs(void) {
                     (GFX->bgCnt[2].screenBase << 8) |
                     (GFX->bgCnt[2].charBase << 2) | GFX->bgCnt[2].priority;
   } else {
+    /* Needed to match: the same kind of empty condition gives the affine
+     * terms the original's registers. */
+    if ((GFX->bgCnt[2].screenBase | GFX->bgCnt[2].charBase |
+         GFX->bgCnt[2].extPltt) &&
+        GFX->bgCnt[2].screenSize) {
+    }
     data_027c0258 = (GFX->bgCnt[2].screenSize << 14) | (*REG_BG2CNT & 0x40) |
                     (GFX->bgCnt[2].screenBase << 8) |
                     (GFX->bgCnt[2].charBase << 2) |

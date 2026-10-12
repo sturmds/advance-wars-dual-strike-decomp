@@ -140,9 +140,17 @@ static inline void SetWndPlaneHigh(volatile u16* reg, int planes, BOOL effect) {
   SetBgControlText(reg, GFX->bgCnt[i].screenSize, GFX->bgCnt[i].colorMode, \
                    GFX->bgCnt[i].screenBase, GFX->bgCnt[i].charBase)
 
-#define SET_BG_CONTROL_AFFINE(reg, i)                                      \
-  SetBgControlAffine(reg, GFX->bgCnt[i].screenSize, GFX->bgCnt[i].extPltt, \
-                     GFX->bgCnt[i].screenBase, GFX->bgCnt[i].charBase)
+/* Needed to match: the empty condition emits no code, but gives the
+ * affine terms the original's registers (found by a scripted search). */
+#define SET_BG_CONTROL_AFFINE(reg, i)                                        \
+  do {                                                                       \
+    if ((GFX->bgCnt[i].screenBase | GFX->bgCnt[i].charBase |                 \
+         GFX->bgCnt[i].extPltt) &&                                           \
+        GFX->bgCnt[i].screenSize) {                                          \
+    }                                                                        \
+    SetBgControlAffine(reg, GFX->bgCnt[i].screenSize, GFX->bgCnt[i].extPltt, \
+                       GFX->bgCnt[i].screenBase, GFX->bgCnt[i].charBase);    \
+  } while (0)
 
 /* Copies the sub screen's state (data_027c0288.unk_04) to the sub
  * engine's display registers, then restores the current screen. */
