@@ -19,7 +19,9 @@
 
 typedef struct WmspSlot {
     u32 flags;
-    u8 pad_04[12];
+    u32 unk_04;
+    u32 unk_08;
+    u8 pad_0c[4];
 } WmspSlot;
 
 /* ARM7 side of WM: a command for the wireless (WL) firmware.
@@ -183,7 +185,9 @@ typedef struct WmspState {
 typedef struct WmspWork {
     OSMessageQueue wlQueue;            /* commands for the WL driver */
     OSMessage wlMessages[2];
-    u8 pad_1c[0x1518 - 0x1c];
+    u8 pad_1c[0x64 - 0x1c];
+    OSMessageQueue requestQueue;       /* requests from the ARM9 (Wmsp_ReceiveRequest) and the ARM7 itself */
+    u8 pad_78[0x1518 - 0x78];
     WmspBuf *buf;
 } WmspWork;
 

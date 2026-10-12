@@ -332,6 +332,10 @@ src/arm7/sdk/wm/wmsp_get_w_counter.c:
     complete
     .text       start:0x027c5680 end:0x027c56f0
 
+src/arm7/sdk/wm/wmsp_queue_v_alarm_mp.c:
+    complete
+    .text       start:0x027c56f0 end:0x027c57a8
+
 src/arm7/sdk/wm/func_arm7_027c5de8.c:
     complete
     .text       start:0x027c5de8 end:0x027c5e10

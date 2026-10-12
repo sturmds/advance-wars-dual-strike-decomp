@@ -97,11 +97,13 @@ typedef struct WMCallback {
 #define WM_APIID_SET_GAMEINFO 24
 #define WM_APIID_SET_BEACON_IND 25
 #define WM_APIID_STOP_TESTMODE 27
+#define WM_APIID_VALARM_MP 28               /* queued by the ARM7 itself from its V-count alarm */
 #define WM_APIID_SET_LIFETIME 29
 #define WM_APIID_MEASURE_CHANNEL 30
 #define WM_APIID_INIT_W_COUNTER 31
 #define WM_APIID_GET_W_COUNTER 32
 #define WM_APIID_SET_ENTRY 33
+#define WM_APIID_AUTO_DISCONNECT 37
 #define WM_APIID_AUTO_DEAUTH 34
 #define WM_APIID_SET_BEACON_PERIOD 36      /* best guess from the neighbouring request ids */
 #define WM_NUM_OF_CALLBACK 41              /* ids below this have a slot in callbackTable */
@@ -128,6 +130,7 @@ typedef struct RadioNotice {
     u16 apiid;
     u16 errcode;
     u16 state;                         /* WIRELESS_NOTICE_* */
+    u16 reason;                        /* WIRELESS_NOTICE_QUEUE_REFUSED: the apiid the ARM7 could not queue */
 } RadioNotice;
 
 /* Start of the reply to the DCF start command. */
