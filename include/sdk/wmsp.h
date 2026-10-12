@@ -55,6 +55,12 @@ typedef struct WmspReply {
     u16 wlResult;
 } WmspReply;
 
+/* The reply to GET_W_COUNTER: the WL's counters, copied as they come. */
+typedef struct WmspWCounterReply {
+    WmspReply header;
+    u8 counters[0xb4];
+} WmspWCounterReply;
+
 /* The ARM7 side's work area, reached through the pointer at its end. */
 typedef struct WmspBuf {
     WMStatus *status;

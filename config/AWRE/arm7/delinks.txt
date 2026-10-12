@@ -272,6 +272,10 @@ src/arm7/sdk/wm/wmsp_reply_get_w_counter_failed.c:
     complete
     .text       start:0x027c5644 end:0x027c5680
 
+src/arm7/sdk/wm/wmsp_get_w_counter.c:
+    complete
+    .text       start:0x027c5680 end:0x027c56f0
+
 src/arm7/sdk/wm/func_arm7_027c5de8.c:
     complete
     .text       start:0x027c5de8 end:0x027c5e10
