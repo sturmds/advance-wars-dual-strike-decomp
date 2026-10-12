@@ -1,6 +1,6 @@
 Entry_Arm7 kind:function(arm,size=0xc0) addr:0x02380000
 do_autoload_Arm7 kind:function(arm,size=0x5c) addr:0x023800c0
-func_arm7_0238011c kind:function(arm,size=0x3c) addr:0x0238011c
+DetectMainMemorySize kind:function(arm,size=0x3c) addr:0x0238011c
 BuildInfo_Arm7 kind:data(any) addr:0x02380158
 Wmsp_TakeFlaggedSlot kind:function(arm,size=0x70) addr:0x027c0000
 Wmsp_ReplyFailed kind:function(arm,size=0x34) addr:0x027c0070

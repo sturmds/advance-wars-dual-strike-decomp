@@ -2,7 +2,7 @@
 
 extern u32 BuildInfo_Arm7[];    /* module parameters the linker fills in */
 void do_autoload_Arm7(void);
-void func_arm7_0238011c(void);
+void DetectMainMemorySize(void);
 void func_arm7_037fb340(void);    /* IRQ handler */
 void func_arm7_037f838c(void);    /* ARM7 main */
 
@@ -50,7 +50,7 @@ clear_bss:
     cmp r1, r2
     strcc r0, [r1], #4
     bcc clear_bss
-    bl func_arm7_0238011c
+    bl DetectMainMemorySize
     ldr r1, =0x0380fffc
     ldr r0, =func_arm7_037fb340
     str r0, [r1]
