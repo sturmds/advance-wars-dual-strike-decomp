@@ -1103,6 +1103,10 @@ src/arm7/sdk/os/line_alarm_assign_tag_arm7.c:
     complete
     .text       start:0x037fd824 end:0x037fd850
 
+src/arm7/sdk/os/line_alarm_program_vcount_irq_arm7.c:
+    complete
+    .text       start:0x037fd850 end:0x037fd8ac
+
 src/arm7/sdk/func_arm7_037fd9dc.c:
     complete
     .text       start:0x037fd9dc end:0x037fd9f0

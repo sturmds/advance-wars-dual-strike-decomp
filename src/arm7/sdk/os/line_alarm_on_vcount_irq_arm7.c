@@ -8,7 +8,7 @@ OSIrqMask func_arm7_037fb620(OSIrqMask mask);
 OSIrqMask func_arm7_037fb654(OSIrqMask mask);
 s32 func_arm7_037fd530(s32 vcount);
 int LineAlarm_ClassifyTiming_Arm7(OSVAlarm *alarm, s32 frame, s32 vcount);
-void func_arm7_037fd850(OSVAlarm *alarm);
+void LineAlarm_ProgramVcountIrq_Arm7(OSVAlarm *alarm);
 void func_arm7_037fd9f0(OSVAlarm *alarm);
 void func_arm7_037fda28(OSVAlarm *alarm);
 
@@ -35,7 +35,7 @@ void LineAlarm_OnVcountIrq_Arm7(void)
 
         switch (LineAlarm_ClassifyTiming_Arm7(alarm, frame, vcount)) {
         case LINE_ALARM_EARLY:
-            func_arm7_037fd850(alarm);
+            LineAlarm_ProgramVcountIrq_Arm7(alarm);
             vcount = *REG_VCOUNT;
             if (alarm->fire != vcount || alarm->frame != frame) {
                 return;
