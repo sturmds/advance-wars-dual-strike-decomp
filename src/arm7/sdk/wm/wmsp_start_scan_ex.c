@@ -19,36 +19,35 @@ int Wmsp_RssiToLinkLevel(u32 rssi);
 /* Allowed in WM_STATE_IDLE, WM_STATE_CLASS1 and WM_STATE_SCAN: scans the
    channels in the request's list and reports every parent found. Their
    beacons go one after the other into scanBuf, each at a 4-byte boundary. */
-/* WIP, 98.4%: same instructions, but the original gives req the lowest
-   callee-saved register (r4) and buf/channelMask the highest; here req
-   gets r10. */
-void func_arm7_027c342c(RadioChannelSweepRequest *req)
+void WMSP_StartScanEx(RadioChannelSweepRequest *req)
 {
     union {
         WlCommand command;
         u8 bytes[0x45c];
     } cmdBuf;
+    /* Needed to match: this declaration order (it sets which callee-saved
+       register each local gets). */
+    int i;
+    WMBssDesc *desc;
+    WMBssDesc *dest;
     WlCommand *cmd = &cmdBuf.command;
-    WmspBuf *buf = func_arm7_027c05e0()->buf;
     u16 bssid[3];
     u8 ssid[32];
     u8 channels[16];
     volatile u16 zero;
     RadioChannelSweepReply *reply;
     WmspScanReply *scan;
-    WMBssDesc *desc;
-    WMBssDesc *dest;
     u16 *result;
     u16 channelList;
+    u16 count;
+    WmspBuf *buf = func_arm7_027c05e0()->buf;
     int channelMask;
     u16 maxChannelTime;
     u16 scanType;
     u16 ssidLength;
     u16 scanBufSize;
-    u16 count;
     u16 channel;
     u16 size;
-    int i;
 
     if (buf->status->state != WM_STATE_IDLE && buf->status->state != WM_STATE_CLASS1 &&
         buf->status->state != WM_STATE_SCAN) {

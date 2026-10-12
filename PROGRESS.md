@@ -14,11 +14,11 @@ add both CPUs.
 | ARM9 game | 6670 / 6700 | 1521248 / 1553840 | 97.90% | 0 | 0 |
 | ARM9 SDK/library | 643 / 833 | 103292 / 135226 | 76.38% | 176 | 20718 |
 | ARM9 all | 7313 / 7533 | 1624540 / 1689066 | 96.18% | 176 | 20718 |
-| ARM7 SDK/library | 948 / 1020 | 147744 / 154300 | 95.75% | 69 | 4960 |
-| ARM7 all | 948 / 1020 | 147744 / 154300 | 95.75% | 69 | 4960 |
+| ARM7 SDK/library | 949 / 1020 | 148704 / 154300 | 96.37% | 69 | 4960 |
+| ARM7 all | 949 / 1020 | 148704 / 154300 | 96.37% | 69 | 4960 |
 | game | 6670 / 6700 | 1521248 / 1553840 | 97.90% | 0 | 0 |
-| SDK/library | 1591 / 1853 | 251036 / 289526 | 86.71% | 245 | 25678 |
-| all | 8261 / 8553 | 1772284 / 1843366 | 96.14% | 245 | 25678 |
+| SDK/library | 1592 / 1853 | 251996 / 289526 | 87.04% | 245 | 25678 |
+| all | 8262 / 8553 | 1773244 / 1843366 | 96.20% | 245 | 25678 |
 
 ## By module
 
@@ -37,7 +37,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | ov004 | game | 232 / 236 | 64808 / 67364 | 96.21% | 0 |
 | ov005 | game | 264 / 266 | 96316 / 96684 | 99.62% | 0 |
 | ov006 | game | 320 / 321 | 104988 / 105588 | 99.43% | 0 |
-| arm7 | SDK/library | 948 / 1020 | 147744 / 154300 | 95.75% | 69 |
+| arm7 | SDK/library | 949 / 1020 | 148704 / 154300 | 96.37% | 69 |
 
 Modules with nothing done: none.
 
@@ -54,15 +54,15 @@ objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 00
 |---|---:|---:|---:|
 | ARM9 game | 30 | 32592 | 7728 / 8171 (94.58%) |
 | ARM9 SDK/library | 14 | 11216 | 2058 / 2890 (71.21%) |
-| ARM7 SDK/library | 3 | 1596 | 323 / 399 (80.95%) |
-| all | 47 | 45404 | 10109 / 11460 (88.21%) |
+| ARM7 SDK/library | 2 | 636 | 148 / 159 (93.08%) |
+| all | 46 | 44444 | 9934 / 11220 (88.54%) |
 
 | Rows that differ | Functions | Bytes |
 |---|---:|---:|
 | 1 to 2 | 2 | 1836 |
 | 3 to 10 | 16 | 10292 |
 | 11 to 50 | 25 | 24300 |
-| more than 50 | 4 | 8976 |
+| more than 50 | 3 | 8016 |
 
 Closest first.
 
@@ -111,7 +111,6 @@ Closest first.
 | `src/game/main/menus/combat_map_draw_preview_block.c` | CombatMap_DrawPreviewBlock | 556 | 42 | 98.06% |
 | `src/game/ov005/func_ov005_0235b5dc.c` | func_ov005_0235b5dc | 188 | 42 | 72.36% |
 | `src/sdk/isd/isd_double_divide_by_ten.c` | func_0211fe0c | 1168 | 44 | 96.78% |
-| `src/arm7/sdk/wm/wmsp_start_scan_ex.c` | func_arm7_027c342c | 960 | 65 | 98.44% |
 | `src/sdk/msl/double2hex.c` | double2hex | 948 | 121 | 86.82% |
 | `src/sdk/isd/isd_v_format.c` | Isd_VFormat | 4960 | 217 | 99.28% |
 | `src/sdk/msl/__pformatter.c` | __pformatter | 2108 | 284 | 88.31% |
