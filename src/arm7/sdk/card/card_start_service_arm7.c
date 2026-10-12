@@ -3,7 +3,7 @@
 
 extern u32 data_arm7_03809870;
 
-void func_arm7_03802984(void);
+void CARDi_InitCommon(void);
 void func_arm7_03803b14(void);
 void CardRom_ReadPagesByCpu_Arm7(CARDiRomPage *page);
 
@@ -23,7 +23,7 @@ void Card_StartService_Arm7(void)
         common->callback = NULL;
         common->callbackArg = NULL;
         data_arm7_03809870 = 0;
-        func_arm7_03802984();
+        CARDi_InitCommon();
         data_arm7_03809880.readPages = CardRom_ReadPagesByCpu_Arm7;
         func_arm7_03803b14();
     }
