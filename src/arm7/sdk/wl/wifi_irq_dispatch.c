@@ -9,7 +9,7 @@ int func_arm7_027cab80(void); /* acknowledges W_IRQ_RF_WAKEUP */
 void func_arm7_037f9920(void);
 void func_arm7_037f9a44(void);
 void func_arm7_037f9e28(void);
-void func_arm7_037f98e4(void);
+void WifiIrq_StatsHalfFull(void);
 void func_arm7_037f9c00(void);
 void func_arm7_037fa0b4(int arg);
 
@@ -52,7 +52,7 @@ void WifiIrq_Dispatch(void)
             func_arm7_037f9e28();
         }
         if (causes & W_IRQ_COUNT_OVERFLOW) {
-            func_arm7_037f98e4();
+            WifiIrq_StatsHalfFull();
         }
         if (causes & W_IRQ_TX_DONE) {
             func_arm7_037f9c00();
