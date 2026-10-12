@@ -10,9 +10,9 @@ u32 Isd_DivideByRadix(u32 value, u32 radix);
 int Isd_DoubleExponent(double x);
 
 /* Software double helpers in src/sdk/isd/. */
-int Isd_DoubleUnitsDigit(double x);         /* the digit in front of the point */
+u32 Isd_DoubleUnitsDigit(double x);         /* the digit in front of the point */
 double func_0211fe0c(double x, int keepFraction); /* x / 10; with keepFraction 0, the integer part of it */
-double func_0212029c(double x);             /* x * 10 */
+double Isd_DoubleTimesTen(double x);             /* x * 10 */
 double func_02120574(double a, double b);   /* a + b */
 
 extern char gIsdNullString[];   /* "(null)" */
@@ -438,7 +438,7 @@ void Isd_VFormat(IsdPrintTarget *target, const char *format, char **args)
             }
             if (Isd_DoubleExponent(scaled) < ISD_DOUBLE_EXPONENT_ONE) {
                 for (exponent = 0; Isd_DoubleExponent(scaled) < ISD_DOUBLE_EXPONENT_ONE; exponent--) {
-                    scaled = func_0212029c(scaled);
+                    scaled = Isd_DoubleTimesTen(scaled);
                 }
             } else if (Isd_DoubleExponent(func_0211fe0c(scaled, 0)) >= ISD_DOUBLE_EXPONENT_ONE) {
                 for (exponent = 0; Isd_DoubleExponent(func_0211fe0c(scaled, 0)) >= ISD_DOUBLE_EXPONENT_ONE; exponent++) {
@@ -511,7 +511,7 @@ void Isd_VFormat(IsdPrintTarget *target, const char *format, char **args)
             fraction = number;
             fracLen = 0;
             while (fracDigits > 0) {
-                fraction = func_0212029c(fraction);
+                fraction = Isd_DoubleTimesTen(fraction);
                 c = (u8)(Isd_DoubleUnitsDigit(fraction) + '0');
                 digit = &frac[fracLen];
                 Isd_StoreByte(digit, c);

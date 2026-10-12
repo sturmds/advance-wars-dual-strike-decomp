@@ -23,7 +23,7 @@ static inline void Isd_StoreByte(char *address, int value)
  * The sign is shifted by 7 although Isd_DoubleSign already returns 0x80,
  * so it never reaches the result.
  */
-double func_0212029c(double x)
+double Isd_DoubleTimesTen(double x)
 {
     int exponent;
     int i;
@@ -37,6 +37,7 @@ double func_0212029c(double x)
     char *readPtr;
     char *topByte;
     int sign;
+    int count;
 
     sign = Isd_DoubleSign(x);
     exponent = Isd_DoubleExponent(x);
@@ -68,13 +69,16 @@ double func_0212029c(double x)
     writePtr = (char *)&result + 7;
     Isd_StoreByte(writePtr, byte);
     readPtr = (char *)&result + 6;
-    byte = Isd_ReadByte(readPtr) | ((exponent & 0xf) << 4);
+    /* Needed to match: the byte goes through i first, and the shift count below is a local. */
+    i = Isd_ReadByte(readPtr) | ((exponent & 0xf) << 4);
+    byte = i;
     writePtr = (char *)&result + 6;
     Isd_StoreByte(writePtr, byte);
     mantissa &= 0x000fffffffffffffULL;
     for (i = 6; i >= 0; i--) {
         shifted = mantissa;
-        for (j = 0; j < i * 8; j++) {
+        count = i * 8;
+        for (j = 0; j < count; j++) {
             shifted >>= 1;
         }
         writePtr = (char *)&result + i;
