@@ -30,7 +30,8 @@ typedef struct WlReply {
 typedef struct WlStation {
     u16 state;
     u16 aid;
-    u8 pad_04[0xc];
+    u16 macAddress[3];
+    u8 pad_0a[0x6];
     u16 unk_10; /* bit 1: send to this station at 2 Mbit/s */
     u8 pad_12[0x4];
     u16 queuedFrames;
@@ -103,7 +104,7 @@ typedef struct WlLimits {
  * out (bit n of aidMask set while AID n is in use).
  */
 typedef struct WlStationBits {
-    u8 pad_00[0x2];
+    u16 stationCount; /* station entries with a nonzero state */
     u16 unk_02;
     u16 unk_04;
     u16 unk_06;
@@ -317,6 +318,9 @@ typedef struct WlWork {
 #define IRQ_MASK_WIRELESS 0x1000000
 
 WlStation *WifiStation_Entry(u16 index);
+
+/* Station index returned when no station fits. */
+#define WIFI_NO_PEER 0xff
 
 /*
  * WlLimits 0xf0-0xf7 seen as one struct: unk_f0 holds the station table
