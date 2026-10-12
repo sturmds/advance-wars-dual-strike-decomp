@@ -57,34 +57,60 @@ void Palette_Flush(void);
     Ov004_SetSlotTask(state, Task_Create(script, TASK_LIST(5)), id); \
   } while (0)
 
+/* The screen that shows the 3D engine (BG0 in mode 1). */
+#define SCREEN_3D (data_027c0288.unk_00)
+
+/* Makes SCREEN_3D current; RESTORE_SCREEN puts the previous screen back. */
+#define USE_3D_SCREEN()                   \
+  Unk_027c0280* savedGfx = data_027c0280; \
+  Unk_02080440* savedState;               \
+  Screen_SetCurrentGfx(SCREEN_3D);        \
+  savedState = data_027c027c;             \
+  Screen_SetCurrent(SCREEN_3D)
+
+#define RESTORE_SCREEN()         \
+  Screen_SetCurrent(savedState); \
+  Screen_SetCurrentGfx(savedGfx)
+
+#define SHOW_LAYERS(b0, b1, b2, b3, o)    \
+  GFX_DISPCNT(data_027c0280)->bg0 = (b0); \
+  GFX_DISPCNT(data_027c0280)->bg1 = (b1); \
+  GFX_DISPCNT(data_027c0280)->bg2 = (b2); \
+  GFX_DISPCNT(data_027c0280)->bg3 = (b3); \
+  GFX_DISPCNT(data_027c0280)->obj = (o)
+
+/* Loads tiles and map into BG layer i, the palette into BG palette 8, and
+ * points every map entry at that palette. Needed to match: `entries` in its
+ * own block, like the saved screens in USE_3D_SCREEN. At function scope they
+ * swap the registers of task and state. */
+#define LOAD_LAYER(i, bg, tiles, tileMap)                          \
+  Ov004_UnpackResource(tiles, BG_CHAR_DATA(bg));                   \
+  Ov004_UnpackResource(tileMap, GFX_LAYER(data_027c0280, i)->map); \
+  Ov004_CopyResource(data_ov004_022bde10,                          \
+                     data_027c0280->paletteBuffer + 0x100);        \
+  {                                                                \
+    u16* entries = GFX_LAYER(data_027c0280, i)->map;               \
+    TileMap_AddToEntries(entries, LAYER_MAP_BYTES(i), 0x8000);     \
+  }                                                                \
+  Gfx_RequestLayerCopy(i);                                         \
+  Palette_Flush()
+
 /* Runs a timeline of cues (Ov004_CheckTimedEvent, each fires once): frame 0
  * shows BG0, BG2 and OBJ and starts two script tasks, frame 18 loads pictures
  * into layers 1 and 3, frame 20 shows every layer, blends layers 1 and 3 over
  * layer 2 and starts two more tasks, frame 219 blacks the screen out and
  * resumes the script. Until then it draws two 256x128 textured quads that
- * slide with state->unk_8f8. task->duration counts the task slots handed out.
- * WIP: task and state land in swapped registers (r5/r4 instead of r4/r5). */
-void func_ov004_022b1f98(Ov004Task* task) {
+ * slide with state->unk_8f8. task->duration counts the task slots handed out. */
+void Ov004Task_RunSlidingQuadsTimeline(Ov004Task* task) {
   Unk_ov004_022bf158* state = data_ov004_022bf158;
-  Unk_027c0280* savedGfx;
-  Unk_02080440* savedState;
-  u16* map;
 
   Ov004_UpdateElapsedFrames(state);
 
   if (Ov004_CheckTimedEvent(state, 0, 0)) {
-    savedGfx = data_027c0280;
-    Screen_SetCurrentGfx(data_027c0288.unk_00);
-    savedState = data_027c027c;
-    Screen_SetCurrent(data_027c0288.unk_00);
-    GFX_DISPCNT(data_027c0280)->bg0 = 1;
-    GFX_DISPCNT(data_027c0280)->bg1 = 0;
-    GFX_DISPCNT(data_027c0280)->bg2 = 1;
-    GFX_DISPCNT(data_027c0280)->bg3 = 0;
-    GFX_DISPCNT(data_027c0280)->obj = 1;
+    USE_3D_SCREEN();
+    SHOW_LAYERS(1, 0, 1, 0, 1);
     data_027c0280->masterBrightness = 0;
-    Screen_SetCurrent(savedState);
-    Screen_SetCurrentGfx(savedGfx);
+    RESTORE_SCREEN();
     state->unk_8f8 = -144;
     START_SLOT_TASK(data_ov004_022bdff8);
     START_SLOT_TASK(data_ov004_022be058);
@@ -92,37 +118,14 @@ void func_ov004_022b1f98(Ov004Task* task) {
   if (Ov004_CheckTimedEvent(state, 1, 18)) {
     Gfx_ClearLayerMap(1);
     Gfx_ClearLayerMap(3);
-
-    Ov004_UnpackResource(data_ov004_022bdddc,
-                         BG_CHAR_DATA(data_027c0280->layer1Bg));
-    Ov004_UnpackResource(data_ov004_022bddfc, GFX_LAYER(data_027c0280, 1)->map);
-    Ov004_CopyResource(data_ov004_022bde10,
-                       data_027c0280->paletteBuffer + 0x100);
-    map = GFX_LAYER(data_027c0280, 1)->map;
-    TileMap_AddToEntries(map, LAYER_MAP_BYTES(1), 0x8000);
-    Gfx_RequestLayerCopy(1);
-    Palette_Flush();
-
-    Ov004_UnpackResource(data_ov004_022bddd4,
-                         BG_CHAR_DATA(data_027c0280->layer3Bg));
-    Ov004_UnpackResource(data_ov004_022bdd94, GFX_LAYER(data_027c0280, 3)->map);
-    Ov004_CopyResource(data_ov004_022bde10,
-                       data_027c0280->paletteBuffer + 0x100);
-    map = GFX_LAYER(data_027c0280, 3)->map;
-    TileMap_AddToEntries(map, LAYER_MAP_BYTES(3), 0x8000);
-    Gfx_RequestLayerCopy(3);
-    Palette_Flush();
+    LOAD_LAYER(1, data_027c0280->layer1Bg, data_ov004_022bdddc,
+               data_ov004_022bddfc);
+    LOAD_LAYER(3, data_027c0280->layer3Bg, data_ov004_022bddd4,
+               data_ov004_022bdd94);
   }
   if (Ov004_CheckTimedEvent(state, 2, 20)) {
-    savedGfx = data_027c0280;
-    Screen_SetCurrentGfx(data_027c0288.unk_00);
-    savedState = data_027c027c;
-    Screen_SetCurrent(data_027c0288.unk_00);
-    GFX_DISPCNT(data_027c0280)->bg0 = 1;
-    GFX_DISPCNT(data_027c0280)->bg1 = 1;
-    GFX_DISPCNT(data_027c0280)->bg2 = 1;
-    GFX_DISPCNT(data_027c0280)->bg3 = 1;
-    GFX_DISPCNT(data_027c0280)->obj = 1;
+    USE_3D_SCREEN();
+    SHOW_LAYERS(1, 1, 1, 1, 1);
     data_027c0280->bgScrollY[data_027c0280->layer1Bg] = 192;
     data_027c0280->bgScrollX[data_027c0280->layer1Bg] = 0;
     data_027c0280->bgScrollY[data_027c0280->layer3Bg] = -64;
@@ -143,20 +146,17 @@ void func_ov004_022b1f98(Ov004Task* task) {
     data_027c0280->blendBottomBg[data_027c0280->layer2Bg] = 1;
     data_027c0280->blendBottomBg[data_027c0280->layer3Bg] = 0;
     data_027c0280->blendBottomObj = 0;
-    Screen_SetCurrent(savedState);
-    Screen_SetCurrentGfx(savedGfx);
+    RESTORE_SCREEN();
     START_SLOT_TASK(data_ov004_022be318);
     START_SLOT_TASK(data_ov004_022be378);
   }
   if (Ov004_CheckTimedEvent(state, 3, 219)) {
     Ov004_StartClock(state);
-    savedGfx = data_027c0280;
-    Screen_SetCurrentGfx(data_027c0288.unk_00);
-    savedState = data_027c027c;
-    Screen_SetCurrent(data_027c0288.unk_00);
-    data_027c0280->masterBrightness = -16;
-    Screen_SetCurrent(savedState);
-    Screen_SetCurrentGfx(savedGfx);
+    {
+      USE_3D_SCREEN();
+      data_027c0280->masterBrightness = -16;
+      RESTORE_SCREEN();
+    }
     Ov004_DestroySlotTasks(state);
     func_ov004_022bb1d8(state);
     Task_ResumeScript(task);
