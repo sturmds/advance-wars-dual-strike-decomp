@@ -16,7 +16,7 @@ void Wifi_SwitchMode(int mode); /* switches WlLink.mode */
  * associated). In 2 and 3, a disassociation from our AP while associated
  * (mode 0x40) switches to mode 0x30.
  */
-void WifiRx_HandleDisassocFrame(WlTxFrame *frame)
+void WifiRx_HandleDisassocFrame(WlRxFrame *frame)
 {
     WlLink *link = WIFI_LINK_VIEW_OF(WIFI_DRIVER_STATE);
     u32 station = frame->station;
@@ -28,7 +28,7 @@ void WifiRx_HandleDisassocFrame(WlTxFrame *frame)
         state = func_arm7_027cb140(station);
         if (state == WIFI_PEER_ASSOCIATED) {
             WifiStation_ChangeState(station, 0x30);
-            WifiHost_TellDisassociated((const u8 *)frame->addr2, WIFI_MANAGEMENT_FIELDS_OF(frame)->reason);
+            WifiHost_TellDisassociated((const u8 *)frame->addr2, frame->body[0]);
             func_arm7_027d0424(station);
         } else {
             if (state == 0x30) {
@@ -46,7 +46,7 @@ void WifiRx_HandleDisassocFrame(WlTxFrame *frame)
         if (link->mode == 0x40 && WifiMac_Equal(frame->addr2, link->currentAp)) {
             Wifi_SwitchMode(0x30);
             WifiLink_DropAssocId();
-            WifiHost_TellDisassociated((const u8 *)frame->addr2, WIFI_MANAGEMENT_FIELDS_OF(frame)->reason);
+            WifiHost_TellDisassociated((const u8 *)frame->addr2, frame->body[0]);
         }
         break;
     }

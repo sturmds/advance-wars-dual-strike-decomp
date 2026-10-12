@@ -688,9 +688,13 @@ typedef struct WlTxBuffer {
 /* A buffer holding a received frame. */
 typedef struct WlRxBuffer {
     WlBuffer header;
-    u8 pad_0c[4];
+    u16 command;
+    u16 length;
     WlRxFrame frame;
 } WlRxBuffer;
+
+/* The WlRxBuffer that holds a received frame. */
+#define WIFI_RX_HOLDER_OF(rxFrame) ((WlRxBuffer *)((u8 *)(rxFrame) - (u32)&((WlRxBuffer *)0)->frame))
 
 /* WlTxBuffer.unk_0c of a frame the driver builds for itself. */
 #define WIFI_DRIVER_BUILT_FRAME 0xffff
@@ -869,7 +873,9 @@ typedef struct WlWork {
     };
     u8 pad_484[0x4a2 - 0x484];
     u16 aidBit; /* 1 << state.aid */
-    u8 pad_4a4[0x504 - 0x4a4];
+    u8 pad_4a4[0x4ba - 0x4a4];
+    u16 unk_4ba; /* ORed into the RX header word of an MP ack sent to the host */
+    u8 pad_4bc[0x504 - 0x4bc];
     WlStationBits stationBits;
     u32 counters[45]; /* totals of the hardware event counters, see WifiCmd_ReportStatistics */
     WlRandom random;
