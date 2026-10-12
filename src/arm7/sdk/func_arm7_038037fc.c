@@ -9,10 +9,10 @@ struct Unk_038037fc_0 {
     int unk_14;
 };
 
-void func_arm7_03802c8c(int, int, int);
+void CardSave_CompareWithSource(int, int, int);
 
 void func_arm7_038037fc(Unk_038037fc_0 **a0)
 {
     Unk_038037fc_0 *t0 = *a0;
-    func_arm7_03802c8c(t0->unk_10, t0->unk_c, t0->unk_14);
+    CardSave_CompareWithSource(t0->unk_10, t0->unk_c, t0->unk_14);
 }
