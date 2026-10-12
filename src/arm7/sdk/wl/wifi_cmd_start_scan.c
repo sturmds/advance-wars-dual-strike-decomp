@@ -10,11 +10,11 @@ int WifiParam_StoreSsid(u32 length, const u8 *src);
 int WifiCmd_StartScan(WlScanRequest *request, WlReply *reply)
 {
     WlWork *work = WIFI_DRIVER_STATE;
-    WlPendingRequest *pending = WIFI_WAITING_REQUEST_OF;
+    WlScanJob *job = &WIFI_ACTIVE_JOB_OF(work)->scan;
     u32 i;
     u8 channel;
 
-    pending->unk_04 = reply->status - 2;
+    job->unk_04 = reply->status - 2;
     reply->status = 3;
     if (work->state.phase != 1 && work->state.phase != 3 && work->state.phase != 2) {
         return 11;
@@ -52,9 +52,9 @@ int WifiCmd_StartScan(WlScanRequest *request, WlReply *reply)
     }
     WifiParam_LoadBssid(request->peer);
     WifiParam_StoreSsid(request->ssidLength, request->ssid);
-    pending->request = request;
-    pending->reply = reply;
-    pending->command = 0x10;
+    job->request = request;
+    job->reply = reply;
+    job->state = 0x10;
     WifiTask_Schedule(2, 0);
     return WIFI_ANSWER_LATER;
 }

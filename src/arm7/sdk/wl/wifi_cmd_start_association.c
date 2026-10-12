@@ -10,7 +10,7 @@ int WifiCmd_StartAssociation(WlAssociateRequest *request, WlReply *reply)
 {
     WlWork *work = WIFI_DRIVER_STATE;
     WlLink *link = WIFI_LINK_VIEW_OF(work);
-    WlPendingRequest *pending = WIFI_WAITING_REQUEST_OF;
+    WlMlmeJob *job = &WIFI_ACTIVE_JOB_OF(work)->any;
 
     reply->status = 3;
     if (work->state.phase != 3 && work->state.phase != 2) {
@@ -38,9 +38,9 @@ int WifiCmd_StartAssociation(WlAssociateRequest *request, WlReply *reply)
     WifiLink_DropAssocId();
     link->listenInterval = request->listenInterval;
     link->unk_72 = request->listenInterval;
-    pending->request = request;
-    pending->reply = reply;
-    pending->command = 0x50;
+    job->request = request;
+    job->reply = reply;
+    job->state = 0x50;
     WifiMlme_RunAssociation();
     return WIFI_ANSWER_LATER;
 }

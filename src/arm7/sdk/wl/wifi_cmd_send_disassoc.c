@@ -11,7 +11,7 @@ void WifiTx_EnqueueGroupcast(WlBufferList *from, WlBuffer *buffer);
 // the frame is sent.
 int WifiCmd_SendDisassoc(WlMacRequest *request, WlReply *reply)
 {
-    WlPendingRequest *pending = WIFI_WAITING_REQUEST_OF;
+    WlMlmeJob *job = &WIFI_ACTIVE_JOB_OF(WIFI_DRIVER_STATE)->any;
     WlTxFrame *frame;
 
     reply->status = 1;
@@ -28,9 +28,9 @@ int WifiCmd_SendDisassoc(WlMacRequest *request, WlReply *reply)
     if (frame == NULL) {
         return WIFI_ANSWER_NO_MEMORY;
     }
-    pending->request = request;
-    pending->reply = reply;
-    pending->command = 0x71;
+    job->request = request;
+    job->reply = reply;
+    job->state = 0x71;
     if (request->mac[0] & 1) {
         WifiTx_EnqueueGroupcast(&WIFI_DRIVER_STATE->unk_15c, WIFI_HOST_TX_HEADER_OF(frame));
         if ((WIFI_DRIVER_STATE->stationBits.unk_02 & ~WIFI_DRIVER_STATE->stationBits.unk_06) == 0) {

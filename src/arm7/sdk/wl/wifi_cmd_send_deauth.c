@@ -33,9 +33,9 @@ int WifiCmd_SendDeauth(WlMacRequest *request, WlMacReply *reply)
     if (frame == NULL) {
         return WIFI_ANSWER_NO_MEMORY;
     }
-    WIFI_WAITING_REQUEST_OF->request = request;
-    WIFI_WAITING_REQUEST_OF->reply = (WlReply *)reply;
-    WIFI_WAITING_REQUEST_OF->command = 0x41;
+    WIFI_ACTIVE_JOB_OF(WIFI_DRIVER_STATE)->any.request = request;
+    WIFI_ACTIVE_JOB_OF(WIFI_DRIVER_STATE)->any.reply = (WlReply *)reply;
+    WIFI_ACTIVE_JOB_OF(WIFI_DRIVER_STATE)->any.state = 0x41;
     if (request->mac[0] & 1) {
         WifiTx_EnqueueGroupcast(&WIFI_DRIVER_STATE->unk_15c, WIFI_HOST_TX_HEADER_OF(frame));
         if ((WIFI_DRIVER_STATE->stationBits.unk_02 & ~WIFI_DRIVER_STATE->stationBits.unk_06) == 0) {

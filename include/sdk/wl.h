@@ -518,7 +518,8 @@ typedef struct WlDataReply {
 
 typedef struct WlScanJob {
     u16 state;
-    u8 pad_02[4];
+    u8 pad_02[2];
+    u16 unk_04;          /* WlReply.status - 2 when the scan was asked for */
     u16 channelIndex;    /* next entry of request->channels */
     u16 unk_08;
     u16 elapsedMs;       /* time spent on the current channel */
@@ -550,7 +551,8 @@ typedef struct WlTask1Job {
 #define WIFI_ANSWER_OUT_OF_RANGE 5
 #define WIFI_ANSWER_NO_RESPONSE 7
 #define WIFI_ANSWER_NO_MEMORY 8  /* the frame could not be allocated */
-#define WIFI_ANSWER_LATER 0x80
+#define WIFI_ANSWER_FLASH_BLOCK_BAD 14  /* WifiFlash_ValidateRadioBlock failed */
+#define WIFI_ANSWER_LATER 0x80 /* the request stays in WlMlme; the reply comes later */
 
 /* Request that names a destination station by MAC address. Bit 0 of the
    first byte marks a multicast address. */
@@ -575,7 +577,6 @@ typedef struct WlAssociateRequest {
     u16 listenInterval; /* 1-255 */
     u16 timeoutMs;      /* 10-2000: how long to wait for the response */
 } WlAssociateRequest;
-#define WIFI_ANSWER_FLASH_BLOCK_BAD 14  /* WifiFlash_ValidateRadioBlock failed */
 
 typedef struct WlMlmeJob {
     u16 state;
@@ -1165,21 +1166,6 @@ typedef struct WlStationTable {
 #define WIFI_PEER_TABLE_INFO ((WlStationTable *)&WIFI_DRIVER_STATE->limits.unk_f0)
 #define WIFI_PEER_ARRAY (WIFI_PEER_TABLE_INFO->stations)
 
-/*
- * WlState.unk_d8 seen as one struct: a request that answers later. The
- * handler keeps the request and its reply here and returns WIFI_ANSWER_LATER.
- */
-typedef struct WlPendingRequest {
-    u16 command;
-    u8 pad_02[2];
-    u16 unk_04;
-    u8 pad_06[0x12];
-    void *request;
-    WlReply *reply;
-} WlPendingRequest;
-
-#define WIFI_WAITING_REQUEST_OF ((WlPendingRequest *)WIFI_DRIVER_STATE->state.unk_d8)
-
 /* Work offsets 0x2f0-0x317 seen as one struct (Wifi_ClearSessionArea clears them in
    one go); func_arm7_027cc97c reaches phase and macAddress through it. */
 typedef struct WlHead {
@@ -1195,14 +1181,6 @@ typedef struct WlHead {
 } WlHead;
 
 #define WIFI_SESSION_HEAD_OF(work) ((WlHead *)&(work)->limits.unk_f0)
-
-/* Request to authenticate with the access point at mac. */
-typedef struct WlAuthenticateRequest {
-    u8 pad_00[0x10];
-    u16 mac[3];
-    u16 algorithm; /* 802.11 authentication algorithm: 0 open system, 1 shared key */
-    u16 timeoutMs; /* 10-2000: how long to wait for the response */
-} WlAuthenticateRequest;
 
 typedef struct WlAuthenticateReply {
     u16 unk_00;

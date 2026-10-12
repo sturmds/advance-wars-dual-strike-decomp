@@ -16,7 +16,7 @@ int WifiCmd_StartJoin(WlJoinRequest *request, WlReply *reply)
 {
     WlWork *work = WIFI_DRIVER_STATE;
     WlLink *link = WIFI_LINK_VIEW_OF(work);
-    WlPendingRequest *pending = WIFI_WAITING_REQUEST_OF;
+    WlMlmeJob *job = &WIFI_ACTIVE_JOB_OF(work)->any;
 
     reply->status = 5;
     if (work->state.phase != 3 && work->state.phase != 2) {
@@ -77,9 +77,9 @@ int WifiCmd_StartJoin(WlJoinRequest *request, WlReply *reply)
     WifiParam_ChangeBeaconPeriod(request->beaconInterval);
     WifiRf_TuneChannel(request->channel, 0);
     WifiParam_StoreRates(&request->rates);
-    pending->request = request;
-    pending->reply = reply;
-    pending->command = 0x20;
+    job->request = request;
+    job->reply = reply;
+    job->state = 0x20;
     WifiTask_Schedule(2, 1);
     return WIFI_ANSWER_LATER;
 }
