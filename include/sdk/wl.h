@@ -502,6 +502,11 @@ typedef struct WlScanRequest {
     u16 unk_4c;          /* up to 16 */
 } WlScanRequest;
 
+typedef struct WlStopSessionRequest {
+    u8 pad_00[0x10];
+    u16 clearCounters; /* 0 or 1 */
+} WlStopSessionRequest;
+
 typedef struct WlScanJob {
     u16 state;
     u8 pad_02[4];

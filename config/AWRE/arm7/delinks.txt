@@ -1252,6 +1252,10 @@ src/arm7/sdk/wl/func_arm7_027cd2b4.c:
     complete
     .text       start:0x027cd2b4 end:0x027cd360
 
+src/arm7/sdk/wl/wifi_cmd_end_session.c:
+    complete
+    .text       start:0x027cd360 end:0x027cd3a0
+
 src/arm7/sdk/wl/wifi_cmd_report_assoc_listen.c:
     complete
     .text       start:0x027cd484 end:0x027cd4ac
