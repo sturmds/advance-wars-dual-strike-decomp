@@ -3,7 +3,7 @@
 u16 SndDrv_NextRandom(void);
 s16 *func_arm7_037fff84(SndPlayer *player, int index);
 u32 SndTrack_ReadVarLength(SndTrack *track);
-u16 func_arm7_03801354(SndTrack *track);
+u16 SndTrack_ReadU16(SndTrack *track);
 u8 func_arm7_038013a4(u8 *address);
 
 int SndTrack_ReadArg(SndTrack *track, SndPlayer *player, int type)
@@ -21,7 +21,7 @@ int SndTrack_ReadArg(SndTrack *track, SndPlayer *player, int type)
         track->cursor++;
         break;
     case SEQ_ARG_FROM_U16:
-        value = func_arm7_03801354(track);
+        value = SndTrack_ReadU16(track);
         break;
     case SEQ_ARG_FROM_VARINT:
         value = SndTrack_ReadVarLength(track);
@@ -36,8 +36,8 @@ int SndTrack_ReadArg(SndTrack *track, SndPlayer *player, int type)
         }
         break;
     case SEQ_ARG_FROM_RANGE:
-        min = func_arm7_03801354(track);
-        max = func_arm7_03801354(track);
+        min = SndTrack_ReadU16(track);
+        max = SndTrack_ReadU16(track);
         random = SndDrv_NextRandom();
         value = (random * (max - min + 1)) >> 16;
         value += min;
