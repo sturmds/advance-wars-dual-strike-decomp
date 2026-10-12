@@ -2,7 +2,7 @@
 
 u16 SndDrv_NextRandom(void);
 s16 *func_arm7_037fff84(SndPlayer *player, int index);
-u32 func_arm7_038012b4(SndTrack *track);
+u32 SndTrack_ReadVarLength(SndTrack *track);
 u16 func_arm7_03801354(SndTrack *track);
 u8 func_arm7_038013a4(u8 *address);
 
@@ -24,7 +24,7 @@ int SndTrack_ReadArg(SndTrack *track, SndPlayer *player, int type)
         value = func_arm7_03801354(track);
         break;
     case SEQ_ARG_FROM_VARINT:
-        value = func_arm7_038012b4(track);
+        value = SndTrack_ReadVarLength(track);
         break;
     /* Needed to match: this case comes before SEQ_ARG_FROM_RANGE. A missing variable returns an unassigned value. */
     case SEQ_ARG_FROM_PLAYER_VAR:
