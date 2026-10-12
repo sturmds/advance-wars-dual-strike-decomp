@@ -230,4 +230,28 @@ extern CARDiArm7Common data_arm7_03809280;
 /* ROM control word the card header holds for normal reads. */
 #define BOOT_HEADER_CARD_TIMING (*(volatile u32 *)0x027ffe60)
 
+/*
+ * Card removal check on the ARM7. The chip ID read at boot sits at the start
+ * of one of two copies of a boot info block; the halfword at 0x027ffc10 picks
+ * the copy (0: the one at 0x027ff800). Bit 0 of the byte at 0x027ffc1f asks
+ * for the check by chip ID instead of by the card interrupt.
+ */
+#define BOOT_CHIP_ID_COPY_SELECT (*(volatile u16 *)0x027ffc10)
+#define BOOT_CHIP_ID_FIRST_COPY ((volatile u32 *)0x027ff800)
+#define BOOT_CHIP_ID_SECOND_COPY ((volatile u32 *)0x027ffc00)
+#define BOOT_REMOVAL_TEST_MODE (*(volatile u8 *)0x027ffc1f)
+#define REMOVAL_TEST_USES_CHIP_ID 0x01
+
+/* IE and IF bit: the card raised its interrupt line (it does when pulled out). */
+#define IRQ_CARD_IREQ 0x100000
+
+/* PXI word from the ARM9 under FIFO_TAG_CARD_REMOVAL: the card was removed, shut down. */
+#define GAMECARD_MSG_POWER_DOWN 1
+
+/* Set once a check found the card removed; the checks return TRUE while the card is there. */
+extern BOOL gCardRemoved;
+BOOL Card_TestRemovalIrqFlag(void);
+BOOL Card_CompareChipIdWithBoot(void);
+BOOL CARD_IsPulledOut(void);
+
 #endif

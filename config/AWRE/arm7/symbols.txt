@@ -949,7 +949,7 @@ func_arm7_038038b4 kind:function(arm,size=0x10) addr:0x038038b4
 Card_PushRemovalTagWord_Arm7 kind:function(arm,size=0x48) addr:0x038038c4
 func_arm7_0380390c kind:function(arm,size=0x20) addr:0x0380390c
 Card_CheckRemovedEveryTenFrames kind:function(arm,size=0xd8) addr:0x0380392c
-func_arm7_03803a04 kind:function(arm,size=0x2c) addr:0x03803a04
+Card_TestRemovalIrqFlag kind:function(arm,size=0x2c) addr:0x03803a04
 func_arm7_03803a30 kind:function(arm,size=0x68) addr:0x03803a30
 func_arm7_03803a98 kind:function(arm,size=0x50) addr:0x03803a98
 func_arm7_03803ae8 kind:function(arm,size=0x2c) addr:0x03803ae8
@@ -1148,7 +1148,7 @@ data_arm7_03809870 kind:bss addr:0x03809870
 data_arm7_03809880 kind:bss addr:0x03809880
 gCardPulledOut kind:bss addr:0x03809aa0
 data_arm7_03809aa4 kind:bss addr:0x03809aa4
-data_arm7_03809aa8 kind:bss addr:0x03809aa8
+gCardRemoved kind:bss addr:0x03809aa8
 spiInitialized kind:bss addr:0x03809aac
 data_arm7_03809ab0 kind:bss addr:0x03809ab0
 data_arm7_03809ab8 kind:bss addr:0x03809ab8
