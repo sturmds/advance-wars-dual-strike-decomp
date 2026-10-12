@@ -1207,6 +1207,10 @@ src/arm7/sdk/svc/bios_pitch_table_entry_arm7.c:
     complete
     .text       start:0x03803be8 end:0x03803bec
 
+src/arm7/sdk/svc/bios_volume_table_entry_arm7.c:
+    complete
+    .text       start:0x03803bec end:0x03803bf0
+
 src/arm7/sdk/func_arm7_03803e50.c:
     complete
     .text       start:0x03803e50 end:0x03803e68

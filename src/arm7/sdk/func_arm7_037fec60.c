@@ -1,9 +1,9 @@
 #include "types.h"
 
 /* BIOS call 0x1c (GetVolumeTable, by the caller). */
-extern int func_arm7_03803bec(int index);
+extern int Bios_VolumeTableEntry_Arm7(int index);
 
 int func_arm7_037fec60(int index)
 {
-    return func_arm7_03803bec(index);
+    return Bios_VolumeTableEntry_Arm7(index);
 }

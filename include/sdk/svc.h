@@ -68,6 +68,7 @@ void Bios_UnpackRunLengthByBytes_Arm7(const void *src, void *dst);
 void Bios_UnpackRunLengthByHalfwords_Arm7(const void *src, void *dst);
 int Bios_SineTableEntry_Arm7(int index);
 int Bios_PitchTableEntry_Arm7(int index);
+int Bios_VolumeTableEntry_Arm7(int index);
 
 int Sha1_ResetState(SVCSHA1Context *context);
 int Sha1_FeedBytes(SVCSHA1Context *context, const u8 *data, u32 length);
