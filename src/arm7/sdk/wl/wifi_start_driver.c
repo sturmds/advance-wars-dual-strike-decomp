@@ -26,7 +26,7 @@ void WifiSelfTest_Baseband(void);
 void WifiBaseband_LoadStartValues(void);
 void WifiParam_LoadDefaults(void);
 void func_arm7_027c9438(void);
-void func_arm7_027caa88(void);
+void WifiIrq_Install(void);
 
 /*
  * Sets up the driver's work area at params->unk_00 and starts the driver
@@ -80,6 +80,6 @@ u16 Wifi_StartDriver(Unk_arm7_038057d4 *params)
     Thread_Spawn_Arm7(&WIFI_DRIVER_STATE->thread, (void (*)(void *))WifiTask_ThreadMain, NULL, params->unk_04, params->unk_08,
                          params->unk_0c);
     Thread_MakeReady_Arm7(&WIFI_DRIVER_STATE->thread);
-    func_arm7_027caa88();
+    WifiIrq_Install();
     return WIFI_DRIVER_STATE->state.unk_12;
 }
