@@ -240,7 +240,8 @@ typedef struct WlLink {
     u16 unk_72;
     u16 unk_74;
     u16 unk_76;          /* counts down from unk_74 - 1 once per beacon */
-    u8 pad_78[0x7c - 0x78];
+    u8 pad_78[2];
+    u16 channel;         /* WlState.unk_92 */
     u16 flags_7c;
     u16 unk_7e;          /* WlState.unk_96: pre-beacons between runs of task 13 */
     u16 unk_80;          /* WlState.unk_98: pre-beacons counted towards unk_7e */
@@ -251,7 +252,7 @@ typedef struct WlLink {
     u16 unk_8e;
     u8 pad_90[2];
     u16 ssidOffset;                /* SSID element in the tx frame payload */
-    u8 pad_94[0x96 - 0x94];
+    u16 timOffset;      /* WlState.timOffset */
     u16 gameInfoOffset; /* Nintendo element offset in the beacon, same halfword as WlState.unk_ae */
     u8 pad_98[0x9a - 0x98];
     u16 ringSize;       /* WlState.ringSize */
@@ -296,6 +297,14 @@ typedef struct WlRamFrame {
     u16 sequence;
     u16 body[1];
 } WlRamFrame;
+
+/* Body of the beacon frame in WIFI_PACKET_RAM, from WlRamFrame.body. */
+typedef struct WlBeaconBody {
+    u32 timestamp[2];   /* filled by the hardware */
+    u16 beaconInterval;
+    u16 capability;
+    u8 elements[2];
+} WlBeaconBody;
 
 /* An MP reply frame in WIFI_PACKET_RAM and whether it waits to be sent. */
 typedef struct WlMpReplySlot {
@@ -1404,7 +1413,7 @@ typedef struct WlHead {
     u16 phase;           /* WlState.phase */
     u8 pad_14[8];
     u16 unk_1c;                    /* WlState.unk_0c */
-    u8 pad_1e[2];
+    WlFlags flags;                 /* WlState.flags */
     u16 unk_20;                    /* WlState.unk_10 */
 } WlHead;
 

@@ -4,7 +4,7 @@ void WifiTx_ResendQueueHead(WlTxQueue *queue);
 void WifiTx_HaltAndSettle(void);
 BOOL WifiTx_RestoreGuardWords(WlTxQueue *queue);
 void WifiTx_BuildPsPoll(u32 aid);
-void func_arm7_027cfd48(void);
+void WifiBeacon_Build(void);
 
 /*
  * Repairs queued frames whose marks were overwritten and restarts their
@@ -22,7 +22,7 @@ void WifiTx_RepairDamagedQueues(void)
     case 1:
         if (WifiTx_RestoreGuardWords(&queues[6])) {
             WifiTx_HaltAndSettle();
-            func_arm7_027cfd48();
+            WifiBeacon_Build();
         }
         if (WifiTx_RestoreGuardWords(&queues[2])) {
             WifiTx_ResendQueueHead(&queues[2]);
