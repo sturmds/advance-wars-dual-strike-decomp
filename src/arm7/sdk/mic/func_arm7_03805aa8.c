@@ -4,7 +4,7 @@
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
 u32 func_arm7_037fb690(u32 mask);
-void func_arm7_03806488(u32 mask, void (*handler)(void));
+void Irq_WriteVectorEntries(u32 mask, void (*handler)(void));
 void IrqNest_UnhookVector(void);
 void IrqNest_HookVector(void);
 void func_arm7_03805a6c(void);
@@ -50,7 +50,7 @@ void func_arm7_03805aa8(SerialBusJob *entry)
             data_arm7_0380af74.pendingSample = 0;
             irqState = func_arm7_037fdb80();
             func_arm7_037fb690(IRQ_MASK_TIMER3);
-            func_arm7_03806488(IRQ_MASK_TIMER3, func_arm7_03805a6c);
+            Irq_WriteVectorEntries(IRQ_MASK_TIMER3, func_arm7_03805a6c);
             IrqNest_HookVector();
             REG_TM3CNT_L = data_arm7_0380af74.timerReload;
             REG_TM3CNT_H = data_arm7_0380af74.timerControl | TIMER_ENABLE | TIMER_IRQ_ENABLE;
@@ -66,7 +66,7 @@ void func_arm7_03805aa8(SerialBusJob *entry)
         if (data_arm7_0380af74.status == MIC_STATUS_AUTO_END || data_arm7_0380af74.status == MIC_STATUS_END_WAIT) {
             REG_TM3CNT_H &= ~TIMER_ENABLE;
             irqState = func_arm7_037fdb80();
-            func_arm7_03806488(IRQ_MASK_TIMER3, NULL);
+            Irq_WriteVectorEntries(IRQ_MASK_TIMER3, NULL);
             IrqNest_UnhookVector();
             func_arm7_037fdb94(irqState);
             if (data_arm7_0380af74.status == MIC_STATUS_AUTO_END) {
