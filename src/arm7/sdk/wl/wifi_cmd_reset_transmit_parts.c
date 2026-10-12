@@ -2,7 +2,7 @@
 
 void func_arm7_027d0708(void);
 void func_arm7_027d06b0(void);
-void func_arm7_027d0600(void);
+void WifiTx_AbortDataSlot(void);
 
 // Request unk_10 selects what to reset, one bit per part of the transmitter.
 int WifiCmd_ResetTransmitParts(WlRequest *request, WlReply *reply)
@@ -15,7 +15,7 @@ int WifiCmd_ResetTransmitParts(WlRequest *request, WlReply *reply)
         func_arm7_027d06b0();
     }
     if (request->unk_10 & 4) {
-        func_arm7_027d0600();
+        WifiTx_AbortDataSlot();
     }
     return 0;
 }
