@@ -7,7 +7,8 @@
 // 0x0380fff4. The request handlers get a request block and fill a reply block.
 
 typedef struct WlRequest {
-    u8 pad_00[0x10];
+    u8 pad_00[0xe];
+    u16 unk_0e;
     u16 unk_10;
     u16 unk_12;
 } WlRequest;
