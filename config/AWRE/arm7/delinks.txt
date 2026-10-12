@@ -1492,6 +1492,10 @@ src/arm7/sdk/snd/snd_track_free_channels.c:
     complete
     .text       start:0x03800f90 end:0x03800fcc
 
+src/arm7/sdk/snd/snd_track_release_channels.c:
+    complete
+    .text       start:0x03800fcc end:0x0380103c
+
 src/arm7/sdk/func_arm7_038010e4.c:
     complete
     .text       start:0x038010e4 end:0x038010f8

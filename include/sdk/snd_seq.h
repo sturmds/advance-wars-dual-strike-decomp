@@ -57,6 +57,24 @@ typedef struct SndTrack {
     SndExChannel *channels;
 } SndTrack;
 
+typedef struct SndPlayer {
+    u8 active;
+    u8 prepared;
+    u8 number;
+    u8 pad_03;
+    u8 priority;
+    u8 volume;
+    s16 extFader;
+    u8 tracks[SND_TRACK_COUNT]; /* index of each track, 0xFF when unused */
+    u16 tempo;
+    u16 tempoRatio;
+    u16 tempoCounter;
+    u16 pad_1e;
+    u32 bank; /* address of the sound bank the player uses */
+} SndPlayer;
+
+extern SndPlayer data_arm7_038085d0[SND_PLAYER_COUNT];
+
 enum {
     SND_LFO_PITCH = 0,
     SND_LFO_VOLUME = 1,
