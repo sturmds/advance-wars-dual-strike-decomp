@@ -4,7 +4,8 @@
 void Ov006_LoadSlotTiles(void);
 void Ov006_QueueSlotSprites(void);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
+/* also declared in src/game/ov006/design_room_exit.c and 105 more */
+Unk_ov006_0235f690* data_ov006_0236d640;
 
 /* Handles request 5 in DesignRoom_Update. When a request was just posted
  * (flag 0x8000), clears the flag and screenState and loads the slot tiles. While

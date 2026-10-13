@@ -6,6 +6,7 @@
 src/game/ov006/ov006_refresh_slots.c:
     complete
     .text       start:0x02350560 end:0x023505c4
+    .bss        start:0x0236d640 end:0x0236d644
 
 src/game/ov006/func_ov006_023505c4.c:
     complete
@@ -110,6 +111,7 @@ src/game/ov006/func_ov006_02351ac4.c:
 src/game/ov006/ov006_load_slot_tiles.c:
     complete
     .text       start:0x02351b2c end:0x02351bf0
+    .bss        start:0x0236d644 end:0x0236d744
 
 src/game/ov006/ov006_queue_slot_sprites.c:
     complete
@@ -758,6 +760,11 @@ src/game/ov006/ov006_place_hqs.c:
 src/game/ov006/ov006_scatter_mountains.c:
     complete
     .text       start:0x02359b7c end:0x02359c20
+    .bss        start:0x0236d744 end:0x0236d99c
+
+src/game/ov006/ov006_bss_0236d99c.c:
+    complete
+    .bss        start:0x0236d99c end:0x0236d9a0
 
 src/game/ov006/ov006_scatter_sea.c:
     complete

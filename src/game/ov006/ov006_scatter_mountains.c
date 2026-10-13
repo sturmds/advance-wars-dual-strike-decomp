@@ -1,6 +1,9 @@
 #include "types.h"
 #include "game/design_map_gen.h"
 
+/* count: as many elements as fit before the next symbol */
+s8 Ov006_gGenMarks[0x14][30];
+
 s32 Rng_Range(s32 min, s32 max);
 int Ov006_FindRandomCell(int* x, int* y, int cell);
 void Ov006_SetMapCell(int x, int y, int cell);

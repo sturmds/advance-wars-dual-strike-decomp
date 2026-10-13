@@ -571,6 +571,7 @@ data_ov006_0236d608 kind:data(any) addr:0x0236d608
 Ov006_gDirStepY kind:data(any) addr:0x0236d610
 Ov006_gCrossDy kind:data(any) addr:0x0236d618
 Ov006_gCrossDx kind:data(any) addr:0x0236d624
-data_ov006_0236d640 kind:bss addr:0x0236d640
-data_ov006_0236d644 kind:bss addr:0x0236d644
-Ov006_gGenMarks kind:bss addr:0x0236d744
+data_ov006_0236d640 kind:bss(size=0x4) addr:0x0236d640
+data_ov006_0236d644 kind:bss(size=0x100) addr:0x0236d644
+Ov006_gGenMarks kind:bss(size=0x258) addr:0x0236d744
+data_ov006_0236d99c kind:bss(size=0x4) addr:0x0236d99c
