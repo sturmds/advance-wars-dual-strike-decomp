@@ -18,3 +18,7 @@ Not made. Add one line to the group prompt template (scratch files in `<scratchp
 ## Batch 39
 
 The same fault came back: finished agents left `pgrep -f` wait loops, and the orchestrator killed them. One kill was at first thought to hit a running agent; it did not. The rule is still missing from the group prompt template.
+
+## Batches 41 and 42
+
+Three more `pgrep -f` wait loops (b42/ctx, the permuter runs of b42/uipd-shape and b42/ctx) were left behind and killed by the orchestrator. The prompt template still lacks the rule.
