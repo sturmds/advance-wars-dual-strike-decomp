@@ -1,10 +1,10 @@
 #include "types.h"
 #include "game/player.h"
 #include "game/Unk_02080440.h"
+#include "game/power_panel.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-/* also declared in src/game/main/power_meter/power_panel_animate_palette_colour.c and 2 more */
 u16 gPowerPanelPlayer;
 extern u8 data_02168690[];
 extern u8 data_02168658[];
