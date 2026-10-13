@@ -42,4 +42,7 @@ extern BOOL (*data_022ac324)(void);
 
 extern CARDiRomPage data_022ac100;
 
+/* Offset added to every ROM address; CARD_Init clears it. */
+extern u32 data_022ac0e0;
+
 #endif

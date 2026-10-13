@@ -6,7 +6,6 @@
 static __attribute__((aligned(32))) CARDiCommandArg data_022ab960;
 static u8 data_022ab9a0[0x160];
 CARDiCommon data_022abb00;
-extern u8 data_022ac0e0[];
 
 void MIi_CpuClearFast(u32 value, void* dst, u32 size);
 void Mem_CopyBytes(const void* src, void* dst, u32 size);
@@ -42,7 +41,9 @@ void CARDi_InitCommon(void) {
   common->lockQueue.head = 0;
   common->queue.head = 0;
   common->priorityMode = 4;
-  OS_CreateThread(&common->thread, CARDi_TaskThread, NULL, data_022ac0e0,
+  /* The original passes the end of common->stack as the address of the
+   * variable that follows it. */
+  OS_CreateThread(&common->thread, CARDi_TaskThread, NULL, &data_022ac0e0,
                   GAMECARD_WORKER_STACK_BYTES, common->priorityMode);
   OS_WakeupThreadDirect(&common->thread);
   PXI_SetFifoRecvCallback(11, Card_OnRequestTagMessage);

@@ -8,7 +8,7 @@ BOOL gCardRemoved;
 u32 gCardPulledOut; /* set once the card was found pulled out */
 BOOL gCardPullOutInitDone;
 #pragma section BSS_RUN1 end
-/* aligned to 32: no symbol covers the bytes before it; also declared in src/arm7/sdk/card/card_rom_begin_cpu_read.c */
+/* aligned to 32: no symbol covers the bytes before it */
 CARDiRomPage data_arm7_03809880 __attribute__((aligned(32)));
 
 void CARDi_InitCommon_Arm7(void);

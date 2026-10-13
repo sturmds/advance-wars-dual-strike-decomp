@@ -118,4 +118,7 @@ BOOL CARD_IsPulledOut(void);
 /* Sets the card thread's priority; returns the old one. */
 u32 CARD_SetThreadPriority(u32 priority);
 
+/* ROM read work of the ARM7. */
+extern CARDiRomPage data_arm7_03809880;
+
 #endif

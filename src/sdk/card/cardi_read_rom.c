@@ -1,8 +1,6 @@
 #pragma opt_propagation off
 #include "sdk/card.h"
 
-extern u32 data_022ac0e0; /* offset added to every ROM address */
-
 void OS_SleepThread(OSThreadQueue* queue);
 void MI_StopDma(int channel);
 void CARDi_SetTask(GameCardTaskStep task);

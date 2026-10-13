@@ -3,7 +3,6 @@
 #include "sdk/mi.h"
 
 extern OSThreadInfo data_arm7_0380790c;
-extern CARDiRomPage data_arm7_03809880;
 
 void CardRom_ReadPagesByCpu_Arm7(CARDiRomPage* page);
 
