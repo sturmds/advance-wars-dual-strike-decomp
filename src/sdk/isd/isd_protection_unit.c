@@ -1,5 +1,6 @@
 #include "types.h"
 
+#ifdef __MWERKS__
 /*
  * Sets the memory protection unit enable bit (bit 0 of the CP15 control register).
  * Returns the old bit. The second pair of instructions is an unused entry that clears it.
@@ -20,3 +21,6 @@ asm BOOL Isd_EnableProtectionUnit(void)
     mov r0, r2
     bx lr
 }
+#else
+#error "Isd_EnableProtectionUnit: setting the protection unit bit in the CP15 control register (mrc, mcr) has no portable C equivalent"
+#endif

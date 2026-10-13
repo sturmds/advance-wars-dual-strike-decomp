@@ -1,5 +1,6 @@
 #include "types.h"
 
+#ifdef __MWERKS__
 /*
  * Reads and writes of CP15 registers: protection region 7, data access permissions
  * and instruction access permissions. func_02121b80 and func_02121b88 are reads of
@@ -53,3 +54,6 @@ asm void Isd_SetInstructionPermissions(u32 value)
     mcr p15, 0, r0, c5, c0, 1
     bx lr
 }
+#else
+#error "Isd_GetProtectionRegion7 and the other CP15 accessors: reading and writing CP15 registers (mrc, mcr) has no portable C equivalent"
+#endif

@@ -1,5 +1,6 @@
 #include "types.h"
 
+#ifdef __MWERKS__
 extern asm BOOL Isd_RestoreFiq(BOOL enable);
 
 /*
@@ -35,3 +36,6 @@ asm BOOL Isd_RestoreFiq(BOOL enable)
     movne r0, #0
     bx lr
 }
+#else
+#error "Isd_DisableFiq, Isd_RestoreFiq: masking FIQ in the CPSR (mrs, msr) has no portable C equivalent"
+#endif

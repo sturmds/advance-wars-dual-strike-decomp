@@ -1,5 +1,6 @@
 #include "types.h"
 
+#ifdef __MWERKS__
 extern asm BOOL Isd_RestoreIrq(BOOL enable);
 
 /*
@@ -35,3 +36,6 @@ asm BOOL Isd_RestoreIrq(BOOL enable)
     movne r0, #0
     bx lr
 }
+#else
+#error "Isd_DisableIrq, Isd_RestoreIrq: masking IRQ in the CPSR (mrs, msr) has no portable C equivalent"
+#endif
