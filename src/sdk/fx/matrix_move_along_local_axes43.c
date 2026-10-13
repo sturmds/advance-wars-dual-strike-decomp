@@ -1,6 +1,5 @@
 #include "sdk/fx.h"
-
-void MI_Copy36B(MtxFx43* src, MtxFx43* dest);
+#include "sdk/mi.h"
 
 /* Copies src to dest, then adds (x, y, z), turned by src's 3x3 part, to
  * the translation row. MI_Copy36B copies the 36 bytes of the 3x3 part. */

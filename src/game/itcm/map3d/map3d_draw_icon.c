@@ -6,8 +6,6 @@
 extern MtxFx44 data_022a7c6c;
 extern MtxFx44 data_022a7dc4;
 
-void func_0210b5d4(
-    MtxFx44* mtx); /* loads a 4x4 matrix into the current matrix */
 /* Projects (x, y, z) through mtx to a screen position in out. */
 void func_0200c3d8(int x, int y, int z, MtxFx44* mtx, VecFx32* out);
 void Gx_SendPlainQuad_0201258c(void);
@@ -39,7 +37,7 @@ void Map3d_DrawIcon(VecFx32* pos, int tile, int palette, int hidden) {
   *REG_MTX_PUSH = 0;
   *REG_MTX_MODE = GEOM_TARGET_PROJ;
   *REG_MTX_PUSH = 0;
-  func_0210b5d4(&data_022a7c6c);
+  Geom_LoadMatrix44(&data_022a7c6c);
   *REG_MTX_MODE = GEOM_TARGET_TEXCOORD;
   *REG_MTX_IDENTITY = 0;
   *REG_MTX_MODE = GEOM_TARGET_POS_AND_DIR;

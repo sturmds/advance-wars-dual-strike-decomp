@@ -2,6 +2,7 @@
 #define SDK_GX_H
 
 #include "types.h"
+#include "sdk/fx.h"
 
 #define REG_MASTER_BRIGHT ((volatile u16*)0x0400006c)
 #define IO_SUB_SCREEN_FADE ((volatile u16*)0x0400106c)
@@ -132,6 +133,10 @@
 #define GXSTAT_FIFO_IRQ_EMPTY \
   0x80000000 /* command FIFO interrupt when the FIFO is empty */
 #define REG_GXFIFO ((volatile u32*)0x04000400)
+/* Command bytes written to REG_GXFIFO, each followed by its parameter words. */
+#define GXFIFO_CMD_MTX_LOAD_4X4 0x16
+#define GXFIFO_CMD_MTX_MULT_4X4 0x18
+#define GXFIFO_CMD_MTX_MULT_3X3 0x1a
 #define REG_CLEAR_COLOR ((volatile u32*)0x04000350)
 #define REG_CLEAR_DEPTH ((volatile u16*)0x04000354)
 #define IO_3D_REAR_PLANE_SCROLL ((volatile u16*)0x04000356)
@@ -220,6 +225,11 @@ void GX_Init(void);
 void Vram_ClearAllBankControl(void);
 #define GX_DMA_NOT_USE \
   ((u32) - 1) /* GX library DMA channel setting: copy with the CPU */
+
+/* Load mtx into the current matrix, or multiply the current matrix by it. */
+void Geom_LoadMatrix44(const MtxFx44* mtx);
+void Geom_MultMatrix44(const MtxFx44* mtx);
+void Geom_MultMatrix33(const MtxFx33* mtx);
 
 /* Multiplies the current matrix by a rotation about the Y axis. sinVal and cosVal are 4.12 fixed point. */
 void G3_RotY(int sinVal, int cosVal);

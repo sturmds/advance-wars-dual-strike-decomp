@@ -1,6 +1,5 @@
 #include "sdk/fx.h"
-
-void MI_Copy48B(const void* src, void* dst);
+#include "sdk/mi.h"
 
 /* Writes the inverse of src to dst (they may be the
  * same matrix). Returns -1 and leaves dst alone when src has no inverse. The

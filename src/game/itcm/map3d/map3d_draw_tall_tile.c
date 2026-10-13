@@ -5,7 +5,7 @@
 
 extern MtxFx43 data_022a7da0;
 
-void func_0200ce3c(MtxFx43* mtx);
+void Geom_MultMatrix43Rotation(MtxFx43* mtx);
 void Gx_SendQuad_020131bc(void);
 void Gx_SendPlainQuad_020133c4(void);
 
@@ -23,7 +23,7 @@ void Map3d_DrawTallTile(VecFx32* pos, int tile, int palette, int shaded) {
   *REG_MTX_MODE = GEOM_TARGET_TEXCOORD;
   *REG_MTX_IDENTITY = 0;
   *REG_MTX_MODE = GEOM_TARGET_POS_AND_DIR;
-  func_0200ce3c(&data_022a7da0);
+  Geom_MultMatrix43Rotation(&data_022a7da0);
   /* 16 colours, 16x32, colour 0 transparent */
   *REG_TEXIMAGE_PARAM = 0x6d100000 | ((data_022a7c5c->unk_00 + tile) >> 3);
   *REG_PLTT_BASE = (data_022a7c5c->texPaletteOffset + palette * 32) >> 4;

@@ -13,7 +13,7 @@
 
 int SizeFlag_ToIndex(int size);
 int func_02013924(int size);
-void func_0200ce3c(MtxFx43* mtx);
+void Geom_MultMatrix43Rotation(MtxFx43* mtx);
 void func_0201403c(int width, int height, int flip);
 void Gx_SendObjSizedQuad(int width, int height, int flip);
 
@@ -81,7 +81,7 @@ void SpriteCells_Draw3d(const u16* cells, const VecFx32* pos, u32 texBase,
       int worldY = (y + height) * (6 * FX32_ONE) / 768;
       int worldX = (x + (width >> 1)) * (2 * FX32_ONE) / 256;
       G3_Translate(pos->x + worldX, -(pos->y + worldY), pos->z);
-      func_0200ce3c(&data_022a7da0);
+      Geom_MultMatrix43Rotation(&data_022a7da0);
     } else {
       int worldY = y * (6 * FX32_ONE) / 768;
       int worldX = x * (2 * FX32_ONE) / 256;

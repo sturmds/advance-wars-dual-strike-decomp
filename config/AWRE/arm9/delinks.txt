@@ -1456,7 +1456,7 @@ src/game/main/graphics/gfx3d_load_perspective_projection.c:
     complete
     .text       start:0x0200cdc8 end:0x0200ce3c
 
-src/game/main/func_0200ce3c.c:
+src/game/main/graphics/geom_mult_matrix43_rotation.c:
     complete
     .text       start:0x0200ce3c end:0x0200ce48
 
@@ -21061,15 +21061,15 @@ src/sdk/gx/g2x_set_blend_alpha.c:
     complete
     .text       start:0x0210b580 end:0x0210b59c
 
-src/game/main/func_0210b59c.c:
+src/sdk/gx/geom_mult_matrix33.c:
     complete
     .text       start:0x0210b59c end:0x0210b5b8
 
-src/game/main/func_0210b5b8.c:
+src/sdk/gx/geom_mult_matrix44.c:
     complete
     .text       start:0x0210b5b8 end:0x0210b5d4
 
-src/game/main/func_0210b5d4.c:
+src/sdk/gx/geom_load_matrix44.c:
     complete
     .text       start:0x0210b5d4 end:0x0210b5f0
 
@@ -21193,7 +21193,7 @@ src/sdk/gx/gx_begin_load_tex.c:
     complete
     .text       start:0x0210cb04 end:0x0210cb84
 
-src/sdk/os/func_0210cb84.c:
+src/sdk/os/fifo_send16_words.c:
     complete
     .text       start:0x0210cb84 end:0x0210cba0
 

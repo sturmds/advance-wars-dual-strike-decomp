@@ -47,6 +47,13 @@ typedef struct DmaChannel {
 #define REGION_IO 0x04000000
 #define REGION_CARTRIDGE 0x08000000
 
+/* Copy 36 or 48 bytes, a word at a time; both pointers word-aligned. */
+void MI_Copy36B(const void* src, void* dest);
+void MI_Copy48B(const void* src, void* dest);
+
+/* Sends 64 bytes from src to one register address (the geometry FIFO). */
+void Fifo_Send16Words(const void* src, void* dst);
+
 /* ARM7 copies of the DMA and memory routines. Sizes are in bytes. */
 void Dma_HaltChannel_Arm7(u32 dmaNo);
 void Dma_SpinUntilChannelIdle_Arm7(u32 dmaNo);

@@ -7,7 +7,7 @@ extern MtxFx43 data_022a7da0;
 
 int func_01ffd854(
     void); /* sets the diffuse, ambient, specular and emission colours to white */
-void func_0200ce3c(MtxFx43* mtx);
+void Geom_MultMatrix43Rotation(MtxFx43* mtx);
 void Gx_SendQuad(void);
 void Gx_SendQuad_02012794(void);
 void Gx_SendPlainQuad_020128b0(void);
@@ -30,7 +30,7 @@ void Map3d_DrawUnitSprite(VecFx32* pos, int tile, int palette, int flip,
   *REG_MTX_MODE = GEOM_TARGET_TEXCOORD;
   *REG_MTX_IDENTITY = 0;
   *REG_MTX_MODE = GEOM_TARGET_POS_AND_DIR;
-  func_0200ce3c(&data_022a7da0);
+  Geom_MultMatrix43Rotation(&data_022a7da0);
   /* 16 colours, 32x32, colour 0 transparent */
   *REG_TEXIMAGE_PARAM =
       0x6d200000 | ((u32)(data_022a7c5c->anim2Dst + tile) >> 3);

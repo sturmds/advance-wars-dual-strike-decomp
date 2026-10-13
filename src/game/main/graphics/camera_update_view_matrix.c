@@ -1,10 +1,10 @@
 #include "types.h"
 #include "sdk/fx.h"
+#include "sdk/mi.h"
 #include "game/camera_pan.h"
 
 void MTX_Concat43(MtxFx43* a, MtxFx43* b, MtxFx43* dest); /* SDK: 4x3 product */
-void MI_Copy36B(MtxFx43* src, MtxFx33* dest);       /* SDK: copy 36 bytes */
-void Matrix_Invert3x3(MtxFx33* src, MtxFx33* dest); /* SDK: 3x3 inverse */
+void Matrix_Invert3x3(MtxFx33* src, MtxFx33* dest);       /* SDK: 3x3 inverse */
 
 extern s16 data_0214d4c4[]; /* a sine and cosine pair per 16 angle units */
 
