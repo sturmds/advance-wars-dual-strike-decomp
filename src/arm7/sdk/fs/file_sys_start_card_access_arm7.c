@@ -2,11 +2,12 @@
 #include "sdk/rom_header.h"
 #include "sdk/os_arm7.h"
 
-extern u32 data_arm7_03809248; /* DMA channel for cartridge reads */
-extern s32 data_arm7_0380924c; /* lock id for the cartridge bus */
+BOOL gFSInitialized_Arm7;            /* set once FS_Init has run */
+static s32 data_arm7_0380924c;       /* lock id for the cartridge bus */
+static u32 data_arm7_03809248;       /* DMA channel for cartridge reads */
+static RomRegion data_arm7_03809258; /* ARM7 */
 /* Overlay tables already in memory: offset is their address, 0 if none. */
-extern RomRegion data_arm7_03809250; /* ARM9 */
-extern RomRegion data_arm7_03809258; /* ARM7 */
+static RomRegion data_arm7_03809250; /* ARM9 */
 
 void Card_StartService_Arm7(void);
 

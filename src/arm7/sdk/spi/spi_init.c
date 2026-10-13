@@ -10,7 +10,8 @@ void NVRAM_Init(void);                  /* NVRAM init */
 void func_arm7_0380607c(void);          /* microphone init */
 void Power_ResetDriverState_Arm7(void); /* power chip init */
 
-extern u16 spiInitialized;
+static u16 spiInitialized;
+SerialBusThreadState data_arm7_03809ab0;
 
 /* Starts the SPI devices and the thread that runs their jobs; later calls
  * do nothing. */

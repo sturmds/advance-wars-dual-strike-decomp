@@ -2,6 +2,16 @@
 #include "sdk/card_arm7.h"
 #include "sdk/os_arm7.h"
 #include "sdk/pxi.h"
+#include "bss_run.h"
+
+u32 data_arm7_03809260;
+#pragma section BSS_RUN1 begin
+CARDiSpiTransfer data_arm7_03809860;
+#pragma section BSS_RUN1 end
+/* aligned to 32: no symbol covers the bytes before it */
+CARDiArm7Common data_arm7_03809280 __attribute__((aligned(32)));
+/* 0x520 bytes no code names, before data_arm7_03809860 */
+u8 data_arm7_03809340[0x520];
 
 /* looks like OS_CreateThread */
 void func_arm7_03802974(u32 state);

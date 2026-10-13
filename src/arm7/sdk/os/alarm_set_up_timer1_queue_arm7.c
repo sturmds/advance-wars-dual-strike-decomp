@@ -1,8 +1,10 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
 
-extern u16 data_arm7_03807a8c;
-extern AlarmList gOsiAlarmQueue_Arm7;
+/* also declared in src/arm7/sdk/os/alarm_is_set_up_arm7.c */
+u16 data_arm7_03807a8c;
+/* also declared in src/arm7/sdk/os/alarm_fire_due_and_rearm_arm7.c and 2 more */
+AlarmList gOsiAlarmQueue_Arm7;
 
 /*
  * ARM7 copy of OS_InitAlarm. Once only: reserves timer 1, empties the alarm

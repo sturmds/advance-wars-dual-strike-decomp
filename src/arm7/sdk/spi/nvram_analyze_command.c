@@ -2,6 +2,8 @@
 #include "sdk/nvram.h"
 #include "sdk/spi.h"
 
+u16 nvramPxiWords[NVRAM_PXI_WORDS]; /* the request being collected */
+
 /* Takes the NVRAM words from the SPI PXI handler. Once a request is complete
  * it unpacks the address, size and ARM9 buffer, checks the buffer lies in
  * main RAM and queues the job for the SPI thread. Requests without some of

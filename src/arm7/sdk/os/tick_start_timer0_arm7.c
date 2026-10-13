@@ -1,9 +1,14 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
 
-extern u16 data_arm7_03807a7c;
-extern vu64 gOsiTickCounter_Arm7;
-extern u32 gOsiNeedResetTimer_Arm7;
+/* bit n set: hardware timer n is in use by the library */
+u16 data_arm7_03807a78;
+/* also declared in src/arm7/sdk/os/tick_is_running_arm7.c */
+u16 data_arm7_03807a7c;
+/* also declared in src/arm7/sdk/os/tick_on_timer0_overflow_arm7.c */
+u32 gOsiNeedResetTimer_Arm7;
+/* also declared in src/arm7/sdk/os/tick_on_timer0_overflow_arm7.c and 1 more */
+vu64 gOsiTickCounter_Arm7;
 
 /*
  * ARM7 copy of OS_InitTick. Once only: zeroes the tick counter and starts

@@ -2,11 +2,17 @@
 #include "sdk/pm.h"
 #include "sdk/spi.h"
 #include "sdk/os_arm7.h"
+#include "sdk/tp.h"
 
 void Power_SleepUntilTrigger(void);
 
-extern u16 data_arm7_03809ff0; /* sleep: wake-up key pattern */
-extern u16 data_arm7_03809ff4; /* sleep: wake-up triggers and backlights */
+/* sleep: wake-up triggers and backlights; also declared in src/arm7/sdk/pm/power_sleep_until_trigger.c */
+u16 data_arm7_03809ff4;
+u16 tpLastTouch; /* pen was down at the last sample */
+/* sleep: wake-up key pattern; also declared in src/arm7/sdk/pm/power_sleep_until_trigger.c */
+u16 data_arm7_03809ff0;
+u32 data_arm7_03809ff8;
+PowerRequestInbox data_arm7_03809ffc;
 
 /* Runs one power chip job on the SPI thread, holding the bus meanwhile. */
 void PM_ExecuteProcess(SerialBusJob* entry) {

@@ -3,7 +3,10 @@
 #include "sdk/os_arm7.h"
 #include "sdk/pxi.h"
 
-extern u16 data_arm7_027d81ac;
+static u16 data_arm7_027d81ac;
+RtcState data_arm7_027d81b0;
+/* 0x1a8 bytes no code names, before data_arm7_027d84fc */
+u8 data_arm7_027d8354[0x1a8];
 
 void func_arm7_027d5244(void);
 void func_arm7_027d5364(void);

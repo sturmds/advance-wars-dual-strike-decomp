@@ -107,6 +107,15 @@ The questions the pilot had to answer, and how each was tested:
 3. **Alignment: `__attribute__((aligned(32)))` works.** mwccarm 2.0-72 gives the variable's section alignment 32, and in a test link with `ALIGNALL(4)` mwldarm placed it on a 32-byte boundary after a 4-byte variable. `__declspec(align(32))` is a syntax error; `#pragma align(32)` changes nothing. main has 8 such variables, arm7 2; ov004 none.
 4. **Aliases count against the unit unless their size is 0.** ov004 has no alias, so the test added one to the pilot by hand and reverted it: `data_ov004_022bf15a`, inside `data_ov004_022bf158`. With `kind:bss` and no size, dsd gives it the 2 bytes up to the next symbol, our object has nothing there, and objdiff scored `ov004_alloc_state`'s `.bss` 99.99967% and counted none of its 608,276 bytes as matched. With `kind:bss(size=0x0)` the unit scored 100%. So the tool writes aliases with size 0 and leaves `relocs.txt` alone; no alias has to go.
 
+## What the arm7 step found
+
+`python3 tools/bss.py plan arm7 --write` wrote 107 variables (98 named, 9 placeholders, 26 aliases, 2 aligned to 32) in 36 runs: 23 existing files took runs, and 5 new files hold the rest (`src/arm7/sdk/os/os_bss.c`, `os/os_bss_03807888.c` for `.sbss`, `os/os_bss_0380afe8.c`, `arm7_bss_03807aac.c`, `ctrdg/ctrdg_bss.c`). The ROM matches, every ARM7 unit's `.bss` and `.sbss` scores 100%, and decomp.dev's linked data went from 797,220 to 817,752 bytes (25.4% to 26.1%). Run again it finds nothing to do, and run from a clean tree it writes the same bytes.
+
+- objdiff reads `.sbss.run1` as `.sbss`, as it does `.bss.runN`: the `.sbss` file has two runs and scores 100%.
+- The first build moved all of ARM7 WRAM from `gBootThread_Arm7` on by 0x1c bytes. The new file had included ARM9's `sdk/os.h`, whose `OSThread` is 0x94 bytes, instead of `sdk/os_arm7.h` (0x78). The order check passed, since both threads had the same wrong size; the size check that came out of it would have stopped the write.
+- With the right header, files in `src/arm7/sdk/os/` compile with the definitions and became hosts: the WRAM `.bss` of the OS library went into five existing files instead of one new file.
+- The IRQ slot table at 0x0380788c (`data_arm7_0380788c[]`) runs on from `.sbss` into `.bss`. The tool gives it one element in `.sbss` and keeps the timer entries (`data_arm7_038078bc`) as their own variable in `.bss`; one object over both would need the `.sbss` workaround in `docs/tool-issues.md` to go first.
+
 ## Not in scope
 
 - `.data` and `.rodata` (steps 3 and 4 of issue 0082).

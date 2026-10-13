@@ -4,8 +4,9 @@
 #define RANGE_MAX 35
 #define RANGE_ADJUST_COUNT 4 /* samples in a row before the range moves */
 
-extern u8 tpValidCount;
-extern u8 tpInvalidCount;
+static u8 tpInvalidCount;
+static u8 tpValidCount;
+TouchSamplerState tpWork;
 
 /* Widens the stability range after RANGE_ADJUST_COUNT invalid samples in a
  * row, and narrows it again (not below rangeMin) after as many valid samples

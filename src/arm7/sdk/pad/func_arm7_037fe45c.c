@@ -8,8 +8,8 @@ struct OSAlarm;
 /* 0x82e ticks of the 33.5 MHz / 64 timer: about 4 ms. */
 #define EXTRA_KEYS_POLL_TICKS 0x82e
 
-extern BOOL data_arm7_03807b38;
-extern struct OSAlarm data_arm7_03807b3c;
+static BOOL data_arm7_03807b38;
+static struct OSAlarm data_arm7_03807b3c;
 
 void func_arm7_037fe41c(void* arg);
 

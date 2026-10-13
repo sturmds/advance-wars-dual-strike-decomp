@@ -91,6 +91,7 @@ src/arm7/sdk/wm/func_arm7_027c05e0.c:
 src/arm7/sdk/wm/wmsp_init.c:
     complete
     .text       start:0x027c05ec end:0x027c07a4
+    .bss        start:0x027d6c60 end:0x027d818c
 
 src/arm7/sdk/wm/wmsp_indicate_authenticate.c:
     complete
@@ -1947,6 +1948,7 @@ src/arm7/sdk/spi/nvram_execute_process.c:
 src/arm7/sdk/spi/nvram_analyze_command.c:
     complete
     .text       start:0x027d46b8 end:0x027d485c
+    .bss        start:0x027d818c end:0x027d81ac
 
 src/arm7/sdk/spi/nvram_init.c:
     complete
@@ -2039,6 +2041,15 @@ src/arm7/sdk/rtc/func_arm7_027d58e8.c:
 src/arm7/sdk/rtc/func_arm7_027d5a24.c:
     complete
     .text       start:0x027d5a24 end:0x027d5b18
+    .bss        start:0x027d81ac end:0x027d84fc
+
+src/arm7/sdk/os/os_bss.c:
+    complete
+    .bss        start:0x027d84fc end:0x027d8518
+
+src/arm7/sdk/os/os_bss_03807888.c:
+    complete
+    .sbss       start:0x03807888 end:0x038078a0
 
 src/arm7/sdk/rtc/func_arm7_027d5b18.c:
     complete
@@ -2423,10 +2434,12 @@ src/arm7/sdk/os/irq_replace_enable_bits_arm7.c:
 src/arm7/sdk/os/timer_install_irq_slot_arm7.c:
     complete
     .text       start:0x037fb6fc end:0x037fb748
+    .bss        start:0x038078a0 end:0x038078ec
 
 src/arm7/sdk/os/irq_install_handlers_arm7.c:
     complete
     .text       start:0x037fb748 end:0x037fb7f0
+    .bss        start:0x038078ec end:0x03807a78
 
 src/arm7/sdk/os/irq_reset_wake_mask_and_frames_arm7.c:
     complete
@@ -2703,6 +2716,7 @@ src/arm7/sdk/os/tick_is_running_arm7.c:
 src/arm7/sdk/os/tick_start_timer0_arm7.c:
     complete
     .text       start:0x037fcfd0 end:0x037fd064
+    .bss        start:0x03807a78 end:0x03807a8c
 
 src/arm7/sdk/os/alarm_on_timer1_irq_arm7.c:
     complete
@@ -2739,6 +2753,7 @@ src/arm7/sdk/os/alarm_is_set_up_arm7.c:
 src/arm7/sdk/os/alarm_set_up_timer1_queue_arm7.c:
     complete
     .text       start:0x037fd444 end:0x037fd494
+    .bss        start:0x03807a8c end:0x03807a98
 
 src/arm7/sdk/os/alarm_start_timer1_for_due_arm7.c:
     complete
@@ -2803,6 +2818,11 @@ src/arm7/sdk/os/line_alarm_is_set_up_arm7.c:
 src/arm7/sdk/os/line_alarm_set_up_queue_arm7.c:
     complete
     .text       start:0x037fdb04 end:0x037fdb6c
+    .bss        start:0x03807a98 end:0x03807aac
+
+src/arm7/sdk/arm7_bss_03807aac.c:
+    complete
+    .bss        start:0x03807aac end:0x03807b38
 
 src/arm7/sdk/os/cpu_unmask_irq_arm7.c:
     complete
@@ -2939,6 +2959,7 @@ src/arm7/sdk/pad/func_arm7_037fe41c.c:
 src/arm7/sdk/pad/func_arm7_037fe45c.c:
     complete
     .text       start:0x037fe45c end:0x037fe4fc
+    .bss        start:0x03807b38 end:0x03807b68
 
 src/arm7/sdk/snd/snd_hw_set_output_control.c:
     complete
@@ -2999,6 +3020,7 @@ src/arm7/sdk/snd/snd_hw_is_channel_busy.c:
 src/arm7/sdk/snd/snd_hw_set_channel_pan.c:
     complete
     .text       start:0x037fe7cc end:0x037fe848
+    .bss        start:0x03807b68 end:0x03807b8c
 
 src/arm7/sdk/snd/func_arm7_037fe848.c:
     complete
@@ -3083,6 +3105,7 @@ src/arm7/sdk/snd/snd_start_interval_timer.c:
 src/arm7/sdk/snd/snd_init_interval_timer.c:
     complete
     .text       start:0x037fef28 end:0x037fef60
+    .bss        start:0x03807b8c end:0x0380808c
 
 src/arm7/sdk/snd/snd_create_thread.c:
     complete
@@ -3343,6 +3366,7 @@ src/arm7/sdk/snd/snd_arm7_set_track_mute.c:
 src/arm7/sdk/snd/snd_arm7_skip_seq.c:
     complete
     .text       start:0x03801728 end:0x038017f4
+    .bss        start:0x0380808c end:0x03809210
 
 src/arm7/sdk/snd/snd_arm7_pause_seq.c:
     complete
@@ -3451,6 +3475,7 @@ src/arm7/sdk/snd/snd_arm7_process_commands.c:
 src/arm7/sdk/snd/snd_arm7_init.c:
     complete
     .text       start:0x03802854 end:0x03802894
+    .bss        start:0x03809210 end:0x03809244
 
 src/arm7/sdk/fs/file_sys_set_up_once_arm7.c:
     complete
@@ -3463,6 +3488,7 @@ src/arm7/sdk/fs/func_arm7_038028c8.c:
 src/arm7/sdk/fs/file_sys_start_card_access_arm7.c:
     complete
     .text       start:0x038028d4 end:0x0380292c
+    .bss        start:0x03809244 end:0x03809260
 
 src/arm7/sdk/card/card_set_thread_priority.c:
     complete
@@ -3475,6 +3501,7 @@ src/arm7/sdk/card/func_arm7_03802974.c:
 src/arm7/sdk/card/cardi_init_common_arm7.c:
     complete
     .text       start:0x03802984 end:0x03802a2c
+    .bss        start:0x03809260 end:0x03809870
 
 src/arm7/sdk/card/card_service_thread_arm7.c:
     complete
@@ -3551,6 +3578,7 @@ src/arm7/sdk/card/scanline_timer_has_time_left.c:
 src/arm7/sdk/card/card_start_service_arm7.c:
     complete
     .text       start:0x03803378 end:0x038033f8
+    .bss        start:0x03809870 end:0x03809aac
 
 src/arm7/sdk/card/card_lock_and_read_chip_id.c:
     complete
@@ -3803,6 +3831,7 @@ src/arm7/sdk/spi/spi_lock.c:
 src/arm7/sdk/spi/spi_init.c:
     complete
     .text       start:0x03804028 end:0x03804148
+    .bss        start:0x03809aac end:0x03809f10
 
 src/arm7/sdk/tp/touch_apply_stability_request.c:
     complete
@@ -3819,6 +3848,7 @@ src/arm7/sdk/tp/tp_execute_process.c:
 src/arm7/sdk/tp/touch_tune_stability_range.c:
     complete
     .text       start:0x0380443c end:0x03804530
+    .bss        start:0x03809f10 end:0x03809fec
 
 src/arm7/sdk/tp/tp_analyze_command.c:
     complete
@@ -3843,6 +3873,7 @@ src/arm7/sdk/tp/touch_read_pen_line.c:
 src/arm7/sdk/pm/pm_execute_process.c:
     complete
     .text       start:0x03804da4 end:0x03804f2c
+    .bss        start:0x03809fec end:0x0380a028
 
 src/arm7/sdk/pm/pm_analyze_command.c:
     complete
@@ -3903,6 +3934,7 @@ src/arm7/sdk/pm/func_arm7_03805678.c:
 src/arm7/sdk/pm/power_led_select_pattern.c:
     complete
     .text       start:0x03805688 end:0x038056ac
+    .bss        start:0x0380a028 end:0x0380a030
 
 src/arm7/sdk/pm/power_led_step_pattern.c:
     complete
@@ -3919,10 +3951,12 @@ src/arm7/sdk/pm/func_arm7_03805878.c:
 src/arm7/sdk/func_arm7_038058b0.c:
     complete
     .text       start:0x038058b0 end:0x03805904
+    .bss        start:0x0380a030 end:0x0380af74
 
 src/arm7/sdk/mic/func_arm7_03805904.c:
     complete
     .text       start:0x03805904 end:0x03805a6c
+    .bss        start:0x0380af74 end:0x0380afb0
 
 src/arm7/sdk/mic/func_arm7_03805a6c.c:
     complete
@@ -3955,6 +3989,15 @@ src/arm7/sdk/mic/func_arm7_03806184.c:
 src/arm7/sdk/os/irq_nest_dispatch_by_priority.c:
     complete
     .text       start:0x0380624c end:0x038063d0
+    .bss        start:0x0380afb0 end:0x0380afc0
+
+src/arm7/sdk/ctrdg/ctrdg_bss.c:
+    complete
+    .bss        start:0x0380afc0 end:0x0380afe8
+
+src/arm7/sdk/os/os_bss_0380afe8.c:
+    complete
+    .bss        start:0x0380afe8 end:0x0380b004
 
 src/arm7/sdk/os/irq_nest_unhook_vector.c:
     complete

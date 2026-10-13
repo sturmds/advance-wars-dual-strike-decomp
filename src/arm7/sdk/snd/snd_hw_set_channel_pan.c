@@ -1,5 +1,9 @@
 #include "sdk/snd_hw.h"
 
+int gSndHwPanEdgeAttenuation;
+u8 gSndHwChannelVolume[AUDIO_CH_TOTAL];
+u8 gSndHwChannelPan[AUDIO_CH_TOTAL];
+
 void SndHw_SetChannelPan(int channel, int pan) {
   int offset;
 

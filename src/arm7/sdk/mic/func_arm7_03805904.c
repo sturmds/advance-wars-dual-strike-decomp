@@ -1,5 +1,7 @@
 #include "sdk/mic.h"
 
+MICWork data_arm7_0380af74;
+
 /*
  * One step of auto sampling, run from the timer 3 interrupt: reads a sample
  * (unless the SPI bus is busy), stores it into the buffer and the shared

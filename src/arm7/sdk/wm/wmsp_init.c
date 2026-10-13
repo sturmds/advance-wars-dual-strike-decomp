@@ -3,14 +3,32 @@
 #include "sdk/pxi.h"
 #include "sdk/wm.h"
 #include "sdk/wmsp.h"
+#include "bss_run.h"
 
+#pragma section BSS_RUN1 begin
+static OSMessage data_arm7_027d6c74[4];
+#pragma section BSS_RUN1 end
+#pragma section BSS_RUN2 begin
+static OSMessage data_arm7_027d6c98[4];
+#pragma section BSS_RUN2 end
 /* Queues for WL indications, WL command answers and ARM9 requests. */
-extern OSMessageQueue data_arm7_027d6c60;
-extern OSMessage data_arm7_027d6c74[4];
-extern OSMessageQueue data_arm7_027d6c84;
-extern OSMessage data_arm7_027d6c98[4];
-extern OSMessageQueue data_arm7_027d6ca8;
-extern OSMessage data_arm7_027d6cbc[32];
+static OSMessageQueue data_arm7_027d6c60;
+#pragma section BSS_RUN2 begin
+/* also declared in src/arm7/sdk/wm/wmsp_receive_request.c */
+OSMessageQueue data_arm7_027d6ca8;
+#pragma section BSS_RUN2 end
+#pragma section BSS_RUN1 begin
+/* also declared in src/arm7/sdk/wm/wmsp_send_wl_command.c */
+OSMessageQueue data_arm7_027d6c84;
+#pragma section BSS_RUN1 end
+#pragma section BSS_RUN2 begin
+static OSMessage data_arm7_027d6cbc[32];
+/* 0xf08 bytes no code names, before data_arm7_027d7c44, cut in 3 to keep the sizes ascending */
+u8 data_arm7_027d6d3c[0x478];
+WmspState data_arm7_027d7c44;
+u8 data_arm7_027d76fc[0x548];
+u8 data_arm7_027d71b4[0x548];
+#pragma section BSS_RUN2 end
 
 extern OSThread gWmspWlReceiveThread;
 extern OSThread gWmspRequestThread;

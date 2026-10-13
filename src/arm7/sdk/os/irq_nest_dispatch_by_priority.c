@@ -1,5 +1,7 @@
 #include "sdk/os_arm7.h"
 
+OSiNestedIrqWork gOsNestedIrqWork;
+
 extern OSThreadInfo data_arm7_0380790c;
 extern u32 gOsNestedIrqPriorities[][2];    /* {IE mask, handler index} pairs, highest priority first */
 extern void (*data_arm7_03807750[])(void);

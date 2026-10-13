@@ -1,6 +1,9 @@
 #include "sdk/snd.h"
 #include "sdk/snd_seq.h"
 
+SndSharedWork* data_arm7_0380808c;
+SndArm7Work data_arm7_03808090;
+
 /* Moves the player's sequence ticks ticks forward without playing it: releases
  * and frees every channel first, then steps with the interval timer stopped. */
 void SndArm7_SkipSeq(int playerNo, u32 ticks) {
