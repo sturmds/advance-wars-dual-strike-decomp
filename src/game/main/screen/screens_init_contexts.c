@@ -24,7 +24,7 @@ extern Unk_02080440_48 data_02189cd8;
 extern struct OamBuffer data_021704a8;
 extern u8 data_02177b08[];
 extern u8 data_0216fca8[];
-extern struct FontState data_0216f5f4;
+extern struct FontState data_0216f5f4[2];
 extern u8 data_0216e614[];
 extern struct IconBank data_0216ef94;
 extern u8 data_02171108[];
@@ -34,14 +34,16 @@ extern struct Task data_02173788;
 extern struct Task* data_0216e96c[];
 extern struct Task* data_0216e5d4[];
 extern struct ScriptSlot data_02172108;
-extern u16 data_0216e5b0;
-extern s16 data_0216e5b4;
+extern u16 data_0216e5b0[2];
+extern s16 data_0216e5b4[2];
 extern Unk_02080440_50 data_0216e6a4;
 extern u8 data_0216e5ac[];
-extern Unk_02080440_5c data_0216e5c0;
+extern Unk_02080440_5c data_0216e5c0[2];
 extern struct WeatherFx data_0216ebf4;
 
-/* Buffers of the sub screen context. */
+/* Buffers of the sub screen context. Four of them are the second element of
+ * an array of the main screen's (data_0216e5b0, data_0216e5b4, data_0216e5c0,
+ * data_0216f5f4); the original names them by address. */
 extern struct OamBuffer data_02170ad8;
 extern u8 data_0217db08[];
 extern u8 data_021700a8[];
@@ -113,7 +115,7 @@ void Screens_InitContexts(void) {
   data_027c0280->paletteBuffer = data_0216fca8;
   data_027c0280->paletteUploadQueued = 0;
   data_027c0280->layerCopyMask = 0;
-  data_027c0280->fontState = &data_0216f5f4;
+  data_027c0280->fontState = data_0216f5f4;
   data_027c0280->textPrinter = data_0216e614;
   data_027c0280->iconBanks = &data_0216ef94;
   data_027c027c->unk_20 = data_02171108;
@@ -123,14 +125,14 @@ void Screens_InitContexts(void) {
   data_027c027c->taskFreeStack = data_0216e96c;
   data_027c027c->taskLists = data_0216e5d4;
   data_027c027c->scriptSlots = &data_02172108;
-  data_027c027c->unk_40 = &data_0216e5b0;
-  data_027c027c->scriptSlotCurrent = &data_0216e5b4;
+  data_027c027c->unk_40 = data_0216e5b0;
+  data_027c027c->scriptSlotCurrent = data_0216e5b4;
   data_027c027c->unk_48[0] = &data_02183b08;
   data_027c027c->unk_48[1] = &data_02189cd8;
   data_027c027c->unk_50[0] = &data_0216e6a4;
   data_027c027c->unk_50[1] = &data_0216e708;
   data_027c027c->unk_58 = data_0216e5ac;
-  data_027c027c->unk_5c[0] = &data_0216e5c0;
+  data_027c027c->unk_5c[0] = data_0216e5c0;
   data_027c027c->unk_5c[1] = &data_0216e5c9;
   data_027c027c->weatherFx = &data_0216ebf4;
   STATE->unk_1c4 = (Unk_02080440_1c4*)&STATE->unk_184;
@@ -176,7 +178,7 @@ void Screens_InitContexts(void) {
   data_027c027c->unk_50[1] = &data_0216e6a4;
   data_027c027c->unk_58 = data_0216e5ae;
   data_027c027c->unk_5c[0] = &data_0216e5c9;
-  data_027c027c->unk_5c[1] = &data_0216e5c0;
+  data_027c027c->unk_5c[1] = data_0216e5c0;
   data_027c027c->weatherFx = &data_0216edc4;
   STATE->unk_1c4 = (Unk_02080440_1c4*)&STATE->unk_184;
   STATE->mapTiles = (MapTiles*)STATE->mapTilesBuf;
