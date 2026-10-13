@@ -49,6 +49,7 @@ Uploading it is issue 0071.
 
 import json
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -68,6 +69,10 @@ ARTIFACT = ROOT / "build/artifacts" / f"{VERSION}_report"
 CPUS = {"arm9": ".", "arm7": "build/arm7"}
 # Functions written as `asm` that count as decompiled (see the docstring).
 ASM_LIST = ROOT / "config/AWRE/asm_functions.txt"
+# Gap units of the ARM7 project's main, ITCM and DTCM modules. Those modules
+# are the made-up ARM9 program of tools/arm7.py's stand-in ROM, not ROM code:
+# the linked copy is thrown away, so the report leaves them out.
+STAND_IN_UNIT = re.compile(r"_dsd_gap@(main|itcm|dtcm)_\d+")
 
 
 def merged_units() -> list[dict]:
@@ -75,6 +80,8 @@ def merged_units() -> list[dict]:
     for cpu, project in CPUS.items():
         base = ROOT / project
         for unit in json.loads((base / "objdiff.json").read_text())["units"]:
+            if cpu == "arm7" and STAND_IN_UNIT.fullmatch(unit["name"]):
+                continue
             unit = dict(unit, metadata=dict(unit.get("metadata", {})))
             for key in ("target_path", "base_path"):
                 if key in unit:
