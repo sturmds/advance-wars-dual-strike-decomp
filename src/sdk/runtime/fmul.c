@@ -1,8 +1,6 @@
 #include "types.h"
 
-u32 *__fp_status(void);
-float __fp_trap_ff(float a, float b, u32 op);
-float __fp_trap_f(float a, u32 op);
+#include "sdk/fp_status.h"
 
 /*
  * Soft-float single-precision multiply: r0 = r0 * r1, as IEEE bit patterns.
@@ -14,6 +12,7 @@ float __fp_trap_f(float a, u32 op);
  * 0x02128ac0. The 12 bytes after it swap r0 and r1 and fall into _fsub.
  */
 
+#ifdef __MWERKS__
 asm void _fmul(void)
 {
     stmfd sp!, {r0, r1}
@@ -361,3 +360,101 @@ inexact_trap:
     ldmfd sp!, {lr}
     bx lr
 }
+#else
+#include "sdk/soft_float.h"
+
+/* The mantissa of a finite nonzero x with its leading bit moved to bit 31,
+   and the exponent that goes with it: below 1 for a subnormal. */
+static u32 Normalize(u32 x, int* exp) {
+  u32 man = x << 8;
+  int lead;
+
+  *exp = (x >> 23) & 0xff;
+  if (*exp != 0) {
+    return man | FP_SIGN;
+  }
+  lead = FpCountLeadingZeros(man);
+  *exp = 1 - lead;
+  return man << lead;
+}
+
+float _fmul(float a, float b) {
+  u32 x = FpBits(a);
+  u32 y = FpBits(b);
+  u32 sign = (x ^ y) & FP_SIGN;
+  u32 absX = x & ~FP_SIGN;
+  u32 absY = y & ~FP_SIGN;
+  u32 manX;
+  u32 manY;
+  int expX;
+  int expY;
+  int exp;
+  u64 product;
+  u32 man;
+  u32 bits;
+
+  if (absX > FP_INFINITY || absY > FP_INFINITY) {
+    return FpNanResult(x, y, a, b, FP_OP_MUL);
+  }
+  if ((absX == FP_INFINITY && absY == 0) ||
+      (absX == 0 && absY == FP_INFINITY)) {
+    return FpInvalid(a, b, FP_OP_MUL);
+  }
+  if (absX == FP_INFINITY || absY == FP_INFINITY) {
+    return FpFloat(sign | FP_INFINITY);
+  }
+  if (absX == 0 || absY == 0) {
+    return FpFloat(sign);
+  }
+
+  manX = Normalize(x, &expX);
+  manY = Normalize(y, &expY);
+  /* The top 32 bits of the product, with the lower ones kept as a sticky
+     bit, then moved so the leading bit is bit 31. exp ends up one below the
+     biased exponent: packing adds the leading bit to it. */
+  product = (u64)manX * manY;
+  man = (u32)(product >> 32) | ((u32)product != 0);
+  exp = expX + expY;
+  if (!(man & FP_SIGN)) {
+    man <<= 1;
+    exp--;
+  }
+  exp -= FP_BIAS;
+
+  if (exp < 0) {
+    u32* status = __fp_status();
+    u32 rest;
+    if (*status & FP_TRAP_ENABLE(FP_UNDERFLOW)) {
+      return __fp_trap_f(
+          FpFloat((sign | man >> 8) + ((u32)(exp + FP_TRAP_EXP_ADJUST) << 23)),
+          FP_TRAP_WORD(FP_UNDERFLOW, FP_OP_MUL));
+    }
+    if (exp == -24) {
+      /* Half the smallest subnormal times 1.x: above half unless x is 0. */
+      return FpRoundInexact(sign, (man << 1) != 0, FP_INEXACT | FP_UNDERFLOW,
+                            FP_OP_MUL);
+    }
+    if (exp < -24) {
+      return FpRoundInexact(sign, -1, FP_INEXACT | FP_UNDERFLOW, FP_OP_MUL);
+    }
+    bits = sign | ((man >> 8) >> -exp);
+    rest = man << (24 + exp);
+    if (rest == 0) {
+      return FpFloat(bits);
+    }
+    return FpRoundInexact(bits, FpCompareHalf(rest, 0x80000000),
+                          FP_INEXACT | FP_UNDERFLOW, FP_OP_MUL);
+  }
+  if (exp >= 0xfe) {
+    return FpOverflow(
+        sign, (sign | man >> 8) + ((u32)(exp - FP_TRAP_EXP_ADJUST) << 23),
+        FP_OP_MUL);
+  }
+  bits = (sign | man >> 8) + ((u32)exp << 23);
+  if ((man & 0xff) == 0) {
+    return FpFloat(bits);
+  }
+  return FpRoundInexact(bits, FpCompareHalf(man & 0xff, 0x80), FP_INEXACT,
+                        FP_OP_MUL);
+}
+#endif

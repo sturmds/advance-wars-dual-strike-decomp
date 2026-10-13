@@ -1,8 +1,6 @@
 #include "types.h"
 
-u32 *__fp_status(void);
-float __fp_trap_ff(float a, float b, u32 op);
-float __fp_trap_f(float a, u32 op);
+#include "sdk/fp_status.h"
 
 /*
  * Soft-float single-precision divide: r0 = r0 / r1, as IEEE bit patterns.
@@ -16,6 +14,7 @@ float __fp_trap_f(float a, u32 op);
  * pool run on to 0x0212839c.
  */
 
+#ifdef __MWERKS__
 asm void _fdiv(void)
 {
     stmfd sp!, {r0, r1, lr}
@@ -496,3 +495,147 @@ inexact_trap:
     ldmfd sp!, {lr}
     bx lr
 }
+#else
+#include "sdk/soft_float.h"
+
+/* The 24-bit mantissa of a finite nonzero x with its leading bit at bit 23,
+   and the exponent that goes with it: 0 or below for a subnormal. */
+static u32 Normalize(u32 x, int* exp) {
+  u32 man = x << 9;
+  int lead;
+
+  *exp = (x >> 23) & 0xff;
+  if (*exp != 0) {
+    return (x & 0x7fffff) | 0x800000;
+  }
+  lead = FpCountLeadingZeros(man);
+  *exp = -lead;
+  return (man << lead) >> 8;
+}
+
+/*
+ * An estimate of 2^55 / divisor (a 24-bit mantissa with bit 23 set), from a
+ * byte seed indexed by the 8 bits after the leading one and refined by
+ * fixed-point steps. The assembly reads the
+ * seed from a 256-byte table: 0x10000 / (256.5 + i) rounded, at most 0xff,
+ * which the first line here computes instead.
+ */
+static u32 Reciprocal(u32 divisor) {
+  u32 twice = 2 * (0x100 + ((divisor >> 15) & 0xff)) + 1;
+  u32 seed = (0x40000 + twice) / (2 * twice);
+  u32 negHalf = 0u - ((divisor + 1) >> 1); /* -divisor >> 1, arithmetic */
+  u32 r;
+  u32 err;
+
+  if (seed > 0xff) {
+    seed = 0xff;
+  }
+  r = ((seed * negHalf + 0x80000000) >> 6) * seed >> 14;
+  err = r * (((0u - divisor) * r) >> 12);
+  return (r << 14) + (err >> 15);
+}
+
+float _fdiv(float a, float b) {
+  u32 x = FpBits(a);
+  u32 y = FpBits(b);
+  u32 sign = (x ^ y) & FP_SIGN;
+  u32 absX = x & ~FP_SIGN;
+  u32 absY = y & ~FP_SIGN;
+  u32 manX;
+  u32 manY;
+  int expX;
+  int expY;
+  int exp;
+  u32 quotient;
+  u32 dividend;
+  u32 product;
+  u32 bits;
+  s32 vsHalf;
+  u32* status;
+
+  if (absX > FP_INFINITY || absY > FP_INFINITY) {
+    return FpNanResult(x, y, a, b, FP_OP_DIV);
+  }
+  if ((absX == FP_INFINITY && absY == FP_INFINITY) ||
+      (absX == 0 && absY == 0)) {
+    return FpInvalid(a, b, FP_OP_DIV);
+  }
+  if (absX == FP_INFINITY) {
+    return FpFloat(sign | FP_INFINITY);
+  }
+  if (absY == FP_INFINITY || absX == 0) {
+    return FpFloat(sign);
+  }
+  if (absY == 0) {
+    status = __fp_status();
+    if (*status & FP_TRAP_ENABLE(FP_DIVIDE_BY_ZERO)) {
+      return __fp_trap_ff(a, b, FP_TRAP_WORD(FP_DIVIDE_BY_ZERO, FP_OP_DIV));
+    }
+    *status |= FP_DIVIDE_BY_ZERO;
+    return FpFloat(sign | FP_INFINITY);
+  }
+
+  manX = Normalize(x, &expX);
+  manY = Normalize(y, &expY);
+  if (manX < manY) {
+    manX <<= 1;
+    expX--;
+  }
+  /* The quotient's 24 bits, truncated or one too low; the remainder check
+     below corrects it. exp is one below the biased exponent: packing adds
+     the leading bit to it. */
+  quotient = (u32)(((u64)manX * Reciprocal(manY)) >> 32);
+  exp = expX - expY + FP_BIAS - 1;
+
+  if (exp < 0) {
+    status = __fp_status();
+    if (*status & FP_TRAP_ENABLE(FP_UNDERFLOW)) {
+      return __fp_trap_f(
+          FpFloat((sign | quotient) + ((u32)(exp + FP_TRAP_EXP_ADJUST) << 23)),
+          FP_TRAP_WORD(FP_UNDERFLOW, FP_OP_DIV));
+    }
+    if (exp == -24) {
+      /* Half the smallest subnormal times manX / manY, which is 1 or
+         more. */
+      return FpRoundInexact(sign, manX != manY, FP_INEXACT | FP_UNDERFLOW,
+                            FP_OP_DIV);
+    }
+    if (exp < -24) {
+      return FpRoundInexact(sign, -1, FP_INEXACT | FP_UNDERFLOW, FP_OP_DIV);
+    }
+    quotient >>= -exp;
+    dividend = manX << (23 + exp);
+    bits = sign | quotient;
+  } else if (exp >= 0xfe) {
+    return FpOverflow(
+        sign, (sign | quotient) + ((u32)(exp - FP_TRAP_EXP_ADJUST) << 23),
+        FP_OP_DIV);
+  } else {
+    dividend = manX << 23;
+    bits = (sign | quotient) + ((u32)exp << 23);
+  }
+
+  /* Correct the estimate with the remainder, dividend - quotient * manY.
+     The products wrap at 32 bits, but the remainder is small enough for
+     the differences to stay exact. */
+  product = manY * quotient;
+  if (product == dividend) {
+    return FpFloat(bits);
+  }
+  product += manY;
+  if (product == dividend) {
+    return FpFloat(bits + 1);
+  }
+  if ((s32)(product - dividend) < 0) {
+    bits++;
+  } else {
+    product -= manY;
+  }
+  /* Twice the remainder against the divisor decides round to nearest. A
+     normal quotient never lies exactly halfway. */
+  vsHalf = (s32)(2 * dividend - 2 * product - manY);
+  return FpRoundInexact(bits, (vsHalf > 0) - (vsHalf < 0),
+                        exp < 0 ? FP_INEXACT | FP_UNDERFLOW : FP_INEXACT,
+                        FP_OP_DIV);
+}
+#endif
