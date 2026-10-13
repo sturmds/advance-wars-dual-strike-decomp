@@ -8,6 +8,8 @@ name: decomp.dev report
 on:
   push:
     branches: [mainline]
+  # A manual run for checking the workflow; decomp.dev reads only push runs.
+  workflow_dispatch:
 
 jobs:
   report:
