@@ -331,6 +331,7 @@ src/game/ov000/player_hud/player_hud_draw_player.c:
 src/game/ov000/load_obj_gfx.c:
     complete
     .text       start:0x022b14bc end:0x022b157c
+    .bss        start:0x023503a0 end:0x02350510
 
 src/game/ov000/player_animate_palette_colour.c:
     complete
@@ -395,6 +396,7 @@ src/game/ov000/unit_info_panel/unit_info_panel_draw_icon_pair.c:
 src/game/ov000/unit_info_panel/unit_info_panel_set_unit_type.c:
     complete
     .text       start:0x022b1cf4 end:0x022b1dbc
+    .bss        start:0x02350510 end:0x02350530
 
 src/game/ov000/unit_info_panel/unit_info_panel_set_unit.c:
     complete
@@ -471,6 +473,7 @@ src/game/ov000/func_ov000_022b2cb8.c:
 src/game/ov000/second_screen_refresh_if_changed.c:
     complete
     .text       start:0x022b2cc4 end:0x022b2d48
+    .bss        start:0x02350530 end:0x02350560
 
 src/game/ov000/second_screen_redraw_panel.c:
     complete
@@ -495,3 +498,7 @@ src/game/ov000/second_screen_draw_terrain_details.c:
 src/game/ov000/second_screen_draw_terrain_move_costs.c:
     complete
     .text       start:0x022b34a4 end:0x022b3834
+
+src/game/ov000/ov000_bss_02350320.c:
+    complete
+    .bss        start:0x02350320 end:0x023503a0

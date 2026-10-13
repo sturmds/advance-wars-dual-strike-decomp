@@ -2,7 +2,9 @@
 #include "game/screen_other_map.h"
 #include "game/unit_info_panel.h"
 
-extern MapUnit data_ov000_02350510;
+/* also declared in src/game/ov000/unit_info_panel/unit_info_panel_open_for_type.c */
+MapUnit data_ov000_02350510;
+u8 data_ov000_02350520[0x10]; /* size: up to the next symbol */
 
 u8 Player_GetArmyStyle(int playerIndex);
 void Unit_Init(MapUnit* unit, int type);
