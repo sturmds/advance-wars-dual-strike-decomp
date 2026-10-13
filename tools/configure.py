@@ -6,6 +6,8 @@ Pipeline:
   config/AWRE/arm9 + extract --dsd delink--> build/delinks/**.o (original bytes)
   assets/maps/ + extracted/AWRE/assets/maps/ --tools/maps.py pack--> build/gen/maps/ (C included by src/game/ov000/map/)
   config/AWRE/data_inc.txt + extract --tools/data_inc.py write--> extracted/AWRE/data/ (values that C files include)
+  config/AWRE/bss_gen.txt + delinks.txt + symbols.txt + include/ --tools/bss.py gen--> build/gen/bss/
+                             (.bss definitions included by the files bss_gen.txt lists)
   src/**.c marked `complete` in a delinks.txt --mwccarm--> build/src/**.o
                              --dsd lcf-----> build/arm9.lcf, build/objects.txt
                              --lcf_absolute.py--> ARM9_ABSOLUTE_SYMBOLS added to build/arm9.lcf
@@ -118,6 +120,35 @@ def data_inc_users(sources: list[str]) -> dict[str, list[str]]:
     return users
 
 
+# Generated .bss definitions (tools/bss.py gen, docs/bss-tool.md): the files
+# config/AWRE/bss_gen.txt lists, each with the build/gen/bss/<stem>.inc.c it
+# includes. Read here rather than imported from bss.py, which imports this.
+BSS_GEN = Path("config/AWRE/bss_gen.txt")
+
+
+def bss_gen_outputs() -> dict[str, str]:
+    """Listed source file -> its generated .inc.c."""
+    path = ROOT / BSS_GEN
+    if not path.exists():
+        return {}
+    return {line.strip(): f"build/gen/bss/{Path(line.strip()).stem}.inc.c"
+            for line in path.read_text().splitlines() if line.strip() and not line.startswith("#")}
+
+
+def bss_gen_inputs(listed: list[str]) -> list[str]:
+    """What `bss.py gen` reads: the list, the delinks.txt and symbols.txt of
+    each module that has a listed file, and every header."""
+    inputs = [BSS_GEN.as_posix()]
+    for delinks in sorted((ROOT / "config/AWRE").rglob("delinks.txt")):
+        names = {line[:-1] for line in delinks.read_text().splitlines()
+                 if line and not line[0].isspace() and line.endswith(":")}
+        if names & set(listed):
+            rel = delinks.relative_to(ROOT)
+            inputs += [rel.as_posix(), (rel.parent / "symbols.txt").as_posix()]
+    inputs += sorted(p.relative_to(ROOT).as_posix() for p in (ROOT / "include").rglob("*.h"))
+    return inputs
+
+
 def config_inputs() -> list[str]:
     files = sorted((ROOT / CONFIG).rglob("*.txt")) + [ROOT / CONFIG / "config.yaml"]
     return [p.relative_to(ROOT).as_posix() for p in files]
@@ -188,6 +219,9 @@ def main() -> int:
     data_inc_rows = data_inc.read_list()
     data_inc_outputs = [(data_inc.OUT / r.rel).as_posix() for r in data_inc_rows]
     data_inc_deps = data_inc_users(sources + sources7)
+    bss_gen = bss_gen_outputs()
+    for src, out in bss_gen.items():
+        data_inc_deps.setdefault(src, []).append(out)
     config7 = " ".join(f"{CONFIG7.as_posix()}/{n}.txt" for n in ("delinks", "symbols", "relocs"))
     lines = [
         "ninja_required_version = 1.10",
@@ -227,6 +261,11 @@ def main() -> int:
         "rule data_inc",
         "  command = $python tools/data_inc.py write --quiet",
         "  description = DATA INC",
+        "  restat = 1",
+        "",
+        "rule bss_gen",
+        "  command = $python tools/bss.py gen build/gen",
+        "  description = BSS GEN",
         "  restat = 1",
         "",
         "rule objdiff_json",
@@ -311,6 +350,8 @@ def main() -> int:
         f"build {' '.join(data_inc_outputs)}: data_inc {data_inc.LIST.as_posix()}"
         f" {' '.join(data_inc.config_inputs(data_inc_rows))} | extract/config.yaml tools/data_inc.py tools/arm7.py",
         "",
+        *([f"build {' '.join(sorted(set(bss_gen.values())))}: bss_gen {' '.join(bss_gen_inputs(list(bss_gen)))}"
+           " | tools/bss.py tools/mwcc_order.py", ""] if bss_gen else []),
         f"build build/arm9.elf: link build/arm9.lcf build/objects.txt | $ld tools/link.py tools/lcf_align2.py {' '.join(objs)}",
         "",
         f"build objdiff.json: objdiff_json build/delink.stamp",

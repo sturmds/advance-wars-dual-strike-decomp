@@ -5,10 +5,12 @@
     bss.py scan MODULE [--verbose]                  variables, aliases, filler and runs; writes nothing
     bss.py plan MODULE [--range LO-HI] [--show]     the files it would write, and where (--show: their C)
     bss.py plan MODULE [--range LO-HI] --write      write them, build, and check the ROM
+    bss.py gen OUT_DIR                              write the definitions of the files in bss_gen.txt
+    bss.py move NAME FILE                           give a variable of a generated file to FILE
     bss.py lcf [--arm7] LCF                         place the extra .bss sections and the aliases in a linker script
 
 MODULE: main, ovNNN or arm7. ARM7 has .bss in two of its three parts and a
-.sbss (docs/tool-issues.md); a run in .sbss goes in `.sbss` or `.sbss.runN`.
+.sbss (docs/tool-issues.md); a slice in .sbss goes in `.sbss`.
 
 It works on the parts of each .bss range that no delinks.txt entry covers.
 Its inputs are the committed config, src/ and include/, build/fnindex.json
@@ -25,39 +27,52 @@ compiler; the same inputs give the same output. The rules:
   elements as fit, at least one.
 - Aliases: every other symbol, an address inside a variable. symbols.txt
   gives them size 0, and the linker script defines them as
-  `VARIABLE + OFFSET` (`bss.py lcf`).
+  `VARIABLE + OFFSET` (`bss.py lcf`). `plan` stops, before writing
+  anything, when an alias lies at or past its variable's declared size
+  (objdiff would give it bytes our object does not have); `scan` warns.
 - Filler: bytes after a variable's declared size that no symbol names.
   They become `u8` arrays named by address. Each stretch lies between two
   variables, so each is cut on its own (split_filler): fewest places where
   the size goes down, then fewest pieces. Less than 32 bytes before a
   32-aligned variable can instead be an `aligned(32)` on that variable,
-  which wins on a tie because it adds no piece.
+  which wins on a tie because it adds no piece. When that variable starts
+  a file, the bytes go to the end of the file before it.
 - Runs: mwccarm sorts a file's variables by size (tools/mwcc_order.py), so
-  a run of ascending sizes is the most one section holds. A file can hold
-  several neighbouring runs: the first in .bss, run N in `.bss.runN`
-  (include/bss_run.h), which the linker script places after the file's
-  .bss and objdiff reads as .bss. At most 16 runs per file.
-- Hosts: a run goes into an existing file when more than half of its named
-  variables are used by that file's functions (the file with the most, ties
-  in fnindex order), the file is `complete`, has its code in the same part
-  of the module (ARM7 has three, tools/arm7.py), compiles to code only, declares
-  the variables with their sizes, keeps one link order (dsd stops with
-  "Link order cycle detected" otherwise), and compiles with the
-  definitions in the right order.
-- New files: in the directory where the users of most of the run's
+  a run of ascending sizes is the most one section holds. A file holds a
+  slice of one run, never two runs; a run may be cut into several files.
+- Slices (decision a): each named variable prefers a file whose functions
+  use it, that is `complete`, has its code in the same part of the module
+  (ARM7 has three, tools/arm7.py), compiles to code only and declares the
+  variable with its size: the file the variable before chose, if it is
+  one of them, else the first in fnindex order (best_host). Placeholders,
+  variables nothing in the module uses and variables with no such file
+  join the slice before them, else the one after. A run is cut where the
+  preferred file changes. A file takes one range, so a file met again
+  loses the later slice. Each host must keep one link order (dsd stops
+  with "Link order cycle detected" otherwise) and compile with the
+  definitions in the right order, checked in address order; a slice that
+  loses its host joins the hosted slice before it in its run, else the one
+  after, if that passes the same checks. Slices left with no host in one
+  run make one new file.
+- New files: in the directory where the users of most of the slice's
   variables are, else the module's directory. Named `<directory>_bss.c` in
   a topic directory, else `bss_<address>.c` (`ovNNN_bss_<address>.c` in an
   overlay); the address goes on the end when the name is taken.
-- Neighbouring runs share a file when they go to the same host, when a run
-  with no host goes to the directory of the file before it, when a run with
-  no users follows any file, or when a hosted run follows a new file in the
-  host's directory.
+- Generated files (decision c): a new file whose variables are more than
+  half untyped (placeholders, or no `extern` in a header) is listed in
+  config/AWRE/bss_gen.txt; its C is a comment and one #include of
+  build/gen/bss/<stem>.inc.c, which `bss.py gen` writes at build time from
+  delinks.txt, symbols.txt and the headers. When all its variables have a
+  header type, `plan --write` writes its definitions into the file and
+  drops it from the list. `move` takes a variable out of one.
 - The C: definitions in the order mwcc_order.definition_order gives, each
   a copy of a declaration without `extern` (the host's own, else a
   header's, else the most common one), or a `u8` array when there is none
-  or its type is in no header. A host's `extern` statements for them are
-  replaced; when that does not compile, the definitions go at the end of
-  the file. A variable only the host file names becomes `static`.
+  or its type is in no header. `__attribute__((aligned(32)))` goes in
+  front: mwccarm ignores it after a pointer declarator. A host's `extern`
+  statements for them are replaced; when that does not compile, the
+  definitions go at the end of the file. A variable only the host file
+  names becomes `static`.
 """
 
 import argparse
@@ -83,9 +98,15 @@ ROOT = Path(__file__).resolve().parent.parent
 FNINDEX = ROOT / "build/fnindex.json"
 DSINDEX = ROOT / "build/dsindex.json"
 RUN_HEADER = "bss_run.h"
+# Files whose definitions bss.py gen writes at build time (decision c in
+# docs/bss-tool.md), and where under build/gen/ they go.
+GEN_LIST = Path("config/AWRE/bss_gen.txt")
+GEN_DIR = "bss"
 BSS_SECTIONS = (".bss", ".sbss")
 # Runs one file can hold in each section: the sections include/bss_run.h
 # defines (.bss.run1 to .bss.run15, .sbss and .sbss.run1 to .sbss.run3).
+# The plan now gives a file one run at most; arm7's files from before that
+# rule still use .bss.runN and .sbss.runN, which `lcf` places.
 MAX_RUNS = {".bss": 16, ".sbss": 4}
 # Sections an object may have and still take .bss definitions: with data of
 # its own, the compiler would sort that data together with ours.
@@ -366,10 +387,10 @@ class Decls:
     declare. Read from the files rather than from build/dsindex.json, whose
     regex leaves out function pointers."""
 
-    def __init__(self) -> None:
+    def __init__(self, headers_only: bool = False) -> None:
         self.by_name: dict[str, list[Decl]] = defaultdict(list)
         self.type_headers: dict[str, list[str]] = defaultdict(list)
-        for top, pattern in (("include", "*.h"), ("src", "*.c")):
+        for top, pattern in (("include", "*.h"),) + (() if headers_only else (("src", "*.c"),)):
             for path in sorted((ROOT / top).rglob(pattern)):
                 rel = path.relative_to(ROOT).as_posix()
                 text = path.read_text(errors="replace")
@@ -470,15 +491,29 @@ def round4(n: int) -> int:
     return (n + 3) & ~3
 
 
+@dataclass
+class PastAlias:
+    """An alias at or past its variable's declared size: objdiff gives it the
+    bytes up to the next symbol, which our object does not have there."""
+    alias: str
+    var: str
+    var_addr: int
+    declared: int
+    offset: int
+
+
 def build_items(syms: list[tuple[str, int, int | None, int | None]], start: int, end: int,
-                prefix: str) -> tuple[list, list[tuple[str, int]]]:
+                prefix: str) -> tuple[list, list[tuple[str, int]], list[PastAlias]]:
     """Variables and filler stretches of one gap [start, end), from its
     symbols (name, address, declared size or None, element size of an array
     declared with no count or None) in address order. Such an array gets as
     many elements as fit before the next variable.
-    Returns them with the aliases (name, address) not yet given a variable."""
+    Returns them with the aliases (name, address) not yet given a variable,
+    and the aliases that lie at or past the declared size of the variable
+    they are in (plan refuses those)."""
     starts: list[tuple[str, int, int | None, int | None]] = []
     aliases: list[tuple[str, int]] = []
+    past: list[PastAlias] = []
     for name, addr, size, elem in syms:
         if not start <= addr < end:
             fail(f"{name} at {addr:#x} is outside {start:#x}-{end:#x}")
@@ -488,6 +523,9 @@ def build_items(syms: list[tuple[str, int, int | None, int | None]], start: int,
             aliases.append((name, addr))
         elif addr % 4:
             aliases.append((name, addr))
+            # Past round4(size) it lies in filler, inside a placeholder.
+            if prev and prev[2] and prev[1] + prev[2] <= addr < prev[1] + round4(prev[2]):
+                past.append(PastAlias(name, prev[0], prev[1], prev[2], addr - prev[1]))
         else:
             starts.append((name, addr, size, elem))
     items: list = []
@@ -511,7 +549,7 @@ def build_items(syms: list[tuple[str, int, int | None, int | None]], start: int,
                          note="count: as many elements as fit before the next symbol" if fitted else ""))
         if nxt - addr > lay:
             items.append(Filler(addr + lay, nxt - addr - lay, nxt_name))
-    return items, aliases
+    return items, aliases, past
 
 
 def descents(sizes: list) -> int:
@@ -610,6 +648,7 @@ class Gap:
     end: int
     items: list
     aliases: list[tuple[str, int]]
+    past: list[PastAlias] = field(default_factory=list)
     variables: list[Var] = field(default_factory=list)
 
 
@@ -655,8 +694,8 @@ class Module:
     def _gap(self, sec: str, start: int, end: int) -> Gap:
         syms = sorted((s for s in self.symbols if start <= s.addr < end), key=lambda s: s.addr)
         rows = [(s.name, s.addr, *declared_size(self.index, s.name, s)) for s in syms]
-        items, aliases = build_items(rows, start, end, self.prefix)
-        return Gap(sec, start, end, items, aliases)
+        items, aliases, past = build_items(rows, start, end, self.prefix)
+        return Gap(sec, start, end, items, aliases, past)
 
     def plan_variables(self, split: bool = True) -> None:
         for gap in self.gaps:
@@ -701,11 +740,16 @@ class Users:
 
 @dataclass
 class Group:
+    """One file's share of the .bss: a slice of one run (a file written
+    before the slicing rule, as in arm7, can hold several runs)."""
     runs: list[list[Var]]
     directory: str
     host: str | None = None
     path: str = ""
     section: str = ".bss"
+    run: int = -1       # which run of the plan the slice is from
+    tail: int = 0       # bytes after the last variable: filler left out for a 32-aligned variable in the next file
+    generated: bool = False
 
     @property
     def variables(self) -> list[Var]:
@@ -718,39 +762,72 @@ class Group:
     @property
     def end(self) -> int:
         last = self.runs[-1][-1]
-        return last.addr + last.size
+        return last.addr + last.size + self.tail
 
 
 def host_allowed(module: Module, path: str, addr: int) -> bool:
-    """Whether `path` can take a run at `addr`. Among other things its code
+    """Whether `path` can take a slice at `addr`. Among other things its code
     must be in the same part of the module: tools/arm7.py moves each ARM7
     part on its own and wants each file in one part."""
     entry = next((e for e in module.entries if e.name == path), None)
-    if entry is None or not entry.complete or not (ROOT / path).exists():
+    if entry is None or any(s in entry.sections for s in BSS_SECTIONS):
         return False
-    if any(s in entry.sections for s in BSS_SECTIONS):
+    return code_file_allowed(module, entry, addr)
+
+
+def code_file_allowed(module: Module, entry: Entry, addr: int) -> bool:
+    """host_allowed without the rule that the file has no .bss yet: its
+    object may have .bss sections, but no other data."""
+    if not entry.complete or not (ROOT / entry.name).exists():
         return False
     if any(module.segment(start) != module.segment(addr) for start, _ in entry.sections.values()):
         return False
     # Compiled from the source as it is now, not read from build/: an
     # object left there by an earlier --write would give another answer.
-    elf = compile_probe(path, (ROOT / path).read_text())
+    elf = compile_probe(entry.name, (ROOT / entry.name).read_text())
     if elf is None:
         return False
-    return all(s["name"] in CODE_SECTIONS for s in elf[0] if s["flags"] & 2)  # SHF_ALLOC
+    return all(s["name"] in CODE_SECTIONS or s["name"].split(".run")[0] in BSS_SECTIONS
+               for s in elf[0] if s["flags"] & 2)  # SHF_ALLOC
 
 
-def best_host(module: Module, users: Users, run: list[Var], banned: set[str]) -> str | None:
-    named = [v for v in run if not v.placeholder]
-    if not named:
-        return None
-    count = Counter(f for v in named for f in users.local_of(v))
-    for path, n in sorted(count.items(), key=lambda kv: (-kv[1], users.rank[kv[0]])):
-        if 2 * n <= len(named):
-            return None
-        if path not in banned and host_allowed(module, path, run[0].addr) and declarations_fit(module.index, path, run):
-            return path
-    return None
+def best_host(users: Users, v: Var, prev: str | None, allowed) -> str | None:
+    """The file a named variable would like to be defined in: among the
+    files whose functions use it and that `allowed(path)` accepts, the one
+    the variable before it chose (`prev`) if it is one of them, else the
+    first in fnindex order. None when no user file is allowed."""
+    files = users.local_of(v)
+    if prev in files:
+        files = [prev] + [f for f in files if f != prev]
+    return next((f for f in files if allowed(f)), None)
+
+
+def slice_run(module: Module, users: Users, run: list[Var], allowed) -> list[tuple[str | None, list[Var]]]:
+    """Cuts a run where the preferred host changes (best_host). Placeholders,
+    variables nothing uses and variables with no allowed host join the slice
+    before them, else the one after. Returns (host or None, variables) for
+    each slice in address order."""
+    picks: list[str | None] = []
+    prev = None
+    for v in run:
+        if v.placeholder or not users.local_of(v):
+            picks.append(None)
+            continue
+        prev = best_host(users, v, prev, lambda f: allowed(f, v))
+        picks.append(prev)
+    for i in range(1, len(picks)):
+        if picks[i] is None:
+            picks[i] = picks[i - 1]
+    for i in range(len(picks) - 2, -1, -1):
+        if picks[i] is None:
+            picks[i] = picks[i + 1]
+    out: list[tuple[str | None, list[Var]]] = []
+    for v, host in zip(run, picks):
+        if out and out[-1][0] == host:
+            out[-1][1].append(v)
+        else:
+            out.append((host, [v]))
+    return out
 
 
 def declarations_fit(index: Index, path: str, run: list[Var]) -> bool:
@@ -803,40 +880,83 @@ def link_order_ok(entries: list[Entry]) -> bool:
     return seen == len(entries)
 
 
-def group_runs(module: Module, users: Users, runs: list[list[Var]], section: str,
-               relocs: list) -> list[Group]:
-    """Neighbouring runs that go to the same host, or the same directory,
-    share a file. A host that would break the link order, or whose C does
-    not compile with the definitions (group_text), is dropped."""
-    banned: set[str] = set()
-    while True:
-        groups: list[Group] = []
-        for run in runs:
-            host = best_host(module, users, run, banned)
-            directory = (str(Path(host).parent) if host else users_directory(module, users, run))
-            g = groups[-1] if groups else None
-            joins = g is not None and len(g.runs) < MAX_RUNS[section] and (
-                (host is not None and host == g.host)
-                or (host is None and directory in (None, g.directory))
-                or (host is not None and g.host is None and g.directory == directory))
-            if joins:
-                g.runs.append(run)
-                g.host = g.host or host
-            else:
-                groups.append(Group([run], directory or module_src_dir(module.name), host, section=section))
-        bad = None
-        entries = [Entry(e.name, e.complete, dict(e.sections)) for e in module.entries]
-        by_name = {e.name: e for e in entries}
-        for g in groups:
+def assign_hosts(module: Module, groups: list[Group], relocs: list) -> list[Group]:
+    """Steps 4 to 6 of the slicing rule (docs/bss-tool.md): a file takes one
+    range per section, so a host met again loses its later slice; each host
+    must keep dsd's link order and compile with its definitions, checked in
+    address order; a slice that loses its host joins the hosted slice before
+    it in the same run, else the one after, if that passes the same checks;
+    neighbouring slices left with no host in one run make one new file."""
+    seen: set[tuple[str, str]] = set()
+    for g in groups:
+        if g.host and (g.host, g.section) in seen:
+            g.host = None
+        elif g.host:
+            seen.add((g.host, g.section))
+    entries = [Entry(e.name, e.complete, dict(e.sections)) for e in module.entries]
+    by_name = {e.name: e for e in entries}
+
+    def take(g: Group) -> bool:
+        """Gives g's range to its host if the checks pass."""
+        sections = by_name[g.host].sections
+        sections[g.section] = (g.start, g.end)
+        g.path = g.host
+        if link_order_ok(entries) and render(module, g, relocs)[0] is not None:
+            return True
+        del sections[g.section]
+        g.path = ""
+        return False
+
+    for g in groups:
+        if g.host and not take(g):
+            g.host = None
+    changed = True
+    while changed:
+        changed = False
+        for i, g in enumerate(groups):
             if g.host:
-                by_name[g.host].sections[section] = (g.start, g.end)
-                g.path = g.host
-                if not link_order_ok(entries) or render(module, g, relocs)[0] is None:
-                    bad = g.host
+                continue
+            for j in (i - 1, i + 1):
+                if not 0 <= j < len(groups) or not groups[j].host or groups[j].run != g.run:
+                    continue
+                n = groups[j]
+                merged = Group([n.variables + g.variables if j < i else g.variables + n.variables], "", n.host,
+                               section=g.section, run=g.run)
+                old = by_name[n.host].sections.pop(g.section)
+                if take(merged):
+                    groups[min(i, j):max(i, j) + 1] = [merged]
+                    changed = True
                     break
-        if bad is None:
-            return groups
-        banned.add(bad)
+                by_name[n.host].sections[g.section] = old
+            if changed:
+                break
+    out: list[Group] = []
+    for g in groups:
+        p = out[-1] if out else None
+        if p is not None and not p.host and not g.host and p.run == g.run:
+            p.runs[0] += g.variables
+        else:
+            out.append(g)
+    return out
+
+
+def add_tails(module: Module, groups: list[Group]) -> None:
+    """Filler that `fill` left out for a 32-aligned variable at the start of
+    a slice goes to the end of the slice before it, which must end where the
+    filler starts. Otherwise the bytes would belong to no file."""
+    prev_end = {}
+    for gap in module.gaps:
+        for i, v in enumerate(gap.variables):
+            prev_end[v.name] = gap.variables[i - 1].addr + gap.variables[i - 1].size if i else gap.start
+    for i, g in enumerate(groups):
+        first = g.variables[0]
+        if not first.align32 or prev_end[first.name] == first.addr:
+            continue
+        before = groups[i - 1] if i else None
+        if before is None or before.end != prev_end[first.name]:
+            fail(f"{first.name} at {first.addr:#x} is aligned to 32 and starts a file, but no planned file "
+                 f"ends at {prev_end[first.name]:#x} to take the {first.addr - prev_end[first.name]:#x} bytes before it")
+        before.tail = first.addr - before.end
 
 
 def all_basenames() -> set[str]:
@@ -864,6 +984,18 @@ def name_groups(module: Module, groups: list[Group]) -> None:
         g.path = f"{g.directory}/{stem}.c"
 
 
+def untyped(index: Index, v: Var) -> bool:
+    """A placeholder, or a variable no header declares: its definition is a
+    `u8` array named by address."""
+    return v.placeholder or not any(d.file.startswith("include/") for d in index.decls.of(v.name))
+
+
+def wants_generated(index: Index, g: Group) -> bool:
+    """A new file whose variables are more than half untyped gets its
+    definitions from `bss.py gen` (decision c)."""
+    return not g.host and 2 * sum(untyped(index, v) for v in g.variables) > len(g.variables)
+
+
 # ---------------------------------------------------------------- planning
 
 @dataclass
@@ -872,26 +1004,47 @@ class Plan:
     groups: list[Group]
     runs_before: int
     runs_after: int
+    past: list[PastAlias] = field(default_factory=list)
 
 
 def make_plan(module: Module, lo: int | None = None, hi: int | None = None) -> Plan:
+    def in_range(v: Var) -> bool:
+        return (lo is None or v.addr >= lo) and (hi is None or v.addr < hi)
+
     module.plan_variables(split=False)
-    runs_before = sum(len(split_runs(g.variables)) for g in module.gaps if g.variables)
+    runs_before = sum(len(split_runs([v for v in g.variables if in_range(v)])) for g in module.gaps)
     module.plan_variables(split=True)
     users = Users(module)
     relocs = read_relocs()
+    index = module.index
+    allowed_cache: dict[tuple[str, str], bool] = {}
+
+    def allowed(path: str, v: Var) -> bool:
+        key = (path, v.name)
+        if key not in allowed_cache:
+            allowed_cache[key] = host_allowed(module, path, v.addr) and declarations_fit(index, path, [v])
+        return allowed_cache[key]
+
     groups: list[Group] = []
+    past: list[PastAlias] = []
     runs_after = 0
     for gap in module.gaps:
-        variables = [v for v in gap.variables
-                     if (lo is None or v.addr >= lo) and (hi is None or v.addr < hi)]
-        if not variables:
-            continue
-        runs = split_runs(variables)
-        runs_after += len(runs)
-        groups += group_runs(module, users, runs, gap.section, relocs)
+        past += [a for a in gap.past if (lo is None or a.var_addr >= lo) and (hi is None or a.var_addr < hi)]
+        for run in split_runs([v for v in gap.variables if in_range(v)]):
+            for host, variables in slice_run(module, users, run, allowed):
+                groups.append(Group([variables], "", host, section=gap.section, run=runs_after))
+            runs_after += 1
+    if past:
+        return Plan(module, [], runs_before, runs_after, past)
+    groups = assign_hosts(module, groups, relocs)
+    for g in groups:
+        if not g.host:
+            g.directory = users_directory(module, users, g.variables) or module_src_dir(module.name)
+    add_tails(module, groups)
     name_groups(module, groups)
-    return Plan(module, groups, runs_before, runs_after)
+    for g in groups:
+        g.generated = wants_generated(index, g)
+    return Plan(module, groups, runs_before, runs_after, past)
 
 
 def parse_range(text: str) -> tuple[int, int]:
@@ -953,6 +1106,7 @@ def needed_headers(index: Index, decl: Decl) -> set[str] | None:
     return out
 
 
+ALIGN32 = "__attribute__((aligned(32))) "
 C_WORDS = {"const", "volatile", "struct", "union", "enum", "void", "signed", "unsigned", "static"}
 
 
@@ -964,7 +1118,8 @@ def definition(index: Index, v: Var, decl: Decl | None, host: str | None, static
     `with_lead`, the comment above the host's own declaration goes above
     the definition, since the declaration and the comment are taken out."""
     notes = [v.note] if v.note else []
-    attr = " __attribute__((aligned(32)))" if v.align32 else ""
+    # In front: mwccarm ignores the attribute after a pointer declarator.
+    attr = ALIGN32 if v.align32 else ""
     lead = "static " if static else ""
     body, headers = f"u8 {v.name}[{v.sort:#x}]", set()
     if decl is not None:
@@ -989,7 +1144,7 @@ def definition(index: Index, v: Var, decl: Decl | None, host: str | None, static
         others = sorted({d.file for d in index.decls.of(v.name)} - {host, decl.file})
         if others and decl.file == host and not any(f.startswith("include/") for f in others):
             notes.append(f"also declared in {others[0]}" + (f" and {len(others) - 1} more" if len(others) > 1 else ""))
-    code = f"{lead}{body}{attr};"
+    code = f"{lead}{attr}{body};"
     above = decl.lead + "\n" if with_lead and decl is not None and decl.file == host and decl.lead else ""
     if not notes:
         return above + code, headers
@@ -1192,17 +1347,22 @@ def describe(v: Var) -> str:
 def summary(plan: Plan) -> str:
     variables = [v for g in plan.groups for v in g.variables]
     hosted = sum(1 for g in plan.groups if g.host)
+    generated = sum(1 for g in plan.groups if g.generated)
     return (f"{plan.module.name}: {len(variables)} variables "
             f"({sum(not v.placeholder for v in variables)} named, {sum(v.placeholder for v in variables)} placeholders,"
             f" {sum(len(v.aliases) for v in variables)} aliases, {sum(v.align32 for v in variables)} aligned to 32), "
             f"{sum(v.size for v in variables):#x} bytes; runs: {plan.runs_before} before cutting filler,"
             f" {plan.runs_after} after; files: {len(plan.groups)} ({hosted} in existing files,"
-            f" {len(plan.groups) - hosted} new)")
+            f" {len(plan.groups) - hosted} new, {generated} of them generated)")
 
 
 def cmd_scan(args) -> int:
     module = Module(args.module, Index())
     plan = make_plan(module)
+    if plan.past:
+        print("warning: " + past_report(module.index, plan.past))
+        module.gaps = [dataclasses.replace(g, past=[]) for g in module.gaps]
+        plan = make_plan(module)
     for gap in module.gaps:
         print(f"{gap.section} gap {gap.start:#010x}-{gap.end:#010x} ({gap.end - gap.start:#x} bytes)")
         if args.verbose:
@@ -1216,9 +1376,8 @@ def cmd_scan(args) -> int:
 
 def print_plan(plan: Plan) -> None:
     for g in plan.groups:
-        kind = "existing" if g.host else "new"
-        print(f"{g.path} ({kind}): {g.start:#010x}-{g.end:#010x}, {len(g.runs)} run(s), "
-              f"{len(g.variables)} variables")
+        kind = "existing" if g.host else "new, generated" if g.generated else "new"
+        print(f"{g.path} ({kind}): {g.start:#010x}-{g.end:#010x}, {len(g.variables)} variables")
     print(summary(plan))
 
 
@@ -1233,9 +1392,13 @@ def order_errors(elf, g: Group) -> list[str]:
         if ours != names:
             errors.append(f"the compiler emits {sec} as {ours}, expected {names}")
     sizes = {s["name"]: s["size"] for s in elf[1] if s["type"] == 1}
+    aligns = {s["name"]: elf[0][s["shndx"]]["align"] for s in elf[1]
+              if s["type"] == 1 and 0 < s["shndx"] < len(elf[0])}
     for v in g.variables:
         if v.name in sizes and sizes[v.name] != v.sort:
             errors.append(f"{v.name} compiles to {sizes[v.name]:#x} bytes, expected {v.sort:#x}")
+        if v.align32 and aligns.get(v.name, 32) < 32:
+            errors.append(f"{v.name}: section aligned to {aligns[v.name]}, needs 32")
     return errors
 
 
@@ -1247,6 +1410,14 @@ def render(module: Module, g: Group, relocs: list) -> tuple[str | None, list[str
     A new file first copies each declaration; when that does not compile,
     variables declared only in .c files become `u8` arrays."""
     index = module.index
+    if g.generated:
+        text = generated_text(module.name, [(v.name, v.sort, v.align32) for v in g.variables], g.section,
+                              index.decls)
+        elf = compile_probe(g.path, text)
+        if elf is None:
+            return None, ["the generated definitions do not compile: " + compile_errors.get((g.path, text), "")]
+        errors = order_errors(elf, g)
+        return (None, errors) if errors else (stub_text(module.name, g.path), [])
     for v in g.variables:
         d = chosen_decl(index, v, g.host)
         if d is not None and d.file == g.host and decl_size(index, d) not in (None, v.sort):
@@ -1293,23 +1464,201 @@ def compile_check(path: str, g: Group) -> None:
         fail(f"{path}: " + "; ".join(errors))
 
 
+# ---------------------------------------------------------------- generated definitions
+
+def gen_list() -> list[str]:
+    """The files whose definitions `bss.py gen` writes (config/AWRE/bss_gen.txt)."""
+    path = ROOT / GEN_LIST
+    if not path.exists():
+        return []
+    return [line.strip() for line in path.read_text().splitlines() if line.strip() and not line.startswith("#")]
+
+
+def write_gen_list(paths: list[str]) -> None:
+    text = "".join(f"{p}\n" for p in sorted(set(paths)))
+    path = ROOT / GEN_LIST
+    if text:
+        path.write_text(text)
+    elif path.exists():
+        path.unlink()
+
+
+def gen_include(path: str) -> str:
+    """What a listed file includes: build/gen/bss/<stem>.inc.c."""
+    return f"{GEN_DIR}/{Path(path).stem}.inc.c"
+
+
+def stub_text(module: str, path: str) -> str:
+    """The committed C of a listed file."""
+    symbols = (data_inc.config_dir(module) / "symbols.txt").as_posix()
+    return (f"/* Definitions generated from {symbols} (docs/bss-tool.md). */\n"
+            f'#include "{gen_include(path)}"\n')
+
+
+def gen_body(d: Decl | None, name: str, size: int) -> tuple[str, str | None]:
+    """A definition's text and the header it needs, from a header's `extern`
+    statement: the statement without `extern`, an array with no count given
+    one when its elements are of a basic type, else `u8 NAME[SIZE]`."""
+    plain = f"u8 {name}[{size:#x}]", None
+    if d is None:
+        return plain
+    body = d.body
+    if "*" not in body.split(name)[0]:
+        body = re.sub(r"^const\s+", "", body)
+    m = re.search(rf"\b{name}\s*\[\s*\]((?:\s*\[\s*(?:0x[0-9a-fA-F]+|\d+)\s*\])*)", body)
+    if m:
+        base = body[:body.index(name)].strip()
+        elem = 4 if "*" in base else BASIC_SIZES.get(" ".join(re.sub(r"\b(const|volatile)\b", " ", base).split()))
+        for n in re.findall(r"\[\s*(\w+)\s*\]", m.group(1)):
+            elem = elem * int(n, 0) if elem else None
+        if not elem or size % elem:
+            return plain
+        body = body[:m.start()] + f"{name}[{size // elem:#x}]{m.group(1)}" + body[m.end():]
+    return body, d.file.removeprefix("include/")
+
+
+def generated_text(module: str, variables: list[tuple[str, int, bool]], section: str, decls: Decls) -> str:
+    """The definitions of a listed file: (name, size, aligned to 32) in
+    address order, each with the type of the first `extern` statement in a
+    header that declares it, else `u8 NAME[SIZE]`, in the order that makes
+    mwccarm emit them in address order."""
+    sizes = [size for _, size, _ in variables]
+    lines, headers = [], set()
+    for i in definition_order(sizes, initialized=False):
+        name, size, align = variables[i]
+        decl = next((d for d in decls.of(name) if d.file.startswith("include/")), None)
+        body, header = gen_body(decl, name, size)
+        if header:
+            headers.add(header)
+        lines.append(f"{ALIGN32 if align else ''}{body};")
+    if section != ".bss":
+        headers.add(RUN_HEADER)
+        lines = [f"#pragma section {run_pragma(section, 0)} begin", *lines,
+                 f"#pragma section {run_pragma(section, 0)} end"]
+    symbols = (data_inc.config_dir(module) / "symbols.txt").as_posix()
+    includes = ['#include "types.h"'] + [f'#include "{h}"' for h in sorted(headers - {"types.h"})]
+    return (f"/* Generated by tools/bss.py gen from {symbols}; do not edit. */\n"
+            + "\n".join(includes) + "\n\n" + "\n".join(lines) + "\n")
+
+
+def find_entry(path: str) -> tuple[str, Entry]:
+    """The module whose delinks.txt lists `path`, and its entry."""
+    for module in module_modules():
+        _, entries = read_delinks(ROOT / data_inc.config_dir(module) / "delinks.txt")
+        for e in entries:
+            if e.name == path:
+                return module, e
+    fail(f"{GEN_LIST}: {path} is in no delinks.txt")
+
+
+def config_variables(module: str, entry: Entry, symbols: list[Symbol]) -> tuple[str, list[Var]]:
+    """A file's .bss (or .sbss) section and its variables, from the sizes
+    in symbols.txt. Symbols of size 0 are aliases. A variable is aligned to
+    32 when its address is and the bytes before it belong to no symbol."""
+    section = next((s for s in BSS_SECTIONS if s in entry.sections), None)
+    if section is None:
+        fail(f"{entry.name} has no .bss range")
+    start, end = entry.sections[section]
+    bss = sorted((s for s in symbols if s.kind == "bss"), key=lambda s: s.addr)
+    variables: list[Var] = []
+    covered_to = None
+    for s in bss:
+        if start <= s.addr < end:
+            if s.size is None:
+                fail(f"{s.name} in {entry.name} has no size in symbols.txt")
+            if s.size:
+                align = s.addr % 32 == 0 and covered_to is not None and covered_to < s.addr
+                variables.append(Var(s.addr, round4(s.size), s.size, s.name,
+                                     placeholder=s.name == f"{symbol_prefix(module)}{s.addr:08x}", align32=align))
+        if s.size != 0:
+            covered_to = None if s.size is None else s.addr + round4(s.size)
+    for s in bss:
+        if start <= s.addr < end and s.size == 0:
+            owner = next((v for v in variables if v.addr <= s.addr < v.addr + v.size), None)
+            if owner:
+                owner.aliases.append((s.name, s.addr - owner.addr))
+    return section, variables
+
+
+def gen_files(out_dir: Path, only: list[str] | None = None) -> list[Path]:
+    """Writes OUT_DIR/bss/<stem>.inc.c for each listed file, only where the
+    text changes (the build rule has restat), and removes files no longer
+    listed. Reads the config and the headers only: it is part of the build."""
+    decls = Decls(headers_only=True)
+    wanted = {}
+    symbols_of: dict[str, list[Symbol]] = {}
+    for path in gen_list():
+        module, entry = find_entry(path)
+        if module not in symbols_of:
+            symbols_of[module] = read_symbols(ROOT / data_inc.config_dir(module) / "symbols.txt")
+        section, variables = config_variables(module, entry, symbols_of[module])
+        rows = [(v.name, v.sort, v.align32) for v in variables]
+        if [r[1] for r in rows] != sorted(r[1] for r in rows):
+            fail(f"{path}: the sizes in its range go down, so one file cannot hold it")
+        wanted[out_dir / gen_include(path)] = generated_text(module, rows, section, decls)
+    (out_dir / GEN_DIR).mkdir(parents=True, exist_ok=True)
+    for old in sorted((out_dir / GEN_DIR).glob("*.inc.c")):
+        if old not in wanted:
+            old.unlink()
+    for out, text in wanted.items():
+        if not out.exists() or out.read_text() != text:
+            out.write_text(text)
+    return list(wanted)
+
+
+def cmd_gen(args) -> int:
+    gen_files(Path(args.out_dir))
+    return 0
+
+
+def promotions(module: Module, lo: int | None, hi: int | None) -> list[Group]:
+    """Listed files of the module whose variables all have a header type
+    now: their definitions go into the .c, and they leave bss_gen.txt."""
+    out = []
+    listed = set(gen_list())
+    for e in module.entries:
+        if e.name not in listed:
+            continue
+        section, variables = config_variables(module.name, e, module.symbols)
+        if not variables or (lo is not None and variables[0].addr < lo) or (hi is not None and variables[0].addr >= hi):
+            continue
+        if any(untyped(module.index, v) for v in variables):
+            continue
+        g = Group([variables], str(Path(e.name).parent), path=e.name, section=section)
+        g.tail = e.sections[section][1] - (variables[-1].addr + variables[-1].size)
+        out.append(g)
+    return out
+
+
 def cmd_plan(args) -> int:
     lo, hi = parse_range(args.range) if args.range else (None, None)
     module = Module(args.module, Index())
     plan = make_plan(module, lo, hi)
+    if plan.past:
+        print(past_report(module.index, plan.past))
+        fail(f"{len(plan.past)} aliases lie past the declared size of their variable: declare the variables "
+             "with the size that covers them, then run again")
+    relocs = read_relocs()
+    for g in plan.groups:
+        if g.generated and render(module, g, relocs)[0] is None:
+            g.generated = False
+    promoted = promotions(module, lo, hi)
     print_plan(plan)
+    for g in promoted:
+        print(f"{g.path} (generated, all its variables have a header type now): written into the file")
     if args.show:
-        relocs = read_relocs()
-        for g in plan.groups:
-            print(f"\n--- {g.path}: .bss start:{g.start:#010x} end:{g.end:#010x}")
+        for g in plan.groups + promoted:
+            print(f"\n--- {g.path}: {g.section} start:{g.start:#010x} end:{g.end:#010x}")
             print(group_text(module, g, relocs), end="")
-    if not args.write or not plan.groups:
+            if g.generated:
+                print(generated_text(module.name, [(v.name, v.sort, v.align32) for v in g.variables], g.section,
+                                     module.index.decls), end="")
+    if not args.write or not (plan.groups or promoted):
         if args.write:
             print("nothing to write")
         return 0
-    relocs = read_relocs()
     by_path: dict[str, list[Group]] = defaultdict(list)
-    for g in plan.groups:
+    for g in plan.groups + promoted:
         by_path[g.path].append(g)
     texts = {}
     for path, groups in by_path.items():
@@ -1321,12 +1670,20 @@ def cmd_plan(args) -> int:
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(text)
     subprocess.run([sys.executable, "tools/format.py", *by_path], cwd=ROOT, check=True)
-    for path, groups in by_path.items():
-        compile_check(path, groups[0])
     edit_delinks(module.cfg / "delinks.txt", plan.groups)
     edit_symbols(module.cfg / "symbols.txt", [v for g in plan.groups for v in g.variables])
+    write_gen_list([p for p in gen_list() if p not in {g.path for g in promoted}]
+                   + [g.path for g in plan.groups if g.generated])
+    gen_files(ROOT / "build/gen")
+    for path, groups in by_path.items():
+        compile_check(path, groups[0])
     for path in by_path:
         print(f"wrote {path}")
+    build_and_check()
+    return 0
+
+
+def build_and_check() -> None:
     build = subprocess.run(["make", "--no-print-directory"], cwd=ROOT, capture_output=True, text=True)
     if build.returncode:
         print(build.stdout[-4000:] + build.stderr[-4000:])
@@ -1336,6 +1693,181 @@ def cmd_plan(args) -> int:
     if check.returncode:
         bad = [line for line in (check.stdout + check.stderr).splitlines() if "FAILED" in line or "failed" in line]
         fail("the ROM does not match: " + ("; ".join(bad) or "see above"))
+
+
+def past_report(index: Index, past: list[PastAlias]) -> str:
+    """One line per alias at or past its variable's declared size."""
+    lines = ["alias, variable, declared size, alias offset, declared in:"]
+    for a in past:
+        files = ", ".join(sorted({d.file for d in index.decls.of(a.var)})) or "nowhere"
+        lines.append(f"  {a.alias}  {a.var}  {a.declared:#x}  {a.offset:#x}  {files}")
+    return "\n".join(lines)
+
+
+def take_definitions(text: str, names: list[str]) -> tuple[str, int, dict[str, str]]:
+    """Takes the top-level definitions of `names` out of a C file, each with
+    the comment of whole lines just above it. Returns the text without them,
+    where the first one was, and each one's text."""
+    found = []
+    for name in names:
+        m = re.search(rf"^(?![\s#/]|extern\b)[^;{{}}\n]*\b{name}\b[^;{{}}]*;[^\n]*\n", text, re.M)
+        if m is None:
+            fail(f"no definition of {name} at the top level")
+        lead = LEAD_COMMENT.search(text, 0, m.start())
+        found.append((lead.start(1) if lead else m.start(), m.end(), name))
+    blocks = {name: text[a:b].rstrip("\n") for a, b, name in found}
+    at = min(a for a, _, _ in found)
+    for a, b, _ in sorted(found, reverse=True):
+        text = text[:a] + text[b:]
+    return text, at, blocks
+
+
+def move_text(module: Module, target: Entry, section: str, have: list[Var], v: Var, relocs: list) -> str:
+    """FILE's C once it also defines v: its own definitions of `have` and
+    v's, in the order that makes mwccarm emit them in address order, where
+    its first definition was."""
+    index = module.index
+    path = target.name
+    g = Group([sorted(have + [v], key=lambda x: x.addr)], str(Path(path).parent), path, path, section)
+    if not have:
+        text, errors = render(module, g, relocs)
+        if text is None:
+            fail(f"{path}: " + "; ".join(errors))
+        return text
+    text = (ROOT / path).read_text()
+    own = [d for d in index.decls.of(v.name) if d.file == path]
+    for d in sorted(own, key=lambda d: d.start, reverse=True):
+        end = text.find("\n", d.end)
+        text = text[:d.lead_start] + text[len(text) if end < 0 else end + 1:]
+    text, at, blocks = take_definitions(text, [x.name for x in have])
+    static = v.name in static_names(module, g, relocs)
+    blocks[v.name], headers = definition(index, v, chosen_decl(index, v, path), path, static, with_lead=bool(own))
+    if headers is None:
+        headers = set()
+    ordered = g.variables
+    block = "\n".join(blocks[ordered[i].name] for i in definition_order([x.sort for x in ordered], initialized=False))
+    text = text[:at] + block + "\n" + text[at:]
+    new_includes = "".join(f'#include "{h}"\n' for h in sorted(headers) if f'#include "{h}"' not in text)
+    if new_includes:
+        includes = [m.end() for m in re.finditer(r"^#include[^\n]*\n", text, re.M)]
+        pos = includes[-1] if includes else 0
+        text = text[:pos] + new_includes + text[pos:]
+    elf = compile_probe(path, text)
+    if elf is None:
+        fail(f"{path} does not compile with {v.name}: " + compile_errors.get((path, text), ""))
+    errors = order_errors(elf, g)
+    if errors:
+        fail(f"{path}: " + "; ".join(errors))
+    return text
+
+
+def set_range(lines: list[str], entry: str, section: str, rng: tuple[int, int] | None) -> None:
+    """Sets (or with None removes) an entry's range of `section` in the
+    lines of a delinks.txt."""
+    i = lines.index(f"{entry}:")
+    j = i + 1
+    while j < len(lines) and lines[j].strip():
+        m = SECTION_LINE.match(lines[j])
+        if m and m.group(1) == section:
+            if rng is None:
+                del lines[j]
+            else:
+                lines[j] = section_line(section, *rng)
+            return
+        j += 1
+    if rng is not None:
+        lines.insert(j, section_line(section, *rng))
+
+
+def cmd_move(args) -> int:
+    """Gives a variable at either end of a generated file's range to FILE
+    (docs/bss-tool.md, "Generated definitions"). A variable in the middle
+    cuts the generated file in two, around FILE's new range."""
+    listed = gen_list()
+    for path in listed:
+        modname, entry = find_entry(path)
+        symbols = read_symbols(ROOT / data_inc.config_dir(modname) / "symbols.txt")
+        section, variables = config_variables(modname, entry, symbols)
+        if any(x.name == args.name for x in variables):
+            break
+    else:
+        fail(f"{args.name} is in no file of {GEN_LIST}")
+    module = Module(modname, Index())
+    relocs = read_relocs()
+    i = next(k for k, x in enumerate(variables) if x.name == args.name)
+    v = variables[i]
+    start, end = entry.sections[section]
+    target = next((e for e in module.entries if e.name == args.file), None)
+    if target is None:
+        fail(f"{args.file} is not in {module.cfg / 'delinks.txt'}")
+    if not code_file_allowed(module, target, v.addr) or not declarations_fit(module.index, target.name, [v]):
+        fail(f"{target.name} cannot take {v.name}: it must be complete, compile to code only, have its code "
+             "in the same part of the module and declare the variable with its size")
+    if any(s in target.sections for s in BSS_SECTIONS if s != section):
+        fail(f"{target.name} has a range in another section")
+    have: list[Var] = []
+    if section in target.sections:
+        t_start, t_end = target.sections[section]
+        if i == 0 and t_end == start:
+            new_target = (t_start, v.addr + v.size)
+        elif i == len(variables) - 1 and t_start == end and v.addr + v.size == end:
+            new_target = (v.addr, t_end)
+        else:
+            fail(f"{target.name} has a {section} range that does not end or start next to {v.name}")
+        _, have = config_variables(modname, target, symbols)
+        joined = sorted(have + [v], key=lambda x: x.addr)
+        if [x.sort for x in joined] != sorted(x.sort for x in joined):
+            fail(f"{v.name} and {target.name}'s variables are not one ascending run")
+    else:
+        new_target = (v.addr, v.addr + v.size)
+    # What is left of the generated file: before v, and after it.
+    pieces = [(start, v.addr), (v.addr + v.size, end)]
+    pieces = [(a, b) for a, b in pieces if b > a]
+    entries = [Entry(e.name, e.complete, dict(e.sections)) for e in module.entries]
+    by_name = {e.name: e for e in entries}
+    by_name[target.name].sections[section] = new_target
+    gen_paths = []
+    if pieces:
+        by_name[path].sections[section] = pieces[0]
+        gen_paths.append((path, pieces[0]))
+    else:
+        del by_name[path].sections[section]
+    if len(pieces) > 1:
+        stem = f"{Path(path).stem}_{pieces[1][0]:08x}"
+        if stem in all_basenames():
+            fail(f"{stem}.c is taken")
+        extra = f"{Path(path).parent}/{stem}.c"
+        entries.append(Entry(extra, True, {section: pieces[1]}))
+        gen_paths.append((extra, pieces[1]))
+    if not link_order_ok(entries):
+        fail(f"{target.name} taking {v.name} breaks the link order")
+    text = move_text(module, target, section, have, v, relocs)
+    (ROOT / target.name).write_text(text)
+    lines = (module.cfg / "delinks.txt").read_text().split("\n")
+    set_range(lines, target.name, section, new_target)
+    if pieces:
+        set_range(lines, path, section, pieces[0])
+    else:
+        k = lines.index(f"{path}:")
+        j = k
+        while j < len(lines) and lines[j].strip():
+            j += 1
+        del lines[k - (1 if k and not lines[k - 1].strip() else 0):j]
+        (ROOT / path).unlink()
+        listed.remove(path)
+    if len(pieces) > 1:
+        k = lines.index(f"{path}:")
+        while k < len(lines) and lines[k].strip():
+            k += 1
+        lines[k:k] = ["", f"{extra}:", "    complete", section_line(section, *pieces[1])]
+        (ROOT / extra).write_text(stub_text(modname, extra))
+        listed.append(extra)
+    (module.cfg / "delinks.txt").write_text("\n".join(lines))
+    write_gen_list(listed)
+    subprocess.run([sys.executable, "tools/format.py", target.name] + [p for p, _ in gen_paths], cwd=ROOT, check=True)
+    gen_files(ROOT / "build/gen")
+    print(f"moved {v.name} to {target.name}" + (f"; {extra} holds the rest after it" if len(pieces) > 1 else ""))
+    build_and_check()
     return 0
 
 
@@ -1423,6 +1955,13 @@ def main() -> int:
     p.add_argument("--show", action="store_true", help="print the C of each file (unformatted)")
     p.add_argument("--write", action="store_true")
     p.set_defaults(func=cmd_plan)
+    p = sub.add_parser("gen", help="write the definitions of the files in bss_gen.txt")
+    p.add_argument("out_dir", help="the files go in OUT_DIR/bss/")
+    p.set_defaults(func=cmd_gen)
+    p = sub.add_parser("move", help="give a variable at an end of a generated file to a code file")
+    p.add_argument("name")
+    p.add_argument("file")
+    p.set_defaults(func=cmd_move)
     p = sub.add_parser("lcf", help="place .bss.runN sections and aliases in a linker script")
     p.add_argument("lcf")
     p.add_argument("--arm7", action="store_true", help="ARM7's script: the arm7 module only")
