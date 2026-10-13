@@ -1,7 +1,7 @@
 #include "types.h"
+#include "game/overlay.h"
 
-/* per slot: 1 while its overlay is loaded; also declared in src/game/main/overlay/overlay_clear_loaded_flags.c and 2 more */
-u32 gOverlayLoaded[7];
+u32 gOverlayLoaded[OVERLAY_SLOT_COUNT];
 extern u32 data_02151ca0[7]; /* overlay id of each slot (0 to 6) */
 
 int FS_UnloadOverlay(int target, u32 overlayId); /* unloads an overlay */

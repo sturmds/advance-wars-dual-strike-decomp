@@ -1,6 +1,5 @@
 #include "types.h"
-
-extern u32 gOverlayLoaded[7]; /* per slot: 1 while its overlay is loaded */
+#include "game/overlay.h"
 
 /* Marks every overlay slot as not loaded. */
 void Overlay_ClearLoadedFlags(void) {
