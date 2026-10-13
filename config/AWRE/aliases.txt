@@ -9,7 +9,6 @@
 main data_0216e060 = data_0216e05c+0x4 real [0].dst
 main data_0216e064 = data_0216e05c+0x8 real [0].size
 main data_0216e066 = data_0216e05c+0xa real [0].kind
-main gTouch = gTouchDriverState+0x8 unsorted
 main data_0216e594 = data_0216e4e4+0xb0 real [8]
 main data_0216e5ae = data_0216e5ac+0x2 real [1]
 main data_0216e5b2 = data_0216e5b0+0x2 real [1]
