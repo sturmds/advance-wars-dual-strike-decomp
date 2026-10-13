@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/Unk_0215fe84.h"
 #include "sdk/wm.h"
-
-extern WMBssDesc* gWirelessParents[4];
+#include "game/wireless.h"
 
 void Mem_ZeroUnits(u32 value, void* dst, u32 size, u32 unitBits);
 

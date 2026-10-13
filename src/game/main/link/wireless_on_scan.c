@@ -3,9 +3,9 @@
 #include "game/Unk_0229c960.h"
 #include "sdk/wm.h"
 #include "sdk/os.h"
+#include "game/wireless.h"
 
 extern u32 data_0229c880;
-extern WMBssDesc* gWirelessScanBuffer;
 
 int func_02079180(void);
 int Wireless_EndScan(void);

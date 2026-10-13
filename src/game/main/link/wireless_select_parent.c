@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/Unk_0215fe84.h"
 #include "sdk/wm.h"
+#include "game/wireless.h"
 
-extern WMBssDesc* gWirelessParents[4];
 extern WMBssDesc* data_0229c888;
 
 void Mem_CopyBytes(const void* src, void* dst, u32 size);

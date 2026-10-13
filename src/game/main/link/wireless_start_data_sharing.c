@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/Unk_0215fe84.h"
+#include "game/wireless.h"
 
 extern u32 data_0229c880;
-extern void* data_0229c8ac;
 
 int WM_StartDataSharing(void* sharing, int port, int aidBitmap, int dataLength,
                         int doubleMode);

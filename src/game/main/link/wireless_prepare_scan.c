@@ -1,9 +1,7 @@
 #include "types.h"
 #include "game/Unk_0215fe84.h"
 #include "sdk/wm.h"
-
-extern WMBssDesc* gWirelessScanBuffer;
-extern WMScanParam* data_0229c8b4;
+#include "game/wireless.h"
 
 BOOL Wireless_NextScanChannel(u16* channel);
 u16 WM_GetDispersionScanPeriod(void);

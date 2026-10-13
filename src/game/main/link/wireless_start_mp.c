@@ -1,11 +1,10 @@
 #include "types.h"
 #include "game/Unk_0215fe84.h"
 #include "game/wireless_event.h"
+#include "game/wireless.h"
 
 extern void* data_0229c884;
 extern void* data_0229c890;
-extern u32 data_0229c89c;
-extern u32 data_0229c8a4;
 
 void Wireless_OnPortReceive(void* event);
 void Wireless_OnMpEvent(WirelessEvent* event);

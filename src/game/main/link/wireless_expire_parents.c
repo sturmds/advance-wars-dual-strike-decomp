@@ -1,10 +1,10 @@
 #include "types.h"
 #include "game/Unk_0215fe84.h"
 #include "sdk/wm.h"
+#include "game/wireless.h"
 
 extern u16 gWirelessParentTimers[4];
 extern u8 gWirelessParentLinkLevels[4];
-extern WMBssDesc* gWirelessParents[4]; /* parents found by the scan */
 
 void Mem_CopyBytes(const void* src, void* dst, u32 size);
 

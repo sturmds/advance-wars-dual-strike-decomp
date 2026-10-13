@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/Unk_0215fe84.h"
+#include "game/wireless.h"
 
 extern u32 data_0229c880;
 extern u32 gWirelessState;
-extern void* data_0229c8ac;
 
 void WM_EndDataSharing(void* sharing);
 
