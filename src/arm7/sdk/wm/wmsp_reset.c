@@ -13,7 +13,6 @@
   3 /* IEEE 802.11 reason code: the station leaves */
 
 void Wmsp_SetNormalThreadPriorities(void);
-void SendQueue_DropChildren(u32 aidBitmap);
 u16* func_arm7_027c1e74(WlCommand* cmd);
 u16* func_arm7_027c1f2c(WlCommand* cmd);
 u16* func_arm7_027c1efc(WlCommand* cmd);

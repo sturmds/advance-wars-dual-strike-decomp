@@ -3,7 +3,6 @@
 
 void Wmsp_SetNormalThreadPriorities(void);
 u16* func_arm7_027c224c(WlCommand* cmd, u16 arg);
-void SendQueue_DropChildren(int aidBitmap);
 void WMSP_ReplyEndMPFailed(u16 wlCmdID, u16 wlResult);
 
 void WMSP_EndMP(void) {

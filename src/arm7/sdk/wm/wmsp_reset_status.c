@@ -3,7 +3,6 @@
 #include "sdk/mi.h"
 
 void Wmsp_SetNormalThreadPriorities(void);
-void SendQueue_DropChildren(u32 aidBitmap);
 void func_arm7_027c5de8(void);
 
 /* Stops MP if it runs, clears the connection fields of WMStatus, frees every

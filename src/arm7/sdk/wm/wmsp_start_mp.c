@@ -3,7 +3,6 @@
 
 void WMSP_InitSendQueue(void);
 void Wmsp_SetAltThreadPriorities(void);
-void SendQueue_DropChildren(int aidBitmap);
 void WMSP_StartMpVAlarm(void);
 
 /* Starts MP from WM_STATE_PARENT or WM_STATE_CHILD: stops a running MP

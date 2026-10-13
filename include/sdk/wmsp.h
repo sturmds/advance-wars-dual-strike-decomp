@@ -480,6 +480,8 @@ int WMSP_InitWl(u16* wlCmdID, u16* wlResult);
 void WMSP_ResendMp(u16 arg);
 void WMSP_SendMp(u16 arg);
 void func_arm7_027c70f8(void);
+/* Drops the children in aidBitmap from every queued port send. */
+void SendQueue_DropChildren(u16 aidBitmap);
 
 /* Sends the command to the firmware and returns its answer. */
 WlCommand* Wmsp_SendWlCommand(WlCommand* command);

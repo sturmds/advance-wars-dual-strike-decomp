@@ -5,7 +5,6 @@
 #include "sdk/mi.h"
 
 void Wmsp_SetNormalThreadPriorities(void);
-void SendQueue_DropChildren(u16 aidBitmap);
 
 /*
  * WIFI_HOSTMSG_PEER_UNAUTHED: a station left. A parent forgets that child and tells

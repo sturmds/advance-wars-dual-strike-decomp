@@ -6,7 +6,6 @@
 u16* func_arm7_027c1efc(WlCommand* cmd);
 u16* func_arm7_027c2648(WlCommand* cmd, const void* src, int arg);
 u16* func_arm7_027c28f4(WlCommand* cmd, int arg);
-void SendQueue_DropChildren(u16 aidBitmap);
 void Wmsp_SetNormalThreadPriorities(void);
 
 /* Shared body of the DISCONNECT (isAuto 0) and AUTO_DISCONNECT (isAuto 1)
