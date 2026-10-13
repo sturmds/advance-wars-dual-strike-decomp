@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/sound_handle.h"
 
-extern LinkList data_022a8050; /* sequence players not in use */
-extern LinkList data_022a805c; /* sequence players in use, sorted by priority */
-
 void SoundSeqPlayer_StopNow(SoundSeqPlayer* player);
 void SoundSeqPlayer_InsertActive(SoundSeqPlayer* player);
 

@@ -1,9 +1,7 @@
 #include "types.h"
 #include "game/sound_handle.h"
 
-/* sequence players in use, sorted by priority; also declared in src/game/main/sound/sound_seq_player_alloc.c and 4 more */
 LinkList data_022a805c;
-/* sequence players not in use; also declared in src/game/main/sound/sound_seq_player_alloc.c and 1 more */
 LinkList data_022a8050;
 
 /* Takes a sequence player out of use: detaches its handle, group and heap

@@ -12,6 +12,10 @@ extern SoundHandle gMusicHandle;
 extern SoundHandle gSeHandle;
 extern SoundHandle gSubSeHandle; /* second sound effect */
 extern void* gStrmHandle;        /* NitroSystem stream handle */
+/* sound channels locked so far, one bit each */
+extern u32 gLockedSoundChannels;
+extern u32 data_022a8044;
+extern u32 data_022a8048; /* bit n set: alarm n is in use */
 
 /* NitroSystem sound library, named after the NitroSystem API. */
 void NNS_SndMain(void);

@@ -1,7 +1,5 @@
 #include "types.h"
-
-extern u32
-    gLockedSoundChannels; /* sound channels locked so far, one bit each */
+#include "game/sound.h"
 
 void SND_UnlockChannel(u32 channelMask, int flags);
 

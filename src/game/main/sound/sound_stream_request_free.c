@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/sound_stream.h"
 
-extern LinkList data_022a8aac; /* unused refill requests */
-
 int OS_DisableInterrupts(void);
 void OS_RestoreInterrupts(int irqState);
 

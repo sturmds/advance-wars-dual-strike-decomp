@@ -1,6 +1,5 @@
 #include "types.h"
-
-extern u32 data_022a8048; /* bit n set: alarm n is in use */
+#include "game/sound.h"
 
 /* Takes the lowest free alarm (0 to 7) and returns its number, or -1 when
  * all eight are in use. */

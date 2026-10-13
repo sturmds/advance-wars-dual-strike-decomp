@@ -1,10 +1,9 @@
 #include "types.h"
+#include "game/sound.h"
 
-/* also declared in src/game/main/sound/sound_lock_channels.c and 1 more */
-int gLockedSoundChannels;
-int data_022a8044; /* also declared in src/game/main/sound/func_02104f90.c */
-/* also declared in src/game/main/sound/sound_alarm_alloc.c and 1 more */
-int data_022a8048;
+u32 gLockedSoundChannels;
+u32 data_022a8044;
+u32 data_022a8048;
 
 void* func_02104f00(void) {
   gLockedSoundChannels = 0;

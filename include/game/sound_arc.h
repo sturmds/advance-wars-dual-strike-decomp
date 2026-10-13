@@ -136,6 +136,8 @@ typedef struct SoundArc {
   SoundArcInfo* info;
 } SoundArc;
 
+extern SoundArc* gCurrentSoundArc;
+
 /* Load an item of the current archive into a sound heap; TRUE on success. */
 BOOL NNS_SndArcLoadSeqArc(int seqArcNo, void* heap);
 BOOL NNS_SndArcLoadBank(int bankNo, void* heap);

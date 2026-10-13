@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/sound_handle.h"
 
-extern SoundPlayerSlot data_022a84a8[]; /* sequence player groups */
-
 void func_02105834(SoundHandle* handle);
 void SoundSeqPlayer_StopNow(SoundSeqPlayer* player);
 SoundSeqPlayer* SoundSeqPlayer_Alloc(int priority);

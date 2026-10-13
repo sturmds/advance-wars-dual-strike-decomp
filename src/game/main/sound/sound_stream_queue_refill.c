@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/sound_stream.h"
 
-extern LinkList
-    data_022a8ab8;         /* refill requests waiting for the sound thread */
 extern u8 data_022a8ac4[]; /* message queue the sound thread waits on */
 
 SoundStreamRequest* SoundStreamRequest_Alloc(void);

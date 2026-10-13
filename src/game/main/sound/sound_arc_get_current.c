@@ -1,5 +1,4 @@
 #include "types.h"
-
-extern void* gCurrentSoundArc;
+#include "game/sound_arc.h"
 
 void* SoundArc_GetCurrent(void) { return gCurrentSoundArc; }

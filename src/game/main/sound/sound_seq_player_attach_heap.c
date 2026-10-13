@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/sound_handle.h"
 
-extern SoundPlayerSlot data_022a84a8[]; /* sequence player groups */
-
 void SoundHeap_Reset(void* heap);
 
 /* Gives the player an unused heap of group slotNo, emptied for the new

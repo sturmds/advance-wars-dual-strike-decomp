@@ -1,31 +1,9 @@
 #include "types.h"
-
-typedef struct Unk_021063d0_0 Unk_021063d0_0;
-typedef struct Unk_021063d0_1 Unk_021063d0_1;
-typedef struct Unk_021063d0_2 Unk_021063d0_2;
-
-struct Unk_021063d0_0 {
-  u8 pad_00[0x8];
-  int unk_8;
-};
-
-struct Unk_021063d0_1 {
-  u8 pad_00[0x10];
-  int unk_10;
-};
-
-struct Unk_021063d0_2 {
-  u8 pad_00[0x80];
-  Unk_021063d0_0* unk_80;
-};
-
-extern Unk_021063d0_2* gCurrentSoundArc;
+#include "game/sound_arc.h"
 
 int func_021063d0(int a0) {
-  Unk_021063d0_0* t0 = gCurrentSoundArc->unk_80;
-  if ((u32)a0 < (u32)t0->unk_8) {
+  SoundArcFileTable* files = gCurrentSoundArc->files;
+  if ((u32)a0 < files->count) {
   }
-  return ((u32)a0 >= (u32)t0->unk_8)
-             ? 0
-             : ((Unk_021063d0_1*)((int)t0 + (a0 << 4)))->unk_10;
+  return ((u32)a0 >= files->count) ? 0 : files->entries[a0].size;
 }

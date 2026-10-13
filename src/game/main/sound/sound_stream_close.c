@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/sound_stream.h"
 
-extern u8 data_022a8ad8[]; /* mutex around the stream slots and request lists */
-
 void OS_LockMutex(void* mutex);
 void OS_UnlockMutex(void* mutex);
 void SoundStrm_StopIfActive(SoundStrm* strm);

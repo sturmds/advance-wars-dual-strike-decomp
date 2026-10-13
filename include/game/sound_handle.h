@@ -81,6 +81,15 @@ typedef struct SoundHandle {
   SoundSeqPlayer* player;
 } SoundHandle;
 
+#define SEQ_PLAYER_COUNT 16
+#define SEQ_PLAYER_SLOT_COUNT 32
+
+extern SoundSeqPlayer gSoundSeqPlayers[SEQ_PLAYER_COUNT];
+/* sequence player groups */
+extern SoundPlayerSlot data_022a84a8[SEQ_PLAYER_SLOT_COUNT];
+extern LinkList data_022a805c; /* sequence players in use, sorted by priority */
+extern LinkList data_022a8050; /* sequence players not in use */
+
 /* Stops player now, or fades it out over fadeFrames frames. */
 void SoundSeqPlayer_Stop(SoundSeqPlayer* player, int fadeFrames);
 

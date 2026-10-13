@@ -7,17 +7,13 @@
 #define SOUND_STREAM_READ_BUFFER_SIZE 0x200
 #define SOUND_STREAM_THREAD_STACK_SIZE 0x400
 
-/* buffer that ADPCM data is read into; also declared in src/game/main/sound/sound_stream_fill_blocks.c */
 u8* data_022a8aa4;
 /* message buffer of the queue, one message; size: up to the next symbol */
 u8 data_022a8aa8[0x4];
 /* TRUE once the stream system is set up */
 static BOOL gSoundStreamReady;
-/* refill requests waiting for the sound thread; also declared in src/game/main/sound/sound_stream_queue_refill.c and 2 more */
 LinkList data_022a8ab8;
-/* unused refill requests; also declared in src/game/main/sound/sound_stream_request_alloc.c and 1 more */
 LinkList data_022a8aac;
-/* mutex around the stream slots and request lists; size: up to the next symbol; also declared in src/game/main/sound/sound_stream_close.c and 2 more */
 u8 data_022a8ad8[0x14];
 /* message queue the sound thread waits on; size: up to the next symbol */
 u8 data_022a8ac4[0x14];

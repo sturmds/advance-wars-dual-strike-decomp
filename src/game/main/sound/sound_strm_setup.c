@@ -13,7 +13,6 @@ void SND_SetupChannelPcm(int channel, int format, u32 buffer, int loop,
 void SND_SetupAlarm(int alarm, u32 tick, u32 period,
                     void (*handler)(SoundStrm*), SoundStrm* arg);
 
-extern LinkList data_022a892c; /* active streams */
 extern SoundStrmChannel data_022a8978[SOUND_STRM_CHANNEL_COUNT];
 
 /* NNS_SndStrmSetup: points each of the stream's hardware channels at its part

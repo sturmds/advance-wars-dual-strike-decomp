@@ -2,8 +2,6 @@
 #include "game/sound_handle.h"
 #include "game/sound_heap.h"
 
-extern SoundPlayerSlot data_022a84a8[]; /* sequence player groups */
-
 void SoundPlayerHeap_Destroy(SoundPlayerHeap* playerHeap);
 SoundHeap* SoundHeap_Create(u32 mem, u32 size);
 void* SoundHeap_AllocItem(SoundHeap* heap, u32 size,

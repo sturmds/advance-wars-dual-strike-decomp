@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/sound_strm.h"
 
-extern LinkList data_022a892c; /* active streams */
-
 void SoundAlarm_Free(int alarm);
 
 /* Gives back the alarm of the stream and takes it out of the active list. */

@@ -3,7 +3,6 @@
 
 extern u8 data_022a8aa8[]; /* message buffer of the queue, one message */
 extern u8 data_022a8ac4[]; /* message queue the sound thread waits on */
-extern u8 data_022a8ad8[]; /* mutex around the stream slots and request lists */
 
 void OS_InitMessageQueue(void* queue, void* messages, int count);
 int OS_ReceiveMessage(void* queue, void* message, int flags);

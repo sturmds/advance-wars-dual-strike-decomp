@@ -59,4 +59,6 @@ typedef struct SoundStrm {
   u8 channels[SOUND_STRM_CHANNEL_COUNT]; /* 0x4c: hardware channel numbers */
 } SoundStrm;
 
+extern LinkList data_022a892c; /* active streams */
+
 #endif

@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/sound_handle.h"
 
-extern SoundPlayerSlot data_022a84a8[]; /* sequence player groups */
-
 void NNS_SndHeapDestroy(void* heap);
 
 /* Destroys the sound heap of a player heap and takes the player heap out of

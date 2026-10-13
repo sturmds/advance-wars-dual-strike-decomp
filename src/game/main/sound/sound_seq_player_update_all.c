@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/sound_handle.h"
 
-extern LinkList data_022a805c; /* all sequence players, sorted by priority */
-extern s16 data_02151534[];    /* volume table */
+extern s16 data_02151534[]; /* volume table */
 
 /* Lowest volume value the hardware channels take. */
 #define SOUND_DECIBEL_FLOOR (-723)

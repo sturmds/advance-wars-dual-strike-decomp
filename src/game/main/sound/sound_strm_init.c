@@ -3,7 +3,6 @@
 
 /* TRUE once the active stream list is set up */
 static BOOL gSoundStrmListReady;
-/* active streams; also declared in src/game/main/sound/sound_strm_release.c and 1 more */
 LinkList data_022a892c;
 void* data_022a8938[SOUND_STRM_CHANNEL_COUNT];
 /* ring buffer of each hardware channel */

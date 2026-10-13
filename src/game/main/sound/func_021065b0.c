@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/sound_arc.h"
 
-extern SoundArc* gCurrentSoundArc;
-
 /* Pointer to the item at offset inside the info block, NULL for offset 0. */
 static inline const void* InfoItem(const SoundArcInfo* info, u32 offset) {
   if (offset == 0) {

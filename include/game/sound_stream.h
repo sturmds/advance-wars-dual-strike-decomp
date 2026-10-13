@@ -121,5 +121,11 @@ typedef struct SoundStreamRequest {
 #define SOUND_STREAM_HEAD_SIZE 0x40
 
 extern SoundStream data_022a9300[SOUND_STREAM_COUNT];
+extern u8* data_022a8aa4; /* buffer that ADPCM data is read into */
+/* refill requests waiting for the sound thread */
+extern LinkList data_022a8ab8;
+extern LinkList data_022a8aac; /* unused refill requests */
+/* mutex around the stream slots and request lists */
+extern u8 data_022a8ad8[0x14];
 
 #endif

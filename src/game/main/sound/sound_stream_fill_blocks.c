@@ -4,7 +4,6 @@
 
 extern s16 data_0214d410[]; /* ADPCM step sizes, 89 entries */
 extern s8 data_0214d400[];  /* ADPCM step index change per nibble */
-extern u8* data_022a8aa4;   /* buffer that ADPCM data is read into */
 
 void MI_CpuFill8(void* dest, int value, u32 size);
 void Mem_CopyBytes(const void* src, void* dest, u32 size);

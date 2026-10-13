@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/sound_arc.h"
 
-extern SoundArc* gCurrentSoundArc;
-
 BOOL FS_ConvertPathToFileID(SoundArcRange* range, const char* path);
 BOOL FS_OpenFileFast(FSFile* file, SoundArcRange range);
 BOOL SoundArc_ReadTables(SoundArc* arc, void* heap, int symbolLoad);
