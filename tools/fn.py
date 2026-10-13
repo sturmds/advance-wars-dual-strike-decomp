@@ -629,7 +629,8 @@ def cmd_diff(args) -> int:
         percent = 100.0
     if same:
         print(f"\n= : {len(same)} relocation(s) name another symbol at the same address,"
-              " or an absolute symbol of the same value; counted as matching.")
+              " an absolute symbol of the same value, or a pool word shown as an instruction;"
+              " counted as matching.")
     print(f"\n{f.name}: {differ} differ, {percent if percent is not None else '?'}% match")
     return 0 if percent == 100.0 else 1
 
@@ -670,7 +671,8 @@ def score_rows(data: dict, name: str, module: str | None):
     # point at the same address under different names (issue 0017) match,
     # and so do words relocated to an absolute symbol of the original value.
     same = {i for i, (a, b) in enumerate(zip(orig.get("instructions", []), ours.get("instructions", [])))
-            if a.get("diff_kind") and (same_target(data, a, b) or absolute_word(data, a, b, module))}
+            if a.get("diff_kind") and (same_target(data, a, b) or absolute_word(data, a, b, module)
+                                       or pool_word(data, a, b))}
     return rows(orig), rows(ours), same, percent
 
 
@@ -864,6 +866,29 @@ def same_target(data, left, right) -> bool:
     if [p for p in left_ins["parts"] if "arg" not in p] != [p for p in right_ins["parts"] if "arg" not in p]:
         return False
     return targets[0] == targets[1]
+
+
+def pool_word(data, left, right) -> bool:
+    """True when both rows are the same 32-bit word relocated to the same
+    address, and objdiff shows one as `.word` and the other as an
+    instruction. The original's object has no mapping symbols, so objdiff
+    finds its literal pool words from the loads that read them, and it can
+    miss the last word of a function (Isd_VFormat)."""
+    if left.get("diff_kind") != "DIFF_REPLACE" or right.get("diff_kind") != "DIFF_REPLACE":
+        return False
+    targets, words = [], []
+    for key, row in (("left", left), ("right", right)):
+        ins = row["instruction"]
+        rel = ins.get("relocation")
+        if not rel or rel.get("type_name") != "R_ARM_ABS32" or ins.get("size") != 4:
+            return False
+        addr = symbol_addresses().get(data[key]["symbols"][rel["target_symbol"]]["name"])
+        if addr is None:
+            return False
+        targets.append(addr + int(rel.get("addend", 0)))
+        words.append(ins["formatted"].startswith(".word "))
+    return left["instruction"]["address"] == right["instruction"]["address"] \
+        and targets[0] == targets[1] and words[0] != words[1]
 
 
 def absolute_word(data, left, right, module: str | None = None) -> bool:
