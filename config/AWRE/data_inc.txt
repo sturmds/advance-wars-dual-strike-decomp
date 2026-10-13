@@ -17,3 +17,6 @@ arm7      gSndAttackTable             0x03807294  0x13   u8
 arm7      gCardSaveCmdWriteEnable     0x038072a8  0x1    u8
 arm7      gCardSaveCmdReadStatus      0x038072ac  0x1    u8
 arm7      gOsNestedIrqPriorities      0x038072e4  0xb0   u32[2]
+ov003     Ov003_StartMessage          0x02364880  0x8    u8
+ov003     Ov003_gMainLayerConfig      0x02364888  0x50   {u8,u8,u8[2],u32,u32,u16*,u8,u8[3]}
+ov003     Ov003_gSubLayerConfig       0x023648d8  0x50   {u8,u8,u8[2],u32,u32,u16*,u8,u8[3]}

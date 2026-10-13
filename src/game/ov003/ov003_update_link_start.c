@@ -9,7 +9,9 @@ int func_0207bd94(void);
 void func_0207b48c(void);
 void func_0207b4b0(void* a0);
 void func_ov003_02363dbc(void);
-extern char Ov003_StartMessage[];
+char Ov003_StartMessage[8] = {
+#include "data/ov003/Ov003_StartMessage.inc.c"
+};
 
 /* Runs while the low mode nibble is 3. With the link flag Unk_02160ac0.unk_7c
  * set it scans the first 8 link slots for a received string that differs from
