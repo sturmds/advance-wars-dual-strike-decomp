@@ -18,7 +18,7 @@ void EventPicture_Show(int coMood) {
         gEventTextMap[row * EVENT_PICTURE_MAP_WIDTH +
                       (EventPicture_GetX() - col)] =
             (col + EVENT_PICTURE_TILE_BASE + row * EVENT_PICTURE_SIZE) |
-            EVENT_PICTURE_PALETTE | EVENT_PICTURE_HFLIP;
+            EVENT_PICTURE_PALETTE | BG_TILE_HFLIP;
       } else {
         gEventTextMap[row * EVENT_PICTURE_MAP_WIDTH +
                       (col + EventPicture_GetX())] =

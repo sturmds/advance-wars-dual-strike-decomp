@@ -24,7 +24,7 @@ void EventPicture_DrawAtStep(int step) {
       }
       if (EVENT_PICTURE_ON_RIGHT) {
         gEventTextMap[row * EVENT_PICTURE_MAP_WIDTH +
-                      (EventPicture_GetX() - col)] = tile | EVENT_PICTURE_HFLIP;
+                      (EventPicture_GetX() - col)] = tile | BG_TILE_HFLIP;
       } else {
         gEventTextMap[row * EVENT_PICTURE_MAP_WIDTH +
                       (col + EventPicture_GetX())] = tile;

@@ -5,6 +5,7 @@
 
 /* BG tile map entries: bits 0-9 character, 10-11 flips, 12-15 palette. */
 #define BG_TILE_CHAR_AND_FLIP 0xfff
+#define BG_TILE_HFLIP 0x400
 #define BG_TILE_PALETTE(n) ((n) << 12)
 
 /* Tables used to draw map tiles into the BG tile maps of layers 3 and 2

@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "game/Unk_022977a4.h"
+#include "game/map_bg.h"
 #include "game/Unk_02080440.h"
 #include "game/player.h"
 
@@ -18,7 +19,6 @@ extern int data_027c0284;
 #define EVENT_PICTURE_PALETTE 0x1000
 #define EVENT_PICTURE_RIGHT_X 31 /* last column of the 32-tile map */
 #define EVENT_PICTURE_MAP_WIDTH 32
-#define EVENT_PICTURE_HFLIP 0x400 /* tile map entry: flip horizontally */
 
 /* In the campaign, a Black Hole speaker's picture sits at the right edge, mirrored. */
 #define EVENT_PICTURE_ON_RIGHT                                             \
