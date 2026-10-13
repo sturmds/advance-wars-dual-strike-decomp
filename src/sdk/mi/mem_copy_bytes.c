@@ -123,19 +123,17 @@ static void StoreByteInHalfword(u8* at, u8 value) {
   *halfword = both;
 }
 
-/* Copies size bytes from src to dest, front to back. The assembly moves up
-   to 4 bytes at a time and reads up to 2 bytes ahead, so when dest starts 1
-   to 3 bytes after src inside the source its result differs from a byte
-   copy; that case stops the program. */
+/* Copies size bytes from src to dest, front to back. When dest starts 1
+   byte after src, the assembly reads a source byte before the copy
+   overwrites it, so its result differs from a byte copy; that case stops
+   the program. Every other overlap gives the same bytes as a byte copy. */
 void Mem_CopyBytes(const void* src, void* dest, u32 size) {
   const u8* from = src;
   u8* to = dest;
-  uintptr_t distance = (uintptr_t)dest - (uintptr_t)src;
   u32 i;
 
-  if ((uintptr_t)dest > (uintptr_t)src && distance < 4 && distance < size) {
-    fprintf(stderr, "Mem_CopyBytes: %p starts %u bytes into %p\n", dest,
-            (unsigned)distance, src);
+  if ((uintptr_t)dest - (uintptr_t)src == 1 && size > 1) {
+    fprintf(stderr, "Mem_CopyBytes: %p starts 1 byte into %p\n", dest, src);
     abort();
   }
   for (i = 0; i < size; i++) {
