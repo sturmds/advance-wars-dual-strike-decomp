@@ -1,7 +1,7 @@
 #include "sdk/os.h"
 
 /* The timer entries start at gOsIrqSlots[4]; see IrqSlot_CallAndClear. */
-extern IrqSlotEntry data_022a98ec[];
+IrqSlotEntry data_022a98ec[0x4]; /* size: up to the next symbol */
 
 /* Sets the handler and its argument for a timer interrupt, then enables it. */
 void Timer_InstallIrqSlot(int timer, void (*handler)(void*), void* arg) {

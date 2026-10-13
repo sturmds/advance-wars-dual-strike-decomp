@@ -2,6 +2,9 @@
 #include "sdk/os.h"
 #include "sdk/pxi.h"
 
+SndCommand* data_022a9c78; /* free list tail */
+SndCommand* data_022a9c74; /* queued, unflushed commands: tail */
+
 /* Sends the queued commands to the ARM7. Returns 1 when sent, 0 when it would
    have to wait and SOUND_SEND_WAIT_IF_FULL is not set. */
 int SND_FlushCommand(u32 flags) {

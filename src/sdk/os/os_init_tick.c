@@ -5,9 +5,9 @@
 #define REG_TM0CNT_H (*(vu16*)0x04000102)
 #define IRQ_MASK_TIMER0 0x8
 
-extern u16 gOsTickInitialized;
-extern vu64 gOsiTickCounter;
-extern u32 gOsiNeedResetTimer;
+static u16 gOsTickInitialized;
+u32 gOsiNeedResetTimer; /* also declared in src/sdk/os/osi_count_up_tick.c */
+vu64 gOsiTickCounter; /* also declared in src/sdk/os/os_get_tick.c and 1 more */
 void OSi_SetTimerReserved(int timer);
 void OSi_CountUpTick(void* arg);
 

@@ -2,8 +2,11 @@
 #include "sdk/ctrdg.h"
 #include "sdk/pxi.h"
 
-extern u32 gCtrdgInitialized;
-extern int (*gCtrdgPulledOutHook)(void);
+/* also declared in src/sdk/ctrdg/ctrdgi_pxi_callback.c */
+int (*gCtrdgPulledOutHook)(void);
+static u32 gCtrdgInitialized;
+/* aligned to 32: no symbol covers the bytes before it */
+__attribute__((aligned(32))) GbaRomHeader data_022acf40;
 
 void CTRDG_Init(void) {
   if (gCtrdgInitialized != 0) {

@@ -1,6 +1,10 @@
 #include "types.h"
 #include "sdk/gx_load.h"
 
+int data_022a98a0;
+int data_022a9898;
+int data_022a989c;
+
 void GX_SetBankForBGExtPltt(int bank);
 
 void GX_EndLoadBGExtPltt(void) {

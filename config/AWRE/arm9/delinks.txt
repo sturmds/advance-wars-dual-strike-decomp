@@ -21233,10 +21233,12 @@ src/game/main/func_0210a5d4.c:
 src/sdk/gx/gx_init.c:
     complete
     .text       start:0x0210a5fc end:0x0210a794
+    .bss        start:0x022a9870 end:0x022a9878
 
 src/sdk/gx/gx_vram_reset.c:
     complete
     .text       start:0x0210a794 end:0x0210a814
+    .bss        start:0x022a9878 end:0x022a9894
 
 src/sdk/func_0210a814.c:
     complete
@@ -21413,6 +21415,7 @@ src/sdk/gx/projection_build_perspective_w.c:
 src/sdk/gx/gxs_end_load_bg_ext_pltt.c:
     complete
     .text       start:0x0210c550 end:0x0210c59c
+    .bss        start:0x022a9894 end:0x022a9898
 
 src/sdk/gx/gxs_load_bg_ext_pltt.c:
     complete
@@ -21425,6 +21428,7 @@ src/game/main/func_0210c610.c:
 src/sdk/gx/gx_end_load_bg_ext_pltt.c:
     complete
     .text       start:0x0210c634 end:0x0210c698
+    .bss        start:0x022a9898 end:0x022a98a4
 
 src/sdk/gx/gx_load_bg_ext_pltt.c:
     complete
@@ -21449,6 +21453,7 @@ src/sdk/gx/gx_begin_load_tex_pltt.c:
 src/sdk/gx/gx_end_load_tex.c:
     complete
     .text       start:0x0210c930 end:0x0210c9a0
+    .bss        start:0x022a98a4 end:0x022a98bc
 
 src/sdk/gx/gx_load_tex.c:
     complete
@@ -21497,6 +21502,7 @@ src/sdk/func_0210cc10.c:
 src/sdk/os/irq_slot_call_and_clear.c:
     complete
     .text       start:0x0210cc20 end:0x0210ccbc
+    .bss        start:0x022a98bc end:0x022a98ec
 
 src/sdk/func_0210ccbc.c:
     complete
@@ -21521,6 +21527,7 @@ src/sdk/os/os_set_irq_mask.c:
 src/sdk/os/timer_install_irq_slot.c:
     complete
     .text       start:0x0210cda8 end:0x0210cdf4
+    .bss        start:0x022a98ec end:0x022a991c
 
 src/sdk/os/os_set_dma_irq_handler.c:
     complete
@@ -21617,6 +21624,7 @@ src/sdk/os/osi_do_lock_by_word.c:
 src/sdk/os/func_0210d21c.c:
     complete
     .text       start:0x0210d21c end:0x0210d30c
+    .bss        start:0x022a991c end:0x022a9920
 
 src/sdk/os/osi_idle_thread_proc.c:
     complete
@@ -21637,6 +21645,7 @@ src/sdk/os/os_set_thread_priority.c:
 src/sdk/os/os_reschedule_thread.c:
     complete
     .text       start:0x0210d410 end:0x0210d4f0
+    .bss        start:0x022a9920 end:0x022a9928
 
 src/sdk/os/thread_first_runnable.c:
     complete
@@ -21665,6 +21674,7 @@ src/sdk/os/os_create_thread.c:
 src/sdk/os/os_init_thread.c:
     complete
     .text       start:0x0210d790 end:0x0210d910
+    .bss        start:0x022a9928 end:0x022a9b74
 
 src/sdk/os/osi_remove_thread_from_list.c:
     complete
@@ -21801,6 +21811,7 @@ src/sdk/os/os_set_arena_hi.c:
 src/sdk/os/os_get_init_arena_lo.c:
     complete
     .text       start:0x0210e284 end:0x0210e36c
+    .bss        start:0x022a9b74 end:0x022a9b7c
 
 src/sdk/os/os_get_init_arena_hi.c:
     complete
@@ -21853,6 +21864,7 @@ src/sdk/os/exception_fill_context_record.c:
 src/sdk/os/exception_run_user_hook.c:
     complete
     .text       start:0x0210e79c end:0x0210e808
+    .bss        start:0x022a9b7c end:0x022a9c08
 
 src/sdk/os/os_init_exception.c:
     complete
@@ -21861,6 +21873,7 @@ src/sdk/os/os_init_exception.c:
 src/sdk/os/osi_set_timer_reserved.c:
     complete
     .text       start:0x0210e898 end:0x0210e8b4
+    .bss        start:0x022a9c08 end:0x022a9c0c
 
 src/sdk/os/os_get_tick.c:
     complete
@@ -21873,10 +21886,12 @@ src/sdk/os/osi_count_up_tick.c:
 src/sdk/os/os_init_tick.c:
     complete
     .text       start:0x0210e9ec end:0x0210ea88
+    .bss        start:0x022a9c0c end:0x022a9c1c
 
 src/sdk/os/os_init_v_alarm.c:
     complete
     .text       start:0x0210ea88 end:0x0210eaf8
+    .bss        start:0x022a9c1c end:0x022a9c30
 
 src/sdk/os/os_enable_interrupts.c:
     complete
@@ -21929,6 +21944,7 @@ src/sdk/os/reset_on_os_tag_message.c:
 src/sdk/os/os_init_reset.c:
     complete
     .text       start:0x0210ecb8 end:0x0210ed20
+    .bss        start:0x022a9c30 end:0x022a9c38
 
 src/sdk/os/os_get_owner_info.c:
     complete
@@ -21945,6 +21961,7 @@ src/sdk/os/math_count_leading_zeros.c:
 src/sdk/os/osi_unlock_vram.c:
     complete
     .text       start:0x0210edc0 end:0x0210ee48
+    .bss        start:0x022a9c38 end:0x022a9c50
 
 src/sdk/os/osi_init_vram_exclusive.c:
     complete
@@ -22153,10 +22170,12 @@ src/sdk/func_0210fed4.c:
 src/sdk/snd/snd_init.c:
     complete
     .text       start:0x0210fee8 end:0x0210ff34
+    .bss        start:0x022a9c50 end:0x022a9c68
 
 src/sdk/snd/snd_pop_free_command.c:
     complete
     .text       start:0x0210ff34 end:0x0210ff8c
+    .bss        start:0x022a9c68 end:0x022a9c6c
 
 src/sdk/snd/sound_ping_arm7_driver.c:
     complete
@@ -22185,6 +22204,7 @@ src/sdk/snd/sound_free_command_count.c:
 src/sdk/snd/snd_is_finished_command_tag.c:
     complete
     .text       start:0x021100fc end:0x02110150
+    .bss        start:0x022a9c6c end:0x022a9c74
 
 src/sdk/snd/snd_get_current_command_tag.c:
     complete
@@ -22201,6 +22221,7 @@ src/sdk/snd/snd_wait_for_command_proc.c:
 src/sdk/snd/snd_flush_command.c:
     complete
     .text       start:0x021102b0 end:0x02110470
+    .bss        start:0x022a9c74 end:0x022a9c7c
 
 src/sdk/snd/sound_link_command_at_tail.c:
     complete
@@ -22213,14 +22234,21 @@ src/sdk/snd/snd_alloc_command.c:
 src/sdk/snd/snd_recv_command_reply.c:
     complete
     .text       start:0x02110554 end:0x02110688
+    .bss        start:0x022a9c7c end:0x022a9cc0
 
 src/sdk/snd/snd_command_init.c:
     complete
     .text       start:0x02110688 end:0x021107a0
+    .bss        start:0x022a9cc0 end:0x022ab740
 
 src/sdk/snd/sound_alarm_run_if_tag_matches.c:
     complete
     .text       start:0x021107a0 end:0x02110800
+    .bss        start:0x022ab740 end:0x022ab7a0
+
+src/sdk/snd/snd_bss.c:
+    complete
+    .bss        start:0x022ab7a0 end:0x022ab7a4
 
 src/sdk/snd/sound_alarm_assign_handler.c:
     complete
@@ -22309,6 +22337,7 @@ src/sdk/pxi/pxi_set_fifo_recv_callback.c:
 src/sdk/pxi/pxi_init_fifo.c:
     complete
     .text       start:0x021110d0 end:0x021111dc
+    .bss        start:0x022ab7a4 end:0x022ab828
 
 src/sdk/func_021111dc.c:
     complete
@@ -22381,6 +22410,7 @@ src/sdk/fs/fs_load_archive.c:
 src/sdk/fs/fs_register_archive.c:
     complete
     .text       start:0x02111f5c end:0x0211201c
+    .bss        start:0x022ab828 end:0x022ab838
 
 src/sdk/fs/fs_init_archive.c:
     complete
@@ -22481,6 +22511,7 @@ src/sdk/fs/fs_init_file.c:
 src/sdk/fs/fs_init.c:
     complete
     .text       start:0x02112bdc end:0x02112c18
+    .bss        start:0x022ab838 end:0x022ab83c
 
 src/sdk/fs/fs_append_to_list.c:
     complete
@@ -22497,6 +22528,7 @@ src/game/main/func_02112c8c.c:
 src/sdk/fs/fs_init_rom.c:
     complete
     .text       start:0x02112cac end:0x02112e4c
+    .bss        start:0x022ab83c end:0x022ab8a4
 
 src/sdk/fs/fs_empty_archive_proc.c:
     complete
@@ -22581,6 +22613,7 @@ src/sdk/svc/sha1_append_length_padding.c:
 src/sdk/svc/sha1_compress_block.c:
     complete
     .text       start:0x02113924 end:0x02113c24
+    .bss        start:0x022ab8a4 end:0x022ab8a8
 
 src/sdk/svc/sha1_feed_bytes.c:
     complete
@@ -22633,6 +22666,7 @@ src/sdk/tp/tp_get_user_info.c:
 src/sdk/tp/tp_init.c:
     complete
     .text       start:0x02114554 end:0x021145e4
+    .bss        start:0x022ab8a8 end:0x022ab8e4
 
 src/sdk/tp/tpi_tp_callback.c:
     complete
@@ -22737,6 +22771,7 @@ src/sdk/pm/power_on_arm7_reply.c:
 src/sdk/pm/pm_init.c:
     complete
     .text       start:0x02115258 end:0x0211531c
+    .bss        start:0x022ab8e4 end:0x022ab940
 
 src/sdk/pm/power_release_and_report.c:
     complete
@@ -22777,6 +22812,7 @@ src/sdk/card/card_wait_backup_async.c:
 src/sdk/func_0211549c.c:
     complete
     .text       start:0x0211549c end:0x021154ac
+    .bss        start:0x022ab940 end:0x022ab960
 
 src/sdk/func_021154ac.c:
     complete
@@ -22789,6 +22825,7 @@ src/sdk/func_021154d8.c:
 src/sdk/card/cardi_init_common.c:
     complete
     .text       start:0x021154e8 end:0x021155e4
+    .bss        start:0x022ab960 end:0x022ac0e0
 
 src/sdk/card/cardi_unlock_resource.c:
     complete
@@ -22849,6 +22886,7 @@ src/sdk/card/card_save_finish_task_and_notify.c:
 src/sdk/card/card_init.c:
     complete
     .text       start:0x02115fe8 end:0x02116070
+    .bss        start:0x022ac0e0 end:0x022ac320
 
 src/sdk/card/card_wait_rom_async.c:
     complete
@@ -22905,6 +22943,7 @@ src/sdk/card/card_halt_after_removal.c:
 src/sdk/card/card_on_removal_message.c:
     complete
     .text       start:0x02116890 end:0x021168fc
+    .bss        start:0x022ac320 end:0x022ac328
 
 src/sdk/card/card_register_removal_handler.c:
     complete
@@ -22917,6 +22956,7 @@ src/sdk/wm/wm_clear_fifo_recv_flag.c:
 src/sdk/wm/wm_receive_fifo.c:
     complete
     .text       start:0x02116950 end:0x02116cf0
+    .bss        start:0x022ac328 end:0x022ac330
 
 src/sdk/wm/wmi_check_state_ex.c:
     complete
@@ -22937,6 +22977,7 @@ src/sdk/func_02116e10.c:
 src/sdk/wm/wmi_send_command.c:
     complete
     .text       start:0x02116e20 end:0x02116f74
+    .bss        start:0x022ac330 end:0x022ac344
 
 src/game/main/func_02116f74.c:
     complete
@@ -22949,6 +22990,7 @@ src/sdk/wm/wm_finish.c:
 src/sdk/wm/wireless_set_up_work_area.c:
     complete
     .text       start:0x02117000 end:0x021171e8
+    .bss        start:0x022ac344 end:0x022acdc0
 
 src/sdk/wm/wm_init.c:
     complete
@@ -23117,6 +23159,7 @@ src/sdk/wm/wm_set_beacon_indication.c:
 src/sdk/wm/wm_set_game_info.c:
     complete
     .text       start:0x021190e8 end:0x021191b0
+    .bss        start:0x022acdc0 end:0x022ace40
 
 src/sdk/mb/mb_comm_report_error.c:
     complete
@@ -23213,6 +23256,7 @@ src/sdk/mb/mb_file_make_download_info.c:
 src/sdk/mb/download_play_offer_child_program.c:
     complete
     .text       start:0x0211abc4 end:0x0211ae8c
+    .bss        start:0x022ace40 end:0x022ace44
 
 src/sdk/mb/mb_segment_copy_secure_area.c:
     complete
@@ -23237,6 +23281,7 @@ src/sdk/mb/func_0211b458.c:
 src/sdk/mb/mb_beacon_send_players.c:
     complete
     .text       start:0x0211b494 end:0x0211b740
+    .bss        start:0x022ace44 end:0x022aced0
 
 src/sdk/mb/mb_beacon_end_game.c:
     complete
@@ -23345,6 +23390,7 @@ src/sdk/mb/mb_parent_start_core.c:
 src/sdk/mb/mb_parent_init_wm.c:
     complete
     .text       start:0x0211c320 end:0x0211c420
+    .bss        start:0x022aced0 end:0x022acf00
 
 src/sdk/mb/download_play_set_send_size_and_children.c:
     complete
@@ -23401,6 +23447,7 @@ src/sdk/mb/mb_cache_init.c:
 src/sdk/mb/mb_task_end.c:
     complete
     .text       start:0x0211db08 end:0x0211db5c
+    .bss        start:0x022acf00 end:0x022acf04
 
 src/sdk/mb/mb_task_set.c:
     complete
@@ -23429,6 +23476,7 @@ src/sdk/mb/mb_task_thread.c:
 src/sdk/mb/mb_pieces_is_complete.c:
     complete
     .text       start:0x0211ded4 end:0x0211df34
+    .bss        start:0x022acf04 end:0x022acf14
 
 src/sdk/mb/mb_pieces_add.c:
     complete
@@ -23477,6 +23525,7 @@ src/sdk/ctrdg/cartridge_stash_and_slow_rom_waits.c:
 src/sdk/ctrdg/cartridge_header_still_matches.c:
     complete
     .text       start:0x0211e3d8 end:0x0211e4f4
+    .bss        start:0x022acf14 end:0x022acf18
 
 src/sdk/ctrdg/cartridge_gba_maker_code_or_zero.c:
     complete
@@ -23521,10 +23570,12 @@ src/sdk/ctrdg/cartridge_on_init_done_message.c:
 src/sdk/ctrdg/cartridge_copy_gba_header_once.c:
     complete
     .text       start:0x0211e6e4 end:0x0211e8a0
+    .bss        start:0x022acf18 end:0x022acf1c
 
 src/sdk/ctrdg/ctrdg_init.c:
     complete
     .text       start:0x0211e8a0 end:0x0211e93c
+    .bss        start:0x022acf1c end:0x022ad000
 
 src/sdk/math/math_count_population.c:
     complete
@@ -23637,6 +23688,7 @@ src/sdk/isd/isd_close_debug_region.c:
 src/sdk/isd/isd_open_debug_region.c:
     complete
     .text       start:0x02121940 end:0x021219b0
+    .bss        start:0x022ad000 end:0x022ad018
 
 src/sdk/isd/isd_overlay_table_remove.c:
     complete
@@ -23673,10 +23725,16 @@ src/sdk/isd/isd_breakpoint.c:
 src/sdk/msl/msl_exit.c:
     complete
     .text       start:0x02121bd0 end:0x02121d04
+    .bss        start:0x022ad018 end:0x022ad01c
 
 src/sdk/msl/exit.c:
     complete
     .text       start:0x02121d04 end:0x02121d58
+    .bss        start:0x022ad01c end:0x022ad128
+
+src/sdk/msl/msl_bss.c:
+    complete
+    .bss        start:0x022ad128 end:0x022ad170
 
 src/sdk/msl/fp_trap_double_pair_to_int.c:
     complete
@@ -23801,6 +23859,11 @@ src/sdk/msl/parse_format.c:
 src/sdk/msl/raise.c:
     complete
     .text       start:0x021243a8 end:0x021244f8
+    .bss        start:0x022ad170 end:0x022ad524
+
+src/sdk/msl/msl_bss_022ad524.c:
+    complete
+    .bss        start:0x022ad524 end:0x022ad540
 
 src/sdk/msl/strchr.c:
     complete
@@ -24017,7 +24080,9 @@ src/sdk/msl/__call_static_initializers.c:
 src/sdk/runtime/__fp_status.c:
     complete
     .text       start:0x02129748 end:0x02129754
+    .bss        start:0x022ad540 end:0x022ad548
 
 src/sdk/func_02129754.c:
     complete
     .text       start:0x02129754 end:0x02129760
+    .bss        start:0x022ad548 end:0x022ad560

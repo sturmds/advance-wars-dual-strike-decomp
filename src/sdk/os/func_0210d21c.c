@@ -12,7 +12,7 @@ struct Unk_0210d21c {
 
 #define SHARED_BLOCK ((Unk_0210d21c*)0x027ffff0)
 
-extern u32 data_022a991c;
+static u32 data_022a991c;
 
 void OSi_WaitByLoop(void);
 void OS_UnlockByWord(int tag, void* block, int arg);

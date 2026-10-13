@@ -2,7 +2,8 @@
 #include "sdk/os.h"
 #include "sdk/pxi.h"
 
-extern u16 gOsResetInitialized;
+volatile u16 data_022a9c34;
+static u16 gOsResetInitialized;
 
 void OS_InitReset(void) {
   if (gOsResetInitialized != 0) {

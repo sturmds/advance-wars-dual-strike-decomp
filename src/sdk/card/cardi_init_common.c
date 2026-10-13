@@ -2,8 +2,10 @@
 #include "sdk/card.h"
 #include "sdk/os.h"
 
-extern CARDiCommandArg data_022ab960;
-extern u8 data_022ab9a0[0x160];
+/* aligned to 32: no symbol covers the bytes before it */
+static __attribute__((aligned(32))) CARDiCommandArg data_022ab960;
+static u8 data_022ab9a0[0x160];
+CARDiCommon data_022abb00;
 extern u8 data_022ac0e0[];
 
 void MIi_CpuClearFast(u32 value, void* dst, u32 size);

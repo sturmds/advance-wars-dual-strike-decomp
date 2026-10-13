@@ -2,7 +2,9 @@
 #include "sdk/gx.h"
 #include "sdk/os.h"
 
-extern u16 GXi_VRamLockId;
+u16 gGxDispMode;
+/* also declared in src/sdk/gx/vram_switch_off_and_unlock.c */
+u16 GXi_VRamLockId;
 extern u32
     data_0216d958; /* DMA channel the GX library uses, or GX_DMA_NOT_USE */
 

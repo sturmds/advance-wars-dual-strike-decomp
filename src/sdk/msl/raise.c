@@ -1,6 +1,7 @@
 #include "types.h"
 #include "sdk/os.h"
 #include "sdk/msl.h"
+#include "sdk/os_common.h"
 
 #define SIGNAL_COUNT 7
 #define SIGNAL_ABORT 1
@@ -10,7 +11,19 @@
 typedef void (*SignalHandler)(int sig);
 
 extern OSThreadInfo OSi_ThreadInfo;
-extern OSMutex gMslSignalMutex;
+u8 data_022ad1ac[0x14];
+/* 0x78 bytes no code names, before gMslSignalMutex, cut in 6 to keep the sizes ascending */
+u8 data_022ad184[0x14];
+u8 data_022ad1c0[0x14];
+u8 data_022ad198[0x14];
+u8 data_022ad210[0x14]; /* 0x14 bytes no code names, before data_022ad224 */
+OSMutex gMslExitMutex;
+u8 data_022ad1d4[0x14];
+u8 data_022ad1e8[0x14];
+static OSMutex gMslSignalMutex;
+u8 data_022ad424[0x100]; /* size: up to the next symbol */
+u8 data_022ad324[0x100]; /* size: up to the next symbol */
+u8 data_022ad224[0x100]; /* size: up to the next symbol */
 extern SignalHandler gMslSignalHandlers[SIGNAL_COUNT];
 
 BOOL OS_TryLockMutex(OSMutex* mutex);

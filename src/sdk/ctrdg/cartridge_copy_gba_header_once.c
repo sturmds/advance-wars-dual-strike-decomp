@@ -20,7 +20,7 @@ void DC_FlushAll(void);
 #define AGB_HEADER_TAIL_OFFSET 0x80
 #define AGB_HEADER_TAIL_SIZE 0x40
 
-extern u32 gCtrdgHeaderRead;
+static u32 gCtrdgHeaderRead;
 extern GbaRomHeader data_022acf40;
 extern u8 data_022acf44[];
 

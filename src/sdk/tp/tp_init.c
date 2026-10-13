@@ -4,7 +4,8 @@
 void TPi_TpCallback(u32 tag, u32 data,
                     int err); /* the touch panel PXI receive callback */
 
-extern u16 tpInitialized; /* TRUE once TP_Init has run */
+static u16 tpInitialized; /* TRUE once TP_Init has run */
+TPiWork tpState;
 
 /* Clears the touch panel state and, once the ARM7 driver is up, installs
  * the PXI callback that receives its answers. Runs only once. */

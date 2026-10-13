@@ -3,10 +3,10 @@
 
 #define IRQ_MASK_VCOUNT 0x4
 
-extern u16 gOsVAlarmInitialized;
-extern u32 data_022a9c20;
-extern u32 data_022a9c24;
-extern u64 data_022a9c28;
+static u16 gOsVAlarmInitialized;
+static u32 data_022a9c24;
+static u32 data_022a9c20;
+static u64 data_022a9c28;
 
 /* Once only: clears the V-count alarm state and turns the V-count interrupt off. */
 void OS_InitVAlarm(void) {

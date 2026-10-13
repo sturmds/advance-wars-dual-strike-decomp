@@ -1,6 +1,8 @@
 #include "types.h"
 #include "sdk/ctrdg.h"
 
+CTRDGWork data_022acf14;
+
 BOOL Cartridge_HeaderStillMatches(void) {
   GbaSlotLockRecord lock;
   GbaSlotWaitStates timing;

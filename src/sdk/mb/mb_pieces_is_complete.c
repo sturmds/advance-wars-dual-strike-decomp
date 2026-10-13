@@ -1,6 +1,9 @@
 #include "types.h"
 #include "sdk/mb.h"
 
+DlPlayFragmentStore* gMbRecvPieces;
+DlPlayFragmentGeometry gMbRecvPieceSize;
+
 /* 1 when every piece of the request from child aid has arrived. */
 int MbPieces_IsComplete(int aid) {
   u16 i = 0;

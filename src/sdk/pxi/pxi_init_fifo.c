@@ -2,7 +2,8 @@
 #include "sdk/os.h"
 #include "sdk/pxi.h"
 
-extern u16 gPxiInitialized;
+static u16 gPxiInitialized;
+PXIFifoCallback gPxiRecvCallbacks[FIFO_TAG_LIMIT];
 
 /* Runs once: clears the callback table, enables the receive FIFO interrupt
  * and synchronises with the ARM7 over the PXI sync register. */

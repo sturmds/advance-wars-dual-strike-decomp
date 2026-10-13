@@ -2,7 +2,9 @@
 
 int SND_FlushCommand(u32 flags);
 
-extern SndSharedWork data_022a9cc0;
+/* aligned to 32: no symbol covers the bytes before it */
+static __attribute__((aligned(32))) SndSharedWork data_022a9cc0;
+SndCommand data_022a9f40[256]; /* command pool */
 extern SndSharedWork* data_022ab7a0;
 extern int data_022a9c7c;
 

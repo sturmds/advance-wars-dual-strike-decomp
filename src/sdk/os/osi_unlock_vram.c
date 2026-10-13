@@ -1,6 +1,9 @@
 #include "types.h"
 #include "sdk/os.h"
 
+u32 gOsVramLockedBanks; /* bit set = bank locked */
+u16 gOsVramLockIds[VRAM_LOCKABLE_BANKS];
+
 int MATH_CountLeadingZeros(u32 value); /* count leading zeros */
 
 void OSi_UnlockVram(u16 banks, u16 lockID) {

@@ -3,8 +3,9 @@
 
 #define PROC_MODE_IRQ 0x12
 
-extern u32 data_022a9920;
-extern OSThread** data_022a9924;
+/* also declared in src/sdk/os/os_exit_thread.c and 2 more */
+OSThread** data_022a9924;
+static u32 data_022a9920;
 extern ThreadSwapHook data_022a992c;
 extern OSThreadInfo OSi_ThreadInfo;
 

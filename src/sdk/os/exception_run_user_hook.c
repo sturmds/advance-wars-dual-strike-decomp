@@ -1,8 +1,10 @@
 #include "types.h"
 
-extern u32 data_022a9b7c;
-extern u32 data_022a9b80;
-extern u8 data_022a9b88[];
+u32 data_022a9b7c; /* also declared in src/sdk/os/os_init_exception.c */
+u32 data_022a9b84;
+static u32 data_022a9b80;
+/* size: up to the next symbol; also declared in src/sdk/os/exception_fill_context_record.c */
+u8 data_022a9b88[0x80];
 extern void OS_EnableProtectionUnit(void);
 extern void OS_DisableProtectionUnit(void);
 

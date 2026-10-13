@@ -1,7 +1,13 @@
 #include "types.h"
 #include "sdk/isd.h"
+#include "sdk/fs.h"
 
-extern u32 Isd_gDebugRegion7Setting;
+static u32 Isd_gDebugRegion7Setting;
+int (*gIsdUnregisterOverlayHook)(MIProcessor target, void* address, u32 size);
+BOOL gIsdOverlayHooksEnabled;
+int (*gIsdRegisterOverlayHook)(MIProcessor target, void* address,
+                               u32 fileOffset, u32 size);
+IsdOverlayInfo* gIsdOverlayTables[2];
 
 /*
  * Masks interrupts and opens protection region 7 for reads and writes, saving

@@ -1,5 +1,6 @@
 #include "types.h"
 #include "sdk/os.h"
+#include "sdk/os_common.h"
 
 #define STACK_GUARD_LOW_MAGIC 0xfddb597d
 #define STACK_GUARD_HIGH_MAGIC 0x7bf9dd5b
@@ -24,15 +25,19 @@ extern char SDK_SECTION_ARENA_DTCM_START[];
 extern u8 data_027c0000[]; /* DTCM base */
 #define HW_DTCM_SVC_STACK ((u32)data_027c0000 + 0x3fc0)
 
-extern BOOL OSi_IsThreadInitialized;
+static BOOL OSi_IsThreadInitialized;
+ThreadSwapHook data_022a992c;
+/* also declared in src/sdk/card/card_identify_backup.c and 19 more */
+OSThreadInfo OSi_ThreadInfo;
+/* the code that called this, made thread 0 */
+static OSThread OSi_LauncherThread;
+/* the idle thread; also declared in src/sdk/os/os_set_thread_priority.c */
+OSThread data_022a9984;
+u8 data_022a9aac[0xc8]; /* 0xc8 bytes no code names, before data_022a9b74 */
 extern OSThread** data_022a9924; /* current thread pointer */
-extern OSThreadInfo OSi_ThreadInfo;
 extern OSThread*
-    data_022a9938; /* OSi_ThreadInfo.current, under its own symbol */
-extern OSThread
-    OSi_LauncherThread;        /* the code that called this, made thread 0 */
-extern OSThread data_022a9984; /* the idle thread */
-extern u32 data_022a9b74[];    /* end of the idle thread's stack */
+    data_022a9938;          /* OSi_ThreadInfo.current, under its own symbol */
+extern u32 data_022a9b74[]; /* end of the idle thread's stack */
 
 void OSi_IdleThreadProc(void* arg);
 void OS_CreateThread(OSThread* thread, void (*func)(void*), void* arg,

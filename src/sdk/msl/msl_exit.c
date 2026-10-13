@@ -11,7 +11,7 @@ extern OSThreadInfo OSi_ThreadInfo;
 extern OSMutex gMslExitMutex;
 extern int gMslExitFuncCount;
 extern AtExitFunction gMslExitFuncs[EXIT_TABLE_SIZE];
-extern AtExitFunction gMslExitHook;
+static AtExitFunction gMslExitHook;
 
 BOOL OS_TryLockMutex(OSMutex* mutex);
 void OS_LockMutex(OSMutex* mutex);

@@ -1,5 +1,7 @@
 #include "sdk/os.h"
 
+IrqSlotEntry gOsIrqSlots[0x4]; /* size: up to the next symbol */
+
 extern u16 gOsIrqBitBySlot[];
 extern u8 data_027c0000[];
 

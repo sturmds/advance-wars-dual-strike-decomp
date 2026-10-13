@@ -3,7 +3,7 @@
 #include "sdk/os.h"
 
 extern DlPlayHostLinkArea* data_022aced4;
-extern u8 gMbGameSequence;
+static u8 gMbGameSequence;
 
 BOOL DownloadPlay_ParentRunning(void);
 void MbFile_MakeDownloadInfo(void* downloadInfo, const void* buffer);

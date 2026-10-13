@@ -12,8 +12,11 @@ int WM_SetPortCallback(int port, WMCallbackFunc callback, void* arg);
 extern u16 data_022ac328;
 extern WMArm9Buf* data_022ac32c;
 extern OSMessageQueue data_022ac330;
-extern OSMessage data_022ac344[WIRELESS_CMD_BUFFERS];
-extern u16 data_022ac3c0[WIRELESS_CMD_BUFFERS][WM_FIFO_BUF_SIZE / 2];
+static OSMessage data_022ac344[WIRELESS_CMD_BUFFERS];
+WMPortRecvCallback gWmConnectPortArg;
+/* aligned to 32: no symbol covers the bytes before it */
+static __attribute__((
+    aligned(32))) u16 data_022ac3c0[WIRELESS_CMD_BUFFERS][WM_FIFO_BUF_SIZE / 2];
 
 /* Sets up the WM work area, the queue of command buffers and the PXI
  * handler. Fails if WM is already initialised or the ARM7 side is not

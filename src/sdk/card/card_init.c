@@ -1,8 +1,10 @@
 #pragma opt_propagation off
 #include "sdk/card.h"
 
-extern u32
-    data_022ac0e0; /* offset added to every ROM address; CARD_Init clears it */
+/* offset added to every ROM address; CARD_Init clears it; also declared in src/sdk/card/cardi_init_common.c and 1 more */
+u32 data_022ac0e0;
+/* aligned to 32: no symbol covers the bytes before it */
+__attribute__((aligned(32))) CARDiRomPage data_022ac100;
 
 void CARDi_InitCommon(
     void); /* sets up the lock, the command buffer and the card thread */

@@ -1,5 +1,8 @@
 #include "sdk/card.h"
 
+BOOL (*data_022ac324)(void);
+BOOL data_022ac320;
+
 void Card_HaltAfterRemoval(void);
 
 /* PXI receive callback for the card removal tag: runs the game's handler, then shuts down. */

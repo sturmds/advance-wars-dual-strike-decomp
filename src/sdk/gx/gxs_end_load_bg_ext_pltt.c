@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/gx_load.h"
 
-extern int data_022a9894;
+int data_022a9894; /* also declared in src/game/main/func_0210c610.c */
 void GX_SetBankForSubBGExtPltt(int bank);
 
 void GXS_EndLoadBGExtPltt(void) {

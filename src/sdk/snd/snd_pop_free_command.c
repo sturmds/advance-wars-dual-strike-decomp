@@ -1,6 +1,8 @@
 #include "sdk/snd.h"
 #include "sdk/os.h"
 
+SndCommand* data_022a9c68; /* free list head */
+
 SndCommand* SND_PopFreeCommand(void) {
   int irq = OS_DisableInterrupts();
   SndCommand* command = data_022a9c68;

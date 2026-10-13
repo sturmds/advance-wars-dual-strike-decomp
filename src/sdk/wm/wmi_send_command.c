@@ -10,7 +10,8 @@ BOOL OS_SendMessage(OSMessageQueue* queue, OSMessage msg, int flags);
 BOOL OS_JamMessage(OSMessageQueue* queue, OSMessage msg, int flags);
 
 extern WMArm9Buf* data_022ac32c;
-extern OSMessageQueue data_022ac330;
+/* also declared in src/sdk/wm/wireless_set_up_work_area.c */
+OSMessageQueue data_022ac330;
 
 /* Takes a free buffer from the queue, writes the command into it (or copies
  * requestBuf when there are no arguments) and sends it to the ARM7. */

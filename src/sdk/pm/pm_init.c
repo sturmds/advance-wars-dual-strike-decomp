@@ -1,11 +1,17 @@
 #include "sdk/pm.h"
 #include "sdk/pxi.h"
 
-extern u16 gPMInitialized;
-extern PowerCommandState gPMWork;
-extern u8 data_022ab90c[20];
-extern PowerChipReadSlot gPMRegisterReads[POWER_CHIP_READ_SLOTS];
-extern u32 data_022ab8f4;
+static u16 gPMInitialized;
+volatile int gPMSleepRequestAck;
+void* data_022ab8f8;
+u32 data_022ab8f4; /* also declared in src/sdk/pm/power_switch_lcds.c */
+void* data_022ab8f0;
+volatile int gPMSleepAck;
+/* also declared in src/sdk/pm/pm_read_register_async.c and 5 more */
+PowerCommandState gPMWork;
+static u8 data_022ab90c[20];
+/* also declared in src/sdk/pm/pm_read_register_async.c and 1 more */
+PowerChipReadSlot gPMRegisterReads[POWER_CHIP_READ_SLOTS];
 
 void func_0210e0c0(void* mutex);
 void Power_OnArm7Reply(u32 tag, u32 data, int err);

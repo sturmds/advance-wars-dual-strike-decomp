@@ -6,8 +6,10 @@ void MIi_CpuCopy16(const void* src, void* dest, int size);
 void MIi_CpuClear16(u16 data, void* dest, int size);
 void WmClearFifoRecvFlag(void);
 
-extern u16 data_022ac328;
-extern WMArm9Buf* data_022ac32c;
+/* also declared in src/game/main/func_02116df4.c and 2 more */
+u16 data_022ac328;
+/* also declared in src/game/main/func_02116f74.c and 7 more */
+WMArm9Buf* data_022ac32c;
 extern WMPortRecvCallback gWmConnectPortArg;
 
 /* Needed to match: the zero goes through a halfword on the stack. */

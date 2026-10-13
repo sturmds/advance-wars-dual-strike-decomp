@@ -1,6 +1,6 @@
 #include "sdk/fs.h"
 
-extern BOOL gFSInitialized;
+static BOOL gFSInitialized;
 
 void FSi_InitRom(u32 dmaNo);
 

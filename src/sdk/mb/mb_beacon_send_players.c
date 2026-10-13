@@ -2,11 +2,13 @@
 #include "sdk/mb.h"
 #include "sdk/wm.h"
 
-extern DlPlayAdvertProgress data_022ace4c;
-extern DlPlayRosterFrame
-    data_022ace60; /* the DlPlayAdvertFrame buffer, in its player-list form */
-extern u32 data_022ace44; /* 0: call data_022ace48 before sending, 1: after */
-extern void (*data_022ace48)(u32 ggid);
+static u32 data_022ace44; /* 0: call data_022ace48 before sending, 1: after */
+/* also declared in src/sdk/mb/mb_beacon_init.c */
+void (*data_022ace48)(u32 ggid);
+/* also declared in src/game/main/func_0211ba5c.c and 7 more */
+DlPlayAdvertProgress data_022ace4c;
+/* the DlPlayAdvertFrame buffer, in its player-list form; also declared in src/sdk/mb/mb_beacon_send_piece.c */
+DlPlayRosterFrame data_022ace60;
 
 void MIi_CpuClear16(u16 value, void* dst, u32 size);
 void MIi_CpuCopy16(const void* src, void* dst, u32 size);

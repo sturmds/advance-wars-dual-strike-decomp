@@ -1,7 +1,8 @@
 #include "types.h"
 #include "sdk/os.h"
 
-extern u32 data_022a9b78;
+u32 data_022a9b78;  /* also declared in src/sdk/os/func_0210e4bc.c and 1 more */
+BOOL data_022a9b74; /* set once the arenas are set up */
 u32 func_0210dbec(void);
 
 /* Initial low end of each arena; 0 for an id with no arena. */
