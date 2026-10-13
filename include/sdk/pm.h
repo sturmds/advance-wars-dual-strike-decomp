@@ -40,6 +40,11 @@ struct PowerChipReadSlot {
 
 #define POWER_CHIP_READ_SLOTS 4
 
+extern PowerCommandState gPMWork;
+extern PowerChipReadSlot gPMRegisterReads[POWER_CHIP_READ_SLOTS];
+/* Frame counter when the LCDs were last switched off. */
+extern u32 data_022ab8f4;
+
 void PowerHook_CallAll(PowerHookEntry* list);
 void Power_SaveSyncResult(u32 result, u32* dest);
 int Power_SpinUntilIdle(void);
@@ -146,6 +151,9 @@ struct PowerRequestInbox {
 };
 
 extern PowerRequestInbox data_arm7_03809ffc;
+/* Sleep request: wake-up triggers and backlights, and the wake-up key pattern. */
+extern u16 data_arm7_03809ff4;
+extern u16 data_arm7_03809ff0;
 
 /* Sets up SPICNT for the power chip; continuous holds chip select for another byte. */
 int func_arm7_038052e8(int continuous);

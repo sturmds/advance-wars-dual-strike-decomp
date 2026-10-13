@@ -1,7 +1,5 @@
 #include "sdk/pm.h"
 
-extern PowerCommandState gPMWork;
-
 BOOL Power_TryTakeCommandSlot(void);
 void PMi_SendPxiData(u32 data);
 

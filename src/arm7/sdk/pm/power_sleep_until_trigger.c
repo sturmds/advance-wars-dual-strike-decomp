@@ -8,8 +8,6 @@ void func_arm7_037fe3fc(int mask, int value);
 void func_arm7_0380513c(int command, int arg, int data);
 void func_arm7_0380566c(void);
 
-extern u16 data_arm7_03809ff0;
-extern u16 data_arm7_03809ff4;
 extern PowerRequestInbox data_arm7_03809ffc;
 
 /* IME writes that return the old value, as the SDK's IRQ helpers do. */

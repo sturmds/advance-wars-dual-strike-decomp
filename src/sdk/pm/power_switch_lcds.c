@@ -1,8 +1,6 @@
 #include "sdk/gx.h"
 #include "sdk/pm.h"
 
-extern u32 data_022ab8f4;
-
 void func_02114ee8(int led);
 
 BOOL Power_SwitchLcds(int on, int led, BOOL force, BOOL sync) {

@@ -1,12 +1,11 @@
 #include "sdk/pm.h"
 
-extern volatile PowerCommandState gPMWork;
-
 /* Waits until the command in flight has finished. Always returns 0 (needed to match). */
 int Power_SpinUntilIdle(void) {
   int lock;
 
-  while ((lock = gPMWork.lock) != 0) {
+  /* Needed to match: the ARM7 reply clears lock, so each pass reads it again. */
+  while ((lock = *(volatile int*)&gPMWork.lock) != 0) {
   }
   return lock;
 }

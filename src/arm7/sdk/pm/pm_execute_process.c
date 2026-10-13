@@ -6,10 +6,8 @@
 
 void Power_SleepUntilTrigger(void);
 
-/* sleep: wake-up triggers and backlights; also declared in src/arm7/sdk/pm/power_sleep_until_trigger.c */
 u16 data_arm7_03809ff4;
 u16 tpLastTouch; /* pen was down at the last sample */
-/* sleep: wake-up key pattern; also declared in src/arm7/sdk/pm/power_sleep_until_trigger.c */
 u16 data_arm7_03809ff0;
 u32 data_arm7_03809ff8;
 PowerRequestInbox data_arm7_03809ffc;
