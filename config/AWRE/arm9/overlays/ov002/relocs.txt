@@ -2849,7 +2849,6 @@ from:0x0236af78 kind:load to:0x02361f94 module:overlay(2)
 from:0x0236af7c kind:load to:0x02361f94 module:overlay(2)
 from:0x0236af80 kind:load to:0x02361f94 module:overlay(2)
 from:0x0236af84 kind:load to:0x02361f94 module:overlay(2)
-from:0x0236af88 kind:load to:0x02222222 module:main
 from:0x0236afa0 kind:load to:0x02362c2c module:overlay(2)
 from:0x0236afa4 kind:load to:0x02362c2c module:overlay(2)
 from:0x0236afa8 kind:load to:0x02362c2c module:overlay(2)
