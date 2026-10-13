@@ -37,6 +37,10 @@ literal pool word (issue 0074), a branch to the same address, a plain word
 equal to our relocated one, or the same bytes decoded differently
 (issue 0077: branches into neighbouring functions, data words in code).
 
+It also stops when config/AWRE/aliases.txt and symbols.txt disagree: every
+.bss alias must be listed once, with its base and offset (bss.py
+alias_list_errors, docs/bss-tool.md "Aliases", issue 0083).
+
 The report is read back
 with `objdiff-cli report changes` to check that it parses. It is not
 written if it matches a private pattern (tenet 8) or has a library-style
@@ -55,6 +59,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import bss  # noqa: E402
 import fn  # noqa: E402
 import pnc_check  # noqa: E402
 import progress  # noqa: E402
@@ -241,6 +246,9 @@ def main() -> int:
     modules = source_modules()
     listed = read_asm_list()
     check_asm_list(listed, modules)
+    alias_errors = bss.alias_list_errors(bss.read_alias_list(), bss.config_aliases())
+    if alias_errors:
+        sys.exit(f"decomp_dev_report: {bss.ALIAS_LIST}:\n  " + "\n  ".join(alias_errors))
     subprocess.run(fn.ninja("objdiff.json", "build/arm7/objdiff.json"), cwd=ROOT, check=True, capture_output=True)
     units = merged_units()
     PROJECT.mkdir(parents=True, exist_ok=True)

@@ -195,6 +195,30 @@ A file whose definitions are mostly address-named `u8` arrays is not written int
   2. Into a code file that uses it: `bss.py move NAME FILE` gives a variable of a generated file to FILE. FILE must be `complete`, compile to code (and `.bss`) only, have its code in the same part of the module, declare the variable with its size, and keep the link order. When FILE has a range in the same section, it must end where the variable starts (the generated file's first variable) or start where it ends (its last), and the variables together must be ascending; FILE's definitions are taken out and written back with the new one in definition order, and the result is compiled and checked. When FILE has no `.bss`, any variable can go: one in the middle cuts the generated file in two, and the part after it becomes `<stem>_<address>.c` (address of the variable), listed in `bss_gen.txt`. A generated file left empty is removed. Each piece still holds part of one run only, so (a)'s rule holds. `move` then builds and runs `make check`, as `plan --write` does.
 - **Tests.** In `test_bss.py`, no ROM: `gen` on a made-up `delinks.txt`, `symbols.txt` and header into a temporary directory, under `PYTHONHASHSEED=1` and `2`, and once more after deleting the directory: the three outputs are byte-identical. A variable given a header type changes only its own line. With the compiler, the generated text compiles and gives the variables in address order and the aligned one in a section aligned to 32 (`order_errors`). `take_definitions` (used by `move`) on a made-up file. On the ROM: `rm -rf build/gen/bss && make` rebuilds the same `.inc.c` bytes and `make check` passes; `plan MODULE --write` run twice changes nothing the second time.
 
+## Aliases (issue 0083)
+
+An alias makes the source say that two names share memory, and a size of 0 keeps objdiff from checking it. When the variable before it is declared too large, the alias hides a separate variable: `SoundWaveArc` ended in `u32 table[1]`, 4 bytes longer than the header the game reads into `gWaveArcHeader`, so the flag `gSoundStreamReady` after it became `gWaveArcHeader + 0x3c`. So every alias is listed, and new ones are checked before they are written.
+
+`config/AWRE/aliases.txt` has one line per alias in the linker scripts (the size-0 symbols inside the `.bss` range of a `complete` file):
+
+```
+MODULE SYMBOL = BASE+OFFSET GROUP
+main data_0216e060 = data_0216e05c+0x4 unsorted
+```
+
+The group says what the alias is:
+
+- `real FIELD`: a real address inside the variable, which code takes on purpose. FIELD names the element or field it lies on (`real unk_5c[1]`).
+- `hidden`: a separate variable that the variable before it swallows. Fix it as `gSoundStreamReady` was fixed: shrink the type, give the symbol its size in `symbols.txt` and a definition in C, and drop the line.
+- `unsorted`: not checked yet. The 200 aliases from before the list start this way; issue 0083 tracks the audit.
+
+The checks:
+
+- `bss.py plan` stops before writing anything when a new alias is not in the list, and when an alias lies on the last element of a `[1]` array that ends its variable's type (a variable-length tail, as in `SoundWaveArc`), unless the list gives it a `real` group. `scan` prints both as warnings and goes on.
+- `bss.py aliases` compares the list with the aliases that `symbols.txt` and `delinks.txt` give: each one listed once, with the same base and offset. `tools/decomp_dev_report.py`, the last step of `make release`, runs the same check and fails on a difference.
+
+To add an alias, check what it is, add its line with the group, then run `plan`. To remove one (a hidden variable made real), drop its line in the same commit as the `symbols.txt` change.
+
 ## Not in scope
 
 - `.data` and `.rodata` (steps 3 and 4 of issue 0082).

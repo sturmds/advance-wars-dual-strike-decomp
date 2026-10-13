@@ -4,7 +4,9 @@
     python3 tools/tests/test_bss.py
 
 No ROM needed. Covers variables, aliases, filler and declared sizes
-(build_items), aliases past a variable's declared size, the filler cuts
+(build_items), aliases past a variable's declared size, the aliases
+plan refuses (on a trailing `[1]` element, or not in aliases.txt) and the
+check of aliases.txt, the filler cuts
 that keep runs few (fill), the run split, the slicing rule (best_host,
 slice_run, the filler that goes to the file before a 32-aligned one, the
 run counts of a --range), dsd's link-order check, the parts of an
@@ -162,6 +164,79 @@ def test_past_aliases() -> None:
     check("build_items: alias at the declared size", [(p.alias, p.var, p.declared, p.offset) for p in past]
           == [("a_2", "a", 2, 2)], past)
     check("build_items: alias inside the declared size is no problem", ("b_1", 0x105) in aliases)
+
+
+class OneDecls:
+    """Decls with given `extern` bodies, as if in a header."""
+
+    def __init__(self, bodies: dict[str, str]) -> None:
+        self.bodies = bodies
+
+    def of(self, name: str) -> list:
+        body = self.bodies.get(name)
+        return [bss.Decl(name, "include/x.h", 0, 0, body, "")] if body else []
+
+
+def wave_index() -> "bss.Index":
+    """An Index that knows SoundWaveArc as it was (ending in table[1]) and
+    a struct whose last field is one."""
+    index = bss.Index.__new__(bss.Index)
+    index.decls = OneDecls({"hdr": "Arc hdr", "two": "Arc two[2]", "outer": "Outer outer", "flat": "Flat flat"})
+    index.struct_size = {"Arc": 0x40, "Outer": 0x48, "Flat": 0x8}
+    index.struct_fields = {
+        "Arc": [{"name": "pad_00", "offset": 0, "size": 0x38, "type": "u8[56]", "count": 56},
+                {"name": "count", "offset": 0x38, "size": 4, "type": "u32"},
+                {"name": "table", "offset": 0x3c, "size": 4, "type": "u32[1]", "count": 1}],
+        "Outer": [{"name": "id", "offset": 0, "size": 8, "type": "u32[2]", "count": 2},
+                  {"name": "arc", "offset": 8, "size": 0x40, "type": "struct Arc"}],
+        "Flat": [{"name": "a", "offset": 0, "size": 4, "type": "u32"},
+                 {"name": "b", "offset": 4, "size": 4, "type": "u32"}],
+    }
+    return index
+
+
+def test_one_tail() -> None:
+    index = wave_index()
+    got = [bss.one_tail(index, name, off) for name, off in
+           (("hdr", 0x3c), ("hdr", 0x38), ("two", 0x7c), ("two", 0x40), ("outer", 0x44), ("outer", 4),
+            ("flat", 4), ("nothing", 4))]
+    check("one_tail: an alias on a trailing [1] element", got == ["table", None, "table", None, "arc.table", None,
+                                                                  None, None], got)
+    module = fake_module([])
+    module.index = index
+    variables = [bss.Var(0, 0x40, 0x40, "hdr", aliases=[("flag", 0x3c), ("cnt", 0x38)]),
+                 bss.Var(0x40, 8, 8, "flat", aliases=[("flat_b", 4)])]
+    listed = {("ov099", "cnt"): bss.Listed("hdr", 0x38, "unsorted"),
+              ("ov099", "flat_b"): bss.Listed("flat", 4, "unsorted"),
+              ("ov099", "flag"): bss.Listed("hdr", 0x3c, "unsorted")}
+    got = [(a.alias, a.reason.split(",")[0]) for a in bss.refused_aliases(module, variables, listed)]
+    check("refused_aliases: a listed alias on a [1] tail", got == [("flag", "on table")], got)
+    listed[("ov099", "flag")] = bss.Listed("hdr", 0x3c, "real table[0]")
+    got = [a.alias for a in bss.refused_aliases(module, variables, listed)]
+    check("refused_aliases: one listed as real passes", got == [], got)
+    del listed[("ov099", "cnt")]
+    got = [(a.alias, a.reason) for a in bss.refused_aliases(module, variables, listed)]
+    check("refused_aliases: an alias not listed", got == [("cnt", f"not in {bss.ALIAS_LIST}")], got)
+
+
+def test_alias_list() -> None:
+    with tempfile.TemporaryDirectory(prefix="test_bss") as d:
+        path = Path(d) / "aliases.txt"
+        path.write_text("# comment\nmain a_4 = a+0x4 unsorted\nmain b_2 = b+0x2 real unk_2[1]\n"
+                        "arm7 c_8 = c+0x8 hidden\n")
+        listed = bss.read_alias_list(path)
+        check("read_alias_list", {k: (v.base, v.offset, v.group) for k, v in listed.items()}
+              == {("main", "a_4"): ("a", 4, "unsorted"), ("main", "b_2"): ("b", 2, "real unk_2[1]"),
+                  ("arm7", "c_8"): ("c", 8, "hidden")}, listed)
+        found = {("main", "a_4"): ("a", 4), ("main", "b_2"): ("b", 3), ("ov003", "d_1"): ("d", 1)}
+        errors = bss.alias_list_errors(listed, found)
+        check("alias_list_errors: wrong offset, not listed, no longer an alias",
+              [e.split()[0] for e in errors] == ["b_2", "d_1", "c_8"], errors)
+        path.write_text("main a_4 = a+4 unsorted\n")
+        r = subprocess.run([sys.executable, "-c", "import sys; sys.path.insert(0, sys.argv[1]); import bss; "
+                            "bss.read_alias_list(bss.Path(sys.argv[2]))", str(ROOT / "tools"), str(path)],
+                           capture_output=True, text=True)
+        check("read_alias_list: refuses a bad line", r.returncode != 0 and "want `MODULE" in r.stderr, r.stderr)
 
 
 class FakeUsers:
@@ -409,9 +484,9 @@ def test_twice() -> None:
         cmd = [sys.executable, "tools/bss.py", "plan", module, "--show"]
         first, second = (subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True,
                                         env={**os.environ, "PYTHONHASHSEED": seed}) for seed in ("1", "2"))
-        # A plan that stops on aliases past a declared size lists them; that
-        # list must be the same too.
-        ok = first.returncode == 0 or "past the declared size" in first.stderr
+        # A plan that stops on aliases past a declared size, or on aliases
+        # it refuses, lists them; that list must be the same too.
+        ok = first.returncode == 0 or "past the declared size" in first.stderr or "aliases refused" in first.stderr
         check(f"plan {module} --show runs", ok, first.stderr.strip())
         check(f"plan {module} --show gives the same output under two hash seeds", first.stdout == second.stdout)
 
@@ -419,6 +494,8 @@ def test_twice() -> None:
 def main() -> int:
     test_items()
     test_past_aliases()
+    test_one_tail()
+    test_alias_list()
     test_best_host()
     test_slice_run()
     test_tails()

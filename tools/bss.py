@@ -8,6 +8,7 @@
     bss.py gen OUT_DIR                              write the definitions of the files in bss_gen.txt
     bss.py move NAME FILE                           give a variable of a generated file to FILE
     bss.py lcf [--arm7] LCF                         place the extra .bss sections and the aliases in a linker script
+    bss.py aliases                                  check config/AWRE/aliases.txt against symbols.txt
 
 MODULE: main, ovNNN or arm7. ARM7 has .bss in two of its three parts and a
 .sbss (docs/tool-issues.md); a slice in .sbss goes in `.sbss`.
@@ -29,7 +30,10 @@ compiler; the same inputs give the same output. The rules:
   gives them size 0, and the linker script defines them as
   `VARIABLE + OFFSET` (`bss.py lcf`). `plan` stops, before writing
   anything, when an alias lies at or past its variable's declared size
-  (objdiff would give it bytes our object does not have); `scan` warns.
+  (objdiff would give it bytes our object does not have), when it is not
+  in config/AWRE/aliases.txt, and when it lies on a `[1]` array at the
+  end of its variable's type, unless the list calls it real (issue 0083:
+  such an array can hide the next variable); `scan` warns.
 - Filler: bytes after a variable's declared size that no symbol names.
   They become `u8` arrays named by address. Each stretch lies between two
   variables, so each is cut on its own (split_filler): fewest places where
@@ -256,17 +260,21 @@ class Index:
         self.decls = Decls()
         self.probed: dict[tuple[str, str], int | None] = {}
         self.struct_size: dict[str, int] = {}
+        self.struct_fields: dict[str, list[dict]] = {}
         self.struct_headers: dict[str, list[str]] = defaultdict(list)
         sizes_seen: dict[str, set[int]] = defaultdict(set)
         for where in ("headers", "sources"):
             for path, info in ds[where].items():
                 for st in info.get("structs", []):
                     sizes_seen[st["name"]].add(st["size"])
+                    self.struct_fields.setdefault(st["name"], st.get("fields", []))
                     if where == "headers" and path not in self.struct_headers[st["name"]]:
                         self.struct_headers[st["name"]].append(path)
         for name, sizes in sizes_seen.items():
             if len(sizes) == 1:
                 self.struct_size[name] = sizes.pop()
+            else:
+                del self.struct_fields[name]
 
     def base_type(self, type_text: str) -> str:
         t = re.sub(r"\b(const|volatile|struct|union|enum)\b", " ", type_text)
@@ -550,6 +558,49 @@ def build_items(syms: list[tuple[str, int, int | None, int | None]], start: int,
         if nxt - addr > lay:
             items.append(Filler(addr + lay, nxt - addr - lay, nxt_name))
     return items, aliases, past
+
+
+@dataclass
+class RefusedAlias:
+    """A new alias that plan will not write (issue 0083): not in
+    aliases.txt, or on the last element of a `[1]` array that ends its
+    variable's type."""
+    alias: str
+    var: str
+    offset: int
+    reason: str
+
+
+def one_tail(index: "Index", var: str, offset: int) -> str | None:
+    """The field an alias at `offset` in `var` lies on when that field is a
+    `[1]` array at the end of the variable's type, or at the end of the
+    type of its last field, and so on. Such an array often stands for a
+    table of any length (`SoundWaveArc`'s `table[1]`), so the bytes from
+    there on may be another variable. None otherwise, and when the type is
+    not known."""
+    decls = index.decls.of(var)
+    decl = next((d for d in decls if d.file.startswith("include/")), decls[0] if decls else None)
+    if decl is None:
+        return None
+    m = re.fullmatch(r"((?:\w+\s+)*\w+[\s*]*?)\s*\b" + var + r"\s*((?:\[\s*\w*\s*\])*)", decl.body)
+    if not m:
+        return None
+    t = index.base_type(m.group(1))
+    if "*" in t or t not in index.struct_fields:
+        return None
+    if m.group(2) and index.struct_size.get(t):
+        offset %= index.struct_size[t]
+    path = []
+    while index.struct_fields.get(t):
+        last = max(index.struct_fields[t], key=lambda f: f["offset"])
+        if offset < last["offset"]:
+            return None
+        if last.get("count") == 1 and last["type"].replace(" ", "").endswith("[1]"):
+            return ".".join(path + [last["name"]])
+        path.append(last["name"])
+        offset -= last["offset"]
+        t = index.base_type(last["type"])
+    return None
 
 
 def descents(sizes: list) -> int:
@@ -1005,15 +1056,39 @@ class Plan:
     runs_before: int
     runs_after: int
     past: list[PastAlias] = field(default_factory=list)
+    refused: list[RefusedAlias] = field(default_factory=list)
 
 
-def make_plan(module: Module, lo: int | None = None, hi: int | None = None) -> Plan:
+def refused_aliases(module: Module, variables: list[Var], listed: dict) -> list[RefusedAlias]:
+    """The aliases of these variables that plan must not write: one on a
+    trailing `[1]` element unless aliases.txt says it is real, and one
+    aliases.txt does not list."""
+    out = []
+    for v in variables:
+        for name, offset in v.aliases:
+            entry = listed.get((module.name, name))
+            tail = one_tail(module.index, v.name, offset)
+            if tail and not (entry and entry.group.startswith("real ")):
+                out.append(RefusedAlias(name, v.name, offset, f"on {tail}, a [1] array at the end of its type"))
+            elif entry is None:
+                out.append(RefusedAlias(name, v.name, offset, f"not in {ALIAS_LIST}"))
+    return out
+
+
+def make_plan(module: Module, lo: int | None = None, hi: int | None = None,
+              listed: dict | None = None, refuse: bool = True) -> Plan:
+    """refuse=False: plan even with aliases plan would refuse (scan)."""
     def in_range(v: Var) -> bool:
         return (lo is None or v.addr >= lo) and (hi is None or v.addr < hi)
 
     module.plan_variables(split=False)
     runs_before = sum(len(split_runs([v for v in g.variables if in_range(v)])) for g in module.gaps)
     module.plan_variables(split=True)
+    if refuse:
+        listed = read_alias_list() if listed is None else listed
+        refused = refused_aliases(module, [v for g in module.gaps for v in g.variables if in_range(v)], listed)
+        if refused:
+            return Plan(module, [], runs_before, 0, [], refused)
     users = Users(module)
     relocs = read_relocs()
     index = module.index
@@ -1359,10 +1434,13 @@ def summary(plan: Plan) -> str:
 def cmd_scan(args) -> int:
     module = Module(args.module, Index())
     plan = make_plan(module)
+    if plan.refused:
+        print("warning: " + refused_report(plan.refused))
+        plan = make_plan(module, refuse=False)
     if plan.past:
         print("warning: " + past_report(module.index, plan.past))
         module.gaps = [dataclasses.replace(g, past=[]) for g in module.gaps]
-        plan = make_plan(module)
+        plan = make_plan(module, refuse=False)
     for gap in module.gaps:
         print(f"{gap.section} gap {gap.start:#010x}-{gap.end:#010x} ({gap.end - gap.start:#x} bytes)")
         if args.verbose:
@@ -1638,6 +1716,10 @@ def cmd_plan(args) -> int:
         print(past_report(module.index, plan.past))
         fail(f"{len(plan.past)} aliases lie past the declared size of their variable: declare the variables "
              "with the size that covers them, then run again")
+    if plan.refused:
+        print(refused_report(plan.refused))
+        fail(f"{len(plan.refused)} new aliases refused: check what each one is, fix the variable's size or list "
+             f"the alias in {ALIAS_LIST} (docs/bss-tool.md, \"Aliases\"), then run again")
     relocs = read_relocs()
     for g in plan.groups:
         if g.generated and render(module, g, relocs)[0] is None:
@@ -1702,6 +1784,12 @@ def past_report(index: Index, past: list[PastAlias]) -> str:
         files = ", ".join(sorted({d.file for d in index.decls.of(a.var)})) or "nowhere"
         lines.append(f"  {a.alias}  {a.var}  {a.declared:#x}  {a.offset:#x}  {files}")
     return "\n".join(lines)
+
+
+def refused_report(refused: list[RefusedAlias]) -> str:
+    """One line per alias plan refuses."""
+    return "\n".join(["alias, variable, alias offset, why:"]
+                     + [f"  {a.alias}  {a.var}  {a.offset:#x}  {a.reason}" for a in refused])
 
 
 def take_definitions(text: str, names: list[str]) -> tuple[str, int, dict[str, str]]:
@@ -1891,27 +1979,112 @@ def lcf_alias_lines(aliases: dict[str, tuple[str, int]]) -> list[str]:
     return [f"{name} = {base} + {offset:#x};" for name, (base, offset) in sorted(aliases.items())]
 
 
-def lcf_object_lines(entry: Entry, section: str, symbols: list[Symbol]) -> tuple[str, list[str]]:
-    """What a file with a .bss or .sbss range (`section`) needs in the
-    linker script: its runs past the first, after that section, then its
-    aliases."""
-    stem = Path(entry.name).stem
+def entry_aliases(entry: Entry, section: str, symbols: list[Symbol]) -> tuple[list[Var], dict[str, tuple[str, int]]]:
+    """The variables of a file's .bss or .sbss range (`section`), and its
+    aliases {name: (variable, offset)}: the symbols of size 0 in it."""
     start, end = entry.sections[section]
     inside = sorted((s for s in symbols if start <= s.addr < end), key=lambda s: s.addr)
     variables = [Var(s.addr, round4(s.size), s.size, s.name) for s in inside if s.size]
-    if not variables:
-        return f"{stem}.o({section})", []
     aliases = {}
-    for s in inside:
+    for s in inside if variables else []:
         if s.size:
             continue
         owner = next((v for v in variables if v.addr <= s.addr < v.addr + v.size), None)
         if owner is None:
             fail(f"{s.name} at {s.addr:#x} has no size and is inside no variable of {entry.name}")
         aliases[s.name] = (owner.name, s.addr - owner.addr)
+    return variables, aliases
+
+
+def lcf_object_lines(entry: Entry, section: str, symbols: list[Symbol]) -> tuple[str, list[str]]:
+    """What a file with a .bss or .sbss range (`section`) needs in the
+    linker script: its runs past the first, after that section, then its
+    aliases."""
+    stem = Path(entry.name).stem
+    variables, aliases = entry_aliases(entry, section, symbols)
+    if not variables:
+        return f"{stem}.o({section})", []
     runs = split_runs(variables)
     lines = [f"{stem}.o({run_section(section, k)})" for k in range(1, len(runs))]
     return f"{stem}.o({section})", lines + lcf_alias_lines(aliases)
+
+
+# ---------------------------------------------------------------- aliases.txt
+
+ALIAS_LIST = Path("config/AWRE/aliases.txt")
+ALIAS_LINE = re.compile(r"(\w+) (\w+) = (\w+)\+(0x[0-9a-f]+) (unsorted|hidden|real \S.*)")
+
+
+@dataclass
+class Listed:
+    base: str
+    offset: int
+    group: str
+
+
+def read_alias_list(path: Path | None = None) -> dict[tuple[str, str], Listed]:
+    """{(module, alias): Listed} from aliases.txt (docs/bss-tool.md,
+    "Aliases")."""
+    path = path or ROOT / ALIAS_LIST
+    out = {}
+    for n, line in enumerate(path.read_text().splitlines(), 1):
+        if not line.strip() or line.startswith("#"):
+            continue
+        m = ALIAS_LINE.fullmatch(line.strip())
+        if not m:
+            fail(f"{ALIAS_LIST}:{n}: want `MODULE SYMBOL = BASE+OFFSET GROUP`, GROUP one of unsorted, hidden, "
+                 "real FIELD")
+        if (m[1], m[2]) in out:
+            fail(f"{ALIAS_LIST}:{n}: {m[2]} is listed twice")
+        out[(m[1], m[2])] = Listed(m[3], int(m[4], 16), m[5])
+    return out
+
+
+def config_aliases() -> dict[tuple[str, str], tuple[str, int]]:
+    """{(module, alias): (variable, offset)} for every alias the linker
+    scripts define: the symbols of size 0 in the .bss or .sbss range of a
+    `complete` file, as `lcf` writes them."""
+    out = {}
+    for module in module_modules() + ["itcm", "dtcm"]:
+        cfg = ROOT / data_inc.config_dir(module)
+        _, entries = read_delinks(cfg / "delinks.txt")
+        symbols = None
+        for entry in entries:
+            for section in BSS_SECTIONS if entry.complete else ():
+                if section in entry.sections:
+                    symbols = symbols if symbols is not None else read_symbols(cfg / "symbols.txt")
+                    for name, owner in entry_aliases(entry, section, symbols)[1].items():
+                        out[(module, name)] = owner
+    return out
+
+
+def alias_list_errors(listed: dict[tuple[str, str], Listed], found: dict[tuple[str, str], tuple[str, int]]) -> list[str]:
+    """Where aliases.txt and the config disagree."""
+    errors = []
+    for (module, name), (base, offset) in sorted(found.items()):
+        entry = listed.get((module, name))
+        if entry is None:
+            errors.append(f"{name} ({module}) = {base}+{offset:#x} is an alias but is not listed")
+        elif (entry.base, entry.offset) != (base, offset):
+            errors.append(f"{name} ({module}) is listed as {entry.base}+{entry.offset:#x} but is {base}+{offset:#x}")
+    for (module, name), entry in sorted(listed.items()):
+        if (module, name) not in found:
+            errors.append(f"{name} ({module}) is listed but is no alias: symbols.txt gives it a size, "
+                          "or no complete file's .bss holds it")
+    return errors
+
+
+def cmd_aliases(args) -> int:
+    """Checks aliases.txt against symbols.txt and delinks.txt."""
+    listed = read_alias_list()
+    errors = alias_list_errors(listed, config_aliases())
+    if errors:
+        print(f"{ALIAS_LIST}:\n  " + "\n  ".join(errors))
+        return 1
+    groups = Counter(e.group.split()[0] for e in listed.values())
+    print(f"{ALIAS_LIST}: {len(listed)} aliases, all listed ("
+          + ", ".join(f"{n} {g}" for g, n in sorted(groups.items())) + ")")
+    return 0
 
 
 def cmd_lcf(args) -> int:
@@ -1962,6 +2135,8 @@ def main() -> int:
     p.add_argument("name")
     p.add_argument("file")
     p.set_defaults(func=cmd_move)
+    p = sub.add_parser("aliases", help="check config/AWRE/aliases.txt against symbols.txt")
+    p.set_defaults(func=cmd_aliases)
     p = sub.add_parser("lcf", help="place .bss.runN sections and aliases in a linker script")
     p.add_argument("lcf")
     p.add_argument("--arm7", action="store_true", help="ARM7's script: the arm7 module only")
