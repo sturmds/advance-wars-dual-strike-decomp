@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/owner_info.h"
 #include "game/Unk_02088d04.h"
 #include "game/splash_task.h"
 
@@ -8,7 +9,6 @@ void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           int paletteOffset, int size);
 
 extern Unk_027c0280* data_027c0280;
-extern u8 data_ov000_023503a0;
 extern const char* data_ov000_022f66b0[];
 extern const char data_02169d64[];
 extern const char data_02169d70[];

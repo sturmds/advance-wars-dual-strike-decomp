@@ -1,10 +1,10 @@
 #include "types.h"
+#include "game/owner_info.h"
 #include "game/Unk_02088d04.h"
 
 void Data_Unpack(const void* src, void* dst);
 
 extern const void* const gCoPictureData[][136];
-extern u8 data_ov000_023503a0;
 extern Unk_027c0280* data_027c0280;
 
 /* Unpacks the compressed picture of a CO into OBJ VRAM, starting at tile

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/second_screen.h"
 #include "game/Unk_02088d04.h"
 #include "game/icon.h"
 #include "game/unit_stats.h"
@@ -18,8 +19,6 @@ extern Unk_027c0280* data_027c0280;
  * the symbols sit at the folded addresses. */
 extern u32 data_ov000_022f4cc4[][6];
 extern u32 data_ov000_022f4cc8[][6];
-extern int data_ov000_02350548;
-extern int data_ov000_0235054c;
 extern int data_ov000_023500b4[3]; /* unit types checked for repairs */
 extern u32
     data_ov000_023500a8[3]; /* first map entry of each type's 3x2 picture */

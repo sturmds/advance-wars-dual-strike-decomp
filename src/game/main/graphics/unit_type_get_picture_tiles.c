@@ -1,6 +1,6 @@
 #include "types.h"
+#include "game/owner_info.h"
 
-extern u8 data_ov000_023503a0;
 extern u16 data_02166598[]; /* picture number of each unit type */
 extern u8* data_ov000_022f664c
     []; /* picture tile data, indexed by data_ov000_023503a0 */

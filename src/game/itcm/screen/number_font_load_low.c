@@ -1,7 +1,7 @@
 #include "types.h"
+#include "game/owner_info.h"
 #include "game/screen_other_map.h"
 
-extern u8 data_ov000_023503a0; /* game language */
 extern const void*
     gNumberFontByLanguage[]; /* packed number font graphics per language */
 extern u8 data_02138c68[];   /* its palette */

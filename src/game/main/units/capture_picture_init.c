@@ -1,10 +1,10 @@
 #include "types.h"
+#include "game/owner_info.h"
 #include "game/Unk_02088d04.h"
 #include "game/sprite_anim.h"
 #include "game/capture_picture_task.h"
 
 extern Unk_027c0280* data_027c0280;
-extern u8 data_ov000_023503a0; /* game language */
 extern const char* data_ov000_022f66c4
     []; /* per language: capture text graphics in /national */
 extern char data_021691b0[]; /* "/national" */

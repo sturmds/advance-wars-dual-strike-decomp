@@ -1,10 +1,7 @@
 #include "types.h"
+#include "game/second_screen.h"
 #include "game/screen_other_map.h"
 #include "game/map_unit.h"
-
-extern u32 data_ov000_02350534;
-extern u32 data_ov000_02350538;
-extern u32 data_ov000_02350544;
 
 int SecondScreenTask_IsRunning(void);
 u8 Player_GetArmyStyle(int playerIndex);

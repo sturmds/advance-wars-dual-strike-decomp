@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/owner_info.h"
 #include "game/Unk_02080440.h"
 #include "game/screen_other_map.h"
 #include "game/menu_button.h"
@@ -6,7 +7,6 @@
 #include "game/touch.h"
 #include "game/song.h"
 
-extern u8 data_ov000_023503a0; /* game language */
 extern const MenuButtonTemplate gNextTurnButton;
 extern const u16 gNextTurnBobOffsets[10]; /* 0, 1, 2, 3, 3, 3, 2, 1, 0, 0 */
 extern char gNextTurnTextEnglish[];       /* "NEXT TURN" */

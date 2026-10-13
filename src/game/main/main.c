@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/owner_info.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "sdk/gx.h"
@@ -6,7 +7,6 @@
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_ov000_023503a0;
 extern u8 data_02291774[];
 extern u8 data_02166dc8[];
 

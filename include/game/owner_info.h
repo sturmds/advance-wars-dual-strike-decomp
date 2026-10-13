@@ -17,5 +17,8 @@ typedef struct OwnerInfo {
 #define OWNER_NICKNAME_MAX 10
 
 extern OwnerInfo gOwnerInfo;
+/* gOwnerInfo's first byte, copied at boot; indexes the per-language graphics
+ * tables (defined in ov000). */
+extern u8 data_ov000_023503a0;
 
 #endif

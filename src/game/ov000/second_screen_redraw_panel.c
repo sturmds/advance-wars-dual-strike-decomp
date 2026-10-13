@@ -1,4 +1,6 @@
 #include "types.h"
+#include "game/owner_info.h"
+#include "game/second_screen.h"
 #include "game/Unk_02088d04.h"
 #include "game/text_print.h"
 
@@ -11,11 +13,6 @@ void SecondScreen_DrawTerrainDetails(int arg0, int arg1);
 void SecondScreen_DrawTerrainMoveCosts(int arg0, int arg1);
 
 extern Unk_027c0280* data_027c0280;
-extern int data_ov000_02350530;
-extern int data_ov000_0235053c;
-extern int data_ov000_02350540;
-extern int data_ov000_02350548;
-extern u8 data_ov000_023503a0;
 extern void* data_ov000_022f65c0[];
 /* These three read fields 4, 8 and 0x14 of Ov000_gTerrainStats[mode - 1]
  * (rows of 6 words); the symbols sit at the folded addresses. */

@@ -1,12 +1,12 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/owner_info.h"
 #include "game/player_panel_cache.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0280* data_027c0280;
-/* also declared in src/game/itcm/screen/number_font_load_high.c and 13 more */
 u8 data_ov000_023503a0;
 u8 data_ov000_02350498[0x4]; /* size: up to the next symbol */
 u8 data_ov000_023503a4[0x4]; /* size: up to the next symbol */

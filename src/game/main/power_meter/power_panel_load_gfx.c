@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/owner_info.h"
 #include "game/Unk_02080440.h"
 #include "game/power_panel.h"
 #include "game/Unk_02088d04.h"
@@ -6,7 +7,6 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0280* data_027c0280;
-extern u8 data_ov000_023503a0; /* game language */
 extern const void* const data_ov000_022f65fc[];
 extern const void* const data_ov000_022f6610[];
 extern const void* const data_ov000_022f6624[];

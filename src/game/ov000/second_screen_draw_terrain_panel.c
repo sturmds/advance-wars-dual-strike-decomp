@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/second_screen.h"
 #include "game/icon.h"
 #include "game/screen_other_map.h"
 
@@ -8,7 +9,6 @@ int DoubleTerrainStars(int playerIndex, int unitType, int terrain);
 extern u8 data_027c0000;
 extern u8 data_027c0018;
 extern u8 data_027c0060;
-extern int data_ov000_02350548;
 extern int gTerrainStarOffsets[];
 
 /* Second screen: draws the terrain panel at x offset x. Draws nothing when terrain is 0.

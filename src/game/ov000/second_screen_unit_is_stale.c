@@ -1,11 +1,5 @@
 #include "types.h"
-
-extern int data_ov000_02350530;
-extern int data_ov000_02350534;
-extern int data_ov000_02350538;
-extern int data_ov000_0235053c;
-extern int data_ov000_02350544;
-extern int data_ov000_0235054c;
+#include "game/second_screen.h"
 
 /* True when the unit requested for the second screen (data_ov000_02350530,
  * 0235054c, 0235053c, set by SecondScreenTask_Create and SecondScreen_ShowCursorInfo)

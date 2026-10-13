@@ -1,6 +1,6 @@
 #include "types.h"
+#include "game/owner_info.h"
 
-extern u8 data_ov000_023503a0;
 extern u8 data_02166758
     []; /* per terrain, 2 bytes each: the icon number is the first byte */
 extern u8*

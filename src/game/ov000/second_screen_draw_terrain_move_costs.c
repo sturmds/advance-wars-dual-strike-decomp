@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/second_screen.h"
 #include "game/screen_other_map.h"
 #include "game/co_data.h"
 #include "game/player.h"
@@ -9,7 +10,6 @@ void Font_LoadDigits(int a);
 void Number_Draw(s16 x, s16 y, u16* map, int value, u16 a, u16 b);
 void Gfx_RequestLayerCopy(int layer);
 
-extern int data_ov000_0235054c;
 extern int
     Ov000_gTerrainPanelMoveTypes[9]; /* movement chart rows shown, in order */
 extern u16 Ov000_gTerrainPanelMoveTypeTiles

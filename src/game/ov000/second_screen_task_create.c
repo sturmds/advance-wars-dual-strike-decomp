@@ -1,15 +1,11 @@
 #include "types.h"
+#include "game/second_screen.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern int data_ov000_02350530;
-extern int data_ov000_02350538;
-extern int data_ov000_0235053c;
-extern int data_ov000_02350548;
-extern int data_ov000_0235054c;
 extern u8 data_ov000_023500f8[];
 
 void Screen_SetCurrent(void* state);

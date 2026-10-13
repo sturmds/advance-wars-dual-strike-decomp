@@ -1,9 +1,9 @@
 #include "types.h"
+#include "game/owner_info.h"
 #include "game/screen_other_map.h"
 #include "game/number_sprite_task.h"
 #include "game/task.h"
 
-extern u8 data_ov000_023503a0; /* game language */
 extern const char* data_ov000_022f669c[];
 extern char data_02169c88[];
 extern char data_02169c44[]; /* "/bmap" */
