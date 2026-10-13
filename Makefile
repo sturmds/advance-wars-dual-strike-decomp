@@ -98,6 +98,7 @@ release: setup
 	@$(MAKE) --no-print-directory format-check
 	@$(MAKE) --no-print-directory all
 	@$(MAKE) --no-print-directory check
+	@$(MAKE) --no-print-directory test
 	@$(MAKE) --no-print-directory decomp-dev-report
 	@echo "release: OK"
 
@@ -117,6 +118,8 @@ shift: all
 emu-smoke: shift
 	@$(PYTHON) tools/emu_smoke.py $(ROM) $(OUT) build/shift/AWRE.nds
 
+# Part of release, so a landing runs it too. A test that needs something
+# release does not (gcc, decomp-permuter, a ROM) prints "skipped" and passes.
 # Tests of the landing tools on throwaway repos, of propagate.py's C text
 # handling, of ds.py, of pragmas.py, of absolute symbols, of 2-byte alignment
 # (tools/lcf_align2.py), of ARM7's address moves (tools/arm7.py) and of how

@@ -38,7 +38,7 @@ Each merged header prints one line (`merged include/game/x.h: +3 fields, ..., re
 
 ## Rules for the orchestrator
 
-- Nothing lands unless `make release` passes on `mainline` after the replay.
+- Nothing lands unless `make release` (which includes `make test`) passes on `mainline` after the replay.
 - Review each landed commit's C against `TENETS.md` before the next batch; fix the skill when the same problem shows up twice.
 - Check where each landed file sits ("Source layout" in `CLAUDE.md`). Tell agents which topic directory their group belongs to, and move misplaced files between batches.
 - Agents do not edit `tools/`, `docs/`, `Makefile` or `hooks/`. Tool fixes happen on `mainline` between batches.

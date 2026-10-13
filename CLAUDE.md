@@ -8,10 +8,11 @@ The plan is in `docs/early-phase-project-plan.md` (edit that copy). The rules it
 
 ```sh
 mkdir -p orig && ln -s /path/to/awds.nds orig/AWRE.nds   # once; never copy the ROM into git
-make release    # setup if needed, format check, build, every check, then the decomp.dev report
+make release    # setup if needed, format check, build, every check, make test, then the decomp.dev report
 make format     # clang-format src/ and include/ (style in .clang-format)
 make            # build build/AWRE.nds (ninja, incremental)
 make check      # per-module hashes, then the whole-ROM SHA-1
+make test       # tools/tests/*.py on throwaway repos (part of release; a test that needs gcc, decomp-permuter or a ROM skips with a message)
 make extract    # unpack orig/AWRE.nds into extract/ (make does this when needed)
 make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 ```

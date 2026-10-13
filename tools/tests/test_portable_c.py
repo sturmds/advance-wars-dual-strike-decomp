@@ -58,8 +58,8 @@ def check(path: Path) -> None:
 
 def main() -> int:
     if shutil.which("gcc") is None:
-        print("test_portable_c: gcc not found on PATH")
-        return 1
+        print("test_portable_c: skipped, gcc not found on PATH")
+        return 0
     paths = sorted(p for p in (ROOT / "src").rglob("*.c")
                    if "#ifdef __MWERKS__" in p.read_text())
     if not paths:
