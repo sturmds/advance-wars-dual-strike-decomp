@@ -33,7 +33,7 @@ report = {
              [{"name": "data_arm7_03807180", "size": "100"}]),
     ],
 }
-text = progress.markdown(report, "build/artifacts/0.1_report/report.json")
+text = progress.markdown(report, "build/artifacts/AWRE_report/report.json")
 rows = [line for line in text.splitlines() if line.startswith("| all |")]
 want = "| all | 66.6666% | 50.0000% | 200 / 300 | 150 / 300 | 3 / 4 |"
 errors = []

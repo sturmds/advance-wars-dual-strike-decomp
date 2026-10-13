@@ -44,6 +44,8 @@ Most of the C was written by Claude (Anthropic's model) in an automated matching
 
 ## Limitations
 
+The project builds the US/Australia cartridge (`AWRE`) only. Other versions of *Advance Wars: Dual Strike*, such as the European release or the Japanese *Famicom Wars DS*, are not supported, and the build checks your ROM against the `AWRE` hash before anything else.
+
 Most of the code and documents were written by a model, and it shows. This project has a high degree of **SLOP**: expect machine-written style and awkward grammar in the C, the comments and the docs. Many functions still have placeholder names (`func_XXXXXXXX`), and much of the C was shaped to match the retail bytes rather than to read well, so parts of it may not be readable by humans. The build only checks that the bytes match, not that the code reads well.
 
 ## Contributing

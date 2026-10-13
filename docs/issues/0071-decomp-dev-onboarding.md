@@ -11,18 +11,16 @@ decomp.dev reads only GitHub Actions artifacts from public repositories (`docs/t
 
 ## Done
 
-- sturmds lifted the "no decomp.dev" rule (2026-10-13) and made https://github.com/sturmds/advance-wars-dual-strike-decomp.
+- sturmds lifted the "no decomp.dev" rule (2026-10-13) and made https://github.com/sturmds/advance-wars-dual-strike-decomp, with `mainline` as its default branch.
 - `hooks/pre-commit` and `land_self.py` commit the report `make release` writes as `PROGRESS.json`, next to `PROGRESS.md`. `apply_commit.py`, `rebase_onto_mainline.py` and `review_stamp.py` treat it as they treat `PROGRESS.md`. `.gitattributes` marks it `-diff`: it is one 6.3 MB line.
-- `.github/workflows/decomp-dev.yml` uploads `PROGRESS.json` as `report.json` in artifact `0.1_report` on every push to `mainline`.
+- `.github/workflows/decomp-dev.yml` uploads `PROGRESS.json` as `report.json` in artifact `AWRE_report` on every push to `mainline`, so decomp.dev shows the version "AWRE", the game code, as other DS projects do (`BK9E` in kh-recoded-decomp). Runs before the rename uploaded `0.1_report`.
 - asm functions: `config/AWRE/asm_functions.txt` decides which count (commit 602767fcf).
 - The total: `PROGRESS.md` reads the report, so both count code in dsd gap units and agree.
 
 ## What is left
 
-1. **Make `mainline` the default branch on GitHub.** decomp.dev reads only completed `push` runs on the default branch.
-2. **Register the project.** Log in to decomp.dev with GitHub, open `/manage/new`, pick the repository and the platform "Nintendo DS" (`nds`). Without decomp.dev's GitHub App the site looks for new runs every 30 minutes; with it, a webhook tells it.
-3. **Version label.** The artifact is `0.1_report`, so decomp.dev shows the version "0.1". Other projects use the game code (`YKGP_report` in khdays-decomp); ours would be `AWRE_report`. Change `VERSION` in `tools/decomp_dev_report.py` and the artifact name in the workflow together.
-4. **Optional: progress categories.** Units can carry `progress_categories` (main, each overlay, SDK, ARM7), and decomp.dev then shows a bar for each.
+1. **Register the project.** Log in to decomp.dev with GitHub, open `/manage/new`, pick the repository and the platform "Nintendo DS" (`nds`). Without decomp.dev's GitHub App the site looks for new runs every 30 minutes; with it, a webhook tells it.
+2. **Optional: progress categories.** Units can carry `progress_categories` (main, each overlay, SDK, ARM7), and decomp.dev then shows a bar for each.
 
 ## Notes
 

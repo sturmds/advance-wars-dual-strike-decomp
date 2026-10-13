@@ -106,7 +106,7 @@ release: setup
 	@$(MAKE) --no-print-directory decomp-dev-report
 	@echo "release: OK"
 
-# build/artifacts/0.1_report/report.json: the objdiff report over both CPUs,
+# build/artifacts/AWRE_report/report.json: the objdiff report over both CPUs,
 # laid out as decomp.dev's artifact. hooks/pre-commit commits a copy as
 # PROGRESS.json, which .github/workflows/decomp-dev.yml uploads.
 decomp-dev-report: all

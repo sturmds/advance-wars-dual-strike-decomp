@@ -6,7 +6,7 @@
                                  report beside it as FILE.json (PROGRESS.json),
                                  which the decomp.dev workflow uploads
 
-Reads build/artifacts/0.1_report/report.json, which tools/decomp_dev_report.py
+Reads build/artifacts/AWRE_report/report.json, which tools/decomp_dev_report.py
 writes in `make release`, and gives decomp.dev's two measures: decompiled
 (`matched_code`) and fully linked (`complete_code`), in bytes and as a share
 of the code, with the functions matched. One row for all code, then rows by

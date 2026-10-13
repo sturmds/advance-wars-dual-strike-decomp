@@ -3,7 +3,7 @@
 
     decomp_dev_report.py
 
-Writes build/artifacts/0.1_report/report.json: one objdiff report over ARM9
+Writes build/artifacts/AWRE_report/report.json: one objdiff report over ARM9
 and ARM7. decomp.dev takes reports from GitHub Actions artifacts named
 `<version>_report` and shows each report's `matched_code_percent` as
 decompiled and `complete_code_percent` as fully linked. The directory under
@@ -60,9 +60,9 @@ import pnc_check  # noqa: E402
 import progress  # noqa: E402
 
 ROOT = fn.ROOT
-# decomp.dev's version label, taken from the artifact name. It is 0.1 for now;
-# a real label (the game code) waits for the rest of the onboarding.
-VERSION = "0.1"
+# decomp.dev's version label, taken from the artifact name: the game code, as
+# other DS projects use it (BK9E_report in kh-recoded-decomp).
+VERSION = "AWRE"
 PROJECT = ROOT / "build/report"
 ARTIFACT = ROOT / "build/artifacts" / f"{VERSION}_report"
 # objdiff project directory and objdiff.json of each CPU, relative to ROOT.

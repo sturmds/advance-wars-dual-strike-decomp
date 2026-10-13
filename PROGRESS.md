@@ -1,7 +1,7 @@
 # Decompilation progress
 
 Written by `tools/progress.py --write PROGRESS.md` from `hooks/pre-commit`; do not edit.
-The numbers come from `build/artifacts/0.1_report/report.json`,
+The numbers come from `build/artifacts/AWRE_report/report.json`,
 the report `make release` writes for decomp.dev (`tools/decomp_dev_report.py`).
 "Decompiled" is the code that matches the ROM from C; "Fully linked" is the part of it
 that the build links from `src/` (files marked `complete` in `delinks.txt`). Functions
