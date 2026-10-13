@@ -1,5 +1,6 @@
 #include "sdk/os.h"
 
+#ifdef __MWERKS__
 /*
  * OS_ReleaseLockID: gives a lock ID back. IDs 0x40 to 0x7f are tracked in two
  * words in shared main RAM (see LOCK_ID_AVAILABLE_BITS); a set bit means the ID
@@ -21,3 +22,25 @@ asm void OS_ReleaseLockID(int lockID)
     str r2, [r3]
     bx lr
 }
+#else
+/* Follows the assembly for every lockID, not only 0x40 to 0x7f: the word
+   is picked by the sign of lockID - 0x60, the shift uses the low byte of
+   the bit number, and a shift of 32 or more sets no bit. */
+void OS_ReleaseLockID(int lockID) {
+  volatile u32* bits = LOCK_ID_AVAILABLE_BITS;
+  u32 bit = (u32)lockID - 0x60u;
+  u32 shift;
+  u32 mask = 0;
+
+  if ((bit & 0x80000000u) == 0) {
+    bits++;
+  } else {
+    bit = (u32)lockID - 0x40u;
+  }
+  shift = bit & 0xff;
+  if (shift < 32) {
+    mask = 0x80000000u >> shift;
+  }
+  *bits = *bits | mask;
+}
+#endif
