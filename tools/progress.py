@@ -7,9 +7,10 @@
                                  which the decomp.dev workflow uploads
 
 Reads build/artifacts/AWRE_report/report.json, which tools/decomp_dev_report.py
-writes in `make release`, and gives decomp.dev's two measures: decompiled
-(`matched_code`) and fully linked (`complete_code`), in bytes and as a share
-of the code, with the functions matched. One row for all code, then rows by
+writes in `make release`, and gives decomp.dev's measures: code decompiled
+(`matched_code`) and code linked (`complete_code`), in bytes and as a share
+of the code, the functions matched, and data linked (`complete_data`) as a
+share of the data. One row for all code, then rows by
 module (main, itcm, ov000-ov006, arm7) and by kind of code (game, SDK/library,
 and dsd gap units, which have no source file). Then every symbol in code
 that the report scores below 100%, and every function written as `asm` that
@@ -17,7 +18,10 @@ the report leaves out (config/AWRE/asm_functions.txt does not list it).
 
 The row for all code reads, for example:
 
-    | all | 99.9514% | 99.9514% | 1844182 / 1845078 | 1844182 / 1845078 | 8559 / 8572 |
+    | all | 99.9514% | 99.9514% | 1844182 / 1845078 | 1844182 / 1845078 | 8559 / 8572 | 6.0243% | 188932 / 3136124 |
+
+The data columns come last, so the code columns keep their places for
+readers of the row (the decomp-orchestrate skill).
 
 Percentages are cut off at four decimals, never rounded, so 100.0000% shows
 only when the counts are equal. The same report gives the same file. Without the report it stops with an
@@ -40,7 +44,8 @@ ASM_FUNC = re.compile(r"^\s*asm\s+[\w\s\*]*?\b(\w+)\s*\(", re.M)
 # Kinds of code, by the start of a unit's source path; dsd gap units have none.
 AREAS = (("game", ("src/game/",)), ("SDK/library", ("src/sdk/", "src/arm7/")))
 GAP = "gap units"
-MEASURES = ("total_code", "matched_code", "complete_code", "matched_functions", "total_functions")
+MEASURES = ("total_code", "matched_code", "complete_code", "matched_functions", "total_functions",
+            "total_data", "complete_data")
 
 
 def unlinked():
@@ -91,15 +96,21 @@ def measures(m: dict) -> list[int]:
     return [int(m.get(k, 0)) for k in MEASURES]
 
 
+def has_bytes(values: list[int]) -> bool:
+    """True when a module or kind has code or data to show."""
+    return bool(values[MEASURES.index("total_code")] or values[MEASURES.index("total_data")])
+
+
 def row(label: str, values: list[int]) -> str:
-    code, matched, linked, funcs, total_funcs = values
+    code, matched, linked, funcs, total_funcs, data, data_linked = values
     return (f"| {label} | {pct(matched, code)} | {pct(linked, code)} | {matched} / {code} "
-            f"| {linked} / {code} | {funcs} / {total_funcs} |")
+            f"| {linked} / {code} | {funcs} / {total_funcs} | {pct(data_linked, data)} | {data_linked} / {data} |")
 
 
 def header(first: str) -> list[str]:
-    return [f"| {first} | Decompiled | Fully linked | Bytes decompiled | Bytes linked | Functions matched |",
-            "|---|---:|---:|---:|---:|---:|"]
+    return [f"| {first} | Code decompiled | Code linked | Bytes decompiled | Bytes linked | Functions matched "
+            "| Data linked | Data bytes linked |",
+            "|---|---:|---:|---:|---:|---:|---:|---:|"]
 
 
 def markdown(report: dict, report_path: str) -> str:
@@ -133,10 +144,12 @@ def markdown(report: dict, report_path: str) -> str:
         "Written by `tools/progress.py --write PROGRESS.md` from `hooks/pre-commit`; do not edit.",
         f"The numbers come from `{report_path}`,",
         "the report `make release` writes for decomp.dev (`tools/decomp_dev_report.py`).",
-        "\"Decompiled\" is the code that matches the ROM from C; \"Fully linked\" is the part of it",
+        "\"Code decompiled\" is the code that matches the ROM from C; \"Code linked\" is the part of it",
         "that the build links from `src/` (files marked `complete` in `delinks.txt`). Functions",
-        "written as `asm` count only when `config/AWRE/asm_functions.txt` lists them. Bytes count",
-        "code only, including code in dsd gap units that has no function (issue 0071).",
+        "written as `asm` count only when `config/AWRE/asm_functions.txt` lists them. Code bytes",
+        "include code in dsd gap units that has no function (issue 0071). \"Data linked\" is the",
+        "data (initialised data, read-only data and .bss) in files the build links from `src/`;",
+        "the rest is in dsd gap units, delinked from the ROM with no source file.",
         "",
         *header("Code"),
         row("all", measures(report["measures"])),
@@ -148,12 +161,12 @@ def markdown(report: dict, report_path: str) -> str:
         *header("Module"),
     ]
     for mod in sorted(by_module, key=lambda k: (order.index(k) if k in order else len(order), k)):
-        if by_module[mod][0]:
+        if has_bytes(by_module[mod]):
             lines.append(row(mod, by_module[mod]))
     lines += ["", "## By kind of code", "", "Gap units are code and data that dsd delinks with no source file.",
               "", *header("Kind")]
     for area in [a for a, _ in AREAS] + [GAP]:
-        if by_area.get(area, [0])[0]:
+        if area in by_area and has_bytes(by_area[area]):
             lines.append(row(area, by_area[area]))
 
     lines += ["", "## Below 100%", "", "Symbols in code that the report scores below 100%, by module.", ""]
