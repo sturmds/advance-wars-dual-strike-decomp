@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6696 / 6700 | 1551856 / 1553840 | 99.87% | 0 | 0 |
+| ARM9 game | 6697 / 6700 | 1552772 / 1553840 | 99.93% | 0 | 0 |
 | ARM9 SDK/library | 647 / 833 | 105752 / 135226 | 78.20% | 176 | 20718 |
-| ARM9 all | 7343 / 7533 | 1657608 / 1689066 | 98.14% | 176 | 20718 |
+| ARM9 all | 7344 / 7533 | 1658524 / 1689066 | 98.19% | 176 | 20718 |
 | ARM7 SDK/library | 950 / 1020 | 149188 / 154300 | 96.69% | 69 | 4960 |
 | ARM7 all | 950 / 1020 | 149188 / 154300 | 96.69% | 69 | 4960 |
-| game | 6696 / 6700 | 1551856 / 1553840 | 99.87% | 0 | 0 |
+| game | 6697 / 6700 | 1552772 / 1553840 | 99.93% | 0 | 0 |
 | SDK/library | 1597 / 1853 | 254940 / 289526 | 88.05% | 245 | 25678 |
-| all | 8293 / 8553 | 1806796 / 1843366 | 98.02% | 245 | 25678 |
+| all | 8294 / 8553 | 1807712 / 1843366 | 98.07% | 245 | 25678 |
 
 ## By module
 
@@ -26,7 +26,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 5178 / 5180 | 1081160 / 1082632 | 99.86% | 0 |
+| main | game | 5179 / 5180 | 1082076 / 1082632 | 99.95% | 0 |
 | main | SDK/library | 640 / 822 | 104840 / 133690 | 78.42% | 172 |
 | itcm | game | 102 / 102 | 21896 / 21896 | 100.00% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
@@ -50,7 +50,7 @@ has no function, so it is a little larger than the totals above (issue 0071).
 
 | Module | Code | Decompiled | Fully linked | Functions matched |
 |---|---:|---:|---:|---:|
-| main | 1216382 | 97.50% | 97.50% | 5818 / 6004 |
+| main | 1216382 | 97.58% | 97.58% | 5819 / 6004 |
 | itcm | 24088 | 94.69% | 94.69% | 109 / 115 |
 | ov000 | 25300 | 98.81% | 98.81% | 119 / 120 |
 | ov001 | 7472 | 100.00% | 100.00% | 76 / 76 |
@@ -60,7 +60,7 @@ has no function, so it is a little larger than the totals above (issue 0071).
 | ov005 | 96684 | 100.00% | 100.00% | 266 / 266 |
 | ov006 | 105588 | 100.00% | 100.00% | 321 / 321 |
 | arm7 | 155236 | 96.10% | 96.10% | 950 / 1038 |
-| all | 1845018 | 97.93% | 97.93% | 8293 / 8575 |
+| all | 1845018 | 97.98% | 97.98% | 8294 / 8575 |
 
 ## Partial functions
 
@@ -73,15 +73,15 @@ objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 00
 
 | Code | Functions | Bytes | Rows that match |
 |---|---:|---:|---:|
-| ARM9 game | 4 | 1984 | 422 / 500 (84.40%) |
+| ARM9 game | 3 | 1068 | 203 / 271 (74.91%) |
 | ARM9 SDK/library | 10 | 8756 | 1601 / 2268 (70.59%) |
 | ARM7 SDK/library | 1 | 152 | 36 / 38 (94.74%) |
-| all | 15 | 10892 | 2059 / 2806 (73.38%) |
+| all | 14 | 9976 | 1840 / 2577 (71.40%) |
 
 | Rows that differ | Functions | Bytes |
 |---|---:|---:|
 | 1 to 2 | 1 | 152 |
-| 3 to 10 | 1 | 916 |
+| 3 to 10 | 0 | 0 |
 | 11 to 50 | 10 | 1808 |
 | more than 50 | 3 | 8016 |
 
@@ -90,7 +90,6 @@ Closest first.
 | File | Function | Bytes | Differ | Match |
 |---|---|---:|---:|---:|
 | `src/arm7/sdk/wm/func_arm7_027c6020.c` | func_arm7_027c6020 | 152 | 2 | 98.39% |
-| `src/game/main/units/move_path_follow_cursor.c` | MovePath_FollowCursor | 916 | 10 | 99.76% |
 | `src/game/ov004/func_ov004_022bacd8.c` | func_ov004_022bacd8 | 212 | 12 | 94.79% |
 | `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | UnitInfoPanel_DrawPage | 300 | 14 | 89.08% |
 | `src/sdk/msl/__fp_trap_f.c` | __fp_trap_f | 72 | 17 | 52.39% |

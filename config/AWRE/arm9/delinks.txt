@@ -15432,6 +15432,7 @@ src/game/main/units/move_path_dir_to_prev.c:
     .text       start:0x020d46e0 end:0x020d4748
 
 src/game/main/units/move_path_follow_cursor.c:
+    complete
     .text       start:0x020d4748 end:0x020d4adc
 
 src/game/main/units/move_path_start.c:

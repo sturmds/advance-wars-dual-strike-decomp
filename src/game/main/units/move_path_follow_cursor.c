@@ -21,12 +21,6 @@ extern int data_027c0284;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define PATH gMovePath
-/* Needed to match: the original loads the index before the base here. */
-#define RELOAD_STATE(dst)                                             \
-  {                                                                   \
-    int index_ = *(volatile int*)&data_027c0284;                      \
-    dst = (*(Unk_02080440* volatile*)&data_027c027c)->unk_48[index_]; \
-  }
 /* Owner of the acting unit: slot 0 is neutral, so unit slots 0-63
  * belong to player 1. */
 #define ACTING_PLAYER(state) \
@@ -67,22 +61,24 @@ void MovePath_FollowCursor(void) {
     return;
   }
 
-  RELOAD_STATE(state);
-  if (state->coEffectsOn == 0) {
+  if (GAME->coEffectsOn == 0) {
     co = 0;
   } else {
-    co = ACTING_PLAYER(state).front.id & PLAYER_CO_ID_MASK;
+    co = ACTING_PLAYER(GAME).front.id & PLAYER_CO_ID_MASK;
   }
-  x = state->cursorX;
-  y = state->cursorY;
+  x = GAME->cursorX;
   i = PATH->lastTile;
   if (PATH->movesLeft[i] >=
       ((const s8(*)[32])gCoTable[co]
-           .blocks[ACTING_PLAYER(state).front.powerState]
-           .movementCost[ACTING_PLAYER(state).moveChart])
-          [Ov000_gUnitStats[state->actingUnit->type].moveType][MAP_TILE_TERRAIN(
-              state->mapTiles->tiles[x + state->mapTiles->rowStart[y]])]) {
+           .blocks[ACTING_PLAYER(GAME).front.powerState]
+           .movementCost[ACTING_PLAYER(GAME).moveChart])
+          [Ov000_gUnitStats[GAME->actingUnit->type].moveType][MAP_TILE_TERRAIN(
+              GAME->mapTiles
+                  ->tiles[x + GAME->mapTiles->rowStart[GAME->cursorY]])]) {
     lastX = PATH->x[i];
+    /* Needed to match: y set here, not with x, gives the original's
+     * registers. */
+    y = GAME->cursorY;
     /* Needed to match: through lastY, mwcc compares the path tile first
      * (cmp tile, y); the plain field read puts y first. */
     if ((ABS(lastX - x) == 1 && (lastY = PATH->y[i], lastY == y)) ||
@@ -99,11 +95,10 @@ void MovePath_FollowCursor(void) {
 
   RangeMap_SetBuffer(GAME->mapTiles->rangeScratch);
   MovePath_FillRangeFromEnd();
-  RELOAD_STATE(state);
-  if (state->rangeMap[state->cursorY][state->cursorX] == -1) {
+  if (GAME->rangeMap[GAME->cursorY][GAME->cursorX] == -1) {
     MovePath_RebuildToTarget();
   } else {
-    RangeMap_TracePath(state->cursorX, state->cursorY, state->pathSteps);
+    RangeMap_TracePath(GAME->cursorX, GAME->cursorY, GAME->pathSteps);
     MovePath_AppendSteps();
     if (!MovePath_HasNoRepeatedTile()) {
       MovePath_RebuildToTarget();
