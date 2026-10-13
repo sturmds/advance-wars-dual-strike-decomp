@@ -24,10 +24,7 @@ void Gfx_LoadTexPaletteFile(const char* fileName, u32 offset, u32 size);
 void Gfx_LoadTexPalette(const void* src, u32 offset, u32 size);
 void File_UnpackTo(void* dest, const char* fileName);
 
-/* 32 zero bytes in ITCM, right after RangeMap_FillMoves. The original
- * reads them through a plain address with no relocation, so it stays a
- * number here. */
-#define ITCM_ZERO_BLOCK ((const void*)0x01ffb95c)
+extern u32 gMap3dClearBlock[8]; /* 32 zero bytes */
 
 /* Makes gfx the current 3D map graphics object, clears three of its texture
  * areas (16 KB at unk_68, 2 KB each at unk_5c and unk_60) and loads the
@@ -39,11 +36,11 @@ void Map3d_LoadTextures(Unk_022a7c5c* gfx) {
   data_022a7c5c = gfx;
   GX_BeginLoadTex();
   for (offset = 0; offset < 0x4000; offset += 32) {
-    GX_LoadTex(ITCM_ZERO_BLOCK, (u32)gfx->unk_68 + offset, 32);
+    GX_LoadTex(gMap3dClearBlock, (u32)gfx->unk_68 + offset, 32);
   }
   for (offset = 0; offset < 0x800; offset += 32) {
-    GX_LoadTex(ITCM_ZERO_BLOCK, gfx->unk_5c + offset, 32);
-    GX_LoadTex(ITCM_ZERO_BLOCK, gfx->unk_60 + offset, 32);
+    GX_LoadTex(gMap3dClearBlock, gfx->unk_5c + offset, 32);
+    GX_LoadTex(gMap3dClearBlock, gfx->unk_60 + offset, 32);
   }
   GX_EndLoadTex();
   FS_ChangeDir(data_0216a45c);

@@ -278,6 +278,28 @@ int SVC_Div(int numerator, int denominator) { ... }
 - clang-format still skips these files (they define an `asm` function), so write the C in the repo's style by hand. `PROGRESS.md` still counts the function as asm.
 - `make test` runs `tools/tests/test_portable_c.py`: it compiles every `src/` file with `#ifdef __MWERKS__` with the host gcc (`-std=c99 -iquote include`). A file with `#error` must fail with exactly that message; any other file must compile and define each of its `asm` functions after `#else`.
 
+## Data from the ROM
+
+For data whose values are game data (tenet 9) but which has to be defined in C, because it sits in a code section between functions where dsd leaves a `_dsd_gap` unit: the module parameters after crt0, small tables in ITCM. The C file defines the symbol and includes the values inside the initializer; `tools/data_inc.py` writes the values from your ROM into `extracted/AWRE/data/<module>/<symbol>.inc.c` (gitignored). The pattern comes from zeldaret/oot (`docs/third-party/zeldaret-oot.md`).
+
+```c
+#include "types.h"
+#include "text_data.h"
+
+#pragma section TEXT_DATA begin
+u32 gUnit3dTextureBlocks[6][27] = {
+#include "data/itcm/gUnit3dTextureBlocks.inc.c"
+};
+#pragma section TEXT_DATA end
+```
+
+- Add a row to `config/AWRE/data_inc.txt`: module (`main`, `itcm`, `dtcm`, `ovNNN`, `arm7`), symbol, address, size in bytes, element type (`u8`, `s8`, `u16`, `s16`, `u32`, `s32` or a pointer type such as `void*`). `u32[27]` writes rows of 27 values in braces, for a two-dimensional array.
+- A word with a relocation in the module's `relocs.txt` is written as the symbol at its target (`(void*)&Screen_HBlankTopPanel`, `(u32)&gOverlayLoaded`), so a shifted build keeps it right. The C file declares those symbols. A pointer element that is neither 0 nor relocated stops the tool: find the relocation dsd missed and add it to `relocs.txt` (`docs/tool-issues.md`) before writing the table.
+- `#pragma section TEXT_DATA` (`include/text_data.h`) makes mwcc put the definition in a section called `.text`, so the object has the same layout as the original and the linker script places it with the code. mwcc ignores the pragma for `const` objects, which always go to `.rodata`: leave out `const`. Each definition gets its own `.text` section, and mwcc writes them smallest first, not in source order (`tools/tests/test_data_inc.py`). Several neighbouring tables can share a file only when that is also their order in the ROM; otherwise give each its own file.
+- Give the file a `delinks.txt` entry over the whole range, marked `complete`, like a function. Symbols inside the range need a line in `symbols.txt`.
+- `make setup` runs `data_inc.py write`. The build runs it again when `data_inc.txt`, a `symbols.txt` or `relocs.txt` changes (a renamed symbol), and rewrites only files that changed. `configure.py` adds `-i extracted/AWRE` to the compiler flags and makes each C file that includes a `data/...inc.c` depend on it.
+- A word the linker could provide but that has no relocation in the original, such as the end of `.bss` in `BuildInfo[4]`, stays the ROM's number: a symbol there gives a relocation the original object does not have, and objdiff then counts the table as unmatched. `dsd rom build` writes the real `.bss` end into the ROM's build info anyway, so the shifted build is still right there.
+
 ## ARM7
 
 ARM7 (the second CPU: sound, touch screen, wireless, power) is one module, `arm7`, in `config/AWRE/arm7/`. It has three parts with their own `.text`: the crt0 at 0x02380000, an autoload into main RAM at 0x027c0000 and one into ARM7 WRAM at 0x037f8000. Names are `func_arm7_XXXXXXXX` and `data_arm7_XXXXXXXX`. All of it is SDK/library code (`docs/awre-facts.md`, "ARM7").

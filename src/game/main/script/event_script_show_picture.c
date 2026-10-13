@@ -6,7 +6,8 @@
 
 extern Unk_0201d320 data_022977f4[];
 extern s16 gEventTextWindowPos; /* screen the picture goes on: 0 or 1 */
-extern void* data_01ff8f64[]; /* ITCM table of two functions, one per screen */
+/* ITCM table of two functions, one per screen */
+extern void* gScreenPanelHBlankHandlers[];
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
@@ -26,8 +27,8 @@ void EventScript_StartScreenSlideOut(int index);
 
 /* Helper of EventCmd_ShowPicture for event slot index. Reads the screen from the record's
  * unk_0c and the picture (CO id in the low byte, mood index in the high byte) from unk_08,
- * stores the picture in data_022977a4.unk_02, passes the screen's entry of data_01ff8f64 to
- * func_0201dc38, and starts the slide-out on that screen. */
+ * stores the picture in data_022977a4.unk_02, passes the screen's entry of
+ * gScreenPanelHBlankHandlers to func_0201dc38, and starts the slide-out on that screen. */
 void EventScript_ShowPicture(s16 index) {
   Unk_0201d320_Entry* record;
   s16 picture;
@@ -54,6 +55,6 @@ void EventScript_ShowPicture(s16 index) {
       data_022977a4.unk_02 = picture;
     }
   }
-  func_0201dc38(data_01ff8f64[gEventTextWindowPos]);
+  func_0201dc38(gScreenPanelHBlankHandlers[gEventTextWindowPos]);
   EventScript_StartScreenSlideOut(index);
 }

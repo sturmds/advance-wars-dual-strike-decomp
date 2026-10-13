@@ -85,6 +85,10 @@ src/game/itcm/screen/screen_is_text_bg.c:
     complete
     .text       start:0x01ff8ef8 end:0x01ff8f64
 
+src/game/itcm/screen/screen_panel_h_blank_handlers.c:
+    complete
+    .text       start:0x01ff8f64 end:0x01ff8f6c
+
 src/game/itcm/screen/screen_h_blank_bottom_panel.c:
     complete
     .text       start:0x01ff8f6c end:0x01ff9230
@@ -308,6 +312,10 @@ src/game/itcm/range_map/queue_step.c:
 src/game/itcm/range_map/fill_moves.c:
     complete
     .text       start:0x01ffb614 end:0x01ffb95c
+
+src/game/itcm/map3d/map3d_tables.c:
+    complete
+    .text       start:0x01ffb95c end:0x01ffbc44
 
 src/game/itcm/map3d/map3d_draw_scrolling_quad.c:
     complete

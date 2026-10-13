@@ -44,7 +44,7 @@ Most of the C was written by Claude (Anthropic's model) in an automated matching
 
 ## Credits
 
-Outside sources and what we took from each are listed in `docs/third-party/`: names and data layouts from RadioTails' romhacking.net document 890, tool ideas from khdays-decomp, hardware names from GBATEK and libnds, and the tools pinned in `tools.lock`.
+Outside sources and what we took from each are listed in `docs/third-party/`: names and data layouts from RadioTails' romhacking.net document 890, tool ideas from khdays-decomp, the pattern for data extracted at setup and included by C from zeldaret/oot, hardware names from GBATEK and libnds, and the tools pinned in `tools.lock`.
 
 ## License
 

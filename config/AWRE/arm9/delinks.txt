@@ -104,6 +104,10 @@ src/sdk/crt0/nitro_start_up.c:
     complete
     .text       start:0x02000afc end:0x02000b00
 
+src/sdk/crt0/build_info.c:
+    complete
+    .text       start:0x02000b00 end:0x02000b24
+
 src/game/main/main.c:
     complete
     .text       start:0x02000b24 end:0x02000cfc

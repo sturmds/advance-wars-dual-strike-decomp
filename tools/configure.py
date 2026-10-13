@@ -5,6 +5,7 @@ Pipeline:
   orig/AWRE.nds --dsd rom extract--> extract/
   config/AWRE/arm9 + extract --dsd delink--> build/delinks/**.o (original bytes)
   assets/maps/ + extracted/AWRE/assets/maps/ --tools/maps.py pack--> build/gen/maps/ (C included by src/game/ov000/map/)
+  config/AWRE/data_inc.txt + extract --tools/data_inc.py write--> extracted/AWRE/data/ (values that C files include)
   src/**.c marked `complete` in a delinks.txt --mwccarm--> build/src/**.o
                              --dsd lcf-----> build/arm9.lcf, build/objects.txt
                              --lcf_absolute.py--> ARM9_ABSOLUTE_SYMBOLS added to build/arm9.lcf
@@ -25,10 +26,12 @@ ARM7 (tools/arm7.py says why it takes extra steps):
   rom_config.yaml points at build/build/arm7.bin (arm7.py romconfig).
 """
 
+import re
 import sys
 import tomllib
 from pathlib import Path
 
+import data_inc
 import maps
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -44,7 +47,7 @@ SKREW_BIN = ".cache/tools/metroskrew/bin"
 # for DS 1.2 base package.
 CC = f"{SKREW_BIN}/mwccarm-2.0-72.exe"
 LD = f"{SKREW_BIN}/mwldarm-2.0-72.exe"
-CFLAGS = "-O4,p -proc arm946e -interworking -nostdinc -i include -i build/gen -msgstyle gcc"
+CFLAGS = "-O4,p -proc arm946e -interworking -nostdinc -i include -i build/gen -i extracted/AWRE -msgstyle gcc"
 LDFLAGS = "-proc arm946e -interworking -map closure,unused -msgstyle gcc -nodead -nostdlib -m Entry"
 
 # Some MSL files were built by an older compiler, mwccarm 2.0 build 56
@@ -55,7 +58,7 @@ CC_BY_VERSION = {"2.0-72": CC, "2.0-56": "tools/wine_cc.py"}
 
 # ARM7 (docs/awre-facts.md, "ARM7"): the same compiler, built for size.
 CC7 = CC
-CFLAGS7 = "-O4,s -proc arm7tdmi -interworking -nostdinc -i include -i build/gen -msgstyle gcc"
+CFLAGS7 = "-O4,s -proc arm7tdmi -interworking -nostdinc -i include -i build/gen -i extracted/AWRE -msgstyle gcc"
 LDFLAGS7 = "-proc arm7tdmi -interworking -map closure,unused -msgstyle gcc -nodead -nostdlib -m Entry"
 
 # Symbols with a fixed value, written into build/arm9.lcf after dsd lcf
@@ -96,6 +99,21 @@ def map_inputs() -> list[str]:
     files = sorted((ROOT / maps.ASSETS).glob("*.yaml")) + sorted((ROOT / maps.ASSETS).glob("*.txt"))
     files += sorted((ROOT / maps.EXTRACTED).rglob("*.yaml"))
     return [p.relative_to(ROOT).as_posix() for p in files] + [(maps.EXTRACTED / ".unpacked").as_posix()]
+
+
+# Data from the ROM (tools/data_inc.py, docs/workflow.md): the .inc.c files
+# `data_inc.py write` makes, and the C files that include each one.
+DATA_INC_INCLUDE = re.compile(r'^#include "(data/[^"]+\.inc\.c)"', re.M)
+
+
+def data_inc_users(sources: list[str]) -> dict[str, list[str]]:
+    """Source file -> the data_inc outputs it includes."""
+    users = {}
+    for src in sources:
+        found = DATA_INC_INCLUDE.findall((ROOT / src).read_text(errors="replace"))
+        if found:
+            users[src] = [f"extracted/AWRE/{rel}" for rel in found]
+    return users
 
 
 def config_inputs() -> list[str]:
@@ -165,6 +183,9 @@ def main() -> int:
     objs = [obj_of(src) for src in sources]
     sources7 = delinks_sources(CONFIG7)
     objs7 = [obj_of(src) for src in sources7]
+    data_inc_rows = data_inc.read_list()
+    data_inc_outputs = [(data_inc.OUT / r.rel).as_posix() for r in data_inc_rows]
+    data_inc_deps = data_inc_users(sources + sources7)
     config7 = " ".join(f"{CONFIG7.as_posix()}/{n}.txt" for n in ("delinks", "symbols", "relocs"))
     lines = [
         "ninja_required_version = 1.10",
@@ -199,6 +220,11 @@ def main() -> int:
         "rule maps",
         "  command = $python tools/maps.py pack",
         "  description = MAPS",
+        "  restat = 1",
+        "",
+        "rule data_inc",
+        "  command = $python tools/data_inc.py write --quiet",
+        "  description = DATA INC",
         "  restat = 1",
         "",
         "rule objdiff_json",
@@ -278,6 +304,9 @@ def main() -> int:
         "",
         f"build {' '.join(MAP_OUTPUTS)}: maps {' '.join(map_inputs())} | tools/maps.py",
         "",
+        f"build {' '.join(data_inc_outputs)}: data_inc {data_inc.LIST.as_posix()}"
+        f" {' '.join(data_inc.config_inputs(data_inc_rows))} | extract/config.yaml tools/data_inc.py tools/arm7.py",
+        "",
         f"build build/arm9.elf: link build/arm9.lcf build/objects.txt | $ld tools/link.py tools/lcf_align2.py {' '.join(objs)}",
         "",
         f"build objdiff.json: objdiff_json build/delink.stamp",
@@ -311,6 +340,7 @@ def main() -> int:
     table = compiler_table()
     for src, obj in zip(sources, objs):
         implicit = MAP_OUTPUTS if src in MAP_SOURCES else []
+        implicit = implicit + data_inc_deps.get(src, [])
         if src in table:
             implicit = implicit + [table[src], COMPILERS.as_posix()]
         generated = f" | {' '.join(implicit)}" if implicit else ""
@@ -319,7 +349,8 @@ def main() -> int:
             lines.append(f"  cc = {table[src]}")
         lines.append("")
     for src, obj in zip(sources7, objs7):
-        lines += [f"build {obj}: cc7 {src}", f"  out_d = {obj[:-2]}.d", ""]
+        generated = f" | {' '.join(data_inc_deps[src])}" if src in data_inc_deps else ""
+        lines += [f"build {obj}: cc7 {src}{generated}", f"  out_d = {obj[:-2]}.d", ""]
     # The Makefile runs this before every build (new src/ files have to be
     # picked up); writing only on change keeps ninja from redoing work.
     text = "\n".join(lines)

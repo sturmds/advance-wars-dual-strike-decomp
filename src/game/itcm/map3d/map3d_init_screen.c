@@ -5,24 +5,17 @@
 extern Unk_027c0280* data_027c0280;
 
 void Screen_SetGraphicsMode(int dispMode, int bgMode, int bg0Is3d);
-void G3X_Init(void); /* SDK 3D engine init (G3X_Init?) */
 void func_0210a948(void);
 void func_0210a980(void);
 void func_0210a994(void);
 void func_0210a934(void);
-void GX_SetBankForTex(int mask);
-void GX_SetBankForOBJ(int mask);
-void GX_SetBankForBG(int mask);
 void func_0210b7d4(const void* table); /* copies 32 colours to the toon table */
 
-/* 32 white colours in ITCM, after the zero block Map3d_LoadTextures clears
- * VRAM with. The original reads them through a plain address with no
- * relocation, so it is a number here. */
-#define ITCM_WHITE_TOON_TABLE ((const void*)0x01ffb97c)
+extern u16 gMap3dToonTable[32];
 
 /* Sets up the main screen for the 3D map: BG0 shows the 3D engine, layer 0
  * gets priority 3 and layers 1-3 priority 0 in the screen state, the clear
- * colour is blue (0x7c00) and the toon table all white. */
+ * colour is blue (0x7c00) and the toon table gMap3dToonTable. */
 void Map3d_InitScreen(void) {
   Screen_SetGraphicsMode(1, 0, 1);
   data_027c0280->dispCnt |= 0x100; /* BG0-BG3 and OBJ on */
@@ -54,5 +47,5 @@ void Map3d_InitScreen(void) {
   G3X_SetClearColor(0x7c00, 0, 0x7fff, 63, FALSE);
   *REG_VIEWPORT = 0xbfff0000;                        /* (0, 0) to (255, 191) */
   *REG_DISP3DCNT = (*REG_DISP3DCNT & ~0x3002) | 0x2; /* highlight shading */
-  func_0210b7d4(ITCM_WHITE_TOON_TABLE);
+  func_0210b7d4(gMap3dToonTable);
 }

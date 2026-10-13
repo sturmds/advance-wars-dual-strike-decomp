@@ -36,12 +36,11 @@ real = {
     "Reset_MasterOffAndReboot_Arm7": 0x03807424,  # data_arm7_03807424 follows (issue 0063)
     "Screen_IsTextBg": 0x01ff8f64,           # a table follows (issue 0051)
     "MTX_RotY43_": 0x021096d8,               # Thumb, two bytes of padding
+    "RangeMap_FillMoves": 0x01ffb95c,        # gMap3dClearBlock follows (was an unnamed tail)
 }
 for name, want in real.items():
     got = fn.next_start(fn.find(name))
     check(f"{name} ends at 0x{want:08x}", got == want, hex(got))
-gap = fn.trailing_gap(fn.find("RangeMap_FillMoves"))
-check("RangeMap_FillMoves reports its unnamed tail", gap == (0x01ffb95c, 0x01ffb9bc), gap)
 
 
 # A made-up module. .text runs 0x1000-0x1100.

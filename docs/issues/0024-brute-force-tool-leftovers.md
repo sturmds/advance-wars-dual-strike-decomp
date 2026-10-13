@@ -16,7 +16,7 @@ The three tools matched 1,263 functions without a model. These cases still fall 
 - `static` helpers the template calls.
 - Different operand counts (different instruction sequence at the same size).
 - No symbol for the twin base `func_020dfcc8` in the symbol map, so its family has no mapping.
-- `BuildInfo` and `func_02000afc`: a file that covers `BuildInfo` makes `dsd rom config` fail. The tool avoids it (096355df) but the delinks for that area are not modelled.
+- `BuildInfo` and `func_02000afc`: a file that covers `BuildInfo` makes `dsd rom config` fail. The tool avoids it (096355df) but the delinks for that area are not modelled. Since batch 43 `src/sdk/crt0/build_info.c` covers `BuildInfo` with its own `delinks.txt` entry and `dsd rom config` passes.
 
 ## trivial.py
 

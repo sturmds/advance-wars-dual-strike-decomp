@@ -1,0 +1,10 @@
+# Data that tools/data_inc.py writes from the ROM into
+# extracted/AWRE/data/<module>/<symbol>.inc.c, for C files to include inside
+# an initializer (docs/workflow.md, "Data from the ROM").
+#
+# module  symbol                      address     size   element type[row length]
+main      BuildInfo                   0x02000b00  0x24   u32
+itcm      gScreenPanelHBlankHandlers  0x01ff8f64  0x8    void*
+itcm      gMap3dClearBlock            0x01ffb95c  0x20   u32
+itcm      gMap3dToonTable             0x01ffb97c  0x40   u16
+itcm      gUnit3dTextureBlocks        0x01ffb9bc  0x288  u32[27]

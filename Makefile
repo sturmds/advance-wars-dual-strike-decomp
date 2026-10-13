@@ -1,7 +1,7 @@
 # Every target goes through here (D2). After cloning and linking your ROM at
-# orig/AWRE.nds: `make setup` (tools, hooks, and the map files unpacked from
-# your ROM into extracted/), then `make` and `make check`. `make release` runs
-# all of it.
+# orig/AWRE.nds: `make setup` (tools, hooks, and the map files and other data
+# unpacked from your ROM into extracted/), then `make` and `make check`.
+# `make release` runs all of it.
 
 ROM      := orig/AWRE.nds
 ROM_SHA1 := config/AWRE/rom.sha1
@@ -34,10 +34,13 @@ setup: tools assets
 tools: hooks
 	@$(PYTHON) tools/setup.py
 
-# Map files are game data: unpacked from the ROM into extracted/, never committed.
+# Map files and the data in code sections are game data: unpacked from the
+# ROM into extracted/, never committed (docs/maps.md; docs/workflow.md, "Data
+# from the ROM"). The build also rewrites the data files when they are stale.
 assets: tools extract
 	@$(MAKE) --no-print-directory dsindex
 	@$(PYTHON) tools/maps.py unpack
+	@$(PYTHON) tools/data_inc.py write
 
 hooks:
 	@if [ "$$(git config --get core.hooksPath)" != hooks ]; then \
@@ -145,6 +148,7 @@ test:
 	@$(TEST_ENV) $(PYTHON) tools/tests/test_protocheck.py
 	@$(TEST_ENV) $(PYTHON) tools/tests/test_permuter.py
 	@$(TEST_ENV) $(PYTHON) tools/tests/test_absolute.py
+	@$(TEST_ENV) $(PYTHON) tools/tests/test_data_inc.py
 	@$(TEST_ENV) $(PYTHON) tools/tests/test_diff_rows.py
 	@$(TEST_ENV) $(PYTHON) tools/tests/test_align2.py
 	@$(TEST_ENV) $(PYTHON) tools/tests/test_arm7.py

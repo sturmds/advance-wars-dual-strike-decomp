@@ -111,5 +111,7 @@ Dma_LoadChannelAndSettle kind:function(arm,size=0x60) addr:0x01ffdd1c
 MIi_DmaSetParams kind:function(arm,size=0x38) addr:0x01ffdd7c
 Dma_LoadChannelMaskedSettle kind:function(arm,size=0x74) addr:0x01ffddb4
 Dma_LoadChannelMasked kind:function(arm,size=0x50) addr:0x01ffde28
-data_01ff8f64 kind:data(any) addr:0x01ff8f64
+gScreenPanelHBlankHandlers kind:data(any) addr:0x01ff8f64
 gUnit3dTextureBlocks kind:data(any) addr:0x01ffb9bc
+gMap3dClearBlock kind:data(any) addr:0x01ffb95c
+gMap3dToonTable kind:data(any) addr:0x01ffb97c

@@ -17,5 +17,8 @@ fi
 mkdir -p "$here/orig"
 ln -sfn "$(readlink -f "$main/orig/AWRE.nds")" "$here/orig/AWRE.nds"
 [ -e "$here/.cache" ] || ln -s "$main/.cache" "$here/.cache"
-[ -e "$here/extracted" ] || ln -s "$main/extracted" "$here/extracted"
-echo "wt_setup: linked orig/AWRE.nds, .cache and extracted from $main"
+# The maps are shared. extracted/AWRE/data stays per worktree: the build
+# rewrites it from config/, which can differ between branches.
+mkdir -p "$here/extracted/AWRE"
+[ -e "$here/extracted/AWRE/assets" ] || ln -s "$main/extracted/AWRE/assets" "$here/extracted/AWRE/assets"
+echo "wt_setup: linked orig/AWRE.nds, .cache and extracted/AWRE/assets from $main"

@@ -45,7 +45,8 @@ Tracked as `docs/issues/0007-dsd-init-abort.md`.
 ## dsd: missed an ITCM load relocation in func_0201c8ec
 
 - **Seen:** 2026-10-11, in `func_0201c8ec` (`EventScript_ShowPicture`). dsd did not find the load at `0x0201c9f0` that points into ITCM at `0x01ff8f64`, so the build had no relocation for it.
-- **Workaround:** batch 21 group `m01` added `from:0x0201c9f0 kind:load to:0x01ff8f64 module:itcm` to `relocs.txt` and `data_01ff8f64` to the ITCM `symbols.txt` by hand (landed in `7d9ec6c78`). Look for the same miss in other functions that read ITCM data.
+- **Workaround:** batch 21 group `m01` added `from:0x0201c9f0 kind:load to:0x01ff8f64 module:itcm` to `relocs.txt` and `data_01ff8f64` (now `gScreenPanelHBlankHandlers`) to the ITCM `symbols.txt` by hand (landed in `7d9ec6c78`). Look for the same miss in other functions that read ITCM data.
+- **Seen again:** 2026-10-13 (batch 43), when the ITCM tables at 0x01ffb95c went into C: dsd had no relocation for the loads at `0x01ffd2f8` (`Map3d_LoadTextures`, to `gMap3dClearBlock` at 0x01ffb95c) and `0x01ffd644` (`Map3d_InitScreen`, to `gMap3dToonTable` at 0x01ffb97c); the C used the plain addresses. Both are now in the ITCM `relocs.txt`. A scan of every ARM9 module for words that point into the tables now in C found no other miss.
 
 ## dsd: no ARM7 programs, and no branches above 0x03000000
 
