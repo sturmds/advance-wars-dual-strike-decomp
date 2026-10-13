@@ -18,7 +18,8 @@
     fn.py finish NAME                          mark its file `complete` (linked from our C)
     fn.py rename OLD NEW                       rename a symbol in symbols.txt, src/ and include/;
                                                moves src/.../OLD.c to NEW.c as well, and updates
-                                               config/AWRE/names-provenance.csv
+                                               config/AWRE/names-provenance.csv, asm_functions.txt
+                                               and the moved file's compilers.txt line
 
 Everything reads config/AWRE/arm9/**/{symbols,relocs,delinks}.txt, and
 config/AWRE/arm7/ for the `arm7` module (one module for ARM7's three parts;
@@ -59,6 +60,8 @@ CONFIG = ROOT / "config/AWRE/arm9"
 CONFIG7 = ROOT / "config/AWRE/arm7"
 INTERESTING = ROOT / "config/AWRE/interesting.txt"
 PROVENANCE = ROOT / "config/AWRE/names-provenance.csv"
+COMPILERS = ROOT / "config/AWRE/compilers.txt"
+ASM_FUNCTIONS = ROOT / "config/AWRE/asm_functions.txt"
 OBJDIFF = ROOT / ".cache/tools/objdiff-cli/objdiff-cli"
 OBJDUMP = "arm-none-eabi-objdump"
 
@@ -566,6 +569,12 @@ def cmd_rename(args) -> int:
                 d = mod.dir / "delinks.txt"
                 d.write_text(d.read_text().replace(f"\n{path}:\n", f"\n{new_path}:\n"))
                 print(f"moved {path} -> {new_path}")
+                # A file built with another compiler keeps it after the move.
+                text = COMPILERS.read_text()
+                new_text = re.sub(rf"^{re.escape(path)} ", f"{new_path} ", text, flags=re.M)
+                if new_text != text:
+                    COMPILERS.write_text(new_text)
+                    print(f"updated {COMPILERS.relative_to(ROOT)}")
     for p in list((ROOT / "src").rglob("*.[ch]")) + list((ROOT / "include").rglob("*.h")):
         text = p.read_text()
         if word.search(text):
@@ -577,6 +586,16 @@ def cmd_rename(args) -> int:
     if new_text != text:
         PROVENANCE.write_text(new_text)
         print(f"updated {PROVENANCE.relative_to(ROOT)}")
+    # The list of asm functions names each one in its second column; keep
+    # the reason column where it was.
+    def asm_row(m: re.Match) -> str:
+        width = len(m.group(2)) + len(m.group(3))
+        return m.group(1) + new.ljust(width - 1) + " "
+    text = ASM_FUNCTIONS.read_text()
+    new_text = re.sub(rf"^(\S+\s+)({re.escape(old)})(\s+)", asm_row, text, flags=re.M)
+    if new_text != text:
+        ASM_FUNCTIONS.write_text(new_text)
+        print(f"updated {ASM_FUNCTIONS.relative_to(ROOT)}")
     print(f"renamed {old} -> {new}")
     return 0
 
