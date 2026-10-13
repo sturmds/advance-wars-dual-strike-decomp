@@ -23,6 +23,7 @@ src/game/ov004/func_ov004_022ada10.c:
 src/game/ov004/ov004_init3d.c:
     complete
     .text       start:0x022ada34 end:0x022adb18
+    .bss        start:0x022bf140 end:0x022bf14c
 
 src/game/ov004/ov004_setup_ortho3d.c:
     complete
@@ -63,6 +64,7 @@ src/game/ov004/ov004_task_reset_state.c:
 src/game/ov004/ov004_alloc_state.c:
     complete
     .text       start:0x022ae7c8 end:0x022ae83c
+    .bss        start:0x022bf14c end:0x02353960
 
 src/game/ov004/ov004_task_run_scene_timeline.c:
     complete

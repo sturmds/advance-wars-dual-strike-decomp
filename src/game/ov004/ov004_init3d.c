@@ -15,7 +15,7 @@ void G3i_LookAt_(const void* a, const void* b, void* c, int d, int e);
 
 extern u8 data_ov004_022bdcec[];
 extern u8 data_ov004_022bdce0[];
-extern u8 data_ov004_022bf140[];
+static u8 data_ov004_022bf140[0xc]; /* size: up to the next symbol */
 
 /* Sets up the 3D engine for overlay 4: a projection, then light 0 and the
  * material colours, an identity matrix, and the polygon attributes. */

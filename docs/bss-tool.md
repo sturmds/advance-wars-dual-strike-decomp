@@ -95,12 +95,16 @@ python3 tools/bss.py plan MODULE [--range LO-HI] --write
 
 Each step: `make release` passes, decomp.dev's linked data goes up by the module's `.bss`, and objdiff scores the new units 100% matched.
 
-## Open questions for the pilot
+## What the ov004 pilot found
 
-1. Can a `delinks.txt` entry hold `.text` and `.bss` ranges whose order against other files differs between sections? The linker script lists each section's objects separately; check whether dsd accepts it. If not, every run gets a new file.
-2. Can one file hold more than one run? Test whether `#pragma section` groups, or another pragma, keep their order relative to each other through mwcc's sort, and whether the linker script can place them. If yes, R3 can merge runs that share users.
-3. Does mwccarm 2.0 accept `__attribute__((aligned(32)))` on a variable, or something else that does the same?
-4. Does objdiff count alias symbols inside a `.bss` variable against the unit's score? The header table scored 100% with 26 inside it, but check `.bss`.
+`python3 tools/bss.py plan ov004 --write` put both of ov004's runs into existing files, with no new file: `data_ov004_022bf140` (12 bytes) into `ov004_init3d.c`, its only user, and the other seven variables (608,276 bytes) into `ov004_alloc_state.c`, which uses all seven. The ROM matches, and objdiff scores both units 100%: decomp.dev's linked and matched data went from 188,932 to 797,220 bytes (6.02% to 25.4%). Four variables that only their file names became `static`; objdiff matches them by name all the same. Run again, the tool finds nothing to do, and run from a clean tree it writes the same bytes.
+
+The questions the pilot had to answer, and how each was tested:
+
+1. **A `.bss` range in a file with `.text`: yes, while the order agrees.** dsd sorts the files of each section by address and links them in one order (`sort_files` in dsd's `config/delinks.rs`). Giving `ov004_init3d.c` (`.text` before `ov004_alloc_state.c`) the `.bss` after `ov004_alloc_state.c`'s made `dsd delink` stop with "Link order cycle detected while sorting delink files". In the right order it builds, as the pilot shows. `bss.py` runs the same check (`link_order_ok`) before it hosts a run and makes a new file when the check fails.
+2. **More than one run in a file: yes.** The compiler sorts all of a file's variables together, whatever their section, but each section keeps its variables in that sorted order. So run N goes in its own section through `#pragma define_section` (`include/bss_run.h`), and the linker script lists `file.o(.bss.runN)` after `file.o(.bss)`. Tested by building ov004's two runs in one scratch file: the ROM matched. The section name matters to objdiff: `.bss_run1` linked and matched the ROM, but objdiff left its variables unmatched (matched data unchanged); `.bss.run1` scored 100%, so objdiff reads `.bss.N` as `.bss`. mwldarm puts a section the script does not name at address 0 without an error, so `bss.py lcf` adds the lines from the sizes in `symbols.txt`. `test_bss.py` compiles a file of three runs. The pilot did not need it: its two runs have no users in common.
+3. **Alignment: `__attribute__((aligned(32)))` works.** mwccarm 2.0-72 gives the variable's section alignment 32, and in a test link with `ALIGNALL(4)` mwldarm placed it on a 32-byte boundary after a 4-byte variable. `__declspec(align(32))` is a syntax error; `#pragma align(32)` changes nothing. main has 8 such variables, arm7 2; ov004 none.
+4. **Aliases count against the unit unless their size is 0.** ov004 has no alias, so the test added one to the pilot by hand and reverted it: `data_ov004_022bf15a`, inside `data_ov004_022bf158`. With `kind:bss` and no size, dsd gives it the 2 bytes up to the next symbol, our object has nothing there, and objdiff scored `ov004_alloc_state`'s `.bss` 99.99967% and counted none of its 608,276 bytes as matched. With `kind:bss(size=0x0)` the unit scored 100%. So the tool writes aliases with size 0 and leaves `relocs.txt` alone; no alias has to go.
 
 ## Not in scope
 
