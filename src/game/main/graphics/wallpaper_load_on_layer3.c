@@ -2,6 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "sdk/os.h"
+#include "game/wallpaper_task.h"
 
 void Gfx_RequestLayerCopy(int bg);
 void Data_Unpack(const void* src, void* dest);
@@ -22,7 +23,6 @@ extern Unk_027c0288 data_027c0288;
 extern char data_02159648[]; /* "/ohashi" */
 extern const char*
     data_021595cc[];        /* "res_wall_default", "res_wall_cathy", ... */
-extern u16 data_0229c684[]; /* per wallpaper: offset of its tiles in the file */
 extern u16 data_021593fc[]; /* per wallpaper: offset of its tile map */
 extern u16 data_021593bc[]; /* per wallpaper: offset of its palette */
 

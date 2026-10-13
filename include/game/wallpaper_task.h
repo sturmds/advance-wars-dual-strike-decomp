@@ -24,4 +24,7 @@ typedef struct WallpaperSingleTask {
   s16 scrollY; /* layer 3 y scroll, one step every 2 frames, 0 to 320 */
 } WallpaperSingleTask;
 
+/* per wallpaper: offset of its tiles in the file */
+extern u16 data_0229c684[0x20];
+
 #endif
