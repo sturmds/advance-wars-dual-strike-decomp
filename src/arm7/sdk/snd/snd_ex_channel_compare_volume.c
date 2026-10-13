@@ -1,7 +1,7 @@
 #include "sdk/snd_seq.h"
 
 /* Right shift the hardware applies for each volume shift setting: 0, 1, 2, 4 bits. */
-extern const u8 gSndVolumeShiftBits[4];
+extern u8 gSndVolumeShiftBits[4];
 
 /* Orders two channels by their output volume: 1 when a is quieter, -1 when louder, 0 when equal. */
 int SndExChannel_CompareVolume(SndExChannel* a, SndExChannel* b) {

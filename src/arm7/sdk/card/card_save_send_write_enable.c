@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/card_arm7.h"
 
-extern const u8 data_arm7_038072a8; /* save chip command 6, write enable */
+extern u8 gCardSaveCmdWriteEnable; /* save chip command 6, write enable */
 
 void func_arm7_038032a4(u32 byteCount);
 void CardSpi_ClockByteOut(CARDiSpiTransfer* transfer);
@@ -12,6 +12,6 @@ void CardSave_WaitUntilIdle(int minWait, int maxWait);
 /* Sends the write enable command, which the save chip needs before each write or erase. */
 void CardSave_SendWriteEnable(void) {
   func_arm7_038032a4(1);
-  CardSpi_MoveBytes(&data_arm7_038072a8, NULL, 1, CardSpi_ClockByteOut);
+  CardSpi_MoveBytes(&gCardSaveCmdWriteEnable, NULL, 1, CardSpi_ClockByteOut);
   CardSave_WaitUntilIdle(0, 0);
 }

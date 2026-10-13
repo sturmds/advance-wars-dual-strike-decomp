@@ -12,8 +12,8 @@ extern OSMessage data_arm7_027d6c98[4];
 extern OSMessageQueue data_arm7_027d6ca8;
 extern OSMessage data_arm7_027d6cbc[32];
 
-extern OSThread data_arm7_0380749c;
-extern OSThread data_arm7_03807424;
+extern OSThread gWmspWlReceiveThread;
+extern OSThread gWmspRequestThread;
 
 /* Bottom of the first thread's stack and top of the second's. */
 extern u8 data_arm7_027d7d3c[];
@@ -47,12 +47,12 @@ void Wmsp_Init(Unk_arm7_038057d4* params, Unk_arm7_038057d4_2* priorities) {
   Mutex_Clear_Arm7(&data_arm7_027d813c);
 
   /* The reply mutex starts where this 0x400-byte stack ends, so the thread gets its address as stack top. */
-  Thread_Spawn_Arm7(&data_arm7_0380749c, Wmsp_WlReceiveThread, NULL,
+  Thread_Spawn_Arm7(&gWmspWlReceiveThread, Wmsp_WlReceiveThread, NULL,
                     &data_arm7_027d813c, 0x400, priorities->unk_04);
-  Thread_MakeReady_Arm7(&data_arm7_0380749c);
-  Thread_Spawn_Arm7(&data_arm7_03807424, Wmsp_RequestThread, NULL,
+  Thread_MakeReady_Arm7(&gWmspWlReceiveThread);
+  Thread_Spawn_Arm7(&gWmspRequestThread, Wmsp_RequestThread, NULL,
                     data_arm7_027d7d3c, 0x1000, priorities->unk_0c);
-  Thread_MakeReady_Arm7(&data_arm7_03807424);
+  Thread_MakeReady_Arm7(&gWmspRequestThread);
 
   work = (u8*)WMSP_WORK;
   for (i = 0; i < 16; i++) {

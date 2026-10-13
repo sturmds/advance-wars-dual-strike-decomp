@@ -1,8 +1,5 @@
 #include "sdk/snd_seq.h"
 
-/* Volume of each 0-127 level in 1/10 dB: -723 for 0 up to 0 for 127. */
-extern s16 data_arm7_03807180[128];
-
 /*
  * Moves the envelope one tick when update is set (attack, then decay down to the sustain level, then hold;
  * release falls until the sound is stopped) and returns its attenuation in 1/10 dB steps.
@@ -18,7 +15,7 @@ int SndExChannel_UpdateEnvelope(SndExChannel* channel, BOOL update) {
         }
         break;
       case ENV_STAGE_FALL: {
-        int sustain = data_arm7_03807180[channel->sustain] << 7;
+        int sustain = gSndVolumeDecibels[channel->sustain] << 7;
 
         channel->envAttenuation -= channel->decay;
         if (channel->envAttenuation <= sustain) {

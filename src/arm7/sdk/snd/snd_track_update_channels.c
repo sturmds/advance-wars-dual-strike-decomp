@@ -12,8 +12,8 @@ void SndTrack_UpdateChannels(SndTrack* track, SndPlayer* player, BOOL release) {
   SndExChannel* channel;
 
   volume =
-      data_arm7_03807180[player->volume] +
-      (data_arm7_03807180[track->volume] + data_arm7_03807180[track->volume2]);
+      gSndVolumeDecibels[player->volume] +
+      (gSndVolumeDecibels[track->volume] + gSndVolumeDecibels[track->volume2]);
   fader = track->extFader + player->extFader;
   /* bend -128..127 scaled to bendRange semitones of 64 pitch units each */
   pitch = track->pitchBend;

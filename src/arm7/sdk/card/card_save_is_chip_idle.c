@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/card_arm7.h"
 
-extern const u8 data_arm7_038072ac;
+extern u8 gCardSaveCmdReadStatus;
 
 void func_arm7_038032a4(u32 byteCount);
 void CardSpi_ClockByteOut(CARDiSpiTransfer* transfer);
@@ -17,7 +17,7 @@ int CardSave_IsChipIdle(void) {
   u8 status;
 
   func_arm7_038032a4(2);
-  CardSpi_MoveBytes(&data_arm7_038072ac, NULL, 1, CardSpi_ClockByteOut);
+  CardSpi_MoveBytes(&gCardSaveCmdReadStatus, NULL, 1, CardSpi_ClockByteOut);
   CardSpi_MoveBytes(NULL, &status, 1, CardSpi_ClockByteIn);
   CardSave_WaitUntilIdle(0, 0);
   return (status & SAVE_CHIP_BUSY_WRITING) == 0;

@@ -2,15 +2,19 @@
     .rodata     start:0x02380158 end:0x02380160 kind:rodata align:4
     .data       start:0x02380160 end:0x02380170 kind:data align:32
     .bss        start:0x02380180 end:0x02380180 kind:bss align:32
-    .text       start:0x027c0000 end:0x027d65a8 kind:code align:32
-    .rodata     start:0x027d65a8 end:0x027d65c0 kind:rodata align:4
-    .data       start:0x027d65c0 end:0x027d6c44 kind:data align:32
+    .text       start:0x027c0000 end:0x027d6570 kind:code align:32
+    .rodata     start:0x027d6570 end:0x027d661c kind:rodata align:4
+    .data       start:0x027d661c end:0x027d6c44 kind:data align:4
     .bss        start:0x027d6c60 end:0x027d8518 kind:bss align:32
     .text       start:0x037f8000 end:0x0380773c kind:code align:32
     .rodata     start:0x0380773c end:0x03807740 kind:rodata align:4
     .data       start:0x03807740 end:0x03807888 kind:data align:32
     .sbss       start:0x03807888 end:0x038078a0 kind:bss align:4
     .bss        start:0x038078a0 end:0x0380b004 kind:bss align:32
+
+src/arm7/sdk/wm/wmsp_request_handlers.c:
+    complete
+    .rodata     start:0x027d6570 end:0x027d661c
 
 src/arm7/sdk/crt0/entry_arm7.c:
     complete
@@ -4044,6 +4048,26 @@ src/arm7/sdk/runtime/u32_div_f_arm7.c:
     complete
     .text       start:0x03806f58 end:0x0380713c
 
+src/arm7/sdk/os/crc16_table.c:
+    complete
+    .text       start:0x0380713c end:0x0380715c
+
+src/arm7/sdk/snd/snd_volume_tables.c:
+    complete
+    .text       start:0x0380715c end:0x03807280
+
+src/arm7/sdk/snd/snd_ex_channel_tables.c:
+    complete
+    .text       start:0x03807280 end:0x038072a8
+
+src/arm7/sdk/card/card_request_tables.c:
+    complete
+    .text       start:0x038072a8 end:0x038072e4
+
+src/arm7/sdk/os/irq_nest_priorities.c:
+    complete
+    .text       start:0x038072e4 end:0x03807394
+
 src/arm7/sdk/mi/reset_handshake_and_reboot_arm7.c:
     complete
     .text       start:0x03807394 end:0x03807408
@@ -4051,6 +4075,10 @@ src/arm7/sdk/mi/reset_handshake_and_reboot_arm7.c:
 src/arm7/sdk/os/reset_master_off_and_reboot_arm7.c:
     complete
     .text       start:0x03807408 end:0x03807424
+
+src/arm7/sdk/wm/wmsp_threads.c:
+    complete
+    .text       start:0x03807424 end:0x03807514
 
 src/arm7/sdk/os/pick_wireless_channels.c:
     complete

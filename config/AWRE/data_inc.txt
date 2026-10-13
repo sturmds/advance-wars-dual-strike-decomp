@@ -8,3 +8,12 @@ itcm      gScreenPanelHBlankHandlers  0x01ff8f64  0x8    void*
 itcm      gMap3dClearBlock            0x01ffb95c  0x20   u32
 itcm      gMap3dToonTable             0x01ffb97c  0x40   u16
 itcm      gUnit3dTextureBlocks        0x01ffb9bc  0x288  u32[27]
+arm7      gCrc16NibbleTable           0x0380713c  0x20   u16
+arm7      gSndSineQuarterTable        0x0380715c  0x21   s8
+arm7      gSndVolumeDecibels          0x03807180  0x100  s16
+arm7      gSndVolumeShiftBits         0x03807280  0x4    u8
+arm7      gSndExChannelAllocOrder     0x03807284  0x10   u8
+arm7      gSndAttackTable             0x03807294  0x13   u8
+arm7      gCardSaveCmdWriteEnable     0x038072a8  0x1    u8
+arm7      gCardSaveCmdReadStatus      0x038072ac  0x1    u8
+arm7      gOsNestedIrqPriorities      0x038072e4  0xb0   u32[2]

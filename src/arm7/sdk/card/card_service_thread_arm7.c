@@ -4,7 +4,7 @@
 #include "sdk/pxi.h"
 
 /* Request handlers, indexed by CARDiArm7Common.command. */
-extern void (*const data_arm7_038072b0[])(CARDiArm7Common* common);
+extern void (*gCardRequestHandlers[])(CARDiArm7Common* common);
 
 /*
  * Card thread. Sleeps until the other CPU sends a request or a task is set.
@@ -36,7 +36,7 @@ void Card_ServiceThread_Arm7(void* arg) {
 
     if (request) {
       common->cmd->result = CARD_RESULT_SUCCESS;
-      data_arm7_038072b0[common->command](common);
+      gCardRequestHandlers[common->command](common);
       while (Fifo_PushWord_Arm7(FIFO_TAG_CARD_SERVICE, 1, 1) < 0) {
       }
       interrupts = Cpu_MaskIrq_Arm7();

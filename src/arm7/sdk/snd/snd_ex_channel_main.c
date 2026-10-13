@@ -45,7 +45,7 @@ void SndExChannel_Main(BOOL periodic) {
       continue;
     }
 
-    volume += data_arm7_03807180[channel->velocity];
+    volume += gSndVolumeDecibels[channel->velocity];
     pitch += (channel->key - channel->originalKey) << 6;
 
     volume += SndExChannel_UpdateEnvelope(channel, periodic);
