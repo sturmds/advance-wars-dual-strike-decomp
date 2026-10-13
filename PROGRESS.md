@@ -12,13 +12,13 @@ add both CPUs.
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
 | ARM9 game | 6697 / 6700 | 1552772 / 1553840 | 99.93% | 0 | 0 |
-| ARM9 SDK/library | 648 / 833 | 110712 / 135226 | 81.87% | 176 | 20718 |
-| ARM9 all | 7345 / 7533 | 1663484 / 1689066 | 98.49% | 176 | 20718 |
+| ARM9 SDK/library | 648 / 833 | 110716 / 135230 | 81.87% | 176 | 20718 |
+| ARM9 all | 7345 / 7533 | 1663488 / 1689070 | 98.49% | 176 | 20718 |
 | ARM7 SDK/library | 950 / 1020 | 149188 / 154300 | 96.69% | 69 | 4960 |
 | ARM7 all | 950 / 1020 | 149188 / 154300 | 96.69% | 69 | 4960 |
 | game | 6697 / 6700 | 1552772 / 1553840 | 99.93% | 0 | 0 |
-| SDK/library | 1598 / 1853 | 259900 / 289526 | 89.77% | 245 | 25678 |
-| all | 8295 / 8553 | 1812672 / 1843366 | 98.33% | 245 | 25678 |
+| SDK/library | 1598 / 1853 | 259904 / 289530 | 89.77% | 245 | 25678 |
+| all | 8295 / 8553 | 1812676 / 1843370 | 98.33% | 245 | 25678 |
 
 ## By module
 
@@ -27,7 +27,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
 | main | game | 5179 / 5180 | 1082076 / 1082632 | 99.95% | 0 |
-| main | SDK/library | 641 / 822 | 109800 / 133690 | 82.13% | 172 |
+| main | SDK/library | 641 / 822 | 109804 / 133694 | 82.13% | 172 |
 | itcm | game | 102 / 102 | 21896 / 21896 | 100.00% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -50,7 +50,7 @@ has no function, so it is a little larger than the totals above (issue 0071).
 
 | Module | Code | Decompiled | Fully linked | Functions matched |
 |---|---:|---:|---:|---:|
-| main | 1216382 | 97.58% | 97.99% | 5819 / 6004 |
+| main | 1216386 | 97.58% | 97.99% | 5819 / 6004 |
 | itcm | 24088 | 94.69% | 94.69% | 109 / 115 |
 | ov000 | 25300 | 98.81% | 98.81% | 119 / 120 |
 | ov001 | 7472 | 100.00% | 100.00% | 76 / 76 |
@@ -60,7 +60,7 @@ has no function, so it is a little larger than the totals above (issue 0071).
 | ov005 | 96684 | 100.00% | 100.00% | 266 / 266 |
 | ov006 | 105588 | 100.00% | 100.00% | 321 / 321 |
 | arm7 | 155236 | 96.10% | 96.10% | 950 / 1038 |
-| all | 1845018 | 97.98% | 98.25% | 8294 / 8575 |
+| all | 1845022 | 97.98% | 98.25% | 8294 / 8575 |
 
 ## Partial functions
 
