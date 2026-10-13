@@ -1,10 +1,8 @@
 #include "types.h"
 #include "game/co_data.h"
-
-extern u32 gCoEquippedSkills[CO_COUNT][4][4];
+#include "game/skills.h"
 
 void Skills_Clear(u32* skills);
-void PartnerBoost2(u32* skills, int id);
 
 /* Replaces the skills a CO has equipped in one set with the ids in `list`
  * (ended by 0xff). */

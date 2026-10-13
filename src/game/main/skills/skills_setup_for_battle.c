@@ -2,6 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/co_data.h"
+#include "game/skills.h"
 #include "game/map_header.h"
 #include "game/battle_save.h"
 
@@ -18,7 +19,6 @@ extern u32 gLinkPlay;
 static u32 data_022a72b8[4];
 /* skills a tag partner lends, per player and CO slot */
 BattleSaveSkillSet data_022a72c8[5][2];
-/* also declared in src/game/main/link/link_skill_sync_task_init.c and 5 more */
 u32 gCoEquippedSkills[CO_COUNT][4][4];
 extern u32 gBattleSkillSets[4][2][4];
 /* Battle skill sets, indexed by player (1-4): gBattleSkillSets starts at player 1. */

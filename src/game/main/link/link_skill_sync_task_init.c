@@ -1,11 +1,11 @@
 #include "types.h"
 #include "game/co_data.h"
+#include "game/skills.h"
 #include "game/Unk_02080440.h"
 #include "game/link_sync_task.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u32 gCoEquippedSkills[CO_COUNT][4][4];
 
 void* Mem_Alloc(u32 size);
 int Co_GetForceRankSetIndex(int coId, int player);

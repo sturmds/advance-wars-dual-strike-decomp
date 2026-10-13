@@ -7,7 +7,6 @@ u8* ForceRank_GetSavedSet(int mode, int co,
                           int set); /* a set's saved skill list, or NULL */
 
 /* Skills each CO has equipped in each set, as Player.skills-style bitfields. */
-extern u32 gCoEquippedSkills[CO_COUNT][4][4];
 
 /* Writes every CO's equipped skill bitfields into the saved skill lists of
  * `mode`: up to 4 skill ids per set, ended by 0 when fewer. */

@@ -2,6 +2,7 @@
 #define GAME_SKILLS_H
 
 #include "types.h"
+#include "game/co_data.h"
 
 /* Skill ids in Player.skills, as passed to
  * CheckSkillsEquipped. Id N is bit (N - 1) & 31 of word (N - 1) >> 5.
@@ -72,5 +73,8 @@
 
 BOOL CheckSkillsEquipped(const u32* skills, int id);
 void PartnerBoost2(u32* skills, int id); /* turns skill id on */
+
+/* Equipped skills of each CO, per Force Rank set: 4 words of skill bits. */
+extern u32 gCoEquippedSkills[CO_COUNT][4][4];
 
 #endif

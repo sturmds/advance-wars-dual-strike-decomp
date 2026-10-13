@@ -1,12 +1,12 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/co_data.h"
+#include "game/skills.h"
 #include "game/player.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern u32 gBattleSkillSets[4][2][4];
-extern u32 gCoEquippedSkills[CO_COUNT][4][4];
 
 void Skills_Copy(const u32* src, u32* dst);
 
