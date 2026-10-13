@@ -125,21 +125,26 @@ emu-smoke: shift
 # needed (test_ds.py, test_pragmas.py and test_absolute.py use the compiler
 # from make setup; test_ds.py checks more
 # when extract/ exists).
+# Git exports GIT_DIR, GIT_INDEX_FILE and others to hooks, so a test run from
+# pre-commit would send the git commands meant for a throwaway repo to the
+# repository being committed (issue 0076). TEST_ENV drops every GIT_ variable
+# from the environment except GIT_EDITOR.
+TEST_ENV = env $(foreach v,$(filter-out GIT_EDITOR,$(filter GIT_%,$(.VARIABLES))),$(if $(filter environment%,$(origin $(v))),-u $(v)))
 test:
-	@$(PYTHON) tools/tests/test_landing.py
-	@$(PYTHON) tools/tests/test_propagate.py
-	@$(PYTHON) tools/tests/test_loop_state.py
-	@$(PYTHON) tools/tests/test_fnshow.py
-	@$(PYTHON) tools/tests/test_fnadd.py
-	@$(PYTHON) tools/tests/test_ds.py
-	@$(PYTHON) tools/tests/test_pragmas.py
-	@$(PYTHON) tools/tests/test_protocheck.py
-	@$(PYTHON) tools/tests/test_permuter.py
-	@$(PYTHON) tools/tests/test_absolute.py
-	@$(PYTHON) tools/tests/test_align2.py
-	@$(PYTHON) tools/tests/test_arm7.py
-	@$(PYTHON) tools/tests/test_ranking.py
-	@$(PYTHON) tools/tests/test_portable_c.py
+	@$(TEST_ENV) $(PYTHON) tools/tests/test_landing.py
+	@$(TEST_ENV) $(PYTHON) tools/tests/test_propagate.py
+	@$(TEST_ENV) $(PYTHON) tools/tests/test_loop_state.py
+	@$(TEST_ENV) $(PYTHON) tools/tests/test_fnshow.py
+	@$(TEST_ENV) $(PYTHON) tools/tests/test_fnadd.py
+	@$(TEST_ENV) $(PYTHON) tools/tests/test_ds.py
+	@$(TEST_ENV) $(PYTHON) tools/tests/test_pragmas.py
+	@$(TEST_ENV) $(PYTHON) tools/tests/test_protocheck.py
+	@$(TEST_ENV) $(PYTHON) tools/tests/test_permuter.py
+	@$(TEST_ENV) $(PYTHON) tools/tests/test_absolute.py
+	@$(TEST_ENV) $(PYTHON) tools/tests/test_align2.py
+	@$(TEST_ENV) $(PYTHON) tools/tests/test_arm7.py
+	@$(TEST_ENV) $(PYTHON) tools/tests/test_ranking.py
+	@$(TEST_ENV) $(PYTHON) tools/tests/test_portable_c.py
 
 clean:
 	rm -rf build build.ninja .ninja_log .ninja_deps

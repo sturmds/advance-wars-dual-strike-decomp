@@ -19,6 +19,12 @@ import time
 import unittest
 from pathlib import Path
 
+# Git exports GIT_DIR, GIT_INDEX_FILE and others to hooks. Run from a hook,
+# every git command below, and the tools it starts, would go to the
+# repository being committed instead of the throwaway one (issue 0076).
+for _name in [n for n in os.environ if n.startswith("GIT_") and n != "GIT_EDITOR"]:
+    del os.environ[_name]
+
 TOOLS = Path(__file__).resolve().parent.parent
 COMPILER = TOOLS.parent / ".cache/tools/metroskrew/bin/mwccarm-2.0-72.exe"
 needs_compiler = unittest.skipUnless(COMPILER.exists(), "needs mwccarm in .cache (make setup)")
@@ -42,6 +48,12 @@ class Repo:
     def __init__(self, path: Path):
         self.path = path
         self.git("init", "-q", "-b", "mainline")
+        gitdir = Path(self.git("rev-parse", "--absolute-git-dir")).resolve()
+        if not gitdir.is_relative_to(path.resolve()):
+            # unittest catches SystemExit, so stop the whole run.
+            print(f"test_landing.py: git resolves {path} to {gitdir}, outside the test's "
+                  "directory; stopping before any test writes there", file=sys.stderr)
+            os._exit(3)
         self.git("config", "user.name", "test")
         self.git("config", "user.email", "test@example.com")
         self.git("config", "core.hooksPath", str(path / ".no-hooks"))
