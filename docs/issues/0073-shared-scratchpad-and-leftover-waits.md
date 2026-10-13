@@ -14,3 +14,7 @@
 ## Fix
 
 Not made. Add one line to the group prompt template (scratch files in `<scratchpad>/<group>/`, no `pgrep -f` self-matching waits) and make the prompt writer use repository-relative paths.
+
+## Batch 39
+
+The same fault came back: the orchestrator killed `pgrep -f` wait loops left by finished agents, and one of the killed loops was first taken for a running agent's. The rule is still missing from the group prompt template.
