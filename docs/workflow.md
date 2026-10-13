@@ -141,6 +141,7 @@ Each line: the rewrite, then the functions it matched.
 - Read it once into a local, and use the local only where the original keeps it in a register (BattleCells_RunImpactList: `side` only for the side argument; Save_WriteRecord: the part count read once and stored back).
 - Under `opt_common_subs off`, keep in a local the index the original holds in a register (CombatSetup_AddShopButtons).
 - Kept across a call: write the shared part out the same way in both uses, `(u32)WIFI_PACKET_RAM + cursor * 2`, and mwcc keeps `cursor * 2` in a register (WifiTask_DrainRxRing).
+- The original hoists row addresses out of the loops and ours leaves them in the inner loop: write each as `((base + origin) + row * stride)[col]` and run `pragmas.py` on that form; `opt_loop_invariants off` hoisted them in the original's order (Ov004_BlitBlockWithFlags).
 
 **Part of an address is shared differently** (the original shares one product and rebuilds the rest, or the reverse)
 
@@ -175,7 +176,9 @@ Each line: the rewrite, then the functions it matched.
 - A narrowed local whose mask lands in the wrong register: update the parameter in place (`y += 8;`) and cast `(u8)y` at each use (ResultPoint_DrawPanel). A shift temporary in a parameter's register: store it in a `u16` local (Window_DrawFrameMiddleRow).
 - A constant the original keeps in a callee-saved register: start a variable at the constant and update it in place, `list = 5; ... list -= d;` (DigitSprite_QueuePopIn).
 - Callee-saved registers handed out in another order, and random declaration orders (`permute.py`) do not find it: move one or two declaration lines to every position, keep the best each round, and repeat (WMSP_StartScanEx, 98.4% to a match). mwcc can hand them out in reverse declaration order: func_021162d8 needed `len`, moved to function scope, declared before `dst` (5 differ to 0).
+- A value that keeps the same register over every declaration order may be one to a value set by a ternary: set it with an if/else statement instead, then sweep declaration orders again (SendQueue_DropChildren: the queue link set by an if/else at the bottom of the loop).
 - A named pointer local whose stack slot in the original sits among the compiler temporaries: the original had no local. Drop it and read through the global macro at each use (`STATE`), and read memory again where the original does (`unk_508[...]` instead of `slot`) (AiBuild_RateSiteDanger, 26 differ to 0). For a pointer to a global (`menu = &gMenuState`) that swaps with an induction variable, read through a cast macro `((MenuState *)&gMenuState)` at each use; mwcc keeps the address in a register but allocates it like its own temporary (Battle_LoadSideGraphics).
+- Registers swapped and declaration order changes nothing: mwcc ranks variables by their uses and lifetime. Read the global macro (`GAME->`) at each use instead of a reloaded state local, and move a variable's assignment to where it is first needed (MovePath_FollowCursor: `y = GAME->cursorY` moved inside the cost test; mwcc still CSEs `GAME`, so no `RELOAD_STATE` copy is needed).
 - Set-up statements among volatile hardware stores with the right instructions and wrong registers: move some of them after a few of the stores; a script that shuffles them among the stores finds it (Ov004_SendCentredQuad).
 - Read a field through the view the callers use, not the struct that owns it: `WIFI_TX_LOCATIONS_OF(WIFI_DRIVER_STATE)->savedMpReply` instead of the same field through `WlWork` (WifiMp_PutBackReply).
 
@@ -187,12 +190,13 @@ Each line: the rewrite, then the functions it matched.
 - Read a byte argument through `*(s8 *)&arg` to keep it on the stack (SndTrack_Step).
 - The original gives each block its own stack slot, in source order: give each block its own variable, even declared at function scope (BattleCells_RunStepList: one scale variable per hit-sprite block).
 - mwcc gives spill slots first to variables set by a ternary or an if/else, then to those set by an assignment followed by an `if`, and within each kind by declaration order. Write the variables whose slots are out of order in the same form as their neighbours, then move declarations (AiUnit_UpgradeWaitAction: five unload bounds, each as a ternary or an if/else, `unloadMaxY` as an if/else with `>=`).
+- Named variables get slots in declaration order, but a variable's second live range (a later loop that reuses it) is slotted like a temporary, late. Give that loop its own variable and move its declaration (Isd_VFormat: a separate write pointer and digit counter for the float path).
 
 **Order: the same instructions in another order**
 
 - mwcc reorders a chain of `+` and `-` into its own order, but a term written as `- -x` keeps its own subtract and its place, and a term that assigns a local inside the expression (`*(p = &table[i])`) pins when that load happens (func_ov002_023552d0: `a - b - (-c) - (-TIMES_VIA(profile, 1)->unk_08)`; the permuter found it from the `- -x` form).
 - A macro that assigns a local inside its expression and is used at several sites: give each site its own local (`TIMES_VIA(profile1, 1)`, `TIMES_VIA(profile2, 1)`); one shared local changes the order or the registers (func_ov002_023549c8).
-- In `a == b`, mwcc issues a register variable before a field load whatever the source order: read the field into a local first to flip the operands (MovePath_FollowCursor, gain only).
+- In `a == b`, mwcc issues a register variable before a field load whatever the source order: read the field into a local first to flip the operands (MovePath_FollowCursor; a comma expression keeps it inside the condition).
 - A value combined into a parameter before a call (`logic = logic | keyPattern; f(command, logic);`) can take another register than the same expression written in the call argument (`f(command, logic | keyPattern)`) (PM_GoSleepMode, with the declaration order of `cardEjected` and `command`).
 
 - Two hoisted constants loaded in the wrong order: a redundant `else pal = 6;` in the test that sets the higher one (PageStripTask_Draw, SurvivalSelect_Draw).
