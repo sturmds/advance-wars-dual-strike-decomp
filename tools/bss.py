@@ -1036,9 +1036,11 @@ def name_groups(module: Module, groups: list[Group]) -> None:
 
 
 def untyped(index: Index, v: Var) -> bool:
-    """A placeholder, or a variable no header declares: its definition is a
-    `u8` array named by address."""
-    return v.placeholder or not any(d.file.startswith("include/") for d in index.decls.of(v.name))
+    """A variable no header declares: its definition is a `u8` array. That
+    covers every placeholder, which nothing declares. `v.placeholder` alone
+    does not decide it: config_variables sets it for every address name,
+    and an address-named variable with an `extern` in a header has a type."""
+    return not any(d.file.startswith("include/") for d in index.decls.of(v.name))
 
 
 def wants_generated(index: Index, g: Group) -> bool:
