@@ -419,10 +419,29 @@ def rewrite(path: str, fields: dict[str, str], types: dict[str, str]) -> None:
 INCLUDE = re.compile(r'^\s*#\s*include\s+"([^"]+)"', re.M)
 
 
-def included(path: Path) -> list[Path]:
-    """Headers a file includes, directly and one level down."""
+CONDITIONAL = re.compile(r"^[ \t]*#[ \t]*(if|ifdef|ifndef|endif)\b", re.M)
+
+
+def top_level(text: str) -> str:
+    """The text with every line inside a preprocessor conditional, and the
+    #if and #endif lines themselves, blanked. Newlines stay, so offsets match."""
+    out, depth = [], 0
+    for line in text.splitlines(keepends=True):
+        m = CONDITIONAL.match(line)
+        if m:
+            depth = max(depth + (-1 if m.group(1) == "endif" else 1), 0)
+            out.append("\n")
+        else:
+            out.append(line if depth == 0 else "\n")
+    return "".join(out)
+
+
+def included(path: Path, unconditional: bool = False) -> list[Path]:
+    """Headers a file includes, directly and one level down. With
+    unconditional, includes inside #if/#ifdef/#else blocks of the file are skipped."""
     out = []
-    for name in INCLUDE.findall(path.read_text()):
+    text = path.read_text()
+    for name in INCLUDE.findall(top_level(text) if unconditional else text):
         h = ROOT / "include" / name
         if h.exists():
             out.append(h)
@@ -443,10 +462,14 @@ def drop_header_prototypes(paths: list[str]) -> None:
         if not (path.endswith(".c") and p.exists()):
             continue
         declared = set()
-        for h in included(p):
+        for h in included(p, unconditional=True):
             declared |= header_merge.declared_functions(h.read_text())
         text = p.read_text()
-        new = PROTOTYPE.sub(lambda m: "" if m.group(1) in declared else m.group(0), text)
+        top = top_level(text)
+        # A prototype inside a conditional stays: its header may be included
+        # only on the other side of the #if (issue 0078).
+        new = PROTOTYPE.sub(
+            lambda m: "" if m.group(1) in declared and top[m.start():m.end()] == m.group(0) else m.group(0), text)
         if new != text:
             p.write_text(re.sub(r"\n\n\n+", "\n\n", new))
             print(f"dropped prototypes in {path} that its headers declare")

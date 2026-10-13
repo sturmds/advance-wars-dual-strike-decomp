@@ -580,6 +580,34 @@ class ChainedRenameTest(RepoCase):
         self.check(symbols_in_order=False)
 
 
+class LocalPrototypeTest(RepoCase):
+    def replay_c(self, src: str):
+        return self.repo.replay(
+            base={"include/fp.h": "int __fp_trap(int a);\nint other(int a);\n"},
+            ours={"docs/README.md": "changed\n"},
+            theirs={"src/f.c": src})
+
+    def test_drops_prototype_of_unconditional_include(self):
+        r = self.replay_c('#include "fp.h"\n\nint __fp_trap(int a);\n\nint f(void) { return 0; }\n')
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertNotIn("__fp_trap", self.repo.read("src/f.c"))
+
+    def test_keeps_prototype_when_header_is_under_else(self):
+        """Issue 0078: soft_float.h was included only on the non-mwcc side."""
+        src = ('#ifdef __MWERKS__\nint __fp_trap(int a);\n#else\n#include "fp.h"\n#endif\n\n'
+               "int f(void) { return 0; }\n")
+        r = self.replay_c(src)
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertEqual(self.repo.read("src/f.c"), src)
+
+    def test_keeps_prototype_outside_the_condition(self):
+        src = ('int __fp_trap(int a);\n#ifndef __MWERKS__\n#include "fp.h"\n#endif\n\n'
+               "int f(void) { return 0; }\n")
+        r = self.replay_c(src)
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("int __fp_trap(int a);", self.repo.read("src/f.c"))
+
+
 class LandSelfBusyTest(RepoCase):
     """Issue 0025: a land_self.py run left in the background by a tool
     timeout overlapped a second run in the same worktree."""

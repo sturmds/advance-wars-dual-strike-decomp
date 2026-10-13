@@ -28,7 +28,7 @@ Agents add fields, typedefs and prototypes to the same headers at the same time.
 - A field the base has and one side removed stays removed, and when one side shrank the struct, the merged struct keeps the smaller size (b23/mb6: a commit's older copy put back `DlPlayHostMsgHead.pad_06` and the ROM stopped matching). If the other side changed that field, the replay stops and names it. Union members are matched by name: when mainline removed a member that the commit renamed, the new name is added.
 - Typedefs, structs, `#define`s, externs and prototypes that only one side has are kept; where both changed one, mainline's version stays, except that a `#define` with two different values is a conflict. Enums keep the constants of both sides; the commit's new ones are written with their values (`TERRAIN_SILO = 17,`) so no mainline constant moves, and a constant with two values is a conflict. Fields that overlap without matching are reported as conflicts.
 - Anonymous unions and structs are merged member by member, also inside a union. A field named `pad*` is padding and is written again; a bit-field named `pad*` stays.
-- Afterwards, local prototypes in the commit's C files are dropped when an included header declares the function; the header's version wins.
+- Afterwards, local prototypes in the commit's C files are dropped when a header that the file includes outside any `#if` declares the function (and the prototype is outside any `#if` too); the header's version wins.
 
 Each merged header prints one line (`merged include/game/x.h: +3 fields, ..., renamed a->b`). A "kept mainline's X (the commit has Y)" note means the commit's code may not build until it uses mainline's type; the agent fixes that during its rebase.
 
