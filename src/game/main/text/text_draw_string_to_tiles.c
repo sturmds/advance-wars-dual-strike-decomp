@@ -1,7 +1,6 @@
 #include "types.h"
+#include "game/text_print.h"
 
-extern int gTextDrawWidth;
-/* also declared in src/game/main/text/text_advance_draw_pos.c */
 int gTextDrawTilePixel;
 static int gTextDrawGlyphWidth;
 

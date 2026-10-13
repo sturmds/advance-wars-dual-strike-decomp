@@ -12,4 +12,9 @@ s8 Text_PrintId(s16 x, s16 y, u16* map, u32 textId, u16 unk_30, u16 unk_32);
  * between glyphs. */
 int Text_GetPrintWidth(const void* text);
 
+/* Drawing position of the string Text_DrawStringToTiles is drawing. */
+extern int gTextDrawWidth; /* pixels drawn so far */
+extern int
+    gTextDrawTilePixel; /* pixel position inside the current tile, 0 to 7 */
+
 #endif
