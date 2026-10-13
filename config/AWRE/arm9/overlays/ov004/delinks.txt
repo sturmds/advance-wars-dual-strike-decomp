@@ -724,6 +724,7 @@ src/game/ov004/ov004_blit_block.c:
     .text       start:0x022badcc end:0x022badec
 
 src/game/ov004/ov004_blit_block_with_flags.c:
+    complete
     .text       start:0x022badec end:0x022baeec
 
 src/game/ov004/ov004_fill_block.c:
