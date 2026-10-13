@@ -42,6 +42,14 @@ make check    # compare it with the retail ROM, module by module and as a whole
 
 Most of the C was written by Claude (Anthropic's model) in an automated matching loop and checked by the build, which must reproduce the retail bytes, and by a review against `TENETS.md`. Commits made that way carry a `Co-Authored-By: Claude` trailer. `docs/loop.md` and `docs/workflow.md` describe the process.
 
+## Limitations
+
+Most of the code and documents were written by a model, and it shows. This project has a high degree of **SLOP**: expect machine-written style and awkward grammar in the C, the comments and the docs. Many functions still have placeholder names (`func_XXXXXXXX`), and much of the C was shaped to match the retail bytes rather than to read well, so parts of it may not be readable by humans. The build only checks that the bytes match, not that the code reads well.
+
+## Contributing
+
+We are not taking contributions at this time. Issues and pull requests may be closed without review. See `CONTRIBUTING.md`.
+
 ## Credits
 
 Outside sources and what we took from each are listed in `docs/third-party/`: names and data layouts from RadioTails' romhacking.net document 890, tool ideas from khdays-decomp, the pattern for data extracted at setup and included by C from zeldaret/oot, hardware names from GBATEK and libnds, and the tools pinned in `tools.lock`.
