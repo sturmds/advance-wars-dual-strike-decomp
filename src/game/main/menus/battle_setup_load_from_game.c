@@ -6,6 +6,7 @@
 #include "game/play_records.h"
 #include "game/map_header.h"
 #include "game/design_map.h"
+#include "game/visual_mode.h"
 
 void Screen_SetCurrent(void* state);
 void Screen_SetCurrentGfx(void* state);
@@ -78,9 +79,9 @@ void BattleSetup_LoadFromGame(void) {
   data_0229ed30.fundsPerProperty = GAME->fundsPerProperty;
   state->setup.unk_2df = GAME->propertyGoal;
   if (gLinkPlay != 0) {
-    state->setup.unk_2e1 = 1;
+    state->setup.visualMode = VISUAL_A;
   } else {
-    state->setup.unk_2e1 = gPlayRecords.unk_12;
+    state->setup.visualMode = gPlayRecords.visualMode;
   }
   if (gLinkPlay != 0) {
     gMenuState.setup.unk_2e2 = 2;
@@ -167,7 +168,7 @@ void BattleSetup_LoadFromGame(void) {
     }
   } else {
     gMenuState.setup.unk_2e3 = Map_GetLoadedPlayerCount();
-    gMenuState.setup.unk_2e1 = GAME->unk_82;
+    gMenuState.setup.visualMode = GAME->visualMode;
     gMenuState.setup.unk_2e2 = GAME->unk_8c;
     for (i = 0; i < 4; i++) {
       gMenuState.setup.cos[i][0] = Player_GetCoId(i + 1, 0);

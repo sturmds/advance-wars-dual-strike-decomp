@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/visual_mode.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
@@ -11,7 +12,7 @@ BOOL func_020bffbc(void) {
   if (func_020c019c() == 1) {
     return TRUE;
   }
-  if (func_020c0144() == 0 && STATE->unk_82 == 2) {
+  if (func_020c0144() == 0 && STATE->visualMode == VISUAL_B) {
     return FALSE;
   }
   return TRUE;

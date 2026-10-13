@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
+#include "game/visual_mode.h"
 
 int MainLoop_GetFrameCount(void);
 s32 HwDiv32(s32 numerator, s32 denominator);
@@ -151,24 +152,24 @@ void VsSetup_DrawSettingRow(int row, int x, int y) {
       }
       break;
     case 7:
-      switch (MENU->setup.unk_2e1) {
-        case 0:
+      switch (MENU->setup.visualMode) {
+        case VISUAL_NONE:
           Sprite_QueueAt(1, x & 0x1ff, (y + 16) & 0xff, &data_027c0060, 0x1000,
                          TILE_OFF);
           break;
-        case 1:
+        case VISUAL_A:
           Sprite_QueueAt(1, x & 0x1ff, (y + 16) & 0xff, &data_027c0060, 0x1000,
                          268);
           break;
-        case 2:
+        case VISUAL_B:
           Sprite_QueueAt(1, x & 0x1ff, (y + 16) & 0xff, &data_027c0060, 0x1000,
                          276);
           break;
-        case 3:
+        case VISUAL_C:
           Sprite_QueueAt(1, x & 0x1ff, (y + 16) & 0xff, &data_027c0060, 0x1000,
                          284);
           break;
-        case 4:
+        case VISUAL_D:
           Sprite_QueueAt(1, x & 0x1ff, (y + 16) & 0xff, &data_027c0060, 0x1000,
                          292);
           break;

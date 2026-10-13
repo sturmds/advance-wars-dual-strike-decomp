@@ -31,7 +31,7 @@ typedef struct PlayRecords {
   u8 unk_0f;
   u8 unk_10;
   u8 unk_11;
-  u8 unk_12;     /* copied to MenuState.setup.unk_2e1 */
+  u8 visualMode; /* VISUAL_*, copied to MenuState.setup.visualMode */
   u8 shopVisits; /* visits to Hachi's shop, up to 255 (Ov005_AddShopVisit) */
   u8 wallpaper; /* selected wallpaper, 0-30 (Wallpaper_LoadSelected); ov005 stores data_ov005_0236a48c[entry] (Ov005_SaveCoListEntry) */
   u8 unk_15;    /* copied to MenuState.setup.unk_2e2 */

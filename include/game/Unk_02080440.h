@@ -193,7 +193,7 @@ typedef struct Unk_02080440_48 {
   u32 timeLimitFrames; /* the map's time limit in frames, 0: none (TimeLimit_GetTotal) */
   u8 dayLimit; /* days the battle may last, 0: none (from MapHeader.unk_30; Game_GetDayLimit) */
   u8 propertyGoal; /* properties that win the battle, 0: none (from MapHeader.unk_34; Players_FindPropertyGoalWinner) */
-  u8 unk_82;
+  u8 visualMode;   /* VISUAL_*, the "Visual" setting of this battle */
   u8 musicReady; /* 0: song requests are kept pending, see Sound_PlaySong; name a guess */
   u8 unk_84;
   u8 luckOnRequestOnly; /* nonzero: Combatant_CalcDamage rolls luck only when its caller asks; name a guess */

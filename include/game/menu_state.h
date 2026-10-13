@@ -71,7 +71,7 @@ typedef struct BattleSetupState {
   u8 unk_2de;     /* Unk_02080440_48.unk_80 */
   u8 unk_2df;     /* Unk_02080440_48.unk_81 */
   u8 coEffectsOn; /* Unk_02080440_48.coEffectsOn */
-  u8 unk_2e1;
+  u8 visualMode;  /* VISUAL_* */
   u8 unk_2e2;
   u8 unk_2e3;        /* number of player slots */
   u8 cursorButton;   /* id of the selected setup button; 8-15 are the COs */

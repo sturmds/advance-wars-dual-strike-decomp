@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/screen_other_map.h"
+#include "game/visual_mode.h"
 
 void Screen_SetCurrentBoth(void* state);
 void MapRules_SetDefaults(void);
@@ -24,7 +25,7 @@ void Game_ResetSettings(void) {
   Screen_SetCurrentGfx(saved0280);
   STATE->unk_59 = 0;
   STATE->unk_1c4->mapId = 1;
-  STATE->unk_82 = 1;
+  STATE->visualMode = VISUAL_A;
   MapRules_SetDefaults();
   Link_ClearPlay();
 }

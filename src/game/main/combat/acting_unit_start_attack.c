@@ -3,6 +3,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/task.h"
 #include "game/unit_action.h"
+#include "game/visual_mode.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
@@ -73,30 +74,31 @@ void ActingUnit_StartAttack(int defenderSlot, int flag) {
     Player_AddPowerCharge(defenderOwner, 1, defenderCharge >> 1);
   }
 
-  /* Mode 0 starts the data_02168328 task, any other mode data_02168400. unk_82 value 4 becomes 3 for a human
-     * current player and 0 otherwise; the state at data_027c0288.unk_04 always uses 0. */
-  mode = STATE->unk_82;
-  if (mode == 4) {
+  /* VISUAL_NONE starts the data_02168328 task, any other mode data_02168400.
+   * VISUAL_D becomes VISUAL_C for a human current player and VISUAL_NONE
+   * otherwise; the state at data_027c0288.unk_04 always uses VISUAL_NONE. */
+  mode = STATE->visualMode;
+  if (mode == VISUAL_D) {
     mode = STATE->players[STATE->currentPlayer].controller ==
                    PLAYER_CONTROLLER_HUMAN
-               ? 3
-               : 0;
+               ? VISUAL_C
+               : VISUAL_NONE;
   }
   if (data_027c027c == data_027c0288.unk_04) {
-    mode = 0;
+    mode = VISUAL_NONE;
   }
   /* needed to match: the task start is repeated in each case */
   switch (mode) {
-    case 1:
-    case 2:
-    case 3:
+    case VISUAL_A:
+    case VISUAL_B:
+    case VISUAL_C:
     default:
       ScreenConfig_RunActionHook();
       task = Task_Create(data_02168400, TASK_LIST(3));
       task->unk_64 = flag;
       task->unk_4c = defender;
       break;
-    case 0:
+    case VISUAL_NONE:
       ScreenConfig_RunActionHook();
       task = Task_Create(data_02168328, TASK_LIST(3));
       task->unk_64 = flag;

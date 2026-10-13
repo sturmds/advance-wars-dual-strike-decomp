@@ -100,7 +100,7 @@ void MapRules_SetDefaults(void) {
   STATE->unk_5c = 1;
   STATE->partnerBoostHuman = 1;
   STATE->partnerBoostAi = 1;
-  STATE->unk_82 = gPlayRecords.unk_12;
+  STATE->visualMode = gPlayRecords.visualMode;
   STATE->musicReady = gPlayRecords.unk_0e;
   Map_SetCoSelectPhase(0);
   func_0200a630();

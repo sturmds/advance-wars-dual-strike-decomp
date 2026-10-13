@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
+#include "game/visual_mode.h"
 
 void HelpText_Show(u32 textId, int tile);
 
@@ -12,7 +13,7 @@ extern MenuState gMenuState;
 #define HELP_TILE 960
 
 /* Shows the help text (group 0x7f00) for the setting row in setup.settingRow. For
- * weather (unk_2dc), the tileset (unk_2dd), unk_2e1 and unk_2e2 the text
+ * weather (unk_2dc), the tileset (unk_2dd), visualMode and unk_2e2 the text
  * depends on the value. The name is a guess. */
 void VsSetup_ShowSettingHelp(void) {
   switch (MENU->setup.settingRow) {
@@ -54,20 +55,20 @@ void VsSetup_ShowSettingHelp(void) {
       HelpText_Show(HELP_TEXT(13), HELP_TILE);
       break;
     case 7:
-      switch (MENU->setup.unk_2e1) {
-        case 0:
+      switch (MENU->setup.visualMode) {
+        case VISUAL_NONE:
           HelpText_Show(HELP_TEXT(14), HELP_TILE);
           break;
-        case 1:
+        case VISUAL_A:
           HelpText_Show(HELP_TEXT(15), HELP_TILE);
           break;
-        case 2:
+        case VISUAL_B:
           HelpText_Show(HELP_TEXT(16), HELP_TILE);
           break;
-        case 3:
+        case VISUAL_C:
           HelpText_Show(HELP_TEXT(17), HELP_TILE);
           break;
-        case 4:
+        case VISUAL_D:
           HelpText_Show(HELP_TEXT(18), HELP_TILE);
           break;
       }

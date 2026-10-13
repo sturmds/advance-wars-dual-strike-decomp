@@ -86,7 +86,7 @@ void BattleSetup_ApplyToGame(void) {
   Unk_02080440* saved027c;
   int i;
 
-  GAME->unk_82 = gMenuState.setup.unk_2e1;
+  GAME->visualMode = gMenuState.setup.visualMode;
   GAME->unk_1c4->fog = gMenuState.setup.fog;
   GAME->unk_1c4->tileset = gMenuState.setup.unk_2dd;
   GAME->dayLimit = gMenuState.setup.unk_2de;

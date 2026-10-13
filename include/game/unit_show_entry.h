@@ -13,7 +13,7 @@ typedef struct UnitShowEntry {
   const char* subSpritePath;
   const char* mainPalettePath[ARMY_STYLE_COUNT];
   const char* mainSpritePath;
-  s16 stepSize; /* UnitShowTask.stepSize, doubled unless unk_82 of the game state is 1 */
+  s16 stepSize; /* UnitShowTask.stepSize, doubled unless visualMode of the game state is VISUAL_A */
   u16 stepSound; /* Sub sound effect of a step (see UnitShowTask_PlayStepSound); 0: none */
   u16 sound; /* Sound_PlaySe id, or SHOW_SOUND_* */
   u8 pad_36[2];

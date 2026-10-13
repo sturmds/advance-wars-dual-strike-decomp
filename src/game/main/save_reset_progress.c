@@ -2,6 +2,7 @@
 #include "game/co_data.h"
 #include "game/play_records.h"
 #include "game/Unk_02290a18.h"
+#include "game/visual_mode.h"
 
 extern u8 data_02291672[];
 extern u8 data_02290256[];
@@ -31,7 +32,7 @@ void Save_ResetProgress(void) {
   func_02017c88(0);
   gPlayRecords.unk_11 = 0;
   gPlayRecords.unk_10 = 0;
-  gPlayRecords.unk_12 = 1;
+  gPlayRecords.visualMode = VISUAL_A;
   gPlayRecords.unk_0e = 1;
   gPlayRecords.unk_08 = 0;
   gPlayRecords.unk_09 = 0;

@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
+#include "game/visual_mode.h"
 
 void HelpText_Show(u32 textId, int tile);
 
@@ -54,20 +55,20 @@ void VsSetup_ShowSettingHelp2(void) {
       HelpText_Show(HELP_TEXT(39), HELP_TILE);
       break;
     case 7:
-      switch (MENU->setup.unk_2e1) {
-        case 0:
+      switch (MENU->setup.visualMode) {
+        case VISUAL_NONE:
           HelpText_Show(HELP_TEXT(40), HELP_TILE);
           break;
-        case 1:
+        case VISUAL_A:
           HelpText_Show(HELP_TEXT(41), HELP_TILE);
           break;
-        case 2:
+        case VISUAL_B:
           HelpText_Show(HELP_TEXT(42), HELP_TILE);
           break;
-        case 3:
+        case VISUAL_C:
           HelpText_Show(HELP_TEXT(43), HELP_TILE);
           break;
-        case 4:
+        case VISUAL_D:
           HelpText_Show(HELP_TEXT(44), HELP_TILE);
           break;
       }

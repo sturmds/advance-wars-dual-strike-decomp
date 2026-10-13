@@ -5,6 +5,7 @@
 #include "game/terrain.h"
 #include "game/Unk_02080440.h"
 #include "game/play_records.h"
+#include "game/visual_mode.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
@@ -79,7 +80,7 @@ void UnitAction_Capture(void) {
       (GAME->players[GAME->currentPlayer].visionGrids & 2) ||
       GAME->mapTiles->unk_2338[TILE_INDEX(GAME->actingUnitDestX,
                                           GAME->actingUnitDestY)] != 0) {
-    if (GAME->unk_82 == 1 || GAME->unk_82 == 2 ||
+    if (GAME->visualMode == VISUAL_A || GAME->visualMode == VISUAL_B ||
         MAP_TILE_TERRAIN(tile) == TERRAIN_HQ ||
         MAP_TILE_TERRAIN(tile) == TERRAIN_LAB) {
       Capture_StartDisplay(GAME->actingUnitDestX, GAME->actingUnitDestY,
@@ -88,7 +89,8 @@ void UnitAction_Capture(void) {
     } else if (progress >= MAP_UNIT_CAPTURE_POINTS) {
       Capture_PlayCompleteSound(ACTING_UNIT_OWNER, MAP_TILE_TERRAIN(tile));
     }
-  } else if (gLinkPlay != 0 && (GAME->unk_82 == 1 || GAME->unk_82 == 2) &&
+  } else if (gLinkPlay != 0 &&
+             (GAME->visualMode == VISUAL_A || GAME->visualMode == VISUAL_B) &&
              GAME->players[GAME->currentPlayer].controller ==
                  PLAYER_CONTROLLER_AI) {
     /* the tile is out of sight: no capture scene, but link play still needs the task */

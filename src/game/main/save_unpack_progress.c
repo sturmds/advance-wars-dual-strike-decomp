@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/save_progress.h"
+#include "game/visual_mode.h"
 
 extern SaveGameFlagsMid gGameFlagsMid;
 extern SaveProfileBlock data_02290298[3];
@@ -21,8 +22,8 @@ int Save_UnpackProgress(SaveProgressBlocks* record) {
     data_02290298[i] = record->profileBlocks[i];
     data_022900bc[i] = record->unk_1534[i];
   }
-  if (gPlayRecords.unk_12 > 4) {
-    gPlayRecords.unk_12 = 1;
+  if (gPlayRecords.visualMode > VISUAL_D) {
+    gPlayRecords.visualMode = VISUAL_A;
   }
   if (gPlayRecords.unk_0e > 1) {
     gPlayRecords.unk_0e = 1;

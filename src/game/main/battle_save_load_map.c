@@ -49,7 +49,7 @@ void BattleSave_LoadMap(BattleSaveMap* save) {
   STATE->unk_184 = save->unk_6c;
   *(BattleSaveSettings*)&STATE->gameMode = save->settings;
   *data_027c027c->unk_5c[data_027c0284] = save->unk_e34;
-  gPlayRecords.unk_12 = STATE->unk_82;
+  gPlayRecords.visualMode = STATE->visualMode;
   gPlayRecords.unk_0e = STATE->musicReady;
   TileCodeTable_Load();
   customMap = MAP_IS_CUSTOM(STATE->unk_1c4->mapId);

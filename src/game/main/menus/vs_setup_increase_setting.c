@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
+#include "game/visual_mode.h"
 
 void Sound_PlaySe(u32 soundId);
 void VsSetup_ShowSettingHelp(void);
@@ -67,21 +68,21 @@ void VsSetup_IncreaseSetting(void) {
       MENU->setup.coEffectsOn &= 1;
       break;
     case 7:
-      switch (MENU->setup.unk_2e1) {
-        case 0:
-          MENU->setup.unk_2e1 = 1;
+      switch (MENU->setup.visualMode) {
+        case VISUAL_NONE:
+          MENU->setup.visualMode = VISUAL_A;
           break;
-        case 1:
-          MENU->setup.unk_2e1 = 2;
+        case VISUAL_A:
+          MENU->setup.visualMode = VISUAL_B;
           break;
-        case 2:
-          MENU->setup.unk_2e1 = 3;
+        case VISUAL_B:
+          MENU->setup.visualMode = VISUAL_C;
           break;
-        case 3:
-          MENU->setup.unk_2e1 = 4;
+        case VISUAL_C:
+          MENU->setup.visualMode = VISUAL_D;
           break;
-        case 4:
-          MENU->setup.unk_2e1 = 0;
+        case VISUAL_D:
+          MENU->setup.visualMode = VISUAL_NONE;
           break;
       }
       break;

@@ -2,6 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/play_records.h"
+#include "game/visual_mode.h"
 
 /* Same arguments as the menu handler; the help text functions it points to
  * (func_020bc960 and the next four) take none. */
@@ -39,10 +40,10 @@ extern PlayRecords gPlayRecords;
   Screen_SetCurrentGfx(savedGfx)
 
 /* Battle menu handler (table entries 0x02165dc0 to 0x02165e40, one per value):
- * steps Unk_02080440_48.unk_82 through 0-4, on both maps of a two-map battle
+ * steps Unk_02080440_48.visualMode through 0-4, on both maps of a two-map battle
  * when the other map's unk_1c4->unk_30 is 0, draws the matching help text,
  * refreshes the menu and saves the value in gPlayRecords. ActingUnit_StartAttack
- * picks the attack animation task from unk_82, so the name is a guess. */
+ * picks the attack animation task from visualMode, so the name is a guess. */
 void Menu_CycleAnimationMode(int a0, int a1, u32 flags) {
   MenuHelpFive help = gAnimationMenuHelpFns;
   Unk_027c0280* savedGfx;
@@ -51,11 +52,11 @@ void Menu_CycleAnimationMode(int a0, int a1, u32 flags) {
   u32 otherUnk30;
 
   SWITCH_TO(CURRENT_MAP, savedGfx, savedGame);
-  GAME->unk_82++;
-  if (GAME->unk_82 > 4) {
-    GAME->unk_82 = 0;
+  GAME->visualMode++;
+  if (GAME->visualMode > VISUAL_D) {
+    GAME->visualMode = VISUAL_NONE;
   }
-  mode = GAME->unk_82;
+  mode = GAME->visualMode;
   SWITCH_BACK(savedGfx, savedGame);
   if (GAME->secondMapId != 0) {
     SWITCH_TO(OTHER_MAP, savedGfx, savedGame);
@@ -63,11 +64,11 @@ void Menu_CycleAnimationMode(int a0, int a1, u32 flags) {
     SWITCH_BACK(savedGfx, savedGame);
     if (otherUnk30 == 0) {
       SWITCH_TO(OTHER_MAP, savedGfx, savedGame);
-      GAME->unk_82 = mode;
+      GAME->visualMode = mode;
       SWITCH_BACK(savedGfx, savedGame);
     }
   }
-  help.fn[GAME->unk_82](a0, a1, flags);
+  help.fn[GAME->visualMode](a0, a1, flags);
   PopupMenu_Refresh();
-  gPlayRecords.unk_12 = GAME->unk_82;
+  gPlayRecords.visualMode = GAME->visualMode;
 }
