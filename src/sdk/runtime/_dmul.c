@@ -16,6 +16,7 @@ u32 *__fp_status(void);
 double __fp_trap_d(double a, u32 op);
 double __fp_trap_dd(double a, double b, u32 op);
 
+#ifdef __MWERKS__
 asm double _dmul(double a, double b)
 {
     /* lr keeps the sign of the product; ip and r4 the exponents. */
@@ -504,3 +505,272 @@ asm double _drsb(double a, double b)
     eor r2, r0, r2
     eor r0, r0, r2
 }
+#else
+#include <string.h>
+
+/* The same multiplication on the bit patterns of the operands. Mantissas
+   sit at the top of a u64 with the implicit 1 in bit 63, as in the
+   assembly. */
+
+#define FP_STICKY_INVALID 0x1
+#define FP_STICKY_OVERFLOW 0x4
+#define FP_STICKY_UNDERFLOW 0x8
+#define FP_STICKY_INEXACT 0x10
+#define FP_TRAP_INVALID 0x100
+#define FP_TRAP_OVERFLOW 0x400
+#define FP_TRAP_UNDERFLOW 0x800
+#define FP_TRAP_INEXACT 0x1000
+#define FP_ROUNDING(status) (((status) >> 22) & 3)
+#define FP_ROUND_UP 1
+#define FP_ROUND_DOWN 2
+#define FP_ROUND_TO_ZERO 3
+/* Operation words for the trap handlers: the exception in bits 26-30, 0x93
+   for multiplication. */
+#define FP_OP_INVALID_MUL 0x04000093
+#define FP_OP_OVERFLOW_MUL 0x10000093
+#define FP_OP_UNDERFLOW_MUL 0x20000093
+#define FP_OP_INEXACT_MUL 0x40000093
+
+#define SIGN_BIT 0x8000000000000000ull
+#define IMPLICIT_BIT 0x8000000000000000ull
+#define FRACTION_MASK 0x000fffffffffffffull
+#define QUIET_BIT 0x0008000000000000ull
+#define INFINITY_BITS 0x7ff0000000000000ull
+#define LARGEST_FINITE 0x7fefffffffffffffull
+#define DEFAULT_NAN 0x7fffffffffffffffull
+/* The trap handler gets an overflowed or underflowed result with its
+   exponent moved this much back into range. */
+#define TRAP_EXPONENT_BIAS 0x600
+
+/* The C reads a double's bits by copying it to a u64, so double must be the
+   64-bit IEEE format in the same byte order as u64. */
+typedef char DoubleIsEightBytes[sizeof(double) == 8 ? 1 : -1];
+
+double _dsub(double a, double b);
+
+static u64 DoubleBits(double x) {
+  u64 bits;
+
+  memcpy(&bits, &x, sizeof(bits));
+  return bits;
+}
+
+static double BitsDouble(u64 bits) {
+  double x;
+
+  memcpy(&x, &bits, sizeof(x));
+  return x;
+}
+
+static int Exponent(u64 bits) { return (int)(bits >> 52) & 0x7ff; }
+
+static BOOL IsNan(u64 bits) {
+  return Exponent(bits) == 0x7ff && (bits & FRACTION_MASK) != 0;
+}
+
+static BOOL IsSignaling(u64 bits) {
+  return IsNan(bits) && (bits & QUIET_BIT) == 0;
+}
+
+static BOOL IsZero(u64 bits) { return (bits & ~SIGN_BIT) == 0; }
+
+/* The top-aligned mantissa of a finite nonzero double and its exponent. A
+   subnormal is shifted up until its top bit reaches bit 63, and its
+   exponent goes below 1 by the same amount. */
+static u64 Mantissa(u64 bits, int* exponent) {
+  u64 mantissa = bits << 11;
+
+  *exponent = Exponent(bits);
+  if (*exponent != 0) {
+    return mantissa | IMPLICIT_BIT;
+  }
+  *exponent = 1;
+  while ((mantissa & IMPLICIT_BIT) == 0) {
+    mantissa <<= 1;
+    (*exponent)--;
+  }
+  return mantissa;
+}
+
+/* The top 64 bits of the 128-bit product, with bit 0 set when any of the
+   low 64 bits is. */
+static u64 MultiplySticky(u64 a, u64 b) {
+  u64 a_low = (u32)a;
+  u64 a_high = a >> 32;
+  u64 b_low = (u32)b;
+  u64 b_high = b >> 32;
+  u64 low = a_low * b_low;
+  u64 middle_a = a_high * b_low;
+  u64 middle_b = a_low * b_high;
+  u64 middle = (low >> 32) + (u32)middle_a + (u32)middle_b;
+  u64 high =
+      a_high * b_high + (middle_a >> 32) + (middle_b >> 32) + (middle >> 32);
+
+  return high | (((u32)middle | (u32)low) != 0);
+}
+
+static u64 Invalid(double a, double b) {
+  u32* status = __fp_status();
+
+  if (*status & FP_TRAP_INVALID) {
+    return DoubleBits(__fp_trap_dd(a, b, FP_OP_INVALID_MUL));
+  }
+  *status |= FP_STICKY_INVALID;
+  return DEFAULT_NAN;
+}
+
+/* Whether rounding moves the truncated result away from zero. lost holds
+   the bits cut off, from bit 31 down. */
+static BOOL RoundsAway(u64 result, u32 lost, u32 status) {
+  switch (FP_ROUNDING(status)) {
+    case FP_ROUND_UP:
+      return (result & SIGN_BIT) == 0;
+    case FP_ROUND_DOWN:
+      return (result & SIGN_BIT) != 0;
+    case FP_ROUND_TO_ZERO:
+      return FALSE;
+    default:
+      /* To nearest, ties to even. */
+      return (lost & 0x80000000) != 0 &&
+             ((u32)(lost << 1) != 0 || (result & 1) != 0);
+  }
+}
+
+/* Rounds a normal product whose cut-off bits are in lost. A product that
+   rounds up to infinity overflows. */
+static u64 RoundProduct(u64 result, u32 lost) {
+  u32* status;
+
+  if (lost == 0) {
+    return result;
+  }
+  status = __fp_status();
+  if (*status & FP_TRAP_INEXACT) {
+    return DoubleBits(__fp_trap_d(BitsDouble(result), FP_OP_INEXACT_MUL));
+  }
+  *status |= FP_STICKY_INEXACT;
+  if (!RoundsAway(result, lost, *status)) {
+    return result;
+  }
+  result++;
+  if (Exponent(result) != 0x7ff) {
+    return result;
+  }
+  if (*status & FP_TRAP_OVERFLOW) {
+    result -= (u64)TRAP_EXPONENT_BIAS << 52;
+    return DoubleBits(__fp_trap_d(BitsDouble(result), FP_OP_OVERFLOW_MUL));
+  }
+  *status |= FP_STICKY_OVERFLOW | FP_STICKY_INEXACT;
+  return result;
+}
+
+/* The exponent is 0x7ff or more. */
+static u64 Overflow(u64 sign, int exponent, u64 mantissa) {
+  u32* status = __fp_status();
+
+  if (*status & FP_TRAP_OVERFLOW) {
+    u64 lowered = sign | (u64)(exponent - TRAP_EXPONENT_BIAS) << 52 |
+                  ((mantissa >> 11) & FRACTION_MASK);
+
+    return DoubleBits(__fp_trap_d(BitsDouble(lowered), FP_OP_OVERFLOW_MUL));
+  }
+  *status |= FP_STICKY_OVERFLOW | FP_STICKY_INEXACT;
+  switch (FP_ROUNDING(*status)) {
+    case FP_ROUND_UP:
+      return sign ? sign | LARGEST_FINITE : INFINITY_BITS;
+    case FP_ROUND_DOWN:
+      return sign ? sign | INFINITY_BITS : LARGEST_FINITE;
+    case FP_ROUND_TO_ZERO:
+      return sign | LARGEST_FINITE;
+    default:
+      return sign | INFINITY_BITS;
+  }
+}
+
+/* The exponent is 0 or less: the product becomes subnormal or zero. Only a
+   result that loses bits sets the underflow flag. */
+static u64 Underflow(u64 sign, int exponent, u64 mantissa) {
+  u32* status = __fp_status();
+  u64 result;
+  u64 low_bits;
+  u32 lost;
+
+  if (*status & FP_TRAP_UNDERFLOW) {
+    u64 raised = sign | (u64)(exponent + TRAP_EXPONENT_BIAS) << 52 |
+                 ((mantissa >> 11) & FRACTION_MASK);
+
+    return DoubleBits(__fp_trap_d(BitsDouble(raised), FP_OP_UNDERFLOW_MUL));
+  }
+  if (exponent < -52) {
+    /* Below half the smallest subnormal: rounds to nearest as 0. */
+    result = sign;
+    lost = 1;
+  } else if (exponent == -52) {
+    /* From half the smallest subnormal up to it. */
+    result = sign;
+    lost = 0x80000000 | ((mantissa << 1) != 0);
+  } else {
+    result = sign | mantissa >> (12 - exponent);
+    low_bits = mantissa << (52 + exponent);
+    lost = (u32)(low_bits >> 32) | ((u32)low_bits != 0);
+    if (lost == 0) {
+      return result;
+    }
+  }
+  if (*status & FP_TRAP_INEXACT) {
+    return DoubleBits(__fp_trap_d(BitsDouble(result), FP_OP_INEXACT_MUL));
+  }
+  *status |= FP_STICKY_UNDERFLOW | FP_STICKY_INEXACT;
+  if (RoundsAway(result, lost, *status)) {
+    result++;
+  }
+  return result;
+}
+
+double _dmul(double a, double b) {
+  u64 a_bits = DoubleBits(a);
+  u64 b_bits = DoubleBits(b);
+  u64 sign = (a_bits ^ b_bits) & SIGN_BIT;
+  u64 mantissa;
+  int exponent;
+  int b_exponent;
+
+  if (IsNan(a_bits) || IsNan(b_bits)) {
+    /* Any NaN gives the default NaN; a signaling one is also invalid. */
+    if (IsSignaling(a_bits) || IsSignaling(b_bits)) {
+      return BitsDouble(Invalid(a, b));
+    }
+    return BitsDouble(DEFAULT_NAN);
+  }
+  if (Exponent(a_bits) == 0x7ff || Exponent(b_bits) == 0x7ff) {
+    if (IsZero(a_bits) || IsZero(b_bits)) {
+      /* Infinity times zero. */
+      return BitsDouble(Invalid(a, b));
+    }
+    return BitsDouble(sign | INFINITY_BITS);
+  }
+  if (IsZero(a_bits) || IsZero(b_bits)) {
+    return BitsDouble(sign);
+  }
+  mantissa = MultiplySticky(Mantissa(a_bits, &exponent),
+                            Mantissa(b_bits, &b_exponent));
+  /* Both mantissas are in [1, 2), so the product is in [1, 4). */
+  exponent += b_exponent - 1022;
+  if ((mantissa & IMPLICIT_BIT) == 0) {
+    mantissa <<= 1;
+    exponent--;
+  }
+  if (exponent <= 0) {
+    return BitsDouble(Underflow(sign, exponent, mantissa));
+  }
+  if (exponent >= 0x7ff) {
+    return BitsDouble(Overflow(sign, exponent, mantissa));
+  }
+  return BitsDouble(RoundProduct(
+      sign | (u64)exponent << 52 | ((mantissa >> 11) & FRACTION_MASK),
+      (u32)mantissa << 21));
+}
+
+/* b - a. */
+double _drsb(double a, double b) { return _dsub(b, a); }
+#endif

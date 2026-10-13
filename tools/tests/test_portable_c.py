@@ -25,7 +25,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 GCC = ["gcc", "-fsyntax-only", "-std=c99", "-iquote", str(ROOT / "include")]
-ASM_FUNC = re.compile(r"^\s*asm\s+[\w\s\*]*?\b(\w+)\s*\(", re.M)
+# Definitions only: a declaration such as `asm void f(void);` names a
+# function that another file defines.
+ASM_FUNC = re.compile(r"^\s*asm\s+[\w\s\*]*?\b(\w+)\s*\([^;{]*\)\s*\{", re.M)
 ERROR = re.compile(r'^#error "(.*)"$', re.M)
 
 failures = []
