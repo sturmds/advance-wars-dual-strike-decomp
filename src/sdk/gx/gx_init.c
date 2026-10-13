@@ -6,7 +6,6 @@ extern u16 GXi_VRamLockId;
 extern u32
     data_0216d958; /* DMA channel the GX library uses, or GX_DMA_NOT_USE */
 
-int OS_GetLockID(void);
 void MI_DmaFill32(u32 dmaNo, void* dest, u32 data, u32 size); /* MI_DmaFill32 */
 void MIi_CpuClear32(u32 data, void* dest, u32 size); /* MIi_CpuClear32 */
 

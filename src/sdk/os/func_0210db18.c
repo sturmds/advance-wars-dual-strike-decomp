@@ -9,7 +9,6 @@
 #define SLOT2_MATCH 0x01000000
 #define SLOT2_NO_MATCH 0x02000000
 
-int OS_GetLockID(void);
 u16 OS_ReadOwnerOfLockWord(void* lock);
 int OS_TryLockCartridge(u16 lockId);
 void OS_UnlockCartridge(u16 lockId);

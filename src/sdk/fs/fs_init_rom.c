@@ -16,7 +16,6 @@ extern const char data_0216d974[]; /* "rom" */
 void FS_InitArchive(FSArchive* arc);
 BOOL FS_RegisterArchiveName(FSArchive* arc, const char* name, int nameLength);
 
-s32 OS_GetLockID(void);
 void CARD_Init(void); /* looks like CARD_Init */
 /* Sets the archive's command routine and the commands it handles
  * (FS_SetArchiveProc in the SDK; the current name is older). */

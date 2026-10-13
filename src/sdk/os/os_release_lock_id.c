@@ -8,7 +8,7 @@
  * a bit to hand out an ID. Hand-written assembly in the original, like
  * OS_GetLockID.
  */
-asm void OS_ReleaseLockID(int lockID)
+asm void OS_ReleaseLockID(u16 lockID)
 {
     ldr r3, =0x027fffb0
     cmp r0, #0x60
@@ -26,7 +26,7 @@ asm void OS_ReleaseLockID(int lockID)
 /* Follows the assembly for every lockID, not only 0x40 to 0x7f: the word
    is picked by the sign of lockID - 0x60, the shift uses the low byte of
    the bit number, and a shift of 32 or more sets no bit. */
-void OS_ReleaseLockID(int lockID) {
+void OS_ReleaseLockID(u16 lockID) {
   volatile u32* bits = LOCK_ID_AVAILABLE_BITS;
   u32 bit = (u32)lockID - 0x60u;
   u32 shift;

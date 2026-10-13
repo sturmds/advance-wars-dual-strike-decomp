@@ -85,6 +85,10 @@ u32 OSi_DoTryLockByWord(u16 lockID, OSLockWord* lockp, void (*ctrl)(void),
 int OSi_DoUnlockByWord(u16 lockID, OSLockWord* lockp, void (*ctrl)(void),
                        BOOL disableFiq);
 
+/* Hands out a free lock ID (0x40 to 0x7f), or OS_LOCK_ID_ERROR; gives one back. */
+int OS_GetLockID(void);
+void OS_ReleaseLockID(u16 lockID);
+
 /* Busy-waits about cycles CPU cycles. */
 void OS_SpinWait(u32 cycles);
 

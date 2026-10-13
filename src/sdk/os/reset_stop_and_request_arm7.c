@@ -2,7 +2,6 @@
 #include "sdk/os.h"
 
 void MI_StopDma(u32 dmaNo);
-u32 OS_GetLockID(void); /* OS_GetLockID */
 u32 func_0210cfc0(
     u16 lockID); /* takes the card lock; nonzero while another user holds it */
 void OS_Halt(void); /* halts the CPU until an interrupt */
