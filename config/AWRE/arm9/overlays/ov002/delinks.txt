@@ -90,6 +90,7 @@ src/game/ov002/battle_load_side_graphics.c:
 src/game/ov002/battle_step_side_shake.c:
     complete
     .text       start:0x02353158 end:0x02353200
+    .bss        start:0x0236bbdc end:0x0236bbe0
 
 src/game/ov002/battle_start_side_shake.c:
     complete
@@ -158,6 +159,11 @@ src/game/ov002/func_ov002_02354124.c:
 src/game/ov002/battle_draw_scene.c:
     complete
     .text       start:0x02354174 end:0x02354464
+    .bss        start:0x0236bbe0 end:0x0236bbec
+
+src/game/ov002/ov002_bss_0236bbec.c:
+    complete
+    .bss        start:0x0236bbec end:0x0236bca0
 
 src/game/ov002/battle_set_side_projection.c:
     complete
@@ -658,3 +664,7 @@ src/game/ov002/battle_footstep_task_start.c:
 src/game/ov002/battle_cue_task_update.c:
     complete
     .text       start:0x0235ffa8 end:0x02360030
+
+src/game/ov002/ov002_bss_0236bbc0.c:
+    complete
+    .bss        start:0x0236bbc0 end:0x0236bbdc

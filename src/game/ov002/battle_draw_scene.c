@@ -11,7 +11,7 @@
 
 extern u8 data_ov002_023604ac[];
 extern u8 data_ov002_023604b8[];
-extern u8 data_ov002_0236bbe0[];
+static u8 data_ov002_0236bbe0[0xc]; /* size: up to the next symbol */
 extern s16 data_0214d4c4[];
 extern MenuStateFrom200 data_0229ed30;
 extern MenuStateFrom400 data_0229ef30;

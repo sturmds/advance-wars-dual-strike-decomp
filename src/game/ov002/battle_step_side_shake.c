@@ -3,7 +3,8 @@
 #include "game/screen_other_map.h"
 
 /* Step counter of each side, set to 1 by Battle_StartSideShake. */
-extern u8 data_ov002_0236bbdc[2];
+/* also declared in src/game/ov002/battle_start_side_shake.c and 1 more */
+u8 data_ov002_0236bbdc[2];
 /* Vertical offsets of the shake, indexed by step; 0 ends it. Volatile only to
  * match: the original reads the entry again for the scroll write. */
 extern volatile s32 data_ov002_023604f4[];
