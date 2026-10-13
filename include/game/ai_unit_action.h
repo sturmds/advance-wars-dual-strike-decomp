@@ -103,6 +103,11 @@ extern BOOL (*gAiUnloadTest)(void);
 extern int (*gAiUnloadScore)(void);
 void AiSeaTransport_ScoreUnloadTiles(void);
 
+/* AiTurn_ShowAction counters: cargo units unloaded so far, and frames
+ * waited in the current step. */
+extern int data_0229eac4;
+extern int data_0229eac8;
+
 /* AiAttack_Score flags. The low 16 bits hold the defender's unit slot. */
 #define AI_ATTACK_DEFENDER_MASK 0xffff
 #define AI_ATTACK_HEAVY_HIT \

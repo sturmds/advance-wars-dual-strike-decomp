@@ -6,7 +6,6 @@
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-/* also declared in src/game/main/ai/ai_show_action_action22.c and 4 more */
 int data_0229eac8;
 void* data_0229eacc[2];
 

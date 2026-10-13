@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/ai_unit_action.h"
 
-extern u32 data_0229eac4;
-
 void AiShowAction_Step0(void);
 void AiShowAction_Step1(void);
 void AiShowAction_Step2(void);
