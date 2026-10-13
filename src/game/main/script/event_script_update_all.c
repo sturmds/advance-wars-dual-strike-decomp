@@ -3,13 +3,19 @@
 #include "game/keypad.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/dma_task.h"
+#include "game/transfer_queue.h"
 
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0288 data_027c0288;
 extern u16 gEventScriptKeys;
 extern s16 gEventScriptOwnsInput;
-extern u16 data_0216e044;
-extern u16 data_0216e048;
+static u16 data_0216e048;
+static u16 data_0216e044;
+volatile int data_0216e04c; /* entries queued */
+volatile int data_0216e050; /* bytes queued */
+DmaTaskState gDmaTaskState;
+TransferEntry data_0216e05c[TRANSFER_QUEUE_SIZE];
 
 s16 func_0201d798(void);
 BOOL func_020f5848(void);

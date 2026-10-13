@@ -199,6 +199,11 @@ src/game/main/overlay/overlay_swap_slots0_and_1_for_slot4.c:
 src/game/main/overlay/overlay_unload.c:
     complete
     .text       start:0x02001670 end:0x020016bc
+    .bss        start:0x0216e020 end:0x0216e03c
+
+src/game/main/bss_0216e03c.c:
+    complete
+    .bss        start:0x0216e03c end:0x0216e044
 
 src/game/main/overlay/overlay_load.c:
     complete
@@ -2583,6 +2588,63 @@ src/game/main/script/text_box_update_skip_input.c:
 src/game/main/script/event_script_update_all.c:
     complete
     .text       start:0x0201a8bc end:0x0201aa04
+    .bss        start:0x0216e044 end:0x0216e29c
+
+src/game/main/bss_0216e29c.c:
+    complete
+    .bss        start:0x0216e29c end:0x0216e4b8
+
+src/game/main/bss_0216e4b8.c:
+    complete
+    .bss        start:0x0216e4b8 end:0x0216e4e0
+
+src/game/main/bss_0216e4e0.c:
+    complete
+    .bss        start:0x0216e4e0 end:0x0216e5ac
+
+src/game/main/screen/screen_bss.c:
+    complete
+    .bss        start:0x0216e5ac end:0x0216ef94
+
+src/game/main/screen/screen_bss_0216ef94.c:
+    complete
+    .bss        start:0x0216ef94 end:0x0216fca8
+
+src/game/main/screen/screen_bss_0216fca8.c:
+    complete
+    .bss        start:0x0216fca8 end:0x021700a8
+
+src/game/main/screen/screen_bss_021700a8.c:
+    complete
+    .bss        start:0x021700a8 end:0x02170314
+
+src/game/main/screen/screen_bss_02170314.c:
+    complete
+    .bss        start:0x02170314 end:0x02172108
+
+src/game/main/screen/screen_bss_02172108.c:
+    complete
+    .bss        start:0x02172108 end:0x02175180
+
+src/game/main/bss_02175180.c:
+    complete
+    .bss        start:0x02175180 end:0x02175948
+
+src/game/main/screen/screen_bss_02175948.c:
+    complete
+    .bss        start:0x02175948 end:0x0217db08
+
+src/game/main/screen/screen_bss_0217db08.c:
+    complete
+    .bss        start:0x0217db08 end:0x0217fb08
+
+src/game/main/bss_0217fb08.c:
+    complete
+    .bss        start:0x0217fb08 end:0x0218fea8
+
+src/game/main/sound/sound_bss.c:
+    complete
+    .bss        start:0x0218fea8 end:0x0218ff50
 
 src/game/main/script/event_script_step_slot.c:
     complete
