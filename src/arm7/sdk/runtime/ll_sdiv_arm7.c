@@ -1,6 +1,7 @@
 #include "types.h"
 #include "sdk/runtime.h"
 
+#ifdef __MWERKS__
 /*
  * ARM7 copy of src/sdk/runtime/ll_sdiv.c: signed 64-bit remainder and
  * division, and the 64-bit division loop that _ll_udiv_Arm7 shares. The
@@ -171,3 +172,54 @@ asm void _ll_div_core_Arm7(void)
     ldmfd sp!, {r4, r5, r6, r7, r11, r12, lr}
     bx lr
 }
+#else
+/* The flags the assembly keeps in r4. */
+#define NEGATE_RESULT 0x80000000u
+#define RETURN_REMAINDER 1u
+
+/* Divides the unsigned dividend by the nonzero divisor. */
+static u64 _ll_div_core_Arm7(u64 dividend, u64 divisor, u32 flags) {
+  u64 result =
+      (flags & RETURN_REMAINDER) ? dividend % divisor : dividend / divisor;
+
+  return (flags & NEGATE_RESULT) ? 0 - result : result;
+}
+
+/* A divisor of 0 returns the dividend. When both values fit in 32 bits the
+   assembly uses _s32_div_f and sign-extends its result, so INT_MIN / -1
+   gives INT_MIN rather than 2^31; the C does the same. Otherwise it divides
+   the magnitudes, and INT64_MIN / -1 gives INT64_MIN. Assumes the host
+   converts out-of-range values to signed types by wrapping, as gcc and clang
+   do. */
+static s64 _ll_sdiv_common_Arm7(s64 dividend, s64 divisor, u32 flags) {
+  u64 magnitude = dividend < 0 ? 0 - (u64)dividend : (u64)dividend;
+  u64 divisorMagnitude = divisor < 0 ? 0 - (u64)divisor : (u64)divisor;
+  s32 quotient;
+
+  if (divisor == 0) {
+    return dividend;
+  }
+  if (dividend == (s32)dividend && divisor == (s32)divisor) {
+    quotient = _s32_div_f((s32)dividend, (s32)divisor);
+    if (flags & RETURN_REMAINDER) {
+      return (s32)((u32)dividend - (u32)quotient * (u32)divisor);
+    }
+    return quotient;
+  }
+  return (s64)_ll_div_core_Arm7(magnitude, divisorMagnitude, flags);
+}
+
+/* The remainder takes the sign of the dividend. */
+s64 _ll_mod_Arm7(s64 dividend, s64 divisor) {
+  u32 flags = RETURN_REMAINDER | (dividend < 0 ? NEGATE_RESULT : 0);
+
+  return _ll_sdiv_common_Arm7(dividend, divisor, flags);
+}
+
+/* The quotient is negative when the signs differ. */
+s64 _ll_sdiv_Arm7(s64 dividend, s64 divisor) {
+  u32 flags = (dividend < 0) != (divisor < 0) ? NEGATE_RESULT : 0;
+
+  return _ll_sdiv_common_Arm7(dividend, divisor, flags);
+}
+#endif

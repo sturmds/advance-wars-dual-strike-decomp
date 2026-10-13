@@ -1,6 +1,7 @@
 #include "types.h"
 #include "sdk/runtime.h"
 
+#ifdef __MWERKS__
 /*
  * ARM7 copy of src/sdk/runtime/ll_udiv.c: unsigned 64-bit division and
  * remainder. Both entries set r4 to choose the result (0 for the quotient,
@@ -40,3 +41,21 @@ asm void _ll_udiv_common_Arm7(void)
     ldmfd sp!, {r4, r5, r6, r7, r11, r12, lr}
     bx lr
 }
+#else
+/* Picks the quotient or, with remainder set, the remainder. A divisor of 0
+   returns the dividend, as the assembly does. */
+static u64 _ll_udiv_common_Arm7(u64 dividend, u64 divisor, int remainder) {
+  if (divisor == 0) {
+    return dividend;
+  }
+  return remainder ? dividend % divisor : dividend / divisor;
+}
+
+u64 _ll_udiv_Arm7(u64 dividend, u64 divisor) {
+  return _ll_udiv_common_Arm7(dividend, divisor, 0);
+}
+
+u64 _ull_mod_Arm7(u64 dividend, u64 divisor) {
+  return _ll_udiv_common_Arm7(dividend, divisor, 1);
+}
+#endif
