@@ -2,8 +2,6 @@
 #pragma opt_propagation off
 #include "sdk/card.h"
 
-extern OSThreadInfo OSi_ThreadInfo;
-
 void OS_SleepThread(OSThreadQueue* queue);
 void func_021154ac(void);
 void CardSave_FillGeometryFromType(int type);

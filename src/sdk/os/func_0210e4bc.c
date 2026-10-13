@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/os.h"
 
-extern u32 data_022a9b78;
 u32 func_0210dbec(void);
 u32 OS_GetInitArenaHi(int id);
 void OS_SetArenaHi(int id, u32 lo);

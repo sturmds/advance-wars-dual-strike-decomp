@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/os.h"
 
-extern OSThreadInfo OSi_ThreadInfo;
-
 void OSi_InsertThreadToList(OSThread* thread) {
   OSThread* cur;
   OSThread* prev;

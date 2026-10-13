@@ -6,8 +6,8 @@
 #define IRQ_MASK_TIMER0 0x8
 
 static u16 gOsTickInitialized;
-u32 gOsiNeedResetTimer; /* also declared in src/sdk/os/osi_count_up_tick.c */
-vu64 gOsiTickCounter; /* also declared in src/sdk/os/os_get_tick.c and 1 more */
+u32 gOsiNeedResetTimer;
+vu64 gOsiTickCounter;
 void OSi_SetTimerReserved(int timer);
 void OSi_CountUpTick(void* arg);
 

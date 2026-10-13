@@ -27,14 +27,11 @@ extern u8 data_027c0000[]; /* DTCM base */
 
 static BOOL OSi_IsThreadInitialized;
 ThreadSwapHook data_022a992c;
-/* also declared in src/sdk/card/card_identify_backup.c and 19 more */
 OSThreadInfo OSi_ThreadInfo;
 /* the code that called this, made thread 0 */
 static OSThread OSi_LauncherThread;
-/* the idle thread; also declared in src/sdk/os/os_set_thread_priority.c */
 OSThread data_022a9984;
 u8 data_022a9aac[0xc8]; /* 0xc8 bytes no code names, before data_022a9b74 */
-extern OSThread** data_022a9924; /* current thread pointer */
 extern OSThread*
     data_022a9938;          /* OSi_ThreadInfo.current, under its own symbol */
 extern u32 data_022a9b74[]; /* end of the idle thread's stack */

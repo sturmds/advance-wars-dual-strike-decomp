@@ -5,7 +5,6 @@
 #define SYSTEM_DTCM_BASE 0x027c3000
 
 extern u32 data_022a9b84;
-extern u32 data_022a9b7c;
 void OSi_ExceptionHandler(void);
 u32 func_0210dbec(void);
 

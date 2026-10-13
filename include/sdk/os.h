@@ -119,4 +119,20 @@ void OSi_UnlockVram(u16 banks, u16 lockID);
 /* Forgets every VRAM bank lock. */
 void OSi_InitVramExclusive(void);
 
+/* Scheduler state; OS_InitThread sets it up. */
+extern OSThreadInfo OSi_ThreadInfo;
+extern OSThread** data_022a9924; /* points at OSi_ThreadInfo.current */
+extern OSThread data_022a9984;   /* the idle thread */
+
+/* Main RAM past 4 MB may be used as an arena. */
+extern BOOL data_022a9b78;
+
+/* Timer 0 overflow count, and the flag OSi_CountUpTick clears. */
+extern vu64 gOsiTickCounter;
+extern u32 gOsiNeedResetTimer;
+
+/* Exception user hook (0 for none) and the context record passed to it. */
+extern u32 data_022a9b7c;
+extern u8 data_022a9b88[0x80];
+
 #endif

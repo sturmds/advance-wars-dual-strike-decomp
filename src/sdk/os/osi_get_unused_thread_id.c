@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/os.h"
 
-extern OSThreadInfo OSi_ThreadInfo;
-
 /* Returns the first thread id with no thread, or -1 when all 16 are taken. */
 int OSi_GetUnusedThreadId(void) {
   int id;

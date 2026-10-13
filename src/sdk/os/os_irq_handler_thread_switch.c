@@ -1,7 +1,6 @@
 #include "sdk/os.h"
 
 extern u16 data_027c1278;               /* bit mask of thread ids to wake after the interrupt */
-extern OSThreadInfo OSi_ThreadInfo;
 extern void CP_SaveContext(void *coprocessorContext);   /* saves the coprocessor registers */
 extern void CPi_RestoreContext(void *coprocessorContext);   /* restores the coprocessor registers */
 

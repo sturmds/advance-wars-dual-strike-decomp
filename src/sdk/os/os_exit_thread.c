@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/os.h"
 
-extern OSThread** data_022a9924;
 extern OSThread* data_022a9944[];
 
 void OS_RescheduleThread(void);

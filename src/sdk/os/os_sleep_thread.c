@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/os.h"
 
-extern OSThread** data_022a9924;
-
 void OS_RescheduleThread(void);
 
 /* queue->head is a bit mask of the ids of the waiting threads. */

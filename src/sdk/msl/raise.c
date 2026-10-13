@@ -10,7 +10,6 @@
 
 typedef void (*SignalHandler)(int sig);
 
-extern OSThreadInfo OSi_ThreadInfo;
 u8 data_022ad1ac[0x14];
 /* 0x78 bytes no code names, before gMslSignalMutex, cut in 6 to keep the sizes ascending */
 u8 data_022ad184[0x14];

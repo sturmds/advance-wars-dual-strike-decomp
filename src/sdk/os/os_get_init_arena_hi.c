@@ -21,8 +21,6 @@ extern u8 data_027c0000[]; /* DTCM base */
 #define SHARED_ARENA_HI 0x027ff800
 #define WRAM_MAIN_ARENA_HI 0x037f8000
 
-extern BOOL data_022a9b78; /* main RAM past 4 MB may be used as an arena */
-
 u32 func_0210dbec(void); /* console type */
 
 void* OS_GetInitArenaHi(OSArenaId id) {

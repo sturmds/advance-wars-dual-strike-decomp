@@ -4,8 +4,6 @@
 #define REG_TM0CNT_L (*(vu16*)0x04000100)
 #define IRQ_MASK_TIMER0 0x8
 
-extern vu64 gOsiTickCounter;
-
 /* 64-bit tick count: timer 0 overflow count above its 16-bit counter. */
 u64 OS_GetTick(void) {
   int irqState;

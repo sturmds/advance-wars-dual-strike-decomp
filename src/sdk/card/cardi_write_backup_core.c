@@ -2,8 +2,6 @@
 #pragma opt_propagation off
 #include "sdk/card.h"
 
-extern OSThreadInfo OSi_ThreadInfo;
-
 void OS_SleepThread(OSThreadQueue* queue);
 void CARDi_SetTask(GameCardTaskStep task);
 void CardSave_TaskWriteChunks(CARDiCommon* common);

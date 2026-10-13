@@ -1,6 +1,6 @@
 #include "types.h"
+#include "sdk/os.h"
 
-extern u8 data_022a9b88[];
 
 #ifdef __MWERKS__
 /*

@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/os.h"
 
-extern OSThreadInfo OSi_ThreadInfo;
-
 void OSi_RemoveThreadFromList(OSThread* thread) {
   OSThread* prev = NULL;
   OSThread* cur = OSi_ThreadInfo.list;

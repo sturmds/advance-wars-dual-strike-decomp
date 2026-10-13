@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/os.h"
 
-extern OSThreadInfo OSi_ThreadInfo;
-
 void OS_RescheduleThread(void);
 
 /* queue->head is a bit mask of the ids of the waiting threads. */

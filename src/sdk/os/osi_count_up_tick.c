@@ -4,8 +4,6 @@
 #define REG_TM0CNT_L (*(vu16*)0x04000100)
 #define REG_TM0CNT_H (*(vu16*)0x04000102)
 
-extern vu64 gOsiTickCounter;
-extern u32 gOsiNeedResetTimer;
 void Timer_InstallIrqSlot(int timer, void (*handler)(void*), void* arg);
 
 /* Timer 0 overflow handler: counts one more overflow and arms itself for the next. */

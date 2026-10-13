@@ -1,7 +1,5 @@
 #include "sdk/card.h"
 
-extern OSThreadInfo OSi_ThreadInfo;
-
 void OS_WakeupThreadDirect(OSThread* thread);
 
 void CARDi_SetTask(GameCardTaskStep task) {

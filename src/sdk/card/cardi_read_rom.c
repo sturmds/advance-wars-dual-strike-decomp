@@ -1,7 +1,6 @@
 #pragma opt_propagation off
 #include "sdk/card.h"
 
-extern OSThreadInfo OSi_ThreadInfo;
 extern u32 data_022ac0e0; /* offset added to every ROM address */
 
 void OS_SleepThread(OSThreadQueue* queue);

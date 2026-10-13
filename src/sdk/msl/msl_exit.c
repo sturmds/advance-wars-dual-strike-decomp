@@ -7,7 +7,6 @@
 
 typedef void (*AtExitFunction)(void);
 
-extern OSThreadInfo OSi_ThreadInfo;
 extern OSMutex gMslExitMutex;
 extern int gMslExitFuncCount;
 extern AtExitFunction gMslExitFuncs[EXIT_TABLE_SIZE];

@@ -1,9 +1,6 @@
 #include "types.h"
 #include "sdk/os.h"
 
-extern OSThreadInfo OSi_ThreadInfo;
-extern OSThread data_022a9984;
-
 void OS_RescheduleThread(void);
 void OSi_InsertThreadToList(OSThread* thread);
 

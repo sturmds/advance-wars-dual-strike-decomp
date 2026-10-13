@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/os.h"
 
-extern OSThreadInfo OSi_ThreadInfo;
-
 void Mutex_UnlinkFromOwner(OSThread* thread, OSMutex* mutex);
 void OS_WakeupThread(OSThreadQueue* queue);
 
