@@ -1,9 +1,10 @@
 #include "types.h"
 
 u32 *__fp_status(void);
-extern double func_02121ea8(double a, u32 op);
+extern s32 func_02121ea8(double a, u32 op);
 extern float __fp_trap_f(float a, u32 op);
 
+#ifdef __MWERKS__
 /*
  * Converts a double (r0 low word, r1 high word) to a signed 32-bit integer,
  * rounding toward zero. Same status word and trap scheme as _ffix: an
@@ -99,3 +100,74 @@ inexact_trap:
     ldmfd sp!, {lr}
     bx lr
 }
+#else
+#include <limits.h>
+#include <string.h>
+
+#define FP_STICKY_INVALID 0x1
+#define FP_STICKY_INEXACT 0x10
+#define FP_TRAP_INVALID 0x100
+#define FP_TRAP_INEXACT 0x1000
+/* Operation words for the trap handlers: the exception in bits 26-30,
+   rounding toward zero in bits 22-23, 0xc8 for this conversion. */
+#define FP_OP_INVALID_DFIX 0x04c000c8
+#define FP_OP_INEXACT_DFIX 0x40c000c8
+
+/* The C reads a double's bits by copying it to a u64, so double must be the
+   64-bit IEEE format in the same byte order as u64. The inexact trap gets
+   the integer's bits where a float goes, so float must be 4 bytes. */
+typedef char DoubleIsEightBytes[sizeof(double) == 8 ? 1 : -1];
+typedef char FloatIsFourBytes[sizeof(float) == 4 ? 1 : -1];
+
+/* The assembly passes the integer to __fp_trap_f in r0, where a float
+   goes, and returns the r0 it gets back. */
+static int Inexact(int result) {
+  u32* status = __fp_status();
+  float bits;
+
+  if (*status & FP_TRAP_INEXACT) {
+    memcpy(&bits, &result, sizeof(bits));
+    bits = __fp_trap_f(bits, FP_OP_INEXACT_DFIX);
+    memcpy(&result, &bits, sizeof(result));
+    return result;
+  }
+  *status |= FP_STICKY_INEXACT;
+  return result;
+}
+
+int _dfix(double x) {
+  u64 bits;
+  u64 mantissa;
+  int shift;
+  int result;
+
+  memcpy(&bits, &x, sizeof(bits));
+  /* x >> shift + 32 is the integer part; 1 <= |x| < 2^31 gives 1 to 31. */
+  shift = 0x41e - (int)((bits >> 52) & 0x7ff);
+  if (shift <= 0) {
+    if ((bits >> 32) == 0xc1e00000 && (u32)bits < 0x200000) {
+      /* -2^31 - f with 0 <= f < 1. */
+      return (u32)bits == 0 ? INT_MIN : Inexact(INT_MIN);
+    }
+    /* Too large, infinity or NaN. */
+    if (*__fp_status() & FP_TRAP_INVALID) {
+      return func_02121ea8(x, FP_OP_INVALID_DFIX);
+    }
+    *__fp_status() |= FP_STICKY_INVALID;
+    return (bits >> 63) ? INT_MIN : INT_MAX;
+  }
+  if (shift >= 32) {
+    /* |x| < 1. */
+    return (bits << 1) == 0 ? 0 : Inexact(0);
+  }
+  mantissa = (bits << 11) | 0x8000000000000000ull;
+  result = (int)(mantissa >> (shift + 32));
+  if (bits >> 63) {
+    result = -result;
+  }
+  if ((mantissa << (32 - shift)) == 0) {
+    return result;
+  }
+  return Inexact(result);
+}
+#endif

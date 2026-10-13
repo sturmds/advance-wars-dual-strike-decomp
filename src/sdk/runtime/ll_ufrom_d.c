@@ -3,6 +3,7 @@
 u32 *__fp_status(void);
 extern double __fp_trap_d(double a, u32 op);
 
+#ifdef __MWERKS__
 /*
  * Converts a double (r0 low word, r1 high word) to an unsigned 64-bit
  * integer (r0 low, r1 high), rounding toward zero. Negative inputs give 0.
@@ -107,3 +108,77 @@ inexact_trap:
     ldmfd sp!, {lr}
     bx lr
 }
+#else
+#include <string.h>
+
+#define FP_STICKY_INVALID 0x1
+#define FP_STICKY_INEXACT 0x10
+#define FP_TRAP_INVALID 0x100
+#define FP_TRAP_INEXACT 0x1000
+/* Operation words for the trap handlers: the exception in bits 26-30,
+   rounding toward zero in bits 22-23, 0xf8 for this conversion. */
+#define FP_OP_INVALID_LL_UFROM_D 0x04c000f8
+#define FP_OP_INEXACT_LL_UFROM_D 0x40c000f8
+
+/* The C reads a double's bits by copying it to a u64, so double must be the
+   64-bit IEEE format in the same byte order as u64. */
+typedef char DoubleIsEightBytes[sizeof(double) == 8 ? 1 : -1];
+
+static u64 DoubleBits(double x) {
+  u64 bits;
+
+  memcpy(&bits, &x, sizeof(bits));
+  return bits;
+}
+
+/* The assembly passes the result to __fp_trap_d where a double goes, and
+   returns the two words it gets back. */
+static u64 Inexact(u64 result) {
+  u32* status = __fp_status();
+  double bits;
+
+  if (*status & FP_TRAP_INEXACT) {
+    memcpy(&bits, &result, sizeof(bits));
+    return DoubleBits(__fp_trap_d(bits, FP_OP_INEXACT_LL_UFROM_D));
+  }
+  *status |= FP_STICKY_INEXACT;
+  return result;
+}
+
+static u64 Invalid(double x) {
+  u32* status = __fp_status();
+
+  if (*status & FP_TRAP_INVALID) {
+    return DoubleBits(__fp_trap_d(x, FP_OP_INVALID_LL_UFROM_D));
+  }
+  *status |= FP_STICKY_INVALID;
+  return 0xffffffffffffffffull;
+}
+
+u64 _ll_ufrom_d(double x) {
+  u64 bits = DoubleBits(x);
+  u64 mantissa;
+  int shift;
+
+  if (bits >> 63) {
+    /* A negative NaN is invalid; anything else negative, -infinity too,
+       gives 0 without a flag. */
+    return bits > 0xfff0000000000000ull ? Invalid(x) : 0;
+  }
+  /* x >> shift is the integer part; 1 <= x < 2^64 gives 0 to 63. */
+  shift = 0x43e - (int)(bits >> 52);
+  if (shift < 0) {
+    /* 2^64 or more, infinity or NaN. */
+    return Invalid(x);
+  }
+  if (shift >= 64) {
+    /* x < 1. */
+    return bits == 0 ? 0 : Inexact(0);
+  }
+  mantissa = (bits << 11) | 0x8000000000000000ull;
+  if (shift == 0 || (mantissa << (64 - shift)) == 0) {
+    return mantissa >> shift;
+  }
+  return Inexact(mantissa >> shift);
+}
+#endif
