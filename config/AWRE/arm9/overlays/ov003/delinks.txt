@@ -46,6 +46,7 @@ src/game/ov003/func_ov003_023517e0.c:
 src/game/ov003/random.c:
     complete
     .text       start:0x023517e4 end:0x02351814
+    .bss        start:0x02365b00 end:0x02365b0c
 
 src/game/ov003/random_seed.c:
     complete
@@ -86,6 +87,7 @@ src/game/ov003/ov003_load_screen_graphics.c:
 src/game/ov003/ov003_load_obj_graphics.c:
     complete
     .text       start:0x02352240 end:0x023522cc
+    .bss        start:0x02365b0c end:0x02365cf4
 
 src/game/ov003/ov003_load_main_screen_graphics.c:
     complete
@@ -126,6 +128,11 @@ src/game/ov003/ov003_end3d.c:
 src/game/ov003/ov003_begin3d.c:
     complete
     .text       start:0x02353a98 end:0x02353b34
+    .bss        start:0x02365cf4 end:0x02369534
+
+src/game/ov003/ov003_bss_02369534.c:
+    complete
+    .bss        start:0x02369534 end:0x02369b98
 
 src/game/ov003/func_ov003_02353b34.c:
     complete
@@ -518,6 +525,7 @@ src/game/ov003/func_ov003_0235dd38.c:
 src/game/ov003/ov003_draw_items.c:
     complete
     .text       start:0x0235dd48 end:0x0235ddb0
+    .bss        start:0x02369b98 end:0x02369be8
 
 src/game/ov003/ov003_draw_item.c:
     complete
@@ -694,6 +702,7 @@ src/game/ov003/ov003_start_slot_placing.c:
 src/game/ov003/ov003_update_rows_and_palette.c:
     complete
     .text       start:0x02360cc4 end:0x02360d54
+    .bss        start:0x02369be8 end:0x02369c08
 
 src/game/ov003/ov003_row_draw_charge.c:
     complete
@@ -902,6 +911,7 @@ src/game/ov003/ov003_create_row_sprite.c:
 src/game/ov003/ov003_create_anchored_sprite.c:
     complete
     .text       start:0x02364104 end:0x02364204
+    .bss        start:0x02369c08 end:0x02369c20
 
 src/game/ov003/ov003_create_unit_sprite.c:
     complete

@@ -5,7 +5,8 @@ void Ov003Row_DrawCharge(int row);
 int MainLoop_GetFrameCount(void);
 void Palette_Load(const void* src, int offset, u32 size);
 
-extern u16 data_ov003_02369be8[];
+/* size: up to the next symbol; also declared in src/game/ov003/ov003_load_sub_screen_graphics.c */
+u16 data_ov003_02369be8[0x10];
 
 /* With unk_1df_6 set, runs Ov003Row_DrawCharge on each row in activeRows. Then loads one of 16 colours, a new one every 4 frames, into palette entry 0x10f. */
 void Ov003_UpdateRowsAndPalette(void) {

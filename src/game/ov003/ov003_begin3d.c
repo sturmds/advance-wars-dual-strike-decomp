@@ -9,7 +9,13 @@
 #define GEOM_TARGET_POS_AND_DIR 2
 extern u8 data_ov003_02364a78[];
 extern u8 data_ov003_02364a6c[];
-extern u8 data_ov003_02365cf4[];
+static u8 data_ov003_02365cf4[0xc]; /* size: up to the next symbol */
+u8 data_ov003_02365d00[0x10];       /* size: up to the next symbol */
+/* per tile code: bits 5-7 row, bits 0-4 terrain; size: up to the next symbol */
+u8 data_ov003_02365d10[0x400];
+u16 data_ov003_02367110[512][4]; /* layer 2 and 3 map entries per 16x16 tile */
+u16 data_ov003_02366110[512][4]; /* layer 1 map entries per 16x16 tile */
+u8 data_ov003_02368110[0x1424];  /* size: up to the next symbol */
 void G3X_Reset(void);
 void G3i_LookAt_(void* a, void* b, void* c, int d, int e);
 void func_ov003_02353b34(void);

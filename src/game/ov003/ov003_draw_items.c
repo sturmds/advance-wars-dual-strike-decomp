@@ -1,6 +1,10 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 #include "game/ov003_item.h"
+#include "game/ov003_marker.h"
+
+Ov003Item data_ov003_02369b98[OV003_ITEM_COUNT];
+Ov003Marker data_ov003_02369bb8[4];
 
 void Ov003_DrawItem(Ov003Item* item);
 int Ov003_IsPhase0OrAbove6(void);
