@@ -1,9 +1,8 @@
 #include "types.h"
 
+#include "sdk/fp_status.h"
+
 extern void _fsub(void);
-u32 *__fp_status(void);
-float __fp_trap_ff(float a, float b, u32 op);
-float __fp_trap_f(float a, u32 op);
 
 /*
  * Soft-float single-precision add: r0 = r0 + r1, as IEEE bit patterns.
@@ -16,6 +15,7 @@ float __fp_trap_f(float a, u32 op);
  * 0x1000 enable the trap for each; bits 22-23 pick the rounding mode
  * (0 nearest, 1 toward +inf, 2 toward -inf, 3 toward zero).
  */
+#ifdef __MWERKS__
 asm void _fadd(void)
 {
     mov r2, #1
@@ -326,3 +326,87 @@ inexact_trap:
     ldmfd sp!, {lr}
     bx lr
 }
+#else
+#include "sdk/soft_float.h"
+
+float _fadd(float a, float b) {
+  u32 x = FpBits(a);
+  u32 y = FpBits(b);
+
+  if ((x ^ y) & FP_SIGN) {
+    return __fsub_same_sign(x, y ^ FP_SIGN, a, b, FP_OP_ADD);
+  }
+  return __fadd_same_sign(x, y, a, b, FP_OP_ADD);
+}
+
+float __fadd_same_sign(u32 a, u32 b, float trapA, float trapB, u32 trapOp) {
+  u32 sign;
+  u32 expA;
+  u32 expB;
+  u32 manA;
+  u32 manB;
+  u32 shift;
+  u32 sum;
+  u32 bits;
+
+  if (a < b) {
+    u32 larger = b;
+    b = a;
+    a = larger;
+  }
+  /* From here |a| >= |b|, so b is no NaN unless a is one. */
+  sign = a & FP_SIGN;
+  expA = (a >> 23) & 0xff;
+  expB = (b >> 23) & 0xff;
+  if (expA == 0xff) {
+    if (a << 9) {
+      return FpNanResult(a, b, trapA, trapB, trapOp);
+    }
+    return FpFloat(sign | FP_INFINITY);
+  }
+  if (expA == 0) {
+    /* Both zero or subnormal: the sum is exact and carries into the
+       exponent field by itself. */
+    return FpFloat(a + (b & ~FP_SIGN));
+  }
+  if ((b << 1) == 0) {
+    return FpFloat(a);
+  }
+
+  /* Mantissas with the leading bit at bit 31; a subnormal b has exponent 1
+     and no leading bit. */
+  manA = (a << 8) | FP_SIGN;
+  if (expB == 0) {
+    manB = b << 8;
+    expB = 1;
+  } else {
+    manB = (b << 8) | FP_SIGN;
+  }
+  shift = expA - expB;
+  if (shift != 0) {
+    u32 sticky;
+    if (shift >= 28) {
+      shift = 31;
+    }
+    sticky = (manB << (32 - shift)) != 0;
+    manB = (manB >> shift) | sticky;
+  }
+  sum = manA + manB;
+  if (sum < manA) {
+    /* Carried out of bit 31: shift right, keeping the lost bit sticky. */
+    sum = FP_SIGN | (sum >> 1) | (sum & 1);
+    expA++;
+    if (expA == 0xff) {
+      return FpOverflow(
+          sign, (sign | sum >> 8) + ((expA - 1 - FP_TRAP_EXP_ADJUST) << 23),
+          FP_OP_ADD);
+    }
+  }
+  bits = sign | ((sum << 1) >> 9) | (expA << 23);
+  if ((sum & 0xff) == 0) {
+    return FpFloat(bits);
+  }
+  return FpRoundInexact(bits, FpCompareHalf(sum & 0xff, 0x80), FP_INEXACT,
+                        FP_OP_ADD);
+}
+#endif

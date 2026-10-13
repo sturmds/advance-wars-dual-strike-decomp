@@ -1,9 +1,8 @@
 #include "types.h"
 
+#include "sdk/fp_status.h"
+
 extern void _fadd(void);
-u32 *__fp_status(void);
-float __fp_trap_ff(float a, float b, u32 op);
-float __fp_trap_f(float a, u32 op);
 
 /*
  * Soft-float single-precision subtract: r0 = r0 - r1, as IEEE bit patterns.
@@ -11,6 +10,7 @@ float __fp_trap_f(float a, u32 op);
  * The operands and the operation number (2 = subtract) stay on the stack for
  * the trap wrappers. The status word bits are listed in fadd.c.
  */
+#ifdef __MWERKS__
 asm void _fsub(void)
 {
     mov r2, #2
@@ -313,3 +313,107 @@ invalid_trap:
     ldmfd sp!, {lr}
     bx lr
 }
+#else
+#include "sdk/soft_float.h"
+
+/* An exact zero is negative only when rounding toward minus infinity. */
+static float ExactZero(void) {
+  if (FP_ROUNDING(*__fp_status()) == FP_ROUND_DOWNWARD) {
+    return FpFloat(FP_SIGN);
+  }
+  return FpFloat(0);
+}
+
+float _fsub(float a, float b) {
+  u32 x = FpBits(a);
+  u32 y = FpBits(b);
+
+  if ((x ^ y) & FP_SIGN) {
+    return __fadd_same_sign(x, y ^ FP_SIGN, a, b, FP_OP_SUB);
+  }
+  return __fsub_same_sign(x, y, a, b, FP_OP_SUB);
+}
+
+float __fsub_same_sign(u32 a, u32 b, float trapA, float trapB, u32 trapOp) {
+  u32 sign;
+  u32 expA;
+  u32 expB;
+  u32 manA;
+  u32 manB;
+  u32 shift;
+  u32 diff;
+  u32 bits;
+  int exp;
+
+  if (a < b) {
+    /* a - b = -(b - a) */
+    u32 larger = b ^ FP_SIGN;
+    b = a ^ FP_SIGN;
+    a = larger;
+  }
+  /* From here |a| >= |b|, so b is no NaN unless a is one. */
+  sign = a & FP_SIGN;
+  expA = (a >> 23) & 0xff;
+  expB = (b >> 23) & 0xff;
+  if (expA == 0xff) {
+    if (a << 9) {
+      return FpNanResult(a, b, trapA, trapB, trapOp);
+    }
+    if (expB == 0xff) {
+      return FpInvalid(trapA, trapB, trapOp);
+    }
+    return FpFloat(sign | FP_INFINITY);
+  }
+  if ((b << 1) == 0) {
+    if ((a << 1) == 0) {
+      return ExactZero();
+    }
+    return FpFloat(a);
+  }
+
+  /* Mantissas with the leading bit at bit 31; a subnormal has exponent 1
+     and no leading bit. */
+  if (expA == 0) {
+    manA = a << 8;
+    expA = 1;
+  } else {
+    manA = (a << 8) | FP_SIGN;
+  }
+  if (expB == 0) {
+    manB = b << 8;
+    expB = 1;
+  } else {
+    manB = (b << 8) | FP_SIGN;
+  }
+  shift = expA - expB;
+  if (shift != 0) {
+    u32 sticky;
+    if (shift >= 28) {
+      shift = 31;
+    }
+    sticky = (manB << (32 - shift)) != 0;
+    manB = (manB >> shift) | sticky;
+  }
+  diff = manA - manB;
+  if (diff == 0) {
+    return ExactZero();
+  }
+  exp = expA;
+  if (!(diff & FP_SIGN)) {
+    int lead = FpCountLeadingZeros(diff);
+    diff <<= lead;
+    exp -= lead;
+    if (exp <= 0) {
+      /* The assembly packs a subnormal result without rounding: it is
+         exact, because only exponents at most one apart can give it. */
+      return FpFloat(sign | FpShiftRight(diff, 9 - exp));
+    }
+  }
+  bits = sign | ((diff << 1) >> 9) | ((u32)exp << 23);
+  if ((diff & 0xff) == 0) {
+    return FpFloat(bits);
+  }
+  return FpRoundInexact(bits, FpCompareHalf(diff & 0xff, 0x80), FP_INEXACT,
+                        FP_OP_SUB);
+}
+#endif

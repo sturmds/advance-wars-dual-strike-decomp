@@ -233,3 +233,5 @@ arm7  _s32_div_f                           unrolled shift-subtract division, fal
 arm7  _u32_div_f                           unrolled shift-subtract division, falls into its neighbour
 arm7  _u32_div_not_0_f_Arm7                unrolled shift-subtract division, falls into its neighbour
 arm7  Reset_HandshakeAndReboot_Arm7        reset: zeroes r0-r3 and jumps through r12 with lr set by hand
+main  _fadd                                operands kept on the stack for the trap calls, branches into _fsub mid-function
+main  _fsub                                operands kept on the stack for the trap calls, entered mid-function from _fadd
