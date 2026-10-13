@@ -3,6 +3,10 @@
     .data       start:0x02364880 end:0x02365b00 kind:data align:32
     .bss        start:0x02365b00 end:0x02369c20 kind:bss align:32
 
+src/game/ov003/ov003_bss_02369534.c:
+    complete
+    .bss        start:0x02369534 end:0x02369b98
+
 src/game/ov003/ov003_update.c:
     complete
     .text       start:0x02350560 end:0x023509b8
@@ -69,6 +73,7 @@ src/game/ov003/ov003_init.c:
 src/game/ov003/ov003_init_state.c:
     complete
     .text       start:0x023519e0 end:0x02351a5c
+    .data       start:0x02364928 end:0x0236492c
 
 src/game/ov003/ov003_init_units_and_camera.c:
     complete
@@ -131,10 +136,6 @@ src/game/ov003/ov003_begin3d.c:
     complete
     .text       start:0x02353a98 end:0x02353b34
     .bss        start:0x02365cf4 end:0x02369534
-
-src/game/ov003/ov003_bss_02369534.c:
-    complete
-    .bss        start:0x02369534 end:0x02369b98
 
 src/game/ov003/func_ov003_02353b34.c:
     complete

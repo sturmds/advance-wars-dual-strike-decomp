@@ -13,6 +13,11 @@ u32 MainLoop_GetFrameCount(void);
 void Ov003_RandSeed(u32 seed);
 void Keypad_Init(void);
 
+/* The state itself, in ov003's .bss (ov003_load_obj_graphics.c). */
+extern Ov003State data_ov003_02365b14;
+
+Ov003State* data_ov003_02364928 = &data_ov003_02365b14;
+
 /* Seeds the random generator with the frame count, or with a fixed seed when
  * data_02160ac0->unk_7c is set (same flag func_ov003_023622b8 reads). */
 void Ov003_InitState(void) {
