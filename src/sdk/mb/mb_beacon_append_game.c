@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/mb.h"
 
-extern DlPlayAdvertProgress data_022ace4c;
-
 /* Adds a game to the end of the beacon's list. */
 void MbBeacon_AppendGame(DlPlayGameEntry* game) {
   DlPlayGameEntry* last = data_022ace4c.gameList;

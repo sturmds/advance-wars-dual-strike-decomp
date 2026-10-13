@@ -2,8 +2,6 @@
 #include "sdk/mb.h"
 #include "sdk/os.h"
 
-extern DlPlayHostLinkArea* data_022aced4;
-
 void MbParentFile_AdvanceBlock(int fileIndex);
 BOOL MbFile_GetBlockInfo(DlPlayBlockSpot* info,
                          const DlPlaySegmentStarts* table, u16 block,

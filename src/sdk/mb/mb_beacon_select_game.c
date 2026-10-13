@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/mb.h"
 
-extern DlPlayAdvertProgress data_022ace4c;
-
 void* func_0211ba5c(void);
 
 /* Moves to the next game on the list, or back to the first one after the

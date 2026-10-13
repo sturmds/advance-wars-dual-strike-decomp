@@ -2,7 +2,7 @@
 #include "sdk/mb.h"
 #include "sdk/os.h"
 
-/* aligned to 32: no symbol covers the bytes before it; also declared in src/sdk/mb/mb_task_is_available.c and 2 more */
+/* aligned to 32: no symbol covers the bytes before it */
 __attribute__((aligned(32))) DlPlayWorkerArea* data_022acf00;
 
 /* Posts the end task, if the task thread was started: once the tasks before

@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/mb.h"
 
-extern DlPlayStationArea* data_022aced8;
-
 /* Nonzero when MP is running, no send is queued and the parent is not ending.
  * The u8/s8 locals are needed to match. */
 int MbParent_CanSendMpData(void) {

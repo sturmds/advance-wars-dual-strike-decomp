@@ -2,8 +2,6 @@
 #include "sdk/mb.h"
 #include "sdk/os.h"
 
-extern DlPlayWorkerArea* data_022acf00;
-
 void OS_CreateThread(OSThread* thread, void (*proc)(void*), void* arg,
                      void* stack, u32 stackSize, u32 priority);
 void OS_WakeupThreadDirect(OSThread* thread);

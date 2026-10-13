@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/mb.h"
 
-extern DlPlayHostLinkArea* data_022aced4;
-
 /* Moves a file's current block on for the next send. It steps forward by one
  * while at most 2 past nextBlock, and otherwise goes to nextBlock. */
 void MbParentFile_AdvanceBlock(int fileIndex) {

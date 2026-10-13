@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/mb.h"
 
-extern DlPlayHostLinkArea* data_022aced4;
 extern u8 gMbLastFileInfoSent;
 
 void MI_CpuFill8(void* dst, u8 value, u32 size);

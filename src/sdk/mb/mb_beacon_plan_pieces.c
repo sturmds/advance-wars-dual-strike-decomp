@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/mb.h"
 
-extern DlPlayAdvertProgress data_022ace4c;
-
 /* Picks where the current game is cut into pieces: 9 from the icon palette on
  * when the game has an icon, else 4 from userParam. */
 void MbBeacon_PlanPieces(void) {

@@ -2,8 +2,6 @@
 #include "sdk/mb.h"
 #include "sdk/wm.h"
 
-extern DlPlayHostLinkArea* data_022aced4;
-
 void MbParent_HandleChildMessage(WMMpRecvData* data, u16 aid);
 
 /* Handles the MP data the children sent this frame: restarts every active

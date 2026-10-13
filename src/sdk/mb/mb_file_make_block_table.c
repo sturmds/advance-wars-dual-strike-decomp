@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/mb.h"
 
-extern DlPlayHostLinkArea* data_022aced4;
-
 BOOL MbFile_CanLoadSegment(u8 segment, u32 address, u32 size);
 
 /* Fills a file's block table from its download info: where each segment

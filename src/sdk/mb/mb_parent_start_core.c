@@ -4,10 +4,6 @@
 #include "sdk/pxi.h"
 #include "sdk/wm.h"
 
-extern DlPlayHostLinkArea* data_022aced4;
-extern DlPlayStationArea* data_022aced8;
-extern void* data_022acedc;
-
 void MIi_CpuClear16(u16 value, void* dst, u32 size);
 void MI_CpuFill8(void* dest, u32 data, u32 size);
 void MbPieces_SetSize(u32 childMaxSize);

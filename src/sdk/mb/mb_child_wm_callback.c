@@ -3,9 +3,6 @@
 #include "sdk/os.h"
 #include "sdk/wm.h"
 
-extern DlPlayHostLinkArea* data_022aced4;
-extern DlPlayStationArea* data_022aced8;
-extern u16 data_022aced0;
 extern WMScanParam data_022acee0;
 
 void MI_DmaCopy16(u32 dmaNo, const void* src, void* dest, u32 size);

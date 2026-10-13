@@ -2,8 +2,6 @@
 #include "sdk/mb.h"
 #include "sdk/wm.h"
 
-extern DlPlayStationArea* data_022aced8;
-
 /* Port callback: tells the work callback when data arrives on the MB port. Errors and
  * connect/disconnect events are ignored. */
 void MbParent_PortCallback(RadioNotice* ind) {

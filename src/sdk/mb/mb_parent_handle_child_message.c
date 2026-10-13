@@ -2,8 +2,6 @@
 #include "sdk/mb.h"
 #include "sdk/wm.h"
 
-extern DlPlayHostLinkArea* data_022aced4;
-
 void Mem_CopyBytes(const void* src, void* dst, u32 size);
 u8* MbComm_ReadChildMessage(u8* recv, DlPlayChildMsgHead* header, u16 aid);
 void MbComm_SetState(u16 aid, int state, void* arg);

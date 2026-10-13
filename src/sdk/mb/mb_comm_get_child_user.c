@@ -2,8 +2,6 @@
 #include "sdk/mb.h"
 #include "sdk/os.h"
 
-extern DlPlayHostLinkArea* data_022aced4;
-
 void Mem_CopyBytes(const void* src, void* dest, u32 size);
 
 /* Copies a child's user info (color, name) into the work area and returns the

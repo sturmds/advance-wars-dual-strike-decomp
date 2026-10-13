@@ -2,8 +2,6 @@
 #include "sdk/mb.h"
 #include "sdk/wm.h"
 
-extern DlPlayStationArea* data_022aced8;
-
 void MbChild_WmCallback(void* arg);
 int MbParent_SetMpData(WMCallbackFunc callback, void* data, u16 size,
                        u16 unused, u16 bitmap);

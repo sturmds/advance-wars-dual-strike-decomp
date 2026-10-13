@@ -3,9 +3,6 @@
 #include "sdk/os.h"
 #include "sdk/wm.h"
 
-extern DlPlayHostLinkArea* data_022aced4;
-extern DlPlayStationArea* data_022aced8;
-
 void MbParent_ReportError(u16 apiid, int errcode);
 void MbParent_SetIndAndLifeTime(void);
 int MbParent_CanSendMpData(void);

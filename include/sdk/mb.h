@@ -67,7 +67,7 @@ typedef struct DlPlayAdvertProgress {
   DlPlayGameEntry* currentGame;
   u8* nextPiece; /* next byte of the game to send */
   u8 state;
-  u8 pad_0d;
+  u8 unk_0d;
   u8 changeCount; /* copy of the game's changeCount */
   u8 pieceIndex;
   u8 pieceCount;
@@ -115,6 +115,12 @@ typedef struct DlPlayRosterFrame {
           [DLPLAY_PLAYER_BADGE_BYTES]; /* a player number of 0 ends the list */
   u8 unk_4a8[8];
 } DlPlayRosterFrame;
+
+/* The beacon buffer at data_022ace60, in either form. */
+typedef union DlPlayBeaconFrame {
+  DlPlayAdvertFrame advert;
+  DlPlayRosterFrame roster;
+} DlPlayBeaconFrame;
 
 #define DLPLAY_SCAN_HIT_SLOTS 16
 
@@ -592,5 +598,20 @@ void MbComm_NotifyState(u32 aid, u32 state, void* arg);
   (((DlPlayHostLinkArea*)((u8*)(work) +                             \
                           (fileIndex) * sizeof(DlPlayOfferedFile))) \
        ->files)
+
+/* Work areas of the parent: data_022aced4 points to the MB buffer
+ * (DlPlayBufferArea's view puts the parent area 0x1000 bytes in, where
+ * data_022aced8 points), data_022acf00 to the task thread's area. */
+extern DlPlayHostLinkArea* data_022aced4;
+extern DlPlayStationArea* data_022aced8;
+extern DlPlayWorkerArea* data_022acf00;
+extern void* data_022acedc; /* WM work buffer given to WM_Initialize */
+extern u16 data_022aced0;   /* DMA channel given to WM_Initialize */
+
+/* Beacon state: the game list and progress, the hook called with the ggid
+ * around a player-list beacon, and the beacon buffer. */
+extern DlPlayAdvertProgress data_022ace4c;
+extern void (*data_022ace48)(u32 ggid);
+extern DlPlayBeaconFrame data_022ace60;
 
 #endif

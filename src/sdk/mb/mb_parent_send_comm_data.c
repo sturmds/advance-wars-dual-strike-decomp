@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/mb.h"
 
-extern DlPlayHostLinkArea* data_022aced4;
-
 void MIi_CpuClear16(u16 value, void* dst, u32 size);
 int MbParent_SendHeaderOnly(u8 type, u16 bitmap);
 int MbParent_SendFileInfo(void);

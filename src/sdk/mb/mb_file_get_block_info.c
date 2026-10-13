@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/mb.h"
 
-extern DlPlayHostLinkArea* data_022aced4;
-
 /* Finds the segment that holds a block of a file and fills in where the
  * block is: its offset in the file, its size (at most one message) and
  * where the child receives it. FALSE for a block past the end. */

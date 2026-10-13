@@ -3,12 +3,9 @@
 #include "sdk/wm.h"
 
 static u32 data_022ace44; /* 0: call data_022ace48 before sending, 1: after */
-/* also declared in src/sdk/mb/mb_beacon_init.c */
 void (*data_022ace48)(u32 ggid);
-/* also declared in src/game/main/func_0211ba5c.c and 7 more */
 DlPlayAdvertProgress data_022ace4c;
-/* the DlPlayAdvertFrame buffer, in its player-list form; also declared in src/sdk/mb/mb_beacon_send_piece.c */
-DlPlayRosterFrame data_022ace60;
+DlPlayBeaconFrame data_022ace60;
 
 void MIi_CpuClear16(u16 value, void* dst, u32 size);
 void MIi_CpuCopy16(const void* src, void* dst, u32 size);
@@ -29,31 +26,33 @@ void MbBeacon_SendPlayers(u32 ggid, u16 tgid, u32 attribute) {
   if (data_022ace4c.changeCount != data_022ace4c.currentGame->changeCount) {
     MbBeacon_EndGame();
   }
-  data_022ace60.kind = DLPLAY_ADVERT_IS_ROSTER;
-  data_022ace60.seqNo = data_022ace4c.currentGame->seqNo;
-  data_022ace60.changeCount = data_022ace4c.changeCount;
-  data_022ace60.ggid = data_022ace4c.currentGame->ggid;
-  data_022ace60.fileNo = data_022ace4c.currentGame->fileNo;
-  data_022ace60.sequence = data_022ace4c.sequence++;
-  data_022ace60.playerCount = data_022ace4c.currentGame->playerCount;
-  data_022ace60.playerFlags = data_022ace4c.currentGame->playerFlags;
-  data_022ace60.unk_35c = data_022ace4c.currentGame->unk_35c;
+  data_022ace60.roster.kind = DLPLAY_ADVERT_IS_ROSTER;
+  data_022ace60.roster.seqNo = data_022ace4c.currentGame->seqNo;
+  data_022ace60.roster.changeCount = data_022ace4c.changeCount;
+  data_022ace60.roster.ggid = data_022ace4c.currentGame->ggid;
+  data_022ace60.roster.fileNo = data_022ace4c.currentGame->fileNo;
+  data_022ace60.roster.sequence = data_022ace4c.sequence++;
+  data_022ace60.roster.playerCount = data_022ace4c.currentGame->playerCount;
+  data_022ace60.roster.playerFlags = data_022ace4c.currentGame->playerFlags;
+  data_022ace60.roster.unk_35c = data_022ace4c.currentGame->unk_35c;
   if (data_022ace44 == 0 && data_022ace48 != NULL) {
     data_022ace48(data_022ace4c.currentGame->ggid);
   }
   for (i = 0; i < 8; i++) {
-    data_022ace60.unk_4a8[i] = data_022ace4c.currentGame->unk_4a8[i];
+    data_022ace60.roster.unk_4a8[i] = data_022ace4c.currentGame->unk_4a8[i];
   }
 
   zero = 0;
-  MIi_CpuClear16(zero, data_022ace60.users, sizeof(data_022ace60.users));
+  MIi_CpuClear16(zero, data_022ace60.roster.users,
+                 sizeof(data_022ace60.roster.users));
   count = 0;
   pending = data_022ace4c.currentGame->sentPlayerFlags ^
             data_022ace4c.currentGame->playerFlags;
   for (i = 0; i < DLPLAY_CHILD_SLOTS; i++) {
     if (pending & (2 << i)) { /* bit 0 is the parent */
       MIi_CpuCopy16(data_022ace4c.currentGame->users[i],
-                    data_022ace60.users[count], DLPLAY_PLAYER_BADGE_BYTES);
+                    data_022ace60.roster.users[count],
+                    DLPLAY_PLAYER_BADGE_BYTES);
       count++;
       data_022ace4c.currentGame->sentPlayerFlags |= 2 << i;
       if (count == DLPLAY_ROSTER_PER_FRAME) {
@@ -62,18 +61,19 @@ void MbBeacon_SendPlayers(u32 ggid, u16 tgid, u32 attribute) {
     }
   }
   if (count < DLPLAY_ROSTER_PER_FRAME) {
-    data_022ace60.users[count][0] &= ~0xf0; /* player number 0 ends the list */
+    data_022ace60.roster.users[count][0] &=
+        ~0xf0; /* player number 0 ends the list */
   }
 
-  data_022ace60.checksum = 0;
-  data_022ace60.checksum =
-      MbBeacon_Checksum(&data_022ace60.checksum, DLPLAY_ADVERT_SUMMED_BYTES);
+  data_022ace60.roster.checksum = 0;
+  data_022ace60.roster.checksum = MbBeacon_Checksum(
+      &data_022ace60.roster.checksum, DLPLAY_ADVERT_SUMMED_BYTES);
   if (data_022ace4c.currentGame->sentPlayerFlags ==
       data_022ace4c.currentGame->playerFlags) {
     data_022ace4c.state = DLPLAY_ADVERT_STEP_PICK;
   }
-  WM_SetGameInfo(0, &data_022ace60, sizeof(DlPlayRosterFrame), ggid, tgid,
-                 attribute | WM_ATTR_FLAG_MB);
+  WM_SetGameInfo(0, &data_022ace60.roster, sizeof(DlPlayRosterFrame), ggid,
+                 tgid, attribute | WM_ATTR_FLAG_MB);
   if (data_022ace44 == 1 && data_022ace48 != NULL) {
     data_022ace48(data_022ace4c.currentGame->ggid);
   }

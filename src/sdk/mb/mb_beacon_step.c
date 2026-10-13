@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/mb.h"
 
-extern DlPlayAdvertProgress data_022ace4c;
-
 BOOL MbBeacon_SelectNextGame(void);
 void MbBeacon_PlanPieces(void);
 void MbBeacon_SendPiece(u32 ggid, u16 tgid, u32 attribute);

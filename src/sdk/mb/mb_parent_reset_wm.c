@@ -2,8 +2,6 @@
 #include "sdk/mb.h"
 #include "sdk/wm.h"
 
-extern DlPlayStationArea* data_022aced8;
-
 void MbParent_ReportError(u16 apiid, int errcode);
 
 /* Calls WM_Reset with the parent's WM callback, reports a failure and

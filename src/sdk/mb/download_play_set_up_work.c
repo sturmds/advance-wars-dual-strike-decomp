@@ -2,9 +2,6 @@
 #include "sdk/mb.h"
 #include "sdk/os.h"
 
-extern DlPlayHostLinkArea* data_022aced4;
-extern DlPlayStationArea* data_022aced8;
-extern u16 data_022aced0;
 extern const u16* data_0216d99c; /* points to L"multiboot" */
 
 void MIi_CpuClear16(u16 value, void* dst, u32 size);

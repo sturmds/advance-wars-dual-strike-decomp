@@ -2,8 +2,6 @@
 #include "sdk/mb.h"
 #include "sdk/os.h"
 
-extern DlPlayWorkerArea* data_022acf00;
-
 void OS_WakeupThreadDirect(OSThread* thread);
 
 /* Queues info on the task thread's list, sorted by priority. The thread's own

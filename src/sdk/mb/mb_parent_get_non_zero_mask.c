@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/mb.h"
 
-extern DlPlayStationArea* data_022aced8;
-
 /* Bit mask of the work area's four u16 values at 0x0e, 0x12, 0x14 and 0x16 that
  * are not zero (bits 0 to 3); what they count is not known yet. */
 u8 MbParent_GetNonZeroMask(void) {

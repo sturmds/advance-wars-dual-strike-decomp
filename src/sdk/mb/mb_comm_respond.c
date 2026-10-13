@@ -2,8 +2,6 @@
 #include "sdk/mb.h"
 #include "sdk/os.h"
 
-extern DlPlayHostLinkArea* data_022aced4;
-
 /* Answers a child that is waiting for the application: sets its childRequest
  * when the child is in the state that answer applies to. Returns 1 when the
  * request was set, else 0. */

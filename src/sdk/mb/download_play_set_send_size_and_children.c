@@ -2,8 +2,6 @@
 #include "sdk/mb.h"
 #include "sdk/os.h"
 
-extern DlPlayStationArea* data_022aced8;
-
 int MbParent_CheckCommParam(u32 sendSize, u32 mpParam, u32 maxChildren);
 
 /* Sets the MP send size and the number of children, unless the parent already

@@ -2,8 +2,6 @@
 #include "sdk/mb.h"
 #include "sdk/wm.h"
 
-extern DlPlayHostLinkArea* data_022aced4;
-
 void MI_CpuFill8(void* dst, int value, u32 size);
 void MIi_CpuClearFast(u32 value, void* dst, u32 size);
 void MbGame_SetPlayers(DlPlayGameEntry* game, const void* users,

@@ -2,8 +2,6 @@
 #include "sdk/mb.h"
 #include "sdk/os.h"
 
-extern DlPlayStationArea* data_022aced8;
-
 int MbParent_ResetWm(void);
 void MbParent_ResetWmCallback(DlPlayWorkerJob* info);
 
