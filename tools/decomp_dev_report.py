@@ -270,8 +270,8 @@ def main() -> int:
     ARTIFACT.mkdir(parents=True, exist_ok=True)
     (ARTIFACT / "report.json").write_bytes(data)
     print(f"decomp.dev: {(ARTIFACT / 'report.json').relative_to(ROOT)}, "
-          f"decompiled {measures.get('matched_code_percent', 0):.2f}%, "
-          f"linked {measures.get('complete_code_percent', 0):.2f}%")
+          f"decompiled {progress.pct(int(measures.get('matched_code', 0)), int(measures.get('total_code', 0)))}, "
+          f"linked {progress.pct(int(measures.get('complete_code', 0)), int(measures.get('total_code', 0)))}")
     return 0
 
 

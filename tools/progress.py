@@ -15,9 +15,10 @@ the report leaves out (config/AWRE/asm_functions.txt does not list it).
 
 The row for all code reads, for example:
 
-    | all | 99.95% | 99.95% | 1844182 / 1845078 | 1844182 / 1845078 | 8559 / 8572 |
+    | all | 99.9514% | 99.9514% | 1844182 / 1845078 | 1844182 / 1845078 | 8559 / 8572 |
 
-The same report gives the same file. Without the report it stops with an
+Percentages are cut off at four decimals, never rounded, so 100.0000% shows
+only when the counts are equal. The same report gives the same file. Without the report it stops with an
 error: run `make release` first, as hooks/pre-commit and land_self.py do.
 
 Other tools import ASM_FUNC (decomp_dev_report.py) and unlinked()
@@ -59,7 +60,12 @@ def unlinked():
 
 
 def pct(part: int, whole: int) -> str:
-    return f"{100 * part / whole:.2f}%" if whole else "-"
+    """Percentage cut off (never rounded) at 4 decimals, by integer
+    arithmetic: 100.0000% only when part == whole, else at most 99.9999%."""
+    if not whole:
+        return "-"
+    scaled = 1000000 * part // whole
+    return f"{scaled // 10000}.{scaled % 10000:04d}%"
 
 
 def unit_module(unit: dict, modules: dict[str, str]) -> str:
@@ -152,7 +158,7 @@ def markdown(report: dict, report_path: str) -> str:
     if below:
         lines += ["| Module | Unit | Symbol | Bytes | Match |", "|---|---|---|---:|---:|"]
         key = lambda b: (order.index(b[0]) if b[0] in order else len(order), b[1], b[2])  # noqa: E731
-        lines += [f"| {m} | `{u}` | {s} | {n} | {p:.2f}% |" for m, u, s, n, p in sorted(below, key=key)]
+        lines += [f"| {m} | `{u}` | {s} | {n} | {int(p * 100) / 100:.2f}% |" for m, u, s, n, p in sorted(below, key=key)]
     else:
         lines.append("None.")
     if asm:

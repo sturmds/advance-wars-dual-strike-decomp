@@ -35,15 +35,19 @@ report = {
 }
 text = progress.markdown(report, "build/artifacts/0.1_report/report.json")
 rows = [line for line in text.splitlines() if line.startswith("| all |")]
-want = "| all | 66.67% | 50.00% | 200 / 300 | 150 / 300 | 3 / 4 |"
+want = "| all | 66.6666% | 50.0000% | 200 / 300 | 150 / 300 | 3 / 4 |"
 errors = []
 if rows != [want]:
     errors.append(f"all row: want [{want!r}], got {rows!r}")
-for line in ("| arm7 | 0.00% | 0.00% | 0 / 100 | 0 / 100 | 0 / 1 |",
-             "| game | 100.00% | 100.00% | 100 / 100 | 100 / 100 | 2 / 2 |",
+for line in ("| arm7 | 0.0000% | 0.0000% | 0 / 100 | 0 / 100 | 0 / 1 |",
+             "| game | 100.0000% | 100.0000% | 100 / 100 | 100 / 100 | 2 / 2 |",
              "| arm7 | `arm7/_dsd_gap@autoload_3_0` | data_arm7_03807180 | 100 | 0.00% |"):
     if line not in text.splitlines():
         errors.append(f"missing line {line!r}")
+for part, whole, want in ((1844958, 1845022, "99.9965%"), (999999, 1000000, "99.9999%"),
+                          (1844958, 1844958, "100.0000%"), (0, 0, "-"), (2, 3, "66.6666%")):
+    if progress.pct(part, whole) != want:
+        errors.append(f"pct({part}, {whole}): want {want}, got {progress.pct(part, whole)}")
 if errors:
     sys.exit("test_progress: " + "\n  ".join(errors))
 print("test_progress: ok")

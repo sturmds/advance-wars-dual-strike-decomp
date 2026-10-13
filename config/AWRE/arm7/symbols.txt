@@ -1051,13 +1051,13 @@ _s32_div_f kind:function(arm,size=0x20c) addr:0x03806d4c
 _u32_div_f kind:function(arm,size=0x8) addr:0x03806f58
 _u32_div_not_0_f_Arm7 kind:function(arm,size=0x1dc) addr:0x03806f60
 gCrc16NibbleTable kind:data(any) addr:0x0380713c
-gSndSineQuarterTable kind:data(any) addr:0x0380715c
+gSndSineQuarterTable kind:data(byte[0x21]) addr:0x0380715c
 gSndVolumeDecibels kind:data(any) addr:0x03807180
 gSndVolumeShiftBits kind:data(any) addr:0x03807280
 gSndExChannelAllocOrder kind:data(any) addr:0x03807284
-gSndAttackTable kind:data(any) addr:0x03807294
-gCardSaveCmdWriteEnable kind:data(any) addr:0x038072a8
-gCardSaveCmdReadStatus kind:data(any) addr:0x038072ac
+gSndAttackTable kind:data(byte[0x13]) addr:0x03807294
+gCardSaveCmdWriteEnable kind:data(byte[0x1]) addr:0x038072a8
+gCardSaveCmdReadStatus kind:data(byte[0x1]) addr:0x038072ac
 gCardRequestHandlers kind:data(any) addr:0x038072b0
 gOsNestedIrqPriorities kind:data(any) addr:0x038072e4
 Reset_HandshakeAndReboot_Arm7 kind:function(arm,size=0x74) addr:0x03807394
