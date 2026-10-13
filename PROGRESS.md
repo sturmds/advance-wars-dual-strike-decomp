@@ -41,6 +41,27 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 
 Modules with nothing done: none.
 
+## decomp.dev report
+
+From `build/artifacts/0.1_report/report.json`, which `make release` writes (`tools/decomp_dev_report.py`).
+decomp.dev shows "Decompiled" (`matched_code`) and "Fully linked" (`complete_code`).
+Functions written as `asm` count as neither. "Code" also holds code in dsd gap units that
+has no function, so it is a little larger than the totals above (issue 0071).
+
+| Module | Code | Decompiled | Fully linked | Functions matched |
+|---|---:|---:|---:|---:|
+| main | 1216382 | 97.50% | 97.50% | 5818 / 6004 |
+| itcm | 24088 | 94.69% | 94.69% | 109 / 115 |
+| ov000 | 25300 | 98.81% | 98.81% | 119 / 120 |
+| ov001 | 7472 | 100.00% | 100.00% | 76 / 76 |
+| ov002 | 64208 | 100.00% | 100.00% | 164 / 164 |
+| ov003 | 82696 | 100.00% | 100.00% | 235 / 235 |
+| ov004 | 67364 | 99.31% | 99.31% | 234 / 236 |
+| ov005 | 96684 | 100.00% | 100.00% | 266 / 266 |
+| ov006 | 105588 | 100.00% | 100.00% | 321 / 321 |
+| arm7 | 155236 | 95.79% | 95.79% | 949 / 1038 |
+| all | 1845018 | 97.89% | 97.89% | 8291 / 8575 |
+
 ## Partial functions
 
 Functions in C files that the build does not use yet (not marked `complete`), because

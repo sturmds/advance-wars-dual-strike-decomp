@@ -17,7 +17,9 @@ ARM9 and build/arm7/report.json for ARM7, with the split counts in
 build/progress.json.
 
 The Markdown report reads config/, src/ and include/, and gives the same
-file for the same tree. For the partial functions (started in C, not linked)
+file for the same tree. Its "decomp.dev report" section reads the report
+`make release` writes for decomp.dev (tools/decomp_dev_report.py), so run
+it after `make release`, as hooks/pre-commit and land_self.py do. For the partial functions (started in C, not linked)
 it runs `fn.py diff` on each one (about 6 seconds in all); without extract/
 and build/ those columns show "-". hooks/pre-commit writes it on every commit, after `make release`.
 """
@@ -211,6 +213,58 @@ def pct(part: int, whole: int) -> str:
     return f"{100 * part / whole:.2f}%" if whole else "-"
 
 
+def report_module(unit: dict, modules: dict[str, str]) -> str:
+    """The module of a unit in the decomp.dev report: by its source file, or
+    for a gap unit (`_dsd_gap@ov000_3`) by its name. ARM7 units are `arm7`."""
+    name = unit["name"]
+    if name.startswith(("arm7/", "src/arm7/")):
+        return "arm7"
+    source = unit.get("metadata", {}).get("source_path")
+    if source in modules:
+        return modules[source]
+    return name.partition("@")[2].rsplit("_", 1)[0] or "other"
+
+
+def decomp_dev_section() -> list[str]:
+    import decomp_dev_report
+
+    path = decomp_dev_report.ARTIFACT / "report.json"
+    lines = [
+        "## decomp.dev report",
+        "",
+        f"From `{path.relative_to(ROOT)}`, which `make release` writes (`tools/decomp_dev_report.py`).",
+        "decomp.dev shows \"Decompiled\" (`matched_code`) and \"Fully linked\" (`complete_code`).",
+        "Functions written as `asm` count as neither. \"Code\" also holds code in dsd gap units that",
+        "has no function, so it is a little larger than the totals above (issue 0071).",
+        "",
+    ]
+    if not path.exists():
+        return lines + ["No report: run `make release`."]
+    report = json.loads(path.read_text())
+    modules = {p: mod.name for mod in fn.all_modules().values() for p, *_ in mod.files}
+    order = list(fn.all_modules())
+    rows = {}
+    for unit in report["units"]:
+        row = rows.setdefault(report_module(unit, modules), [0, 0, 0, 0, 0])
+        m = unit["measures"]
+        for i, key in enumerate(("total_code", "matched_code", "complete_code", "matched_functions",
+                                 "total_functions")):
+            row[i] += int(m.get(key, 0))
+    m = report["measures"]
+    rows["all"] = [int(m.get(k, 0)) for k in ("total_code", "matched_code", "complete_code",
+                                              "matched_functions", "total_functions")]
+    lines += [
+        "| Module | Code | Decompiled | Fully linked | Functions matched |",
+        "|---|---:|---:|---:|---:|",
+    ]
+    for mod in sorted(rows, key=lambda k: (k == "all", order.index(k) if k in order else len(order), k)):
+        code, matched, linked, funcs, total_funcs = rows[mod]
+        if not code:
+            continue
+        lines.append(f"| {mod} | {code} | {pct(matched, code)} | {pct(linked, code)} | {funcs} / {total_funcs} |")
+    return lines
+
+
 def markdown() -> str:
     rows = count()
     lines = [
@@ -250,6 +304,7 @@ def markdown() -> str:
     empty = [m for m in order if m not in shown and any(k[0] == m for k in rows)]
     lines += ["", f"Modules with nothing done: {', '.join(empty) or 'none'}."]
 
+    lines += [""] + decomp_dev_section()
     lines += [""] + partials_section()
     return "\n".join(lines) + "\n"
 
