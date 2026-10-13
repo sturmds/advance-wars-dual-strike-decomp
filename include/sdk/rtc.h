@@ -9,6 +9,14 @@
 /* The serial lines: data in bit 0, clock in bit 1, chip select in bit 2;
  * bits 4-6 set the matching line to output. */
 #define REG_RTC (*(volatile u16*)0x04000138)
+#define CLOCK_PIN_DATA 0x01
+#define CLOCK_PIN_CLOCK 0x02
+#define CLOCK_PIN_SELECT 0x04
+#define CLOCK_PINS 0x07
+#define CLOCK_PIN_DATA_OUT 0x10
+#define CLOCK_PIN_CLOCK_OUT 0x20
+#define CLOCK_PIN_SELECT_OUT 0x40
+#define CLOCK_PINS_OUT 0x70
 
 #define CLOCK_XFER_TO_CHIP 0x06
 #define CLOCK_XFER_FROM_CHIP 0x86

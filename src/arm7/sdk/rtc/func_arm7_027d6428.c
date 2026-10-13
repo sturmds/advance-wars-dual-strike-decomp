@@ -2,6 +2,7 @@
 
 /* Sends `size` bytes from `data`, each low bit first as in the command
  * byte. Bytes are read with halfword loads only. */
+#ifdef __MWERKS__
 asm void func_arm7_027d6428(void *data, int size)
 {
     mov r12, #0x4000000
@@ -45,3 +46,45 @@ wait2:
     bne byte
     bx lr
 }
+#else
+#include <stdio.h>
+#include <stdlib.h>
+
+/* Counts count down to 0 like the assembly's wait loop. The counter is
+   volatile so that the compiler keeps the loop. */
+static void Delay(int count) {
+  volatile int n = count;
+
+  while (--n != 0) {
+  }
+}
+
+/* The assembly decrements size before it tests it, so a size of 0 or less
+   would send about 4 billion bytes; such a size stops the program. A byte
+   load gives the same value as the assembly's halfword load. */
+void func_arm7_027d6428(void* data, int size) {
+  const u8* from = data;
+  u16 value;
+  u32 byte;
+  int bit;
+
+  if (size <= 0) {
+    fprintf(stderr, "func_arm7_027d6428: size %d is not positive\n", size);
+    abort();
+  }
+  do {
+    byte = *from++;
+    value = (u16)((REG_RTC & ~(CLOCK_PINS_OUT | CLOCK_PINS)) | CLOCK_PINS_OUT |
+                  CLOCK_PIN_SELECT);
+    for (bit = 0; bit < 8; bit++) {
+      value = (u16)((value & ~(CLOCK_PIN_DATA | CLOCK_PIN_CLOCK)) |
+                    (byte >> bit & 1));
+      REG_RTC = value;
+      Delay(9);
+      value |= CLOCK_PIN_CLOCK;
+      REG_RTC = value;
+      Delay(9);
+    }
+  } while (--size != 0);
+}
+#endif

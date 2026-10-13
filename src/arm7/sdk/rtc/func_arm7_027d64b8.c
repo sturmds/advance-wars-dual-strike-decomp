@@ -3,6 +3,7 @@
 /* Receives `size` bytes into `data`, each low bit first: the data line is
  * turned to input, and each bit is sampled with the clock low. Bytes are
  * stored with halfword read-modify-writes only. */
+#ifdef __MWERKS__
 asm void func_arm7_027d64b8(void *data, int size)
 {
     mov r12, #0x4000000
@@ -58,3 +59,68 @@ next:
     bne byte
     bx lr
 }
+#else
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+/* Counts count down to 0 like the assembly's wait loop. The counter is
+   volatile so that the compiler keeps the loop. */
+static void Delay(int count) {
+  volatile int n = count;
+
+  while (--n != 0) {
+  }
+}
+
+/* The DS is little-endian, and StoreByte counts on it. */
+static void CheckLittleEndian(const char* name) {
+  const u16 one = 1;
+
+  if (*(const u8*)&one != 1) {
+    fprintf(stderr, "%s: StoreByte assumes a little-endian CPU\n", name);
+    abort();
+  }
+}
+
+/* Writes value into the byte at p by rewriting the halfword that holds it,
+   as the assembly does: VRAM ignores byte stores. */
+static void StoreByte(u8* p, u8 value) {
+  u16* halfword = (u16*)((uintptr_t)p & ~(uintptr_t)1);
+  u32 shift = ((uintptr_t)p & 1) * 8;
+
+  *halfword = (u16)((*halfword & ~(0xff << shift)) | value << shift);
+}
+
+/* The assembly decrements size before it tests it, so a size of 0 or less
+   would receive about 4 billion bytes; such a size stops the program. */
+void func_arm7_027d64b8(void* data, int size) {
+  u8* to = data;
+  u16 value;
+  u32 byte;
+  int bit;
+
+  CheckLittleEndian("func_arm7_027d64b8");
+  if (size <= 0) {
+    fprintf(stderr, "func_arm7_027d64b8: size %d is not positive\n", size);
+    abort();
+  }
+  do {
+    value =
+        (u16)((REG_RTC & ~(CLOCK_PINS_OUT | CLOCK_PINS)) | CLOCK_PIN_CLOCK_OUT |
+              CLOCK_PIN_SELECT_OUT | CLOCK_PIN_SELECT);
+    byte = 0;
+    for (bit = 0; bit < 8; bit++) {
+      value &= (u16) ~(CLOCK_PIN_DATA | CLOCK_PIN_CLOCK);
+      REG_RTC = value;
+      Delay(9);
+      value = REG_RTC;
+      byte = ((value & CLOCK_PIN_DATA) ? 0x80 : 0) | byte >> 1;
+      value |= CLOCK_PIN_CLOCK;
+      REG_RTC = value;
+      Delay(9);
+    }
+    StoreByte(to++, (u8)byte);
+  } while (--size != 0);
+}
+#endif
