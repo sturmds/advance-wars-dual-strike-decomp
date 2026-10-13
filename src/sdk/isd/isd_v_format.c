@@ -158,10 +158,10 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
   conversion = CONV_DECIMAL;
   width = -1;
   flags = 0;
-  bufLen = 0;
+  hexOffset = 0;
   prec = -1;
   state = STATE_TEXT;
-  hexOffset = 0;
+  bufLen = 0;
   for (;;) {
     c = Isd_ReadByte(format);
     if (c == 0) {

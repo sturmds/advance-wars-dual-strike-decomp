@@ -23265,6 +23265,7 @@ src/sdk/math/math_count_population.c:
     .text       start:0x0211e93c end:0x0211e980
 
 src/sdk/isd/isd_v_format.c:
+    complete
     .text       start:0x0211e980 end:0x0211fce4
 
 src/sdk/isd/isd_double_units_digit.c:

@@ -12,13 +12,13 @@ add both CPUs.
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
 | ARM9 game | 6697 / 6700 | 1552772 / 1553840 | 99.93% | 0 | 0 |
-| ARM9 SDK/library | 647 / 833 | 105752 / 135226 | 78.20% | 176 | 20718 |
-| ARM9 all | 7344 / 7533 | 1658524 / 1689066 | 98.19% | 176 | 20718 |
+| ARM9 SDK/library | 648 / 833 | 110712 / 135226 | 81.87% | 176 | 20718 |
+| ARM9 all | 7345 / 7533 | 1663484 / 1689066 | 98.49% | 176 | 20718 |
 | ARM7 SDK/library | 950 / 1020 | 149188 / 154300 | 96.69% | 69 | 4960 |
 | ARM7 all | 950 / 1020 | 149188 / 154300 | 96.69% | 69 | 4960 |
 | game | 6697 / 6700 | 1552772 / 1553840 | 99.93% | 0 | 0 |
-| SDK/library | 1597 / 1853 | 254940 / 289526 | 88.05% | 245 | 25678 |
-| all | 8294 / 8553 | 1807712 / 1843366 | 98.07% | 245 | 25678 |
+| SDK/library | 1598 / 1853 | 259900 / 289526 | 89.77% | 245 | 25678 |
+| all | 8295 / 8553 | 1812672 / 1843366 | 98.33% | 245 | 25678 |
 
 ## By module
 
@@ -27,7 +27,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
 | main | game | 5179 / 5180 | 1082076 / 1082632 | 99.95% | 0 |
-| main | SDK/library | 640 / 822 | 104840 / 133690 | 78.42% | 172 |
+| main | SDK/library | 641 / 822 | 109800 / 133690 | 82.13% | 172 |
 | itcm | game | 102 / 102 | 21896 / 21896 | 100.00% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -50,7 +50,7 @@ has no function, so it is a little larger than the totals above (issue 0071).
 
 | Module | Code | Decompiled | Fully linked | Functions matched |
 |---|---:|---:|---:|---:|
-| main | 1216382 | 97.58% | 97.58% | 5819 / 6004 |
+| main | 1216382 | 97.58% | 97.99% | 5819 / 6004 |
 | itcm | 24088 | 94.69% | 94.69% | 109 / 115 |
 | ov000 | 25300 | 98.81% | 98.81% | 119 / 120 |
 | ov001 | 7472 | 100.00% | 100.00% | 76 / 76 |
@@ -60,7 +60,7 @@ has no function, so it is a little larger than the totals above (issue 0071).
 | ov005 | 96684 | 100.00% | 100.00% | 266 / 266 |
 | ov006 | 105588 | 100.00% | 100.00% | 321 / 321 |
 | arm7 | 155236 | 96.10% | 96.10% | 950 / 1038 |
-| all | 1845018 | 97.98% | 97.98% | 8294 / 8575 |
+| all | 1845018 | 97.98% | 98.25% | 8294 / 8575 |
 
 ## Partial functions
 
@@ -74,16 +74,16 @@ objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 00
 | Code | Functions | Bytes | Rows that match |
 |---|---:|---:|---:|
 | ARM9 game | 3 | 1068 | 203 / 271 (74.91%) |
-| ARM9 SDK/library | 10 | 8756 | 1601 / 2268 (70.59%) |
+| ARM9 SDK/library | 9 | 3796 | 477 / 1027 (46.45%) |
 | ARM7 SDK/library | 1 | 152 | 36 / 38 (94.74%) |
-| all | 14 | 9976 | 1840 / 2577 (71.40%) |
+| all | 13 | 5016 | 716 / 1336 (53.59%) |
 
 | Rows that differ | Functions | Bytes |
 |---|---:|---:|
 | 1 to 2 | 1 | 152 |
 | 3 to 10 | 0 | 0 |
 | 11 to 50 | 10 | 1808 |
-| more than 50 | 3 | 8016 |
+| more than 50 | 2 | 3056 |
 
 Closest first.
 
@@ -100,6 +100,5 @@ Closest first.
 | `src/sdk/msl/__fp_trap_dd.c` | __fp_trap_dd | 92 | 22 | 61.65% |
 | `src/sdk/msl/__fp_trap.c` | __fp_trap | 256 | 30 | 84.98% |
 | `src/game/main/menus/combat_map_draw_preview_block.c` | CombatMap_DrawPreviewBlock | 556 | 42 | 98.06% |
-| `src/sdk/isd/isd_v_format.c` | Isd_VFormat | 4960 | 117 | 99.49% |
 | `src/sdk/msl/double2hex.c` | double2hex | 948 | 121 | 86.82% |
 | `src/sdk/msl/__pformatter.c` | __pformatter | 2108 | 284 | 88.31% |
