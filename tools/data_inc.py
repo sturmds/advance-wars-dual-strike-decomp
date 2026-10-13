@@ -25,6 +25,9 @@ A row of data_inc.txt: module, symbol, address, size in bytes, element type.
 - module: main, itcm, dtcm, ovNNN or arm7.
 - type: u8, s8, u16, s16, u32, s32 or a pointer type (`void*`, `char*`),
   with an optional `[N]` that writes the values as rows of N in braces.
+  For an array of structs, the field types in braces, no spaces, with
+  `[N]` for an array field: `{u8,u8,u8[2],u32,u32,u16*,u8,u8[3]}` writes
+  one `{...}` per struct. Fields must be aligned to their size.
 
 A word that the module's relocs.txt says points somewhere is written as the
 symbol at its target, `(u32)&Name` or `(void*)&Name`, so a build with moved
@@ -50,7 +53,8 @@ CONFIG7 = Path("config/AWRE/arm7")
 
 SIZES = {"u8": 1, "s8": 1, "u16": 2, "s16": 2, "u32": 4, "s32": 4}
 PER_LINE = {1: 16, 2: 8, 4: 8}
-ROW = re.compile(r"(\S+)\s+(\w+)\s+(0x[0-9a-fA-F]+)\s+(0x[0-9a-fA-F]+|\d+)\s+(\w+\s*\*?)(?:\[(\d+)\])?$")
+ROW = re.compile(r"(\S+)\s+(\w+)\s+(0x[0-9a-fA-F]+)\s+(0x[0-9a-fA-F]+|\d+)\s+(\w+\s*\*?|\{[^\s{}]+\})(?:\[(\d+)\])?$")
+FIELD = re.compile(r"(\w+\*?)(?:\[(\d+)\])?$")
 
 
 class Row:
@@ -63,6 +67,10 @@ class Row:
         self.type = m.group(5).replace(" ", "")
         self.columns = int(m.group(6)) if m.group(6) else 0
         self.pointer = self.type.endswith("*")
+        self.fields: list[tuple[str, int]] = []  # (type, count; 0 for a single value)
+        if self.type.startswith("{"):
+            self._struct(where)
+            return
         if not self.pointer and self.type not in SIZES:
             sys.exit(f"error: {where}: unknown element type {self.type!r}")
         self.width = 4 if self.pointer else SIZES[self.type]
@@ -70,6 +78,23 @@ class Row:
             sys.exit(f"error: {where}: address and size must be multiples of {self.width}")
         if self.columns and (self.size // self.width) % self.columns:
             sys.exit(f"error: {where}: {self.size // self.width} elements do not make rows of {self.columns}")
+        self.where = where
+
+    def _struct(self, where: str) -> None:
+        offset = 0
+        for text in self.type[1:-1].split(","):
+            m = FIELD.match(text)
+            if not m or not (m.group(1).endswith("*") or m.group(1) in SIZES):
+                sys.exit(f"error: {where}: bad struct field {text!r}")
+            width = 4 if m.group(1).endswith("*") else SIZES[m.group(1)]
+            if offset % width:
+                sys.exit(f"error: {where}: field {text!r} at offset {offset:#x} is not aligned")
+            count = int(m.group(2)) if m.group(2) else 0
+            self.fields.append((m.group(1), count))
+            offset += width * max(count, 1)
+        self.width = offset
+        if self.columns or self.size % self.width or self.addr % 4:
+            sys.exit(f"error: {where}: {self.size:#x} bytes are not whole structs of {self.width:#x}")
         self.where = where
 
     @property
@@ -189,10 +214,10 @@ class Rom:
         return table[base], to - base
 
 
-def literal(row: Row, rom: Rom, addr: int, raw: bytes) -> str:
-    reloc = rom.reloc_table(row.module).get(addr) if row.width == 4 else None
-    value = int.from_bytes(raw, "little", signed=row.type.startswith("s"))
-    cast = row.type
+def literal(row: Row, rom: Rom, addr: int, raw: bytes, cast: str = "") -> str:
+    cast = cast or row.type
+    reloc = rom.reloc_table(row.module).get(addr) if len(raw) == 4 else None
+    value = int.from_bytes(raw, "little", signed=cast.startswith("s"))
     if reloc:
         kind, to, target = reloc
         where = f"{row.symbol} at {addr:#x}"
@@ -204,17 +229,37 @@ def literal(row: Row, rom: Rom, addr: int, raw: bytes) -> str:
         if offset:
             return f"({cast})((char*)&{name} + {offset:#x})"
         return f"({cast})&{name}"
-    if row.pointer:
+    if cast.endswith("*"):
         if value:
             sys.exit(f"error: {row.symbol} at {addr:#x}: pointer {value:#x} has no relocation in relocs.txt")
         return "0"
-    if row.type.startswith("s"):
+    if cast.startswith("s"):
         return str(value)
-    return f"{value:#0{2 + 2 * row.width}x}"
+    return f"{value:#0{2 + 2 * len(raw)}x}"
+
+
+def render_struct(row: Row, rom: Rom, addr: int, data: bytes) -> str:
+    """One struct as `{a, b, {c, d}, ...},`."""
+    parts, offset = [], 0
+    for cast, count in row.fields:
+        width = 4 if cast.endswith("*") else SIZES[cast]
+        values = []
+        for i in range(max(count, 1)):
+            at = offset + i * width
+            values.append(literal(row, rom, addr + at, data[at:at + width], cast))
+        parts.append("{" + ", ".join(values) + "}" if count else values[0])
+        offset += width * max(count, 1)
+    return "{" + ", ".join(parts) + "},"
 
 
 def render(row: Row, rom: Rom) -> str:
     data = rom.read(row.module, row.addr, row.size)
+    if row.fields:
+        lines = [f"/* {row.symbol}: {row.module} {row.addr:#010x}, {row.size:#x} bytes of structs."
+                 " Written by tools/data_inc.py from the ROM; do not edit. */"]
+        for i in range(0, row.size, row.width):
+            lines.append(render_struct(row, rom, row.addr + i, data[i:i + row.width]))
+        return "\n".join(lines) + "\n"
     values = [literal(row, rom, row.addr + i, data[i:i + row.width]) for i in range(0, row.size, row.width)]
     lines = [f"/* {row.symbol}: {row.module} {row.addr:#010x}, {row.size:#x} bytes of {row.type}."
              " Written by tools/data_inc.py from the ROM; do not edit. */"]

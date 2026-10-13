@@ -87,6 +87,13 @@ expect("render: pointers as symbols", body(data_inc.render(ptrs, rom)),
        "(void*)&FuncA, 0, (void*)((char*)&gData + 0x8),\n")
 expect("render: relocated u32", body(data_inc.render(data_inc.Row("itcm gW 0x1000 4 u32", "t"), rom)),
        "(u32)&FuncA,\n")
+rom = FakeRom(words(0x0102, 0x1208, 0x1100, 0x0304, 0, 0), {0x1100: "FuncA", 0x1200: "gData"},
+              {0x1004: ("load", 0x1208, "itcm")})
+expect("render: structs", body(data_inc.render(data_inc.Row("itcm gS 0x1000 0x18 {u8,u8,u16,void*,u8[4]}", "t"), rom)),
+       "{0x02, 0x01, 0x0000, (void*)((char*)&gData + 0x8), {0x00, 0x11, 0x00, 0x00}},\n"
+       "{0x04, 0x03, 0x0000, 0, {0x00, 0x00, 0x00, 0x00}},\n")
+stops("row: struct field not aligned", lambda: data_inc.Row("itcm gS 0x1000 8 {u8,u32,u8[3]}", "t"))
+stops("row: size not whole structs", lambda: data_inc.Row("itcm gS 0x1000 6 {u32}", "t"))
 rom = FakeRom(words(0x1100), {}, {})
 stops("render: pointer without a relocation", lambda: data_inc.render(data_inc.Row("itcm gP 0x1000 4 void*", "t"), rom))
 rom = FakeRom(words(0x1100), {}, {0x1000: ("arm_call", 0x1100, "itcm")})
