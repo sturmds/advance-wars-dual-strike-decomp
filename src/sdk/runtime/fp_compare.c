@@ -53,7 +53,7 @@ asm void DCmp_CallTrap(void);
 
 /* Three-way float compare: 0 equal, 1 less, 2 greater, 3 unordered.
    Only a signaling NaN is invalid. */
-asm void func_02127134(void)
+asm void FCmp_ThreeWay(void)
 {
     mov r3, #0xff000000
     cmp r3, r0, lsl #1
@@ -74,8 +74,8 @@ asm void func_02127134(void)
     bx lr
 }
 
-/* Three-way float compare like func_02127134, but any NaN is invalid. */
-asm void func_02127178(void)
+/* Three-way float compare like FCmp_ThreeWay, but any NaN is invalid. */
+asm void FCmp_ThreeWaySignaling(void)
 {
     mov r3, #0xff000000
     cmp r3, r0, lsl #1
@@ -135,7 +135,7 @@ asm void _feq(void)
 
 /* Float equality in the Z flag (set when equal). The flags of the raw
    compare are only meaningful for Z. */
-asm void func_02127228(void)
+asm void FCmp_EqualFlags(void)
 {
     mov r3, #0xff000000
     cmp r3, r0, lsl #1
@@ -191,7 +191,7 @@ asm void _fleq(void)
 
 /* Ordered float compare in the flags: Z set when equal, C clear when
    a < b. Unordered leaves C set and Z clear, so lo and ls tests fail. */
-asm void func_021272c8(void)
+asm void FCmp_FlagsForLess(void)
 {
     mov r3, #0xff000000
     cmp r3, r0, lsl #1
@@ -250,9 +250,9 @@ asm void _fgeq(void)
     bx lr
 }
 
-/* Ordered float compare in the flags like func_021272c8, but unordered
+/* Ordered float compare in the flags like FCmp_FlagsForLess, but unordered
    leaves Z set and C clear, so hi and hs tests fail. */
-asm void func_02127378(void)
+asm void FCmp_FlagsForGreater(void)
 {
     mov r3, #0xff000000
     cmp r3, r0, lsl #1
@@ -272,7 +272,7 @@ L_021273a8:
 }
 
 /* Returns 1 when a float operand is a NaN, else 0. */
-asm void func_021273b0(void)
+asm void FCmp_IsUnordered(void)
 {
     mov r3, #0xff000000
     cmp r3, r0, lsl #1
@@ -285,7 +285,7 @@ asm void func_021273b0(void)
 }
 
 /* Returns 1 when neither float operand is a NaN, else 0. */
-asm void func_021273d0(void)
+asm void FCmp_IsOrdered(void)
 {
     mov r3, #0xff000000
     cmp r3, r0, lsl #1
@@ -1265,7 +1265,7 @@ static u32 FCmp_NanAFlags(float a, float b, const char* name) {
 
 /* Three-way float compare: 0 equal, 1 less, 2 greater, 3 unordered. Only a
    signaling NaN is invalid. */
-int func_02127134(float a, float b) {
+int FCmp_ThreeWay(float a, float b) {
   if (FloatIsNan(a)) {
     return FCmp_NanA(a, b, 3);
   }
@@ -1275,8 +1275,8 @@ int func_02127134(float a, float b) {
   return ThreeWay(FloatOrder(a, b));
 }
 
-/* Three-way float compare like func_02127134, but any NaN is invalid. */
-int func_02127178(float a, float b) {
+/* Three-way float compare like FCmp_ThreeWay, but any NaN is invalid. */
+int FCmp_ThreeWaySignaling(float a, float b) {
   if (FloatIsNan(a) || FloatIsNan(b)) {
     return FCmp_Invalid(a, b, 3);
   }
@@ -1305,7 +1305,7 @@ int _feq(float a, float b) {
 
 /* FP_FLAG_Z when equal. The assembly's C flag means nothing here and is not
    given. */
-u32 func_02127228(float a, float b) {
+u32 FCmp_EqualFlags(float a, float b) {
   if (FloatIsNan(a)) {
     return FCmp_NanAFlags(a, b, __func__);
   }
@@ -1331,7 +1331,7 @@ int _fleq(float a, float b) {
 
 /* Z set when equal, C clear when a < b. Unordered gives C set and Z clear,
    so lo and ls tests fail. */
-u32 func_021272c8(float a, float b) {
+u32 FCmp_FlagsForLess(float a, float b) {
   if (FloatIsNan(a) || FloatIsNan(b)) {
     return FCmp_InvalidFlagsHi(__func__);
   }
@@ -1352,9 +1352,9 @@ int _fgeq(float a, float b) {
   return FloatOrder(a, b) >= 0;
 }
 
-/* Like func_021272c8, but unordered gives Z set and C clear, so hi and hs
+/* Like FCmp_FlagsForLess, but unordered gives Z set and C clear, so hi and hs
    tests fail. */
-u32 func_02127378(float a, float b) {
+u32 FCmp_FlagsForGreater(float a, float b) {
   if (FloatIsNan(a) || FloatIsNan(b)) {
     return FCmp_InvalidFlagsEq(__func__);
   }
@@ -1362,7 +1362,7 @@ u32 func_02127378(float a, float b) {
 }
 
 /* 1 when a float operand is a NaN, else 0. */
-int func_021273b0(float a, float b) {
+int FCmp_IsUnordered(float a, float b) {
   if (FloatIsNan(a)) {
     return FCmp_NanA(a, b, 1);
   }
@@ -1373,7 +1373,7 @@ int func_021273b0(float a, float b) {
 }
 
 /* 1 when neither float operand is a NaN, else 0. */
-int func_021273d0(float a, float b) {
+int FCmp_IsOrdered(float a, float b) {
   if (FloatIsNan(a)) {
     return FCmp_NanA(a, b, 0);
   }
