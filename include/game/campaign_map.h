@@ -34,6 +34,8 @@ typedef struct CampaignTopCo {
   u8 pad_3;
 } CampaignTopCo;
 
+extern CampaignTopCo gCampaignUnlockedCos[4];
+
 /* Task of the world map scripts that scroll the map and move the cursor
  * (CampaignMap_InitCrossingSprites and the functions after it). The first 0x2c bytes belong
  * to the task system (Task_Create). */
