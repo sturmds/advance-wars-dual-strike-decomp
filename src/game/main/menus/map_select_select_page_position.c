@@ -1,6 +1,8 @@
 #include "types.h"
 #include "game/map_select.h"
 
+MapListTables data_0229c768;
+
 void Sound_PlaySe(int id);
 void MapSelect_LoadEnemyCoPictures(void);
 void MapSelect_LoadWarRoomRecords(void);

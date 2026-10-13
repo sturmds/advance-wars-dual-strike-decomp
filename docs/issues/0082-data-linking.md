@@ -20,6 +20,7 @@ decomp.dev shows all code decompiled and linked, but 94% of the data bytes are s
 - `.bss` ov006: 4 variables, 864 bytes, in 4 files (3 existing, 1 new, 1 of them generated); linked data 836,152 bytes (26.7%).
 - `.bss` main 0x0216e020-0x0218ff50: 141 variables, 139,056 bytes, in 17 files (2 existing, 15 new, 13 of them generated); linked data 975,208 bytes (31.1%).
 - `.bss` main 0x0218ff50-0x022900b4: 35 variables, 1,048,932 bytes, in 16 files (0 existing, 16 new, 16 of them generated); linked data 2,024,140 bytes (64.5%).
+- `.bss` main 0x022900b4-0x0229e160: 120 variables, 57,512 bytes, in 47 files (42 existing, 5 new, 5 of them generated); linked data 2,081,656 bytes (66.4%).
 
 ## Decisions (sturmds, 2026-10-13)
 

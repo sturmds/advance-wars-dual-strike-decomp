@@ -1,6 +1,8 @@
 #include "types.h"
 #include "game/Unk_0229d8e0.h"
 
+Unk_0229d8e0 data_0229d8e0;
+
 void Mem_CopyBytes(void* src, void* dest, int size);
 
 /* Copies the oldest queued action to dest. Returns 0 when the queue is empty. */

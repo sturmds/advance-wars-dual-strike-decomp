@@ -11,7 +11,7 @@
 
 extern u8 data_02159168[];
 extern u8 data_0215915c[];
-extern u8 data_0229c678[];
+static u8 data_0229c678[0xc]; /* size: up to the next symbol */
 
 void G3X_Reset(void);
 void G3i_LookAt_(void* a, void* b, void* c, int d, int e);

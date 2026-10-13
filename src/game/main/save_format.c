@@ -1,10 +1,14 @@
 #include "types.h"
 #include "game/save_data.h"
 
-extern void (*gSaveResetFunc)(void);
-extern u8* gSaveBuffer;
-extern int (*gSavePackFunc)(u8* dest);
-extern int gNextSaveCounter;
+/* also declared in src/game/main/save_scan_slots.c and 1 more */
+int gNextSaveCounter;
+void (*gSaveResetFunc)(void); /* also declared in src/game/main/save_init.c */
+/* also declared in src/game/main/save_delete_record.c and 4 more */
+u8* gSaveBuffer;
+/* also declared in src/game/main/save_delete_record.c and 2 more */
+int (*gSavePackFunc)(u8* dest);
+int data_02297f30;
 extern SaveSlotTable data_02297f3c;
 extern u8 data_0229a050[];
 

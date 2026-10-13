@@ -3,8 +3,11 @@
 
 u32 ChoicePrompt_FindTouchedOption(int x, int y);
 
+u32 gTaskSystemReady;
+u32 gTouchPressedButton;
 /* Option touched at the start of the current touch. */
-extern int gChoicePromptTouchedOption;
+static int gChoicePromptTouchedOption;
+u8 data_0229b38c[0x24]; /* size: up to the next symbol */
 
 /* Key bits the touch stands in for, as the caller reads them. */
 #define CHOICE_TOUCH_LEFT 0x04

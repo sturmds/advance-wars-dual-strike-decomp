@@ -1,8 +1,10 @@
 #include "types.h"
 #include "game/popup_menu.h"
 
-extern PopupMenuSave* data_02297ee0;
-extern u8 data_02297ee4[];
+/* also declared in src/game/main/menus/popup_menu_push_state.c and 1 more */
+PopupMenuSave* data_02297ee0;
+/* size: up to the next symbol; also declared in src/game/main/menus/popup_menu_reset_stack.c */
+u8 data_02297ee4[0x40];
 
 void PopupMenu_Create(const MenuItem* items, int x, int y, u16 style,
                       u16 selected, int unused);

@@ -3,6 +3,8 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
+MenuButton gMenuButtons[80];
+
 void Screen_SetCurrent(void* state);
 void Screen_SetCurrentGfx(void* state);
 void Menu_DispatchKeys(void);

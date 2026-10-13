@@ -1,6 +1,8 @@
 #include "types.h"
 #include "game/song.h"
 
+u16 gCurrentSong; /* song playing, SONG_NONE: none */
+
 /* Sets the song volume to from (-1: keep the current volume), then fades
  * it to to over frames frames. */
 void Sound_FadeMusicVolume(int from, int to, int frames);

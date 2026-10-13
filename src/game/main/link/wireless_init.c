@@ -2,19 +2,37 @@
 #include "game/Unk_0215fe84.h"
 #include "game/wireless_parent_info.h"
 #include "sdk/wm.h"
+#include "game/Unk_0229c910.h"
+#include "game/Unk_0229c960.h"
+#include "game/link_player_name.h"
 
 extern void* data_0229c884;
 extern WMBssDesc* data_0229c888;
 extern u32 gWirelessState;
 extern void* data_0229c890;
-extern void* gWirelessSystemBuf;
-extern s32 data_0229c89c;
-extern s32 data_0229c8a4;
-extern WMBssDesc* gWirelessScanBuffer;
-extern void* data_0229c8ac;
-extern void* data_0229c8b0;
-extern WMScanParam* data_0229c8b4;
-extern WMBssDesc* gWirelessParents[4];
+/* also declared in src/game/main/link/wireless_prepare_scan.c and 1 more */
+WMScanParam* data_0229c8b4;
+/* also declared in src/game/main/link/wireless_get_shared_data.c and 1 more */
+void* data_0229c8b0;
+/* also declared in src/game/main/link/wireless_end_data_sharing.c and 3 more */
+void* data_0229c8ac;
+s32 data_0229c89c; /* also declared in src/game/main/link/wireless_start_mp.c */
+WirelessParentInfo* data_0229c8a0;
+s32 data_0229c8a4; /* also declared in src/game/main/link/wireless_start_mp.c */
+/* also declared in src/game/main/link/wireless_add_parent.c and 2 more */
+WMBssDesc* gWirelessScanBuffer;
+static void* gWirelessSystemBuf;
+u16 gWirelessParentTimers[4];
+u8 data_0229c8c0[0xc]; /* size: up to the next symbol */
+/* also declared in src/game/main/link/wireless_add_parent.c and 4 more */
+WMBssDesc* gWirelessParents[4];
+Unk_0229c910 data_0229c910;
+u8 data_0229c8f8[0x18]; /* size: up to the next symbol */
+/* size: up to the next symbol; aligned to 32: no symbol covers the bytes before it */
+__attribute__((aligned(32))) u8 data_0229c8e0[0x18];
+u8 data_0229c928[0x38]; /* size: up to the next symbol */
+Unk_0229c960 data_0229c960;
+LinkPlayerName gLinkPlayerNames[0x8]; /* size: up to the next symbol */
 
 void* Mem_Alloc(u32 size);
 void Wireless_InitParentParam(void);

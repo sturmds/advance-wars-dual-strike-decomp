@@ -1,9 +1,16 @@
 #include "types.h"
 #include "game/Unk_0215fe88.h"
 #include "game/Unk_0229c960.h"
+#include "sdk/wm.h"
 
 extern Unk_0229c960* data_0229c8a0;
-extern u16 gWirelessTgidCounter;
+static u16 gWirelessTgidCounter;
+u8 gWirelessParentLinkLevels[4];
+u32 data_0229c880;
+void* data_0229c884;
+WMBssDesc* data_0229c888;
+u32 gWirelessState;
+void* data_0229c890;
 
 void MIi_CpuCopy32(const void* src, void* dst, u32 size);
 BOOL Wireless_BeginChannelSurvey(void);

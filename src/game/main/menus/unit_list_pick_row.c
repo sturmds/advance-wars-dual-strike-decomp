@@ -8,7 +8,8 @@ void Sound_PlaySe(u32 soundId);
 void Task_ResumeScript(Task* task);
 
 extern const TaskScriptCmd data_0215fad0[];
-extern u8* gUnitListRows;
+/* also declared in src/game/main/menus/unit_list_build.c and 4 more */
+u8* gUnitListRows;
 
 /* onConfirm of a row button (id = row on screen): stores the list entry of
  * that row in the task, lets the task's script go on and removes the buttons. */

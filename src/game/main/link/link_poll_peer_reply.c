@@ -2,7 +2,8 @@
 #include "game/Unk_0215fe8c.h"
 
 extern Unk_0215fe8c* data_0215fe8c;
-extern u8 data_0229ca48[8];
+/* also declared in src/game/main/func_0207b48c.c and 2 more */
+u8 data_0229ca48[8];
 
 int Wireless_StepDataSharing(void* key, u16* out);
 u16 Wireless_GetChildAids(void);

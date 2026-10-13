@@ -1,8 +1,9 @@
 #include "types.h"
 
 extern int gTextDrawWidth;
-extern int gTextDrawTilePixel;
-extern int gTextDrawGlyphWidth;
+/* also declared in src/game/main/text/text_advance_draw_pos.c */
+int gTextDrawTilePixel;
+static int gTextDrawGlyphWidth;
 
 s32 HwDiv32(s32 numer, s32 denom);
 int func_0202083c(int c, u8* tiles, int x, int colour);

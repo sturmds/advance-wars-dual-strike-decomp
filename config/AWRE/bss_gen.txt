@@ -19,6 +19,11 @@ src/game/main/bss_022201d8.c
 src/game/main/bss_02240168.c
 src/game/main/bss_02280214.c
 src/game/main/bss_0228ff58.c
+src/game/main/bss_022900b4.c
+src/game/main/bss_022900b8.c
+src/game/main/bss_02290250.c
+src/game/main/bss_02297fa8.c
+src/game/main/bss_0229e0ac.c
 src/game/main/screen/screen_bss.c
 src/game/main/screen/screen_bss_0216ef94.c
 src/game/main/screen/screen_bss_0216fca8.c

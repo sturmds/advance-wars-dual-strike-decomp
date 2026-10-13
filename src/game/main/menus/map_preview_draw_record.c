@@ -10,7 +10,8 @@ void Mem_CopyUnits(const void* src, void* dst, u32 size, u32 unitBits);
 void MapPreview_DrawBlock(void* dst, s16 x, s16 y, int width, int height);
 void func_020c3e5c(void);
 
-extern u8 gArmyColours[ARMY_SLOT_COUNT];
+/* also declared in src/game/main/map/map_load_army_colours.c and 3 more */
+u8 gArmyColours[ARMY_SLOT_COUNT];
 
 #define PREVIEW_BLOCK_SIZE 0x800
 

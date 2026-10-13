@@ -10,7 +10,8 @@ void func_0207b48c(void);
 void func_0207b4b0(u8* chunk);
 void Task_ResumeScript(void* task);
 
-extern u8 data_0229de6c[];
+/* also declared in src/game/main/link/link_skills_get_player_set.c */
+u8 data_0229de6c[0x80];
 
 /* Swaps the equipped skills with the other players, 8 bytes a frame. Each
  * link slot owns 32 bytes of data_0229de6c; a byte is taken from the player in

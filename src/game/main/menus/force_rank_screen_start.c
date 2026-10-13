@@ -2,6 +2,8 @@
 #include "game/task.h"
 #include "game/force_rank_screen.h"
 
+ForceRankScreen* gForceRankScreen;
+
 void* Mem_Alloc(u32 size);
 
 extern const TaskScriptCmd gForceRankScreenScript[];

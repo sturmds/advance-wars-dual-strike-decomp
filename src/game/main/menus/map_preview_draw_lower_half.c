@@ -6,8 +6,11 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern u8 gSavedArmyColours[5];
-extern int data_0229b054;
-extern int data_0229b058;
+u8 gHasBackupMemory;
+/* also declared in src/game/main/menus/map_preview_draw_upper_half.c */
+int data_0229b058;
+/* also declared in src/game/main/menus/map_preview_draw_upper_half.c */
+int data_0229b054;
 extern u16 gMapPreviewColumnOffsets[];
 extern u16 gMapPreviewRowOffsets[];
 extern u16 data_022a6b40[];

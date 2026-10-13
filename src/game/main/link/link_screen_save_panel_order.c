@@ -14,7 +14,8 @@ extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
-extern u8 gLinkSlotPlayers[4];
+/* also declared in src/game/main/link/link_assign_slots.c and 4 more */
+u8 gLinkSlotPlayers[4];
 
 /* Step of the link screen's closing task script: stops the palette cycle on
  * the current screen and on screen data_027c0288.unk_04, then stores each

@@ -1,6 +1,8 @@
 #include "types.h"
 #include "game/co_select_screen.h"
 
+CoSelectScreen* data_0229c73c;
+
 void Sound_PlaySe(int id);
 void func_02042b3c(void);
 

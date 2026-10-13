@@ -4,9 +4,10 @@
 int Save_ReadSlot(u16 slot);
 int func_0201fe28(int recordId);
 
-extern int data_02297f38;
+int data_02297f38; /* also declared in src/game/main/save_scan_slots.c */
+/* also declared in src/game/main/func_0201fe28.c and 7 more */
+SaveSlotTable data_02297f3c;
 extern u8* gSaveBuffer;
-extern SaveSlotTable data_02297f3c;
 extern SaveBuffer data_02298050;
 
 /* Loads the save record recordId (a guess: func_0201fe28 and Save_ReadSlot

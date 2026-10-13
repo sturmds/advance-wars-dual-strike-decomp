@@ -1,6 +1,8 @@
 #include "types.h"
 #include "game/page_strip.h"
 
+PageStrip* data_0229c744;
+
 void MenuButton_Add(int x, int y, void* def, int id);
 void* MenuButton_Select(int id);
 void MenuButtons_RemoveSelectable(void);
