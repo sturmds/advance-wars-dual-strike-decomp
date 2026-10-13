@@ -167,6 +167,7 @@ main  _u32_div_f                           unrolled shift-subtract division, fal
 main  _u32_div_not_0_f                     unrolled shift-subtract division, falls into its neighbour
 arm7  Entry_Arm7                           crt0 entry: msr mode switches, stack setup
 arm7  do_autoload_Arm7                     crt0: uses r4-r7 with no save, pc-relative literal load
+arm7  DetectMainMemorySize                 crt0: mwcc puts the counter in r12 and the loaded halfword in r1, the other way round
 arm7  func_arm7_027d6344                   GPIO bit-bang with fixed delay loops, no stack frame
 arm7  func_arm7_027d6384                   GPIO bit-bang with fixed delay loops, no stack frame
 arm7  func_arm7_027d63b8                   GPIO bit-bang with fixed delay loops, no stack frame

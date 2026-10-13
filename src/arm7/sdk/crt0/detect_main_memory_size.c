@@ -6,6 +6,7 @@
  * repeats every 4 MB, so 0x023ffffa reads back what was written to
  * 0x027ffffa; the test writes 0 and 1 and compares both.
  */
+#ifdef __MWERKS__
 asm void DetectMainMemorySize(void)
 {
     mov r0, #1
@@ -25,3 +26,20 @@ done:
     strh r0, [r2]
     bx lr
 }
+#else
+void DetectMainMemorySize(void) {
+  volatile u16* flag = (volatile u16*)0x027ffffa;
+  volatile u16* alias = (volatile u16*)0x023ffffa;
+  u16 size = 1;
+  u16 i;
+
+  for (i = 0; i < 2; i++) {
+    *flag = i;
+    if (*alias != i) {
+      size = 2;
+      break;
+    }
+  }
+  *flag = size;
+}
+#endif
