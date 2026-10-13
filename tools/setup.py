@@ -87,6 +87,16 @@ def install(name: str, spec: dict) -> None:
                 mode = info.external_attr >> 16
                 if mode and not info.is_dir():
                     path.chmod(mode & 0o777)
+    elif spec["type"] == "zip":
+        # Only the files under `subdir` are kept, at the top of the target.
+        prefix = spec["subdir"].strip("/") + "/"
+        with zipfile.ZipFile(archive) as z:
+            for info in z.infolist():
+                if info.is_dir() or not info.filename.startswith(prefix):
+                    continue
+                path = target / info.filename[len(prefix):]
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(z.read(info))
     else:
         sys.exit(f"error: unknown type {spec['type']!r} for {name} in tools.lock")
     stamp.write_text(want + "\n")

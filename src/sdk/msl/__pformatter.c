@@ -12,11 +12,10 @@ extern const char data_0216defc[];    /* "" */
 /*
  * Printf core: copies format to write() and expands each conversion.
  *
- * Not matched yet. The original passes PrintFormat by value by storing it
- * just below sp into a 12-byte argument area kept at the bottom of its frame.
- * mwccarm 2.0 (every build in metroskrew) moves sp around each such call
- * instead, which needs a frame pointer in r11 and shifts every stack offset.
- * The control flow and the rest of the code already line up.
+ * Built with mwccarm 2.0 build 56 (config/AWRE/compilers.txt, issue 0061).
+ * The original passes PrintFormat by value by storing it just below sp into
+ * a 12-byte argument area kept at the bottom of its frame. 2.0-72 moves sp
+ * around each such call instead, with a frame pointer in r11.
  */
 int __pformatter(FormatWriteProc write, void* sink, const char* format,
                  va_list args) {

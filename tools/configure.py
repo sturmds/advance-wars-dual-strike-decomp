@@ -47,6 +47,12 @@ LD = f"{SKREW_BIN}/mwldarm-2.0-72.exe"
 CFLAGS = "-O4,p -proc arm946e -interworking -nostdinc -i include -i build/gen -msgstyle gcc"
 LDFLAGS = "-proc arm946e -interworking -map closure,unused -msgstyle gcc -nodead -nostdlib -m Entry"
 
+# Some MSL files were built by an older compiler, mwccarm 2.0 build 56
+# (issue 0061). config/AWRE/compilers.txt lists them; tools/wine_cc.py runs
+# that compiler under wine with the same flags.
+COMPILERS = Path("config/AWRE/compilers.txt")
+CC_BY_VERSION = {"2.0-72": CC, "2.0-56": "tools/wine_cc.py"}
+
 # ARM7 (docs/awre-facts.md, "ARM7"): the same compiler, built for size.
 CC7 = CC
 CFLAGS7 = "-O4,s -proc arm7tdmi -interworking -nostdinc -i include -i build/gen -msgstyle gcc"
@@ -118,12 +124,30 @@ def is_arm7_source(src) -> bool:
     return p.parts[:2] == ("src", "arm7")
 
 
+def compiler_table() -> dict[str, str]:
+    """Source path -> compiler for the files in config/AWRE/compilers.txt."""
+    table = {}
+    for n, line in enumerate((ROOT / COMPILERS).read_text().splitlines(), 1):
+        line = line.split("#", 1)[0].strip()
+        if not line:
+            continue
+        path, version = line.split()
+        if version not in CC_BY_VERSION:
+            sys.exit(f"error: {COMPILERS}:{n}: unknown compiler {version!r}")
+        table[path] = CC_BY_VERSION[version]
+    return table
+
+
 def compiler_for(src, module: str | None = None) -> tuple[str, str]:
     """(compiler, flags) for a source file: ARM7's for a file under src/arm7/
-    or for code checked against an `arm7` function, ARM9's otherwise."""
+    or for code checked against an `arm7` function, ARM9's otherwise. The
+    compiler is the one compilers.txt names for the file, or 2.0-72."""
     if module == "arm7" or (module is None and is_arm7_source(src)):
         return CC7, CFLAGS7
-    return CC, CFLAGS
+    p = Path(src)
+    if p.is_absolute() and p.is_relative_to(ROOT):
+        p = p.relative_to(ROOT)
+    return compiler_table().get(p.as_posix(), CC), CFLAGS
 
 
 def obj_of(src: str) -> str:
@@ -284,9 +308,16 @@ def main() -> int:
         "default build/AWRE.nds",
         "",
     ]
+    table = compiler_table()
     for src, obj in zip(sources, objs):
-        generated = f" | {' '.join(MAP_OUTPUTS)}" if src in MAP_SOURCES else ""
-        lines += [f"build {obj}: cc {src}{generated}", f"  out_d = {obj[:-2]}.d", ""]
+        implicit = MAP_OUTPUTS if src in MAP_SOURCES else []
+        if src in table:
+            implicit = implicit + [table[src], COMPILERS.as_posix()]
+        generated = f" | {' '.join(implicit)}" if implicit else ""
+        lines += [f"build {obj}: cc {src}{generated}", f"  out_d = {obj[:-2]}.d"]
+        if src in table:
+            lines.append(f"  cc = {table[src]}")
+        lines.append("")
     for src, obj in zip(sources7, objs7):
         lines += [f"build {obj}: cc7 {src}", f"  out_d = {obj[:-2]}.d", ""]
     # The Makefile runs this before every build (new src/ files have to be

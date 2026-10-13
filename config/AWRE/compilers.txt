@@ -1,0 +1,14 @@
+# Source files built with another compiler than mwccarm 2.0-72, one per line:
+# PATH VERSION. Versions: 2.0-56 (tools/wine_cc.py, under wine). The flags
+# stay the ARM9 ones (tools/configure.py). Issue 0061: these MSL files pass a
+# struct or double by value, and only 2.0-56 builds that call without an r11
+# frame, as the original does.
+src/sdk/msl/__fp_trap.c 2.0-56
+src/sdk/msl/__fp_trap_d.c 2.0-56
+src/sdk/msl/__fp_trap_dd.c 2.0-56
+src/sdk/msl/__fp_trap_f.c 2.0-56
+src/sdk/msl/__fp_trap_ff.c 2.0-56
+src/sdk/msl/__pformatter.c 2.0-56
+src/sdk/msl/double2hex.c 2.0-56
+src/sdk/msl/func_02121d58.c 2.0-56
+src/sdk/msl/func_02121ea8.c 2.0-56

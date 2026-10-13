@@ -88,7 +88,7 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0058](0058-dsd-arm-branch-unconditional.md) | dsd writes an `arm_branch` relocation in a delinked range as an unconditional `b` | worked around | tools | M1 |
 | [0059](0059-replay-conflict-leaves-files-unstaged.md) | After a conflict in a replay, the resolved commit held one file and the next commit was dropped | open | loop | M1 |
 | [0060](0060-dsd-symbol-sizes-too-small.md) | dsd symbol sizes too small for runtime functions, and tails split off as functions | open | tools | M1 |
-| [0061](0061-msl-by-value-struct-frame.md) | MSL functions that mwccarm 2.0-72 cannot match because of the by-value struct frame | open | decomp | M2 |
+| [0061](0061-msl-by-value-struct-frame.md) | MSL functions that mwccarm 2.0-72 cannot match because of the by-value struct frame | closed | decomp | M2 |
 | [0062](0062-protocheck-reports-left.md) | About 190 `protocheck.py` reports left in files touched only by renames | open | decomp | M2 |
 | [0063](0063-trivial-arm7-tailcall-breaks-module-hash.md) | `trivial.py --arm7` output for `func_arm7_03807408` passes the fast check but breaks the arm7 module hash | closed | tools | M2 |
 | [0064](0064-terrain-stats-start.md) | `Ov000_gTerrainStats` starts 8 bytes after the real table: names belong to the next terrain id | open | decomp | M2 |

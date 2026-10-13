@@ -86,3 +86,10 @@ Tracked as `docs/issues/0058-dsd-arm-branch-unconditional.md`.
 - **Seen:** 2026-10-11, ARM7 WRAM. `.data` ends at 0x03807888, and the autoload table's bss size (0x3764) puts `.bss` at the next multiple of 32, 0x038078a0. The 24 bytes between belong to neither section, yet the code uses them: the wake mask at 0x03807888 and the start of the IRQ slot table at 0x0380788c (the table runs on into `.bss`).
 - **Behaviour:** dsd makes no symbols and no relocations for addresses outside every section, so the seven literal words that point there (0x037fb4a8, 0x037fb4fc, 0x037fb60c, 0x037fb610, 0x037fb618, 0x037fb7ec, 0x037fb808) stayed plain numbers. C that names the table as a symbol then differed from the original in its relocations, and C that used the numbers compiled to different code.
 - **Workaround:** a section of its own for the gap in `config/AWRE/arm7/delinks.txt`: `.sbss start:0x03807888 end:0x038078a0 kind:bss align:4`. `dsd lcf` aligns each section to its own `align`, so the gap object follows `.data` at once and `.bss` still starts at 0x038078a0; the bss size that `tools/arm7.py bin` writes into the autoload table (`BSS_END - BSS_START`) stays 0x3764. The symbols and relocations are then added by hand. Moving the `.bss` start down to 0x03807888 instead would change that table entry.
+
+## mwccarm 2.0 build 56: runs under wine only, and has no `-gccdep`
+
+Build 56 (issue 0061) is a Windows executable with no metroskrew build.
+
+- wibo 1.2.0 runs it but leaves the x87 FPU at Linux's 64-bit precision. Windows, wine and metroskrew (`relink/entry.s`, `fldcw`) use 53-bit precision. mwccarm's switch lowering depends on it: under wibo, `__pformatter` gets a different case tree, with build 56 and with 2.0-72 alike. Workaround: run it under wine.
+- It does not accept `-gccdep`. With `-MD` it writes `SRC.d` into the current directory, with Windows paths (`Z:\home\...`). `tools/wine_cc.py` compiles in a temporary directory and writes the depfile next to the object with repo-relative paths, as the metroskrew builds do.

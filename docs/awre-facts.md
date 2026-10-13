@@ -37,9 +37,9 @@ What we know about the US/AUS ROM, from plan step 0.2 (2026-10-06). Everything h
   - 15 game functions from main, ov003, ov006 and ITCM match byte for byte (relocations masked). Nine of them match only builds 72–82.
   - 160 system library functions match exactly with 2.0-72. 2.0-84 matches 47 and 3.0-139 matches 25, all within the 160. So the library code uses the same compiler and flags as the game.
   - Across the ROM there are 8,809 `ldmfd {..,lr}; bx lr` epilogues and no `pop {..,pc}`. 2.0-84 and later emit `pop {pc}`.
-  - The linked MSL/runtime code equals the CodeWarrior 1.2 base..sp2 library objects that metroskrew ships (42 functions, 11.6 KB). Some MSL functions do not match with 2.0-72 (by-value struct frame): see `docs/issues/0061-msl-by-value-struct-frame.md`.
+  - The linked MSL/runtime code equals the CodeWarrior 1.2 base..sp2 library objects in metroskrew (42 functions, 11.6 KB). Nine other MSL functions are not in those objects and match only mwccarm 2.0 build 56: the six soft-float trap wrappers, `__fp_trap`, `__pformatter` and `double2hex`. They pass a struct or double by value, and 2.0-72 builds that call with an `r11` frame the original lacks (issue 0061). `config/AWRE/compilers.txt` lists them.
 - Flags that break matches: `-constpool`, `-O4,s`, any lower `-O`, dropping `-interworking`. `-ipa` does not exist in 2.0, so file boundaries do not affect inlining.
-- The EU notes say "build 56", which is not in metroskrew. Nothing here needs it. To show 56 is required, you would need a compiled function that builds 72–82 cannot reproduce.
+- mwccarm 2.0 build 56 is not in metroskrew. The nine MSL functions above need it (checked 2026-10-12): every metroskrew build from 2.0-72 to 4.0-1051, at every `-O` level and for three `-proc` values, leaves them unmatched. 12 other MSL functions that match with 2.0-72 do not match with build 56, so the compiler is chosen per file.
 - The game code contains no Thumb. The four non-BIOS Thumb functions (matrix helpers at 0x0210969c, 0x021096bc, 0x021096d8 and an RL decompressor at 0x0210f9a8) are hand-written library assembly. They match as `asm void` under `#pragma thumb on` in a `.c` file.
 - The linker is `mwldarm` 2.0-72. The zero-C link reproduces every module with it.
 

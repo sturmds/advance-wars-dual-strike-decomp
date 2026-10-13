@@ -39,3 +39,17 @@ version = "23.1.1"
 url = "https://files.pythonhosted.org/packages/42/ef/3f8e215916e79ecd435b5bc20810443f80fce3fb8bbfe6d2783ceb775c1b/clang_format-23.1.1-py2.py3-none-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
 sha256 = "64900462c1203cee2fec364536c2dda708baf0619e15b52ceda926648cc82f56"
 type = "whl"
+
+# mwccarm 2.0 build 56, older than the 2.0-72 that builds everything else.
+# Some MSL files only match with it (config/AWRE/compilers.txt, issue 0061).
+# A Windows executable, run under wine by tools/wine_cc.py: metroskrew has no
+# native build of it, and wibo 1.2.0 leaves the x87 FPU at Linux precision,
+# which changes how mwccarm lowers switches. The archive is the CodeWarrior
+# for DS compiler set linked from the DS decomp Discord; only
+# mwccarm/1.2/b56/ is unpacked.
+[mwccarm-b56]
+version = "2.0-56"
+url = "https://decomp.aetias.com/files/mwccarm.zip"
+sha256 = "6f7b16098d2b1bc9b45b278f6e6e24327c4da9b3ebf7924be1afd4a721d83976"
+type = "zip"
+subdir = "mwccarm/1.2/b56"

@@ -44,8 +44,9 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
+import configure
+
 ROOT = Path(__file__).resolve().parent.parent
-CC = ROOT / ".cache/tools/metroskrew/bin/mwccarm-2.0-72.exe"
 BASE_FLAGS = ["-proc", "arm946e", "-interworking", "-nostdinc", "-i", "include", "-msgstyle", "gcc"]
 BUILD_OPT = "-O4,p"
 DIAG_OPTS = ["-O4,s", "-O3,p", "-O3,s", "-O2,p", "-O4", "-O1,p"]
@@ -493,6 +494,8 @@ class Scorer:
         self.count = 0
         self.jobs = jobs
         self.srcdir = path.resolve().parent
+        # 2.0-72, or the compiler config/AWRE/compilers.txt names for the file.
+        self.cc = ROOT / configure.compiler_for(path)[0]
         self.pool = ThreadPoolExecutor(max_workers=jobs)
 
     def close(self):
@@ -506,7 +509,7 @@ class Scorer:
         src = self.tmp / f"v{next(self.serial)}.c"
         obj = src.with_suffix(".o")
         src.write_text(text)
-        r = subprocess.run([str(CC), "-c", opt, *BASE_FLAGS, "-i", str(self.srcdir), "-o", str(obj), str(src)],
+        r = subprocess.run([str(self.cc), "-c", opt, *BASE_FLAGS, "-i", str(self.srcdir), "-o", str(obj), str(src)],
                            cwd=ROOT, capture_output=True, text=True)
         sc = None
         if r.returncode == 0 and obj.exists():

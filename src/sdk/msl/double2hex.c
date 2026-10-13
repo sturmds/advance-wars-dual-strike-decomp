@@ -3,10 +3,13 @@
 #include "sdk/msl_string.h"
 
 /*
- * Does not match yet: mwccarm 2.0 moves sp and sets up an r11 frame to pass
- * expFormat by value, and the original has neither. 3.0 builds pass it the
- * original's way, so this library object likely came from another compiler.
+ * Built with mwccarm 2.0 build 56 (config/AWRE/compilers.txt, issue 0061):
+ * 2.0-72 sets up an r11 frame to pass expFormat by value, and the original
+ * has none.
  */
+
+#define DOUBLE_EXPONENT_MASK 0x7FF
+#define DOUBLE_EXPONENT_BIAS 1023
 
 extern char data_0216df30[]; /* "0x0p0" */
 extern char data_0216df00[]; /* "-INF" */
@@ -28,6 +31,7 @@ char* double2hex(double value, char* bufferEnd, PrintFormat format) {
   int hexDigits;
   int bit;
   int i;
+  u8* swapBytes;
   DecimalFormat form;
   PrintFormat expFormat;
   Decimal dec;
@@ -92,16 +96,20 @@ char* double2hex(double value, char* bufferEnd, PrintFormat format) {
   expFormat.precision = 1;
   expFormat.conversionChar = 'd';
 
-  /* Byte-reverse the double so the sign and exponent come first. */
-  bytes = (u8*)&value;
+  /* Byte-reverse the double so the sign and exponent come first. Needed to
+   * match: the swap and the digit loop use separate pointers, declared in
+   * this order, and the exponent reads value directly (the original sets up
+   * &value twice) in two steps. */
+  swapBytes = (u8*)&value;
   for (i = 0; i < 4; i++) {
-    swap = bytes[i];
-    bytes[i] = bytes[7 - i];
-    bytes[7 - i] = swap;
+    swap = swapBytes[i];
+    swapBytes[i] = swapBytes[7 - i];
+    swapBytes[7 - i] = swap;
   }
 
-  high = (bytes[0] << 25) | (bytes[1] << 17);
-  exponent = ((high >> 21) & 0x7FF) - 1023;
+  high = (((u8*)&value)[0] << 25) | (((u8*)&value)[1] << 17);
+  high = (high >> 21) & DOUBLE_EXPONENT_MASK;
+  exponent = high - DOUBLE_EXPONENT_BIAS;
   p = long2str(exponent, bufferEnd, expFormat);
   if (format.conversionChar == 'a') {
     *--p = 'p';
@@ -109,6 +117,7 @@ char* double2hex(double value, char* bufferEnd, PrintFormat format) {
     *--p = 'P';
   }
 
+  bytes = (u8*)&value;
   /* Mantissa bits follow the sign bit and 11 exponent bits; print 4 per digit, last digit first. */
   bit = format.precision * 4 + 11;
   for (hexDigits = format.precision; hexDigits >= 1; hexDigits--) {
