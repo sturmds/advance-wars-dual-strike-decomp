@@ -5,10 +5,13 @@
 
 No ROM needed. Covers variables, aliases, filler and declared sizes
 (build_items), the filler cuts that keep runs few (fill), the run split,
-dsd's link-order check and the linker script lines. With the compiler from
-`make setup`, also compiles a file of three runs written by body_lines and
-checks its sections. With build/fnindex.json and build/dsindex.json, runs
-`bss.py plan --show` twice on each overlay and compares the output.
+dsd's link-order check, the parts of an ARM7-like module, and the linker
+script lines for .bss and .sbss. With the compiler from `make setup`, also
+compiles files written by body_lines and checks their sections: three .bss
+runs with the ARM9 flags, and two .sbss runs and three .bss runs with the
+ARM7 flags. With build/fnindex.json and build/dsindex.json, runs
+`bss.py plan --show` twice on each overlay and on arm7 and compares the
+output (each run has its own hash seed).
 """
 
 import subprocess
@@ -103,12 +106,41 @@ def test_lcf() -> None:
     entry = bss.Entry("src/x/bss_x.c", True, {".bss": (0x100, 0x130)})
     symbols = [bss.Symbol("v0", "bss", 0x100, 8), bss.Symbol("v1", "bss", 0x108, 4),
                bss.Symbol("v1_b", "bss", 0x10a, 0), bss.Symbol("v2", "bss", 0x10c, 0x24)]
-    anchor, lines = bss.lcf_object_lines(entry, symbols)
+    anchor, lines = bss.lcf_object_lines(entry, ".bss", symbols)
     check("lcf_object_lines", (anchor, lines) == ("bss_x.o(.bss)", ["bss_x.o(.bss.run1)", "v1_b = v1 + 0x2;"]),
           lines)
     text = "    .ov : {\n        bss_x.o(.bss)\n    }\n"
     once = bss.lcf_insert_after(text, anchor, lines, "test")
     check("lcf_insert_after: twice changes nothing", bss.lcf_insert_after(once, anchor, lines, "test") == once)
+    entry = bss.Entry("src/arm7/x/os_bss.c", True, {".sbss": (0x200, 0x218)})
+    symbols = [bss.Symbol("w", "bss", 0x200, 2), bss.Symbol("t", "bss", 0x204, 0xc),
+               bss.Symbol("t_arg", "bss", 0x20c, 0), bss.Symbol("p", "bss", 0x210, 8)]
+    anchor, lines = bss.lcf_object_lines(entry, ".sbss", symbols)
+    check("lcf_object_lines: .sbss", (anchor, lines) == ("os_bss.o(.sbss)", ["os_bss.o(.sbss.run1)", "t_arg = t + 0x8;"]),
+          (anchor, lines))
+
+
+def test_sections() -> None:
+    check("run_section", [bss.run_section(".bss", 0), bss.run_section(".bss", 2), bss.run_section(".sbss", 0),
+                          bss.run_section(".sbss", 1)] == [".bss", ".bss.run2", ".sbss", ".sbss.run1"])
+    check("run_pragma", [bss.run_pragma(".bss", 0), bss.run_pragma(".bss", 2), bss.run_pragma(".sbss", 0),
+                         bss.run_pragma(".sbss", 1)] == [None, "BSS_RUN2", "SBSS", "SBSS_RUN1"])
+    header = (ROOT / "include" / bss.RUN_HEADER).read_text()
+    for section, limit in bss.MAX_RUNS.items():
+        names = [bss.run_pragma(section, k) for k in range(limit)]
+        missing = [n for n in names if n and f"#pragma define_section {n} " not in header]
+        check(f"{bss.RUN_HEADER} defines every {section} run bss.py may write", not missing, missing)
+
+
+def test_segments() -> None:
+    # Three parts in the order ARM7's delinks.txt lists them: each starts with its .text.
+    module = bss.Module.__new__(bss.Module)
+    module.header = [(".text", 0x2380000, 0x2380158), (".bss", 0x2380180, 0x2380180),
+                     (".text", 0x27c0000, 0x27d6570), (".bss", 0x27d6c60, 0x27d8518),
+                     (".text", 0x37f8000, 0x380773c), (".sbss", 0x3807888, 0x38078a0),
+                     (".bss", 0x38078a0, 0x380b004)]
+    got = [module.segment(a) for a in (0x2380180, 0x27d0000, 0x27d8000, 0x37fe910, 0x3807888, 0x380b000, 0x2000000)]
+    check("Module.segment", got == [0, 1, 1, 2, 2, 2, None], got)
 
 
 class NoDecls:
@@ -120,24 +152,31 @@ class FakeIndex:
     decls = NoDecls()
 
 
-def test_compile() -> None:
-    if not pragmas.CC.exists():
-        print("test_bss: no compiler, run make setup (compile test skipped)")
-        return
-    sizes = [[4, 4, 8], [4, 0x10], [8, 8]]
+def compile_runs(what: str, sizes: list[list[int]], path: str, section: str) -> None:
+    """Writes a file of runs of these sizes with body_lines, compiles it as
+    `path` (src/arm7/ gets the ARM7 flags) and checks each run's section."""
     runs, addr = [], 0
     for run in sizes:
         runs.append([])
         for s in run:
-            runs[-1].append(bss.Var(addr, s, s, f"v_{addr:03x}"))
-            addr += s
-    g = bss.Group(runs, "src/x", path="src/x/bss_test.c")
+            runs[-1].append(bss.Var(addr, bss.round4(s), s, f"v_{addr:03x}"))
+            addr += bss.round4(s)
+    g = bss.Group(runs, str(Path(path).parent), path=path, section=section)
     lines, headers = bss.body_lines(FakeIndex(), g, set())
     elf = bss.compile_probe(g.path, bss.new_file_text(lines, headers, True))
-    check("three runs compile", elf is not None, bss.compile_errors)
+    check(f"{what} compile", elf is not None, bss.compile_errors)
     if elf is not None:
         errors = bss.order_errors(elf, g)
-        check("three runs come out in order", not errors, errors)
+        check(f"{what} come out in order", not errors, errors)
+
+
+def test_compile() -> None:
+    if not pragmas.CC.exists():
+        print("test_bss: no compiler, run make setup (compile test skipped)")
+        return
+    compile_runs("three runs", [[4, 4, 8], [4, 0x10], [8, 8]], "src/x/bss_test.c", ".bss")
+    compile_runs("ARM7: two .sbss runs", [[2, 0xc], [8]], "src/arm7/x/sbss_test.c", ".sbss")
+    compile_runs("ARM7: three .bss runs", [[4, 0x54, 0x78], [4, 0x24], [0x10, 0x10]], "src/arm7/x/bss_test.c", ".bss")
 
 
 def test_twice() -> None:
@@ -145,7 +184,7 @@ def test_twice() -> None:
         print("test_bss: no build/fnindex.json, build/dsindex.json or compiler (plan test skipped)")
         return
     for module in bss.module_modules():
-        if not module.startswith("ov"):
+        if module == "main":
             continue
         cmd = [sys.executable, "tools/bss.py", "plan", module, "--show"]
         first = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
@@ -161,6 +200,8 @@ def main() -> int:
     test_runs()
     test_link_order()
     test_lcf()
+    test_sections()
+    test_segments()
     test_compile()
     test_twice()
     return 1 if failures else 0

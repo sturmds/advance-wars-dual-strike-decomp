@@ -320,10 +320,11 @@ mwccarm 2.0 does not emit a file's data objects in the order they are defined. E
 python3 tools/bss.py scan main --verbose            # variables, aliases, filler, runs; writes nothing
 python3 tools/bss.py plan ov003 --show              # the files it would write, with their C
 python3 tools/bss.py plan main --range 0x0216e020-0x02170000 --write
+python3 tools/bss.py plan arm7 --write              # ARM7's .bss and .sbss
 ```
 
 - `--write` writes the C, formats it, compiles each file to check the order of its variables, edits `delinks.txt` and `symbols.txt`, then runs `make` and `make check` and names the module whose hash fails. Run it from a clean `config/`, `src/` and `include/`, and fix a wrong result in the tool, not in its output. A second run finds nothing left to do.
-- A run of variables goes into the file whose functions use most of them, or into a new file in its users' directory. A file with more than one run puts the later ones between `#pragma section BSS_RUNn begin` and `end` (`include/bss_run.h`); `bss.py lcf` (part of the build) places `.bss.runN` after the file's `.bss`.
+- A run of variables goes into the file whose functions use most of them, or into a new file in its users' directory. A file with more than one run puts the later ones between `#pragma section BSS_RUNn begin` and `end` (`include/bss_run.h`); `bss.py lcf` (part of the build) places `.bss.runN` after the file's `.bss`. ARM7's `.sbss` takes `SBSS` and `SBSS_RUNn` the same way, and ARM7's link script gets the lines from `bss.py lcf --arm7`.
 - Symbols inside a variable stay in `symbols.txt` with `kind:bss(size=0x0)`, and `bss.py lcf` defines them as `VARIABLE + OFFSET`. With a size, objdiff counts the whole unit's .bss as unmatched.
 - Rename a variable with `fn.py rename OLD NEW`, as for any symbol.
 - To move a variable into a topic file later, move its definition together with the other variables of its run, and the `.bss` range with them: a file's .bss must stay one range in `delinks.txt`, and within it the sizes must go up (or start a new `BSS_RUNn`). The compiler's sort depends on the definition order: `definition_order` in `tools/mwcc_order.py` gives it for a list of sizes.
@@ -338,6 +339,7 @@ ARM7 (the second CPU: sound, touch screen, wireless, power) is one module, `arm7
 - `propagate.py --module arm7` copies matched C, ARM9's included, to ARM7 twins and checks them with the ARM7 flags; `trivial.py --arm7` does the short functions. Without those flags both leave ARM7 alone. `permute.py` and `pragmas.py` pick the ARM7 flags for a file under `src/arm7/`.
 - The 25 Thumb functions are BIOS call stubs (`svc N; bx lr`); write them as `asm void` under `#pragma thumb on`, as for ARM9's.
 - dsd cannot delink ARM7 on its own: `tools/arm7.py` runs it on a stand-in ROM with the parts moved (`docs/tool-issues.md`). That is invisible in the loop, but `config/AWRE/arm7/` uses real addresses while `build/arm7/config/` holds the moved copy; edit only the first.
+- A file's sections must all be in one of the three parts. `bss.py` puts a part's `.bss` only in a file whose code is in the same part.
 ## Shifted build and pointer checks
 
 A mod that changes code size moves every later address. The linker fixes an address only when it is a relocation (an entry in `relocs.txt` or a symbol in our C), never a plain number, so a pointer dsd missed keeps its old value and points at the wrong place. These tools look for that (issues 0012, 0019, 0023). None of them changes what `make release` checks.

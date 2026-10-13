@@ -21,7 +21,8 @@ ARM7 (tools/arm7.py says why it takes extra steps):
   config/AWRE/arm7 + extract --arm7.py prepare--> build/arm7/rom/, build/arm7/config/ (stand-in ROM and dsd config)
   --dsd delink--> build/arm7/delinks/**.o
   src/arm7/**.c marked `complete` --mwccarm (ARM7 flags)--> build/arm7/src/arm7/**.o
-  --dsd lcf, arm7.py lcf, lcf_align2.py lcf--> build/arm7/arm7.lcf, build/arm7/objects.txt
+  --dsd lcf, arm7.py lcf, lcf_absolute.py, bss.py lcf --arm7,
+    lcf_align2.py lcf--> build/arm7/arm7.lcf, build/arm7/objects.txt
   --lcf_align2.py objects--> build/arm7/objects.link.txt, build/arm7/align2/**.o
   --mwldarm--> build/arm7/arm7.elf, build/arm7/build/*.bin --arm7.py bin--> build/build/arm7.bin
   rom_config.yaml points at build/build/arm7.bin (arm7.py romconfig).
@@ -264,6 +265,7 @@ def main() -> int:
         "rule arm7_lcf",
         f"  command = $dsd lcf -c {ARM7_CFG} > /dev/null && $python tools/arm7.py lcf"
         " && $python tools/lcf_absolute.py build/arm7/arm7.lcf $absolute"
+        " && $python tools/bss.py lcf --arm7 build/arm7/arm7.lcf"
         " && $python tools/lcf_align2.py lcf build/arm7/arm7.lcf config/AWRE/arm7/delinks.txt"
         " AUTOLOAD_2 AUTOLOAD_3 AUTOLOAD_4",
         "  description = ARM7 LCF",
@@ -319,7 +321,7 @@ def main() -> int:
         "build build/arm7/delink.stamp: arm7_delink build/arm7/prepare.stamp | $dsd",
         "",
         "build build/arm7/arm7.lcf build/arm7/objects.txt: arm7_lcf build/arm7/delink.stamp"
-        " | $dsd tools/arm7.py tools/lcf_align2.py tools/lcf_absolute.py",
+        " | $dsd tools/arm7.py tools/lcf_align2.py tools/lcf_absolute.py tools/bss.py",
         "  absolute = " + " ".join(f"{k}={v:#x}" for k, v in ARM7_ABSOLUTE_SYMBOLS.items()),
         "",
         "build build/arm7/arm7.elf: arm7_link build/arm7/arm7.lcf build/arm7/objects.txt"

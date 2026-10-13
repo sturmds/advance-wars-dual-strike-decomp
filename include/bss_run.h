@@ -10,6 +10,8 @@
  *
  * The linker script places .bss.run1 after the file's .bss, then
  * .bss.run2 and so on (tools/bss.py lcf). objdiff reads .bss.runN as .bss.
+ * ARM7's .sbss (docs/tool-issues.md) takes the same steps with SBSS for
+ * its first run and SBSS_RUN1 to SBSS_RUN3 for the others.
  * tools/bss.py writes these files. */
 /* One line each: clang-format would break them in three. */
 /* clang-format off */
@@ -28,6 +30,10 @@
 #pragma define_section BSS_RUN13 ".data" ".bss.run13" abs32 RW
 #pragma define_section BSS_RUN14 ".data" ".bss.run14" abs32 RW
 #pragma define_section BSS_RUN15 ".data" ".bss.run15" abs32 RW
+#pragma define_section SBSS ".data" ".sbss" abs32 RW
+#pragma define_section SBSS_RUN1 ".data" ".sbss.run1" abs32 RW
+#pragma define_section SBSS_RUN2 ".data" ".sbss.run2" abs32 RW
+#pragma define_section SBSS_RUN3 ".data" ".sbss.run3" abs32 RW
 /* clang-format on */
 
 #endif

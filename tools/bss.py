@@ -5,9 +5,10 @@
     bss.py scan MODULE [--verbose]                  variables, aliases, filler and runs; writes nothing
     bss.py plan MODULE [--range LO-HI] [--show]     the files it would write, and where (--show: their C)
     bss.py plan MODULE [--range LO-HI] --write      write them, build, and check the ROM
-    bss.py lcf LCF                                  place the extra .bss sections and the aliases in a linker script
+    bss.py lcf [--arm7] LCF                         place the extra .bss sections and the aliases in a linker script
 
-MODULE: main, ovNNN or arm7 (`scan` and `plan` only for arm7 so far).
+MODULE: main, ovNNN or arm7. ARM7 has .bss in two of its three parts and a
+.sbss (docs/tool-issues.md); a run in .sbss goes in `.sbss` or `.sbss.runN`.
 
 It works on the parts of each .bss range that no delinks.txt entry covers.
 Its inputs are the committed config, src/ and include/, build/fnindex.json
@@ -38,7 +39,8 @@ compiler; the same inputs give the same output. The rules:
   .bss and objdiff reads as .bss. At most 16 runs per file.
 - Hosts: a run goes into an existing file when more than half of its named
   variables are used by that file's functions (the file with the most, ties
-  in fnindex order), the file is `complete`, compiles to code only, declares
+  in fnindex order), the file is `complete`, has its code in the same part
+  of the module (ARM7 has three, tools/arm7.py), compiles to code only, declares
   the variables with their sizes, keeps one link order (dsd stops with
   "Link order cycle detected" otherwise), and compiles with the
   definitions in the right order.
@@ -69,6 +71,7 @@ import sys
 import tempfile
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
+from fractions import Fraction
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -80,8 +83,10 @@ ROOT = Path(__file__).resolve().parent.parent
 FNINDEX = ROOT / "build/fnindex.json"
 DSINDEX = ROOT / "build/dsindex.json"
 RUN_HEADER = "bss_run.h"
-MAX_RUNS = 16  # sections include/bss_run.h defines: .bss and .bss.run1 to .bss.run15
 BSS_SECTIONS = (".bss", ".sbss")
+# Runs one file can hold in each section: the sections include/bss_run.h
+# defines (.bss.run1 to .bss.run15, .sbss and .sbss.run1 to .sbss.run3).
+MAX_RUNS = {".bss": 16, ".sbss": 4}
 # Sections an object may have and still take .bss definitions: with data of
 # its own, the compiler would sort that data together with ours.
 CODE_SECTIONS = {".text", ".exceptix"}
@@ -230,14 +235,14 @@ class Index:
         self.decls = Decls()
         self.probed: dict[tuple[str, str], int | None] = {}
         self.struct_size: dict[str, int] = {}
-        self.struct_header: dict[str, str] = {}
+        self.struct_headers: dict[str, list[str]] = defaultdict(list)
         sizes_seen: dict[str, set[int]] = defaultdict(set)
         for where in ("headers", "sources"):
             for path, info in ds[where].items():
                 for st in info.get("structs", []):
                     sizes_seen[st["name"]].add(st["size"])
-                    if where == "headers":
-                        self.struct_header.setdefault(st["name"], path)
+                    if where == "headers" and path not in self.struct_headers[st["name"]]:
+                        self.struct_headers[st["name"]].append(path)
         for name, sizes in sizes_seen.items():
             if len(sizes) == 1:
                 self.struct_size[name] = sizes.pop()
@@ -252,14 +257,26 @@ class Index:
             return 4
         return BASIC_SIZES.get(t, self.struct_size.get(t))
 
-    def type_header(self, type_text: str) -> str | None:
+    def type_header(self, type_text: str, near: str) -> str | None:
         """The include line a file needs for this type: '' when types.h is
-        enough, None when no header defines it."""
+        enough, None when no header defines it. When several headers define
+        it (ARM9's and ARM7's `struct OSThread`), the one the file `near`
+        includes, the file that declares the variable (pick_header)."""
         t = self.base_type(type_text).replace("*", "").strip()
         if t in BASIC_SIZES or t == "void":
             return ""
-        path = self.struct_header.get(t) or self.decls.type_headers.get(t)
-        return path.removeprefix("include/") if path else None
+        return pick_header(self.struct_headers.get(t) or self.decls.type_headers.get(t, []), near)
+
+
+def pick_header(paths: list[str], near: str) -> str | None:
+    """One of the headers `paths` for a file that declares something with
+    a type they define: the only one, else the first that `near` includes,
+    else the first. A wrong pick shows up as a size the compile check
+    refuses (order_errors)."""
+    if len(paths) > 1:
+        text = (ROOT / near).read_text(errors="replace")
+        paths = [p for p in paths if f'#include "{p.removeprefix("include/")}"' in text] or paths
+    return paths[0].removeprefix("include/") if paths else None
 
 
 _compiled: dict[tuple[str, str], tuple[list[dict], list[dict]] | None] = {}
@@ -304,6 +321,8 @@ def probe_size(path: str, expr: str) -> int | None:
 
 
 EXTERN_STATEMENT = re.compile(r"^extern\b[^;{}]*;", re.M)
+# A comment of whole lines that ends on the line just above a statement.
+LEAD_COMMENT = re.compile(r"(?:^|(?<=\n))(/\*(?:(?!\*/).)*\*/)[ \t]*\n\Z", re.S)
 TYPEDEF_NAME = re.compile(r"\btypedef\b[^;{}]*?(?:\(\s*\*\s*(\w+)\s*\)[^;{}]*|\b(\w+)\s*(?:\[[^\]]*\]\s*)*);")
 CLOSE_NAME = re.compile(r"\}\s*(\w+)\s*;")
 DEFINE_NAME = re.compile(r"^\s*#\s*define\s+(\w+)", re.M)
@@ -338,6 +357,8 @@ class Decl:
     end: int        # just past the `;`
     body: str       # the statement without `extern` and `;`, on one line
     comment: str    # a /* */ comment after it on the same line
+    lead: str = ""  # a /* */ comment on the lines just above it, as written
+    lead_start: int = -1  # where that comment starts (start when there is none)
 
 
 class Decls:
@@ -347,7 +368,7 @@ class Decls:
 
     def __init__(self) -> None:
         self.by_name: dict[str, list[Decl]] = defaultdict(list)
-        self.type_headers: dict[str, str] = {}
+        self.type_headers: dict[str, list[str]] = defaultdict(list)
         for top, pattern in (("include", "*.h"), ("src", "*.c")):
             for path in sorted((ROOT / top).rglob(pattern)):
                 rel = path.relative_to(ROOT).as_posix()
@@ -359,18 +380,24 @@ class Decls:
                         continue
                     rest = text[m.end():text.find("\n", m.end()) if "\n" in text[m.end():] else len(text)]
                     cm = re.fullmatch(r"\s*/\*(.*)\*/\s*", rest)
+                    lm = LEAD_COMMENT.search(text, 0, m.start())
                     self.by_name[name].append(Decl(name, rel, m.start(), m.end(), body,
-                                                   " ".join(cm.group(1).split()) if cm else ""))
+                                                   " ".join(cm.group(1).split()) if cm else "",
+                                                   lm.group(1) if lm else "", lm.start(1) if lm else m.start()))
                 if top == "include":
                     for m in DEFINE_NAME.finditer(text):
-                        self.type_headers.setdefault(m.group(1), rel)
+                        self.add_type(m.group(1), rel)
                     for block in ENUM_BODY.finditer(text):
                         for m in re.finditer(r"^\s*([A-Za-z_]\w*)\s*[=,}]", block.group(1) + ",", re.M):
-                            self.type_headers.setdefault(m.group(1), rel)
+                            self.add_type(m.group(1), rel)
                     for m in TYPEDEF_NAME.finditer(text):
-                        self.type_headers.setdefault(m.group(1) or m.group(2), rel)
+                        self.add_type(m.group(1) or m.group(2), rel)
                     for m in CLOSE_NAME.finditer(text):
-                        self.type_headers.setdefault(m.group(1), rel)
+                        self.add_type(m.group(1), rel)
+
+    def add_type(self, name: str, header: str) -> None:
+        if header not in self.type_headers[name]:
+            self.type_headers[name].append(header)
 
     def of(self, name: str) -> list[Decl]:
         return self.by_name.get(name, [])
@@ -598,6 +625,18 @@ class Module:
         self.prefix = symbol_prefix(name)
         self.gaps = self._gaps()
 
+    def segment(self, addr: int) -> int | None:
+        """Which part of the module an address is in. The header lists each
+        part's sections together, starting with its .text: ARM7 has three
+        parts that load to different places (tools/arm7.py), an ARM9 module
+        one."""
+        part = -1
+        for sec, start, end in self.header:
+            part += sec == ".text"
+            if start <= addr < end or addr == start:
+                return part
+        return None
+
     def bss_ranges(self) -> list[tuple[str, int, int]]:
         return [h for h in self.header if h[0] in BSS_SECTIONS and h[2] > h[1]]
 
@@ -634,26 +673,30 @@ def reloc_module(module: str) -> str:
 
 class Users:
     """For each symbol of the module, the source files of the functions
-    whose relocations point at it, and which of them are in the module."""
+    whose relocations point at it, and which of them are in the module.
+    Files come in fnindex order, so that ties break the same way on every
+    run (a set's order changes with Python's hash seed)."""
 
     def __init__(self, module: Module) -> None:
         target = reloc_module(module.name)
         self.module = module
         self.files: dict[str, set[str]] = defaultdict(set)
+        self.rank: dict[str, int] = {}
         self.local_files: set[str] = {e.name for e in module.entries}
         for fn in module.index.functions:
             if not fn.get("file"):
                 continue
+            self.rank.setdefault(fn["file"], len(self.rank))
             for reloc in fn["relocs"]:
                 if reloc[3] == target and reloc[4]:
                     self.files[reloc[4]].add(fn["file"])
 
-    def of(self, v: Var) -> set[str]:
+    def of(self, v: Var) -> list[str]:
         names = [v.name] + [a for a, _ in v.aliases]
-        return set().union(*(self.files.get(n, set()) for n in names))
+        return sorted(set().union(*(self.files.get(n, set()) for n in names)), key=self.rank.__getitem__)
 
-    def local_of(self, v: Var) -> set[str]:
-        return self.of(v) & self.local_files
+    def local_of(self, v: Var) -> list[str]:
+        return [f for f in self.of(v) if f in self.local_files]
 
 
 @dataclass
@@ -662,6 +705,7 @@ class Group:
     directory: str
     host: str | None = None
     path: str = ""
+    section: str = ".bss"
 
     @property
     def variables(self) -> list[Var]:
@@ -677,11 +721,16 @@ class Group:
         return last.addr + last.size
 
 
-def host_allowed(module: Module, path: str) -> bool:
+def host_allowed(module: Module, path: str, addr: int) -> bool:
+    """Whether `path` can take a run at `addr`. Among other things its code
+    must be in the same part of the module: tools/arm7.py moves each ARM7
+    part on its own and wants each file in one part."""
     entry = next((e for e in module.entries if e.name == path), None)
     if entry is None or not entry.complete or not (ROOT / path).exists():
         return False
     if any(s in entry.sections for s in BSS_SECTIONS):
+        return False
+    if any(module.segment(start) != module.segment(addr) for start, _ in entry.sections.values()):
         return False
     # Compiled from the source as it is now, not read from build/: an
     # object left there by an earlier --write would give another answer.
@@ -696,10 +745,10 @@ def best_host(module: Module, users: Users, run: list[Var], banned: set[str]) ->
     if not named:
         return None
     count = Counter(f for v in named for f in users.local_of(v))
-    for path, n in count.most_common():
+    for path, n in sorted(count.items(), key=lambda kv: (-kv[1], users.rank[kv[0]])):
         if 2 * n <= len(named):
             return None
-        if path not in banned and host_allowed(module, path) and declarations_fit(module.index, path, run):
+        if path not in banned and host_allowed(module, path, run[0].addr) and declarations_fit(module.index, path, run):
             return path
     return None
 
@@ -716,11 +765,11 @@ def users_directory(module: Module, users: Users, run: list[Var]) -> str | None:
     votes: Counter = Counter()
     used = 0
     for v in run:
-        dirs = {str(Path(f).parent) for f in users.local_of(v)}
+        dirs = list(dict.fromkeys(str(Path(f).parent) for f in users.local_of(v)))
         if dirs:
             used += 1
             for d in dirs:
-                votes[d] += 1 / len(dirs)
+                votes[d] += Fraction(1, len(dirs))
     if not used:
         return None
     top, n = votes.most_common(1)[0]
@@ -766,7 +815,7 @@ def group_runs(module: Module, users: Users, runs: list[list[Var]], section: str
             host = best_host(module, users, run, banned)
             directory = (str(Path(host).parent) if host else users_directory(module, users, run))
             g = groups[-1] if groups else None
-            joins = g is not None and len(g.runs) < MAX_RUNS and (
+            joins = g is not None and len(g.runs) < MAX_RUNS[section] and (
                 (host is not None and host == g.host)
                 or (host is None and directory in (None, g.directory))
                 or (host is not None and g.host is None and g.directory == directory))
@@ -774,7 +823,7 @@ def group_runs(module: Module, users: Users, runs: list[list[Var]], section: str
                 g.runs.append(run)
                 g.host = g.host or host
             else:
-                groups.append(Group([run], directory or module_src_dir(module.name), host))
+                groups.append(Group([run], directory or module_src_dir(module.name), host, section=section))
         bad = None
         entries = [Entry(e.name, e.complete, dict(e.sections)) for e in module.entries]
         by_name = {e.name: e for e in entries}
@@ -854,8 +903,17 @@ def parse_range(text: str) -> tuple[int, int]:
 
 # ---------------------------------------------------------------- the C
 
-def run_section(k: int) -> str:
-    return ".bss" if k == 0 else f".bss.run{k}"
+def run_section(section: str, k: int) -> str:
+    """The section run k of a file's `section` (.bss or .sbss) goes in."""
+    return section if k == 0 else f"{section}.run{k}"
+
+
+def run_pragma(section: str, k: int) -> str | None:
+    """The include/bss_run.h section that puts run k in run_section; None
+    for the first run of .bss, which the compiler puts there itself."""
+    if section == ".bss" and k == 0:
+        return None
+    return section.lstrip(".").upper() + (f"_RUN{k}" if k else "")
 
 
 def chosen_decl(index: Index, v: Var, host: str | None) -> Decl | None:
@@ -874,23 +932,23 @@ def chosen_decl(index: Index, v: Var, host: str | None) -> Decl | None:
     return next((d for d in fits if d.body == bodies.most_common(1)[0][0]), None) if fits else None
 
 
-def needed_headers(index: Index, body: str) -> set[str] | None:
+def needed_headers(index: Index, decl: Decl) -> set[str] | None:
     """Headers that define the type names in a declaration; None when one of
     them is defined in no header."""
     out = set()
-    for word in set(re.findall(r"\b[A-Za-z_]\w*\b", body)):
+    for word in set(re.findall(r"\b[A-Za-z_]\w*\b", decl.body)):
         if word in BASIC_SIZES or word in C_WORDS:
             continue
         if word.isupper() or word[0].isupper() and "_" in word and word.upper() == word:
-            header = index.decls.type_headers.get(word)
+            header = pick_header(index.decls.type_headers.get(word, []), decl.file)
             if header is None:
                 return None
-            out.add(header.removeprefix("include/"))
+            out.add(header)
             continue
-        header = index.type_header(word)
+        header = index.type_header(word, decl.file)
         if header:
             out.add(header)
-        elif header is None and (word in index.struct_size or re.search(rf"\b{word}\b\s*[*\w(]", body)):
+        elif header is None and (word in index.struct_size or word in index.struct_headers or re.search(rf"\b{word}\b\s*[*\w(]", decl.body)):
             return None
     return out
 
@@ -899,10 +957,12 @@ C_WORDS = {"const", "volatile", "struct", "union", "enum", "void", "signed", "un
 
 
 def definition(index: Index, v: Var, decl: Decl | None, host: str | None, static: bool,
-               plain: bool = False) -> tuple[str, set[str]]:
+               plain: bool = False, with_lead: bool = False) -> tuple[str, set[str]]:
     """The definition of one variable and the headers it needs: the
     declaration it copies without `extern`, an array with no count given
-    one, or a `u8` array when there is no declaration (or `plain`)."""
+    one, or a `u8` array when there is no declaration (or `plain`). With
+    `with_lead`, the comment above the host's own declaration goes above
+    the definition, since the declaration and the comment are taken out."""
     notes = [v.note] if v.note else []
     attr = " __attribute__((aligned(32)))" if v.align32 else ""
     lead = "static " if static else ""
@@ -911,7 +971,7 @@ def definition(index: Index, v: Var, decl: Decl | None, host: str | None, static
         if decl.comment:
             notes.insert(0, decl.comment)
         headers = ({decl.file.removeprefix("include/")} if decl.file.startswith("include/")
-                   else set() if decl.file == host else needed_headers(index, decl.body))
+                   else set() if decl.file == host else needed_headers(index, decl))
         if plain or headers is None:
             notes.append(f"declared in {decl.file}, with a type no header defines")
             headers = set()
@@ -930,45 +990,48 @@ def definition(index: Index, v: Var, decl: Decl | None, host: str | None, static
         if others and decl.file == host and not any(f.startswith("include/") for f in others):
             notes.append(f"also declared in {others[0]}" + (f" and {len(others) - 1} more" if len(others) > 1 else ""))
     code = f"{lead}{body}{attr};"
+    above = decl.lead + "\n" if with_lead and decl is not None and decl.file == host and decl.lead else ""
     if not notes:
-        return code, headers
+        return above + code, headers
     note = f"/* {'; '.join(notes)} */"
     if len(code) + 1 + len(note) <= 80:
-        return f"{code} {note}", headers
-    return f"{note}\n{code}", headers
+        return f"{above}{code} {note}", headers
+    return f"{above}{note}\n{code}", headers
 
 
-def body_lines(index: Index, g: Group, static: set[str], plain: set[str] = frozenset()
-               ) -> tuple[list[str], set[str]]:
+def body_lines(index: Index, g: Group, static: set[str], plain: set[str] = frozenset(),
+               with_lead: bool = False) -> tuple[list[str], set[str]]:
     """The definitions of a group in the order that makes the compiler emit
     each run in address order, with the run's section pragma around the
     ones past the first run. Returns them and the headers they need.
-    Variables in `plain` are written as `u8` arrays."""
+    Variables in `plain` are written as `u8` arrays. `with_lead`: see
+    definition."""
     tagged = [(v.sort, k, i, v) for k, run in enumerate(g.runs) for i, v in enumerate(run)]
     tagged.sort(key=lambda r: r[:3])
     order = definition_order([r[0] for r in tagged], initialized=False)
     lines: list[str] = []
     headers: set[str] = set()
-    open_run = 0
+    open_pragma = None
     for idx in order:
         _, k, _, v = tagged[idx]
-        if k != open_run:
-            if open_run:
-                lines.append(f"#pragma section BSS_RUN{open_run} end")
-            if k:
-                lines.append(f"#pragma section BSS_RUN{k} begin")
-            open_run = k
+        pragma = run_pragma(g.section, k)
+        if pragma != open_pragma:
+            if open_pragma:
+                lines.append(f"#pragma section {open_pragma} end")
+            if pragma:
+                lines.append(f"#pragma section {pragma} begin")
+            open_pragma = pragma
         text, need = definition(index, v, chosen_decl(index, v, g.host), g.host, v.name in static,
-                                v.name in plain)
+                                v.name in plain, with_lead)
         lines.append(text)
         headers |= need
-    if open_run:
-        lines.append(f"#pragma section BSS_RUN{open_run} end")
+    if open_pragma:
+        lines.append(f"#pragma section {open_pragma} end")
     return lines, headers
 
 
 def expected_sections(g: Group) -> dict[str, list[str]]:
-    return {run_section(k): [v.name for v in run] for k, run in enumerate(g.runs)}
+    return {run_section(g.section, k): [v.name for v in run] for k, run in enumerate(g.runs)}
 
 
 def read_relocs() -> list[tuple[str, int, int, str]]:
@@ -1006,31 +1069,33 @@ def static_names(module: Module, g: Group, relocs: list) -> set[str]:
     return out
 
 
-def new_file_text(lines: list[str], headers: set[str], multi: bool) -> str:
+def new_file_text(lines: list[str], headers: set[str], run_header: bool) -> str:
     includes = ['#include "types.h"'] + [f'#include "{h}"' for h in sorted(headers)]
-    if multi:
+    if run_header:
         includes.append(f'#include "{RUN_HEADER}"')
     return "\n".join(includes) + "\n\n" + "\n".join(lines) + "\n"
 
 
-def host_file_text(index: Index, g: Group, lines: list[str], headers: set[str], multi: bool,
+def host_file_text(index: Index, g: Group, lines: list[str], headers: set[str], run_header: bool,
                    in_place: bool = True) -> str:
     """The host file with its `extern` statements for the group's variables
-    taken out and the definitions put where the first one was (after the
-    last #include when it has none). With in_place False, the `extern`
-    statements stay and the definitions go at the end of the file."""
+    taken out, with the comment just above each, and the definitions put
+    where the first one was (after the last #include when it has none).
+    `lines` must then carry those comments (body_lines with_lead). With
+    in_place False, the `extern` statements stay and the definitions go at
+    the end of the file."""
     text = (ROOT / g.host).read_text()
     spans = []
     for v in g.variables if in_place else []:
         for d in index.decls.of(v.name):
             if d.file == g.host:
                 end = text.find("\n", d.end)
-                spans.append((d.start, len(text) if end < 0 else end + 1))
+                spans.append((d.lead_start, len(text) if end < 0 else end + 1))
     spans.sort()
     includes = [m.end() for m in re.finditer(r"^#include[^\n]*\n", text, re.M)]
     include_end = includes[-1] if includes else 0
     new_includes = "".join(f'#include "{h}"\n' for h in sorted(headers) if f'#include "{h}"' not in text)
-    if multi and f'#include "{RUN_HEADER}"' not in text:
+    if run_header and f'#include "{RUN_HEADER}"' not in text:
         new_includes += f'#include "{RUN_HEADER}"\n'
     block = "\n".join(lines) + "\n"
     # (position, order at one position, characters to drop, text to put in)
@@ -1051,10 +1116,10 @@ def section_line(name: str, start: int, end: int) -> str:
     return f"    {name:<12}start:{start:#010x} end:{end:#010x}"
 
 
-def edit_delinks(path: Path, groups: list[Group], section: dict[int, str]) -> None:
+def edit_delinks(path: Path, groups: list[Group]) -> None:
     lines = path.read_text().split("\n")
     for g in groups:
-        sec = section_line(section[id(g)], g.start, g.end)
+        sec = section_line(g.section, g.start, g.end)
         if g.host:
             i = lines.index(f"{g.host}:")
             j = i + 1
@@ -1062,7 +1127,7 @@ def edit_delinks(path: Path, groups: list[Group], section: dict[int, str]) -> No
                 j += 1
             lines.insert(j, sec)
             continue
-        # After the last entry whose .bss comes before this one, else at the end.
+        # After the last entry whose .bss or .sbss comes before this one, else at the end.
         block = ["", f"{g.path}:", "    complete", sec]
         at, best = None, -1
         cur_start = None
@@ -1070,7 +1135,7 @@ def edit_delinks(path: Path, groups: list[Group], section: dict[int, str]) -> No
             m = SECTION_LINE.match(line)
             if line and not line[0].isspace():
                 cur_start = j
-            elif m and m.group(1) == section[id(g)] and cur_start is not None:
+            elif m and m.group(1) in BSS_SECTIONS and cur_start is not None:
                 start = int(m.group(2), 16)
                 if best < start < g.start:
                     best = start
@@ -1158,12 +1223,19 @@ def print_plan(plan: Plan) -> None:
 
 
 def order_errors(elf, g: Group) -> list[str]:
+    """What is wrong with a group's object: a run out of order in its
+    section, or a variable of another size than the ROM gives it (a type
+    from the wrong header)."""
     got = emitted_order(elf)
     errors = []
     for sec, names in expected_sections(g).items():
         ours = [n for n in got.get(sec, []) if n in set(names)]
         if ours != names:
             errors.append(f"the compiler emits {sec} as {ours}, expected {names}")
+    sizes = {s["name"]: s["size"] for s in elf[1] if s["type"] == 1}
+    for v in g.variables:
+        if v.name in sizes and sizes[v.name] != v.sort:
+            errors.append(f"{v.name} compiles to {sizes[v.name]:#x} bytes, expected {v.sort:#x}")
     return errors
 
 
@@ -1180,17 +1252,18 @@ def render(module: Module, g: Group, relocs: list) -> tuple[str | None, list[str
         if d is not None and d.file == g.host and decl_size(index, d) not in (None, v.sort):
             return None, [f"declares {d.body} ({decl_size(index, d):#x} bytes), but {v.name} takes {v.sort:#x}"]
     static = static_names(module, g, relocs)
-    multi = len(g.runs) > 1
+    run_header = any(run_pragma(g.section, k) for k in range(len(g.runs)))
     attempts = []
     lines, headers = body_lines(index, g, static)
     if g.host:
-        attempts.append(host_file_text(index, g, lines, headers, multi))
-        attempts.append(host_file_text(index, g, lines, headers, multi, in_place=False))
+        attempts.append(host_file_text(index, g, body_lines(index, g, static, with_lead=True)[0], headers,
+                                       run_header))
+        attempts.append(host_file_text(index, g, lines, headers, run_header, in_place=False))
     else:
-        attempts.append(new_file_text(lines, headers, multi))
+        attempts.append(new_file_text(lines, headers, run_header))
         plain = {v.name for v in g.variables
                  if (d := chosen_decl(index, v, None)) and not d.file.startswith("include/")}
-        attempts.append(new_file_text(*body_lines(index, g, static, plain), multi))
+        attempts.append(new_file_text(*body_lines(index, g, static, plain), run_header))
     errors = []
     for text in attempts:
         elf = compile_probe(g.path, text)
@@ -1234,15 +1307,7 @@ def cmd_plan(args) -> int:
         if args.write:
             print("nothing to write")
         return 0
-    if module.name == "arm7":
-        fail("--write for arm7 is not done yet: tools/arm7.py and the ARM7 linker script need the "
-             "same steps as ARM9 (docs/bss-tool.md, order of work step 4)")
     relocs = read_relocs()
-    section = {}
-    for gap in module.gaps:
-        for g in plan.groups:
-            if gap.start <= g.start < gap.end:
-                section[id(g)] = gap.section
     by_path: dict[str, list[Group]] = defaultdict(list)
     for g in plan.groups:
         by_path[g.path].append(g)
@@ -1258,7 +1323,7 @@ def cmd_plan(args) -> int:
     subprocess.run([sys.executable, "tools/format.py", *by_path], cwd=ROOT, check=True)
     for path, groups in by_path.items():
         compile_check(path, groups[0])
-    edit_delinks(module.cfg / "delinks.txt", plan.groups, section)
+    edit_delinks(module.cfg / "delinks.txt", plan.groups)
     edit_symbols(module.cfg / "symbols.txt", [v for g in plan.groups for v in g.variables])
     for path in by_path:
         print(f"wrote {path}")
@@ -1294,15 +1359,16 @@ def lcf_alias_lines(aliases: dict[str, tuple[str, int]]) -> list[str]:
     return [f"{name} = {base} + {offset:#x};" for name, (base, offset) in sorted(aliases.items())]
 
 
-def lcf_object_lines(entry: Entry, symbols: list[Symbol]) -> tuple[str, list[str]]:
-    """What a file with a .bss range needs in the linker script: its runs
-    past the first, after its .bss, then its aliases."""
+def lcf_object_lines(entry: Entry, section: str, symbols: list[Symbol]) -> tuple[str, list[str]]:
+    """What a file with a .bss or .sbss range (`section`) needs in the
+    linker script: its runs past the first, after that section, then its
+    aliases."""
     stem = Path(entry.name).stem
-    start, end = entry.sections[".bss"]
+    start, end = entry.sections[section]
     inside = sorted((s for s in symbols if start <= s.addr < end), key=lambda s: s.addr)
     variables = [Var(s.addr, round4(s.size), s.size, s.name) for s in inside if s.size]
     if not variables:
-        return f"{stem}.o(.bss)", []
+        return f"{stem}.o({section})", []
     aliases = {}
     for s in inside:
         if s.size:
@@ -1312,28 +1378,34 @@ def lcf_object_lines(entry: Entry, symbols: list[Symbol]) -> tuple[str, list[str
             fail(f"{s.name} at {s.addr:#x} has no size and is inside no variable of {entry.name}")
         aliases[s.name] = (owner.name, s.addr - owner.addr)
     runs = split_runs(variables)
-    lines = [f"{stem}.o({run_section(k)})" for k in range(1, len(runs))]
-    return f"{stem}.o(.bss)", lines + lcf_alias_lines(aliases)
+    lines = [f"{stem}.o({run_section(section, k)})" for k in range(1, len(runs))]
+    return f"{stem}.o({section})", lines + lcf_alias_lines(aliases)
 
 
 def cmd_lcf(args) -> int:
-    """For each ARM9 file with a .bss range that holds sized symbols: place
-    its sections `.bss.runN` after its .bss, and define its aliases."""
+    """For each file with a .bss or .sbss range that holds sized symbols:
+    place its sections `.bss.runN` (`.sbss.runN`) after its .bss (.sbss),
+    and define its aliases. The ARM9 modules go in build/arm9.lcf, arm7 in
+    build/arm7/arm7.lcf (--arm7). Every line names objects and symbols, no
+    address, so ARM7's script works whether its parts sit at their real
+    addresses or where tools/arm7.py moves them."""
     path = Path(args.lcf)
     text = path.read_text()
-    for module in module_modules() + ["itcm", "dtcm"]:
-        if module == "arm7":
-            continue
+    modules = ["arm7"] if args.arm7 else [m for m in module_modules() if m != "arm7"] + ["itcm", "dtcm"]
+    for module in modules:
         cfg = ROOT / data_inc.config_dir(module)
         _, entries = read_delinks(cfg / "delinks.txt")
         symbols = None
         for entry in entries:
-            if ".bss" not in entry.sections or not entry.complete:
+            if not entry.complete:
                 continue
-            symbols = symbols if symbols is not None else read_symbols(cfg / "symbols.txt")
-            anchor, lines = lcf_object_lines(entry, symbols)
-            if lines:
-                text = lcf_insert_after(text, anchor, lines, str(path))
+            for section in BSS_SECTIONS:
+                if section not in entry.sections:
+                    continue
+                symbols = symbols if symbols is not None else read_symbols(cfg / "symbols.txt")
+                anchor, lines = lcf_object_lines(entry, section, symbols)
+                if lines:
+                    text = lcf_insert_after(text, anchor, lines, str(path))
     path.write_text(text)
     return 0
 
@@ -1353,6 +1425,7 @@ def main() -> int:
     p.set_defaults(func=cmd_plan)
     p = sub.add_parser("lcf", help="place .bss.runN sections and aliases in a linker script")
     p.add_argument("lcf")
+    p.add_argument("--arm7", action="store_true", help="ARM7's script: the arm7 module only")
     p.set_defaults(func=cmd_lcf)
     args = parser.parse_args()
     return args.func(args)
