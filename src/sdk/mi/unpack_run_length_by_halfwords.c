@@ -1,5 +1,6 @@
 #include "types.h"
 
+#ifdef __MWERKS__
 /*
  * Hand-written Thumb assembly: run-length unpacker that writes 16-bit
  * halfwords, safe for VRAM. Same stream format as Unpack_RunLengthByBytes; bytes are
@@ -70,3 +71,49 @@ done:
     bx lr
 }
 #pragma thumb reset
+#else
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+/* Unpacks the stream with halfword stores: each byte goes into the low,
+   then the high half of a halfword, which is stored once both are set. A
+   last odd byte is never stored, and a block is written whole even past
+   the output size, as in the assembly. Assumes src is word-aligned and
+   dest halfword-aligned; the loads and stores would round them down, so a
+   misaligned one stops the program. */
+void Unpack_RunLengthByHalfwords(const u8* src, u16* dest) {
+  int remaining;
+  u16 halfword = 0;
+  int shift = 0;
+
+  if ((uintptr_t)src % 4 != 0 || (uintptr_t)dest % 2 != 0) {
+    fprintf(stderr,
+            "Unpack_RunLengthByHalfwords: %p is not word-aligned or %p is "
+            "not halfword-aligned\n",
+            (const void*)src, (void*)dest);
+    abort();
+  }
+  remaining = src[1] | src[2] << 8 | src[3] << 16;
+  src += 4;
+  while (remaining > 0) {
+    u8 control = *src++;
+    int repeat = control & 0x80;
+    int count = (control & 0x7f) + (repeat ? 3 : 1);
+    u8 value = 0;
+
+    remaining -= count;
+    if (repeat) {
+      value = *src++;
+    }
+    do {
+      halfword |= (repeat ? value : *src++) << shift;
+      shift ^= 8;
+      if (shift == 0) {
+        *dest++ = halfword;
+        halfword = 0;
+      }
+    } while (--count > 0);
+  }
+}
+#endif

@@ -3,6 +3,7 @@
 extern u32 data_027c0000;
 void Mem_RepeatWordAsm(u32 value, u32 *dest, u32 size);
 
+#ifdef __MWERKS__
 /*
  * Hand-written ARM assembly, the last step of a restart. Turns interrupts
  * off, syncs with the ARM7 through the IPC sync register (0x04000180),
@@ -53,3 +54,6 @@ wait_release:
     mov r11, #0
     bx r12
 }
+#else
+#error "Reset_ClearAndJumpToEntry: loading r0-r10 from memory and jumping to the ARM9 entry address has no portable C equivalent"
+#endif

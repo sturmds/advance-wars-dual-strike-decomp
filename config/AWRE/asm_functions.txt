@@ -76,6 +76,13 @@ main  Mem_CopyBytes                        alignment fix-ups and unrolled byte/h
 main  func_02000900                        loop with a conditional stmltia
 main  GXi_NopClearFifo128_                 32 stmia of four zero registers to one address, no writeback
 itcm  Mem_RepeatWordAsm                    loop with a conditional stmltia
+main  MI_SwapWord                          swp
+main  MI_UncompressLZ8                     swpb byte stores
+main  Unpack_RunLengthByBytes              swpb byte stores
+main  Unpack_RunLengthByHalfwords          Thumb in ARM9
+main  Unpack_Lz77ByHalfwords               eors with conditional streqh, registers kept across nested loops
+main  Unpack_HuffmanToWords                register-shift bit walk with conditional streq/subeq
+itcm  Reset_ClearAndJumpToEntry            reset: loads r0-r10 from memory and jumps through r12
 main  Isd_DisableFiq                       two entry points that set r0 and branch into Isd_RestoreFiq
 main  Isd_RestoreFiq                       mrs/msr on CPSR
 main  Isd_DisableIrq                       two entry points that set r0 and branch into Isd_RestoreIrq

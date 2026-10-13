@@ -1,5 +1,6 @@
 #include "sdk/mi.h"
 
+#ifdef __MWERKS__
 /*
  * Hand-written ARM assembly: Huffman unpacker. src is the compressed stream:
  * a 4-byte header (low nibble the symbol size in bits, upper 24 bits the
@@ -69,3 +70,63 @@ done:
     ldmfd sp!, {r4, r5, r6, r7, r8, r9, r10, r11, lr}
     bx lr
 }
+#else
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+/* Unpacks the stream with word stores. Each input bit picks a child of
+   the current node (offsets from src): the pair at (node & ~1) +
+   (node byte & 0x3f) * 2 + 2, one byte each, and bit 7 (left) or 6 (right)
+   of the node byte says that child is a symbol. Symbols enter each word
+   from the top, so the first one ends in the low bits; a word holds
+   (bits & 7) + 4 symbols, which fills it for 4 or 8 bits. A last partial
+   word is never stored. Assumes src is word-aligned and the bit stream
+   starts on a word boundary; the loads would round them down, so a
+   misaligned one stops the program. */
+void Unpack_HuffmanToWords(const u8* src, u32* dest) {
+  const u8* stream;
+  int bits;
+  int perWord;
+  int remaining;
+  u32 node = 5;
+  u32 word = 0;
+  int symbols = 0;
+
+  if ((uintptr_t)src % 4 != 0 || (src[4] + 1) * 2 % 4 != 0) {
+    fprintf(stderr,
+            "Unpack_HuffmanToWords: %p or its bit stream is not "
+            "word-aligned\n",
+            (const void*)src);
+    abort();
+  }
+  bits = src[0] & 0xf;
+  perWord = (bits & 7) + 4;
+  remaining = src[1] | src[2] << 8 | src[3] << 16;
+  stream = src + 4 + (src[4] + 1) * 2;
+  while (remaining > 0) {
+    u32 input =
+        stream[0] | stream[1] << 8 | stream[2] << 16 | (u32)stream[3] << 24;
+    int bit;
+
+    stream += 4;
+    for (bit = 0; bit < 32 && remaining > 0; bit++, input <<= 1) {
+      u32 right = input >> 31;
+      u8 parent = src[node];
+
+      node = (node & ~1u) + (parent & 0x3f) * 2 + 2 + right;
+      if ((parent << right) & 0x80) {
+        /* The shift by 32 - bits is by 32 when bits is 0, which ARM turns
+           into 0 and C leaves undefined. */
+        word = (word >> bits) | (bits ? (u32)src[node] << (32 - bits) : 0);
+        node = 5;
+        if (++symbols == perWord) {
+          *dest++ = word;
+          remaining -= 4;
+          symbols = 0;
+        }
+      }
+    }
+  }
+}
+#endif

@@ -1,5 +1,6 @@
 #include "sdk/mi.h"
 
+#ifdef __MWERKS__
 /*
  * Hand-written ARM assembly: LZ77 unpacker that writes halfwords (strh, safe
  * for VRAM). src is the compressed stream with its 4-byte header, dest the
@@ -71,3 +72,69 @@ done:
     ldmfd sp!, {r4, r5, r6, r7, r8, r9, r10, lr}
     bx lr
 }
+#else
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+/* Unpacks the stream with halfword stores, in the format
+   MI_UncompressLZ8 reads. Each byte goes into the low, then the high half
+   of a halfword, which is stored once both are set. A run byte is read
+   from memory through the halfword that holds it, so with a distance of 1
+   the low byte of the halfword not yet stored is read from memory, not
+   from the byte just unpacked, as in the assembly. A last odd byte is
+   never stored, and a run is written whole even past the output size.
+   Assumes src is word-aligned and dest halfword-aligned; the loads and
+   stores would round them down, so a misaligned one stops the program. */
+void Unpack_Lz77ByHalfwords(const u8* src, u16* dest) {
+  int remaining;
+  u16 halfword = 0;
+  int shift = 0;
+
+  if ((uintptr_t)src % 4 != 0 || (uintptr_t)dest % 2 != 0) {
+    fprintf(stderr,
+            "Unpack_Lz77ByHalfwords: %p is not word-aligned or %p is not "
+            "halfword-aligned\n",
+            (const void*)src, (void*)dest);
+    abort();
+  }
+  remaining = src[1] | src[2] << 8 | src[3] << 16;
+  src += 4;
+  while (remaining > 0) {
+    u8 flags = *src++;
+    int item;
+
+    for (item = 0; item < 8 && remaining > 0; item++, flags <<= 1) {
+      if (flags & 0x80) {
+        int length = 3 + (src[0] >> 4);
+        int distance = ((src[0] & 0xf) << 8 | src[1]) + 1;
+
+        src += 2;
+        remaining -= length;
+        do {
+          /* The byte distance back from the next output byte, which is
+             dest[0]'s high half when shift is 8. */
+          int back = distance - shift / 8;
+          int fromHigh = back & 1;
+          const u16* from = dest - (back + 1) / 2;
+
+          halfword |= (u8)(*from >> (fromHigh ? 8 : 0)) << shift;
+          shift ^= 8;
+          if (shift == 0) {
+            *dest++ = halfword;
+            halfword = 0;
+          }
+        } while (--length > 0);
+      } else {
+        halfword |= *src++ << shift;
+        remaining--;
+        shift ^= 8;
+        if (shift == 0) {
+          *dest++ = halfword;
+          halfword = 0;
+        }
+      }
+    }
+  }
+}
+#endif

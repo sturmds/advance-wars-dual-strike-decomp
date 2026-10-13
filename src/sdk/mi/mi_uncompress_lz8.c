@@ -1,5 +1,6 @@
 #include "types.h"
 
+#ifdef __MWERKS__
 /*
  * Hand-written ARM assembly: LZ77 unpacker that writes single bytes (swpb,
  * safe for any memory). src is the compressed stream with its 4-byte
@@ -52,3 +53,48 @@ done:
     ldmfd sp!, {r4, r5, r6, lr}
     bx lr
 }
+#else
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+/* Unpacks the stream with byte stores. The header's upper 24 bits give the
+   output size. Each flag byte, read from its top bit down, marks up to
+   eight items: a literal byte (bit clear) or a run of 3 + (b0 >> 4) bytes
+   copied one at a time from ((b0 & 0xf) << 8 | b1) + 1 bytes back (bit
+   set). A run is written whole even past the output size, as in the
+   assembly. Assumes src is word-aligned; the header load would round it
+   down, so a misaligned one stops the program. */
+void MI_UncompressLZ8(const u8* src, u8* dest) {
+  int remaining;
+
+  if ((uintptr_t)src % 4 != 0) {
+    fprintf(stderr, "MI_UncompressLZ8: %p is not word-aligned\n",
+            (const void*)src);
+    abort();
+  }
+  remaining = src[1] | src[2] << 8 | src[3] << 16;
+  src += 4;
+  while (remaining > 0) {
+    u8 flags = *src++;
+    int item;
+
+    for (item = 0; item < 8 && remaining > 0; item++, flags <<= 1) {
+      if (flags & 0x80) {
+        int length = 3 + (src[0] >> 4);
+        int distance = ((src[0] & 0xf) << 8 | src[1]) + 1;
+
+        src += 2;
+        remaining -= length;
+        do {
+          *dest = dest[-distance];
+          dest++;
+        } while (--length > 0);
+      } else {
+        *dest++ = *src++;
+        remaining--;
+      }
+    }
+  }
+}
+#endif
