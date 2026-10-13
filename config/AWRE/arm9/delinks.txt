@@ -126,11 +126,7 @@ src/game/main/bss_022900b4.c:
 
 src/game/main/bss_022900b8.c:
     complete
-    .bss        start:0x022900b8 end:0x02290250
-
-src/game/main/bss_02290250.c:
-    complete
-    .bss        start:0x02290250 end:0x02297774
+    .bss        start:0x022900b8 end:0x02290298
 
 src/game/main/bss_02297fa8.c:
     complete
@@ -187,6 +183,10 @@ src/sdk/msl/msl_bss.c:
 src/sdk/msl/msl_bss_022ad524.c:
     complete
     .bss        start:0x022ad524 end:0x022ad540
+
+src/game/main/bss_02290298.c:
+    complete
+    .bss        start:0x02290298 end:0x02297774
 
 src/sdk/svc/svc_is_debugger.c:
     complete

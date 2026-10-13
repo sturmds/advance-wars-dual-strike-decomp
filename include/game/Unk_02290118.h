@@ -36,6 +36,8 @@ typedef struct Unk_02290118 {
   };
   u8 pad_0fc[0x11a - 0xfc];
   u8 coScore[CO_COUNT]; /* per CO id; the world map shows the three highest */
+  u8 pad_136[0x180 -
+             0x136]; /* gGameFlagsHigh at 0x136, data_02290256 at 0x13e */
 } Unk_02290118;
 
 extern Unk_02290118 data_02290118;
