@@ -18,7 +18,7 @@ DSD      := .cache/tools/dsd/dsd
 LOCKED_NINJA := mkdir -p build && flock build/.ninja.lock $(NINJA)
 
 
-.PHONY: all configure fnindex dsindex progress setup tools assets release release-nocheck decomp-dev-report pnc-check check check-rom check-modules check-out hooks extract test clean shift emu-smoke format format-check
+.PHONY: all configure fnindex dsindex progress setup tools assets release release-nocheck decomp-dev-report pnc-check check check-rom check-modules check-out hooks extract test test-release clean shift emu-smoke format format-check
 
 all: check-rom configure
 	@$(LOCKED_NINJA)
@@ -97,13 +97,18 @@ format-check: tools
 pnc-check:
 	@$(PYTHON) tools/pnc_check.py
 
+# The first and last steps record a tree that passed, for hooks/pre-commit
+# and land_self.py (tools/release_cache.py). The test step skips the tests in
+# CACHED_TESTS when they already passed on the same tools (test-release).
 release: setup
+	@$(PYTHON) tools/release_cache.py begin
 	@$(MAKE) --no-print-directory pnc-check
 	@$(MAKE) --no-print-directory format-check
 	@$(MAKE) --no-print-directory all
 	@$(MAKE) --no-print-directory check
-	@$(MAKE) --no-print-directory test
+	@$(MAKE) --no-print-directory test-release
 	@$(MAKE) --no-print-directory decomp-dev-report
+	@$(PYTHON) tools/release_cache.py record
 	@echo "release: OK"
 
 # release without check: for a build that is not meant to match retail yet.
@@ -113,7 +118,7 @@ release-nocheck: setup
 	@$(MAKE) --no-print-directory pnc-check
 	@$(MAKE) --no-print-directory format-check
 	@$(MAKE) --no-print-directory all
-	@$(MAKE) --no-print-directory test
+	@$(MAKE) --no-print-directory test-release
 	@$(MAKE) --no-print-directory decomp-dev-report
 	@echo "release-nocheck: OK (build/AWRE.nds not compared with retail)"
 
@@ -144,7 +149,8 @@ emu-smoke: shift
 # compiled with the host gcc (test_portable_c.py), and the PROGRESS.md rows
 # progress.py writes from a report (test_progress.py), and the order in which
 # mwccarm emits data objects (test_data_order.py), and the .bss planner
-# (test_bss.py); no ROM or build needed
+# (test_bss.py), and the release cache (test_release_cache.py); no ROM or
+# build needed
 # (test_ds.py, test_pragmas.py, test_absolute.py, test_data_order.py and
 # test_bss.py use the compiler from make setup; test_ds.py checks more
 # when extract/ exists, test_bss.py when build/fnindex.json and
@@ -154,26 +160,40 @@ emu-smoke: shift
 # repository being committed (issue 0076). TEST_ENV drops every GIT_ variable
 # from the environment except GIT_EDITOR.
 TEST_ENV = env $(foreach v,$(filter-out GIT_EDITOR,$(filter GIT_%,$(.VARIABLES))),$(if $(filter environment%,$(origin $(v))),-u $(v)))
+# Tests that read nothing from the checkout but tools/, the Makefile,
+# tools.lock and docs/style/ (and the tools from tools.lock). test_landing.py
+# takes most of the test time.
+CACHED_TESTS := tools/tests/test_landing.py
+TESTS := \
+	tools/tests/test_propagate.py \
+	tools/tests/test_loop_state.py \
+	tools/tests/test_fnshow.py \
+	tools/tests/test_fnadd.py \
+	tools/tests/test_ds.py \
+	tools/tests/test_pragmas.py \
+	tools/tests/test_protocheck.py \
+	tools/tests/test_permuter.py \
+	tools/tests/test_absolute.py \
+	tools/tests/test_data_inc.py \
+	tools/tests/test_diff_rows.py \
+	tools/tests/test_align2.py \
+	tools/tests/test_arm7.py \
+	tools/tests/test_ranking.py \
+	tools/tests/test_portable_c.py \
+	tools/tests/test_progress.py \
+	tools/tests/test_data_order.py \
+	tools/tests/test_bss.py \
+	tools/tests/test_release_cache.py
+
 test:
-	@$(TEST_ENV) $(PYTHON) tools/tests/test_landing.py
-	@$(TEST_ENV) $(PYTHON) tools/tests/test_propagate.py
-	@$(TEST_ENV) $(PYTHON) tools/tests/test_loop_state.py
-	@$(TEST_ENV) $(PYTHON) tools/tests/test_fnshow.py
-	@$(TEST_ENV) $(PYTHON) tools/tests/test_fnadd.py
-	@$(TEST_ENV) $(PYTHON) tools/tests/test_ds.py
-	@$(TEST_ENV) $(PYTHON) tools/tests/test_pragmas.py
-	@$(TEST_ENV) $(PYTHON) tools/tests/test_protocheck.py
-	@$(TEST_ENV) $(PYTHON) tools/tests/test_permuter.py
-	@$(TEST_ENV) $(PYTHON) tools/tests/test_absolute.py
-	@$(TEST_ENV) $(PYTHON) tools/tests/test_data_inc.py
-	@$(TEST_ENV) $(PYTHON) tools/tests/test_diff_rows.py
-	@$(TEST_ENV) $(PYTHON) tools/tests/test_align2.py
-	@$(TEST_ENV) $(PYTHON) tools/tests/test_arm7.py
-	@$(TEST_ENV) $(PYTHON) tools/tests/test_ranking.py
-	@$(TEST_ENV) $(PYTHON) tools/tests/test_portable_c.py
-	@$(TEST_ENV) $(PYTHON) tools/tests/test_progress.py
-	@$(TEST_ENV) $(PYTHON) tools/tests/test_data_order.py
-	@$(TEST_ENV) $(PYTHON) tools/tests/test_bss.py
+	@for t in $(CACHED_TESTS) $(TESTS); do $(TEST_ENV) $(PYTHON) $$t || exit 1; done
+
+# make release runs this instead of test: CACHED_TESTS are skipped when they
+# passed with the same tools/, Makefile, tools.lock and docs/style/
+# (tools/release_cache.py test; RELEASE_CACHE=off runs them).
+test-release:
+	@$(PYTHON) tools/release_cache.py test $(CACHED_TESTS)
+	@for t in $(TESTS); do $(TEST_ENV) $(PYTHON) $$t || exit 1; done
 
 clean:
 	rm -rf build build.ninja .ninja_log .ninja_deps

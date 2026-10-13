@@ -823,7 +823,7 @@ class LandSelfReexecTest(RepoCase):
     from the new copy."""
 
     TOOL_FILES = ("land_self.py", "review_stamp.py", "rebase_onto_mainline.py",
-                  "apply_commit.py", "header_merge.py")
+                  "apply_commit.py", "header_merge.py", "release_cache.py")
 
     def setUp(self):
         super().setUp()

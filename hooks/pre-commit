@@ -3,7 +3,11 @@
 # 1. Refuse files that must never enter git (D5, tenet 9): the ROM, extracted
 #    data and the map files unpacked from it, builds, and local work files.
 # 2. Run `make release`. It builds the working tree, not only the staged
-#    changes, so stage everything you built with before committing.
+#    changes, so stage everything you built with before committing. Skip it
+#    when the tree has already passed make release in this checkout or a
+#    worktree of it (tools/release_cache.py: the working tree must equal
+#    the index, with no untracked files; PROGRESS.* do not count).
+#    RELEASE_CACHE=off runs it in full.
 # 3. Rewrite PROGRESS.md from the decomp.dev report that make release just
 #    wrote, copy the report to PROGRESS.json, and stage both, so they go into
 #    this commit. .github/workflows/decomp-dev.yml uploads PROGRESS.json. Not in
@@ -24,8 +28,11 @@ if [ -n "$bad" ]; then
     exit 1
 fi
 
-make release
 if [ "$(git rev-parse --path-format=absolute --git-dir)" = "$(git rev-parse --path-format=absolute --git-common-dir)" ]; then
+    # --report: a skipped release still leaves the decomp.dev report of this tree.
+    python3 tools/release_cache.py release --report --label pre-commit
     python3 tools/progress.py --write PROGRESS.md
     git add PROGRESS.md PROGRESS.json
+else
+    python3 tools/release_cache.py release --label pre-commit
 fi

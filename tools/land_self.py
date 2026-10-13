@@ -13,7 +13,10 @@ each agent lands its own branch:
 1. Replay the branch onto the current mainline (tools/rebase_onto_mainline.py).
    If that stops, the run leaves the queue. Fix the files, run
    `rebase_onto_mainline.py --continue`, then run this again.
-2. Run `make release`.
+2. Run `make release`, unless this tree has already passed it (usually in
+   the hook of the last replayed commit; tools/release_cache.py, which also
+   makes sure the decomp.dev report is for this tree). RELEASE_CACHE=off
+   runs it in full.
 3. Write PROGRESS.md and PROGRESS.json for the rebased tree and amend them
    into the branch's last commit, so mainline's copies stay current. This is the only amend
    in the loop.
@@ -172,7 +175,8 @@ def write_progress() -> int | None:
     if not git("status", "--porcelain", "--", "PROGRESS.md", "PROGRESS.json"):
         return None
     git("add", "PROGRESS.md", "PROGRESS.json")
-    # The hooks run again here, so the amended commit also passes make release.
+    # The hooks run again here; only PROGRESS.* changed, so they find the tree
+    # in the release cache.
     if run("git", "commit", "-q", "--amend", "--no-edit"):
         return BUILD_FAILED
     return None
@@ -319,7 +323,7 @@ def main() -> int:
             os.execv(sys.executable, [sys.executable, str(ROOT / "tools/land_self.py"), *sys.argv[1:]])
         if unreviewed(show_findings=False):
             return UNREVIEWED
-        if run("make", "release"):
+        if run(sys.executable, "tools/release_cache.py", "release", "--report", "--label", "land_self"):
             return BUILD_FAILED
         code = write_progress()
         if code is not None:
