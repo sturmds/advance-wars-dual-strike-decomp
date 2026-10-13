@@ -131,8 +131,9 @@ emu-smoke: shift
 # (tools/lcf_align2.py), of ARM7's address moves (tools/arm7.py) and of how
 # partials are ranked (test_ranking.py), and the plain C beside asm functions
 # compiled with the host gcc (test_portable_c.py), and the PROGRESS.md rows
-# progress.py writes from a report (test_progress.py); no ROM or build
-# needed (test_ds.py, test_pragmas.py and test_absolute.py use the compiler
+# progress.py writes from a report (test_progress.py), and the order in which
+# mwccarm emits data objects (test_data_order.py); no ROM or build needed
+# (test_ds.py, test_pragmas.py, test_absolute.py and test_data_order.py use the compiler
 # from make setup; test_ds.py checks more
 # when extract/ exists).
 # Git exports GIT_DIR, GIT_INDEX_FILE and others to hooks, so a test run from
@@ -158,6 +159,7 @@ test:
 	@$(TEST_ENV) $(PYTHON) tools/tests/test_ranking.py
 	@$(TEST_ENV) $(PYTHON) tools/tests/test_portable_c.py
 	@$(TEST_ENV) $(PYTHON) tools/tests/test_progress.py
+	@$(TEST_ENV) $(PYTHON) tools/tests/test_data_order.py
 
 clean:
 	rm -rf build build.ninja .ninja_log .ninja_deps

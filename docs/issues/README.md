@@ -109,3 +109,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0079](0079-bios-callback-decompressor-prototypes.md) | The callback BIOS decompressors are declared with two arguments, not four | open | decomp | M2 |
 | [0080](0080-worktree-guard-refuses-agent-commands.md) | The worktree guard refuses commands the loop needs (results file, wt_setup.sh, compound git lines) | open | loop | M2 |
 | [0081](0081-migrate-to-github-issues.md) | Migrate to GitHub issues | open | docs | later |
+| [0082](0082-data-linking.md) | Link data from C (GitHub #1) | in progress | decomp | M2 |

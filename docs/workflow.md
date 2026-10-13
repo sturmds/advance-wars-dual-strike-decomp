@@ -303,6 +303,15 @@ u32 gUnit3dTextureBlocks[6][27] = {
 - `make setup` runs `data_inc.py write`. The build runs it again when `data_inc.txt`, a `symbols.txt` or `relocs.txt` changes (a renamed symbol), and rewrites only files that changed. `configure.py` adds `-i extracted/AWRE` to the compiler flags and makes each C file that includes a `data/...inc.c` depend on it.
 - A word the linker could provide but that has no relocation in the original, such as the end of `.bss` in `BuildInfo[4]`, stays the ROM's number: a symbol there gives a relocation the original object does not have, and objdiff then counts the table as unmatched. `dsd rom build` writes the real `.bss` end into the ROM's build info anyway, so the shifted build is still right there.
 
+### Several data objects in one file
+
+mwccarm 2.0 does not emit a file's data objects in the order they are defined. Each goes into its own section, and the sections are heapsorted by object size, starting from the reverse of the definition order. Objects of equal size end up in an order that depends only on their positions, not their names. Optimisation level and `-constpool` do not change this; build 56 does the same.
+
+- A run of objects in the ROM that is not in size order did not come from one file: give it one symbol per file, or one object for the whole run (`Ov000_gMapTiles`, `docs/maps.md`).
+- A run in size order can be one file. `tools/maps.py` has the heapsort (`mwcc_heapsort`) and its inverse (`definition_order`, the order to define the objects in); `tools/tests/test_data_order.py` checks the model against the compiler.
+- Pad bytes after an object come from the linker's `ALIGNALL(4)`, not from the object. objdiff compares symbols by size, so give the dsd symbol the object's own size (`kind:data(byte[13])`) when it ends before the next symbol.
+- dsd sometimes takes data bytes for pointers. A relocation that starts inside a table of plain values makes objdiff score the symbol 0%; delete it from `relocs.txt` once the C rebuilds the bytes without it.
+
 ## ARM7
 
 ARM7 (the second CPU: sound, touch screen, wireless, power) is one module, `arm7`, in `config/AWRE/arm7/`. It has three parts with their own `.text`: the crt0 at 0x02380000, an autoload into main RAM at 0x027c0000 and one into ARM7 WRAM at 0x037f8000. Names are `func_arm7_XXXXXXXX` and `data_arm7_XXXXXXXX`. All of it is SDK/library code (`docs/awre-facts.md`, "ARM7").

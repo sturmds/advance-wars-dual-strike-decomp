@@ -77,13 +77,21 @@ Tokens can be renamed in `legend.yaml` (one word, not starting with `@`, one tok
 
 ## Build
 
-1. `tools/maps.py pack` (the `MAPS` step) reads the files above and writes `build/gen/maps/`: `map_data.h` (the `MapTileData` and `MapUnitData` structs, one member per block or list), `map_tiles.inc`, `map_units.inc` and `map_headers.inc`.
+1. `tools/maps.py pack` (the `MAPS` step) reads the files above and writes `build/gen/maps/`: `map_data.h` (the `MapTileData` struct, one member per tile block, and one `PredeployedUnit` array per unit list), `map_tiles.inc`, `map_units.inc` and `map_headers.inc`.
 2. `src/game/ov000/map/map_tiles.c`, `map_headers.c` and `map_units.c` include those files. `config/AWRE/arm9/overlays/ov000/delinks.txt` gives them the three ranges in the table above. `configure.py` adds `-i build/gen` to the compiler flags.
 3. `tools/maps.py lcf` writes the symbols that other code uses inside `Ov000_gMapHeaders` (field bases such as `data_ov000_022dbd50`) into `build/arm9.lcf` as `Ov000_gMapHeaders + offset`, right after the line that places `map_headers.o`. Above that line the linker takes the table's address as 0.
 
 `pack` compresses each tile block itself: longest match within 0x1000 bytes, the nearest of equal matches. That gives the ROM's bytes for all 260 blocks. It reads the field lists of `MapHeader`, `PredeployedUnit`, `MapSlotFlags` and `TextRef` from `include/` and writes the initializers in declaration order, because mwccarm 2.0 has no designated initializers (`{ .x = 1 }` is "illegal initialization").
 
-`config/AWRE/arm9/overlays/ov000/symbols.txt` still names each block and list by address (`data_ov000_022c67dc`). dsd needs a symbol at every relocation target in `relocs.txt`, and the header table's relocations point at them. The build itself refers to the blocks as members of `gMapTiles` and `gMapUnits`.
+The C has the same symbols as the ROM, so that objdiff can compare the tables symbol by symbol (issue 0082):
+
+- `Ov000_gMapTiles`: all tile blocks, one symbol. The blocks are in map id order, not size order, so they cannot be separate objects of one C file (below). The header table's relocations point into it as `to:0x022b386c add:OFFSET` in `config/AWRE/arm9/overlays/ov000/relocs.txt`.
+- `Ov000_gMapUnits_0f0`, `Ov000_gMapHardUnits_0f0`: one array per unit list. `symbols.txt` gives each its size without the pad bytes (`kind:data(byte[468])`), since the C array has none; the linker's `ALIGNALL(4)` adds them.
+- `Ov000_gMapHeaders`: the header table.
+
+mwccarm 2.0 does not emit a file's data objects in the order they are defined. It puts each in its own section and heapsorts them by size, starting from the reverse of the definition order; objects of equal size come out in an order that depends only on their positions. The unit lists in the ROM are in size order, so the original was one file with one array per list. `maps.py` copies the heapsort (`mwcc_heapsort`) and inverts it (`definition_order`) to find the order to define the arrays in so that the compiler emits the `units.txt` order.
+
+dsd had taken 38 runs of bytes in the tile blocks and unit lists for pointers. Those relocations are gone from `relocs.txt`; the tables hold no pointers.
 
 ## Editing a map
 
