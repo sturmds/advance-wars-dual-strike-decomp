@@ -127,7 +127,7 @@ Done when: one Lua-driven scenario runs the same on the retail ROM and on our bu
 | Risk | Effect | What we do |
 |---|---|---|
 | The compiler build is not available as a native Linux binary | Blocks M0 | Decided at 0.2 before other work. Stop and reassess if it can't be found. |
-| Some Thumb code matches from no compiler build | Part of the game remains assembly | Accept it with evidence (D6 caveat). Count it as assembly, never as C. |
+| Some Thumb code matches from no compiler build | Part of the game remains assembly | Accept it with evidence (D6 caveat). Count it as assembly, never as C, in PROGRESS.md. The decomp.dev report counts it when `config/AWRE/asm_functions.txt` lists it with its evidence and portable C sits beside it. |
 | ARM7 is harder than ARM9 because dsd focuses on ARM9 | Delays ARM7-from-objects | Resolved 2026-10-11: `tools/arm7.py` works around dsd (issue 0013) |
 | Automated C is unreadable (khdays' `int self` style) | Mod base is hard to use | Tenets plus review pass from M0. Readability passes in M2. |
 | Hard-coded addresses hide in data tables | Modded builds crash | Shift test starting in M2 |

@@ -1,0 +1,216 @@
+# Functions written as `asm` that tools/decomp_dev_report.py counts as
+# decompiled and linked. Each one matches the ROM, and its file has portable
+# C or an #error in the #else branch of #ifdef __MWERKS__. The reason names
+# what in the ROM's instructions mwcc 2.0-72 does not emit from C.
+#
+# module name reason
+itcm  OS_IrqHandler                        IRQ entry: sets lr by hand, bx to the handler, clz
+itcm  OS_IrqHandler_ThreadSwitch           IRQ exit/thread switch: mrs/msr, banked registers, ldm to pc
+main  SVC_IsDebugger                       swi BIOS stub (Thumb)
+main  Bios_UnpackLz77ByBytes               swi BIOS stub (Thumb)
+main  SVC_SoftReset                        swi BIOS stub (Thumb)
+main  Bios_UnpackHuffman                   swi BIOS stub (Thumb)
+main  Bios_UnpackLz77ByHalfwords           swi BIOS stub (Thumb)
+main  Bios_UnpackRunLengthByHalfwords      swi BIOS stub (Thumb)
+main  SVC_CpuSet                           swi BIOS stub (Thumb)
+main  SVC_DivRem                           swi BIOS stub (Thumb)
+main  Bios_AwaitIrqFlags                   swi BIOS stub (Thumb)
+main  SVC_UnpackBits                       swi BIOS stub (Thumb)
+main  SVC_GetCRC16                         swi BIOS stub (Thumb)
+main  SVC_Sqrt                             swi BIOS stub (Thumb)
+main  SVC_Halt                             swi BIOS stub (Thumb)
+main  SVC_WaitVBlankIntr                   swi BIOS stub (Thumb)
+main  Bios_UnpackRunLengthByBytes          swi BIOS stub (Thumb)
+main  SVC_CpuFastSet                       swi BIOS stub (Thumb)
+main  SVC_WaitByLoop                       swi BIOS stub (Thumb)
+main  SVC_Div                              swi BIOS stub (Thumb)
+main  Entry                                crt0 entry: msr mode switches, stack setup
+main  MIi_UncompressBackward               crt0 decompressor: mcr cache ops, ldm/stm
+main  do_autoload                          crt0: uses r4-r7 with no save, tail-branches to the callback
+main  init_cp15                            mcr/mrc CP15 setup
+main  MTX_Identity43                       ldm/stm register-block copy with writeback
+main  Matrix_Expand43Into44                ldm/stm register-block copy with writeback
+main  MTX_RotX43_                          Thumb in ARM9
+main  MTX_RotY43_                          Thumb in ARM9
+main  Matrix_SetZTurn43FromSinCos          Thumb in ARM9
+main  Matrix_Take33From44                  ldm/stm register-block copy with writeback
+main  func_0210cb84                        ldm/stm block copy of 8 registers, push of r4-r8 with no padding
+main  func_0210cee4                        ldr+bx alias stub; mwcc emits b
+main  OS_GetLockID                         clz, which mwcc 2.0 does not emit from C
+main  OS_ReleaseLockID                     pl/mi conditions after cmp and an unfolded shift
+main  OS_SaveContext                       mrs/msr and register-bank ldm/stm
+main  OS_LoadContext                       mrs/msr and register-bank ldm/stm
+main  DC_FlushAll                          mcr cache/CP15 operation
+main  DC_InvalidateRange                   mcr cache/CP15 operation
+main  DC_StoreRange                        mcr cache/CP15 operation
+main  DC_FlushRange                        mcr cache/CP15 operation
+main  DC_WaitWriteBufferEmpty              mcr cache/CP15 operation
+main  IC_InvalidateAll                     mcr cache/CP15 operation
+main  IC_InvalidateRange                   mcr cache/CP15 operation
+main  Cp15_DataTcmBase                     mcr/mrc CP15 access
+main  OS_EnableProtectionUnit              mcr/mrc CP15 access
+main  OS_DisableProtectionUnit             mcr/mrc CP15 access
+main  OS_SetProtectionRegion1              mcr/mrc CP15 access
+main  OSi_ExceptionHandler                 exception entry: mrs/msr, unsaved high registers
+main  func_0210e6f8                        push {lr} with no stack padding
+main  Exception_FillContextRecord          exception entry: mrs/msr, unsaved high registers
+main  Exception_RunUserHook                msr CPSR to switch mode around the user hook
+main  OS_EnableInterrupts                  mrs/msr on CPSR
+main  OS_DisableInterrupts                 mrs/msr on CPSR
+main  OS_RestoreInterrupts                 mrs/msr on CPSR
+main  OS_DisableInterrupts_IrqAndFiq       mrs/msr on CPSR
+main  OS_RestoreInterrupts_IrqAndFiq       mrs/msr on CPSR
+main  OS_GetProcMode                       mrs/msr on CPSR
+main  OS_Halt                              mcr cache/CP15 operation
+main  OS_SpinWait                          subs/bcs busy loop with an empty body
+main  MATH_CountLeadingZeros               clz
+main  MIi_CpuClear32                       ldm/stm block kernel (conditional or multi-register)
+main  MIi_CpuCopy32                        ldm/stm block kernel (conditional or multi-register)
+main  Isd_DisableFiq                       two entry points that set r0 and branch into Isd_RestoreFiq
+main  Isd_RestoreFiq                       mrs/msr on CPSR
+main  Isd_DisableIrq                       two entry points that set r0 and branch into Isd_RestoreIrq
+main  Isd_RestoreIrq                       mrs/msr on CPSR
+main  Isd_EnableProtectionUnit             shared entry points into an mcr/mrc body
+main  func_02121b80                        mcr/mrc CP15 access
+main  func_02121b88                        mcr/mrc CP15 access
+main  Isd_GetProtectionRegion7             mcr/mrc CP15 access
+main  Isd_SetProtectionRegion7             mcr/mrc CP15 access
+main  Isd_GetDataPermissions               mcr/mrc CP15 access
+main  Isd_SetDataPermissions               mcr/mrc CP15 access
+main  Isd_GetInstructionPermissions        mcr/mrc CP15 access
+main  Isd_SetInstructionPermissions        mcr/mrc CP15 access
+main  Isd_SwapWord                         swp
+main  Isd_Breakpoint                       undefined-instruction breakpoint word (dcd 0xe7ffffff)
+main  _dadd                                soft-float: pushes argument registers, clz/umull/adcs, branches between routines
+main  __dadd_same_sign                     soft-float: pushes argument registers, clz/umull/adcs, branches between routines
+main  _dfix                                soft-float: pushes argument registers, clz/umull/adcs, branches between routines
+main  _ll_ufrom_d                          long division: shared push across entry points, unsaved r4-r7
+main  _dfltu                               soft-float: pushes argument registers, clz/umull/adcs, branches between routines
+main  _dflt                                soft-float: pushes argument registers, clz/umull/adcs, branches between routines
+main  _dmul                                soft-float: pushes argument registers, clz/umull/adcs, branches between routines
+main  _drsb                                swaps its arguments with eor and falls into the next object
+main  _dsub                                soft-float: pushes argument registers, clz/umull/adcs, branches between routines
+main  __dsub_same_sign                     soft-float: pushes argument registers, clz/umull/adcs, branches between routines
+main  func_02127134                        branches into shared NaN/trap tails, hidden register arguments
+main  func_02127178                        branches into shared NaN/trap tails, hidden register arguments
+main  _fneq                                branches into shared NaN/trap tails, hidden register arguments
+main  _feq                                 branches into shared NaN/trap tails, hidden register arguments
+main  func_02127228                        branches into shared NaN/trap tails, hidden register arguments
+main  _fls                                 branches into shared NaN/trap tails, hidden register arguments
+main  _fleq                                branches into shared NaN/trap tails, hidden register arguments
+main  func_021272c8                        branches into shared NaN/trap tails, hidden register arguments
+main  _fgr                                 branches into shared NaN/trap tails, hidden register arguments
+main  _fgeq                                branches into shared NaN/trap tails, hidden register arguments
+main  func_02127378                        branches into shared NaN/trap tails, hidden register arguments
+main  func_021273b0                        branches into shared NaN/trap tails, hidden register arguments
+main  func_021273d0                        branches into shared NaN/trap tails, hidden register arguments
+main  FCmp_Invalid                         branches into shared NaN/trap tails, hidden register arguments
+main  FCmp_InvalidFlagsNe                  branches into shared NaN/trap tails, hidden register arguments
+main  FCmp_InvalidFlagsHi                  branches into shared NaN/trap tails, hidden register arguments
+main  FCmp_InvalidFlagsEq                  branches into shared NaN/trap tails, hidden register arguments
+main  FCmp_NanA                            branches into shared NaN/trap tails, hidden register arguments
+main  FCmp_NanB                            branches into shared NaN/trap tails, hidden register arguments
+main  FCmp_NanAFlags                       branches into shared NaN/trap tails, hidden register arguments
+main  FCmp_NanBFlags                       branches into shared NaN/trap tails, hidden register arguments
+main  func_021274f4                        branches into shared NaN/trap tails, hidden register arguments
+main  func_02127584                        branches into shared NaN/trap tails, hidden register arguments
+main  _dneq                                branches into shared NaN/trap tails, hidden register arguments
+main  _deq                                 branches into shared NaN/trap tails, hidden register arguments
+main  func_02127724                        branches into shared NaN/trap tails, hidden register arguments
+main  _dls                                 branches into shared NaN/trap tails, hidden register arguments
+main  _dleq                                branches into shared NaN/trap tails, hidden register arguments
+main  func_02127898                        branches into shared NaN/trap tails, hidden register arguments
+main  _dgr                                 branches into shared NaN/trap tails, hidden register arguments
+main  _dgeq                                branches into shared NaN/trap tails, hidden register arguments
+main  func_02127a10                        branches into shared NaN/trap tails, hidden register arguments
+main  func_02127a78                        branches into shared NaN/trap tails, hidden register arguments
+main  func_02127ac8                        branches into shared NaN/trap tails, hidden register arguments
+main  DCmp_Invalid                         branches into shared NaN/trap tails, hidden register arguments
+main  DCmp_InvalidFlagsNe                  branches into shared NaN/trap tails, hidden register arguments
+main  DCmp_InvalidFlagsHi                  branches into shared NaN/trap tails, hidden register arguments
+main  DCmp_InvalidFlagsEq                  branches into shared NaN/trap tails, hidden register arguments
+main  DCmp_NanA                            branches into shared NaN/trap tails, hidden register arguments
+main  DCmp_NanB                            branches into shared NaN/trap tails, hidden register arguments
+main  DCmp_Unordered                       branches into shared NaN/trap tails, hidden register arguments
+main  DCmp_NanAFlags                       branches into shared NaN/trap tails, hidden register arguments
+main  DCmp_NanBFlags                       branches into shared NaN/trap tails, hidden register arguments
+main  DCmp_UnorderedFlags                  branches into shared NaN/trap tails, hidden register arguments
+main  FCmp_CallTrap                        branches into shared NaN/trap tails, hidden register arguments
+main  DCmp_CallTrap                        branches into shared NaN/trap tails, hidden register arguments
+main  _ll_udiv                             long division: shared push across entry points, unsaved r4-r7
+main  _ull_mod                             long division: shared push across entry points, unsaved r4-r7
+main  _ll_udiv_common                      long division: shared push across entry points, unsaved r4-r7
+main  _ll_mod                              long division: shared push across entry points, unsaved r4-r7
+main  _ll_sdiv                             long division: shared push across entry points, unsaved r4-r7
+main  _ll_sdiv_common                      long division: shared push across entry points, unsaved r4-r7
+main  _ll_div_core                         long division: shared push across entry points, unsaved r4-r7
+main  _s32_div_f                           unrolled shift-subtract division, falls into its neighbour
+main  _u32_div_f                           unrolled shift-subtract division, falls into its neighbour
+main  _u32_div_not_0_f                     unrolled shift-subtract division, falls into its neighbour
+arm7  Entry_Arm7                           crt0 entry: msr mode switches, stack setup
+arm7  do_autoload_Arm7                     crt0: uses r4-r7 with no save, pc-relative literal load
+arm7  func_arm7_027d6344                   GPIO bit-bang with fixed delay loops, no stack frame
+arm7  func_arm7_027d6384                   GPIO bit-bang with fixed delay loops, no stack frame
+arm7  func_arm7_027d63b8                   GPIO bit-bang with fixed delay loops, no stack frame
+arm7  func_arm7_027d6428                   GPIO bit-bang with fixed delay loops, no stack frame
+arm7  func_arm7_027d64b8                   GPIO bit-bang with fixed delay loops, no stack frame
+arm7  Irq_DispatchLowestPending_Arm7       IRQ entry: unpadded {lr} push, ldmeqfd to pc, sets lr then bx
+arm7  Irq_WakeAndSwitchOnExit_Arm7         IRQ exit/thread switch: mrs/msr, banked registers, ldm to pc
+arm7  SlotLock_ReleaseAlias_Arm7           ldr+bx alias stub; mwcc emits b
+arm7  LockId_Allocate_Arm7                 top-tested scan loops written out twice; mwcc rotates loops
+arm7  LockId_Free_Arm7                     same shape as OS_ReleaseLockID: pl/mi after cmp, unfolded shift
+arm7  Context_Capture_Arm7                 mrs/msr and register-bank ldm/stm
+arm7  Context_Resume_Arm7                  mrs/msr and register-bank ldm/stm
+arm7  Alarm_OnTimer1Irq_Arm7               push {lr} with no stack padding
+arm7  Cpu_UnmaskIrq_Arm7                   mrs/msr on CPSR
+arm7  Cpu_MaskIrq_Arm7                     mrs/msr on CPSR
+arm7  Cpu_RestoreIrqBit_Arm7               mrs/msr on CPSR
+arm7  Cpu_MaskIrqFiq_Arm7                  mrs/msr on CPSR
+arm7  Cpu_RestoreIrqFiqBits_Arm7           mrs/msr on CPSR
+arm7  Cpu_CurrentMode_Arm7                 mrs/msr on CPSR
+arm7  Mem_FillHalfwords_Arm7               loop with a predicated body, as MIi_CpuClear16
+arm7  Mem_CopyHalfwords_Arm7               loop with a predicated body, as MIi_CpuCopy16
+arm7  Mem_FillWords_Arm7                   ldm/stm block kernel (conditional or multi-register)
+arm7  Mem_CopyWords_Arm7                   ldm/stm block kernel (conditional or multi-register)
+arm7  Mem_FillWordsInBlocks_Arm7           ldm/stm block kernel (conditional or multi-register)
+arm7  Mem_FillBytes_Arm7                   alignment fix-ups and unrolled byte/halfword/word paths
+arm7  Mem_CopyBytes_Arm7                   alignment fix-ups and unrolled byte/halfword/word paths
+arm7  Atomic_ExchangeWord_Arm7             swp
+arm7  Bios_RebootSoft_Arm7                 swi BIOS stub (Thumb)
+arm7  Bios_DelayLoop_Arm7                  swi BIOS stub (Thumb)
+arm7  Bios_AwaitIrqFlags_Arm7              swi BIOS stub (Thumb)
+arm7  Bios_SleepUntilVBlank_Arm7           swi BIOS stub (Thumb)
+arm7  Bios_HaltUntilIrq_Arm7               swi BIOS stub (Thumb)
+arm7  Bios_EnterSleepMode_Arm7             swi BIOS stub (Thumb)
+arm7  Bios_RampSoundBias_Arm7              swi BIOS stub (Thumb)
+arm7  Bios_RampSoundBiasUp_Arm7            swi BIOS stub (Thumb)
+arm7  Bios_RampSoundBiasDown_Arm7          swi BIOS stub (Thumb)
+arm7  Bios_Quotient_Arm7                   swi BIOS stub (Thumb)
+arm7  Bios_Remainder_Arm7                  swi BIOS stub (Thumb)
+arm7  Bios_FillOrCopy_Arm7                 swi BIOS stub (Thumb)
+arm7  Bios_FastFillOrCopy_Arm7             swi BIOS stub (Thumb)
+arm7  Bios_SquareRoot_Arm7                 swi BIOS stub (Thumb)
+arm7  Bios_ChecksumCrc16_Arm7              swi BIOS stub (Thumb)
+arm7  Bios_RunningOnDevUnit_Arm7           swi BIOS stub (Thumb)
+arm7  Bios_WidenBitDepth_Arm7              swi BIOS stub (Thumb)
+arm7  Bios_UnpackLz77ByBytes_Arm7          swi BIOS stub (Thumb)
+arm7  Bios_UnpackLz77ByHalfwords_Arm7      swi BIOS stub (Thumb)
+arm7  Bios_UnpackHuffman_Arm7              swi BIOS stub (Thumb)
+arm7  Bios_UnpackRunLengthByBytes_Arm7     swi BIOS stub (Thumb)
+arm7  Bios_UnpackRunLengthByHalfwords_Arm7 swi BIOS stub (Thumb)
+arm7  Bios_SineTableEntry_Arm7             swi BIOS stub (Thumb)
+arm7  Bios_PitchTableEntry_Arm7            swi BIOS stub (Thumb)
+arm7  Bios_VolumeTableEntry_Arm7           swi BIOS stub (Thumb)
+arm7  func_arm7_03805904                   push {r4-r7,lr} with no stack padding
+arm7  IrqNest_DispatchByPriority           nested IRQ dispatch: mrs/msr mode switches, user-bank stm/ldm ^
+arm7  _ll_udiv_Arm7                        long division: shared push across entry points, unsaved r4-r7
+arm7  _ull_mod_Arm7                        long division: shared push across entry points, unsaved r4-r7
+arm7  _ll_udiv_common_Arm7                 long division: shared push across entry points, unsaved r4-r7
+arm7  _ll_mod_Arm7                         long division: shared push across entry points, unsaved r4-r7
+arm7  _ll_sdiv_Arm7                        long division: shared push across entry points, unsaved r4-r7
+arm7  _ll_sdiv_common_Arm7                 long division: shared push across entry points, unsaved r4-r7
+arm7  _ll_div_core_Arm7                    long division: shared push across entry points, unsaved r4-r7
+arm7  _s32_div_f                           unrolled shift-subtract division, falls into its neighbour
+arm7  _u32_div_f                           unrolled shift-subtract division, falls into its neighbour
+arm7  _u32_div_not_0_f_Arm7                unrolled shift-subtract division, falls into its neighbour
+arm7  Reset_HandshakeAndReboot_Arm7        reset: zeroes r0-r3 and jumps through r12 with lr set by hand

@@ -234,7 +234,8 @@ def decomp_dev_section() -> list[str]:
         "",
         f"From `{path.relative_to(ROOT)}`, which `make release` writes (`tools/decomp_dev_report.py`).",
         "decomp.dev shows \"Decompiled\" (`matched_code`) and \"Fully linked\" (`complete_code`).",
-        "Functions written as `asm` count as neither. \"Code\" also holds code in dsd gap units that",
+        "Functions written as `asm` count only when `config/AWRE/asm_functions.txt` lists them",
+        "(hand-written, with portable C beside them). \"Code\" also holds code in dsd gap units that",
         "has no function, so it is a little larger than the totals above (issue 0071).",
         "",
     ]
