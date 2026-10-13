@@ -180,6 +180,8 @@ Each line: the rewrite, then the functions it matched.
 - A named pointer local whose stack slot in the original sits among the compiler temporaries: the original had no local. Drop it and read through the global macro at each use (`STATE`), and read memory again where the original does (`unk_508[...]` instead of `slot`) (AiBuild_RateSiteDanger, 26 differ to 0). For a pointer to a global (`menu = &gMenuState`) that swaps with an induction variable, read through a cast macro `((MenuState *)&gMenuState)` at each use; mwcc keeps the address in a register but allocates it like its own temporary (Battle_LoadSideGraphics).
 - Registers swapped and declaration order changes nothing: mwcc ranks variables by their uses and lifetime. Read the global macro (`GAME->`) at each use instead of a reloaded state local, and move a variable's assignment to where it is first needed (MovePath_FollowCursor: `y = GAME->cursorY` moved inside the cost test; mwcc still CSEs `GAME`, so no `RELOAD_STATE` copy is needed).
 - Set-up statements among volatile hardware stores with the right instructions and wrong registers: move some of them after a few of the stores; a script that shuffles them among the stores finds it (Ov004_SendCentredQuad).
+- A reused variable's later live range gets its register first when the earlier use comes first: use an existing loop counter for an earlier loop too, and write a temporary as one sum. Neither change matched alone (CombatMap_DrawPreviewBlock: `row` got lr and the hoisted zero kept r12).
+- One `int` for two values in turn, declared first, with `*=` and `/=` as separate statements and an if-assign before the return, where a ternary return or one `x = x * a / b` statement gave 11-13 differ (WMSP_GetMpTimeLeft: `time` holds the line count, then the time).
 - Read a field through the view the callers use, not the struct that owns it: `WIFI_TX_LOCATIONS_OF(WIFI_DRIVER_STATE)->savedMpReply` instead of the same field through `WlWork` (WifiMp_PutBackReply).
 
 **Spill slots differ** (same code, other stack offsets)
@@ -203,6 +205,7 @@ Each line: the rewrite, then the functions it matched.
 - Two slots set to one value with their index registers swapped: one chained assignment, `a[j] = a[i] = v;` (CampaignMap_CenterOnMission, CampaignMap_EaseScroll).
 - Argument setup or a stack load before a constant store: an explicit `return;` at the end of the final `if` (TagGauge_PopIn); `if (p != NULL) { ...; return TRUE; } return FALSE;` instead of an early return (SpriteFile_Draw3d). mwcc schedules a block that falls into the epilogue differently from one that ends in `return;`: add the return at the end of an else-if branch (InfoPanel_DrawDamageForecast), or wrap the body in `if (type != 0) { ...; return; }` instead of an early `if (type == 0) return;`, which put a hoisted literal-pool load back after two stores (CardSave_FillGeometryFromType).
 - A statement that runs once per outer iteration in the original sits in the inner loop in ours, or the reverse: check where it belongs (MapSelect_ResetTables, func_0204f3b0).
+- A per-row value that the original computes in the inner loop: set it inside the inner loop and turn `opt_loop_invariants` off so mwcc does not hoist it (Ov004_CopyViewToBgMap).
 - A call result used in an expression: call it inside a local's initialiser (Palette_GetArmyBlock) or inline in each compare (AiUnit_HasFuelForTile). `(x = x << 9) >> 4` keeps a shift in place (Camera_SetFromMapScroll).
 - A value the original copies to a scratch register instead of reusing a callee-saved one: compute the later use after the copy (SoundStream_FillBlocks, gain only).
 - Blocks of a `switch` in another order: write the cases in the original's block order (SndTrack_Step).
@@ -231,7 +234,7 @@ Each line: the rewrite, then the functions it matched.
 
 **A hint, not a fix:** a permuter variant that changes behaviour, such as overwriting a buffer (func_arm7_027c342c) or a `continue` inside `do {} while (0)` (AiSiteGroup_RateSurroundings), is a hint, not a fix. A permuter variant that reads locals before they are set says those locals must be live from the function start: initialise them early in real code (Isd_DoubleDivideByTen: `mantissa |=` the hidden bit before the zero inits).
 
-**Rarely helped:** `permute.py` or full declaration-order searches on a register-only diff without a rewrite first; `register`; `volatile` other than for a forced reload or a load order; a cast on one use; moving a whole block or body into an inline helper.
+**Rarely helped:** blocking mwcc's constant fold of `a + b` when the backend then merges the then-branch subtraction with the condition's `subs` (no `opt_*` pragma, `-opt nocse` or `-O1` stops that merge; WMSP_GetMpTimeLeft); `permute.py` or full declaration-order searches on a register-only diff without a rewrite first; `register`; `volatile` other than for a forced reload or a load order; a cast on one use; moving a whole block or body into an inline helper.
 
 ### When to stop: parking
 

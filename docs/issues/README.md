@@ -106,3 +106,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0076](0076-tests-follow-hook-git-dir.md) | `make test` run from a git hook wrote into the real repository | closed | loop | M1 |
 | [0077](0077-asm-below-100-in-objdiff.md) | objdiff scores some listed `asm` functions below 100% although the ROM matches | closed | tools | M2 |
 | [0078](0078-drop-prototypes-under-else.md) | apply_commit.py dropped local prototypes whose header is included only under #else | closed | tools | M2 |
+| [0079](0079-bios-callback-decompressor-prototypes.md) | The callback BIOS decompressors are declared with two arguments, not four | open | decomp | M2 |
