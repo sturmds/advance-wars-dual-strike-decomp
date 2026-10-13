@@ -87,8 +87,8 @@ typedef struct PlayRecords {
       [3]; /* maps won, for Survival mode 0 or 3, 2 or 5, 1 or 4 in that order; capped at 999999 */
   u32 combatClears
       [3]; /* Combat mode clears of the last stage by row 1, one counter per data_02160ac0->unk_84 (0-2), capped at 999999 (CombatResult_Init) */
-  u32 unk_43c; /* capped at 999999; func_ov003_02361c7c adds the first 6 Ov003Row.unk_28 of the current slot's row */
-  u32 unk_440; /* capped at 999999; func_ov003_02361c7c adds 1 when its row is not the current slot's */
+  u32 unk_43c; /* capped at 999999; Ov003_RecordWinner adds the first 6 Ov003Row.unk_28 of the current slot's row */
+  u32 unk_440; /* capped at 999999; Ov003_RecordWinner adds 1 when its row is not the current slot's */
   u32 unitsBought
       [27]; /* per unit type, capped at 999999 (CurrentPlayer_BuyUnit); tab list column, see TabList_GetUnitBought */
   u32 unitsDestroyed

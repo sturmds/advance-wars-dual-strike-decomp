@@ -11,7 +11,7 @@ int Isd_DoubleExponent(double x);
 
 /* Software double helpers in src/sdk/isd/. */
 u32 Isd_DoubleUnitsDigit(double x); /* the digit in front of the point */
-double func_0211fe0c(
+double Isd_DoubleDivideByTen(
     double x,
     int keepFraction); /* x / 10; with keepFraction 0, the integer part of it */
 double Isd_DoubleTimesTen(double x);      /* x * 10 */
@@ -442,12 +442,12 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
                exponent--) {
             scaled = Isd_DoubleTimesTen(scaled);
           }
-        } else if (Isd_DoubleExponent(func_0211fe0c(scaled, 0)) >=
+        } else if (Isd_DoubleExponent(Isd_DoubleDivideByTen(scaled, 0)) >=
                    ISD_DOUBLE_EXPONENT_ONE) {
-          for (exponent = 0; Isd_DoubleExponent(func_0211fe0c(scaled, 0)) >=
-                             ISD_DOUBLE_EXPONENT_ONE;
+          for (exponent = 0; Isd_DoubleExponent(Isd_DoubleDivideByTen(
+                                 scaled, 0)) >= ISD_DOUBLE_EXPONENT_ONE;
                exponent++) {
-            scaled = func_0211fe0c(scaled, 1);
+            scaled = Isd_DoubleDivideByTen(scaled, 1);
           }
         } else {
           exponent = 0;
@@ -486,7 +486,7 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
         }
         rounding = 5.0;
         for (i = 0; i <= fracDigits; i++) {
-          rounding = func_0211fe0c(rounding, 1);
+          rounding = Isd_DoubleDivideByTen(rounding, 1);
         }
         number = Isd_DoubleAdd(number, rounding);
         if (conversion == CONV_EXP || conversion == CONV_EXP_UPPER) {
@@ -541,14 +541,14 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
         }
         while (exponent > 58 - prec) {
           droppedDigits++;
-          number = func_0211fe0c(number, 1);
+          number = Isd_DoubleDivideByTen(number, 1);
           exponent--;
         }
         c = (u8)(Isd_DoubleUnitsDigit(number) + '0');
         if (c < '0') {
           c = '0';
         }
-        number = func_0211fe0c(number, 0);
+        number = Isd_DoubleDivideByTen(number, 0);
         Isd_StoreByte(out, (u8)c); /* needed to match: c is already a byte */
         out--;
         count++;
@@ -557,7 +557,7 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
           if (c < '0') {
             c = '0';
           }
-          number = func_0211fe0c(number, 0);
+          number = Isd_DoubleDivideByTen(number, 0);
           Isd_StoreByte(out, (u8)c);
           out--;
           count++;

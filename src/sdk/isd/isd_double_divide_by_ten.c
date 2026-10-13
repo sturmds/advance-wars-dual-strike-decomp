@@ -22,7 +22,7 @@ static inline void Isd_StoreByte(char* address, int value) {
  * (mantissa - mantissa / 5) / 8. With keepFraction 0 it works only on the
  * integer bits and drops the fraction of the quotient.
  */
-double func_0211fe0c(double x, int keepFraction) {
+double Isd_DoubleDivideByTen(double x, int keepFraction) {
   u64 mantissa;
   int k;
   /* Needed to match: one count variable per shift loop. */

@@ -727,7 +727,7 @@ src/game/ov003/ov003_exit.c:
     complete
     .text       start:0x02361c18 end:0x02361c7c
 
-src/game/ov003/func_ov003_02361c7c.c:
+src/game/ov003/ov003_record_winner.c:
     complete
     .text       start:0x02361c7c end:0x02361f38
 

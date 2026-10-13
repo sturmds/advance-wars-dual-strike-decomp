@@ -10,7 +10,7 @@ u16 Wireless_GetChildAids(void);
 void Ov003_CreateSprite(int x, int y);
 void Ov003Row_StopPower(int team);
 void Ov003_ReplaceRowSpecialTiles(int team);
-void func_ov003_02361c7c(int winner);
+void Ov003_RecordWinner(int winner);
 void func_ov003_02362c44(void);
 
 #define STATE data_ov003_02364928
@@ -19,7 +19,7 @@ void func_ov003_02362c44(void);
  * ran out. Removes all its units (with a sprite where each one stood), frees
  * its row of cells and counts the teams left. With two or more left, the
  * team's slots only scroll the map and Ov003_ReplaceRowSpecialTiles(team) runs; with
- * one left, func_ov003_02361c7c gets the winner. When phase is 7, it only
+ * one left, Ov003_RecordWinner gets the winner. When phase is 7, it only
  * clears state of the slots in the Wireless_GetChildAids mask. */
 void Ov003_DefeatTeam(int team) {
   Ov003Unit* unit;
@@ -104,6 +104,6 @@ void Ov003_DefeatTeam(int team) {
   if (alive >= 2) {
     Ov003_ReplaceRowSpecialTiles(team);
   } else {
-    func_ov003_02361c7c(winner);
+    Ov003_RecordWinner(winner);
   }
 }

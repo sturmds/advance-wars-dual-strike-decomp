@@ -10,12 +10,12 @@ void func_ov003_0236249c(void);
 #define LINK_ROW(i) (((Unk_02160ac0_Row*)data_02160ac0)[i])
 #define RECORD_MAX 999999
 
-/* Copies what overlay 3 knows about a row (1 to 5) into data_02160abc: the
- * row number, the co and color of the row and of the other of rows 1 and
- * 2, and Ov003Row.unk_28. For link play (data_02160ac0->unk_7c clear) and row 1
- * it also copies the cells of every row, with units (state 2) as state 1.
- * Then it updates two play counters. */
-void func_ov003_02361c7c(int row) {
+/* Called when one team is left. Copies what overlay 3 knows about the winning
+ * row (1 to 5) into data_02160abc: the row number, the co and color of the
+ * row and of the other of rows 1 and 2, and Ov003Row.unk_28. For link play
+ * (data_02160ac0->unk_7c clear) and row 1 it also copies the cells of every
+ * row, with units (state 2) as state 1. Then it updates two play counters. */
+void Ov003_RecordWinner(int row) {
   u8 other;
   int i;
   int j;
