@@ -1,6 +1,7 @@
 #include "types.h"
 #include "sdk/runtime.h"
 
+#ifdef __MWERKS__
 /*
  * One step of the unrolled division: shift the next dividend bit into the
  * remainder r3, try subtracting the divisor (r1 holds it negated), and shift
@@ -66,3 +67,27 @@ asm s32 _s32_div_f(s32 dividend, s32 divisor)
     rsbne r1, r1, #0
     bx lr
 }
+#else
+/* Assumes the host's int is 32 bits wide and converts out-of-range
+   unsigned values to signed by wrapping, as gcc and clang do. */
+typedef char s32_is_32_bits[sizeof(s32) == 4 ? 1 : -1];
+
+/* The quotient. The assembly also leaves the remainder in r1, which a C
+   return value cannot carry; host code uses `%` for it. The assembly
+   divides the magnitudes as unsigned values, so a divisor of 0 returns the
+   dividend and INT_MIN / -1 returns INT_MIN; the C does the same. */
+s32 _s32_div_f(s32 dividend, s32 divisor) {
+  u32 magnitude = dividend < 0 ? 0u - (u32)dividend : (u32)dividend;
+  u32 divisorMagnitude = divisor < 0 ? 0u - (u32)divisor : (u32)divisor;
+  u32 quotient;
+
+  if (divisor == 0) {
+    return dividend;
+  }
+  quotient = magnitude / divisorMagnitude;
+  if ((dividend < 0) != (divisor < 0)) {
+    quotient = 0u - quotient;
+  }
+  return (s32)quotient;
+}
+#endif

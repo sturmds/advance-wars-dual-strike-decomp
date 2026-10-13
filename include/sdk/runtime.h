@@ -22,6 +22,18 @@ u32 _u32_div_not_0_f(u32 dividend, u32 divisor);
 /*
  * Shared tails of the 64-bit helpers. They expect the register state their
  * callers set up (r4 holds the flags and the saved registers are on the
+ * stack), so C must not call them. The plain C beside the assembly has its
+ * own versions of them, local to each file.
+ */
+#ifdef __MWERKS__
+asm void _ll_udiv_common(void);
+asm void _ll_sdiv_common(void);
+asm void _ll_div_core(void);
+#endif
+
+/*
+ * Shared tails of the 64-bit helpers. They expect the register state their
+ * callers set up (r4 holds the flags and the saved registers are on the
  * stack), so C must not call them. Only mwcc takes asm on a declaration.
  */
 #ifdef __MWERKS__
@@ -40,6 +52,11 @@ u64 _ull_mod_Arm7(u64 dividend, u64 divisor);
 s64 _ll_sdiv_Arm7(s64 dividend, s64 divisor);
 s64 _ll_mod_Arm7(s64 dividend, s64 divisor);
 u32 _u32_div_not_0_f_Arm7(u32 dividend, u32 divisor);
+#ifdef __MWERKS__
+asm void _ll_udiv_common_Arm7(void);
+asm void _ll_sdiv_common_Arm7(void);
+asm void _ll_div_core_Arm7(void);
+#endif
 #ifdef __MWERKS__
 asm void _ll_udiv_common_Arm7(void);
 asm void _ll_sdiv_common_Arm7(void);
