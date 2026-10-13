@@ -1,5 +1,6 @@
 #include "sdk/svc.h"
 
+#ifdef __MWERKS__
 /* ARM7 BIOS call 0x04: halt until a selected interrupt occurs. Sets r2 to 0
    and ip to the I/O register base (0x04000000) before the call. The
    constant is written as instructions after the return: the assembler pads
@@ -17,3 +18,6 @@ asm void Bios_AwaitIrqFlags_Arm7(int clearFlags, u32 intrFlags)
     lsl r0, r0, #16
 }
 #pragma thumb reset
+#else
+#error "Bios_AwaitIrqFlags_Arm7: halting the CPU until a selected interrupt (BIOS call 0x04) has no portable C equivalent"
+#endif

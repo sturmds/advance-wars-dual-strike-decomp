@@ -1,5 +1,6 @@
 #include "sdk/svc.h"
 
+#ifdef __MWERKS__
 /* ARM7 BIOS call 0x08 with r0 = 0: lowers the sound bias level, one step
    every delay loop iterations. */
 #pragma thumb on
@@ -11,3 +12,6 @@ asm void Bios_RampSoundBiasDown_Arm7(int delay)
     bx lr
 }
 #pragma thumb reset
+#else
+#error "Bios_RampSoundBiasDown_Arm7: stepping the sound bias register (BIOS call 0x08) has no portable C equivalent"
+#endif
