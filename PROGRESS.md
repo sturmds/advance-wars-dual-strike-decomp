@@ -12,13 +12,13 @@ add both CPUs.
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
 | ARM9 game | 6695 / 6700 | 1551600 / 1553840 | 99.86% | 0 | 0 |
-| ARM9 SDK/library | 646 / 833 | 104584 / 135226 | 77.34% | 176 | 20718 |
-| ARM9 all | 7341 / 7533 | 1656184 / 1689066 | 98.05% | 176 | 20718 |
+| ARM9 SDK/library | 647 / 833 | 105752 / 135226 | 78.20% | 176 | 20718 |
+| ARM9 all | 7342 / 7533 | 1657352 / 1689066 | 98.12% | 176 | 20718 |
 | ARM7 SDK/library | 949 / 1020 | 148704 / 154300 | 96.37% | 69 | 4960 |
 | ARM7 all | 949 / 1020 | 148704 / 154300 | 96.37% | 69 | 4960 |
 | game | 6695 / 6700 | 1551600 / 1553840 | 99.86% | 0 | 0 |
-| SDK/library | 1595 / 1853 | 253288 / 289526 | 87.48% | 245 | 25678 |
-| all | 8290 / 8553 | 1804888 / 1843366 | 97.91% | 245 | 25678 |
+| SDK/library | 1596 / 1853 | 254456 / 289526 | 87.89% | 245 | 25678 |
+| all | 8291 / 8553 | 1806056 / 1843366 | 97.98% | 245 | 25678 |
 
 ## By module
 
@@ -27,7 +27,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
 | main | game | 5178 / 5180 | 1081160 / 1082632 | 99.86% | 0 |
-| main | SDK/library | 639 / 822 | 103672 / 133690 | 77.55% | 172 |
+| main | SDK/library | 640 / 822 | 104840 / 133690 | 78.42% | 172 |
 | itcm | game | 102 / 102 | 21896 / 21896 | 100.00% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -53,15 +53,15 @@ objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 00
 | Code | Functions | Bytes | Rows that match |
 |---|---:|---:|---:|
 | ARM9 game | 5 | 2240 | 468 / 566 (82.69%) |
-| ARM9 SDK/library | 11 | 9924 | 1853 / 2564 (72.27%) |
+| ARM9 SDK/library | 10 | 8756 | 1601 / 2268 (70.59%) |
 | ARM7 SDK/library | 2 | 636 | 149 / 159 (93.71%) |
-| all | 18 | 12800 | 2470 / 3289 (75.10%) |
+| all | 17 | 11632 | 2218 / 2993 (74.11%) |
 
 | Rows that differ | Functions | Bytes |
 |---|---:|---:|
 | 1 to 2 | 1 | 152 |
 | 3 to 10 | 2 | 1400 |
-| 11 to 50 | 12 | 3232 |
+| 11 to 50 | 11 | 2064 |
 | more than 50 | 3 | 8016 |
 
 Closest first.
@@ -82,7 +82,6 @@ Closest first.
 | `src/sdk/msl/__fp_trap_dd.c` | __fp_trap_dd | 92 | 22 | 61.65% |
 | `src/sdk/msl/__fp_trap.c` | __fp_trap | 256 | 30 | 84.98% |
 | `src/game/main/menus/combat_map_draw_preview_block.c` | CombatMap_DrawPreviewBlock | 556 | 42 | 98.06% |
-| `src/sdk/isd/isd_double_divide_by_ten.c` | func_0211fe0c | 1168 | 44 | 96.78% |
 | `src/sdk/isd/isd_v_format.c` | Isd_VFormat | 4960 | 117 | 99.49% |
 | `src/sdk/msl/double2hex.c` | double2hex | 948 | 121 | 86.82% |
 | `src/sdk/msl/__pformatter.c` | __pformatter | 2108 | 284 | 88.31% |

@@ -25,6 +25,7 @@ static inline void Isd_StoreByte(char* address, int value) {
 double func_0211fe0c(double x, int keepFraction) {
   u64 mantissa;
   int k;
+  /* Needed to match: one count variable per shift loop. */
   int count;
   int padBits;
   int fractionBits;
@@ -39,7 +40,7 @@ double func_0211fe0c(double x, int keepFraction) {
   char* readPtr;
   u64 shifted;
   u32 integerOnly;
-  char* topByte;
+  char* bytePtr;
   int byte;
   int i;
   u64 fraction;
@@ -48,9 +49,9 @@ double func_0211fe0c(double x, int keepFraction) {
   sign = Isd_DoubleSign(x);
   exponent = Isd_DoubleExponent(x);
   mantissa = 0;
-  topByte = (char*)&x + 6;
+  bytePtr = (char*)&x + 6;
   mantissa |= 0x10;
-  mantissa |= Isd_ReadByte(topByte) & 0xf;
+  mantissa |= Isd_ReadByte(bytePtr) & 0xf;
   for (k = 5; k >= 0; k--) {
     mantissa <<= 8;
     mantissa |= Isd_ReadByte((char*)&x + k);
@@ -133,15 +134,16 @@ double func_0211fe0c(double x, int keepFraction) {
   byte = Isd_ReadByte(readPtr) | ((exponent & 0xf) << 4);
   writePtr = (char*)&result + 6;
   Isd_StoreByte(writePtr, byte);
+  /* Needed to match: this loop keeps its bits in fifth and its pointer in bytePtr. */
   for (i = 6; i >= 0; i--) {
-    shifted = fraction;
+    fifth = fraction;
     shiftBits = i * 8;
     for (j = 0; j < shiftBits; j++) {
-      shifted >>= 1;
+      fifth >>= 1;
     }
-    writePtr = (char*)&result + i;
-    byte = (u8)shifted | Isd_ReadByte(writePtr);
-    Isd_StoreByte(writePtr, byte);
+    bytePtr = (char*)&result + i;
+    byte = (u8)fifth | Isd_ReadByte(bytePtr);
+    Isd_StoreByte(bytePtr, byte);
   }
   return result;
 }
