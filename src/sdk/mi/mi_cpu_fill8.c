@@ -1,5 +1,6 @@
 #include "sdk/mi.h"
 
+#ifdef __MWERKS__
 /*
  * Hand-written ARM assembly in the SDK: fills bytes with halfword stores at
  * the unaligned edges and word stores in the middle, since the bus has no
@@ -50,3 +51,74 @@ tail:
     strh r1, [r0]
     bx lr
 }
+#else
+#include <stdint.h>
+#include <string.h>
+
+/* Writes one byte by reading and writing the halfword that holds it, so
+   dest memory sees only halfword accesses, as in the assembly. */
+static void StoreByteInHalfword(u8* at, u8 value) {
+  u16* halfword = (u16*)((uintptr_t)at & ~(uintptr_t)1);
+  u16 both = *halfword;
+
+  ((u8*)&both)[(uintptr_t)at & 1] = value;
+  *halfword = both;
+}
+
+/* Writes the first 2 or 4 bytes of pattern with one halfword or word
+   store. */
+static void StoreUnit(u8* at, const u8* pattern, int size) {
+  if (size == 2) {
+    u16 halfword;
+
+    memcpy(&halfword, pattern, 2);
+    *(u16*)at = halfword;
+  } else {
+    u32 word;
+
+    memcpy(&word, pattern, 4);
+    *(u32*)at = word;
+  }
+}
+
+/* Fills size bytes from dest. The assembly widens data by ORing it with
+   itself shifted by 8, then by 16, so only a data value below 0x100 gives
+   a plain byte fill: an odd first byte and a lone last byte get data's low
+   byte, the halfword and word stores between them the bytes of the widened
+   value. The C keeps that, and the order of the stores. */
+void MI_CpuFill8(void* dest, u32 data, u32 size) {
+  u8* to = dest;
+  u32 halves = data | data << 8;
+  u32 words = halves | halves << 16;
+  u8 pattern[4];
+  u8* end;
+  int i;
+
+  for (i = 0; i < 4; i++) {
+    pattern[i] = (u8)(words >> (8 * i));
+  }
+  if (size != 0 && (uintptr_t)to % 2 != 0) {
+    StoreByteInHalfword(to++, (u8)data);
+    size--;
+  }
+  if (size >= 2) {
+    if ((uintptr_t)to % 4 != 0) {
+      StoreUnit(to, pattern, 2);
+      to += 2;
+      size -= 2;
+    }
+    end = to + (size & ~3u);
+    while (to < end) {
+      StoreUnit(to, pattern, 4);
+      to += 4;
+    }
+    if (size & 2) {
+      StoreUnit(to, pattern, 2);
+      to += 2;
+    }
+  }
+  if (size & 1) {
+    StoreByteInHalfword(to, (u8)data);
+  }
+}
+#endif

@@ -1,5 +1,6 @@
 #include "types.h"
 
+#ifdef __MWERKS__
 /*
  * Hand-written ARM assembly in the SDK: copies size bytes from src to dest
  * using only halfword and word accesses, so it also works on VRAM, which
@@ -107,3 +108,38 @@ last_byte:
     strh r0, [r1]
     bx lr
 }
+#else
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+/* Writes one byte by reading and writing the halfword that holds it, so
+   dest memory sees only halfword accesses, as in the assembly. */
+static void StoreByteInHalfword(u8* at, u8 value) {
+  u16* halfword = (u16*)((uintptr_t)at & ~(uintptr_t)1);
+  u16 both = *halfword;
+
+  ((u8*)&both)[(uintptr_t)at & 1] = value;
+  *halfword = both;
+}
+
+/* Copies size bytes from src to dest, front to back. The assembly moves up
+   to 4 bytes at a time and reads up to 2 bytes ahead, so when dest starts 1
+   to 3 bytes after src inside the source its result differs from a byte
+   copy; that case stops the program. */
+void Mem_CopyBytes(const void* src, void* dest, u32 size) {
+  const u8* from = src;
+  u8* to = dest;
+  uintptr_t distance = (uintptr_t)dest - (uintptr_t)src;
+  u32 i;
+
+  if ((uintptr_t)dest > (uintptr_t)src && distance < 4 && distance < size) {
+    fprintf(stderr, "Mem_CopyBytes: %p starts %u bytes into %p\n", dest,
+            (unsigned)distance, src);
+    abort();
+  }
+  for (i = 0; i < size; i++) {
+    StoreByteInHalfword(&to[i], from[i]);
+  }
+}
+#endif

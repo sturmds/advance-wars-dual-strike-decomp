@@ -66,6 +66,16 @@ main  OS_SpinWait                          subs/bcs busy loop with an empty body
 main  MATH_CountLeadingZeros               clz
 main  MIi_CpuClear32                       ldm/stm block kernel (conditional or multi-register)
 main  MIi_CpuCopy32                        ldm/stm block kernel (conditional or multi-register)
+main  MIi_CpuClear16                       loop with a predicated body (strlth/addlt)
+main  MIi_CpuCopy16                        loop with a predicated body (ldrlth/strlth/addlt)
+main  MIi_CpuClearFast                     ldm/stm block kernel (conditional or multi-register)
+main  MI_Copy36B                           ldm/stm register-block copy with writeback
+main  MI_Copy48B                           ldm/stm register-block copy with writeback
+main  MI_CpuFill8                          alignment fix-ups and unrolled byte/halfword/word paths
+main  Mem_CopyBytes                        alignment fix-ups and unrolled byte/halfword/word paths
+main  func_02000900                        loop with a conditional stmltia
+main  GXi_NopClearFifo128_                 32 stmia of four zero registers to one address, no writeback
+itcm  Mem_RepeatWordAsm                    loop with a conditional stmltia
 main  Isd_DisableFiq                       two entry points that set r0 and branch into Isd_RestoreFiq
 main  Isd_RestoreFiq                       mrs/msr on CPSR
 main  Isd_DisableIrq                       two entry points that set r0 and branch into Isd_RestoreIrq
