@@ -13,7 +13,7 @@
   3 /* IEEE 802.11 reason code: the station leaves */
 
 void Wmsp_SetNormalThreadPriorities(void);
-void func_arm7_027c632c(u32 aidBitmap);
+void SendQueue_DropChildren(u32 aidBitmap);
 u16* func_arm7_027c1e74(WlCommand* cmd);
 u16* func_arm7_027c1f2c(WlCommand* cmd);
 u16* func_arm7_027c1efc(WlCommand* cmd);
@@ -58,7 +58,7 @@ void WMSP_Reset(void) {
   buf->status->unk_be = 0;
   Cpu_RestoreIrqBit_Arm7(intr);
   if (mpWasOn) {
-    func_arm7_027c632c(0xffff);
+    SendQueue_DropChildren(0xffff);
   }
 
   wlReply = func_arm7_027c1e74(cmd);

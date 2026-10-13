@@ -6,7 +6,7 @@
 u16* func_arm7_027c1efc(WlCommand* cmd);
 u16* func_arm7_027c2648(WlCommand* cmd, const void* src, int arg);
 u16* func_arm7_027c28f4(WlCommand* cmd, int arg);
-void func_arm7_027c632c(u16 aidBitmap);
+void SendQueue_DropChildren(u16 aidBitmap);
 void Wmsp_SetNormalThreadPriorities(void);
 
 /* Shared body of the DISCONNECT (isAuto 0) and AUTO_DISCONNECT (isAuto 1)
@@ -91,7 +91,7 @@ int Wmsp_DisconnectCore(WmspRequest* request, int isAuto,
         WMSP_ReplyDisconnectFailed(0, result[2], tryBitmap, disconnected);
       }
       if (mpRan) {
-        func_arm7_027c632c(1);
+        SendQueue_DropChildren(1);
       }
       return 0;
     }
@@ -104,7 +104,7 @@ int Wmsp_DisconnectCore(WmspRequest* request, int isAuto,
         WMSP_ReplyDisconnectFailed(0x302, result[2], tryBitmap, disconnected);
       }
       if (mpRan) {
-        func_arm7_027c632c(1);
+        SendQueue_DropChildren(1);
       }
       return 0;
     }
@@ -121,7 +121,7 @@ int Wmsp_DisconnectCore(WmspRequest* request, int isAuto,
       Wmsp_SendReply(childReply);
     }
     if (mpRan) {
-      func_arm7_027c632c(1);
+      SendQueue_DropChildren(1);
     }
   } else {
     for (aid = 1; aid < 16; aid++) {
@@ -156,7 +156,7 @@ int Wmsp_DisconnectCore(WmspRequest* request, int isAuto,
           Wmsp_SendReply(parentReply);
         }
         if (mpRan) {
-          func_arm7_027c632c(mask);
+          SendQueue_DropChildren(mask);
         }
       }
     }

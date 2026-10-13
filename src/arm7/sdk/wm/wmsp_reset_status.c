@@ -3,7 +3,7 @@
 #include "sdk/mi.h"
 
 void Wmsp_SetNormalThreadPriorities(void);
-void func_arm7_027c632c(u32 aidBitmap);
+void SendQueue_DropChildren(u32 aidBitmap);
 void func_arm7_027c5de8(void);
 
 /* Stops MP if it runs, clears the connection fields of WMStatus, frees every
@@ -37,7 +37,7 @@ void WMSP_ResetStatus(void) {
   buf->status->unk_c2 = 0;
   Cpu_RestoreIrqBit_Arm7(intr);
   if (mpWasOn) {
-    func_arm7_027c632c(0xffff);
+    SendQueue_DropChildren(0xffff);
   }
   for (i = 0; i < WMSP_SLOT_COUNT; i++) {
     buf->slots[i].flags = WMSP_SLOT_FLAG;

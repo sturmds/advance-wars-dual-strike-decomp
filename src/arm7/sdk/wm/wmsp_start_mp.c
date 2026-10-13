@@ -3,7 +3,7 @@
 
 void WMSP_InitSendQueue(void);
 void Wmsp_SetAltThreadPriorities(void);
-void func_arm7_027c632c(int aidBitmap);
+void SendQueue_DropChildren(int aidBitmap);
 void WMSP_StartMpVAlarm(void);
 
 /* Starts MP from WM_STATE_PARENT or WM_STATE_CHILD: stops a running MP
@@ -36,7 +36,7 @@ void WMSP_StartMP(WmspStartMPRequest* request) {
     wasRunning = TRUE;
   }
   if (wasRunning) {
-    func_arm7_027c632c(0xffff);
+    SendQueue_DropChildren(0xffff);
   }
   WMSP_InitSendQueue();
   irq = Cpu_MaskIrq_Arm7();

@@ -1,6 +1,6 @@
 #include "sdk/wmsp.h"
 
-/* Built for speed like func_arm7_027c70f8: the match is closer with this pragma. */
+/* Built for speed like func_arm7_027c70f8. */
 #pragma optimize_for_size off
 
 /*
@@ -8,19 +8,20 @@
  * no child to reach goes back to the free list with a PORT_SEND reply. The original
  * walks the ready queues twice.
  */
-void func_arm7_027c632c(u16 aidBitmap) {
+void SendQueue_DropChildren(u16 aidBitmap) {
+  /* Needed to match: declared apart from the assignments, in this order. */
   RadioOutboxEntry* queueData;
-  u16 prev;
   int i;
-  u16 index;
   int priority;
-  u32 keep;
-  RadioOutboxList* queue;
   u16* link;
-  WMStatus* status;
-  RadioOutboxEntry* entry;
+  u32 keep;
+  u16 index;
+  u16 prev;
   RadioOutboxList* queues;
+  RadioOutboxList* queue;
+  WMStatus* status;
   WMPortSendCallback* callback;
+  RadioOutboxEntry* entry;
 
   status = func_arm7_027c05e0()->buf->status;
   queueData = status->sendQueueData;
@@ -67,8 +68,12 @@ void func_arm7_027c632c(u16 aidBitmap) {
           status->sendQueueFreeList.tail = index;
           index = prev;
         }
-        link = (index != WIRELESS_OUTBOX_NO_ENTRY) ? &queueData[index].next
-                                                   : &queue->head;
+        /* Needed to match: link from an if/else, index from a ternary. */
+        if (index != WIRELESS_OUTBOX_NO_ENTRY) {
+          link = &queueData[index].next;
+        } else {
+          link = &queue->head;
+        }
         prev = index;
         index = (index != WIRELESS_OUTBOX_NO_ENTRY) ? queueData[index].next
                                                     : queue->head;

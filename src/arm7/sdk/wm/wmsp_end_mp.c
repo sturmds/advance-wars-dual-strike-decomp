@@ -3,7 +3,7 @@
 
 void Wmsp_SetNormalThreadPriorities(void);
 u16* func_arm7_027c224c(WlCommand* cmd, u16 arg);
-void func_arm7_027c632c(int aidBitmap);
+void SendQueue_DropChildren(int aidBitmap);
 void WMSP_ReplyEndMPFailed(u16 wlCmdID, u16 wlResult);
 
 void WMSP_EndMP(void) {
@@ -44,7 +44,7 @@ void WMSP_EndMP(void) {
     return;
   }
   if (wasRunning) {
-    func_arm7_027c632c(0xffff);
+    SendQueue_DropChildren(0xffff);
   }
   reply = Wmsp_GetCallbackBuffer();
   reply->apiid = WM_APIID_END_MP;

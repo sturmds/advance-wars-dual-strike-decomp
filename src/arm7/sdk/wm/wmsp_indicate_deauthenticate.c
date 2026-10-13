@@ -5,7 +5,7 @@
 #include "sdk/mi.h"
 
 void Wmsp_SetNormalThreadPriorities(void);
-void func_arm7_027c632c(u16 aidBitmap);
+void SendQueue_DropChildren(u16 aidBitmap);
 
 /*
  * WIFI_HOSTMSG_PEER_UNAUTHED: a station left. A parent forgets that child and tells
@@ -56,7 +56,7 @@ void Wmsp_IndicateDeauthenticate(WlDeauthIndication* ind) {
       callback->aid = aid;
       Mem_CopyBytes_Arm7(ind->macAddress, callback->macAddress, 6);
       Wmsp_SendReply(callback);
-      func_arm7_027c632c(1 << aid);
+      SendQueue_DropChildren(1 << aid);
     }
   } else {
     WMStartConnectCallback* callback;
@@ -88,7 +88,7 @@ void Wmsp_IndicateDeauthenticate(WlDeauthIndication* ind) {
     status->unk_190 = 0;
     Wmsp_SendReply(callback);
     if (wasMp) {
-      func_arm7_027c632c(1);
+      SendQueue_DropChildren(1);
     }
   }
 }
