@@ -13,7 +13,7 @@ void G3X_Reset(void);
 void G3i_LookAt_(const void* a, const void* b, void* c, int d, int e);
 extern u8 data_ov005_023695d0[];
 extern u8 data_ov005_023695c4[];
-extern u8 data_ov005_0236bb94[];
+static u8 data_ov005_0236bb94[0xc]; /* size: up to the next symbol */
 
 void func_ov005_0235b2f0(void) {
   G3X_Reset();

@@ -3,7 +3,8 @@
 
 void* Mem_Alloc(u32 size);
 
-extern void* data_ov005_0236bb8c;
+/* also declared in src/game/ov005/ov005_message_screen_on_button_confirm.c */
+void* data_ov005_0236bb8c;
 
 void func_ov005_02358928(Ov005Task* task) {
   task->work = Mem_Alloc(0x18);

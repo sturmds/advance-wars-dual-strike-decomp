@@ -4,7 +4,8 @@
 
 void* Mem_Alloc(u32 size);
 
-extern Unk_ov005_0236bb80* data_ov005_0236bb80;
+/* also declared in src/game/ov005/func_ov005_023536a4.c and 2 more */
+Unk_ov005_0236bb80* data_ov005_0236bb80;
 
 void func_ov005_02352790(Ov005Task* task) {
   task->work = Mem_Alloc(sizeof(Unk_ov005_0236bb80));

@@ -43,6 +43,7 @@ src/game/ov005/ov005_setup_darkened_screens_with_song.c:
 src/game/ov005/func_ov005_02352790.c:
     complete
     .text       start:0x02352790 end:0x023527bc
+    .bss        start:0x0236bb80 end:0x0236bb84
 
 src/game/ov005/ov005_ripple_release_objects.c:
     complete
@@ -147,6 +148,7 @@ src/game/ov005/ov005_setup_blend_in_screens_with_song.c:
 src/game/ov005/func_ov005_023551f8.c:
     complete
     .text       start:0x023551f8 end:0x02355224
+    .bss        start:0x0236bb84 end:0x0236bb88
 
 src/game/ov005/func_ov005_02355224.c:
     complete
@@ -211,6 +213,7 @@ src/game/ov005/ov005_setup_blend_in_screens_by_difficulty.c:
 src/game/ov005/func_ov005_02357804.c:
     complete
     .text       start:0x02357804 end:0x02357830
+    .bss        start:0x0236bb88 end:0x0236bb8c
 
 src/game/ov005/func_ov005_02357830.c:
     complete
@@ -243,6 +246,7 @@ src/game/ov005/ov005_set_up_message_screen.c:
 src/game/ov005/func_ov005_02358928.c:
     complete
     .text       start:0x02358928 end:0x02358954
+    .bss        start:0x0236bb8c end:0x0236bb90
 
 src/game/ov005/func_ov005_02358954.c:
     complete
@@ -283,6 +287,7 @@ src/game/ov005/ov005_set_up_staff_credits_screen.c:
 src/game/ov005/ov005_screen_alloc_large_work.c:
     complete
     .text       start:0x0235a2d0 end:0x0235a30c
+    .bss        start:0x0236bb90 end:0x0236bb94
 
 src/game/ov005/func_ov005_0235a30c.c:
     complete
@@ -383,6 +388,7 @@ src/game/ov005/func_ov005_0235b2cc.c:
 src/game/ov005/func_ov005_0235b2f0.c:
     complete
     .text       start:0x0235b2f0 end:0x0235b3d4
+    .bss        start:0x0236bb94 end:0x0236bba0
 
 src/game/ov005/ov005_draw_credits_entry_text.c:
     complete
@@ -439,6 +445,7 @@ src/game/ov005/ov005_set_up_co_list_screen.c:
 src/game/ov005/ov005_alloc_co_list_work.c:
     complete
     .text       start:0x0235cc18 end:0x0235cc48
+    .bss        start:0x0236bba0 end:0x0236bba4
 
 src/game/ov005/ov005_find_saved_co_list_entry.c:
     complete
@@ -555,6 +562,7 @@ src/game/ov005/ov005_set_up_state_screen.c:
 src/game/ov005/ov005_alloc_state_work.c:
     complete
     .text       start:0x0235ea58 end:0x0235ea90
+    .bss        start:0x0236bba4 end:0x0236bba8
 
 src/game/ov005/ov005_remove_state_screen_arrows.c:
     complete
@@ -643,6 +651,7 @@ src/game/ov005/ov005_init_co_screen.c:
 src/game/ov005/func_ov005_02362618.c:
     complete
     .text       start:0x02362618 end:0x02362644
+    .bss        start:0x0236bba8 end:0x0236bbac
 
 src/game/ov005/ov005_update_co_picture.c:
     complete
@@ -763,6 +772,7 @@ src/game/ov005/sound_room/ov005_set_up_sound_room.c:
 src/game/ov005/sound_room/ov005_sound_room_alloc_work.c:
     complete
     .text       start:0x02364014 end:0x02364058
+    .bss        start:0x0236bbac end:0x0236bbb0
 
 src/game/ov005/sound_room/ov005_sound_room_cell_changed.c:
     complete
@@ -947,6 +957,7 @@ src/game/ov005/shop/ov005_set_up_shop_screen.c:
 src/game/ov005/shop/ov005_alloc_shop_work.c:
     complete
     .text       start:0x02366eec end:0x02366f28
+    .bss        start:0x0236bbb0 end:0x0236bbb4
 
 src/game/ov005/shop/ov005_update_shop_transition.c:
     complete
@@ -1055,6 +1066,7 @@ src/game/ov005/shop/ov005_get_shop_visits.c:
 src/game/ov005/shop/ov005_is_shop_script_running.c:
     complete
     .text       start:0x02367e9c end:0x02367eac
+    .bss        start:0x0236bbb4 end:0x0236bbc0
 
 src/game/ov005/func_ov005_02367eac.c:
     complete

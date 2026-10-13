@@ -8,7 +8,8 @@ void* Mem_Alloc(u32 size);
 void Mem_Zero32(u32 value, void* dst, u32 size);
 void Sound_FadeOutSongOver(int length);
 
-extern Unk_ov005_0236bbac* data_ov005_0236bbac;
+/* also declared in src/game/ov005/func_ov005_023659b8.c and 19 more */
+Unk_ov005_0236bbac* data_ov005_0236bbac;
 
 void Ov005SoundRoom_AllocWork(Ov005Task* task) {
   Unk_ov005_0236bbac* work;
