@@ -17,4 +17,4 @@ Not made. Add one line to the group prompt template (scratch files in `<scratchp
 
 ## Batch 39
 
-The same fault came back: the orchestrator killed `pgrep -f` wait loops left by finished agents, and one of the killed loops was first taken for a running agent's. The rule is still missing from the group prompt template.
+The same fault came back: finished agents left `pgrep -f` wait loops, and the orchestrator killed them. One kill was at first thought to hit a running agent; it did not. The rule is still missing from the group prompt template.
