@@ -13,6 +13,7 @@
  * 0x2c offset, 0x30 size, 0x38 pendingSample, 0x3a lastSample.
  * MICSystemWork offsets: 0x390 lastAddress, 0x394 lastSample.
  */
+#ifdef __MWERKS__
 asm void func_arm7_03805904(void)
 {
     stmfd sp!, {r4, r5, r6, r7, lr}
@@ -110,3 +111,73 @@ done:
     ldmfd sp!, {r4, r5, r6, r7, lr}
     bx lr
 }
+#else
+void func_arm7_03805904(void) {
+  MICWork* work = &data_arm7_0380af74;
+  u16 mode = work->mode;
+  u16 pending = work->pendingSample;
+  u16 sample;
+  u16 pair;
+  u16* at;
+  u32 offset;
+
+  if ((mode & MIC_TYPE_NO_REPEAT) != MIC_TYPE_NO_REPEAT) {
+    sample = work->lastSample;
+  } else {
+    sample = 0xffff;
+  }
+  if (!SPIi_CheckEntry() && SPIi_CheckException(SERIAL_OWNER_MICROPHONE)) {
+    if ((mode & MIC_TYPE_12BIT) == MIC_TYPE_12BIT) {
+      sample = func_arm7_038060bc();
+      if (mode & MIC_TYPE_SIGNED) {
+        sample ^= 0x8000;
+      }
+    } else {
+      sample = func_arm7_03806184();
+      if (mode & MIC_TYPE_SIGNED) {
+        sample ^= 0x80;
+      }
+    }
+  }
+
+  offset = work->offset;
+  if ((mode & MIC_TYPE_12BIT) == MIC_TYPE_12BIT) {
+    at = (u16*)(work->buffer + offset);
+    *at = sample;
+    MIC_SYSTEM_WORK->lastAddress = at;
+    MIC_SYSTEM_WORK->lastSample = sample;
+    offset += 2;
+  } else {
+    sample &= 0xff;
+    if ((offset & 1) == 0) {
+      pending = sample;
+      offset += 1;
+    } else {
+      pair = (u16)(pending | sample << 8);
+      offset -= 1;
+      at = (u16*)(work->buffer + offset);
+      *at = pair;
+      MIC_SYSTEM_WORK->lastAddress = at;
+      MIC_SYSTEM_WORK->lastSample = pair;
+      offset += 2;
+    }
+  }
+  work->pendingSample = pending;
+  work->lastSample = sample;
+
+  if (offset < work->size) {
+    work->offset = offset;
+    return;
+  }
+  work->offset = 0;
+  if ((work->type & MIC_TYPE_LOOP) == MIC_TYPE_LOOP) {
+    SPIi_ReturnResult(MIC_PXI_NOTICE_BUFFER_FULL, MIC_PXI_RESULT_SUCCESS);
+  } else if (SPIi_SetEntry(SERIAL_OWNER_MICROPHONE, MIC_PXI_COMMAND_AUTO_STOP,
+                           0)) {
+    work->status = MIC_STATUS_END_WAIT;
+    REG_TM3CNT_H &= ~TIMER_ENABLE;
+  } else {
+    SPIi_ReturnResult(MIC_PXI_NOTICE_BUFFER_FULL, MIC_PXI_RESULT_EXCLUSIVE);
+  }
+}
+#endif
