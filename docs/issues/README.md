@@ -102,3 +102,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0072](0072-results-header-free-form.md) | Agents write RESULT headers that `collect` cannot read | open | loop | M2 |
 | [0073](0073-shared-scratchpad-and-leftover-waits.md) | Agents share one scratchpad, and a wait loop outlives its agent | open | loop | M2 |
 | [0074](0074-diff-last-pool-word.md) | `fn.py diff` counts a differing row for Isd_VFormat's last literal pool word | closed | tools | M2 |
+| [0075](0075-land-self-args-and-interrupts.md) | `land_self.py --help` started a real landing, and a killed run left a replay open | closed | loop | M1 |

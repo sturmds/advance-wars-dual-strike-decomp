@@ -30,6 +30,7 @@ It refuses to run while land_self.py or another rebase_onto_mainline.py
 runs in this worktree: both hold <git dir>/land-self.lock.
 """
 
+import argparse
 import fcntl
 import json
 import os
@@ -186,10 +187,23 @@ def abort() -> int:
     return 0
 
 
+def parse_args() -> argparse.Namespace:
+    """-h/--help print the module text and exit 0; unknown arguments exit 2.
+    Runs before the worktree lock or any git state is touched."""
+    parser = argparse.ArgumentParser(prog="rebase_onto_mainline.py", description=__doc__,
+                                     formatter_class=argparse.RawDescriptionHelpFormatter)
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--continue", dest="resume", action="store_true")
+    mode.add_argument("--abort", action="store_true")
+    mode.add_argument("--onto", metavar="REV")
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
+    ARGS = parse_args()
     LOCK = lock_worktree()
-    if "--continue" in sys.argv:
+    if ARGS.resume:
         sys.exit(resume())
-    if "--abort" in sys.argv:
+    if ARGS.abort:
         sys.exit(abort())
     sys.exit(start())

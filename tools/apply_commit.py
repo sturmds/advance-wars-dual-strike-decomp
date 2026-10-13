@@ -518,6 +518,13 @@ def resolve_equal_sides() -> None:
 def main() -> int:
     if len(sys.argv) < 2:
         sys.exit(__doc__)
+    if sys.argv[1] in ("-h", "--help"):
+        print(__doc__)
+        return 0
+    unknown = [a for a in sys.argv[2:] if a != "--no-commit"] + (
+        [sys.argv[1]] if sys.argv[1].startswith("-") else [])
+    if unknown:
+        sys.exit(f"error: unknown argument {unknown[0]}\n\n{__doc__}")
     global COMMIT
     commit = COMMIT = git("rev-parse", sys.argv[1]).strip()
     if git("status", "--porcelain", "--untracked-files=no").strip():

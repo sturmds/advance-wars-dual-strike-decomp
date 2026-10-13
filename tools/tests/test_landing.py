@@ -583,6 +583,22 @@ class LandSelfBusyTest(RepoCase):
         env = {k: v for k, v in os.environ.items() if k != "LAND_SELF_LOCK_HELD"}
         return subprocess.run([sys.executable, *args], cwd=self.wt, capture_output=True, text=True, env=env)
 
+    def test_help_and_unknown_arguments(self):
+        """-h prints usage and exits 0; an unknown argument exits 2. Neither
+        takes the worktree lock."""
+        for tool in ("land_self.py", "rebase_onto_mainline.py", "apply_commit.py"):
+            for flag in ("-h", "--help"):
+                r = self.run_tool(str(TOOLS / tool), flag)
+                self.assertEqual(r.returncode, 0, tool + r.stdout + r.stderr)
+                self.assertIn(tool, r.stdout)
+            r = self.run_tool(str(TOOLS / tool), "--bogus")
+            self.assertNotEqual(r.returncode, 0, tool)
+            self.assertIn("--bogus", r.stderr)
+        self.assertEqual(self.repo.git("-C", str(self.wt), "branch", "--show-current"), "agent")
+        self.assertFalse((self.gitdir / "rebase-onto-mainline.json").exists())
+        lock = self.gitdir / "land-self.lock"
+        self.assertEqual(lock.read_text() if lock.exists() else "", "")
+
     def test_refuses_open_replay(self):
         (self.gitdir / "rebase-onto-mainline.json").write_text("{}")
         r = self.run_tool(str(TOOLS / "land_self.py"))
@@ -814,6 +830,32 @@ class LandSelfReexecTest(RepoCase):
         r = self.land()
         self.assertEqual(r.returncode, 3, r.stdout + r.stderr)
         self.assertIn("QUEUE FD OPEN True", r.stdout)
+
+    def test_sigterm_aborts_the_replay(self):
+        """A run killed during its replay aborts the replay instead of
+        leaving it open."""
+        import signal
+        import time
+        self.agent_commit()
+        sleeper = "import time\ntime.sleep(60)\n"
+        self.repo.commit({"tools/apply_commit.py": sleeper}, "mainline changes apply_commit.py")
+        env = {k: v for k, v in os.environ.items() if k != "LAND_SELF_LOCK_HELD"}
+        p = subprocess.Popen([sys.executable, "tools/land_self.py"], cwd=self.wt, env=env,
+                             stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        state = Path(self.repo.git("-C", str(self.wt), "rev-parse", "--path-format=absolute",
+                                   "--git-path", "rebase-onto-mainline.json"))
+        for _ in range(200):
+            if state.exists() or p.poll() is not None:
+                break
+            time.sleep(0.1)
+        self.assertTrue(state.exists(), "the replay did not start")
+        time.sleep(0.5)
+        p.send_signal(signal.SIGTERM)
+        out, err = p.communicate(timeout=60)
+        self.assertEqual(p.returncode, 130, out + err)
+        self.assertIn("aborted it", err)
+        self.assertFalse(state.exists())
+        self.assertEqual(self.repo.git("-C", str(self.wt), "branch", "--show-current"), "agent")
 
     def test_review_stamp_help(self):
         r = subprocess.run([sys.executable, str(TOOLS / "review_stamp.py"), "--help"],

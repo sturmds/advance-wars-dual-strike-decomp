@@ -46,13 +46,21 @@ so a newer check on mainline holds for a run that started with older code.
 The new copy keeps the queue turn: the locked file is passed on in
 LAND_QUEUE_FD.
 
+-h and --help print this text and exit 0; any other argument is refused
+(exit 2) before git or a lock is touched. If a signal (SIGTERM, SIGHUP,
+SIGINT) or a closed output pipe ends the run during a replay that this run
+started, it aborts that replay (back on the branch as it was) and says so;
+if even that fails, the message names `rebase_onto_mainline.py --abort`.
+
 Exit codes: 0 landed, 1 conflict to fix, 2 build failed, 3 gave up,
 4 busy (a replay is open or another run is under way in this worktree),
 5 commits without a tenets review stamp.
 """
 
+import argparse
 import fcntl
 import os
+import signal
 import subprocess
 import sys
 import time
@@ -232,6 +240,49 @@ def unreviewed(show_findings: bool = True) -> bool:
     return True
 
 
+class Interrupted(Exception):
+    pass
+
+
+def interrupted(signum, frame):
+    raise Interrupted(signal.Signals(signum).name)
+
+
+def check_args() -> None:
+    """Print usage for -h/--help, refuse anything else, before any state changes."""
+    parser = argparse.ArgumentParser(prog="land_self.py", description=__doc__,
+                                     formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.parse_args()
+
+
+def guarded_main() -> int:
+    """Run main(); if an interrupt or a closed pipe ends it during a replay
+    this run started, abort the replay instead of leaving it open."""
+    open_before = STATE.exists()
+    for sig in (signal.SIGTERM, signal.SIGHUP, signal.SIGINT):
+        signal.signal(sig, interrupted)
+    signal.signal(signal.SIGPIPE, signal.SIG_IGN)  # a closed pipe raises BrokenPipeError instead
+    try:
+        return main()
+    except (Interrupted, BrokenPipeError) as e:
+        reason = e.args[0] if isinstance(e, Interrupted) else "output pipe closed"
+        if open_before or not STATE.exists():
+            msg = f"land_self.py stopped ({reason})."
+        else:
+            r = subprocess.run([sys.executable, str(ROOT / "tools/rebase_onto_mainline.py"), "--abort"],
+                               cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                               env={**os.environ, "LAND_SELF_LOCK_HELD": "1"})
+            msg = (f"land_self.py stopped ({reason}) during the replay and aborted it; the branch is as it was."
+                   if r.returncode == 0 else
+                   f"land_self.py stopped ({reason}) during the replay and could not abort it. Run\n"
+                   "    python3 tools/rebase_onto_mainline.py --abort")
+        try:
+            print(msg, file=sys.stderr)
+        except BrokenPipeError:
+            pass
+        return 130
+
+
 def main() -> int:
     sys.stdout.reconfigure(line_buffering=True)  # progress shows up in a log while it waits
     if STATE.exists():
@@ -285,4 +336,5 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    check_args()
+    sys.exit(guarded_main())
