@@ -28,9 +28,7 @@ src/game/main/bss_022a0160.c
 src/game/main/bss_022a1b10.c
 src/game/main/bss_022a6c30.c
 src/game/main/bss_022a7b80.c
-src/game/main/screen/screen_bss.c
 src/game/main/screen/screen_bss_0216ef94.c
-src/game/main/screen/screen_bss_0216fca8.c
 src/game/main/screen/screen_bss_021700a8.c
 src/game/main/screen/screen_bss_02170314.c
 src/game/main/screen/screen_bss_02172108.c

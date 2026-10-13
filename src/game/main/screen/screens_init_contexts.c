@@ -2,6 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/battle_save.h"
+#include "game/screen_contexts.h"
 
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
@@ -20,49 +21,25 @@ extern u8 data_02157618[]; /* sub screen layer config */
 extern Unk_02080440_48 data_02183b08;
 extern Unk_02080440_48 data_02189cd8;
 
-/* Buffers of the main screen context. */
-extern struct OamBuffer data_021704a8;
-extern u8 data_02177b08[];
-extern u8 data_0216fca8[];
-extern struct FontState data_0216f5f4[2];
-extern u8 data_0216e614[];
+/* Buffers of the main screen context that game/screen_contexts.h leaves out:
+ * symbols.txt makes each one smaller than the buffer, with more symbols
+ * inside it (a task pool of single tasks, for one). */
 extern struct IconBank data_0216ef94;
-extern u8 data_02171108[];
-extern u8 data_0216e76c[];
-extern u8 data_0216e5b8[];
 extern struct Task data_02173788;
-extern struct Task* data_0216e96c[];
-extern struct Task* data_0216e5d4[];
 extern struct ScriptSlot data_02172108;
-extern u16 data_0216e5b0[2];
-extern s16 data_0216e5b4[2];
-extern Unk_02080440_50 data_0216e6a4;
-extern u8 data_0216e5ac[];
-extern Unk_02080440_5c data_0216e5c0[2];
-extern struct WeatherFx data_0216ebf4;
 
-/* Buffers of the sub screen context. Four of them are the second element of
- * an array of the main screen's (data_0216e5b0, data_0216e5b4, data_0216e5c0,
- * data_0216f5f4); the original names them by address. */
-extern struct OamBuffer data_02170ad8;
-extern u8 data_0217db08[];
+/* The same for the sub screen context, and four names for the second
+ * element of a main screen array (data_0216e5b0, data_0216e5b4,
+ * data_0216e5c0, data_0216f5f4); the original names them by address. */
 extern u8 data_021700a8[];
 extern struct FontState data_0216f94e;
-extern u8 data_0216e65c[];
 extern struct IconBank data_0216f2c4;
-extern u8 data_02171908[];
-extern u8 data_0216e86c[];
-extern u8 data_0216e5bc[];
 extern struct Task data_02175948;
-extern struct Task* data_0216eab0[];
-extern struct Task* data_0216e5f4[];
 extern struct ScriptSlot data_02172c48;
 extern u16 data_0216e5b2;
 extern s16 data_0216e5b6;
-extern Unk_02080440_50 data_0216e708;
 extern u8 data_0216e5ae[];
 extern Unk_02080440_5c data_0216e5c9;
-extern struct WeatherFx data_0216edc4;
 
 void func_0200a630(void);
 void Screen_SetCurrentBoth(void* screen);
@@ -131,7 +108,7 @@ void Screens_InitContexts(void) {
   data_027c027c->unk_48[1] = &data_02189cd8;
   data_027c027c->unk_50[0] = &data_0216e6a4;
   data_027c027c->unk_50[1] = &data_0216e708;
-  data_027c027c->unk_58 = data_0216e5ac;
+  data_027c027c->unk_58 = data_0216e5ac[0];
   data_027c027c->unk_5c[0] = data_0216e5c0;
   data_027c027c->unk_5c[1] = &data_0216e5c9;
   data_027c027c->weatherFx = &data_0216ebf4;
