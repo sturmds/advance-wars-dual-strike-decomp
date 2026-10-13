@@ -14,17 +14,6 @@ asm void SVC_UnpackBits(const void *src, void *dst, const void *params)
 #include <stdio.h>
 #include <stdlib.h>
 
-/* What params points to, 8 bytes. */
-typedef struct UnpackBitsParams {
-  u16 srcBytes; /* bytes of packed input */
-  u8 srcBits;   /* width of an input field: 1, 2, 4 or 8 */
-  u8 dstBits;   /* width of an output field: 1, 2, 4, 8, 16 or 32 */
-  u32 offset;   /* bits 0-30 added to each field; bit 31 below */
-} UnpackBitsParams;
-
-#define UNPACK_BITS_OFFSET_MASK 0x7fffffff
-#define UNPACK_BITS_OFFSET_ZEROS 0x80000000 /* add the offset to 0 too */
-
 static void UnpackBitsFail(const char* what) {
   fprintf(stderr, "SVC_UnpackBits: %s\n", what);
   abort();

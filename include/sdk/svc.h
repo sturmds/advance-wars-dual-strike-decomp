@@ -36,6 +36,18 @@ void SVC_CpuFastSet(const void* src, void* dst, u32 control);
 u32 SVC_Sqrt(u32 value);
 u16 SVC_GetCRC16(u32 initial, const void* data, u32 size);
 int SVC_IsDebugger(void);
+/* What params points to in SVC_UnpackBits and Bios_WidenBitDepth_Arm7, 8
+ * bytes. */
+typedef struct UnpackBitsParams {
+  u16 srcBytes; /* bytes of packed input */
+  u8 srcBits;   /* width of an input field: 1, 2, 4 or 8 */
+  u8 dstBits;   /* width of an output field: 1, 2, 4, 8, 16 or 32 */
+  u32 offset;   /* bits 0-30 added to each field; bit 31 below */
+} UnpackBitsParams;
+
+#define UNPACK_BITS_OFFSET_MASK 0x7fffffff
+#define UNPACK_BITS_OFFSET_ZEROS 0x80000000 /* add the offset to 0 too */
+
 void SVC_UnpackBits(const void* src, void* dst, const void* params);
 void Bios_UnpackLz77ByBytes(const void* src, void* dst);
 void Bios_UnpackLz77ByHalfwords(const void* src, void* dst);

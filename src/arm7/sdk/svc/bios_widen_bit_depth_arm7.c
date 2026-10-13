@@ -14,15 +14,6 @@ asm void Bios_WidenBitDepth_Arm7(const void *src, void *dst, const void *params)
 #include <stdio.h>
 #include <stdlib.h>
 
-/* What params points to, 8 bytes. */
-typedef struct BitWidening {
-  u16 srcBytes; /* bytes to read at src */
-  u8 srcBits;   /* width of each source field: 1, 2, 4 or 8 */
-  u8 dstBits;   /* width of each output field: 1, 2, 4, 8, 16 or 32 */
-  u32 offset;   /* bits 0-30: added to each field; bit 31: add it to zero
-                   fields too */
-} BitWidening;
-
 /* Stops the program with a message. */
 static void WidenFail(const char* what) {
   fprintf(stderr, "Bios_WidenBitDepth_Arm7: %s\n", what);
@@ -39,13 +30,13 @@ static void WidenFail(const char* what) {
    list, or a result wider than dstBits, is not known. Such inputs stop
    the program. */
 void Bios_WidenBitDepth_Arm7(const void* src, void* dst, const void* params) {
-  const BitWidening* widening = params;
+  const UnpackBitsParams* widening = params;
   const u8* in = src;
   u32* out = dst;
   u32 srcBits = widening->srcBits;
   u32 dstBits = widening->dstBits;
-  u32 addend = widening->offset & 0x7fffffff;
-  int addToZero = (widening->offset & 0x80000000) != 0;
+  u32 addend = widening->offset & UNPACK_BITS_OFFSET_MASK;
+  int addToZero = (widening->offset & UNPACK_BITS_OFFSET_ZEROS) != 0;
   u32 word = 0;
   u32 filled = 0;
   u32 i;
