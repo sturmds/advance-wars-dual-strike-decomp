@@ -2,6 +2,7 @@
 
 extern u32 BuildInfo_Arm7[];    /* module parameters the linker fills in */
 
+#ifdef __MWERKS__
 /*
  * Copies the ARM7 autoload blocks (main RAM and WRAM parts) to where they
  * run. Same loop as the ARM9 do_autoload: BuildInfo_Arm7[0] and [1] bound
@@ -44,3 +45,42 @@ build_info:
 callback:
     bx lr
 }
+#else
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+/* The table words are addresses on the DS. A copy size that is not a
+   multiple of 4 copies one more word; a clear size that is not one ends the
+   list after that block, as the assembly's last compare is then not equal.
+   The word loads and stores would round misaligned pointers down, so one
+   stops the program. */
+void do_autoload_Arm7(void) {
+  u32* entry = (u32*)(uintptr_t)BuildInfo_Arm7[0];
+  u32* entries_end = (u32*)(uintptr_t)BuildInfo_Arm7[1];
+  const u32* src = (const u32*)(uintptr_t)BuildInfo_Arm7[2];
+
+  while (entry != entries_end) {
+    u32* dst = (u32*)(uintptr_t)entry[0];
+    u8* end = (u8*)dst + entry[1];
+
+    if ((uintptr_t)dst % 4 != 0 || (uintptr_t)src % 4 != 0) {
+      fprintf(stderr, "do_autoload_Arm7: %p or %p is not word-aligned\n",
+              (void*)dst, (const void*)src);
+      abort();
+    }
+    while ((u8*)dst < end) {
+      *dst++ = *src++;
+    }
+    end = (u8*)dst + entry[2];
+    while ((u8*)dst < end) {
+      *dst++ = 0;
+    }
+    entry += 3;
+    if ((u8*)dst != end) {
+      break;
+    }
+  }
+  /* The callback the assembly ends in is an empty function. */
+}
+#endif

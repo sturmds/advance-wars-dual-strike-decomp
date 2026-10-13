@@ -12,6 +12,7 @@ void NitroStartUp(void);
 void func_0212950c(void);
 void __call_static_initializers(void);
 
+#ifdef __MWERKS__
 /*
  * ARM9 entry point from the cartridge header (crt0). Turns interrupts off
  * through IME, sets up the protection unit and caches, then gives the IRQ,
@@ -80,3 +81,6 @@ clear_bss:
     ldr lr, =0xffff0000
     bx r1
 }
+#else
+#error "Entry: crt0 stack set-up in IRQ, supervisor and system modes (msr) has no portable C equivalent"
+#endif

@@ -6,6 +6,7 @@ void do_autoload_Arm7(void);
 void DetectMainMemorySize(void);
 void Arm7Main(void);
 
+#ifdef __MWERKS__
 /*
  * ARM7 entry point from the cartridge header (crt0). Turns interrupts off
  * through IME and clears ARM7 WRAM from 0x03800000 (or from the end of this
@@ -58,3 +59,6 @@ clear_bss:
     ldr lr, =0xffff0000
     bx r1
 }
+#else
+#error "Entry_Arm7: crt0 stack set-up in supervisor, IRQ and system modes (msr) has no portable C equivalent"
+#endif

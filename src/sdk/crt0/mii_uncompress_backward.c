@@ -1,5 +1,6 @@
 #include "types.h"
 
+#ifdef __MWERKS__
 /*
  * Unpacks a module compressed from its end, in place. The two words before
  * `bottom` hold the compressed length (low 24 bits) with the footer length
@@ -62,3 +63,55 @@ flush_line:
 done:
     bx lr
 }
+#else
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+/* The cache upkeep at the end (mcr) has no C equivalent and is left out: C
+   sees the bytes it wrote without it, and running them as code is outside
+   C. The two-word header is read with ldmdb, which would round a
+   misaligned bottom down, so one stops the program. */
+void MIi_UncompressBackward(void* bottom) {
+  u8* src;
+  u8* src_end;
+  u8* dst;
+  u32 lengths;
+
+  if (bottom == NULL) {
+    return;
+  }
+  if ((uintptr_t)bottom % 4 != 0) {
+    fprintf(stderr, "MIi_UncompressBackward: %p is not word-aligned\n", bottom);
+    abort();
+  }
+  lengths = ((u32*)bottom)[-2];
+  dst = (u8*)bottom + ((u32*)bottom)[-1];
+  src = (u8*)bottom - (lengths >> 24);
+  src_end = (u8*)bottom - (lengths & 0x00ffffff);
+  while (src > src_end) {
+    u32 flags = *--src;
+    int i;
+
+    for (i = 0; i < 8; i++) {
+      if (flags & 0x80) {
+        u32 high = *--src;
+        u32 low = *--src;
+        u32 distance = (((high & 0xf) << 8) | low) + 3;
+        int count = (high >> 4) + 3;
+
+        while (count-- > 0) {
+          dst--;
+          *dst = dst[distance];
+        }
+      } else {
+        *--dst = *--src;
+      }
+      if (src <= src_end) {
+        break;
+      }
+      flags <<= 1;
+    }
+  }
+}
+#endif

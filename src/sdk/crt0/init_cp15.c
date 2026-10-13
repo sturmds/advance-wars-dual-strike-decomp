@@ -3,6 +3,7 @@
 extern u32 data_027c0000;   /* start of DTCM */
 extern u32 data_027c0023;   /* region 2 setting; see below */
 
+#ifdef __MWERKS__
 /*
  * Sets up the ARM946E-S system control coprocessor (CP15) at boot. Turns
  * off the protection unit, caches and TCMs, invalidates both caches and
@@ -67,3 +68,6 @@ asm void init_cp15(void)
     mcr p15, 0, r0, c1, c0, 0
     bx lr
 }
+#else
+#error "init_cp15: programming the CP15 protection unit, caches and TCMs (mcr/mrc) has no portable C equivalent"
+#endif
