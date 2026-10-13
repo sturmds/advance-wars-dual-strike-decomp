@@ -10,5 +10,5 @@ src/sdk/msl/__fp_trap_f.c 2.0-56
 src/sdk/msl/__fp_trap_ff.c 2.0-56
 src/sdk/msl/__pformatter.c 2.0-56
 src/sdk/msl/double2hex.c 2.0-56
-src/sdk/msl/func_02121d58.c 2.0-56
-src/sdk/msl/func_02121ea8.c 2.0-56
+src/sdk/msl/fp_trap_double_pair_to_int.c 2.0-56
+src/sdk/msl/fp_trap_double_to_int.c 2.0-56

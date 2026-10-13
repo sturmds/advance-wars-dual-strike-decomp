@@ -1,4 +1,5 @@
 #include "types.h"
+#include "sdk/fp_status.h"
 
 /*
  * Float and double comparison helpers of the Metrowerks ARM runtime,
@@ -25,9 +26,6 @@
  * in another function. Handlers end by falling through into the next one.
  */
 
-u32 *__fp_status(void); /* returns the floating-point status word */
-float __fp_trap_ff(float a, float b, u32 op);
-s32 func_02121d58(double a, double b, u32 op);
 
 #ifdef __MWERKS__
 asm void FCmp_Invalid(void);
@@ -405,7 +403,7 @@ asm void FCmp_NanBFlags(void)
 
 /* Three-way double compare: 0 equal, 1 less, 2 greater, 3 unordered.
    Only a signaling NaN is invalid. */
-asm void func_021274f4(void)
+asm void DCmp_ThreeWay(void)
 {
     mov ip, #0x200000
     cmn ip, r1, lsl #1
@@ -449,8 +447,8 @@ L_0212756c:
     b L_02127508
 }
 
-/* Three-way double compare like func_021274f4, but any NaN is invalid. */
-asm void func_02127584(void)
+/* Three-way double compare like DCmp_ThreeWay, but any NaN is invalid. */
+asm void DCmp_ThreeWaySignaling(void)
 {
     mov ip, #0x200000
     cmn ip, r1, lsl #1
@@ -581,7 +579,7 @@ L_0212770c:
 }
 
 /* Double equality in the Z flag (set when equal). */
-asm void func_02127724(void)
+asm void DCmp_EqualFlags(void)
 {
     mov ip, #0x200000
     cmn ip, r1, lsl #1
@@ -702,7 +700,7 @@ L_02127880:
 
 /* Ordered double compare in the flags: Z set when equal, C clear when
    a < b. Unordered leaves C set and Z clear. */
-asm void func_02127898(void)
+asm void DCmp_FlagsForLess(void)
 {
     mov ip, #0x200000
     cmn ip, r1, lsl #1
@@ -822,9 +820,9 @@ L_021279f8:
     b L_0212799c
 }
 
-/* Ordered double compare in the flags like func_02127898, but unordered
+/* Ordered double compare in the flags like DCmp_FlagsForLess, but unordered
    leaves Z set and C clear. */
-asm void func_02127a10(void)
+asm void DCmp_FlagsForGreater(void)
 {
     mov ip, #0x200000
     cmn ip, r1, lsl #1
@@ -859,7 +857,7 @@ L_02127a68:
 }
 
 /* Returns 1 when a double operand is a NaN, else 0. */
-asm void func_02127a78(void)
+asm void DCmp_IsUnordered(void)
 {
     mov ip, #0x200000
     cmn ip, r1, lsl #1
@@ -887,7 +885,7 @@ L_02127ab0:
 }
 
 /* Returns 1 when neither double operand is a NaN, else 0. */
-asm void func_02127ac8(void)
+asm void DCmp_IsOrdered(void)
 {
     mov ip, #0x200000
     cmn ip, r1, lsl #1
@@ -1071,7 +1069,7 @@ asm void DCmp_CallTrap(void)
 {
     ldr ip, [pc, #20]
     stmfd sp!, {ip}
-    bl func_02121d58
+    bl FpTrap_DoublePairToInt
     add sp, sp, #8
     ldmfd sp!, {lr}
     bx lr
@@ -1384,7 +1382,7 @@ int FCmp_IsOrdered(float a, float b) {
 }
 
 static int DCmp_CallTrap(double a, double b) {
-  return func_02121d58(a, b, FP_OP_INVALID_DOUBLE);
+  return FpTrap_DoublePairToInt(a, b, FP_OP_INVALID_DOUBLE);
 }
 
 static int DCmp_Invalid(double a, double b, int unordered) {
@@ -1459,7 +1457,7 @@ static u32 DCmp_NanAFlags(double a, double b, const char* name) {
 
 /* Three-way double compare: 0 equal, 1 less, 2 greater, 3 unordered. Only a
    signaling NaN is invalid. */
-int func_021274f4(double a, double b) {
+int DCmp_ThreeWay(double a, double b) {
   if (DoubleIsNan(a)) {
     return DCmp_NanA(a, b, 3);
   }
@@ -1469,8 +1467,8 @@ int func_021274f4(double a, double b) {
   return ThreeWay(DoubleOrder(a, b));
 }
 
-/* Three-way double compare like func_021274f4, but any NaN is invalid. */
-int func_02127584(double a, double b) {
+/* Three-way double compare like DCmp_ThreeWay, but any NaN is invalid. */
+int DCmp_ThreeWaySignaling(double a, double b) {
   if (DoubleIsNan(a) || DoubleIsNan(b)) {
     return DCmp_Invalid(a, b, 3);
   }
@@ -1499,7 +1497,7 @@ int _deq(double a, double b) {
 
 /* FP_FLAG_Z when equal. The assembly's C flag means nothing here and is not
    given. */
-u32 func_02127724(double a, double b) {
+u32 DCmp_EqualFlags(double a, double b) {
   if (DoubleIsNan(a)) {
     return DCmp_NanAFlags(a, b, __func__);
   }
@@ -1525,7 +1523,7 @@ int _dleq(double a, double b) {
 
 /* Z set when equal, C clear when a < b. Unordered gives C set and Z
    clear. */
-u32 func_02127898(double a, double b) {
+u32 DCmp_FlagsForLess(double a, double b) {
   if (DoubleIsNan(a) || DoubleIsNan(b)) {
     return DCmp_InvalidFlagsHi(__func__);
   }
@@ -1546,8 +1544,8 @@ int _dgeq(double a, double b) {
   return DoubleOrder(a, b) >= 0;
 }
 
-/* Like func_02127898, but unordered gives Z set and C clear. */
-u32 func_02127a10(double a, double b) {
+/* Like DCmp_FlagsForLess, but unordered gives Z set and C clear. */
+u32 DCmp_FlagsForGreater(double a, double b) {
   if (DoubleIsNan(a) || DoubleIsNan(b)) {
     return DCmp_InvalidFlagsEq(__func__);
   }
@@ -1555,7 +1553,7 @@ u32 func_02127a10(double a, double b) {
 }
 
 /* 1 when a double operand is a NaN, else 0. */
-int func_02127a78(double a, double b) {
+int DCmp_IsUnordered(double a, double b) {
   if (DoubleIsNan(a)) {
     return DCmp_NanA(a, b, 1);
   }
@@ -1566,7 +1564,7 @@ int func_02127a78(double a, double b) {
 }
 
 /* 1 when neither double operand is a NaN, else 0. */
-int func_02127ac8(double a, double b) {
+int DCmp_IsOrdered(double a, double b) {
   if (DoubleIsNan(a)) {
     return DCmp_NanA(a, b, 0);
   }

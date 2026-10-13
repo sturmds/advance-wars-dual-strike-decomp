@@ -23413,7 +23413,7 @@ src/sdk/msl/exit.c:
     complete
     .text       start:0x02121d04 end:0x02121d58
 
-src/sdk/msl/func_02121d58.c:
+src/sdk/msl/fp_trap_double_pair_to_int.c:
     complete
     .text       start:0x02121d58 end:0x02121db0
 
@@ -23429,7 +23429,7 @@ src/sdk/msl/__fp_trap_d.c:
     complete
     .text       start:0x02121e58 end:0x02121ea8
 
-src/sdk/msl/func_02121ea8.c:
+src/sdk/msl/fp_trap_double_to_int.c:
     complete
     .text       start:0x02121ea8 end:0x02121ef4
 

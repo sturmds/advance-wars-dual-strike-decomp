@@ -11,5 +11,8 @@
 u32* __fp_status(void);
 float __fp_trap_f(float a, u32 op);
 float __fp_trap_ff(float a, float b, u32 op);
+/* __fp_trap on one or two doubles; each returns the low word of its result. */
+s32 FpTrap_DoubleToInt(double a, u32 op);
+s32 FpTrap_DoublePairToInt(double a, double b, u32 op);
 
 #endif

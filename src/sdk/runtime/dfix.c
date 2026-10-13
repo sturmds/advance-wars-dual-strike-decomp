@@ -1,8 +1,5 @@
 #include "types.h"
-
-u32 *__fp_status(void);
-extern s32 func_02121ea8(double a, u32 op);
-extern float __fp_trap_f(float a, u32 op);
+#include "sdk/fp_status.h"
 
 #ifdef __MWERKS__
 /*
@@ -90,7 +87,7 @@ maybe_min_int:
 invalid_trap:
     ldr r2, =0x04c000c8
     stmfd sp!, {lr}
-    bl func_02121ea8
+    bl FpTrap_DoubleToInt
     ldmfd sp!, {lr}
     bx lr
 inexact_trap:
@@ -151,7 +148,7 @@ int _dfix(double x) {
     }
     /* Too large, infinity or NaN. */
     if (*__fp_status() & FP_TRAP_INVALID) {
-      return func_02121ea8(x, FP_OP_INVALID_DFIX);
+      return FpTrap_DoubleToInt(x, FP_OP_INVALID_DFIX);
     }
     *__fp_status() |= FP_STICKY_INVALID;
     return (bits >> 63) ? INT_MIN : INT_MAX;
