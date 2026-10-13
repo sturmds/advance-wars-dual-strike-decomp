@@ -1,5 +1,6 @@
 #include "sdk/os_arm7.h"
 
+#ifdef __MWERKS__
 /*
  * ARM7 copy of OS_GetLockID: finds a free lock ID in the ARM7's two-word map
  * at 0x027fffb8 in shared main RAM (bit set = free, top bit first), clears
@@ -50,3 +51,22 @@ found:
     str r2, [r3]
     bx lr
 }
+#else
+int LockId_Allocate_Arm7(void) {
+  vu32* map = OS7_LOCK_ID_FREE_MAP;
+  int word;
+  int bit;
+
+  for (word = 0; word < 2; word++) {
+    u32 free = map[word];
+
+    for (bit = 0; bit < 32; bit++) {
+      if (free & (0x80000000 >> bit)) {
+        map[word] &= ~(0x80000000 >> bit);
+        return 0x80 + word * 0x20 + bit;
+      }
+    }
+  }
+  return OS_LOCK_ID_ERROR;
+}
+#endif

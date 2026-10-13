@@ -1,6 +1,7 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
 
+#ifdef __MWERKS__
 /*
  * ARM7 copy of OS_SaveContext (main already has that symbol): saves CPSR,
  * r0 to r12, sp and lr into context, plus the supervisor sp. Like setjmp,
@@ -22,3 +23,6 @@ asm int Context_Capture_Arm7(OSContext *context)
     mov r0, #0
     bx lr
 }
+#else
+#error "Context_Capture_Arm7: saving the registers and CPSR, and the supervisor-mode sp through a mode switch (mrs/msr), has no portable C equivalent"
+#endif

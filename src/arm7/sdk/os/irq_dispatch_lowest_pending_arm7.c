@@ -2,6 +2,7 @@
 
 extern OSIrqFunction data_arm7_03807750[];   /* handler table, one entry per interrupt bit */
 
+#ifdef __MWERKS__
 /*
  * ARM7 copy of OS_IrqHandler, the IRQ vector body. With IME on, picks the
  * lowest bit set in IE & IF, acknowledges it in IF, and calls its handler
@@ -32,3 +33,25 @@ next_bit:
     ldr lr, =Irq_WakeAndSwitchOnExit_Arm7
     bx r0
 }
+#else
+/* The assembly calls the handler with lr at Irq_WakeAndSwitchOnExit_Arm7,
+   which ends by popping the lr pushed here; calling one after the other
+   does the same. */
+void Irq_DispatchLowestPending_Arm7(void) {
+  u32 pending;
+  int bit;
+
+  if (*(vu32*)REG_IME == 0) { /* a word read, as in the assembly */
+    return;
+  }
+  pending = *REG_IE & *REG_IF;
+  if (pending == 0) {
+    return;
+  }
+  for (bit = 0; (pending & (1u << bit)) == 0; bit++) {
+  }
+  *REG_IF = 1u << bit;
+  data_arm7_03807750[bit]();
+  Irq_WakeAndSwitchOnExit_Arm7();
+}
+#endif

@@ -2,6 +2,7 @@
 
 extern OSThreadInfo data_arm7_0380790c;   /* ARM7 OSi_ThreadInfo */
 
+#ifdef __MWERKS__
 /*
  * ARM7 copy of OS_IrqHandler_ThreadSwitch, the return path of
  * Irq_DispatchLowestPending_Arm7. Marks the threads named in the wake mask
@@ -90,3 +91,6 @@ no_callback:
     stmda sp!, {r0, r1, r2, r3, r12, lr}
     ldmfd sp!, {pc}
 }
+#else
+#error "Irq_WakeAndSwitchOnExit_Arm7: a thread switch that saves and loads banked registers across CPU modes has no portable C equivalent"
+#endif

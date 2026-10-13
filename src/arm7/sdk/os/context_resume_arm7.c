@@ -1,6 +1,7 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
 
+#ifdef __MWERKS__
 /*
  * ARM7 copy of OS_LoadContext (main already has that symbol): switches to
  * supervisor mode and resumes the context that OS_SaveContext saved. The
@@ -20,3 +21,6 @@ asm void Context_Resume_Arm7(OSContext *context)
     nop
     subs pc, lr, #4
 }
+#else
+#error "Context_Resume_Arm7: switching to supervisor mode and loading every register with a return through SPSR has no portable C equivalent"
+#endif

@@ -1,6 +1,7 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
 
+#ifdef __MWERKS__
 asm OSIntrMode Cpu_MaskIrqFiq_Arm7(void)
 {
     mrs r0, CPSR
@@ -9,3 +10,6 @@ asm OSIntrMode Cpu_MaskIrqFiq_Arm7(void)
     and r0, r0, #0xc0
     bx lr
 }
+#else
+#error "Cpu_MaskIrqFiq_Arm7: setting the IRQ- and FIQ-disable bits in CPSR (mrs/msr) has no portable C equivalent"
+#endif

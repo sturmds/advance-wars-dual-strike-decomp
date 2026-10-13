@@ -4,6 +4,7 @@ extern OSThreadInfo data_arm7_0380790c;
 extern u32 gOsNestedIrqPriorities[][2];    /* {IE mask, handler index} pairs, highest priority first */
 extern void (*data_arm7_03807750[])(void);
 
+#ifdef __MWERKS__
 /*
  * IRQ vector body that lets interrupts nest. Returns at once when IME is off
  * or no enabled interrupt is pending; when none of the pending ones is in
@@ -115,3 +116,6 @@ call_handler:
     bxeq r0
     ldmfd sp!, {pc}
 }
+#else
+#error "IrqNest_DispatchByPriority: nested IRQ dispatch with CPU mode switches, SPSR saves and a stack swap has no portable C equivalent"
+#endif
