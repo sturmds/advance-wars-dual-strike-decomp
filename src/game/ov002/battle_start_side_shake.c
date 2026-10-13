@@ -1,7 +1,5 @@
 #include "types.h"
-
-/* Step counter of each side's hit shake, read by Battle_StepSideShake. */
-extern u8 data_ov002_0236bbdc[2];
+#include "game/battle_side_shake.h"
 
 /* Starts the shake of a side (0 or 1) at its first step. */
 void Battle_StartSideShake(u32 side) {
