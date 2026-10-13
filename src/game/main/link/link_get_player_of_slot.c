@@ -1,7 +1,7 @@
 #include "types.h"
+#include "game/link_slots.h"
 
 /* Player index + 1 for each link slot; 0: empty. */
-extern u8 gLinkSlotPlayers[];
 
 /* Returns the player index in link slot (1-4), or -1 for an empty slot.
  * The reverse of Link_FindSlotOfPlayer. */

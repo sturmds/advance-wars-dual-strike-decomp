@@ -7,8 +7,6 @@ int Co_GetSavedPaletteVariant(int coId);
 int Co_GetSavedPictureVariant(int coId);
 int Co_GetExperience(int coId);
 
-extern u8 data_0229deec[4][112];
-
 /* Clears the received rows and fills the block to send with this player's
  * palette and picture choice and experience for each of the 28 COs. */
 void LinkExperienceSyncTask_Init(LinkSyncTask* task) {

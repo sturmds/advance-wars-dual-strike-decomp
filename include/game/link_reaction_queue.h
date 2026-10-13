@@ -18,5 +18,8 @@ typedef struct LinkReactionQueue {
 } LinkReactionQueue;
 
 extern LinkReactionQueue data_0229da68;
+/* Frames left before this player may send another reaction; 200 after a
+ * send (LinkReaction_StartCooldown). */
+extern u16 gLinkReactionCooldown;
 
 #endif

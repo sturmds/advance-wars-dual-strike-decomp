@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/link_sync_task.h"
 
-/* also declared in src/game/main/link/co_get_army_experience.c and 6 more */
-u8 data_0229deec[4][112];
+LinkCoRecord data_0229deec[4][28];
 
 u16 Wireless_GetChildAids(void);
 int Link_FindSlotOfPlayer(int player);

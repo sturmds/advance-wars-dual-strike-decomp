@@ -6,8 +6,6 @@ extern Unk_0215fe8c* data_0215fe8c;
 extern Unk_0229ca88 data_0229ca88;
 extern Unk_0229cdfc data_0229cdfc[7];
 extern Unk_0229cb4c data_0229cb4c[7];
-extern u8 gLinkLastSequence[7];
-extern u8 data_0229ca48[8];
 
 void func_02080668(void);
 void func_0208109c(void);

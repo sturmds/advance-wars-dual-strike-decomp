@@ -12,6 +12,12 @@ typedef struct LinkCoRecord {
   u32 : 11;
 } LinkCoRecord;
 
+/* Each army's CO records as received in the experience sync. */
+extern LinkCoRecord data_0229deec[4][28];
+/* Equipped skills received in the skill sync: 16 bytes per link slot and
+ * CO (LinkSkills_GetPlayerSet). */
+extern u8 data_0229de6c[4][2][16];
+
 /* Fields of the tasks that swap a block of data between players over the
  * link, 8 bytes a frame (LinkSkillSyncTask_Update: equipped skills, LinkExperienceSyncTask_Update: CO
  * experience). Each task uses one of the two data pointers. The first 0x2a

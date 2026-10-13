@@ -1,6 +1,6 @@
 #include "types.h"
+#include "game/link_reaction_queue.h"
 
-/* also declared in src/game/main/func_0208109c.c and 2 more */
 u16 gLinkReactionCooldown;
 void Task_ForEachByScript(void*, void*, void*, int);
 extern u8 data_0216050c[];

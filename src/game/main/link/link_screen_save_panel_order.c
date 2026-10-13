@@ -5,6 +5,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/menu_state.h"
+#include "game/link_slots.h"
 
 void Screen_SetCurrent(void* state);
 void Screen_SetCurrentGfx(void* state);
@@ -14,7 +15,6 @@ extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
-/* also declared in src/game/main/link/link_assign_slots.c and 4 more */
 u8 gLinkSlotPlayers[4];
 
 /* Step of the link screen's closing task script: stops the palette cycle on

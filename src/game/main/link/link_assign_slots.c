@@ -1,6 +1,5 @@
 #include "types.h"
-
-extern u8 gLinkSlotPlayers[4];
+#include "game/link_slots.h"
 
 u16 Wireless_GetChildAids(void);
 

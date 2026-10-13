@@ -9,8 +9,6 @@ void func_0207b48c(void);
 void func_0207b4b0(u8* chunk);
 void Task_ResumeScript(void* task);
 
-extern u8 data_0229deec[4][112];
-
 /* Swaps CO experience with the other players, 8 bytes a frame: sends the
  * next chunk of task->experience and copies the chunk each player sent into
  * that player's row of data_0229deec (one u32 per CO, read by
@@ -33,7 +31,7 @@ void LinkExperienceSyncTask_Update(LinkSyncTask* task) {
     for (i = 0; i < 4; i++) {
       if ((Wireless_GetChildAids() | 1) & (1 << i)) {
         src = Wireless_GetSharedData((u16)i);
-        dst = data_0229deec[Link_FindSlotOfPlayer(i) - 1];
+        dst = (u8*)data_0229deec[Link_FindSlotOfPlayer(i) - 1];
 
         for (j = task->receivedBytes; j < task->receivedBytes + 8; j++) {
           if (j >= task->sentBytes) {

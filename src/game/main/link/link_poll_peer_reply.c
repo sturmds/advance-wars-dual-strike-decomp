@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/Unk_0215fe8c.h"
+#include "game/link_buffers.h"
 
 extern Unk_0215fe8c* data_0215fe8c;
-/* also declared in src/game/main/func_0207b48c.c and 2 more */
 u8 data_0229ca48[8];
 
 int Wireless_StepDataSharing(void* key, u16* out);

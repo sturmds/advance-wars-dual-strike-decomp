@@ -1,6 +1,5 @@
 #include "types.h"
-
-extern u8 data_0229de6c[4][2][16];
+#include "game/link_sync_task.h"
 
 /* The 16 skill bytes a link slot (1-4; 0: none, returns NULL) sent for one of its two COs, as
  * LinkSkillSyncTask_Update stored them. */

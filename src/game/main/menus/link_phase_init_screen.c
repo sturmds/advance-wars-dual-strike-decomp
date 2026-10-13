@@ -7,6 +7,7 @@
 #include "game/design_map.h"
 #include "game/event_queue.h"
 #include "game/text_print.h"
+#include "game/link_slots.h"
 
 void Gfx_RequestLayerCopy(int a);
 void Mem_Copy32(const void* src, void* dst, u32 size);
@@ -41,7 +42,6 @@ extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
-extern u8 gLinkSlotPlayers[4];
 extern DesignMap data_022a6c84[];
 extern u16 gLinkPhaseArmyGfxOffsets[];
 extern const char gLinkPhaseResPath[];

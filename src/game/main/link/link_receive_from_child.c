@@ -3,7 +3,6 @@
 #include "game/link_buffers.h"
 
 extern Unk_0215fe8c* data_0215fe8c;
-extern u8 gLinkLastSequence[7];
 
 /* The per-peer queues as Link_PopFlaggedPacket and Link_PopUnflaggedPacket
  * declare them: each index byte is a symbol of its own (cbac and cf7c read,

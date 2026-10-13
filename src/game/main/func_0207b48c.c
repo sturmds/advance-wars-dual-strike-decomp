@@ -1,6 +1,5 @@
 #include "types.h"
-
-extern u8 data_0229ca48[8];
+#include "game/link_buffers.h"
 
 void func_0207b48c(void) {
   int i;
