@@ -2,8 +2,6 @@
 #include "game/Unk_022a8a10.h"
 #include "sdk/os.h"
 
-extern Unk_022a8a10 data_022a8a10;
-
 void MIi_CpuClear32(u32 value, void* dst, u32 size);
 void SND_StartTimer(int arg0, int arg1, u32 alarmMask, int arg3);
 

@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "game/sound_handle.h"
+#include "sdk/os_common.h"
 
 /* State of one running sound output, at data_022a8a10 (main bss). Only the
  * fields the code in src/ uses. */
@@ -23,5 +24,8 @@ typedef struct Unk_022a8a10 {
   int closeWhenFaded; /* 0x48: close the output once the fader ends */
   int appliedVolume;  /* 0x4c: last volume sent to the hardware */
 } Unk_022a8a10;
+
+extern Unk_022a8a10 data_022a8a10;
+extern OSMessageQueue data_022a89fc;
 
 #endif

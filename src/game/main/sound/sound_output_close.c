@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_022a8a10.h"
 
-extern Unk_022a8a10 data_022a8a10;
-extern u8 data_022a89fc[];
-
 void SND_StopTimer(int arg0, int arg1, u32 alarmMask, int arg3);
 int SND_GetCurrentCommandTag(void);
 void SND_WaitForCommandProc(int arg0);
@@ -30,7 +27,7 @@ void SoundOutput_Close(void) {
     int saved = SND_GetCurrentCommandTag();
     SND_FlushCommand(1);
     SND_WaitForCommandProc(saved);
-    while (OS_ReceiveMessage(data_022a89fc, 0, 0) != 0) {
+    while (OS_ReceiveMessage(&data_022a89fc, 0, 0) != 0) {
     }
   }
   if (state->unk_24 != 0) {

@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_022a8a10.h"
 
-extern Unk_022a8a10 data_022a8a10;
-
 void SND_StopTimer(int arg0, int arg1, u32 alarmMask, int arg3);
 int SND_GetCurrentCommandTag(void);
 void SND_WaitForCommandProc(int arg0);

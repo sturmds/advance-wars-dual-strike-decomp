@@ -36,7 +36,6 @@ src/game/main/screen/screen_bss_02170314.c
 src/game/main/screen/screen_bss_02172108.c
 src/game/main/screen/screen_bss_02175948.c
 src/game/main/screen/screen_bss_0217db08.c
-src/game/main/sound/sound_bss_022a89fc.c
 src/game/ov000/ov000_bss_02350320.c
 src/game/ov002/ov002_bss_0236bbc0.c
 src/game/ov002/ov002_bss_0236bbec.c

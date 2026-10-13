@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_022a8a10.h"
 
-extern Unk_022a8a10 data_022a8a10;
-
 BOOL func_0210928c(SoundFader* fader);
 void func_021092a4(SoundFader* fader);
 int SoundFader_GetValue(SoundFader* fader);
