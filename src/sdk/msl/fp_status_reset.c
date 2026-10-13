@@ -1,6 +1,5 @@
-#include "types.h"
+#include "sdk/fp_status.h"
 
-u32 *__fp_status(void);
 extern u8 *func_02129754(void);
 
 /*
@@ -10,7 +9,7 @@ extern u8 *func_02129754(void);
  * compiled C never does.
  */
 #ifdef __MWERKS__
-asm void func_0212950c(void)
+asm void FpStatus_Reset(void)
 {
     stmfd sp!, {lr}
     bl __fp_status
@@ -27,7 +26,7 @@ asm void func_0212950c(void)
     bx lr
 }
 #else
-void func_0212950c(void)
+void FpStatus_Reset(void)
 {
     u32 *words;
 

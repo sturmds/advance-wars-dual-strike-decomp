@@ -1,15 +1,13 @@
-#include "types.h"
-
-u32 *__fp_status(void);
+#include "sdk/fp_status.h"
 
 /*
- * Same update as func_02129540 on the status word, but both arguments and the
+ * Same update as FpStatus_Update on the status word, but both arguments and the
  * result use a different bit layout. Bits 0-4 and 16-20 of an argument move to
  * bits 0-4 and 8-12 of the word. The old word goes back out in the argument
  * layout with bit 30 set.
  */
 #ifdef __MWERKS__
-asm u32 func_02129568(u32 clearMask, u32 xorBits)
+asm u32 FpStatus_UpdatePacked(u32 clearMask, u32 xorBits)
 {
     and r2, r0, #0x1f
     and r3, r0, #0x1f0000
@@ -32,9 +30,12 @@ asm u32 func_02129568(u32 clearMask, u32 xorBits)
     bx lr
 }
 #else
-static u32 ToStatusLayout(u32 bits) { return (bits & 0x1f) | ((bits & 0x1f0000) >> 8); }
+static u32 ToStatusLayout(u32 bits)
+{
+    return (bits & 0x1f) | ((bits & 0x1f0000) >> 8);
+}
 
-u32 func_02129568(u32 clearMask, u32 xorBits)
+u32 FpStatus_UpdatePacked(u32 clearMask, u32 xorBits)
 {
     u32 *status = __fp_status();
     u32 old = *status;

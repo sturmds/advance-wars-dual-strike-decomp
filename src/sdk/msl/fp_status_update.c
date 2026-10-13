@@ -1,15 +1,13 @@
-#include "types.h"
-
-u32 *__fp_status(void);
+#include "sdk/fp_status.h"
 
 /*
  * Read-modify-write of the status word __fp_status returns: clears the bits
- * in r0, xors in r1, and returns the old word. The caller is the
- * soft-float trap code. Assembly: r0 and r1 survive the call by being saved
- * and restored around it.
+ * in clearMask, xors in xorBits, and returns the old word. The caller is the
+ * soft-float trap code. Assembly: both arguments survive the call by being
+ * saved and restored around it.
  */
 #ifdef __MWERKS__
-asm u32 func_02129540(u32 clearMask, u32 xorBits)
+asm u32 FpStatus_Update(u32 clearMask, u32 xorBits)
 {
     stmfd sp!, {r0, r1, r2, r12, lr}
     bl __fp_status
@@ -23,7 +21,7 @@ asm u32 func_02129540(u32 clearMask, u32 xorBits)
     bx lr
 }
 #else
-u32 func_02129540(u32 clearMask, u32 xorBits)
+u32 FpStatus_Update(u32 clearMask, u32 xorBits)
 {
     u32 *status = __fp_status();
     u32 old = *status;

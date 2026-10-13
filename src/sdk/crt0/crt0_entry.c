@@ -9,7 +9,7 @@ void MIi_UncompressBackward(void *bottom);
 void do_autoload(void);
 void init_cp15(void);
 void NitroStartUp(void);
-void func_0212950c(void);
+void FpStatus_Reset(void);
 void __call_static_initializers(void);
 
 #ifdef __MWERKS__
@@ -74,7 +74,7 @@ clear_bss:
     add r1, r1, #0x3c
     ldr r0, =OS_IrqHandler
     str r0, [r1]
-    bl func_0212950c
+    bl FpStatus_Reset
     bl NitroStartUp
     bl __call_static_initializers
     ldr r1, =main

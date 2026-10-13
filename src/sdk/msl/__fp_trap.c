@@ -2,7 +2,7 @@
 #include "sdk/msl.h"
 
 FpTrapHandler* func_02129754(void);
-u32 func_02129540(u32 clearMask, u32 xorMask);
+u32 FpStatus_Update(u32 clearMask, u32 xorMask);
 int raise(int sig);
 
 FpValue __fp_trap(FpValue x, FpValue y, u32 op) {
@@ -10,7 +10,7 @@ FpValue __fp_trap(FpValue x, FpValue y, u32 op) {
   FpTrapHandler handler;
 
   if ((op & FP_TRAP_ROUNDING_MASK) == 0) {
-    op |= func_02129540(0, 0) & FP_TRAP_ROUNDING_MASK;
+    op |= FpStatus_Update(0, 0) & FP_TRAP_ROUNDING_MASK;
   }
 
   switch (op & FP_TRAP_OP_MASK) {
