@@ -18,7 +18,7 @@ DSD      := .cache/tools/dsd/dsd
 LOCKED_NINJA := mkdir -p build && flock build/.ninja.lock $(NINJA)
 
 
-.PHONY: all configure fnindex dsindex progress setup tools assets release decomp-dev-report pnc-check check check-rom check-modules check-out hooks extract test clean shift emu-smoke format format-check
+.PHONY: all configure fnindex dsindex progress setup tools assets release release-nocheck decomp-dev-report pnc-check check check-rom check-modules check-out hooks extract test clean shift emu-smoke format format-check
 
 all: check-rom configure
 	@$(LOCKED_NINJA)
@@ -105,6 +105,17 @@ release: setup
 	@$(MAKE) --no-print-directory test
 	@$(MAKE) --no-print-directory decomp-dev-report
 	@echo "release: OK"
+
+# release without check: for a build that is not meant to match retail yet.
+# The input ROM is still checked against rom.sha1 (check-rom), since every
+# step reads it.
+release-nocheck: setup
+	@$(MAKE) --no-print-directory pnc-check
+	@$(MAKE) --no-print-directory format-check
+	@$(MAKE) --no-print-directory all
+	@$(MAKE) --no-print-directory test
+	@$(MAKE) --no-print-directory decomp-dev-report
+	@echo "release-nocheck: OK (build/AWRE.nds not compared with retail)"
 
 # build/artifacts/AWRE_report/report.json: the objdiff report over both CPUs,
 # laid out as decomp.dev's artifact. hooks/pre-commit commits a copy as

@@ -8,7 +8,8 @@ The plan is in `docs/early-phase-project-plan.md` (edit that copy). The rules it
 
 ```sh
 mkdir -p orig && ln -s /path/to/awds.nds orig/AWRE.nds   # once; never copy the ROM into git
-make release    # setup if needed, format check, build, every check, make test, then the decomp.dev report
+make release    # setup if needed, format check, build, every check, make test, then the decomp.dev report. ALL COMMITS MUST PASS `make release`
+make release-nocheck  # the same without make check (the module and ROM hashes); the input ROM is still checked.
 make format     # clang-format src/ and include/ (style in .clang-format)
 make            # build build/AWRE.nds (ninja, incremental)
 make check      # per-module hashes, then the whole-ROM SHA-1
