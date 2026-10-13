@@ -72,17 +72,31 @@ The aliases whose variable has a type from the headers listed above, with the gr
 
 Next places to look: eight variables whose size comes from "up to the next symbol" (`gBuildMenuEntries`, `data_0229e5bc`, `data_022a6c84`, `gOsIrqSlots`, `data_022a98ec`, `data_arm7_038078bc`, `gEventTextMap`, `gSlotControllers`) hold 16 aliases at small offsets, and 23 variables are plain `u8`, `u16` or `char` arrays with no layout to check against.
 
+### Second pass: every alias (2026-10-13)
+
+Each alias was checked against its variable's type and the code that loads it (`ds.py show`, `fn.py show`, the relocations). Of the 198 aliases:
+
+- 169 are `real`. 160 lie on a field or element. Nine are bases the compiler picked because a load or store cannot reach the field with its immediate offset (`data_022aaf40`, `data_02290a18`, `data_0229a050`, the four at +0xd00 and +0xe00 in ov003's two tile maps, `data_arm7_027d82b0`, `data_arm7_03809eb0`); their lines say "compiler base". The eight variables whose size runs up to the next symbol hold only real fields.
+- 2 hid something. `gTouch` (0x10 bytes) sat at `gTouchDriverState`+0x8, whose real type is an 8-byte `TPCalibrateParam`. `data_02290256` sat on `data_02290250`, a 0x48-byte placeholder with no user that was really the tail of `data_02290118`'s 0x180-byte profile block; `data_02290256` is now `data_02290118`+0x13e, real.
+- 11 had no relocation and no user, and are deleted.
+- 17 stay `unsorted`: each is reached only by a relocation from main's `.rodata` or `.data`, or ov000's `.rodata` or ov002's `.data`, where the word is not a pointer (u16 tables such as 0x0216/0x0218, packed graphics, a script opcode and argument). They are false symbols: `data_0217f7ff`, `data_02180216`, `data_021a01ca`, `data_021c000e`, `data_021c021a`, `data_021fffff`, `data_022001ee`, `data_0220ee27`, `data_02220202`, `data_02222222`, `data_0222491f`, `data_022401e6`, `data_022610df`, `data_02270226`, `data_02270fdb`, `data_0227f025`, `data_0228443d`. The fix is to delete each relocation and then the symbol, as `7009a8151` and `95e17cfef` did for ov003; that belongs with the false-relocation work of issue 0082.
+
+`WmspState` (`data_arm7_027d7c44`) is marked real but does not fit its type well: `Wmsp_Init` passes `data_arm7_027d7d3c` (+0xf8) as the top of a 0x1000-byte stack that starts 0xf08 bytes before the variable, over the three placeholders before it, and +0x4f8 as the top of a 0x400-byte stack and the reply mutex. The real layout of the WMSP work area around it is still to find.
+
 ## Progress
 
 - `gSoundStreamReady` is a variable of its own: `SoundWaveArc` ends in `u32 table[]` (mwccarm 2.0-72 accepts it; `sizeof` is 0x3c), `gWaveArcHeader` has size 0x3c and `gSoundStreamReady` size 4 in `symbols.txt`, and `sound_stream_init.c` defines it as `static BOOL` and takes 0x022a8aa0 into its `.bss` range, by hand: `plan` gives a slice only to a file with no `.bss` yet, so it would have put the flag in a new file. `SOUND_WAVE_ARC_HEADER_SIZE` is now `((int)sizeof(SoundWaveArc))`; the unsigned `sizeof` alone changes the code of `SoundArc_LoadWaveArcTable`. Every function that uses `SoundWaveArc` still scores 100%. 199 aliases are left.
 - `bss.py plan` refuses an alias on a trailing `[1]` element and any alias not in `config/AWRE/aliases.txt`; `bss.py aliases` and the report step check the list (`docs/bss-tool.md`, "Aliases").
+- `gTouch` is a variable of its own: `gTouchDriverState` has size 0x8 (was 0x18) and `gTouch` size 0x10 in `symbols.txt`; the generated `bss_0216e4b8.inc.c` defines `gTouch` as `TouchState`, and `touch_init.c` declares the calibration as `TPCalibrateParam`.
+- `data_02290118` has size 0x180 (was 0x138): `Unk_02290118` ends with `pad_136`, the placeholder `data_02290250` is gone, `bss_022900b8.c` ends at 0x02290298 and `bss_02290250.c` became `bss_02290298.c`.
+- 11 aliases with no relocation and no user are deleted. `aliases.txt` holds 186 aliases: 169 real, 17 unsorted (the false symbols above).
 
 ## Open items
 
 These need a decision from sturmds and are not part of this issue's changes yet:
 
 - A tenet 11 in `TENETS.md` about sizes and aliases, and a matching check in the tenets-review skill.
-- The audit of the other aliases, and confirming the groups suggested above.
+- A check of the groups of the second pass by sturmds, and deleting the 17 false symbols with their relocations.
 - A `make shift` run with a grown struct, to see whether the shiftable build catches a hidden alias that moves.
 
 ## Done when
