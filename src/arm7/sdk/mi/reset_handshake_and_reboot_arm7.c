@@ -1,5 +1,6 @@
 #include "types.h"
 
+#ifdef __MWERKS__
 /*
  * Hand-written ARM assembly, the ARM7 side of a restart (the ARM9 side is
  * Reset_ClearAndJumpToEntry). Turns interrupts off and clears the IRQ vector at
@@ -39,3 +40,6 @@ wait_release:
     mov r3, #0
     bx r12
 }
+#else
+#error "Reset_HandshakeAndReboot_Arm7: jumping to the ARM7 entry address with r0-r3 cleared and lr set to it has no portable C equivalent"
+#endif

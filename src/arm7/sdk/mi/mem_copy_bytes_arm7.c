@@ -1,5 +1,6 @@
 #include "types.h"
 
+#ifdef __MWERKS__
 asm void Mem_CopyBytes_Arm7(const void *src, void *dest, u32 size)
 {
     cmp r2, #0
@@ -100,3 +101,54 @@ last_byte:
     strh r0, [r1]
     bx lr
 }
+#else
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+/* The DS is little-endian, and the byte helpers below count on it. */
+static void CheckLittleEndian(const char* name) {
+  const u16 one = 1;
+
+  if (*(const u8*)&one != 1) {
+    fprintf(stderr, "%s: the byte helpers assume a little-endian CPU\n", name);
+    abort();
+  }
+}
+
+/* Writes value into the byte at p by rewriting the halfword that holds it,
+   as the assembly does: VRAM ignores byte stores. */
+static void StoreByte(u8* p, u8 value) {
+  u16* halfword = (u16*)((uintptr_t)p & ~(uintptr_t)1);
+  u32 shift = ((uintptr_t)p & 1) * 8;
+
+  *halfword = (u16)((*halfword & ~(0xff << shift)) | value << shift);
+}
+
+/* Reads the byte at p through the halfword that holds it. */
+static u8 LoadByte(const u8* p) {
+  const u16* halfword = (const u16*)((uintptr_t)p & ~(uintptr_t)1);
+
+  return (u8)(*halfword >> ((uintptr_t)p & 1) * 8);
+}
+
+/* Copies size bytes from src to dest, with halfword accesses only. The
+   assembly copies a halfword or a word at a time where it can, so when dest
+   lies inside the source after src the result depends on those steps;
+   overlapping regions stop the program. */
+void Mem_CopyBytes_Arm7(const void* src, void* dest, u32 size) {
+  const u8* from = src;
+  u8* to = dest;
+  u32 i;
+
+  CheckLittleEndian("Mem_CopyBytes_Arm7");
+  if (size != 0 && (uintptr_t)from < (uintptr_t)to + size &&
+      (uintptr_t)to < (uintptr_t)from + size) {
+    fprintf(stderr, "Mem_CopyBytes_Arm7: %p and %p overlap\n", src, dest);
+    abort();
+  }
+  for (i = 0; i < size; i++) {
+    StoreByte(to + i, LoadByte(from + i));
+  }
+}
+#endif

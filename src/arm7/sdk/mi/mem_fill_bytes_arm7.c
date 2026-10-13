@@ -1,5 +1,6 @@
 #include "sdk/mi.h"
 
+#ifdef __MWERKS__
 asm void Mem_FillBytes_Arm7(void *dest, u32 data, u32 size)
 {
     cmp r2, #0
@@ -45,3 +46,46 @@ tail:
     strh r1, [r0]
     bx lr
 }
+#else
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+/* The DS is little-endian, and StoreByte counts on it. */
+static void CheckLittleEndian(const char* name) {
+  const u16 one = 1;
+
+  if (*(const u8*)&one != 1) {
+    fprintf(stderr, "%s: StoreByte assumes a little-endian CPU\n", name);
+    abort();
+  }
+}
+
+/* Writes value into the byte at p by rewriting the halfword that holds it,
+   as the assembly does: VRAM ignores byte stores. */
+static void StoreByte(u8* p, u8 value) {
+  u16* halfword = (u16*)((uintptr_t)p & ~(uintptr_t)1);
+  u32 shift = ((uintptr_t)p & 1) * 8;
+
+  *halfword = (u16)((*halfword & ~(0xff << shift)) | value << shift);
+}
+
+/* Stores data into size bytes from dest, with halfword accesses only.
+   Assumes data fits in a byte, as every caller's does: the assembly spreads
+   the whole of data over its halfword and word stores, so higher bits would
+   end up in some bytes and not in others. A larger data stops the program. */
+void Mem_FillBytes_Arm7(void* dest, u32 data, u32 size) {
+  u8* to = dest;
+  u32 i;
+
+  CheckLittleEndian("Mem_FillBytes_Arm7");
+  if (data > 0xff) {
+    fprintf(stderr, "Mem_FillBytes_Arm7: data 0x%x does not fit in a byte\n",
+            (unsigned)data);
+    abort();
+  }
+  for (i = 0; i < size; i++) {
+    StoreByte(to + i, (u8)data);
+  }
+}
+#endif
