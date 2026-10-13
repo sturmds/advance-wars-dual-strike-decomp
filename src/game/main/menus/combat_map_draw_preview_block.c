@@ -19,12 +19,12 @@ extern u16 data_02149080[]; /* pictures, 4 halfwords each, 2 halfwords apart */
  * state: draws width by height tiles of map, from tile (x, y) on, as one
  * 4x4-pixel picture per tile into dst. codeTerrain maps a tile code to its
  * terrain id (bits 0-4) and colour (bits 5-7).
- * Not matching yet (98%): the row counter is in r7 instead of lr, which
- * moves every temporary of the inner loop up one register. */
+ * Needed to match: row is also the counter of the row offset loop, and
+ * cell is set in one sum. Each alone leaves the row counter in another
+ * register than lr. */
 void CombatMap_DrawPreviewBlock(const MapData* map, const u8* codeTerrain,
                                 u16* dst, s16 x, s16 y, u16 width, u16 height) {
   int col;
-  int i;
   int row;
   int offset;
   u16 rowStart;
@@ -34,7 +34,6 @@ void CombatMap_DrawPreviewBlock(const MapData* map, const u8* codeTerrain,
   int colour;
   int base;
   u16* cell;
-  int rowOff;
   /* Read through a local so the row offset is reloaded for each tile, as
      * in MapPreview_DrawBlock. */
   u16* rowTable = gMapPreviewRowOffsets;
@@ -49,9 +48,9 @@ void CombatMap_DrawPreviewBlock(const MapData* map, const u8* codeTerrain,
     }
   }
   offset = 0;
-  for (i = 0; i < height; i++) {
-    gMapPreviewRowOffsets[i] = offset;
-    if (i & 1) {
+  for (row = 0; row < height; row++) {
+    gMapPreviewRowOffsets[row] = offset;
+    if (row & 1) {
       offset += width * 8 - 8;
     } else {
       offset += 8;
@@ -83,10 +82,8 @@ void CombatMap_DrawPreviewBlock(const MapData* map, const u8* codeTerrain,
         }
         picture = data_02149080 + data_021587e0[base + colour];
       }
-      cell = dst + gMapPreviewColumnOffsets[col - x];
-      rowOff = rowTable[row - y];
-      cell[rowOff] = picture[0];
-      cell += rowOff;
+      cell = dst + gMapPreviewColumnOffsets[col - x] + rowTable[row - y];
+      cell[0] = picture[0];
       cell[2] = picture[2];
       cell[4] = picture[4];
       cell[6] = picture[6];

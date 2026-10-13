@@ -10181,6 +10181,7 @@ src/game/main/menus/combat_setup_load_map_previews.c:
     .text       start:0x02082b0c end:0x02082cf4
 
 src/game/main/menus/combat_map_draw_preview_block.c:
+    complete
     .text       start:0x02082cf4 end:0x02082f20
 
 src/game/main/menus/combat_setup_start_keeping_settings.c:
