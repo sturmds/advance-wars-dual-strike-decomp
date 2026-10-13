@@ -99,3 +99,5 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0069](0069-wt-setup-extracted.md) | wt_setup.sh did not provide extracted/ to a new worktree | closed | loop | M2 |
 | [0070](0070-check-and-diff-count-differently.md) | `fn.py check` and `fn.py diff` count a different number of differing instructions for the same C | closed | tools | M2 |
 | [0071](0071-decomp-dev-onboarding.md) | Remaining work to list the project on decomp.dev | open | tools | later |
+| [0072](0072-results-header-free-form.md) | Agents write RESULT headers that `collect` cannot read | open | loop | M2 |
+| [0073](0073-shared-scratchpad-and-leftover-waits.md) | Agents share one scratchpad, and a wait loop outlives its agent | open | loop | M2 |
