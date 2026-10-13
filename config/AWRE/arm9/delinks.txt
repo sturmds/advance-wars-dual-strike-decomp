@@ -2684,15 +2684,7 @@ src/game/main/bss_0221f024.c:
 
 src/game/main/bss_02220060.c:
     complete
-    .bss        start:0x02220060 end:0x02220078
-
-src/game/main/bss_02220078.c:
-    complete
-    .bss        start:0x02220078 end:0x022200a0
-
-src/game/main/bss_022200a0.c:
-    complete
-    .bss        start:0x022200a0 end:0x022201d8
+    .bss        start:0x02220060 end:0x022201d8
 
 src/game/main/bss_022201d8.c:
     complete

@@ -15,8 +15,6 @@ src/game/main/bss_02200070.c
 src/game/main/bss_02210120.c
 src/game/main/bss_0221f024.c
 src/game/main/bss_02220060.c
-src/game/main/bss_02220078.c
-src/game/main/bss_022200a0.c
 src/game/main/bss_022201d8.c
 src/game/main/bss_02240168.c
 src/game/main/bss_02280214.c
