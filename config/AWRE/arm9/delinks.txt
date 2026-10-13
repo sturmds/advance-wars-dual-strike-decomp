@@ -2646,6 +2646,70 @@ src/game/main/sound/sound_bss.c:
     complete
     .bss        start:0x0218fea8 end:0x0218ff50
 
+src/game/main/bss_0218ff50.c:
+    complete
+    .bss        start:0x0218ff50 end:0x021b0fdc
+
+src/game/main/bss_021b0fdc.c:
+    complete
+    .bss        start:0x021b0fdc end:0x021bf024
+
+src/game/main/bss_021bf024.c:
+    complete
+    .bss        start:0x021bf024 end:0x021c031c
+
+src/game/main/bss_021c031c.c:
+    complete
+    .bss        start:0x021c031c end:0x021c0d1c
+
+src/game/main/bss_021c0d1c.c:
+    complete
+    .bss        start:0x021c0d1c end:0x021f0200
+
+src/game/main/bss_021f0200.c:
+    complete
+    .bss        start:0x021f0200 end:0x02200070
+
+src/game/main/bss_02200070.c:
+    complete
+    .bss        start:0x02200070 end:0x02210120
+
+src/game/main/bss_02210120.c:
+    complete
+    .bss        start:0x02210120 end:0x0221f024
+
+src/game/main/bss_0221f024.c:
+    complete
+    .bss        start:0x0221f024 end:0x02220060
+
+src/game/main/bss_02220060.c:
+    complete
+    .bss        start:0x02220060 end:0x02220078
+
+src/game/main/bss_02220078.c:
+    complete
+    .bss        start:0x02220078 end:0x022200a0
+
+src/game/main/bss_022200a0.c:
+    complete
+    .bss        start:0x022200a0 end:0x022201d8
+
+src/game/main/bss_022201d8.c:
+    complete
+    .bss        start:0x022201d8 end:0x02240168
+
+src/game/main/bss_02240168.c:
+    complete
+    .bss        start:0x02240168 end:0x02280214
+
+src/game/main/bss_02280214.c:
+    complete
+    .bss        start:0x02280214 end:0x0228ff58
+
+src/game/main/bss_0228ff58.c:
+    complete
+    .bss        start:0x0228ff58 end:0x022900b4
+
 src/game/main/script/event_script_step_slot.c:
     complete
     .text       start:0x0201aa04 end:0x0201ab18
