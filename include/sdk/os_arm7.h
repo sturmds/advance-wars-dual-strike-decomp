@@ -142,10 +142,12 @@ void Timer_InstallIrqSlot_Arm7(int timer, void (*handler)(void*), void* arg);
 /* CPSR interrupt bits: each returns the previous state; hand it back to restore. */
 int Cpu_UnmaskIrq_Arm7(void);
 int Cpu_MaskIrq_Arm7(void);
-void Cpu_RestoreIrqBit_Arm7(int state);
+int Cpu_RestoreIrqBit_Arm7(int state);
 OSIntrMode Cpu_MaskIrqFiq_Arm7(void);
 OSIntrMode Cpu_RestoreIrqFiqBits_Arm7(OSIntrMode state);
 u32 Cpu_CurrentMode_Arm7(void);
+/* Calls the BIOS delay loop (Bios_DelayLoop_Arm7) for count iterations. */
+void Cpu_DelayLoop_Arm7(int count);
 
 void System_StartServices_Arm7(void);
 void Cpu_IdleUntilIrq_Arm7(void);
@@ -178,7 +180,7 @@ u16 LockWord_OwnerId_Arm7(OSLockWord* lock);
 s32 SlotLock_TryOnce_Arm7(u16 lockID);
 s32 SlotLock_Acquire_Arm7(u16 lockID);
 s32 SlotLock_Release_Arm7(u16 lockID);
-void SlotLock_ReleaseAlias_Arm7(u16 lockID);
+s32 SlotLock_ReleaseAlias_Arm7(u16 lockID);
 void SlotLock_OnAcquireNoop_Arm7(void);
 void SlotLock_OnReleaseNoop_Arm7(void);
 

@@ -2828,7 +2828,7 @@ src/arm7/sdk/os/cpu_busy_wait_cycles_arm7.c:
     complete
     .text       start:0x037fdbe4 end:0x037fdc04
 
-src/arm7/sdk/os/func_arm7_037fdc04.c:
+src/arm7/sdk/os/cpu_delay_loop_arm7.c:
     complete
     .text       start:0x037fdc04 end:0x037fdc10
 

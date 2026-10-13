@@ -2,8 +2,6 @@
 #include "sdk/ctrdg.h"
 #include "sdk/os_arm7.h"
 
-void func_arm7_037fdc04(u32 count); /* SVC_WaitByLoop through a veneer */
-
 /* POSTFLG: bit 0 is set once the ARM7 and ARM9 finished their boot. */
 #define REG_POSTFLG (*(vu16*)0x04000300)
 
@@ -42,7 +40,7 @@ void Cartridge_CheckLogoFromArm9Once(void) {
   oldIme = *REG_IME;
   *REG_IME = 1;
   while (gCtrdgInitMessage.received != 1) {
-    func_arm7_037fdc04(0x100);
+    Cpu_DelayLoop_Arm7(0x100);
   }
   header = (GbaRomHeader*)((((gCtrdgInitMessage.word & INIT_WORD_OFFSET_MASK) >>
                              INIT_WORD_OFFSET_SHIFT)

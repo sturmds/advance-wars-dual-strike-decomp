@@ -2,7 +2,7 @@
 #include "sdk/os_arm7.h"
 
 #ifdef __MWERKS__
-asm void Cpu_RestoreIrqBit_Arm7(int state)
+asm int Cpu_RestoreIrqBit_Arm7(int state)
 {
     mrs r1, CPSR
     bic r2, r1, #0x80
