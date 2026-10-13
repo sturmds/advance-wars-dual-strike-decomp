@@ -8,6 +8,7 @@ u32 *__fp_status(void);
  * bits 0-4 and 8-12 of the word. The old word goes back out in the argument
  * layout with bit 30 set.
  */
+#ifdef __MWERKS__
 asm u32 func_02129568(u32 clearMask, u32 xorBits)
 {
     and r2, r0, #0x1f
@@ -30,3 +31,15 @@ asm u32 func_02129568(u32 clearMask, u32 xorBits)
     orr r0, r0, #0x40000000
     bx lr
 }
+#else
+static u32 ToStatusLayout(u32 bits) { return (bits & 0x1f) | ((bits & 0x1f0000) >> 8); }
+
+u32 func_02129568(u32 clearMask, u32 xorBits)
+{
+    u32 *status = __fp_status();
+    u32 old = *status;
+
+    *status = (old & ~ToStatusLayout(clearMask)) ^ ToStatusLayout(xorBits);
+    return (old & 0x1f) | ((old & 0x1f00) << 8) | 0x40000000;
+}
+#endif

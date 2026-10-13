@@ -8,6 +8,7 @@ u32 *__fp_status(void);
  * soft-float trap code. Assembly: r0 and r1 survive the call by being saved
  * and restored around it.
  */
+#ifdef __MWERKS__
 asm u32 func_02129540(u32 clearMask, u32 xorBits)
 {
     stmfd sp!, {r0, r1, r2, r12, lr}
@@ -21,3 +22,13 @@ asm u32 func_02129540(u32 clearMask, u32 xorBits)
     mov r0, r2
     bx lr
 }
+#else
+u32 func_02129540(u32 clearMask, u32 xorBits)
+{
+    u32 *status = __fp_status();
+    u32 old = *status;
+
+    *status = (old & ~clearMask) ^ xorBits;
+    return old;
+}
+#endif

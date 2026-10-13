@@ -9,6 +9,7 @@ extern u8 *func_02129754(void);
  * because the original keeps the stack 4 bytes off 8-byte alignment, which
  * compiled C never does.
  */
+#ifdef __MWERKS__
 asm void func_0212950c(void)
 {
     stmfd sp!, {lr}
@@ -25,3 +26,17 @@ asm void func_0212950c(void)
     ldmfd sp!, {lr}
     bx lr
 }
+#else
+void func_0212950c(void)
+{
+    u32 *words;
+
+    *__fp_status() = 0;
+    words = (u32 *)func_02129754();
+    words[1] = 0;
+    words[2] = 0;
+    words[3] = 0;
+    words[4] = 0;
+    words[5] = 0;
+}
+#endif

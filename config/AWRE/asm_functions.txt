@@ -242,3 +242,11 @@ main  _ffix                                branches into func_02128438 at inner 
 main  func_02128438                        entered at several offsets from _ffix, registers saved for the trap call
 main  _fflt                                rounding and trap tails also entered from _ffltu
 main  _ffltu                               branches into _fflt mid-function (dcd-encoded)
+main  setjmp                               stmia of r4-r11, sp and lr; the registers are the function's whole job
+main  longjmp                              ldmia into r4-r11, sp and lr, then bx to the restored lr
+main  Semihost_WriteChar                   swi 0x123456 debugger trap with r0/r1 set by hand
+main  Semihost_ReadChar                    swi 0x123456 debugger trap with r0/r1 set by hand
+main  Semihost_Exit                        swi 0x123456 debugger trap with r0/r1 set by hand
+main  func_02129540                        r0-r2, r12 and lr pushed around a call and reused after it
+main  func_02129568                        r0-r2, r12 and lr pushed around a call and reused after it
+main  func_0212950c                        called from Entry with the stack 4 bytes off 8-byte alignment
