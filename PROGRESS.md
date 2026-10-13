@@ -51,7 +51,7 @@ has no function, so it is a little larger than the totals above (issue 0071).
 
 | Module | Code | Decompiled | Fully linked | Functions matched |
 |---|---:|---:|---:|---:|
-| main | 1216386 | 99.50% | 99.50% | 5987 / 6004 |
+| main | 1216386 | 99.98% | 99.98% | 5995 / 6004 |
 | itcm | 24088 | 97.28% | 97.28% | 113 / 115 |
 | ov000 | 25300 | 98.81% | 98.81% | 119 / 120 |
 | ov001 | 7472 | 100.00% | 100.00% | 76 / 76 |
@@ -61,7 +61,7 @@ has no function, so it is a little larger than the totals above (issue 0071).
 | ov005 | 96684 | 100.00% | 100.00% | 266 / 266 |
 | ov006 | 105588 | 100.00% | 100.00% | 321 / 321 |
 | arm7 | 155236 | 99.36% | 99.36% | 1019 / 1038 |
-| all | 1845022 | 99.56% | 99.56% | 8536 / 8575 |
+| all | 1845022 | 99.88% | 99.88% | 8544 / 8575 |
 
 ## Partial functions
 

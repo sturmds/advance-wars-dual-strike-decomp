@@ -1,6 +1,6 @@
 #include "types.h"
 
-u32 *__fp_status(void);
+#include "sdk/fp_status.h"
 
 /*
  * Converts an unsigned 32-bit integer to a float. The value is normalised
@@ -12,6 +12,7 @@ u32 *__fp_status(void);
  * The branches into _fflt are dcd words because the assembler cannot branch
  * into another function.
  */
+#ifdef __MWERKS__
 asm float _ffltu(u32 x)
 {
     cmp r0, #0
@@ -47,3 +48,23 @@ normalised:
     addne r0, r0, #1
     bx lr
 }
+#else
+#include "sdk/soft_float.h"
+
+float _ffltu(u32 x) {
+  int lead;
+  u32 bits;
+
+  if (x == 0) {
+    return FpFloat(0);
+  }
+  lead = FpCountLeadingZeros(x);
+  x <<= lead;
+  bits = ((x << 1) >> 9) | ((u32)(FP_BIAS + 31 - lead) << 23);
+  if ((x & 0xff) == 0) {
+    return FpFloat(bits);
+  }
+  return FpRoundInexact(bits, FpCompareHalf(x & 0xff, 0x80), FP_INEXACT,
+                        FP_OP_UINT_TO_FLOAT);
+}
+#endif

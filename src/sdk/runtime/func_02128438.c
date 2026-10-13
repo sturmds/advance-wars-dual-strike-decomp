@@ -1,7 +1,6 @@
 #include "types.h"
 
-u32 *__fp_status(void);
-extern float __fp_trap_f(float a, u32 op);
+#include "sdk/fp_status.h"
 
 /*
  * Out-of-range tail of _ffix, entered by branch from it (it has no caller of
@@ -11,6 +10,7 @@ extern float __fp_trap_f(float a, u32 op);
  * +0x24 skips the flag, for an input of exactly -2^31. The entry at +0x44 is
  * the inexact trap call.
  */
+#ifdef __MWERKS__
 asm int func_02128438(float x)
 {
     stmfd sp!, {r0, r1, r3, ip, lr}
@@ -39,3 +39,19 @@ inexact_trap:
     ldmfd sp!, {lr}
     bx lr
 }
+#else
+#include "sdk/soft_float.h"
+
+int func_02128438(float x) {
+  u32 bits = FpBits(x);
+  u32* status = __fp_status();
+
+  if (*status & FP_TRAP_ENABLE(FP_INVALID)) {
+    /* The trap's float result is returned as the integer's bits. */
+    return (int)FpBits(
+        __fp_trap_f(x, FP_TRAP_WORD(FP_INVALID, FP_OP_FLOAT_TO_INT)));
+  }
+  *status |= FP_INVALID;
+  return (bits & FP_SIGN) ? (int)0x80000000 : 0x7fffffff;
+}
+#endif

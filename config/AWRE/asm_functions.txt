@@ -237,3 +237,7 @@ main  _fadd                                operands kept on the stack for the tr
 main  _fsub                                operands kept on the stack for the trap calls, entered mid-function from _fadd
 main  _fmul                                operands kept on the stack for the trap calls, each exit drops them by hand
 main  _fdiv                                reciprocal seed table inside the function, read pc-relative
+main  _ffix                                branches into func_02128438 at inner offsets (dcd-encoded)
+main  func_02128438                        entered at several offsets from _ffix, registers saved for the trap call
+main  _fflt                                rounding and trap tails also entered from _ffltu
+main  _ffltu                               branches into _fflt mid-function (dcd-encoded)

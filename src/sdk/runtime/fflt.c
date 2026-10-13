@@ -1,7 +1,6 @@
 #include "types.h"
 
-u32 *__fp_status(void);
-extern float __fp_trap_f(float a, u32 op);
+#include "sdk/fp_status.h"
 
 /*
  * Converts a signed 32-bit integer to a float. The magnitude is normalised
@@ -13,6 +12,7 @@ extern float __fp_trap_f(float a, u32 op);
  * is set. The labels ffltu_round_up and ffltu_inexact_trap are only
  * reached from _ffltu's branches.
  */
+#ifdef __MWERKS__
 asm float _fflt(int x)
 {
     ands r2, r0, #0x80000000
@@ -70,3 +70,25 @@ inexact_trap:
     ldmfd sp!, {lr}
     bx lr
 }
+#else
+#include "sdk/soft_float.h"
+
+float _fflt(int x) {
+  u32 sign = (u32)x & FP_SIGN;
+  u32 abs = sign ? 0u - (u32)x : (u32)x;
+  int lead;
+  u32 bits;
+
+  if (abs == 0) {
+    return FpFloat(0);
+  }
+  lead = FpCountLeadingZeros(abs);
+  abs <<= lead;
+  bits = sign | ((abs << 1) >> 9) | ((u32)(FP_BIAS + 31 - lead) << 23);
+  if ((abs & 0xff) == 0) {
+    return FpFloat(bits);
+  }
+  return FpRoundInexact(bits, FpCompareHalf(abs & 0xff, 0x80), FP_INEXACT,
+                        FP_OP_INT_TO_FLOAT);
+}
+#endif
