@@ -108,6 +108,11 @@ static inline void SetDoubleTopByte(double* x, int value) {
  * conversions s c d i u b o x X e E f g G. Length letters are skipped.
  */
 void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
+  /*
+   * Needed to match: the declaration order sets the stack slots, and the
+   * floating-point conversions use their own write pointer, rounding counter
+   * and exponent digit.
+   */
   char buf[64];
   char frac[64];
   u32 flags;
@@ -118,6 +123,8 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
   int hexOffset;
   int bufLen;
   int width;
+  char* numberOut;
+  int count;
   int exponent;
   int c;
   int state;
@@ -128,21 +135,22 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
   int fracDigits;
   int signLen;
   int sign;
+  int roundStep;
+  int expDigit;
   char* digit;
   double rounding;
   int charArg;
   int digitChar;
-  int prefixTail;
   int prefixLen;
-  int prefixHead;
   double fraction;
   int i;
   int fracLen;
   int droppedDigits;
   int trimZeros;
+  int prefixHead;
+  int prefixTail;
   int padding;
   int len;
-  int count;
   u32 value;
   int isGeneral;
   double number;
@@ -423,7 +431,7 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
       case CONV_GENERAL:
       case CONV_GENERAL_UPPER:
         number = ISD_VA_ARG(args, double);
-        out = &buf[63];
+        numberOut = &buf[63];
         fieldPad = width;
         droppedDigits = sign = count = 0;
         trimZeros = 1;
@@ -485,7 +493,7 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
           number = scaled;
         }
         rounding = 5.0;
-        for (i = 0; i <= fracDigits; i++) {
+        for (roundStep = 0; roundStep <= fracDigits; roundStep++) {
           rounding = Isd_DoubleDivideByTen(rounding, 1);
         }
         number = Isd_DoubleAdd(number, rounding);
@@ -498,15 +506,15 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
               expPositive = 0;
             }
             for (i = 0; i < 3; i++) {
-              digitChar = exponent - Isd_DivideByRadix(exponent, 10) * 10 + '0';
+              expDigit = exponent - Isd_DivideByRadix(exponent, 10) * 10 + '0';
               exponent = Isd_DivideByRadix(exponent, 10);
-              Isd_StoreByte(out, digitChar);
-              out--;
+              Isd_StoreByte(numberOut, expDigit);
+              numberOut--;
               count++;
             }
-            Isd_StoreByte(out, expPositive ? '+' : '-');
-            Isd_StoreByte(out - 1, conversion == CONV_EXP ? 'e' : 'E');
-            out -= 2;
+            Isd_StoreByte(numberOut, expPositive ? '+' : '-');
+            Isd_StoreByte(numberOut - 1, conversion == CONV_EXP ? 'e' : 'E');
+            numberOut -= 2;
             count += 2;
           }
         }
@@ -530,13 +538,13 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
             continue;
           }
           trimZeros = 0;
-          Isd_StoreByte(out, Isd_ReadByte(&frac[fracLen]));
-          out--;
+          Isd_StoreByte(numberOut, Isd_ReadByte(&frac[fracLen]));
+          numberOut--;
           count++;
         }
         if (!trimZeros || (flags & FORMAT_ALTERNATE)) {
-          Isd_StoreByte(out, '.');
-          out--;
+          Isd_StoreByte(numberOut, '.');
+          numberOut--;
           count++;
         }
         while (exponent > 58 - prec) {
@@ -549,8 +557,9 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
           c = '0';
         }
         number = Isd_DoubleDivideByTen(number, 0);
-        Isd_StoreByte(out, (u8)c); /* needed to match: c is already a byte */
-        out--;
+        /* Needed to match: c is already a byte. */
+        Isd_StoreByte(numberOut, (u8)c);
+        numberOut--;
         count++;
         while (Isd_DoubleExponent(number) >= ISD_DOUBLE_EXPONENT_ONE) {
           c = (u8)(Isd_DoubleUnitsDigit(number) + '0');
@@ -558,8 +567,8 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
             c = '0';
           }
           number = Isd_DoubleDivideByTen(number, 0);
-          Isd_StoreByte(out, (u8)c);
-          out--;
+          Isd_StoreByte(numberOut, (u8)c);
+          numberOut--;
           count++;
         }
         signLen = 0;
@@ -582,28 +591,28 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
           i = 0;
           if (i < fieldPad) {
             for (; i < fieldPad; i++) {
-              Isd_StoreByte(out, '0');
-              out--;
+              Isd_StoreByte(numberOut, '0');
+              numberOut--;
             }
           }
         }
         if (signLen != 0) {
-          Isd_StoreByte(out, sign);
-          out--;
+          Isd_StoreByte(numberOut, sign);
+          numberOut--;
         }
-        len = &buf[63] - out;
+        len = &buf[63] - numberOut;
         if (fieldPad > 0 && !(flags & (FORMAT_LEFT | FORMAT_ZERO_PAD))) {
           Isd_WriteSpaces(target, fieldPad);
         }
         while (len > 0) {
-          out++;
-          if (Isd_ReadByte(out) == '.') {
+          numberOut++;
+          if (Isd_ReadByte(numberOut) == '.') {
             while (droppedDigits > 0) {
               target->write(target, gIsdZeroString, 1);
               droppedDigits--;
             }
           }
-          target->write(target, out, 1);
+          target->write(target, numberOut, 1);
           len--;
         }
         if (fieldPad > 0 && (flags & FORMAT_LEFT)) {
