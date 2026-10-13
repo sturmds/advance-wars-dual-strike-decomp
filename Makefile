@@ -120,7 +120,8 @@ emu-smoke: shift
 # Tests of the landing tools on throwaway repos, of propagate.py's C text
 # handling, of ds.py, of pragmas.py, of absolute symbols, of 2-byte alignment
 # (tools/lcf_align2.py), of ARM7's address moves (tools/arm7.py) and of how
-# partials are ranked (test_ranking.py); no ROM or build
+# partials are ranked (test_ranking.py), and the plain C beside asm functions
+# compiled with the host gcc (test_portable_c.py); no ROM or build
 # needed (test_ds.py, test_pragmas.py and test_absolute.py use the compiler
 # from make setup; test_ds.py checks more
 # when extract/ exists).
@@ -138,6 +139,7 @@ test:
 	@$(PYTHON) tools/tests/test_align2.py
 	@$(PYTHON) tools/tests/test_arm7.py
 	@$(PYTHON) tools/tests/test_ranking.py
+	@$(PYTHON) tools/tests/test_portable_c.py
 
 clean:
 	rm -rf build build.ninja .ninja_log .ninja_deps

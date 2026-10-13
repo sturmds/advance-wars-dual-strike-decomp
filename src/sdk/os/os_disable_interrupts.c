@@ -1,6 +1,7 @@
 #include "types.h"
 #include "sdk/os.h"
 
+#ifdef __MWERKS__
 /* Sets the IRQ-disable bit in CPSR and returns the previous value of that bit. */
 asm int OS_DisableInterrupts(void)
 {
@@ -10,3 +11,6 @@ asm int OS_DisableInterrupts(void)
     and r0, r0, #0x80
     bx lr
 }
+#else
+#error "OS_DisableInterrupts: setting the IRQ-disable bit in CPSR (mrs/msr) has no portable C equivalent"
+#endif

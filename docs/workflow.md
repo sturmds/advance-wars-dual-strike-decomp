@@ -249,6 +249,35 @@ A *retry* is one model job's work on a function after the group that first wrote
 3. `make release`. It fails if a file under `src/` or `include/` is not formatted, or if any module or the whole ROM differs from retail.
 4. Commit. The hooks run `make release` again, rewrite `PROGRESS.md` and stage it, and check the message.
 
+## Portable C beside asm
+
+A function we keep as `asm` (mwcc cannot produce it from C) gets a plain C version in the same file, picked by the preprocessor. mwcc defines `__MWERKS__` itself, so the matching build reads the assembly with no new flag and must stay byte-identical; any other compiler reads the C. Nine files follow it so far (`make test` lists them); the other asm functions do not yet.
+
+```c
+#include "sdk/svc.h"
+
+#ifdef __MWERKS__
+#pragma thumb on
+asm int SVC_Div(int numerator, int denominator)
+{
+    swi 0x09
+    bx lr
+}
+#pragma thumb reset
+#else
+#include <stdio.h>
+
+int SVC_Div(int numerator, int denominator) { ... }
+#endif
+```
+
+- The `#else` side does what the assembly does, from the ROM's behaviour and our headers. Never a stub, an empty body or a guess.
+- Where C cannot do it (a `swi` with no C meaning such as halting until an interrupt, `mrs`/`msr`, `mcr`/`mrc`, a CPU mode switch, crt0 stack set-up), the `#else` side is one line, so any build without mwcc stops: `#error "<Name>: <what the assembly does> has no portable C equivalent"`.
+- If the C is equal only under an assumption (word-aligned pointers, a nonzero divisor), check it at compile time where possible, otherwise stop at run time with a message that names the function, and say which assumption in a comment.
+- Pragmas (`#pragma thumb on`) stay inside the `#ifdef __MWERKS__` side. Host headers (`<stdio.h>`) go inside `#else`, after our includes: their `stddef.h` replaces our `NULL` quietly, the other order warns.
+- clang-format still skips these files (they define an `asm` function), so write the C in the repo's style by hand. `PROGRESS.md` still counts the function as asm.
+- `make test` runs `tools/tests/test_portable_c.py`: it compiles every `src/` file with `#ifdef __MWERKS__` with the host gcc (`-std=c99 -iquote include`). A file with `#error` must fail with exactly that message; any other file must compile and define each of its `asm` functions after `#else`.
+
 ## ARM7
 
 ARM7 (the second CPU: sound, touch screen, wireless, power) is one module, `arm7`, in `config/AWRE/arm7/`. It has three parts with their own `.text`: the crt0 at 0x02380000, an autoload into main RAM at 0x027c0000 and one into ARM7 WRAM at 0x037f8000. Names are `func_arm7_XXXXXXXX` and `data_arm7_XXXXXXXX`. All of it is SDK/library code (`docs/awre-facts.md`, "ARM7").

@@ -88,6 +88,7 @@ Group code by what it does. A reader should find the CO powers, the map loader o
 - A function whose purpose is unknown stays at the module level (`src/game/main/func_XXXXXXXX.c`) until it is understood; move it then.
 - Headers in `include/game/` follow the same topics when they grow (one header per struct or table for now).
 - Moving a file means `git mv` plus its path in `delinks.txt`; `make release` must still pass.
+- An `asm` function goes under `#ifdef __MWERKS__` with a plain C version after `#else`, or `#error` where C cannot do the same (`docs/workflow.md`, "Portable C beside asm").
 
 ## Decompiling one function
 
