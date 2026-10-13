@@ -1,5 +1,4 @@
 #include "types.h"
+#include "sdk/wm.h"
 
-extern void* data_022ac32c;
-
-void* func_02116e10(void) { return data_022ac32c; }
+WMArm9Buf* func_02116e10(void) { return data_022ac32c; }

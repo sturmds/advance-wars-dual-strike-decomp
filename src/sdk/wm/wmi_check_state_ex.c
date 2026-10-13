@@ -3,8 +3,6 @@
 #include "sdk/wm.h"
 #include "sdk/os.h"
 
-extern WMArm9Buf* data_022ac32c;
-
 int WMi_CheckStateEx(int count, ...) {
   int result;
   u16 state;

@@ -3,9 +3,6 @@
 void WmClearFifoRecvFlag(void);
 void PXI_SetFifoRecvCallback(int tag, void* callback);
 
-extern u16 data_022ac328;
-extern WMArm9Buf* data_022ac32c;
-
 /* Undoes WM_Init: stops taking WM messages from the ARM7. */
 int WM_Finish(void) {
   int result;

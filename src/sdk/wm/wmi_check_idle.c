@@ -1,8 +1,6 @@
 #include "sdk/wm.h"
 #include "sdk/os.h"
 
-extern WMArm9Buf* data_022ac32c;
-
 int WMi_CheckIdle(void) {
   int result;
 

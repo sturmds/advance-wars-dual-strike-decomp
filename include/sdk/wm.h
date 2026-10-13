@@ -711,4 +711,10 @@ struct Unk_arm7_038057d4_2 {
   u32 unk_18;
 };
 
+/* TRUE once Wireless_SetUpWorkArea has set up the WM; the ARM9 work area;
+ * the queue of free command buffers. */
+extern u16 data_022ac328;
+extern WMArm9Buf* data_022ac32c;
+extern OSMessageQueue data_022ac330;
+
 #endif

@@ -7,11 +7,7 @@ void OS_InitMessageQueue(OSMessageQueue* queue, OSMessage* messages, int count);
 BOOL OS_SendMessage(OSMessageQueue* queue, OSMessage msg, int flags);
 void WmClearFifoRecvFlag(void);
 void WmReceiveFifo(u32 tag, u32 data, BOOL err);
-int WM_SetPortCallback(int port, WMCallbackFunc callback, void* arg);
 
-extern u16 data_022ac328;
-extern WMArm9Buf* data_022ac32c;
-extern OSMessageQueue data_022ac330;
 static OSMessage data_022ac344[WIRELESS_CMD_BUFFERS];
 WMPortRecvCallback gWmConnectPortArg;
 /* aligned to 32: no symbol covers the bytes before it */
