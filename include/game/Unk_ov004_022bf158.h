@@ -83,7 +83,7 @@ typedef struct Unk_ov004_022bf158 {
   u32 bgCharBase;      /* DISPCNT bits 24-26, set by Ov004_ApplyBgCharBase */
   u16 viewX; /* position of the scrolling tile view; eased by Ov004_EaseLayer1View */
   u16 viewY;
-  u16 viewScrollX; /* viewX and viewY wrapped to the BG; set by func_ov004_022bacd8 */
+  u16 viewScrollX; /* viewX and viewY wrapped to the BG; set by Ov004_CopyViewToBgMap */
   u16 viewScrollY;
   u16 blocksWide; /* set by Ov004_InitTileMap: size of the block tile map */
   u16 blocksHigh;

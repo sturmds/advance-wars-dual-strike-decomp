@@ -712,7 +712,8 @@ src/game/ov004/func_ov004_022baccc.c:
     complete
     .text       start:0x022baccc end:0x022bacd8
 
-src/game/ov004/func_ov004_022bacd8.c:
+src/game/ov004/ov004_copy_view_to_bg_map.c:
+    complete
     .text       start:0x022bacd8 end:0x022badac
 
 src/game/ov004/ov004_blit_block_mirrored.c:
