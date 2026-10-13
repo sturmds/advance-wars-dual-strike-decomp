@@ -2,6 +2,7 @@
 
 extern void CP_SaveContext(void *coprocessorContext);   /* saves the coprocessor registers */
 
+#ifdef __MWERKS__
 /*
  * OS_SaveContext: saves CPSR, r0 to r12, sp and lr into context,
  * then the coprocessor state at context + 0x48. Like setjmp, it returns 0
@@ -28,3 +29,6 @@ asm int OS_SaveContext(OSContext *context)
     mov r0, #0
     bx lr
 }
+#else
+#error "OS_SaveContext: saving every register, CPSR and the supervisor sp (mrs/msr, stm) has no portable C equivalent"
+#endif

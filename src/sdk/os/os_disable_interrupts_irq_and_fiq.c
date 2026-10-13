@@ -1,6 +1,7 @@
 #include "types.h"
 #include "sdk/os.h"
 
+#ifdef __MWERKS__
 /* Sets the IRQ and FIQ disable bits in CPSR and returns their previous values. */
 asm OSIntrMode OS_DisableInterrupts_IrqAndFiq(void)
 {
@@ -10,3 +11,6 @@ asm OSIntrMode OS_DisableInterrupts_IrqAndFiq(void)
     and r0, r0, #0xc0
     bx lr
 }
+#else
+#error "OS_DisableInterrupts_IrqAndFiq: setting the IRQ and FIQ disable bits in CPSR (mrs/msr) has no portable C equivalent"
+#endif

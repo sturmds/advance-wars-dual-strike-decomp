@@ -1,5 +1,6 @@
 #include "types.h"
 
+#ifdef __MWERKS__
 /* Reads the CP15 data TCM region register and returns its base address. */
 asm u32 Cp15_DataTcmBase(void)
 {
@@ -8,3 +9,6 @@ asm u32 Cp15_DataTcmBase(void)
     and r0, r0, r1
     bx lr
 }
+#else
+#error "Cp15_DataTcmBase: reading the CP15 data TCM region register (mrc) has no portable C equivalent"
+#endif

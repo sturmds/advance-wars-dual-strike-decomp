@@ -2,6 +2,7 @@
 
 extern u8 data_022a9b88[];
 
+#ifdef __MWERKS__
 /*
  * Called from func_0210e6f8 with ip pointing at the frame OSi_ExceptionHandler
  * pushed. Fills the context record data_022a9b88 from that frame, from r4-r11
@@ -46,3 +47,6 @@ asm void Exception_FillContextRecord(void)
     msr CPSR_fsxc, r0
     bx lr
 }
+#else
+#error "Exception_FillContextRecord: reading r0, ip, r4-r11 and another mode's banked sp, lr and SPSR (mrs/msr) has no portable C equivalent"
+#endif

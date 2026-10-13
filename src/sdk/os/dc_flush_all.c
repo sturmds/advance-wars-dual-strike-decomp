@@ -1,5 +1,6 @@
 #include "types.h"
 
+#ifdef __MWERKS__
 /*
  * DC_FlushAll: cleans and invalidates the whole data cache by set and way.
  * The loop steps the set index (bits 5 to 9) through 32 sets for each of
@@ -21,3 +22,6 @@ set_loop:
     bne way_loop
     bx lr
 }
+#else
+#error "DC_FlushAll: cleaning and invalidating the data cache by set and way (mcr) has no portable C equivalent"
+#endif

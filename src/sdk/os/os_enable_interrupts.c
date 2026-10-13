@@ -1,5 +1,6 @@
 #include "types.h"
 
+#ifdef __MWERKS__
 /* Clears the IRQ-disable bit in CPSR and returns the previous value of that bit. */
 asm int OS_EnableInterrupts(void)
 {
@@ -9,3 +10,6 @@ asm int OS_EnableInterrupts(void)
     and r0, r0, #0x80
     bx lr
 }
+#else
+#error "OS_EnableInterrupts: clearing the IRQ-disable bit in CPSR (mrs/msr) has no portable C equivalent"
+#endif

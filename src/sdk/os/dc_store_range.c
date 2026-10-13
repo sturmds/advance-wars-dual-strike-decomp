@@ -1,5 +1,6 @@
 #include "types.h"
 
+#ifdef __MWERKS__
 /* Writes the data cache lines (32 bytes each) that cover [start, start + size) back to memory. */
 asm void DC_StoreRange(void *start, u32 size)
 {
@@ -12,3 +13,6 @@ loop:
     blt loop
     bx lr
 }
+#else
+#error "DC_StoreRange: cleaning data cache lines (mcr) has no portable C equivalent"
+#endif

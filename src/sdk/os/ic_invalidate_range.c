@@ -1,5 +1,6 @@
 #include "types.h"
 
+#ifdef __MWERKS__
 /* Discards the instruction cache lines (32 bytes each) that cover [start, start + size). */
 asm void IC_InvalidateRange(void *start, u32 size)
 {
@@ -12,3 +13,6 @@ loop:
     blt loop
     bx lr
 }
+#else
+#error "IC_InvalidateRange: invalidating instruction cache lines (mcr) has no portable C equivalent"
+#endif

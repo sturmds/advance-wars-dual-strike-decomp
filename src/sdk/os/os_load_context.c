@@ -2,6 +2,7 @@
 
 extern void CPi_RestoreContext(void *coprocessorContext);   /* restores the coprocessor registers */
 
+#ifdef __MWERKS__
 /*
  * OS_LoadContext: restores the coprocessor state, then switches to
  * the supervisor mode context saved by OS_SaveContext and continues where it
@@ -26,3 +27,6 @@ asm void OS_LoadContext(OSContext *context)
     nop
     subs pc, lr, #4
 }
+#else
+#error "OS_LoadContext: restoring every register and the saved mode (msr, ldm ^, subs pc) has no portable C equivalent"
+#endif

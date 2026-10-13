@@ -3,6 +3,7 @@
 extern OSIrqFunction OS_IRQTable[];   /* handler table, one entry per interrupt bit */
 void OS_IrqHandler_ThreadSwitch(void);
 
+#ifdef __MWERKS__
 /*
  * OS_IrqHandler: IRQ vector body. With IME on, picks the lowest bit set in
  * IE & IF, acknowledges it in IF, and calls its handler from the table with
@@ -33,3 +34,6 @@ next_bit:
     ldr lr, =OS_IrqHandler_ThreadSwitch
     bx r0
 }
+#else
+#error "OS_IrqHandler: jumping to the interrupt handler with lr set to OS_IrqHandler_ThreadSwitch has no portable C equivalent"
+#endif

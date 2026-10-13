@@ -6,6 +6,7 @@ extern u8 data_022a9b88[];
 extern void OS_EnableProtectionUnit(void);
 extern void OS_DisableProtectionUnit(void);
 
+#ifdef __MWERKS__
 /*
  * Calls the callback in data_022a9b7c (if set) with the context record and
  * data_022a9b80, in system mode with interrupts off, and the protection unit
@@ -38,3 +39,6 @@ asm void Exception_RunUserHook(void)
     ldmia sp!, {lr}
     bx lr
 }
+#else
+#error "Exception_RunUserHook: switching to system mode and carrying sp across the switch (msr) has no portable C equivalent"
+#endif

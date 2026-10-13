@@ -5,6 +5,7 @@ extern OSThreadInfo OSi_ThreadInfo;
 extern void CP_SaveContext(void *coprocessorContext);   /* saves the coprocessor registers */
 extern void CPi_RestoreContext(void *coprocessorContext);   /* restores the coprocessor registers */
 
+#ifdef __MWERKS__
 /*
  * OS_IrqHandler_ThreadSwitch: the return path of OS_IrqHandler. Marks the
  * threads named in data_027c1278 as ready, then, if the scheduler asked for
@@ -104,3 +105,6 @@ no_callback:
     stmda sp!, {r0, r1, r2, r3, r12, lr}
     ldmfd sp!, {pc}
 }
+#else
+#error "OS_IrqHandler_ThreadSwitch: switching threads from IRQ mode (msr, banked registers, ldm ^) has no portable C equivalent"
+#endif

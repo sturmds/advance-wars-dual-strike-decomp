@@ -3,6 +3,7 @@
 extern u32 data_022a9b84;
 extern void func_0210e6f8(void);
 
+#ifdef __MWERKS__
 /*
  * Exception vector target. Calls the user handler (data_022a9b84) if one is
  * set, switches to a stack at 0x02000000, and saves the context for aborts
@@ -43,3 +44,6 @@ spin:
     mov sp, ip
     bx lr
 }
+#else
+#error "OSi_ExceptionHandler: switching stacks and reading the CPU mode in the exception vector (mrs) has no portable C equivalent"
+#endif
