@@ -1,6 +1,7 @@
 #include "types.h"
 #include "sdk/os.h"
 
+#ifdef __MWERKS__
 /*
  * Hand-written ARM assembly in the original. Sets up the registers for a new
  * thread: pc + 4 in pcPlus4, sp - 0x40 as the stack, the given sp
@@ -35,3 +36,18 @@ asm void OS_InitContext(OSContext *context, u32 pc, u32 sp)
     str r1, [r0, #0x3c]     /* lr */
     bx lr
 }
+#else
+/* The context's cpContext is left as it was, as in the assembly. */
+void OS_InitContext(OSContext *context, u32 pc, u32 sp) {
+  int i;
+
+  context->pcPlus4 = pc + 4;
+  context->spSvc = sp;
+  context->sp = sp - 0x40;
+  context->cpsr = (pc & 1) ? 0x3f : 0x1f;
+  for (i = 0; i < 13; i++) {
+    context->r[i] = 0;
+  }
+  context->lr = 0;
+}
+#endif

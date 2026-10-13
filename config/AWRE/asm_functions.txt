@@ -40,6 +40,7 @@ main  OS_GetLockID                         clz, which mwcc 2.0 does not emit fro
 main  OS_ReleaseLockID                     pl/mi conditions after cmp and an unfolded shift
 main  OS_SaveContext                       mrs/msr and register-bank ldm/stm
 main  OS_LoadContext                       mrs/msr and register-bank ldm/stm
+main  OS_InitContext                       adds 4 to the pc argument in place; mwcc puts pc + 4 in a new register
 main  DC_FlushAll                          mcr cache/CP15 operation
 main  DC_InvalidateRange                   mcr cache/CP15 operation
 main  DC_StoreRange                        mcr cache/CP15 operation
@@ -178,6 +179,7 @@ arm7  LockId_Allocate_Arm7                 top-tested scan loops written out twi
 arm7  LockId_Free_Arm7                     same shape as OS_ReleaseLockID: pl/mi after cmp, unfolded shift
 arm7  Context_Capture_Arm7                 mrs/msr and register-bank ldm/stm
 arm7  Context_Resume_Arm7                  mrs/msr and register-bank ldm/stm
+arm7  Context_PrepareForEntry_Arm7         adds 4 to the pc argument in place; mwcc puts pc + 4 in a new register
 arm7  Alarm_OnTimer1Irq_Arm7               push {lr} with no stack padding
 arm7  Cpu_UnmaskIrq_Arm7                   mrs/msr on CPSR
 arm7  Cpu_MaskIrq_Arm7                     mrs/msr on CPSR
