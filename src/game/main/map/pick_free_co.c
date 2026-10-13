@@ -6,7 +6,8 @@
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u8 data_022a7a68[]; /* COs the player may pick, ends with CO_NONE */
+/* COs the player may pick, ends with CO_NONE; size: up to the next symbol; also declared in src/game/main/map/build_unlocked_co_list.c and 2 more */
+u8 data_022a7a68[0x20];
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 

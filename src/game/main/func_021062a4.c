@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern int data_022a89f8;
+static int data_022a89f8;
 extern int data_022a8a10;
 
 void* func_021062a4(void) {

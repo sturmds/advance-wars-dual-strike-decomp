@@ -1,10 +1,17 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/combatant.h"
+#include "game/ai_reach_tile.h"
+#include "game/unit_target_entry.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern int gFireTargetCount;
+/* also declared in src/game/main/map/fire_targets_add.c and 2 more */
+int gFireTargetCount;
+int data_022a6dd4;
+UnitTargetEntry* data_022a6dcc;
+AiReachTile* data_022a6dd0;
+u8 data_022a6dd8[0x4b8]; /* size: up to the next symbol */
 
 void FireTargets_Clear(void);
 /* Defined with u16 parameters. Declared here with int x, y and slot because

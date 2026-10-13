@@ -2,6 +2,7 @@
 #include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/tile_sprite_task.h"
+#include "game/design_map.h"
 
 void Sound_PlaySe(int id);
 
@@ -16,7 +17,10 @@ typedef struct CoSoundRow {
 extern const TaskScriptCmd data_02166ed4[];
 extern const TaskScriptCmd data_02166efc[];
 extern CoSoundRow data_021536ec[];
-extern int data_022a6c78;
+/* also declared in src/game/main/copowers/power_highlight_load_graphics.c */
+int data_022a6c78;
+u8 gSavedArmyColours[5];
+DesignMap data_022a6c84[0xc]; /* size: up to the next symbol */
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 

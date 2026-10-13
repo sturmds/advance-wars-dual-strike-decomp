@@ -8,7 +8,8 @@ int Co_GetRank(u32 co);
 int func_0210391c(void);
 
 extern u8 data_021687c4[];
-extern CampaignTopCo gCampaignUnlockedCos[4];
+/* also declared in src/game/main/campaign/campaign_get_unlocked_cos.c */
+CampaignTopCo gCampaignUnlockedCos[4];
 
 /* A step of the data_0216d8ec task, which Campaign_ContinueProfile0-2 start
  * when the profile's unk_04 is 0xff. Unless data_02290118.unk_08 is set,

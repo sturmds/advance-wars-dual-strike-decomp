@@ -9,6 +9,10 @@
 #undef data_022a7a9c
 #include "game/terrain.h"
 
+u8 data_022a7ac4[0x14]; /* size: up to the next symbol */
+/* count: as many elements as fit before the next symbol */
+u8 data_022a7ad8[0x4][40];
+
 int Player_GetCoByteFallback(int player, int slot);
 int func_02001730(
     int player, int slot); /* CO id in a player's front (0) or back (1) slot */

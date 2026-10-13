@@ -8,11 +8,11 @@ typedef struct CallbackNode {
   struct CallbackNode* next;
 } CallbackNode;
 
-extern s8 data_022a8020;
-extern u32 data_022a8024;
-extern u32 data_022a8028; /* set once the sound system is set up */
-extern CallbackNode data_022a802c;
-extern CallbackNode data_022a8038;
+static s8 data_022a8020;
+static u32 data_022a8028; /* set once the sound system is set up */
+static u32 data_022a8024;
+static CallbackNode data_022a8038;
+static CallbackNode data_022a802c;
 
 void func_02104de8(void);
 void func_02104ddc(void);

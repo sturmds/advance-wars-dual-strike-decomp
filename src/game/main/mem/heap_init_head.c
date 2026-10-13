@@ -3,8 +3,9 @@
 
 LinkList* Heap_FindParentList(HeapHead* heap);
 
-extern BOOL gHeapRootListReady;
-extern LinkList gHeapRootList;
+static BOOL gHeapRootListReady;
+/* also declared in src/game/main/mem/heap_find_parent_list.c */
+LinkList gHeapRootList;
 
 /* Fills in a new heap's header and adds the heap to the list of the heap
  * whose range holds it (or to the root list). */

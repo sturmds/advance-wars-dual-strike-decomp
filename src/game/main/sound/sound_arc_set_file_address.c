@@ -13,7 +13,8 @@ struct Unk_021062e8_1 {
   int unk_80;
 };
 
-extern Unk_021062e8_1* gCurrentSoundArc;
+/* also declared in src/game/main/func_021063d0.c and 14 more */
+Unk_021062e8_1* gCurrentSoundArc;
 
 void SoundArc_SetFileAddress(int a0, int a1) {
   ((Unk_021062e8_0*)(gCurrentSoundArc->unk_80 + (a0 << 4)))->unk_14 = a1;

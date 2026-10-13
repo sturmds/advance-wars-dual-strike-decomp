@@ -2,6 +2,8 @@
 #include "game/play_records.h"
 #include "game/play_records_snapshot.h"
 
+PlayRecordsSnapshot gPlayRecordsSnapshot;
+
 /* Lowers the first two counters of gPlayRecords to the values in
  * gPlayRecordsSnapshot when they are higher. */
 void PlayRecords_CapAtSnapshot(void) {

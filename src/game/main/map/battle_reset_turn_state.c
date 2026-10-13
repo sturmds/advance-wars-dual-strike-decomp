@@ -4,7 +4,10 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern u16 data_0229d8c4;
-extern u32 gMapGameRunning;
+u8 data_022a6b30;
+/* also declared in src/game/main/main_loop_map_frame.c and 3 more */
+u32 gMapGameRunning;
+u8 data_022a6b34[0x4]; /* size: up to the next symbol */
 
 void Panels_PlaceForCursor(void);
 void func_020b9c3c(void);

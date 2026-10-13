@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern void* data_022a7e6c;
+void* data_022a7e6c; /* also declared in src/game/main/func_020fc98c.c */
 void Mem_Free(void* ptr);
 void Sound_InitFromMemory(void);
 void Sound_LoadResidentData(void);

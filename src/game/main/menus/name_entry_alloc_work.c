@@ -10,7 +10,10 @@
 void* Mem_Alloc(u32 size);
 void Mem_Zero32(u32 value, void* dst, u32 size);
 
-extern NameEntry* gNameEntry;
+/* also declared in src/game/main/func_02101500.c and 8 more */
+NameEntry* gNameEntry;
+u8 gNameEntryText[0x24];      /* size: up to the next symbol */
+u8 gNameEntryStartText[0x24]; /* size: up to the next symbol */
 
 /* First step of the name entry screen: allocates and clears the work block. */
 void NameEntry_AllocWork(NameEntryTask* task) {

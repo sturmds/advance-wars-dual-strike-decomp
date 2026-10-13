@@ -1,9 +1,13 @@
 #include "types.h"
 #include "game/sound_strm.h"
 
-extern BOOL
-    gSoundStrmListReady;       /* TRUE once the active stream list is set up */
-extern LinkList data_022a892c; /* active streams */
+/* TRUE once the active stream list is set up */
+static BOOL gSoundStrmListReady;
+/* active streams; also declared in src/game/main/sound/sound_strm_release.c and 1 more */
+LinkList data_022a892c;
+void* data_022a8938[SOUND_STRM_CHANNEL_COUNT];
+/* ring buffer of each hardware channel */
+SoundStrmChannel data_022a8978[SOUND_STRM_CHANNEL_COUNT];
 
 void SoundStrm_OnSleep(SoundStrm* strm);
 void SoundStrm_OnWake(SoundStrm* strm);

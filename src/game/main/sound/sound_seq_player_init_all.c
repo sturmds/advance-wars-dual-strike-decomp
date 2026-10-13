@@ -7,9 +7,10 @@
 
 extern LinkList data_022a805c; /* sequence players in use, sorted by priority */
 extern LinkList data_022a8050; /* sequence players not in use */
-extern SoundSeqPlayer gSoundSeqPlayers[SEQ_PLAYER_COUNT];
-extern SoundPlayerSlot
-    data_022a84a8[SEQ_PLAYER_SLOT_COUNT]; /* sequence player groups */
+/* also declared in src/game/main/sound/nns_snd_player_stop_seq_all.c */
+SoundSeqPlayer gSoundSeqPlayers[SEQ_PLAYER_COUNT];
+/* sequence player groups; also declared in src/game/main/sound/sound_player_heap_create.c and 5 more */
+SoundPlayerSlot data_022a84a8[SEQ_PLAYER_SLOT_COUNT];
 
 /* Sets up the lists of sequence players, puts every player in the free
  * list with its own hardware channel number, and sets every group up with a

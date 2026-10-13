@@ -15,8 +15,7 @@ void SoundWaveArc_OnUnload(void* payload, u32 size, SoundArc* arc, int fileId);
 void Mem_CopyBytes(const void* src, void* dest, u32 size);
 void MI_CpuFill8(void* dest, int value, u32 size);
 
-extern SoundWaveArc
-    gWaveArcHeader; /* header of the wave archive being loaded */
+SoundWaveArc gWaveArcHeader; /* header of the wave archive being loaded */
 
 /* Loads wave archive file fileId for loading its waves one at a time: only
  * the header and the wave table go into heap, the wave table cleared and its

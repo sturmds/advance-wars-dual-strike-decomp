@@ -1,7 +1,8 @@
 #include "types.h"
 #include "game/campaign_recap.h"
 
-extern CampaignRecap* data_022a7ea4;
+/* also declared in src/game/main/campaign_recap_camera_task_init.c and 1 more */
+CampaignRecap* data_022a7ea4;
 
 void* Mem_Alloc(u32 size);
 void Mem_Zero32(u32 value, void* dst, u32 size);

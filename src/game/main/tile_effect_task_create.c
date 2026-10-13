@@ -1,9 +1,12 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/tile_effect_task.h"
+#include "game/battle_save.h"
 
 extern const TaskScriptCmd gTileEffectTaskScript[];
-extern int gTileEffectStarting;
+/* also declared in src/game/main/tile_effect_task_destroy_if_other_effect.c */
+int gTileEffectStarting;
+BattleSaveBlock40 data_022a7b98;
 
 void TileEffectTask_DestroyIfOtherEffect(TileEffectTask* task);
 void Task_ForEachByScript(const TaskScriptCmd* script,
