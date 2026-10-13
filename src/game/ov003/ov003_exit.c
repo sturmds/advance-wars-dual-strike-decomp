@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ov003_gfx.h"
 #include "game/Unk_02088d04.h"
 
 void Mem_Free(void* block);
@@ -11,7 +12,6 @@ void func_ov003_02353bac(void);
 
 extern Unk_027c0280* data_027c0280;
 extern void* data_ov003_02365b10;
-extern void* data_ov003_02365b0c;
 
 /* Undoes Ov003_Init: tears down the overlay's tasks and frees its two buffers. */
 void Ov003_Exit(void) {

@@ -1,11 +1,11 @@
 #include "types.h"
+#include "game/ov003_gfx.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_02160abc.h"
 #include "game/Unk_ov003_0235dd38.h"
 #include "game/ov003_unit.h"
 
 extern Unk_027c0280* data_027c0280;
-extern u8* data_ov003_02365b0c;
 
 const void* Text_Get(u32 textId);
 void Mem_Copy32(const void* src, void* dst, u32 size);

@@ -1,9 +1,8 @@
 #include "types.h"
+#include "game/ov003_sound.h"
 
 void Sound_PlaySe(u32 soundId);
 void Sound_PlaySeAtVolume(u32 soundId, int volume);
-
-extern u32 data_ov003_02369c08;
 
 /* Plays sound 163 for the flags the overlay set since the last call (bit 0
  * at full volume, bit 1 quieter), then clears them. */

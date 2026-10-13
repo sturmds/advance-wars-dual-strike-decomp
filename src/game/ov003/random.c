@@ -1,7 +1,8 @@
 #include "types.h"
+#include "game/ov003_random.h"
 #include "game/ov003_unit.h"
 
-u32 gOv003RandState; /* also declared in src/game/ov003/random_seed.c */
+u32 gOv003RandState;
 Ov003Input data_ov003_02365b04;
 
 /* Steps the overlay 3 random state. Ov003_RandSeed sets the seed. */

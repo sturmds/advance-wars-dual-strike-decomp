@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ov003_sound.h"
 #include "game/screen_other_map.h"
 #include "game/ov003_unit.h"
 
@@ -13,7 +14,6 @@ void func_02027aa8(void* sprite, void* a, void* b);
 void func_02027aa0(void* sprite, void* a);
 void func_02027a98(void* sprite, void (*callback)(void*));
 void Ov003_SpriteCallback(void* sprite);
-extern u32 data_ov003_02369c08;
 extern u8 data_ov003_023655e0[];
 
 /* Like Ov003_CreateSprite, but stores value at 0x60 of the sprite and sets

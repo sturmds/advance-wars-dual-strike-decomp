@@ -1,9 +1,8 @@
 #include "types.h"
+#include "game/ov003_gfx.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_02160ac0.h"
 #include "game/ov003_unit.h"
-
-extern u8 data_ov003_02369be8[];
 
 void Data_Unpack(const void* src, void* dst);
 void Palette_Load(const void* src, u32 offset, u32 size);

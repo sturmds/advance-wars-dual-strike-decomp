@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ov003_sound.h"
 #include "game/screen_other_map.h"
 #include "game/ov003_unit.h"
 
@@ -6,7 +7,6 @@ void* Sprite_CreateTask(int a, const void* b, int c, s16 x, s16 y, int e, int f,
                         int g);
 void func_02027aa8(void* sprite, void* a, void* b);
 void func_02027aa0(void* sprite, void* a);
-extern u32 data_ov003_02369c08;
 extern u8 data_ov003_023655e0[];
 
 /* Like Ov003_CreateSprite, with 2 as the third argument of Sprite_CreateTask

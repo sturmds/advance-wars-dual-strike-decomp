@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ov003_gfx.h"
 #include "game/screen_other_map.h"
 #include "game/ov003_unit.h"
 #include "game/Unk_ov003_0235dd38.h"
@@ -18,7 +19,6 @@ int Ov003_GetTextWidth(const u8* str); /* text width in pixels */
 /* Sine table: [0] sin 0, [64] cos 0. Needed to match: const, so the
  * loads move out of the loops. */
 extern const s16 gSineTable[];
-extern void* data_ov003_02365b0c;
 
 #define STATE data_ov003_02364928
 

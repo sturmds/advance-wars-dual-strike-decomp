@@ -1,11 +1,11 @@
 #include "types.h"
+#include "game/ov003_gfx.h"
 #include "game/screen_other_map.h"
 
 void Data_Unpack(const void* src, void* dest);
 void Palette_Load(const void* src, u32 offset, u32 size);
 void* Mem_Alloc(u32 size);
 void* data_ov003_02365b10;
-/* also declared in src/game/ov003/ov003_exit.c and 3 more */
 void* data_ov003_02365b0c;
 u8 data_ov003_02365b14[0x1e0]; /* size: up to the next symbol */
 

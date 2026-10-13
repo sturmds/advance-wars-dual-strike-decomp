@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ov003_gfx.h"
 #include "game/screen_other_map.h"
 #include "game/ov003_message_task.h"
 #include "game/ov003_unit.h"
@@ -12,8 +13,6 @@ int strlen(const u8* str);
 int Ov003_GetTextWidth(const u8* str);
 int Ov003_DrawLetter(u8 ch, u16 x, u16 y);
 void Task_ResumeScript(Ov003MessageTask* task);
-
-extern void* data_ov003_02365b0c;
 
 #define MESSAGE_TEXT 0x7d000024
 #define MESSAGE_FRAMES 60
