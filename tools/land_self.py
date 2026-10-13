@@ -14,8 +14,8 @@ each agent lands its own branch:
    If that stops, the run leaves the queue. Fix the files, run
    `rebase_onto_mainline.py --continue`, then run this again.
 2. Run `make release`.
-3. Write PROGRESS.md for the rebased tree and amend it into the branch's
-   last commit, so mainline's copy stays current. This is the only amend
+3. Write PROGRESS.md and PROGRESS.json for the rebased tree and amend them
+   into the branch's last commit, so mainline's copies stay current. This is the only amend
    in the loop.
 4. Under an exclusive lock (<git common dir>/land.lock), check that
    mainline has not moved since step 1, and fast-forward the main
@@ -166,12 +166,12 @@ def rebase() -> tuple[int | None, str]:
 
 
 def write_progress() -> int | None:
-    """Step 3: amend a new PROGRESS.md into the last commit."""
+    """Step 3: amend a new PROGRESS.md and PROGRESS.json into the last commit."""
     if run(sys.executable, "tools/progress.py", "--write", "PROGRESS.md"):
         return BUILD_FAILED
-    if not git("status", "--porcelain", "--", "PROGRESS.md"):
+    if not git("status", "--porcelain", "--", "PROGRESS.md", "PROGRESS.json"):
         return None
-    git("add", "PROGRESS.md")
+    git("add", "PROGRESS.md", "PROGRESS.json")
     # The hooks run again here, so the amended commit also passes make release.
     if run("git", "commit", "-q", "--amend", "--no-edit"):
         return BUILD_FAILED

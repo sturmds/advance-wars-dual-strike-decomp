@@ -20,4 +20,4 @@ Facts read from its source, used by `tools/decomp_dev_report.py`:
 
 ## What we do not take
 
-No code. We do not upload anything to it; publishing is issue 0071.
+No code. `.github/workflows/decomp-dev.yml` uploads our report as an artifact for it to read (issue 0071).

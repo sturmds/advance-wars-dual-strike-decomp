@@ -107,7 +107,8 @@ release: setup
 	@echo "release: OK"
 
 # build/artifacts/0.1_report/report.json: the objdiff report over both CPUs,
-# laid out as decomp.dev's artifact. Written only, never uploaded.
+# laid out as decomp.dev's artifact. hooks/pre-commit commits a copy as
+# PROGRESS.json, which .github/workflows/decomp-dev.yml uploads.
 decomp-dev-report: all
 	@$(PYTHON) tools/decomp_dev_report.py
 

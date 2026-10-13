@@ -16,7 +16,7 @@ delinks.txt or symbols.txt, so this replays config changes by meaning:
 - relocs.txt: relocations the commit added, removed or changed are
   replayed, matched by their from: address. An entry this branch has with
   other content is a conflict.
-- PROGRESS.md: skipped; the pre-commit hook writes it again here.
+- PROGRESS.md, PROGRESS.json: skipped; the pre-commit hook writes them again here.
 - Other files: written if this branch still has the parent's version,
   otherwise merged with `git merge-file`. A conflict in a header under
   include/ (also a header both sides added) is merged by meaning with
@@ -556,7 +556,7 @@ def main() -> int:
     renames = []
     for line in changes:
         status, path = line.split("\t", 1)
-        if path == "PROGRESS.md":
+        if path in ("PROGRESS.md", "PROGRESS.json"):
             continue  # the pre-commit hook writes it for this branch
         if status[0] not in "AMD":
             sys.exit(f"error: unsupported change {status} {path}")
@@ -596,7 +596,7 @@ def main() -> int:
     # Also stage the commit's other paths (tools/, hooks/, Makefile, CLAUDE.md,
     # skills): without this, a replayed tools commit landed without its files.
     other = sorted({p for ln in changes for p in ln.split("\t")[1:]
-                    if p != "PROGRESS.md" and not p.startswith(("config/", "src/", "include/", "docs/"))})
+                    if p not in ("PROGRESS.md", "PROGRESS.json") and not p.startswith(("config/", "src/", "include/", "docs/"))})
     if other:
         git("add", "-A", "--", *other)
     if not git("diff", "--cached", "--name-only"):

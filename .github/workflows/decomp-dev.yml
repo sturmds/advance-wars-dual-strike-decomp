@@ -1,0 +1,24 @@
+# Uploads the decomp.dev report. CI cannot build (the build needs the ROM), so
+# it uploads the report `make release` wrote on the builder's machine, which
+# hooks/pre-commit commits as PROGRESS.json. decomp.dev reads the artifact of
+# completed push runs on the default branch; the part of its name before
+# `_report` is the version it shows, VERSION in tools/decomp_dev_report.py.
+name: decomp.dev report
+
+on:
+  push:
+    branches: [mainline]
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: PROGRESS.json
+          sparse-checkout-cone-mode: false
+      - run: mkdir -p report && cp PROGRESS.json report/report.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: 0.1_report
+          path: report/report.json

@@ -18,8 +18,8 @@ Each replayed commit runs the hooks, so `make release` must pass.
 
 When a replay stops (a conflict, or a failed `make release`), the changes
 are staged. Fix them, `git add` the files, and run it with --continue.
-PROGRESS.md is never committed here: mainline writes it when the commit
-lands.
+PROGRESS.md and PROGRESS.json are never committed here: mainline writes
+them when the commit lands.
 
 A commit replayed without a stop keeps its tenets review stamp
 (tools/review_stamp.py), also when the merge changed its diff. A commit
@@ -144,9 +144,9 @@ def resume() -> int:
         sys.exit("error: no rebase under way")
     state = json.loads(STATE.read_text())
     commit = state["todo"][0]
-    # PROGRESS.md belongs to mainline; keep it out of this commit.
-    git("reset", "-q", "HEAD", "--", "PROGRESS.md", check=False)
-    git("checkout", "-q", "HEAD", "--", "PROGRESS.md", check=False)
+    # PROGRESS.md and PROGRESS.json belong to mainline; keep them out of this commit.
+    git("reset", "-q", "HEAD", "--", "PROGRESS.md", "PROGRESS.json", check=False)
+    git("checkout", "-q", "HEAD", "--", "PROGRESS.md", "PROGRESS.json", check=False)
     git("add", "-A", "config", "src", "include")
     if git("status", "--porcelain", "--untracked-files=no"):
         r = subprocess.run(["git", "commit", "-q", "-C", commit], cwd=ROOT)
@@ -169,7 +169,7 @@ def finish(state: dict) -> int:
     print(f"{state['branch']} now starts at mainline. Old -> new:")
     for old, new in state["done"]:
         touched = git("diff-tree", "--no-commit-id", "-r", "--name-only", new).split()
-        warn = "  (carries PROGRESS.md!)" if "PROGRESS.md" in touched else ""
+        warn = "  (carries PROGRESS.md!)" if {"PROGRESS.md", "PROGRESS.json"} & set(touched) else ""
         print(f"  {old[:10]} -> {new}{warn}")
     return 0
 

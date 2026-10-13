@@ -2,7 +2,9 @@
 """Decompilation progress (plan D4), as decomp.dev measures it.
 
     progress.py                  print the report as Markdown
-    progress.py --write FILE     write it to FILE (PROGRESS.md)
+    progress.py --write FILE     write it to FILE (PROGRESS.md), and copy the
+                                 report beside it as FILE.json (PROGRESS.json),
+                                 which the decomp.dev workflow uploads
 
 Reads build/artifacts/0.1_report/report.json, which tools/decomp_dev_report.py
 writes in `make release`, and gives decomp.dev's two measures: decompiled
@@ -182,8 +184,9 @@ def main() -> int:
         sys.stdout.write(text)
         return 0
     out = Path(sys.argv[2])
-    if not out.exists() or out.read_text() != text:
-        out.write_text(text)
+    for dest, body in ((out, text), (out.with_suffix(".json"), path.read_text())):
+        if not dest.exists() or dest.read_text() != body:
+            dest.write_text(body)
     return 0
 
 

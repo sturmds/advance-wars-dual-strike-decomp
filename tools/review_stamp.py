@@ -24,9 +24,9 @@ the time, what was stamped and the findings. Stamps without findings
 The patch ID (`git patch-id --stable`) depends only on the diff, so a
 stamp taken on the staged change before `git commit` fits the commit, and
 it still fits after the commit is replayed onto a newer mainline without
-changes. PROGRESS.md is left out of the diff: land_self.py amends it into
-the last commit. Stamps live under the common git directory, so they never
-enter git and every worktree sees them. When rebase_onto_mainline.py
+changes. PROGRESS.md and PROGRESS.json are left out of the diff:
+land_self.py amends them into the last commit. Stamps live under the common
+git directory, so they never enter git and every worktree sees them. When rebase_onto_mainline.py
 replays a stamped commit with no stop (git's merge and header_merge.py's
 field renames change the diff, nobody else does), the new commit gets the
 old stamp. A commit fixed by hand during `--continue` does not: it needs a
@@ -48,7 +48,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 DIFF_OPTS = ["-p", "--no-renames", "--no-color", "--no-ext-diff", "--full-index"]
-PATHSPEC = ["--", ".", ":(exclude)PROGRESS.md"]
+PATHSPEC = ["--", ".", ":(exclude)PROGRESS.md", ":(exclude)PROGRESS.json"]
 CODE = ("src/", "include/")
 MIN_NOTE = 20  # characters after `<path>:`, so "ok" does not pass
 FINDINGS = "findings:\n"  # separates the stamp's first line from the findings

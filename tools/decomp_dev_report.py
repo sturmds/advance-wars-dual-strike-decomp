@@ -7,8 +7,9 @@ Writes build/artifacts/0.1_report/report.json: one objdiff report over ARM9
 and ARM7. decomp.dev takes reports from GitHub Actions artifacts named
 `<version>_report` and shows each report's `matched_code_percent` as
 decompiled and `complete_code_percent` as fully linked. The directory under
-build/artifacts/ holds what such an artifact would hold. Nothing here uploads
-it.
+build/artifacts/ holds what such an artifact would hold. hooks/pre-commit
+commits a copy as PROGRESS.json, and .github/workflows/decomp-dev.yml
+uploads it.
 
 objdiff-cli has no command to merge two reports, so this writes one objdiff
 project with the units of both CPUs (build/report/objdiff.json) and lets

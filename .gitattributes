@@ -1,0 +1,2 @@
+# The decomp.dev report is one 6 MB line; diffs show it only as changed.
+PROGRESS.json -diff

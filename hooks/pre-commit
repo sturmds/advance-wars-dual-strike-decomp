@@ -5,7 +5,8 @@
 # 2. Run `make release`. It builds the working tree, not only the staged
 #    changes, so stage everything you built with before committing.
 # 3. Rewrite PROGRESS.md from the decomp.dev report that make release just
-#    wrote, and stage it, so it goes into this commit. Not in
+#    wrote, copy the report to PROGRESS.json, and stage both, so they go into
+#    this commit. .github/workflows/decomp-dev.yml uploads PROGRESS.json. Not in
 #    a linked worktree (an agent's): mainline writes it when the commit
 #    lands, and agent commits that carry it conflict with each other.
 set -eu
@@ -26,5 +27,5 @@ fi
 make release
 if [ "$(git rev-parse --path-format=absolute --git-dir)" = "$(git rev-parse --path-format=absolute --git-common-dir)" ]; then
     python3 tools/progress.py --write PROGRESS.md
-    git add PROGRESS.md
+    git add PROGRESS.md PROGRESS.json
 fi
