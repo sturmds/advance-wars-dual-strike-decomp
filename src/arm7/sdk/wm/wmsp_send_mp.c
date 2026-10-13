@@ -5,7 +5,7 @@
 
 int WMSP_BuildMpSendData(int a0, int a1, int a2, int a3, u16* flags,
                          const void* buf, u32* a6, u32* size);
-u16 func_arm7_027c6020(u32 parentSize, u32 childSize, u32 childBitmap);
+u16 WMSP_GetMpTimeLeft(u32 parentSize, u32 childSize, u32 childBitmap);
 u16* func_arm7_027c22a8(WlCommand* cmd, u16 arg0, u16 arg1, u16 arg2, u16 arg3,
                         u16 arg4, u16 arg5, u16 arg6, u16 arg7, u32 arg8);
 
@@ -54,7 +54,7 @@ void WMSP_SendMp(u16 arg) {
     }
     pollBitmap &= childBitmap;
     if (status->unk_36 == 1) {
-      time = func_arm7_027c6020(parentSize, childSize, pollBitmap);
+      time = WMSP_GetMpTimeLeft(parentSize, childSize, pollBitmap);
       flags |= 0x8000;
     } else {
       time = 0;

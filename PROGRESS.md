@@ -14,11 +14,11 @@ add both CPUs.
 | ARM9 game | 6698 / 6700 | 1552984 / 1553840 | 99.94% | 0 | 0 |
 | ARM9 SDK/library | 657 / 833 | 114512 / 135230 | 84.68% | 176 | 20718 |
 | ARM9 all | 7355 / 7533 | 1667496 / 1689070 | 98.72% | 176 | 20718 |
-| ARM7 SDK/library | 950 / 1020 | 149188 / 154300 | 96.69% | 69 | 4960 |
-| ARM7 all | 950 / 1020 | 149188 / 154300 | 96.69% | 69 | 4960 |
+| ARM7 SDK/library | 951 / 1020 | 149340 / 154300 | 96.79% | 69 | 4960 |
+| ARM7 all | 951 / 1020 | 149340 / 154300 | 96.79% | 69 | 4960 |
 | game | 6698 / 6700 | 1552984 / 1553840 | 99.94% | 0 | 0 |
-| SDK/library | 1607 / 1853 | 263700 / 289530 | 91.08% | 245 | 25678 |
-| all | 8305 / 8553 | 1816684 / 1843370 | 98.55% | 245 | 25678 |
+| SDK/library | 1608 / 1853 | 263852 / 289530 | 91.13% | 245 | 25678 |
+| all | 8306 / 8553 | 1816836 / 1843370 | 98.56% | 245 | 25678 |
 
 ## By module
 
@@ -37,7 +37,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | ov004 | game | 236 / 236 | 67364 / 67364 | 100.00% | 0 |
 | ov005 | game | 266 / 266 | 96684 / 96684 | 100.00% | 0 |
 | ov006 | game | 321 / 321 | 105588 / 105588 | 100.00% | 0 |
-| arm7 | SDK/library | 950 / 1020 | 149188 / 154300 | 96.69% | 69 |
+| arm7 | SDK/library | 951 / 1020 | 149340 / 154300 | 96.79% | 69 |
 
 Modules with nothing done: none.
 
@@ -60,8 +60,8 @@ has no function, so it is a little larger than the totals above (issue 0071).
 | ov004 | 67364 | 100.00% | 100.00% | 236 / 236 |
 | ov005 | 96684 | 100.00% | 100.00% | 266 / 266 |
 | ov006 | 105588 | 100.00% | 100.00% | 321 / 321 |
-| arm7 | 155236 | 99.12% | 99.20% | 1015 / 1038 |
-| all | 1845022 | 99.37% | 99.51% | 8517 / 8575 |
+| arm7 | 155236 | 99.22% | 99.29% | 1016 / 1038 |
+| all | 1845022 | 99.38% | 99.52% | 8518 / 8575 |
 
 ## Partial functions
 
@@ -75,12 +75,11 @@ objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 00
 | Code | Functions | Bytes | Rows that match |
 |---|---:|---:|---:|
 | ARM9 game | 2 | 856 | 161 / 217 (74.19%) |
-| ARM7 SDK/library | 1 | 152 | 36 / 38 (94.74%) |
-| all | 3 | 1008 | 197 / 255 (77.25%) |
+| all | 2 | 856 | 161 / 217 (74.19%) |
 
 | Rows that differ | Functions | Bytes |
 |---|---:|---:|
-| 1 to 2 | 1 | 152 |
+| 1 to 2 | 0 | 0 |
 | 3 to 10 | 0 | 0 |
 | 11 to 50 | 2 | 856 |
 | more than 50 | 0 | 0 |
@@ -89,6 +88,5 @@ Closest first.
 
 | File | Function | Bytes | Differ | Match |
 |---|---|---:|---:|---:|
-| `src/arm7/sdk/wm/func_arm7_027c6020.c` | func_arm7_027c6020 | 152 | 2 | 98.39% |
 | `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | UnitInfoPanel_DrawPage | 300 | 14 | 89.08% |
 | `src/game/main/menus/combat_map_draw_preview_block.c` | CombatMap_DrawPreviewBlock | 556 | 42 | 98.06% |

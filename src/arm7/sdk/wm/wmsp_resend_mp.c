@@ -1,6 +1,6 @@
 #include "sdk/wmsp.h"
 
-u16 func_arm7_027c6020(u32 parentSize, u32 childSize, u32 childBitmap);
+u16 WMSP_GetMpTimeLeft(u32 parentSize, u32 childSize, u32 childBitmap);
 u16* func_arm7_027c22a8(WlCommand* cmd, u16 arg0, u16 arg1, u16 arg2, u16 arg3,
                         u16 arg4, u16 arg5, u16 arg6, u16 arg7, u32 arg8);
 
@@ -24,7 +24,7 @@ void WMSP_ResendMp(u16 arg) {
   flags = status->unk_3e;
   pollBitmap = arg & status->childBitmap;
   if (status->unk_36 == 1) {
-    time = func_arm7_027c6020(status->unk_42, status->unk_40, pollBitmap);
+    time = WMSP_GetMpTimeLeft(status->unk_42, status->unk_40, pollBitmap);
     flags |= 0x8000;
   } else {
     time = 0;
