@@ -6,7 +6,6 @@
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u8 gArmyColours[ARMY_SLOT_COUNT];
 extern u16 gMapPreviewColumnOffsets
     []; /* offset of each column of the block, in halfwords */
 extern u16 gMapPreviewRowOffsets[]; /* offset of each row of the block */

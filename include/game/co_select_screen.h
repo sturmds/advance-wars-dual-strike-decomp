@@ -51,4 +51,7 @@ typedef struct CoSelectPictureTask {
   u8 slidingIn[2];
 } CoSelectPictureTask;
 
+/* One bit per CO id: the COs the CO select screen offers. */
+extern u32 data_0229c740;
+
 #endif

@@ -2,6 +2,7 @@
 #include "game/map_unit.h"
 #include "game/unit_stats.h"
 #include "game/Unk_02080440.h"
+#include "game/unit_list_task.h"
 
 void* Mem_Alloc(u32 size);
 void Mem_Free(void* block);
@@ -10,8 +11,6 @@ s32 HwDiv32(s32 a, s32 b);
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u8*
-    gUnitListRows; /* unit list rows: slot of each unit, counted from the player's first slot; 0 ends the list */
 extern s8 data_ov000_022b3850
     []; /* indexed by unit type; here walked from 1 to give the list's type order */
 

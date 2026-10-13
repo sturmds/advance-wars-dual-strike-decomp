@@ -33,4 +33,10 @@ typedef struct PopupMenuSave {
   const MenuItem* items;
 } PopupMenuSave;
 
+#define POPUP_MENU_STACK_SIZE 8
+
+/* The stack PopupMenu_PushState fills, and its next free entry. */
+extern PopupMenuSave data_02297ee4[POPUP_MENU_STACK_SIZE];
+extern PopupMenuSave* data_02297ee0;
+
 #endif

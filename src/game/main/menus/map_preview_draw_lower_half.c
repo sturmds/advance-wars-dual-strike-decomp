@@ -2,14 +2,13 @@
 #include "game/map_data.h"
 #include "game/terrain.h"
 #include "game/Unk_02080440.h"
+#include "game/map_preview.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern u8 gSavedArmyColours[5];
 u8 gHasBackupMemory;
-/* also declared in src/game/main/menus/map_preview_draw_upper_half.c */
 int data_0229b058;
-/* also declared in src/game/main/menus/map_preview_draw_upper_half.c */
 int data_0229b054;
 extern u16 gMapPreviewColumnOffsets[];
 extern u16 gMapPreviewRowOffsets[];

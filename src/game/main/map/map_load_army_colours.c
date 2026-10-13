@@ -4,7 +4,6 @@
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u8 gArmyColours[ARMY_SLOT_COUNT];
 
 /* Copies the current map's army colour per slot into gArmyColours. */
 void Map_LoadArmyColours(void) {

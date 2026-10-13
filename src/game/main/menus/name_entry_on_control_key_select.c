@@ -6,8 +6,6 @@
 #include "game/keypad.h"
 #include "game/menu_button.h"
 
-extern NameEntry* gNameEntry;
-
 /* onSelect of the control key buttons: moves the cursor to the key. */
 void NameEntry_OnControlKeySelect(MenuButton* button) {
   NameEntry* entry = gNameEntry;

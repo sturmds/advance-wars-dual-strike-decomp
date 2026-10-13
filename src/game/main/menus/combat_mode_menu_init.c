@@ -2,6 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_02160ac0.h"
+#include "game/combat_mode_menu.h"
 
 void Gfx_InitBothScreens(void);
 void Screen_SetCurrent(void* state);
@@ -36,7 +37,6 @@ void HelpBand_Start(int tile, int a);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8* data_0229e144;
 extern u8
     gCombatModeCos[]; /* CO ids: Andy, Max, Sami, Flak, Lash, Adder, Hawke */
 extern const char gCombatMenuResPath[]; /* "/combat_st/res_cmmenu" */

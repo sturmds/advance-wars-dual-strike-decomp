@@ -1,18 +1,8 @@
 #include "types.h"
-
-typedef struct Unk_02101500_0 Unk_02101500_0;
-
-struct Unk_02101500_0 {
-  u8 pad_00[0x104];
-  int unk_104;
-  u8 pad_108[0x14];
-  int unk_11c;
-};
-
-extern Unk_02101500_0* gNameEntry;
+#include "game/name_entry_work.h"
 
 void func_02101500(u8* a0) {
-  Unk_02101500_0* t0 = gNameEntry;
-  t0->unk_11c = 1;
-  t0->unk_104 = *a0 - 128;
+  NameEntry* work = gNameEntry;
+  work->unk_11c = 1;
+  work->cursor = *a0 - NAME_ENTRY_KEY_BUTTON_ID;
 }

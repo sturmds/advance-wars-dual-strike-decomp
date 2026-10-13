@@ -24,4 +24,8 @@ typedef struct UnitListTask {
 #define UNIT_LIST_VISIBLE_ROWS \
   6 /* list rows on screen at once, one button each */
 
+/* unit list rows: slot of each unit, counted from the player's first slot; 0
+ * ends the list */
+extern u8* gUnitListRows;
+
 #endif

@@ -2,7 +2,6 @@
 #include "game/map_header.h"
 #include "game/design_map.h"
 
-extern u8 gArmyColours[ARMY_SLOT_COUNT];
 extern DesignMap data_022a6c84[];
 
 /* Copies the army colour per slot of map mapId into gArmyColours. Design

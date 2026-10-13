@@ -9,8 +9,6 @@
 
 void NameEntry_GetCursorPos(NameEntry* entry, s16* x, s16* y);
 
-extern NameEntry* gNameEntry;
-
 #define KEYBOARD_COLUMNS 15
 #define KEYBOARD_BOTTOM_ROW 4
 #define KEYBOARD_LAST_COLUMN 14

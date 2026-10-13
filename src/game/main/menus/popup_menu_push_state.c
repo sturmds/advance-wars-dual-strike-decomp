@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/popup_menu.h"
 
-extern PopupMenuSave* data_02297ee0;
 extern u8 data_021587a8[];
 
 PopupMenuTask* Task_FindByScript(void* script);

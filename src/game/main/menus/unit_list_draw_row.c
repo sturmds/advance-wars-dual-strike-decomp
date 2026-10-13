@@ -3,6 +3,7 @@
 #include "game/unit_stats.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/unit_list_task.h"
 
 void Number_Draw(s16 x, s16 y, u16* map, u32 value, u16 entryBits,
                  u16 digitSet);
@@ -18,8 +19,6 @@ s32 HwDiv32(s32 a, s32 b);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
-extern u8*
-    gUnitListRows; /* unit list rows: slot of each unit, counted from the player's first slot; 0 empty */
 /* Font glyphs that draw the cargo tree in front of a carried unit. */
 extern char data_02167c74[];
 extern char data_02167c78[];

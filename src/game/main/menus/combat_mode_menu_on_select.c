@@ -6,6 +6,7 @@
 #include "game/task.h"
 #include "game/Unk_02160ac0.h"
 #include "game/Unk_0229e148.h"
+#include "game/combat_mode_menu.h"
 
 void Sound_PlaySe(u32 soundId);
 
@@ -14,7 +15,6 @@ CoPortraitTask* Task_FindByScript(const void* script);
 void Co_UnpackPicture(int coId, int firstTile);
 void DrawSelectedCoPowerText(void);
 
-/* also declared in src/game/main/menus/combat_mode_menu_close.c and 4 more */
 u8* data_0229e144;
 Unk_0229e148 data_0229e148;
 extern u8 gCombatModeCos[];

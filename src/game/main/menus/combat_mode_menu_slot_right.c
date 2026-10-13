@@ -1,10 +1,9 @@
 #include "types.h"
+#include "game/combat_mode_menu.h"
 
 int HwDiv32(int a, int b);
 int HwMod32(int a, int b);
 BOOL CombatModeMenu_IsSlotAvailable(u8 slot);
-
-extern u8* data_0229e144;
 
 /* Moves right in the 3-wide slot grid, wrapping at the last column. Looks
  * for an available slot in the new column, starting at the remembered row

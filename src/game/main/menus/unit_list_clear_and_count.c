@@ -2,10 +2,10 @@
 #include "game/Unk_02080440.h"
 #include "game/map_unit.h"
 #include "game/unit_stats.h"
+#include "game/unit_list_task.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u8* gUnitListRows;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 

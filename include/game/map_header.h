@@ -112,7 +112,8 @@ typedef char MapHeader_size_check[sizeof(MapHeader) == 0xa0 ? 1 : -1];
 extern MapHeader Ov000_gMapHeaders[]; /* length unknown, indexed by map id */
 extern MapHeader Ov000_gMapHeaders[];
 
-#define ARMY_SLOT_COUNT 5 /* slot 0 neutral, then players 1-4 */
+#define ARMY_SLOT_COUNT 5                /* slot 0 neutral, then players 1-4 */
+extern u8 gArmyColours[ARMY_SLOT_COUNT]; /* army colour of each slot */
 #define MAP_DESIGN_FIRST \
   0x101 /* ids 0x101-0x10c: player-made maps (a guess), kept in data_022a6c84 */
 #define MAP_DESIGN_END 0x10d

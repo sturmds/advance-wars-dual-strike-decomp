@@ -8,8 +8,6 @@
 
 int NameEntry_FindKey(NameEntry* entry, s16 x, s16 y);
 
-extern NameEntry* gNameEntry;
-
 #define KEYBOARD_TOP_ROW 0
 #define KEYBOARD_BOTTOM_ROW 4
 

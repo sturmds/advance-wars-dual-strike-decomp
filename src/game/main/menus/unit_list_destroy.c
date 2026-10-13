@@ -1,12 +1,11 @@
 #include "types.h"
+#include "game/unit_list_task.h"
 
 void Mem_Free(void* ptr);
 void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void func_020c4018(void);
 void Font_LoadDigits(int a);
-
-extern u8* gUnitListRows;
 
 /* Frees the unit list rows and clears both screens' layers and the digit font. */
 void UnitList_Destroy(void) {

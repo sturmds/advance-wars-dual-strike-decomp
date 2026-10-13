@@ -29,7 +29,6 @@ extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern MenuState gMenuState;
-extern u8* gUnitListRows;
 extern const char data_0215fb10[];
 extern const char data_0215fb28[];
 extern const u32 data_02167c9c[];

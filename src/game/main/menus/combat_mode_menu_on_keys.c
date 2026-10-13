@@ -1,13 +1,12 @@
 #include "types.h"
 #include "game/keypad.h"
 #include "game/menu_button.h"
+#include "game/combat_mode_menu.h"
 
 int CombatModeMenu_SlotBelow(int slot);
 int CombatModeMenu_SlotAbove(int slot);
 int CombatModeMenu_SlotRight(int slot);
 int CombatModeMenu_SlotLeft(int slot);
-
-extern u8* data_0229e144;
 
 /* Key handler of the Combat mode menu buttons. Button ids are slot numbers
  * (3 per row). The d-pad moves to the next available slot; up and down also

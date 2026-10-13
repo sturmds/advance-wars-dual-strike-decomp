@@ -1,7 +1,7 @@
 #include "types.h"
+#include "game/map_preview.h"
 
 extern u8 data_02149280[];
-extern u32 data_022a6b3c;
 
 void Palette_Load(const void* src, int offset, u32 size);
 void MapPreview_DrawCurrentMap(void* dst);

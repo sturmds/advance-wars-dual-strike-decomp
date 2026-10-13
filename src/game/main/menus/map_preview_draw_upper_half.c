@@ -2,12 +2,11 @@
 #include "game/map_data.h"
 #include "game/terrain.h"
 #include "game/Unk_02080440.h"
+#include "game/map_preview.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern u8 gSavedArmyColours[5];
-extern int data_0229b054;
-extern int data_0229b058;
 static int gMapPreviewWidth;
 static int gMapPreviewHeight;
 static int gMapPreviewColumnSteps[2];

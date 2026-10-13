@@ -3,6 +3,7 @@
 #include "game/map_header.h"
 #include "game/terrain.h"
 #include "game/Unk_02080440.h"
+#include "game/map_preview.h"
 
 u32 File_UnpackTo(void* dest, const char* path);
 const char* File_LocalizePath(const char* path);
@@ -12,7 +13,6 @@ void MapPreview_DrawBlock(void* dst, s16 x, s16 y, int width, int height);
 void func_020c3e5c(void);
 
 extern const char data_02159964[];
-extern u8 gMapPreviewPropertyCounts[6];
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 

@@ -5,8 +5,6 @@
 #include "game/name_entry_work.h"
 #include "game/menu_button.h"
 
-extern NameEntry* gNameEntry;
-
 /* onConfirm of the control key buttons: moves the cursor to the key and
  * raises that key's flag. */
 void NameEntry_OnControlKeyConfirm(MenuButton* button) {

@@ -49,6 +49,8 @@ typedef struct NameEntry {
   struct SpriteAnim* buttonSprites[3];
 } NameEntry;
 
+extern NameEntry* gNameEntry;
+
 /* Task of the name entry screen. The first 0x2c bytes belong to the task
  * system (Task_Create). */
 typedef struct NameEntryTask {
