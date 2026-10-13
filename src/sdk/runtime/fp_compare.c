@@ -29,6 +29,7 @@ u32 *__fp_status(void); /* returns the floating-point status word */
 float __fp_trap_ff(float a, float b, u32 op);
 s32 func_02121d58(double a, double b, u32 op);
 
+#ifdef __MWERKS__
 asm void FCmp_Invalid(void);
 asm void FCmp_InvalidFlagsNe(void);
 asm void FCmp_InvalidFlagsHi(void);
@@ -1077,3 +1078,501 @@ asm void DCmp_CallTrap(void)
     dcd 0x04000049
     dcd 0x040000c9
 }
+#else
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/* The same compares on the bit patterns of the operands. The helpers that
+   the assembly reaches by branching take the operands and the unordered
+   result as arguments here. The entries that return condition flags return
+   them as a word with Z and C in their CPSR positions. */
+
+#define FP_TRAP_INVALID 0x100 /* status word: call the trap handler */
+#define FP_STICKY_INVALID 0x1 /* status word: an invalid operation happened */
+#define FP_FLAG_Z 0x40000000
+#define FP_FLAG_C 0x20000000
+/* Operation words for the trap handlers, not addresses: 0x04000000 selects
+   the invalid-operation handler, bit 7 is likely the operand size. */
+#define FP_OP_INVALID_FLOAT 0x04000049
+#define FP_OP_INVALID_DOUBLE 0x040000c9
+
+static u32 FloatBits(float x) {
+  u32 bits;
+
+  memcpy(&bits, &x, sizeof(bits));
+  return bits;
+}
+
+static BOOL FloatIsNan(float x) {
+  return (u32)(FloatBits(x) << 1) > 0xff000000;
+}
+
+/* A NaN with its quiet bit (the top mantissa bit) clear. */
+static BOOL FloatIsSignaling(float x) {
+  return FloatIsNan(x) && (FloatBits(x) & 0x400000) == 0;
+}
+
+/* -1, 0 or 1 for two floats that are not NaNs. Signed magnitude becomes two's
+   complement, so one signed compare orders both signs and +0 equals -0. */
+static int FloatOrder(float a, float b) {
+  u32 a_bits = FloatBits(a);
+  u32 b_bits = FloatBits(b);
+  s32 a_key =
+      (a_bits & 0x80000000) ? -(s32)(a_bits & 0x7fffffff) : (s32)a_bits;
+  s32 b_key =
+      (b_bits & 0x80000000) ? -(s32)(b_bits & 0x7fffffff) : (s32)b_bits;
+
+  return (a_key > b_key) - (a_key < b_key);
+}
+
+static u64 DoubleBits(double x) {
+  u64 bits;
+
+  memcpy(&bits, &x, sizeof(bits));
+  return bits;
+}
+
+static BOOL DoubleIsNan(double x) {
+  return (u64)(DoubleBits(x) << 1) > 0xffe0000000000000ull;
+}
+
+/* A NaN with its quiet bit (the top mantissa bit) clear. */
+static BOOL DoubleIsSignaling(double x) {
+  return DoubleIsNan(x) && (DoubleBits(x) & 0x0008000000000000ull) == 0;
+}
+
+/* -1, 0 or 1 for two doubles that are not NaNs. Two non-negative doubles
+   order as unsigned bit patterns. When either is negative, the patterns
+   compare the other way round, except that +0 equals -0. */
+static int DoubleOrder(double a, double b) {
+  u64 a_bits = DoubleBits(a);
+  u64 b_bits = DoubleBits(b);
+
+  if ((a_bits | b_bits) >> 63) {
+    if (((a_bits | b_bits) << 1) == 0) {
+      return 0;
+    }
+    return (b_bits > a_bits) - (b_bits < a_bits);
+  }
+  return (a_bits > b_bits) - (a_bits < b_bits);
+}
+
+/* 0 equal, 1 less, 2 greater. */
+static int ThreeWay(int order) {
+  if (order == 0) {
+    return 0;
+  }
+  return order < 0 ? 1 : 2;
+}
+
+/* Z set when equal, C set unless a < b. */
+static u32 OrderFlags(int order) {
+  return (order == 0 ? FP_FLAG_Z : 0) | (order >= 0 ? FP_FLAG_C : 0);
+}
+
+/* Records an invalid operation. Returns TRUE when the status word asks for
+   the trap handler instead, without setting the sticky flag. */
+static BOOL FpInvalidTraps(void) {
+  u32* status = __fp_status();
+
+  if (*status & FP_TRAP_INVALID) {
+    return TRUE;
+  }
+  *status |= FP_STICKY_INVALID;
+  return FALSE;
+}
+
+/* The entries that return flags would return whatever flags the trap
+   handler leaves, which C cannot give, so the program stops there. */
+static void FpTrapLeavesFlags(const char* name) {
+  fprintf(stderr,
+          "%s: the invalid-operation trap handler leaves the condition flags "
+          "undefined\n",
+          name);
+  abort();
+}
+
+/* Returns the trap handler's float result as its bit pattern. */
+static int FCmp_CallTrap(float a, float b) {
+  return (s32)FloatBits(__fp_trap_ff(a, b, FP_OP_INVALID_FLOAT));
+}
+
+static int FCmp_Invalid(float a, float b, int unordered) {
+  if (FpInvalidTraps()) {
+    return FCmp_CallTrap(a, b);
+  }
+  return unordered;
+}
+
+static u32 FCmp_InvalidFlagsNe(const char* name) {
+  if (FpInvalidTraps()) {
+    FpTrapLeavesFlags(name);
+  }
+  return 0;
+}
+
+static u32 FCmp_InvalidFlagsHi(const char* name) {
+  if (FpInvalidTraps()) {
+    FpTrapLeavesFlags(name);
+  }
+  return FP_FLAG_C;
+}
+
+static u32 FCmp_InvalidFlagsEq(const char* name) {
+  if (FpInvalidTraps()) {
+    FpTrapLeavesFlags(name);
+  }
+  return FP_FLAG_Z;
+}
+
+/* b is a NaN: invalid when it is signaling, otherwise unordered. */
+static int FCmp_NanB(float a, float b, int unordered) {
+  if (FloatIsSignaling(b)) {
+    return FCmp_Invalid(a, b, unordered);
+  }
+  return unordered;
+}
+
+/* a is a NaN: invalid when a or b is a signaling NaN, otherwise
+   unordered. */
+static int FCmp_NanA(float a, float b, int unordered) {
+  if (FloatIsSignaling(a)) {
+    return FCmp_Invalid(a, b, unordered);
+  }
+  if (!FloatIsNan(b)) {
+    return unordered;
+  }
+  return FCmp_NanB(a, b, unordered);
+}
+
+static u32 FCmp_NanBFlags(float b, const char* name) {
+  if (FloatIsSignaling(b)) {
+    return FCmp_InvalidFlagsNe(name);
+  }
+  return 0;
+}
+
+static u32 FCmp_NanAFlags(float a, float b, const char* name) {
+  if (FloatIsSignaling(a)) {
+    return FCmp_InvalidFlagsNe(name);
+  }
+  if (!FloatIsNan(b)) {
+    return 0;
+  }
+  return FCmp_NanBFlags(b, name);
+}
+
+/* Three-way float compare: 0 equal, 1 less, 2 greater, 3 unordered. Only a
+   signaling NaN is invalid. */
+int func_02127134(float a, float b) {
+  if (FloatIsNan(a)) {
+    return FCmp_NanA(a, b, 3);
+  }
+  if (FloatIsNan(b)) {
+    return FCmp_NanB(a, b, 3);
+  }
+  return ThreeWay(FloatOrder(a, b));
+}
+
+/* Three-way float compare like func_02127134, but any NaN is invalid. */
+int func_02127178(float a, float b) {
+  if (FloatIsNan(a) || FloatIsNan(b)) {
+    return FCmp_Invalid(a, b, 3);
+  }
+  return ThreeWay(FloatOrder(a, b));
+}
+
+int _fneq(float a, float b) {
+  if (FloatIsNan(a)) {
+    return FCmp_NanA(a, b, 1);
+  }
+  if (FloatIsNan(b)) {
+    return FCmp_NanB(a, b, 1);
+  }
+  return FloatOrder(a, b) != 0;
+}
+
+int _feq(float a, float b) {
+  if (FloatIsNan(a)) {
+    return FCmp_NanA(a, b, 0);
+  }
+  if (FloatIsNan(b)) {
+    return FCmp_NanB(a, b, 0);
+  }
+  return FloatOrder(a, b) == 0;
+}
+
+/* FP_FLAG_Z when equal. The assembly's C flag means nothing here and is not
+   given. */
+u32 func_02127228(float a, float b) {
+  if (FloatIsNan(a)) {
+    return FCmp_NanAFlags(a, b, __func__);
+  }
+  if (FloatIsNan(b)) {
+    return FCmp_NanBFlags(b, __func__);
+  }
+  return FloatOrder(a, b) == 0 ? FP_FLAG_Z : 0;
+}
+
+int _fls(float a, float b) {
+  if (FloatIsNan(a) || FloatIsNan(b)) {
+    return FCmp_Invalid(a, b, 0);
+  }
+  return FloatOrder(a, b) < 0;
+}
+
+int _fleq(float a, float b) {
+  if (FloatIsNan(a) || FloatIsNan(b)) {
+    return FCmp_Invalid(a, b, 0);
+  }
+  return FloatOrder(a, b) <= 0;
+}
+
+/* Z set when equal, C clear when a < b. Unordered gives C set and Z clear,
+   so lo and ls tests fail. */
+u32 func_021272c8(float a, float b) {
+  if (FloatIsNan(a) || FloatIsNan(b)) {
+    return FCmp_InvalidFlagsHi(__func__);
+  }
+  return OrderFlags(FloatOrder(a, b));
+}
+
+int _fgr(float a, float b) {
+  if (FloatIsNan(a) || FloatIsNan(b)) {
+    return FCmp_Invalid(a, b, 0);
+  }
+  return FloatOrder(a, b) > 0;
+}
+
+int _fgeq(float a, float b) {
+  if (FloatIsNan(a) || FloatIsNan(b)) {
+    return FCmp_Invalid(a, b, 0);
+  }
+  return FloatOrder(a, b) >= 0;
+}
+
+/* Like func_021272c8, but unordered gives Z set and C clear, so hi and hs
+   tests fail. */
+u32 func_02127378(float a, float b) {
+  if (FloatIsNan(a) || FloatIsNan(b)) {
+    return FCmp_InvalidFlagsEq(__func__);
+  }
+  return OrderFlags(FloatOrder(a, b));
+}
+
+/* 1 when a float operand is a NaN, else 0. */
+int func_021273b0(float a, float b) {
+  if (FloatIsNan(a)) {
+    return FCmp_NanA(a, b, 1);
+  }
+  if (FloatIsNan(b)) {
+    return FCmp_NanB(a, b, 1);
+  }
+  return 0;
+}
+
+/* 1 when neither float operand is a NaN, else 0. */
+int func_021273d0(float a, float b) {
+  if (FloatIsNan(a)) {
+    return FCmp_NanA(a, b, 0);
+  }
+  if (FloatIsNan(b)) {
+    return FCmp_NanB(a, b, 0);
+  }
+  return 1;
+}
+
+static int DCmp_CallTrap(double a, double b) {
+  return func_02121d58(a, b, FP_OP_INVALID_DOUBLE);
+}
+
+static int DCmp_Invalid(double a, double b, int unordered) {
+  if (FpInvalidTraps()) {
+    return DCmp_CallTrap(a, b);
+  }
+  return unordered;
+}
+
+static u32 DCmp_InvalidFlagsNe(const char* name) {
+  if (FpInvalidTraps()) {
+    FpTrapLeavesFlags(name);
+  }
+  return 0;
+}
+
+static u32 DCmp_InvalidFlagsHi(const char* name) {
+  if (FpInvalidTraps()) {
+    FpTrapLeavesFlags(name);
+  }
+  return FP_FLAG_C;
+}
+
+static u32 DCmp_InvalidFlagsEq(const char* name) {
+  if (FpInvalidTraps()) {
+    FpTrapLeavesFlags(name);
+  }
+  return FP_FLAG_Z;
+}
+
+static int DCmp_Unordered(int unordered) { return unordered; }
+
+/* b is a NaN: invalid when it is signaling, otherwise unordered. */
+static int DCmp_NanB(double a, double b, int unordered) {
+  if (DoubleIsSignaling(b)) {
+    return DCmp_Invalid(a, b, unordered);
+  }
+  return DCmp_Unordered(unordered);
+}
+
+/* a is a NaN: invalid when a or b is a signaling NaN, otherwise
+   unordered. */
+static int DCmp_NanA(double a, double b, int unordered) {
+  if (DoubleIsSignaling(a)) {
+    return DCmp_Invalid(a, b, unordered);
+  }
+  if (!DoubleIsNan(b)) {
+    return DCmp_Unordered(unordered);
+  }
+  return DCmp_NanB(a, b, unordered);
+}
+
+/* Unordered result of the flag-returning equality test: Z clear. */
+static u32 DCmp_UnorderedFlags(void) { return 0; }
+
+static u32 DCmp_NanBFlags(double b, const char* name) {
+  if (DoubleIsSignaling(b)) {
+    return DCmp_InvalidFlagsNe(name);
+  }
+  return DCmp_UnorderedFlags();
+}
+
+static u32 DCmp_NanAFlags(double a, double b, const char* name) {
+  if (DoubleIsSignaling(a)) {
+    return DCmp_InvalidFlagsNe(name);
+  }
+  if (!DoubleIsNan(b)) {
+    return DCmp_UnorderedFlags();
+  }
+  return DCmp_NanBFlags(b, name);
+}
+
+/* Three-way double compare: 0 equal, 1 less, 2 greater, 3 unordered. Only a
+   signaling NaN is invalid. */
+int func_021274f4(double a, double b) {
+  if (DoubleIsNan(a)) {
+    return DCmp_NanA(a, b, 3);
+  }
+  if (DoubleIsNan(b)) {
+    return DCmp_NanB(a, b, 3);
+  }
+  return ThreeWay(DoubleOrder(a, b));
+}
+
+/* Three-way double compare like func_021274f4, but any NaN is invalid. */
+int func_02127584(double a, double b) {
+  if (DoubleIsNan(a) || DoubleIsNan(b)) {
+    return DCmp_Invalid(a, b, 3);
+  }
+  return ThreeWay(DoubleOrder(a, b));
+}
+
+int _dneq(double a, double b) {
+  if (DoubleIsNan(a)) {
+    return DCmp_NanA(a, b, 1);
+  }
+  if (DoubleIsNan(b)) {
+    return DCmp_NanB(a, b, 1);
+  }
+  return DoubleOrder(a, b) != 0;
+}
+
+int _deq(double a, double b) {
+  if (DoubleIsNan(a)) {
+    return DCmp_NanA(a, b, 0);
+  }
+  if (DoubleIsNan(b)) {
+    return DCmp_NanB(a, b, 0);
+  }
+  return DoubleOrder(a, b) == 0;
+}
+
+/* FP_FLAG_Z when equal. The assembly's C flag means nothing here and is not
+   given. */
+u32 func_02127724(double a, double b) {
+  if (DoubleIsNan(a)) {
+    return DCmp_NanAFlags(a, b, __func__);
+  }
+  if (DoubleIsNan(b)) {
+    return DCmp_NanBFlags(b, __func__);
+  }
+  return DoubleOrder(a, b) == 0 ? FP_FLAG_Z : 0;
+}
+
+int _dls(double a, double b) {
+  if (DoubleIsNan(a) || DoubleIsNan(b)) {
+    return DCmp_Invalid(a, b, 0);
+  }
+  return DoubleOrder(a, b) < 0;
+}
+
+int _dleq(double a, double b) {
+  if (DoubleIsNan(a) || DoubleIsNan(b)) {
+    return DCmp_Invalid(a, b, 0);
+  }
+  return DoubleOrder(a, b) <= 0;
+}
+
+/* Z set when equal, C clear when a < b. Unordered gives C set and Z
+   clear. */
+u32 func_02127898(double a, double b) {
+  if (DoubleIsNan(a) || DoubleIsNan(b)) {
+    return DCmp_InvalidFlagsHi(__func__);
+  }
+  return OrderFlags(DoubleOrder(a, b));
+}
+
+int _dgr(double a, double b) {
+  if (DoubleIsNan(a) || DoubleIsNan(b)) {
+    return DCmp_Invalid(a, b, 0);
+  }
+  return DoubleOrder(a, b) > 0;
+}
+
+int _dgeq(double a, double b) {
+  if (DoubleIsNan(a) || DoubleIsNan(b)) {
+    return DCmp_Invalid(a, b, 0);
+  }
+  return DoubleOrder(a, b) >= 0;
+}
+
+/* Like func_02127898, but unordered gives Z set and C clear. */
+u32 func_02127a10(double a, double b) {
+  if (DoubleIsNan(a) || DoubleIsNan(b)) {
+    return DCmp_InvalidFlagsEq(__func__);
+  }
+  return OrderFlags(DoubleOrder(a, b));
+}
+
+/* 1 when a double operand is a NaN, else 0. */
+int func_02127a78(double a, double b) {
+  if (DoubleIsNan(a)) {
+    return DCmp_NanA(a, b, 1);
+  }
+  if (DoubleIsNan(b)) {
+    return DCmp_NanB(a, b, 1);
+  }
+  return 0;
+}
+
+/* 1 when neither double operand is a NaN, else 0. */
+int func_02127ac8(double a, double b) {
+  if (DoubleIsNan(a)) {
+    return DCmp_NanA(a, b, 0);
+  }
+  if (DoubleIsNan(b)) {
+    return DCmp_NanB(a, b, 0);
+  }
+  return 1;
+}
+#endif
