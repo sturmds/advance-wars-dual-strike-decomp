@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6699 / 6700 | 1553540 / 1553840 | 99.98% | 0 | 0 |
+| ARM9 game | 6700 / 6700 | 1553840 / 1553840 | 100.00% | 0 | 0 |
 | ARM9 SDK/library | 657 / 833 | 114512 / 135230 | 84.68% | 176 | 20718 |
-| ARM9 all | 7356 / 7533 | 1668052 / 1689070 | 98.76% | 176 | 20718 |
+| ARM9 all | 7357 / 7533 | 1668352 / 1689070 | 98.77% | 176 | 20718 |
 | ARM7 SDK/library | 951 / 1020 | 149340 / 154300 | 96.79% | 69 | 4960 |
 | ARM7 all | 951 / 1020 | 149340 / 154300 | 96.79% | 69 | 4960 |
-| game | 6699 / 6700 | 1553540 / 1553840 | 99.98% | 0 | 0 |
+| game | 6700 / 6700 | 1553840 / 1553840 | 100.00% | 0 | 0 |
 | SDK/library | 1608 / 1853 | 263852 / 289530 | 91.13% | 245 | 25678 |
-| all | 8307 / 8553 | 1817392 / 1843370 | 98.59% | 245 | 25678 |
+| all | 8308 / 8553 | 1817692 / 1843370 | 98.61% | 245 | 25678 |
 
 ## By module
 
@@ -30,7 +30,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | main | SDK/library | 650 / 822 | 113600 / 133694 | 84.97% | 172 |
 | itcm | game | 102 / 102 | 21896 / 21896 | 100.00% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
-| ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
+| ov000 | game | 120 / 120 | 25300 / 25300 | 100.00% | 0 |
 | ov001 | game | 76 / 76 | 7472 / 7472 | 100.00% | 0 |
 | ov002 | game | 164 / 164 | 64208 / 64208 | 100.00% | 0 |
 | ov003 | game | 235 / 235 | 82696 / 82696 | 100.00% | 0 |
@@ -53,7 +53,7 @@ has no function, so it is a little larger than the totals above (issue 0071).
 |---|---:|---:|---:|---:|
 | main | 1216386 | 99.98% | 99.98% | 5995 / 6004 |
 | itcm | 24088 | 97.28% | 97.28% | 113 / 115 |
-| ov000 | 25300 | 98.81% | 98.81% | 119 / 120 |
+| ov000 | 25300 | 100.00% | 100.00% | 120 / 120 |
 | ov001 | 7472 | 100.00% | 100.00% | 76 / 76 |
 | ov002 | 64208 | 100.00% | 100.00% | 164 / 164 |
 | ov003 | 82696 | 100.00% | 100.00% | 235 / 235 |
@@ -61,7 +61,7 @@ has no function, so it is a little larger than the totals above (issue 0071).
 | ov005 | 96684 | 100.00% | 100.00% | 266 / 266 |
 | ov006 | 105588 | 100.00% | 100.00% | 321 / 321 |
 | arm7 | 155236 | 99.40% | 99.40% | 1020 / 1038 |
-| all | 1845022 | 99.88% | 99.88% | 8545 / 8575 |
+| all | 1845022 | 99.90% | 99.90% | 8546 / 8575 |
 
 ## Partial functions
 
@@ -72,20 +72,4 @@ has counts as one row; a relocation naming another symbol at the same address do
 count). "Match" is objdiff's percentage. The list ranks by "Differ", then "Match":
 objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 0067).
 
-| Code | Functions | Bytes | Rows that match |
-|---|---:|---:|---:|
-| ARM9 game | 1 | 300 | 65 / 78 (83.33%) |
-| all | 1 | 300 | 65 / 78 (83.33%) |
-
-| Rows that differ | Functions | Bytes |
-|---|---:|---:|
-| 1 to 2 | 0 | 0 |
-| 3 to 10 | 0 | 0 |
-| 11 to 50 | 1 | 300 |
-| more than 50 | 0 | 0 |
-
-Closest first.
-
-| File | Function | Bytes | Differ | Match |
-|---|---|---:|---:|---:|
-| `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | UnitInfoPanel_DrawPage | 300 | 13 | 89.08% |
+None.

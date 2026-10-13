@@ -413,6 +413,7 @@ src/game/ov000/unit_info_panel/unit_info_panel_clear_unit.c:
     .text       start:0x022b20fc end:0x022b2114
 
 src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c:
+    complete
     .text       start:0x022b2114 end:0x022b2240
 
 src/game/ov000/unit_info_panel/unit_info_panel_start_task.c:

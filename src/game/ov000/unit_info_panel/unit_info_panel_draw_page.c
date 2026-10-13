@@ -21,26 +21,26 @@ void UnitInfoPanel_DrawPage(void) {
   u8 col;
 
   Map_ScrollViewToTile(2);
-  if (data_ov000_0234ec8c->shownPage == data_ov000_0234ec8c->page) {
-    return;
-  }
-  data_ov000_0234ec8c->shownPage = data_ov000_0234ec8c->page;
-  Text_StopPrinting();
-  for (row = 0; row < 8; row++) {
-    for (col = 0; col < 14; col++) {
-      data_027c0280->layer0Map[(data_ov000_0234ec8c->tileX + 1 + col) +
-                               (data_ov000_0234ec8c->tileY + 1 + row) * 32] = 0;
+  if (data_ov000_0234ec8c->shownPage != data_ov000_0234ec8c->page) {
+    data_ov000_0234ec8c->shownPage = data_ov000_0234ec8c->page;
+    Text_StopPrinting();
+    for (row = 0; row < 8; row++) {
+      for (col = 0; col < 14; col++) {
+        data_027c0280->layer0Map[(data_ov000_0234ec8c->tileX + 1 + col) +
+                                 (data_ov000_0234ec8c->tileY + 1 + row) * 32] =
+            0;
+      }
     }
-  }
-  Gfx_RequestLayerCopy(0);
-  {
-    UnitInfoPanel* panel = data_ov000_0234ec8c;
-    int type = panel->unit->type;
-    s16 x = panel->tileX + 1;
-    s16 y = panel->tileY + 1;
-    Text_PrintById(
-        x, y, data_027c0280->layer0Map,
-        data_ov000_0234fa28[data_ov000_022b3850[type] - 1][panel->page], 0,
-        248);
+    Gfx_RequestLayerCopy(0);
+    Text_PrintById(data_ov000_0234ec8c->tileX + 1,
+                   data_ov000_0234ec8c->tileY + 1, data_027c0280->layer0Map,
+                   data_ov000_0234fa28
+                       [data_ov000_022b3850[data_ov000_0234ec8c->unit->type] -
+                        1][data_ov000_0234ec8c->page],
+                   0, 248);
+    /* Needed to match: this return makes mwcc schedule the block again
+     * after register allocation, which orders the loads for the call as in
+     * the original. */
+    return;
   }
 }
