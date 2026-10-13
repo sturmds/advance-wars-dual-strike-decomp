@@ -4,6 +4,190 @@
     .data       start:0x02151c80 end:0x0216e020 kind:data align:32
     .bss        start:0x0216e020 end:0x022ad560 kind:bss align:32
 
+src/game/main/bss_0216e03c.c:
+    complete
+    .bss        start:0x0216e03c end:0x0216e044
+
+src/game/main/bss_0216e29c.c:
+    complete
+    .bss        start:0x0216e29c end:0x0216e4b8
+
+src/game/main/bss_0216e4b8.c:
+    complete
+    .bss        start:0x0216e4b8 end:0x0216e4e0
+
+src/game/main/bss_0216e4e0.c:
+    complete
+    .bss        start:0x0216e4e0 end:0x0216e5ac
+
+src/game/main/screen/screen_bss.c:
+    complete
+    .bss        start:0x0216e5ac end:0x0216ef94
+
+src/game/main/screen/screen_bss_0216ef94.c:
+    complete
+    .bss        start:0x0216ef94 end:0x0216fca8
+
+src/game/main/screen/screen_bss_0216fca8.c:
+    complete
+    .bss        start:0x0216fca8 end:0x021700a8
+
+src/game/main/screen/screen_bss_021700a8.c:
+    complete
+    .bss        start:0x021700a8 end:0x02170314
+
+src/game/main/screen/screen_bss_02170314.c:
+    complete
+    .bss        start:0x02170314 end:0x02172108
+
+src/game/main/screen/screen_bss_02172108.c:
+    complete
+    .bss        start:0x02172108 end:0x02175180
+
+src/game/main/bss_02175180.c:
+    complete
+    .bss        start:0x02175180 end:0x02175948
+
+src/game/main/screen/screen_bss_02175948.c:
+    complete
+    .bss        start:0x02175948 end:0x0217db08
+
+src/game/main/screen/screen_bss_0217db08.c:
+    complete
+    .bss        start:0x0217db08 end:0x0217fb08
+
+src/game/main/bss_0217fb08.c:
+    complete
+    .bss        start:0x0217fb08 end:0x0218fea8
+
+src/game/main/sound/sound_bss.c:
+    complete
+    .bss        start:0x0218fea8 end:0x0218ff50
+
+src/game/main/bss_0218ff50.c:
+    complete
+    .bss        start:0x0218ff50 end:0x021b0fdc
+
+src/game/main/bss_021b0fdc.c:
+    complete
+    .bss        start:0x021b0fdc end:0x021bf024
+
+src/game/main/bss_021bf024.c:
+    complete
+    .bss        start:0x021bf024 end:0x021c031c
+
+src/game/main/bss_021c031c.c:
+    complete
+    .bss        start:0x021c031c end:0x021c0d1c
+
+src/game/main/bss_021c0d1c.c:
+    complete
+    .bss        start:0x021c0d1c end:0x021f0200
+
+src/game/main/bss_021f0200.c:
+    complete
+    .bss        start:0x021f0200 end:0x02200070
+
+src/game/main/bss_02200070.c:
+    complete
+    .bss        start:0x02200070 end:0x02210120
+
+src/game/main/bss_02210120.c:
+    complete
+    .bss        start:0x02210120 end:0x0221f024
+
+src/game/main/bss_0221f024.c:
+    complete
+    .bss        start:0x0221f024 end:0x02220060
+
+src/game/main/bss_02220060.c:
+    complete
+    .bss        start:0x02220060 end:0x022201d8
+
+src/game/main/bss_022201d8.c:
+    complete
+    .bss        start:0x022201d8 end:0x02240168
+
+src/game/main/bss_02240168.c:
+    complete
+    .bss        start:0x02240168 end:0x02280214
+
+src/game/main/bss_02280214.c:
+    complete
+    .bss        start:0x02280214 end:0x0228ff58
+
+src/game/main/bss_0228ff58.c:
+    complete
+    .bss        start:0x0228ff58 end:0x022900b4
+
+src/game/main/bss_022900b4.c:
+    complete
+    .bss        start:0x022900b4 end:0x022900b8
+
+src/game/main/bss_022900b8.c:
+    complete
+    .bss        start:0x022900b8 end:0x02290250
+
+src/game/main/bss_02290250.c:
+    complete
+    .bss        start:0x02290250 end:0x02297774
+
+src/game/main/bss_02297fa8.c:
+    complete
+    .bss        start:0x02297fa8 end:0x0229b050
+
+src/game/main/bss_0229e0ac.c:
+    complete
+    .bss        start:0x0229e0ac end:0x0229e144
+
+src/game/main/ai/ai_bss.c:
+    complete
+    .bss        start:0x0229ea0c end:0x0229ea4c
+
+src/game/main/ai/ai_bss_0229ea4c.c:
+    complete
+    .bss        start:0x0229ea4c end:0x0229eabc
+
+src/game/main/bss_022a0160.c:
+    complete
+    .bss        start:0x022a0160 end:0x022a1b10
+
+src/game/main/bss_022a1b10.c:
+    complete
+    .bss        start:0x022a1b10 end:0x022a6b30
+
+src/game/main/bss_022a6c30.c:
+    complete
+    .bss        start:0x022a6c30 end:0x022a6c78
+
+src/game/main/bss_022a7a88.c:
+    complete
+    .bss        start:0x022a7a88 end:0x022a7ac4
+
+src/game/main/bss_022a7b80.c:
+    complete
+    .bss        start:0x022a7b80 end:0x022a7b94
+
+src/game/main/sound/sound_bss_022a89fc.c:
+    complete
+    .bss        start:0x022a89fc end:0x022a8a60
+
+src/game/main/sound/sound_bss_022a9300.c:
+    complete
+    .bss        start:0x022a9300 end:0x022a9870
+
+src/sdk/snd/snd_bss.c:
+    complete
+    .bss        start:0x022ab7a0 end:0x022ab7a4
+
+src/sdk/msl/msl_bss.c:
+    complete
+    .bss        start:0x022ad128 end:0x022ad170
+
+src/sdk/msl/msl_bss_022ad524.c:
+    complete
+    .bss        start:0x022ad524 end:0x022ad540
+
 src/sdk/svc/svc_is_debugger.c:
     complete
     .text       start:0x0200006c end:0x02000070
@@ -200,10 +384,6 @@ src/game/main/overlay/overlay_unload.c:
     complete
     .text       start:0x02001670 end:0x020016bc
     .bss        start:0x0216e020 end:0x0216e03c
-
-src/game/main/bss_0216e03c.c:
-    complete
-    .bss        start:0x0216e03c end:0x0216e044
 
 src/game/main/overlay/overlay_load.c:
     complete
@@ -2590,130 +2770,6 @@ src/game/main/script/event_script_update_all.c:
     .text       start:0x0201a8bc end:0x0201aa04
     .bss        start:0x0216e044 end:0x0216e29c
 
-src/game/main/bss_0216e29c.c:
-    complete
-    .bss        start:0x0216e29c end:0x0216e4b8
-
-src/game/main/bss_0216e4b8.c:
-    complete
-    .bss        start:0x0216e4b8 end:0x0216e4e0
-
-src/game/main/bss_0216e4e0.c:
-    complete
-    .bss        start:0x0216e4e0 end:0x0216e5ac
-
-src/game/main/screen/screen_bss.c:
-    complete
-    .bss        start:0x0216e5ac end:0x0216ef94
-
-src/game/main/screen/screen_bss_0216ef94.c:
-    complete
-    .bss        start:0x0216ef94 end:0x0216fca8
-
-src/game/main/screen/screen_bss_0216fca8.c:
-    complete
-    .bss        start:0x0216fca8 end:0x021700a8
-
-src/game/main/screen/screen_bss_021700a8.c:
-    complete
-    .bss        start:0x021700a8 end:0x02170314
-
-src/game/main/screen/screen_bss_02170314.c:
-    complete
-    .bss        start:0x02170314 end:0x02172108
-
-src/game/main/screen/screen_bss_02172108.c:
-    complete
-    .bss        start:0x02172108 end:0x02175180
-
-src/game/main/bss_02175180.c:
-    complete
-    .bss        start:0x02175180 end:0x02175948
-
-src/game/main/screen/screen_bss_02175948.c:
-    complete
-    .bss        start:0x02175948 end:0x0217db08
-
-src/game/main/screen/screen_bss_0217db08.c:
-    complete
-    .bss        start:0x0217db08 end:0x0217fb08
-
-src/game/main/bss_0217fb08.c:
-    complete
-    .bss        start:0x0217fb08 end:0x0218fea8
-
-src/game/main/sound/sound_bss.c:
-    complete
-    .bss        start:0x0218fea8 end:0x0218ff50
-
-src/game/main/bss_0218ff50.c:
-    complete
-    .bss        start:0x0218ff50 end:0x021b0fdc
-
-src/game/main/bss_021b0fdc.c:
-    complete
-    .bss        start:0x021b0fdc end:0x021bf024
-
-src/game/main/bss_021bf024.c:
-    complete
-    .bss        start:0x021bf024 end:0x021c031c
-
-src/game/main/bss_021c031c.c:
-    complete
-    .bss        start:0x021c031c end:0x021c0d1c
-
-src/game/main/bss_021c0d1c.c:
-    complete
-    .bss        start:0x021c0d1c end:0x021f0200
-
-src/game/main/bss_021f0200.c:
-    complete
-    .bss        start:0x021f0200 end:0x02200070
-
-src/game/main/bss_02200070.c:
-    complete
-    .bss        start:0x02200070 end:0x02210120
-
-src/game/main/bss_02210120.c:
-    complete
-    .bss        start:0x02210120 end:0x0221f024
-
-src/game/main/bss_0221f024.c:
-    complete
-    .bss        start:0x0221f024 end:0x02220060
-
-src/game/main/bss_02220060.c:
-    complete
-    .bss        start:0x02220060 end:0x022201d8
-
-src/game/main/bss_022201d8.c:
-    complete
-    .bss        start:0x022201d8 end:0x02240168
-
-src/game/main/bss_02240168.c:
-    complete
-    .bss        start:0x02240168 end:0x02280214
-
-src/game/main/bss_02280214.c:
-    complete
-    .bss        start:0x02280214 end:0x0228ff58
-
-src/game/main/bss_0228ff58.c:
-    complete
-    .bss        start:0x0228ff58 end:0x022900b4
-
-src/game/main/bss_022900b4.c:
-    complete
-    .bss        start:0x022900b4 end:0x022900b8
-
-src/game/main/bss_022900b8.c:
-    complete
-    .bss        start:0x022900b8 end:0x02290250
-
-src/game/main/bss_02290250.c:
-    complete
-    .bss        start:0x02290250 end:0x02297774
-
 src/game/main/script/event_script_step_slot.c:
     complete
     .text       start:0x0201aa04 end:0x0201ab18
@@ -3522,10 +3578,6 @@ src/game/main/save_load_record.c:
     complete
     .text       start:0x0201febc end:0x02020078
     .bss        start:0x02297f38 end:0x02297fa8
-
-src/game/main/bss_02297fa8.c:
-    complete
-    .bss        start:0x02297fa8 end:0x0229b050
 
 src/game/main/save_delete_record.c:
     complete
@@ -10211,10 +10263,6 @@ src/game/main/link/link_experience_sync_task_finish.c:
     .text       start:0x02081548 end:0x020815dc
     .bss        start:0x0229deec end:0x0229e0ac
 
-src/game/main/bss_0229e0ac.c:
-    complete
-    .bss        start:0x0229e0ac end:0x0229e144
-
 src/game/main/link/link_experience_sync_task_update.c:
     complete
     .text       start:0x020815dc end:0x02081800
@@ -12898,14 +12946,6 @@ src/game/main/ai/func_020b4ca4.c:
     .text       start:0x020b4ca4 end:0x020b4d04
     .bss        start:0x0229e164 end:0x0229ea0c
 
-src/game/main/ai/ai_bss.c:
-    complete
-    .bss        start:0x0229ea0c end:0x0229ea4c
-
-src/game/main/ai/ai_bss_0229ea4c.c:
-    complete
-    .bss        start:0x0229ea4c end:0x0229eabc
-
 src/game/main/func_020b4d04.c:
     complete
     .text       start:0x020b4d04 end:0x020b4d0c
@@ -14072,14 +14112,6 @@ src/game/main/map/acting_unit_start_restore.c:
     complete
     .text       start:0x020c033c end:0x020c0398
     .bss        start:0x0229ead4 end:0x022a0160
-
-src/game/main/bss_022a0160.c:
-    complete
-    .bss        start:0x022a0160 end:0x022a1b10
-
-src/game/main/bss_022a1b10.c:
-    complete
-    .bss        start:0x022a1b10 end:0x022a6b30
 
 src/game/main/units/acting_unit_save_start_pos.c:
     complete
@@ -15562,10 +15594,6 @@ src/game/main/menus/map_preview_cycle_border_colour.c:
     complete
     .text       start:0x020d3ff4 end:0x020d4044
     .bss        start:0x022a6b3c end:0x022a6c30
-
-src/game/main/bss_022a6c30.c:
-    complete
-    .bss        start:0x022a6c30 end:0x022a6c78
 
 src/game/main/menus/map_preview_draw_to_layer.c:
     complete
@@ -17630,10 +17658,6 @@ src/game/main/map/pick_free_co.c:
     .text       start:0x020e7ff4 end:0x020e817c
     .bss        start:0x022a7a68 end:0x022a7a88
 
-src/game/main/bss_022a7a88.c:
-    complete
-    .bss        start:0x022a7a88 end:0x022a7ac4
-
 src/game/main/map/set_player1_tag_partner.c:
     complete
     .text       start:0x020e817c end:0x020e82a8
@@ -17746,10 +17770,6 @@ src/game/main/battle_results_fill.c:
     complete
     .text       start:0x020e9c24 end:0x020ea14c
     .bss        start:0x022a7ac4 end:0x022a7b80
-
-src/game/main/bss_022a7b80.c:
-    complete
-    .bss        start:0x022a7b80 end:0x022a7b94
 
 src/game/main/map/win_lose_sides_fill.c:
     complete
@@ -20747,10 +20767,6 @@ src/game/main/func_021062a4.c:
     .text       start:0x021062a4 end:0x021062c4
     .bss        start:0x022a89f8 end:0x022a89fc
 
-src/game/main/sound/sound_bss_022a89fc.c:
-    complete
-    .bss        start:0x022a89fc end:0x022a8a60
-
 src/game/main/sound/sound_arc_forget_symbols.c:
     complete
     .text       start:0x021062c4 end:0x021062d0
@@ -20911,7 +20927,7 @@ src/game/main/sound/sound_arc_forget_loaded_item.c:
 src/game/main/sound/sound_arc_load_wave_arc_table.c:
     complete
     .text       start:0x021070d0 end:0x02107204
-    .bss        start:0x022a8a64 end:0x022a8aa4
+    .bss        start:0x022a8a64 end:0x022a8aa0
 
 src/game/main/sound/func_02107204.c:
     complete
@@ -21076,11 +21092,7 @@ src/game/main/sound/sound_stream_alloc_buffers.c:
 src/game/main/sound/sound_stream_init.c:
     complete
     .text       start:0x02109108 end:0x0210924c
-    .bss        start:0x022a8aa4 end:0x022a9300
-
-src/game/main/sound/sound_bss_022a9300.c:
-    complete
-    .bss        start:0x022a9300 end:0x022a9870
+    .bss        start:0x022a8aa0 end:0x022a9300
 
 src/game/main/sound/sound_seq_arc_get_seq_info.c:
     complete
@@ -22237,10 +22249,6 @@ src/sdk/snd/sound_alarm_run_if_tag_matches.c:
     complete
     .text       start:0x021107a0 end:0x02110800
     .bss        start:0x022ab740 end:0x022ab7a0
-
-src/sdk/snd/snd_bss.c:
-    complete
-    .bss        start:0x022ab7a0 end:0x022ab7a4
 
 src/sdk/snd/sound_alarm_assign_handler.c:
     complete
@@ -23724,10 +23732,6 @@ src/sdk/msl/exit.c:
     .text       start:0x02121d04 end:0x02121d58
     .bss        start:0x022ad01c end:0x022ad128
 
-src/sdk/msl/msl_bss.c:
-    complete
-    .bss        start:0x022ad128 end:0x022ad170
-
 src/sdk/msl/fp_trap_double_pair_to_int.c:
     complete
     .text       start:0x02121d58 end:0x02121db0
@@ -23852,10 +23856,6 @@ src/sdk/msl/raise.c:
     complete
     .text       start:0x021243a8 end:0x021244f8
     .bss        start:0x022ad170 end:0x022ad524
-
-src/sdk/msl/msl_bss_022ad524.c:
-    complete
-    .bss        start:0x022ad524 end:0x022ad540
 
 src/sdk/msl/strchr.c:
     complete

@@ -40,12 +40,49 @@ The 200 aliases each go into one group:
 
 Check first the variables whose type ends in a `[1]` array, the shape that caused this case: `include/game/sound_bank.h` (`instruments[1]`), `sound_arc.h` (`seqs`, `offset`, `entries[1]`), `sound_heap.h` (`payload[1]`), `ov003_unit.h` (`spawns[1]`), `Unk_ov004_022bf158.h` (`unk_998[1]`), `BattleSideData.h`, `battle_fighter.h`, `menu_state.h` (`unk_264[1]`), `Unk_02080440.h`, `map_data.h`, and the SDK headers `wl.h`, `wm.h`, `mb.h`, `snd_seq.h` and `wmsp.h` where a global has one of their types.
 
+### First pass: types that end in `[1]` (2026-10-13)
+
+A read-only pass over the declared types of the 79 variables the 200 aliases point into. Apart from `gWaveArcHeader`, no such variable has a type that ends in a `[1]` array, directly or through its last field: the structs that do (`SoundBank`, `SoundHeapItem`, `MapData`, `SndWaveData`, the `Wl*` and `WM*` buffers, and others) are only reached through pointers or locals, and in `Ov003State` (`spawns[1]`), `Unk_ov004_022bf158` (`unk_998[1]`) and `MoveSearch` a pad field follows the `[1]` array. `ResultScreenWork` (`unk_264[1]`) is only laid over `gMenuState`, and no alias lies between its 0x264 and the next alias at 0x400. So this pass found no other hidden variable.
+
+The aliases whose variable has a type from the headers listed above, with the group the pass suggests. `aliases.txt` still marks them `unsorted` until sturmds confirms:
+
+| Alias | Variable | Offset | Suggested group | Reason |
+|---|---|---:|---|---|
+| `data_0229eb70` | `gMenuState` | 0x40 | real (screen work area) | `menu_state.h` says it points inside `MenuState`; `result_stats_init.c` copies a 0x5c0-byte layer map there. |
+| `data_0229ed30` | `gMenuState` | 0x200 | real (`MenuStateFrom200`) | Two VS setup files read `.fundsPerProperty` through it. |
+| `data_0229ef30` | `gMenuState` | 0x400 | real (`MenuStateFrom400`) | The map select files read `.prevMapId` and `.firstMapId` through it. |
+| `data_0229f330` | `gMenuState` | 0x800 | real (layer 0 map) | The Tag Break code unpacks a 0x800-byte layer 0 map there and copies it to VRAM. |
+| `data_0229fb30` | `gMenuState` | 0x1000 | real (`Unk_0229fb30`, palettes) | The Tag Break code copies two palettes there; combat setup reads `.unk_45a`, inside `MenuState.combat`. |
+| `gTagBreakSparkPalette` | `gMenuState` | 0x1020 | real (second palette at 0x1000) | `tag_break_load_thunder.c` names it the second of the two palettes. |
+| `data_0229fb70` | `gMenuState` | 0x1040 | real (gauge colours) | `tag_break_set_up_screens.c` copies 0x20 bytes of colours there. |
+| `gTagChangePalette` | `gMenuState` | 0x1060 | real (saved palette) | `func_020593c8.c` and `tag_break_set_up_screens.c` use it as saved palette bytes. |
+| `data_0229ff30` | `gMenuState` | 0x1400 | real (`Unk_0229ff30.playerMask`) | Combat setup reads and writes `.playerMask`. |
+| `data_022a0030` | `gMenuState` | 0x1500 | real (CO EXP screen work) | `co_exp_init_screen.c` writes an `s16` at +0xae; `MenuState` reaches to 0x1630. |
+| `data_0229c838` | `data_0229c768` (`MapListTables`) | 0xd0 | real `unk_0d0` | The map select code reads `TABLES.unk_0d0`. |
+| `data_0229c86c` | `data_0229c768` | 0x104 | real `listOfTab` | `map_select_draw_sub_strip.c` reads `data_0229c768.listOfTab[...]`. |
+| `data_022ac380` | `gWmConnectPortArg` | 0x14 | real `macAddress` | `wm_receive_fifo.c` copies 6 bytes into `.macAddress`. |
+| `data_022ac390` | `gWmConnectPortArg` | 0x24 | real `ssid` | The same function copies or clears 24 bytes at `.ssid`. |
+| `data_022ace68` | `data_022ace60` (`DlPlayRosterFrame`) | 0x8 | real `checksum` | `mb_beacon_send_players.c` writes `.checksum` and passes its address to `MbBeacon_Checksum`. |
+| `data_022ace6e` | `data_022ace60` | 0xe | real `unk_35c` | The same function writes `.unk_35c`. |
+| `data_022ace70` | `data_022ace60` | 0x10 | real `users` | The same function clears and fills `.users[]`. |
+| `data_arm7_0380807c` | `data_arm7_03808074` (`SndSeqCache`) | 0x8 | real `words` | `snd_seq_read_byte.c` indexes it as the bytes of the 16-byte window. |
+| `data_arm7_027d7d3c` | `data_arm7_027d7c44` (`WmspState`) | 0xf8 | real (stack boundary) | `wmsp_init.c` passes it as the top of one stack and the bottom of the next, both inside the WMSP work area. |
+| `data_arm7_027d813c` | `data_arm7_027d7c44` | 0x4f8 | real (`OSMutex`) | A 0x14-byte mutex fills 0x4f8-0x50c up to `unk_50c`; the WMSP reply functions lock it. |
+| `data_arm7_027d8160` | `data_arm7_027d7c44` | 0x51c | real `history` | `wmsp.h` says it is `WmspState.history`; `wmsp_push_rssi_sample.c` indexes it. |
+
+Next places to look: eight variables whose size comes from "up to the next symbol" (`gBuildMenuEntries`, `data_0229e5bc`, `data_022a6c84`, `gOsIrqSlots`, `data_022a98ec`, `data_arm7_038078bc`, `gEventTextMap`, `gSlotControllers`) hold 16 aliases at small offsets, and 23 variables are plain `u8`, `u16` or `char` arrays with no layout to check against.
+
+## Progress
+
+- `gSoundStreamReady` is a variable of its own: `SoundWaveArc` ends in `u32 table[]` (mwccarm 2.0-72 accepts it; `sizeof` is 0x3c), `gWaveArcHeader` has size 0x3c and `gSoundStreamReady` size 4 in `symbols.txt`, and `sound_stream_init.c` defines it as `static BOOL` and takes 0x022a8aa0 into its `.bss` range, by hand: `plan` gives a slice only to a file with no `.bss` yet, so it would have put the flag in a new file. `SOUND_WAVE_ARC_HEADER_SIZE` is now `((int)sizeof(SoundWaveArc))`; the unsigned `sizeof` alone changes the code of `SoundArc_LoadWaveArcTable`. Every function that uses `SoundWaveArc` still scores 100%. 199 aliases are left.
+- `bss.py plan` refuses an alias on a trailing `[1]` element and any alias not in `config/AWRE/aliases.txt`; `bss.py aliases` and the report step check the list (`docs/bss-tool.md`, "Aliases").
+
 ## Open items
 
 These need a decision from sturmds and are not part of this issue's changes yet:
 
 - A tenet 11 in `TENETS.md` about sizes and aliases, and a matching check in the tenets-review skill.
-- The audit of all 200 aliases.
+- The audit of the other aliases, and confirming the groups suggested above.
 - A `make shift` run with a grown struct, to see whether the shiftable build catches a hidden alias that moves.
 
 ## Done when

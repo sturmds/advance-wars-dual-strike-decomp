@@ -146,7 +146,6 @@ main gCoColorFlags = gGameFlagsMid+0x30 unsorted
 main data_022a7f84 = gGameFlagsMid+0x34 unsorted
 main data_022a84c0 = data_022a84a8+0x18 unsorted
 main data_022a84c4 = data_022a84a8+0x1c unsorted
-main gSoundStreamReady = gWaveArcHeader+0x3c unsorted
 main data_022a987a = gGxVramBankMasks+0x2 unsorted
 main data_022a987c = gGxVramBankMasks+0x4 unsorted
 main data_022a9880 = gGxVramBankMasks+0x8 unsorted
