@@ -1,10 +1,10 @@
 #include "types.h"
+#include "game/rng.h"
 #include "game/Unk_02080440.h"
 #include "game/unit_action.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u32 gRngState;
 extern UnitAction data_0229d8c8;
 extern u32 gLinkPlay;
 

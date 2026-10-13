@@ -369,7 +369,7 @@ def declarator(body: str) -> str | None:
             depth -= 1
         elif ch == "," and depth == 0:
             return None
-    m = re.search(r"\(\s*\*\s*(\w+)", body)
+    m = re.search(r"\(\s*\*\s*(?:(?:const|volatile)\b\s*)*(\w+)", body)
     if m:
         return m.group(1)
     if body.rstrip().endswith(")"):

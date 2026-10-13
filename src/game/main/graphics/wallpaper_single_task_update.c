@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/screen_shake.h"
 #include "sdk/gx.h"
 #include "game/wallpaper_task.h"
 #include "game/Unk_02080440.h"
@@ -7,8 +8,6 @@
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern volatile s16 gScreenShakeY;
-extern volatile s16 gScreenShakeX;
 
 /* Needed to match: the scroll fields are read through a volatile view so
  * their loads stay in source order. */

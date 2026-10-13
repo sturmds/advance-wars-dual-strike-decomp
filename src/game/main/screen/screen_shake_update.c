@@ -1,8 +1,6 @@
 #include "types.h"
+#include "game/screen_shake.h"
 #include "game/Unk_02003f44.h"
-
-extern u16 gScreenShakeY;
-extern u16 gScreenShakeX;
 
 void Task_ResumeScript(Unk_02003f44* task);
 

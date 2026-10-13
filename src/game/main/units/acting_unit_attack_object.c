@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/rng.h"
 #include "game/Unk_02080440.h"
 #include "game/object_attack_task.h"
 #include "game/task.h"
@@ -7,11 +8,8 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern UnitAction data_0229d8c8;
-extern u32 gRngState;
 extern const TaskScriptCmd data_02168380[];
 
-MapObject* Map_GetObjectAt(
-    int x, int y); /* object standing at (x, y); NULL: none or destroyed */
 void ActingUnit_AttackTile(int x, int y, int flag);
 void Combat_CalcDamageToTarget(int unitIndex, int target, s16* pos);
 void ScreenConfig_RunActionHook(void);

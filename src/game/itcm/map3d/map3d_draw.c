@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/screen_shake.h"
 #include "sdk/fx.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
@@ -7,8 +8,6 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern volatile s16 gScreenShakeX;
-extern volatile s16 gScreenShakeY;
 extern u8
     data_ov000_022dbd41[]; /* Ov000_gMapHeaders + 0x19, 0xa0 bytes per map */
 

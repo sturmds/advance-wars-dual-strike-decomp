@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/rng.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/task.h"
@@ -9,7 +10,6 @@ extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern UnitAction data_0229d8c8;
-extern u32 gRngState;
 extern const TaskScriptCmd data_02168328[];
 extern const TaskScriptCmd data_02168400[];
 

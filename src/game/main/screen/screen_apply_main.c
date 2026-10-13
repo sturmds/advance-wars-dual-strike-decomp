@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/screen_shake.h"
 #include "sdk/gx.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
@@ -6,8 +7,6 @@
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern volatile s16 gScreenShakeY;
-extern volatile s16 gScreenShakeX;
 
 void Screen_SetCurrent(Unk_02080440* state);
 void Screen_SetCurrentGfx(Unk_027c0280* state);

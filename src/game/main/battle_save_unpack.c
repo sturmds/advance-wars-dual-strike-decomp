@@ -1,9 +1,9 @@
 #include "types.h"
+#include "game/rng.h"
 #include "game/battle_save.h"
 #include "game/screen_other_map.h"
 
 extern u8 data_02291774[];
-extern u32 gRngState;
 extern u8 gGameFlagsLow[4];
 extern BattleSaveSkillSet
     data_022a72c8[5]

@@ -1,11 +1,10 @@
 #include "types.h"
+#include "game/screen_shake.h"
 #include "game/Unk_02088d04.h"
 #include "game/oam_buffer.h"
 #include "game/oam_cells.h"
 
 extern Unk_027c0280* data_027c0280;
-extern s16 gScreenShakeY;
-extern s16 gScreenShakeX;
 
 /* Oam_PutCells without the separate tile argument: attr2 holds the first
  * tile, priority and palette, and is added to each cell's attribute 2.

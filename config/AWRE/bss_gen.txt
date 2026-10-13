@@ -1,7 +1,6 @@
 src/game/main/ai/ai_bss.c
 src/game/main/ai/ai_bss_0229ea4c.c
 src/game/main/bss_0216e03c.c
-src/game/main/bss_0216e29c.c
 src/game/main/bss_0216e4b8.c
 src/game/main/bss_02175180.c
 src/game/main/bss_0217fb08.c

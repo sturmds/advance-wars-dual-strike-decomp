@@ -1,7 +1,5 @@
 #include "types.h"
-
-extern volatile s16 gCallbackCount;
-extern void (*gCallbackList[16])(void);
+#include "game/callback.h"
 
 void CallbackList_Clear(void);
 

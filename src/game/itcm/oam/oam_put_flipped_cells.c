@@ -1,12 +1,11 @@
 #include "types.h"
+#include "game/screen_shake.h"
 #include "game/Unk_02088d04.h"
 #include "game/oam_buffer.h"
 #include "game/oam_cells.h"
 #include "game/obj_size.h"
 
 extern Unk_027c0280* data_027c0280;
-extern s16 gScreenShakeY;
-extern s16 gScreenShakeX;
 
 /* Puts the cells of a sprite at (x, y) into the OAM buffer, starting at tile
  * tile with attr2's priority and palette. x and y carry the attribute 1 and

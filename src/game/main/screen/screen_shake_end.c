@@ -1,7 +1,5 @@
 #include "types.h"
-
-extern u16 gScreenShakeY;
-extern u16 gScreenShakeX;
+#include "game/screen_shake.h"
 
 void ScreenShake_End(void) {
   gScreenShakeX = 0;
