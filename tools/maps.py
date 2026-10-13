@@ -39,6 +39,8 @@ from pathlib import Path
 
 import yaml
 
+from mwcc_order import definition_order
+
 ROOT = Path(__file__).resolve().parent.parent
 ASSETS = Path("assets/maps")                 # committed: legend and glue files
 EXTRACTED = Path("extracted/AWRE/assets/maps")  # gitignored: one YAML file per map
@@ -685,51 +687,6 @@ def tile_member(rel: str, key: str) -> str:
     return f"m{rel.split('/')[-1][:3]}" + ("_hard" if key.startswith("hard") else "")
 
 
-def mwcc_heapsort(sizes: list[int]) -> list[int]:
-    """The order in which mwccarm 2.0 emits the data objects of one file:
-    a heapsort by size of the objects in reverse definition order. Takes the
-    sizes in definition order and returns definition indices. Equal sizes
-    come out in no stable order, so this is what decides their order."""
-    a = list(range(len(sizes)))[::-1]
-
-    def sift(root: int, end: int) -> None:
-        while 2 * root + 1 <= end:
-            child = 2 * root + 1
-            top = root if sizes[a[root]] >= sizes[a[child]] else child
-            if child + 1 <= end and sizes[a[top]] < sizes[a[child + 1]]:
-                top = child + 1
-            if top == root:
-                return
-            a[root], a[top] = a[top], a[root]
-            root = top
-
-    for start in range((len(a) - 2) // 2, -1, -1):
-        sift(start, len(a) - 1)
-    for end in range(len(a) - 1, 0, -1):
-        a[0], a[end] = a[end], a[0]
-        sift(0, end - 1)
-    return a
-
-
-def definition_order(sizes: list[int]) -> list[int]:
-    """The definition order that mwccarm emits as 0, 1, 2, ...: indices into
-    `sizes`, which must not decrease. Given the sizes, mwcc_heapsort's
-    permutation depends only on positions, so its inverse on the sorted
-    sizes is the answer."""
-    if sizes != sorted(sizes):
-        # An edited map: the build will not match retail anyway.
-        print("maps.py: warning: the unit lists are not in size order, so the compiler will reorder them",
-              file=sys.stderr)
-        return list(range(len(sizes)))
-    emitted = mwcc_heapsort(sizes)
-    order = [0] * len(sizes)
-    for pos, defined in enumerate(emitted):
-        order[defined] = pos
-    if [order[i] for i in mwcc_heapsort([sizes[i] for i in order])] != list(range(len(sizes))):
-        sys.exit("error: definition_order does not invert mwcc_heapsort")
-    return order
-
-
 def write_if_changed(path: Path, text: str) -> None:
     if not path.exists() or path.read_text() != text:
         path.write_text(text)
@@ -783,13 +740,20 @@ def cmd_pack(args) -> int:
     t_init.append("};")
     h += ["} MapTileData;", "", "extern const MapTileData Ov000_gMapTiles;", "",
           "/* The pre-deployed unit lists, one array each as in the ROM. */"]
-    # mwccarm emits them by size, not in definition order (mwcc_heapsort); the
+    # mwccarm emits them by size, not in definition order (mwcc_order.py); the
     # ROM's order (units.txt) is sorted by size, and definition_order gives
     # the order to define them in for that. The linker's ALIGNALL(4) adds the
     # pad bytes after each list.
     lists = [(rel, key, unit_rows(maps[rel][key], f"{rel} {key}")) for rel, key in units]
     u_init = [generated_note]
-    for i in definition_order([len(rows) * UNIT_ROW for _, _, rows in lists]):
+    try:
+        unit_order = definition_order([len(rows) * UNIT_ROW for _, _, rows in lists])
+    except ValueError:
+        # An edited map: the build will not match retail anyway.
+        print("maps.py: warning: the unit lists are not in size order, so the compiler will reorder them",
+              file=sys.stderr)
+        unit_order = list(range(len(lists)))
+    for i in unit_order:
         rel, key, rows = lists[i]
         name = unit_list_name(rel, key)
         h.append(f"extern PredeployedUnit {name}[{len(rows)}];".ljust(55) + f"/* {rel} {key} */")
@@ -845,15 +809,11 @@ def header_aliases() -> dict[str, int]:
 def cmd_lcf(args) -> int:
     """Writes `NAME = Ov000_gMapHeaders + OFFSET;` after the line that places
     map_headers.o: before that line the linker takes the table's address as 0."""
+    import bss  # bss.py imports configure.py, which imports this file
     path = Path(args.lcf)
-    text = path.read_text()
-    anchor = "        map_headers.o(.data)\n"
-    if text.count(anchor) != 1:
-        sys.exit(f"error: {anchor.strip()} is not in {path} exactly once")
-    lines = "".join(f"        {name} = Ov000_gMapHeaders + {offset:#x};\n"
-                    for name, offset in sorted(header_aliases().items()))
-    if lines not in text:
-        path.write_text(text.replace(anchor, anchor + lines))
+    aliases = {name: ("Ov000_gMapHeaders", offset) for name, offset in header_aliases().items()}
+    path.write_text(bss.lcf_insert_after(path.read_text(), "map_headers.o(.data)", bss.lcf_alias_lines(aliases),
+                                         str(path)))
     return 0
 
 

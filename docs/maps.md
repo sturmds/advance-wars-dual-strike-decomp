@@ -89,7 +89,7 @@ The C has the same symbols as the ROM, so that objdiff can compare the tables sy
 - `Ov000_gMapUnits_0f0`, `Ov000_gMapHardUnits_0f0`: one array per unit list. `symbols.txt` gives each its size without the pad bytes (`kind:data(byte[468])`), since the C array has none; the linker's `ALIGNALL(4)` adds them.
 - `Ov000_gMapHeaders`: the header table.
 
-mwccarm 2.0 does not emit a file's data objects in the order they are defined. It puts each in its own section and heapsorts them by size, starting from the reverse of the definition order; objects of equal size come out in an order that depends only on their positions. The unit lists in the ROM are in size order, so the original was one file with one array per list. `maps.py` copies the heapsort (`mwcc_heapsort`) and inverts it (`definition_order`) to find the order to define the arrays in so that the compiler emits the `units.txt` order.
+mwccarm 2.0 does not emit a file's data objects in the order they are defined. It puts each in its own section and heapsorts them by size, starting, for initialized data, from the reverse of the definition order; objects of equal size come out in an order that depends only on their positions. The unit lists in the ROM are in size order, so the original was one file with one array per list. `maps.py` uses the heapsort's inverse (`definition_order` in `tools/mwcc_order.py`) to find the order to define the arrays in so that the compiler emits the `units.txt` order.
 
 dsd had taken 38 runs of bytes in the tile blocks and unit lists for pointers. Those relocations are gone from `relocs.txt`; the tables hold no pointers.
 

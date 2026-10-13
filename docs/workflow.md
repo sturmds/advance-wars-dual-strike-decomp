@@ -305,12 +305,28 @@ u32 gUnit3dTextureBlocks[6][27] = {
 
 ### Several data objects in one file
 
-mwccarm 2.0 does not emit a file's data objects in the order they are defined. Each goes into its own section, and the sections are heapsorted by object size, starting from the reverse of the definition order. Objects of equal size end up in an order that depends only on their positions, not their names. Optimisation level and `-constpool` do not change this; build 56 does the same.
+mwccarm 2.0 does not emit a file's data objects in the order they are defined. Each goes into its own section, and the sections are heapsorted by object size. The sort starts from the uninitialized objects (plain or `static`, in .bss) in definition order, followed by the initialized ones, zero-initialized included, in reverse definition order. Objects of equal size end up in an order that depends only on their positions, not their names. Function-scope statics follow another order. Optimisation level and `-constpool` do not change this; build 56 does the same for initialized data.
 
 - A run of objects in the ROM that is not in size order did not come from one file: give it one symbol per file, or one object for the whole run (`Ov000_gMapTiles`, `docs/maps.md`).
-- A run in size order can be one file. `tools/maps.py` has the heapsort (`mwcc_heapsort`) and its inverse (`definition_order`, the order to define the objects in); `tools/tests/test_data_order.py` checks the model against the compiler.
+- A run in size order can be one file. `tools/mwcc_order.py` has the heapsort (`mwcc_heapsort`) and its inverse (`definition_order`, the order to define the objects in); `tools/tests/test_data_order.py` checks the model against the compiler for initialized, uninitialized and mixed files.
 - Pad bytes after an object come from the linker's `ALIGNALL(4)`, not from the object. objdiff compares symbols by size, so give the dsd symbol the object's own size (`kind:data(byte[13])`) when it ends before the next symbol.
 - dsd sometimes takes data bytes for pointers. A relocation that starts inside a table of plain values makes objdiff score the symbol 0%; delete it from `relocs.txt` once the C rebuilds the bytes without it.
+
+### Defining .bss
+
+`tools/bss.py` defines the .bss that dsd leaves in gap units, so that it links from `complete` files (issue 0082). The requirements and what the ov004 pilot found are in `docs/bss-tool.md`; the rules it follows are in the tool's docstring. It needs `build/fnindex.json` and `build/dsindex.json` (`make fnindex dsindex`).
+
+```sh
+python3 tools/bss.py scan main --verbose            # variables, aliases, filler, runs; writes nothing
+python3 tools/bss.py plan ov003 --show              # the files it would write, with their C
+python3 tools/bss.py plan main --range 0x0216e020-0x02170000 --write
+```
+
+- `--write` writes the C, formats it, compiles each file to check the order of its variables, edits `delinks.txt` and `symbols.txt`, then runs `make` and `make check` and names the module whose hash fails. Run it from a clean `config/`, `src/` and `include/`, and fix a wrong result in the tool, not in its output. A second run finds nothing left to do.
+- A run of variables goes into the file whose functions use most of them, or into a new file in its users' directory. A file with more than one run puts the later ones between `#pragma section BSS_RUNn begin` and `end` (`include/bss_run.h`); `bss.py lcf` (part of the build) places `.bss.runN` after the file's `.bss`.
+- Symbols inside a variable stay in `symbols.txt` with `kind:bss(size=0x0)`, and `bss.py lcf` defines them as `VARIABLE + OFFSET`. With a size, objdiff counts the whole unit's .bss as unmatched.
+- Rename a variable with `fn.py rename OLD NEW`, as for any symbol.
+- To move a variable into a topic file later, move its definition together with the other variables of its run, and the `.bss` range with them: a file's .bss must stay one range in `delinks.txt`, and within it the sizes must go up (or start a new `BSS_RUNn`). The compiler's sort depends on the definition order: `definition_order` in `tools/mwcc_order.py` gives it for a list of sizes.
 
 ## ARM7
 

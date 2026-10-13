@@ -10,6 +10,7 @@ Pipeline:
                              --dsd lcf-----> build/arm9.lcf, build/objects.txt
                              --lcf_absolute.py--> ARM9_ABSOLUTE_SYMBOLS added to build/arm9.lcf
                              --maps.py lcf--> the symbols inside Ov000_gMapHeaders added to build/arm9.lcf
+                             --bss.py lcf--> .bss.runN sections and the symbols inside .bss variables added
                              --lcf_align2.py lcf--> ALIGNALL(2) around objects at 2 mod 4
                              --lcf_align2.py objects--> build/objects.link.txt, build/align2/**.o
   compiled objects, plus delinked ones for everything else --mwldarm--> build/arm9.elf, build/build/*.bin (one per module)
@@ -238,6 +239,7 @@ def main() -> int:
         "rule lcf",
         "  command = $dsd lcf -c $cfg > /dev/null && $python tools/lcf_absolute.py $lcf $absolute"
         " && $python tools/maps.py lcf $lcf"
+        " && $python tools/bss.py lcf $lcf"
         " && $python tools/lcf_align2.py lcf $lcf config/AWRE/arm9/delinks.txt",
         "  description = LCF",
         "",
@@ -297,7 +299,7 @@ def main() -> int:
         f"build build/delink.stamp: delink {' '.join(config_inputs())} | extract/config.yaml $dsd",
         f"  cfg = {cfg}",
         "",
-        "build build/arm9.lcf build/objects.txt: lcf build/delink.stamp | $dsd tools/lcf_absolute.py tools/lcf_align2.py tools/maps.py",
+        "build build/arm9.lcf build/objects.txt: lcf build/delink.stamp | $dsd tools/lcf_absolute.py tools/lcf_align2.py tools/maps.py tools/bss.py",
         f"  cfg = {cfg}",
         "  lcf = build/arm9.lcf",
         "  absolute = " + " ".join(f"{k}={v:#x}" for k, v in ARM9_ABSOLUTE_SYMBOLS.items()),
