@@ -199,7 +199,7 @@ A file whose definitions are mostly address-named `u8` arrays is not written int
 
 An alias makes the source say that two names share memory, and a size of 0 keeps objdiff from checking it. When the variable before it is declared too large, the alias hides a separate variable: `SoundWaveArc` ended in `u32 table[1]`, 4 bytes longer than the header the game reads into `gWaveArcHeader`, so the flag `gSoundStreamReady` after it became `gWaveArcHeader + 0x3c`. So every alias is listed, and new ones are checked before they are written.
 
-`config/AWRE/aliases.txt` has one line per alias in the linker scripts (the size-0 symbols inside the `.bss` range of a `complete` file):
+`config/AWRE/aliases.txt` has one line per alias in the linker scripts (the size-0 symbols inside the `.bss`, `.data` or `.rodata` range of a `complete` file; `tools/data.py` follows the same rules, `docs/data-tool.md`):
 
 ```
 MODULE SYMBOL = BASE+OFFSET GROUP

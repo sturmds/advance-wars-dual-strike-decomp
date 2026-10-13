@@ -107,6 +107,10 @@ RUN_HEADER = "bss_run.h"
 GEN_LIST = Path("config/AWRE/bss_gen.txt")
 GEN_DIR = "bss"
 BSS_SECTIONS = (".bss", ".sbss")
+# Initialised data, which tools/data.py defines. Its aliases go in the
+# linker script and aliases.txt the same way.
+DATA_SECTIONS = (".data", ".rodata")
+DATA_UNIT = {"byte": 1, "short": 2, "word": 4}
 # Runs one file can hold in each section: the sections include/bss_run.h
 # defines (.bss.run1 to .bss.run15, .sbss and .sbss.run1 to .sbss.run3).
 # The plan now gives a file one run at most; arm7's files from before that
@@ -187,6 +191,11 @@ def read_symbols(path: Path) -> list[Symbol]:
         if m.group(2) == "bss" and m.group(3):
             sm = re.search(r"size=(0x[0-9a-fA-F]+|\d+)", m.group(3))
             size = int(sm.group(1), 0) if sm else None
+        elif m.group(2) == "data" and m.group(3):
+            # dsd's data kinds: `any` (up to the next symbol), `byte`, `short`
+            # or `word`, with an optional `[count]`.
+            dm = re.fullmatch(r"(byte|short|word)(?:\[(0x[0-9a-fA-F]+|\d+)\])?", m.group(3))
+            size = DATA_UNIT[dm.group(1)] * (int(dm.group(2), 0) if dm.group(2) else 1) if dm else None
         syms.append(Symbol(m.group(1), m.group(2), int(m.group(4), 16), size))
     return syms
 
@@ -931,19 +940,25 @@ def link_order_ok(entries: list[Entry]) -> bool:
     return seen == len(entries)
 
 
-def assign_hosts(module: Module, groups: list[Group], relocs: list) -> list[Group]:
+def assign_hosts(module: Module, groups: list[Group], relocs: list, check=None,
+                 per_file: bool = False) -> list[Group]:
     """Steps 4 to 6 of the slicing rule (docs/bss-tool.md): a file takes one
     range per section, so a host met again loses its later slice; each host
     must keep dsd's link order and compile with its definitions, checked in
     address order; a slice that loses its host joins the hosted slice before
     it in the same run, else the one after, if that passes the same checks;
-    neighbouring slices left with no host in one run make one new file."""
-    seen: set[tuple[str, str]] = set()
+    neighbouring slices left with no host in one run make one new file.
+    `check(module, group, relocs)` gives (C or None, errors), render by
+    default; with `per_file`, a file takes one slice in all its sections
+    (tools/data.py)."""
+    check = check or render
+    seen: set = set()
     for g in groups:
-        if g.host and (g.host, g.section) in seen:
+        key = g.host if per_file else (g.host, g.section)
+        if g.host and key in seen:
             g.host = None
         elif g.host:
-            seen.add((g.host, g.section))
+            seen.add(key)
     entries = [Entry(e.name, e.complete, dict(e.sections)) for e in module.entries]
     by_name = {e.name: e for e in entries}
 
@@ -952,7 +967,7 @@ def assign_hosts(module: Module, groups: list[Group], relocs: list) -> list[Grou
         sections = by_name[g.host].sections
         sections[g.section] = (g.start, g.end)
         g.path = g.host
-        if link_order_ok(entries) and render(module, g, relocs)[0] is not None:
+        if link_order_ok(entries) and check(module, g, relocs)[0] is not None:
             return True
         del sections[g.section]
         g.path = ""
@@ -1983,10 +1998,20 @@ def lcf_alias_lines(aliases: dict[str, tuple[str, int]]) -> list[str]:
 
 def entry_aliases(entry: Entry, section: str, symbols: list[Symbol]) -> tuple[list[Var], dict[str, tuple[str, int]]]:
     """The variables of a file's .bss or .sbss range (`section`), and its
-    aliases {name: (variable, offset)}: the symbols of size 0 in it."""
+    aliases {name: (variable, offset)}: the symbols of size 0 in it. In a
+    .data or .rodata range a symbol with no size (`kind:data(any)`) is an
+    object up to the next symbol, not an alias."""
     start, end = entry.sections[section]
     inside = sorted((s for s in symbols if start <= s.addr < end), key=lambda s: s.addr)
-    variables = [Var(s.addr, round4(s.size), s.size, s.name) for s in inside if s.size]
+    if section in DATA_SECTIONS:
+        sized = [s for s in inside if s.size != 0]
+        variables = []
+        for i, s in enumerate(sized):
+            size = s.size if s.size is not None else (sized[i + 1].addr if i + 1 < len(sized) else end) - s.addr
+            variables.append(Var(s.addr, round4(size), size, s.name))
+        inside = [s for s in inside if s.size == 0]
+    else:
+        variables = [Var(s.addr, round4(s.size), s.size, s.name) for s in inside if s.size]
     aliases = {}
     for s in inside if variables else []:
         if s.size:
@@ -2004,8 +2029,8 @@ def lcf_object_lines(entry: Entry, section: str, symbols: list[Symbol]) -> tuple
     aliases."""
     stem = Path(entry.name).stem
     variables, aliases = entry_aliases(entry, section, symbols)
-    if not variables:
-        return f"{stem}.o({section})", []
+    if not variables or section in DATA_SECTIONS:
+        return f"{stem}.o({section})", lcf_alias_lines(aliases) if variables else []
     runs = split_runs(variables)
     lines = [f"{stem}.o({run_section(section, k)})" for k in range(1, len(runs))]
     return f"{stem}.o({section})", lines + lcf_alias_lines(aliases)
@@ -2045,14 +2070,14 @@ def read_alias_list(path: Path | None = None) -> dict[tuple[str, str], Listed]:
 def config_aliases() -> dict[tuple[str, str], tuple[str, int]]:
     """{(module, alias): (variable, offset)} for every alias the linker
     scripts define: the symbols of size 0 in the .bss or .sbss range of a
-    `complete` file, as `lcf` writes them."""
+    `complete` file, as `lcf` writes them (.data and .rodata too)."""
     out = {}
     for module in module_modules() + ["itcm", "dtcm"]:
         cfg = ROOT / data_inc.config_dir(module)
         _, entries = read_delinks(cfg / "delinks.txt")
         symbols = None
         for entry in entries:
-            for section in BSS_SECTIONS if entry.complete else ():
+            for section in BSS_SECTIONS + DATA_SECTIONS if entry.complete else ():
                 if section in entry.sections:
                     symbols = symbols if symbols is not None else read_symbols(cfg / "symbols.txt")
                     for name, owner in entry_aliases(entry, section, symbols)[1].items():
@@ -2106,7 +2131,7 @@ def cmd_lcf(args) -> int:
         for entry in entries:
             if not entry.complete:
                 continue
-            for section in BSS_SECTIONS:
+            for section in BSS_SECTIONS + DATA_SECTIONS:
                 if section not in entry.sections:
                     continue
                 symbols = symbols if symbols is not None else read_symbols(cfg / "symbols.txt")

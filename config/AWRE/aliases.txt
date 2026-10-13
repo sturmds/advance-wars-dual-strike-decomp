@@ -1,5 +1,5 @@
-# Every .bss alias in the linker scripts: a symbol of size 0 inside a
-# variable (docs/bss-tool.md, "Aliases"; issue 0083). One per line:
+# Every alias in the linker scripts: a symbol of size 0 inside a .bss,
+# .data or .rodata variable (docs/bss-tool.md, "Aliases"; issue 0083). One per line:
 #   MODULE SYMBOL = BASE+OFFSET GROUP
 # GROUP: `real FIELD` (an address inside the variable that code takes on
 # purpose), `hidden` (a separate variable the one before swallows) or

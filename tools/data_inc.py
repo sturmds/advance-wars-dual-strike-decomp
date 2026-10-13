@@ -25,9 +25,12 @@ A row of data_inc.txt: module, symbol, address, size in bytes, element type.
 - module: main, itcm, dtcm, ovNNN or arm7.
 - type: u8, s8, u16, s16, u32, s32 or a pointer type (`void*`, `char*`),
   with an optional `[N]` that writes the values as rows of N in braces.
-  For an array of structs, the field types in braces, no spaces, with
-  `[N]` for an array field: `{u8,u8,u8[2],u32,u32,u16*,u8,u8[3]}` writes
-  one `{...}` per struct. Fields must be aligned to their size.
+  For a struct or an array of structs, the field types in braces, no
+  spaces, with `[N]` for an array field: `{u8,u8,u8[2],u32,u32,u16*,u8,u8[3]}`
+  writes one line of values per struct, with no braces around it, so the
+  same file initializes one struct or an array of them (C fills the
+  members in order). `pad[N]` stands for N bytes of padding, which must be
+  zero and get no value. Fields must be aligned to their size.
 
 A word that the module's relocs.txt says points somewhere is written as the
 symbol at its target, `(u32)&Name` or `(void*)&Name`, so a build with moved
@@ -53,8 +56,9 @@ CONFIG7 = Path("config/AWRE/arm7")
 
 SIZES = {"u8": 1, "s8": 1, "u16": 2, "s16": 2, "u32": 4, "s32": 4}
 PER_LINE = {1: 16, 2: 8, 4: 8}
-ROW = re.compile(r"(\S+)\s+(\w+)\s+(0x[0-9a-fA-F]+)\s+(0x[0-9a-fA-F]+|\d+)\s+(\w+\s*\*?|\{[^\s{}]+\})(?:\[(\d+)\])?$")
-FIELD = re.compile(r"(\w+\*?)(?:\[(\d+)\])?$")
+ROW = re.compile(r"(\S+)\s+(\w+)\s+(0x[0-9a-fA-F]+)\s+(0x[0-9a-fA-F]+|\d+)\s+(\w+\s*\**|\{[^\s{}]+\})(?:\[(\d+)\])?$")
+FIELD = re.compile(r"(\w+\**)(?:\[(\d+)\])?$")
+PAD = "pad"  # a struct field of padding bytes
 
 
 class Row:
@@ -84,9 +88,9 @@ class Row:
         offset = 0
         for text in self.type[1:-1].split(","):
             m = FIELD.match(text)
-            if not m or not (m.group(1).endswith("*") or m.group(1) in SIZES):
+            if not m or not (m.group(1).endswith("*") or m.group(1) in SIZES or m.group(1) == PAD):
                 sys.exit(f"error: {where}: bad struct field {text!r}")
-            width = 4 if m.group(1).endswith("*") else SIZES[m.group(1)]
+            width = 4 if m.group(1).endswith("*") else 1 if m.group(1) == PAD else SIZES[m.group(1)]
             if offset % width:
                 sys.exit(f"error: {where}: field {text!r} at offset {offset:#x} is not aligned")
             count = int(m.group(2)) if m.group(2) else 0
@@ -239,9 +243,15 @@ def literal(row: Row, rom: Rom, addr: int, raw: bytes, cast: str = "") -> str:
 
 
 def render_struct(row: Row, rom: Rom, addr: int, data: bytes) -> str:
-    """One struct as `{a, b, {c, d}, ...},`."""
+    """One struct as `a, b, {c, d}, ...,`: no braces around it, so C fills
+    the members in order whether the object is one struct or an array."""
     parts, offset = [], 0
     for cast, count in row.fields:
+        if cast == PAD:
+            if any(data[offset:offset + count]):
+                sys.exit(f"error: {row.symbol} at {addr + offset:#x}: padding bytes are not zero")
+            offset += count
+            continue
         width = 4 if cast.endswith("*") else SIZES[cast]
         values = []
         for i in range(max(count, 1)):
@@ -249,7 +259,7 @@ def render_struct(row: Row, rom: Rom, addr: int, data: bytes) -> str:
             values.append(literal(row, rom, addr + at, data[at:at + width], cast))
         parts.append("{" + ", ".join(values) + "}" if count else values[0])
         offset += width * max(count, 1)
-    return "{" + ", ".join(parts) + "},"
+    return ", ".join(parts) + ","
 
 
 def render(row: Row, rom: Rom) -> str:

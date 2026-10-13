@@ -149,12 +149,12 @@ emu-smoke: shift
 # compiled with the host gcc (test_portable_c.py), and the PROGRESS.md rows
 # progress.py writes from a report (test_progress.py), and the order in which
 # mwccarm emits data objects (test_data_order.py), and the .bss planner
-# (test_bss.py), and the release cache (test_release_cache.py); no ROM or
-# build needed
-# (test_ds.py, test_pragmas.py, test_absolute.py, test_data_order.py and
-# test_bss.py use the compiler from make setup; test_ds.py checks more
-# when extract/ exists, test_bss.py when build/fnindex.json and
-# build/dsindex.json exist).
+# (test_bss.py), the release cache (test_release_cache.py) and the .data
+# planner (test_data.py); no ROM or build needed
+# (test_ds.py, test_pragmas.py, test_absolute.py, test_data_order.py,
+# test_bss.py and test_data.py use the compiler from make setup; test_ds.py
+# checks more when extract/ exists, test_bss.py when build/fnindex.json and
+# build/dsindex.json exist, test_data.py when the ROM exists as well).
 # Git exports GIT_DIR, GIT_INDEX_FILE and others to hooks, so a test run from
 # pre-commit would send the git commands meant for a throwaway repo to the
 # repository being committed (issue 0076). TEST_ENV drops every GIT_ variable
@@ -183,7 +183,8 @@ TESTS := \
 	tools/tests/test_progress.py \
 	tools/tests/test_data_order.py \
 	tools/tests/test_bss.py \
-	tools/tests/test_release_cache.py
+	tools/tests/test_release_cache.py \
+	tools/tests/test_data.py
 
 test:
 	@for t in $(CACHED_TESTS) $(TESTS); do $(TEST_ENV) $(PYTHON) $$t || exit 1; done
