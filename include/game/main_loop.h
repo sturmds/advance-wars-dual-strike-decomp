@@ -16,4 +16,8 @@ typedef struct MainLoop {
   u16 prevKeys; /* keys seen last frame, for the reset combo */
 } MainLoop;
 
+/* 1 once Battle_ResetTurnState has run, 0 while a battle is set up;
+ * MainLoop_MapFrame runs the map state only when it is 1. */
+extern u32 gMapGameRunning;
+
 #endif

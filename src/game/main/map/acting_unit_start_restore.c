@@ -3,13 +3,13 @@
 #include "game/BattleCellTask.h"
 #include "game/build_menu.h"
 #include "game/map_data.h"
+#include "game/acting_unit.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 u32 gLinkPlay;
 s16 data_0229eae0[2];
 u16 data_0229ead8[2];
-/* also declared in src/game/main/units/acting_unit_save_start_pos.c */
 s16 data_0229ead4[2];
 MapData* data_0229eadc;
 int data_0229eae4;

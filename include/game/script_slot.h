@@ -170,4 +170,8 @@ typedef struct ScriptSlotVars {
 /* Runs one command of the slot; nonzero: run the next one this frame too. */
 typedef BOOL (*ScriptCommandFunc)(int slot);
 
+/* Distance the map scroll moves on each step (ScriptSlot.step); 0x80 bytes
+ * up to the next symbol. */
+extern u8 gMapScrollSpeeds[0x80];
+
 #endif

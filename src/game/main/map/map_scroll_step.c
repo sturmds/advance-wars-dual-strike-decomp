@@ -8,7 +8,6 @@ s8 ScriptSlot_StopSlot(ScriptSlot* target);
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-/* size: up to the next symbol; also declared in src/game/main/map/map_scroll_build_speed_table.c */
 u8 gMapScrollSpeeds[0x80];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])

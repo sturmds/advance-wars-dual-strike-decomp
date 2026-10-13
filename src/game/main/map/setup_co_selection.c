@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/co_select_screen.h"
 
 void BuildUnlockedCoList(void);
 void LoadMapCoList(int mapId);
@@ -9,7 +10,6 @@ void CoSelect_AddAvailable(int coId);
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u8 data_022a7a68[];
 
 /* Fills the CO list data_022a7a68: the current map's own list when
  * state->gameMode and Campaign_IsHardMode() are both 0, otherwise every unlocked CO.

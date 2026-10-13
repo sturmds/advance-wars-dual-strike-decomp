@@ -20,4 +20,8 @@ typedef struct TileSpriteTask {
   struct SpriteAnim* sprite; /* made by TileSpriteTask_CreateSprite */
 } TileSpriteTask;
 
+/* Goes 0, 1, 0, ...: picks which of two sound effects TileSpriteTask_Start
+ * plays. */
+extern int data_022a6c78;
+
 #endif

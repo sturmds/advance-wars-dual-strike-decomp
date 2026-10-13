@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_022a7c5c.h"
+#include "game/tile_sprite_task.h"
 
-extern int data_022a6c78;
 extern char gPowerHighlightDir[];
 
 void FS_ChangeDir(const char* dir);

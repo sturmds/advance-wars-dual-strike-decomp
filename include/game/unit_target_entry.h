@@ -12,4 +12,7 @@ typedef struct UnitTargetEntry {
   s16 y;
 } UnitTargetEntry;
 
+extern int
+    gFireTargetCount; /* entries in the fire target list (FireTargets_Add) */
+
 #endif

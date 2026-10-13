@@ -17,7 +17,6 @@ typedef struct CoSoundRow {
 extern const TaskScriptCmd data_02166ed4[];
 extern const TaskScriptCmd data_02166efc[];
 extern CoSoundRow data_021536ec[];
-/* also declared in src/game/main/copowers/power_highlight_load_graphics.c */
 int data_022a6c78;
 u8 gSavedArmyColours[5];
 DesignMap data_022a6c84[0xc]; /* size: up to the next symbol */

@@ -3,13 +3,12 @@
 #include "game/Unk_02088d04.h"
 #include "game/task.h"
 #include "sdk/gx.h"
+#include "game/main_loop.h"
 
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern u32
-    gMapGameRunning; /* 1 once Battle_ResetTurnState has run, 0 while a battle is set up */
 
 void Map3d_BeginFrame(void);
 void EventScript_UpdateAll(void);

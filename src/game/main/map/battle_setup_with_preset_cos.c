@@ -2,6 +2,7 @@
 #include "game/co_data.h"
 #include "game/player.h"
 #include "game/Unk_02080440.h"
+#include "game/main_loop.h"
 
 void func_020b98bc(void);
 void Players_Reset(void);
@@ -20,7 +21,6 @@ void MainLoop_SetFrameCallback(const void* descriptor);
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern u8 MainLoop_MapFrame[];
-extern u32 gMapGameRunning;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define HOOKS (data_027c027c->unk_50[data_027c0284])

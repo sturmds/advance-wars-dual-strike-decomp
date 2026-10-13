@@ -2,7 +2,6 @@
 #include "game/unit_target_entry.h"
 
 extern UnitTargetEntry* data_022a6dcc;
-extern int gFireTargetCount; /* entries in the list */
 
 /* Appends a target to the fire target list: the tile, the unit slot there
  * (0 for a map object) and the map object kind (0 for a unit). */

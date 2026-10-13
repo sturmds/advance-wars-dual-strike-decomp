@@ -6,7 +6,6 @@
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-/* also declared in src/game/main/map/fire_targets_add.c and 2 more */
 int gFireTargetCount;
 int data_022a6dd4;
 UnitTargetEntry* data_022a6dcc;

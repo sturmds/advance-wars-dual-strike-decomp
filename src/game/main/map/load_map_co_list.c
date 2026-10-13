@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/map_header.h"
+#include "game/co_select_screen.h"
 
 extern u8 gDefaultCoList[];
-extern u8 data_022a7a68[];
 
 /* Copies the map's CO list (MapHeader.coList) into data_022a7a68, or all of
  * gDefaultCoList when the map has none. Campaign missions use the map list

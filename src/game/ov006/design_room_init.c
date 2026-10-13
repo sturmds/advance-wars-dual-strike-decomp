@@ -6,6 +6,7 @@
 #include "game/Unk_022977a4.h"
 #include "game/Unk_ov006_0235f690.h"
 #include "game/screen_other_map.h"
+#include "game/main_loop.h"
 
 void* Mem_Alloc(u32 size);
 void MI_CpuFill8(void* dst, int value, int size);
@@ -39,7 +40,6 @@ void Ov006_LoadArmyTerrainGraphics(void);
 
 extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern u8 data_022a7d5c[];
-extern u32 gMapGameRunning;
 extern const TaskScriptCmd data_ov006_0236a218[];
 extern const TaskScriptCmd data_ov006_0236a1e0[];
 

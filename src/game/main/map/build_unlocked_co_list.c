@@ -1,10 +1,10 @@
 #include "types.h"
+#include "game/co_select_screen.h"
 
 u8 Unlock_IsSet(int coId);
 
 /* Zero-terminated lists of CO ids. */
 extern u8 gDefaultCoList[];
-extern u8 data_022a7a68[];
 
 /* Fills data_022a7a68 with the COs of gDefaultCoList, in that order, for
  * which Unlock_IsSet is nonzero (a bit set per CO id, likely "unlocked"). */
