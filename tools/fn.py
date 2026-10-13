@@ -145,7 +145,7 @@ def parse_delinks(path: Path, texts: list | None = None):
 
 @cache
 def modules() -> dict[str, Module]:
-    """The ARM9 modules. Other tools (loop_state.py, progress.py) count on
+    """The ARM9 modules. Other tools (loop_state.py) count on
     this staying ARM9 only; all_modules() adds ARM7."""
     return {name: load_module(name, d) for name, d in module_dirs()}
 

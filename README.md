@@ -1,6 +1,6 @@
 # Advance Wars: Dual Strike decompilation
 
-A matching decompilation of *Advance Wars: Dual Strike* for the Nintendo DS, US/Australia cartridge (game code `AWRE`). The C in this repo, compiled with the original Metrowerks compiler and flags, rebuilds the retail ROM byte for byte. `PROGRESS.md` has how much of the code is in C.
+A matching decompilation of *Advance Wars: Dual Strike* for the Nintendo DS, US/Australia cartridge (game code `AWRE`). The C in this repo, compiled with the original Metrowerks compiler and flags, rebuilds the retail ROM byte for byte. `PROGRESS.md` has how much of the code is decompiled and linked, as decomp.dev measures it.
 
 This repo holds no game data. You need your own dump of the cartridge; the build unpacks what it needs from it.
 

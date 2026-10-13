@@ -4,7 +4,7 @@
     python3 tools/triage_partials.py --out FILE.md [--jobs 3] [--no-sweep] [NAME ...]
 
 For each function in a source file that is not marked `complete`
-(PROGRESS.md, "Partial functions", ARM7 included), or only the NAMEs given:
+(progress.unlinked(), ARM7 included), or only the NAMEs given:
 
   class      from `fn.py diff`: register-only (same instructions, other
              register numbers), order (the same instructions in another

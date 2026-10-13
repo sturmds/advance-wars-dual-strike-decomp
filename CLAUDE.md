@@ -68,7 +68,7 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 | `.clang-format`, `tools/format.py` | C formatting: `make format` rewrites, `make format-check` (part of release) reports. `docs/third-party/clang-format.md`. |
 | `tools/style_check.py` | Checks prose against `docs/style/`. Used by `hooks/commit-msg`. |
 | `hooks/` | `pre-commit` (forbidden files, then `make release`, then `PROGRESS.md`), `commit-msg` (banned words). |
-| `PROGRESS.md`, `tools/progress.py` | Functions and bytes linked from C, per module, and C files not linked yet. Written by `pre-commit`; `apply_commit.py` ignores it. |
+| `PROGRESS.md`, `tools/progress.py` | The decomp.dev measures (decompiled and fully linked) from the report `make release` writes, in all, per module and per kind of code, and every symbol below 100%. Written by `pre-commit` after `make release`; `apply_commit.py` ignores it. |
 | `config/AWRE/` | `rom.sha1`, `modules.sha1`, dsd's `arm9/**` and `arm7/` config (delinks, symbols, relocations), and `asm_functions.txt` (the `asm` functions the decomp.dev report counts). |
 | `config/AWRE/names-provenance.csv`, `tools/import_names.py` | Where each imported name came from, and the importer that fills it. `fn.py rename` keeps it current. |
 | `docs/third-party/` | Credit pages for outside sources we take facts from. |

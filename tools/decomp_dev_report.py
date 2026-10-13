@@ -26,9 +26,8 @@ The report stops with an error when a listed function is not `asm`, when
 its file has no portable side for it, or when an `asm` function with a
 portable side is missing from the list. A listed function counts as
 decompiled only where objdiff scores it 100%, after the rule below.
-PROGRESS.md's own columns count
-`asm` as neither. objdiff's `total_code` also holds code in gap units that
-dsd gives no function, which progress.py does not count.
+objdiff's `total_code` also holds code in gap units that dsd gives no
+function. tools/progress.py writes PROGRESS.md from this report.
 
 In a `complete` unit, a function objdiff scores below 100% counts as
 matched when every differing row is one `fn.py diff` marks `=`: a

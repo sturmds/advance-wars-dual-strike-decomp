@@ -103,7 +103,7 @@ Run the sweep on a partial before trying C variants by hand or with permute.py.
 
 ## Near misses: the cookbook
 
-A *partial* is a function whose C compiles but does not match yet: a `WIP` commit, listed under "Partial functions" in `PROGRESS.md`. This section lists the source rewrites that matched partials before, grouped by what the diff shows, and when the loop stops retrying one. The numbers behind it are in `docs/issues/0052-partials-strategy.md` ("Measured").
+A *partial* is a function whose C compiles but does not match yet: a `WIP` commit, listed under "Below 100%" in `PROGRESS.md`. This section lists the source rewrites that matched partials before, grouped by what the diff shows, and when the loop stops retrying one. The numbers behind it are in `docs/issues/0052-partials-strategy.md` ("Measured").
 
 Terms: *registers swap* means the same instructions with two register numbers exchanged; a *spill slot* is the stack offset where mwcc keeps a value it has no register for; *CSE* (common subexpression elimination) is mwcc computing a value once and reusing it; *hoisting* is moving a load or computation out of a loop or above other code.
 
@@ -278,7 +278,7 @@ int SVC_Div(int numerator, int denominator) { ... }
 - Where C cannot do it (a `swi` with no C meaning such as halting until an interrupt, `mrs`/`msr`, `mcr`/`mrc`, a CPU mode switch, crt0 stack set-up), the `#else` side is one line, so any build without mwcc stops: `#error "<Name>: <what the assembly does> has no portable C equivalent"`.
 - If the C is equal only under an assumption (word-aligned pointers, a nonzero divisor), check it at compile time where possible, otherwise stop at run time with a message that names the function, and say which assumption in a comment.
 - Pragmas (`#pragma thumb on`) stay inside the `#ifdef __MWERKS__` side. Host headers (`<stdio.h>`) go inside `#else`, after our includes: their `stddef.h` replaces our `NULL` quietly, the other order warns.
-- clang-format still skips these files (they define an `asm` function), so write the C in the repo's style by hand. `PROGRESS.md` still counts the function as asm.
+- clang-format still skips these files (they define an `asm` function), so write the C in the repo's style by hand. The decomp.dev report, and so `PROGRESS.md`, counts the function once `config/AWRE/asm_functions.txt` lists it.
 - `make test` runs `tools/tests/test_portable_c.py`: it compiles every `src/` file with `#ifdef __MWERKS__` with the host gcc (`-std=c99 -iquote include`). A file with `#error` must fail with exactly that message; any other file must compile and define each of its `asm` functions after `#else`.
 
 ## Data from the ROM
@@ -344,8 +344,8 @@ A mod that changes code size moves every later address. The linker fixes an addr
 | `python3 tools/tests/test_fncheck.py` | Check that `check` agrees with `diff` |
 | `make` | Build `build/AWRE.nds` |
 | `make check` | dsd module check, per-module SHA-1, whole-ROM SHA-1 |
-| `make progress` | Matched functions and bytes per CPU: game vs SDK, C vs assembly |
-| `python3 tools/progress.py --write PROGRESS.md` | Same counts per module, plus C files not linked yet; the pre-commit hook runs it |
+| `make progress` | Write the decomp.dev report and print what `PROGRESS.md` would hold |
+| `python3 tools/progress.py --write PROGRESS.md` | Write `PROGRESS.md` from the report `make release` wrote; the pre-commit hook runs it |
 | `make shift` | Build `build/shift/AWRE.nds` with padding in main and check that symbols moved |
 | `make emu-smoke` | Start retail, our ROM and the shifted ROM in DeSmuME and compare what can be seen without pixels |
 | `python3 tools/scan_pointers.py` | Words that look like pointers but have no relocation |

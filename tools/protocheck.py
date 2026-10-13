@@ -9,7 +9,7 @@ old declaration still compiles, and the only trace in the caller is a
 register or scheduling difference. Four partials matched on 2026-10-11 once
 such a declaration was fixed, and FS_LoadOverlayInfo after them.
 
-For each started, unlinked C file (PROGRESS.md, "Partial functions"), or
+For each started, unlinked C file (progress.unlinked()), or
 only the FILEs given, this reports:
 
   count   a file-scope declaration with another number of arguments than
