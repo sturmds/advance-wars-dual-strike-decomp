@@ -17,6 +17,10 @@ How the top-level Claude session runs batches of agents, each matching one funct
 6. **After the batch.** Rerun `propagate.py` (new heads pay for their families) and run `permute.py` on each new partial. Record the runs in `tools.txt` and each agent's tokens in `loop-prompts/batchN/log.txt` (`group | matched/attempted | model | tokens | minutes | landed | family members propagated from this agent's heads`). Each batch row below reports model-only and total functions per 1M model tokens.
 7. **Clean up.** `git worktree remove` each finished worktree and delete its branch. Partial attempts can be kept for a second pass: note the function and its best attempt as `<n> differ (<percent>%)` in the batch log below, ranked by the count first (issue 0067).
 
+## Data
+
+The loop decompiles functions. Data goes into C outside it (issue 0082): `tools/bss.py` writes `.bss` definitions module by module, a step sturmds runs, and the wrapup job only reruns it on modules that issue 0082 lists as done, which normally writes nothing. `.data` and `.rodata` are out of scope for now; agents keep declaring them `extern`. Two things agents do need to know (`decomp-function` skill, step 3): `.bss` variables now have definitions in C, which agents leave alone, and a struct that a definition uses must keep its size, since a size change moves the RAM after it. `PROGRESS.md` lists units whose data the report scores below 100% matched; the partials job takes one `.bss` unit of those at a time.
+
 ## Shared headers
 
 Agents add fields, typedefs and prototypes to the same headers at the same time. When `git merge-file` cannot merge a header under `include/` (or both sides added the same header), `apply_commit.py` merges it with `tools/header_merge.py`:

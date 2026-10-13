@@ -13,7 +13,8 @@ of the code, the functions matched, and data linked (`complete_data`) as a
 share of the data. One row for all code, then rows by
 module (main, itcm, ov000-ov006, arm7) and by kind of code (game, SDK/library,
 and dsd gap units, which have no source file). Then every symbol in code
-that the report scores below 100%, and every function written as `asm` that
+that the report scores below 100%, every source unit whose data it scores
+below 100% matched, and every function written as `asm` that
 the report leaves out (config/AWRE/asm_functions.txt does not list it).
 
 The row for all code reads, for example:
@@ -120,6 +121,7 @@ def markdown(report: dict, report_path: str) -> str:
     order = list(fn.all_modules())
     by_module, by_area = {}, {}
     below = []  # (module, unit, symbol, size, percent)
+    data_below = []  # (module, unit, data bytes, matched data bytes)
     for unit in report["units"]:
         mod = unit_module(unit, modules)
         for table, key in ((by_module, mod), (by_area, unit_area(unit))):
@@ -130,6 +132,9 @@ def markdown(report: dict, report_path: str) -> str:
             score = f.get("fuzzy_match_percent") or 0.0
             if score < 100.0:
                 below.append((mod, unit["name"], f["name"], int(f["size"]), score))
+        m = unit["measures"]
+        if "source_path" in unit.get("metadata", {}) and int(m.get("total_data", 0)) > int(m.get("matched_data", 0)):
+            data_below.append((mod, unit["name"], int(m["total_data"]), int(m.get("matched_data", 0))))
 
     # asm functions the report takes out of the counts (decomp_dev_report.drop_asm).
     listed = decomp_dev_report.read_asm_list()
@@ -174,6 +179,13 @@ def markdown(report: dict, report_path: str) -> str:
         lines += ["| Module | Unit | Symbol | Bytes | Match |", "|---|---|---|---:|---:|"]
         key = lambda b: (order.index(b[0]) if b[0] in order else len(order), b[1], b[2])  # noqa: E731
         lines += [f"| {m} | `{u}` | {s} | {n} | {int(p * 100) / 100:.2f}% |" for m, u, s, n, p in sorted(below, key=key)]
+    else:
+        lines.append("None.")
+    lines += ["", "Units with data (from `src/`) whose data the report scores below 100% matched.", ""]
+    if data_below:
+        lines += ["| Module | Unit | Data bytes | Matched | Match |", "|---|---|---:|---:|---:|"]
+        key = lambda b: (order.index(b[0]) if b[0] in order else len(order), b[1])  # noqa: E731
+        lines += [f"| {m} | `{u}` | {n} | {k} | {int(k * 10000 / n) / 100:.2f}% |" for m, u, n, k in sorted(data_below, key=key)]
     else:
         lines.append("None.")
     if asm:

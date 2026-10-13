@@ -47,3 +47,7 @@ Gap units are code and data that dsd delinks with no source file.
 Symbols in code that the report scores below 100%, by module.
 
 None.
+
+Units with data (from `src/`) whose data the report scores below 100% matched.
+
+None.
