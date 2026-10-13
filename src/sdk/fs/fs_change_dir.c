@@ -1,7 +1,5 @@
 #include "sdk/fs.h"
 
-extern FSDirPos data_022ab82c; /* current directory (guess: gWorkingDirPos) */
-
 BOOL FS_ChangeDir(const char* path) {
   FSDirPos dir;
   FSFile file;

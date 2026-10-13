@@ -1,9 +1,6 @@
 #include "sdk/fs.h"
 #include "sdk/rom_header.h"
 
-extern RomRegion data_022ab844;
-extern RomRegion data_022ab84c;
-
 void Mem_CopyBytes(const void* src, void* dst, u32 size);
 BOOL FS_OpenFileFast(FSFile* file, FSFileID id);
 BOOL FSi_LoadOverlayInfoCore(FSOverlayInfo* info, MIProcessor target, u32 id,

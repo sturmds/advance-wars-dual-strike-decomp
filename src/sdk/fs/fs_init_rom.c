@@ -6,14 +6,9 @@
 #include "sdk/os.h"
 #include "sdk/rom_header.h"
 
-/* DMA channel for cartridge reads; also declared in src/sdk/fs/fs_read_rom_callback.c */
 u32 data_022ab840;
-/* lock id for the cartridge bus; also declared in src/sdk/fs/fs_rom_archive_proc.c */
 u32 data_022ab83c;
-/* Overlay tables already in memory: offset is their address, 0 if none. */
-/* ARM9; also declared in src/sdk/fs/fs_load_overlay_info.c */
 RomRegion data_022ab844;
-/* ARM7; also declared in src/sdk/fs/fs_load_overlay_info.c */
 RomRegion data_022ab84c;
 FSArchive gRomFileArchive;
 extern const char data_0216d974[]; /* "rom" */

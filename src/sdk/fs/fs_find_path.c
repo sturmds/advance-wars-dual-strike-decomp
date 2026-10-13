@@ -1,7 +1,5 @@
 #include "sdk/fs.h"
 
-extern FSDirPos data_022ab82c; /* current directory */
-
 static inline BOOL FSi_IsSlash(u32 c) { return c == '/' || c == '\\'; }
 
 static inline BOOL Archive_RoutinesSet(FSArchive* arc) {

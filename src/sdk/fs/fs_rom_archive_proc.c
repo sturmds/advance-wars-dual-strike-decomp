@@ -1,7 +1,5 @@
 #include "sdk/fs.h"
 
-extern u32 data_022ab83c;
-
 void func_02115400(u16 lockId);
 void func_02115420(u16 lockId);
 

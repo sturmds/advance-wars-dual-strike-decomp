@@ -1,7 +1,5 @@
 #include "sdk/fs.h"
 
-extern u32 data_022ab840;
-
 void func_02112f40(FSArchive* arc);
 void CARDi_ReadRom(u32 dmaNo, u32 src, void* dest, u32 len,
                    void (*done)(FSArchive*), FSArchive* arc, BOOL isAsync);

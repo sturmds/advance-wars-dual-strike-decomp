@@ -1,9 +1,7 @@
 #include "sdk/fs.h"
 #include "sdk/os.h"
 
-/* first registered archive; also declared in src/sdk/fs/fs_find_archive.c */
 FSArchive* data_022ab828;
-/* current directory; also declared in src/sdk/fs/fs_change_dir.c and 1 more */
 FSDirPos data_022ab82c;
 
 /* Adds the archive to the list of registered archives under a name of up to

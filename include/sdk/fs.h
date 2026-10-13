@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "sdk/os_common.h"
+#include "sdk/rom_header.h"
 
 typedef struct FSArchive FSArchive;
 typedef struct FSFile FSFile;
@@ -268,5 +269,18 @@ BOOL FSi_FindPath(FSFile* scratch, const char* path, FSFileID* fileId,
                   FSDirPos* dirPos);
 void FSi_ReleaseCommand(FSFile* file, int result);
 void FSi_AppendToList(FSFile* file, FSFile* head);
+
+/* First registered archive, and the current directory. */
+extern FSArchive* data_022ab828;
+extern FSDirPos data_022ab82c;
+
+/* DMA channel for cartridge reads, and the lock id for the cartridge bus. */
+extern u32 data_022ab840;
+extern u32 data_022ab83c;
+
+/* ARM9 and ARM7 overlay tables already in memory: offset is their address,
+ * 0 if none. */
+extern RomRegion data_022ab844;
+extern RomRegion data_022ab84c;
 
 #endif
