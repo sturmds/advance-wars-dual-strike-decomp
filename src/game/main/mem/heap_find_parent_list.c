@@ -3,8 +3,6 @@
 
 HeapHead* Heap_FindContaining(LinkList* list, void* address);
 
-extern LinkList gHeapRootList;
-
 /* Returns the list a heap belongs in: the child list of the innermost heap
  * whose range holds it, or the root list. */
 LinkList* Heap_FindParentList(HeapHead* heap) {

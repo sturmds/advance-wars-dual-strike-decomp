@@ -84,7 +84,8 @@ typedef struct FrameHeap {
 #define FRAME_HEAP_FREE_HEAD 1
 #define FRAME_HEAP_FREE_TAIL 2
 
-extern ExpHeap* gGameHeap; /* Mem_Alloc and Mem_Free use it */
+extern ExpHeap* gGameHeap;     /* Mem_Alloc and Mem_Free use it */
+extern LinkList gHeapRootList; /* heaps not created inside another heap */
 
 void* Heap_Alloc(ExpHeap* heap, u32 size,
                  int align); /* negative align takes the top end */
