@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/oam_cells.h"
 #include "game/win_lose.h"
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
@@ -28,9 +29,6 @@ extern Unk_027c0288 data_027c0288;
   Screen_SetCurrent(saved027c);    \
   Screen_SetCurrentGfx(saved0280); \
   }
-
-/* OBJ attribute 1: horizontal flip, for the pictures on the right. */
-#define OBJ_HFLIP 0x1000
 
 /* OBJ attribute 2 of CO picture `slot` (see WinLoseScreen_Init): palette
  * number `slot`, priority 2, 36 tiles per picture. */
@@ -74,12 +72,12 @@ void WinLoseScreen_SlideOutPictures(WinLoseTask* task) {
         }
       } else {
         if (slideFront + 232 < 280) {
-          Co_QueuePictureSprite(((slideFront + 232) & 0x1ff) | OBJ_HFLIP, 192,
-                                (i << 13) | 0x800 | (i * 2 * 36), 0);
+          Co_QueuePictureSprite(((slideFront + 232) & 0x1ff) | OAM_ATTR1_HFLIP,
+                                192, (i << 13) | 0x800 | (i * 2 * 36), 0);
         }
         if ((task->portraitsA & (1 << i)) && slideBack + 232 < 280) {
-          Co_QueuePictureSprite(((slideBack + 200) & 0x1ff) | OBJ_HFLIP, 192,
-                                PORTRAIT_ATTR(i * 2 + 1), 1);
+          Co_QueuePictureSprite(((slideBack + 200) & 0x1ff) | OAM_ATTR1_HFLIP,
+                                192, PORTRAIT_ATTR(i * 2 + 1), 1);
         }
       }
       SWITCH_BACK();
@@ -96,12 +94,12 @@ void WinLoseScreen_SlideOutPictures(WinLoseTask* task) {
         }
       } else {
         if (slideFront + 232 < 280) {
-          Co_QueuePictureSprite(((slideFront + 232) & 0x1ff) | OBJ_HFLIP, 48,
-                                PORTRAIT_ATTR((i - 2) * 2), 0);
+          Co_QueuePictureSprite(((slideFront + 232) & 0x1ff) | OAM_ATTR1_HFLIP,
+                                48, PORTRAIT_ATTR((i - 2) * 2), 0);
         }
         if ((task->portraitsA & (1 << i)) && slideBack + 232 < 280) {
-          Co_QueuePictureSprite(((slideBack + 200) & 0x1ff) | OBJ_HFLIP, 48,
-                                PORTRAIT_ATTR((i - 2) * 2 + 1), 1);
+          Co_QueuePictureSprite(((slideBack + 200) & 0x1ff) | OAM_ATTR1_HFLIP,
+                                48, PORTRAIT_ATTR((i - 2) * 2 + 1), 1);
         }
       }
       SWITCH_BACK();

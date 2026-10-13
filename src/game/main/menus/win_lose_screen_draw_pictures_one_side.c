@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/oam_cells.h"
 #include "game/win_lose.h"
 
 void Screen_SetCurrent(void* state);
@@ -27,9 +28,6 @@ extern Unk_027c0288 data_027c0288;
   Screen_SetCurrentGfx(saved0280); \
   }
 
-/* OBJ attribute 1: horizontal flip, for the pictures on the right. */
-#define OBJ_HFLIP 0x1000
-
 /* OBJ attribute 2 of CO picture `slot`: palette `slot`, priority 2, 36
  * tiles per picture. */
 #define PORTRAIT_ATTR(slot) (((slot) << 12) | 0x800 | ((slot) * 36))
@@ -55,10 +53,10 @@ void WinLoseScreen_DrawPicturesOneSide(WinLoseTask* task) {
           Co_QueuePictureSprite(56, 192, PORTRAIT_ATTR(i * 2 + 1), 1);
         }
       } else {
-        Co_QueuePictureSprite(232 | OBJ_HFLIP, 192, FRONT_ATTR(i), 0);
+        Co_QueuePictureSprite(232 | OAM_ATTR1_HFLIP, 192, FRONT_ATTR(i), 0);
         if (task->portraitsA & (1 << i)) {
-          Co_QueuePictureSprite(200 | OBJ_HFLIP, 192, PORTRAIT_ATTR(i * 2 + 1),
-                                1);
+          Co_QueuePictureSprite(200 | OAM_ATTR1_HFLIP, 192,
+                                PORTRAIT_ATTR(i * 2 + 1), 1);
         }
       }
       SWITCH_BACK();
@@ -70,9 +68,9 @@ void WinLoseScreen_DrawPicturesOneSide(WinLoseTask* task) {
           Co_QueuePictureSprite(56, 48, PORTRAIT_ATTR((i - 2) * 2 + 1), 1);
         }
       } else {
-        Co_QueuePictureSprite(232 | OBJ_HFLIP, 48, FRONT_ATTR(i - 2), 0);
+        Co_QueuePictureSprite(232 | OAM_ATTR1_HFLIP, 48, FRONT_ATTR(i - 2), 0);
         if (task->portraitsA & (1 << i)) {
-          Co_QueuePictureSprite(200 | OBJ_HFLIP, 48,
+          Co_QueuePictureSprite(200 | OAM_ATTR1_HFLIP, 48,
                                 PORTRAIT_ATTR((i - 2) * 2 + 1), 1);
         }
       }

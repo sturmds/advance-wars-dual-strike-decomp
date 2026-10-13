@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/oam_cells.h"
 #include "game/win_lose.h"
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
@@ -28,9 +29,6 @@ extern Unk_027c0288 data_027c0288;
   Screen_SetCurrent(saved027c);    \
   Screen_SetCurrentGfx(saved0280); \
   }
-
-/* OBJ attribute 1: horizontal flip, for the pictures on the right. */
-#define OBJ_HFLIP 0x1000
 
 /* OBJ attribute 2 of CO picture `slot`: palette `slot`, priority 2, 36
  * tiles per picture. */
@@ -62,12 +60,13 @@ void WinLoseScreen_SlideOutPicturesTwoSides(WinLoseTask* task) {
   SWITCH_TO(MAIN_MAP);
   for (i = 0; i < task->portraitsB; i++) {
     if (task->frame < i * 6) {
-      Co_QueuePictureSprite(((232 - i * 32) & 0x1ff) | OBJ_HFLIP, 48,
+      Co_QueuePictureSprite(((232 - i * 32) & 0x1ff) | OAM_ATTR1_HFLIP, 48,
                             PORTRAIT_ATTR(i), i);
     } else if (task->frame < i * 6 + 18) {
       x = (232 - i * 32) - Math_Ease(1, 0, -256, task->frame - i * 6, 18);
       if (x < 256) {
-        Co_QueuePictureSprite((x & 0x1ff) | OBJ_HFLIP, 48, PORTRAIT_ATTR(i), i);
+        Co_QueuePictureSprite((x & 0x1ff) | OAM_ATTR1_HFLIP, 48,
+                              PORTRAIT_ATTR(i), i);
       }
     }
   }
