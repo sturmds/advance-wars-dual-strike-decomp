@@ -121,7 +121,8 @@ emu-smoke: shift
 # Part of release, so a landing runs it too. A test that needs something
 # release does not (gcc, decomp-permuter, a ROM) prints "skipped" and passes.
 # Tests of the landing tools on throwaway repos, of propagate.py's C text
-# handling, of ds.py, of pragmas.py, of absolute symbols, of 2-byte alignment
+# handling, of ds.py, of pragmas.py, of absolute symbols, of the rows fn.py diff
+# marks = (test_diff_rows.py), of 2-byte alignment
 # (tools/lcf_align2.py), of ARM7's address moves (tools/arm7.py) and of how
 # partials are ranked (test_ranking.py), and the plain C beside asm functions
 # compiled with the host gcc (test_portable_c.py); no ROM or build
@@ -144,6 +145,7 @@ test:
 	@$(TEST_ENV) $(PYTHON) tools/tests/test_protocheck.py
 	@$(TEST_ENV) $(PYTHON) tools/tests/test_permuter.py
 	@$(TEST_ENV) $(PYTHON) tools/tests/test_absolute.py
+	@$(TEST_ENV) $(PYTHON) tools/tests/test_diff_rows.py
 	@$(TEST_ENV) $(PYTHON) tools/tests/test_align2.py
 	@$(TEST_ENV) $(PYTHON) tools/tests/test_arm7.py
 	@$(TEST_ENV) $(PYTHON) tools/tests/test_ranking.py

@@ -79,6 +79,7 @@ Tracked as `docs/issues/0058-dsd-arm-branch-unconditional.md`.
 - **Version:** dsd 0.12.1 (`tools.lock`).
 - **Seen:** 2026-10-11, b26-rtd0 (`_dadd`, `_dsub`). An `arm_branch` entry in `relocs.txt` for a `bmi` inside a range that is still delinked (taken from the original bytes) is written as an unconditional `b`: the high byte becomes 0xea instead of 0x4a.
 - **Workaround:** add the `arm_branch` entry only once both ends of the branch are C.
+- **Also:** the delinked original's object for a `complete` unit keeps that `b`, so objdiff shows our `bmi` against the original's `b` (`_dadd`, `_dsub`). `fn.py diff` and the decomp.dev report count such a row as matching only when the ROM word at that address has our condition (`fn.branch_target`, issue 0077).
 
 ## dsd: memory between `.data` and an aligned `.bss` gets no symbols
 

@@ -473,7 +473,7 @@ def count_rows(res: Result, want: dict, obj_data: bytes, tmpdir: Path | None = N
         ours = Path(d) / "check.o"
         ours.write_bytes(obj_data)
         data = fn.objdiff(target, ours, res.name)
-    scored = fn.score_rows(data, res.name, want["module"]) if data else None
+        scored = fn.score_rows(data, res.name, want["module"], (target, ours)) if data else None
     if scored is None or not scored[0]:
         return res
     left, right, same, percent = scored

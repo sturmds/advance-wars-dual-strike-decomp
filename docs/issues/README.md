@@ -104,4 +104,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0074](0074-diff-last-pool-word.md) | `fn.py diff` counts a differing row for Isd_VFormat's last literal pool word | closed | tools | M2 |
 | [0075](0075-land-self-args-and-interrupts.md) | `land_self.py --help` started a real landing, and a killed run left a replay open | closed | loop | M1 |
 | [0076](0076-tests-follow-hook-git-dir.md) | `make test` run from a git hook wrote into the real repository | closed | loop | M1 |
-| [0077](0077-asm-below-100-in-objdiff.md) | objdiff scores some listed `asm` functions below 100% although the ROM matches | open | tools | M2 |
+| [0077](0077-asm-below-100-in-objdiff.md) | objdiff scores some listed `asm` functions below 100% although the ROM matches | closed | tools | M2 |

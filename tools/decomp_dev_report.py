@@ -25,15 +25,17 @@ instructions. Every other `asm` function is taken out of `matched_code`,
 The report stops with an error when a listed function is not `asm`, when
 its file has no portable side for it, or when an `asm` function with a
 portable side is missing from the list. A listed function counts as
-decompiled only where objdiff scores it 100% (issue 0077 lists those it
-does not). PROGRESS.md's own columns count
+decompiled only where objdiff scores it 100%, after the rule below.
+PROGRESS.md's own columns count
 `asm` as neither. objdiff's `total_code` also holds code in gap units that
 dsd gives no function, which progress.py does not count.
 
 In a `complete` unit, a function objdiff scores below 100% counts as
-matched when every differing row is one `fn.py diff` marks `=` (issue
-0074): Isd_VFormat's last literal pool word, which objdiff shows as an
-instruction on the original's side.
+matched when every differing row is one `fn.py diff` marks `=`: a
+relocation to the same address under another name, Isd_VFormat's last
+literal pool word (issue 0074), a branch to the same address, a plain word
+equal to our relocated one, or the same bytes decoded differently
+(issue 0077: branches into neighbouring functions, data words in code).
 
 The report is read back
 with `objdiff-cli report changes` to check that it parses. It is not
@@ -169,12 +171,11 @@ def add(target: dict, key: str, amount: int) -> None:
         target[key] = target.get(key, 0) + amount
 
 
-def count_pool_words(report: dict, units: list[dict], modules: dict[str, str]) -> None:
+def count_same_rows(report: dict, units: list[dict], modules: dict[str, str]) -> None:
     """Count as matched a function of a `complete` unit whose only differing
-    rows `fn.py diff` marks `=` (issue 0074): a relocation to another name
-    at the same address, a word relocated to an absolute symbol of the same
-    value, or a literal pool word objdiff shows as an instruction on one
-    side (Isd_VFormat's last word). Real differences still count."""
+    rows `fn.py diff` marks `=` (issues 0074 and 0077, fn.score_rows), with
+    both objects given so that rows can match by their bytes. Real
+    differences still count."""
     paths = {u["name"]: u for u in units}
     totals = report["measures"]
     for unit in report["units"]:
@@ -185,8 +186,9 @@ def count_pool_words(report: dict, units: list[dict], modules: dict[str, str]) -
         for f in unit.get("functions", []):
             if f.get("fuzzy_match_percent") in (None, 100.0):
                 continue
-            data = fn.objdiff(PROJECT / u["target_path"], PROJECT / u["base_path"], f["name"])
-            scored = data and fn.score_rows(data, f["name"], module)
+            objects = (PROJECT / u["target_path"], PROJECT / u["base_path"])
+            data = fn.objdiff(*objects, f["name"])
+            scored = data and fn.score_rows(data, f["name"], module, objects)
             if not scored:
                 continue
             left, right, same, _ = scored
@@ -241,7 +243,7 @@ def main() -> int:
     subprocess.run([fn.OBJDIFF, "report", "generate", "-p", PROJECT, "-o", report],
                    cwd=ROOT, check=True, capture_output=True)
     data = json.loads(report.read_text())
-    count_pool_words(data, units, modules)
+    count_same_rows(data, units, modules)
     drop_asm(data, units, modules, listed)
     report.write_text(json.dumps(data))
     # `report changes` parses both reports; a file it cannot read fails here.

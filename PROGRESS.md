@@ -51,7 +51,7 @@ has no function, so it is a little larger than the totals above (issue 0071).
 
 | Module | Code | Decompiled | Fully linked | Functions matched |
 |---|---:|---:|---:|---:|
-| main | 1216386 | 99.24% | 99.44% | 5972 / 6004 |
+| main | 1216386 | 99.44% | 99.44% | 5985 / 6004 |
 | itcm | 24088 | 97.28% | 97.28% | 113 / 115 |
 | ov000 | 25300 | 98.81% | 98.81% | 119 / 120 |
 | ov001 | 7472 | 100.00% | 100.00% | 76 / 76 |
@@ -60,8 +60,8 @@ has no function, so it is a little larger than the totals above (issue 0071).
 | ov004 | 67364 | 100.00% | 100.00% | 236 / 236 |
 | ov005 | 96684 | 100.00% | 100.00% | 266 / 266 |
 | ov006 | 105588 | 100.00% | 100.00% | 321 / 321 |
-| arm7 | 155236 | 99.22% | 99.29% | 1016 / 1038 |
-| all | 1845022 | 99.38% | 99.52% | 8518 / 8575 |
+| arm7 | 155236 | 99.29% | 99.29% | 1018 / 1038 |
+| all | 1845022 | 99.52% | 99.52% | 8533 / 8575 |
 
 ## Partial functions
 
@@ -74,8 +74,8 @@ objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 00
 
 | Code | Functions | Bytes | Rows that match |
 |---|---:|---:|---:|
-| ARM9 game | 2 | 856 | 161 / 217 (74.19%) |
-| all | 2 | 856 | 161 / 217 (74.19%) |
+| ARM9 game | 2 | 856 | 162 / 217 (74.65%) |
+| all | 2 | 856 | 162 / 217 (74.65%) |
 
 | Rows that differ | Functions | Bytes |
 |---|---:|---:|
@@ -88,5 +88,5 @@ Closest first.
 
 | File | Function | Bytes | Differ | Match |
 |---|---|---:|---:|---:|
-| `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | UnitInfoPanel_DrawPage | 300 | 14 | 89.08% |
+| `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | UnitInfoPanel_DrawPage | 300 | 13 | 89.08% |
 | `src/game/main/menus/combat_map_draw_preview_block.c` | CombatMap_DrawPreviewBlock | 556 | 42 | 98.06% |

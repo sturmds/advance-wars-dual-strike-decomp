@@ -27,7 +27,8 @@ runs ninja for the object and objdiff.json, then objdiff-cli, prints both
 listings side by side (lines marked | differ; lines marked = name another
 symbol at the same address, or an absolute symbol from the module's list in
 configure.py (ARM9_ABSOLUTE_SYMBOLS, ARM7_ABSOLUTE_SYMBOLS) with the original
-word's value, and count as matching), and exits 0 only at 100%. Its last line,
+word's value, or branch to the same address, or hold the same bytes decoded
+differently (issue 0077), and count as matching), and exits 0 only at 100%. Its last line,
 `NAME: N differ, P% match`, gives the rows marked | and objdiff's percentage.
 Rank attempts by N, then P (issue 0067): objdiff's score charges one wrong
 opcode as much as 12 wrong registers, and charges for = rows too.
@@ -45,6 +46,7 @@ import bisect
 import json
 import os
 import re
+import struct
 import subprocess
 import sys
 import tempfile
@@ -604,7 +606,10 @@ def cmd_diff(args) -> int:
     if r.returncode:
         sys.stdout.write(r.stdout + r.stderr)
         return 1
-    scored = score_rows(json.loads(r.stdout), f.name, f.module)
+    paths = next(((ROOT / project / u["target_path"], ROOT / project / u["base_path"])
+                  for u in json.loads((ROOT / project / "objdiff.json").read_text())["units"]
+                  if u["name"] == unit and "target_path" in u and "base_path" in u), None)
+    scored = score_rows(json.loads(r.stdout), f.name, f.module, paths)
     if scored is None:
         print(f"error: {path} does not define {f.name}. Check the function name in the C file.")
         return 1
@@ -628,9 +633,9 @@ def cmd_diff(args) -> int:
     if same and not differ:
         percent = 100.0
     if same:
-        print(f"\n= : {len(same)} relocation(s) name another symbol at the same address,"
-              " an absolute symbol of the same value, or a pool word shown as an instruction;"
-              " counted as matching.")
+        print(f"\n= : {len(same)} row(s) where a relocation names another symbol at the same address"
+              " or a symbol of the original word's value, a branch reaches the same address,"
+              " or the bytes are the same but decoded differently; counted as matching.")
     print(f"\n{f.name}: {differ} differ, {percent if percent is not None else '?'}% match")
     return 0 if percent == 100.0 else 1
 
@@ -643,11 +648,13 @@ def objdiff(target: Path, base: Path, name: str) -> dict | None:
     return None if r.returncode else json.loads(r.stdout)
 
 
-def score_rows(data: dict, name: str, module: str | None):
+def score_rows(data: dict, name: str, module: str | None, objects: tuple[Path, Path] | None = None):
     """The rows `fn.py diff` prints, from objdiff-cli's JSON: (original
     rows, our rows, indices of the rows marked =, objdiff's percentage).
     A row is (text, objdiff's diff kind). None when our object does not
-    define `name`."""
+    define `name`. `objects` (the original's object, ours) lets rows match
+    by their bytes (same_bytes); without it they can only match by
+    relocation."""
     def side(key):
         for s in (data.get(key) or {}).get("symbols", []):
             if s.get("name") == name:
@@ -670,9 +677,15 @@ def score_rows(data: dict, name: str, module: str | None):
     # objdiff compares relocations by symbol name. Rows where both sides
     # point at the same address under different names (issue 0017) match,
     # and so do words relocated to an absolute symbol of the original value.
+    # Issue 0077 adds branches that reach the same address (branch_target),
+    # a plain word equal to our relocated one (resolved_word), and rows
+    # whose bytes are the same in both objects (same_bytes).
+    sections = [function_bytes(p, name) for p in objects] if objects else None
     same = {i for i, (a, b) in enumerate(zip(orig.get("instructions", []), ours.get("instructions", [])))
             if a.get("diff_kind") and (same_target(data, a, b) or absolute_word(data, a, b, module)
-                                       or pool_word(data, a, b))}
+                                       or pool_word(data, a, b) or branch_target(data, a, b, name, module)
+                                       or resolved_word(data, a, b)
+                                       or (sections and same_bytes(a, b, sections)))}
     return rows(orig), rows(ours), same, percent
 
 
@@ -914,6 +927,151 @@ def absolute_word(data, left, right, module: str | None = None) -> bool:
         return False
     value = (symbols[name] + int(rel.get("addend", 0))) & 0xFFFFFFFF
     return int(largs[0]["unsigned"]) == value
+
+
+# Added to a branch relocation's symbol plus addend, gives the address the
+# branch reaches: the pc offset, 8 in ARM code and 4 in Thumb.
+BRANCH_PC = {"R_ARM_PC24": 8, "R_ARM_CALL": 8, "R_ARM_JUMP24": 8, "R_ARM_XPC25": 8,
+             "R_ARM_THM_CALL": 4, "R_ARM_THM_PC22": 4, "R_ARM_THM_XPC22": 4, "R_ARM_THM_JUMP24": 4}
+# ARM condition codes by their number in bits 28-31, in objdiff's spelling.
+CONDITIONS = ["eq", "ne", "hs", "lo", "mi", "pl", "vs", "vc", "hi", "ls", "ge", "lt", "gt", "le"]
+
+
+def symbol_of(data, key: str, name: str) -> dict:
+    """Function `name` on one side ("left" or "right") of objdiff-cli's JSON."""
+    return next((s for s in (data.get(key) or {}).get("symbols", []) if s.get("name") == name), {})
+
+
+@cache
+def _module_parts() -> dict:
+    import fnindex
+    return fnindex.module_parts()
+
+
+def rom_word(module: str | None, addr: int) -> int | None:
+    """The original module's 32-bit word at `addr`, None when unknown."""
+    import fnindex
+    try:
+        data, base = fnindex.part_of(_module_parts()[module], addr)
+    except KeyError:
+        return None
+    off = addr - base
+    return int.from_bytes(data[off:off + 4], "little") if off + 4 <= len(data) else None
+
+
+def branch_target(data, left, right, name: str, module: str | None = None) -> bool:
+    """True when both rows are the same branch to the same address (issue
+    0077). A side reaches its address through a relocation (symbol, addend
+    and pc offset) or, with no relocation, through objdiff's destination in
+    its object, placed at function `name`'s address. dsd delinks a branch
+    into a neighbouring function without a relocation when both sit in one
+    object, and Isd_DisableFiq's `b 0x10` is that.
+
+    dsd also writes `b #0` or `bl #0` over every branch it relocates, which
+    loses the condition (docs/tool-issues.md): _dadd's `bmi` shows as `b` on
+    the original's side. That row matches only when the ROM's word at that
+    address has our condition."""
+    kinds = ("DIFF_ARG_MISMATCH", "DIFF_OP_MISMATCH")
+    if left.get("diff_kind") not in kinds or right.get("diff_kind") not in kinds:
+        return False
+    func = symbol_addresses().get(name)
+    if func is None:
+        return False
+    targets, ops, starts = [], [], []
+    for key, row in (("left", left), ("right", right)):
+        ins = row["instruction"]
+        args = [p["arg"] for p in ins.get("parts", []) if "arg" in p]
+        ops.append(next((p["opcode"]["mnemonic"] for p in ins.get("parts", []) if "opcode" in p), ""))
+        starts.append(int(symbol_of(data, key, name).get("address", 0)))
+        rel = ins.get("relocation")
+        if len(args) != 1:
+            return False
+        if rel and args[0].get("reloc"):
+            pc = BRANCH_PC.get(rel.get("type_name"))
+            addr = symbol_addresses().get(data[key]["symbols"][rel["target_symbol"]]["name"])
+            if pc is None or addr is None:
+                return False
+            targets.append((addr + int(rel.get("addend", 0)) + pc) & 0xFFFFFFFF)
+        elif "branch_dest" in args[0] and not rel:
+            targets.append((func + int(args[0]["branch_dest"]) - starts[-1]) & 0xFFFFFFFF)
+        else:
+            return False
+    if targets[0] != targets[1] or not ops[0].startswith("b"):
+        return False
+    if ops[0] == ops[1]:
+        return True
+    if ops[0] not in ("b", "bl") or not left["instruction"].get("relocation"):
+        return False
+    cond = ops[1][len(ops[0]):]
+    if ops[1][:len(ops[0])] != ops[0] or cond not in CONDITIONS:
+        return False
+    word = rom_word(module, func + int(left["instruction"].get("address", 0)) - starts[0])
+    return word is not None and word >> 28 == CONDITIONS.index(cond)
+
+
+def resolved_word(data, left, right) -> bool:
+    """True when the original row is a plain `.word N` and ours is a word
+    relocated to a symbol whose address plus addend is N (issue 0077). dsd
+    gives no relocation to a word that points into the middle of a
+    function, like Isd_RestoreFiq's own address plus 8."""
+    if left.get("diff_kind") != "DIFF_ARG_MISMATCH" or right.get("diff_kind") != "DIFF_ARG_MISMATCH":
+        return False
+    lins, rins = left["instruction"], right["instruction"]
+    largs = [p["arg"] for p in lins.get("parts", []) if "arg" in p]
+    rel = rins.get("relocation")
+    if lins.get("relocation") or not rel or rel.get("type_name") != "R_ARM_ABS32":
+        return False
+    if len(largs) != 1 or "unsigned" not in largs[0]:
+        return False
+    if [p for p in lins["parts"] if "arg" not in p] != [p for p in rins["parts"] if "arg" not in p]:
+        return False
+    addr = symbol_addresses().get(data["right"]["symbols"][rel["target_symbol"]]["name"])
+    return addr is not None and int(largs[0]["unsigned"]) == (addr + int(rel.get("addend", 0))) & 0xFFFFFFFF
+
+
+def function_bytes(path: Path, name: str) -> tuple[bytes, int, set[int]] | None:
+    """(bytes of the section holding function `name`, its offset there, the
+    offsets of that section's relocations) from an object file."""
+    import fnindex
+    try:
+        secs, syms, relas = fnindex.read_elf(Path(path).read_bytes())
+    except (OSError, struct.error, IndexError, ValueError):
+        return None
+    sym = next((s for s in syms if s.name == name and s.kind == 2), None)  # STT_FUNC
+    if sym is None:
+        return None
+    return secs[sym.shndx][1], sym.value, {off for off, *_ in relas.get(sym.shndx, [])}
+
+
+def same_bytes(left, right, sections) -> bool:
+    """True when every instruction in the row has no relocation and the same
+    bytes as the other object at the same place in the function (issue
+    0077). objdiff decodes words by the mapping symbols each object has:
+    ours marks _fdiv's table and _ffix's hand-encoded branches as data, the
+    original's object does not, so the same bytes show as `.word` on one
+    side and an instruction on the other. A row only one side has, like
+    the 8 bytes after _dfix that only our symbol covers, is compared with
+    the other object's bytes at that place."""
+    if not sections or not all(sections):
+        return False
+    rows = [left.get("instruction"), right.get("instruction")]
+    if not any(rows):
+        return False
+    for k, ins in enumerate(rows):
+        if ins is None:
+            continue
+        mine, other = sections[k], sections[1 - k]
+        off, size = int(ins.get("address", 0)), int(ins.get("size", 0))
+        there = off - mine[1] + other[1]
+        if ins.get("relocation") or size <= 0 or off + size > len(mine[0]) or there < 0 \
+                or there + size > len(other[0]):
+            return False
+        for (_, _, relocs), at in ((mine, off), (other, there)):
+            if any(at - 3 <= r < at + size for r in relocs):
+                return False
+        if mine[0][off:off + size] != other[0][there:there + size]:
+            return False
+    return True
 
 
 def main() -> int:
