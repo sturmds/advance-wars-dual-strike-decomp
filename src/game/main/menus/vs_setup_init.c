@@ -11,6 +11,11 @@
 #define PANELS (MENU->vsPanels)
 
 /* Start of the tile data of a BG layer in BG VRAM. */
+/* The last icon loaded on the main screen, icon 0x14f, 6 by 6 tiles from
+ * OBJ tile LAST_ICON_TILE on; the sub screen gets a copy of every tile up to
+ * its end. */
+#define LAST_ICON_TILE 516
+#define LAST_ICON_TILES (6 * 6)
 #define LAYER_CHAR_BASE(gfx, layerBg) \
   ((gfx)->bgVram + (gfx)->bgCnt[layerBg].charBase * 0x4000)
 
@@ -153,7 +158,7 @@ void VsSetup_Init(void) {
   for (i = 0; i < ICON_DIGIT_COUNT; i++) {
     Icon_LoadTo(ICON_DIGITS_SETUP + i, data_027c0280->objVram, i * 2 + 496);
   }
-  Icon_LoadTo(0x14f, data_027c0280->objVram, 516);
+  Icon_LoadTo(0x14f, data_027c0280->objVram, LAST_ICON_TILE);
   IconBank_LoadPalette(4, 16);
   IconBank_LoadPalette(5, 17);
   Screen_SetCurrentGfx(savedIcons);
@@ -161,7 +166,8 @@ void VsSetup_Init(void) {
   saved = data_027c0280;
   Screen_SetCurrentGfx(data_027c0288.unk_04);
   Mem_Copy32(((Unk_027c0280*)data_027c0288.unk_00)->objVram,
-             data_027c0280->objVram, 0x4500);
+             data_027c0280->objVram,
+             (LAST_ICON_TILE + LAST_ICON_TILES) * TILE_4BPP_SIZE);
   IconBank_LoadPalette(4, 16);
   IconBank_LoadPalette(5, 17);
   Screen_SetCurrentGfx(saved);

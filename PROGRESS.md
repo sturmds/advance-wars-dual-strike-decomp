@@ -67,7 +67,7 @@ sites. Not every count should reach 0: a hardware format stays a number.
 | Addresses | Unrelocated words, medium level | 0 | 0 | 0 |
 | Addresses | Unrelocated words, low level (mostly in `u32` tables) | 17 | 0 | 17 |
 | Sizes | `Mem_Alloc` with a literal size | 0 | 0 | 0 |
-| Sizes | Copy, fill and clear calls with a literal length | 26 | 0 | 26 |
+| Sizes | Copy, fill and clear calls with a literal length | 25 | 0 | 25 |
 | Sizes | Byte offsets into objects (`(u8 *)x + N`) | 0 | 0 | 0 |
 | Sizes | `for` loops with a literal bound | 12 | 4 | 16 |
 | Tables | Initialised `u32` arrays with a literal length | 0 | 0 | 0 |
