@@ -7,14 +7,18 @@ C beside asm").
 Every file under src/ with `#ifdef __MWERKS__` is compiled with the host gcc
 (`gcc -fsyntax-only -std=c99`), so `__MWERKS__` is not defined and the
 `#else` side is what gcc reads. `-iquote include` finds our headers without
-hiding the host's <stdio.h> and <stdarg.h> behind ours.
+hiding the host's <stdio.h> and <stdarg.h> behind ours; `build/gen` and
+`extracted/AWRE` give the generated files that C includes, as for mwcc
+(`tools/configure.py`).
 
 - A file whose `#else` side is `#error "..."` must fail with that message
   and no other error.
 - Any other file must compile, and its `#else` side must define every
   function the file writes as `asm`.
 
-No ROM, build or compiler from make setup needed; gcc must be on PATH.
+No compiler from make setup needed; gcc must be on PATH. A file that includes
+values from the ROM (`extracted/AWRE/data/`) needs them written first, as
+`make release` does before it runs the tests.
 """
 
 import re
@@ -24,7 +28,9 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent
-GCC = ["gcc", "-fsyntax-only", "-std=c99", "-iquote", str(ROOT / "include")]
+GCC = ["gcc", "-fsyntax-only", "-std=c99"]
+for _dir in ("include", "build/gen", "extracted/AWRE"):
+    GCC += ["-iquote", str(ROOT / _dir)]
 # Definitions only: a declaration such as `asm void f(void);` names a
 # function that another file defines.
 ASM_FUNC = re.compile(r"^\s*asm\s+[\w\s\*]*?\b(\w+)\s*\([^;{]*\)\s*\{", re.M)
