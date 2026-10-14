@@ -73,8 +73,8 @@ sites. Not every count should reach 0: a hardware format stays a number.
 | Tables | Initialised `u32` arrays with a literal length | 0 | 0 | 0 |
 | Tables | Initialised `char` arrays with a literal length | 0 | 0 | 0 |
 | Tables | Other initialised arrays with a literal length | 0 | 0 | 0 |
-| Tables | `u32` tables holding pointers and numbers (structs written as words) | 0 | 3 | 3 |
+| Tables | `u32` tables holding pointers and numbers (structs written as words) | 0 | 0 | 0 |
 | Tables | Extern arrays with a literal length | 0 | 0 | 0 |
 | Tables | `u8 NAME[N]` placeholders for zeroed variables | 4 | 12 | 16 |
 
-Structs with a size assert: 59.
+Structs with a size assert: 62.
