@@ -780,6 +780,94 @@ src/game/ov000/ov000_data_023010f0.c:
     complete
     .data       start:0x023010f0 end:0x02307564
 
+src/game/ov000/ov000_data_02307564.c:
+    complete
+    .data       start:0x02307564 end:0x02307d14
+
+src/game/ov000/ov000_data_02307d14.c:
+    complete
+    .data       start:0x02307d14 end:0x02308324
+
+src/game/ov000/ov000_data_02308324.c:
+    complete
+    .data       start:0x02308324 end:0x0230833c
+
+src/game/ov000/ov000_data_0230833c.c:
+    complete
+    .data       start:0x0230833c end:0x023083cc
+
+src/game/ov000/ov000_data_023083cc.c:
+    complete
+    .data       start:0x023083cc end:0x02308458
+
+src/game/ov000/ov000_data_02308458.c:
+    complete
+    .data       start:0x02308458 end:0x023088c0
+
+src/game/ov000/ov000_data_023088c0.c:
+    complete
+    .data       start:0x023088c0 end:0x02308b08
+
+src/game/ov000/ov000_data_02308b08.c:
+    complete
+    .data       start:0x02308b08 end:0x02309424
+
+src/game/ov000/ov000_data_02309424.c:
+    complete
+    .data       start:0x02309424 end:0x02309ed4
+
+src/game/ov000/ov000_data_02309ed4.c:
+    complete
+    .data       start:0x02309ed4 end:0x0230e714
+
+src/game/ov000/ov000_data_0230e714.c:
+    complete
+    .data       start:0x0230e714 end:0x0230e730
+
+src/game/ov000/ov000_data_0230e730.c:
+    complete
+    .data       start:0x0230e730 end:0x0230e7e8
+
+src/game/ov000/ov000_data_0230e7e8.c:
+    complete
+    .data       start:0x0230e7e8 end:0x02311db4
+
+src/game/ov000/ov000_data_02311db4.c:
+    complete
+    .data       start:0x02311db4 end:0x0231205c
+
+src/game/ov000/ov000_data_0231205c.c:
+    complete
+    .data       start:0x0231205c end:0x02312708
+
+src/game/ov000/ov000_data_02312708.c:
+    complete
+    .data       start:0x02312708 end:0x0231285c
+
+src/game/ov000/ov000_data_0231285c.c:
+    complete
+    .data       start:0x0231285c end:0x02312ac0
+
+src/game/ov000/ov000_data_02312ac0.c:
+    complete
+    .data       start:0x02312ac0 end:0x02312df8
+
+src/game/ov000/ov000_data_02312df8.c:
+    complete
+    .data       start:0x02312df8 end:0x02313358
+
+src/game/ov000/ov000_data_02313358.c:
+    complete
+    .data       start:0x02313358 end:0x02313390
+
+src/game/ov000/ov000_data_02313390.c:
+    complete
+    .data       start:0x02313390 end:0x02315174
+
+src/game/ov000/ov000_data_02315174.c:
+    complete
+    .data       start:0x02315174 end:0x02316ff8
+
 src/game/ov000/task/unit_path_count_steps.c:
     complete
     .text       start:0x022ad560 end:0x022ad5cc
