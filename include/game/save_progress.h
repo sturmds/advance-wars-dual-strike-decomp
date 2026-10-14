@@ -43,6 +43,11 @@ typedef struct SaveProfileBlock {
   u32 sets[96]; /* data_02290298[profile] */
 } SaveProfileBlock;
 
+/* Profiles the save keeps, and their live copies. */
+#define SAVE_PROFILE_COUNT 3
+extern SaveProfileBlock data_02290298[SAVE_PROFILE_COUNT];
+extern SaveBytes30 data_022900bc[SAVE_PROFILE_COUNT];
+
 typedef struct SaveLinkReactionTexts {
   u8 value[198]; /* data_0229da8c, see LinkReaction_LoadTexts */
 } SaveLinkReactionTexts;

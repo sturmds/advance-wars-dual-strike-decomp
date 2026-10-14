@@ -12,7 +12,7 @@ the rest is in dsd gap units, delinked from the ROM with no source file.
 
 | Code | Code decompiled | Code linked | Bytes decompiled | Bytes linked | Functions matched | Data linked | Data bytes linked |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| all | 100.0000% | 100.0000% | 1845012 / 1845012 | 1845012 / 1845012 | 8571 / 8571 | 100.0000% | 3136124 / 3136124 |
+| all | 100.0000% | 100.0000% | 1845012 / 1845012 | 1845012 / 1845012 | 8571 / 8571 | 99.9996% | 3136112 / 3136124 |
 
 ## By module
 
@@ -28,8 +28,8 @@ ARM9 is main, ITCM and the overlays; ARM7 is `arm7.bin`.
 | ov002 | 100.0000% | 100.0000% | 64208 / 64208 | 64208 / 64208 | 164 / 164 | 100.0000% | 48224 / 48224 |
 | ov003 | 100.0000% | 100.0000% | 82696 / 82696 | 82696 / 82696 | 235 / 235 | 100.0000% | 21408 / 21408 |
 | ov004 | 100.0000% | 100.0000% | 67364 / 67364 | 67364 / 67364 | 236 / 236 | 100.0000% | 613568 / 613568 |
-| ov005 | 100.0000% | 100.0000% | 96684 / 96684 | 96684 / 96684 | 266 / 266 | 100.0000% | 15520 / 15520 |
-| ov006 | 100.0000% | 100.0000% | 105588 / 105588 | 105588 / 105588 | 321 / 321 | 100.0000% | 14272 / 14272 |
+| ov005 | 100.0000% | 100.0000% | 96684 / 96684 | 96684 / 96684 | 266 / 266 | 99.9484% | 15512 / 15520 |
+| ov006 | 100.0000% | 100.0000% | 105588 / 105588 | 105588 / 105588 | 321 / 321 | 99.9719% | 14268 / 14272 |
 | arm7 | 100.0000% | 100.0000% | 155130 / 155130 | 155130 / 155130 | 1032 / 1032 | 100.0000% | 22636 / 22636 |
 
 ## By kind of code
@@ -38,8 +38,9 @@ Gap units are code and data that dsd delinks with no source file.
 
 | Kind | Code decompiled | Code linked | Bytes decompiled | Bytes linked | Functions matched | Data linked | Data bytes linked |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| game | 100.0000% | 100.0000% | 1556364 / 1556364 | 1556364 / 1556364 | 6749 / 6749 | 100.0000% | 3093848 / 3093848 |
+| game | 100.0000% | 100.0000% | 1556364 / 1556364 | 1556364 / 1556364 | 6749 / 6749 | 100.0000% | 3093836 / 3093836 |
 | SDK/library | 100.0000% | 100.0000% | 288648 / 288648 | 288648 / 288648 | 1822 / 1822 | 100.0000% | 42276 / 42276 |
+| gap units | - | - | 0 / 0 | 0 / 0 | 0 / 0 | 0.0000% | 0 / 12 |
 
 ## Below 100%
 
@@ -66,7 +67,7 @@ sites. Not every count should reach 0: a hardware format stays a number.
 | Addresses | Unrelocated words, medium level | 0 | 0 | 0 |
 | Addresses | Unrelocated words, low level (mostly in `u32` tables) | 218 | 0 | 218 |
 | Sizes | `Mem_Alloc` with a literal size | 11 | 0 | 11 |
-| Sizes | Copy, fill and clear calls with a literal length | 243 | 0 | 243 |
+| Sizes | Copy, fill and clear calls with a literal length | 240 | 0 | 240 |
 | Sizes | Byte offsets into objects (`(u8 *)x + N`) | 41 | 0 | 41 |
 | Sizes | `for` loops with a literal bound | 851 | 4 | 855 |
 | Tables | Initialised `u32` arrays with a literal length | 0 | 0 | 0 |
@@ -74,6 +75,6 @@ sites. Not every count should reach 0: a hardware format stays a number.
 | Tables | Other initialised arrays with a literal length | 0 | 0 | 0 |
 | Tables | `u32` tables holding pointers and numbers (structs written as words) | 498 | 3 | 501 |
 | Tables | Extern arrays with a literal length | 0 | 0 | 0 |
-| Tables | `u8 NAME[N]` placeholders for zeroed variables | 245 | 25 | 270 |
+| Tables | `u8 NAME[N]` placeholders for zeroed variables | 8 | 12 | 20 |
 
 Structs with a size assert: 34.

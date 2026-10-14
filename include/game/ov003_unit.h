@@ -40,6 +40,9 @@ typedef struct Ov003Unit {
   u8 wakeRange;     /* wakes when its target is closer, in tiles */
 } Ov003Unit;
 
+#define OV003_UNIT_COUNT 16
+extern Ov003Unit data_ov003_02369538[OV003_UNIT_COUNT];
+
 /* Ov003Unit.facing and the direction passed to Ov003Unit_Move. */
 #define OV003_DIR_UP 1
 #define OV003_DIR_DOWN 2
