@@ -7,6 +7,38 @@ src/game/ov003/ov003_bss_02369534.c:
     complete
     .bss        start:0x02369534 end:0x02369b98
 
+src/game/ov003/ov003_data_02364984.c:
+    complete
+    .data       start:0x02364984 end:0x023649c0
+
+src/game/ov003/ov003_data_023649c0.c:
+    complete
+    .data       start:0x023649c0 end:0x023649f4
+
+src/game/ov003/ov003_data_02364a2c.c:
+    complete
+    .data       start:0x02364a2c end:0x02364a6c
+
+src/game/ov003/ov003_data_02364a84.c:
+    complete
+    .data       start:0x02364a84 end:0x02364b14
+
+src/game/ov003/ov003_data_02364cdc.c:
+    complete
+    .data       start:0x02364cdc end:0x02364f18
+
+src/game/ov003/ov003_data_02364f18.c:
+    complete
+    .data       start:0x02364f18 end:0x02365270
+
+src/game/ov003/ov003_data_02365270.c:
+    complete
+    .data       start:0x02365270 end:0x023654e0
+
+src/game/ov003/ov003_data_023654e0.c:
+    complete
+    .data       start:0x023654e0 end:0x02365b00
+
 src/game/ov003/ov003_update.c:
     complete
     .text       start:0x02350560 end:0x023509b8
@@ -86,10 +118,12 @@ src/game/ov003/ov003_reset_view.c:
 src/game/ov003/ov003_load_map.c:
     complete
     .text       start:0x02351da0 end:0x02352090
+    .data       start:0x0236492c end:0x02364934
 
 src/game/ov003/ov003_load_screen_graphics.c:
     complete
     .text       start:0x02352090 end:0x02352240
+    .data       start:0x02364934 end:0x02364984
 
 src/game/ov003/ov003_load_obj_graphics.c:
     complete
@@ -103,10 +137,12 @@ src/game/ov003/ov003_load_main_screen_graphics.c:
 src/game/ov003/ov003_load_graphics.c:
     complete
     .text       start:0x023524e8 end:0x02352e04
+    .data       start:0x023649f4 end:0x02364a0c
 
 src/game/ov003/ov003_load_map_panel_graphics.c:
     complete
     .text       start:0x02352e04 end:0x02352e88
+    .data       start:0x02364a0c end:0x02364a2c
 
 src/game/ov003/ov003_init_rows.c:
     complete
@@ -135,6 +171,7 @@ src/game/ov003/ov003_end3d.c:
 src/game/ov003/ov003_begin3d.c:
     complete
     .text       start:0x02353a98 end:0x02353b34
+    .data       start:0x02364a6c end:0x02364a84
     .bss        start:0x02365cf4 end:0x02369534
 
 src/game/ov003/func_ov003_02353b34.c:
@@ -710,6 +747,7 @@ src/game/ov003/ov003_update_rows_and_palette.c:
 src/game/ov003/ov003_row_draw_charge.c:
     complete
     .text       start:0x02360d54 end:0x02360fdc
+    .data       start:0x02364b14 end:0x02364b44
 
 src/game/ov003/ov003_draw_rows.c:
     complete
@@ -898,6 +936,7 @@ src/game/ov003/func_ov003_02363e60.c:
 src/game/ov003/ov003_wait_link_fade.c:
     complete
     .text       start:0x02363e98 end:0x02363f7c
+    .data       start:0x02364b44 end:0x02364cdc
 
 src/game/ov003/func_ov003_02363f7c.c:
     complete

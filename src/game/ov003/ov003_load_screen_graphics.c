@@ -6,9 +6,15 @@
 extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
 extern u8* data_ov003_02365b10;
-extern char data_ov003_02364934[];
-extern char data_ov003_0236494c[];
-extern char data_ov003_02364964[];
+static char data_ov003_02364934[23] = {
+#include "data/ov003/data_ov003_02364934.inc.c"
+};
+static char data_ov003_0236494c[24] = {
+#include "data/ov003/data_ov003_0236494c.inc.c"
+};
+static char data_ov003_02364964[29] = {
+#include "data/ov003/data_ov003_02364964.inc.c"
+};
 extern char data_ov003_02364984[];
 extern char data_ov003_023649a0[];
 extern char data_ov003_023649c0[];

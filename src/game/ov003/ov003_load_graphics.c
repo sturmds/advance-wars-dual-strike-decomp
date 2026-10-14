@@ -6,7 +6,9 @@ extern Unk_027c0280* data_027c0280;
 extern u8 gMenuState[];
 extern u16* data_ov003_02364a84;
 extern u8 data_ov003_02365d10[];
-extern char data_ov003_023649f4[];
+char data_ov003_023649f4[23] = {
+#include "data/ov003/data_ov003_023649f4.inc.c"
+};
 extern u16 data_ov003_02366110[];
 extern u16 data_ov003_02367110[];
 

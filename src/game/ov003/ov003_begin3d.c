@@ -7,8 +7,12 @@
 #define GXFIFO_POLYGON_ATTR (*(volatile u32*)0x040004a4)
 #define GEOM_TARGET_TEXCOORD 3
 #define GEOM_TARGET_POS_AND_DIR 2
-extern u8 data_ov003_02364a78[];
-extern u8 data_ov003_02364a6c[];
+static u8 data_ov003_02364a6c[12] = {
+#include "data/ov003/data_ov003_02364a6c.inc.c"
+};
+static u8 data_ov003_02364a78[12] = {
+#include "data/ov003/data_ov003_02364a78.inc.c"
+};
 static u8 data_ov003_02365cf4[0xc]; /* size: up to the next symbol */
 u8 data_ov003_02365d00[0x10];       /* size: up to the next symbol */
 /* per tile code: bits 5-7 row, bits 0-4 terrain; size: up to the next symbol */

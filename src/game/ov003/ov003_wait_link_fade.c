@@ -2,6 +2,7 @@
 #include "game/Unk_02160ac0.h"
 #include "game/ov003_frame_task.h"
 #include "sdk/msl_string.h"
+#include "game/task.h"
 
 u16 Wireless_GetChildAids(void);
 u16* Wireless_GetSharedData(u16 aid);
@@ -50,3 +51,50 @@ void Ov003_WaitLinkFade(Ov003FrameTask* task) {
     Task_ResumeScript(task);
   }
 }
+
+void CombatIntro_StartThird(void);
+void Ov003_ClearFade(void);
+void Ov003_Exit(void);
+void Ov003_FadeOutStep(void);
+void Ov003_FadeWithTextStep(void);
+void Ov003_FillScreensWhiteOrBlack(void);
+void Ov003_ObjectResetChime(void);
+void Ov003_ResetSpriteMatrix(void);
+void Ov003_SetSlotsScrolling(void);
+void Ov003_ShakeTextStep(void);
+void Ov003_ShowBouncingMessage(void);
+void Ov003_ShowTwoLineMessage(void);
+void Ov003_ShowWarpedMessage(void);
+void Ov003_ShowWarpedTwoLineMessage(void);
+void Ov003_UpdateBannerText(void);
+void func_ov003_02362490(void);
+void func_ov003_02363220(void);
+void func_ov003_02363ba4(void);
+void func_ov003_02363e40(void);
+void func_ov003_02363e60(void);
+void func_ov003_02363f7c(void);
+
+static char data_ov003_02364b44[7] = {
+#include "data/ov003/data_ov003_02364b44.inc.c"
+};
+u8 data_ov003_02364b4c[17] = {
+#include "data/ov003/data_ov003_02364b4c.inc.c"
+};
+u8 data_ov003_02364b60[17] = {
+#include "data/ov003/data_ov003_02364b60.inc.c"
+};
+TaskScriptCmd data_ov003_02364bb4[8] = {
+#include "data/ov003/data_ov003_02364bb4.inc.c"
+};
+TaskScriptCmd data_ov003_02364bf4[8] = {
+#include "data/ov003/data_ov003_02364bf4.inc.c"
+};
+TaskScriptCmd data_ov003_02364b74[8] = {
+#include "data/ov003/data_ov003_02364b74.inc.c"
+};
+TaskScriptCmd data_ov003_02364c34[9] = {
+#include "data/ov003/data_ov003_02364c34.inc.c"
+};
+TaskScriptCmd data_ov003_02364c7c[12] = {
+#include "data/ov003/data_ov003_02364c7c.inc.c"
+};

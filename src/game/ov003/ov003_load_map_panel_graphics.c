@@ -2,7 +2,9 @@
 #include "game/screen_other_map.h"
 
 void File_UnpackTo(void* dest, const char* fileName);
-extern char Ov003_MapPanelMainPath[];
+static char Ov003_MapPanelMainPath[31] = {
+#include "data/ov003/Ov003_MapPanelMainPath.inc.c"
+};
 extern char Ov003_MapPanelSeaPath[];
 extern char Ov003_MapPanelRiverPath[];
 extern char data_ov003_023649f4[];
