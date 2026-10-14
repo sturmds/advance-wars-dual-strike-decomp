@@ -33,77 +33,77 @@ extern u8 data_ov000_022d9fa8[];
 extern u8 data_ov000_022da5d4[];
 
 /* first map entry of each row's 4x2 icon */
-static u16 Ov000_gTerrainPanelMoveTypeTiles[9] = {
+static u16 Ov000_gTerrainPanelMoveTypeTiles[] = {
 #include "data/ov000/Ov000_gTerrainPanelMoveTypeTiles.inc.c"
 };
 /* movement chart rows shown, in order */
-static int Ov000_gTerrainPanelMoveTypes[9] = {
+static int Ov000_gTerrainPanelMoveTypes[] = {
 #include "data/ov000/Ov000_gTerrainPanelMoveTypes.inc.c"
 };
 /* declared `u8 data_ov000_023500f8[]` in second_screen_task_create.c: relocation at data_ov000_023500f8+0x4 is not on a 4-byte field */
-u32 data_ov000_023500f8[12] = {
+u32 data_ov000_023500f8[] = {
 #include "data/ov000/data_ov000_023500f8.inc.c"
 };
 /* tile x, y of the n-th icon shown */
-static int Ov000_gTerrainPanelIconPos[8][2] = {
+static int Ov000_gTerrainPanelIconPos[][2] = {
 #include "data/ov000/Ov000_gTerrainPanelIconPos.inc.c"
 };
 /* tile x, y pairs of the n-th cost shown */
-static int Ov000_gTerrainPanelCostPos[16] = {
+static int Ov000_gTerrainPanelCostPos[] = {
 #include "data/ov000/Ov000_gTerrainPanelCostPos.inc.c"
 };
-int gTerrainStarOffsets[16] = {
+int gTerrainStarOffsets[] = {
 #include "data/ov000/gTerrainStarOffsets.inc.c"
 };
-void* data_ov000_023501e8[6][6] = {
+void* data_ov000_023501e8[][6] = {
     &data_ov000_022d87ac, &data_ov000_022d8cf4, 0, 0, 0, 0,
     &data_ov000_022d87ac, &data_ov000_022d8cf4, 0, 0, 0, 0,
     &data_ov000_022d8d14, &data_ov000_022d92d8, 0, 0, 0, 0,
     &data_ov000_022d92f8, &data_ov000_022d98f4, 0, 0, 0, 0,
     &data_ov000_022d9914, &data_ov000_022d9f88, 0, 0, 0, 0,
     &data_ov000_022d9fa8, &data_ov000_022da5d4, 0, 0, 0, 0};
-void* data_ov000_02350278[7][6] = {&data_ov000_022d5a0c,
-                                   &data_ov000_022d5fa8,
-                                   0,
-                                   0,
-                                   0,
-                                   0,
-                                   &data_ov000_022d5a0c,
-                                   &data_ov000_022d5fa8,
-                                   0,
-                                   0,
-                                   0,
-                                   0,
-                                   &data_ov000_022d5fc8,
-                                   &data_ov000_022d64d8,
-                                   0,
-                                   0,
-                                   0,
-                                   0,
-                                   &data_ov000_022d64f8,
-                                   &data_ov000_022d6ad0,
-                                   0,
-                                   0,
-                                   0,
-                                   0,
-                                   &data_ov000_022d6af0,
-                                   &data_ov000_022d6f6c,
-                                   0,
-                                   0,
-                                   0,
-                                   0,
-                                   &data_ov000_022d5a0c,
-                                   &data_ov000_022d5fa8,
-                                   0,
-                                   0,
-                                   0,
-                                   0,
-                                   0,
-                                   0,
-                                   0,
-                                   0,
-                                   0,
-                                   0};
+void* data_ov000_02350278[][6] = {&data_ov000_022d5a0c,
+                                  &data_ov000_022d5fa8,
+                                  0,
+                                  0,
+                                  0,
+                                  0,
+                                  &data_ov000_022d5a0c,
+                                  &data_ov000_022d5fa8,
+                                  0,
+                                  0,
+                                  0,
+                                  0,
+                                  &data_ov000_022d5fc8,
+                                  &data_ov000_022d64d8,
+                                  0,
+                                  0,
+                                  0,
+                                  0,
+                                  &data_ov000_022d64f8,
+                                  &data_ov000_022d6ad0,
+                                  0,
+                                  0,
+                                  0,
+                                  0,
+                                  &data_ov000_022d6af0,
+                                  &data_ov000_022d6f6c,
+                                  0,
+                                  0,
+                                  0,
+                                  0,
+                                  &data_ov000_022d5a0c,
+                                  &data_ov000_022d5fa8,
+                                  0,
+                                  0,
+                                  0,
+                                  0,
+                                  0,
+                                  0,
+                                  0,
+                                  0,
+                                  0,
+                                  0};
 
 /* Needed to match: reads through a cast pointer make the compiler load the icon
  * position again after every map store, as the original does. */

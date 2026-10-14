@@ -18,207 +18,207 @@ void GX_EndLoadTexPltt(void);
 
 extern char data_ov005_0236988c[];
 /* layer 2 map */
-char data_ov005_0236989c[4] = {
+char data_ov005_0236989c[] = {
 #include "data/ov005/data_ov005_0236989c.inc.c"
 };
-char gRikiishiFile060[4] = {
+char gRikiishiFile060[] = {
 #include "data/ov005/gRikiishiFile060.inc.c"
 };
-char gRikiishiFile05f[4] = {
+char gRikiishiFile05f[] = {
 #include "data/ov005/gRikiishiFile05f.inc.c"
 };
-char data_ov005_023698c0[4] = {
+char data_ov005_023698c0[] = {
 #include "data/ov005/data_ov005_023698c0.inc.c"
 };
-char data_ov005_023698bc[4] = {
+char data_ov005_023698bc[] = {
 #include "data/ov005/data_ov005_023698bc.inc.c"
 };
-static char data_ov005_023698cc[4] = {
+static char data_ov005_023698cc[] = {
 #include "data/ov005/data_ov005_023698cc.inc.c"
 };
-char gRikiishiFile062[4] = {
+char gRikiishiFile062[] = {
 #include "data/ov005/gRikiishiFile062.inc.c"
 };
-char data_ov005_023698c4[4] = {
+char data_ov005_023698c4[] = {
 #include "data/ov005/data_ov005_023698c4.inc.c"
 };
-char gRikiishiFile061[4] = {
+char gRikiishiFile061[] = {
 #include "data/ov005/gRikiishiFile061.inc.c"
 };
 /* layer 2 palette */
-char data_ov005_023698a0[4] = {
+char data_ov005_023698a0[] = {
 #include "data/ov005/data_ov005_023698a0.inc.c"
 };
-char gRikiishiFile063[4] = {
+char gRikiishiFile063[] = {
 #include "data/ov005/gRikiishiFile063.inc.c"
 };
-char gRikiishiFile05e[4] = {
+char gRikiishiFile05e[] = {
 #include "data/ov005/gRikiishiFile05e.inc.c"
 };
 /* layer 2 tiles */
-char data_ov005_02369898[4] = {
+char data_ov005_02369898[] = {
 #include "data/ov005/data_ov005_02369898.inc.c"
 };
-char data_ov005_023698c8[4] = {
+char data_ov005_023698c8[] = {
 #include "data/ov005/data_ov005_023698c8.inc.c"
 };
-char data_ov005_023698d0[8] = {
+char data_ov005_023698d0[] = {
 #include "data/ov005/data_ov005_023698d0.inc.c"
 };
-char data_ov005_023698e4[9] = {
+char data_ov005_023698e4[] = {
 #include "data/ov005/data_ov005_023698e4.inc.c"
 };
-char data_ov005_023698d8[9] = {
+char data_ov005_023698d8[] = {
 #include "data/ov005/data_ov005_023698d8.inc.c"
 };
-char data_ov005_023698f0[9] = {
+char data_ov005_023698f0[] = {
 #include "data/ov005/data_ov005_023698f0.inc.c"
 };
-char data_ov005_02369908[10] = {
+char data_ov005_02369908[] = {
 #include "data/ov005/data_ov005_02369908.inc.c"
 };
-char data_ov005_023698fc[10] = {
+char data_ov005_023698fc[] = {
 #include "data/ov005/data_ov005_023698fc.inc.c"
 };
-char data_ov005_02369914[10] = {
+char data_ov005_02369914[] = {
 #include "data/ov005/data_ov005_02369914.inc.c"
 };
-char data_ov005_02369920[11] = {
+char data_ov005_02369920[] = {
 #include "data/ov005/data_ov005_02369920.inc.c"
 };
-char data_ov005_0236992c[11] = {
+char data_ov005_0236992c[] = {
 #include "data/ov005/data_ov005_0236992c.inc.c"
 };
-char data_ov005_02369950[12] = {
+char data_ov005_02369950[] = {
 #include "data/ov005/data_ov005_02369950.inc.c"
 };
-char data_ov005_02369944[12] = {
+char data_ov005_02369944[] = {
 #include "data/ov005/data_ov005_02369944.inc.c"
 };
-char data_ov005_0236995c[12] = {
+char data_ov005_0236995c[] = {
 #include "data/ov005/data_ov005_0236995c.inc.c"
 };
-char data_ov005_02369968[12] = {
+char data_ov005_02369968[] = {
 #include "data/ov005/data_ov005_02369968.inc.c"
 };
-char data_ov005_02369974[12] = {
+char data_ov005_02369974[] = {
 #include "data/ov005/data_ov005_02369974.inc.c"
 };
-char data_ov005_02369938[12] = {
+char data_ov005_02369938[] = {
 #include "data/ov005/data_ov005_02369938.inc.c"
 };
-char data_ov005_02369980[12] = {
+char data_ov005_02369980[] = {
 #include "data/ov005/data_ov005_02369980.inc.c"
 };
-char data_ov005_0236998c[12] = {
+char data_ov005_0236998c[] = {
 #include "data/ov005/data_ov005_0236998c.inc.c"
 };
-char data_ov005_02369998[12] = {
+char data_ov005_02369998[] = {
 #include "data/ov005/data_ov005_02369998.inc.c"
 };
-char data_ov005_023699a4[12] = {
+char data_ov005_023699a4[] = {
 #include "data/ov005/data_ov005_023699a4.inc.c"
 };
-char data_ov005_023699b0[12] = {
+char data_ov005_023699b0[] = {
 #include "data/ov005/data_ov005_023699b0.inc.c"
 };
-char data_ov005_023699bc[12] = {
+char data_ov005_023699bc[] = {
 #include "data/ov005/data_ov005_023699bc.inc.c"
 };
-char data_ov005_02369a78[13] = {
+char data_ov005_02369a78[] = {
 #include "data/ov005/data_ov005_02369a78.inc.c"
 };
-char data_ov005_023699c8[13] = {
+char data_ov005_023699c8[] = {
 #include "data/ov005/data_ov005_023699c8.inc.c"
 };
-char data_ov005_023699d8[13] = {
+char data_ov005_023699d8[] = {
 #include "data/ov005/data_ov005_023699d8.inc.c"
 };
-char data_ov005_023699e8[13] = {
+char data_ov005_023699e8[] = {
 #include "data/ov005/data_ov005_023699e8.inc.c"
 };
-char data_ov005_023699f8[13] = {
+char data_ov005_023699f8[] = {
 #include "data/ov005/data_ov005_023699f8.inc.c"
 };
-char data_ov005_02369a08[13] = {
+char data_ov005_02369a08[] = {
 #include "data/ov005/data_ov005_02369a08.inc.c"
 };
-char data_ov005_02369a18[13] = {
+char data_ov005_02369a18[] = {
 #include "data/ov005/data_ov005_02369a18.inc.c"
 };
-char data_ov005_02369a28[13] = {
+char data_ov005_02369a28[] = {
 #include "data/ov005/data_ov005_02369a28.inc.c"
 };
-char data_ov005_02369a38[13] = {
+char data_ov005_02369a38[] = {
 #include "data/ov005/data_ov005_02369a38.inc.c"
 };
-char data_ov005_02369a48[13] = {
+char data_ov005_02369a48[] = {
 #include "data/ov005/data_ov005_02369a48.inc.c"
 };
-char data_ov005_02369a58[13] = {
+char data_ov005_02369a58[] = {
 #include "data/ov005/data_ov005_02369a58.inc.c"
 };
-char data_ov005_02369a68[13] = {
+char data_ov005_02369a68[] = {
 #include "data/ov005/data_ov005_02369a68.inc.c"
 };
-char data_ov005_02369ac8[14] = {
+char data_ov005_02369ac8[] = {
 #include "data/ov005/data_ov005_02369ac8.inc.c"
 };
-char data_ov005_02369ad8[14] = {
+char data_ov005_02369ad8[] = {
 #include "data/ov005/data_ov005_02369ad8.inc.c"
 };
-char data_ov005_02369ae8[14] = {
+char data_ov005_02369ae8[] = {
 #include "data/ov005/data_ov005_02369ae8.inc.c"
 };
-char data_ov005_02369af8[14] = {
+char data_ov005_02369af8[] = {
 #include "data/ov005/data_ov005_02369af8.inc.c"
 };
-char data_ov005_02369b08[14] = {
+char data_ov005_02369b08[] = {
 #include "data/ov005/data_ov005_02369b08.inc.c"
 };
-char data_ov005_02369a88[14] = {
+char data_ov005_02369a88[] = {
 #include "data/ov005/data_ov005_02369a88.inc.c"
 };
-char data_ov005_02369a98[14] = {
+char data_ov005_02369a98[] = {
 #include "data/ov005/data_ov005_02369a98.inc.c"
 };
-char data_ov005_02369aa8[14] = {
+char data_ov005_02369aa8[] = {
 #include "data/ov005/data_ov005_02369aa8.inc.c"
 };
-char data_ov005_02369ab8[14] = {
+char data_ov005_02369ab8[] = {
 #include "data/ov005/data_ov005_02369ab8.inc.c"
 };
-char data_ov005_02369b48[15] = {
+char data_ov005_02369b48[] = {
 #include "data/ov005/data_ov005_02369b48.inc.c"
 };
-char data_ov005_02369b58[15] = {
+char data_ov005_02369b58[] = {
 #include "data/ov005/data_ov005_02369b58.inc.c"
 };
-char data_ov005_02369b78[15] = {
+char data_ov005_02369b78[] = {
 #include "data/ov005/data_ov005_02369b78.inc.c"
 };
-char data_ov005_02369b88[15] = {
+char data_ov005_02369b88[] = {
 #include "data/ov005/data_ov005_02369b88.inc.c"
 };
-char data_ov005_02369b18[15] = {
+char data_ov005_02369b18[] = {
 #include "data/ov005/data_ov005_02369b18.inc.c"
 };
-char data_ov005_02369b28[15] = {
+char data_ov005_02369b28[] = {
 #include "data/ov005/data_ov005_02369b28.inc.c"
 };
-char data_ov005_02369b68[15] = {
+char data_ov005_02369b68[] = {
 #include "data/ov005/data_ov005_02369b68.inc.c"
 };
-char data_ov005_02369b98[15] = {
+char data_ov005_02369b98[] = {
 #include "data/ov005/data_ov005_02369b98.inc.c"
 };
-char data_ov005_02369b38[15] = {
+char data_ov005_02369b38[] = {
 #include "data/ov005/data_ov005_02369b38.inc.c"
 };
-char data_ov005_02369ba8[15] = {
+char data_ov005_02369ba8[] = {
 #include "data/ov005/data_ov005_02369ba8.inc.c"
 };
-char data_ov005_02369bb8[16] = {
+char data_ov005_02369bb8[] = {
 #include "data/ov005/data_ov005_02369bb8.inc.c"
 };
 

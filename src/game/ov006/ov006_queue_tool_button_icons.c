@@ -11,67 +11,67 @@ typedef struct ButtonPos {
   u8 y;
 } ButtonPos;
 
-char data_ov006_0236b6bc[4] = {
+char data_ov006_0236b6bc[] = {
 #include "data/ov006/data_ov006_0236b6bc.inc.c"
 };
-char data_ov006_0236b6b8[4] = {
+char data_ov006_0236b6b8[] = {
 #include "data/ov006/data_ov006_0236b6b8.inc.c"
 };
-static u8 data_ov006_0236b6c8[8] = {
+static u8 data_ov006_0236b6c8[] = {
 #include "data/ov006/data_ov006_0236b6c8.inc.c"
 };
-static u8 data_ov006_0236b6d0[8] = {
+static u8 data_ov006_0236b6d0[] = {
 #include "data/ov006/data_ov006_0236b6d0.inc.c"
 };
-static u8 data_ov006_0236b6d8[8] = {
+static u8 data_ov006_0236b6d8[] = {
 #include "data/ov006/data_ov006_0236b6d8.inc.c"
 };
-static u8 data_ov006_0236b6c0[8] = {
+static u8 data_ov006_0236b6c0[] = {
 #include "data/ov006/data_ov006_0236b6c0.inc.c"
 };
-static u8 data_ov006_0236b6e0[8] = {
+static u8 data_ov006_0236b6e0[] = {
 #include "data/ov006/data_ov006_0236b6e0.inc.c"
 };
-ButtonPos data_ov006_0236b6f4[5] = {
+ButtonPos data_ov006_0236b6f4[] = {
 #include "data/ov006/data_ov006_0236b6f4.inc.c"
 };
-ButtonPos data_ov006_0236b6e8[5] = {
+ButtonPos data_ov006_0236b6e8[] = {
 #include "data/ov006/data_ov006_0236b6e8.inc.c"
 };
 /* declared `CursorSteps18 data_ov006_0236b700` in ov006_entry_button_keys.c: declared in src/game/ov006/ov006_entry_button_keys.c, with a type no header defines */
-u16 data_ov006_0236b700[9] = {
+u16 data_ov006_0236b700[] = {
 #include "data/ov006/data_ov006_0236b700.inc.c"
 };
 /* declared `CursorSteps18 data_ov006_0236b714` in ov006_entry_button_keys.c: declared in src/game/ov006/ov006_entry_button_keys.c, with a type no header defines */
-u16 data_ov006_0236b714[9] = {
+u16 data_ov006_0236b714[] = {
 #include "data/ov006/data_ov006_0236b714.inc.c"
 };
 /* declared `CursorSteps24 data_ov006_0236b728` in ov006_entry_button_keys.c: declared in src/game/ov006/ov006_entry_button_keys.c, with a type no header defines */
-u32 data_ov006_0236b728[6] = {
+u32 data_ov006_0236b728[] = {
 #include "data/ov006/data_ov006_0236b728.inc.c"
 };
 /* declared `CursorSteps24 data_ov006_0236b740` in ov006_entry_button_keys.c: declared in src/game/ov006/ov006_entry_button_keys.c, with a type no header defines */
-u32 data_ov006_0236b740[6] = {
+u32 data_ov006_0236b740[] = {
 #include "data/ov006/data_ov006_0236b740.inc.c"
 };
 /* declared `CursorSteps25 data_ov006_0236b774` in ov006_entry_button_keys.c: declared in src/game/ov006/ov006_entry_button_keys.c, with a type no header defines */
-u8 data_ov006_0236b774[25] = {
+u8 data_ov006_0236b774[] = {
 #include "data/ov006/data_ov006_0236b774.inc.c"
 };
 /* declared `CursorSteps25 data_ov006_0236b790` in ov006_entry_button_keys.c: declared in src/game/ov006/ov006_entry_button_keys.c, with a type no header defines */
-u8 data_ov006_0236b790[25] = {
+u8 data_ov006_0236b790[] = {
 #include "data/ov006/data_ov006_0236b790.inc.c"
 };
 /* declared `CursorSteps25 data_ov006_0236b758` in ov006_entry_button_keys.c: declared in src/game/ov006/ov006_entry_button_keys.c, with a type no header defines */
-u8 data_ov006_0236b758[25] = {
+u8 data_ov006_0236b758[] = {
 #include "data/ov006/data_ov006_0236b758.inc.c"
 };
 /* declared `CursorSteps25 data_ov006_0236b7ac` in ov006_entry_button_keys.c: declared in src/game/ov006/ov006_entry_button_keys.c, with a type no header defines */
-u8 data_ov006_0236b7ac[25] = {
+u8 data_ov006_0236b7ac[] = {
 #include "data/ov006/data_ov006_0236b7ac.inc.c"
 };
 /* declared `CursorSteps26 data_ov006_0236b7c8` in ov006_entry_button_keys.c: declared in src/game/ov006/ov006_entry_button_keys.c, with a type no header defines */
-u16 data_ov006_0236b7c8[13] = {
+u16 data_ov006_0236b7c8[] = {
 #include "data/ov006/data_ov006_0236b7c8.inc.c"
 };
 

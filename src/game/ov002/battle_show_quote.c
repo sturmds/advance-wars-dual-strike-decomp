@@ -6,10 +6,10 @@
 
 extern MenuState gMenuState;
 extern Unk_027c0280* data_027c0280;
-static char Ov002_gBattleResPath[19] = {
+static char Ov002_gBattleResPath[] = {
 #include "data/ov002/Ov002_gBattleResPath.inc.c"
 };
-static char Ov002_gBattleLangResPath[24] = {
+static char Ov002_gBattleLangResPath[] = {
 #include "data/ov002/Ov002_gBattleLangResPath.inc.c"
 };
 

@@ -3,10 +3,10 @@
 #include "game/menu_state.h"
 
 extern MenuState gMenuState;
-s16 data_ov002_023604dc[4][3] = {
+s16 data_ov002_023604dc[][3] = {
 #include "data/ov002/data_ov002_023604dc.inc.c"
 };
-volatile s32 data_ov002_023604f4[28] = {
+volatile s32 data_ov002_023604f4[] = {
 #include "data/ov002/data_ov002_023604f4.inc.c"
 };
 

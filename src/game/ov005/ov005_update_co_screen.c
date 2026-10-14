@@ -62,11 +62,11 @@ extern char data_ov005_0236ae68[]; /* "03e": palette screen layer 1 tiles */
 extern char data_ov005_0236ae6c[]; /* "03f": palette screen layer 1 map */
 extern char data_ov005_0236ae70[]; /* "040": palette screen layer 1 palette */
 /* map bytes of a text BG by screen size */
-const u32 data_ov005_02367fcc[4] = {
+const u32 data_ov005_02367fcc[] = {
 #include "data/ov005/data_ov005_02367fcc.inc.c"
 };
 /* map bytes of a rotation/scaling BG by screen size */
-const u32 data_ov005_02367fdc[4] = {
+const u32 data_ov005_02367fdc[] = {
 #include "data/ov005/data_ov005_02367fdc.inc.c"
 };
 

@@ -14,79 +14,79 @@ extern u8 data_0217eb08[];
 extern u8 data_02180b08[];
 extern u8 data_0217fb08[];
 
-u8 data_ov006_0236a9e8[8] = {
+u8 data_ov006_0236a9e8[] = {
 #include "data/ov006/data_ov006_0236a9e8.inc.c"
 };
-static u8 data_ov006_0236a9e0[8] = {
+static u8 data_ov006_0236a9e0[] = {
 #include "data/ov006/data_ov006_0236a9e0.inc.c"
 };
-static u8 data_ov006_0236a9d8[8] = {
+static u8 data_ov006_0236a9d8[] = {
 #include "data/ov006/data_ov006_0236a9d8.inc.c"
 };
-static u8 data_ov006_0236aa68[8] = {
+static u8 data_ov006_0236aa68[] = {
 #include "data/ov006/data_ov006_0236aa68.inc.c"
 };
-u32 data_ov006_0236aa60[2] = {
+u32 data_ov006_0236aa60[] = {
 #include "data/ov006/data_ov006_0236aa60.inc.c"
 };
-u32 data_ov006_0236aa58[2] = {
+u32 data_ov006_0236aa58[] = {
 #include "data/ov006/data_ov006_0236aa58.inc.c"
 };
-u32 data_ov006_0236aa50[2] = {
+u32 data_ov006_0236aa50[] = {
 #include "data/ov006/data_ov006_0236aa50.inc.c"
 };
-u32 data_ov006_0236aa48[2] = {
+u32 data_ov006_0236aa48[] = {
 #include "data/ov006/data_ov006_0236aa48.inc.c"
 };
-u32 data_ov006_0236aa40[2] = {
+u32 data_ov006_0236aa40[] = {
 #include "data/ov006/data_ov006_0236aa40.inc.c"
 };
-u32 data_ov006_0236aa38[2] = {
+u32 data_ov006_0236aa38[] = {
 #include "data/ov006/data_ov006_0236aa38.inc.c"
 };
-u8 data_ov006_0236aa30[8] = {
+u8 data_ov006_0236aa30[] = {
 #include "data/ov006/data_ov006_0236aa30.inc.c"
 };
-u8 data_ov006_0236aa28[8] = {
+u8 data_ov006_0236aa28[] = {
 #include "data/ov006/data_ov006_0236aa28.inc.c"
 };
-u32 data_ov006_0236aa20[2] = {
+u32 data_ov006_0236aa20[] = {
 #include "data/ov006/data_ov006_0236aa20.inc.c"
 };
-u8 data_ov006_0236aa18[8] = {
+u8 data_ov006_0236aa18[] = {
 #include "data/ov006/data_ov006_0236aa18.inc.c"
 };
-u32 data_ov006_0236aa10[2] = {
+u32 data_ov006_0236aa10[] = {
 #include "data/ov006/data_ov006_0236aa10.inc.c"
 };
-u32 data_ov006_0236aa08[2] = {
+u32 data_ov006_0236aa08[] = {
 #include "data/ov006/data_ov006_0236aa08.inc.c"
 };
-u8 data_ov006_0236aa00[8] = {
+u8 data_ov006_0236aa00[] = {
 #include "data/ov006/data_ov006_0236aa00.inc.c"
 };
-static u8 data_ov006_0236a9f8[8] = {
+static u8 data_ov006_0236a9f8[] = {
 #include "data/ov006/data_ov006_0236a9f8.inc.c"
 };
-u8 data_ov006_0236a9f0[8] = {
+u8 data_ov006_0236a9f0[] = {
 #include "data/ov006/data_ov006_0236a9f0.inc.c"
 };
 /* declared `RowShapes data_ov006_0236aa70` in ov006_draw_property_counts.c: declared in src/game/ov006/ov006_draw_property_counts.c, with a type no header defines */
-void* data_ov006_0236aa70[5] = {0, &data_ov006_0236aa20, &data_ov006_0236aa60,
-                                &data_ov006_0236aa10, &data_ov006_0236aa08};
+void* data_ov006_0236aa70[] = {0, &data_ov006_0236aa20, &data_ov006_0236aa60,
+                               &data_ov006_0236aa10, &data_ov006_0236aa08};
 /* declared `ColumnShapes data_ov006_0236aa84` in ov006_draw_property_counts.c: declared in src/game/ov006/ov006_draw_property_counts.c, with a type no header defines */
-void* data_ov006_0236aa84[6] = {0,
-                                &data_ov006_0236aa58,
-                                &data_ov006_0236aa50,
-                                &data_ov006_0236aa48,
-                                &data_ov006_0236aa40,
-                                &data_ov006_0236aa38};
+void* data_ov006_0236aa84[] = {0,
+                               &data_ov006_0236aa58,
+                               &data_ov006_0236aa50,
+                               &data_ov006_0236aa48,
+                               &data_ov006_0236aa40,
+                               &data_ov006_0236aa38};
 /* declared `TileGrid data_ov006_0236aa9c` in ov006_draw_property_counts.c: declared in src/game/ov006/ov006_draw_property_counts.c, with a type no header defines */
-u32 data_ov006_0236aa9c[15] = {
+u32 data_ov006_0236aa9c[] = {
 #include "data/ov006/data_ov006_0236aa9c.inc.c"
 };
 /* declared `u8 data_ov006_0236aad8[]` in ov006_load_mapedit_graphics.c: relocation at data_ov006_0236aad8+0xc is not on a 4-byte field */
-u32 data_ov006_0236aad8[20] = {
+u32 data_ov006_0236aad8[] = {
 #include "data/ov006/data_ov006_0236aad8.inc.c"
 };
 

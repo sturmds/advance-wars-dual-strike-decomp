@@ -20,67 +20,67 @@ extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern char data_ov005_0236aa80[]; /* "/rikiishi" */
 /* "037": map */
-static char data_ov005_0236ab2c[4] = {
+static char data_ov005_0236ab2c[] = {
 #include "data/ov005/data_ov005_0236ab2c.inc.c"
 };
 /* "036": tiles, picture 4 */
-static char data_ov005_0236ab28[4] = {
+static char data_ov005_0236ab28[] = {
 #include "data/ov005/data_ov005_0236ab28.inc.c"
 };
 /* "035": palette */
-static char data_ov005_0236ab24[4] = {
+static char data_ov005_0236ab24[] = {
 #include "data/ov005/data_ov005_0236ab24.inc.c"
 };
 /* "034": map */
-static char data_ov005_0236ab20[4] = {
+static char data_ov005_0236ab20[] = {
 #include "data/ov005/data_ov005_0236ab20.inc.c"
 };
 /* "033": tiles, picture 3 */
-static char data_ov005_0236ab1c[4] = {
+static char data_ov005_0236ab1c[] = {
 #include "data/ov005/data_ov005_0236ab1c.inc.c"
 };
 /* "032": palette */
-static char data_ov005_0236ab18[4] = {
+static char data_ov005_0236ab18[] = {
 #include "data/ov005/data_ov005_0236ab18.inc.c"
 };
 /* "031": map */
-static char data_ov005_0236ab14[4] = {
+static char data_ov005_0236ab14[] = {
 #include "data/ov005/data_ov005_0236ab14.inc.c"
 };
 /* "030": tiles, picture 2 */
-static char data_ov005_0236ab10[4] = {
+static char data_ov005_0236ab10[] = {
 #include "data/ov005/data_ov005_0236ab10.inc.c"
 };
 /* "02f": palette */
-static char data_ov005_0236ab0c[4] = {
+static char data_ov005_0236ab0c[] = {
 #include "data/ov005/data_ov005_0236ab0c.inc.c"
 };
 /* "02e": map */
-static char data_ov005_0236ab08[4] = {
+static char data_ov005_0236ab08[] = {
 #include "data/ov005/data_ov005_0236ab08.inc.c"
 };
 /* "02d": tiles, picture 1 */
-static char data_ov005_0236ab04[4] = {
+static char data_ov005_0236ab04[] = {
 #include "data/ov005/data_ov005_0236ab04.inc.c"
 };
 /* "02c": palette */
-static char data_ov005_0236ab00[4] = {
+static char data_ov005_0236ab00[] = {
 #include "data/ov005/data_ov005_0236ab00.inc.c"
 };
 /* "02b": map */
-static char data_ov005_0236aafc[4] = {
+static char data_ov005_0236aafc[] = {
 #include "data/ov005/data_ov005_0236aafc.inc.c"
 };
 /* "02a": tiles, picture 0 */
-static char data_ov005_0236aaf8[4] = {
+static char data_ov005_0236aaf8[] = {
 #include "data/ov005/data_ov005_0236aaf8.inc.c"
 };
 /* "054": map */
-char data_ov005_0236aaf4[4] = {
+char data_ov005_0236aaf4[] = {
 #include "data/ov005/data_ov005_0236aaf4.inc.c"
 };
 /* "038": palette */
-static char data_ov005_0236ab30[4] = {
+static char data_ov005_0236ab30[] = {
 #include "data/ov005/data_ov005_0236ab30.inc.c"
 };
 extern u32 data_ov005_02367fac[]; /* map bytes of a text BG by screen size */

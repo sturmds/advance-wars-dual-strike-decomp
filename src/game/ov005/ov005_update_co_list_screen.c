@@ -35,7 +35,7 @@ u8 Ov005_SaveCoListEntry(int entry);
 int Ov005_ClearCoListTouchFlags(Ov005Task* task);
 
 /* CO id of each list entry */
-u8 data_ov005_0236a48c[33] = {
+u8 data_ov005_0236a48c[] = {
 #include "data/ov005/data_ov005_0236a48c.inc.c"
 };
 extern u8 data_ov005_0236a5a0

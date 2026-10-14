@@ -47,10 +47,10 @@ static MenuButtonTemplate data_ov005_0236b3dc = {
 MenuButtonTemplate data_ov005_0236b3b4 = {
 #include "data/ov005/data_ov005_0236b3b4.inc.c"
 };
-TaskScriptCmd data_ov005_0236b38c[5] = {
+TaskScriptCmd data_ov005_0236b38c[] = {
 #include "data/ov005/data_ov005_0236b38c.inc.c"
 };
-const EventScriptCommand* data_ov005_0236b454[17] = {
+const EventScriptCommand* data_ov005_0236b454[] = {
     (EventScriptCommand*)&data_ov005_0236b900,
     (EventScriptCommand*)&data_ov005_0236ba40,
     (EventScriptCommand*)&data_ov005_0236ba80,

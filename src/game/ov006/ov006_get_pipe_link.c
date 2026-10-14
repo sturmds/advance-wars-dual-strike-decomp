@@ -5,34 +5,34 @@
 extern Unk_02080440* data_027c027c;
 extern u32 data_027c0284;
 #pragma explicit_zero_data on
-static s16 Ov006_gDirStepX[4] = {
+static s16 Ov006_gDirStepX[] = {
 #include "data/ov006/Ov006_gDirStepX.inc.c"
 };
-s16 Ov006_gNeighborDy[4] = {
+s16 Ov006_gNeighborDy[] = {
 #include "data/ov006/Ov006_gNeighborDy.inc.c"
 };
-static s16 Ov006_gDirStepY[4] = {
+static s16 Ov006_gDirStepY[] = {
 #include "data/ov006/Ov006_gDirStepY.inc.c"
 };
-s16 data_ov006_0236d608[4] = {
+s16 data_ov006_0236d608[] = {
 #include "data/ov006/data_ov006_0236d608.inc.c"
 };
 /* left, right, up, down */
-s16 Ov006_gNeighborDx[4] = {
+s16 Ov006_gNeighborDx[] = {
 #include "data/ov006/Ov006_gNeighborDx.inc.c"
 };
-s16 data_ov006_0236d5f8[4] = {
+s16 data_ov006_0236d5f8[] = {
 #include "data/ov006/data_ov006_0236d5f8.inc.c"
 };
-s16 Ov006_gCrossDy[5] = {
+s16 Ov006_gCrossDy[] = {
 #include "data/ov006/Ov006_gCrossDy.inc.c"
 };
 /* offsets: centre, left, right, up, down */
-s16 Ov006_gCrossDx[5] = {
+s16 Ov006_gCrossDx[] = {
 #include "data/ov006/Ov006_gCrossDx.inc.c"
 };
 /* 0x10 bytes no code names, before the end */
-u32 data_ov006_0236d630[4] = {
+u32 data_ov006_0236d630[] = {
 #include "data/ov006/data_ov006_0236d630.inc.c"
 };
 #pragma explicit_zero_data reset

@@ -2,10 +2,10 @@
 #include "game/ov003_unit.h"
 
 extern u16 data_ov003_02364cdc[][2];
-static u8 data_ov003_02364b14[16] = {
+static u8 data_ov003_02364b14[] = {
 #include "data/ov003/data_ov003_02364b14.inc.c"
 };
-static u8 data_ov003_02364b24[32] = {
+static u8 data_ov003_02364b24[] = {
 #include "data/ov003/data_ov003_02364b24.inc.c"
 };
 extern u8 data_027c0028;

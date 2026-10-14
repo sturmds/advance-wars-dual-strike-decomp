@@ -18,73 +18,73 @@ void func_ov005_02364380(void);
 void func_ov005_023646f8(void);
 
 /* "03d": sub screen layer 1 map */
-char data_ov005_0236ae74[4] = {
+char data_ov005_0236ae74[] = {
 #include "data/ov005/data_ov005_0236ae74.inc.c"
 };
 /* "043": main screen OBJ palette */
-char data_ov005_0236ae7c[4] = {
+char data_ov005_0236ae7c[] = {
 #include "data/ov005/data_ov005_0236ae7c.inc.c"
 };
 /* "03f": palette screen layer 1 map */
-char data_ov005_0236ae6c[4] = {
+char data_ov005_0236ae6c[] = {
 #include "data/ov005/data_ov005_0236ae6c.inc.c"
 };
 /* "041": main screen OBJ tiles */
-char data_ov005_0236ae78[4] = {
+char data_ov005_0236ae78[] = {
 #include "data/ov005/data_ov005_0236ae78.inc.c"
 };
 /* "040": palette screen layer 1 palette */
-char data_ov005_0236ae70[4] = {
+char data_ov005_0236ae70[] = {
 #include "data/ov005/data_ov005_0236ae70.inc.c"
 };
 /* "03c": main screen layer 1 palette */
-char data_ov005_0236ae64[4] = {
+char data_ov005_0236ae64[] = {
 #include "data/ov005/data_ov005_0236ae64.inc.c"
 };
 /* "03e": palette screen layer 1 tiles */
-char data_ov005_0236ae68[4] = {
+char data_ov005_0236ae68[] = {
 #include "data/ov005/data_ov005_0236ae68.inc.c"
 };
 /* "03a": main screen layer 1 tiles */
-char data_ov005_0236ae5c[4] = {
+char data_ov005_0236ae5c[] = {
 #include "data/ov005/data_ov005_0236ae5c.inc.c"
 };
 /* "03b": main screen layer 1 map */
-char data_ov005_0236ae60[4] = {
+char data_ov005_0236ae60[] = {
 #include "data/ov005/data_ov005_0236ae60.inc.c"
 };
 /* "042": sprite file */
-char data_ov005_0236ae80[4] = {
+char data_ov005_0236ae80[] = {
 #include "data/ov005/data_ov005_0236ae80.inc.c"
 };
-u32 data_ov005_0236ae8c[2] = {
+u32 data_ov005_0236ae8c[] = {
 #include "data/ov005/data_ov005_0236ae8c.inc.c"
 };
-u32 data_ov005_0236ae94[2] = {
+u32 data_ov005_0236ae94[] = {
 #include "data/ov005/data_ov005_0236ae94.inc.c"
 };
-u32 data_ov005_0236ae9c[2] = {
+u32 data_ov005_0236ae9c[] = {
 #include "data/ov005/data_ov005_0236ae9c.inc.c"
 };
-u32 data_ov005_0236ae84[2] = {
+u32 data_ov005_0236ae84[] = {
 #include "data/ov005/data_ov005_0236ae84.inc.c"
 };
-u32 data_ov005_0236aea4[3] = {
+u32 data_ov005_0236aea4[] = {
 #include "data/ov005/data_ov005_0236aea4.inc.c"
 };
-u32 data_ov005_0236aeb0[5] = {
+u32 data_ov005_0236aeb0[] = {
 #include "data/ov005/data_ov005_0236aeb0.inc.c"
 };
-TaskScriptCmd data_ov005_0236aedc[3] = {
+TaskScriptCmd data_ov005_0236aedc[] = {
 #include "data/ov005/data_ov005_0236aedc.inc.c"
 };
-static TaskScriptCmd data_ov005_0236aec4[3] = {
+static TaskScriptCmd data_ov005_0236aec4[] = {
 #include "data/ov005/data_ov005_0236aec4.inc.c"
 };
-TaskScriptCmd data_ov005_0236aef4[3] = {
+TaskScriptCmd data_ov005_0236aef4[] = {
 #include "data/ov005/data_ov005_0236aef4.inc.c"
 };
-TaskScriptCmd data_ov005_0236af0c[3] = {
+TaskScriptCmd data_ov005_0236af0c[] = {
 #include "data/ov005/data_ov005_0236af0c.inc.c"
 };
 

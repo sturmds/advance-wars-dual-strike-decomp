@@ -11,7 +11,7 @@ extern u8 data_02178b08[];
 extern u8 data_02179b08[];
 extern u8 data_0217ab08[];
 
-static GfxLayer Ov002_gBattleLayerConfig[4] = {
+static GfxLayer Ov002_gBattleLayerConfig[] = {
 #include "data/ov002/Ov002_gBattleLayerConfig.inc.c"
 };
 

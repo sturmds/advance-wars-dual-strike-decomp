@@ -7,7 +7,7 @@ void Battle_LoadSideBackgroundPalettes(void);
 void Battle_LoadSideTerrainLayers(void);
 void Battle_ShowQuote(void);
 
-char data_ov002_023600e4[8] = {
+char data_ov002_023600e4[] = {
 #include "data/ov002/data_ov002_023600e4.inc.c"
 };
 

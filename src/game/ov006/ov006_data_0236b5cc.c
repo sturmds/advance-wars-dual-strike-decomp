@@ -10,7 +10,7 @@ void func_ov006_02354414(void);
 u32 data_ov006_0236b5cc = {
 #include "data/ov006/data_ov006_0236b5cc.inc.c"
 };
-u32 data_ov006_0236b5d0[23] = {
+u32 data_ov006_0236b5d0[] = {
 #include "data/ov006/data_ov006_0236b5d0.inc.c"
 };
 #pragma explicit_zero_data reset

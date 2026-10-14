@@ -16,13 +16,13 @@ int func_ov005_02357830(void);
 void func_ov005_0235785c(void);
 void func_ov005_02357844(void);
 
-TaskScriptCmd data_ov005_02368e40[52] = {
+TaskScriptCmd data_ov005_02368e40[] = {
 #include "data/ov005/data_ov005_02368e40.inc.c"
 };
-static TaskScriptCmd data_ov005_02368ca0[52] = {
+static TaskScriptCmd data_ov005_02368ca0[] = {
 #include "data/ov005/data_ov005_02368ca0.inc.c"
 };
-TaskScriptCmd data_ov005_02368fe0[52] = {
+TaskScriptCmd data_ov005_02368fe0[] = {
 #include "data/ov005/data_ov005_02368fe0.inc.c"
 };
 

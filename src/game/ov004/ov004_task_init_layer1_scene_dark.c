@@ -14,89 +14,89 @@ void Ov004_ClearSlots(Unk_ov004_022bf158* state);
 
 extern Unk_ov004_022bf158* data_ov004_022bf158;
 extern char data_ov004_022bde34[]; /* "06c": layer 1 tiles */
-char data_ov004_022bdd64[4] = {
+char data_ov004_022bdd64[] = {
 #include "data/ov004/data_ov004_022bdd64.inc.c"
 };
-char data_ov004_022bdd60[4] = {
+char data_ov004_022bdd60[] = {
 #include "data/ov004/data_ov004_022bdd60.inc.c"
 };
 /* "074": layer 1 map */
-char data_ov004_022bdd5c[4] = {
+char data_ov004_022bdd5c[] = {
 #include "data/ov004/data_ov004_022bdd5c.inc.c"
 };
 /* "075": layer 3 tiles */
-char data_ov004_022bdd58[4] = {
+char data_ov004_022bdd58[] = {
 #include "data/ov004/data_ov004_022bdd58.inc.c"
 };
 /* "096": layer 3 tiles */
-char data_ov004_022bdd54[4] = {
+char data_ov004_022bdd54[] = {
 #include "data/ov004/data_ov004_022bdd54.inc.c"
 };
 /* "076": layer 3 map */
-char data_ov004_022bdd50[4] = {
+char data_ov004_022bdd50[] = {
 #include "data/ov004/data_ov004_022bdd50.inc.c"
 };
-char data_ov004_022bdd4c[4] = {
+char data_ov004_022bdd4c[] = {
 #include "data/ov004/data_ov004_022bdd4c.inc.c"
 };
-char data_ov004_022bdd48[4] = {
+char data_ov004_022bdd48[] = {
 #include "data/ov004/data_ov004_022bdd48.inc.c"
 };
 /* "06f": layer 1 tiles */
-char data_ov004_022bdd44[4] = {
+char data_ov004_022bdd44[] = {
 #include "data/ov004/data_ov004_022bdd44.inc.c"
 };
-char data_ov004_022bdd40[4] = {
+char data_ov004_022bdd40[] = {
 #include "data/ov004/data_ov004_022bdd40.inc.c"
 };
 /* "079": layer 3 tiles */
-char data_ov004_022bdd3c[4] = {
+char data_ov004_022bdd3c[] = {
 #include "data/ov004/data_ov004_022bdd3c.inc.c"
 };
 /* "06e": layer 1 map */
-char data_ov004_022bdd38[4] = {
+char data_ov004_022bdd38[] = {
 #include "data/ov004/data_ov004_022bdd38.inc.c"
 };
-char gRikiishiFile0b1[4] = {
+char gRikiishiFile0b1[] = {
 #include "data/ov004/gRikiishiFile0b1.inc.c"
 };
-char gRikiishiFile0a8[4] = {
+char gRikiishiFile0a8[] = {
 #include "data/ov004/gRikiishiFile0a8.inc.c"
 };
-char gRikiishiFile0a5[4] = {
+char gRikiishiFile0a5[] = {
 #include "data/ov004/gRikiishiFile0a5.inc.c"
 };
-char gRikiishiFile0b0[4] = {
+char gRikiishiFile0b0[] = {
 #include "data/ov004/gRikiishiFile0b0.inc.c"
 };
-char gRikiishiFile0af[4] = {
+char gRikiishiFile0af[] = {
 #include "data/ov004/gRikiishiFile0af.inc.c"
 };
-char gRikiishiFile0ae[4] = {
+char gRikiishiFile0ae[] = {
 #include "data/ov004/gRikiishiFile0ae.inc.c"
 };
-char gRikiishiFile0ad[4] = {
+char gRikiishiFile0ad[] = {
 #include "data/ov004/gRikiishiFile0ad.inc.c"
 };
-char gRikiishiFile0ac[4] = {
+char gRikiishiFile0ac[] = {
 #include "data/ov004/gRikiishiFile0ac.inc.c"
 };
-char gRikiishiFile0ab[4] = {
+char gRikiishiFile0ab[] = {
 #include "data/ov004/gRikiishiFile0ab.inc.c"
 };
-char gRikiishiFile0aa[4] = {
+char gRikiishiFile0aa[] = {
 #include "data/ov004/gRikiishiFile0aa.inc.c"
 };
-char gRikiishiFile0a7[4] = {
+char gRikiishiFile0a7[] = {
 #include "data/ov004/gRikiishiFile0a7.inc.c"
 };
-char gRikiishiFile0a6[4] = {
+char gRikiishiFile0a6[] = {
 #include "data/ov004/gRikiishiFile0a6.inc.c"
 };
-char gRikiishiFile0a4[4] = {
+char gRikiishiFile0a4[] = {
 #include "data/ov004/gRikiishiFile0a4.inc.c"
 };
-char data_ov004_022bdd68[4] = {
+char data_ov004_022bdd68[] = {
 #include "data/ov004/data_ov004_022bdd68.inc.c"
 };
 extern char data_ov004_022bde30[]; /* "06d": palette */

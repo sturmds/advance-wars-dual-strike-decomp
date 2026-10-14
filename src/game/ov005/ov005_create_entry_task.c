@@ -20,60 +20,60 @@ void func_ov005_0235a81c(void);
 extern u8 data_02179b08[];
 extern u8 data_0217fb08[];
 
-char gOv005MessageFile01c[4] = {
+char gOv005MessageFile01c[] = {
 #include "data/ov005/gOv005MessageFile01c.inc.c"
 };
-char gOv005MessageFile014[4] = {
+char gOv005MessageFile014[] = {
 #include "data/ov005/gOv005MessageFile014.inc.c"
 };
-char gOv005MessageFile013[4] = {
+char gOv005MessageFile013[] = {
 #include "data/ov005/gOv005MessageFile013.inc.c"
 };
-char gOv005MessageFile01d[4] = {
+char gOv005MessageFile01d[] = {
 #include "data/ov005/gOv005MessageFile01d.inc.c"
 };
-char gOv005MessageFile015[4] = {
+char gOv005MessageFile015[] = {
 #include "data/ov005/gOv005MessageFile015.inc.c"
 };
-char gOv005MessageFile017[4] = {
+char gOv005MessageFile017[] = {
 #include "data/ov005/gOv005MessageFile017.inc.c"
 };
-char gOv005MessageFile01b[4] = {
+char gOv005MessageFile01b[] = {
 #include "data/ov005/gOv005MessageFile01b.inc.c"
 };
-char gOv005MessageFile016[4] = {
+char gOv005MessageFile016[] = {
 #include "data/ov005/gOv005MessageFile016.inc.c"
 };
-char gOv005MessageFile01e[4] = {
+char gOv005MessageFile01e[] = {
 #include "data/ov005/gOv005MessageFile01e.inc.c"
 };
-u8 data_ov005_023695c4[12] = {
+u8 data_ov005_023695c4[] = {
 #include "data/ov005/data_ov005_023695c4.inc.c"
 };
-u8 data_ov005_023695d0[12] = {
+u8 data_ov005_023695d0[] = {
 #include "data/ov005/data_ov005_023695d0.inc.c"
 };
-static TaskScriptCmd gOv005EntryTaskScript[3] = {
+static TaskScriptCmd gOv005EntryTaskScript[] = {
 #include "data/ov005/gOv005EntryTaskScript.inc.c"
 };
-TaskScriptCmd data_ov005_023695f4[3] = {
+TaskScriptCmd data_ov005_023695f4[] = {
 #include "data/ov005/data_ov005_023695f4.inc.c"
 };
-TaskScriptCmd data_ov005_0236960c[5] = {
+TaskScriptCmd data_ov005_0236960c[] = {
 #include "data/ov005/data_ov005_0236960c.inc.c"
 };
-TaskScriptCmd data_ov005_02369634[7] = {
+TaskScriptCmd data_ov005_02369634[] = {
 #include "data/ov005/data_ov005_02369634.inc.c"
 };
 /* declared `u8 data_ov005_0236966c[]` in ov005_set_up_main_screen_layer2.c: relocation at data_ov005_0236966c+0xc is not on a 4-byte field */
-u32 data_ov005_0236966c[20] = {
+u32 data_ov005_0236966c[] = {
 #include "data/ov005/data_ov005_0236966c.inc.c"
 };
 /* declared `u8 gOv005CreditsSubLayers[]` in ov005_set_up_staff_credits_screen.c: relocation at gOv005CreditsSubLayers+0xc is not on a 4-byte field */
-u32 gOv005CreditsSubLayers[20] = {
+u32 gOv005CreditsSubLayers[] = {
 #include "data/ov005/gOv005CreditsSubLayers.inc.c"
 };
-u16 data_ov005_0236970c[192] = {
+u16 data_ov005_0236970c[] = {
 #include "data/ov005/data_ov005_0236970c.inc.c"
 };
 

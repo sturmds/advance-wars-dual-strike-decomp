@@ -14,16 +14,16 @@ void func_ov006_0235068c(void);
 void func_ov006_02350eb0(void);
 void func_ov006_02352764(void);
 
-static TaskScriptCmd data_ov006_0236a1f0[5] = {
+static TaskScriptCmd data_ov006_0236a1f0[] = {
 #include "data/ov006/data_ov006_0236a1f0.inc.c"
 };
-TaskScriptCmd data_ov006_0236a218[8] = {
+TaskScriptCmd data_ov006_0236a218[] = {
 #include "data/ov006/data_ov006_0236a218.inc.c"
 };
-TaskScriptCmd data_ov006_0236a258[22] = {
+TaskScriptCmd data_ov006_0236a258[] = {
 #include "data/ov006/data_ov006_0236a258.inc.c"
 };
-TaskScriptCmd data_ov006_0236a308[32] = {
+TaskScriptCmd data_ov006_0236a308[] = {
 #include "data/ov006/data_ov006_0236a308.inc.c"
 };
 

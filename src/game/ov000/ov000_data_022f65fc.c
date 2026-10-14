@@ -268,56 +268,56 @@ extern u8 data_ov000_022ce990[];
 extern u8 data_ov000_022ce9d0[];
 extern u8 data_ov000_022cea10[];
 
-const void* data_ov000_022f65fc[5] = {
-    &data_ov000_022cb800, &data_ov000_022cb800, &data_ov000_022cb800,
-    &data_ov000_022cb800, &data_ov000_022cb800};
+const void* data_ov000_022f65fc[] = {&data_ov000_022cb800, &data_ov000_022cb800,
+                                     &data_ov000_022cb800, &data_ov000_022cb800,
+                                     &data_ov000_022cb800};
 /* per language: capture text graphics in /national */
-const char* data_ov000_022f66c4[5] = {
+const char* data_ov000_022f66c4[] = {
     (char*)&data_ov000_022f6564, (char*)&data_ov000_022f6564,
     (char*)&data_ov000_022f6564, (char*)&data_ov000_022f6564,
     (char*)&data_ov000_022f6564};
-const char* data_ov000_022f66b0[5] = {
+const char* data_ov000_022f66b0[] = {
     (char*)&data_ov000_022f6560, (char*)&data_ov000_022f6560,
     (char*)&data_ov000_022f6560, (char*)&data_ov000_022f6560,
     (char*)&data_ov000_022f6560};
-const char* data_ov000_022f669c[5] = {
+const char* data_ov000_022f669c[] = {
     (char*)&data_ov000_022f655c, (char*)&data_ov000_022f655c,
     (char*)&data_ov000_022f655c, (char*)&data_ov000_022f655c,
     (char*)&data_ov000_022f655c};
-const char* data_ov000_022f6688[5] = {
+const char* data_ov000_022f6688[] = {
     (char*)&data_ov000_022f6568, (char*)&data_ov000_022f6568,
     (char*)&data_ov000_022f6568, (char*)&data_ov000_022f6568,
     (char*)&data_ov000_022f6568};
-const char* data_ov000_022f6674[5] = {
+const char* data_ov000_022f6674[] = {
     (char*)&data_ov000_022f656c, (char*)&data_ov000_022f656c,
     (char*)&data_ov000_022f656c, (char*)&data_ov000_022f656c,
     (char*)&data_ov000_022f656c};
 /* icon tile data, indexed by data_ov000_023503a0 */
-u8* data_ov000_022f6660[5] = {
+u8* data_ov000_022f6660[] = {
     (u8*)&data_ov000_022d17ec, (u8*)&data_ov000_022d17ec,
     (u8*)&data_ov000_022d17ec, (u8*)&data_ov000_022d17ec,
     (u8*)&data_ov000_022d17ec};
 /* picture tile data, indexed by data_ov000_023503a0 */
-u8* data_ov000_022f664c[5] = {
+u8* data_ov000_022f664c[] = {
     (u8*)&data_ov000_022cfdec, (u8*)&data_ov000_022cfdec,
     (u8*)&data_ov000_022cfdec, (u8*)&data_ov000_022cfdec,
     (u8*)&data_ov000_022cfdec};
 /* packed number font graphics per language */
-const void* gNumberFontByLanguage[5] = {
+const void* gNumberFontByLanguage[] = {
     &data_ov000_022cf9b0, &data_ov000_022cf9b0, &data_ov000_022cf9b0,
     &data_ov000_022cf9b0, &data_ov000_022cf9b0};
-const void* data_ov000_022f6624[5] = {
-    &data_ov000_022cf3b0, &data_ov000_022cf3b0, &data_ov000_022cf3b0,
-    &data_ov000_022cf3b0, &data_ov000_022cf3b0};
-const void* data_ov000_022f6610[5] = {
-    &data_ov000_022cea50, &data_ov000_022cea50, &data_ov000_022cea50,
-    &data_ov000_022cea50, &data_ov000_022cea50};
+const void* data_ov000_022f6624[] = {&data_ov000_022cf3b0, &data_ov000_022cf3b0,
+                                     &data_ov000_022cf3b0, &data_ov000_022cf3b0,
+                                     &data_ov000_022cf3b0};
+const void* data_ov000_022f6610[] = {&data_ov000_022cea50, &data_ov000_022cea50,
+                                     &data_ov000_022cea50, &data_ov000_022cea50,
+                                     &data_ov000_022cea50};
 /* glyph width in pixels, per character */
-u8 Ov000_gGlyphWidths[256] = {
+u8 Ov000_gGlyphWidths[] = {
 #include "data/ov000/Ov000_gGlyphWidths.inc.c"
 };
 /* glyph pixels, 4 bits each, (width + 1) / 2 bytes per row */
-u8* Ov000_gGlyphPixels[256] = {
+u8* Ov000_gGlyphPixels[] = {
     (u8*)&data_ov000_022cb900, (u8*)&data_ov000_022cb940,
     (u8*)&data_ov000_022cb980, (u8*)&data_ov000_022cb9c0,
     (u8*)&data_ov000_022cba00, (u8*)&data_ov000_022cba40,

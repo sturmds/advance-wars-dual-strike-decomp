@@ -76,6 +76,6 @@ extern u8 data_ov004_022bde28[];
 extern u8 data_ov004_022bdeb4[];
 extern u8 data_ov004_022bdec4[];
 
-u32 data_ov004_022becf8[176] = {
+u32 data_ov004_022becf8[] = {
 #include "data/ov004/data_ov004_022becf8.inc.c"
 };

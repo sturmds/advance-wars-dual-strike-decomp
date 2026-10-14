@@ -6,7 +6,7 @@ const void* Terrain_GetPalette(int id, int army);
 void Palette_Load(const void* src, u32 offset, u32 size);
 
 extern Unk_027c0280* data_027c0280;
-s8 data_ov006_0236a7ac[8] = {
+s8 data_ov006_0236a7ac[] = {
 #include "data/ov006/data_ov006_0236a7ac.inc.c"
 };
 extern s8 data_ov006_0236a7ad[];

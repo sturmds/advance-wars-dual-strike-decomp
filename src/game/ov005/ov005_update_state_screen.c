@@ -30,7 +30,7 @@ extern Keypad* gKeypad;
 void Ov005StateScreen_OnNextTouched(void);
 
 /* "039" */
-char data_ov005_0236a630[4] = {
+char data_ov005_0236a630[] = {
 #include "data/ov005/data_ov005_0236a630.inc.c"
 };
 MenuButtonTemplate data_ov005_0236a634 = {

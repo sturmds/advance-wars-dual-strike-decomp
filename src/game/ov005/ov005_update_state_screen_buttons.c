@@ -29,7 +29,7 @@ MenuButtonTemplate data_ov005_0236a684 = {
 static MenuButtonTemplate data_ov005_0236a65c = {
 #include "data/ov005/data_ov005_0236a65c.inc.c"
 };
-TaskScriptCmd data_ov005_0236a724[5] = {
+TaskScriptCmd data_ov005_0236a724[] = {
 #include "data/ov005/data_ov005_0236a724.inc.c"
 };
 

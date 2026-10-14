@@ -19,7 +19,7 @@ void Ov005Ripple_ReleaseObjects(void);
 void Ov005_UpdateAffineBgScreen(void);
 void func_ov005_023531d8(void);
 
-static TaskScriptCmd data_ov005_02368020[5] = {
+static TaskScriptCmd data_ov005_02368020[] = {
 #include "data/ov005/data_ov005_02368020.inc.c"
 };
 extern const MenuButtonTemplate data_ov005_02368070[];

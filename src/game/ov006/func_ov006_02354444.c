@@ -24,22 +24,22 @@ void func_ov006_023544c4(void);
 void func_ov006_023545ac(void);
 void func_ov006_023545dc(void);
 
-static TaskScriptCmd data_ov006_0236acc4[11] = {
+static TaskScriptCmd data_ov006_0236acc4[] = {
 #include "data/ov006/data_ov006_0236acc4.inc.c"
 };
-u32 data_ov006_0236ae1c[32] = {
+u32 data_ov006_0236ae1c[] = {
 #include "data/ov006/data_ov006_0236ae1c.inc.c"
 };
-u32 data_ov006_0236ad9c[32] = {
+u32 data_ov006_0236ad9c[] = {
 #include "data/ov006/data_ov006_0236ad9c.inc.c"
 };
-u32 data_ov006_0236ad1c[32] = {
+u32 data_ov006_0236ad1c[] = {
 #include "data/ov006/data_ov006_0236ad1c.inc.c"
 };
-u32 data_ov006_0236ae9c[32] = {
+u32 data_ov006_0236ae9c[] = {
 #include "data/ov006/data_ov006_0236ae9c.inc.c"
 };
-u32 data_ov006_0236af1c[32] = {
+u32 data_ov006_0236af1c[] = {
 #include "data/ov006/data_ov006_0236af1c.inc.c"
 };
 

@@ -29,68 +29,68 @@ extern u8 data_ov000_022f5c38[];
 extern u8 data_ov000_022f5bd0[];
 
 /* per player slot: slot << 5, the owner bits of MapTiles.tiles */
-u16 Ov000_gPlayerTileOwnerBits[5] = {
+u16 Ov000_gPlayerTileOwnerBits[] = {
 #include "data/ov000/Ov000_gPlayerTileOwnerBits.inc.c"
 };
-u32 data_ov000_022f5c5c[4] = {
+u32 data_ov000_022f5c5c[] = {
 #include "data/ov000/data_ov000_022f5c5c.inc.c"
 };
-u32 data_ov000_022f5c7c[4] = {
+u32 data_ov000_022f5c7c[] = {
 #include "data/ov000/data_ov000_022f5c7c.inc.c"
 };
-u32 data_ov000_022f5c8c[4] = {
+u32 data_ov000_022f5c8c[] = {
 #include "data/ov000/data_ov000_022f5c8c.inc.c"
 };
-u32 data_ov000_022f5c9c[4] = {
+u32 data_ov000_022f5c9c[] = {
 #include "data/ov000/data_ov000_022f5c9c.inc.c"
 };
-u32 data_ov000_022f5c6c[4] = {
+u32 data_ov000_022f5c6c[] = {
 #include "data/ov000/data_ov000_022f5c6c.inc.c"
 };
-u8 data_ov000_022f5cac[28] = {
+u8 data_ov000_022f5cac[] = {
 #include "data/ov000/data_ov000_022f5cac.inc.c"
 };
-static u8 data_ov000_022f5cc8[28] = {
+static u8 data_ov000_022f5cc8[] = {
 #include "data/ov000/data_ov000_022f5cc8.inc.c"
 };
-u8 data_ov000_022f5ce4[28] = {
+u8 data_ov000_022f5ce4[] = {
 #include "data/ov000/data_ov000_022f5ce4.inc.c"
 };
-u8 Ov000_gFuelFreeTerrain[28] = {
+u8 Ov000_gFuelFreeTerrain[] = {
 #include "data/ov000/Ov000_gFuelFreeTerrain.inc.c"
 };
-const u8* data_ov000_022f5d1c[27] = {0,
-                                     (u8*)&data_ov000_022f5be0,
-                                     (u8*)&data_ov000_022f5c44,
-                                     (u8*)&data_ov000_022f5c6c,
-                                     (u8*)&data_ov000_022f5c6c,
-                                     (u8*)&data_ov000_022f5c7c,
-                                     (u8*)&data_ov000_022f5be8,
-                                     (u8*)&data_ov000_022f5bc4,
-                                     (u8*)&data_ov000_022f5c6c,
-                                     (u8*)&data_ov000_022f5c9c,
-                                     (u8*)&data_ov000_022f5bf0,
-                                     (u8*)&data_ov000_022f5c08,
-                                     (u8*)&data_ov000_022f5c5c,
-                                     (u8*)&data_ov000_022f5bc4,
-                                     (u8*)&data_ov000_022f5bfc,
-                                     (u8*)&data_ov000_022f5bd8,
-                                     (u8*)&data_ov000_022f5bc8,
-                                     (u8*)&data_ov000_022f5c14,
-                                     (u8*)&data_ov000_022f5bc4,
-                                     (u8*)&data_ov000_022f5c8c,
-                                     (u8*)&data_ov000_022f5bc4,
-                                     (u8*)&data_ov000_022f5c20,
-                                     (u8*)&data_ov000_022f5c38,
-                                     (u8*)&data_ov000_022f5bc4,
-                                     (u8*)&data_ov000_022f5bd0,
-                                     (u8*)&data_ov000_022f5bd8,
-                                     (u8*)&data_ov000_022f5bc4};
+const u8* data_ov000_022f5d1c[] = {0,
+                                   (u8*)&data_ov000_022f5be0,
+                                   (u8*)&data_ov000_022f5c44,
+                                   (u8*)&data_ov000_022f5c6c,
+                                   (u8*)&data_ov000_022f5c6c,
+                                   (u8*)&data_ov000_022f5c7c,
+                                   (u8*)&data_ov000_022f5be8,
+                                   (u8*)&data_ov000_022f5bc4,
+                                   (u8*)&data_ov000_022f5c6c,
+                                   (u8*)&data_ov000_022f5c9c,
+                                   (u8*)&data_ov000_022f5bf0,
+                                   (u8*)&data_ov000_022f5c08,
+                                   (u8*)&data_ov000_022f5c5c,
+                                   (u8*)&data_ov000_022f5bc4,
+                                   (u8*)&data_ov000_022f5bfc,
+                                   (u8*)&data_ov000_022f5bd8,
+                                   (u8*)&data_ov000_022f5bc8,
+                                   (u8*)&data_ov000_022f5c14,
+                                   (u8*)&data_ov000_022f5bc4,
+                                   (u8*)&data_ov000_022f5c8c,
+                                   (u8*)&data_ov000_022f5bc4,
+                                   (u8*)&data_ov000_022f5c20,
+                                   (u8*)&data_ov000_022f5c38,
+                                   (u8*)&data_ov000_022f5bc4,
+                                   (u8*)&data_ov000_022f5bd0,
+                                   (u8*)&data_ov000_022f5bd8,
+                                   (u8*)&data_ov000_022f5bc4};
 /* per army style, then per icon: tile / 4 */
-u16 data_ov000_022f5d88[6][27] = {
+u16 data_ov000_022f5d88[][27] = {
 #include "data/ov000/data_ov000_022f5d88.inc.c"
 };
-ForceRankInfo Ov000_gForceRankTable[128] = {
+ForceRankInfo Ov000_gForceRankTable[] = {
 #include "data/ov000/Ov000_gForceRankTable.inc.c"
 };
 extern void* data_ov000_0234eef0;

@@ -10,7 +10,7 @@ void Ov005State_ShowLayer2PictureA(void);
 void Ov005State_ShowPicture(void);
 void Ov005State_ShowTotalRankWall(void);
 
-static Unk_ov005_0236bba4_State data_ov005_0236a74c[41] = {
+static Unk_ov005_0236bba4_State data_ov005_0236a74c[] = {
 #include "data/ov005/data_ov005_0236a74c.inc.c"
 };
 

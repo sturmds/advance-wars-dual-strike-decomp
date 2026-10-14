@@ -20,11 +20,11 @@ extern Unk_027c0280* data_027c0280;
 extern u32 data_ov000_022f4cc4[][6];
 extern u32 data_ov000_022f4cc8[][6];
 /* first map entry of each type's 3x2 picture */
-static u32 data_ov000_023500a8[3] = {
+static u32 data_ov000_023500a8[] = {
 #include "data/ov000/data_ov000_023500a8.inc.c"
 };
 /* unit types checked for repairs */
-static int data_ov000_023500b4[3] = {
+static int data_ov000_023500b4[] = {
 #include "data/ov000/data_ov000_023500b4.inc.c"
 };
 

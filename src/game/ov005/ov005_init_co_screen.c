@@ -49,7 +49,7 @@ extern const u8 data_ov005_0236ac24[0x6c];
 void Ov005_UpdateCoPicture(void);
 void func_ov005_0236279c(void);
 
-static TaskScriptCmd data_ov005_0236ab6c[3] = {
+static TaskScriptCmd data_ov005_0236ab6c[] = {
 #include "data/ov005/data_ov005_0236ab6c.inc.c"
 };
 extern char data_ov005_0236ae50[]; /* "/rikiishi" */

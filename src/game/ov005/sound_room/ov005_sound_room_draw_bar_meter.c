@@ -13,11 +13,11 @@ u32 SND_GetChannelStatus(void);
 
 extern Unk_ov005_0236bbac* data_ov005_0236bbac;
 /* map bytes of a rotation/scaling BG by screen size */
-static const u32 data_ov005_02367fec[4] = {
+static const u32 data_ov005_02367fec[] = {
 #include "data/ov005/data_ov005_02367fec.inc.c"
 };
 /* map bytes of a text BG by screen size */
-static const u32 data_ov005_02367ffc[4] = {
+static const u32 data_ov005_02367ffc[] = {
 #include "data/ov005/data_ov005_02367ffc.inc.c"
 };
 

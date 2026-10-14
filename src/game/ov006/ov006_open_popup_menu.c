@@ -27,39 +27,39 @@ void func_ov006_023586e0(void);
 void func_ov006_02354684(void);
 void func_ov006_023546a0(void);
 
-static MenuItem data_ov006_0236af9c[4] = {
+static MenuItem data_ov006_0236af9c[] = {
 #include "data/ov006/data_ov006_0236af9c.inc.c"
 };
 /* declared `u8 data_ov006_0236b0bc[]` in func_ov006_02354090.c: relocation at data_ov006_0236b0bc+0x14 is not on a 4-byte field */
-u32 data_ov006_0236b0bc[40] = {
+u32 data_ov006_0236b0bc[] = {
 #include "data/ov006/data_ov006_0236b0bc.inc.c"
 };
 /* declared `u8 data_ov006_0236b15c[]` in func_ov006_02353f7c.c: relocation at data_ov006_0236b15c+0x4 is not on a 4-byte field */
-u32 data_ov006_0236b15c[40] = {
+u32 data_ov006_0236b15c[] = {
 #include "data/ov006/data_ov006_0236b15c.inc.c"
 };
 /* declared `u8 data_ov006_0236b01c[]` in func_ov006_02354090.c: relocation at data_ov006_0236b01c+0x14 is not on a 4-byte field */
-u32 data_ov006_0236b01c[40] = {
+u32 data_ov006_0236b01c[] = {
 #include "data/ov006/data_ov006_0236b01c.inc.c"
 };
 /* declared `u8 data_ov006_0236b2ac[]` in func_ov006_0235418c.c: relocation at data_ov006_0236b2ac+0x14 is not on a 4-byte field */
-u32 data_ov006_0236b2ac[44] = {
+u32 data_ov006_0236b2ac[] = {
 #include "data/ov006/data_ov006_0236b2ac.inc.c"
 };
 /* declared `u8 data_ov006_0236b35c[]` in func_ov006_02354168.c: relocation at data_ov006_0236b35c+0x14 is not on a 4-byte field */
-u32 data_ov006_0236b35c[44] = {
+u32 data_ov006_0236b35c[] = {
 #include "data/ov006/data_ov006_0236b35c.inc.c"
 };
 /* declared `u8 data_ov006_0236b1fc[]` in func_ov006_023541b0.c: relocation at data_ov006_0236b1fc+0x14 is not on a 4-byte field */
-u32 data_ov006_0236b1fc[44] = {
+u32 data_ov006_0236b1fc[] = {
 #include "data/ov006/data_ov006_0236b1fc.inc.c"
 };
 /* declared `u8 data_ov006_0236b40c[]` in func_ov006_023541f8.c: relocation at data_ov006_0236b40c+0x14 is not on a 4-byte field */
-u32 data_ov006_0236b40c[44] = {
+u32 data_ov006_0236b40c[] = {
 #include "data/ov006/data_ov006_0236b40c.inc.c"
 };
 /* declared `u8 data_ov006_0236b4bc[]` in func_ov006_023541d4.c: relocation at data_ov006_0236b4bc+0x14 is not on a 4-byte field */
-u32 data_ov006_0236b4bc[44] = {
+u32 data_ov006_0236b4bc[] = {
 #include "data/ov006/data_ov006_0236b4bc.inc.c"
 };
 

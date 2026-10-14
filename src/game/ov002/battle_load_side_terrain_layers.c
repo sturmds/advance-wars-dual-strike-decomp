@@ -11,100 +11,100 @@ int Battle_IsSideDrawnInAir(int side); /* 1: the side is drawn in the sky */
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
 
-static char data_ov002_02360164[4] = {
+static char data_ov002_02360164[] = {
 #include "data/ov002/data_ov002_02360164.inc.c"
 };
-static char data_ov002_02360160[4] = {
+static char data_ov002_02360160[] = {
 #include "data/ov002/data_ov002_02360160.inc.c"
 };
-static char data_ov002_0236015c[4] = {
+static char data_ov002_0236015c[] = {
 #include "data/ov002/data_ov002_0236015c.inc.c"
 };
-static char data_ov002_02360158[4] = {
+static char data_ov002_02360158[] = {
 #include "data/ov002/data_ov002_02360158.inc.c"
 };
-static char data_ov002_02360154[4] = {
+static char data_ov002_02360154[] = {
 #include "data/ov002/data_ov002_02360154.inc.c"
 };
-static char data_ov002_02360150[4] = {
+static char data_ov002_02360150[] = {
 #include "data/ov002/data_ov002_02360150.inc.c"
 };
-static char data_ov002_0236014c[4] = {
+static char data_ov002_0236014c[] = {
 #include "data/ov002/data_ov002_0236014c.inc.c"
 };
-static char data_ov002_02360148[4] = {
+static char data_ov002_02360148[] = {
 #include "data/ov002/data_ov002_02360148.inc.c"
 };
-static char data_ov002_02360144[4] = {
+static char data_ov002_02360144[] = {
 #include "data/ov002/data_ov002_02360144.inc.c"
 };
-static char data_ov002_02360140[4] = {
+static char data_ov002_02360140[] = {
 #include "data/ov002/data_ov002_02360140.inc.c"
 };
-static char data_ov002_0236013c[4] = {
+static char data_ov002_0236013c[] = {
 #include "data/ov002/data_ov002_0236013c.inc.c"
 };
-static char data_ov002_02360138[4] = {
+static char data_ov002_02360138[] = {
 #include "data/ov002/data_ov002_02360138.inc.c"
 };
-static char data_ov002_02360134[4] = {
+static char data_ov002_02360134[] = {
 #include "data/ov002/data_ov002_02360134.inc.c"
 };
-static char data_ov002_02360130[4] = {
+static char data_ov002_02360130[] = {
 #include "data/ov002/data_ov002_02360130.inc.c"
 };
-static char data_ov002_0236012c[4] = {
+static char data_ov002_0236012c[] = {
 #include "data/ov002/data_ov002_0236012c.inc.c"
 };
-static char data_ov002_02360128[4] = {
+static char data_ov002_02360128[] = {
 #include "data/ov002/data_ov002_02360128.inc.c"
 };
-static char data_ov002_02360124[4] = {
+static char data_ov002_02360124[] = {
 #include "data/ov002/data_ov002_02360124.inc.c"
 };
-static char data_ov002_02360120[4] = {
+static char data_ov002_02360120[] = {
 #include "data/ov002/data_ov002_02360120.inc.c"
 };
-static char data_ov002_0236011c[4] = {
+static char data_ov002_0236011c[] = {
 #include "data/ov002/data_ov002_0236011c.inc.c"
 };
-static char data_ov002_02360118[4] = {
+static char data_ov002_02360118[] = {
 #include "data/ov002/data_ov002_02360118.inc.c"
 };
-static char data_ov002_02360114[4] = {
+static char data_ov002_02360114[] = {
 #include "data/ov002/data_ov002_02360114.inc.c"
 };
-static char data_ov002_02360110[4] = {
+static char data_ov002_02360110[] = {
 #include "data/ov002/data_ov002_02360110.inc.c"
 };
-static char data_ov002_0236010c[4] = {
+static char data_ov002_0236010c[] = {
 #include "data/ov002/data_ov002_0236010c.inc.c"
 };
-static char data_ov002_02360108[4] = {
+static char data_ov002_02360108[] = {
 #include "data/ov002/data_ov002_02360108.inc.c"
 };
-static char data_ov002_02360104[4] = {
+static char data_ov002_02360104[] = {
 #include "data/ov002/data_ov002_02360104.inc.c"
 };
-static char data_ov002_02360100[4] = {
+static char data_ov002_02360100[] = {
 #include "data/ov002/data_ov002_02360100.inc.c"
 };
-static char data_ov002_023600fc[4] = {
+static char data_ov002_023600fc[] = {
 #include "data/ov002/data_ov002_023600fc.inc.c"
 };
-static char data_ov002_023600f8[4] = {
+static char data_ov002_023600f8[] = {
 #include "data/ov002/data_ov002_023600f8.inc.c"
 };
-static char data_ov002_023600f4[4] = {
+static char data_ov002_023600f4[] = {
 #include "data/ov002/data_ov002_023600f4.inc.c"
 };
-static char data_ov002_023600f0[4] = {
+static char data_ov002_023600f0[] = {
 #include "data/ov002/data_ov002_023600f0.inc.c"
 };
-static char data_ov002_023600ec[4] = {
+static char data_ov002_023600ec[] = {
 #include "data/ov002/data_ov002_023600ec.inc.c"
 };
-static char data_ov002_02360168[4] = {
+static char data_ov002_02360168[] = {
 #include "data/ov002/data_ov002_02360168.inc.c"
 };
 

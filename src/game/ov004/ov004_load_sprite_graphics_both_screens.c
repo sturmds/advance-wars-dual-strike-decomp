@@ -10,39 +10,39 @@ void Palette_LoadFromFile(const char* fileName, int fileOffset,
 
 extern char data_ov004_022bf0dc[]; /* directory */
 /* layer 2 map */
-char data_ov004_022bf114[4] = {
+char data_ov004_022bf114[] = {
 #include "data/ov004/data_ov004_022bf114.inc.c"
 };
 /* layer 2 tiles */
-char data_ov004_022bf110[4] = {
+char data_ov004_022bf110[] = {
 #include "data/ov004/data_ov004_022bf110.inc.c"
 };
 /* layer 1 palette */
-char data_ov004_022bf10c[4] = {
+char data_ov004_022bf10c[] = {
 #include "data/ov004/data_ov004_022bf10c.inc.c"
 };
 /* layer 1 map */
-char data_ov004_022bf108[4] = {
+char data_ov004_022bf108[] = {
 #include "data/ov004/data_ov004_022bf108.inc.c"
 };
 /* layer 1 tiles */
-char data_ov004_022bf104[4] = {
+char data_ov004_022bf104[] = {
 #include "data/ov004/data_ov004_022bf104.inc.c"
 };
 /* sprite palette */
-char data_ov004_022bf100[4] = {
+char data_ov004_022bf100[] = {
 #include "data/ov004/data_ov004_022bf100.inc.c"
 };
 /* sprite tiles */
-static char data_ov004_022bf0fc[4] = {
+static char data_ov004_022bf0fc[] = {
 #include "data/ov004/data_ov004_022bf0fc.inc.c"
 };
 /* sprite data read by Ov004Task_InitSprite */
-static char data_ov004_022bf0f8[4] = {
+static char data_ov004_022bf0f8[] = {
 #include "data/ov004/data_ov004_022bf0f8.inc.c"
 };
 /* layer 2 palette */
-char data_ov004_022bf118[4] = {
+char data_ov004_022bf118[] = {
 #include "data/ov004/data_ov004_022bf118.inc.c"
 };
 

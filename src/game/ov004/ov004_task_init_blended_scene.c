@@ -49,17 +49,17 @@ void func_ov004_022bd654(void);
 u32 data_ov004_022befb8 = {
 #include "data/ov004/data_ov004_022befb8.inc.c"
 };
-static TaskScriptCmd data_ov004_022befbc[3] = {
+static TaskScriptCmd data_ov004_022befbc[] = {
 #include "data/ov004/data_ov004_022befbc.inc.c"
 };
-static TaskScriptCmd data_ov004_022befd4[4] = {
+static TaskScriptCmd data_ov004_022befd4[] = {
 #include "data/ov004/data_ov004_022befd4.inc.c"
 };
-TaskScriptCmd data_ov004_022beff4[4] = {
+TaskScriptCmd data_ov004_022beff4[] = {
 #include "data/ov004/data_ov004_022beff4.inc.c"
 };
 /* script of each child task */
-TaskScriptCmd data_ov004_022bf014[5] = {
+TaskScriptCmd data_ov004_022bf014[] = {
 #include "data/ov004/data_ov004_022bf014.inc.c"
 };
 #pragma explicit_zero_data reset

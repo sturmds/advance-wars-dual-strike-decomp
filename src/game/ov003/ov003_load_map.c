@@ -6,7 +6,7 @@
 extern Ov003Marker data_ov003_02369bb8[4];
 extern u8
     data_ov003_02365d10[]; /* per tile code: bits 5-7 row, bits 0-4 terrain */
-static char data_ov003_0236492c[8] = {
+static char data_ov003_0236492c[] = {
 #include "data/ov003/data_ov003_0236492c.inc.c"
 };
 

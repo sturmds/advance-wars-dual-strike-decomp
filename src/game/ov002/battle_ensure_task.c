@@ -10,10 +10,10 @@ void func_020266b4(void);
 void func_020dc71c(void);
 void func_ov002_02350d20(void);
 
-TaskScriptCmd data_ov002_02360044[2] = {
+TaskScriptCmd data_ov002_02360044[] = {
 #include "data/ov002/data_ov002_02360044.inc.c"
 };
-static TaskScriptCmd data_ov002_02360054[8] = {
+static TaskScriptCmd data_ov002_02360054[] = {
 #include "data/ov002/data_ov002_02360054.inc.c"
 };
 

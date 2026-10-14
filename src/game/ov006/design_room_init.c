@@ -43,7 +43,7 @@ extern u8 data_022a7d5c[];
 extern const TaskScriptCmd data_ov006_0236a218[];
 void Ov006_UpdateSubScreen(void);
 
-static TaskScriptCmd data_ov006_0236a1e0[2] = {
+static TaskScriptCmd data_ov006_0236a1e0[] = {
 #include "data/ov006/data_ov006_0236a1e0.inc.c"
 };
 

@@ -9,36 +9,36 @@ void func_ov006_0235433c(void);
 void func_ov006_023543c4(void);
 
 /* layer 3 tiles */
-char gMapeditFile006[4] = {
+char gMapeditFile006[] = {
 #include "data/ov006/gMapeditFile006.inc.c"
 };
-char gMapeditFile005[4] = {
+char gMapeditFile005[] = {
 #include "data/ov006/gMapeditFile005.inc.c"
 };
-char gMapeditFile004[4] = {
+char gMapeditFile004[] = {
 #include "data/ov006/gMapeditFile004.inc.c"
 };
-char gMapeditFile00a[4] = {
+char gMapeditFile00a[] = {
 #include "data/ov006/gMapeditFile00a.inc.c"
 };
-char gMapeditFile009[4] = {
+char gMapeditFile009[] = {
 #include "data/ov006/gMapeditFile009.inc.c"
 };
-char gMapeditFile001[4] = {
+char gMapeditFile001[] = {
 #include "data/ov006/gMapeditFile001.inc.c"
 };
 /* layer 3 palette */
-char gMapeditFile008[4] = {
+char gMapeditFile008[] = {
 #include "data/ov006/gMapeditFile008.inc.c"
 };
 /* layer 3 map */
-char gMapeditFile007[4] = {
+char gMapeditFile007[] = {
 #include "data/ov006/gMapeditFile007.inc.c"
 };
-static TaskScriptCmd data_ov006_0236ab54[7] = {
+static TaskScriptCmd data_ov006_0236ab54[] = {
 #include "data/ov006/data_ov006_0236ab54.inc.c"
 };
-TaskScriptCmd data_ov006_0236ab8c[7] = {
+TaskScriptCmd data_ov006_0236ab8c[] = {
 #include "data/ov006/data_ov006_0236ab8c.inc.c"
 };
 

@@ -52,62 +52,62 @@ void func_ov006_023578bc(void);
 void func_ov006_02357a6c(void);
 
 /* "001" */
-char data_ov006_0236b8b4[4] = {
+char data_ov006_0236b8b4[] = {
 #include "data/ov006/data_ov006_0236b8b4.inc.c"
 };
 /* "002" */
-char data_ov006_0236b8b0[4] = {
+char data_ov006_0236b8b0[] = {
 #include "data/ov006/data_ov006_0236b8b0.inc.c"
 };
 /* declared `u8 data_ov006_0236b8e0[]` in func_ov006_02357770.c: relocation at data_ov006_0236b8e0+0x0 is not on a 4-byte field */
-u32 data_ov006_0236b8e0[10] = {
+u32 data_ov006_0236b8e0[] = {
 #include "data/ov006/data_ov006_0236b8e0.inc.c"
 };
 /* declared `u8 data_ov006_0236b8b8[]` in func_ov006_02357920.c: relocation at data_ov006_0236b8b8+0x0 is not on a 4-byte field */
-u32 data_ov006_0236b8b8[10] = {
+u32 data_ov006_0236b8b8[] = {
 #include "data/ov006/data_ov006_0236b8b8.inc.c"
 };
 /* declared `u8 data_ov006_0236b908[]` in func_ov006_023578bc.c: relocation at data_ov006_0236b908+0x0 is not on a 4-byte field */
-u32 data_ov006_0236b908[14] = {
+u32 data_ov006_0236b908[] = {
 #include "data/ov006/data_ov006_0236b908.inc.c"
 };
 /* declared `u8 data_ov006_0236b940[]` in func_ov006_02357a6c.c: relocation at data_ov006_0236b940+0x0 is not on a 4-byte field */
-u32 data_ov006_0236b940[14] = {
+u32 data_ov006_0236b940[] = {
 #include "data/ov006/data_ov006_0236b940.inc.c"
 };
 /* declared `u8 data_ov006_0236b978[]` in func_ov006_02357eac.c: relocation at data_ov006_0236b978+0x8 is not on a 4-byte field */
-u32 data_ov006_0236b978[26] = {
+u32 data_ov006_0236b978[] = {
 #include "data/ov006/data_ov006_0236b978.inc.c"
 };
-MenuItem data_ov006_0236ba60[4] = {
+MenuItem data_ov006_0236ba60[] = {
 #include "data/ov006/data_ov006_0236ba60.inc.c"
 };
-u32 data_ov006_0236bae0[32] = {
+u32 data_ov006_0236bae0[] = {
 #include "data/ov006/data_ov006_0236bae0.inc.c"
 };
-static MenuItem data_ov006_0236b9e0[4] = {
+static MenuItem data_ov006_0236b9e0[] = {
 #include "data/ov006/data_ov006_0236b9e0.inc.c"
 };
 /* declared `u8 data_ov006_0236bb60[]` in ov006_start_id_script.c: relocation at data_ov006_0236bb60+0x14 is not on a 4-byte field */
-u32 data_ov006_0236bb60[40] = {
+u32 data_ov006_0236bb60[] = {
 #include "data/ov006/data_ov006_0236bb60.inc.c"
 };
 /* declared `u8 data_ov006_0236bc00[]` in ov006_start_id_script.c: relocation at data_ov006_0236bc00+0x14 is not on a 4-byte field */
-u32 data_ov006_0236bc00[40] = {
+u32 data_ov006_0236bc00[] = {
 #include "data/ov006/data_ov006_0236bc00.inc.c"
 };
 /* declared `u8 data_ov006_0236bd50[]` in ov006_start_id_script.c: relocation at data_ov006_0236bd50+0x14 is not on a 4-byte field */
-u32 data_ov006_0236bd50[44] = {
+u32 data_ov006_0236bd50[] = {
 #include "data/ov006/data_ov006_0236bd50.inc.c"
 };
 /* declared `u8 data_ov006_0236bca0[]` in ov006_start_id_script.c: relocation at data_ov006_0236bca0+0x14 is not on a 4-byte field */
-u32 data_ov006_0236bca0[44] = {
+u32 data_ov006_0236bca0[] = {
 #include "data/ov006/data_ov006_0236bca0.inc.c"
 };
-u32 data_ov006_0236be00[72] = {
+u32 data_ov006_0236be00[] = {
 #include "data/ov006/data_ov006_0236be00.inc.c"
 };
-u32 data_ov006_0236bf20[72] = {
+u32 data_ov006_0236bf20[] = {
 #include "data/ov006/data_ov006_0236bf20.inc.c"
 };
 

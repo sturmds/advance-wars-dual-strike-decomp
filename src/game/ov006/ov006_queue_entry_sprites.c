@@ -94,28 +94,28 @@ extern u8 data_ov006_0236a608[];
 extern u8 data_ov006_0236a530[];
 extern u8 data_ov006_0236a600[];
 
-u8 data_ov006_0236a844[26][2] = {
+u8 data_ov006_0236a844[][2] = {
 #include "data/ov006/data_ov006_0236a844.inc.c"
 };
-u8 data_ov006_0236a810[26][2] = {
+u8 data_ov006_0236a810[][2] = {
 #include "data/ov006/data_ov006_0236a810.inc.c"
 };
 /* declared `void* data_ov006_0236a8c0[ENTRY_COUNT]` in ov006_queue_terrain_entry_sprites.c: declared in src/game/ov006/ov006_queue_terrain_entry_sprites.c, with a type no header defines */
-void* data_ov006_0236a8c0[18] = {
+void* data_ov006_0236a8c0[] = {
     &data_ov006_0236a758, &data_ov006_0236a750, &data_ov006_0236a748,
     &data_ov006_0236a740, &data_ov006_0236a5f8, &data_ov006_0236a730,
     &data_ov006_0236a728, &data_ov006_0236a720, &data_ov006_0236a718,
     &data_ov006_0236a710, &data_ov006_0236a708, &data_ov006_0236a700,
     &data_ov006_0236a6f8, &data_ov006_0236a6f0, &data_ov006_0236a6e8,
     &data_ov006_0236a6e0, &data_ov006_0236a6d8, &data_ov006_0236a6d0};
-void* data_ov006_0236a878[18] = {
+void* data_ov006_0236a878[] = {
     &data_ov006_0236a528, &data_ov006_0236a580, &data_ov006_0236a500,
     &data_ov006_0236a5b8, &data_ov006_0236a4f0, &data_ov006_0236a518,
     &data_ov006_0236a520, &data_ov006_0236a6b8, &data_ov006_0236a4e0,
     &data_ov006_0236a738, &data_ov006_0236a4e8, &data_ov006_0236a4d0,
     &data_ov006_0236a788, &data_ov006_0236a780, &data_ov006_0236a778,
     &data_ov006_0236a770, &data_ov006_0236a768, &data_ov006_0236a760};
-static void* data_ov006_0236a908[26] = {
+static void* data_ov006_0236a908[] = {
     &data_ov006_0236a6c8, &data_ov006_0236a6c0, &data_ov006_0236a4d8,
     &data_ov006_0236a6b0, &data_ov006_0236a6a8, &data_ov006_0236a6a0,
     &data_ov006_0236a698, &data_ov006_0236a690, &data_ov006_0236a688,
@@ -125,7 +125,7 @@ static void* data_ov006_0236a908[26] = {
     &data_ov006_0236a638, &data_ov006_0236a630, &data_ov006_0236a628,
     &data_ov006_0236a620, &data_ov006_0236a618, &data_ov006_0236a610,
     &data_ov006_0236a608, &data_ov006_0236a600};
-static void* data_ov006_0236a970[26] = {
+static void* data_ov006_0236a970[] = {
     &data_ov006_0236a558, &data_ov006_0236a5f0, &data_ov006_0236a5e8,
     &data_ov006_0236a5e0, &data_ov006_0236a5d8, &data_ov006_0236a5d0,
     &data_ov006_0236a5c8, &data_ov006_0236a5c0, &data_ov006_0236a4f8,

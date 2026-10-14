@@ -188,296 +188,296 @@ void func_ov004_022baa9c(void);
 void func_ov004_022baccc(void);
 extern u8 data_0217fb08[];
 
-char data_ov004_022bde40[8] = {
+char data_ov004_022bde40[] = {
 #include "data/ov004/data_ov004_022bde40.inc.c"
 };
 /* "/syogun" */
-char data_ov004_022bde38[8] = {
+char data_ov004_022bde38[] = {
 #include "data/ov004/data_ov004_022bde38.inc.c"
 };
-char data_ov004_022bde48[10] = {
+char data_ov004_022bde48[] = {
 #include "data/ov004/data_ov004_022bde48.inc.c"
 };
-char data_ov004_022bde64[14] = {
+char data_ov004_022bde64[] = {
 #include "data/ov004/data_ov004_022bde64.inc.c"
 };
-char data_ov004_022bde54[14] = {
+char data_ov004_022bde54[] = {
 #include "data/ov004/data_ov004_022bde54.inc.c"
 };
-char data_ov004_022bde74[15] = {
+char data_ov004_022bde74[] = {
 #include "data/ov004/data_ov004_022bde74.inc.c"
 };
-char data_ov004_022bdeb4[16] = {
+char data_ov004_022bdeb4[] = {
 #include "data/ov004/data_ov004_022bdeb4.inc.c"
 };
-char data_ov004_022bde84[16] = {
+char data_ov004_022bde84[] = {
 #include "data/ov004/data_ov004_022bde84.inc.c"
 };
-char data_ov004_022bde94[16] = {
+char data_ov004_022bde94[] = {
 #include "data/ov004/data_ov004_022bde94.inc.c"
 };
-char data_ov004_022bdea4[16] = {
+char data_ov004_022bdea4[] = {
 #include "data/ov004/data_ov004_022bdea4.inc.c"
 };
-char data_ov004_022bdec4[18] = {
+char data_ov004_022bdec4[] = {
 #include "data/ov004/data_ov004_022bdec4.inc.c"
 };
-TaskScriptCmd data_ov004_022bdf80[3] = {
+TaskScriptCmd data_ov004_022bdf80[] = {
 #include "data/ov004/data_ov004_022bdf80.inc.c"
 };
-TaskScriptCmd data_ov004_022bdf68[3] = {
+TaskScriptCmd data_ov004_022bdf68[] = {
 #include "data/ov004/data_ov004_022bdf68.inc.c"
 };
-TaskScriptCmd data_ov004_022bdef0[3] = {
+TaskScriptCmd data_ov004_022bdef0[] = {
 #include "data/ov004/data_ov004_022bdef0.inc.c"
 };
-TaskScriptCmd data_ov004_022bdf20[3] = {
+TaskScriptCmd data_ov004_022bdf20[] = {
 #include "data/ov004/data_ov004_022bdf20.inc.c"
 };
-TaskScriptCmd data_ov004_022bdf50[3] = {
+TaskScriptCmd data_ov004_022bdf50[] = {
 #include "data/ov004/data_ov004_022bdf50.inc.c"
 };
-TaskScriptCmd data_ov004_022bded8[3] = {
+TaskScriptCmd data_ov004_022bded8[] = {
 #include "data/ov004/data_ov004_022bded8.inc.c"
 };
-TaskScriptCmd data_ov004_022bdf08[3] = {
+TaskScriptCmd data_ov004_022bdf08[] = {
 #include "data/ov004/data_ov004_022bdf08.inc.c"
 };
-TaskScriptCmd data_ov004_022bdf38[3] = {
+TaskScriptCmd data_ov004_022bdf38[] = {
 #include "data/ov004/data_ov004_022bdf38.inc.c"
 };
-TaskScriptCmd data_ov004_022be698[4] = {
+TaskScriptCmd data_ov004_022be698[] = {
 #include "data/ov004/data_ov004_022be698.inc.c"
 };
-TaskScriptCmd data_ov004_022be678[4] = {
+TaskScriptCmd data_ov004_022be678[] = {
 #include "data/ov004/data_ov004_022be678.inc.c"
 };
-TaskScriptCmd data_ov004_022be658[4] = {
+TaskScriptCmd data_ov004_022be658[] = {
 #include "data/ov004/data_ov004_022be658.inc.c"
 };
-TaskScriptCmd data_ov004_022be638[4] = {
+TaskScriptCmd data_ov004_022be638[] = {
 #include "data/ov004/data_ov004_022be638.inc.c"
 };
-TaskScriptCmd data_ov004_022be618[4] = {
+TaskScriptCmd data_ov004_022be618[] = {
 #include "data/ov004/data_ov004_022be618.inc.c"
 };
-TaskScriptCmd data_ov004_022be558[4] = {
+TaskScriptCmd data_ov004_022be558[] = {
 #include "data/ov004/data_ov004_022be558.inc.c"
 };
-TaskScriptCmd data_ov004_022be5b8[4] = {
+TaskScriptCmd data_ov004_022be5b8[] = {
 #include "data/ov004/data_ov004_022be5b8.inc.c"
 };
-TaskScriptCmd data_ov004_022be5d8[4] = {
+TaskScriptCmd data_ov004_022be5d8[] = {
 #include "data/ov004/data_ov004_022be5d8.inc.c"
 };
-TaskScriptCmd data_ov004_022be6b8[4] = {
+TaskScriptCmd data_ov004_022be6b8[] = {
 #include "data/ov004/data_ov004_022be6b8.inc.c"
 };
-TaskScriptCmd data_ov004_022be6d8[4] = {
+TaskScriptCmd data_ov004_022be6d8[] = {
 #include "data/ov004/data_ov004_022be6d8.inc.c"
 };
-TaskScriptCmd data_ov004_022be738[4] = {
+TaskScriptCmd data_ov004_022be738[] = {
 #include "data/ov004/data_ov004_022be738.inc.c"
 };
-TaskScriptCmd data_ov004_022be758[4] = {
+TaskScriptCmd data_ov004_022be758[] = {
 #include "data/ov004/data_ov004_022be758.inc.c"
 };
-TaskScriptCmd data_ov004_022be798[4] = {
+TaskScriptCmd data_ov004_022be798[] = {
 #include "data/ov004/data_ov004_022be798.inc.c"
 };
-TaskScriptCmd data_ov004_022be7b8[4] = {
+TaskScriptCmd data_ov004_022be7b8[] = {
 #include "data/ov004/data_ov004_022be7b8.inc.c"
 };
-TaskScriptCmd data_ov004_022be4d8[4] = {
+TaskScriptCmd data_ov004_022be4d8[] = {
 #include "data/ov004/data_ov004_022be4d8.inc.c"
 };
-TaskScriptCmd data_ov004_022be4b8[4] = {
+TaskScriptCmd data_ov004_022be4b8[] = {
 #include "data/ov004/data_ov004_022be4b8.inc.c"
 };
-TaskScriptCmd data_ov004_022be498[4] = {
+TaskScriptCmd data_ov004_022be498[] = {
 #include "data/ov004/data_ov004_022be498.inc.c"
 };
-TaskScriptCmd data_ov004_022be478[4] = {
+TaskScriptCmd data_ov004_022be478[] = {
 #include "data/ov004/data_ov004_022be478.inc.c"
 };
-TaskScriptCmd data_ov004_022be458[4] = {
+TaskScriptCmd data_ov004_022be458[] = {
 #include "data/ov004/data_ov004_022be458.inc.c"
 };
-TaskScriptCmd data_ov004_022be438[4] = {
+TaskScriptCmd data_ov004_022be438[] = {
 #include "data/ov004/data_ov004_022be438.inc.c"
 };
-TaskScriptCmd data_ov004_022be418[4] = {
+TaskScriptCmd data_ov004_022be418[] = {
 #include "data/ov004/data_ov004_022be418.inc.c"
 };
-TaskScriptCmd data_ov004_022be078[4] = {
+TaskScriptCmd data_ov004_022be078[] = {
 #include "data/ov004/data_ov004_022be078.inc.c"
 };
-TaskScriptCmd data_ov004_022be3d8[4] = {
+TaskScriptCmd data_ov004_022be3d8[] = {
 #include "data/ov004/data_ov004_022be3d8.inc.c"
 };
-TaskScriptCmd data_ov004_022be3b8[4] = {
+TaskScriptCmd data_ov004_022be3b8[] = {
 #include "data/ov004/data_ov004_022be3b8.inc.c"
 };
-TaskScriptCmd data_ov004_022be398[4] = {
+TaskScriptCmd data_ov004_022be398[] = {
 #include "data/ov004/data_ov004_022be398.inc.c"
 };
-TaskScriptCmd data_ov004_022be378[4] = {
+TaskScriptCmd data_ov004_022be378[] = {
 #include "data/ov004/data_ov004_022be378.inc.c"
 };
-TaskScriptCmd data_ov004_022be358[4] = {
+TaskScriptCmd data_ov004_022be358[] = {
 #include "data/ov004/data_ov004_022be358.inc.c"
 };
-TaskScriptCmd data_ov004_022be338[4] = {
+TaskScriptCmd data_ov004_022be338[] = {
 #include "data/ov004/data_ov004_022be338.inc.c"
 };
-TaskScriptCmd data_ov004_022be0f8[4] = {
+TaskScriptCmd data_ov004_022be0f8[] = {
 #include "data/ov004/data_ov004_022be0f8.inc.c"
 };
-TaskScriptCmd data_ov004_022be118[4] = {
+TaskScriptCmd data_ov004_022be118[] = {
 #include "data/ov004/data_ov004_022be118.inc.c"
 };
-TaskScriptCmd data_ov004_022be2d8[4] = {
+TaskScriptCmd data_ov004_022be2d8[] = {
 #include "data/ov004/data_ov004_022be2d8.inc.c"
 };
-TaskScriptCmd data_ov004_022be2b8[4] = {
+TaskScriptCmd data_ov004_022be2b8[] = {
 #include "data/ov004/data_ov004_022be2b8.inc.c"
 };
-TaskScriptCmd data_ov004_022be298[4] = {
+TaskScriptCmd data_ov004_022be298[] = {
 #include "data/ov004/data_ov004_022be298.inc.c"
 };
-TaskScriptCmd data_ov004_022be278[4] = {
+TaskScriptCmd data_ov004_022be278[] = {
 #include "data/ov004/data_ov004_022be278.inc.c"
 };
-TaskScriptCmd data_ov004_022be258[4] = {
+TaskScriptCmd data_ov004_022be258[] = {
 #include "data/ov004/data_ov004_022be258.inc.c"
 };
-TaskScriptCmd data_ov004_022be1d8[4] = {
+TaskScriptCmd data_ov004_022be1d8[] = {
 #include "data/ov004/data_ov004_022be1d8.inc.c"
 };
-TaskScriptCmd data_ov004_022be218[4] = {
+TaskScriptCmd data_ov004_022be218[] = {
 #include "data/ov004/data_ov004_022be218.inc.c"
 };
-TaskScriptCmd data_ov004_022be238[4] = {
+TaskScriptCmd data_ov004_022be238[] = {
 #include "data/ov004/data_ov004_022be238.inc.c"
 };
-TaskScriptCmd data_ov004_022be3f8[4] = {
+TaskScriptCmd data_ov004_022be3f8[] = {
 #include "data/ov004/data_ov004_022be3f8.inc.c"
 };
-TaskScriptCmd data_ov004_022be4f8[4] = {
+TaskScriptCmd data_ov004_022be4f8[] = {
 #include "data/ov004/data_ov004_022be4f8.inc.c"
 };
-TaskScriptCmd data_ov004_022be538[4] = {
+TaskScriptCmd data_ov004_022be538[] = {
 #include "data/ov004/data_ov004_022be538.inc.c"
 };
-TaskScriptCmd data_ov004_022be578[4] = {
+TaskScriptCmd data_ov004_022be578[] = {
 #include "data/ov004/data_ov004_022be578.inc.c"
 };
-TaskScriptCmd data_ov004_022be5f8[4] = {
+TaskScriptCmd data_ov004_022be5f8[] = {
 #include "data/ov004/data_ov004_022be5f8.inc.c"
 };
-TaskScriptCmd data_ov004_022be6f8[4] = {
+TaskScriptCmd data_ov004_022be6f8[] = {
 #include "data/ov004/data_ov004_022be6f8.inc.c"
 };
-TaskScriptCmd data_ov004_022be778[4] = {
+TaskScriptCmd data_ov004_022be778[] = {
 #include "data/ov004/data_ov004_022be778.inc.c"
 };
-TaskScriptCmd data_ov004_022be7d8[4] = {
+TaskScriptCmd data_ov004_022be7d8[] = {
 #include "data/ov004/data_ov004_022be7d8.inc.c"
 };
-TaskScriptCmd data_ov004_022be0d8[4] = {
+TaskScriptCmd data_ov004_022be0d8[] = {
 #include "data/ov004/data_ov004_022be0d8.inc.c"
 };
-TaskScriptCmd data_ov004_022be0b8[4] = {
+TaskScriptCmd data_ov004_022be0b8[] = {
 #include "data/ov004/data_ov004_022be0b8.inc.c"
 };
-TaskScriptCmd data_ov004_022be098[4] = {
+TaskScriptCmd data_ov004_022be098[] = {
 #include "data/ov004/data_ov004_022be098.inc.c"
 };
-TaskScriptCmd data_ov004_022bdfb8[4] = {
+TaskScriptCmd data_ov004_022bdfb8[] = {
 #include "data/ov004/data_ov004_022bdfb8.inc.c"
 };
-TaskScriptCmd data_ov004_022be058[4] = {
+TaskScriptCmd data_ov004_022be058[] = {
 #include "data/ov004/data_ov004_022be058.inc.c"
 };
-TaskScriptCmd data_ov004_022bdff8[4] = {
+TaskScriptCmd data_ov004_022bdff8[] = {
 #include "data/ov004/data_ov004_022bdff8.inc.c"
 };
-TaskScriptCmd data_ov004_022be038[4] = {
+TaskScriptCmd data_ov004_022be038[] = {
 #include "data/ov004/data_ov004_022be038.inc.c"
 };
-TaskScriptCmd data_ov004_022be138[4] = {
+TaskScriptCmd data_ov004_022be138[] = {
 #include "data/ov004/data_ov004_022be138.inc.c"
 };
-TaskScriptCmd data_ov004_022be178[4] = {
+TaskScriptCmd data_ov004_022be178[] = {
 #include "data/ov004/data_ov004_022be178.inc.c"
 };
-TaskScriptCmd data_ov004_022be198[4] = {
+TaskScriptCmd data_ov004_022be198[] = {
 #include "data/ov004/data_ov004_022be198.inc.c"
 };
-TaskScriptCmd data_ov004_022be1f8[4] = {
+TaskScriptCmd data_ov004_022be1f8[] = {
 #include "data/ov004/data_ov004_022be1f8.inc.c"
 };
-TaskScriptCmd data_ov004_022be2f8[4] = {
+TaskScriptCmd data_ov004_022be2f8[] = {
 #include "data/ov004/data_ov004_022be2f8.inc.c"
 };
-TaskScriptCmd data_ov004_022be518[4] = {
+TaskScriptCmd data_ov004_022be518[] = {
 #include "data/ov004/data_ov004_022be518.inc.c"
 };
-TaskScriptCmd data_ov004_022be598[4] = {
+TaskScriptCmd data_ov004_022be598[] = {
 #include "data/ov004/data_ov004_022be598.inc.c"
 };
-TaskScriptCmd data_ov004_022be718[4] = {
+TaskScriptCmd data_ov004_022be718[] = {
 #include "data/ov004/data_ov004_022be718.inc.c"
 };
-TaskScriptCmd data_ov004_022be7f8[4] = {
+TaskScriptCmd data_ov004_022be7f8[] = {
 #include "data/ov004/data_ov004_022be7f8.inc.c"
 };
-TaskScriptCmd data_ov004_022bdf98[4] = {
+TaskScriptCmd data_ov004_022bdf98[] = {
 #include "data/ov004/data_ov004_022bdf98.inc.c"
 };
-TaskScriptCmd data_ov004_022bdfd8[4] = {
+TaskScriptCmd data_ov004_022bdfd8[] = {
 #include "data/ov004/data_ov004_022bdfd8.inc.c"
 };
-TaskScriptCmd data_ov004_022be018[4] = {
+TaskScriptCmd data_ov004_022be018[] = {
 #include "data/ov004/data_ov004_022be018.inc.c"
 };
-TaskScriptCmd data_ov004_022be158[4] = {
+TaskScriptCmd data_ov004_022be158[] = {
 #include "data/ov004/data_ov004_022be158.inc.c"
 };
-TaskScriptCmd data_ov004_022be1b8[4] = {
+TaskScriptCmd data_ov004_022be1b8[] = {
 #include "data/ov004/data_ov004_022be1b8.inc.c"
 };
-TaskScriptCmd data_ov004_022be318[4] = {
+TaskScriptCmd data_ov004_022be318[] = {
 #include "data/ov004/data_ov004_022be318.inc.c"
 };
-TaskScriptCmd data_ov004_022be818[5] = {
+TaskScriptCmd data_ov004_022be818[] = {
 #include "data/ov004/data_ov004_022be818.inc.c"
 };
-MenuButtonTemplate data_ov004_022be840[1] = {
+MenuButtonTemplate data_ov004_022be840[] = {
 #include "data/ov004/data_ov004_022be840.inc.c"
 };
 /* declared `u8 data_ov004_022be868[]` in ov004_task_init_button_scene.c: relocation at data_ov004_022be868+0xc is not on a 4-byte field */
-u32 data_ov004_022be868[20] = {
+u32 data_ov004_022be868[] = {
 #include "data/ov004/data_ov004_022be868.inc.c"
 };
-GfxLayer data_ov004_022be8b8[4] = {
+GfxLayer data_ov004_022be8b8[] = {
 #include "data/ov004/data_ov004_022be8b8.inc.c"
 };
-GfxLayer data_ov004_022be958[4] = {
+GfxLayer data_ov004_022be958[] = {
 #include "data/ov004/data_ov004_022be958.inc.c"
 };
 /* declared `u8 data_ov004_022be9a8[]` in ov004_task_init_scene.c: relocation at data_ov004_022be9a8+0xc is not on a 4-byte field */
-u32 data_ov004_022be9a8[20] = {
+u32 data_ov004_022be9a8[] = {
 #include "data/ov004/data_ov004_022be9a8.inc.c"
 };
 /* declared `u8 data_ov004_022be908[]` in ov004_task_init_picture_scene.c: relocation at data_ov004_022be908+0xc is not on a 4-byte field */
-u32 data_ov004_022be908[20] = {
+u32 data_ov004_022be908[] = {
 #include "data/ov004/data_ov004_022be908.inc.c"
 };
-TaskScriptCmd data_ov004_022be9f8[12] = {
+TaskScriptCmd data_ov004_022be9f8[] = {
 #include "data/ov004/data_ov004_022be9f8.inc.c"
 };
-Ov004SlotInit data_ov004_022bea58[24] = {
+Ov004SlotInit data_ov004_022bea58[] = {
 #include "data/ov004/data_ov004_022bea58.inc.c"
 };
 extern u8* data_ov004_022bf150;

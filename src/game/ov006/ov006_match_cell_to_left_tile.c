@@ -3,7 +3,7 @@
 #include "game/ov006_cell_forms.h"
 #include "game/terrain.h"
 
-s16 Ov006_gCellsOpen[2][49] = {
+s16 Ov006_gCellsOpen[][49] = {
 #include "data/ov006/Ov006_gCellsOpen.inc.c"
 };
 

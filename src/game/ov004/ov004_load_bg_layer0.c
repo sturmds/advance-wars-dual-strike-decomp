@@ -13,15 +13,15 @@ void Gfx_RequestLayerCopy(int layer);
 extern Unk_027c0280* data_027c0280;
 extern char data_ov004_022bf0dc[]; /* directory */
 /* layer 0 map */
-static char data_ov004_022bf120[4] = {
+static char data_ov004_022bf120[] = {
 #include "data/ov004/data_ov004_022bf120.inc.c"
 };
 /* layer 0 tiles */
-static char data_ov004_022bf11c[4] = {
+static char data_ov004_022bf11c[] = {
 #include "data/ov004/data_ov004_022bf11c.inc.c"
 };
 /* layer 0 palette */
-static char data_ov004_022bf124[4] = {
+static char data_ov004_022bf124[] = {
 #include "data/ov004/data_ov004_022bf124.inc.c"
 };
 extern u32 data_ov004_022bdca4[]; /* map bytes of a text BG by screen size */

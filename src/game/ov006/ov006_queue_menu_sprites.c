@@ -8,32 +8,32 @@ void func_ov006_02354778(void);
 void Ov006_UpdateTextPages(void);
 void MenuDepth_Pop(void);
 
-static u8 data_ov006_0236c040[8] = {
+static u8 data_ov006_0236c040[] = {
 #include "data/ov006/data_ov006_0236c040.inc.c"
 };
-static u8 data_ov006_0236c070[8] = {
+static u8 data_ov006_0236c070[] = {
 #include "data/ov006/data_ov006_0236c070.inc.c"
 };
-static u8 data_ov006_0236c068[8] = {
+static u8 data_ov006_0236c068[] = {
 #include "data/ov006/data_ov006_0236c068.inc.c"
 };
-static u8 data_ov006_0236c060[8] = {
+static u8 data_ov006_0236c060[] = {
 #include "data/ov006/data_ov006_0236c060.inc.c"
 };
-static u8 data_ov006_0236c058[8] = {
+static u8 data_ov006_0236c058[] = {
 #include "data/ov006/data_ov006_0236c058.inc.c"
 };
-static u8 data_ov006_0236c050[8] = {
+static u8 data_ov006_0236c050[] = {
 #include "data/ov006/data_ov006_0236c050.inc.c"
 };
-static u8 data_ov006_0236c048[8] = {
+static u8 data_ov006_0236c048[] = {
 #include "data/ov006/data_ov006_0236c048.inc.c"
 };
-u32 data_ov006_0236c078[4] = {
+u32 data_ov006_0236c078[] = {
 #include "data/ov006/data_ov006_0236c078.inc.c"
 };
 /* declared `u8 data_ov006_0236c088[]` in func_ov006_023586e0.c: relocation at data_ov006_0236c088+0x0 is not on a 4-byte field */
-u32 data_ov006_0236c088[16] = {
+u32 data_ov006_0236c088[] = {
 #include "data/ov006/data_ov006_0236c088.inc.c"
 };
 

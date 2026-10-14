@@ -7,7 +7,7 @@ void MenuDepth_Pop(void);
 void func_ov006_0235434c(void);
 void func_ov006_023543c4(void);
 
-static TaskScriptCmd data_ov006_0236abc4[7] = {
+static TaskScriptCmd data_ov006_0236abc4[] = {
 #include "data/ov006/data_ov006_0236abc4.inc.c"
 };
 

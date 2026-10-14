@@ -4,7 +4,7 @@
 void Oam_PutSprite(int x, int y, void* shape, int tileAndPalette);
 
 extern Unk_ov006_0235f690* data_ov006_0236d640;
-static u8 data_ov006_0236b62c[8] = {
+static u8 data_ov006_0236b62c[] = {
 #include "data/ov006/data_ov006_0236b62c.inc.c"
 };
 

@@ -9,7 +9,7 @@ int func_0207bd94(void);
 void func_0207b48c(void);
 void func_0207b4b0(void* a0);
 void func_ov003_02363dbc(void);
-char Ov003_StartMessage[8] = {
+char Ov003_StartMessage[] = {
 #include "data/ov003/Ov003_StartMessage.inc.c"
 };
 

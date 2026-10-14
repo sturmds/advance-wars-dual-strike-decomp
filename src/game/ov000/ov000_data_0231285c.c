@@ -20,44 +20,44 @@ extern u8 data_ov000_023127dc[];
 extern u8 data_ov000_0231281c[];
 extern u8 data_ov000_023127fc[];
 
-char data_ov000_0231285c[31] = {
+char data_ov000_0231285c[] = {
 #include "data/ov000/data_ov000_0231285c.inc.c"
 };
-u32 data_ov000_023128bc[8] = {
+u32 data_ov000_023128bc[] = {
 #include "data/ov000/data_ov000_023128bc.inc.c"
 };
-char data_ov000_0231289c[32] = {
+char data_ov000_0231289c[] = {
 #include "data/ov000/data_ov000_0231289c.inc.c"
 };
-u32 data_ov000_0231287c[8] = {
+u32 data_ov000_0231287c[] = {
 #include "data/ov000/data_ov000_0231287c.inc.c"
 };
-char data_ov000_023128dc[33] = {
+char data_ov000_023128dc[] = {
 #include "data/ov000/data_ov000_023128dc.inc.c"
 };
-u32 data_ov000_02312928[10] = {
+u32 data_ov000_02312928[] = {
 #include "data/ov000/data_ov000_02312928.inc.c"
 };
-u32 data_ov000_02312900[10] = {
+u32 data_ov000_02312900[] = {
 #include "data/ov000/data_ov000_02312900.inc.c"
 };
-u32 data_ov000_02312950[11] = {
+u32 data_ov000_02312950[] = {
 #include "data/ov000/data_ov000_02312950.inc.c"
 };
-u32 data_ov000_0231297c[11] = {
+u32 data_ov000_0231297c[] = {
 #include "data/ov000/data_ov000_0231297c.inc.c"
 };
-u32 data_ov000_023129d8[12] = {
+u32 data_ov000_023129d8[] = {
 #include "data/ov000/data_ov000_023129d8.inc.c"
 };
-u32 data_ov000_023129a8[12] = {
+u32 data_ov000_023129a8[] = {
 #include "data/ov000/data_ov000_023129a8.inc.c"
 };
-u32 data_ov000_02312a08[15] = {
+u32 data_ov000_02312a08[] = {
 #include "data/ov000/data_ov000_02312a08.inc.c"
 };
 /* declared `u8 data_ov000_02312a44[]` in ov000_data_022f6bd8.c: relocation at data_ov000_02312a44+0x0 is not on a 4-byte field */
-void* data_ov000_02312a44[31] = {
+void* data_ov000_02312a44[] = {
     &data_ov000_0231273c, &data_ov000_0231277c, &data_ov000_02312728,
     &data_ov000_02312a08, &data_ov000_0231283c, &data_ov000_02312900,
     &data_ov000_023129a8, &data_ov000_0231287c, &data_ov000_023128bc,

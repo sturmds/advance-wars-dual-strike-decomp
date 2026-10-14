@@ -24,7 +24,7 @@ extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 void func_ov005_02357844(void);
 
-static TaskScriptCmd data_ov005_02368b60[40] = {
+static TaskScriptCmd data_ov005_02368b60[] = {
 #include "data/ov005/data_ov005_02368b60.inc.c"
 };
 

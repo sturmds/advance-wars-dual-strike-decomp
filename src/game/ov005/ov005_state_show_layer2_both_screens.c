@@ -20,15 +20,15 @@ extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern char data_ov005_0236aa80[]; /* directory of the files below */
 /* layer 2 map */
-static char data_ov005_0236ab64[4] = {
+static char data_ov005_0236ab64[] = {
 #include "data/ov005/data_ov005_0236ab64.inc.c"
 };
 /* layer 2 tiles */
-static char data_ov005_0236ab60[4] = {
+static char data_ov005_0236ab60[] = {
 #include "data/ov005/data_ov005_0236ab60.inc.c"
 };
 /* layer 2 palette */
-static char data_ov005_0236ab68[4] = {
+static char data_ov005_0236ab68[] = {
 #include "data/ov005/data_ov005_0236ab68.inc.c"
 };
 extern u32 data_ov005_02367fac[]; /* map bytes of a text BG by screen size */

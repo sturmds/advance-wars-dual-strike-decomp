@@ -24,10 +24,10 @@ extern char data_ov005_02369440[];
 extern char data_ov005_0236944c[];
 extern char data_ov005_02369450[];
 extern char data_ov005_02369454[];
-const u32 data_ov005_02367f4c[4] = {
+const u32 data_ov005_02367f4c[] = {
 #include "data/ov005/data_ov005_02367f4c.inc.c"
 };
-const u32 data_ov005_02367f5c[4] = {
+const u32 data_ov005_02367f5c[] = {
 #include "data/ov005/data_ov005_02367f5c.inc.c"
 };
 

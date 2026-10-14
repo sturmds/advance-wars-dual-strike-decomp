@@ -25,11 +25,11 @@ extern char data_ov005_02369898[]; /* layer 2 tiles */
 extern char data_ov005_0236989c[]; /* layer 2 map */
 extern char data_ov005_023698a0[]; /* layer 2 palette */
 /* map bytes of a text BG by screen size */
-const u32 data_ov005_02367f8c[4] = {
+const u32 data_ov005_02367f8c[] = {
 #include "data/ov005/data_ov005_02367f8c.inc.c"
 };
 /* map bytes of a rotation/scaling BG by screen size */
-const u32 data_ov005_02367f9c[4] = {
+const u32 data_ov005_02367f9c[] = {
 #include "data/ov005/data_ov005_02367f9c.inc.c"
 };
 

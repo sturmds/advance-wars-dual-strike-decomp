@@ -9,7 +9,7 @@ struct Unk_02365e90 {
   void* unk_a8;
 };
 
-static u8 data_ov005_0236b10c[536] = {
+static u8 data_ov005_0236b10c[] = {
 #include "data/ov005/data_ov005_0236b10c.inc.c"
 };
 

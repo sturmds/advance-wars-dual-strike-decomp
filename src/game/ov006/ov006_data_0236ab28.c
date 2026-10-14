@@ -1,6 +1,6 @@
 #include "types.h"
 
 /* "/mapedit" */
-char gMapeditDir[9] = {
+char gMapeditDir[] = {
 #include "data/ov006/gMapeditDir.inc.c"
 };

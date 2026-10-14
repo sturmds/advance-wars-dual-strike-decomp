@@ -10,11 +10,11 @@
 extern Unk_ov004_022bf158* data_ov004_022bf158;
 extern u32 gTaskSystemReady;
 /* map bytes of a rotation/scaling BG by screen size */
-const u32 data_ov004_022bdc84[4] = {
+const u32 data_ov004_022bdc84[] = {
 #include "data/ov004/data_ov004_022bdc84.inc.c"
 };
 /* map bytes of a text BG by screen size */
-const u32 data_ov004_022bdc94[4] = {
+const u32 data_ov004_022bdc94[] = {
 #include "data/ov004/data_ov004_022bdc94.inc.c"
 };
 

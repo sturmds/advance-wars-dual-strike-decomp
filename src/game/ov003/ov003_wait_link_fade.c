@@ -74,27 +74,27 @@ void func_ov003_02363e40(void);
 void func_ov003_02363e60(void);
 void func_ov003_02363f7c(void);
 
-static char data_ov003_02364b44[7] = {
+static char data_ov003_02364b44[] = {
 #include "data/ov003/data_ov003_02364b44.inc.c"
 };
-u8 data_ov003_02364b4c[17] = {
+u8 data_ov003_02364b4c[] = {
 #include "data/ov003/data_ov003_02364b4c.inc.c"
 };
-u8 data_ov003_02364b60[17] = {
+u8 data_ov003_02364b60[] = {
 #include "data/ov003/data_ov003_02364b60.inc.c"
 };
-TaskScriptCmd data_ov003_02364bb4[8] = {
+TaskScriptCmd data_ov003_02364bb4[] = {
 #include "data/ov003/data_ov003_02364bb4.inc.c"
 };
-TaskScriptCmd data_ov003_02364bf4[8] = {
+TaskScriptCmd data_ov003_02364bf4[] = {
 #include "data/ov003/data_ov003_02364bf4.inc.c"
 };
-TaskScriptCmd data_ov003_02364b74[8] = {
+TaskScriptCmd data_ov003_02364b74[] = {
 #include "data/ov003/data_ov003_02364b74.inc.c"
 };
-TaskScriptCmd data_ov003_02364c34[9] = {
+TaskScriptCmd data_ov003_02364c34[] = {
 #include "data/ov003/data_ov003_02364c34.inc.c"
 };
-TaskScriptCmd data_ov003_02364c7c[12] = {
+TaskScriptCmd data_ov003_02364c7c[] = {
 #include "data/ov003/data_ov003_02364c7c.inc.c"
 };

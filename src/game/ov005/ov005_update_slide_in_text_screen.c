@@ -24,7 +24,7 @@ void func_ov005_02353574(void);
 void func_ov005_023536a0(void);
 void func_ov005_023536a4(void);
 
-static TaskScriptCmd data_ov005_02368048[5] = {
+static TaskScriptCmd data_ov005_02368048[] = {
 #include "data/ov005/data_ov005_02368048.inc.c"
 };
 MenuButtonTemplate data_ov005_02368070 = {

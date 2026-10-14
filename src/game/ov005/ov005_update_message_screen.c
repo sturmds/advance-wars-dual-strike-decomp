@@ -30,76 +30,76 @@ extern Unk_027c0288 data_027c0288;
 void func_ov005_02358954(void);
 void Ov005MessageScreen_OnButtonConfirm(void);
 
-char gRikiishiFile02c[4] = {
+char gRikiishiFile02c[] = {
 #include "data/ov005/gRikiishiFile02c.inc.c"
 };
-char gRikiishiFile02b[4] = {
+char gRikiishiFile02b[] = {
 #include "data/ov005/gRikiishiFile02b.inc.c"
 };
-char gRikiishiFile02a[4] = {
+char gRikiishiFile02a[] = {
 #include "data/ov005/gRikiishiFile02a.inc.c"
 };
-char gRikiishiFile015_2[4] = {
+char gRikiishiFile015_2[] = {
 #include "data/ov005/gRikiishiFile015_2.inc.c"
 };
-char gRikiishiFile014_2[4] = {
+char gRikiishiFile014_2[] = {
 #include "data/ov005/gRikiishiFile014_2.inc.c"
 };
-char gRikiishiFile013_2[4] = {
+char gRikiishiFile013_2[] = {
 #include "data/ov005/gRikiishiFile013_2.inc.c"
 };
-char gRikiishiFile01b_2[4] = {
+char gRikiishiFile01b_2[] = {
 #include "data/ov005/gRikiishiFile01b_2.inc.c"
 };
-char gRikiishiFile019[4] = {
+char gRikiishiFile019[] = {
 #include "data/ov005/gRikiishiFile019.inc.c"
 };
-char gRikiishiFile01a[4] = {
+char gRikiishiFile01a[] = {
 #include "data/ov005/gRikiishiFile01a.inc.c"
 };
-char gRikiishiFile016_2[4] = {
+char gRikiishiFile016_2[] = {
 #include "data/ov005/gRikiishiFile016_2.inc.c"
 };
-char data_ov005_02369478[4] = {
+char data_ov005_02369478[] = {
 #include "data/ov005/data_ov005_02369478.inc.c"
 };
-char data_ov005_02369474[4] = {
+char data_ov005_02369474[] = {
 #include "data/ov005/data_ov005_02369474.inc.c"
 };
-char data_ov005_02369470[4] = {
+char data_ov005_02369470[] = {
 #include "data/ov005/data_ov005_02369470.inc.c"
 };
 /* layer 2 palette */
-char gRikiishiFile038[4] = {
+char gRikiishiFile038[] = {
 #include "data/ov005/gRikiishiFile038.inc.c"
 };
 /* layer 2 map */
-char gRikiishiFile037[4] = {
+char gRikiishiFile037[] = {
 #include "data/ov005/gRikiishiFile037.inc.c"
 };
 /* layer 2 tiles */
-char gRikiishiFile036[4] = {
+char gRikiishiFile036[] = {
 #include "data/ov005/gRikiishiFile036.inc.c"
 };
 /* layer 2 palette */
-char data_ov005_02369460[4] = {
+char data_ov005_02369460[] = {
 #include "data/ov005/data_ov005_02369460.inc.c"
 };
 /* layer 2 map */
-char data_ov005_0236945c[4] = {
+char data_ov005_0236945c[] = {
 #include "data/ov005/data_ov005_0236945c.inc.c"
 };
 /* layer 2 tiles */
-char data_ov005_02369458[4] = {
+char data_ov005_02369458[] = {
 #include "data/ov005/data_ov005_02369458.inc.c"
 };
-char data_ov005_02369454[4] = {
+char data_ov005_02369454[] = {
 #include "data/ov005/data_ov005_02369454.inc.c"
 };
-char data_ov005_02369450[4] = {
+char data_ov005_02369450[] = {
 #include "data/ov005/data_ov005_02369450.inc.c"
 };
-char data_ov005_0236944c[4] = {
+char data_ov005_0236944c[] = {
 #include "data/ov005/data_ov005_0236944c.inc.c"
 };
 /* confirm: Ov005MessageScreen_OnButtonConfirm */

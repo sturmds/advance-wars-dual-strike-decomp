@@ -35,11 +35,11 @@ extern char gRikiishiFile00a[];
 extern char gRikiishiFile00b[];
 extern char gRikiishiFile00c[];
 /* map bytes of a text BG by screen size */
-static const u32 data_ov005_02367f0c[4] = {
+static const u32 data_ov005_02367f0c[] = {
 #include "data/ov005/data_ov005_02367f0c.inc.c"
 };
 /* map bytes of a rotation/scaling BG by screen size */
-static const u32 data_ov005_02367f1c[4] = {
+static const u32 data_ov005_02367f1c[] = {
 #include "data/ov005/data_ov005_02367f1c.inc.c"
 };
 

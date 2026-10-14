@@ -33,11 +33,11 @@ extern char data_ov005_0236aabc[]; /* "/ohashi/res_totalrank_wall2" */
 extern char data_ov005_0236aad8[]; /* "/ohashi/res_totalrank_wall3" */
 extern char data_ov005_0236aaf4[]; /* "054": map */
 /* map bytes of a text BG by screen size */
-const u32 data_ov005_02367fac[4] = {
+const u32 data_ov005_02367fac[] = {
 #include "data/ov005/data_ov005_02367fac.inc.c"
 };
 /* map bytes of a rotation/scaling BG by screen size */
-const u32 data_ov005_02367fbc[4] = {
+const u32 data_ov005_02367fbc[] = {
 #include "data/ov005/data_ov005_02367fbc.inc.c"
 };
 

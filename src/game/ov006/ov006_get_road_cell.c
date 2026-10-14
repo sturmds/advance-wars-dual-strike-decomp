@@ -9,27 +9,27 @@ BOOL Ov006_IsRoadOrBridgeTile(int x, int y); /* terrain road or bridge */
 
 extern Unk_02080440* data_027c027c;
 extern u32 data_027c0284;
-char data_ov006_0236c0d4[4] = {
+char data_ov006_0236c0d4[] = {
 #include "data/ov006/data_ov006_0236c0d4.inc.c"
 };
-char data_ov006_0236c0d8[4] = {
+char data_ov006_0236c0d8[] = {
 #include "data/ov006/data_ov006_0236c0d8.inc.c"
 };
-static s16 Ov006_gRoadCellByMask[256] = {
+static s16 Ov006_gRoadCellByMask[] = {
 #include "data/ov006/Ov006_gRoadCellByMask.inc.c"
 };
-s16 Ov006_gShoalGraphicTable[512] = {
+s16 Ov006_gShoalGraphicTable[] = {
 #include "data/ov006/Ov006_gShoalGraphicTable.inc.c"
 };
-s16 Ov006_gWaterCellTable[512] = {
+s16 Ov006_gWaterCellTable[] = {
 #include "data/ov006/Ov006_gWaterCellTable.inc.c"
 };
 /* indexed by a 3x3 neighbour mask, bit 8 top left to bit 0 bottom right */
-s16 data_ov006_0236cadc[512] = {
+s16 data_ov006_0236cadc[] = {
 #include "data/ov006/data_ov006_0236cadc.inc.c"
 };
 /* indexed by a 3x3 neighbour mask, bit 8 top left to bit 0 bottom right */
-s16 data_ov006_0236cedc[512] = {
+s16 data_ov006_0236cedc[] = {
 #include "data/ov006/data_ov006_0236cedc.inc.c"
 };
 

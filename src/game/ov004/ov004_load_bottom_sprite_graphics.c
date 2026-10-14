@@ -9,19 +9,19 @@ void Palette_LoadFromFile(const char* fileName, int fileOffset,
 
 extern char data_ov004_022bf0dc[]; /* directory */
 /* sprite tiles */
-static char data_ov004_022bf0f0[4] = {
+static char data_ov004_022bf0f0[] = {
 #include "data/ov004/data_ov004_022bf0f0.inc.c"
 };
 /* "0c8": texture palette */
-char data_ov004_022bf0ec[4] = {
+char data_ov004_022bf0ec[] = {
 #include "data/ov004/data_ov004_022bf0ec.inc.c"
 };
 /* "0c6": texture */
-char data_ov004_022bf0e8[4] = {
+char data_ov004_022bf0e8[] = {
 #include "data/ov004/data_ov004_022bf0e8.inc.c"
 };
 /* sprite palette */
-static char data_ov004_022bf0f4[4] = {
+static char data_ov004_022bf0f4[] = {
 #include "data/ov004/data_ov004_022bf0f4.inc.c"
 };
 

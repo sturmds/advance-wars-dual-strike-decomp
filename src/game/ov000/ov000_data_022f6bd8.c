@@ -52,10 +52,10 @@ extern u8 data_ov000_0234a138[];
 extern u8 data_ov000_0234eb60[];
 
 /* declared `u8 data_ov000_022f6bd8[]` in func_ov000_022af45c.c: relocation at data_ov000_022f6bd8+0x4 is not on a 4-byte field */
-u32 data_ov000_022f6bd8[6] = {
+u32 data_ov000_022f6bd8[] = {
 #include "data/ov000/data_ov000_022f6bd8.inc.c"
 };
 /* declared `TextBank gTextBanks[]` in text_get.c: declared in src/game/ov000/text/text_get.c, with a type no header defines */
-u32 gTextBanks[98] = {
+u32 gTextBanks[] = {
 #include "data/ov000/gTextBanks.inc.c"
 };

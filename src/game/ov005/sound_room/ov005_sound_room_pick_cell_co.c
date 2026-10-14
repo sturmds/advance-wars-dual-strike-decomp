@@ -28,12 +28,12 @@ extern u8 data_ov005_0236ae8c[];
 extern u8 data_ov005_0236aea4[];
 extern u8 data_ov005_0236aeb0[];
 
-static u8* data_ov005_0236af24[6] = {
+static u8* data_ov005_0236af24[] = {
     (u8*)&data_ov005_0236ae9c, (u8*)&data_ov005_0236ae94,
     (u8*)&data_ov005_0236ae84, (u8*)&data_ov005_0236ae8c,
     (u8*)&data_ov005_0236aea4, (u8*)&data_ov005_0236aeb0};
 /* declared `TilePair data_ov005_0236b054[]` in ov005_sound_room_draw_bar_meter.c: declared in src/game/ov005/sound_room/ov005_sound_room_draw_bar_meter.c, with a type no header defines */
-u32 data_ov005_0236b054[10] = {
+u32 data_ov005_0236b054[] = {
 #include "data/ov005/data_ov005_0236b054.inc.c"
 };
 MenuButtonTemplate data_ov005_0236b02c = {
@@ -42,7 +42,7 @@ MenuButtonTemplate data_ov005_0236b02c = {
 MenuButtonTemplate data_ov005_0236af64 = {
 #include "data/ov005/data_ov005_0236af64.inc.c"
 };
-TaskScriptCmd data_ov005_0236afdc[5] = {
+TaskScriptCmd data_ov005_0236afdc[] = {
 #include "data/ov005/data_ov005_0236afdc.inc.c"
 };
 MenuButtonTemplate data_ov005_0236afb4 = {
@@ -52,17 +52,17 @@ MenuButtonTemplate data_ov005_0236af8c = {
 #include "data/ov005/data_ov005_0236af8c.inc.c"
 };
 /* declared `u8 data_ov005_0236b004[]` in ov005_sound_room_add_cell_buttons.c: relocation at data_ov005_0236b004+0x14 is not on a 4-byte field */
-u32 data_ov005_0236b004[10] = {
+u32 data_ov005_0236b004[] = {
 #include "data/ov005/data_ov005_0236b004.inc.c"
 };
 MenuButtonTemplate data_ov005_0236af3c = {
 #include "data/ov005/data_ov005_0236af3c.inc.c"
 };
-u8 data_ov005_0236b07c[64] = {
+u8 data_ov005_0236b07c[] = {
 #include "data/ov005/data_ov005_0236b07c.inc.c"
 };
 /* declared `u8 data_ov005_0236b0bc[]` in ov005_set_up_sound_room.c: relocation at data_ov005_0236b0bc+0xc is not on a 4-byte field */
-u32 data_ov005_0236b0bc[20] = {
+u32 data_ov005_0236b0bc[] = {
 #include "data/ov005/data_ov005_0236b0bc.inc.c"
 };
 

@@ -39,11 +39,11 @@ extern char gOv005MessageFile01c[];
 extern char gOv005MessageFile01d[];
 extern char gOv005MessageFile01e[];
 /* map bytes of a rotation/scaling BG by screen size */
-static const u32 data_ov005_02367f6c[4] = {
+static const u32 data_ov005_02367f6c[] = {
 #include "data/ov005/data_ov005_02367f6c.inc.c"
 };
 /* map bytes of a text BG by screen size */
-static const u32 data_ov005_02367f7c[4] = {
+static const u32 data_ov005_02367f7c[] = {
 #include "data/ov005/data_ov005_02367f7c.inc.c"
 };
 

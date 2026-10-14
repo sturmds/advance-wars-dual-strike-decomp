@@ -4,7 +4,7 @@
 void Battle_InitSway(void);
 void Battle_UpdateSway(void);
 
-TaskScriptCmd data_ov002_023604c4[3] = {
+TaskScriptCmd data_ov002_023604c4[] = {
 #include "data/ov002/data_ov002_023604c4.inc.c"
 };
 

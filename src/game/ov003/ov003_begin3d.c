@@ -7,10 +7,10 @@
 #define GXFIFO_POLYGON_ATTR (*(volatile u32*)0x040004a4)
 #define GEOM_TARGET_TEXCOORD 3
 #define GEOM_TARGET_POS_AND_DIR 2
-static u8 data_ov003_02364a6c[12] = {
+static u8 data_ov003_02364a6c[] = {
 #include "data/ov003/data_ov003_02364a6c.inc.c"
 };
-static u8 data_ov003_02364a78[12] = {
+static u8 data_ov003_02364a78[] = {
 #include "data/ov003/data_ov003_02364a78.inc.c"
 };
 static u8 data_ov003_02365cf4[0xc]; /* size: up to the next symbol */

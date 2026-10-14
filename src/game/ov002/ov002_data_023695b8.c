@@ -4,9 +4,9 @@
 
 void func_ov002_0235710c(void);
 
-TaskScriptCmd data_ov002_023695b8[5] = {
+TaskScriptCmd data_ov002_023695b8[] = {
 #include "data/ov002/data_ov002_023695b8.inc.c"
 };
-TaskScriptCmd data_ov002_023695e0[6] = {
+TaskScriptCmd data_ov002_023695e0[] = {
 #include "data/ov002/data_ov002_023695e0.inc.c"
 };

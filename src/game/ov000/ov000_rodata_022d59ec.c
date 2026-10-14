@@ -1,8 +1,8 @@
 #include "types.h"
 
-const u32 data_ov000_022d59ec[8] = {
+const u32 data_ov000_022d59ec[] = {
 #include "data/ov000/data_ov000_022d59ec.inc.c"
 };
-const u32 data_ov000_022d5a0c[359] = {
+const u32 data_ov000_022d5a0c[] = {
 #include "data/ov000/data_ov000_022d5a0c.inc.c"
 };

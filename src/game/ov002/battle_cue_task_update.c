@@ -2,7 +2,7 @@
 #include "game/battle_cue_task.h"
 #include "game/task.h"
 
-static u8 data_ov002_02369784[12] = {
+static u8 data_ov002_02369784[] = {
 #include "data/ov002/data_ov002_02369784.inc.c"
 };
 

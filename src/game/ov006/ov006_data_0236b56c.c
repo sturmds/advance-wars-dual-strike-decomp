@@ -7,6 +7,6 @@ void func_ov006_023541d4(void);
 void func_ov006_023541f8(void);
 void func_ov006_02354414(void);
 
-MenuItem data_ov006_0236b56c[3] = {
+MenuItem data_ov006_0236b56c[] = {
 #include "data/ov006/data_ov006_0236b56c.inc.c"
 };

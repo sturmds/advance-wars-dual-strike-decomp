@@ -22,524 +22,524 @@ extern u8 data_ov000_02350438[];
 extern u8 data_ov000_0235043c[];
 extern u8 data_ov000_0235042c[];
 
-char data_ov000_02309514[6] = {
+char data_ov000_02309514[] = {
 #include "data/ov000/data_ov000_02309514.inc.c"
 };
-char data_ov000_023094d4[6] = {
+char data_ov000_023094d4[] = {
 #include "data/ov000/data_ov000_023094d4.inc.c"
 };
-char data_ov000_02309554[6] = {
+char data_ov000_02309554[] = {
 #include "data/ov000/data_ov000_02309554.inc.c"
 };
-char data_ov000_02309534[6] = {
+char data_ov000_02309534[] = {
 #include "data/ov000/data_ov000_02309534.inc.c"
 };
-char data_ov000_02309524[6] = {
+char data_ov000_02309524[] = {
 #include "data/ov000/data_ov000_02309524.inc.c"
 };
-char data_ov000_023094f4[6] = {
+char data_ov000_023094f4[] = {
 #include "data/ov000/data_ov000_023094f4.inc.c"
 };
-char data_ov000_023094e4[6] = {
+char data_ov000_023094e4[] = {
 #include "data/ov000/data_ov000_023094e4.inc.c"
 };
-char data_ov000_02309574[6] = {
+char data_ov000_02309574[] = {
 #include "data/ov000/data_ov000_02309574.inc.c"
 };
-char data_ov000_02309564[6] = {
+char data_ov000_02309564[] = {
 #include "data/ov000/data_ov000_02309564.inc.c"
 };
-char data_ov000_0230951c[6] = {
+char data_ov000_0230951c[] = {
 #include "data/ov000/data_ov000_0230951c.inc.c"
 };
-char data_ov000_023094dc[6] = {
+char data_ov000_023094dc[] = {
 #include "data/ov000/data_ov000_023094dc.inc.c"
 };
-char data_ov000_02309504[6] = {
+char data_ov000_02309504[] = {
 #include "data/ov000/data_ov000_02309504.inc.c"
 };
-char data_ov000_023094fc[6] = {
+char data_ov000_023094fc[] = {
 #include "data/ov000/data_ov000_023094fc.inc.c"
 };
-char data_ov000_02309544[6] = {
+char data_ov000_02309544[] = {
 #include "data/ov000/data_ov000_02309544.inc.c"
 };
-char data_ov000_02309474[6] = {
+char data_ov000_02309474[] = {
 #include "data/ov000/data_ov000_02309474.inc.c"
 };
-char data_ov000_0230953c[6] = {
+char data_ov000_0230953c[] = {
 #include "data/ov000/data_ov000_0230953c.inc.c"
 };
-char data_ov000_02309494[6] = {
+char data_ov000_02309494[] = {
 #include "data/ov000/data_ov000_02309494.inc.c"
 };
-char data_ov000_0230955c[6] = {
+char data_ov000_0230955c[] = {
 #include "data/ov000/data_ov000_0230955c.inc.c"
 };
-char data_ov000_02309584[6] = {
+char data_ov000_02309584[] = {
 #include "data/ov000/data_ov000_02309584.inc.c"
 };
-char data_ov000_0230957c[6] = {
+char data_ov000_0230957c[] = {
 #include "data/ov000/data_ov000_0230957c.inc.c"
 };
-char data_ov000_023094b4[6] = {
+char data_ov000_023094b4[] = {
 #include "data/ov000/data_ov000_023094b4.inc.c"
 };
-char data_ov000_0230952c[6] = {
+char data_ov000_0230952c[] = {
 #include "data/ov000/data_ov000_0230952c.inc.c"
 };
-char data_ov000_023094ec[6] = {
+char data_ov000_023094ec[] = {
 #include "data/ov000/data_ov000_023094ec.inc.c"
 };
-char data_ov000_0230947c[6] = {
+char data_ov000_0230947c[] = {
 #include "data/ov000/data_ov000_0230947c.inc.c"
 };
-char data_ov000_02309444[6] = {
+char data_ov000_02309444[] = {
 #include "data/ov000/data_ov000_02309444.inc.c"
 };
-char data_ov000_02309484[6] = {
+char data_ov000_02309484[] = {
 #include "data/ov000/data_ov000_02309484.inc.c"
 };
-char data_ov000_0230950c[6] = {
+char data_ov000_0230950c[] = {
 #include "data/ov000/data_ov000_0230950c.inc.c"
 };
-char data_ov000_0230948c[6] = {
+char data_ov000_0230948c[] = {
 #include "data/ov000/data_ov000_0230948c.inc.c"
 };
-char data_ov000_0230944c[6] = {
+char data_ov000_0230944c[] = {
 #include "data/ov000/data_ov000_0230944c.inc.c"
 };
-char data_ov000_0230949c[6] = {
+char data_ov000_0230949c[] = {
 #include "data/ov000/data_ov000_0230949c.inc.c"
 };
-char data_ov000_02309454[6] = {
+char data_ov000_02309454[] = {
 #include "data/ov000/data_ov000_02309454.inc.c"
 };
-char data_ov000_0230942c[6] = {
+char data_ov000_0230942c[] = {
 #include "data/ov000/data_ov000_0230942c.inc.c"
 };
-char data_ov000_023094a4[6] = {
+char data_ov000_023094a4[] = {
 #include "data/ov000/data_ov000_023094a4.inc.c"
 };
-char data_ov000_0230954c[6] = {
+char data_ov000_0230954c[] = {
 #include "data/ov000/data_ov000_0230954c.inc.c"
 };
-char data_ov000_023094ac[6] = {
+char data_ov000_023094ac[] = {
 #include "data/ov000/data_ov000_023094ac.inc.c"
 };
-char data_ov000_0230945c[6] = {
+char data_ov000_0230945c[] = {
 #include "data/ov000/data_ov000_0230945c.inc.c"
 };
-char data_ov000_02309434[6] = {
+char data_ov000_02309434[] = {
 #include "data/ov000/data_ov000_02309434.inc.c"
 };
-char data_ov000_0230956c[6] = {
+char data_ov000_0230956c[] = {
 #include "data/ov000/data_ov000_0230956c.inc.c"
 };
-char data_ov000_023094bc[6] = {
+char data_ov000_023094bc[] = {
 #include "data/ov000/data_ov000_023094bc.inc.c"
 };
-char data_ov000_02309464[6] = {
+char data_ov000_02309464[] = {
 #include "data/ov000/data_ov000_02309464.inc.c"
 };
-char data_ov000_023094c4[6] = {
+char data_ov000_023094c4[] = {
 #include "data/ov000/data_ov000_023094c4.inc.c"
 };
-char data_ov000_023094cc[6] = {
+char data_ov000_023094cc[] = {
 #include "data/ov000/data_ov000_023094cc.inc.c"
 };
-char data_ov000_0230946c[6] = {
+char data_ov000_0230946c[] = {
 #include "data/ov000/data_ov000_0230946c.inc.c"
 };
-char data_ov000_0230943c[6] = {
+char data_ov000_0230943c[] = {
 #include "data/ov000/data_ov000_0230943c.inc.c"
 };
-char data_ov000_02309424[6] = {
+char data_ov000_02309424[] = {
 #include "data/ov000/data_ov000_02309424.inc.c"
 };
-char data_ov000_02309814[6] = {
+char data_ov000_02309814[] = {
 #include "data/ov000/data_ov000_02309814.inc.c"
 };
-char data_ov000_0230980c[6] = {
+char data_ov000_0230980c[] = {
 #include "data/ov000/data_ov000_0230980c.inc.c"
 };
-char data_ov000_02309804[6] = {
+char data_ov000_02309804[] = {
 #include "data/ov000/data_ov000_02309804.inc.c"
 };
-char data_ov000_023097fc[6] = {
+char data_ov000_023097fc[] = {
 #include "data/ov000/data_ov000_023097fc.inc.c"
 };
-char data_ov000_023097f4[6] = {
+char data_ov000_023097f4[] = {
 #include "data/ov000/data_ov000_023097f4.inc.c"
 };
-char data_ov000_023097ec[6] = {
+char data_ov000_023097ec[] = {
 #include "data/ov000/data_ov000_023097ec.inc.c"
 };
-char data_ov000_023097e4[6] = {
+char data_ov000_023097e4[] = {
 #include "data/ov000/data_ov000_023097e4.inc.c"
 };
-char data_ov000_023097dc[6] = {
+char data_ov000_023097dc[] = {
 #include "data/ov000/data_ov000_023097dc.inc.c"
 };
-char data_ov000_023097d4[6] = {
+char data_ov000_023097d4[] = {
 #include "data/ov000/data_ov000_023097d4.inc.c"
 };
-char data_ov000_023097cc[6] = {
+char data_ov000_023097cc[] = {
 #include "data/ov000/data_ov000_023097cc.inc.c"
 };
-char data_ov000_023097c4[6] = {
+char data_ov000_023097c4[] = {
 #include "data/ov000/data_ov000_023097c4.inc.c"
 };
-char data_ov000_023097bc[6] = {
+char data_ov000_023097bc[] = {
 #include "data/ov000/data_ov000_023097bc.inc.c"
 };
-char data_ov000_023097b4[6] = {
+char data_ov000_023097b4[] = {
 #include "data/ov000/data_ov000_023097b4.inc.c"
 };
-char data_ov000_023097ac[6] = {
+char data_ov000_023097ac[] = {
 #include "data/ov000/data_ov000_023097ac.inc.c"
 };
-char data_ov000_023097a4[6] = {
+char data_ov000_023097a4[] = {
 #include "data/ov000/data_ov000_023097a4.inc.c"
 };
-char data_ov000_0230979c[6] = {
+char data_ov000_0230979c[] = {
 #include "data/ov000/data_ov000_0230979c.inc.c"
 };
-char data_ov000_02309794[6] = {
+char data_ov000_02309794[] = {
 #include "data/ov000/data_ov000_02309794.inc.c"
 };
-char data_ov000_0230978c[6] = {
+char data_ov000_0230978c[] = {
 #include "data/ov000/data_ov000_0230978c.inc.c"
 };
-char data_ov000_02309784[6] = {
+char data_ov000_02309784[] = {
 #include "data/ov000/data_ov000_02309784.inc.c"
 };
-char data_ov000_0230977c[6] = {
+char data_ov000_0230977c[] = {
 #include "data/ov000/data_ov000_0230977c.inc.c"
 };
-char data_ov000_02309774[6] = {
+char data_ov000_02309774[] = {
 #include "data/ov000/data_ov000_02309774.inc.c"
 };
-char data_ov000_0230976c[6] = {
+char data_ov000_0230976c[] = {
 #include "data/ov000/data_ov000_0230976c.inc.c"
 };
-char data_ov000_02309764[6] = {
+char data_ov000_02309764[] = {
 #include "data/ov000/data_ov000_02309764.inc.c"
 };
-char data_ov000_0230975c[6] = {
+char data_ov000_0230975c[] = {
 #include "data/ov000/data_ov000_0230975c.inc.c"
 };
-char data_ov000_02309754[6] = {
+char data_ov000_02309754[] = {
 #include "data/ov000/data_ov000_02309754.inc.c"
 };
-char data_ov000_0230974c[6] = {
+char data_ov000_0230974c[] = {
 #include "data/ov000/data_ov000_0230974c.inc.c"
 };
-char data_ov000_02309744[6] = {
+char data_ov000_02309744[] = {
 #include "data/ov000/data_ov000_02309744.inc.c"
 };
-char data_ov000_0230973c[6] = {
+char data_ov000_0230973c[] = {
 #include "data/ov000/data_ov000_0230973c.inc.c"
 };
-char data_ov000_02309734[6] = {
+char data_ov000_02309734[] = {
 #include "data/ov000/data_ov000_02309734.inc.c"
 };
-char data_ov000_0230972c[6] = {
+char data_ov000_0230972c[] = {
 #include "data/ov000/data_ov000_0230972c.inc.c"
 };
-char data_ov000_02309724[6] = {
+char data_ov000_02309724[] = {
 #include "data/ov000/data_ov000_02309724.inc.c"
 };
-char data_ov000_0230971c[6] = {
+char data_ov000_0230971c[] = {
 #include "data/ov000/data_ov000_0230971c.inc.c"
 };
-char data_ov000_02309714[6] = {
+char data_ov000_02309714[] = {
 #include "data/ov000/data_ov000_02309714.inc.c"
 };
-char data_ov000_0230970c[6] = {
+char data_ov000_0230970c[] = {
 #include "data/ov000/data_ov000_0230970c.inc.c"
 };
-char data_ov000_02309704[6] = {
+char data_ov000_02309704[] = {
 #include "data/ov000/data_ov000_02309704.inc.c"
 };
-char data_ov000_023096fc[6] = {
+char data_ov000_023096fc[] = {
 #include "data/ov000/data_ov000_023096fc.inc.c"
 };
-char data_ov000_023096f4[6] = {
+char data_ov000_023096f4[] = {
 #include "data/ov000/data_ov000_023096f4.inc.c"
 };
-char data_ov000_023096ec[6] = {
+char data_ov000_023096ec[] = {
 #include "data/ov000/data_ov000_023096ec.inc.c"
 };
-char data_ov000_023096e4[6] = {
+char data_ov000_023096e4[] = {
 #include "data/ov000/data_ov000_023096e4.inc.c"
 };
-char data_ov000_023096dc[6] = {
+char data_ov000_023096dc[] = {
 #include "data/ov000/data_ov000_023096dc.inc.c"
 };
-char data_ov000_023096d4[6] = {
+char data_ov000_023096d4[] = {
 #include "data/ov000/data_ov000_023096d4.inc.c"
 };
-char data_ov000_023096cc[6] = {
+char data_ov000_023096cc[] = {
 #include "data/ov000/data_ov000_023096cc.inc.c"
 };
-char data_ov000_023096c4[6] = {
+char data_ov000_023096c4[] = {
 #include "data/ov000/data_ov000_023096c4.inc.c"
 };
-char data_ov000_023096bc[6] = {
+char data_ov000_023096bc[] = {
 #include "data/ov000/data_ov000_023096bc.inc.c"
 };
-char data_ov000_023096b4[6] = {
+char data_ov000_023096b4[] = {
 #include "data/ov000/data_ov000_023096b4.inc.c"
 };
-char data_ov000_023096ac[6] = {
+char data_ov000_023096ac[] = {
 #include "data/ov000/data_ov000_023096ac.inc.c"
 };
-char data_ov000_023096a4[6] = {
+char data_ov000_023096a4[] = {
 #include "data/ov000/data_ov000_023096a4.inc.c"
 };
-char data_ov000_0230969c[6] = {
+char data_ov000_0230969c[] = {
 #include "data/ov000/data_ov000_0230969c.inc.c"
 };
-char data_ov000_02309694[6] = {
+char data_ov000_02309694[] = {
 #include "data/ov000/data_ov000_02309694.inc.c"
 };
-char data_ov000_0230968c[6] = {
+char data_ov000_0230968c[] = {
 #include "data/ov000/data_ov000_0230968c.inc.c"
 };
-char data_ov000_02309684[6] = {
+char data_ov000_02309684[] = {
 #include "data/ov000/data_ov000_02309684.inc.c"
 };
-char data_ov000_0230967c[6] = {
+char data_ov000_0230967c[] = {
 #include "data/ov000/data_ov000_0230967c.inc.c"
 };
-char data_ov000_02309674[6] = {
+char data_ov000_02309674[] = {
 #include "data/ov000/data_ov000_02309674.inc.c"
 };
-char data_ov000_0230966c[6] = {
+char data_ov000_0230966c[] = {
 #include "data/ov000/data_ov000_0230966c.inc.c"
 };
-char data_ov000_02309664[6] = {
+char data_ov000_02309664[] = {
 #include "data/ov000/data_ov000_02309664.inc.c"
 };
-char data_ov000_0230965c[6] = {
+char data_ov000_0230965c[] = {
 #include "data/ov000/data_ov000_0230965c.inc.c"
 };
-char data_ov000_02309654[6] = {
+char data_ov000_02309654[] = {
 #include "data/ov000/data_ov000_02309654.inc.c"
 };
-char data_ov000_0230964c[6] = {
+char data_ov000_0230964c[] = {
 #include "data/ov000/data_ov000_0230964c.inc.c"
 };
-char data_ov000_02309644[6] = {
+char data_ov000_02309644[] = {
 #include "data/ov000/data_ov000_02309644.inc.c"
 };
-char data_ov000_0230963c[6] = {
+char data_ov000_0230963c[] = {
 #include "data/ov000/data_ov000_0230963c.inc.c"
 };
-char data_ov000_02309634[6] = {
+char data_ov000_02309634[] = {
 #include "data/ov000/data_ov000_02309634.inc.c"
 };
-char data_ov000_0230962c[6] = {
+char data_ov000_0230962c[] = {
 #include "data/ov000/data_ov000_0230962c.inc.c"
 };
-char data_ov000_02309624[6] = {
+char data_ov000_02309624[] = {
 #include "data/ov000/data_ov000_02309624.inc.c"
 };
-char data_ov000_0230961c[6] = {
+char data_ov000_0230961c[] = {
 #include "data/ov000/data_ov000_0230961c.inc.c"
 };
-char data_ov000_02309614[6] = {
+char data_ov000_02309614[] = {
 #include "data/ov000/data_ov000_02309614.inc.c"
 };
-char data_ov000_0230960c[6] = {
+char data_ov000_0230960c[] = {
 #include "data/ov000/data_ov000_0230960c.inc.c"
 };
-char data_ov000_02309604[6] = {
+char data_ov000_02309604[] = {
 #include "data/ov000/data_ov000_02309604.inc.c"
 };
-char data_ov000_023095fc[6] = {
+char data_ov000_023095fc[] = {
 #include "data/ov000/data_ov000_023095fc.inc.c"
 };
-char data_ov000_023095f4[6] = {
+char data_ov000_023095f4[] = {
 #include "data/ov000/data_ov000_023095f4.inc.c"
 };
-char data_ov000_023095ec[6] = {
+char data_ov000_023095ec[] = {
 #include "data/ov000/data_ov000_023095ec.inc.c"
 };
-char data_ov000_023095e4[6] = {
+char data_ov000_023095e4[] = {
 #include "data/ov000/data_ov000_023095e4.inc.c"
 };
-char data_ov000_023095dc[6] = {
+char data_ov000_023095dc[] = {
 #include "data/ov000/data_ov000_023095dc.inc.c"
 };
-char data_ov000_023095d4[6] = {
+char data_ov000_023095d4[] = {
 #include "data/ov000/data_ov000_023095d4.inc.c"
 };
-char data_ov000_023095cc[6] = {
+char data_ov000_023095cc[] = {
 #include "data/ov000/data_ov000_023095cc.inc.c"
 };
-char data_ov000_023095c4[6] = {
+char data_ov000_023095c4[] = {
 #include "data/ov000/data_ov000_023095c4.inc.c"
 };
-char data_ov000_023095bc[6] = {
+char data_ov000_023095bc[] = {
 #include "data/ov000/data_ov000_023095bc.inc.c"
 };
-char data_ov000_023095b4[6] = {
+char data_ov000_023095b4[] = {
 #include "data/ov000/data_ov000_023095b4.inc.c"
 };
-char data_ov000_023095ac[6] = {
+char data_ov000_023095ac[] = {
 #include "data/ov000/data_ov000_023095ac.inc.c"
 };
-char data_ov000_023095a4[6] = {
+char data_ov000_023095a4[] = {
 #include "data/ov000/data_ov000_023095a4.inc.c"
 };
-char data_ov000_0230959c[6] = {
+char data_ov000_0230959c[] = {
 #include "data/ov000/data_ov000_0230959c.inc.c"
 };
-char data_ov000_02309594[6] = {
+char data_ov000_02309594[] = {
 #include "data/ov000/data_ov000_02309594.inc.c"
 };
-char data_ov000_0230958c[6] = {
+char data_ov000_0230958c[] = {
 #include "data/ov000/data_ov000_0230958c.inc.c"
 };
-char data_ov000_0230981c[10] = {
+char data_ov000_0230981c[] = {
 #include "data/ov000/data_ov000_0230981c.inc.c"
 };
-char data_ov000_02309828[10] = {
+char data_ov000_02309828[] = {
 #include "data/ov000/data_ov000_02309828.inc.c"
 };
-char data_ov000_02309834[11] = {
+char data_ov000_02309834[] = {
 #include "data/ov000/data_ov000_02309834.inc.c"
 };
-char data_ov000_02309840[11] = {
+char data_ov000_02309840[] = {
 #include "data/ov000/data_ov000_02309840.inc.c"
 };
-char data_ov000_0230984c[11] = {
+char data_ov000_0230984c[] = {
 #include "data/ov000/data_ov000_0230984c.inc.c"
 };
-char data_ov000_02309858[14] = {
+char data_ov000_02309858[] = {
 #include "data/ov000/data_ov000_02309858.inc.c"
 };
-char data_ov000_02309868[15] = {
+char data_ov000_02309868[] = {
 #include "data/ov000/data_ov000_02309868.inc.c"
 };
-char data_ov000_02309878[15] = {
+char data_ov000_02309878[] = {
 #include "data/ov000/data_ov000_02309878.inc.c"
 };
-char data_ov000_02309888[16] = {
+char data_ov000_02309888[] = {
 #include "data/ov000/data_ov000_02309888.inc.c"
 };
-char data_ov000_02309898[16] = {
+char data_ov000_02309898[] = {
 #include "data/ov000/data_ov000_02309898.inc.c"
 };
-char data_ov000_023098a8[17] = {
+char data_ov000_023098a8[] = {
 #include "data/ov000/data_ov000_023098a8.inc.c"
 };
-char data_ov000_023098bc[17] = {
+char data_ov000_023098bc[] = {
 #include "data/ov000/data_ov000_023098bc.inc.c"
 };
-char data_ov000_023098d0[17] = {
+char data_ov000_023098d0[] = {
 #include "data/ov000/data_ov000_023098d0.inc.c"
 };
-char data_ov000_023098f8[18] = {
+char data_ov000_023098f8[] = {
 #include "data/ov000/data_ov000_023098f8.inc.c"
 };
-char data_ov000_0230990c[18] = {
+char data_ov000_0230990c[] = {
 #include "data/ov000/data_ov000_0230990c.inc.c"
 };
-char data_ov000_023098e4[18] = {
+char data_ov000_023098e4[] = {
 #include "data/ov000/data_ov000_023098e4.inc.c"
 };
-char data_ov000_02309920[19] = {
+char data_ov000_02309920[] = {
 #include "data/ov000/data_ov000_02309920.inc.c"
 };
-char data_ov000_02309934[19] = {
+char data_ov000_02309934[] = {
 #include "data/ov000/data_ov000_02309934.inc.c"
 };
-char data_ov000_02309948[20] = {
+char data_ov000_02309948[] = {
 #include "data/ov000/data_ov000_02309948.inc.c"
 };
-char data_ov000_0230995c[20] = {
+char data_ov000_0230995c[] = {
 #include "data/ov000/data_ov000_0230995c.inc.c"
 };
-char data_ov000_02309970[20] = {
+char data_ov000_02309970[] = {
 #include "data/ov000/data_ov000_02309970.inc.c"
 };
-char data_ov000_02309984[20] = {
+char data_ov000_02309984[] = {
 #include "data/ov000/data_ov000_02309984.inc.c"
 };
-char data_ov000_02309998[20] = {
+char data_ov000_02309998[] = {
 #include "data/ov000/data_ov000_02309998.inc.c"
 };
-char data_ov000_023099ac[20] = {
+char data_ov000_023099ac[] = {
 #include "data/ov000/data_ov000_023099ac.inc.c"
 };
-char data_ov000_023099c0[20] = {
+char data_ov000_023099c0[] = {
 #include "data/ov000/data_ov000_023099c0.inc.c"
 };
-char data_ov000_023099d4[20] = {
+char data_ov000_023099d4[] = {
 #include "data/ov000/data_ov000_023099d4.inc.c"
 };
-char data_ov000_023099e8[21] = {
+char data_ov000_023099e8[] = {
 #include "data/ov000/data_ov000_023099e8.inc.c"
 };
-char data_ov000_02309a00[21] = {
+char data_ov000_02309a00[] = {
 #include "data/ov000/data_ov000_02309a00.inc.c"
 };
-char data_ov000_02309a18[21] = {
+char data_ov000_02309a18[] = {
 #include "data/ov000/data_ov000_02309a18.inc.c"
 };
-char data_ov000_02309a30[21] = {
+char data_ov000_02309a30[] = {
 #include "data/ov000/data_ov000_02309a30.inc.c"
 };
-char data_ov000_02309a60[22] = {
+char data_ov000_02309a60[] = {
 #include "data/ov000/data_ov000_02309a60.inc.c"
 };
-char data_ov000_02309a48[22] = {
+char data_ov000_02309a48[] = {
 #include "data/ov000/data_ov000_02309a48.inc.c"
 };
-char data_ov000_02309a78[23] = {
+char data_ov000_02309a78[] = {
 #include "data/ov000/data_ov000_02309a78.inc.c"
 };
-char data_ov000_02309a90[23] = {
+char data_ov000_02309a90[] = {
 #include "data/ov000/data_ov000_02309a90.inc.c"
 };
-char data_ov000_02309aa8[23] = {
+char data_ov000_02309aa8[] = {
 #include "data/ov000/data_ov000_02309aa8.inc.c"
 };
-char data_ov000_02309ac0[24] = {
+char data_ov000_02309ac0[] = {
 #include "data/ov000/data_ov000_02309ac0.inc.c"
 };
-char data_ov000_02309ad8[24] = {
+char data_ov000_02309ad8[] = {
 #include "data/ov000/data_ov000_02309ad8.inc.c"
 };
-char data_ov000_02309af0[24] = {
+char data_ov000_02309af0[] = {
 #include "data/ov000/data_ov000_02309af0.inc.c"
 };
-char data_ov000_02309b40[25] = {
+char data_ov000_02309b40[] = {
 #include "data/ov000/data_ov000_02309b40.inc.c"
 };
-char data_ov000_02309b08[25] = {
+char data_ov000_02309b08[] = {
 #include "data/ov000/data_ov000_02309b08.inc.c"
 };
-char data_ov000_02309b24[25] = {
+char data_ov000_02309b24[] = {
 #include "data/ov000/data_ov000_02309b24.inc.c"
 };
-char data_ov000_02309b5c[26] = {
+char data_ov000_02309b5c[] = {
 #include "data/ov000/data_ov000_02309b5c.inc.c"
 };
-char data_ov000_02309b78[26] = {
+char data_ov000_02309b78[] = {
 #include "data/ov000/data_ov000_02309b78.inc.c"
 };
-char data_ov000_02309b94[27] = {
+char data_ov000_02309b94[] = {
 #include "data/ov000/data_ov000_02309b94.inc.c"
 };
-char data_ov000_02309bb0[29] = {
+char data_ov000_02309bb0[] = {
 #include "data/ov000/data_ov000_02309bb0.inc.c"
 };
 /* declared `u8 data_ov000_02309bd0[]` in ov000_data_022f6bd8.c: relocation at data_ov000_02309bd0+0x0 is not on a 4-byte field */
-void* data_ov000_02309bd0[193] = {
+void* data_ov000_02309bd0[] = {
     &data_ov000_02309834, &data_ov000_02350430, &data_ov000_02309858,
     &data_ov000_02350450, &data_ov000_02350420, &data_ov000_0235041c,
     &data_ov000_02350418, &data_ov000_02350434, &data_ov000_02350440,

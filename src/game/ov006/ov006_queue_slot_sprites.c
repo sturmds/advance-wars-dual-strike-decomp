@@ -11,271 +11,271 @@ typedef struct SlotSprites {
   SlotSprite slot[4];
 } SlotSprites;
 
-u8 data_ov006_0236a4cc[4] = {
+u8 data_ov006_0236a4cc[] = {
 #include "data/ov006/data_ov006_0236a4cc.inc.c"
 };
-u32 data_ov006_0236a780[2] = {
+u32 data_ov006_0236a780[] = {
 #include "data/ov006/data_ov006_0236a780.inc.c"
 };
-u32 data_ov006_0236a778[2] = {
+u32 data_ov006_0236a778[] = {
 #include "data/ov006/data_ov006_0236a778.inc.c"
 };
-u32 data_ov006_0236a770[2] = {
+u32 data_ov006_0236a770[] = {
 #include "data/ov006/data_ov006_0236a770.inc.c"
 };
-u32 data_ov006_0236a768[2] = {
+u32 data_ov006_0236a768[] = {
 #include "data/ov006/data_ov006_0236a768.inc.c"
 };
-u32 data_ov006_0236a760[2] = {
+u32 data_ov006_0236a760[] = {
 #include "data/ov006/data_ov006_0236a760.inc.c"
 };
-u32 data_ov006_0236a758[2] = {
+u32 data_ov006_0236a758[] = {
 #include "data/ov006/data_ov006_0236a758.inc.c"
 };
-u32 data_ov006_0236a750[2] = {
+u32 data_ov006_0236a750[] = {
 #include "data/ov006/data_ov006_0236a750.inc.c"
 };
-u32 data_ov006_0236a748[2] = {
+u32 data_ov006_0236a748[] = {
 #include "data/ov006/data_ov006_0236a748.inc.c"
 };
-u32 data_ov006_0236a740[2] = {
+u32 data_ov006_0236a740[] = {
 #include "data/ov006/data_ov006_0236a740.inc.c"
 };
-u32 data_ov006_0236a738[2] = {
+u32 data_ov006_0236a738[] = {
 #include "data/ov006/data_ov006_0236a738.inc.c"
 };
-u32 data_ov006_0236a730[2] = {
+u32 data_ov006_0236a730[] = {
 #include "data/ov006/data_ov006_0236a730.inc.c"
 };
-u32 data_ov006_0236a728[2] = {
+u32 data_ov006_0236a728[] = {
 #include "data/ov006/data_ov006_0236a728.inc.c"
 };
-u32 data_ov006_0236a720[2] = {
+u32 data_ov006_0236a720[] = {
 #include "data/ov006/data_ov006_0236a720.inc.c"
 };
-u32 data_ov006_0236a718[2] = {
+u32 data_ov006_0236a718[] = {
 #include "data/ov006/data_ov006_0236a718.inc.c"
 };
-u32 data_ov006_0236a710[2] = {
+u32 data_ov006_0236a710[] = {
 #include "data/ov006/data_ov006_0236a710.inc.c"
 };
-u32 data_ov006_0236a708[2] = {
+u32 data_ov006_0236a708[] = {
 #include "data/ov006/data_ov006_0236a708.inc.c"
 };
-u32 data_ov006_0236a700[2] = {
+u32 data_ov006_0236a700[] = {
 #include "data/ov006/data_ov006_0236a700.inc.c"
 };
-u32 data_ov006_0236a6f8[2] = {
+u32 data_ov006_0236a6f8[] = {
 #include "data/ov006/data_ov006_0236a6f8.inc.c"
 };
-u32 data_ov006_0236a6f0[2] = {
+u32 data_ov006_0236a6f0[] = {
 #include "data/ov006/data_ov006_0236a6f0.inc.c"
 };
-u32 data_ov006_0236a6e8[2] = {
+u32 data_ov006_0236a6e8[] = {
 #include "data/ov006/data_ov006_0236a6e8.inc.c"
 };
-u32 data_ov006_0236a6e0[2] = {
+u32 data_ov006_0236a6e0[] = {
 #include "data/ov006/data_ov006_0236a6e0.inc.c"
 };
-u32 data_ov006_0236a6d8[2] = {
+u32 data_ov006_0236a6d8[] = {
 #include "data/ov006/data_ov006_0236a6d8.inc.c"
 };
-u32 data_ov006_0236a6d0[2] = {
+u32 data_ov006_0236a6d0[] = {
 #include "data/ov006/data_ov006_0236a6d0.inc.c"
 };
-u32 data_ov006_0236a6c8[2] = {
+u32 data_ov006_0236a6c8[] = {
 #include "data/ov006/data_ov006_0236a6c8.inc.c"
 };
-u32 data_ov006_0236a6c0[2] = {
+u32 data_ov006_0236a6c0[] = {
 #include "data/ov006/data_ov006_0236a6c0.inc.c"
 };
-u32 data_ov006_0236a4d8[2] = {
+u32 data_ov006_0236a4d8[] = {
 #include "data/ov006/data_ov006_0236a4d8.inc.c"
 };
-u32 data_ov006_0236a6b0[2] = {
+u32 data_ov006_0236a6b0[] = {
 #include "data/ov006/data_ov006_0236a6b0.inc.c"
 };
-u32 data_ov006_0236a6a8[2] = {
+u32 data_ov006_0236a6a8[] = {
 #include "data/ov006/data_ov006_0236a6a8.inc.c"
 };
-u32 data_ov006_0236a6a0[2] = {
+u32 data_ov006_0236a6a0[] = {
 #include "data/ov006/data_ov006_0236a6a0.inc.c"
 };
-u32 data_ov006_0236a698[2] = {
+u32 data_ov006_0236a698[] = {
 #include "data/ov006/data_ov006_0236a698.inc.c"
 };
-u32 data_ov006_0236a690[2] = {
+u32 data_ov006_0236a690[] = {
 #include "data/ov006/data_ov006_0236a690.inc.c"
 };
-u32 data_ov006_0236a688[2] = {
+u32 data_ov006_0236a688[] = {
 #include "data/ov006/data_ov006_0236a688.inc.c"
 };
-u32 data_ov006_0236a680[2] = {
+u32 data_ov006_0236a680[] = {
 #include "data/ov006/data_ov006_0236a680.inc.c"
 };
-u32 data_ov006_0236a678[2] = {
+u32 data_ov006_0236a678[] = {
 #include "data/ov006/data_ov006_0236a678.inc.c"
 };
-u32 data_ov006_0236a670[2] = {
+u32 data_ov006_0236a670[] = {
 #include "data/ov006/data_ov006_0236a670.inc.c"
 };
-u32 data_ov006_0236a668[2] = {
+u32 data_ov006_0236a668[] = {
 #include "data/ov006/data_ov006_0236a668.inc.c"
 };
-u32 data_ov006_0236a660[2] = {
+u32 data_ov006_0236a660[] = {
 #include "data/ov006/data_ov006_0236a660.inc.c"
 };
-u32 data_ov006_0236a658[2] = {
+u32 data_ov006_0236a658[] = {
 #include "data/ov006/data_ov006_0236a658.inc.c"
 };
-u32 data_ov006_0236a650[2] = {
+u32 data_ov006_0236a650[] = {
 #include "data/ov006/data_ov006_0236a650.inc.c"
 };
-u32 data_ov006_0236a648[2] = {
+u32 data_ov006_0236a648[] = {
 #include "data/ov006/data_ov006_0236a648.inc.c"
 };
-u32 data_ov006_0236a640[2] = {
+u32 data_ov006_0236a640[] = {
 #include "data/ov006/data_ov006_0236a640.inc.c"
 };
-u32 data_ov006_0236a638[2] = {
+u32 data_ov006_0236a638[] = {
 #include "data/ov006/data_ov006_0236a638.inc.c"
 };
-u32 data_ov006_0236a630[2] = {
+u32 data_ov006_0236a630[] = {
 #include "data/ov006/data_ov006_0236a630.inc.c"
 };
-u32 data_ov006_0236a628[2] = {
+u32 data_ov006_0236a628[] = {
 #include "data/ov006/data_ov006_0236a628.inc.c"
 };
-u32 data_ov006_0236a620[2] = {
+u32 data_ov006_0236a620[] = {
 #include "data/ov006/data_ov006_0236a620.inc.c"
 };
-u32 data_ov006_0236a618[2] = {
+u32 data_ov006_0236a618[] = {
 #include "data/ov006/data_ov006_0236a618.inc.c"
 };
-u32 data_ov006_0236a610[2] = {
+u32 data_ov006_0236a610[] = {
 #include "data/ov006/data_ov006_0236a610.inc.c"
 };
-u32 data_ov006_0236a608[2] = {
+u32 data_ov006_0236a608[] = {
 #include "data/ov006/data_ov006_0236a608.inc.c"
 };
-u32 data_ov006_0236a600[2] = {
+u32 data_ov006_0236a600[] = {
 #include "data/ov006/data_ov006_0236a600.inc.c"
 };
-u32 data_ov006_0236a5f8[2] = {
+u32 data_ov006_0236a5f8[] = {
 #include "data/ov006/data_ov006_0236a5f8.inc.c"
 };
-u32 data_ov006_0236a5f0[2] = {
+u32 data_ov006_0236a5f0[] = {
 #include "data/ov006/data_ov006_0236a5f0.inc.c"
 };
-u32 data_ov006_0236a5e8[2] = {
+u32 data_ov006_0236a5e8[] = {
 #include "data/ov006/data_ov006_0236a5e8.inc.c"
 };
-u32 data_ov006_0236a5e0[2] = {
+u32 data_ov006_0236a5e0[] = {
 #include "data/ov006/data_ov006_0236a5e0.inc.c"
 };
-u32 data_ov006_0236a5d8[2] = {
+u32 data_ov006_0236a5d8[] = {
 #include "data/ov006/data_ov006_0236a5d8.inc.c"
 };
-u32 data_ov006_0236a5d0[2] = {
+u32 data_ov006_0236a5d0[] = {
 #include "data/ov006/data_ov006_0236a5d0.inc.c"
 };
-u32 data_ov006_0236a5c8[2] = {
+u32 data_ov006_0236a5c8[] = {
 #include "data/ov006/data_ov006_0236a5c8.inc.c"
 };
-u32 data_ov006_0236a5c0[2] = {
+u32 data_ov006_0236a5c0[] = {
 #include "data/ov006/data_ov006_0236a5c0.inc.c"
 };
-u32 data_ov006_0236a4f8[2] = {
+u32 data_ov006_0236a4f8[] = {
 #include "data/ov006/data_ov006_0236a4f8.inc.c"
 };
-u32 data_ov006_0236a5b0[2] = {
+u32 data_ov006_0236a5b0[] = {
 #include "data/ov006/data_ov006_0236a5b0.inc.c"
 };
-u32 data_ov006_0236a5a8[2] = {
+u32 data_ov006_0236a5a8[] = {
 #include "data/ov006/data_ov006_0236a5a8.inc.c"
 };
-u32 data_ov006_0236a5a0[2] = {
+u32 data_ov006_0236a5a0[] = {
 #include "data/ov006/data_ov006_0236a5a0.inc.c"
 };
-u32 data_ov006_0236a598[2] = {
+u32 data_ov006_0236a598[] = {
 #include "data/ov006/data_ov006_0236a598.inc.c"
 };
-u32 data_ov006_0236a590[2] = {
+u32 data_ov006_0236a590[] = {
 #include "data/ov006/data_ov006_0236a590.inc.c"
 };
-u32 data_ov006_0236a588[2] = {
+u32 data_ov006_0236a588[] = {
 #include "data/ov006/data_ov006_0236a588.inc.c"
 };
-u32 data_ov006_0236a580[2] = {
+u32 data_ov006_0236a580[] = {
 #include "data/ov006/data_ov006_0236a580.inc.c"
 };
-u32 data_ov006_0236a578[2] = {
+u32 data_ov006_0236a578[] = {
 #include "data/ov006/data_ov006_0236a578.inc.c"
 };
-u32 data_ov006_0236a570[2] = {
+u32 data_ov006_0236a570[] = {
 #include "data/ov006/data_ov006_0236a570.inc.c"
 };
-u32 data_ov006_0236a568[2] = {
+u32 data_ov006_0236a568[] = {
 #include "data/ov006/data_ov006_0236a568.inc.c"
 };
-u32 data_ov006_0236a560[2] = {
+u32 data_ov006_0236a560[] = {
 #include "data/ov006/data_ov006_0236a560.inc.c"
 };
-u32 data_ov006_0236a558[2] = {
+u32 data_ov006_0236a558[] = {
 #include "data/ov006/data_ov006_0236a558.inc.c"
 };
-u32 data_ov006_0236a550[2] = {
+u32 data_ov006_0236a550[] = {
 #include "data/ov006/data_ov006_0236a550.inc.c"
 };
-u32 data_ov006_0236a548[2] = {
+u32 data_ov006_0236a548[] = {
 #include "data/ov006/data_ov006_0236a548.inc.c"
 };
-u32 data_ov006_0236a540[2] = {
+u32 data_ov006_0236a540[] = {
 #include "data/ov006/data_ov006_0236a540.inc.c"
 };
-u32 data_ov006_0236a538[2] = {
+u32 data_ov006_0236a538[] = {
 #include "data/ov006/data_ov006_0236a538.inc.c"
 };
-u32 data_ov006_0236a530[2] = {
+u32 data_ov006_0236a530[] = {
 #include "data/ov006/data_ov006_0236a530.inc.c"
 };
-u32 data_ov006_0236a528[2] = {
+u32 data_ov006_0236a528[] = {
 #include "data/ov006/data_ov006_0236a528.inc.c"
 };
-u32 data_ov006_0236a520[2] = {
+u32 data_ov006_0236a520[] = {
 #include "data/ov006/data_ov006_0236a520.inc.c"
 };
-u32 data_ov006_0236a518[2] = {
+u32 data_ov006_0236a518[] = {
 #include "data/ov006/data_ov006_0236a518.inc.c"
 };
-u32 data_ov006_0236a510[2] = {
+u32 data_ov006_0236a510[] = {
 #include "data/ov006/data_ov006_0236a510.inc.c"
 };
-u32 data_ov006_0236a508[2] = {
+u32 data_ov006_0236a508[] = {
 #include "data/ov006/data_ov006_0236a508.inc.c"
 };
-u32 data_ov006_0236a500[2] = {
+u32 data_ov006_0236a500[] = {
 #include "data/ov006/data_ov006_0236a500.inc.c"
 };
-u32 data_ov006_0236a5b8[2] = {
+u32 data_ov006_0236a5b8[] = {
 #include "data/ov006/data_ov006_0236a5b8.inc.c"
 };
-u32 data_ov006_0236a4f0[2] = {
+u32 data_ov006_0236a4f0[] = {
 #include "data/ov006/data_ov006_0236a4f0.inc.c"
 };
-u32 data_ov006_0236a4e8[2] = {
+u32 data_ov006_0236a4e8[] = {
 #include "data/ov006/data_ov006_0236a4e8.inc.c"
 };
-u32 data_ov006_0236a4e0[2] = {
+u32 data_ov006_0236a4e0[] = {
 #include "data/ov006/data_ov006_0236a4e0.inc.c"
 };
-u32 data_ov006_0236a6b8[2] = {
+u32 data_ov006_0236a6b8[] = {
 #include "data/ov006/data_ov006_0236a6b8.inc.c"
 };
-u32 data_ov006_0236a4d0[2] = {
+u32 data_ov006_0236a4d0[] = {
 #include "data/ov006/data_ov006_0236a4d0.inc.c"
 };
-u32 data_ov006_0236a788[2] = {
+u32 data_ov006_0236a788[] = {
 #include "data/ov006/data_ov006_0236a788.inc.c"
 };
 static SlotSprites data_ov006_0236a790 = {

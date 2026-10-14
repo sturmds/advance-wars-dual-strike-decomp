@@ -14,10 +14,10 @@ void G3i_OrthoW_(int top, int bottom, int left, int right, int near, int far,
 extern u8 data_02177b08[], data_02178b08[], data_02179b08[], data_0217ab08[];
 extern u8 data_0217db08[], data_0217eb08[], data_0217fb08[], data_02180b08[];
 
-GfxLayer Ov003_gMainLayerConfig[4] = {
+GfxLayer Ov003_gMainLayerConfig[] = {
 #include "data/ov003/Ov003_gMainLayerConfig.inc.c"
 };
-GfxLayer Ov003_gSubLayerConfig[4] = {
+GfxLayer Ov003_gSubLayerConfig[] = {
 #include "data/ov003/Ov003_gSubLayerConfig.inc.c"
 };
 

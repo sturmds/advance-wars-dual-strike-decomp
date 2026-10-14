@@ -4,167 +4,167 @@ extern u32 data_ov000_02321af8[];
 extern u32 data_ov000_02321818[];
 extern u32 data_ov000_02321974[];
 
-u32 data_ov000_023203bc[3] = {
+u32 data_ov000_023203bc[] = {
 #include "data/ov000/data_ov000_023203bc.inc.c"
 };
-u32 data_ov000_023203c8[4] = {
+u32 data_ov000_023203c8[] = {
 #include "data/ov000/data_ov000_023203c8.inc.c"
 };
-u32 data_ov000_023203d8[6] = {
+u32 data_ov000_023203d8[] = {
 #include "data/ov000/data_ov000_023203d8.inc.c"
 };
-u32 data_ov000_02320410[8] = {
+u32 data_ov000_02320410[] = {
 #include "data/ov000/data_ov000_02320410.inc.c"
 };
-u32 data_ov000_023203f0[8] = {
+u32 data_ov000_023203f0[] = {
 #include "data/ov000/data_ov000_023203f0.inc.c"
 };
-u32 data_ov000_02320430[9] = {
+u32 data_ov000_02320430[] = {
 #include "data/ov000/data_ov000_02320430.inc.c"
 };
-u32 data_ov000_02320454[9] = {
+u32 data_ov000_02320454[] = {
 #include "data/ov000/data_ov000_02320454.inc.c"
 };
-u32 data_ov000_023204f0[10] = {
+u32 data_ov000_023204f0[] = {
 #include "data/ov000/data_ov000_023204f0.inc.c"
 };
-u32 data_ov000_02320518[10] = {
+u32 data_ov000_02320518[] = {
 #include "data/ov000/data_ov000_02320518.inc.c"
 };
-u32 data_ov000_023204c8[10] = {
+u32 data_ov000_023204c8[] = {
 #include "data/ov000/data_ov000_023204c8.inc.c"
 };
-u32 data_ov000_023204a0[10] = {
+u32 data_ov000_023204a0[] = {
 #include "data/ov000/data_ov000_023204a0.inc.c"
 };
-u32 data_ov000_02320478[10] = {
+u32 data_ov000_02320478[] = {
 #include "data/ov000/data_ov000_02320478.inc.c"
 };
-u32 data_ov000_02320540[12] = {
+u32 data_ov000_02320540[] = {
 #include "data/ov000/data_ov000_02320540.inc.c"
 };
-u32 data_ov000_02320570[13] = {
+u32 data_ov000_02320570[] = {
 #include "data/ov000/data_ov000_02320570.inc.c"
 };
-u32 data_ov000_023205a4[14] = {
+u32 data_ov000_023205a4[] = {
 #include "data/ov000/data_ov000_023205a4.inc.c"
 };
-u32 data_ov000_023205dc[14] = {
+u32 data_ov000_023205dc[] = {
 #include "data/ov000/data_ov000_023205dc.inc.c"
 };
-u32 data_ov000_02320724[17] = {
+u32 data_ov000_02320724[] = {
 #include "data/ov000/data_ov000_02320724.inc.c"
 };
-u32 data_ov000_02320658[17] = {
+u32 data_ov000_02320658[] = {
 #include "data/ov000/data_ov000_02320658.inc.c"
 };
-u32 data_ov000_02320614[17] = {
+u32 data_ov000_02320614[] = {
 #include "data/ov000/data_ov000_02320614.inc.c"
 };
-u32 data_ov000_0232069c[17] = {
+u32 data_ov000_0232069c[] = {
 #include "data/ov000/data_ov000_0232069c.inc.c"
 };
-u32 data_ov000_023206e0[17] = {
+u32 data_ov000_023206e0[] = {
 #include "data/ov000/data_ov000_023206e0.inc.c"
 };
-u32 data_ov000_02320768[18] = {
+u32 data_ov000_02320768[] = {
 #include "data/ov000/data_ov000_02320768.inc.c"
 };
-u32 data_ov000_023207b0[18] = {
+u32 data_ov000_023207b0[] = {
 #include "data/ov000/data_ov000_023207b0.inc.c"
 };
-u32 data_ov000_023207f8[18] = {
+u32 data_ov000_023207f8[] = {
 #include "data/ov000/data_ov000_023207f8.inc.c"
 };
-u32 data_ov000_0232088c[19] = {
+u32 data_ov000_0232088c[] = {
 #include "data/ov000/data_ov000_0232088c.inc.c"
 };
-u32 data_ov000_023208d8[19] = {
+u32 data_ov000_023208d8[] = {
 #include "data/ov000/data_ov000_023208d8.inc.c"
 };
-u32 data_ov000_02320840[19] = {
+u32 data_ov000_02320840[] = {
 #include "data/ov000/data_ov000_02320840.inc.c"
 };
-u32 data_ov000_02320924[21] = {
+u32 data_ov000_02320924[] = {
 #include "data/ov000/data_ov000_02320924.inc.c"
 };
-u32 data_ov000_02320978[21] = {
+u32 data_ov000_02320978[] = {
 #include "data/ov000/data_ov000_02320978.inc.c"
 };
-u32 data_ov000_023209cc[22] = {
+u32 data_ov000_023209cc[] = {
 #include "data/ov000/data_ov000_023209cc.inc.c"
 };
-u32 data_ov000_02320a24[22] = {
+u32 data_ov000_02320a24[] = {
 #include "data/ov000/data_ov000_02320a24.inc.c"
 };
-u32 data_ov000_02320a7c[23] = {
+u32 data_ov000_02320a7c[] = {
 #include "data/ov000/data_ov000_02320a7c.inc.c"
 };
-u32 data_ov000_02320ad8[26] = {
+u32 data_ov000_02320ad8[] = {
 #include "data/ov000/data_ov000_02320ad8.inc.c"
 };
-u32 data_ov000_02320b40[27] = {
+u32 data_ov000_02320b40[] = {
 #include "data/ov000/data_ov000_02320b40.inc.c"
 };
-u32 data_ov000_02320bac[29] = {
+u32 data_ov000_02320bac[] = {
 #include "data/ov000/data_ov000_02320bac.inc.c"
 };
-u32 data_ov000_02320c20[31] = {
+u32 data_ov000_02320c20[] = {
 #include "data/ov000/data_ov000_02320c20.inc.c"
 };
-u32 data_ov000_02320c9c[33] = {
+u32 data_ov000_02320c9c[] = {
 #include "data/ov000/data_ov000_02320c9c.inc.c"
 };
-u32 data_ov000_02320d20[34] = {
+u32 data_ov000_02320d20[] = {
 #include "data/ov000/data_ov000_02320d20.inc.c"
 };
-u32 data_ov000_02320da8[34] = {
+u32 data_ov000_02320da8[] = {
 #include "data/ov000/data_ov000_02320da8.inc.c"
 };
-u32 data_ov000_02320e30[34] = {
+u32 data_ov000_02320e30[] = {
 #include "data/ov000/data_ov000_02320e30.inc.c"
 };
-u32 data_ov000_02320eb8[36] = {
+u32 data_ov000_02320eb8[] = {
 #include "data/ov000/data_ov000_02320eb8.inc.c"
 };
-u32 data_ov000_02320fdc[37] = {
+u32 data_ov000_02320fdc[] = {
 #include "data/ov000/data_ov000_02320fdc.inc.c"
 };
-u32 data_ov000_02320f48[37] = {
+u32 data_ov000_02320f48[] = {
 #include "data/ov000/data_ov000_02320f48.inc.c"
 };
-u32 data_ov000_02321070[38] = {
+u32 data_ov000_02321070[] = {
 #include "data/ov000/data_ov000_02321070.inc.c"
 };
-u32 data_ov000_02321108[38] = {
+u32 data_ov000_02321108[] = {
 #include "data/ov000/data_ov000_02321108.inc.c"
 };
-u32 data_ov000_023211a0[38] = {
+u32 data_ov000_023211a0[] = {
 #include "data/ov000/data_ov000_023211a0.inc.c"
 };
-u32 data_ov000_02321238[40] = {
+u32 data_ov000_02321238[] = {
 #include "data/ov000/data_ov000_02321238.inc.c"
 };
-u32 data_ov000_023212d8[40] = {
+u32 data_ov000_023212d8[] = {
 #include "data/ov000/data_ov000_023212d8.inc.c"
 };
-u32 data_ov000_02321378[41] = {
+u32 data_ov000_02321378[] = {
 #include "data/ov000/data_ov000_02321378.inc.c"
 };
-u32 data_ov000_0232141c[44] = {
+u32 data_ov000_0232141c[] = {
 #include "data/ov000/data_ov000_0232141c.inc.c"
 };
-u32 data_ov000_023214cc[47] = {
+u32 data_ov000_023214cc[] = {
 #include "data/ov000/data_ov000_023214cc.inc.c"
 };
-u32 data_ov000_02321588[54] = {
+u32 data_ov000_02321588[] = {
 #include "data/ov000/data_ov000_02321588.inc.c"
 };
-u32 data_ov000_02321660[54] = {
+u32 data_ov000_02321660[] = {
 #include "data/ov000/data_ov000_02321660.inc.c"
 };
 /* declared `u8 data_ov000_02321738[]` in ov000_data_022f6bd8.c: relocation at data_ov000_02321738+0x0 is not on a 4-byte field */
-void* data_ov000_02321738[56] = {
+void* data_ov000_02321738[] = {
     &data_ov000_023205dc, &data_ov000_02320c9c, &data_ov000_02320570,
     &data_ov000_02320bac, &data_ov000_02320518, &data_ov000_02321af8,
     &data_ov000_02320da8, &data_ov000_02320eb8, &data_ov000_02321070,
@@ -184,12 +184,12 @@ void* data_ov000_02321738[56] = {
     &data_ov000_023203d8, &data_ov000_02321818, &data_ov000_02320fdc,
     &data_ov000_0232069c, &data_ov000_02320924, &data_ov000_02320454,
     &data_ov000_02321974, &data_ov000_02320a24};
-u32 data_ov000_02321818[87] = {
+u32 data_ov000_02321818[] = {
 #include "data/ov000/data_ov000_02321818.inc.c"
 };
-u32 data_ov000_02321974[97] = {
+u32 data_ov000_02321974[] = {
 #include "data/ov000/data_ov000_02321974.inc.c"
 };
-u32 data_ov000_02321af8[103] = {
+u32 data_ov000_02321af8[] = {
 #include "data/ov000/data_ov000_02321af8.inc.c"
 };

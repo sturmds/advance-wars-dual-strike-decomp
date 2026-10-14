@@ -90,13 +90,13 @@ extern u8 data_ov000_022db668[];
 extern u8 data_ov000_022db640[];
 
 /* declared `u8 data_ov000_022db70c[]` in show_entry_finish.c: relocation at data_ov000_022db70c+0x4 is not on a 4-byte field */
-u32 data_ov000_022db70c[10] = {
+u32 data_ov000_022db70c[] = {
 #include "data/ov000/data_ov000_022db70c.inc.c"
 };
-static TaskScriptCmd data_ov000_022db6e4[5] = {
+static TaskScriptCmd data_ov000_022db6e4[] = {
 #include "data/ov000/data_ov000_022db6e4.inc.c"
 };
-UnitShowEntry gUnitShowEntries[27] = {
+UnitShowEntry gUnitShowEntries[] = {
 #include "data/ov000/gUnitShowEntries.inc.c"
 };
 

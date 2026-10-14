@@ -16,16 +16,16 @@ void Ov005_OnCoPaletteButtonConfirm(void);
 void Ov005_OnCoGridButtonSelect(void);
 void Ov005_SetCoVariantFromButton(void);
 
-static MenuButtonTemplate data_ov005_0236abac[1] = {
+static MenuButtonTemplate data_ov005_0236abac[] = {
 #include "data/ov005/data_ov005_0236abac.inc.c"
 };
-TaskScriptCmd data_ov005_0236abfc[5] = {
+TaskScriptCmd data_ov005_0236abfc[] = {
 #include "data/ov005/data_ov005_0236abfc.inc.c"
 };
-MenuButtonTemplate data_ov005_0236abd4[1] = {
+MenuButtonTemplate data_ov005_0236abd4[] = {
 #include "data/ov005/data_ov005_0236abd4.inc.c"
 };
-u8 data_ov005_0236ac24[0x6c] = {
+u8 data_ov005_0236ac24[] = {
 #include "data/ov005/data_ov005_0236ac24.inc.c"
 };
 Ov005CoGridEntry data_ov005_0236ac90[OV005_CO_GRID_ENTRIES] = {
