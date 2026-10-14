@@ -1,13 +1,14 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/map_header.h"
+#include "game/camera_pan.h"
 
 void DesignMap_LoadIntoState(int index, Unk_02080440_1c4* map);
 void Camera_ResetToPreset0(void* a);
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u8 data_022a7d5c[];
+extern Camera data_022a7d5c;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -19,7 +20,7 @@ void Map_LoadCustomIntoState(int mapId) {
   int y;
 
   DesignMap_LoadIntoState((u8)(mapId - MAP_CUSTOM_FIRST), STATE->unk_1c4);
-  Camera_ResetToPreset0(data_022a7d5c);
+  Camera_ResetToPreset0(&data_022a7d5c);
   STATE->unk_1c4->scrollX = 0;
   STATE->unk_1c4->scrollY = 0;
   STATE->unk_1c4->unk_22 = 0;

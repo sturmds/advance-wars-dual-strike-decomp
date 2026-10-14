@@ -1,8 +1,9 @@
 #include "types.h"
 #include "game/design_map.h"
 #include "game/screen_other_map.h"
+#include "game/save_progress.h"
 
-extern DesignMapRecord data_02291774;
+extern SaveRecordBuffer data_02291774;
 extern DesignMapRecord data_02291e98;
 extern u32 gLinkPlay;
 
@@ -19,6 +20,6 @@ void DesignMap_DecodeSlot(int slot, void* map) {
   if (gLinkPlay != 0 && data_027c027c == data_027c0288.unk_04) {
     DesignMap_UnpackRecord(map, &data_02291e98);
   } else {
-    DesignMap_UnpackRecord(map, &data_02291774);
+    DesignMap_UnpackRecord(map, &data_02291774.designMaps[0]);
   }
 }

@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/map_header.h"
+#include "game/camera_pan.h"
 
 void Map_LoadData(
     u16 mapId); /* needed to match: each call narrows mapId itself */
@@ -15,7 +16,7 @@ void String_Copy(Unk_02080440_1c4* map, const void* name);
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern u8* data_0229eadc;
-extern u8 data_022a7d5c[];
+extern Camera data_022a7d5c;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -33,7 +34,7 @@ void Map_LoadIntoState(int mapId) {
     return;
   }
   Map_LoadData(mapId);
-  Camera_ResetToPreset0(data_022a7d5c);
+  Camera_ResetToPreset0(&data_022a7d5c);
   STATE->unk_1c4->mapWidth = data_0229eadc[0];
   STATE->unk_1c4->mapHeight = data_0229eadc[1];
   STATE->unk_1c4->scrollX = 0;

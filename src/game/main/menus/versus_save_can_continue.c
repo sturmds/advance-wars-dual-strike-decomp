@@ -2,6 +2,7 @@
 #include "game/battle_save.h"
 #include "game/map_header.h"
 #include "game/Unk_02080440.h"
+#include "game/save_progress.h"
 
 int Save_LoadRecord(
     int recordId,
@@ -9,7 +10,7 @@ int Save_LoadRecord(
         buffer); /* the definition takes only recordId; this call also passes r1 */
 int func_0201fe28(int recordId);
 
-extern BattleSaveRecord data_02291774;
+extern SaveRecordBuffer data_02291774;
 
 #define VERSUS_SAVE_RECORD 6
 
@@ -18,7 +19,7 @@ extern BattleSaveRecord data_02291774;
  * it needs its design map record (ids 10 and 11, for the first and second
  * map) to be usable. Other modes always pass. */
 BOOL VersusSave_CanContinue(int gameMode) {
-  BattleSaveRecord* record = &data_02291774;
+  BattleSaveRecord* record = &data_02291774.battle;
   int mapId;
   int secondMapId;
 

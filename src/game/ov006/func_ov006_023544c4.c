@@ -2,6 +2,7 @@
 #include "game/screen_other_map.h"
 #include "game/Unk_ov006_0235f690.h"
 #include "game/main_loop.h"
+#include "game/camera_pan.h"
 
 int func_020b983c(void);
 u8* func_021016e4(void);
@@ -20,7 +21,7 @@ void Map_ReloadPalettes(void);
 void Ov006_LoadTerrainPalettes(void);
 
 extern Unk_ov006_0235f690* data_ov006_0236d640;
-extern u8 data_022a7d5c[];
+extern Camera data_022a7d5c;
 
 void func_ov006_023544c4(void) {
   void (*callback)(int);
@@ -42,7 +43,7 @@ void func_ov006_023544c4(void) {
   Battle_RegisterFrameCallbacks();
   MainLoop_SetFrameCallback(MainLoop_MapFrame);
   gMapGameRunning = 0;
-  Camera_ResetToPreset1(data_022a7d5c);
+  Camera_ResetToPreset1(&data_022a7d5c);
   Gfx_ClearLayerMap(1);
   Gfx_RequestLayerCopy(1);
   func_020c4018();

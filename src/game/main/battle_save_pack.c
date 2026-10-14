@@ -3,8 +3,9 @@
 #include "game/rng.h"
 #include "game/battle_save.h"
 #include "game/screen_other_map.h"
+#include "game/save_progress.h"
 
-extern u8 data_02291774[];
+extern SaveRecordBuffer data_02291774;
 extern u8 gGameFlagsLow[];
 extern BattleSaveSkillSet
     data_022a72c8[][2]; /* skills a tag partner lends, per player and CO slot */
@@ -20,7 +21,9 @@ void BattleSave_StoreMap(BattleSaveMap* save);
  * (BattleSave_StoreMap) and the skills tag partners lend. BattleSave_Unpack
  * reverses it. */
 void BattleSave_Pack(u8 flag) {
-  BattleSaveRecord* record = (BattleSaveRecord*)data_02291774;
+  /* needed to match: through .battle the compiler folds field offsets into
+   * the address of data_02291774 */
+  BattleSaveRecord* record = (BattleSaveRecord*)&data_02291774;
   Unk_027c0280* savedGfx;
   Unk_02080440* saved;
   int secondMapId;

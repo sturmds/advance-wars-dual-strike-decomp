@@ -66,7 +66,7 @@ void LinkMapRecordSync_Init(LinkMapRecordSyncTask* task) {
     Task_Destroy((Task*)task);
     return;
   }
-  task->receiveBuffer = (u8*)&data_02291774;
+  task->receiveBuffer = data_02291774.bytes;
   if (task->senders[0] == -1) {
     task->sentBytes = sizeof(DesignMapRecord);
     task->receivedBytes = task->sentBytes;

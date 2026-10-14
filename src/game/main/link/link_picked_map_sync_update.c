@@ -5,9 +5,10 @@
 #include "game/Unk_0229fb30.h"
 #include "game/link_text_sync_task.h"
 #include "game/link_data_sync_task.h"
+#include "game/save_progress.h"
 
 extern MenuState gMenuState;
-extern DesignMapRecord data_02291774;
+extern SaveRecordBuffer data_02291774;
 
 int func_0207a260(void);
 u8* Wireless_GetSharedData(u16 slot);
@@ -38,7 +39,7 @@ void LinkPickedMapSync_Update(LinkTextSyncTask* task) {
   } else if (task->receiveStarted !=
              0) { /* needed to match: tests the flag again */
     if (data_0229fb30.unk_631 != func_0207a260()) {
-      dest = (u8*)&data_02291774 + task->receivedBytes;
+      dest = &data_02291774.bytes[task->receivedBytes];
       src = Wireless_GetSharedData(data_0229fb30.unk_631);
       for (i = task->receivedBytes; i < task->receivedBytes + LINK_SYNC_CHUNK;
            i++, dest++) {

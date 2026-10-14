@@ -1,7 +1,8 @@
 #include "types.h"
 #include "game/design_map.h"
+#include "game/save_progress.h"
 
-extern DesignMapRecord data_02291774;
+extern SaveRecordBuffer data_02291774;
 
 int func_0201fe28(u8 recordId);
 int Save_LoadRecord(u8 recordId, void* buffer);

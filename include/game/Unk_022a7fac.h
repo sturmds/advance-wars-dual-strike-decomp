@@ -3,14 +3,14 @@
 
 #include "types.h"
 
-/* Main bss state at data_022a7fac: twelve signed bytes, cleared together
- * by MainMenu_Prepare and read one by one by small getters. */
+#define MAIN_MENU_RECORD_COUNT 12
+
+/* Main bss state at data_022a7fac: one signed byte per save record id (see
+ * BattleSave_GetRecordId), 1 when MainMenu_Prepare finds that record can be
+ * continued. Cleared together by MainMenu_Prepare and read one by one by
+ * small getters. */
 typedef struct Unk_022a7fac {
-  u8 pad_00[4];
-  s8 unk_04;
-  s8 unk_05;
-  s8 unk_06;
-  u8 pad_07[5];
+  s8 byRecord[MAIN_MENU_RECORD_COUNT];
 } Unk_022a7fac;
 
 #endif

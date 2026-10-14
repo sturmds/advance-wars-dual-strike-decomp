@@ -2,16 +2,15 @@
 #include "game/menu_state.h"
 #include "game/Unk_0229fb30.h"
 #include "game/Unk_02160ac0.h"
+#include "game/menu_button.h"
 
 void Sound_PlaySe(u32 soundId);
-void MenuButton_Add(int x, int y, void* def, int id);
-void MenuButton_EnableTouch(int id);
 void RowLockMark_Remove(int row);
 
 extern MenuState gMenuState;
-extern u8 data_02160db8[];
-extern u8 data_02160e58[];
-extern u8 data_02160bd8[];
+extern MenuButtonTemplate data_02160db8;
+extern MenuButtonTemplate data_02160e58;
+extern MenuButtonTemplate data_02160bd8;
 
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
@@ -38,12 +37,12 @@ void CombatSetup_CancelReady(int player) {
     return;
   }
   for (id = BUTTON_FIRST_UNIT; id < BUTTON_FIRST_UNIT + 4; id++) {
-    MenuButton_Add(8, y, data_02160db8, id);
+    MenuButton_Add(8, y, &data_02160db8, id);
     y += 16;
   }
   MenuButton_EnableTouch(253);
   if (LINK_ROWS[row - 1].spawnCount >= MENU->combat.rows[row - 1].memberCount) {
-    MenuButton_Add(0, 0, data_02160e58, BUTTON_READY);
+    MenuButton_Add(0, 0, &data_02160e58, BUTTON_READY);
   }
-  MenuButton_Add(0, 0, data_02160bd8, 252);
+  MenuButton_Add(0, 0, &data_02160bd8, 252);
 }

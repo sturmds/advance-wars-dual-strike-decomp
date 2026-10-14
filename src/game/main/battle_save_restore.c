@@ -1,8 +1,9 @@
 #include "types.h"
 #include "game/map_header.h"
 #include "game/screen_other_map.h"
+#include "game/save_progress.h"
 
-extern u8 data_02291774[];
+extern SaveRecordBuffer data_02291774;
 
 int Save_LoadRecord(u8 recordId, void* buffer);
 void BattleSave_Unpack(void);
@@ -24,7 +25,7 @@ void BattleSave_Restore(int recordId) {
   if (recordId == 0) {
     return;
   }
-  Save_LoadRecord(recordId, data_02291774);
+  Save_LoadRecord(recordId, &data_02291774);
   BattleSave_Unpack();
 
   /* the current screen */

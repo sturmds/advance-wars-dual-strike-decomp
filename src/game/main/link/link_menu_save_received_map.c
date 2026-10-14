@@ -1,8 +1,9 @@
 #include "types.h"
 #include "game/Unk_0229fb30.h"
 #include "game/design_map.h"
+#include "game/save_progress.h"
 
-extern DesignMapRecord data_02291774;
+extern SaveRecordBuffer data_02291774;
 
 int func_0207a260(void);
 void DesignMap_SaveRecordToSlot(int slot, DesignMapRecord* record);
@@ -13,5 +14,6 @@ void LinkMenu_SaveReceivedMap(void) {
   if (data_0229fb30.unk_631 == func_0207a260()) {
     return;
   }
-  DesignMap_SaveRecordToSlot(data_0229fb30.unk_633, &data_02291774);
+  DesignMap_SaveRecordToSlot(data_0229fb30.unk_633,
+                             &data_02291774.designMaps[0]);
 }

@@ -1,13 +1,11 @@
 #include "types.h"
 #include "game/map_select.h"
+#include "game/menu_button.h"
 
-void MenuButton_Add(int x, int y, void* def, int id);
-void* MenuButton_Select(int id);
-void MenuButtons_RemoveSelectable(void);
 int Link_GetOwnPlayer(void);
 int Link_IsActive(void);
 
-extern u8 data_0215c8a0[];
+extern MenuButtonTemplate data_0215c8a0;
 
 #define FIRST_ROW() \
   (STATE->gameMode == GAME_MODE_WAR_ROOM ? 9 : (STATE->twoMaps == 0 ? 5 : 7))
@@ -34,7 +32,7 @@ void MapSelect_AddMapButtons(void) {
     if (index >= LIST(TAB()).mapCount) {
       break;
     }
-    MenuButton_Add(x * 8, y * 8, data_0215c8a0, i);
+    MenuButton_Add(x * 8, y * 8, &data_0215c8a0, i);
     y += 2;
     if (y == FIRST_ROW() + COLS * 2) {
       x += STATE->gameMode == GAME_MODE_WAR_ROOM ? 0 : 9;

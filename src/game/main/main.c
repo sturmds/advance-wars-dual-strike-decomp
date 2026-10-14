@@ -3,11 +3,12 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "sdk/gx.h"
+#include "game/save_progress.h"
 
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_02291774[];
+extern SaveRecordBuffer data_02291774;
 extern u8 data_02166dc8[];
 
 void MainLoop_Init(void);
@@ -97,7 +98,7 @@ void main(void) {
   func_0200c0b0();
   data_ov000_023503a0 = OwnerInfo_GetFavoriteColor();
   Link_Init();
-  Save_Init(Save_PackProgress, Save_ResetProgress, data_02291774);
+  Save_Init(Save_PackProgress, Save_ResetProgress, &data_02291774);
   Touch_Init();
   Menu_Reset();
   GfxQueue_Init();

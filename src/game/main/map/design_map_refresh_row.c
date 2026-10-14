@@ -1,7 +1,8 @@
 #include "types.h"
 #include "game/design_map.h"
+#include "game/save_progress.h"
 
-extern DesignMapRecord data_02291774;
+extern SaveRecordBuffer data_02291774;
 extern DesignMap data_022a6c84[];
 
 int func_0201fe28(u8 recordId);
@@ -12,7 +13,7 @@ void String_Copy(char* dest, const char* src);
  * count, army colours, property counts). Returns 1 on success. A slot of 4 or
  * more, or an unusable record, gets playerCount 0xff (row unused) and returns 0. */
 int DesignMap_RefreshRow(u32 slot) {
-  DesignMapRecord* record = &data_02291774;
+  DesignMapRecord* record = &data_02291774.designMaps[0];
   int recordId;
   u8 i;
 

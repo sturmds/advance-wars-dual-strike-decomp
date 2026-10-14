@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "game/co_data.h"
+#include "game/battle_save.h"
 #include "game/co_save.h"
 #include "game/design_map.h"
 #include "game/play_records.h"
@@ -80,6 +81,7 @@ typedef char SaveProgressBlocks_size_check[sizeof(SaveProgressBlocks) == 0x1684
 typedef union SaveRecordBuffer {
   SaveProgress progress;
   SaveProgressBlocks blocks;
+  BattleSaveRecord battle;
   DesignMapRecord designMaps[2]; /* data_02291e98 names the second */
   u8 bytes[0x6000];
 } SaveRecordBuffer;

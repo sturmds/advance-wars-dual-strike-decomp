@@ -2,8 +2,9 @@
 #include "game/battle_save.h"
 #include "game/map_header.h"
 #include "game/screen_other_map.h"
+#include "game/save_progress.h"
 
-extern u8 data_02291774[];
+extern SaveRecordBuffer data_02291774;
 extern u32 gLinkPlay;
 
 void func_02019920(void);
@@ -64,7 +65,7 @@ void BattleSave_Save(int recordId, int flag) {
   Screen_SetCurrentGfx(savedGfx);
 
   BattleSave_Pack(flag);
-  Save_WriteRecord(recordId, data_02291774, BATTLE_SAVE_RECORD_SIZE);
+  Save_WriteRecord(recordId, &data_02291774, BATTLE_SAVE_RECORD_SIZE);
   if (STATE->gameMode == 0) {
     PlayRecords_TakeSnapshot();
   }

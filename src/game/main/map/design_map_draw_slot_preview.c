@@ -1,8 +1,9 @@
 #include "types.h"
 #include "game/design_map.h"
 #include "game/screen_other_map.h"
+#include "game/save_progress.h"
 
-extern DesignMapRecord data_02291774;
+extern SaveRecordBuffer data_02291774;
 
 int func_0201fe28(u8 recordId);
 int Save_LoadRecord(u8 recordId, void* buffer);
@@ -16,7 +17,7 @@ void MapPreview_DrawToLayer(void* vram, u16 firstTile, int layer, int x, int y,
  * unusable (nothing drawn), 1 otherwise. */
 int DesignMap_DrawSlotPreview(int x, int y, int firstTile, int palette,
                               u8 slot) {
-  DesignMapRecord* record = &data_02291774;
+  DesignMapRecord* record = &data_02291774.designMaps[0];
   int recordId = slot + 7;
 
   if (func_0201fe28(recordId)) {

@@ -12,7 +12,7 @@ typedef struct LinkInput {
 extern Keypad data_0216e4e4[];
 extern Ov003Unit* data_ov003_02369534;
 extern Ov003Unit data_ov003_02369538[];
-extern u8 data_ov003_02365b04[];
+extern Ov003Input data_ov003_02365b04;
 
 u16 Wireless_GetChildAids(void);
 LinkInput* Wireless_GetSharedData(int player);
@@ -36,11 +36,11 @@ void Ov003_RunSlotInput(void) {
         break;
       case 1:
         Ov003Unit_HandleInput(data_ov003_02369534, gKeypad,
-                              data_ov003_02365b04);
+                              &data_ov003_02365b04);
         break;
       case 2:
         Ov003Slot_UpdatePlacing(STATE->currentSlot, gKeypad,
-                                data_ov003_02365b04);
+                                &data_ov003_02365b04);
         break;
       case 3:
         Ov003_ScrollWithDpad();

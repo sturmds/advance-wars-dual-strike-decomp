@@ -7,6 +7,7 @@
 #include "game/Unk_ov006_0235f690.h"
 #include "game/screen_other_map.h"
 #include "game/main_loop.h"
+#include "game/camera_pan.h"
 
 void* Mem_Alloc(u32 size);
 void MI_CpuFill8(void* dst, int value, int size);
@@ -39,7 +40,7 @@ void Sound_StartSong(int songId);
 void Ov006_LoadArmyTerrainGraphics(void);
 
 extern Unk_ov006_0235f690* data_ov006_0236d640;
-extern u8 data_022a7d5c[];
+extern Camera data_022a7d5c;
 extern const TaskScriptCmd data_ov006_0236a218[];
 void Ov006_UpdateSubScreen(void);
 
@@ -128,7 +129,7 @@ void DesignRoom_Init(Task* task) {
     callback(1);
   }
   Gfx_CopyBgBufferOnScreen1();
-  Camera_ResetToPreset1(data_022a7d5c);
+  Camera_ResetToPreset1(&data_022a7d5c);
   Ov006_SetUpScreens();
   if (keep == 0) {
     OV6->unk_00 |= 0x1000;

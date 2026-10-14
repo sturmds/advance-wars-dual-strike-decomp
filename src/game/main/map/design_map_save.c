@@ -1,7 +1,8 @@
 #include "types.h"
 #include "game/design_map.h"
+#include "game/save_progress.h"
 
-extern DesignMapRecord data_02291774;
+extern SaveRecordBuffer data_02291774;
 extern int data_0229eae4;
 
 u8 Map_GetLoadedPlayerCount(void);
@@ -14,12 +15,12 @@ void DesignMap_RefreshAllRows(void);
  * count comes from the loaded map. Then refreshes the map name list. Callers
  * pass a third argument (1, or Ov006_IsMapPlayable()) that is never read. */
 void DesignMap_SaveToSlot(int slot, void* map, int unused) {
-  DesignMapRecord* record = &data_02291774;
+  DesignMapRecord* record = &data_02291774.designMaps[0];
 
   DesignMap_BuildRecord(map, record);
   if (data_0229eae4 == 0) {
     record->playerCount = Map_GetLoadedPlayerCount();
   }
-  Save_WriteRecord((u8)(slot + 7), &data_02291774, 0x724);
+  Save_WriteRecord((u8)(slot + 7), &data_02291774.designMaps[0], 0x724);
   DesignMap_RefreshAllRows();
 }

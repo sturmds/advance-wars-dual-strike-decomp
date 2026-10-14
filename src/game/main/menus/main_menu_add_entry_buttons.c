@@ -1,15 +1,13 @@
 #include "types.h"
 #include "game/main_menu.h"
+#include "game/menu_button.h"
 
 MainMenuPage** data_0229c71c;
 MainMenu data_0229c720;
 
-void MenuButton_Add(int x, int y, void* def, int id);
-void* MenuButton_Select(int id);
-void MenuButtons_RemoveSelectable(void);
 void MainMenu_ShowHelpText(void);
 
-extern u8 data_02159aec[];
+extern MenuButtonTemplate data_02159aec;
 
 /* Adds one button per visible entry of the current page, 24 pixels apart and
  * centred on y = 112, and selects the cursor entry (moving the cursor off a
@@ -35,7 +33,7 @@ void MainMenu_AddEntryButtons(void) {
   MenuButton_Select(data_021599d0->cursors[data_021599d0->page]);
   for (i = 0; i < page->entryCount; i++) {
     if (!entry->hidden) {
-      MenuButton_Add(40, y, data_02159aec, i);
+      MenuButton_Add(40, y, &data_02159aec, i);
     }
     y += 24;
     entry++;
