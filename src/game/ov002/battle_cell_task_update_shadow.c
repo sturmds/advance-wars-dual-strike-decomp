@@ -24,6 +24,6 @@ void BattleCellTask_UpdateShadow(BattleCellTask* task) {
     task->hasShadow = 0;
     return;
   }
-  task->shadow->unk_48 = BattleCellTask_GetOffsetY(task);
-  task->shadow->unk_4a = task->angle + BattleCellTask_GetOffsetX(task);
+  task->shadow->unk_48 = BattleCellTask_GetOffsetX(task);
+  task->shadow->unk_4a = task->angle + BattleCellTask_GetOffsetY(task);
 }

@@ -115,24 +115,24 @@ BattleEffectParams data_ov002_02369f90[] = {
 BattleEffectParams data_ov002_0236a02c[] = {
 #include "data/ov002/data_ov002_0236a02c.inc.c"
 };
-u32 data_ov002_0236a060[] = {
+BattleFighterLayout data_ov002_0236a060[] = {
 #include "data/ov002/data_ov002_0236a060.inc.c"
 };
-u32 data_ov002_0236a0d4[] = {
+BattleFighterLayout data_ov002_0236a0d4[] = {
 #include "data/ov002/data_ov002_0236a0d4.inc.c"
 };
-u32 data_ov002_0236a1bc[] = {
+BattleFighterLayout data_ov002_0236a1bc[] = {
 #include "data/ov002/data_ov002_0236a1bc.inc.c"
 };
-u32 data_ov002_0236a230[] = {
+BattleFighterLayout data_ov002_0236a230[] = {
 #include "data/ov002/data_ov002_0236a230.inc.c"
 };
-u32 data_ov002_0236a148[] = {
+BattleFighterLayout data_ov002_0236a148[] = {
 #include "data/ov002/data_ov002_0236a148.inc.c"
 };
-u32 data_ov002_0236a2a4[] = {
+BattleFighterLayout data_ov002_0236a2a4[] = {
 #include "data/ov002/data_ov002_0236a2a4.inc.c"
 };
-u32 data_ov002_0236a318[] = {
+BattleFighterLayout data_ov002_0236a318[] = {
 #include "data/ov002/data_ov002_0236a318.inc.c"
 };

@@ -2,30 +2,54 @@
 #define GAME_BATTLE_LAYOUT_H
 
 #include "types.h"
+#include "game/battle_fighter.h"
+#include "game/battle_hit_list.h"
 
-/* A y, x pair of screen pixels. */
-typedef struct BattleOffset {
-  s16 y;
+/* Position of one HP cell on the battle screen. */
+typedef struct BattleCellPos {
   s16 x;
-} BattleOffset;
-
-/* Positions of the HP cells and offsets of one side of the battle animation (ov002).
- * BattleSideData.cellPositions points to it: the first 0x1e bytes are the five cell
- * positions (BattleCellPos), the rest is read through this struct. */
-typedef struct BattleLayout {
-  s16 x; /* start position of a fighter object */
   s16 y;
   s16 z;
-  u8 pad_06[6];
-  u16 scale; /* 8.8 fixed point */
-  u8 pad_0e[0x1e - 0x0e];
-  BattleOffset weaponOffsets[2]; /* by BattleSide.usesSecondary */
-  BattleOffset base;             /* shared by all objects */
-  BattleOffset unitOffsets
-      [5]; /* one for each cell; some code reads base and these as one array of 6 */
-  BattleOffset weaponStyleOffsets
+} BattleCellPos;
+
+/* The two record layouts BattleSideData.layout points to; the tables hold one or two records.
+ * BattleCellLayout.base and BattleFighterLayout.offsets start at the same place, and
+ * BattleCellTask_GetCellOffsetX reads either. A BattlePoint here holds the two offsets that
+ * func_ov002_02356604 and BattleSpriteTask_Create take after the position. */
+
+/* A side with BattleSideData.unk_48 at 0: one task for each HP cell. */
+typedef struct BattleCellLayout {
+  BattleCellPos cells[BATTLE_CELL_COUNT]; /* BattleCellTask_Create, by cell */
+  BattlePoint weaponOffsets[2];           /* by BattleSide.usesSecondary */
+  BattlePoint base;                       /* shared by all objects */
+  BattlePoint unitOffsets[BATTLE_CELL_COUNT]; /* one for each cell */
+  BattlePoint weaponStyleOffsets
       [2]
-      [5]; /* by BattleSide.usesSecondary, then by BattleSide.armyStyle - 1 */
+      [BATTLE_CELL_COUNT]; /* by BattleSide.usesSecondary, then by BattleSide.armyStyle - 1 */
+} BattleCellLayout;
+
+typedef char
+    BattleCellLayout_size_check[sizeof(BattleCellLayout) == 0x66 ? 1 : -1];
+
+/* A side with BattleSideData.unk_48 set: one fighter task. */
+typedef struct BattleFighterLayout {
+  BattleCellPos pos;   /* where the fighter task starts */
+  BattleCellPos shift; /* Battle_DrawSpriteCells moves the sprite by it */
+  u16 scale;           /* 8.8 fixed point */
+  BattlePoint
+      steps[BATTLE_CELL_COUNT + 1]; /* by step of the hit list, also the pose of
+                                       Battle_PutFighterSprite; Battle_UpdateCueSpawner
+                                       reads the last */
+  BattlePoint offsets[BATTLE_CELL_COUNT]; /* by cell */
+} BattleFighterLayout;
+
+typedef char BattleFighterLayout_size_check[sizeof(BattleFighterLayout) == 0x3a
+                                                ? 1
+                                                : -1];
+
+typedef union BattleLayout {
+  BattleCellLayout cell;
+  BattleFighterLayout fighter;
 } BattleLayout;
 
 /* Position and speed of a moving piece of the battle animation. */

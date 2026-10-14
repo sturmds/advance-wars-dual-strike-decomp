@@ -20,7 +20,7 @@ void BattleFighterTask_SpawnStep(BattleFighterTask* task) {
   int step;
   int side;
   int scale;
-  BattleAnimData* anim;
+  const BattleFighterLayout* anim;
 
   if (task->sprite->unk_5b == 5) {
     task->sprite->unk_5b = 0;
@@ -29,13 +29,12 @@ void BattleFighterTask_SpawnStep(BattleFighterTask* task) {
       side = task->side;
       if (MENU->battle.unk_40[side] != 0) {
         scale = task->scale;
-        anim = task->anim;
-        func_ov002_0235643c(MENU->battle.unk_40[task->side],
-                            Battle_GetMatchupValue(side), task->fighter->posX,
-                            task->fighter->posY, task->fighter->posZ,
-                            scale * anim->offsets[step].x >> 8,
-                            scale * anim->offsets[step].y >> 8, -1, scale,
-                            scale, (&MENU->colours[6])[side], 8, 0, side);
+        anim = &task->layout->fighter;
+        func_ov002_0235643c(
+            MENU->battle.unk_40[task->side], Battle_GetMatchupValue(side),
+            task->fighter->posX, task->fighter->posY, task->fighter->posZ,
+            scale * anim->steps[step].x >> 8, scale * anim->steps[step].y >> 8,
+            -1, scale, scale, (&MENU->colours[6])[side], 8, 0, side);
       }
       if (MENU->battle.unk_48[task->side] != 0) {
         Battle_StartCellEffectAtPoint(task->side, task->step);

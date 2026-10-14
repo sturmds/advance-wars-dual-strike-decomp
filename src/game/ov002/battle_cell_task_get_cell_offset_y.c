@@ -4,21 +4,23 @@
 
 #define MENU ((MenuState*)&gMenuState)
 
-/* Vertical twin of BattleCellTask_GetCellOffsetX. */
+/* The y twin of BattleCellTask_GetCellOffsetX. */
 int BattleCellTask_GetCellOffsetY(BattleCellTask* task, int number) {
   BattleSideData* data = MENU->battle.unk_27c[task->side];
-  BattleLayout* layout;
+  const BattleLayout* layout;
 
   if (data->unk_48 == 0) {
-    layout = (BattleLayout*)data->cellPositions;
+    layout = data->layout;
     if (number == -1) {
-      return layout->base.y * task->scale >> 8;
+      return layout->cell.base.y * task->scale >> 8;
     }
-    return task->scale * (layout->base.y + layout->unitOffsets[number].y) >> 8;
+    return task->scale *
+               (layout->cell.base.y + layout->cell.unitOffsets[number].y) >>
+           8;
   }
-  layout = (BattleLayout*)data->cellPositions;
+  layout = data->layout;
   if (number == -1) {
     number = 0;
   }
-  return task->scale * (&layout->base)[number].y >> 8;
+  return task->scale * layout->fighter.offsets[number].y >> 8;
 }

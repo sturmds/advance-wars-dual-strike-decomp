@@ -13,13 +13,6 @@ BattleSpriteTask* func_ov002_02356604(int table, int index, int x, int y,
                                       int unk_54, int unk_56, int unk_59,
                                       int side);
 
-/* Needed to match: the point of the cell in the second set, one cell on, with the offset 0x2a of the table
- * kept in the load. */
-typedef struct PointAt {
-  u8 pad_00[0x2a];
-  BattlePoint point;
-} PointAt;
-
 #define CELL_SPRITES (MENU->battle.cellSprites)
 #define SPRITE (CELL_SPRITES[side][slot])
 #define OTHER_EFFECT           \
@@ -35,8 +28,7 @@ void Battle_StartCellSpriteOnSlot(int side, int cell, int slot, int flag,
   int other = (side + 1) & 1;
   int taskSide;
   int taskOther;
-  BattleSideData_18* points =
-      (BattleSideData_18*)MENU->battle.unk_27c[side]->cellPositions;
+  const BattleCellLayout* points = &MENU->battle.unk_27c[side]->layout->cell;
 
   SPRITE.pos.x = cellTask->unk_38;
   SPRITE.pos.y = cellTask->unk_3a;
@@ -45,11 +37,10 @@ void Battle_StartCellSpriteOnSlot(int side, int cell, int slot, int flag,
   SPRITE.target.x = cellTask->unk_38;
   SPRITE.target.y = cellTask->unk_3a + cellTask->unk_46;
   if (flag == 0) {
-    PointAt* point = (PointAt*)((u8*)points + slot * sizeof(BattlePoint));
-    SPRITE.step.x += point->point.x;
-    SPRITE.step.y += point->point.y;
-    SPRITE.target.x += point->point.x;
-    SPRITE.target.y += point->point.y;
+    SPRITE.step.x += points->unitOffsets[slot].x;
+    SPRITE.step.y += points->unitOffsets[slot].y;
+    SPRITE.target.x += points->unitOffsets[slot].x;
+    SPRITE.target.y += points->unitOffsets[slot].y;
   }
   SPRITE.cell = (u8)cell;
   SPRITE.unk_14_3 = (u8)flag;

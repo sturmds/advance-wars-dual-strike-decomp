@@ -82,10 +82,10 @@ Battle_StartCellEffect kind:function(arm,size=0x294) addr:0x02358048
 Battle_UpdateFx kind:function(arm,size=0x13c) addr:0x023582dc
 Battle_IsMotionOutOfBounds kind:function(arm,size=0x60) addr:0x02358418
 Battle_ClearMotions kind:function(arm,size=0x68) addr:0x02358478
-BattleCellTask_GetCellOffsetX kind:function(arm,size=0x90) addr:0x023584e0
-BattleCellTask_GetCellOffsetY kind:function(arm,size=0x90) addr:0x02358570
-BattleCellTask_GetOffsetX kind:function(arm,size=0x7c) addr:0x02358600
-BattleCellTask_GetOffsetY kind:function(arm,size=0x7c) addr:0x0235867c
+BattleCellTask_GetCellOffsetY kind:function(arm,size=0x90) addr:0x023584e0
+BattleCellTask_GetCellOffsetX kind:function(arm,size=0x90) addr:0x02358570
+BattleCellTask_GetOffsetY kind:function(arm,size=0x7c) addr:0x02358600
+BattleCellTask_GetOffsetX kind:function(arm,size=0x7c) addr:0x0235867c
 Battle_TaskUpdate kind:function(arm,size=0x100) addr:0x023586f8
 BattleScreenTask_Init kind:function(arm,size=0x34) addr:0x023587f8
 BattleCells_RunImpactList kind:function(arm,size=0x414) addr:0x0235882c
@@ -2101,7 +2101,7 @@ data_ov002_0236a2a4 kind:data(byte[116]) addr:0x0236a2a4
 data_ov002_0236a2de kind:data(byte[0]) addr:0x0236a2de
 data_ov002_0236a318 kind:data(byte[116]) addr:0x0236a318
 data_ov002_0236a352 kind:data(byte[0]) addr:0x0236a352
-data_ov002_0236a38c kind:data(byte[60]) addr:0x0236a38c
+data_ov002_0236a38c kind:data(byte[58]) addr:0x0236a38c
 data_ov002_0236a3c8 kind:data(byte[204]) addr:0x0236a3c8
 data_ov002_0236a42e kind:data(byte[0]) addr:0x0236a42e
 data_ov002_0236a494 kind:data(byte[204]) addr:0x0236a494

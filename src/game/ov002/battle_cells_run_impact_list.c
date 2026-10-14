@@ -14,8 +14,8 @@
 
 /* Needed to match: declared with a u8 side here; the definition takes u32. */
 void Battle_StartSideShake(u8 side);
-int BattleCellTask_GetCellOffsetX(BattleCellTask* task, int index);
 int BattleCellTask_GetCellOffsetY(BattleCellTask* task, int index);
+int BattleCellTask_GetCellOffsetX(BattleCellTask* task, int index);
 
 /* Runs the entries of each side's unk_2ec list that are due on this frame. An entry with unk_6
  * clear makes a sprite at its cell (cell 0 when the side runs a fighter task) and keeps it in
@@ -43,9 +43,9 @@ void BattleCells_RunImpactList(BattleScreenTask* screen) {
             MENU->battle.unk_22c[side][DUE.unk_3] =
                 (BattleCounterTask*)BattleSpriteTask_Create(
                     MENU->battle.unk_58[task->side], 0, task->posX, task->posY,
-                    task->posZ, BattleCellTask_GetCellOffsetY(task, DUE.unk_3),
+                    task->posZ, BattleCellTask_GetCellOffsetX(task, DUE.unk_3),
                     task->angle +
-                        BattleCellTask_GetCellOffsetX(task, DUE.unk_3),
+                        BattleCellTask_GetCellOffsetY(task, DUE.unk_3),
                     -1, scale, scale, (&MENU->colours[12])[task->side], 8, 0,
                     taskSide, task->hasPos2, task->pos2X, task->pos2Y,
                     task->pos2Z, 8);
@@ -67,9 +67,9 @@ void BattleCells_RunImpactList(BattleScreenTask* screen) {
             MENU->battle.unk_22c[side][DUE.unk_3] =
                 (BattleCounterTask*)BattleSpriteTask_Create(
                     MENU->battle.unk_58[task->side], 0, task->posX, task->posY,
-                    task->posZ, BattleCellTask_GetCellOffsetY(task, DUE.unk_3),
+                    task->posZ, BattleCellTask_GetCellOffsetX(task, DUE.unk_3),
                     task->angle +
-                        BattleCellTask_GetCellOffsetX(task, DUE.unk_3),
+                        BattleCellTask_GetCellOffsetY(task, DUE.unk_3),
                     -1, scale, scale, (&MENU->colours[12])[task->side], 8, 0,
                     taskSide, task->hasPos2, task->pos2X, task->pos2Y,
                     task->pos2Z, 8);

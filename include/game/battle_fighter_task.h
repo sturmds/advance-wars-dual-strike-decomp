@@ -18,13 +18,10 @@ typedef struct BattleFighterTask {
   BattleHitList* hitList;  /* BattleScreenWork.hitLists of the side */
   BattleSpriteTask*
       sprite; /* the sprite task last made; the scripts wait on it */
-  union {
-    const BattleCellPos* cells; /* BattleSideData.cellPositions of the side */
-    BattleAnimData* anim; /* the same data, as the step functions read it */
-  };
-  s32 step;  /* next entry of hitList */
-  u16 scale; /* 8.8 fixed point; BattleCellTask.scale */
-  u8 side;   /* 0 or 1 */
+  const BattleLayout* layout; /* BattleSideData.layout of the side */
+  s32 step;                   /* next entry of hitList */
+  u16 scale;                  /* 8.8 fixed point; BattleCellTask.scale */
+  u8 side;                    /* 0 or 1 */
 } BattleFighterTask;
 
 #endif

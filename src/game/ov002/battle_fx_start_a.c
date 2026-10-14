@@ -25,16 +25,16 @@ void Battle_StartCellEffectAtPoint(int side, int cell) {
   BattleSpriteTask* cellTask =
       (BattleSpriteTask*)MENU->battle.unk_310[side][0].unk_00;
   u8 taskSide;
-  BattleSideData_18* points =
-      (BattleSideData_18*)MENU->battle.unk_27c[side]->cellPositions;
+  const BattleFighterLayout* points =
+      &MENU->battle.unk_27c[side]->layout->fighter;
 
   MENU->battle.motions[side][cell].x = cellTask->unk_38;
   MENU->battle.motions[side][cell].y = cellTask->unk_3a;
   MENU->battle.motions[side][cell].speedX =
-      (cellTask->scale * (points->points[cell].x + EFFECT->offset.x)) >> 8;
+      (cellTask->scale * (points->steps[cell].x + EFFECT->offset.x)) >> 8;
   MENU->battle.motions[side][cell].speedY =
       cellTask->unk_46 +
-      ((cellTask->scale * (points->points[cell].y + EFFECT->offset.y)) >> 8);
+      ((cellTask->scale * (points->steps[cell].y + EFFECT->offset.y)) >> 8);
   taskSide = cellTask->side;
   MENU->battle.motions[side][cell].unk_00 = (s32)func_ov002_02356604(
       MENU->battle.unk_48[taskSide], 0, MENU->battle.motions[taskSide][cell].x,

@@ -76,17 +76,16 @@ void Battle_DrawSpriteCells(u16* cells, int x, int y, int z, int offX, int offY,
   if (Battle_IsSideAir(side)) {
     y -= 64;
   }
-  /* A side with unk_48 set moves the sprite by entries 1 and 2 of cellPositions; why those
-     * entries is not known. */
+  /* A side with unk_48 set moves the sprite by its shift and a quarter of its scale. */
   if (SIDE_DATA(side)->unk_48 == 1) {
-    y -= ((u16)SIDE_DATA(side)->cellPositions[2].x << 6) >> 8;
+    y -= ((u16)SIDE_DATA(side)->layout->fighter.scale << 6) >> 8;
     if (side == 0) {
-      x -= SIDE_DATA(side)->cellPositions[1].x;
+      x -= SIDE_DATA(side)->layout->fighter.shift.x;
     } else {
-      x += SIDE_DATA(side)->cellPositions[1].x;
+      x += SIDE_DATA(side)->layout->fighter.shift.x;
     }
-    y += SIDE_DATA_AGAIN(side)->cellPositions[1].y;
-    z += SIDE_DATA_AGAIN(side)->cellPositions[1].z;
+    y += SIDE_DATA_AGAIN(side)->layout->fighter.shift.y;
+    z += SIDE_DATA_AGAIN(side)->layout->fighter.shift.z;
   }
   x += offX;
   y += offY;

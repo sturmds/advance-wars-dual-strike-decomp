@@ -4,23 +4,26 @@
 
 #define MENU ((MenuState*)&gMenuState)
 
-/* Horizontal offset of a cell's object (number -1: none), scaled by the task's scale. With
+/* x of the offset of a cell's object (number -1: none), scaled by the task's scale. With
  * the side's unk_48 at 0 the shared offset and the cell's are added; otherwise the entry is
- * read from the 6-entry table that starts with the shared offset. */
+ * read from BattleFighterLayout.offsets. The callers pass it before the position's angle,
+ * and the y after it. */
 int BattleCellTask_GetCellOffsetX(BattleCellTask* task, int number) {
   BattleSideData* data = MENU->battle.unk_27c[task->side];
-  BattleLayout* layout;
+  const BattleLayout* layout;
 
   if (data->unk_48 == 0) {
-    layout = (BattleLayout*)data->cellPositions;
+    layout = data->layout;
     if (number == -1) {
-      return layout->base.x * task->scale >> 8;
+      return layout->cell.base.x * task->scale >> 8;
     }
-    return task->scale * (layout->base.x + layout->unitOffsets[number].x) >> 8;
+    return task->scale *
+               (layout->cell.base.x + layout->cell.unitOffsets[number].x) >>
+           8;
   }
-  layout = (BattleLayout*)data->cellPositions;
+  layout = data->layout;
   if (number == -1) {
     number = 0;
   }
-  return task->scale * (&layout->base)[number].x >> 8;
+  return task->scale * layout->fighter.offsets[number].x >> 8;
 }

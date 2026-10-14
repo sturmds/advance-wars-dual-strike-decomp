@@ -15,14 +15,14 @@ BOOL Battle_IsAttackerWeaponShown(int side);
 BattleCellTask* BattleCellTask_CreateFighter(int side) {
   BattleCellTask* task =
       (BattleCellTask*)Task_Create(data_ov002_0236963c, TASK_LIST(3));
-  BattleLayout* layout =
-      (BattleLayout*)MENU->battle.unk_27c[side]->cellPositions;
+  const BattleFighterLayout* layout =
+      &MENU->battle.unk_27c[side]->layout->fighter;
 
   task->side = side;
   task->cell = 0;
-  task->posX = layout->x;
-  task->posY = layout->y;
-  task->posZ = layout->z;
+  task->posX = layout->pos.x;
+  task->posY = layout->pos.y;
+  task->posZ = layout->pos.z;
   task->scale = layout->scale;
   if (Battle_IsAttackerWeaponShown(side) == 1) {
     task->posX += 50;

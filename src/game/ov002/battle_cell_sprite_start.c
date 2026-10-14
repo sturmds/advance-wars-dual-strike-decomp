@@ -13,14 +13,8 @@ BattleSpriteTask* func_ov002_02356604(int table, int index, int x, int y,
                                       int unk_54, int unk_56, int unk_59,
                                       int side);
 
-/* Needed to match: the point of the cell in the second set, with the offset 0x26 of the table
- * kept in the load, read in place at each use (a local pointer gets other registers). */
-typedef struct PointAt {
-  u8 pad_00[0x26];
-  BattlePoint point;
-} PointAt;
-
-#define POINT (((PointAt*)((u8*)points + cell * sizeof(BattlePoint)))->point)
+/* Needed to match: read in place at each use (a local pointer gets other registers). */
+#define POINT (points->offsets[cell])
 #define CELL_SPRITES (MENU->battle.cellSprites)
 #define SPRITE (CELL_SPRITES[side][cell])
 #define OTHER_EFFECT           \
@@ -35,8 +29,8 @@ void Battle_StartCellSprite(int side, int cell, int param) {
   int other = (side + 1) & 1;
   int taskSide;
   int taskOther;
-  BattleSideData_18* points =
-      (BattleSideData_18*)MENU->battle.unk_27c[side]->cellPositions;
+  const BattleFighterLayout* points =
+      &MENU->battle.unk_27c[side]->layout->fighter;
 
   SPRITE.pos.x = cellTask->unk_38;
   SPRITE.pos.y = cellTask->unk_3a;

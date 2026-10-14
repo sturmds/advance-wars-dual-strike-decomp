@@ -48,8 +48,8 @@ typedef struct BattleCellTask {
 } BattleCellTask;
 
 void BattleCellTask_Reset(BattleCellTask* task);
-int BattleCellTask_GetOffsetX(BattleCellTask* task);
 int BattleCellTask_GetOffsetY(BattleCellTask* task);
+int BattleCellTask_GetOffsetX(BattleCellTask* task);
 BattleCellTask* BattleCellTask_Create(int side, int cell, int pos2Index);
 void BattleCellTask_DestroySprites(BattleCellTask* task);
 void BattleCellTask_RestartSprite(BattleCellTask* task);

@@ -13,7 +13,7 @@ BattleCellTask* BattleCellTask_Create(int side, int cell, int pos2Index) {
       (BattleCellTask*)Task_Create(data_ov002_0236963c, TASK_LIST(3));
   /* Needed to match: reading gMenuState through a MenuState pointer folds the offset. */
   const BattleCellPos* positions =
-      ((MenuState*)&gMenuState)->battle.unk_27c[side]->cellPositions;
+      ((MenuState*)&gMenuState)->battle.unk_27c[side]->layout->cell.cells;
 
   task->side = side;
   task->cell = cell;

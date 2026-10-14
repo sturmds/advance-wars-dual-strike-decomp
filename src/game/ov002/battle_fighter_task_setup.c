@@ -24,7 +24,7 @@ void BattleFighterTask_Setup(BattleFighterTask* task) {
 
   task->fighter = (BattleCellTask*)MENU->battle.unk_310[task->side][0].unk_00;
   task->hitList = &MENU->battle.hitLists[task->side];
-  task->anim = (BattleAnimData*)MENU->battle.unk_27c[task->side]->cellPositions;
+  task->layout = MENU->battle.unk_27c[task->side]->layout;
   if (MENU->battle.spriteTables2[task->side] != 0) {
     if (FIGHTER_ENTRY(task).sprites[1] != NULL) {
       Task_Destroy((Task*)FIGHTER_ENTRY(task).sprites[1]);

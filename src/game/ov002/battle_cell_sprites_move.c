@@ -12,8 +12,8 @@
 
 void BattleCell_ApplyStep(int side, int step);
 BOOL BattleCellSprite_Arrived(int side, int cell);
-int BattleCellTask_GetCellOffsetX(BattleCellTask* task, int shot);
 int BattleCellTask_GetCellOffsetY(BattleCellTask* task, int shot);
+int BattleCellTask_GetCellOffsetX(BattleCellTask* task, int shot);
 
 /* Moves the sprites flying at each side's HP cells: the other side's effect data
  * (unk_2e) is added to their direction. A sprite that arrives is destroyed; a hit sprite is
@@ -52,8 +52,8 @@ void BattleCellSprites_Move(void) {
             task = TARGET_CELL_TASK;
             BattleSpriteTask_CreateIfSet(
                 MENU->battle.hitSpriteTables[task->side], 0, task->posX,
-                task->posY, task->posZ, BattleCellTask_GetCellOffsetY(task, -1),
-                BattleCellTask_GetCellOffsetX(task, -1) - -task->angle, -1,
+                task->posY, task->posZ, BattleCellTask_GetCellOffsetX(task, -1),
+                BattleCellTask_GetCellOffsetY(task, -1) - -task->angle, -1,
                 task->scale, task->scale, (&MENU->colours[10])[task->side], 8,
                 1, task->side, task->hasPos2, task->pos2X, task->pos2Y,
                 task->pos2Z, 8);
@@ -61,8 +61,8 @@ void BattleCellSprites_Move(void) {
             task = TARGET_CELL_TASK;
             BattleSpriteTask_CreateIfSet(
                 MENU->battle.hitSpriteTables[task->side], 0, task->posX,
-                task->posY, task->posZ, BattleCellTask_GetCellOffsetY(task, i),
-                BattleCellTask_GetCellOffsetX(task, i) - -task->angle, -1,
+                task->posY, task->posZ, BattleCellTask_GetCellOffsetX(task, i),
+                BattleCellTask_GetCellOffsetY(task, i) - -task->angle, -1,
                 task->scale, task->scale, (&MENU->colours[10])[task->side], 8,
                 1, task->side, task->hasPos2, task->pos2X, task->pos2Y,
                 task->pos2Z, 8);

@@ -20,12 +20,6 @@ typedef struct BattlePoint {
   s16 y;
 } BattlePoint;
 
-/* BattleSideData.cellPositions as Battle_PutFighterSprite reads it. */
-typedef struct BattleFighterShapes {
-  u8 pad_00[0x0e];
-  BattlePoint points[1]; /* one per pose; length unknown */
-} BattleFighterShapes;
-
 /* Task of the ov002 battle animation that Battle_ReleaseSideTasks counts frames on. */
 typedef struct BattleCounterTask {
   u8 pad_00[0x3c];

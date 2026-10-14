@@ -1,14 +1,9 @@
 #include "types.h"
 #include "game/battle_fighter_task.h"
 
-/* What BattleSideData.cellPositions points to, read at the offsets 0x22 and 0x24. */
-typedef struct CueSize {
-  u8 pad_00[0x22];
-  s16 width;
-  s16 height;
-} CueSize;
-
 #define CUE_SPAWN 5
+#define CUE_STEP \
+  BATTLE_CELL_COUNT /* the last entry of BattleFighterLayout.steps */
 
 int Battle_GetMatchupValue(int side);
 void func_ov002_0235643c(const u32* table, int a1, int a2, int a3, int a4,
@@ -27,7 +22,7 @@ void Task_ResumeScript(void* task);
 void Battle_UpdateCueSpawner(BattleFighterTask* task) {
   int side;
   int scale;
-  CueSize* size;
+  const BattleFighterLayout* layout;
   BattleCellTask* fighter;
 
   if (task->sprite->unk_5b == CUE_SPAWN) {
@@ -36,11 +31,11 @@ void Battle_UpdateCueSpawner(BattleFighterTask* task) {
     if (SPRITE_TABLE(side) != 0) {
       fighter = task->fighter;
       scale = task->scale;
-      size = (CueSize*)task->cells;
+      layout = &task->layout->fighter;
       func_ov002_0235643c(
           SPRITE_TABLE(task->side), Battle_GetMatchupValue(side), fighter->posX,
-          fighter->posY, fighter->posZ, size->width * scale >> 8,
-          size->height * scale >> 8, -1, scale, scale,
+          fighter->posY, fighter->posZ, layout->steps[CUE_STEP].x * scale >> 8,
+          layout->steps[CUE_STEP].y * scale >> 8, -1, scale, scale,
           *(u16*)((u32)&gMenuState + side * 2 + 12), 8, 0, side);
     }
     if (MENU_WORD(0x48, task->side) != 0) {

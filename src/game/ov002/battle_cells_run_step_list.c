@@ -24,23 +24,23 @@ void BattleCell_ApplyStep(int side, int index);
 void Battle_StartCellSprite(int side, int cell, int param);
 void Battle_StartCellSpriteOnSlot(int side, int cell, int unk_3, int unk_6,
                                   int index);
-int BattleCellTask_GetCellOffsetX(BattleCellTask* task, int unk_3);
 int BattleCellTask_GetCellOffsetY(BattleCellTask* task, int unk_3);
+int BattleCellTask_GetCellOffsetX(BattleCellTask* task, int unk_3);
 
 /* Makes the hit sprite at the cell task's position. Needed to match: the locals are declared
  * at function scope and passed in, each use has its own scale variable, the last use has its
  * own side variable, and the side passes through the scale variable first. */
-#define CREATE_HIT_SPRITE(scaleVar, sideVar, offsetYVar, offsetXVar, task,  \
+#define CREATE_HIT_SPRITE(scaleVar, sideVar, offsetXVar, offsetYVar, task,  \
                           arg570, arg4e0)                                   \
   do {                                                                      \
     scaleVar = (task)->side;                                                \
     sideVar = scaleVar;                                                     \
     scaleVar = (task)->scale;                                               \
-    offsetYVar = BattleCellTask_GetCellOffsetY((task), (arg570));           \
-    offsetXVar = BattleCellTask_GetCellOffsetX((task), (arg4e0));           \
+    offsetXVar = BattleCellTask_GetCellOffsetX((task), (arg570));           \
+    offsetYVar = BattleCellTask_GetCellOffsetY((task), (arg4e0));           \
     BattleSpriteTask_CreateIfSet(                                           \
         MENU->battle.hitSpriteTables[(task)->side], 0, (task)->posX,        \
-        (task)->posY, (task)->posZ, offsetYVar, (task)->angle + offsetXVar, \
+        (task)->posY, (task)->posZ, offsetXVar, (task)->angle + offsetYVar, \
         -1, scaleVar, scaleVar, SIDE_COLOUR(5, sideVar), 8, 1, sideVar,     \
         (task)->hasPos2, (task)->pos2X, (task)->pos2Y, (task)->pos2Z, 8);   \
   } while (0)
@@ -60,9 +60,9 @@ void BattleCells_RunStepList(BattleScreenTask* screen) {
   int firstCellSide;
   BattleHitFlags* flags;
   int cursor;
-  int offsetY;
-  BattleHitList* hitList;
   int offsetX;
+  BattleHitList* hitList;
+  int offsetY;
   BattleCellTask* cellTask;
 
   for (side = 0; side < BATTLE_SIDE_COUNT; side++) {
@@ -83,12 +83,12 @@ void BattleCells_RunStepList(BattleScreenTask* screen) {
         } else {
           if (flags->unk_6) {
             cellTask = DUE_CELL_TASK(side, LIST(side)->cursor);
-            CREATE_HIT_SPRITE(scale, cellSide, offsetY, offsetX, cellTask, -1,
+            CREATE_HIT_SPRITE(scale, cellSide, offsetX, offsetY, cellTask, -1,
                               -1);
           } else {
             cursor = LIST(side)->cursor;
             cellTask = DUE_CELL_TASK(side, cursor);
-            CREATE_HIT_SPRITE(entryScale, cellSide, offsetY, offsetX, cellTask,
+            CREATE_HIT_SPRITE(entryScale, cellSide, offsetX, offsetY, cellTask,
                               LIST(side)->flags[cursor].unk_3,
                               LIST(side)->flags[cursor].unk_3);
           }
@@ -106,7 +106,7 @@ void BattleCells_RunStepList(BattleScreenTask* screen) {
         } else {
           cellTask = (BattleCellTask*)MENU->battle.unk_310[side][0].unk_00;
           CREATE_HIT_SPRITE(
-              firstCellScale, firstCellSide, offsetY, offsetX, cellTask,
+              firstCellScale, firstCellSide, offsetX, offsetY, cellTask,
               LIST(side)->flags[LIST(side)->cursor].unk_3, flags->unk_3);
           cellTask = (BattleCellTask*)MENU->battle.unk_310[side][0].unk_00;
           cellTask->steps[cellTask->stepIndex] = 4;

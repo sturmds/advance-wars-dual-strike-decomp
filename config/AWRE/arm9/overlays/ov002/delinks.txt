@@ -438,19 +438,19 @@ src/game/ov002/battle_clear_motions.c:
     complete
     .text       start:0x02358478 end:0x023584e0
 
-src/game/ov002/battle_cell_task_get_cell_offset_x.c:
+src/game/ov002/battle_cell_task_get_cell_offset_y.c:
     complete
     .text       start:0x023584e0 end:0x02358570
 
-src/game/ov002/battle_cell_task_get_cell_offset_y.c:
+src/game/ov002/battle_cell_task_get_cell_offset_x.c:
     complete
     .text       start:0x02358570 end:0x02358600
 
-src/game/ov002/battle_cell_task_get_offset_x.c:
+src/game/ov002/battle_cell_task_get_offset_y.c:
     complete
     .text       start:0x02358600 end:0x0235867c
 
-src/game/ov002/battle_cell_task_get_offset_y.c:
+src/game/ov002/battle_cell_task_get_offset_x.c:
     complete
     .text       start:0x0235867c end:0x023586f8
 

@@ -9,8 +9,8 @@
 #define MENU ((MenuState*)&gMenuState)
 
 BOOL func_ov002_02354670(int side);
-int BattleCellTask_GetCellOffsetX(BattleCellTask* task, int index);
 int BattleCellTask_GetCellOffsetY(BattleCellTask* task, int index);
+int BattleCellTask_GetCellOffsetX(BattleCellTask* task, int index);
 
 /* Destroys sprite i of the task's cell, when it exists. */
 #define DESTROY_SPRITE(task, i)                              \
@@ -73,11 +73,11 @@ void BattleCellTask_RemakeSpritesWithEffect(BattleCellTask* task) {
       int effectX;
 
       scale = (task->scale * 0x180) >> 8;
-      effectX = BattleCellTask_GetCellOffsetY(task, -1);
+      effectX = BattleCellTask_GetCellOffsetX(task, -1);
       MENU->battle.unk_254[task->side][task->cell] =
           (BattleCounterTask*)BattleSpriteTask_Create(
               MENU->battle.unk_70, 0, task->posX, task->posY, task->posZ,
-              effectX, task->angle + BattleCellTask_GetCellOffsetX(task, -1),
+              effectX, task->angle + BattleCellTask_GetCellOffsetY(task, -1),
               -1, scale, scale, MENU->battle.unk_24, 8, 0, task->side,
               task->hasPos2, task->pos2X, task->pos2Y, task->pos2Z, 8);
     } else {
@@ -85,12 +85,12 @@ void BattleCellTask_RemakeSpritesWithEffect(BattleCellTask* task) {
 
       side = task->side;
       scale = (task->scale * 0x180) >> 8;
-      effectX = BattleCellTask_GetCellOffsetY(task, -1);
+      effectX = BattleCellTask_GetCellOffsetX(task, -1);
       MENU->battle.unk_254[task->side][task->cell] =
           (BattleCounterTask*)BattleSpriteTask_Create(
               MENU->battle.unk_58[task->side], 1, task->posX, task->posY,
               task->posZ, effectX,
-              task->angle + BattleCellTask_GetCellOffsetX(task, -1), -1, scale,
+              task->angle + BattleCellTask_GetCellOffsetY(task, -1), -1, scale,
               scale, (MENU->colours + 12)[side], 8, 0, side, task->hasPos2,
               task->pos2X, task->pos2Y, task->pos2Z, 8);
     }

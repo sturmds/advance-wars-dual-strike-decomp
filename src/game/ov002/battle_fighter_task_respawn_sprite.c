@@ -22,7 +22,7 @@ void BattleFighterTask_RespawnSprite(BattleFighterTask* task) {
   task->fighter = (BattleCellTask*)BATTLE_ENTRY(task->side, 0).unk_00;
   task->hitList =
       (BattleHitList*)(MENU_BYTES + BATTLE_OFFSET(hitLists)) + task->side;
-  task->cells = BATTLE_SIDE_DATA(task->side)->cellPositions;
+  task->layout = BATTLE_SIDE_DATA(task->side)->layout;
   if (*(u32*)(MENU_BYTES + task->side * 4 + BATTLE_OFFSET(spriteTables2)) !=
       0) {
     if (BATTLE_FIGHTER_ENTRY(task->fighter).sprites[1] != 0) {

@@ -34,12 +34,11 @@ void Battle_PutFighterSprite(int slot, int pose) {
   u16 scale = source->scale;
   int side = source->side;
   BattleCellTask* actor = SIDE_ACTOR(side);
-  const BattleFighterShapes* shapes =
-      (const BattleFighterShapes*)SIDE_DATA(side)->cellPositions;
+  const BattleFighterLayout* shapes = &SIDE_DATA(side)->layout->fighter;
   int tile = Battle_GetMatchupValue(side);
 
   func_ov002_0235643c(SIDE_UNK_040(side), tile, actor->posX, actor->posY,
-                      actor->posZ, shapes->points[pose].x * scale >> 8,
-                      shapes->points[pose].y * scale >> 8, -1, scale, scale,
+                      actor->posZ, shapes->steps[pose].x * scale >> 8,
+                      shapes->steps[pose].y * scale >> 8, -1, scale, scale,
                       SIDE_COLOUR(side), 8, 0, side);
 }

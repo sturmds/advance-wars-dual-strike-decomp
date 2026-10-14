@@ -81,12 +81,12 @@ void BattleCellTask_MakeMatchupSprites(BattleCellTask* task) {
   scale = task->scale;
   {
     int frame = Battle_GetMatchupValue(side);
-    int offsetY = BattleCellTask_GetOffsetY(task);
     int offsetX = BattleCellTask_GetOffsetX(task);
+    int offsetY = BattleCellTask_GetOffsetY(task);
 
     task->shadow = BattleSpriteTask_Create(
         MENU->battle.unk_40[task->side], frame, task->posX, task->posY,
-        task->posZ, offsetY, task->angle + offsetX, -1, scale, scale,
+        task->posZ, offsetX, task->angle + offsetY, -1, scale, scale,
         SIDE_COLOUR(3, side), 8, 0, side, task->hasPos2, task->pos2X,
         task->pos2Y, task->pos2Z, 8);
   }
