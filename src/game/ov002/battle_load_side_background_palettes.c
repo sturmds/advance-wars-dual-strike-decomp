@@ -481,7 +481,7 @@ void Battle_LoadSideBackgroundPalettes(void) {
   const char* secondFile;
 
   GX_BeginLoadTexPltt();
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < BATTLE_SIDE_COUNT; i++) {
     if (Battle_IsSideSea(i) == TRUE) {
       PICK_BY_TILESET(data_ov002_0236016c, data_ov002_02360170,
                       data_ov002_02360174, data_ov002_02360178,

@@ -30,7 +30,7 @@ void BattleCells_RunImpactList(BattleScreenTask* screen) {
   int scale;
   int taskSide;
 
-  for (side = 0; side < 2; side++) {
+  for (side = 0; side < BATTLE_SIDE_COUNT; side++) {
     list = &MENU->battle.unk_2ec[side];
     while (list->cursor != list->count &&
            screen->frame == list->key[list->cursor]) {

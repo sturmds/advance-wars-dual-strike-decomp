@@ -6,6 +6,7 @@
 #include "game/campaign_map.h"
 #include "game/BattleSideData.h"
 #include "game/battle_layout.h"
+#include "game/battle_scene.h"
 #include "game/battle_fighter.h"
 #include "game/battle_hit_list.h"
 #include "game/co_exp.h"
@@ -184,52 +185,57 @@ typedef struct BattleCellSprite {
 } BattleCellSprite;
 
 typedef struct BattleScreenWork {
-  u16 unk_20[2]; /* per side */
+  u16 unk_20[BATTLE_SIDE_COUNT]; /* per side */
   u16 unk_24; /* palette entry of the extra sprite of BattleCellTask_RemakeSpritesWithEffect */
   u16 pipeTexture; /* texture drawn under a Piperunner, in 32-byte units of texture VRAM */
   const u32* spriteTables
-      [2]; /* table argument of BattleSpriteTask_Create for the HP cells, per side */
+      [BATTLE_SIDE_COUNT]; /* table argument of BattleSpriteTask_Create for the HP cells, per side */
   const u32* spriteTables2
-      [2]; /* per side: the HP cells' second sprite, from BattleSideData.unk_08 */
+      [BATTLE_SIDE_COUNT]; /* per side: the HP cells' second sprite, from BattleSideData.unk_08 */
   const u32* spriteTables3
-      [2]; /* per side: the third sprite, from BattleSideData.unk_10 */
+      [BATTLE_SIDE_COUNT]; /* per side: the third sprite, from BattleSideData.unk_10 */
   void* unk_40
-      [2]; /* per side; nonzero once the side's animation is up, a guess */
+      [BATTLE_SIDE_COUNT]; /* per side; nonzero once the side's animation is up, a guess */
   u32 unk_48
-      [2]; /* tables BattleSpriteTask_Create makes the sprites of a side from */
+      [BATTLE_SIDE_COUNT]; /* tables BattleSpriteTask_Create makes the sprites of a side from */
   const u32* hitSpriteTables
-      [2]; /* per side: sprite made on a hit of the second hit list, a guess */
-  const u32* unk_58[2];       /* per side, like spriteTables */
-  const u32* unk_60[2];       /* per side, like spriteTables */
-  const void* unk_68[2];      /* per side */
-  const u32* unk_70;          /* sprite table, the same for both sides */
-  BattleMotion motions[2][5]; /* by side, then by cell */
+      [BATTLE_SIDE_COUNT]; /* per side: sprite made on a hit of the second hit list, a guess */
+  const u32* unk_58[BATTLE_SIDE_COUNT];  /* per side, like spriteTables */
+  const u32* unk_60[BATTLE_SIDE_COUNT];  /* per side, like spriteTables */
+  const void* unk_68[BATTLE_SIDE_COUNT]; /* per side */
+  const u32* unk_70; /* sprite table, the same for both sides */
+  BattleMotion motions[BATTLE_SIDE_COUNT]
+                      [BATTLE_CELL_COUNT]; /* by side, then by cell */
   union {
-    BattleEntry unk_13c[2]
-                       [5]; /* only unk_00 is cleared (Battle_ClearMotions) */
-    BattleCellSprite cellSprites[2][5];
+    BattleEntry unk_13c
+        [BATTLE_SIDE_COUNT]
+        [BATTLE_CELL_COUNT]; /* only unk_00 is cleared (Battle_ClearMotions) */
+    BattleCellSprite cellSprites[BATTLE_SIDE_COUNT][BATTLE_CELL_COUNT];
   };
-  BattleCounterTask* unk_22c[2][5]; /* per side */
-  BattleCounterTask* unk_254[2][5]; /* per side */
-  struct BattleSideData* unk_27c[2];
-  BattleSway sway[2]; /* eased to 0 by Battle_UpdateSway */
-  u16 unk_294[2];     /* per side, like unk_29c */
-  u16 unk_298[2];     /* per side, like unk_29c */
+  BattleCounterTask* unk_22c[BATTLE_SIDE_COUNT]
+                            [BATTLE_CELL_COUNT]; /* per side */
+  BattleCounterTask* unk_254[BATTLE_SIDE_COUNT]
+                            [BATTLE_CELL_COUNT]; /* per side */
+  struct BattleSideData* unk_27c[BATTLE_SIDE_COUNT];
+  BattleSway sway[BATTLE_SIDE_COUNT]; /* eased to 0 by Battle_UpdateSway */
+  u16 unk_294[BATTLE_SIDE_COUNT];     /* per side, like unk_29c */
+  u16 unk_298[BATTLE_SIDE_COUNT];     /* per side, like unk_29c */
   u16 unk_29c
-      [2]; /* per side: five 3-bit entry numbers, the first in the low bits */
-  u16 unk_2a0[2];            /* per side, like unk_29c */
-  BattleHitList hitLists[2]; /* per side, built by Battle_BuildHitLists */
-  BattleHitList stepLists
-      [2]; /* per side, built by func_ov002_023552d0 from the other side's hitLists */
+      [BATTLE_SIDE_COUNT]; /* per side: five 3-bit entry numbers, the first in the low bits */
+  u16 unk_2a0[BATTLE_SIDE_COUNT]; /* per side, like unk_29c */
   BattleHitList
-      unk_2ec[2]; /* per side, built by func_ov002_023549c8 from stepLists */
-  BattleEntry unk_310[2][5];
+      hitLists[BATTLE_SIDE_COUNT]; /* per side, built by Battle_BuildHitLists */
+  BattleHitList stepLists
+      [BATTLE_SIDE_COUNT]; /* per side, built by func_ov002_023552d0 from the other side's hitLists */
+  BattleHitList unk_2ec
+      [BATTLE_SIDE_COUNT]; /* per side, built by func_ov002_023549c8 from stepLists */
+  BattleEntry unk_310[BATTLE_SIDE_COUNT][BATTLE_CELL_COUNT];
   const void* drainProfile
-      [2]; /* gBattleDrainProfile*, set by Battle_PickHpDrainProfiles */
+      [BATTLE_SIDE_COUNT]; /* gBattleDrainProfile*, set by Battle_PickHpDrainProfiles */
   u16 bgScroll
-      [2]; /* added to the BG2/BG3 x scroll by Battle_DrawScene; cleared by Battle_Init */
+      [BATTLE_SIDE_COUNT]; /* added to the BG2/BG3 x scroll by Battle_DrawScene; cleared by Battle_Init */
   u16 unk_40c
-      [2]; /* cleared by Battle_Init; Battle_UpdateSway sets them to sway[0].x >> 4 */
+      [BATTLE_SIDE_COUNT]; /* cleared by Battle_Init; Battle_UpdateSway sets them to sway[0].x >> 4 */
   u16 unk_410[32];   /* unk_450 brightened halfway to white */
   u16 unk_450[32];   /* a side's palette, loaded by File_ReadTo */
   u8 unk_490[0x80];  /* copied from res_battle 0x828 */
@@ -237,15 +243,16 @@ typedef struct BattleScreenWork {
   u8 unk_750[0x80];  /* copied from res_battle 0xb54 */
   u8 unk_7d0[0x800]; /* cleared, then handed to Battle_BuildSideTilemaps */
   u16 unk_fd0[16];   /* palette picked by data_0229fb30 */
-  s32 hpShown[2];    /* 16.16 fixed point, per side */
-  s32 hpStep[2];     /* 16.16 fixed point, taken off hpShown each frame */
-  u8 unk_1000[2];
+  s32 hpShown[BATTLE_SIDE_COUNT]; /* 16.16 fixed point, per side */
+  s32 hpStep
+      [BATTLE_SIDE_COUNT]; /* 16.16 fixed point, taken off hpShown each frame */
+  u8 unk_1000[BATTLE_SIDE_COUNT];
   u8 pad_1002[2];
-  u8 hpStart[2];
-  u8 mood[2]; /* 0 none, 1 happy quote, 2 angry quote */
-  u16 unk_1008[2];
-  u16 hpFrames[2]; /* frames the HP drain takes; 0: no drain */
-  u32 frames;      /* Unk_0229fb30.unk_10: battle screen frame counter */
+  u8 hpStart[BATTLE_SIDE_COUNT];
+  u8 mood[BATTLE_SIDE_COUNT]; /* 0 none, 1 happy quote, 2 angry quote */
+  u16 unk_1008[BATTLE_SIDE_COUNT];
+  u16 hpFrames[BATTLE_SIDE_COUNT]; /* frames the HP drain takes; 0: no drain */
+  u32 frames; /* Unk_0229fb30.unk_10: battle screen frame counter */
 } BattleScreenWork;
 
 /* One team row of the Combat setup screens (link play), 10 bytes. */

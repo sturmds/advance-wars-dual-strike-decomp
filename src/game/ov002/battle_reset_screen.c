@@ -27,8 +27,8 @@ void Battle_ResetScreen(void) {
   func_ov002_0235ec84();
   func_ov002_0235cd50();
   func_ov002_0235cd3c();
-  for (i = 0; i < 2; i++) {
-    for (j = 0; j < 5; j++) {
+  for (i = 0; i < BATTLE_SIDE_COUNT; i++) {
+    for (j = 0; j < BATTLE_CELL_COUNT; j++) {
       gMenuState.battle.unk_310[i][j].unk_00 = 0;
     }
   }

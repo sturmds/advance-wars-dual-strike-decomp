@@ -31,11 +31,11 @@ void Battle_MakeFighters(void) {
   const u32* table;
   BattleRow* row = (BattleRow*)&gMenuState;
 
-  for (side = 0; side < 2; side++, row++) {
+  for (side = 0; side < BATTLE_SIDE_COUNT; side++, row++) {
     if (BATTLE_SIDE_DATA_AT(side)->unk_48 == 0) {
       BattleEntryAt310* at = (BattleEntryAt310*)row;
 
-      for (slot = 0; slot < 5; slot++) {
+      for (slot = 0; slot < BATTLE_CELL_COUNT; slot++) {
         if (at->entry.fillBefore == 2) {
           at->entry.unk_00 = BattleCellTask_Create(
               side, slot, (gMenuState.battle.unk_298[side] >> (slot * 3)) & 7);

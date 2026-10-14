@@ -65,7 +65,7 @@ void BattleCells_RunStepList(BattleScreenTask* screen) {
   int offsetX;
   BattleCellTask* cellTask;
 
-  for (side = 0; side < 2; side++) {
+  for (side = 0; side < BATTLE_SIDE_COUNT; side++) {
     other = (side + 1) & 1;
     hitList = (BattleHitList*)&MENU->battle.stepLists[side];
     while (hitList->cursor != hitList->count &&

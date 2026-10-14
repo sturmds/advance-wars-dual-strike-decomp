@@ -18,13 +18,13 @@ void Battle_BuildHitLists(void) {
   int slot;
   int side;
 
-  for (side = 0; side < 2; side++) {
+  for (side = 0; side < BATTLE_SIDE_COUNT; side++) {
     BattleHitList* list = (BattleHitList*)BATTLE_FIELD(hitLists) + side;
 
     list->cursor = 0;
     list->count = 0;
     if (Ov002_gBattleScene->sides[side].counters != 0) {
-      for (slot = 0; slot < 5; slot++) {
+      for (slot = 0; slot < BATTLE_CELL_COUNT; slot++) {
         int entry = (gMenuState.battle.unk_29c[side] >> (slot * 3)) & 7;
 
         if (side == Ov002_gBattleScene->attackerSide &&

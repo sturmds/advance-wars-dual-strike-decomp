@@ -56,7 +56,7 @@ void Battle_ShowQuote(void) {
   u8 bg;
   u8 bg2;
 
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < BATTLE_SIDE_COUNT; i++) {
     gMenuState.battle.hpStart[i] = Ov002_gBattleScene->sides[i].hpBefore;
     gMenuState.battle.unk_1000[i] = 0;
     gMenuState.battle.hpShown[i] = gMenuState.battle.hpStart[i] << 16;
@@ -85,20 +85,23 @@ void Battle_ShowQuote(void) {
   switch (data_0229fb30.unk_03) {
     case 1:
       Data_Unpack(lang, data_027c0280->objVram);
-      Mem_Copy32(res + 0xbf0, BATTLE_FIELD(unk_fd0), 32);
+      Mem_Copy32(res + 0xbf0, BATTLE_FIELD(unk_fd0),
+                 sizeof(gMenuState.battle.unk_fd0));
       break;
     case 2:
       Data_Unpack(lang + 0x35c, data_027c0280->objVram);
-      Mem_Copy32(res + 0xc10, BATTLE_FIELD(unk_fd0), 32);
+      Mem_Copy32(res + 0xc10, BATTLE_FIELD(unk_fd0),
+                 sizeof(gMenuState.battle.unk_fd0));
       break;
     case 3:
       Data_Unpack(lang + 0x6cc, data_027c0280->objVram);
-      Mem_Copy32(res + 0xc30, BATTLE_FIELD(unk_fd0), 32);
+      Mem_Copy32(res + 0xc30, BATTLE_FIELD(unk_fd0),
+                 sizeof(gMenuState.battle.unk_fd0));
       break;
   }
   Palette_Load(res + 0xbd0, 0x200, 32);
 
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < BATTLE_SIDE_COUNT; i++) {
     gMenuState.battle.mood[i] = Battle_GetSideMood(i);
     switch (gMenuState.battle.mood[i]) {
       case 0:
@@ -136,7 +139,7 @@ void Battle_ShowQuote(void) {
   Mem_Copy32(res + 0xb54, BATTLE_FIELD(unk_750),
              sizeof(gMenuState.battle.unk_750));
 
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < BATTLE_SIDE_COUNT; i++) {
     BOOL left = i == 0 ? TRUE : FALSE;
 
     palette = left ? 10 : 11;

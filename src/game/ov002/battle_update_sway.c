@@ -17,7 +17,7 @@ void Task_ResumeScript(void* task);
 void Battle_UpdateSway(BattleAnimTask* task) {
   int i;
 
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < BATTLE_SIDE_COUNT; i++) {
     gMenuState.battle.sway[i].x = Math_Ease(
         4, data_ov002_023604dc[(i == 0) ? task->phase[0] : task->phase[1]][0],
         0, task->progress, 50);

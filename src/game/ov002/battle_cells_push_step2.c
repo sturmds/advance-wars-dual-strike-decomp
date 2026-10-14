@@ -17,14 +17,14 @@ void BattleCells_PushStep2(void) {
   int cell;
   BattleCellTask* task;
 
-  for (side = 0; side < 2; side++) {
+  for (side = 0; side < BATTLE_SIDE_COUNT; side++) {
     if (!Battle_IsSideAir(side)) {
       if (!Battle_IsSideSea(side)) {
         Battle_FadeAttackerSubSe(side);
       }
     }
     if (MENU->battle.unk_27c[side]->unk_48 == 0) {
-      for (cell = 0; cell < 5; cell++) {
+      for (cell = 0; cell < BATTLE_CELL_COUNT; cell++) {
         if (MENU->battle.unk_310[side][cell].fillBefore != 0 &&
             Battle_IsAttackerWeaponShown(side)) {
           task = (BattleCellTask*)MENU->battle.unk_310[side][cell].unk_00;

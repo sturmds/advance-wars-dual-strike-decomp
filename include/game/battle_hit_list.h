@@ -3,6 +3,9 @@
 
 #include "types.h"
 
+/* HP cells of a battle side: one unit sprite each, up to five. */
+#define BATTLE_CELL_COUNT 5
+
 /* One byte of flags per entry of a BattleHitList. */
 typedef struct BattleHitFlags {
   u8 cell : 3; /* index into the side's BattleEntry list */
@@ -15,7 +18,7 @@ typedef struct BattleHitFlags {
  * (the name is a guess). */
 typedef struct BattleHitList {
   BattleHitFlags flags[6];
-  u16 key[5];
+  u16 key[BATTLE_CELL_COUNT];
   u8 cursor; /* next entry BattleCells_RunSequence runs */
   u8 count;
 } BattleHitList;
@@ -27,8 +30,8 @@ typedef struct BattleHitTimes {
   u16 unk_04; /* added to every key */
   u16 unk_06; /* added to the keys of the other side's step list */
   u16 unk_08;
-  u8 unk_0a[5]; /* key offsets of the attacking side */
-  u8 unk_0f[5]; /* key offsets of the other side */
+  u8 unk_0a[BATTLE_CELL_COUNT]; /* key offsets of the attacking side */
+  u8 unk_0f[BATTLE_CELL_COUNT]; /* key offsets of the other side */
 } BattleHitTimes;
 
 #endif

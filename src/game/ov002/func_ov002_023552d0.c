@@ -32,7 +32,7 @@ void func_ov002_023552d0(void) {
   int stepEntry;
   const void** profile;
 
-  for (side = 0; side < 2; side++) {
+  for (side = 0; side < BATTLE_SIDE_COUNT; side++) {
     BattleHitList* list = (BattleHitList*)BATTLE_FIELD(stepLists) + side;
 
     list->cursor = 0;
@@ -88,7 +88,7 @@ void func_ov002_023552d0(void) {
     }
 
     n = 0;
-    for (slot = 0; slot < 5; slot++) {
+    for (slot = 0; slot < BATTLE_CELL_COUNT; slot++) {
       entry = (gMenuState.battle.unk_2a0[side] >> (slot * 3)) & 7;
       if (gMenuState.battle.unk_310[side][entry].fillBefore ==
           gMenuState.battle.unk_310[side][entry].fillAfter) {

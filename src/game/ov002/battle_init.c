@@ -19,7 +19,7 @@ void func_ov002_0235323c(void);
 int Battle_Init(int unused) {
   int i;
 
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < BATTLE_SIDE_COUNT; i++) {
     gMenuState.battle.bgScroll[i] = 0;
     gMenuState.battle.unk_40c[i] = 0;
   }

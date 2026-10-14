@@ -8,7 +8,7 @@ int Battle_CompareHpToCellStep(int side, int shownHp, int index);
 void Battle_InitHpCells(int side, int shownHpBefore, int shownHpAfter) {
   int i;
 
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < BATTLE_CELL_COUNT; i++) {
     gMenuState.battle.unk_310[side][i].fillBefore =
         Battle_CompareHpToCellStep(side, shownHpBefore, i);
     gMenuState.battle.unk_310[side][i].fillShown =

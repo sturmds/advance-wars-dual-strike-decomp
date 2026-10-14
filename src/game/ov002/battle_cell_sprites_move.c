@@ -25,8 +25,8 @@ void BattleCellSprites_Move(void) {
   int i;
   BattleCellTask* task;
 
-  for (side = 0; side < 2; side++) {
-    for (i = 0; i < 5; i++) {
+  for (side = 0; side < BATTLE_SIDE_COUNT; side++) {
+    for (i = 0; i < BATTLE_CELL_COUNT; i++) {
       task = (BattleCellTask*)SPRITE.task;
       if (task != NULL) {
         SPRITE.direction.x +=

@@ -35,12 +35,12 @@ void Battle_ShuffleCellOrders(void) {
   u32 used;
   int best;
 
-  for (side = 0; side < 2; side++) {
-    for (i = 0; i < 5; i++) {
+  for (side = 0; side < BATTLE_SIDE_COUNT; side++) {
+    for (i = 0; i < BATTLE_CELL_COUNT; i++) {
       order[i] = i;
     }
-    for (i = 0; i < 5; i++) {
-      j = HwMod32(MainLoop_GetFrameCount() >> (i + side), 5);
+    for (i = 0; i < BATTLE_CELL_COUNT; i++) {
+      j = HwMod32(MainLoop_GetFrameCount() >> (i + side), BATTLE_CELL_COUNT);
       tmp = order[i];
       order[i] = order[j];
       order[j] = tmp;
@@ -49,7 +49,7 @@ void Battle_ShuffleCellOrders(void) {
         SHOWN_HP(Ov002_gBattleScene->sides[side].hpBefore) == 2 ||
         SHOWN_HP(Ov002_gBattleScene->sides[side].hpAfter) == 1 ||
         SHOWN_HP(Ov002_gBattleScene->sides[side].hpAfter) == 2) {
-      for (i = 0; i < 5; i++) {
+      for (i = 0; i < BATTLE_CELL_COUNT; i++) {
         if (order[i] == 0) {
           break;
         }
@@ -62,17 +62,18 @@ void Battle_ShuffleCellOrders(void) {
     }
     MENU->battle.unk_294[side] = PACK(order);
 
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < BATTLE_CELL_COUNT; i++) {
       order[i] = i;
     }
-    for (i = 0; i < 5; i++) {
-      j = HwMod32(MainLoop_GetFrameCount() >> (i + side + 1), 5);
+    for (i = 0; i < BATTLE_CELL_COUNT; i++) {
+      j = HwMod32(MainLoop_GetFrameCount() >> (i + side + 1),
+                  BATTLE_CELL_COUNT);
       tmp = order[i];
       order[i] = order[j];
       order[j] = tmp;
     }
     if (SHOWN_HP(Ov002_gBattleScene->sides[side].hpAfter) == 1) {
-      for (i = 0; i < 5; i++) {
+      for (i = 0; i < BATTLE_CELL_COUNT; i++) {
         if (order[i] == 3) {
           break;
         }
@@ -91,11 +92,12 @@ void Battle_ShuffleCellOrders(void) {
     }
     MENU->battle.unk_298[side] = PACK(order);
 
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < BATTLE_CELL_COUNT; i++) {
       order[i] = i;
     }
-    for (i = 0; i < 5; i++) {
-      j = HwMod32(MainLoop_GetFrameCount() >> (i + side + 2), 5);
+    for (i = 0; i < BATTLE_CELL_COUNT; i++) {
+      j = HwMod32(MainLoop_GetFrameCount() >> (i + side + 2),
+                  BATTLE_CELL_COUNT);
       tmp = order[i];
       order[i] = order[j];
       order[j] = tmp;
@@ -103,10 +105,10 @@ void Battle_ShuffleCellOrders(void) {
     MENU->battle.unk_29c[side] = PACK(order);
 
     used = 0;
-    for (slot = 0; slot < 5; slot++) {
+    for (slot = 0; slot < BATTLE_CELL_COUNT; slot++) {
       order[slot] = 0;
       best = -1;
-      for (k = 0, shift = 0; k < 5; shift += 3, k++) {
+      for (k = 0, shift = 0; k < BATTLE_CELL_COUNT; shift += 3, k++) {
         if (!(used & (1 << k))) {
           if (best < ((MENU->battle.unk_294[side] >> shift) & 7)) {
             best = (MENU->battle.unk_294[side] >> shift) & 7;

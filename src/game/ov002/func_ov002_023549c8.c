@@ -66,7 +66,7 @@ void func_ov002_023549c8(void) {
   const void** profile2;
   const void** profile3;
 
-  for (side = 0; side < 2; side++) {
+  for (side = 0; side < BATTLE_SIDE_COUNT; side++) {
     LIST->cursor = 0;
     LIST->count = 0;
     /* effects[4 + weapon]; needed to match: indexed from &effects[4]. */
@@ -96,7 +96,7 @@ void func_ov002_023549c8(void) {
       }
       if (BATTLE.unk_27c[side]->unk_48 != 1) {
         added = 0;
-        for (i = 0; i < 5; i++) {
+        for (i = 0; i < BATTLE_CELL_COUNT; i++) {
           value = (BATTLE.unk_2a0[side] >> (i * 3)) & 7;
 
           if (BATTLE.unk_310[side][value].fillBefore == 0 ||
@@ -124,7 +124,7 @@ void func_ov002_023549c8(void) {
       }
     } else if (BATTLE.unk_27c[side]->unk_48 == 1) {
       value = 0;
-      for (cell = 0; cell < 5; cell++) {
+      for (cell = 0; cell < BATTLE_CELL_COUNT; cell++) {
         value += BATTLE.unk_310[side][cell].fillAfter;
       }
       if (value == 0) {
@@ -147,7 +147,7 @@ void func_ov002_023549c8(void) {
         LIST->count++;
       }
     } else {
-      for (i = 0; i < 5; i++) {
+      for (i = 0; i < BATTLE_CELL_COUNT; i++) {
         cell = (BATTLE.unk_2a0[side] >> (i * 3)) & 7;
 
         if (BATTLE.unk_310[side][cell].fillBefore == 0 ||
@@ -176,7 +176,7 @@ void func_ov002_023549c8(void) {
     Battle_SortHitList(LIST);
     if (BATTLE.unk_27c[side]->unk_48 == 1) {
       value = 0;
-      for (cell = 0; cell < 5; cell++) {
+      for (cell = 0; cell < BATTLE_CELL_COUNT; cell++) {
         value += BATTLE.unk_310[side][cell].fillAfter;
       }
       if (value == 0 && LIST->count != 0) {

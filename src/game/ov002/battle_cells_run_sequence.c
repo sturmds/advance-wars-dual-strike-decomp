@@ -26,7 +26,7 @@ void BattleCells_RunSequence(BattleScreenTask* screen) {
   BattleCellTask* firstCell;
   BattleHitList* hitList;
 
-  for (side = 0; (int)side < 2; side++) {
+  for (side = 0; (int)side < BATTLE_SIDE_COUNT; side++) {
     hitList = &MENU->battle.hitLists[side];
     while (hitList->cursor != hitList->count &&
            screen->frame == hitList->key[hitList->cursor]) {

@@ -154,7 +154,7 @@ void Battle_LoadSideTerrainLayers(void) {
   u16* map;
   int i;
 
-  for (side = 0; side < 2; side++) {
+  for (side = 0; side < BATTLE_SIDE_COUNT; side++) {
     if (side == 0) {
       tiles = CHAR_BASE(data_027c0280->layer2Bg);
       map = data_027c0280->layer2Map;

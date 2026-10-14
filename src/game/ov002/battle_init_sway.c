@@ -18,7 +18,7 @@ void Battle_InitSway(BattleAnimTask* task) {
   task->progress = 0;
   task->phase[0] = MainLoop_GetFrameCount() & 3;
   task->phase[1] = (MainLoop_GetFrameCount() >> 2) & 3;
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < BATTLE_SIDE_COUNT; i++) {
     gMenuState.battle.sway[i].angle = 0;
     gMenuState.battle.sway[i].x = data_ov002_023604dc[PHASE(i)][0];
     gMenuState.battle.sway[i].y = data_ov002_023604dc[PHASE(i)][1];

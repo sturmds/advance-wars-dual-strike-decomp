@@ -16,11 +16,11 @@ void Battle_ReleaseSideTasks(void) {
   int i;
   int j;
 
-  for (side = 0; side < 2; side++) {
+  for (side = 0; side < BATTLE_SIDE_COUNT; side++) {
     found[side] = Battle_IsSideDrawnInAir(side);
   }
-  for (side = 0; side < 2; side++) {
-    for (i = 0; i < 5; i++) {
+  for (side = 0; side < BATTLE_SIDE_COUNT; side++) {
+    for (i = 0; i < BATTLE_CELL_COUNT; i++) {
       for (j = 0; j < 2; j++) {
         BattleCounterTask* task = (j == 0) ? gMenuState.battle.unk_22c[side][i]
                                            : gMenuState.battle.unk_254[side][i];

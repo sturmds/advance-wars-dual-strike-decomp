@@ -40,7 +40,7 @@ void Battle_UpdateHud(void) {
                            data_027c0280->layer1Map + (32 - n), n, 24);
     Gfx_RequestLayerCopy(1);
   }
-  for (n = 0; n < 2; n++) {
+  for (n = 0; n < BATTLE_SIDE_COUNT; n++) {
     if (gMenuState.battle.unk_1000[n] != 0 &&
         gMenuState.battle.unk_1008[n] != gMenuState.battle.hpFrames[n]) {
       gMenuState.battle.unk_1008[n]++;
@@ -69,7 +69,7 @@ void Battle_UpdateHud(void) {
   if (data_0229fb30.unk_0a != data_0229fb30.unk_0e) {
     return;
   }
-  for (side = 0; side < 2; side++) {
+  for (side = 0; side < BATTLE_SIDE_COUNT; side++) {
     isAir = Battle_IsSideAir(side) ? 1 : 0;
     func_ov002_0235e608(data_027c0280->layer1Map, side, isAir);
   }

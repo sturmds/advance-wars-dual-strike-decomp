@@ -24,8 +24,8 @@ void Battle_UpdateFx(void) {
   int side;
   int cell;
 
-  for (side = 0; side < 2; side++) {
-    for (cell = 0; cell < 5; cell++) {
+  for (side = 0; side < BATTLE_SIDE_COUNT; side++) {
+    for (cell = 0; cell < BATTLE_CELL_COUNT; cell++) {
       task = (BattleSpriteTask*)FX.unk_00;
       if (task == NULL) {
         continue;

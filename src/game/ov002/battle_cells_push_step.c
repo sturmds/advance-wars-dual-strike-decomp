@@ -15,10 +15,10 @@ void BattleCells_PushStep(void) {
   int side;
   int cell;
 
-  for (side = 0; side < 2; side++) {
+  for (side = 0; side < BATTLE_SIDE_COUNT; side++) {
     Battle_StartAttackerMoveSound(side);
     if (MENU->battle.unk_27c[side]->unk_48 == 0) {
-      for (cell = 0; cell < 5; cell++) {
+      for (cell = 0; cell < BATTLE_CELL_COUNT; cell++) {
         if (MENU->battle.unk_310[side][cell].fillBefore != 0) {
           task = (BattleCellTask*)MENU->battle.unk_310[side][cell].unk_00;
           if (Battle_IsAttackerWeaponShown(side) == 1) {

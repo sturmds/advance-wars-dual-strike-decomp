@@ -260,7 +260,7 @@ void Battle_LoadSideBackgrounds(void) {
   const char* tileFile;
 
   GX_BeginLoadTex();
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < BATTLE_SIDE_COUNT; i++) {
     if (Battle_IsSideSea(i) == TRUE) {
       PICK_BY_TILESET(data_ov002_0236038c, data_ov002_02360390,
                       data_ov002_02360394, data_ov002_02360398)

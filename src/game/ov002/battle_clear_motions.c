@@ -8,8 +8,8 @@ void Battle_ClearMotions(void) {
   int i;
   int j;
 
-  for (i = 0; i < 2; i++) {
-    for (j = 0; j < 5; j++) {
+  for (i = 0; i < BATTLE_SIDE_COUNT; i++) {
+    for (j = 0; j < BATTLE_CELL_COUNT; j++) {
       gMenuState.battle.motions[i][j].unk_00 = 0;
       gMenuState.battle.unk_13c[i][j].unk_00 = 0;
     }

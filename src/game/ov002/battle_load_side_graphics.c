@@ -76,7 +76,7 @@ void Battle_LoadSideGraphics(void) {
   tile = 0x300;
   FS_ChangeDir(data_ov002_023600e4);
   GX_BeginLoadTex();
-  for (side = 0; side < 2; side++) {
+  for (side = 0; side < BATTLE_SIDE_COUNT; side++) {
     const BattleGfxByStyle* byStyle;
     const BattleGfxFile* file;
     const BattleGfxFile* main;
@@ -228,13 +228,13 @@ void Battle_LoadSideGraphics(void) {
   GX_EndLoadTex();
   GX_BeginLoadTexPltt();
 
-  for (side = 0; side < 2; side++) {
+  for (side = 0; side < BATTLE_SIDE_COUNT; side++) {
     File_ReadTo(
         MENU->battle.unk_450,
         MENU->battle.unk_27c[side]->paletteFiles[SCENE->sides[side].army - 1]);
     /* Each colour halfway to white. */
     palette = MENU->battle.unk_450;
-    for (i = 0; i < 32; i++) {
+    for (i = 0; i < (int)ARRAY_COUNT(MENU->battle.unk_450); i++) {
       int colour = palette[i];
 
       MENU->battle.unk_410[i] = ((((colour & 0x7c00) >> 10) + 31) >> 1) << 10 |

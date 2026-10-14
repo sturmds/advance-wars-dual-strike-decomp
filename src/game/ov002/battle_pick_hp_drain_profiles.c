@@ -35,7 +35,7 @@ void Battle_PickHpDrainProfiles(void) {
   int side;
   int kind;
 
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < BATTLE_SIDE_COUNT; i++) {
     side = i == 0 ? Ov002_gBattleScene->attackerSide
                   : (Ov002_gBattleScene->attackerSide + 1) & 1;
     if (RECORD(side).unitType == UNIT_SUB || RECORD(side).unitType == 32) {

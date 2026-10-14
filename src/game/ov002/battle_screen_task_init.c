@@ -9,7 +9,7 @@ void BattleScreenTask_Init(BattleScreenTask* task) {
 
   task->frame = 0;
   data_0229fb30.unk_10 = 0;
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < BATTLE_SIDE_COUNT; i++) {
     task->fighterStarted[i] = 0;
     task->unk_2e[i] = 0;
   }
