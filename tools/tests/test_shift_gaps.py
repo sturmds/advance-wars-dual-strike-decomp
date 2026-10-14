@@ -60,6 +60,51 @@ with tempfile.TemporaryDirectory(prefix="test_shift_gaps") as d:
 if shift_gaps.area("src/game/main/x.c") != "game" or shift_gaps.area("src/sdk/os/x.c") != "SDK":
     errors.append("area")
 
+
+def extern_types_tree(root: Path) -> None:
+    """A small tree for extern_types.py: definitions, readers and a header."""
+    (root / "include/game").mkdir(parents=True)
+    (root / "src/game").mkdir(parents=True)
+    (root / "include/types.h").write_text("typedef unsigned char u8;\ntypedef unsigned int u32;\n")
+    (root / "include/game/foo.h").write_text(
+        "#ifndef FOO_H\n#define FOO_H\n\n#include \"types.h\"\n\n#define FOO_ROWS 4\n\n"
+        "typedef struct Foo {\n  u32 a;\n} Foo;\n\nextern Foo gFoo;\n\n#endif\n")
+    (root / "src/game/defs.c").write_text(
+        '#include "game/foo.h"\n\nFoo gFoo;\nconst Foo data_table[] = {\n#include "x.inc.c"\n};\n'
+        "unsigned char data_bytes[8];\nu32 data_grid[3][FOO_ROWS];\nvoid f(void) {\n  u8 local[2];\n}\n")
+    (root / "src/game/reader.c").write_text(
+        '#include "types.h"\n\nextern u8 data_table[]; /* rows */\nextern u8 data_bytes[];\n'
+        "extern u32 data_grid[][4];\nextern u8\n    gFoo;\nextern u8 not_defined[];\n\n"
+        "void g(void) {}\n")
+
+
+with tempfile.TemporaryDirectory(prefix="test_extern_types") as d:
+    import extern_types  # noqa: E402
+
+    root = Path(d)
+    extern_types_tree(root)
+    extern_types.ROOT = root
+    for f in (extern_types.collect, extern_types.defines, extern_types.type_headers):
+        f.cache_clear()
+    got = [(e.name, e.line) for e, _ in extern_types.mismatches()]
+    # data_bytes agrees (unsigned char is u8), data_grid agrees (FOO_ROWS is 4),
+    # not_defined has no definition.
+    if got != [("data_table", 3), ("gFoo", 6)]:
+        errors.append(f"extern_types: got {got}, want data_table and gFoo in reader.c")
+    else:
+        print("extern_types differ: ok")
+    done, left = extern_types.fix(None)
+    text = (root / "src/game/reader.c").read_text()
+    want = ('#include "types.h"\n#include "game/foo.h"\n\nextern const Foo data_table[]; /* rows */\n'
+            "extern u8 data_bytes[];\nextern u32 data_grid[][4];\nextern Foo gFoo;\n")
+    if done != 2 or left or not text.startswith(want):
+        errors.append(f"extern_types --fix: {done} rewritten, left {left}, text:\n{text}")
+    else:
+        print("extern_types --fix: ok")
+    extern_types.collect.cache_clear()
+    if extern_types.mismatches():
+        errors.append("extern_types: differs after --fix")
+
 if errors:
     sys.exit("test_shift_gaps: " + "\n  ".join(errors))
 print("test_shift_gaps: ok")

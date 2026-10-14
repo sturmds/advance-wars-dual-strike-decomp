@@ -356,6 +356,7 @@ A mod that changes code size moves every later address. The linker fixes an addr
   - a loop over every element of an array: `i < ARRAY_COUNT(table)` (`types.h`); over a fixed count the game defines (players, COs, unit slots): a named constant in the header of the struct that holds the array, also used as the array's length;
   - a hardware format (a 32-byte palette, a 0x800-byte tile block, a register layout): a named constant in the SDK or graphics header, never the number in the call;
   - `(u8 *)x + N`: the field at offset N, adding it to the struct (with its size assert kept) when it is missing;
+  - an `extern` of a data object written as bytes or words (`extern u8 X[]` for a `Foo X[]`): the definition's type, so that a change to `Foo` reaches the reader. `python3 tools/extern_types.py` lists every extern whose type differs from the definition, and `--fix [FILE...]` rewrites the byte and word views with the definition's type and includes the type's header; build after it and keep a file's old extern where the code changes (the definition is often the one with the wrong type then);
   - check a count with `python3 tools/shift_gaps.py`, and list what is left with `--list KIND`.
 - `python3 tools/resolve_overlay_relocs.py [--write]` narrows relocations that dsd marked `module:overlays(...)` because several overlays share the target address. Run it after anything that regenerates `relocs.txt`, then `make release`.
 
@@ -372,6 +373,7 @@ A mod that changes code size moves every later address. The linker fixes an addr
 | `python3 tools/triage_partials.py --out FILE.md` | Classify the unlinked functions' diffs, with pragma sweep and pragma'd neighbours |
 | `nice -n 19 python3 tools/permuter.py NAME` | decomp-permuter on one function, best variant rescored with `fn.py check` |
 | `python3 tools/protocheck.py [FILE.c ...]` | Declarations and calls in the unlinked files that disagree with the callee's definition or header; `--all` for every file |
+| `python3 tools/extern_types.py [--symbol NAME] [--fix [FILE...]]` | Externs of data objects whose type differs from the definition; the definition and every extern of one symbol; rewrite byte and word views with the definition's type |
 | `python3 tools/fn.py pick --families` | Rank unmatched same-shape families by member count |
 | `python3 tools/fn.py pick --arm7` | Candidates in ARM7 (also with `--families`) |
 | `make fnindex` | Build `build/fnindex.json` |

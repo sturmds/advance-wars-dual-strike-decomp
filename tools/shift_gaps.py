@@ -25,6 +25,11 @@ code (src/game/, include/game/) and SDK/library code (everything else):
             an initialised array whose length is a literal (`u32 x[12] = {`);
             `[]` takes the length from the initializer
   extern    an extern array with a literal length
+  extern_type
+            an extern of a data object whose type is not the definition's
+            (tools/extern_types.py): a reader with a byte or word view of a
+            struct does not follow a change to it. Needs build/gen/bss/
+            (the .bss definitions bss.py gen writes)
   placeholder
             a zeroed `u8 NAME[N];` definition standing for a variable whose
             type is not written, in src/ and in build/gen/bss/ (bss.py gen)
@@ -80,7 +85,7 @@ COMMENT = re.compile(r"//[^\n]*|/\*.*?\*/", re.S)
 STRING = re.compile(r'"(?:\\.|[^"\\\n])*"')
 
 KINDS = ("alias", "scan_layout", "scan_high", "scan_medium", "scan_low", "alloc", "copy", "offset", "loop",
-         "array_u32", "array_char", "array_other", "mixed_u32", "extern", "placeholder")
+         "array_u32", "array_char", "array_other", "mixed_u32", "extern", "extern_type", "placeholder")
 AREAS = ("game", "SDK")
 
 # What PROGRESS.md prints for each kind: (group, label).
@@ -99,6 +104,7 @@ LABELS = {
     "array_other": ("Tables", "Other initialised arrays with a literal length"),
     "mixed_u32": ("Tables", "`u32` tables holding pointers and numbers (structs written as words)"),
     "extern": ("Tables", "Extern arrays with a literal length"),
+    "extern_type": ("Tables", "Externs whose type differs from the definition (`extern_types.py`)"),
     "placeholder": ("Tables", "`u8 NAME[N]` placeholders for zeroed variables"),
 }
 
@@ -213,6 +219,18 @@ def mixed_u32_sites() -> list[tuple[str, str, int, str]] | None:
     return out
 
 
+def extern_type_sites() -> list[tuple[str, str, int, str]] | None:
+    """Externs whose type differs from the definition, or None without
+    the generated .bss files (their definitions would be missing)."""
+    if not (ROOT / "build/gen/bss").is_dir():
+        return None
+    sys.path.insert(0, str(TOOLS))
+    import extern_types
+
+    return [("extern_type", e.path, e.line, f"extern {e.text()}; defined {d.text()} ({d.path}:{d.line})")
+            for e, d in extern_types.mismatches()]
+
+
 def scan_sites() -> list[tuple[str, str, int, str]] | None:
     """scan_pointers.py's candidates, or None without a build."""
     sys.path.insert(0, str(TOOLS))
@@ -244,7 +262,8 @@ def collect() -> tuple[dict, list[tuple[str, str, int, str]], set[str]]:
                       if kind == "placeholder"]
     sites += alias_sites()
     missing = set()
-    for kinds, got in (({"mixed_u32"}, mixed_u32_sites()), ({f"scan_{lv}" for lv in ("layout", "high", "medium", "low")}, scan_sites())):
+    for kinds, got in (({"mixed_u32"}, mixed_u32_sites()), ({"extern_type"}, extern_type_sites()),
+                       ({f"scan_{lv}" for lv in ("layout", "high", "medium", "low")}, scan_sites())):
         if got is None:
             missing |= kinds
         else:
