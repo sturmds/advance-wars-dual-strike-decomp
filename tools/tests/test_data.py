@@ -100,10 +100,17 @@ def test_dims() -> None:
 
 
 class StructIndex:
-    """A struct with a gap, an array field and a pointer, and one with a
-    bit field."""
-    struct_size = {"Layer": 0x10, "Bits": 4}
+    """A struct with a gap, an array field and a pointer, one with a bit
+    field, and one that holds a union."""
+    struct_size = {"Layer": 0x10, "Bits": 4, "Ref": 4, "Quote": 8}
+    unions = {"Ref"}
     struct_fields = {
+        # union { struct { u16 index; u16 group; }; u32 id; }
+        "Ref": [{"name": "index", "offset": 0, "size": 2, "type": "u16", "signed": False},
+                {"name": "group", "offset": 2, "size": 2, "type": "u16", "signed": False},
+                {"name": "id", "offset": 0, "size": 4, "type": "u32", "signed": False}],
+        "Quote": [{"name": "ref", "offset": 0, "size": 4, "type": "Ref", "struct": "Ref"},
+                  {"name": "text", "offset": 4, "size": 4, "type": "char *", "signed": False}],
         "Layer": [{"name": "mode", "offset": 0, "size": 1, "type": "u8", "signed": False},
                   {"name": "pos", "offset": 2, "size": 4, "type": "s16[2]", "count": 2, "elem_size": 2,
                    "elem_signed": True},
@@ -119,6 +126,9 @@ def test_struct_row() -> None:
     check("struct: where relocations may sit", words_at == [8], words_at)
     data_inc.Row(f"itcm gL 0x1000 0x20 {row}", "test")  # data_inc takes it
     check("struct: bit field refused", refused(lambda: data.struct_row(StructIndex(), "Bits")))
+    row, words_at = data.struct_row(StructIndex(), "Quote")
+    check("struct: a union as its first member", row == "{u16,u16,void*}", row)
+    check("struct: relocations after a union", words_at == [4], words_at)
 
 
 def test_plain_shapes() -> None:

@@ -32,8 +32,8 @@ rules it follows and whose code it reuses; what differs:
 - The type: the declaration's (bss.chosen_decl: the host's own, else a
   header's, else the most common one whose type a header defines). A
   struct's layout comes from build/dsindex.json, written as data_inc
-  field types with `pad[N]` for the gaps; bit fields, unions and floats
-  stop it. With no usable declaration: `char` for a string, `void*` for
+  field types with `pad[N]` for the gaps, a union as its first member;
+  bit fields, floats and unions with no name inside a struct stop it. With no usable declaration: `char` for a string, `void*` for
   pointers, `u32` when the size is a multiple of 4, `u16` of 2, else
   `u8`. A relocation must sit on a 4-byte field.
 - const: an object in .rodata is defined `const` (a pointer array as
@@ -254,10 +254,19 @@ def basic_cast(index: bss.Index, base: str) -> str | None:
 def struct_leaves(index: bss.Index, name: str, at: int = 0) -> list[tuple[int, str, int]]:
     """The fields of a struct as data_inc leaves: (offset, type, count; 0
     for a single value), nested structs taken apart. Raises Refused for a
-    union, a bit field, a float or an unknown member."""
+    bit field, a float or an unknown member; a union gives the fields of its
+    first member, a union inside a struct with no name of its own is
+    refused."""
     if name not in index.struct_fields or name not in index.struct_size:
         raise Refused(f"no single layout for struct {name} in build/dsindex.json")
-    return fields_leaves(index, index.struct_fields[name], at, name)
+    fields = index.struct_fields[name]
+    if name in index.unions:
+        # An initializer sets a union's first member. Every member starts
+        # at 0, and the fields of an unnamed struct come one by one, so the
+        # first member ends before the next field at offset 0.
+        later = [i for i, f in enumerate(fields) if i and f["offset"] == 0]
+        fields = fields[:later[0]] if later else fields
+    return fields_leaves(index, fields, at, name)
 
 
 def fields_leaves(index: bss.Index, fields: list[dict], at: int, what: str) -> list[tuple[int, str, int]]:

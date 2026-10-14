@@ -271,12 +271,15 @@ class Index:
         self.struct_size: dict[str, int] = {}
         self.struct_fields: dict[str, list[dict]] = {}
         self.struct_headers: dict[str, list[str]] = defaultdict(list)
+        self.unions: set[str] = set()
         sizes_seen: dict[str, set[int]] = defaultdict(set)
         for where in ("headers", "sources"):
             for path, info in ds[where].items():
                 for st in info.get("structs", []):
                     sizes_seen[st["name"]].add(st["size"])
                     self.struct_fields.setdefault(st["name"], st.get("fields", []))
+                    if st.get("kind") == "union":
+                        self.unions.add(st["name"])
                     if where == "headers" and path not in self.struct_headers[st["name"]]:
                         self.struct_headers[st["name"]].append(path)
         for name, sizes in sizes_seen.items():
