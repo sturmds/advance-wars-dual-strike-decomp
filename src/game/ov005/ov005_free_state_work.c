@@ -9,7 +9,7 @@ void Ov005_FreeStateWork(Ov005Task* task) {
   Unk_ov005_0236bba4* work = task->work;
   int i;
 
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(work->unk_390); i++) {
     SpriteAnim_Free(work->unk_390[i]);
   }
   Mem_Free(work);

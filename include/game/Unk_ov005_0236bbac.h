@@ -2,6 +2,7 @@
 #define GAME_UNK_OV005_0236BBAC_H
 
 #include "types.h"
+#include "sdk/snd_hw.h"
 #include "game/text_ref.h"
 
 /* One cell of the CO grid: 8 bytes, 8 cells per page. */
@@ -82,9 +83,9 @@ typedef struct Unk_ov005_0236bbac {
   u8 pad_f0[0x1114 - 0xf0];
   int unk_1114;
   u8 pad_1118[0x1220 - 0x1118];
-  s16 barHeights[16]; /* 0 to 10 tiles */
+  s16 barHeights[SOUND_CHANNEL_COUNT]; /* 0 to 10 tiles */
   u8 pad_1240[0x1320 - 0x1240];
-  s16 shownBarHeights[16];      /* barHeights as last drawn */
+  s16 shownBarHeights[SOUND_CHANNEL_COUNT]; /* barHeights as last drawn */
   u8 pad_1340[0x1360 - 0x1340]; /* Ov005SoundRoom_AllocWork allocates 0x1360 */
 } Unk_ov005_0236bbac;
 

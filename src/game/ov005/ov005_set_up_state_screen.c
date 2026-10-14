@@ -169,7 +169,7 @@ void Ov005_SetUpStateScreen(Ov005Task* task) {
   File_UnpackTo(data_027c0280->objVram + 0x4000, data_ov005_0236aa8c);
   Palette_LoadFromFile(data_ov005_0236aa90, 0, 0x340, 32);
   work->spriteFile = File_Load(data_ov005_0236aa94);
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(work->unk_390); i++) {
     work->unk_390[i] = SpriteAnim_Create(work->spriteFile, 0, 2);
     ((ShowSprite*)work->unk_390[i])->unk_24 = 0xa200;
   }

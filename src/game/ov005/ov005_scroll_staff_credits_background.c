@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov005_0236bb90.h"
 
@@ -53,7 +54,7 @@ void Ov005_ScrollStaffCreditsBackground(Unk_ov005_0236bb90* work) {
     mapRow = (((scrollY >> 3) + row) & 31) << 5;
     src = (u16*)work->palettesOut;
 
-    for (col = 0; col < 33; col++) {
+    for (col = 0; col < SCREEN_WIDTH / TILE_PIXELS + 1; col++) {
       int page = 0;
       int tileX = (scrollX >> 3) + col;
       int index;

@@ -72,8 +72,9 @@ TaskScriptCmd data_ov005_02368230[] = {
     int level;                                                               \
     Screen_SetCurrentGfx(data_027c0288.unk_04);                              \
     level = Math_Ease(0, 0x10000, 0, task->frame, task->frames);             \
-    Mem_Copy32((u8*)work->block80 + (palette) * 32,                          \
-               data_027c0280->paletteBuffer + (palette) * 32, 32);           \
+    Mem_Copy32((u8*)work->block80 + (palette) * PALETTE_16_SIZE,             \
+               data_027c0280->paletteBuffer + (palette) * PALETTE_16_SIZE,   \
+               PALETTE_16_SIZE);                                             \
     Palette_Darken(data_027c0280->paletteBuffer, (palette), 1, level >> 12); \
     Palette_Flush();                                                         \
     Screen_SetCurrentGfx(saved0280);                                         \
@@ -131,8 +132,9 @@ void Ov005_UpdateAffineBgScreen(Ov005Task* task) {
       work->spritePos[2][1] = 144;
       work->spritePos[3][0] = 64;
       work->spritePos[3][1] = 144;
-      work->block80 = Mem_Alloc(0x400);
-      Mem_Copy32(data_027c0280->paletteBuffer, work->block80, 0x400);
+      work->block80 = Mem_Alloc(PALETTE_BUFFER_SIZE);
+      Mem_Copy32(data_027c0280->paletteBuffer, work->block80,
+                 PALETTE_BUFFER_SIZE);
       Palette_Darken(data_027c0280->paletteBuffer, 0, 32, 16);
       Palette_Flush();
       Screen_SetCurrent(saved027c);

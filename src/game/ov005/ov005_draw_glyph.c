@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/Unk_ov005_0235b574.h"
 
 /* Copies glyph `glyph` of the font in buffer_0010 to text cell `cell` of the tiles in
@@ -16,7 +17,7 @@ void Ov005_DrawGlyph(Unk_ov005_0235b574* work, int cell, int glyph) {
   tiles = work->buffer_2010;
   cellOffset = ((cell & 3) << 5) + ((cell & 0xfffc) << 6);
   glyphOffset = ((glyph & 31) << 5) + ((glyph & 0xffe0) << 6);
-  for (col = 0; col < 32; col += 4) {
+  for (col = 0; col < TILE_4BPP_SIZE; col += 4) {
     u8* s = font + glyphOffset + col;
     u8* d = tiles + cellOffset + col;
 

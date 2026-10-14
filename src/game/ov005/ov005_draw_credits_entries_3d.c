@@ -79,7 +79,7 @@ void Ov005_DrawCreditsEntries3D(Unk_ov005_0235a30c* work) {
       cos = data_0214d4c4[idx + 1];
       sin = data_0214d4c4[idx];
       entry = WORK_AT(off);
-      for (; j < 32; j++) {
+      for (; j < CREDITS_ENTRY_GLYPHS; j++) {
         *GXFIFO_MTX_PUSH = 0;
         G3_RotY(sin, cos);
         *GXFIFO_MTX_TRANS = x;

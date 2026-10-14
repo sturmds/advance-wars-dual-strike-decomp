@@ -7,6 +7,9 @@
 /* One 0x18-byte entry of the two tables in the work block of the task step
  * Ov005_UpdateStaffCreditsScreen (at offsets 0x8018 and 0x81b0). A table ends at the
  * first entry whose `id` is 0. Each entry owns one task. */
+/* Glyph cells drawn for each entry; cells past `length` get a blank. */
+#define CREDITS_ENTRY_GLYPHS 32
+
 typedef struct Unk_ov005_0235abfc {
   u16 id;
   u16 length; /* characters in `text` */

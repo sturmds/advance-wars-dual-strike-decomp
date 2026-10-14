@@ -8,6 +8,10 @@
 #include "game/task.h"
 #include "game/Unk_ov005_0236bbb0.h"
 
+/* The text box rows of a layer map: rows 18 to 23 of 32 entries. */
+#define TEXT_BOX_MAP_OFFSET (18 * 32)
+#define TEXT_BOX_MAP_SIZE ((24 - 18) * 32 * sizeof(u16))
+
 void func_020048f4(u16 frames);
 void func_0200493c(u16 frames);
 BOOL Screens_IsTransitionRunning(void);
@@ -388,9 +392,11 @@ void Ov005_UpdateShopScreen(Ov005Task* task) {
         break;
       }
       SWITCH_TO(data_027c0288.unk_00);
-      Mem_Copy32(gEventTextMap, data_027c0280->layer0Map + 0x240, 0x180);
+      Mem_Copy32(gEventTextMap, data_027c0280->layer0Map + TEXT_BOX_MAP_OFFSET,
+                 TEXT_BOX_MAP_SIZE);
       Gfx_RequestLayerCopy(0);
-      Mem_Copy32(data_022978e0, data_027c0280->layer1Map + 0x240, 0x180);
+      Mem_Copy32(data_022978e0, data_027c0280->layer1Map + TEXT_BOX_MAP_OFFSET,
+                 TEXT_BOX_MAP_SIZE);
       Gfx_RequestLayerCopy(1);
       SWITCH_BACK();
       task->step = 100;

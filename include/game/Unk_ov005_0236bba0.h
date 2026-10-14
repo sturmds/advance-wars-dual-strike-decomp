@@ -5,6 +5,9 @@
 
 struct Task;
 
+/* Entries of the CO list (Ov005_AddCoListButtons, data_ov005_0236a48c). */
+#define OV005_CO_LIST_ENTRIES 33
+
 /* Overlay 5 work block (0x918 bytes) that Ov005_AllocCoListWork allocates
  * into Ov005Task.work and data_ov005_0236bba0. It belongs to a screen with
  * 33 selectable entries (the rows of the table at data_ov005_0236a5a0), one
@@ -32,10 +35,12 @@ typedef struct Unk_ov005_0236bba0 {
   int unk_844;
   int unk_848;
   int unk_84c;
-  u8 buttonIds[33];   /* MenuButton id of each entry */
-  u8 entryActive[33]; /* nonzero when the entry has a button */
+  u8 buttonIds[OV005_CO_LIST_ENTRIES]; /* MenuButton id of each entry */
+  u8 entryActive
+      [OV005_CO_LIST_ENTRIES]; /* nonzero when the entry has a button */
   u8 pad_892[0x894 - 0x892];
-  int nameSlots[33]; /* what Text_PrintId returned for each entry's name */
+  int nameSlots
+      [OV005_CO_LIST_ENTRIES]; /* what Text_PrintId returned for each entry's name */
 } Unk_ov005_0236bba0;
 
 #endif

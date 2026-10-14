@@ -108,7 +108,8 @@ void Ov005_UpdateCoListScreen(Ov005Task* task) {
       Screen_SetCurrentGfx(data_027c0288.unk_04);
       saved027c = data_027c027c;
       Screen_SetCurrent(data_027c0288.unk_04);
-      Mem_Copy32(data_027c0280->paletteBuffer, work->savedPalettes, 0x400);
+      Mem_Copy32(data_027c0280->paletteBuffer, work->savedPalettes,
+                 sizeof(work->savedPalettes));
       Screen_SetCurrent(saved027c);
       Screen_SetCurrentGfx(saved0280);
       task->step++;

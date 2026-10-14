@@ -43,7 +43,7 @@ void Ov005_DrawShopPage(Unk_ov005_0236bbb0* work) {
     rows = 6;
   }
   if (work->redrawRows) {
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < SHOP_PAGE_ROWS; i++) {
       SWITCH_TO(data_027c0288.unk_00);
       Bg_FillRect(data_027c0280->layer0Map, 4, 5 + i * 2, 22, 2, 0);
       SWITCH_BACK();
@@ -73,7 +73,7 @@ void Ov005_DrawShopPage(Unk_ov005_0236bbb0* work) {
     Icon_Draw(item->iconId, 16, 40 + i * 16, 0, 0);
     SWITCH_BACK();
   }
-  for (i = 0; i < 6; i++) {
+  for (i = 0; i < SHOP_PAGE_ROWS; i++) {
     SWITCH_TO(data_027c0288.unk_00);
     if (i == work->cursorRow && work->showCursor == 1) {
       MenuCursor_DrawAt(16, 40 + i * 16, 200, 16);

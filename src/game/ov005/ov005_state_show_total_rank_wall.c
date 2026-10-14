@@ -3,6 +3,9 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov005_0236bba4.h"
 
+/* BG palettes from this one on are cleared to black. */
+#define FIRST_CLEARED_PALETTE 6
+
 void Screen_SetCurrent(void* state);
 void Screen_SetCurrentGfx(void* state);
 void Screen_SetCurrentBoth(void* state);
@@ -103,7 +106,9 @@ void Ov005State_ShowTotalRankWall(Unk_ov005_0236bba4* work, int wall) {
         Screen_SetCurrentGfx(data_027c0288.unk_00);
         saved027c = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_00);
-        Mem_Fill32(0, palette + 0xc0, 0x140);
+        Mem_Fill32(
+            0, palette + FIRST_CLEARED_PALETTE * PALETTE_16_SIZE,
+            (BG_PALETTE_COUNT - FIRST_CLEARED_PALETTE) * PALETTE_16_SIZE);
         Palette_Flush();
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
@@ -183,7 +188,9 @@ void Ov005State_ShowTotalRankWall(Unk_ov005_0236bba4* work, int wall) {
         Screen_SetCurrentGfx(data_027c0288.unk_00);
         saved027c = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_00);
-        Mem_Fill32(0, palette + 0xc0, 0x140);
+        Mem_Fill32(
+            0, palette + FIRST_CLEARED_PALETTE * PALETTE_16_SIZE,
+            (BG_PALETTE_COUNT - FIRST_CLEARED_PALETTE) * PALETTE_16_SIZE);
         Palette_Flush();
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
@@ -263,7 +270,9 @@ void Ov005State_ShowTotalRankWall(Unk_ov005_0236bba4* work, int wall) {
         Screen_SetCurrentGfx(data_027c0288.unk_00);
         saved027c = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_00);
-        Mem_Fill32(0, palette + 0xc0, 0x140);
+        Mem_Fill32(
+            0, palette + FIRST_CLEARED_PALETTE * PALETTE_16_SIZE,
+            (BG_PALETTE_COUNT - FIRST_CLEARED_PALETTE) * PALETTE_16_SIZE);
         Palette_Flush();
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);

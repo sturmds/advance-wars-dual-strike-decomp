@@ -198,12 +198,6 @@ typedef char GfxLayer_size_check[sizeof(GfxLayer) == 0x14 ? 1 : -1];
 /* Bytes of a screen's BG and OBJ palette buffer (Unk_027c0280.paletteBuffer). */
 #define PALETTE_BUFFER_SIZE 0x400
 
-/* Bytes of one 16-colour palette (BGR555), in a palette buffer or VRAM. */
-#define PALETTE_16_SIZE 0x20
-
-/* Bytes of one 8x8 tile at 4 bits per pixel. */
-#define TILE_4BPP_SIZE 0x20
-
 /* Bytes in the map buffer (GfxLayer.map) of layers 0-2 of a screen, and of
  * layer 3. Screens_InitContexts gives each screen four, in layer order
  * (screen_contexts.h). */
@@ -222,6 +216,10 @@ typedef char GfxLayer_size_check[sizeof(GfxLayer) == 0x14 ? 1 : -1];
 /* Bytes of one 16-colour palette (BGR555), in a palette buffer or VRAM. */
 #define PALETTE_16_SIZE 0x20
 #define PALETTE_16_COLOURS 16
+
+/* 16-colour BG palettes at the start of a palette buffer; the OBJ palettes
+ * follow. */
+#define BG_PALETTE_COUNT 16
 
 /* Pixels of a screen, and of the side of an 8x8 tile. */
 #define SCREEN_WIDTH 256

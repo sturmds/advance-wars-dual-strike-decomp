@@ -15,6 +15,9 @@ typedef struct ShopItem {
       confirmScript; /* asks whether to buy (Ov005_UpdateShopScreen) */
 } ShopItem;
 
+/* Rows (items) on a shop page, one button each. */
+#define SHOP_PAGE_ROWS 6
+
 /* One of the six buttons of a page, 12 bytes. */
 typedef struct ShopButton {
   s16 shown;    /* nonzero: the button exists */
@@ -52,7 +55,7 @@ typedef struct Unk_ov005_0236bbb0 {
   ShopItem* items;       /* the items for sale, filled by Ov005_LoadShopItems */
   ShopItem itemBuf[256]; /* items points here */
   ShopButton* buttons;   /* points at buttonBuf */
-  ShopButton buttonBuf[6];
+  ShopButton buttonBuf[SHOP_PAGE_ROWS];
   struct Task* songTask; /* Sound_StartSongSwitch(12, 0): fades to song 12 */
 } Unk_ov005_0236bbb0;
 

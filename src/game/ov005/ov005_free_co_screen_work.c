@@ -9,7 +9,7 @@ void Ov005_FreeCoScreenWork(Ov005Task* task) {
   Unk_ov005_0236bba8* work = task->work;
   int i;
 
-  for (i = 0; i < 9; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(work->unk_21c); i++) {
     SpriteAnim_Free(work->unk_21c[i]);
   }
   Mem_Free(work);

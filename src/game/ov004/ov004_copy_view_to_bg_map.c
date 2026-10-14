@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/Unk_ov004_022bf158.h"
 
 /* Needed to match, with srcRow set inside the column loop: without both,
@@ -28,10 +29,10 @@ void Ov004_CopyViewToBgMap(Unk_ov004_022bf158* state, u16* dest) {
   state->viewScrollX = viewX & 0x1ff;
   state->viewScrollY = viewY & 0xff;
   rowBase = stride * tileY + tileX;
-  for (row = 0, rowOffset = 0; row < 25; row++) {
+  for (row = 0, rowOffset = 0; row < SCREEN_HEIGHT / TILE_PIXELS + 1; row++) {
     destRow = ((tileY + row) & 31) << 5;
 
-    for (col = 0; col < 33; col++) {
+    for (col = 0; col < SCREEN_WIDTH / TILE_PIXELS + 1; col++) {
       int screenBlock = 0;
       int x = tileX + col;
       int index;

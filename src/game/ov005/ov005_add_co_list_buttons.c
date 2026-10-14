@@ -40,7 +40,7 @@ void Ov005_AddCoListButtons(Ov005Task* task) {
   u8 y;
   u16* map;
 
-  for (i = 0; i < 33; i++, coIds++) {
+  for (i = 0; i < OV005_CO_LIST_ENTRIES; i++, coIds++) {
     if (*coIds == 0) {
       active = 1;
     } else if (*coIds == 30) {
@@ -57,7 +57,7 @@ void Ov005_AddCoListButtons(Ov005Task* task) {
     work->entryActive[i] = active;
   }
 
-  for (i = 0; i < 33; i++) {
+  for (i = 0; i < OV005_CO_LIST_ENTRIES; i++) {
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;

@@ -7,7 +7,7 @@ void Ov005_RemoveShopButtons(Unk_ov005_0236bbb0* work) {
   ShopButton* button;
   int i;
 
-  for (i = 0; i < 6; i++) {
+  for (i = 0; i < SHOP_PAGE_ROWS; i++) {
     button = &work->buttons[i];
 
     if (button->shown != 0) {

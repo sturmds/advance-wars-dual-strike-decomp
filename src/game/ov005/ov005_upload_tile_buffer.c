@@ -10,11 +10,11 @@ void GX_EndLoadTex(void); /* guess: ends the load */
 void Ov005_UploadTileBuffer(Unk_ov005_0235b574* work) {
   int i;
 
-  for (i = 0; i < 128; i++) {
+  for (i = 0; i < OV005_TEXTURE_GLYPHS; i++) {
     Ov005_DrawGlyphToTexture(work, i, i);
   }
-  DC_FlushRange(work->buffer_6010, 0x2000);
+  DC_FlushRange(work->buffer_6010, sizeof(work->buffer_6010));
   GX_BeginLoadTex();
-  GX_LoadTex(work->buffer_6010, 0, 0x2000);
+  GX_LoadTex(work->buffer_6010, 0, sizeof(work->buffer_6010));
   GX_EndLoadTex();
 }

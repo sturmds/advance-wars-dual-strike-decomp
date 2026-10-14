@@ -88,8 +88,8 @@ void Ov005_MoveCoGridCursor(void) {
     return;
   }
 
-  for (i = 0; i < 4; i++) {
-    for (j = 0; j < 7; j++) {
+  for (i = 0; i < OV005_CO_GRID_COLUMNS; i++) {
+    for (j = 0; j < OV005_CO_GRID_ROWS; j++) {
       col = work->grid[cursor].column;
       row = work->grid[cursor].row;
       if (vertical == 2 || horizontal == 2) {

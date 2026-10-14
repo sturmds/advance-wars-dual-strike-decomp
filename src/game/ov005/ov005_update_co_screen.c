@@ -342,7 +342,7 @@ void Ov005_UpdateCoScreen(Ov005Task* task) {
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    for (i = 0; i < 9; i++) {
+    for (i = 0; i < (int)ARRAY_COUNT(work->unk_21c); i++) {
       /* the picture swap button only shows from rank 10 */
       if (Co_GetRank(work->coId) >= 10 || i != CO_PICTURE_SWAP_VARIANT) {
         SpriteAnim_Draw(work->unk_21c[i], work->extraX[i] - 1, work->extraY[i]);

@@ -35,7 +35,7 @@ void Ov005_DrawCreditsEntryText(Unk_ov005_0235a30c* work) {
       return;
     }
     entry = WORK_AT(off);
-    for (j = 0; j < 32; j++) {
+    for (j = 0; j < CREDITS_ENTRY_GLYPHS; j++) {
       glyph = 63;
       tile = entry->entriesA[0].tile;
       if (j < entry->entriesA[0].length) {

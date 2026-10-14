@@ -33,7 +33,9 @@ typedef struct Ov005CoGridEntry {
   s16 buttonId;  /* MenuButton id of the cell, 0x80 + index */
 } Ov005CoGridEntry;
 
-#define OV005_CO_GRID_ENTRIES 28
+#define OV005_CO_GRID_COLUMNS 4
+#define OV005_CO_GRID_ROWS 7
+#define OV005_CO_GRID_ENTRIES (OV005_CO_GRID_COLUMNS * OV005_CO_GRID_ROWS)
 
 typedef struct Unk_ov005_0236bba8 {
   u32 unk_00;

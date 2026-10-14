@@ -197,7 +197,7 @@ void Ov005_InitCoScreen(Ov005Task* task) {
     File_UnpackTo(data_027c0280->objVram, data_ov005_0236ae78);
     Palette_LoadFromFile(data_ov005_0236ae7c, 0, 0x200, 32);
     work->spriteFile = File_Load(data_ov005_0236ae80);
-    for (sprite = 0; sprite < 9; sprite++) {
+    for (sprite = 0; sprite < (int)ARRAY_COUNT(work->unk_21c); sprite++) {
       work->unk_21c[sprite] = SpriteAnim_Create(work->spriteFile, 0, 2);
       ((ShowSprite*)work->unk_21c[sprite])->unk_24 = 0;
       SpriteAnim_SetAnimation(work->unk_21c[sprite], sprite);

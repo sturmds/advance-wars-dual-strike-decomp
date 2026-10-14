@@ -5,6 +5,9 @@
 
 /* Bitmap work block of the screen step Ov005_SetUpStaffCreditsScreen: three pixel
  * buffers, copied between by Ov005_DrawCreditsEntryText and its callees. */
+/* Glyphs Ov005_UploadTileBuffer draws into buffer_6010, one per cell. */
+#define OV005_TEXTURE_GLYPHS 128
+
 typedef struct Unk_ov005_0235b574 {
   u8 pad_0000[0x10];
   u8 buffer_0010[0x2000];

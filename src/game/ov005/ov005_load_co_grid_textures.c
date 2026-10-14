@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bba8.h"
 #include "sdk/os.h"
@@ -24,9 +25,9 @@ void Ov005_LoadCoGridTextures(Ov005Task* task) {
   int paletteOffset;
   int tileOffset;
 
-  blank = Mem_Alloc(32);
-  Mem_Fill32(0, blank, 32);
-  DC_FlushRange(blank, 32);
+  blank = Mem_Alloc(PALETTE_16_SIZE);
+  Mem_Fill32(0, blank, PALETTE_16_SIZE);
+  DC_FlushRange(blank, PALETTE_16_SIZE);
   func_02028808();
   loaded = 0;
   i = 0;
@@ -41,7 +42,7 @@ void Ov005_LoadCoGridTextures(Ov005Task* task) {
     if (entry->available == 0) {
       Gfx_LoadTexPalette(blank, paletteOffset, paletteOffset);
     }
-    paletteOffset += 32;
+    paletteOffset += PALETTE_16_SIZE;
     tileOffset += 0x180;
     loaded++;
   }

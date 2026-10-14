@@ -57,7 +57,7 @@ void Ov005SoundRoom_DrawBarMeter(void) {
     work->objScale2 = -1;
     return;
   }
-  for (i = 0; i < 16; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(work->shownBarHeights); i++) {
     work->shownBarHeights[i] = work->barHeights[i];
   }
   {
@@ -70,7 +70,7 @@ void Ov005SoundRoom_DrawBarMeter(void) {
     Screen_SetCurrent(data_027c0288.unk_04);
     map = data_027c0280->layer1Map + 20 * 32;
     Gfx_ClearLayerMap(1);
-    for (i = 0; i < 16; i++) {
+    for (i = 0; i < (int)ARRAY_COUNT(work->shownBarHeights); i++) {
       height = work->shownBarHeights[i];
       row = 0;
       for (;;) {
@@ -107,7 +107,7 @@ void Ov005SoundRoom_DrawBarMeter(void) {
     i = 0;
     bit = 0;
     row = 0;
-    for (; bit < 16; bit++) {
+    for (; bit < SOUND_CHANNEL_COUNT; bit++) {
       if ((mask >> bit) & 1) {
         row += 32;
         i++;

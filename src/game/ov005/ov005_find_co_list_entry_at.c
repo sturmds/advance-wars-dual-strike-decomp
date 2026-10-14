@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_ov005_0236bba0.h"
 
 u8 Ov005_GetCoListEntryRow(int index);
 u8 Ov005_GetCoListEntryColumn(int index);
@@ -8,7 +9,7 @@ u8 Ov005_GetCoListEntryColumn(int index);
 int Ov005_FindCoListEntryAt(int x, int y) {
   int i;
 
-  for (i = 0; i < 33; i++) {
+  for (i = 0; i < OV005_CO_LIST_ENTRIES; i++) {
     if (x == Ov005_GetCoListEntryColumn(i) && y == Ov005_GetCoListEntryRow(i)) {
       return i;
     }
