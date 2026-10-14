@@ -1,11 +1,12 @@
 #include "types.h"
+#include "game/link_buffers.h"
 
 /* Per-peer ring buffer of received packets with bit 7 set in the header: 7
  * peers of 98 bytes (4 slots of 24 bytes, then the read and write indexes).
  * Declared as byte arrays because each index is a symbol of its own. */
-extern u8 data_0229cb4c[][98];
-extern u8 data_0229cbac[][98];
-extern u8 data_0229cbad[][98];
+extern u8 data_0229cb4c[][sizeof(Unk_0229cb4c)];
+extern u8 data_0229cbac[][sizeof(Unk_0229cb4c)];
+extern u8 data_0229cbad[][sizeof(Unk_0229cb4c)];
 
 void Mem_CopyBytes(void* src, void* dest, int size);
 
@@ -22,9 +23,10 @@ int Link_PopFlaggedPacket(int player, void* dest) {
   if (index == data_0229cbad[player][0]) {
     return 0;
   }
-  Mem_CopyBytes(&data_0229cb4c[player][index * 24], dest, 24);
+  Mem_CopyBytes(&data_0229cb4c[player][index * sizeof(LinkPacket)], dest,
+                sizeof(LinkPacket));
   (*readIndex)++;
-  if (*readIndex == 4) {
+  if (*readIndex == LINK_FLAGGED_QUEUE_SLOTS) {
     *readIndex = 0;
   }
   return 1;

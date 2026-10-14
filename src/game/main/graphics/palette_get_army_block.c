@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 
 extern u8 data_0214c79c[];
 
@@ -8,5 +9,5 @@ u8 Player_GetArmyStyle(int player);
 u8* Palette_GetArmyBlock(int player) {
   int block = ((player - 1) & 1) + (Player_GetArmyStyle(player) - 1) * 2;
 
-  return data_0214c79c + block * 256;
+  return data_0214c79c + block * PALETTE_BLOCK_SIZE;
 }

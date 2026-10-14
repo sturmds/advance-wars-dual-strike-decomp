@@ -31,4 +31,8 @@ typedef struct TextPrinter {
   u8 pad_48[0x60 - 0x48];
 } TextPrinter;
 
+/* Bytes of the printer each screen keeps for Unk_027c0280.textPrinter
+ * (Screens_InitContexts): the fields up to charsDrawn, without the tail. */
+#define TEXT_PRINTER_SHARED_SIZE offsetof(TextPrinter, pad_48)
+
 #endif

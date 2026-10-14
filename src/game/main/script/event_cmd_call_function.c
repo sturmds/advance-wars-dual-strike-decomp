@@ -10,7 +10,7 @@ extern Unk_0201d320 data_022977f4[];
 s16 EventCmd_CallFunction(s16 index) {
   Unk_0201d320* script = &data_022977f4[index];
 
-  script->unk_00->unk_04.run(script->unk_00->unk_0c);
+  ((void (*)(u32))script->unk_00->u.ptr)(script->unk_00->arg);
   script->unk_00++;
   return data_022977f0[index].start != NULL;
 }

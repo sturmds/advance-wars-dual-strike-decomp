@@ -7,12 +7,12 @@ extern Unk_0215fe8c* data_0215fe8c;
 /* The per-peer queues as Link_PopFlaggedPacket and Link_PopUnflaggedPacket
  * declare them: each index byte is a symbol of its own (cbac and cf7c read,
  * cbad and cf7d write). */
-extern u8 data_0229cb4c[][98];
-extern u8 data_0229cbac[][98];
-extern u8 data_0229cbad[][98];
-extern u8 data_0229cdfc[][386];
-extern u8 data_0229cf7c[][386];
-extern u8 data_0229cf7d[][386];
+extern u8 data_0229cb4c[][sizeof(Unk_0229cb4c)];
+extern u8 data_0229cbac[][sizeof(Unk_0229cb4c)];
+extern u8 data_0229cbad[][sizeof(Unk_0229cb4c)];
+extern u8 data_0229cdfc[][sizeof(Unk_0229cdfc)];
+extern u8 data_0229cf7c[][sizeof(Unk_0229cdfc)];
+extern u8 data_0229cf7d[][sizeof(Unk_0229cdfc)];
 
 void Mem_CopyBytes(const void* src, void* dest, u32 size);
 
@@ -32,27 +32,29 @@ void Link_ReceiveFromChild(u16 aid, LinkPacket* packet, u16 length) {
   gLinkLastSequence[aid] = packet->header & 0x7f;
   if (packet->header & 0x80) {
     next = data_0229cbad[aid][0] + 1;
-    if (next == 4) {
+    if (next == LINK_FLAGGED_QUEUE_SLOTS) {
       next = 0;
     }
     if (next == data_0229cbac[aid][0]) {
       data_0215fe8c->error = 1;
       return;
     }
-    Mem_CopyBytes(packet, &data_0229cb4c[aid][data_0229cbad[aid][0] * 24],
-                  sizeof(LinkPacket));
+    Mem_CopyBytes(
+        packet, &data_0229cb4c[aid][data_0229cbad[aid][0] * sizeof(LinkPacket)],
+        sizeof(LinkPacket));
     data_0229cbad[aid][0] = next;
   } else {
     next = data_0229cf7d[aid][0] + 1;
-    if (next == 16) {
+    if (next == LINK_UNFLAGGED_QUEUE_SLOTS) {
       next = 0;
     }
     if (next == data_0229cf7c[aid][0]) {
       data_0215fe8c->error = 1;
       return;
     }
-    Mem_CopyBytes(packet, &data_0229cdfc[aid][data_0229cf7d[aid][0] * 24],
-                  sizeof(LinkPacket));
+    Mem_CopyBytes(
+        packet, &data_0229cdfc[aid][data_0229cf7d[aid][0] * sizeof(LinkPacket)],
+        sizeof(LinkPacket));
     data_0229cf7d[aid][0] = next;
   }
 }

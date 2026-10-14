@@ -4,9 +4,8 @@
 #include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/tag_break_task.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Screen_SetCurrentBoth(void* state);
 void Screen_SetBgMode(int mode);
 void Screen_InitLayers(const void* config);
@@ -106,7 +105,7 @@ static inline void SetUpLayers(void) {
     savedGfx = data_027c0280;                                           \
     Screen_SetCurrentGfx(data_027c0288.unk_04);                         \
     Mem_Copy32(MAIN_GFX->unk_120, LAYER_TILES(data_027c0280->layer3Bg), \
-               0x6000);                                                 \
+               TAG_BREAK_BACKDROP_TILES_SIZE);                          \
     Mem_Copy32(MAIN_GFX->layer3Map, data_027c0280->layer3Map,           \
                GFX_LAYER_MAP_SIZE);                                     \
     Palette_Load(res + paletteOffset, 0x20, 0x40);                      \
@@ -176,16 +175,18 @@ loaded:
   Gfx_RequestLayerCopy(1);
   Data_Unpack(res, data_027c0280->objVram + 0xb600);
   Palette_Load(res + 0x2e0, 0x260, 0x80);
-  Mem_Copy32(res + 0x360, data_0229fb70, 0x20);
+  Mem_Copy32(res + 0x360, data_0229fb70, PALETTE_16_SIZE);
   Screen_SetCurrentGfx(savedGfx);
 
   savedGfx = data_027c0280;
   Screen_SetCurrentGfx(data_027c0288.unk_04);
-  Mem_Copy32(MAIN_GFX->unk_10c, LAYER_TILES(data_027c0280->layer2Bg), 0x4000);
+  Mem_Copy32(MAIN_GFX->unk_10c, LAYER_TILES(data_027c0280->layer2Bg),
+             TAG_BREAK_BG2_TILES_SIZE);
   Mem_Copy32(MAIN_GFX->layer2Map, data_027c0280->layer2Map, BG_SCREEN_SIZE);
   Palette_Load(res + 0x2c60, 0, 0x20);
   Gfx_RequestLayerCopy(2);
-  Mem_Copy32(MAIN_GFX->unk_f8, LAYER_TILES(data_027c0280->layer1Bg), 0x100);
+  Mem_Copy32(MAIN_GFX->unk_f8, LAYER_TILES(data_027c0280->layer1Bg),
+             TAG_BREAK_BG1_TILES_SIZE);
   Mem_Copy32(MAIN_GFX->layer1Map, data_027c0280->layer1Map, BG_SCREEN_SIZE);
   Gfx_RequestLayerCopy(1);
   Screen_SetCurrentGfx(savedGfx);
@@ -203,7 +204,9 @@ loaded:
 
   savedGfx2 = data_027c0280;
   Screen_SetCurrentGfx(data_027c0288.unk_04);
-  Mem_Copy32(MAIN_GFX->objVram + 0x200, data_027c0280->objVram + 0x200, 0xb400);
+  Mem_Copy32(MAIN_GFX->objVram + TAG_BREAK_OBJ_TILES_START,
+             data_027c0280->objVram + TAG_BREAK_OBJ_TILES_START,
+             TAG_BREAK_OBJ_TILES_SIZE);
   Co_LoadArmyPalette(PLAYER->front.id, 16, GAME->currentPlayer);
   Co_LoadArmyPalette(PLAYER->back.id, 17, GAME->currentPlayer);
   res = File_Load(data_0215c670);
@@ -232,7 +235,8 @@ loaded:
   Data_Unpack(res, LAYER_TILES(data_027c0280->layer0Bg));
   Data_Unpack(res + 0x28f0, data_027c0280->layer0Map);
   Palette_Load(res + 0x2cd0, 0x60, 0x60);
-  Mem_Copy32(res + 0x2cd0, gTagChangePalette, 0x60);
+  Mem_Copy32(res + 0x2cd0, gTagChangePalette,
+             TAG_CHANGE_PALETTE_COUNT * PALETTE_16_SIZE);
   for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer0Map[i] += 0x3000;
   }
@@ -241,7 +245,8 @@ loaded:
 
   savedGfx = data_027c0280;
   Screen_SetCurrentGfx(data_027c0288.unk_04);
-  Mem_Copy32(MAIN_GFX->unk_e4, LAYER_TILES(data_027c0280->layer0Bg), 0x6000);
+  Mem_Copy32(MAIN_GFX->unk_e4, LAYER_TILES(data_027c0280->layer0Bg),
+             TAG_CHANGE_TILES_SIZE);
   Data_Unpack(res + 0x24dc, data_027c0280->layer0Map);
   Palette_Load(res + 0x2cd0, 0x60, 0x60);
   for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {

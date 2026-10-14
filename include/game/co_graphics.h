@@ -19,6 +19,13 @@ typedef struct CoGraphics {
 
 extern CoGraphics gCoGraphics[];
 
+/* Bytes of a CO's small picture (12 tiles, Co_LoadSmallPicture), medium
+ * picture (18 tiles, Co_QueueArmyMediumPicture) and mood picture (36 tiles,
+ * Co_QueueLargePictureCopy), at 4 bits per pixel. */
+#define CO_SMALL_PICTURE_SIZE 0x180
+#define CO_MEDIUM_PICTURE_SIZE 0x240
+#define CO_MOOD_PICTURE_SIZE 0x480
+
 /* Bytes of a CO's large picture, as Co_LoadArmyGraphicsToBuffer writes it. */
 #define CO_LARGE_PICTURE_SIZE 0x3600
 

@@ -18,10 +18,10 @@ s16 EventCmd_WaitWithKeys(s16 index) {
   if (gEventSkipState == 1) {
     result = 1;
   } else {
-    Unk_0201d320_Entry* entry = data_022977f4[index].unk_00;
+    const EventScriptCommand* entry = data_022977f4[index].unk_00;
 
     gEventScriptKeys = entry->unk_08;
-    data_022977fc[index].wait = entry->unk_0c;
+    data_022977fc[index].wait = entry->arg;
     result = 0;
   }
   data_022977f4[index].unk_00++;

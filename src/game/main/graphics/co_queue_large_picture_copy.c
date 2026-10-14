@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/co_data.h"
+#include "game/co_graphics.h"
 
 void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
@@ -23,11 +24,11 @@ void Co_QueueLargePictureCopy(int coMood, void* dest, int paletteSlot,
     army = 0;
   }
   FS_ChangeDir(data_02151e44);
-  buffer = Mem_Alloc(0x480);
+  buffer = Mem_Alloc(CO_MOOD_PICTURE_SIZE);
   variant = Co_GetArmyPictureVariant(coMood, army);
   File_UnpackTo(
       buffer,
       data_02152b48[coMood & CO_ID_MASK][variant][(coMood & 0x300) >> 8]);
-  DeferredCopyTask_Start(buffer, dest, 0x480);
+  DeferredCopyTask_Start(buffer, dest, CO_MOOD_PICTURE_SIZE);
   Co_LoadArmyPalette(coMood, paletteSlot, army);
 }

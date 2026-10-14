@@ -231,6 +231,10 @@ typedef char GfxLayer_size_check[sizeof(GfxLayer) == 0x14 ? 1 : -1];
 /* Bytes of one 8x8 tile at 4 bits per pixel. */
 #define TILE_4BPP_SIZE 0x20
 
+/* Bytes of one block of the tables Palette_GetBlock and Palette_GetArmyBlock
+ * return from. */
+#define PALETTE_BLOCK_SIZE 256
+
 /* GfxLayer.mode */
 #define GFX_LAYER_NO_COPY 2
 

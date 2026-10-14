@@ -1,6 +1,8 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/screen_other_map.h"
+#include "game/tag_break_task.h"
+#include "game/Unk_02088d04.h"
 
 void Screen_SetCurrentBoth(void* state);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
@@ -21,6 +23,7 @@ extern u8
 #define SLIDE(task) (*(int*)(task)->pad_2c)
 
 #define SLIDE_FRAMES 26
+#define TAG_CHANGE_FIRST_PALETTE 3 /* gTagChangePalette holds BG palettes 3-5 */
 
 #define SET_BLEND()                                          \
   data_027c0280->blendMode = BLEND_MODE_ALPHA;               \
@@ -43,13 +46,17 @@ extern u8
   data_027c0280->dispCnt |= 0x800;                           \
   data_027c0280->dispCnt |= 0x1000
 
-#define WHITEN_PALETTES(palWeight, colorWeight)                      \
-  Mem_Copy32(palette, data_027c0280->paletteBuffer + 0x60, 0x60);    \
-  for (i = 0; i < 3; i++) {                                          \
-    Palette_BlendWithColor(                                          \
-        (u16*)(data_027c0280->paletteBuffer + (i + 3) * 32), 0x7fff, \
-        palWeight, colorWeight);                                     \
-  }                                                                  \
+#define WHITEN_PALETTES(palWeight, colorWeight)                   \
+  Mem_Copy32(palette,                                             \
+             data_027c0280->paletteBuffer +                       \
+                 TAG_CHANGE_FIRST_PALETTE * PALETTE_16_SIZE,      \
+             TAG_CHANGE_PALETTE_COUNT * PALETTE_16_SIZE);         \
+  for (i = 0; i < TAG_CHANGE_PALETTE_COUNT; i++) {                \
+    Palette_BlendWithColor(                                       \
+        (u16*)(data_027c0280->paletteBuffer +                     \
+               (i + TAG_CHANGE_FIRST_PALETTE) * PALETTE_16_SIZE), \
+        0x7fff, palWeight, colorWeight);                          \
+  }                                                               \
   Palette_Flush()
 
 /* Script task step, close to func_020593c8. Frame 0 sets both screens to

@@ -11,7 +11,7 @@ void Mem_CopyUnits(void* src, void* dest, int size, int unitSize);
 void Link_SendFlaggedPacket(void* data) {
   LinkPacket packet;
 
-  Mem_CopyUnits(data, &packet, 24, 8);
+  Mem_CopyUnits(data, &packet, sizeof(packet), 8);
   packet.header = data_0215fe8c->unk_0e & 0x7f;
   packet.header |= 0x80;
   data_0215fe8c->unk_0e++;

@@ -2,23 +2,11 @@
 #define GAME_UNK_0201D320_H
 
 #include "types.h"
+#include "game/event_script.h"
 
-/* 16-byte record; the handlers step through an array of these. */
-typedef struct Unk_0201d320_Entry {
-  u8 pad_00[0x4];
-  union {
-    struct Unk_0201d320_Entry* jump; /* the record to continue at */
-    void (
-        *run)(); /* function to call; unprototyped: called with 0 or 1 argument */
-  } unk_04;
-  s16 unk_08;
-  s16 unk_0a;
-  u32 unk_0c; /* key mask, argument for unk_04.run, or a wait function (returns 0 when done) */
-} Unk_0201d320_Entry;
-
-/* Element of data_022977f4 (24 bytes each). */
+/* Element of data_022977f4 (24 bytes each): EventScriptSlot from its pc. */
 typedef struct Unk_0201d320 {
-  Unk_0201d320_Entry* unk_00; /* current record */
+  const EventScriptCommand* unk_00; /* current command (EventScriptSlot.pc) */
   u8 pad_04[0x4];
   u16 unk_08; /* wait */
   u8 pad_0a[0xe];

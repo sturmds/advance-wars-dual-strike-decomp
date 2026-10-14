@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 
 u8* Palette_GetBlock(int index, int player);
 void TransferQueue_Add(const void* src, void* dst, u32 size);
@@ -16,6 +17,7 @@ void Palette_QueueBlockCopy(int index, int player, u8* dest, int enable) {
     TransferQueue_Add(data_ov006_0236d644, dest, 128);
     TransferQueue_Add(Palette_GetBlock(index, player) + 128, dest + 128, 128);
   } else {
-    TransferQueue_Add(Palette_GetBlock(index, player), dest, 256);
+    TransferQueue_Add(Palette_GetBlock(index, player), dest,
+                      PALETTE_BLOCK_SIZE);
   }
 }

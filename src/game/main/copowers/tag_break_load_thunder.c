@@ -23,6 +23,9 @@ extern u8
 /* The frame counter shares its slot with Task.unk_4c. */
 #define FRAME(task) (*(s16*)&(task)->unk_4c)
 
+/* Bytes at 0x280c of the thunder file that go to data_0229fb30. */
+#define THUNDER_SPRITE_DATA_SIZE 0x40
+
 /* Step of the tag break script: loads res_tagbreak_thunder (layer 0 tiles,
  * a sprite file, the spark map and palettes for TagBreak_StartSparks, and
  * sprite tiles with their palette), resets layer 0's scroll, alpha-blends
@@ -35,7 +38,7 @@ void TagBreak_LoadThunder(Task* task) {
   Data_Unpack(res, LAYER_TILES(data_027c0280->layer0Bg));
   Data_Unpack(res + 0x2254, gMenuState);
   Data_Unpack(res + 0x252c, data_0229f330);
-  Mem_Copy32(res + 0x280c, data_0229fb30, 0x40);
+  Mem_Copy32(res + 0x280c, data_0229fb30, THUNDER_SPRITE_DATA_SIZE);
   Data_Unpack(res + 0x284c, data_027c0280->objVram + 0x3280);
   Palette_Load(res + 0x28a8, 0x260, 0x20);
   Mem_Free(res);

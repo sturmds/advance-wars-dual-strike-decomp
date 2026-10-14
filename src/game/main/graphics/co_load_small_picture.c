@@ -14,6 +14,7 @@ extern const void* const data_02152b78[][sizeof(CoGraphics) / sizeof(void*)];
 void Co_LoadSmallPicture(int coId, void* dest, int paletteSlot) {
   int variant = Co_GetPictureVariant(coId);
 
-  Mem_Copy32(data_02152b78[coId & CO_ID_MASK][variant], dest, 0x180);
+  Mem_Copy32(data_02152b78[coId & CO_ID_MASK][variant], dest,
+             CO_SMALL_PICTURE_SIZE);
   Co_LoadPalette(coId, paletteSlot);
 }

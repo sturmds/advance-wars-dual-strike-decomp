@@ -32,7 +32,7 @@ s16 EventCmd_PrintWindowText(int index) {
   TextPrinter* printer;
   int x; /* needed to match: an int narrowed at the call */
 
-  if (!func_02015dbc(Text_Get(script->unk_00->unk_0c))) {
+  if (!func_02015dbc(Text_Get(script->unk_00->arg))) {
     gEventSkipState = 2;
   }
   if (gEventSkipState != 1) {
@@ -43,7 +43,7 @@ s16 EventCmd_PrintWindowText(int index) {
       x = 7;
     }
     printer = TextPrinter_StartById(
-        x, 1, data_02297790, gEventTextMap, script->unk_00->unk_0c,
+        x, 1, data_02297790, gEventTextMap, script->unk_00->arg,
         data_022977a4.unk_00 << 12, data_022977a4.unk_04);
     printer->copyCallback = (void*)EventTextMap_QueueCopy;
     printer->charSound = 1;

@@ -44,6 +44,7 @@ extern char data_0215c7f4[]; /* "/ohashi/res_syogunchange" */
 /* Offsets in res_syogunchange. */
 #define LAYER0_MAP 0x2540
 #define LAYER0_PALETTES 0x2b74 /* three 16-colour palettes, BG palettes 1-3 */
+#define LAYER0_PALETTE_COUNT 3
 #define LAYER2_TILES 0x2bd4
 #define LAYER2_PALETTE 0x2c08
 
@@ -94,7 +95,8 @@ void CoSwapScreen_SetUp(Task* task) {
   Data_Unpack(res, LAYER_TILES(data_027c0280->layer0Bg));
   Data_Unpack(res + LAYER0_MAP, data_027c0280->layer0Map);
   Palette_Load(res + LAYER0_PALETTES, 0x20, 0x60);
-  Mem_Copy32(res + LAYER0_PALETTES, &gMenuState, 0x60);
+  Mem_Copy32(res + LAYER0_PALETTES, &gMenuState,
+             LAYER0_PALETTE_COUNT * PALETTE_16_SIZE);
   for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer0Map[i] += 0x1000;
   }
@@ -102,7 +104,7 @@ void CoSwapScreen_SetUp(Task* task) {
   Data_Unpack(res + LAYER2_TILES, LAYER_TILES(data_027c0280->layer2Bg));
   /* every map entry shows tile number armyColour */
   Mem_Fill32(PLAYER->armyColour | (PLAYER->armyColour << 16),
-             data_027c0280->layer2Map, 0x800);
+             data_027c0280->layer2Map, BG_SCREEN_SIZE);
   Palette_Load(res + LAYER2_PALETTE, 0, 0x20);
   Gfx_RequestLayerCopy(2);
   Mem_Free(res);

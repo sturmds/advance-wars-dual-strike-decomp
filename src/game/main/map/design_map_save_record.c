@@ -11,7 +11,7 @@ void DesignMap_RefreshAllRows(void);
  * and refreshes the map name list. */
 void DesignMap_SaveRecordToSlot(int slot, DesignMapRecord* record) {
   if (record != &data_02291774) {
-    Mem_CopyUnits(record, &data_02291774, 0x724, 8);
+    Mem_CopyUnits(record, &data_02291774, sizeof(DesignMapRecord), 8);
   }
   Save_WriteRecord((u8)(slot + 7), &data_02291774, 0x724);
   DesignMap_RefreshAllRows();

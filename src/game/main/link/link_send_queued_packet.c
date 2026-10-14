@@ -19,18 +19,18 @@ void Link_SendQueuedPacket(void) {
   slot = &data_0229ca88.slots[readIndex];
   switch (Wireless_GetState()) {
     case 4:
-      if (Wireless_SendParentData(slot, 24) == 0) {
+      if (Wireless_SendParentData(slot, sizeof(LinkPacket)) == 0) {
         return;
       }
       break;
     case 5:
-      if (Wireless_SendChildData(slot, 24) == 0) {
+      if (Wireless_SendChildData(slot, sizeof(LinkPacket)) == 0) {
         return;
       }
       break;
   }
   data_0229ca88.readIndex++;
-  if (data_0229ca88.readIndex == 8) {
+  if (data_0229ca88.readIndex == LINK_SEND_QUEUE_SLOTS) {
     data_0229ca88.readIndex = 0;
   }
 }

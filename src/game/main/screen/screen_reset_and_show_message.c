@@ -98,7 +98,8 @@ void Screen_ResetAndShowMessage(void) {
   Gfx_RequestLayerCopy(0);
   Palette_Load(data_021388f0, 0, 32);
   Gfx_CopyRequestedLayers();
-  Mem_Copy32(data_027c0280->paletteBuffer, data_027c0280->paletteCopy, 0x400);
+  Mem_Copy32(data_027c0280->paletteBuffer, data_027c0280->paletteCopy,
+             PALETTE_BUFFER_SIZE);
   Screen_SetCurrent(saved027c);
   Screen_SetCurrentGfx(saved0280);
 

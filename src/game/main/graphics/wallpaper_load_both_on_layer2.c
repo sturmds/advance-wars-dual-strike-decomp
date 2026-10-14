@@ -71,7 +71,8 @@ void Wallpaper_LoadBothOnLayer2(u32 index) {
   Screen_SetCurrent(data_027c0288.unk_04);
   /* charBase is used as an address here */
   Mem_Copy32((void*)GFX_LAYER(FIRST_GFX, 2)->charBase,
-             LAYER_CHARS(data_027c0280, data_027c0280->layer2Bg), 0x10000);
+             LAYER_CHARS(data_027c0280, data_027c0280->layer2Bg),
+             WALLPAPER_TILES_SIZE);
   Mem_Copy32(FIRST_GFX->layer2Map, data_027c0280->layer2Map,
              GFX_LAYER_MAP_SIZE);
   func_0210c610();

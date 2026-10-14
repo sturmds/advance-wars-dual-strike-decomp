@@ -17,6 +17,10 @@ extern u16 gArmyPalettes[][16];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
+#define UNIT_ICON_FIRST_TILE 0x1e1
+#define UNIT_BADGE_FIRST_TILE 0x26a
+#define UNIT_BADGE_TILES 30
+
 /* Copies the unit icon tiles (UnitIcons_GetTileCount tiles from UnitIcons_GetTiles) to
  * tile 0x1e1 of the tile data at unk_f8, where gUnitIconTileBase points, and
  * 30 tiles from UnitBadges_GetTiles to tile 0x26a. Then loads the army colours of
@@ -24,10 +28,13 @@ extern u16 gArmyPalettes[][16];
 void UnitIcons_LoadMapGraphics(void) {
   u8* tiles = data_027c0280->unk_f8;
 
-  Mem_CopyAuto(UnitIcons_GetTiles(), tiles + 0x3c20,
-               (u16)(UnitIcons_GetTileCount() * 32));
-  Mem_CopyAuto(UnitBadges_GetTiles(), (u8*)data_027c0280->unk_f8 + 0x4d40,
-               0x3c0);
+  Mem_CopyAuto(UnitIcons_GetTiles(),
+               tiles + UNIT_ICON_FIRST_TILE * TILE_4BPP_SIZE,
+               (u16)(UnitIcons_GetTileCount() * TILE_4BPP_SIZE));
+  Mem_CopyAuto(
+      UnitBadges_GetTiles(),
+      (u8*)data_027c0280->unk_f8 + UNIT_BADGE_FIRST_TILE * TILE_4BPP_SIZE,
+      UNIT_BADGE_TILES * TILE_4BPP_SIZE);
   Palette_Load(gArmyPalettes[GAME->players[1].armyColour - 1], 0x180, 32);
   Palette_Load(gArmyPalettes[GAME->players[2].armyColour - 1], 0x1a0, 32);
   Palette_Load(gArmyPalettes[GAME->players[3].armyColour - 1], 0x1c0, 32);

@@ -8,7 +8,7 @@ void Sound_RequestSong(int songId);
 s16 EventScript_PlaySong(s16 index) {
   Unk_0201d320* script = &data_022977f4[index];
   BOOL done;
-  int songId = script->unk_00->unk_0c;
+  int songId = script->unk_00->arg;
 
   /* when gEventSkipState is 1 the command only advances; no song is requested */
   if (gEventSkipState == 1) {

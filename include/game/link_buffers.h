@@ -24,34 +24,40 @@ typedef struct LinkPacket {
 #define LINK_PACKET_SHARING_ENDED 13
 #define LINK_PACKET_ACTION \
   14 /* 14 to 17: unit action from the player with aid 0 to 3 */
-#define LINK_PACKET_REACTION 18
+#define LINK_PACKET_REACTION 18 /* payload: LINK_REACTION_SIZE bytes */
+#define LINK_REACTION_SIZE 2
 
 /* One queued packet: a LinkPacket. */
 typedef struct LinkQueueSlot {
-  u8 bytes[24];
+  u8 bytes[sizeof(LinkPacket)];
 } LinkQueueSlot;
 
 /* Each queue below is a ring buffer. Its two trailing bytes are
  * the read and write indexes; the queue is empty when they
  * are equal and full when the write index is one behind the read index. */
 
+/* Slots of each ring buffer below. */
+#define LINK_SEND_QUEUE_SLOTS 8
+#define LINK_UNFLAGGED_QUEUE_SLOTS 16
+#define LINK_FLAGGED_QUEUE_SLOTS 4
+
 /* data_0229ca88: packets waiting to be sent, 8 slots */
 typedef struct Unk_0229ca88 {
-  LinkQueueSlot slots[8];
+  LinkQueueSlot slots[LINK_SEND_QUEUE_SLOTS];
   u8 readIndex;
   u8 writeIndex;
 } Unk_0229ca88;
 
 /* data_0229cdfc, 7 entries, one per peer: 16 slots */
 typedef struct Unk_0229cdfc {
-  LinkQueueSlot slots[16];
+  LinkQueueSlot slots[LINK_UNFLAGGED_QUEUE_SLOTS];
   u8 readIndex;
   u8 writeIndex;
 } Unk_0229cdfc;
 
 /* data_0229cb4c, 7 entries, one per peer: 4 slots */
 typedef struct Unk_0229cb4c {
-  LinkQueueSlot slots[4];
+  LinkQueueSlot slots[LINK_FLAGGED_QUEUE_SLOTS];
   u8 readIndex;
   u8 writeIndex;
 } Unk_0229cb4c;

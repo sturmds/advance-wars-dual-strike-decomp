@@ -126,7 +126,7 @@ void LinkMenu_InitScreen(Task* task) {
   file = File_Load(gLinkMenuCommonResPath);
   Palette_Load(file, 0x200, 0x20);
   Palette_Load(file, 0x220, 0x20);
-  Mem_Copy32(file + 0x20, &data_0229fb30, 0x20);
+  Mem_Copy32(file + PALETTE_16_SIZE, &data_0229fb30, PALETTE_16_SIZE);
   Mem_Free(file);
   NumberFont_LoadLow();
 

@@ -12,14 +12,14 @@ int Link_QueuePacket(LinkPacket* packet) {
   u8 writeIndex = data_0229ca88.writeIndex;
   u8 next = writeIndex + 1;
 
-  if (next == 8) {
+  if (next == LINK_SEND_QUEUE_SLOTS) {
     next = 0;
   }
   if (next == data_0229ca88.readIndex) {
     data_0215fe8c->error = 1;
     return 0;
   }
-  Mem_CopyBytes(packet, &data_0229ca88.slots[writeIndex], 24);
+  Mem_CopyBytes(packet, &data_0229ca88.slots[writeIndex], sizeof(LinkPacket));
   data_0229ca88.writeIndex = next;
   return 1;
 }

@@ -3,9 +3,8 @@
 #include "game/Unk_02088d04.h"
 #include "game/co_data.h"
 #include "game/task.h"
+#include "game/tag_break_task.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Screen_SetCurrentBoth(void* state);
 void Screen_SetBgMode(int mode);
 void Screen_InitLayers(const void* config);
@@ -188,7 +187,8 @@ void TagPowerScreen_SetUp(Task* task) {
     Screen_SetCurrentGfx(saved0280);
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
-    Mem_Copy32(MAIN_LAYER_CHARS(3), BG_CHARS(data_027c0280->layer3Bg), 0x6000);
+    Mem_Copy32(MAIN_LAYER_CHARS(3), BG_CHARS(data_027c0280->layer3Bg),
+               TAG_BREAK_BACKDROP_TILES_SIZE);
     Mem_Copy32(MAIN_GFX->layer3Map, data_027c0280->layer3Map,
                GFX_LAYER_MAP_SIZE);
     Palette_Load(file + 0x2a00, 32, 64);
@@ -213,7 +213,8 @@ void TagPowerScreen_SetUp(Task* task) {
     Screen_SetCurrentGfx(saved0280);
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
-    Mem_Copy32(MAIN_LAYER_CHARS(3), BG_CHARS(data_027c0280->layer3Bg), 0x6000);
+    Mem_Copy32(MAIN_LAYER_CHARS(3), BG_CHARS(data_027c0280->layer3Bg),
+               TAG_BREAK_BACKDROP_TILES_SIZE);
     Mem_Copy32(MAIN_GFX->layer3Map, data_027c0280->layer3Map,
                GFX_LAYER_MAP_SIZE);
     Palette_Load(file + 0x3214, 32, 64);
@@ -234,7 +235,8 @@ void TagPowerScreen_SetUp(Task* task) {
     Screen_SetCurrentGfx(saved0280);
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
-    Mem_Copy32(MAIN_LAYER_CHARS(3), BG_CHARS(data_027c0280->layer3Bg), 0x6000);
+    Mem_Copy32(MAIN_LAYER_CHARS(3), BG_CHARS(data_027c0280->layer3Bg),
+               TAG_BREAK_BACKDROP_TILES_SIZE);
     Mem_Copy32(MAIN_GFX->layer3Map, data_027c0280->layer3Map,
                GFX_LAYER_MAP_SIZE);
     Palette_Load(file + 0x31d4, 32, 64);
@@ -256,11 +258,13 @@ void TagPowerScreen_SetUp(Task* task) {
   Screen_SetCurrentGfx(saved0280);
   saved0280 = data_027c0280;
   Screen_SetCurrentGfx(data_027c0288.unk_04);
-  Mem_Copy32(MAIN_LAYER_CHARS(2), BG_CHARS(data_027c0280->layer2Bg), 0x4000);
+  Mem_Copy32(MAIN_LAYER_CHARS(2), BG_CHARS(data_027c0280->layer2Bg),
+             TAG_BREAK_BG2_TILES_SIZE);
   Mem_Copy32(MAIN_GFX->layer2Map, data_027c0280->layer2Map, BG_SCREEN_SIZE);
   Palette_Load(file + 0x2c60, 0, 32);
   Gfx_RequestLayerCopy(2);
-  Mem_Copy32(MAIN_LAYER_CHARS(1), BG_CHARS(data_027c0280->layer1Bg), 0x100);
+  Mem_Copy32(MAIN_LAYER_CHARS(1), BG_CHARS(data_027c0280->layer1Bg),
+             TAG_BREAK_BG1_TILES_SIZE);
   Mem_Copy32(MAIN_GFX->layer1Map, data_027c0280->layer1Map, BG_SCREEN_SIZE);
   Gfx_RequestLayerCopy(1);
   Screen_SetCurrentGfx(saved0280);
@@ -278,7 +282,9 @@ void TagPowerScreen_SetUp(Task* task) {
   Screen_SetCurrentGfx(saved0280);
   saved0280 = data_027c0280;
   Screen_SetCurrentGfx(data_027c0288.unk_04);
-  Mem_Copy32(MAIN_GFX->objVram + 0x200, data_027c0280->objVram + 0x200, 0xb400);
+  Mem_Copy32(MAIN_GFX->objVram + TAG_BREAK_OBJ_TILES_START,
+             data_027c0280->objVram + TAG_BREAK_OBJ_TILES_START,
+             TAG_BREAK_OBJ_TILES_SIZE);
   Co_LoadArmyPalette(PLAYER->front.id, 16, STATE->currentPlayer);
   Co_LoadArmyPalette(PLAYER->back.id, 17, STATE->currentPlayer);
   /* Extra head tiles from res_tagbreak_head for Grit (variant 0) and
@@ -310,7 +316,8 @@ void TagPowerScreen_SetUp(Task* task) {
   Data_Unpack(file, BG_CHARS(data_027c0280->layer0Bg));
   Data_Unpack(file + 0x28f0, data_027c0280->layer0Map);
   Palette_Load(file + 0x2cd0, 0x60, 0x60);
-  Mem_Copy32(file + 0x2cd0, gTagChangePalette, 0x60);
+  Mem_Copy32(file + 0x2cd0, gTagChangePalette,
+             TAG_CHANGE_PALETTE_COUNT * PALETTE_16_SIZE);
   for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer0Map[i] += 0x3000;
   }
@@ -318,7 +325,8 @@ void TagPowerScreen_SetUp(Task* task) {
   Screen_SetCurrentGfx(saved0280);
   saved0280 = data_027c0280;
   Screen_SetCurrentGfx(data_027c0288.unk_04);
-  Mem_Copy32(MAIN_LAYER_CHARS(0), BG_CHARS(data_027c0280->layer0Bg), 0x6000);
+  Mem_Copy32(MAIN_LAYER_CHARS(0), BG_CHARS(data_027c0280->layer0Bg),
+             TAG_CHANGE_TILES_SIZE);
   Data_Unpack(file + 0x24dc, data_027c0280->layer0Map);
   Palette_Load(file + 0x2cd0, 0x60, 0x60);
   for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {

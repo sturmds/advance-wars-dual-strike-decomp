@@ -17,5 +17,5 @@ void DesignMap_LoadFromSlot(int slot, DesignMapRecord* dest) {
     return;
   }
   Save_LoadRecord(recordId, &data_02291774);
-  Mem_CopyUnits(&data_02291774, dest, 0x724, 8);
+  Mem_CopyUnits(&data_02291774, dest, sizeof(DesignMapRecord), 8);
 }

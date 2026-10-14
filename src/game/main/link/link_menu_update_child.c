@@ -34,7 +34,7 @@ void LinkMenu_UpdateChild(Task* task) {
   if (gotAck != 1) {
     return;
   }
-  MI_CpuFill8(ack, 0, 23);
+  MI_CpuFill8(ack, 0, sizeof(ack));
   ack[0] = LINK_UNFLAGGED_ACK;
   Link_SendUnflaggedPacket(ack);
   func_020b9890();

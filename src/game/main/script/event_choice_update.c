@@ -14,6 +14,11 @@ extern Rect gEventChoiceButtons[];
 
 #define CHOICE_LAST 3 /* also where B puts the cursor */
 
+/* Where the choice text starts in the event text map (task->unk_38, 32 tiles
+ * a row): func_0201d730 clears its two lines. */
+#define CHOICE_TEXT_ROW 1
+#define CHOICE_TEXT_COLUMN 7
+
 u16 EventChoice_ReadKeys(void);
 u16 Touch_TestButtonRects(const Rect* rects, int count);
 void DialogueCursor_Animate(void);
@@ -88,7 +93,8 @@ void EventChoice_Update(Task* task) {
         gEventChoiceAnswer = 1;
         break;
     }
-    func_0201d730((u8*)task->unk_38 + 0x4e);
+    func_0201d730(
+        &((u16(*)[32])task->unk_38)[CHOICE_TEXT_ROW][CHOICE_TEXT_COLUMN]);
     task->unk_3c();
     Task_ResumeScript(task);
     Sound_PlaySe(0x1000a);

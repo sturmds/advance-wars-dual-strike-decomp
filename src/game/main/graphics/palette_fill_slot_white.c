@@ -10,6 +10,6 @@ extern const u16 gWhitePalette[];
  * buffer to white. The shift form of the offset is needed to match. */
 void Palette_FillSlotWhite(int slot) {
   Mem_CopyUnits(gWhitePalette,
-                (u16*)data_027c0280->paletteBuffer + ((slot << 5) >> 1), 32,
-                16);
+                (u16*)data_027c0280->paletteBuffer + ((slot << 5) >> 1),
+                PALETTE_16_SIZE, 16);
 }

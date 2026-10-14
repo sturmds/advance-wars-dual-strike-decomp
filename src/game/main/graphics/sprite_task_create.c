@@ -10,6 +10,9 @@ extern Unk_027c0288 data_027c0288;
 extern const TaskScriptCmd gSpriteTaskScript[];
 extern const char data_0216074c[];
 
+/* Bytes of the picture at the start of the data_0216074c file; its palette follows. */
+#define SPRITE_TASK_PICTURE_SIZE 0x200
+
 void Screen_SetCurrent(void* state);
 void Screen_SetCurrentGfx(void* state);
 void* File_Load(const char* path);
@@ -42,8 +45,10 @@ void SpriteTask_Create(int x, int y, int tile, int paletteSlot) {
   Screen_SetCurrentGfx(data_027c0288.unk_04);
   savedState2 = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_04);
-  Mem_Copy32(file, data_027c0280->objVram + tile * 32, 0x200);
-  Palette_Load(file + 0x200, (paletteSlot + 16) * 32, 32);
+  Mem_Copy32(file, data_027c0280->objVram + tile * TILE_4BPP_SIZE,
+             SPRITE_TASK_PICTURE_SIZE);
+  Palette_Load(file + SPRITE_TASK_PICTURE_SIZE,
+               (paletteSlot + 16) * PALETTE_16_SIZE, PALETTE_16_SIZE);
   Screen_SetCurrent(savedState2);
   Screen_SetCurrentGfx(savedGfx2);
   Mem_Free(file);

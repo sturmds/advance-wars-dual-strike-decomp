@@ -20,6 +20,10 @@ extern u8 gUnitRowTypes[];
 
 #define MENU (gMenuState.unk_0206d67c)
 
+/* The unit page shows gUnitRowTypes as a grid. */
+#define UNIT_GRID_ROWS 6
+#define UNIT_GRID_COLUMNS 5
+
 #define UNIT_ICON_TILE 0x365
 #define RANGE_ICON_TILE 0x349
 #define MOVE_ICON_TILE 0x347
@@ -41,12 +45,12 @@ void PlayerInfo_DrawUnitStats(void) {
   int firepower;
 
   Gfx_ClearLayerMap(0);
-  for (row = 0; row < 6; row++) {
-    for (col = 0; col < 5; col++) {
-      if (!UnitRow_IsAvailable(row * 5 + col)) {
+  for (row = 0; row < UNIT_GRID_ROWS; row++) {
+    for (col = 0; col < UNIT_GRID_COLUMNS; col++) {
+      if (!UnitRow_IsAvailable(row * UNIT_GRID_COLUMNS + col)) {
         continue;
       }
-      unitType = gUnitRowTypes[row * 5 + col];
+      unitType = gUnitRowTypes[row * UNIT_GRID_COLUMNS + col];
       Bg_PutTileQuad(
           1 + col * 6, 5 + row * 3,
           Player_GetUnitIconTile(MENU.player, unitType) + UNIT_ICON_TILE,

@@ -65,7 +65,7 @@ void LinkMenu_Confirm(void) {
       }
       if (Wireless_GetChildAids() != 0) {
         func_0207bb48(0);
-        MI_CpuFill8(ack, 0, 23);
+        MI_CpuFill8(ack, 0, sizeof(ack));
         ack[0] = LINK_UNFLAGGED_ACK;
         ack[1] = Wireless_GetChildAids();
         Link_SendUnflaggedPacket(ack);

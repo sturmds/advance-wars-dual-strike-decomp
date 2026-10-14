@@ -24,10 +24,14 @@ void Weather_LoadTileGraphics(int weather, int tileset, int firstTile) {
   } else {
     file = data_02168310;
   }
-  Mem_Copy32(Palette_GetArmyBlock(1), data_027c0280->unk_120 + 0x4c00, 256);
-  Mem_Copy32(Palette_GetArmyBlock(2), data_027c0280->unk_120 + 0x4d00, 256);
-  Mem_Copy32(Palette_GetArmyBlock(3), data_027c0280->unk_120 + 0x4e00, 256);
-  Mem_Copy32(Palette_GetArmyBlock(4), data_027c0280->unk_120 + 0x4f00, 256);
+  Mem_Copy32(Palette_GetArmyBlock(1), data_027c0280->unk_120 + 0x4c00,
+             PALETTE_BLOCK_SIZE);
+  Mem_Copy32(Palette_GetArmyBlock(2), data_027c0280->unk_120 + 0x4d00,
+             PALETTE_BLOCK_SIZE);
+  Mem_Copy32(Palette_GetArmyBlock(3), data_027c0280->unk_120 + 0x4e00,
+             PALETTE_BLOCK_SIZE);
+  Mem_Copy32(Palette_GetArmyBlock(4), data_027c0280->unk_120 + 0x4f00,
+             PALETTE_BLOCK_SIZE);
   FS_ChangeDir(data_021682f8);
   File_UnpackTo(data_027c0280->objVram + firstTile * 32, file);
   Map_LoadExtraObjTiles(weather, firstTile);

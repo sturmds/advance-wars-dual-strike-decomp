@@ -8,7 +8,7 @@ void Sound_PlaySe(int songId);
 s16 func_0201b358(s16 index) {
   Unk_0201d320* script = &data_022977f4[index];
   BOOL done;
-  int songId = script->unk_00->unk_0c;
+  int songId = script->unk_00->arg;
 
   if (gEventSkipState == 1) {
     done = 1;

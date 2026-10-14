@@ -26,7 +26,7 @@ void Link_ReceiveFromParent(LinkPacket* packet, u16 length) {
   gLinkLastSequence[0] = packet->header & 0x7f;
   if (packet->header & 0x80) {
     next = data_0229cb4c[0].writeIndex + 1;
-    if (next == 4) {
+    if (next == LINK_FLAGGED_QUEUE_SLOTS) {
       next = 0;
     }
     if (next == data_0229cb4c[0].readIndex) {
@@ -38,7 +38,7 @@ void Link_ReceiveFromParent(LinkPacket* packet, u16 length) {
     data_0229cb4c[0].writeIndex = next;
   } else {
     next = data_0229cdfc[0].writeIndex + 1;
-    if (next == 16) {
+    if (next == LINK_UNFLAGGED_QUEUE_SLOTS) {
       next = 0;
     }
     if (next == data_0229cdfc[0].readIndex) {

@@ -13,12 +13,12 @@ void Palette_Flush(void) {
   *(u16*)data_027c0280->paletteBuffer = 0;
   if (((u32)data_027c0280->dispCnt << 24) >> 31 == 1) {
     Mem_CopyAuto(data_027c0280->paletteBuffer, data_027c0280->paletteCopy,
-                 0x400);
+                 PALETTE_BUFFER_SIZE);
     return;
   }
   if (data_027c0280->paletteUploadQueued == 0) {
     TransferQueue_Add(data_027c0280->paletteBuffer, data_027c0280->paletteCopy,
-                      0x400);
+                      PALETTE_BUFFER_SIZE);
     data_027c0280->paletteUploadQueued = 1;
   }
 }

@@ -3,6 +3,9 @@
 
 #include "types.h"
 
+/* Bytes of wallpaper tile data the sub screen copies from the main screen. */
+#define WALLPAPER_TILES_SIZE 0x10000
+
 /* The task of script gWallpaperTaskScript, which Wallpaper_LoadSelected starts on
  * each screen: it scrolls the wallpaper layers and blends between them.
  * The first 0x2a bytes belong to the task system (Task_Create). */

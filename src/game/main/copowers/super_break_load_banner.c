@@ -35,6 +35,9 @@ extern u8 gMenuState[];      /* gets the edge sprite file */
 #define SE_SUPER_BREAK_ALLIED 191
 #define SE_SUPER_BREAK_BLACK_HOLE 190
 
+/* Bytes of the edge sprite data at 0x86c of the banner file. */
+#define EDGE_SPRITE_FILE_SIZE 0x74
+
 /* Step of the Super CO Power cut-in: sets BG0 to 256x512 and loads the
  * banner into it (tiles and map from res_syogunbreak_lang, the army's
  * palette from res_syogunbreak), loads the edge sprite's tiles, palette and
@@ -57,7 +60,7 @@ void SuperBreak_LoadBanner(Task* task) {
   }
   Data_Unpack(res + 0x6a4, data_027c0280->objVram + 0x3280);
   Palette_Load(res + 0x8e0 + (PLAYER->armyColour - 1) * 32, 0x260, 0x20);
-  Mem_Copy32(res + 0x86c, gMenuState, 0x74);
+  Mem_Copy32(res + 0x86c, gMenuState, EDGE_SPRITE_FILE_SIZE);
   Mem_Free(res);
   Mem_Free(langRes);
   Gfx_RequestLayerCopy(0);

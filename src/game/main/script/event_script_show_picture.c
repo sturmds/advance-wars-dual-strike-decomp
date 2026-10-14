@@ -26,18 +26,18 @@ void EventScript_StartScreenSlideOut(int index);
 #define PICTURE_PLAYER_CURRENT 5 /* slot value meaning the current player */
 
 /* Helper of EventCmd_ShowPicture for event slot index. Reads the screen from the record's
- * unk_0c and the picture (CO id in the low byte, mood index in the high byte) from unk_08,
+ * arg and the picture (CO id in the low byte, mood index in the high byte) from unk_08,
  * stores the picture in data_022977a4.unk_02, passes the screen's entry of
  * gScreenPanelHBlankHandlers to func_0201dc38, and starts the slide-out on that screen. */
 void EventScript_ShowPicture(s16 index) {
-  Unk_0201d320_Entry* record;
+  const EventScriptCommand* record;
   s16 picture;
   int slot;
   s16 mood;
 
   func_0201dc44(index);
   record = data_022977f4[index].unk_00;
-  gEventTextWindowPos = record->unk_0c;
+  gEventTextWindowPos = record->arg;
   picture = record->unk_08;
   if (picture != PICTURE_NONE) {
     if (picture & PICTURE_FROM_PLAYER) {

@@ -11,10 +11,10 @@ void EventScript_TakeInput(void);
  * next record and ends the slot's run for this frame. */
 BOOL EventCmd_WaitForKeys(s16 index) {
   Unk_0201d320* script = &data_022977f4[index];
-  Unk_0201d320_Entry* entry = script->unk_00;
-  void (*run)() = entry->unk_04.run;
+  const EventScriptCommand* entry = script->unk_00;
+  void (*run)() = (void (*)())entry->u.ptr; /* called with no argument */
 
-  if (gKeypad->nextPressed & entry->unk_0c) {
+  if (gKeypad->nextPressed & entry->arg) {
     run();
   } else {
     return 0;

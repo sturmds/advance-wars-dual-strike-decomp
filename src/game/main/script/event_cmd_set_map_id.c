@@ -14,8 +14,7 @@ u16 Map_FindIdByData(const void* mapData);
  * record points at (Map_FindIdByData), then moves to the next record and ends
  * the slot's run for this frame. */
 BOOL EventCmd_SetMapId(s16 index) {
-  STATE->unk_1c4->mapId =
-      Map_FindIdByData(data_022977f4[index].unk_00->unk_04.jump);
+  STATE->unk_1c4->mapId = Map_FindIdByData(data_022977f4[index].unk_00->u.jump);
   data_022977f4[index].unk_00++;
   return FALSE;
 }

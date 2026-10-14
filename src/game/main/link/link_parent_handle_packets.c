@@ -50,7 +50,7 @@ void Link_ParentHandlePackets(void) {
               break;
             }
           }
-          if (i == 8) {
+          if (i == LINK_PEER_COUNT + 1) {
             data_0215fe8c->unk_0c = 0;
             Link_SendCommand(LINK_PACKET_STOP);
             func_0207ab14();
@@ -64,7 +64,7 @@ void Link_ParentHandlePackets(void) {
               break;
             }
           }
-          if (i == 8) {
+          if (i == LINK_PEER_COUNT + 1) {
             Wireless_StartDataSharing();
             data_0215fe8c->linkState = 2;
             Link_SendCommand(LINK_PACKET_SHARING_STARTED);
@@ -78,7 +78,7 @@ void Link_ParentHandlePackets(void) {
               break;
             }
           }
-          if (i == 8) {
+          if (i == LINK_PEER_COUNT + 1) {
             Wireless_EndDataSharing();
             data_0215fe8c->linkState = 0;
             Link_SendCommand(LINK_PACKET_SHARING_ENDED);

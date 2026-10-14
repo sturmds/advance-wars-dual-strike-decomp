@@ -24,8 +24,8 @@ void Wireless_InitParentParam(void) {
   data_0229c960.ksFlag = 0;
   data_0229c960.csFlag = 0;
   data_0229c960.beaconPeriod = Wireless_GetBeaconJitter() + 180;
-  MI_CpuFill8(data_0229c97a, 0, 4);
-  MI_CpuFill8(data_0229c982, 0, 8);
+  MI_CpuFill8(data_0229c97a, 0, sizeof(data_0229c960.unk_1a));
+  MI_CpuFill8(data_0229c982, 0, sizeof(data_0229c960.unk_22));
   data_0229c960.channel = 1;
   data_0229c960.parentMaxSize = 0x100;
   data_0229c960.childMaxSize = 0x40;

@@ -5,6 +5,20 @@
 #include "game/task.h"
 #include "game/screen_other_map.h"
 
+/* Parts of the res_tagbreak and res_tagchange files that TagBreak_SetUpScreens
+ * and TagPowerScreen_SetUp copy from the main screen to the sub screen: tile
+ * data of the BG3 backdrop (res_tagbreak_black, _union, _mix), of the frame
+ * on BG2 and BG1 (res_tagbreak) and of the BG0 layer (res_tagchange), which
+ * also has three palettes, for BG palettes 3-5. The CO pictures fill object
+ * VRAM from TAG_BREAK_OBJ_TILES_START. */
+#define TAG_BREAK_BACKDROP_TILES_SIZE 0x6000
+#define TAG_BREAK_BG2_TILES_SIZE 0x4000
+#define TAG_BREAK_BG1_TILES_SIZE 0x100
+#define TAG_CHANGE_TILES_SIZE 0x6000
+#define TAG_CHANGE_PALETTE_COUNT 3
+#define TAG_BREAK_OBJ_TILES_START 0x200
+#define TAG_BREAK_OBJ_TILES_SIZE 0xb400
+
 /* Script task of the tag power cut-in, as its later steps use it. The
  * first 0x4c bytes are the Task. */
 typedef struct TagBreakTask {

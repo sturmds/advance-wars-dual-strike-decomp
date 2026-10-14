@@ -11,7 +11,7 @@ int Link_QueuePacket(LinkPacket* packet);
 void Link_SendPacket(void* payload) {
   LinkPacket packet;
 
-  Mem_CopyUnits(payload, packet.payload, 24, 8);
+  Mem_CopyUnits(payload, packet.payload, sizeof(packet), 8);
   packet.header = data_0215fe8c->unk_0e & 0x7f;
   packet.header |= 0x80;
   packet.type = func_0207a260() + 14;

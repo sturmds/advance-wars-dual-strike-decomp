@@ -35,7 +35,7 @@ s16 EventCmd_PrintText(int index) {
   u16* map;
   int x; /* needed to match: an int narrowed at the call */
 
-  if (!func_02015dbc(Text_Get(script->unk_00->unk_0c))) {
+  if (!func_02015dbc(Text_Get(script->unk_00->arg))) {
     gEventSkipState = 2;
   }
   if (gEventSkipState != 1) {
@@ -46,7 +46,7 @@ s16 EventCmd_PrintText(int index) {
     } else {
       x = 7;
     }
-    printer = Text_PrintByIdOnLayer0(x, 15, map, script->unk_00->unk_0c,
+    printer = Text_PrintByIdOnLayer0(x, 15, map, script->unk_00->arg,
                                      data_022977a4.unk_00 << 12,
                                      data_022977a4.unk_04);
     printer->copyCallback = (void*)func_0201c600;

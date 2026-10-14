@@ -14,10 +14,10 @@ void LinkReactionQueue_Push(void* data);
 void LinkReaction_Send(void* data) {
   LinkPacket packet;
 
-  Mem_CopyUnits(data, packet.payload, 2, 8);
+  Mem_CopyUnits(data, packet.payload, LINK_REACTION_SIZE, 8);
   packet.header = data_0215fe8c->unk_0e & 0x7f;
   packet.header |= 0x80;
-  packet.type = 18;
+  packet.type = LINK_PACKET_REACTION;
   data_0215fe8c->unk_0e++;
   Link_QueuePacket(&packet);
   if (func_0207a260() != 0) {

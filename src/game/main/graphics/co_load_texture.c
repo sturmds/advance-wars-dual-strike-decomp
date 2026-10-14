@@ -18,7 +18,7 @@ extern const u8* const data_02152b78[][sizeof(CoGraphics) / sizeof(void*)];
  * variant are rearranged into a row-major image (strips of 4, 4, 2 and 2
  * tiles), copied to texOffset, and the CO's palette goes to paletteOffset. */
 void Co_LoadTexture(int coId, u32 texOffset, u32 paletteOffset) {
-  u8* image = Mem_Alloc(0x180);
+  u8* image = Mem_Alloc(CO_SMALL_PICTURE_SIZE);
   int co = coId & CO_ID_MASK;
   const u8* tiles = data_02152b78[co][Co_GetPictureVariant(coId)];
 
@@ -26,8 +26,8 @@ void Co_LoadTexture(int coId, u32 texOffset, u32 paletteOffset) {
   Image4bpp_UntileStrip(tiles + 0x80, image + 0x80, 4);
   Image4bpp_UntileStrip(tiles + 0x100, image + 0x100, 2);
   Image4bpp_UntileStrip(tiles + 0x140, image + 0x140, 2);
-  DC_FlushRange(image, 0x180);
-  Gfx_LoadTexImage(image, texOffset, 0x180);
+  DC_FlushRange(image, CO_SMALL_PICTURE_SIZE);
+  Gfx_LoadTexImage(image, texOffset, CO_SMALL_PICTURE_SIZE);
   Gfx_LoadTexPalette(
       gCoGraphics[co].palettes + Co_GetSavedPaletteVariant(co) * 32,
       paletteOffset, 32);

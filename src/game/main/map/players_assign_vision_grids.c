@@ -59,8 +59,8 @@ void Players_AssignVisionGrids(void) {
           enemyAlly = enemy + j;
           if (Player_GetSlotRelation(enemy, SLOT_WRAP(enemyAlly)) ==
               SLOT_RELATION_ALLY) {
-            if (enemyAlly >= 5) {
-              enemyAlly -= 4;
+            if (enemyAlly >= ARMY_SLOT_COUNT) {
+              enemyAlly -= PLAYER_SLOT_LAST;
             }
             STATE->players[enemyAlly].visionGrids = gridMask ^ 3;
           }
@@ -68,8 +68,8 @@ void Players_AssignVisionGrids(void) {
       }
     }
   }
-  for (i = 1; i < 6; i++) {
-    if (i > 4) {
+  for (i = 1; i < ARMY_SLOT_COUNT + 1; i++) {
+    if (i > PLAYER_SLOT_LAST) {
       STATE->players[STATE->currentPlayer].visionGrids |= 2;
       Player_SetAlliesVisionGrids(
           STATE->currentPlayer,
