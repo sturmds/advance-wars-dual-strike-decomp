@@ -10,7 +10,7 @@ Pipeline:
                              (.bss definitions included by the files bss_gen.txt lists)
   src/**.c marked `complete` in a delinks.txt --mwccarm--> build/src/**.o
                              --dsd lcf-----> build/arm9.lcf, build/objects.txt
-                             --lcf_absolute.py--> ARM9_ABSOLUTE_SYMBOLS added to build/arm9.lcf
+                             --lcf_absolute.py--> ARM9_ABSOLUTE_SYMBOLS, ARM9_LAYOUT_SYMBOLS added to build/arm9.lcf
                              --maps.py lcf--> the symbols inside Ov000_gMapHeaders added to build/arm9.lcf
                              --bss.py lcf--> .bss.runN sections and the symbols inside .bss variables added
                              --lcf_align2.py lcf--> ALIGNALL(2) around objects at 2 mod 4
@@ -84,7 +84,19 @@ LDFLAGS7 = "-proc arm7tdmi -interworking -map closure,unused -msgstyle gcc -node
 ARM9_ABSOLUTE_SYMBOLS = {
     "SDK_SYS_STACKSIZE": 0x00000000,
     "SDK_IRQ_STACKSIZE": 0x00000400,
-    "SDK_SECTION_ARENA_DTCM_START": 0x027C12E0,
+}
+
+# Symbols the linker computes from the layout, also written by
+# tools/lcf_absolute.py: name -> (value for lcf_absolute.py, value in retail).
+# The original link script defines the arena starts this way; the ROM's
+# literal pools hold the retail values, and dsd has no relocation for them
+# because they lie past the end of a module. A shifted build must get the
+# moved values (issue 0086), so they cannot be numbers. `fn.py diff` and
+# `fn.py check` compare them with the retail value, like the constants above.
+ARM9_LAYOUT_SYMBOLS = {
+    "SDK_MAIN_ARENA_LO": ("@SPACE", 0x0237A5A0),  # past main and every overlay
+    "SDK_SECTION_ARENA_ITCM_START": ("ITCM_BSS_END", 0x01FFDE80),
+    "SDK_SECTION_ARENA_DTCM_START": ("DTCM_BSS_END", 0x027C12E0),
 }
 
 # The same for ARM7 (build/arm7/arm7.lcf). Its SDK build has a 0x400-byte
@@ -96,9 +108,12 @@ ARM7_ABSOLUTE_SYMBOLS = {
 
 
 def absolute_symbols(module: str | None) -> dict[str, int]:
-    """The link-time constants of a module's lcf: ARM7's for `arm7`,
-    ARM9's for every other module."""
-    return ARM7_ABSOLUTE_SYMBOLS if module == "arm7" else ARM9_ABSOLUTE_SYMBOLS
+    """The link-time constants of a module's lcf, with their retail values:
+    ARM7's for `arm7`, ARM9's (layout symbols included) for every other
+    module."""
+    if module == "arm7":
+        return ARM7_ABSOLUTE_SYMBOLS
+    return ARM9_ABSOLUTE_SYMBOLS | {name: retail for name, (_, retail) in ARM9_LAYOUT_SYMBOLS.items()}
 
 
 # The map tables (tools/maps.py, docs/maps.md): what `maps.py pack` writes,
@@ -376,7 +391,8 @@ def main() -> int:
         "build build/arm9.lcf build/objects.txt: lcf build/delink.stamp | $dsd tools/lcf_absolute.py tools/lcf_align2.py tools/maps.py tools/bss.py",
         f"  cfg = {cfg}",
         "  lcf = build/arm9.lcf",
-        "  absolute = " + " ".join(f"{k}={v:#x}" for k, v in ARM9_ABSOLUTE_SYMBOLS.items()),
+        "  absolute = " + " ".join([f"{k}={v:#x}" for k, v in ARM9_ABSOLUTE_SYMBOLS.items()]
+                                   + [f"{k}={v}" for k, (v, _) in ARM9_LAYOUT_SYMBOLS.items()]),
         "",
         f"build {' '.join(MAP_OUTPUTS)}: maps {' '.join(map_inputs())} | tools/maps.py",
         "",

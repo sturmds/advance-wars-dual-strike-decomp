@@ -3,7 +3,8 @@
 
     python3 tools/tests/test_absolute.py
 
-- lcf_absolute.py adds each symbol once at the top of SECTIONS.
+- lcf_absolute.py adds each constant once at the top of SECTIONS, and each
+  layout symbol (ARM9_LAYOUT_SYMBOLS) once at its end.
 - fn.py diff (absolute_word) and fn.py check (fnindex.compare) accept a word
   relocated to an absolute symbol where the original holds its value, and
   reject a wrong value or a symbol not in the list. Each module uses its own
@@ -37,6 +38,19 @@ once = lcf_absolute.add(lcf, {"B": 0x400, "A": 0})
 expect("lcf: added at the top of SECTIONS", once,
        "MEMORY {\n}\n\nSECTIONS {\n    A = 0x00000000;\n    B = 0x00000400;\n    OVERLAY_0_ID = 0;\n}\n")
 expect("lcf: second run changes nothing", lcf_absolute.add(once, {"B": 0x400, "A": 0}), once)
+
+# Layout symbols: a symbol at the end of SECTIONS, and a section in a region.
+layout = lcf_absolute.add(lcf, {"END": "DTCM_BSS_END", "ARENA": "@SPACE"})
+expect("lcf: layout symbols at the end of SECTIONS", layout,
+       "MEMORY {\n}\n\nSECTIONS {\n    OVERLAY_0_ID = 0;\n"
+       "    .ARENA : {\n        . = ALIGN(32);\n        ARENA = .;\n    } > SPACE\n"
+       "    END = DTCM_BSS_END;\n}\n")
+expect("lcf: layout, second run changes nothing",
+       lcf_absolute.add(layout, {"END": "DTCM_BSS_END", "ARENA": "@SPACE"}), layout)
+expect("lcf: parse", [lcf_absolute.parse("0x400"), lcf_absolute.parse("@SPACE")], [0x400, "@SPACE"])
+expect("configure: layout symbols have their retail value for fn.py",
+       configure.absolute_symbols("main")["SDK_MAIN_ARENA_LO"], 0x0237A5A0)
+expect("configure: not on ARM7", "SDK_MAIN_ARENA_LO" in configure.absolute_symbols("arm7"), False)
 
 
 # fn.absolute_word, on rows shaped like objdiff-cli's JSON
