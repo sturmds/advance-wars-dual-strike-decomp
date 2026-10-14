@@ -13,7 +13,7 @@ extern MoveSearch* data_027c0758;
 
 /* A movement cost chart: one row of 32 terrain costs per move type, -1 where
  * the move type cannot enter. */
-typedef const s8 MoveCostRow[32];
+typedef const s8 MoveCostRow[TERRAIN_ID_COUNT];
 
 /* Copies the move cost of each terrain id for a unit type into the move
  * search, from the movement chart of the CO that unk_1e points to. No CO
@@ -24,7 +24,7 @@ void MoveSearch_LoadMoveCosts(int unitType) {
   int terrain;
   int coId;
 
-  for (terrain = 0; terrain < 32; terrain++) {
+  for (terrain = 0; terrain < TERRAIN_ID_COUNT; terrain++) {
     if (STATE->coEffectsOn == 0) {
       coId = 0;
     } else {

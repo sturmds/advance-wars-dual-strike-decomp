@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/map_header.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
@@ -24,7 +25,7 @@ void SecondScreen_UpdatePlayerPanels(void) {
   int i;
 
   Screen_SetCurrentGfx(data_027c0288.unk_04);
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < ARMY_SLOT_COUNT; i++) {
     if (STATE->players[i].controller != PLAYER_CONTROLLER_NONE) {
       int column = data_ov000_0234eb84[Map_GetLoadedPlayerCount()][i];
       PlayerHud_DrawPlayer(192, (column << 3) + 4, i);

@@ -66,15 +66,15 @@ sites. Not every count should reach 0: a hardware format stays a number.
 | Addresses | Unrelocated words, high level | 0 | 0 | 0 |
 | Addresses | Unrelocated words, medium level | 0 | 0 | 0 |
 | Addresses | Unrelocated words, low level (mostly in `u32` tables) | 17 | 0 | 17 |
-| Sizes | `Mem_Alloc` with a literal size | 11 | 0 | 11 |
-| Sizes | Copy, fill and clear calls with a literal length | 219 | 0 | 219 |
-| Sizes | Byte offsets into objects (`(u8 *)x + N`) | 41 | 0 | 41 |
-| Sizes | `for` loops with a literal bound | 537 | 4 | 541 |
+| Sizes | `Mem_Alloc` with a literal size | 9 | 0 | 9 |
+| Sizes | Copy, fill and clear calls with a literal length | 172 | 0 | 172 |
+| Sizes | Byte offsets into objects (`(u8 *)x + N`) | 32 | 0 | 32 |
+| Sizes | `for` loops with a literal bound | 390 | 4 | 394 |
 | Tables | Initialised `u32` arrays with a literal length | 0 | 0 | 0 |
 | Tables | Initialised `char` arrays with a literal length | 0 | 0 | 0 |
 | Tables | Other initialised arrays with a literal length | 0 | 0 | 0 |
 | Tables | `u32` tables holding pointers and numbers (structs written as words) | 2 | 3 | 5 |
 | Tables | Extern arrays with a literal length | 0 | 0 | 0 |
-| Tables | `u8 NAME[N]` placeholders for zeroed variables | 8 | 12 | 20 |
+| Tables | `u8 NAME[N]` placeholders for zeroed variables | 7 | 12 | 19 |
 
-Structs with a size assert: 55.
+Structs with a size assert: 58.

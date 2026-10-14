@@ -50,12 +50,12 @@ void RangeMap_TracePath(int x, int y, u8* steps) {
     }
     count = 0;
     min = 0x100;
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < (int)ARRAY_COUNT(near); i++) {
       if (min > near[i]) {
         min = near[i];
       }
     }
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < (int)ARRAY_COUNT(near); i++) {
       if (near[i] == min) {
         best[count++] = i;
       }

@@ -43,8 +43,8 @@ void UnitInfoPanel_DrawPictureAndStats(u32 x, MapUnit* unit, int palette,
   Palette_LoadFromFile(data_ov000_0234f3ac[unit->type][palette], 0, 0x260,
                        0x40);
   base = x >> 3;
-  for (row = 0; row < 20; row++) {
-    for (col = 0; col < 15; col++) {
+  for (row = 0; row < UNIT_INFO_PICTURE_ROWS; row++) {
+    for (col = 0; col < UNIT_INFO_PICTURE_COLUMNS; col++) {
       data_027c0280->layer0Map[col + base] = 0;
     }
     base += 32;

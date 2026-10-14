@@ -41,4 +41,11 @@ typedef char
 extern UnitInfoPanel
     data_ov000_02350520; /* what data_ov000_0234ec8c points to */
 
+/* Tile blocks of layer 0 that the panel clears before drawing: the page's
+ * text area and the picture block. */
+#define UNIT_INFO_TEXT_COLUMNS 14
+#define UNIT_INFO_TEXT_ROWS 8
+#define UNIT_INFO_PICTURE_COLUMNS 15
+#define UNIT_INFO_PICTURE_ROWS 20
+
 #endif

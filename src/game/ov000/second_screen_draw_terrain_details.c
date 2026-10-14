@@ -58,7 +58,7 @@ void SecondScreen_DrawTerrainDetails(int x, int terrain) {
     Text_PrintImmediate((x + 80) / 8, 5, data_027c0280->layer0Map, 0xc00000af,
                         0, 0);
   }
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(data_ov000_023500b4); i++) {
     if (Ov000_gUnitStats[data_ov000_023500b4[i]].repairTerrain[terrain] != 0) {
       Icon_LoadTo(224, data_027c0280->unk_e4, 158);
       Icon_LoadPalette(224, 13);

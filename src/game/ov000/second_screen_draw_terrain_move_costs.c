@@ -126,7 +126,7 @@ void SecondScreen_DrawTerrainMoveCosts(u8 x, u8 terrain) {
   u16 i;
   u16 n;
   int co;
-  int costs[9];
+  int costs[ARRAY_COUNT(Ov000_gTerrainPanelMoveTypes)];
 
   n = 0;
   savedGfx = data_027c0280;
@@ -134,7 +134,7 @@ void SecondScreen_DrawTerrainMoveCosts(u8 x, u8 terrain) {
   savedScreen = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_00);
   funds = IncreaseFunds(data_ov000_0235054c, terrain);
-  for (i = 0; i < 9; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(Ov000_gTerrainPanelMoveTypes); i++) {
     if (func_ov000_022b2c64() == 0 && Ov000_gTerrainPanelMoveTypes[i] == 8) {
       costs[i] = -1;
       continue;
@@ -156,7 +156,7 @@ void SecondScreen_DrawTerrainMoveCosts(u8 x, u8 terrain) {
   if (funds != 0) {
     Number_Draw((x + 96) / 8, 5, data_027c0280->layer0Map, funds, 0, 0);
   }
-  for (i = 0; i < 9; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(Ov000_gTerrainPanelMoveTypes); i++) {
     if (costs[i] != -1) {
       u16* map = data_027c0280->layer0Map;
       (map + (x + ICON_X(n)))[ICON_Y(n) * 32] =

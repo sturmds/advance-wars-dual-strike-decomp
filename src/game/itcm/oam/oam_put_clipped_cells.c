@@ -41,7 +41,7 @@ void Oam_PutClippedCells(int x, int y, int attr1Flags, int attr0Flags,
                            data_027c0280->unk_dd));
         dst += 4;
         data_027c0280->oamBuffer->unk_600 =
-            (u8*)data_027c0280->oamBuffer->unk_600 + 8;
+            (u8*)data_027c0280->oamBuffer->unk_600 + OAM_ENTRY_SIZE;
       }
     }
     cell++;

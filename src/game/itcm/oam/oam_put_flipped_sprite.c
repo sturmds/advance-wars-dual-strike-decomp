@@ -53,6 +53,6 @@ void Oam_PutFlippedSprite(int x, int y, const OamCell* cell, int attr2) {
     cell++;
     dst += 4;
     data_027c0280->oamBuffer->unk_600 =
-        (u8*)data_027c0280->oamBuffer->unk_600 + 8;
+        (u8*)data_027c0280->oamBuffer->unk_600 + OAM_ENTRY_SIZE;
   } while (--count);
 }

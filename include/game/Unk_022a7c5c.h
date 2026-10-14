@@ -32,6 +32,12 @@ typedef struct Unk_022a7c5c {
   void* unk_6c; /* destination of its palette */
 } Unk_022a7c5c;
 
+/* Texture areas Map3d_LoadTextures clears: at unk_68, and at unk_5c and
+ * unk_60, a block of zeros (gMap3dClearBlock) at a time. */
+#define MAP3D_TEX_AREA_SIZE 0x4000
+#define MAP3D_SLOT_TEX_AREA_SIZE 0x800
+#define MAP3D_CLEAR_BLOCK_SIZE 32
+
 extern Unk_022a7c5c* data_022a7c5c;
 extern Unk_022a7c5c data_022a7cec; /* set up by Map3d_Init */
 

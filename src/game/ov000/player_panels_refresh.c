@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/map_header.h"
 #include "game/screen_other_map.h"
 #include "game/player.h"
 #include "game/player_panel_cache.h"
@@ -41,7 +42,7 @@ void PlayerPanels_Refresh(void) {
   Screen_SetCurrentGfx(data_027c0288.unk_00);
   savedScreen = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_00);
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < ARMY_SLOT_COUNT; i++) {
     player = &STATE->players[i];
     cache = &Ov000_gPlayerPanelCache[i];
     if (player->controller != PLAYER_CONTROLLER_NONE) {
@@ -76,7 +77,7 @@ void PlayerPanels_Refresh(void) {
   Screen_SetCurrent(data_027c0288.unk_00);
   savedGfx3 = data_027c0280;
   Screen_SetCurrentGfx(data_027c0288.unk_04);
-  for (j = 1; j < 5; j++) {
+  for (j = 1; j < ARMY_SLOT_COUNT; j++) {
     player = &STATE->players[j];
     cache = &Ov000_gPlayerPanelCache[j];
     if (player->controller != PLAYER_CONTROLLER_NONE) {

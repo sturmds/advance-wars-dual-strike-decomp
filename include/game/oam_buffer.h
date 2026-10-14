@@ -4,6 +4,7 @@
 #include "types.h"
 
 #define OAM_ENTRY_COUNT 128
+#define OAM_ENTRY_SIZE 8 /* attributes 0-3, two bytes each */
 
 /* Part of the OAM buffer. OamBuffer_Split splits the 128 entries in two:
  * the first headCount entries (head) and the rest (tail). */

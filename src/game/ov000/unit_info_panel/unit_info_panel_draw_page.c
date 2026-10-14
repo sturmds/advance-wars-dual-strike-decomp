@@ -24,8 +24,8 @@ void UnitInfoPanel_DrawPage(void) {
   if (data_ov000_0234ec8c->shownPage != data_ov000_0234ec8c->page) {
     data_ov000_0234ec8c->shownPage = data_ov000_0234ec8c->page;
     Text_StopPrinting();
-    for (row = 0; row < 8; row++) {
-      for (col = 0; col < 14; col++) {
+    for (row = 0; row < UNIT_INFO_TEXT_ROWS; row++) {
+      for (col = 0; col < UNIT_INFO_TEXT_COLUMNS; col++) {
         data_027c0280->layer0Map[(data_ov000_0234ec8c->tileX + 1 + col) +
                                  (data_ov000_0234ec8c->tileY + 1 + row) * 32] =
             0;

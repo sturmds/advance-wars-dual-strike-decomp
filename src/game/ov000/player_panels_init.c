@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/map_header.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/player_panel_cache.h"
@@ -24,7 +25,7 @@ void PlayerPanels_Init(void) {
   int i;
   Unk_027c0280* savedGfx;
 
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < ARMY_SLOT_COUNT; i++) {
     if (STATE->players[i].controller != PLAYER_CONTROLLER_NONE) {
       Ov000_gPlayerPanelCache[i].unitCount = -1;
       Ov000_gPlayerPanelCache[i].properties = -1;
