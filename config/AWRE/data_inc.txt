@@ -185,7 +185,7 @@ main      data_0213fe0c               0x0213fe0c  0x2cc  u8
 main      data_021400d8               0x021400d8  0x134  u8
 main      data_0214020c               0x0214020c  0x30c  u32
 main      data_02140518               0x02140518  0xa0   u8
-main      gArmyPalettes               0x021405b8  0x140  u8[32]
+main      gArmyPalettes               0x021405b8  0x140  u16[16]
 main      data_021406f8               0x021406f8  0x3300 u8
 main      data_021439f8               0x021439f8  0x3c0  u8
 main      gInfoPanelHiddenCargoMark   0x02143db8  0x180  u8

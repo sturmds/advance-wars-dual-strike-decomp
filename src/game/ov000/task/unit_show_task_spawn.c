@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_022a7c5c.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_02080440.h"
 #include "game/task.h"
@@ -17,12 +18,8 @@ char data_ov000_022dbd24[] = {
 #include "data/ov000/data_ov000_022dbd24.inc.c"
 };
 extern const TaskScriptCmd data_ov000_022db6cc[];
-extern u8 gArmyPalettes[][32];
+extern const u16 gArmyPalettes[][16];
 
-typedef struct Unk_022a7c5c {
-  u8 pad_00[0x64];
-  void* unk_64;
-} Unk_022a7c5c;
 extern Unk_022a7c5c* data_022a7c5c;
 
 int UnitShowTask_FindFreeSlot(void);
@@ -87,10 +84,10 @@ UnitShowTask* UnitShowTask_Spawn(int x, int y, int owner, int type) {
   task->sprite->unk_2c = task->unk_44;
   if ((void*)data_027c027c == data_027c0288.unk_00) {
     task->sprite->unk_24 = UnitShowTask_GetObjBase(task->slot);
-    task->sprite->unk_28 = (u32)data_022a7c5c->unk_64;
+    task->sprite->unk_28 = data_022a7c5c->unk_64;
     GfxQueue_AddKind2(
         gArmyPalettes[GAME->players[task->owner + 1].armyColour - 1],
-        data_022a7c5c->unk_64, 32);
+        (void*)data_022a7c5c->unk_64, 32); /* a texture palette offset */
   } else {
     task->sprite->unk_24 = (task->slot << 4) + 0x264 | 0x4000;
     Palette_Load(gArmyPalettes[GAME->players[task->owner + 1].armyColour - 1],

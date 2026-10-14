@@ -42,7 +42,7 @@ void TabList_UpdateHelpText(void);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 gArmyPalettes[][32];
+extern const u16 gArmyPalettes[][16];
 extern char data_0215f7c4[]; /* "/ohashi/res_history_medal" */
 extern char data_0215f7e0[]; /* "/ohashi/res_history" */
 extern char data_0215f7f4[]; /* "/ohashi/res_history_lang" */

@@ -18,7 +18,7 @@ extern s16 data_02166360[INFO_PANEL_SIDES][3]; /* cargo box */
 extern u16
     data_02166308[INFO_PANEL_WIDTH_COUNT]; /* panel width by unit boxes shown */
 extern s8 Ov000_gUrbanTerrain[];
-extern u8 gArmyPalettes[][32];
+extern const u16 gArmyPalettes[][16];
 extern u8 data_ov000_022cb630[];
 extern TaskScriptCmd data_02166430[];
 

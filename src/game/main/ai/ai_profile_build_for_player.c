@@ -10,18 +10,12 @@ extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 
 extern u8 data_ov000_022dbd69[]; /* MapHeader.unk_41 of map 0 */
-extern u8 data_02161b8c
-    []; /* sets of 29 bytes: a mods id, then a template id per CO id */
-extern u8 data_02161b8d[]; /* data_02161b8c + 1 */
-extern u8 data_02161baa[]; /* data_02161b8c + 30: the template ids of set 1 */
+extern AiProfileSet data_02161b8c[];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define CURRENT_MAP ((Unk_02080440*)(&data_027c0288.unk_00)[data_027c0284])
 
-/* Each map names a set in MapHeader.unk_41 (0: none, then set 1 is used).
- * A set is 29 bytes: an AiProfileMods id, then an AiProfileTemplate id for
- * each CO id. */
-#define SET_SIZE 29
+/* Each map names a set in MapHeader.unk_41 (0: none, then set 1 is used). */
 
 #define MAP_AI_SET data_ov000_022dbd69[GAME->unk_1c4->mapId * sizeof(MapHeader)]
 
@@ -35,10 +29,9 @@ void AiProfile_BuildForPlayer(int player) {
   if (MAP_AI_SET != 0) {
     if (GAME->coEffectsOn != 0) {
       AiProfile_Build(
-          gAiProfile, data_02161b8c[MAP_AI_SET * SET_SIZE],
-          (data_02161b8d +
-           MAP_AI_SET *
-               SET_SIZE)[GAME->players[player].front.id & PLAYER_CO_ID_MASK]);
+          gAiProfile, data_02161b8c[MAP_AI_SET].modsId,
+          data_02161b8c[MAP_AI_SET]
+              .templateIds[GAME->players[player].front.id & PLAYER_CO_ID_MASK]);
       return;
     }
     if (GAME->gameMode == GAME_MODE_CAMPAIGN &&
@@ -46,15 +39,17 @@ void AiProfile_BuildForPlayer(int player) {
                 ->players[GAME->currentPlayer]
                 .controller == PLAYER_CONTROLLER_HUMAN) {
       AiProfile_Build(
-          gAiProfile, data_02161b8c[MAP_AI_SET * SET_SIZE],
-          data_02161baa[GAME->players[player].front.id & PLAYER_CO_ID_MASK]);
+          gAiProfile, data_02161b8c[MAP_AI_SET].modsId,
+          data_02161b8c[1]
+              .templateIds[GAME->players[player].front.id & PLAYER_CO_ID_MASK]);
       return;
     }
-    AiProfile_Build(gAiProfile, data_02161b8c[MAP_AI_SET * SET_SIZE],
-                    data_02161b8d[MAP_AI_SET * SET_SIZE]);
+    AiProfile_Build(gAiProfile, data_02161b8c[MAP_AI_SET].modsId,
+                    data_02161b8c[MAP_AI_SET].templateIds[0]);
     return;
   }
   AiProfile_Build(
-      gAiProfile, data_02161b8c[SET_SIZE],
-      data_02161baa[GAME->players[player].front.id & PLAYER_CO_ID_MASK]);
+      gAiProfile, data_02161b8c[1].modsId,
+      data_02161b8c[1]
+          .templateIds[GAME->players[player].front.id & PLAYER_CO_ID_MASK]);
 }

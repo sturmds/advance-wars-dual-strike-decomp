@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/battle_save.h"
 #include "game/player.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
@@ -14,9 +15,9 @@ extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern Unk_02080440_48 data_02183b08;
-extern u32
-    data_022a72c8[][2]
-                 [4]; /* skills a tag partner lends, per player and CO slot */
+extern BattleSaveSkillSet data_022a72c8
+    []
+    [PLAYER_CO_COUNT]; /* skills a tag partner lends, per player and CO slot */
 
 /* Shorthand for player i of the current state; the original code reloads
  * it through the globals on every access. */
@@ -70,7 +71,8 @@ void UpdatePlayerSkills(int player) {
       for (i = 0; i < SKILL_SET_WORDS; i++) {
         PLAYER(player).skills[0][i] = frontSkills[i];
         if (PartnerBoost1(player)) {
-          PLAYER(player).skills[0][i] |= data_022a72c8[player][lentSlot][i];
+          PLAYER(player).skills[0][i] |=
+              data_022a72c8[player][lentSlot].words[i];
         }
       }
       return;
@@ -81,7 +83,7 @@ void UpdatePlayerSkills(int player) {
     for (i = 0; i < SKILL_SET_WORDS; i++) {
       PLAYER(player).skills[1][i] = backSkills[i];
       if (PartnerBoost1(player)) {
-        PLAYER(player).skills[1][i] |= data_022a72c8[player][1][i];
+        PLAYER(player).skills[1][i] |= data_022a72c8[player][1].words[i];
       }
     }
   }
@@ -92,7 +94,7 @@ void UpdatePlayerSkills(int player) {
   for (i = 0; i < SKILL_SET_WORDS; i++) {
     PLAYER(player).skills[0][i] = frontSkills[i];
     if (PartnerBoost1(player)) {
-      PLAYER(player).skills[0][i] |= data_022a72c8[player][0][i];
+      PLAYER(player).skills[0][i] |= data_022a72c8[player][0].words[i];
       if (CheckSkillsEquipped(PLAYER(player).skills[1], SKILL_RANK_TEAMWORK)) {
         PartnerBoost2(PLAYER(player).skills[0], SKILL_PARTNER_TEAMWORK);
       }

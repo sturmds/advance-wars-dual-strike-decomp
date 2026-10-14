@@ -8,7 +8,7 @@ extern Unk_027c0288 data_027c0288;
 
 extern s8 data_ov006_0236a7b4[];
 extern s8 data_ov006_0236a7d0[];
-extern u8 gArmyPalettes[][32];
+extern const u16 gArmyPalettes[][16];
 
 int GameFlag_IsSet(int flag);
 void Palette_Load(const void* src, u32 offset, u32 size);

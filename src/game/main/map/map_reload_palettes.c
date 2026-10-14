@@ -11,7 +11,7 @@ void ObjGfx_LoadLanguageTiles(void);
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern const u8 gArmyPalettes[][32];
+extern const u16 gArmyPalettes[][16];
 extern u16 data_021396f0[];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])

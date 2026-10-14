@@ -17,7 +17,7 @@ extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern u8 gArmyPalettes[][32];
+extern const u16 gArmyPalettes[][16];
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
