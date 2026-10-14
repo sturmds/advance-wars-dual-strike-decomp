@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02160ac0.h"
 
 int HwMod32(int a, int b);
 void Co_QueueSmallPictureSprite(int x, int y, int attr, int list);
@@ -11,7 +12,7 @@ void CombatModeMenu_QueueSlotSprites(void) {
   int y = 64;
   int i;
 
-  for (i = 0; i < 7; i++) {
+  for (i = 0; i < COMBAT_CO_COUNT; i++) {
     Sprite_QueueCoSlotFrame(0, x & 0x1ff, y & 0xff, 0);
     Co_QueueSmallPictureSprite((x + 24) & 0x1ff, (y + 16) & 0xff,
                                i * 12 | i << 12, 1);

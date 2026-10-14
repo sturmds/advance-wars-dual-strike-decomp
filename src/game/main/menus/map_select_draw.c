@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/player.h"
 #include "game/map_header.h"
 #include "game/map_select.h"
 #include "game/menu_state.h"
@@ -241,7 +242,8 @@ void MapSelect_Draw(void) {
   if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
     count = Map_GetPlayerCount(SELECTED_MAP_ID());
     for (i = 0; i < count - 1; i++) {
-      for (j = 0; j <= 1; j++) {
+      /* Needed to match: the bound is written as <= count - 1. */
+      for (j = 0; j <= PLAYER_CO_COUNT - 1; j++) {
         int k = j + i * 2;
         Co_QueueSmallPictureSpriteAtTile(((232 - j * 32) & 0x1ff) | 0x1000,
                                          (192 - i * 16) & 0xff, (k + 4) << 12,

@@ -9,7 +9,7 @@ void Keypad_Init(void) {
   int i;
   Keypad* key = data_0216e4e4;
 
-  for (i = 0; i < 9; i++, key++) {
+  for (i = 0; i < KEYPAD_COUNT; i++, key++) {
     key->prevHeld = 0;
     key->held = 0;
     key->pressed = 0;

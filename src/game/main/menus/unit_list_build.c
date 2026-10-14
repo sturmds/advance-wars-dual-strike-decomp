@@ -132,7 +132,7 @@ void UnitList_Build(int sortMode, int reverse) {
     if (!(unit->flags & MAP_UNIT_CARRYING)) {
       continue;
     }
-    for (step = 0; step < 2; step++) {
+    for (step = 0; step < (int)ARRAY_COUNT(unit->cargo); step++) {
       if (unit->cargo[step] == 0) {
         continue;
       }
@@ -143,7 +143,7 @@ void UnitList_Build(int sortMode, int reverse) {
           gUnitListRows[n++] = sorted[j];
           sorted[j] = 0;
           if (cargoUnit->flags & MAP_UNIT_CARRYING) {
-            for (k = 0; k < 2; k++) {
+            for (k = 0; k < (int)ARRAY_COUNT(cargoUnit->cargo); k++) {
               if (cargoUnit->cargo[k] == 0) {
                 continue;
               }

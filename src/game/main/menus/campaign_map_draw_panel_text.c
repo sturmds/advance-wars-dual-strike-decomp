@@ -38,7 +38,7 @@ void CampaignMap_DrawPanelText(void) {
   savedGfx = data_027c0280;
   Screen_SetCurrentGfx(data_027c0288.unk_04);
   Text_PrintId(13, 7, data_027c0280->layer0Map, PANEL_TITLE_TEXT, 0, 0x300);
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(gMenuState.campaignMap.topCos); i++) {
     if (gMenuState.campaignMap.topCos[i].co != 0) {
       Number_Draw(27, i * 3 + 10, data_027c0280->layer0Map,
                   gMenuState.campaignMap.topCos[i].score, 0, 0);

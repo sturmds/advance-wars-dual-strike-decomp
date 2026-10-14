@@ -18,7 +18,7 @@ int UnitList_ClearAndCount(void) {
   int count;
   MapUnit* unit;
 
-  for (i = 0; i < 64; i++) {
+  for (i = 0; i < UNIT_LIST_SIZE; i++) {
     gUnitListRows[i] = 0;
   }
   count = 0;

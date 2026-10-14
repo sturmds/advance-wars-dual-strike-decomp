@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/icon.h"
 #include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
@@ -25,8 +26,6 @@ void Text_PrintStringImmediate(s16 x, s16 y, u16* map, const char* text, u16 a,
 void Number_Draw(s16 x, s16 y, u16* map, int value, u16 a, u16 b);
 void Text_PrintImmediate(s16 x, s16 y, u16* map, u32 textId, u16 unk_30,
                          int arg);
-void Icon_LoadTo(int iconId, u8* vram, int tile);
-void IconBank_LoadPalette(int bank, int paletteSlot);
 void Palette_CopyBlock(
     int block,
     u8* dest); /* copies 0x100 bytes of palette block `block` to dest */
@@ -149,8 +148,8 @@ void ResultStats_Init(Task* task) {
         Icon_LoadTo(ROW(i + 1).armyColour + 74, data_027c0280->objVram, i * 8);
       }
       IconBank_LoadPalette(1, 16);
-      for (i = 0; i < 10; i++) {
-        Icon_LoadTo(i + 140, data_027c0280->objVram, i * 10 + 34);
+      for (i = 0; i < ICON_DIGIT_COUNT; i++) {
+        Icon_LoadTo(ICON_DIGITS + i, data_027c0280->objVram, i * 10 + 34);
       }
       Icon_LoadTo(193, data_027c0280->objVram, 32);
       IconBank_LoadPalette(4, 17);

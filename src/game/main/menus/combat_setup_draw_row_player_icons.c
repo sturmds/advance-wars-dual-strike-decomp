@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02160ac0.h"
 #include "game/menu_state.h"
 #include "game/Unk_0229fb30.h"
 
@@ -53,7 +54,7 @@ void CombatSetup_DrawRowPlayerIcons(int x, int y) {
   }
 
   row = MENU->combat.rows;
-  for (i = 0; i < 4; i++, row++) {
+  for (i = 0; i < COMBAT_ROW_COUNT; i++, row++) {
     if (row->memberCount == 0) {
       continue;
     }

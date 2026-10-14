@@ -20,8 +20,6 @@ extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
 extern CampaignMapState gCampaignMapState;
 extern CampaignMission gCampaignMissions[];
-/* Campaign records by map (id - CAMPAIGN_FIRST_MAP), normal then hard. */
-extern WarRoomRecord gCampaignBestRecords[][2];
 extern u8 data_027c0040[];
 extern u8 data_027c0060[];
 extern u8 data_027c00b8[];
@@ -43,7 +41,7 @@ void CampaignMap_DrawCoPanel(CampaignMapTask* task) {
 
   savedGfx = data_027c0280;
   Screen_SetCurrentGfx(data_027c0288.unk_04);
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < CAMPAIGN_TOP_CO_COUNT; i++) {
     Sprite_QueueAt(0, 24, (u8)(i * 24 + 80), data_027c0060, 0x2000, i * 8 + 38);
     if (TOP_CO(i).co != 0) {
       Sprite_QueueAt(0, 56, (u8)(i * 24 + 80), data_027c00b8, 26, 0);

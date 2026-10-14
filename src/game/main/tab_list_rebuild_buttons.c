@@ -21,8 +21,8 @@ void TabList_RebuildButtons(void) {
   selected = Menu_GetSelectedId();
 
   MenuButtons_RemoveSelectable();
-  for (count = 0; count < 9; count++) {
-    if (data_0215d6c4[tab][first + count].unk_04 == 0x68) {
+  for (count = 0; count < TAB_LIST_PAGE_ROWS; count++) {
+    if (data_0215d6c4[tab][first + count].unk_04 == TAB_LIST_END_MARK) {
       break;
     }
     MenuButton_Add(8, (5 + count * 2) * 8, &data_0215d53c, count * 4);

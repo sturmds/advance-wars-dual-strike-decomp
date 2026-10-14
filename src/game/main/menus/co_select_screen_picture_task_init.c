@@ -6,7 +6,8 @@
 void CoSelectPictureTask_Init(CoSelectPictureTask* task) {
   int row;
 
-  for (row = 0; row <= 1; row++) {
+  /* Needed to match: the bound is written as <= count - 1. */
+  for (row = 0; row <= (int)ARRAY_COUNT(task->slideFrom) - 1; row++) {
     task->slideFrom[row] = 0;
     task->slideOffset[row] = 0;
     task->co[row] =

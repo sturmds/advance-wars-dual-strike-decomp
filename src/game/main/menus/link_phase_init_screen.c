@@ -104,7 +104,7 @@ void LinkPhase_InitScreen(void) {
           Ov000_gMapHeaders[GAME->unk_1c4->mapId].army[i + 1];
     }
   }
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(gMenuState.link.panelPlayers); i++) {
     gMenuState.link.panelPlayers[i] = gLinkSlotPlayers[i] - 1;
     gMenuState.link.readyFlags[i] = 0;
   }

@@ -3,14 +3,6 @@
 
 void Survival_ClearRecords(void);
 
-/* Campaign records by map (id - CAMPAIGN_FIRST_MAP), normal then hard. */
-extern WarRoomRecord gCampaignBestRecords[][2];
-
-#define WAR_ROOM_TABLE_COUNT 4
-#define WAR_ROOM_MAP_COUNT 44
-#define WAR_ROOM_PLACE_COUNT 3
-#define CAMPAIGN_MAP_COUNT 28
-
 /* Erases every War Room, Campaign and Survival record. The order of the
  * local declarations is needed to match. */
 void BattleRecord_ClearAll(void) {
@@ -31,7 +23,7 @@ void BattleRecord_ClearAll(void) {
     }
   }
   for (map = 0; map < CAMPAIGN_MAP_COUNT; map++) {
-    for (place = 0; place < 2; place++) {
+    for (place = 0; place < CAMPAIGN_DIFFICULTY_COUNT; place++) {
       record = &gCampaignBestRecords[map][place];
       record->frontCo = 0;
       record->backCo = 0;

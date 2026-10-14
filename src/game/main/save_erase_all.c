@@ -28,7 +28,7 @@ int Save_EraseAll(void) {
       SAVE_SLOT_WRITES(i) = 0;
       data_02297fa8[i] = SAVE_SLOT_WRITES(i);
       Mem_FillBytesFF(&data_02298050, sizeof(SaveBuffer));
-      for (try = 0; try < 4; try ++) {
+      for (try = 0; try < SAVE_WRITE_TRIES; try ++) {
         Save_WriteToBackup(i, &data_02298050, sizeof(SaveBuffer));
         if (Save_VerifyBackup(i, &data_02298050, sizeof(SaveBuffer))) {
           break;

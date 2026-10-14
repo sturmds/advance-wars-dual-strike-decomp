@@ -55,11 +55,11 @@ void BattleSetup_DrawSkills(int x, int y, int set) {
   if (shifted->setup.cos[0][0] == 0) {
     return;
   }
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(skills); i++) {
     skills[i] = 0;
   }
   CoSet_ListEquippedSkills(skills, shifted->setup.cos[0][0], set);
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(skills); i++) {
     if (skills[i] == 0 || skills[i] == 0xff) {
       return;
     }

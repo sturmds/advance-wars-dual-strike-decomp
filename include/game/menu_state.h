@@ -116,7 +116,7 @@ typedef struct CampaignMapWork {
   u8 unk_0e4[0x160];
   u8 unk_244[0x8c];
   struct ShowSprite* sprites[2]; /* made by CampaignMap_InitCrossingSprites */
-  CampaignTopCo topCos[3];
+  CampaignTopCo topCos[CAMPAIGN_TOP_CO_COUNT];
   u8 enemyCos
       [2]; /* front and back CO of the map's last player slot, probably the enemy */
 } CampaignMapWork;

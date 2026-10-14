@@ -17,7 +17,7 @@ int Save_UnpackProgress(SaveProgressBlocks* record) {
   int i;
 
   gPlayRecords = record->playRecords;
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < SAVE_PROFILE_COUNT; i++) {
     data_02290298[i] = record->profileBlocks[i];
     data_022900bc[i] = record->unk_1534[i];
   }

@@ -112,7 +112,7 @@ void BattleSetup_ApplyToGame(void) {
     Screen_SetCurrentGfx(saved0280);
   }
 
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(gMenuState.setup.cos); i++) {
     GAME->playerCos[i + 1][0] = gMenuState.setup.cos[i][0] & PLAYER_CO_ID_MASK;
     GAME->playerCos[i + 1][1] = gMenuState.setup.cos[i][1] & PLAYER_CO_ID_MASK;
     Co_SetForceRankSetIndex(gMenuState.setup.cos[i][0], i + 1,

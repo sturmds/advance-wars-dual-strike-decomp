@@ -118,7 +118,7 @@ int Save_WriteRecord(int recordId, u8* unused, int size) {
         entry = (SaveSlotTable*)&data_02297f3c.id[slot];
         entry->newId[0] = recordId;
         dst = (u8*)&data_02298050;
-        for (i = 0; i < 0x3000; i++) {
+        for (i = 0; i < (int)sizeof(SaveBuffer); i++) {
           *dst++ = 0xff;
         }
         data_02298050.magic = SAVE_MAGIC;
@@ -165,7 +165,7 @@ int Save_WriteRecord(int recordId, u8* unused, int size) {
         }
         sum = 0;
         dst = (u8*)&data_02298050;
-        for (i = 0; i < 0x3000; i++) {
+        for (i = 0; i < (int)sizeof(SaveBuffer); i++) {
           sum += *dst++;
         }
         data_02298050.checksumInv = ~sum;

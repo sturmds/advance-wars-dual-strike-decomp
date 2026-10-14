@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/player.h"
 #include "game/menu_state.h"
 #include "game/page_strip.h"
 #include "game/Unk_02088d04.h"
@@ -74,7 +75,8 @@ void PageStripTask_Draw(PageStripTask* task) {
   }
   func_020485f0(task->pages);
   for (i = 0; i < playerCount - 1; i++) {
-    for (j = 0; j <= 1; j++) {
+    /* Needed to match: the bound is written as <= count - 1. */
+    for (j = 0; j <= PLAYER_CO_COUNT - 1; j++) {
       int k = j + i * 2;
       Co_QueueSmallPictureSpriteAtTile(
           (24 + j * 32) & 0x1ff, (192 - i * 16) & 0xff, k << 12, k * 12, k & 1);

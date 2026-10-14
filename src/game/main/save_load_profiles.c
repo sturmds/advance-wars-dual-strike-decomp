@@ -26,7 +26,7 @@ void Save_LoadProfiles(void) {
   if (Save_LoadRecord(0, progress)) {
     return;
   }
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < SAVE_PROFILE_COUNT; i++) {
     data_02290298[i] =
         *(SaveProfileBlock*)((u8*)&((SaveProfileBlock*)progress)[i] +
                              SAVE_PROFILE_BLOCKS_OFFSET);

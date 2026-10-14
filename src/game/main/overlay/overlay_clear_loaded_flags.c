@@ -5,7 +5,7 @@
 void Overlay_ClearLoadedFlags(void) {
   int slot;
 
-  for (slot = 0; slot < 7; slot++) {
+  for (slot = 0; slot < OVERLAY_SLOT_COUNT; slot++) {
     gOverlayLoaded[slot] = 0;
   }
 }

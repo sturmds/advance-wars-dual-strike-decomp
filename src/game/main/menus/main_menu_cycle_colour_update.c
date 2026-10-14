@@ -14,7 +14,7 @@ void MainMenu_CycleColourUpdate(MainMenuTask* task) {
 
   if ((task->unk_4c & 3) == 0) {
     GX_BeginLoadTexPltt();
-    for (i = 0; i < 9; i++) {
+    for (i = 0; i < (int)ARRAY_COUNT(WORK->unk_08); i++) {
       (&VRAM_LCDC_F[i * 16])[12] = ((u16*)WORK->unk_1c)[task->unk_52 & 15];
     }
     GX_EndLoadTexPltt();

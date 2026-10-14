@@ -15,7 +15,7 @@ extern Unk_027c0280* data_027c0280;
 void CampaignMap_DrawMarkers(CampaignMapTask* task) {
   int i;
 
-  for (i = 0; i < 28; i++) {
+  for (i = 0; i < CAMPAIGN_MISSION_COUNT; i++) {
     if (gCampaignMapState.flags[i] & 1) {
       CampaignMap_QueueDoneMarker(
           gCampaignMissions[i].x -

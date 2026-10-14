@@ -82,13 +82,13 @@ void MapSelect_ShowSelectedMap(void) {
 
   /* Ids from 0x101 show -1 in every count. */
   if (SELECTED_MAP_ID() >= 0x101) {
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < (int)ARRAY_COUNT(MENU->setup.unk_4ce); i++) {
       MENU->setup.unk_4ce[i] = -1;
     }
     return;
   }
   if (!Map_IsFlagSet(SELECTED_MAP_ID())) {
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < (int)ARRAY_COUNT(MENU->setup.unk_4ce); i++) {
       MENU->setup.unk_4ce[i] = 0;
       if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
         MENU->setup.unk_4d4[i] = 0;

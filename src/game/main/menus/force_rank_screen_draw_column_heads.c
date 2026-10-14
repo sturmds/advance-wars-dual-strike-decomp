@@ -10,7 +10,7 @@ extern u8 data_027c0038[];
 void ForceRankScreen_DrawColumnHeads(void) {
   int column;
 
-  for (column = 1; column <= 10; column++) {
+  for (column = 1; column <= FORCE_RANK_COLUMN_SPECIAL; column++) {
     if (gForceRankScreen->columns[column].count != 0) {
       Sprite_QueueAt(1, ((column - 1) * 24 + 5) & 0x1ff, 40, data_027c0038,
                      (column * 2 + 44) | 0x2000, 0);

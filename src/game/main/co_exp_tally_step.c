@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/player.h"
 #include "game/co_exp.h"
 #include "game/menu_state.h"
 #include "game/keypad.h"
@@ -75,7 +76,7 @@ void CoExp_TallyStep(WinLoseTask* task) {
         EXP[i * 2 + 1].points += gain;
       }
     }
-    for (k = 0; k < 2; k++) {
+    for (k = 0; k < PLAYER_CO_COUNT; k++) {
       if (EXP[i * 2 + k].points > CO_EXP_PER_LEVEL - 1) {
         EXP[i * 2 + k].level++;
         EXP[i * 2 + k].points -= CO_EXP_PER_LEVEL;
@@ -140,7 +141,7 @@ void CoExp_TallyStep(WinLoseTask* task) {
         EXP[i * 2 + 1].points += step;
       }
     }
-    for (k = 0; k < 2; k++) {
+    for (k = 0; k < PLAYER_CO_COUNT; k++) {
       while (EXP[i * 2 + k].points > CO_EXP_PER_LEVEL - 1) {
         EXP[i * 2 + k].level++;
         EXP[i * 2 + k].points -= CO_EXP_PER_LEVEL;

@@ -13,7 +13,7 @@ int Save_PackProgress(SaveProgressBlocks* record) {
   int i;
 
   record->playRecords = gPlayRecords;
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < SAVE_PROFILE_COUNT; i++) {
     record->profileBlocks[i] = data_02290298[i];
     record->unk_1534[i] = data_022900bc[i];
   }

@@ -51,7 +51,7 @@ void CombatModeMenu_DrawSprites(void) {
       0x10e0, 24, data_02160ac0->co * 12 | data_02160ac0->co << 12, 0);
   Sprite_QueueDefault(140, 8, 0x7054, 0);
   y = 92;
-  for (row = 0; row < 4; row++) {
+  for (row = 0; row < (int)ARRAY_COUNT(kindTiles); row++) {
     for (i = 0; i < counts.n[selected * 4 + row]; i++) {
       Sprite_QueueAt(0, (88 + i * 8) & 0x1ff, y & 0xff, &data_027c0028, 0x8060,
                      0);
@@ -90,13 +90,13 @@ void CombatModeMenu_DrawSprites(void) {
     }
   }
   Sprite_QueueAt(1, 8, 88, picture, 0x9400, 0x400);
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(kindTiles); i++) {
     kindTiles[i] = 0x510 + i * 4;
   }
   if (nation == NATION_BLACK_HOLE) {
     kindTiles[0] += 16;
   }
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(kindTiles); i++) {
     Sprite_QueueAt(2, 7, (24 + i * 16) & 0xff, &data_027c0040, 0xc400,
                    kindTiles[i]);
   }

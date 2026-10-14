@@ -11,13 +11,13 @@ void ForceRankScreen_LoadChosen(void) {
   int i;
 
   ForceRank_LoadSets(gForceRankScreen->mode);
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < FORCE_RANK_SLOT_COUNT; i++) {
     gForceRankScreen->chosenSkills[i] = 0;
   }
-  gForceRankScreen->chosenSkills[4] = 0xff;
+  gForceRankScreen->chosenSkills[FORCE_RANK_SLOT_COUNT] = 0xff;
   CoSet_ListEquippedSkills(gForceRankScreen->chosenSkills, gForceRankScreen->co,
                            gForceRankScreen->set);
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < FORCE_RANK_SLOT_COUNT; i++) {
     if (gForceRankScreen->chosenSkills[i] == 0xff) {
       gForceRankScreen->chosenSkills[i] = 0;
       return;

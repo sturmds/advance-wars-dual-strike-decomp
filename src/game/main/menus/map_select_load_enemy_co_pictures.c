@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/player.h"
 #include "game/map_header.h"
 #include "game/map_select.h"
 #include "game/menu_state.h"
@@ -33,7 +34,8 @@ void MapSelect_LoadEnemyCoPictures(void) {
   Screen_SetCurrentGfx(data_027c0288.unk_04);
   playerCount = Map_GetPlayerCount(SELECTED_MAP_ID());
   for (i = 0; i < playerCount - 1; i++) {
-    for (j = 0; j <= 1; j++) {
+    /* Needed to match: the bound is written as <= count - 1. */
+    for (j = 0; j <= PLAYER_CO_COUNT - 1; j++) {
       co = Ov000_gMapHeaders[SELECTED_MAP_ID()].co[i + 2][j];
       if (co != 0) {
         Co_QueueSmallPicture(

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/force_rank_screen.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/co_select_screen.h"
@@ -54,7 +55,7 @@ void CoSelectScreen_DrawColumnInfo(void) {
                    ((data_0229c73c->cursorColumn - 1) << 6) + 952);
   }
   if (!Skills_AreDisabled()) {
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < FORCE_RANK_SLOT_COUNT; i++) {
       skill = data_0229c73c->cellSkills[data_0229c73c->cursorColumn - 1][0][i];
       if (skill == 0 || skill == 0xff) {
         break;
@@ -62,7 +63,7 @@ void CoSelectScreen_DrawColumnInfo(void) {
       Sprite_QueueAt(2, (32 + i * 16) & 0x1ff, 168, data_027c0040, 0x5000,
                      0x458 + (skill - 32) * 4);
     }
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < FORCE_RANK_SLOT_COUNT; i++) {
       skill = data_0229c73c->cellSkills[data_0229c73c->cursorColumn - 1][1][i];
       if (skill == 0 || skill == 0xff) {
         break;

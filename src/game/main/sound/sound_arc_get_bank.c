@@ -44,7 +44,7 @@ int SoundArc_GetBank(int bankNo, int loadFlags, void* heap, int cache,
     bank = SoundArc_GetFileAddress(info->fileId);
   }
   loadWaveData = loadFlags & SOUND_FETCH_WANT_SAMPLES;
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(info->waveArc); i++) {
     const SoundArcWaveArcInfo* waveInfo;
     void* wave;
     int result;

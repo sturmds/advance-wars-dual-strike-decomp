@@ -13,7 +13,8 @@ void PlayerInfo_AddCoButtons(void) {
   int slot;
 
   for (player = 0; player < gMenuState.unk_0206d67c.playerCount; player++) {
-    for (slot = 0; slot < 2; slot++) {
+    for (slot = 0; slot < (int)ARRAY_COUNT(gMenuState.unk_0206d67c.coShown[0]);
+         slot++) {
       if (gMenuState.unk_0206d67c.coShown[player][slot] != 0) {
         MenuButton_Add(24 + player * 40 + slot * 16, 8, &data_0215d3a8,
                        player * 2 + slot);

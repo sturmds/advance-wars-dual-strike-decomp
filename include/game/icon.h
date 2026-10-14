@@ -10,6 +10,10 @@
 #define ICON_BANK_COUNT 6
 #define ICON_BANK_SLOTS 32 /* icons one bank can hold in VRAM at once */
 
+/* The digits 0-9, icon ids ICON_DIGITS to ICON_DIGITS + ICON_DIGIT_COUNT - 1. */
+#define ICON_DIGITS 140
+#define ICON_DIGIT_COUNT 10
+
 /* An icon loaded into a bank's VRAM area. */
 typedef struct IconSlot {
   u16 tile; /* first OBJ tile, from the bank's vram */

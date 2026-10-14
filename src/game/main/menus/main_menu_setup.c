@@ -118,7 +118,7 @@ void MainMenu_Setup(MainMenuTask* task) {
   GX_LoadTexPltt(res + 0x1dc, 0, 0x120);
   GX_LoadTexPltt(res + 0x2fc, 0x120, 0x120);
   GX_EndLoadTexPltt();
-  for (i = 0; i < 9; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(WORK->unk_08); i++) {
     WORK->unk_08[i] = *(u16*)(res + 0x1e4 + i * 32);
   }
   Mem_Copy32(res + 0x41c, WORK->unk_1c, sizeof(WORK->unk_1c));
@@ -295,7 +295,7 @@ void MainMenu_Setup(MainMenuTask* task) {
     data_021599d0->cursors[data_021599d0->page] = i;
   set_others:
 
-    for (i = 0; i < 14; i++) {
+    for (i = 0; i < (int)ARRAY_COUNT(data_021599d0->cursors); i++) {
       switch (i) {
         case 1:
           if (func_021023e4()) {

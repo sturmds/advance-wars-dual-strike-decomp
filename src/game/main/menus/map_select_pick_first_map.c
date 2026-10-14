@@ -30,7 +30,7 @@ void MapSelect_PickFirstMap(void) {
   MapSelect_BuildLists(MENU->setup.lists,
                        Map_GetPlayerCount(data_0229ef30.firstMapId));
   MapSelect_SelectFirstMap();
-  for (i = 0; i < 6; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(MENU->setup.unk_4d4); i++) {
     MENU->setup.unk_4d4[i] = MENU->setup.unk_4ce[i];
   }
   savedGfx = data_027c0280;

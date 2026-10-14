@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/icon.h"
 #include "game/co_select_screen.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
@@ -17,8 +18,6 @@ const char* File_LocalizePath(const char* path);
 void ForceRank_LoadSets(int mode);
 void Gfx_LoadBmap09f(void* a, int b, int c);
 void Gfx_RequestLayerCopy(int bg);
-void IconBank_LoadPalette(int a, int b);
-void Icon_LoadTo(int a, u8* objVram, int b);
 void MapPreview_DrawPlayerViews(u8 (*dst)[32]);
 void Mem_Free(void* res);
 void Mem_Zero32(u32 value, void* dest, u32 size);
@@ -157,8 +156,8 @@ void CoSelectScreen_Init(void) {
     Icon_LoadTo(column + 74, data_027c0280->objVram, (column - 1) * 8 + 0x360);
   }
   Icon_LoadTo(139, data_027c0280->objVram, 0x378);
-  for (i = 0; i < 10; i++) {
-    Icon_LoadTo(i + 140, data_027c0280->objVram, i * 2 + 0x380);
+  for (i = 0; i < ICON_DIGIT_COUNT; i++) {
+    Icon_LoadTo(ICON_DIGITS + i, data_027c0280->objVram, i * 2 + 0x380);
   }
   Icon_LoadTo(213, data_027c0280->objVram, i * 2 + 0x380);
   IconBank_LoadPalette(1, 18);

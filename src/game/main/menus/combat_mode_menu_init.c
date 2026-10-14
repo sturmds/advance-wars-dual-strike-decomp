@@ -117,12 +117,12 @@ void CombatModeMenu_Init(void) {
   Gfx_RequestLayerCopy(2);
   Icon_LoadTo(61, data_027c0280->objVram, 0x60);
   Icon_LoadPalette(61, 24);
-  for (i = 0; i < 7; i++) {
+  for (i = 0; i < COMBAT_CO_COUNT; i++) {
     /* 12 tiles of 32 bytes per picture */
     Co_LoadSmallPicture(gCombatModeCos[i],
                         data_027c0280->objVram + ((i * 12) << 5), i + 16);
   }
-  for (i = 0; i < 7; i++) {
+  for (i = 0; i < COMBAT_CO_COUNT; i++) {
     if (!CombatModeMenu_IsSlotAvailable(i)) {
       Mem_Fill32(0, data_027c0280->paletteBuffer + (i + 16) * PALETTE_16_SIZE,
                  PALETTE_16_SIZE);

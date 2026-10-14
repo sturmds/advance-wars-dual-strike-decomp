@@ -13,7 +13,8 @@ void PlayerInfo_DrawCoIcons(void) {
   int co;
 
   for (player = 0; player < gMenuState.unk_0206d67c.playerCount; player++) {
-    for (co = 0; co < 2; co++) {
+    for (co = 0; co < (int)ARRAY_COUNT(gMenuState.unk_0206d67c.coShown[0]);
+         co++) {
       if (gMenuState.unk_0206d67c.coShown[player][co] != 0) {
         Sprite_QueueAt(
             1, (24 + player * 40 + co * 16) & 0x1ff, 8, &data_027c0040, 0x1400,

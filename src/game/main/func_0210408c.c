@@ -1,11 +1,12 @@
 #include "types.h"
+#include "game/save_progress.h"
 #include "game/Unk_02290a60.h"
 
 void func_0210408c(void) {
   int i;
   Unk_02290a60* record = data_02290a60;
 
-  for (i = 0; i < 3; i++, record++) {
+  for (i = 0; i < SAVE_PROFILE_COUNT; i++, record++) {
     record->unk_00 = 0;
     record->unk_01 = 0;
     record->unk_02 = 0;

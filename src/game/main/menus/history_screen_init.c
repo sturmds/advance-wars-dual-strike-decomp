@@ -68,7 +68,7 @@ void HistoryScreen_Init(void) {
   int i;
 
   gMenuState.tab = 0;
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(gMenuState.pageOfTab); i++) {
     gMenuState.pageOfTab[i] = 0;
   }
   gMenuState.row = 0;

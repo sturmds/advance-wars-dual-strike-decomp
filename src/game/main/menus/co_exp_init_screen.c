@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/icon.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_0229fb30.h"
@@ -17,11 +18,9 @@ int Campaign_IsHardMode(void);
 int CoExp_IsSingleColumn(void);
 void Bg_PutTileBlock(u16* map, int x, int y, const u8* block, u16 tileAdd);
 void Gfx_RequestLayerCopy(int layer);
-void Icon_LoadTo(int iconId, u8* vram, int tile);
 void Co_LoadSmallPicture(int coId, void* dest, int paletteSlot);
 void Co_UnpackPicture(int coId, int firstTile);
 void Palette_LoadObjRow(int row);
-void IconBank_LoadPalette(int bank, int paletteSlot);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 s32 HwMod32(s32 numerator, s32 denominator);
 
@@ -120,8 +119,8 @@ void CoExp_InitScreen(void) {
   IconBank_LoadPalette(1, 27);
   IconBank_LoadPalette(4, 28);
   Icon_LoadTo(139, data_027c0280->objVram, 780);
-  for (i = 0; i < 10; i++) {
-    Icon_LoadTo(140 + i, data_027c0280->objVram, 788 + i * 2);
+  for (i = 0; i < ICON_DIGIT_COUNT; i++) {
+    Icon_LoadTo(ICON_DIGITS + i, data_027c0280->objVram, 788 + i * 2);
   }
   Icon_LoadTo(213, data_027c0280->objVram, 808);
   Icon_LoadTo(182, data_027c0280->objVram, 812);

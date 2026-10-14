@@ -2,6 +2,7 @@
 #define GAME_CO_SELECT_SCREEN_H
 
 #include "types.h"
+#include "game/force_rank_screen.h"
 
 /* Work area of the CO select screen (Campaign, War Room, Survival),
  * through data_0229c73c. The COs sit in a grid; a cursor holds the column
@@ -13,8 +14,8 @@ typedef struct CoSelectScreen {
     struct {
       u8 pad_00[12]; /* the CO ids, then 6 bytes of per-cell flags */
       u8 cellSkills
-          [3][2]
-          [5]; /* [column - 1][row]: skill ids of the cell's CO, up to 4, 0 ends */
+          [3][2][FORCE_RANK_SLOT_COUNT +
+                 1]; /* [column - 1][row]: skill ids of the cell's CO, 0 ends */
     };
   };
   u8* coList; /* CO ids of the CO list slots, ended by 0 */

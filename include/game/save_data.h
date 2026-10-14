@@ -34,6 +34,9 @@ extern u32 data_02297fa8[2 * SAVE_SLOT_COUNT];
   0x04 /* set by Save_ReadSlot when the check fails */
 #define SAVE_SLOT_WRITE_FAILED 0x02 /* two writes in a row failed to verify */
 
+/* Writes of one slot that Save_EraseAll and Save_Format try before giving up. */
+#define SAVE_WRITE_TRIES 4
+
 /* data_02298050: the 0x3000-byte save buffer. Only the fields that
  * Save_LoadRecord reads are known. The last 0x16 bytes hold the slot ids. */
 typedef struct SaveBuffer {
@@ -52,5 +55,8 @@ typedef struct SaveBuffer {
   u8 data[0x2fea - 0x66];
   u8 slotIds[SAVE_SLOT_COUNT];
 } SaveBuffer;
+
+/* Fails to compile if a field change breaks the size of a save slot. */
+typedef char SaveBuffer_size_check[sizeof(SaveBuffer) == 0x3000 ? 1 : -1];
 
 #endif

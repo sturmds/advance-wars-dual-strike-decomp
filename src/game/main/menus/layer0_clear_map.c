@@ -8,7 +8,7 @@ void Layer0_ClearMap(void) {
   int i;
   u16* map = data_027c0280->layer0Map;
 
-  for (i = 0; i < 1024; i++) {
+  for (i = 0; i < BG_SCREEN_ENTRIES; i++) {
     map[i] = 0;
   }
 }

@@ -21,7 +21,7 @@ void ForceRankScreen_FillColumns(void) {
     }
   }
 
-  for (i = 0; i < 128; i++) {
+  for (i = 0; i < SKILL_ID_COUNT; i++) {
     column = Ov000_gForceRankTable[i].column;
     if (column == 0) {
       continue;

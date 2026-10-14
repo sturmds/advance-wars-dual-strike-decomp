@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/force_rank_screen.h"
 #include "game/co_select_screen.h"
 
 BOOL Skills_AreDisabled(void);
@@ -10,7 +11,7 @@ void CoSelectScreen_RefreshCellSkills(int column, int row) {
   int i;
   int left = column - 1;
 
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < FORCE_RANK_SLOT_COUNT; i++) {
     data_0229c73c->cellSkills[left][row][i] = 0;
   }
   if (Skills_AreDisabled() == 1) {

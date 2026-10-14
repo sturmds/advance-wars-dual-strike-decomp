@@ -214,7 +214,7 @@ void NameEntry_SetUpScreen(NameEntryTask* task) {
   {
     int ended = FALSE;
 
-    for (j = 0; j < 34; j++) {
+    for (j = 0; j < NAME_ENTRY_TEXT_SIZE; j++) {
       if (!ended) {
         if (gNameEntryText[j] == 0) {
           ended = TRUE;

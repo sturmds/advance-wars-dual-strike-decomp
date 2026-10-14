@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/icon.h"
 #include "game/co_rank_task.h"
 #include "game/player.h"
 #include "game/Unk_02080440.h"
@@ -25,8 +26,6 @@ void Data_Unpack(const void* src, void* dst);
 void Palette_Load(const void* src, int offset, u32 size);
 void Gfx_LoadBmap09f(void* target, int a, int b);
 void Font_LoadDigits(int a);
-void Icon_LoadTo(int iconId, u8* vram, int tile);
-void IconBank_LoadPalette(int bank, int paletteSlot);
 void Co_LoadGraphicsAndPalette(int coId, int tile, int paletteSlot);
 int Survival_GetRunGrade(void);
 void NumberFont_LoadLow(void);
@@ -191,8 +190,8 @@ void CoRankScreen_Init(CoRankTask* task) {
 
   GFX_TO(MAIN_MAP);
   Icon_LoadTo(139, data_027c0280->objVram, 192);
-  for (i = 0; i < 10; i++) {
-    Icon_LoadTo(i + 140, data_027c0280->objVram, 200 + i * 2);
+  for (i = 0; i < ICON_DIGIT_COUNT; i++) {
+    Icon_LoadTo(ICON_DIGITS + i, data_027c0280->objVram, 200 + i * 2);
   }
   Icon_LoadTo(201, data_027c0280->objVram, 224);
   Icon_LoadTo(213, data_027c0280->objVram, 220);

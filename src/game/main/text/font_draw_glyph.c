@@ -11,9 +11,15 @@ typedef union GlyphRow {
   u8 byte[4];
 } GlyphRow;
 
-/* Draws character c, 16 pixels high, into the 4-bit tiles at dst, starting
+/* Pixel rows of a glyph, and the halfwords of the tile column it fills
+ * (two 4-bit tiles, one GlyphRow per pixel row). */
+#define GLYPH_HEIGHT 16
+#define GLYPH_COLUMN_HALFWORDS \
+  ((int)(GLYPH_HEIGHT * sizeof(GlyphRow) / sizeof(u16)))
+
+/* Draws character c, GLYPH_HEIGHT pixels high, into the 4-bit tiles at dst, starting
  * at pixel x & 7 of the tile column. The glyph spills into the next tile
- * column (32 halfwords on) when it does not fit. Pixels 0xa take colour
+ * column (GLYPH_COLUMN_HALFWORDS on) when it does not fit. Pixels 0xa take colour
  * 0xa + colour. A tile column is cleared before the first pixel is drawn
  * into it. Returns the glyph width. */
 int Font_DrawGlyph(int c, u16* dst, int x, int colour) {
@@ -29,14 +35,14 @@ int Font_DrawGlyph(int c, u16* dst, int x, int colour) {
   shift = x & 7;
   width = Ov000_gGlyphWidths[c];
   if (shift <= 1) {
-    for (row = 0; row < 32; row++) {
+    for (row = 0; row < GLYPH_COLUMN_HALFWORDS; row++) {
       dst[row] = 0;
     }
   }
   if (shift + width > 8) {
     int offset = ((shift + width) & 8) * 4;
 
-    for (i = 0; i < 32; i++) {
+    for (i = 0; i < GLYPH_COLUMN_HALFWORDS; i++) {
       dst[i + offset] = 0;
     }
   }
@@ -44,7 +50,7 @@ int Font_DrawGlyph(int c, u16* dst, int x, int colour) {
     src = Ov000_gGlyphPixels[c];
     /* needed to match: x is reused for the bytes per glyph row */
     x = (width + 1) >> 1;
-    for (row = 0; row < 16; row++) {
+    for (row = 0; row < GLYPH_HEIGHT; row++) {
       rows[1].word = 0;
       rows[0].word = 0;
       for (col = 0; col < x; col++) {
@@ -64,8 +70,8 @@ int Font_DrawGlyph(int c, u16* dst, int x, int colour) {
       dst[1] |= rows[0].half[1];
       rows[1].word >>= (8 - shift) * 4;
       if (rows[1].word != 0) {
-        dst[32] |= rows[1].half[0];
-        dst[33] |= rows[1].half[1];
+        dst[GLYPH_COLUMN_HALFWORDS] |= rows[1].half[0];
+        dst[GLYPH_COLUMN_HALFWORDS + 1] |= rows[1].half[1];
       }
       dst += 2;
     }

@@ -116,7 +116,7 @@ void BattleSetup_LoadFromGame(void) {
     gMenuState.setup.coListCount = BuildCoPickList();
     gMenuState.setup.coList = GetCoPickList();
     gMenuState.setup.unk_2e3 = Map_GetPlayerCount(GAME->unk_1c4->mapId);
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < (int)ARRAY_COUNT(gMenuState.setup.controllers); i++) {
       if (GAME->slotControllers[i + 1] == PLAYER_CONTROLLER_AI) {
         gMenuState.setup.controllers[i][0] = PLAYER_CONTROLLER_AI;
       } else {
@@ -135,7 +135,7 @@ void BattleSetup_LoadFromGame(void) {
       Screen_SetCurrentGfx(inner0280);
       gMenuState.setup.teams[i] = GAME->team[i + 1];
     }
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < (int)ARRAY_COUNT(gMenuState.setup.cos); i++) {
       gMenuState.setup.cos[i][0] =
           GAME->playerCos[i + 1][0] & PLAYER_CO_ID_MASK;
       gMenuState.setup.cos[i][1] =
@@ -152,7 +152,7 @@ void BattleSetup_LoadFromGame(void) {
     /* needed to match: a byte pointer walking the struct */
     if (isDesignMap) {
       u8* m = (u8*)&gMenuState;
-      for (i = 0; i < 4; i++) {
+      for (i = 0; i < (int)ARRAY_COUNT(gMenuState.setup.armyColours); i++) {
         ((MenuState*)m)->setup.armyColours[0] =
             data_022a6c84[GAME->unk_1c4->mapId - MAP_CUSTOM_FIRST]
                 .armyColours[i + 1];
@@ -160,7 +160,7 @@ void BattleSetup_LoadFromGame(void) {
       }
     } else {
       u8* m = (u8*)&gMenuState;
-      for (i = 0; i < 4; i++) {
+      for (i = 0; i < (int)ARRAY_COUNT(gMenuState.setup.armyColours); i++) {
         ((MenuState*)m)->setup.armyColours[0] =
             Ov000_gMapHeaders[GAME->unk_1c4->mapId].army[i + 1];
         m++;
@@ -170,7 +170,7 @@ void BattleSetup_LoadFromGame(void) {
     gMenuState.setup.unk_2e3 = Map_GetLoadedPlayerCount();
     gMenuState.setup.visualMode = GAME->visualMode;
     gMenuState.setup.unk_2e2 = GAME->unk_8c;
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < (int)ARRAY_COUNT(gMenuState.setup.cos); i++) {
       gMenuState.setup.cos[i][0] = Player_GetCoId(i + 1, 0);
       gMenuState.setup.cos[i][1] = Player_GetCoId(i + 1, 1);
       gMenuState.setup.armyColours[i] = GAME->players[i + 1].armyColour;

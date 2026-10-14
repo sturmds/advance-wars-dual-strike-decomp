@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/player.h"
 #include "game/Unk_022a7a9c.h"
 #include "game/Unk_022a7b80.h"
 
@@ -21,7 +22,7 @@ void Survival_AwardCoExperience(void) {
   int i; /* declaration order needed to match */
   u32 total;
 
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < PLAYER_CO_COUNT; i++) {
     co = (&((Unk_022a7a9c*)&data_022a7a9c)[1].frontCo)[i] & 0x7f;
     if (co != 0) {
       gain = data_022a7b80.points + Survival_GetExperienceBonus();

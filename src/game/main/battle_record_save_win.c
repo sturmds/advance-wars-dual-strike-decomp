@@ -15,7 +15,6 @@ extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern Unk_022a7b80 data_022a7b80;
 /* Campaign records by map (id - CAMPAIGN_FIRST_MAP), normal then hard. */
-extern WarRoomRecord gCampaignBestRecords[][2];
 
 #define CAMPAIGN_FIRST_MAP 224
 
@@ -83,7 +82,7 @@ void BattleRecord_SaveWin(void) {
       break;
     case GAME_MODE_WAR_ROOM:
       mapId -= WAR_ROOM_FIRST_MAP;
-      for (place = 0; place < 3; place++) {
+      for (place = 0; place < WAR_ROOM_PLACE_COUNT; place++) {
         if (WAR_ROOM_RECORD(mapId, place).score < data_022a7a9c.score) {
           break;
         }
@@ -92,7 +91,7 @@ void BattleRecord_SaveWin(void) {
           break;
         }
       }
-      if (place == 3) {
+      if (place == WAR_ROOM_PLACE_COUNT) {
         return;
       }
       /* Needed to match: the original reaches the records through

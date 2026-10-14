@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/player.h"
 #include "game/map_header.h"
 #include "game/page_strip.h"
 #include "game/survival_record.h"
@@ -67,7 +68,8 @@ void SurvivalSelect_LoadCoPictures(void) {
     Mem_Zero32(0, data_027c0280->objVram + 0x900, 0x300);
   }
   for (i = 0; i < playerCount - 1; i++) {
-    for (j = 0; j <= 1; j++) {
+    /* Needed to match: the bound is written as <= count - 1. */
+    for (j = 0; j <= PLAYER_CO_COUNT - 1; j++) {
       co = Ov000_gMapHeaders[Survival_GetMapId(data_022a7b80.mode, cursor)]
                .co[i + 2][j];
       if (co != 0) {

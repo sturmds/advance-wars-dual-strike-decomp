@@ -35,6 +35,9 @@ typedef struct Keypad {
   u16 repeatInterval;  /* frames between repeats */
 } Keypad;
 
+/* Keypad entries in data_0216e4e4; the last one is where gKeypad points. */
+#define KEYPAD_COUNT 9
+
 extern Keypad* gKeypad;
 
 #endif

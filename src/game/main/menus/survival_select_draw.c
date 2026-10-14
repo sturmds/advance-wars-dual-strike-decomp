@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/player.h"
 #include "game/page_strip.h"
 #include "game/Unk_022a7b80.h"
 #include "game/Unk_02088d04.h"
@@ -91,13 +92,15 @@ void SurvivalSelect_Draw(void) {
   Palette_Load(&data_0229c744->colours[(MainLoop_GetFrameCount() >> 2) & 15],
                0x338, 2);
   Sprite_QueueAt(0, 104, 136, &data_027c0108, 0x8000, 96);
-  for (j = 0; j <= 1; j++) {
+  /* Needed to match: the bound is written as <= count - 1. */
+  for (j = 0; j <= PLAYER_CO_COUNT - 1; j++) {
     Co_QueueSmallPictureSpriteAtTile(0x10c0, (168 + j * 16) & 0xff,
                                      (j + 6) << 12, 72 + j * 12, j & 1);
   }
   if (data_0229c744->lists[SurvivalSelect_GetList()].count != 0) {
     for (i = 0; i < playerCount - 1; i++) {
-      for (j = 0; j <= 1; j++) {
+      /* Needed to match: the bound is written as <= count - 1. */
+      for (j = 0; j <= PLAYER_CO_COUNT - 1; j++) {
         int k = j + i * 2;
         Co_QueueSmallPictureSpriteAtTile((24 + j * 32) & 0x1ff,
                                          (192 - i * 16) & 0xff, k << 12, k * 12,

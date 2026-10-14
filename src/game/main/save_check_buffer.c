@@ -28,7 +28,7 @@ int Save_CheckBuffer(void) {
   }
   sum = 0;
   byte = (u8*)&data_02298050;
-  for (i = 0; i < 0x3000; i++, byte++) {
+  for (i = 0; i < (int)sizeof(SaveBuffer); i++, byte++) {
     sum += *byte;
   }
   if (data_02298050.checksum == sum) {

@@ -9,10 +9,10 @@ void MapSelect_ResetTables(void) {
   int tab;
 
   TABLES.subStrip = 0;
-  for (tab = 0; tab < 4; tab++) {
+  for (tab = 0; tab < (int)ARRAY_COUNT(TABLES.listOfTab); tab++) {
     TABLES.listOfTab[tab] = 0;
-    for (entry = 0; entry < 13; entry++) {
-      for (page = 0; page < 4; page++) {
+    for (entry = 0; entry < (int)ARRAY_COUNT(TABLES.unk_0d0[0]); entry++) {
+      for (page = 0; page < (int)ARRAY_COUNT(TABLES.unk_000[0][0]); page++) {
         TABLES.unk_000[tab][entry][page] = 0;
       }
       TABLES.unk_0d0[tab][entry] = 0;

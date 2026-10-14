@@ -67,7 +67,7 @@ void CombatSetup_DrawRowSprites(void) {
                                    (row - 1) * 12 + 0x490, 0);
   Sprite_QueueDefaultTile(0x8c, 8, 0xb000,
                           LINK_ROWS[row - 1].unk_19 * 12 + 0x4c0, 0);
-  for (type = 0; type < 4; type++) {
+  for (type = 0; type < (int)ARRAY_COUNT(tiles); type++) {
     for (i = 0; i < table.counts[kind * 4 + type]; i++) {
       Sprite_QueueAt(0, (88 + i * 8) & 0x1ff, (92 + type * 16) & 0xff,
                      &data_027c0028, 0xa000, 0x638);
@@ -105,13 +105,13 @@ void CombatSetup_DrawRowSprites(void) {
     }
   }
   Sprite_QueueAt(1, 8, 88, kindSprite, 0x6400, 0x514);
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(tiles); i++) {
     tiles[i] = 0x624 + i * 4;
   }
   if (nation == 5) {
     tiles[0] += 16;
   }
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(tiles); i++) {
     Sprite_QueueAt(2, 7, (24 + i * 16) & 0xff, &data_027c0040, 0x9400,
                    tiles[i]);
   }

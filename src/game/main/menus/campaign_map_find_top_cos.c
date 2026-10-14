@@ -27,7 +27,7 @@ void CampaignMap_FindTopCos(void) {
   int place;
 
   top = TOP_COS;
-  for (clearSlot = 0; clearSlot < 3; clearSlot++, top++) {
+  for (clearSlot = 0; clearSlot < CAMPAIGN_TOP_CO_COUNT; clearSlot++, top++) {
     top->co = 0;
     top->rank = 0;
     top->score = 0;
@@ -48,7 +48,7 @@ void CampaignMap_FindTopCos(void) {
     }
   }
   top = TOP_COS;
-  for (rankSlot = 0; rankSlot < 3; rankSlot++, top++) {
+  for (rankSlot = 0; rankSlot < CAMPAIGN_TOP_CO_COUNT; rankSlot++, top++) {
     if (top->co != 0) {
       top->rank = Co_GetRank(top->co);
     }

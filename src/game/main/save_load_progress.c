@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/skills.h"
 #include "game/play_records.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02290118.h"
@@ -51,7 +52,7 @@ void Save_LoadProgress(void) {
         *(SkillSet*)saved = *(SkillSet*)src;
         break;
       case 2:
-        for (set = 0; set < 4; set++) {
+        for (set = 0; set < FORCE_RANK_SET_COUNT; set++) {
           saved = ForceRank_GetSavedSet(1, co, set);
           src = progress->coRecords[co].setsMode2[set];
           *(SkillSet*)saved = *(SkillSet*)src;

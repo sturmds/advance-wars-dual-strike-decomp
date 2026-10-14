@@ -17,7 +17,7 @@ void Survival_ClearRecords(void) {
     data_02291588[i].mode2Co = 0;
     data_0229158c[i].mode1Co = 0;
   }
-  for (i = 0; i < 6; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(gPlayRecords.survivalRecords); i++) {
     gPlayRecords.survivalRecords[i].co = 0;
     gPlayRecords.survivalRecords[i].tagCo = 0;
     gPlayRecords.survivalRecords[i].value = 0;

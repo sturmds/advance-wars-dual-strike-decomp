@@ -27,7 +27,7 @@ void TabList_DrawPage(void) {
   tab = gMenuState.tab;
   first = gMenuState.pageOfTab[tab] * 9;
   Gfx_ClearLayerMap(0);
-  for (row = 0, y = 5; row < 9; row++, y += 2) {
+  for (row = 0, y = 5; row < TAB_LIST_PAGE_ROWS; row++, y += 2) {
     entry = first + row;
     item = &data_0215d6c4[tab][entry];
     if (item->unk_04 == TAB_LIST_END_MARK) {
@@ -41,7 +41,7 @@ void TabList_DrawPage(void) {
       TabList_DrawMedals(1, y, tab, entry);
     }
   }
-  for (; row < 9; row++) {
+  for (; row < TAB_LIST_PAGE_ROWS; row++) {
     Bg_PutTile5Quad(22, row * 2 + 5, data_027c0280->layer1Map, 0);
     Bg_PutTile5Quad(24, row * 2 + 5, data_027c0280->layer1Map, 0);
     Bg_PutTile5Quad(26, row * 2 + 5, data_027c0280->layer1Map, 0);

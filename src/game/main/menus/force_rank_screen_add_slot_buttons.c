@@ -20,7 +20,7 @@ void ForceRankScreen_AddSlotButtons(void) {
     MenuButton_Add(0, 0, &data_0215a81c, 0xfd);
     MenuButton_Add(0, 0, &data_0215a7cc, 0xfc);
   }
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < FORCE_RANK_SLOT_COUNT; i++) {
     if (gForceRankScreen->rank <= i) {
       break;
     }

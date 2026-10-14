@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/icon.h"
 #include "game/force_rank_screen.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
@@ -14,8 +15,6 @@ void ForceRankScreen_DrawSlotRow(int x, int y, int textTile, int skill);
 void ForceRankScreen_FillColumns(void);
 void ForceRankScreen_PutIcons(void);
 void Gfx_LoadBmap09f(void* a, int b, int c);
-void IconBank_LoadPalette(int a, int b);
-void Icon_LoadTo(int a, u8* objVram, int b);
 void Mem_Copy32(const void* src, void* dest, u32 size);
 void Mem_Free(void* res);
 void MenuButton_Select(int id);
@@ -128,8 +127,8 @@ void ForceRankScreen_Init(void) {
   Co_UnpackPicture(gForceRankScreen->co, 0);
   Palette_LoadObjRow(1);
   Icon_LoadTo(139, data_027c0280->objVram, 12);
-  for (i = 0; i < 10; i++) {
-    Icon_LoadTo(140 + i, data_027c0280->objVram, 20 + i * 2);
+  for (i = 0; i < ICON_DIGIT_COUNT; i++) {
+    Icon_LoadTo(ICON_DIGITS + i, data_027c0280->objVram, 20 + i * 2);
   }
   Icon_LoadTo(213, data_027c0280->objVram, 40);
   for (i = 0; i < 10; i++) {
@@ -153,7 +152,7 @@ void ForceRankScreen_Init(void) {
   Screen_SetCurrent(data_027c0288.unk_04);
   Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
   func_0201e6e8(0, 14, 32, 10);
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < FORCE_RANK_SLOT_COUNT; i++) {
     Bg_PutSkillSlot(1, 15 + i * 2, data_027c0280->layer1Map, 0);
   }
   Co_LoadGraphicsAndPalette(gForceRankScreen->co, 0, 1);

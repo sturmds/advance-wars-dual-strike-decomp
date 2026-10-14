@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/force_rank_screen.h"
 #include "game/Unk_02088d04.h"
 #include "game/co_select_screen.h"
 
@@ -40,7 +41,7 @@ void CoSelectScreen_DrawSkillSlots(void) {
   for (i = 0; i < slots; i++) {
     Bg_PutSkillSlot(4 + i * 2, 21, data_027c0280->layer1Map, 0);
   }
-  for (; i < 4; i++) {
+  for (; i < FORCE_RANK_SLOT_COUNT; i++) {
     Bg_PutTile5Quad(4 + i * 2, 21, data_027c0280->layer1Map, 0);
   }
 
@@ -56,7 +57,7 @@ void CoSelectScreen_DrawSkillSlots(void) {
   for (i = 0; i < slots; i++) {
     Bg_PutSkillSlot(20 + i * 2, 21, data_027c0280->layer1Map, 0);
   }
-  for (; i < 4; i++) {
+  for (; i < FORCE_RANK_SLOT_COUNT; i++) {
     Bg_PutTile5Quad(20 + i * 2, 21, data_027c0280->layer1Map, 0);
   }
 

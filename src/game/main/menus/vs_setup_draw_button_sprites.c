@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/skills.h"
 #include "game/menu_state.h"
 #include "game/player.h"
 #include "game/screen_other_map.h"
@@ -84,7 +85,7 @@ void VsSetup_DrawButtonSprites(void) {
       cursor = gMenuState.setup.cursorButton - 8;
       shifted =
           (MenuState*)((u8*)((u16*)&gMenuState + (cursor >> 1)) + (cursor & 1));
-      for (player = 0; player < 4; player++) {
+      for (player = 0; player < FORCE_RANK_SET_COUNT; player++) {
         if (player == shifted->setup.forceRankSets[0][0]) {
           Sprite_QueueAt(1, (88 + player * 16) & 0x1ff, 144, &data_027c0040,
                          0x1000, 20 + player * 4);
@@ -94,7 +95,7 @@ void VsSetup_DrawButtonSprites(void) {
         }
       }
     } else {
-      for (player = 0; player < 4; player++) {
+      for (player = 0; player < FORCE_RANK_SET_COUNT; player++) {
         Sprite_QueueAt(1, (88 + player * 16) & 0x1ff, 144, &data_027c0040,
                        0x1000, 36 + player * 4);
       }

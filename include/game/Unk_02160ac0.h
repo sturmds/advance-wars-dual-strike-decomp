@@ -8,6 +8,13 @@
 #define COMBAT_ROW_COUNT 4
 #define COMBAT_CELL_COUNT 20
 
+/* COs to pick from in Combat mode: Andy, Max, Sami, Flak, Lash, Adder and
+ * Hawke (gCombatModeCos, data_02160ae0). */
+#define COMBAT_CO_COUNT 7
+
+/* Maps of Combat mode (file numbers in data_02160adc). */
+#define COMBAT_MAP_COUNT 4
+
 /* 28 bytes per row at the start of Unk_02160ac0 (4 rows): the cell bytes of
  * an Ov003Row and its spawn count at offset 0x18. */
 typedef struct Unk_02160ac0_Row {

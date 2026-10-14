@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/icon.h"
 #include "game/menu_state.h"
 #include "game/player.h"
 #include "game/task.h"
@@ -20,8 +21,6 @@ void Gfx_LoadBmap09f(void* target, int a, int b);
 void Font_LoadDigits(int a);
 void func_0201e6e8(int x, int y, int width, int height);
 void Gfx_RequestLayerCopy(int layer);
-void Icon_LoadTo(int iconId, u8* vram, int tile);
-void IconBank_LoadPalette(int bank, int paletteSlot);
 void func_0202b7e0(int a0);
 u8* UnitIcons_GetTiles(void);
 int UnitIcons_GetTileCount(void);
@@ -205,8 +204,8 @@ void PlayerInfo_Init(Task* task) {
     Co_LoadArmyGraphicsAndPalette(MENU_SHOWN_CO, 108, 0, MENU.player);
     Palette_LoadObjRow(1);
     Icon_LoadTo(139, data_027c0280->objVram, 48);
-    for (i = 0; i < 10; i++) {
-      Icon_LoadTo(i + 140, data_027c0280->objVram, 56 + i * 2);
+    for (i = 0; i < ICON_DIGIT_COUNT; i++) {
+      Icon_LoadTo(ICON_DIGITS + i, data_027c0280->objVram, 56 + i * 2);
     }
     Icon_LoadTo(213, data_027c0280->objVram, 76);
     for (i = 0; i < 10; i++) {

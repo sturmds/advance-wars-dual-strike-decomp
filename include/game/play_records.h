@@ -97,10 +97,13 @@ typedef struct PlayRecords {
       [27]; /* per unit type, capped at 999999 (CurrentPlayer_BuyUnit); tab list column, see TabList_GetUnitBought */
   u32 unitsDestroyed
       [27]; /* per unit type, capped at 999999: enemy units that human players destroyed */
-  WarRoomRecord warRoomRecords[4][44]
-                              [3]; /* the same bytes as gWarRoomRecords */
-  WarRoomRecord campaignBestRecords[28][2]; /* gCampaignBestRecords */
-  SurvivalRecord survivalRecords[6];        /* by Survival mode variant */
+  WarRoomRecord warRoomRecords
+      [WAR_ROOM_TABLE_COUNT][WAR_ROOM_MAP_COUNT]
+      [WAR_ROOM_PLACE_COUNT]; /* the same bytes as gWarRoomRecords */
+  WarRoomRecord
+      campaignBestRecords[CAMPAIGN_MAP_COUNT]
+                         [CAMPAIGN_DIFFICULTY_COUNT]; /* gCampaignBestRecords */
+  SurvivalRecord survivalRecords[6]; /* by Survival mode variant */
   SurvivalRecordFunds survivalMaps
       [SURVIVAL_RECORD_COUNT]; /* data_02291584, by Survival_GetRecordIndex */
   u16 survivalBestTimes[SURVIVAL_RECORD_COUNT]; /* data_02291650 */

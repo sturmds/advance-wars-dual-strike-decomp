@@ -16,12 +16,14 @@ void TabList_CountMedals(u16* earnedOut, u16* totalOut) {
   earned = 0;
   total = 0;
 
-  for (tab = 0; tab < 4; tab++) {
+  for (tab = 0; tab < TAB_LIST_TAB_COUNT; tab++) {
     for (entry = 0; data_0215d6c4[tab][entry].unk_04 != TAB_LIST_END_MARK;
          entry++) {
       value = data_0215d6c4[tab][entry].getValue(tab, entry);
       if (!TabList_CallUnk1c(tab, entry)) {
-        for (medal = 0; medal < 3; medal++) {
+        for (medal = 0;
+             medal < (int)ARRAY_COUNT(data_0215d6c4[0][0].medalThreshold);
+             medal++) {
           if (value >= data_0215d6c4[tab][entry].medalThreshold[medal]) {
             earned++;
           }

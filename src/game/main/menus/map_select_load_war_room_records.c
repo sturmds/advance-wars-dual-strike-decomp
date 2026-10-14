@@ -23,7 +23,7 @@ void MapSelect_LoadWarRoomRecords(void) {
   if (STATE->gameMode != GAME_MODE_WAR_ROOM) {
     return;
   }
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(MENU->setup.recordDays); i++) {
     MENU->setup.recordDays[i] = RECORD(i).days;
     MENU->setup.recordScores[i] = RECORD(i).score;
     if (MENU->setup.recordDays[i] == 0) {

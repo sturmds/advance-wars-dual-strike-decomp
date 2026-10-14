@@ -109,7 +109,7 @@ void CombatSetup_Init(void) {
   Data_Unpack(langFile, data_027c0280->objVram);
   Palette_Load(file, 0x200, 32);
   Palette_Load(file, 0x220, 32);
-  for (i = 0; i < 7; i++) {
+  for (i = 0; i < COMBAT_CO_COUNT; i++) {
     Co_UnpackPicture(data_02160ae0[i], 0x4c0 + i * 12);
   }
   Palette_LoadObjRow(11);

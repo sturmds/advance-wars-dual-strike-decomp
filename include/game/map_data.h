@@ -28,6 +28,10 @@ typedef struct CombatMapBuffer {
   u8 unk_02[0xa12 - 2];
 } CombatMapBuffer;
 
+/* Graphic codes a map tile can have; a table by code (the code-terrain
+ * table, Unk_02080440_48.tileCodeTerrain) holds one byte for each. */
+#define MAP_TILE_CODE_COUNT 0x400
+
 extern MapData* data_0229eadc;
 
 #endif

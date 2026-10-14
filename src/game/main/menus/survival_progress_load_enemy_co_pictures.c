@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/player.h"
 #include "game/map_header.h"
 #include "game/page_strip.h"
 #include "game/Unk_022a7b80.h"
@@ -24,7 +25,8 @@ void SurvivalProgress_LoadEnemyCoPictures(PageStripTask* task) {
 
   playerCount = Map_GetPlayerCount(task->mapId);
   for (enemy = 0; enemy < playerCount - 1; enemy++) {
-    for (back = 0; back <= 1; back++) {
+    /* Needed to match: the bound is written as <= count - 1. */
+    for (back = 0; back <= PLAYER_CO_COUNT - 1; back++) {
       co =
           Ov000_gMapHeaders[Survival_GetMapId(data_022a7b80.mode, task->cursor)]
               .co[enemy + 2][back];

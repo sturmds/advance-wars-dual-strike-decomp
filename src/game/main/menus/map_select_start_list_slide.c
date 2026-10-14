@@ -64,7 +64,7 @@ void MapSelect_StartListSlide(int slideBack) {
   Mem_Copy32(GFX->paletteBuffer + 0x260, GFX->paletteBuffer + 0x320, 0xc0);
   Palette_Flush();
 
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(MENU->setup.prevRecordDays); i++) {
     MENU->setup.prevRecordCos[i * 2] = MENU->setup.recordCos[i * 2];
     MENU->setup.prevRecordCos[i * 2 + 1] = MENU->setup.recordCos[i * 2 + 1];
     MENU->setup.prevRecordDays[i] = MENU->setup.recordDays[i];

@@ -26,7 +26,7 @@ void Survival_RecordMapResult(void) {
   if (STATE->gameMode != GAME_MODE_SURVIVAL) {
     return;
   }
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(data_022a7b80.coIds); i++) {
     data_022a7b80.coIds[i] =
         (&STATE->players[1].front)[i].id & PLAYER_CO_ID_MASK;
     data_022a7b80.powerCharge[i] = (&STATE->players[1].front)[i].charge;

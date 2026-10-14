@@ -50,7 +50,7 @@ void Save_Format(void) {
   for (i = 0; i < SAVE_SLOT_COUNT; i++) {
     if (!(data_02297f3c.flags[i] & (SAVE_SLOT_MARK | SAVE_SLOT_KEEP)) &&
         data_02297f3c.id[i] == 0) {
-      for (try = 0; try < 4; try ++) {
+      for (try = 0; try < SAVE_WRITE_TRIES; try ++) {
         Save_NoBackupMemory(i);
         if (Save_ReadSlot(i)) {
           data_02297f3c.unk_54[i] = data_0229a050[0xfff];
@@ -67,7 +67,7 @@ void Save_Format(void) {
     if ((data_02297f3c.flags[i] & SAVE_SLOT_MARK) &&
         !(data_02297f3c.flags[i] & SAVE_SLOT_KEEP) &&
         data_02297f3c.id[i] == 0) {
-      for (try = 0; try < 4; try ++) {
+      for (try = 0; try < SAVE_WRITE_TRIES; try ++) {
         Save_NoBackupMemory(i);
         if (Save_ReadSlot(i)) {
           data_02297f3c.unk_54[i] = data_0229a050[0xfff];
