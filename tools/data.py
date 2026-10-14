@@ -223,12 +223,13 @@ class Shape:
             return self.function_pointer.replace("NAME", name).replace("DIMS", dims)
         return f"{self.base} {name}{dims}"
 
-    def forward(self, name: str) -> str:
-        """An `extern` declaration that agrees with the definition."""
+    def forward(self, name: str, section: str) -> str:
+        """An `extern` declaration that agrees with the definition, which
+        is const in .rodata only (const_base)."""
         dims = "".join(f"[{d}]" for d in ([""] + self.dims[1:] if self.dims else []))
         if self.function_pointer:
             return "extern " + self.function_pointer.replace("NAME", name).replace("DIMS", dims) + ";"
-        return f"extern {self.base} {name}{dims};"
+        return f"extern {const_base(self.base, section)} {name}{dims};"
 
 
 BASIC_CAST = {(1, False): "u8", (1, True): "s8", (2, False): "u16", (2, True): "s16",
@@ -365,7 +366,7 @@ def pointer_values(module: DataModule, v: Var, cast: str) -> list[str] | None:
         if kind != "load" or target.startswith("overlays("):
             return None
         name, offset = module.rom.target(data_inc.module_key(target), to, f"{v.name}+{o:#x}")
-        ref = f"(char*)&{name} + {offset:#x}" if offset else f"&{name}"
+        ref = f"((char*)&{name} + {offset:#x})" if offset else f"&{name}"
         out.append(f"({cast}){ref}" if offset or cast != "void*" else ref)
     return out
 
@@ -410,6 +411,10 @@ def shape_of(module: DataModule, v: Var, decl: bss.Decl | None, host: str | None
         if re.fullmatch(r"\w+\s*\*+", t):
             return pointer_shape(module, v, shape, t.replace(" ", ""))
         return pointer_shape(module, v, shape, "void*")
+    if function_pointer_type(index, t, host):
+        shape = Shape(base, [], headers=headers)
+        shape.dims = fit_dims(dims, 4, v)
+        return pointer_shape(module, v, shape, t)
     if t in index.struct_fields and t in index.struct_size and t not in bss.BASIC_SIZES:
         row, words = struct_row(index, t)
         size = index.struct_size[t]
@@ -455,15 +460,37 @@ def fit_dims(dims: list[str], elem: int, v: Var) -> list[str]:
 def pointer_shape(module: DataModule, v: Var, shape: Shape, cast: str) -> Shape:
     """A pointer object: written out when its words are all pointers or
     zero, else values from the ROM (where a non-zero word with no
-    relocation stops data_inc)."""
+    relocation stops data_inc). `cast` is the element type: a pointer, or
+    the name of a function pointer type, which data_inc writes as void*."""
     values = pointer_values(module, v, cast)
     if values is not None:
         shape.values = values
     elif not any(module.read(v.addr, v.sort)):
         shape.values = ["0"] * (v.sort // 4)
     else:
-        shape.row = cast
+        shape.row = cast if cast.endswith("*") else "void*"
     return shape
+
+
+FUNC_PTR_TYPEDEF = r"\btypedef\b[^;{{}}]*\(\s*\*\s*{}\s*\)\s*\("
+_typedef_texts: dict[str, str] = {}
+
+
+def function_pointer_type(index: bss.Index, t: str, host: str | None) -> bool:
+    """Whether `t` names a function pointer type (`typedef BOOL
+    (*TaskCommandFunc)(Task*);`) in a header or in the host file."""
+    if not re.fullmatch(r"\w+", t):
+        return False
+    files = [f if f.startswith(("include/", "src/")) else f"include/{f}"
+             for f in index.decls.type_headers.get(t, [])] + ([host] if host else [])
+    pattern = re.compile(FUNC_PTR_TYPEDEF.format(re.escape(t)))
+    for f in files:
+        if f not in _typedef_texts:
+            path = ROOT / f
+            _typedef_texts[f] = path.read_text() if path.exists() else ""
+        if pattern.search(_typedef_texts[f]):
+            return True
+    return False
 
 
 def plain_shape(module: DataModule, v: Var) -> Shape:
@@ -767,7 +794,10 @@ def render(module: DataModule, g: Group, relocs: list, probe: Probe,
             forwards: list[str] = []
             extra: set[str] = set()
             text = ""
-            for _ in range(64):
+            # mwcc names one undefined identifier per run, and a table can
+            # point at a hundred functions; each pass declares a new name or
+            # stops, so the loop ends.
+            while True:
                 text = compose(module, g, written, headers | extra, forwards, in_place)
                 elf = probe.compile(g.path or g.host, text)
                 if elf is not None:
@@ -776,7 +806,7 @@ def render(module: DataModule, g: Group, relocs: list, probe: Probe,
                 new = False
                 for name in missing:
                     if name in defined:
-                        line = defined[name].forward(name)
+                        line = defined[name].forward(name, g.section)
                     else:
                         header, line = targets.declare(name, g.host or "")
                         if header and header not in extra:

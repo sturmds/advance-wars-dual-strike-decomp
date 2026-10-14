@@ -88,6 +88,9 @@ def test_const() -> None:
     check("const: .data drops it", data.const_base("const char", ".data") == "char")
     check("const: pointer table in .rodata", data.const_base("u16*", ".rodata") == "u16* const")
     check("const: pointer table in .data", data.const_base("void* const", ".data") == "void*")
+    shape = data.Shape("const u16", ["4"])
+    check("const: forward declaration in .data", shape.forward("gX", ".data") == "extern u16 gX[];")
+    check("const: forward declaration in .rodata", shape.forward("gX", ".rodata") == "extern const u16 gX[];")
 
 
 def test_dims() -> None:
@@ -147,6 +150,9 @@ def test_plain_shapes() -> None:
     check("plain: halfwords", (s.base, s.dims, s.row) == ("u16", ["3"], "u16"), s)
     s = data.plain_shape(module, bss.Var(0x1020, 4, 3, "gBytes"))
     check("plain: bytes", (s.base, s.dims, s.row) == ("u8", ["3"], "u8"), s)
+    rom = FakeRom(words(0x1108), {0x1100: "gData"}, {0x1000: ("load", 0x1108, "itcm")})
+    vals = data.pointer_values(FakeModule(rom), bss.Var(0x1000, 4, 4, "gPtr"), "void*")
+    check("plain: pointer with an offset", vals == ["(void*)((char*)&gData + 0x8)"], vals)
 
 
 def test_definition() -> None:

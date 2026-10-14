@@ -147,6 +147,7 @@ class Rom:
         self.images: dict[str, tuple[int, bytes]] = {}
         self.symbols: dict[str, dict[int, str]] = {}
         self.relocs: dict[str, dict[int, tuple[str, int, str]]] = {}
+        self.thumb: dict[str, set[int]] = {}  # addresses of Thumb functions
 
     def image(self, module: str) -> tuple[int, bytes]:
         if module not in self.images:
@@ -185,11 +186,14 @@ class Rom:
     def symbol_table(self, module: str) -> dict[int, str]:
         if module not in self.symbols:
             table: dict[int, str] = {}
+            thumb = self.thumb.setdefault(module, set())
             path = ROOT / config_dir(module) / "symbols.txt"
             for line in path.read_text().splitlines():
-                m = re.match(r"(\S+) kind:\S+ addr:(0x[0-9a-f]+)", line)
+                m = re.match(r"(\S+) kind:(\S+) addr:(0x[0-9a-f]+)", line)
                 if m:
-                    table.setdefault(int(m.group(2), 16), m.group(1))
+                    table.setdefault(int(m.group(3), 16), m.group(1))
+                    if m.group(2).startswith("function(thumb"):
+                        thumb.add(int(m.group(3), 16))
             self.symbols[module] = table
         return self.symbols[module]
 
@@ -207,10 +211,13 @@ class Rom:
 
     def target(self, module: str, to: int, where: str) -> tuple[str, int]:
         """(symbol, offset) for a relocation target: the symbol at `to`, or
-        the nearest one below it."""
+        the nearest one below it. A Thumb function's address has bit 0 set,
+        which the linker adds to `&function` itself."""
         table = self.symbol_table(module)
         if to in table:
             return table[to], 0
+        if to & 1 and to - 1 in self.thumb.get(module, ()):
+            return table[to - 1], 0
         below = [a for a in table if a <= to]
         if not below:
             sys.exit(f"error: {where}: no symbol at or below {to:#x} in {module}")

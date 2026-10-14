@@ -87,6 +87,10 @@ expect("render: pointers as symbols", body(data_inc.render(ptrs, rom)),
        "(void*)&FuncA, 0, (void*)((char*)&gData + 0x8),\n")
 expect("render: relocated u32", body(data_inc.render(data_inc.Row("itcm gW 0x1000 4 u32", "t"), rom)),
        "(u32)&FuncA,\n")
+rom = FakeRom(words(0x1101), {0x1100: "ThumbFunc"}, {0x1000: ("load", 0x1101, "itcm")})
+rom.thumb["itcm"] = {0x1100}
+expect("render: Thumb function", body(data_inc.render(data_inc.Row("itcm gT 0x1000 4 void*", "t"), rom)),
+       "(void*)&ThumbFunc,\n")
 rom = FakeRom(words(0x0102, 0x1208, 0x1100, 0x0304, 0, 0), {0x1100: "FuncA", 0x1200: "gData"},
               {0x1004: ("load", 0x1208, "itcm")})
 expect("render: structs", body(data_inc.render(data_inc.Row("itcm gS 0x1000 0x18 {u8,u8,u16,void*,u8[4]}", "t"), rom)),
