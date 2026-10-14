@@ -14,6 +14,14 @@ It failed for real. A mod grew main and ov000 by 0x40 bytes each, and melonDS st
 
 This issue holds the scope: the kinds of hazard, how many of each, the plan in order, and how each step is tested.
 
+## Goal: fully shiftable (decided by sturmds, 2026-10-14)
+
+- **No hard-coded constants.** No addresses, layout values or module bounds written as numbers: each comes from a symbol, so the linker computes it.
+- **No hard dependency on fixed struct sizes.** Every size, copy length, allocation size, stride and offset is computed from the structure (`sizeof`, field access, `offsetof`, element counts from the array), so that changing a struct or table recomputes them.
+- **Each fix keeps the retail match** (`make release`).
+
+The class 3 findings below (sizes written as numbers) are therefore core work, not cleanup.
+
 ## Pilot (2026-10-14)
 
 - **The arena fix.** `OS_GetInitArenaLo` returns linker symbols for the main, ITCM and DTCM arenas: `MAIN_ARENA_START`, `ITCM_ARENA_START` and `SDK_SECTION_ARENA_DTCM_START`.
@@ -126,9 +134,33 @@ Nobody fixes:
 
 ### 6. Tests
 
-- `make shift` (above). It is not part of `make release`: it needs `arm-none-eabi-readelf`, which the build does not, and it takes about 40 s. Putting it into release needs an ELF reader in Python (`fnindex.read_elf` is most of one) and sturmds's decision on the time.
+- `make shift` (above). Decided by sturmds (2026-10-14): it stays a separate target, not part of `make release`. It takes about 40 s and needs `arm-none-eabi-readelf`.
 - Emulator: melonDS 1.1 (a local build at `~/repos/melonDS/build/melonDS`, with its GDB stub) replaces DeSmuME. Issue 0006 has the boot check; it must stop on the crash ROM above and pass the fixed one.
   - 2026-10-14: `make emu-check` does: the old arena start fails on the heap check and a data abort in `Ov004_SetSlotTask`, the fixed one reaches the main menu. It also stops the dtcm shift on a prefetch abort at boot (the DTCM region in `init_cp15`).
+
+### 7. Relocations to the wrong symbol at the same address
+
+dsd names a relocation after the symbol at its target. When the code means the start of a region and a variable happens to start there, the relocation follows the variable once something is inserted before it.
+
+- **Found by melonDS:** a DTCM grown by 0x20 took a prefetch abort at boot. `init_cp15` built the DTCM protection region from `data_027c0000`, a sprite cell table, which had moved to 0x027c0020. Region 4 became 0x027c003b, 1 GiB over main RAM.
+- **Fixed (2026-10-14):** seven SDK sites now name `DTCM_BASE` (`ADDR(DTCM)`): crt0, `init_cp15`, the reset code, `OS_InitThread`, `OS_GetInitArenaHi`, `IrqSlot_CallAndClear` and `MainLoop_FinishVBlank`. Their relocations to the table are deleted. `make emu-check` now boots the dtcm shift to the main menu.
+- **Why `make shift` missed it:** the stale check cannot see this kind, because the word was relocated, just to the wrong thing. Only a run, or reading every relocation that targets a region start, finds it.
+- **Still to read:** relocations targeting a region start. 16 target 0x027c0000; the 9 left are sprite code using the table. 3 target 0x01ff8000, the ITCM start (two `bl`s and one load). 6 target 0x022ad560, the ov000/ov004 start. 5 target 0x02350560, the overlay start of issue 0055. Size: small.
+
+### 8. Sizes in the data written from the ROM
+
+Counted over `src/` (2026-10-14). Each is a size written as a number, and most are written twice: once in the C, once in `symbols.txt` (`size=`).
+
+- **Initialised arrays sized by a number:** 11,168. By element type:
+  - 6,395 `u32`, about 890 of them holding pointers among numbers. Those are structs written as words; each should get its struct type.
+  - 3,815 `char`, for strings.
+  - 283 `u8`, 126 `u16` and 44 `s16`/`s8`/`s32`.
+  - 505 arrays of a struct type.
+
+  A table that gets more rows in its `.inc.c` fails to compile until its `[N]` is raised. That is safe, but it means a second edit. `[]` with the count taken from the initializer would remove it, where the match allows.
+- **Zeroed variables sized by a number:** 179 `u8` placeholders and 21 other primitive arrays in the C. 106 of the 113 definitions `bss.py gen` writes are `u8 NAME[0x...]`. When the variable has a type, a struct that grows does not grow the variable.
+- **Externs with a literal array size:** 462. 141 definitions say "size: up to the next symbol".
+- **Size asserts:** 5 structs have one (`TerrainStats`, `UnitStats`, `LinkCoRecord`, `WMDataSet`, `WMDataSharingInfo`).
 
 ## Plan, in order
 
@@ -136,7 +168,8 @@ Nobody fixes:
 2. **Leftover symbols and scanner.** Delete the dsd symbols that only existed as targets of deleted false relocations. That shrinks `shift_numbers.txt` and the medium count. Scanner changes: take relocations from the linked objects, add a level for section-end values, scan pools across all of RAM with an allowlist of hardware addresses, give holder and file per hit, scan ARM7 too. Size: small; in progress on branch `shift-symbols`.
    - 2026-10-14: done except ARM7 scanning. `scan_pointers.py --unused-symbols` found 80 data symbols nothing refers to: the two map-header aliases are deleted (their words left `shift_numbers.txt`, now 34 numbers); the other 78 start objects defined in C and stay, 32 of them made by dsd from false relocations (merging them changes the C layout). The scanner takes relocations from the linked objects too, has a `layout` level, scans pools across ITCM, main RAM and DTCM with 9 fixed addresses left out, and gives holder and file: layout 6, high 0, medium 54, low 1,115 (issue 0012).
 3. **Issue 0055: the 15 relocations that name several overlays.** They make every ov001-ov006 shift fail the stale check, so they are the next real bug class. Follow the callers to `FS_LoadOverlay`, or watch in melonDS. Size: medium. Then add the ov001-ov006 shifts to `make shift`.
-4. **The emulator boot check on melonDS** (issue 0006). Size: medium; in progress on branch `melonds-check`.
+4. **The emulator boot check on melonDS** (issue 0006). Size: medium.
+   - 2026-10-14: done, `make emu-check` (`tools/melonds_check.py`, `tools/gdb_rsp.py`). Every `make shift` ROM boots to the main menu; the old arena code fails it.
 5. **Sizes:** the 30 literal `Mem_Alloc` sizes and the `*_WORK_SIZE` defines become `sizeof`; then the ~25 whole-struct copies; then size asserts on the save and link formats. Matching is unchanged, since `sizeof` is a constant. Check each with `fn.py diff`. Size: medium, mechanical.
    - 2026-10-14: 31 literal `Mem_Alloc` sizes. 12 now use `sizeof` or a named size (the ov005 CO picture and message work blocks, `DesignMapRecord` twice, `MainMenuPage`, the link skill and experience blocks, the combat menu byte, the unit list, `WM_SYSTEM_BUF_SIZE`, `WMDataSharingInfo`, `WMDataSet`), and both `*_WORK_SIZE` defines became `sizeof`: `Unk_ov005_0236bbac` gained a 0x20-byte tail pad to reach 0x1360, and `MainMenuPage.entries` went from 7 to 6. 19 are left: no struct for the 0x97e0 ov005 work block, the 0xa14 and 0xa12 map buffers or the 0xc000 Download Play work area; `WirelessParentInfo` and `WMScanParam` are smaller than their 0x40 and 0x20 allocations; the 0x120 and 0x940 MP buffers have no SDK size macro yet; the other 10 are palette, picture and tile buffers. New size asserts: `LinkCoRecord`, `WMDataSet`, `WMDataSharingInfo`.
    - 2026-10-14, second pass: 8 more come from a struct or a named size. New structs with unknown padding: `Ov005LargeWork` (0x97e0), `MapDataBuffer` (0xa14, twice), `CombatMapBuffer` (0xa12). The 0x40 parent block uses `Unk_0229c960`; `WMScanParam` gained a pad to 0x20; the MP buffers use `WIRELESS_MP_SEND_SIZE` and `WIRELESS_MP_RECEIVE_SIZE`. 11 are left: the 0xc000 Download Play work area (`DownloadPlay_SetUpWork` splits it, no struct), the 0x400 code-terrain file and palette copy, and 8 palette, picture and tile buffers whose size is a hardware format.
@@ -147,8 +180,10 @@ Nobody fixes:
 9. **ARM7** (issue 0054): `arm7.py bin` rewrites `BuildInfo_Arm7` and the crt0 words from ELF symbols; `WMSP_WORK` becomes a `.bss` variable. Size: medium. It matters only when ARM7 changes.
 10. **New C++ code:** place `.exceptix` and new `.ctor` sections in the script. Size: small, if a mod ever needs it.
 11. **The secure-area CRC** (issue 0056) and a ROM larger than 32 MiB (the capacity byte at 0x14). These are for hardware targets.
-12. **Byte-offset macros to fields, `ARRAY_COUNT` for loops over C tables.** Ongoing, file by file.
+12. **Byte-offset macros to fields, `ARRAY_COUNT` for loops over C tables.** Under the goal above, this is core work; take it file by file.
+13. **Relocations to region starts** (class 7): read the 25 left that target a region start and give each a layout symbol where the code means the region. Size: small.
+14. **Data tables as types** (class 8): give the ~890 `u32` tables that mix pointers and numbers their struct types; size tables from their initializer (`[]`) where mwcc gives the same bytes; have `bss.py gen` and `data.py` write a variable's declared type instead of `u8[size]`; add a compile-time size assert for fixed formats (save, link packets). Size: large, tool-driven; best done by extending `tools/data.py` and `tools/bss.py` so that the output stays generated.
 
 ## Done when
 
-`make shift` grows every module (ov001-ov006 included) and passes all three checks; the melonDS check boots each shifted ROM to the title screen without an abort; and the mod repo (issue 0023) builds a playable ROM with a change that grows main.
+`make shift` grows every module (ov001-ov006 included) and passes all its checks; the melonDS check boots each shifted ROM to the title screen without an abort; and the mod repo (issue 0023) builds a playable ROM with a change that grows main.
