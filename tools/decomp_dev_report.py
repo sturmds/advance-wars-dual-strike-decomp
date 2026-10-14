@@ -209,6 +209,36 @@ def count_same_rows(report: dict, units: list[dict], modules: dict[str, str]) ->
                 for target in (unit["measures"], totals):
                     add(target, "matched_code", int(f["size"]))
                     add(target, "matched_functions", 1)
+                fuzzy_from_functions(unit)
+                raised = True
+    if raised:
+        # objdiff's total: the units' fuzzy scores weighted by their code size.
+        scores = [(u["measures"].get("fuzzy_match_percent", 100.0), int(u["measures"].get("total_code", 0)))
+                  for u in report["units"]]
+        code = sum(size for _, size in scores)
+        if all(score == 100.0 for score, size in scores if size):
+            totals["fuzzy_match_percent"] = 100.0
+        elif code:
+            totals["fuzzy_match_percent"] = sum(score * size for score, size in scores) / code
+
+
+def fuzzy_from_functions(unit: dict) -> None:
+    """A unit's fuzzy score as objdiff computes it: its functions' scores
+    weighted by size. decomp.dev draws a unit green in its overview only
+    when this is exactly 100, so all functions at 100 give exactly 100.0
+    (and the same for the .text section)."""
+    functions = unit.get("functions", [])
+    size = sum(int(f["size"]) for f in functions)
+    if not size:
+        return
+    if all(f.get("fuzzy_match_percent") == 100.0 for f in functions):
+        score = 100.0
+    else:
+        score = sum(f.get("fuzzy_match_percent", 0.0) * int(f["size"]) for f in functions) / size
+    unit["measures"]["fuzzy_match_percent"] = score
+    for s in unit.get("sections", []):
+        if s["name"] == ".text":
+            s["fuzzy_match_percent"] = score
 
 
 def drop_asm(report: dict, units: list[dict], modules: dict[str, str],

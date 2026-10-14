@@ -59,6 +59,19 @@ for part, whole, want in ((1844958, 1845022, "99.9965%"), (999999, 1000000, "99.
         errors.append(f"pct({part}, {whole}): want {want}, got {progress.pct(part, whole)}")
 if "_dsd_gap@ov001_2` | 20" in text:
     errors.append("a gap unit is listed under data below 100%")
+
+# A unit whose functions all reach 100 scores exactly 100.0, the value
+# decomp.dev draws green; otherwise the scores weighted by size.
+import decomp_dev_report  # noqa: E402
+
+for scores, want in (((100.0, 100.0), 100.0), ((100.0, 50.0), 75.0)):
+    u = {"measures": {"fuzzy_match_percent": 99.9},
+         "functions": [{"size": "8", "fuzzy_match_percent": s} for s in scores],
+         "sections": [{"name": ".text", "fuzzy_match_percent": 99.9}]}
+    decomp_dev_report.fuzzy_from_functions(u)
+    if (u["measures"]["fuzzy_match_percent"], u["sections"][0]["fuzzy_match_percent"]) != (want, want):
+        errors.append(f"fuzzy_from_functions{scores}: want {want}, got {u['measures']['fuzzy_match_percent']}")
+
 if errors:
     sys.exit("test_progress: " + "\n  ".join(errors))
 print("test_progress: ok")
