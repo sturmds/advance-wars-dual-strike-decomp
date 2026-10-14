@@ -12,6 +12,22 @@
 *.bin
 *.o
 *.exe
+# Sound from the ROM in any form (docs/sound.md)
+*.sdat
+*.sseq
+*.ssar
+*.sbnk
+*.swar
+*.strm
+*.wav
+*.mid
+*.mp3
+*.ogg
+*.flac
+*.sf2
+*.ncsf
+*.minincsf
+*.ncsflib
 
 # Python
 /.venv/

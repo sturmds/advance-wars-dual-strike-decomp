@@ -1,7 +1,8 @@
 #!/bin/sh
 # Installed by `make setup` through core.hooksPath.
 # 1. Refuse files that must never enter git (D5, tenet 9): the ROM, extracted
-#    data and the map files unpacked from it, builds, and local work files.
+#    data and the map files unpacked from it, builds, local work files, and
+#    sound in any form (archive files, WAV, MIDI, MP3, Ogg, SoundFont).
 # 2. Run `make release`. It builds the working tree, not only the staged
 #    changes, so stage everything you built with before committing. Skip it
 #    when the tree has already passed make release in this checkout or a
@@ -26,7 +27,7 @@ if [ "$(date +%z)" != "+0000" ] && [ -z "${GIT_COMMITTER_DATE:-}" ]; then
     exit 1
 fi
 
-bad=$(git diff --cached --name-only --diff-filter=ACMR | grep -v -E '^(extract|extracted)/(README\.md|\.gitkeep)$' | grep -E '(^|/)(orig|extract|extracted|build|work)/|^assets/maps/[^/]+/|\.(nds|bin|o|exe)$' || true)
+bad=$(git diff --cached --name-only --diff-filter=ACMR | grep -v -E '^(extract|extracted)/(README\.md|\.gitkeep)$' | grep -E '(^|/)(orig|extract|extracted|build|work)/|^assets/maps/[^/]+/|\.(nds|bin|o|exe|sdat|sseq|ssar|sbnk|swar|strm|wav|mid|mp3|ogg|flac|sf2|ncsf|minincsf|ncsflib)$' || true)
 if [ -n "$bad" ]; then
     echo "pre-commit: these paths must not enter git:" >&2
     echo "$bad" | sed 's/^/  /' >&2

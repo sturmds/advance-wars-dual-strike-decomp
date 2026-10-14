@@ -18,7 +18,7 @@ DSD      := .cache/tools/dsd/dsd
 LOCKED_NINJA := mkdir -p build && flock build/.ninja.lock $(NINJA)
 
 
-.PHONY: all configure fnindex dsindex progress setup tools assets release release-nocheck decomp-dev-report pnc-check check check-rom check-modules check-out hooks extract test test-release clean shift emu-smoke format format-check
+.PHONY: all configure fnindex dsindex progress setup tools assets release release-nocheck decomp-dev-report pnc-check check check-rom check-modules check-out hooks extract sound music test test-release clean shift emu-smoke format format-check
 
 all: check-rom configure
 	@$(LOCKED_NINJA)
@@ -34,13 +34,27 @@ setup: tools assets
 tools: hooks
 	@$(PYTHON) tools/setup.py
 
-# Map files and the data in code sections are game data: unpacked from the
-# ROM into extracted/, never committed (docs/maps.md; docs/workflow.md, "Data
-# from the ROM"). The build also rewrites the data files when they are stale.
+# Map files, the data in code sections and the sound archive are game data:
+# unpacked from the ROM into extracted/, never committed (docs/maps.md;
+# docs/workflow.md, "Data from the ROM"; docs/sound.md). The build also
+# rewrites the data files when they are stale.
 assets: tools extract
 	@$(MAKE) --no-print-directory dsindex
 	@$(PYTHON) tools/maps.py unpack
 	@$(PYTHON) tools/data_inc.py write
+	@$(PYTHON) tools/sound.py unpack
+	@$(PYTHON) tools/sound.py export --auto
+
+# The sound archive's files and sound.yaml in extracted/AWRE/assets/sound/.
+# The ROM build still copies sound_data.sdat from extract/ (issue 0050).
+sound: extract
+	@$(PYTHON) tools/sound.py unpack
+
+# Every song, sound effect and stream as MP3 in extracted/AWRE/music/
+# (docs/sound.md, "Export"). Needs ffmpeg. `make assets` runs it too, except
+# in a linked worktree or without ffmpeg; it skips files already up to date.
+music: tools extract
+	@$(PYTHON) tools/sound.py export
 
 hooks:
 	@if [ "$$(git config --get core.hooksPath)" != hooks ]; then \
@@ -150,11 +164,13 @@ emu-smoke: shift
 # progress.py writes from a report (test_progress.py), and the order in which
 # mwccarm emits data objects (test_data_order.py), and the .bss planner
 # (test_bss.py), the release cache (test_release_cache.py) and the .data
-# planner (test_data.py); no ROM or build needed
+# planner (test_data.py), and the sound archive's unpack and pack
+# (test_sound.py); no ROM or build needed
 # (test_ds.py, test_pragmas.py, test_absolute.py, test_data_order.py,
 # test_bss.py and test_data.py use the compiler from make setup; test_ds.py
 # checks more when extract/ exists, test_bss.py when build/fnindex.json and
-# build/dsindex.json exist, test_data.py when the ROM exists as well).
+# build/dsindex.json exist, test_data.py when the ROM exists as well;
+# test_sound.py checks the round trip of the ROM's archive when extract/ exists).
 # Git exports GIT_DIR, GIT_INDEX_FILE and others to hooks, so a test run from
 # pre-commit would send the git commands meant for a throwaway repo to the
 # repository being committed (issue 0076). TEST_ENV drops every GIT_ variable
@@ -184,7 +200,8 @@ TESTS := \
 	tools/tests/test_data_order.py \
 	tools/tests/test_bss.py \
 	tools/tests/test_release_cache.py \
-	tools/tests/test_data.py
+	tools/tests/test_data.py \
+	tools/tests/test_sound.py
 
 test:
 	@for t in $(CACHED_TESTS) $(TESTS); do $(TEST_ENV) $(PYTHON) $$t || exit 1; done

@@ -112,4 +112,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0082](0082-data-linking.md) | Link data from C (GitHub #1) | in progress | decomp | M2 |
 | [0083](0083-aliases-hide-variables.md) | `.bss` aliases can hide separate variables | in progress | tools | M2 |
 | [0084](0084-landing-train.md) | Land several waiting branches with one release | open | loop | later |
-| [0085](0085-music-extraction.md) | Investigate how the music is stored and played, to extract it like the maps | open | tools | later |
+| [0085](0085-music-extraction.md) | Investigate how the music is stored and played, to extract it like the maps | closed | tools | later |

@@ -53,3 +53,14 @@ url = "https://decomp.aetias.com/files/mwccarm.zip"
 sha256 = "6f7b16098d2b1bc9b45b278f6e6e24327c4da9b3ebf7924be1afd4a721d83976"
 type = "zip"
 subdir = "mwccarm/1.2/b56"
+
+# Music player with an emulation of the DS sound engine (NCSF and STRM).
+# tools/sound.py export renders the sound archive to WAV with zxtune123.
+# Prebuilt; zxtune123 needs only zlib and the C library. LGPL-3.0; see
+# docs/third-party/zxtune.md. The SHA-256 matches the digest GitHub lists
+# for the release asset.
+[zxtune]
+version = "r5112"
+url = "https://github.com/vitamin-caig/zxtune/releases/download/r5112/zxtune_r5112_linux_x86_64.tar.gz"
+sha256 = "7c00cd2b4187fd46c855c7005efe064fec1c7f68ee7effbd243bd7dbed044083"
+type = "tar.gz"
