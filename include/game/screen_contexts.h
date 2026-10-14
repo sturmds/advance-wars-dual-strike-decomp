@@ -4,7 +4,9 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/icon.h"
 #include "game/oam_buffer.h"
+#include "game/script_slot.h"
 #include "game/task.h"
 #include "game/weather.h"
 
@@ -29,12 +31,19 @@ extern struct Task* data_0216e96c[TASK_COUNT + 1];
 extern struct Task* data_0216eab0[TASK_COUNT + 1];
 extern struct WeatherFx data_0216ebf4;
 extern struct WeatherFx data_0216edc4;
+extern IconBank data_0216ef94[ICON_BANK_COUNT]; /* Unk_027c0280.iconBanks */
+extern IconBank data_0216f2c4[ICON_BANK_COUNT];
 extern struct FontState data_0216f5f4[2];
 extern u8 data_0216fca8[0x400]; /* main screen palettes */
+extern u8 data_021700a8[0x400]; /* sub screen palettes */
 extern struct OamBuffer data_021704a8;
 extern struct OamBuffer data_02170ad8;
 extern SpriteEntry data_02171108[128]; /* sprite pools */
 extern SpriteEntry data_02171908[128];
+extern ScriptSlot data_02172108[SCRIPT_SLOT_COUNT];
+extern ScriptSlot data_02172c48[SCRIPT_SLOT_COUNT];
+extern struct Task data_02173788[TASK_COUNT]; /* task pools */
+extern struct Task data_02175948[TASK_COUNT];
 extern u8 data_02177b08[0x1000]; /* Unk_027c0280.unk_04 */
 extern u8 data_0217db08[0x1000];
 

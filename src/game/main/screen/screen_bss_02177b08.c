@@ -1,2 +1,2 @@
 /* Definitions generated from config/AWRE/arm9/symbols.txt (docs/bss-tool.md). */
-#include "bss/screen_bss_02170314.inc.c"
+#include "bss/screen_bss_02177b08.inc.c"

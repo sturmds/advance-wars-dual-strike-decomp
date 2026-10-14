@@ -11,7 +11,9 @@ typedef struct ScriptCommand {
   u16 opcode; /* index into gScriptCommands */
 } ScriptCommand;
 
-/* One of 30 script slots at data_027c027c->scriptSlots. The handlers call
+#define SCRIPT_SLOT_COUNT 30 /* slots in Unk_02080440.scriptSlots */
+
+/* One of SCRIPT_SLOT_COUNT script slots at data_027c027c->scriptSlots. The handlers call
  * float and fixed-point helpers, so the scripts probably animate
  * something. */
 typedef struct ScriptSlot {

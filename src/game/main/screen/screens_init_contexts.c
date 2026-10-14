@@ -21,21 +21,10 @@ extern u8 data_02157618[]; /* sub screen layer config */
 extern Unk_02080440_48 data_02183b08;
 extern Unk_02080440_48 data_02189cd8;
 
-/* Buffers of the main screen context that game/screen_contexts.h leaves out:
- * symbols.txt makes each one smaller than the buffer, with more symbols
- * inside it (a task pool of single tasks, for one). */
-extern struct IconBank data_0216ef94;
-extern struct Task data_02173788;
-extern struct ScriptSlot data_02172108;
-
-/* The same for the sub screen context, and four names for the second
- * element of a main screen array (data_0216e5b0, data_0216e5b4,
- * data_0216e5c0, data_0216f5f4); the original names them by address. */
-extern u8 data_021700a8[];
+/* Four names for the second element of a main screen array (data_0216e5b0,
+ * data_0216e5b4, data_0216e5c0, data_0216f5f4); the original names them by
+ * address. */
 extern struct FontState data_0216f94e;
-extern struct IconBank data_0216f2c4;
-extern struct Task data_02175948;
-extern struct ScriptSlot data_02172c48;
 extern u16 data_0216e5b2;
 extern s16 data_0216e5b6;
 extern u8 data_0216e5ae[];
@@ -94,14 +83,14 @@ void Screens_InitContexts(void) {
   data_027c0280->layerCopyMask = 0;
   data_027c0280->fontState = data_0216f5f4;
   data_027c0280->textPrinter = data_0216e614;
-  data_027c0280->iconBanks = &data_0216ef94;
+  data_027c0280->iconBanks = data_0216ef94;
   data_027c027c->unk_20 = data_02171108;
   data_027c027c->unk_24 = data_0216e76c;
   data_027c027c->unk_28 = data_0216e5b8;
-  data_027c027c->taskPool = &data_02173788;
+  data_027c027c->taskPool = data_02173788;
   data_027c027c->taskFreeStack = data_0216e96c;
   data_027c027c->taskLists = data_0216e5d4;
-  data_027c027c->scriptSlots = &data_02172108;
+  data_027c027c->scriptSlots = data_02172108;
   data_027c027c->unk_40 = data_0216e5b0;
   data_027c027c->scriptSlotCurrent = data_0216e5b4;
   data_027c027c->unk_48[0] = &data_02183b08;
@@ -139,14 +128,14 @@ void Screens_InitContexts(void) {
   data_027c0280->layerCopyMask = 0;
   data_027c0280->fontState = &data_0216f94e;
   data_027c0280->textPrinter = data_0216e65c;
-  data_027c0280->iconBanks = &data_0216f2c4;
+  data_027c0280->iconBanks = data_0216f2c4;
   data_027c027c->unk_20 = data_02171908;
   data_027c027c->unk_24 = data_0216e86c;
   data_027c027c->unk_28 = data_0216e5bc;
-  data_027c027c->taskPool = &data_02175948;
+  data_027c027c->taskPool = data_02175948;
   data_027c027c->taskFreeStack = data_0216eab0;
   data_027c027c->taskLists = data_0216e5f4;
-  data_027c027c->scriptSlots = &data_02172c48;
+  data_027c027c->scriptSlots = data_02172c48;
   data_027c027c->unk_40 = &data_0216e5b2;
   data_027c027c->scriptSlotCurrent = &data_0216e5b6;
   data_027c027c->unk_48[0] = &data_02189cd8;
