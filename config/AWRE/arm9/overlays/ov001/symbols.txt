@@ -531,7 +531,7 @@ data_ov001_0236568c kind:data(byte[336]) addr:0x0236568c
 data_ov001_023657dc kind:data(byte[368]) addr:0x023657dc
 data_ov001_0236594c kind:data(byte[432]) addr:0x0236594c
 data_ov001_02365afc kind:data(byte[940]) addr:0x02365afc
-data_ov001_02365ea8 kind:data(byte[420]) addr:0x02365ea8 ambiguous
+data_ov001_02365ea8 kind:data(byte[420]) addr:0x02365ea8
 data_ov001_0236604c kind:data(byte[1616]) addr:0x0236604c
 data_ov001_0236669c kind:data(byte[8]) addr:0x0236669c
 data_ov001_023666a4 kind:data(byte[8]) addr:0x023666a4

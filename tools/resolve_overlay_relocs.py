@@ -46,6 +46,10 @@ DECIDED = {
     ("main", 0x020CE534): ("ov000", "UnloadTask_PickTile calls UnitPath_CountSteps"),
     ("main", 0x020D0BD4): ("ov000", "UnitMoveSelect_TryMoveTo calls UnitPath_CountSteps"),
     ("main", 0x020D0C18): ("ov000", "UnitMoveSelect_TryMoveTo calls UnitPath_CountSteps"),
+    ("main", 0x0216831C): ("ov002", "the scene task of AttackTask_StartScene, which the attack script"
+                                    " runs after func_02001564 loads ov002: Battle_StartScreen"),
+    ("main", 0x0216A6EC): ("ov005", "the script calls func_020015f4 (loads ov005) first"),
+    ("main", 0x0216A7DC): ("ov005", "the script calls func_020015f4 (loads ov005) first"),
 }
 
 
