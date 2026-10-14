@@ -44,7 +44,14 @@ extern ScriptSlot data_02172108[SCRIPT_SLOT_COUNT];
 extern ScriptSlot data_02172c48[SCRIPT_SLOT_COUNT];
 extern struct Task data_02173788[TASK_COUNT]; /* task pools */
 extern struct Task data_02175948[TASK_COUNT];
+/* Layer map buffers, layers 0-3; layer 0's is also Unk_027c0280.unk_04. */
 extern u8 data_02177b08[]; /* Unk_027c0280.unk_04 */
+extern u8 data_02178b08[GFX_LAYER_MAP_SIZE];
+extern u8 data_02179b08[GFX_LAYER_MAP_SIZE];
+extern u8 data_0217ab08[GFX_LAYER3_MAP_SIZE];
 extern u8 data_0217db08[];
+extern u8 data_0217eb08[GFX_LAYER_MAP_SIZE];
+extern u8 data_0217fb08[GFX_LAYER_MAP_SIZE];
+extern u8 data_02180b08[GFX_LAYER3_MAP_SIZE];
 
 #endif

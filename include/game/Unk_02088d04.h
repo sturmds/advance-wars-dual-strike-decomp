@@ -193,6 +193,12 @@ typedef struct GfxLayer {
   u8 pad_11[0x14 - 0x11];
 } GfxLayer;
 
+/* Bytes in the map buffer (GfxLayer.map) of layers 0-2 of a screen, and of
+ * layer 3. Screens_InitContexts gives each screen four, in layer order
+ * (screen_contexts.h). */
+#define GFX_LAYER_MAP_SIZE 0x1000
+#define GFX_LAYER3_MAP_SIZE 0x3000
+
 /* GfxLayer.mode */
 #define GFX_LAYER_NO_COPY 2
 

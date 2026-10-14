@@ -18,11 +18,12 @@ typedef struct SaveSlotTable {
   u8 unk_54[SAVE_SLOT_COUNT];
 } SaveSlotTable;
 
-/* data_02297fa8: one save counter per slot. Save_FindNewestRecord takes the highest. */
-extern u32 data_02297fa8[SAVE_SLOT_COUNT];
+/* data_02297fa8: one save counter per slot (Save_FindNewestRecord takes the
+ * highest), then one write count per slot. */
+extern u32 data_02297fa8[2 * SAVE_SLOT_COUNT];
 
-/* The words after the counters in data_02297fa8: how many times each slot
- * was written. Writes go to the free slot with the lowest count. */
+/* How many times a slot was written. Writes go to the free slot with the
+ * lowest count. */
 #define SAVE_SLOT_WRITES(slot) ((&data_02297fa8[slot])[SAVE_SLOT_COUNT])
 
 #define SAVE_MAGIC 0x6a777364 /* "dswj" */

@@ -293,6 +293,9 @@ typedef struct LinkMenuMaps {
            3]; /* LINK_MAP_ROWS: 3 per link player, received from each player */
 } LinkMenuMaps;
 
+/* Bytes in gMenuState. */
+#define MENU_STATE_SIZE 0x8000
+
 typedef struct MenuState {
   u16 colours[16]; /* a 16-colour palette: map select copies one entry to the
                                         * palette every 4 frames; the link screen and the world map
@@ -309,6 +312,8 @@ typedef struct MenuState {
     DesignMapRecord linkMaps
         [3]; /* the maps of the two-player link menu, shown by its stage 2 buttons */
     LinkMenuMaps linkMenu;
+    /* the whole work area: ov003 keeps two CO pictures in it, from offset 0 */
+    u8 work[MENU_STATE_SIZE - 16 * sizeof(u16)];
   };
 } MenuState;
 

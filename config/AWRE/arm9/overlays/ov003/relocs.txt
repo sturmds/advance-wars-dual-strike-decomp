@@ -1200,7 +1200,7 @@ from:0x02361570 kind:load to:0x027c027c module:dtcm
 from:0x02361574 kind:load to:0x02160ac0 module:main
 from:0x02361578 kind:load to:0x0229eb30 module:main
 from:0x0236157c kind:load to:0x02364928 module:overlay(3)
-from:0x02361580 kind:load to:0x022a2130 module:main
+from:0x02361580 kind:load to:0x0229eb30 add:0x3600 module:main
 from:0x023615a4 kind:arm_call to:0x02003bec module:main
 from:0x023615b4 kind:arm_call to:0x02003188 module:main
 from:0x023615cc kind:arm_call to:0x02003bec module:main

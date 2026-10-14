@@ -1,12 +1,13 @@
 #include "types.h"
 #include "game/co_data.h"
+#include "game/co_graphics.h"
 #include "game/ov003_unit.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov003_0235dd38.h"
 
 extern Unk_027c0280* data_027c0280;
-extern u8 gMenuState[][0x3600];
-extern u8 (*data_ov003_02365b10)[0x3600];
+extern u8 gMenuState[][CO_LARGE_PICTURE_SIZE];
+extern u8 (*data_ov003_02365b10)[CO_LARGE_PICTURE_SIZE];
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Mem_Copy32(const void* src, void* dst, u32 size);
@@ -38,7 +39,7 @@ void Ov003_StepCoPowerBanner(Unk_ov003_0235dd38* task) {
       row = task->unk_52;
       Mem_Copy32(
           (row - 1 < 2) ? gMenuState[row - 1] : data_ov003_02365b10[row - 3],
-          data_027c0280->objVram + 0xb1c0, 0x3600);
+          data_027c0280->objVram + 0xb1c0, CO_LARGE_PICTURE_SIZE);
       break;
     case 2:
       row = task->unk_52;

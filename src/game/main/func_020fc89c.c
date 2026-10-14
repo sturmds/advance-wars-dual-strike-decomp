@@ -1,9 +1,9 @@
 #include "types.h"
+#include "game/sound_heap.h"
 #include "sdk/fs.h"
 
 extern int data_022a7e68;
 extern const char data_0216a5b8[];
-extern u8 data_0218ff58[];
 extern u8 data_022a7e88[];
 int Wireless_PickChannel(void);
 void func_0211c0d8(void);
@@ -29,7 +29,7 @@ BOOL func_020fc89c(void) {
     FS_InitFile(&file);
     if (FS_OpenFile(&file, data_0216a5b8)) {
       size = DownloadPlay_ProgramBufferSize(&file);
-      if (size != 0 && size <= 0x100000) {
+      if (size != 0 && size <= sizeof(data_0218ff58)) {
         if (DownloadPlay_LoadChildProgram(&file, data_0218ff58, size)) {
           if (DownloadPlay_OfferChildProgram(data_022a7e88, data_0218ff58)) {
             if (IsFile(&file) != FALSE) {

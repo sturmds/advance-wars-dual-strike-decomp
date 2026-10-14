@@ -24,6 +24,13 @@ typedef struct SoundHeap {
   LinkList levels; /* 0x04: levels.count is the number of levels */
 } SoundHeap;
 
+/* Bytes in the buffer at data_0218ff58. Sound_Init builds the sound heap in
+ * its first 0xf8000 bytes; func_020fc89c loads a Download Play child program
+ * into the whole buffer instead. */
+#define SOUND_HEAP_BUFFER_SIZE 0x100000
+
+extern u8 data_0218ff58[SOUND_HEAP_BUFFER_SIZE];
+
 BOOL SoundHeap_AddLevel(SoundHeap* heap);
 
 #endif

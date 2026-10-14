@@ -17,4 +17,7 @@ typedef struct CoGraphics {
 
 extern CoGraphics gCoGraphics[];
 
+/* Bytes of a CO's large picture, as Co_LoadArmyGraphicsToBuffer writes it. */
+#define CO_LARGE_PICTURE_SIZE 0x3600
+
 #endif
