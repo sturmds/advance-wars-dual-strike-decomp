@@ -4,6 +4,9 @@
     extern_types.py                 one line per extern that differs, then a count
     extern_types.py --symbol NAME   the definition and every extern of NAME
     extern_types.py --count         the count only
+    extern_types.py --check         exit 1 on an extern that differs and is not
+                                    listed in config/AWRE/extern_types.txt, or
+                                    a listed one that no longer differs
 
 A reader that declares a table `extern u8 X[]` while the definition is
 `Foo X[]` still links and often still matches, but a change to `Foo` does
@@ -22,8 +25,12 @@ the definition. An extern of a name no C file defines (an alias inside a
 larger object, a linker symbol) is left out, and so is a declaration this
 scanner cannot read (a function pointer).
 
+config/AWRE/extern_types.txt lists the externs left on purpose, one per
+line as `FILE SYMBOL reason`; the listing, the count and `shift_gaps.py`
+(kind `extern_type`) leave them out, and `make release` runs the check
+(through decomp_dev_report.py).
+
 The parser reads the C written in this repo; it is not a full C parser.
-Exits 0; the count is a measure (`shift_gaps.py` kind `extern_type`).
 """
 
 import argparse
@@ -274,9 +281,28 @@ def local_copy(e: Decl, d: Decl) -> bool:
     return e.path != d.path and e.path.endswith(".c") and e.base in file_types(e.path)
 
 
-def mismatches() -> list[tuple[Decl, Decl]]:
+KNOWN = Path("config/AWRE/extern_types.txt")
+
+
+def known(path: Path | None = None) -> dict[tuple[str, str], str]:
+    """(file, symbol) -> reason, from the list of externs left on purpose."""
+    path = path or ROOT / KNOWN
+    out = {}
+    if not path.exists():
+        return out
+    for line in path.read_text().splitlines():
+        line = line.split("#", 1)[0].strip()
+        if line:
+            parts = line.split(None, 2)
+            if len(parts) < 3:
+                sys.exit(f"extern_types: {path}: expected `FILE SYMBOL reason`: {line}")
+            out[(parts[0], parts[1])] = parts[2]
+    return out
+
+
+def all_mismatches() -> list[tuple[Decl, Decl]]:
     """(extern, definition) for each extern whose type differs, or that uses
-    a local copy of the type."""
+    a local copy of the type, listed ones included."""
     defs, exts, aliases = collect()
     out = []
     for name, ds in sorted(exts.items()):
@@ -285,6 +311,24 @@ def mismatches() -> list[tuple[Decl, Decl]]:
         d = defs[name][0]
         out += [(e, d) for e in ds if not agree(e, d, aliases) or local_copy(e, d)]
     return sorted(out, key=lambda x: (x[0].path, x[0].line))
+
+
+def mismatches() -> list[tuple[Decl, Decl]]:
+    """The externs that differ and are not listed in KNOWN."""
+    listed = known()
+    return [(e, d) for e, d in all_mismatches() if (e.path, e.name) not in listed]
+
+
+def check() -> list[str]:
+    """Errors: an extern that differs and is not listed, a listed one that
+    no longer differs."""
+    rows = all_mismatches()
+    found = {(e.path, e.name) for e, _ in rows}
+    errors = [f"{e.path}:{e.line}: extern {e.text()}; defined {d.text()} ({d.path}:{d.line})"
+              for e, d in rows if (e.path, e.name) not in known()]
+    errors += [f"{KNOWN}: {f} {name}: listed, but its extern now agrees with the definition"
+               for f, name in sorted(set(known()) - found)]
+    return errors
 
 
 BUILTIN = {"u8", "u16", "u32", "u64", "s8", "s16", "s32", "s64", "BOOL", "fx32", "char", "void", "float",
@@ -385,9 +429,16 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--symbol")
     ap.add_argument("--count", action="store_true")
+    ap.add_argument("--check", action="store_true")
     ap.add_argument("--fix", nargs="*", metavar="FILE",
                     help="rewrite the externs that differ (in FILEs, or everywhere) with the definition's type")
     args = ap.parse_args()
+    if args.check:
+        errors = check()
+        if errors:
+            print("\n".join(errors))
+            return 1
+        return 0
     if args.fix is not None:
         done, left = fix(set(args.fix) if args.fix else None)
         print("\n".join(left))

@@ -107,6 +107,17 @@ with tempfile.TemporaryDirectory(prefix="test_extern_types") as d:
     extern_types.file_types.cache_clear()
     if [e.path for e, _ in extern_types.mismatches()] != ["src/game/copy.c"]:
         errors.append("extern_types: reader.c differs after --fix")
+    errs = extern_types.check()
+    if len(errs) != 1 or "copy.c" not in errs[0]:
+        errors.append(f"extern_types --check: want one error for copy.c, got {errs}")
+    (root / "config/AWRE").mkdir(parents=True)
+    (root / "config/AWRE/extern_types.txt").write_text(
+        "# comment\nsrc/game/copy.c gFoo a local copy kept on purpose\nsrc/game/reader.c gFoo agrees now\n")
+    errs = extern_types.check()
+    if extern_types.mismatches() or len(errs) != 1 or "reader.c gFoo" not in errs[0]:
+        errors.append(f"extern_types: a listed extern is left out and a stale entry reported, got {errs}")
+    else:
+        print("extern_types --check: ok")
 
 if errors:
     sys.exit("test_shift_gaps: " + "\n  ".join(errors))

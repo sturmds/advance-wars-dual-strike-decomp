@@ -28,7 +28,9 @@ code (src/game/, include/game/) and SDK/library code (everything else):
   extern_type
             an extern of a data object whose type is not the definition's
             (tools/extern_types.py): a reader with a byte or word view of a
-            struct does not follow a change to it. Needs build/gen/bss/
+            struct does not follow a change to it. The externs that
+            config/AWRE/extern_types.txt lists, with a reason, are left
+            out. Needs build/gen/bss/
             (the .bss definitions bss.py gen writes)
   placeholder
             a zeroed `u8 NAME[N];` definition standing for a variable whose

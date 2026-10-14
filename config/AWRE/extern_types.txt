@@ -1,0 +1,6 @@
+# Externs of data objects whose type differs from the definition on purpose
+# (tools/extern_types.py, issue 0087). One per line: FILE SYMBOL reason.
+# `make release` fails on an extern that differs and is not listed here, and
+# on a listed one that agrees again.
+
+include/game/Unk_022a7a9c.h data_022a7a9c the battle score fields (Unk_022a7a9c) and BattleResults overlap: totalPoints and previousBest share 0x14-0x1b with expGain and expTaken, and frontCo and backCo are rows[0]'s first halfwords; one struct needs the order in which the result code uses them worked out
