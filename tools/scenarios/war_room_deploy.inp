@@ -1,0 +1,44 @@
+# War Room from an empty save: first map, the CO under the cursor, Deploy.
+# tools/emu.py run tools/scenarios/war_room_deploy.inp [ROM[=ELF]]
+#
+# Retail's empty save offers only Jake, and Rachel's tutorial plays on the CO
+# screen; the A presses that retry until a screen answers also clear it.
+
+@ Ov004Task_RunPressStartScreen                # title screen
++60 press start until MainMenu_Setup
++60 press down until MainMenu_HandleKeys       # runs only while a key is down
++10 press a until MainMenu_BuildPage2          # War Room page
++30 press a until func_0210322c                # new War Room
+@ MapSelect_Init
++60 press a until MapSelect_ConfirmMap         # first map; loads the battle in its setup phase
+
+# Setup phase: A opens the menu (CO, Intel, Options, Save, Deploy).
+# data_02183b08 is the map state of a one-map battle (Unk_02080440_48,
+# include/game/Unk_02080440.h).
+@ Game_State15_RunStep
+expect mem data_02183b08+0xba u8 == 1          # coSelectPhase: the Setup phase
++30 press a until func_020bc5c0
++20 press a until CoSelectScreen_Create        # CO
++60 press a until CoSelectScreen_OpenCoList tries 40   # retail: Rachel's tutorial first
++20 press a until CoSelectScreen_ConfirmCoList
++30 press start until CoSelectScreen_BeginExit
+@ Game_State15_RunStep
++30 press a until func_020bc5c0
++20 press up until PopupMenu_HandleKeys        # Deploy: the menu wraps
++15 press a
+@ ChoicePrompt_Update                          # "Are you ready?", cursor on No
++10 press left until ChoicePrompt_DrawCursor
++10 press a
+
+# The battle starts (Setup to battle) and player 1's first turn takes input.
+expect reach func_020e88ac within 600
+expect reach Game_State15_RunStep within 400
+expect mem data_02183b08+0xba u8 == 0          # coSelectPhase: over
+expect mem data_02183b08+0x58 u8 == 1          # gameMode: GAME_MODE_WAR_ROOM
+expect mem data_02183b08+0x1b8 u16 == 0x8b     # unk_184.mapId: Spann Island
+expect mem data_02183b08+0x18 u16 == 15        # unk_18, the game state: 15, a human turn
+expect mem data_02183b08+0x0 u16 == 1          # day
+expect mem data_02183b08+0x2 u16 == 1          # currentPlayer
+expect mem data_02183b08+0x5864 u8 == 20       # playerSlots[1].front.id: CO_JAKE, under the cursor
++30 shot turn1
+end

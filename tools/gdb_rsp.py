@@ -17,7 +17,7 @@ follow:
   - `D` and `k` both detach; the emulator keeps running.
 
 Facts about melonDS's stub and the protocol: docs/third-party/melonds.md.
-Used by tools/melonds_check.py. Tested without an emulator by
+Used by tools/melonds_check.py and tools/emu.py. Tested without an emulator by
 tools/tests/test_gdb_rsp.py.
 """
 

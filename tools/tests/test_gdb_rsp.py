@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the GDB remote protocol client and the parts of melonds_check.py that need no emulator.
+"""Check the GDB remote protocol client and the parts of melonds_check.py and melonds.py that need no emulator.
 
     python3 tools/tests/test_gdb_rsp.py
 
@@ -21,6 +21,7 @@ TOOLS = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(TOOLS))
 
 import gdb_rsp  # noqa: E402
+import melonds  # noqa: E402
 import melonds_check  # noqa: E402
 
 errors = []
@@ -128,7 +129,7 @@ expect("packets", [c for c in stub.log if not c.startswith("m")],
 expect("read split", [c for c in stub.log if c.startswith("m")], ["m02000000,00000200", "m02000200,00000058"])
 
 
-# melonds_check parts
+# melonds_check.py and melonds.py parts
 
 expect("presses", melonds_check.parse_presses("2760:start,0x10:a+b"), [(2760, 8), (16, 3)])
 
@@ -138,7 +139,8 @@ with tempfile.TemporaryDirectory() as tmp:
     struct.pack_into("<IIII", rom, 0x100, 0, 0x022AD560, 0x1000, 0x20)
     struct.pack_into("<IIII", rom, 0x120, 1, 0x02350560, 0x2A000, 0x40)
     (Path(tmp) / "a.nds").write_bytes(rom)
-    expect("overlays end", melonds_check.overlays_end(Path(tmp) / "a.nds"), 0x0237A5A0)
+    expect("overlay ranges", melonds.overlay_ranges(Path(tmp) / "a.nds"),
+           {"ov000": (0x022AD560, 0x022AE580), "ov001": (0x02350560, 0x0237A5A0)})
 
     # An ELF with one section header table: null, .symtab, .strtab.
     strtab = b"\0Foo\0Bar\0"
@@ -154,7 +156,8 @@ with tempfile.TemporaryDirectory() as tmp:
                 + struct.pack("<IIIIIIIIII", 0, 2, 0, 0, 0x34, len(symtab), 2, 0, 4, 16)
                 + struct.pack("<IIIIIIIIII", 0, 3, 0, 0, 0x34 + len(symtab), len(strtab), 0, 0, 1, 0))
     (Path(tmp) / "a.elf").write_bytes(bytes(header) + body + sections)
-    expect("elf symbols", melonds_check.elf_symbols(Path(tmp) / "a.elf"), {"Foo": 0x02000800})
+    symbols = melonds.Symbols.for_rom(Path(tmp) / "a.nds", Path(tmp) / "a.elf")
+    expect("elf symbols", (symbols.functions, symbols.data), ({"Foo": 0x02000800}, {"Bar": 0x02100000}))
 
 
 if errors:

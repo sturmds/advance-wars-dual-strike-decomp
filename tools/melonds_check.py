@@ -39,57 +39,32 @@ retail. A ROM fails when it hits an exception, hangs, puts the heap inside
 overlay memory, or misses a marker that the first ROM on the command line
 reached.
 
-Facts about melonDS (config keys, exception entry): docs/third-party/melonds.md.
+The launch, config and symbol code is shared with tools/emu.py, in
+tools/melonds.py. Facts about melonDS (config keys, exception entry):
+docs/third-party/melonds.md.
 
 Exit 0 when every ROM passes, 1 otherwise, 2 when melonDS could not be run.
 """
 
 import argparse
-import bisect
 import concurrent.futures
-import hashlib
 import os
-import re
-import shutil
-import signal
-import socket
-import struct
-import subprocess
 import sys
 import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from gdb_rsp import GdbClient, ProtocolError  # noqa: E402
+from melonds import (MELONDS, ROOT, SIGILL, VBLANK_COUNT, VECTORS, Symbols, describe_exception,  # noqa: E402
+                     free_ports, overlay_ranges, parse_keys, parse_rom_arg, start_melonds, stop_melonds)
 
-ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "build/melonds"
 
-
-def default_melonds() -> str:
-    """melonDS built in a melonDS checkout beside the main checkout of this repo (worktrees included)."""
-    try:
-        common = subprocess.run(["git", "rev-parse", "--path-format=absolute", "--git-common-dir"], cwd=ROOT,
-                                capture_output=True, text=True, check=True).stdout.strip()
-        main = Path(common).parent
-    except (OSError, subprocess.CalledProcessError):
-        main = ROOT
-    return str(main.parent / "melonDS/build/melonDS")
-
-
-MELONDS = os.environ.get("MELONDS") or default_melonds()
-
-VBLANK_COUNT = 0x027FFC3C  # SHARED_FRAME_COUNTER (include/sdk/os_common.h), raised by the VBlank interrupt
 ARENA_LO = 0x027FFDA0  # OS arena low ends, one word per arena; arena 0 is main RAM
-VECTORS = {0xFFFF0004: "undefined instruction", 0xFFFF000C: "prefetch abort",
-           0xFFFF0010: "data abort"}
-SIGILL = 4
 HEARTBEAT = "MainLoop_RunFrame"
 HANG_FRAMES = 600
 MARKERS = ("Mem_InitHeaps", "Ov004Task_InitScene", "Ov004Task_RunPressStartScreen", "MainMenu_Setup")
 KEYPAD = "Keypad_UpdateState"  # takes the keys held this frame in r1 (include/game/keypad.h bits)
-KEYS = {"a": 0x1, "b": 0x2, "select": 0x4, "start": 0x8, "right": 0x10, "left": 0x20, "up": 0x40,
-        "down": 0x80, "r": 0x100, "l": 0x200, "x": 0x400, "y": 0x800}
 HOLD = 4  # frames a scripted key stays down
 # START on the title screen, twice: the first skips its animation, the second opens the
 # main menu (MainMenu_Setup, at frame 2950 in retail).
@@ -97,188 +72,30 @@ PRESSES = "2760:start,2910:start"
 POLL = 0.25  # seconds of wall time between stops
 
 
-# Symbols
-
-def config_symbols() -> dict[str, int]:
-    out = {}
-    pattern = re.compile(r"^(\S+) kind:function\([^)]*\) addr:(0x[0-9a-fA-F]+)")
-    for path in sorted((ROOT / "config/AWRE/arm9").rglob("symbols.txt")):
-        for line in path.read_text().splitlines():
-            m = pattern.match(line)
-            if m:
-                out.setdefault(m[1], int(m[2], 16))
-    return out
-
-
-def elf_symbols(path: Path) -> dict[str, int]:
-    """Function symbols of a 32-bit little-endian ELF (STT_FUNC), Thumb bit cleared."""
-    data = path.read_bytes()
-    if data[:4] != b"\x7fELF" or data[4] != 1 or data[5] != 1:
-        raise SystemExit(f"error: {path}: not a 32-bit little-endian ELF")
-    shoff, = struct.unpack_from("<I", data, 0x20)
-    shentsize, shnum = struct.unpack_from("<HH", data, 0x2E)
-    sections = [struct.unpack_from("<IIIIIIIIII", data, shoff + i * shentsize) for i in range(shnum)]
-    out = {}
-    for sh in sections:
-        if sh[1] != 2:  # SHT_SYMTAB
-            continue
-        strtab = sections[sh[6]]
-        for off in range(sh[4], sh[4] + sh[5], 16):
-            name_off, value, _size, info, _other, _shndx = struct.unpack_from("<IIIBBH", data, off)
-            if info & 0xF != 2:  # STT_FUNC
-                continue
-            start = strtab[4] + name_off
-            name = data[start:data.index(b"\0", start)].decode()
-            out.setdefault(name, value & ~1)
-    return out
-
-
-def symbols_for(rom: Path, elf: Path | None) -> tuple[dict[str, int], str]:
-    if elf is not None:
-        return elf_symbols(elf), str(elf)
-    retail = (ROOT / "config/AWRE/rom.sha1").read_text().split()[0]
-    if hashlib.sha1(rom.read_bytes()).hexdigest() == retail:
-        return config_symbols(), "config/AWRE/arm9 (retail ROM)"
-    sibling = rom.parent / "arm9.elf"
-    if sibling.exists():
-        return elf_symbols(sibling), str(sibling)
-    raise SystemExit(f"error: {rom} is not retail and has no arm9.elf beside it; give one as ROM=ELF")
-
-
-def overlays_end(rom: Path) -> int:
-    """The highest end address (RAM address + size + .bss size) in the ROM's ARM9 overlay table."""
-    data = rom.read_bytes()
-    offset, size = struct.unpack_from("<II", data, 0x50)
-    end = 0
-    for entry in range(offset, offset + size, 32):
-        _id, ram, ram_size, bss_size = struct.unpack_from("<IIII", data, entry)
-        end = max(end, ram + ram_size + bss_size)
-    return end
-
-
-# melonDS
-
-CONFIG = """\
-LimitFPS = false
-AudioSync = false
-MuteFastForward = true
-
-[Emu]
-DirectBoot = true
-ExternalBIOSEnable = false
-ConsoleType = 0
-
-[JIT]
-Enable = false
-
-[Screen]
-UseGL = false
-
-[Mic]
-InputType = 0
-
-[Instance0]
-SaveFilePath = "{save}"
-SavestatePath = "{save}"
-CheatFilePath = "{save}"
-EnableCheats = false
-
-[Instance0.Audio]
-Volume = 0
-
-[Instance0.Window0]
-ShowOSD = false
-
-[Instance0.Gdb]
-Enabled = true
-
-[Instance0.Gdb.ARM9]
-Port = {arm9}
-BreakOnStartup = true
-
-[Instance0.Gdb.ARM7]
-Port = {arm7}
-BreakOnStartup = false
-"""
-
-
-def free_ports(n: int) -> list[int]:
-    socks = []
-    for _ in range(n):
-        s = socket.socket()
-        s.bind(("127.0.0.1", 0))
-        socks.append(s)
-    ports = [s.getsockname()[1] for s in socks]
-    for s in socks:
-        s.close()
-    return ports
-
-
-def start_melonds(rom: Path, work: Path, arm9: int, arm7: int, limit: int, save: Path | None) -> subprocess.Popen:
-    if work.exists():
-        shutil.rmtree(work)
-    for sub in ("config/melonDS", "home", "save"):
-        (work / sub).mkdir(parents=True)
-    if save is not None:
-        shutil.copyfile(save, work / "save" / (rom.resolve().stem + ".sav"))
-    (work / "config/melonDS/melonDS.toml").write_text(
-        CONFIG.format(save=work / "save", arm9=arm9, arm7=arm7))
-    env = {
-        "PATH": "/usr/bin:/bin",
-        "HOME": str(work / "home"),
-        "XDG_CONFIG_HOME": str(work / "config"),
-        "XDG_CACHE_HOME": str(work / "home/.cache"),
-        "XDG_DATA_HOME": str(work / "home/.local/share"),
-        "QT_QPA_PLATFORM": "offscreen",
-        "SDL_AUDIODRIVER": "dummy",
-    }
-    # timeout stops melonDS if this script dies; the session lets stop_melonds kill both.
-    with open(work / "melonds.log", "w") as log:
-        return subprocess.Popen(["timeout", "-k", "5", str(limit), MELONDS, str(rom.resolve())],
-                                env=env, cwd=work, stdout=log, stderr=subprocess.STDOUT,
-                                stdin=subprocess.DEVNULL, start_new_session=True)
-
-
-def stop_melonds(proc: subprocess.Popen) -> None:
-    for sig in (signal.SIGTERM, signal.SIGKILL):
-        try:
-            os.killpg(proc.pid, sig)
-        except ProcessLookupError:
-            return
-        try:
-            proc.wait(3)
-            return
-        except subprocess.TimeoutExpired:
-            pass
-
-
 # One run
 
 class Run:
     def __init__(self, rom: Path, elf: Path | None, index: int):
         self.rom = rom
-        self.symbols, self.symbol_source = symbols_for(rom, elf)
-        self.by_addr = sorted((a, n) for n, a in self.symbols.items())
+        self.symbols = Symbols.for_rom(rom, elf)
+        self.symbol_source = self.symbols.source
         self.work = OUT / f"{index}-{rom.stem}"
         self.problems: list[str] = []
         self.markers: dict[str, int] = {}
         self.frames = 0
         self.max_gap = 0
         self.heap = None
-        self.overlays_end = overlays_end(rom)
+        # The highest end address (RAM address + size + .bss size) of an ARM9 overlay.
+        self.overlays_end = max(end for _, end in overlay_ranges(rom).values())
         self.wall = 0.0
 
     def name(self, addr: int) -> str:
-        i = bisect.bisect_right(self.by_addr, (addr, "\uffff")) - 1
-        if i < 0 or addr - self.by_addr[i][0] >= 0x10000:
-            return f"{addr:08x}"
-        base, name = self.by_addr[i]
-        return f"{name}+{addr - base:#x}"
+        return self.symbols.name(addr)
 
     def address(self, name: str) -> int:
-        if name not in self.symbols:
+        if name not in self.symbols.functions:
             raise SystemExit(f"error: {name} not in {self.symbol_source}")
-        return self.symbols[name]
+        return self.symbols.functions[name]
 
     def run(self, frames: int, ports: tuple[int, int], save: Path | None,
             presses: list[tuple[int, int]]) -> "Run":
@@ -373,36 +190,18 @@ class Run:
                 return
 
     def exception(self, pc: int, regs: dict[str, int], signal_: int) -> None:
-        if signal_ == SIGILL and pc not in VECTORS:
-            # melonDS stops before taking the exception; its pc then reads one instruction ahead.
-            kind, where = "undefined instruction", pc - (2 if regs["cpsr"] & 0x20 else 4)
-        else:
-            kind = VECTORS[pc]
-            thumb = regs[{"undefined instruction": "spsr_und"}.get(kind, "spsr_abt")] & 0x20
-            if kind == "undefined instruction":
-                where = regs["lr_und"] - (2 if thumb else 4)
-            elif kind == "prefetch abort":
-                where = regs["lr_abt"] - 4
-            else:
-                where = regs["lr_abt"] - 8
+        kind, where = describe_exception(pc, regs, signal_)
         self.problems.append(f"{kind} at {where:08x} ({self.name(where)}), frame {self.frames}")
-
-
-def parse_rom_arg(arg: str) -> tuple[Path, Path | None]:
-    rom, _, elf = arg.partition("=")
-    return Path(rom), Path(elf) if elf else None
 
 
 def parse_presses(text: str) -> list[tuple[int, int]]:
     presses = []
     for item in filter(None, text.split(",")):
         frame, _, keys = item.partition(":")
-        mask = 0
-        for key in keys.lower().split("+"):
-            if key not in KEYS:
-                raise SystemExit(f"error: unknown key {key!r} in --press (keys: {', '.join(KEYS)})")
-            mask |= KEYS[key]
-        presses.append((int(frame, 0), mask))
+        try:
+            presses.append((int(frame, 0), parse_keys(keys)))
+        except ValueError as e:
+            raise SystemExit(f"error: {e} in --press") from None
     return presses
 
 

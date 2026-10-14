@@ -369,6 +369,17 @@ A mod that changes code size moves every later address. The linker fixes an addr
   - check a count with `python3 tools/shift_gaps.py`, and list what is left with `--list KIND`.
 - `python3 tools/resolve_overlay_relocs.py [--write]` narrows relocations that dsd marked `module:overlays(...)` because several overlays share the target address. Run it after anything that regenerates `relocs.txt`, then `make release`.
 
+## Driving the game in melonDS
+
+`tools/emu.py` plays the game in melonDS to test a change to what it does. It uses the same melonDS and GDB stub as `make emu-check`, through `tools/melonds.py` (launch, config, ELF symbols and process control, shared by both tools). The docstring of `emu.py` describes the script format; `.claude/skills/emu-drive/` describes how to write and read a scenario.
+
+- `python3 tools/emu.py run SCRIPT [ROM[=ELF]]` plays a scenario script with no window, as fast as melonDS goes, and checks its `expect` lines. Keys are set at `Keypad_Poll+0x30`, where `r1` holds this DS's keys, once per polled frame. A step waits for a function to run or for memory to hold a value, so a script works on any build that keeps the names it uses. Exit 0 when every step passes, 1 when one fails, 2 when the script or a name in it is wrong or melonDS could not be run. Output goes to `build/emu/<script stem>/`: `<tag>.log`, a PNG per `shot` step and one on failure, with the tag taken from the ROM's path (`build-AWRE`, `orig-AWRE`). Screenshots need PIL.
+- `python3 tools/emu.py record OUT [ROM[=ELF]]` opens a window with the frame limiter on and the user's key bindings, and writes each change of the keys held, by VBlank, with a comment when a known screen function runs. The recording replays exactly only on the ROM and save it was made on.
+- `python3 tools/emu.py play [ROM[=ELF]]` opens a window with nothing scripted.
+- Scenario scripts that belong in git go in `tools/scenarios/`. `tools/scenarios/war_room_deploy.inp` goes from the title screen through the War Room's first map, CO select and Deploy to player 1's first turn, on retail and on `build/AWRE.nds`.
+- Each mode starts from an empty save unless `--save FILE` gives one to copy, and runs melonDS with a config, home and save directory of its own under `build/emu/`, so firmware settings and the rest stay fixed and runs repeat. `record` and `play` read only the key and joystick tables of the user's melonDS config.
+- Replay by VBlank gives the same main RAM run after run: the RNG starts from a constant and the ARM9 never reads the RTC. An empty save shifts everything by about 75 frames, since the game formats it first.
+
 ## Reference
 
 | Command | What it does |
@@ -397,6 +408,8 @@ A mod that changes code size moves every later address. The linker fixes an addr
 | `python3 tools/progress.py --write PROGRESS.md` | Write `PROGRESS.md` from the report `make release` wrote; the pre-commit hook runs it |
 | `make shift` | Build `build/shift/AWRE.nds` with padding in main and check that symbols moved |
 | `make emu-check` | Boot retail, our ROM and the shifted ROMs in melonDS to the main menu; fail on an exception, a hang or a heap inside overlay memory |
+| `python3 tools/emu.py run SCRIPT [ROM]` | Play a scenario script in melonDS and check its `expect` lines; log and screenshots in `build/emu/` |
+| `python3 tools/emu.py record OUT [ROM]` | Record the keys you play in a melonDS window as a script |
 | `python3 tools/scan_pointers.py` | Words that look like pointers but have no relocation |
 | `python3 tools/resolve_overlay_relocs.py` | Narrow `overlays(...)` relocations to one overlay where the rules allow |
 | `ninja objdiff.json` | objdiff project file, for the objdiff GUI if you install it |

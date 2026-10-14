@@ -181,14 +181,15 @@ emu-check: shift
 # and the C text shift_gaps.py counts as a gap (test_shift_gaps.py), and
 # the alias offsets alias_check.py compiles (test_alias_check.py), and
 # the file merges of merge_files.py (test_merge_files.py), and the
-# declaration moves of decls.py (test_decls.py);
+# declaration moves of decls.py (test_decls.py), and emu.py's scripts,
+# steps, recordings and key bindings (test_emu.py);
 # no ROM or build needed
 # (test_ds.py, test_pragmas.py, test_absolute.py, test_data_order.py,
 # test_bss.py, test_data.py and test_alias_check.py use the compiler from make setup; test_ds.py
 # checks more when extract/ exists, test_bss.py when build/fnindex.json and
 # build/dsindex.json exist, test_data.py when the ROM exists as well;
 # test_sound.py checks the round trip of the ROM's archive when extract/ exists;
-# test_gdb_rsp.py never starts melonDS).
+# test_gdb_rsp.py and test_emu.py never start melonDS).
 # Git exports GIT_DIR, GIT_INDEX_FILE and others to hooks, so a test run from
 # pre-commit would send the git commands meant for a throwaway repo to the
 # repository being committed (issue 0076). TEST_ENV drops every GIT_ variable
@@ -229,6 +230,7 @@ TESTS := \
 	tools/tests/test_decls.py \
 	tools/tests/test_alias_check.py \
 	tools/tests/test_gdb_rsp.py \
+	tools/tests/test_emu.py \
 	tools/tests/test_maps.py
 
 test:
