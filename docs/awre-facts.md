@@ -26,13 +26,13 @@ What we know about the US/AUS ROM, from plan step 0.2 (2026-10-06). Everything h
 
 - 7 ARM9 overlays, no ARM7 overlays, 1,799 files in the file system.
 - 7,461 ARM and 22 Thumb functions, about 1.69 MB of code. Counts are from dsd's analysis, so they can still shift as boundaries get fixed.
-- Main's sections: `.text` to 0x02129760, `.rodata` to 0x02151c68, `.data` to 0x0216e020, `.bss` to 0x022ad560.
+- Main's sections: `.text` to 0x02129760, `.exception` to 0x02129768, `.exceptix` to 0x021298b8, `.rodata` to 0x02151c68, `.data` to 0x0216e020, `.bss` to 0x022ad560.
 - Rough regions in main: game code 0x02000b24 to about 0x02109000; system library code about 0x02109000 to 0x0211e980; MSL C, runtime and floating-point library 0x0211e980 to 0x02129760.
-- Exception table (28 entries) at 0x02129768, covering only the MSL/runtime region.
+- Exception table (28 entries) at 0x02129768, after 8 bytes of `.exception` at 0x02129760, covering only the debugger library and five runtime functions in the MSL/runtime region. The build makes it from those files' records (`docs/data-tool.md`, "The exception table").
 
 ## Compiler
 
-- **mwccarm 2.0, builds 72, 73, 79 or 82** (CodeWarrior for DS 1.2 base to sp2p3), flags `-O4,p -proc arm946e -interworking`. These four builds produced identical code in every test, so the build uses 2.0-72.
+- **mwccarm 2.0, builds 72, 73, 79 or 82** (CodeWarrior for DS 1.2 base to sp2p3), flags `-O4,p -proc arm946e -interworking`. These four builds produced identical code in every test, so the build uses 2.0-72. The build adds `-Cpp_exceptions off`, which changes no code: the ROM has exception records only for the files in `config/AWRE/exception_tables.txt`, which build with `-Cpp_exceptions on`.
 - Evidence:
   - 15 game functions from main, ov003, ov006 and ITCM match byte for byte (relocations masked). Nine of them match only builds 72–82.
   - 160 system library functions match exactly with 2.0-72. 2.0-84 matches 47 and 3.0-139 matches 25, all within the 160. So the library code uses the same compiler and flags as the game.
@@ -64,7 +64,7 @@ Found 2026-10-11 (issues 0013 and 0042). ARM7 is the second CPU: sound, touch sc
 
 - `dsd init` (0.12.0 and 0.12.1) aborts: "Local function call from 0x021347a6 in ARM9 main to 0x021341aa leads to no function". Its function search runs past the end of `.text` into `.rodata` graphics data. `tools/dsd_init.py` works around it by zeroing 0x02129760–0x0212b860 in a temporary copy. That range held 29 real pointers, all in the MSL exception table at 0x02129768 (28 function entries plus one pointer to action data at 0x02129760). They were added to `relocs.txt` by hand on 2026-10-06, so the workaround leaves no known gap. The other pointer-like words in the range (`0x01ff8888`, `0x01ff9999`, `0x01ffffff`, …) fall outside ITCM's 0x01ff8000–0x01ffde80 or look like fill patterns, so they are data.
 - 28 warnings about calls into the middle of functions, all in runtime and floating-point assembly. dsd adds labels for them.
-- `dsd fix find-exceptix` reports "__FindExceptionTable not found".
+- `dsd fix find-exceptix` reports "__FindExceptionTable not found". The `.exception` and `.exceptix` sections were added to `delinks.txt` by hand.
 - `dsd rom build` needs an ARM7 BIOS dump to compute the secure-area CRC. We don't use one: `tools/fix_header.py` checks that the secure area is unchanged, copies the original CRC, and recomputes the header CRC.
 
 ## Hard-coded addresses noticed

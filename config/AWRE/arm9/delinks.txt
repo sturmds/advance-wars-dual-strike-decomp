@@ -1,5 +1,7 @@
     .text       start:0x02000000 end:0x02129760 kind:code align:32
-    .rodata     start:0x02129760 end:0x02151c68 kind:rodata align:4
+    .exception  start:0x02129760 end:0x02129768 kind:rodata align:4
+    .exceptix   start:0x02129768 end:0x021298b8 kind:rodata align:4
+    .rodata     start:0x021298b8 end:0x02151c68 kind:rodata align:4
     .ctor       start:0x02151c68 end:0x02151c68 kind:rodata align:4
     .data       start:0x02151c80 end:0x0216e020 kind:data align:32
     .bss        start:0x0216e020 end:0x022ad560 kind:bss align:32
@@ -24661,22 +24663,28 @@ src/sdk/math/math_count_population.c:
 src/sdk/isd/isd_v_format.c:
     complete
     .text       start:0x0211e980 end:0x0211fce4
+    .exception  start:0x02129760 end:0x02129768
+    .exceptix   start:0x02129768 end:0x02129774
 
 src/sdk/isd/isd_double_units_digit.c:
     complete
     .text       start:0x0211fce4 end:0x0211fe0c
+    .exceptix   start:0x02129774 end:0x02129780
 
 src/sdk/isd/isd_double_divide_by_ten.c:
     complete
     .text       start:0x0211fe0c end:0x0212029c
+    .exceptix   start:0x02129780 end:0x0212978c
 
 src/sdk/isd/isd_double_times_ten.c:
     complete
     .text       start:0x0212029c end:0x02120574
+    .exceptix   start:0x0212978c end:0x02129798
 
 src/sdk/isd/isd_double_add.c:
     complete
     .text       start:0x02120574 end:0x0212090c
+    .exceptix   start:0x02129798 end:0x021297a4
 
 src/sdk/isd/isd_double_exponent.c:
     complete
@@ -24694,6 +24702,7 @@ src/sdk/isd/isd_write_spaces.c:
     complete
     .text       start:0x02120a4c end:0x02120a9c
     .rodata     start:0x02151990 end:0x021519a4
+    .exceptix   start:0x021297a4 end:0x021297b0
 
 src/sdk/isd/isd_string_length.c:
     complete
@@ -24706,39 +24715,48 @@ src/sdk/isd/isd_channel_ring_write_byte.c:
 src/sdk/isd/isd_cart_ring_write_byte.c:
     complete
     .text       start:0x02120b64 end:0x02120c18
+    .exceptix   start:0x021297b0 end:0x021297bc
 
 src/sdk/isd/isd_print_target_write.c:
     complete
     .text       start:0x02120c18 end:0x02120d30
+    .exceptix   start:0x021297bc end:0x021297c8
 
 src/sdk/isd/isd_printf.c:
     complete
     .text       start:0x02120d30 end:0x02120d9c
+    .exceptix   start:0x021297c8 end:0x021297d4
 
 src/sdk/isd/isd_report_failure.c:
     complete
     .text       start:0x02120d9c end:0x02120df4
     .rodata     start:0x021519ac end:0x021519e4
+    .exceptix   start:0x021297d4 end:0x021297e0
 
 src/sdk/isd/isd_bus_restore.c:
     complete
     .text       start:0x02120df4 end:0x02120e78
+    .exceptix   start:0x021297e0 end:0x021297ec
 
 src/sdk/isd/isd_bus_save.c:
     complete
     .text       start:0x02120e78 end:0x02120ee8
+    .exceptix   start:0x021297ec end:0x021297f8
 
 src/sdk/isd/isd_release_cartridge.c:
     complete
     .text       start:0x02120ee8 end:0x02120f18
+    .exceptix   start:0x021297f8 end:0x02129804
 
 src/sdk/isd/isd_acquire_cartridge.c:
     complete
     .text       start:0x02120f18 end:0x02120f38
+    .exceptix   start:0x02129804 end:0x02129810
 
 src/sdk/isd/isd_try_acquire_cartridge.c:
     complete
     .text       start:0x02120f38 end:0x02120fd4
+    .exceptix   start:0x02129810 end:0x0212981c
 
 src/sdk/isd/isd_test_flags.c:
     complete
@@ -24747,39 +24765,47 @@ src/sdk/isd/isd_test_flags.c:
 src/sdk/isd/isd_unregister_overlay.c:
     complete
     .text       start:0x02120ff0 end:0x02121060
+    .exceptix   start:0x0212981c end:0x02129828
 
 src/sdk/isd/isd_register_overlay.c:
     complete
     .text       start:0x02121060 end:0x021210d8
+    .exceptix   start:0x02129828 end:0x02129834
 
 src/sdk/isd/isd_overlay_table_remove_range.c:
     complete
     .text       start:0x021210d8 end:0x02121424
     .rodata     start:0x02151a0c end:0x02151a7c
+    .exceptix   start:0x02129834 end:0x02129840
 
 src/sdk/isd/isd_overlay_table_add_range.c:
     complete
     .text       start:0x02121424 end:0x02121908
     .rodata     start:0x02151acc end:0x02151b18
+    .exceptix   start:0x02129840 end:0x0212984c
 
 src/sdk/isd/isd_close_debug_region.c:
     complete
     .text       start:0x02121908 end:0x02121940
+    .exceptix   start:0x0212984c end:0x02129858
 
 src/sdk/isd/isd_open_debug_region.c:
     complete
     .text       start:0x02121940 end:0x021219b0
     .bss        start:0x022ad000 end:0x022ad018
+    .exceptix   start:0x02129858 end:0x02129864
 
 src/sdk/isd/isd_overlay_table_remove.c:
     complete
     .text       start:0x021219b0 end:0x02121a2c
     .rodata     start:0x02151b18 end:0x02151b40
+    .exceptix   start:0x02129864 end:0x02129870
 
 src/sdk/isd/isd_overlay_table_insert.c:
     complete
     .text       start:0x02121a2c end:0x02121ab8
     .rodata     start:0x02151b40 end:0x02151b68
+    .exceptix   start:0x02129870 end:0x0212987c
 
 src/sdk/isd/isd_fiq.c:
     complete
@@ -25115,6 +25141,7 @@ src/sdk/msl/fp_status_update_packed.c:
 src/sdk/func_021295b4.c:
     complete
     .text       start:0x021295b4 end:0x021295c0
+    .exceptix   start:0x0212987c end:0x02129888
 
 src/sdk/msl/semihost_write_char.c:
     complete
@@ -25135,10 +25162,12 @@ src/sdk/func_021295f8.c:
 src/sdk/msl/__write_console.c:
     complete
     .text       start:0x02129600 end:0x02129638
+    .exceptix   start:0x02129888 end:0x02129894
 
 src/sdk/msl/__read_console.c:
     complete
     .text       start:0x02129638 end:0x0212969c
+    .exceptix   start:0x02129894 end:0x021298a0
 
 src/sdk/msl/setjmp.c:
     complete
@@ -25151,10 +25180,12 @@ src/sdk/msl/longjmp.c:
 src/sdk/msl/__destroy_global_chain.c:
     complete
     .text       start:0x021296b8 end:0x02129710
+    .exceptix   start:0x021298a0 end:0x021298ac
 
 src/sdk/msl/__call_static_initializers.c:
     complete
     .text       start:0x02129710 end:0x02129748
+    .exceptix   start:0x021298ac end:0x021298b8
 
 src/sdk/runtime/__fp_status.c:
     complete

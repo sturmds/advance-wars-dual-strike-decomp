@@ -1,0 +1,12 @@
+# Source files and directories (a path ending in "/") built with exception
+# tables on (-Cpp_exceptions on); every other file builds with them off.
+# The linker collects their records into main's exception table at
+# 0x02129760 (docs/data-tool.md, "The exception table"; issue 0001). In the
+# retail ROM the table covers the debugger library under src/sdk/isd/ and
+# five runtime and console functions, and nothing else.
+src/sdk/isd/
+src/sdk/func_021295b4.c
+src/sdk/msl/__write_console.c
+src/sdk/msl/__read_console.c
+src/sdk/msl/__destroy_global_chain.c
+src/sdk/msl/__call_static_initializers.c

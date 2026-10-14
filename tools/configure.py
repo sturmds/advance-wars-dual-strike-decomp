@@ -51,7 +51,10 @@ SKREW_BIN = ".cache/tools/metroskrew/bin"
 # for DS 1.2 base package.
 CC = f"{SKREW_BIN}/mwccarm-2.0-72.exe"
 LD = f"{SKREW_BIN}/mwldarm-2.0-72.exe"
-CFLAGS = "-O4,p -proc arm946e -interworking -nostdinc -i include -i build/gen -i extracted/AWRE -msgstyle gcc"
+# -Cpp_exceptions off: the compiler writes no exception table record
+# (.exceptix) for a function. The original game and SDK code have none; the
+# files in config/AWRE/exception_tables.txt build with them on (issue 0001).
+CFLAGS = "-O4,p -proc arm946e -interworking -Cpp_exceptions off -nostdinc -i include -i build/gen -i extracted/AWRE -msgstyle gcc"
 LDFLAGS = "-proc arm946e -interworking -map closure,unused -msgstyle gcc -nodead -nostdlib -m Entry"
 
 # Some MSL files were built by an older compiler, mwccarm 2.0 build 56
@@ -60,9 +63,16 @@ LDFLAGS = "-proc arm946e -interworking -map closure,unused -msgstyle gcc -nodead
 COMPILERS = Path("config/AWRE/compilers.txt")
 CC_BY_VERSION = {"2.0-72": CC, "2.0-56": "tools/wine_cc.py"}
 
+# Source files and directories (ending in "/") whose functions have records
+# in main's exception table, at the start of .rodata (docs/data-tool.md,
+# "The exception table"). They build with exception tables on, and the
+# EXCEPTION command in the linker script collects their records.
+EXCEPTION_TABLES = Path("config/AWRE/exception_tables.txt")
+CFLAGS_EXCEPTIONS = CFLAGS.replace("-Cpp_exceptions off", "-Cpp_exceptions on")
+
 # ARM7 (docs/awre-facts.md, "ARM7"): the same compiler, built for size.
 CC7 = CC
-CFLAGS7 = "-O4,s -proc arm7tdmi -interworking -nostdinc -i include -i build/gen -i extracted/AWRE -msgstyle gcc"
+CFLAGS7 = "-O4,s -proc arm7tdmi -interworking -Cpp_exceptions off -nostdinc -i include -i build/gen -i extracted/AWRE -msgstyle gcc"
 LDFLAGS7 = "-proc arm7tdmi -interworking -map closure,unused -msgstyle gcc -nodead -nostdlib -m Entry"
 
 # Symbols with a fixed value, written into build/arm9.lcf after dsd lcf
@@ -189,16 +199,36 @@ def compiler_table() -> dict[str, str]:
     return table
 
 
+def exception_table_paths() -> list[str]:
+    """The files and directories listed in config/AWRE/exception_tables.txt."""
+    paths = []
+    for n, line in enumerate((ROOT / EXCEPTION_TABLES).read_text().splitlines(), 1):
+        line = line.split("#", 1)[0].strip()
+        if not line:
+            continue
+        if not (ROOT / line).exists():
+            sys.exit(f"error: {EXCEPTION_TABLES}:{n}: {line} does not exist")
+        paths.append(line)
+    return paths
+
+
+def has_exception_table(src: str, paths: list[str]) -> bool:
+    return any(src == p or (p.endswith("/") and src.startswith(p)) for p in paths)
+
+
 def compiler_for(src, module: str | None = None) -> tuple[str, str]:
     """(compiler, flags) for a source file: ARM7's for a file under src/arm7/
     or for code checked against an `arm7` function, ARM9's otherwise. The
-    compiler is the one compilers.txt names for the file, or 2.0-72."""
+    compiler is the one compilers.txt names for the file, or 2.0-72; the
+    flags turn exception tables on for the files exception_tables.txt lists."""
     if module == "arm7" or (module is None and is_arm7_source(src)):
         return CC7, CFLAGS7
     p = Path(src)
     if p.is_absolute() and p.is_relative_to(ROOT):
         p = p.relative_to(ROOT)
-    return compiler_table().get(p.as_posix(), CC), CFLAGS
+    src = p.as_posix()
+    flags = CFLAGS_EXCEPTIONS if has_exception_table(src, exception_table_paths()) else CFLAGS
+    return compiler_table().get(src, CC), flags
 
 
 def obj_of(src: str) -> str:
@@ -386,6 +416,7 @@ def main() -> int:
         "",
     ]
     table = compiler_table()
+    exception_paths = exception_table_paths()
     for src, obj in zip(sources, objs):
         implicit = MAP_OUTPUTS if src in MAP_SOURCES else []
         implicit = implicit + data_inc_deps.get(src, [])
@@ -395,6 +426,8 @@ def main() -> int:
         lines += [f"build {obj}: cc {src}{generated}", f"  out_d = {obj[:-2]}.d"]
         if src in table:
             lines.append(f"  cc = {table[src]}")
+        if has_exception_table(src, exception_paths):
+            lines.append(f"  cflags = {CFLAGS_EXCEPTIONS}")
         lines.append("")
     for src, obj in zip(sources7, objs7):
         generated = f" | {' '.join(data_inc_deps[src])}" if src in data_inc_deps else ""

@@ -5944,7 +5944,6 @@ __destroy_global_chain kind:function(arm,size=0x58) addr:0x021296b8
 __call_static_initializers kind:function(arm,size=0x38) addr:0x02129710
 __fp_status kind:function(arm,size=0xc) addr:0x02129748
 func_02129754 kind:function(arm,size=0xc) addr:0x02129754
-data_02129760 kind:data(any) addr:0x02129760
 data_021298b8 kind:data(byte[384]) addr:0x021298b8
 data_02129a38 kind:data(byte[384]) addr:0x02129a38
 data_02129bb8 kind:data(byte[384]) addr:0x02129bb8
@@ -9137,3 +9136,4 @@ data_02167e88 kind:data(byte[4]) addr:0x02167e88
 data_02167e8c kind:data(byte[4]) addr:0x02167e8c
 data_02167e90 kind:data(byte[4]) addr:0x02167e90
 data_0216d944 kind:data(byte[16]) addr:0x0216d944
+@ET@Isd_VFormat kind:data(byte[5]) addr:0x02129760

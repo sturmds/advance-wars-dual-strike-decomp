@@ -38,6 +38,17 @@ Found so far:
 
 - main `.rodata` and `.data`, ov002 `.data`: of 8,618 relocations, 43 were false and are gone: 11 inside LZ77-compressed streams, 12 in the cell offset tables of sprite files, 12 in the sine and cosine table, 7 in tables of halfwords or bytes, and 1 in a `BattleSideWeapon` record. No missed pointers turned up. `data.py relocs` does not flag these kinds yet; it should flag a relocation inside an LZ77 block, a sprite file or the sine table.
 
+## The exception table
+
+Main's first 0x158 bytes of read-only data, 0x02129760-0x021298b8, are not written in C and `data.py` does not touch them. They are the exception table that mwccarm and mwldarm make for C++ exception handling, and the build makes them the way the original did:
+
+- The compiler writes, for each function that calls another, a 12-byte record in the object's `.exceptix` section: the function's address, its size in bytes with bit 0 set when the third word holds the unwind data itself, and that unwind data or a pointer to the function's longer record in `.exception`. Functions that call nothing get none (the 15 other files in `src/sdk/isd/`).
+- `-Cpp_exceptions off` stops these records. The game, the SDK and most of MSL build with it (`CFLAGS` in `tools/configure.py`); the files and directories in `config/AWRE/exception_tables.txt` build with `-Cpp_exceptions on`. In the ROM those are the debugger library `src/sdk/isd/` and five runtime and console functions: 28 records, in link order. The other MSL files have none, and ARM7 has no table.
+- The `EXCEPTION` command in the linker script collects every object's `.exceptix` records between `__exception_table_start__` and `__exception_table_end__`. dsd writes it for a module section named `.exceptix`, so main's section list in `delinks.txt` has `.exception` (0x02129760-0x02129768: `Isd_VFormat`'s 5-byte record `@ET@Isd_VFormat` and the pad to 4) and `.exceptix` (0x02129768-0x021298b8) between `.text` and `.rodata`. Each of the 28 files lists its 12-byte `.exceptix` range, so dsd cuts the original records into the same objects and objdiff compares them; `isd_v_format.c` also lists the `.exception` range.
+- The 29 relocations in the range (28 function addresses and the pointer to `@ET@Isd_VFormat`) stay in `relocs.txt`. dsd needs them to cut the original objects; the linker writes the same words from our objects.
+
+A file added to `exception_tables.txt` whose functions have no record in the ROM grows the table and breaks the build; so does a listed function whose code changes size. Before this, every C object carried records that the linker script placed nowhere, and mwldarm warned twice per file (issue 0001).
+
 ## What it cannot do yet
 
 - Nested arrays of structs in a struct, unions with no name inside a struct, bit fields and floats: the object needs a declaration the tool can write, or it is written from its bytes in a new file.

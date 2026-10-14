@@ -28,7 +28,7 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 
 | # | Title | Status | Area | Milestone |
 |---|---|---|---|---|
-| [0001](0001-exceptix-linker-warnings.md) | mwldarm warns about `.exceptix` for every C function | open | build | M1 |
+| [0001](0001-exceptix-linker-warnings.md) | mwldarm warns about `.exceptix` for every C function | closed | build | M1 |
 | [0002](0002-shared-table-headers.md) | Agents create separate struct headers for the same table | in progress | loop | M1 |
 | [0003](0003-pointer-table-callers.md) | `fn.py show` finds no callers for functions reached through pointer tables | closed | tools | M1 |
 | [0004](0004-identical-functions.md) | Identical functions each cost a full agent run | open | loop | M1 |
