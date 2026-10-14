@@ -29,9 +29,10 @@ extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
-extern u8 data_0215c6c4[];   /* layer config while the main screen is current */
-extern u8 data_0215c714[];   /* layer config otherwise */
-extern char data_0215c7f4[]; /* "/ohashi/res_syogunchange" */
+extern GfxLayer
+    data_0215c6c4[]; /* layer config while the main screen is current */
+extern GfxLayer data_0215c714[]; /* layer config otherwise */
+extern char data_0215c7f4[];     /* "/ohashi/res_syogunchange" */
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define PLAYER (&GAME->players[GAME->currentPlayer])

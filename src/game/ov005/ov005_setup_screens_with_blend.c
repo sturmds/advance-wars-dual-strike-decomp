@@ -23,9 +23,9 @@ TextPrinter* Text_PrintByIdOnLayer0(int x, int y, u16* map, u32 textId,
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_ov005_023680f0[];   /* main screen layer config */
-extern u8 gOv005BlendSubLayers[];  /* sub screen layer config */
-extern char data_ov005_02368288[]; /* "/rikiishi" */
+extern GfxLayer data_ov005_023680f0[];  /* main screen layer config */
+extern GfxLayer gOv005BlendSubLayers[]; /* sub screen layer config */
+extern char data_ov005_02368288[];      /* "/rikiishi" */
 extern char gRikiishiFile005[];
 extern char gRikiishiFile006[];
 extern char gRikiishiFile007[];

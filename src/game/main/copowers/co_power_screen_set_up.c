@@ -26,9 +26,10 @@ extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_0215c050[];   /* layer config while the main screen is current */
-extern u8 data_0215c0a0[];   /* layer config otherwise */
-extern char data_0215c268[]; /* "/ohashi/res_syogunbreak" */
+extern GfxLayer
+    data_0215c050[]; /* layer config while the main screen is current */
+extern GfxLayer data_0215c0a0[]; /* layer config otherwise */
+extern char data_0215c268[];     /* "/ohashi/res_syogunbreak" */
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define PLAYER (&GAME->players[GAME->currentPlayer])

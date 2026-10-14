@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/script_slot.h"
 #include "game/task.h"
 
 void BlendFadeOut_Update(void);
@@ -15,7 +16,7 @@ void Screen_StartLayer0Blend(void);
 void func_020e4700(void);
 void func_020e4e7c(void);
 void func_020e4e98(void);
-extern u8 gMapScrollScript[];
+extern ScriptCommand gMapScrollScript[];
 
 TaskScriptCmd gExMachinaScript[] = {
 #include "data/main/gExMachinaScript.inc.c"

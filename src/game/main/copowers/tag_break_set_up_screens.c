@@ -32,14 +32,15 @@ extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_0215c3a4[];   /* layer config while the main screen is current */
-extern u8 data_0215c3f4[];   /* layer config otherwise */
-extern char data_0215c604[]; /* "/ohashi/res_tagbreak_black" */
-extern char data_0215c620[]; /* "/ohashi/res_tagbreak_union" */
-extern char data_0215c63c[]; /* "/ohashi/res_tagbreak_mix" */
-extern char data_0215c658[]; /* "/ohashi/res_tagbreak" */
-extern char data_0215c670[]; /* "/ohashi/res_tagbreak_head" */
-extern char data_0215c68c[]; /* "/ohashi/res_tagchange" */
+extern GfxLayer
+    data_0215c3a4[]; /* layer config while the main screen is current */
+extern GfxLayer data_0215c3f4[]; /* layer config otherwise */
+extern char data_0215c604[];     /* "/ohashi/res_tagbreak_black" */
+extern char data_0215c620[];     /* "/ohashi/res_tagbreak_union" */
+extern char data_0215c63c[];     /* "/ohashi/res_tagbreak_mix" */
+extern char data_0215c658[];     /* "/ohashi/res_tagbreak" */
+extern char data_0215c670[];     /* "/ohashi/res_tagbreak_head" */
+extern char data_0215c68c[];     /* "/ohashi/res_tagchange" */
 extern u8 data_0229fb70[];
 extern u8 gTagChangePalette[];
 

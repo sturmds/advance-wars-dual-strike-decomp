@@ -1,8 +1,9 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/event_script.h"
 
 void MenuDepth_Push(void);
-extern u8 data_02157480[];
+extern TaskScriptCmd data_02157480[];
 extern EventScriptCommand data_ov001_0236f67c[];
 extern EventScriptCommand data_ov001_0236f88c[];
 void func_ov001_02351d28(void);

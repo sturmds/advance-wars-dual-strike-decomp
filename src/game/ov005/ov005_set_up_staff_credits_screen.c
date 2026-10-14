@@ -25,9 +25,9 @@ void Sound_StartStream(int strmNo);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_ov005_0236966c[];    /* main screen layer config */
-extern u8 gOv005CreditsSubLayers[]; /* sub screen layer config */
-extern char data_ov005_0236988c[];  /* "/rikiishi" */
+extern GfxLayer data_ov005_0236966c[];    /* main screen layer config */
+extern GfxLayer gOv005CreditsSubLayers[]; /* sub screen layer config */
+extern char data_ov005_0236988c[];        /* "/rikiishi" */
 extern char gRikiishiFile05e[];
 extern char gRikiishiFile05f[];
 extern char gRikiishiFile060[];

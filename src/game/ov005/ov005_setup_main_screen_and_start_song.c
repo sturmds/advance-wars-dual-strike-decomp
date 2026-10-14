@@ -24,12 +24,12 @@ Task* Sound_StartSongSwitch(
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_ov005_02368a58[];   /* layer config for Screen_InitLayers */
-extern char data_ov005_02369440[]; /* directory of the files below */
-extern char gRikiishiFile036[];    /* layer 2 tiles */
-extern char gRikiishiFile037[];    /* layer 2 map */
-extern char gRikiishiFile038[];    /* layer 2 palette */
-extern u32 data_ov005_02367f4c[];  /* map bytes of a text BG by screen size */
+extern GfxLayer data_ov005_02368a58[]; /* layer config for Screen_InitLayers */
+extern char data_ov005_02369440[];     /* directory of the files below */
+extern char gRikiishiFile036[];        /* layer 2 tiles */
+extern char gRikiishiFile037[];        /* layer 2 map */
+extern char gRikiishiFile038[];        /* layer 2 palette */
+extern u32 data_ov005_02367f4c[]; /* map bytes of a text BG by screen size */
 extern u32 data_ov005_02367f5c
     []; /* map bytes of a rotation/scaling BG by screen size */
 

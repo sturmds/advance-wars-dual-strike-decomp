@@ -1,10 +1,11 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/power_damage.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u8 gPowerEffectTaskDesc[];
+extern TaskScriptCmd gPowerEffectTaskDesc[];
 extern char data_02168998[];
 extern char data_02168994[];
 

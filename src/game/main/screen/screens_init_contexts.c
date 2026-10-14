@@ -13,8 +13,8 @@ extern Unk_027c0288 data_027c0288;
 extern u8 gMainScreenContext[];
 extern u8 gSubScreenContext[];
 
-extern u8 data_021575c8[]; /* main screen layer config */
-extern u8 data_02157618[]; /* sub screen layer config */
+extern GfxLayer data_021575c8[]; /* main screen layer config */
+extern GfxLayer data_02157618[]; /* sub screen layer config */
 
 /* The two map states. The main screen lists data_02183b08 first, the sub
  * screen data_02189cd8. */

@@ -1,9 +1,10 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_021694c0.h"
 
 extern Unk_021694c0* data_021694c0;
-extern u8 data_02169900[];
+extern TaskScriptCmd data_02169900[];
 
 BOOL func_020f4a18(void);
 void* Task_FindByScript(void* script);

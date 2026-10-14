@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov006_0235f690.h"
 
@@ -19,11 +20,11 @@ void Ov006_ResetScreen1Effects(void);
 void Ov006_LoadPropertyCountGraphics(void);
 
 extern Unk_ov006_0235f690* data_ov006_0236d640;
-extern u8 data_ov006_0236aad8[]; /* layer config for Screen_InitLayers */
-extern char gMapeditDir[];       /* "/mapedit" */
-extern char gMapeditFile006[];   /* layer 3 tiles */
-extern char gMapeditFile007[];   /* layer 3 map */
-extern char gMapeditFile008[];   /* layer 3 palette */
+extern GfxLayer data_ov006_0236aad8[]; /* layer config for Screen_InitLayers */
+extern char gMapeditDir[];             /* "/mapedit" */
+extern char gMapeditFile006[];         /* layer 3 tiles */
+extern char gMapeditFile007[];         /* layer 3 map */
+extern char gMapeditFile008[];         /* layer 3 palette */
 extern char gMapeditFile001[];
 extern char gMapeditFile009[];
 extern char gMapeditFile00a[];

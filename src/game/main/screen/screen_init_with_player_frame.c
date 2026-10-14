@@ -5,7 +5,7 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0280* data_027c0280;
-extern u8 data_02169970[];
+extern GfxLayer data_02169970[];
 const u32 gBgAffineMapBytes[] = {
 #include "data/main/gBgAffineMapBytes.inc.c"
 };

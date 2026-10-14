@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/script_slot.h"
 #include "game/event_script.h"
 #include "game/song.h"
 #include "game/task.h"
@@ -47,7 +48,7 @@ void func_020ebf98(void);
 void func_020ebfec(void);
 void func_020ec04c(void);
 void func_020ecb04(void);
-extern u8 gMapScrollScript[];
+extern ScriptCommand gMapScrollScript[];
 void CaptureCountUp_Start(void);
 void CapturePicture_InitOffset(void);
 

@@ -4,8 +4,8 @@
 
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_02157668[];
-extern u8 data_02157618[];
+extern GfxLayer data_02157668[];
+extern GfxLayer data_02157618[];
 
 void Screen_SetBg0Mode(int mode);
 void Screen_SetBgMode(int mode);

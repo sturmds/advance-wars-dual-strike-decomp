@@ -18,17 +18,17 @@ BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 
 extern Unk_027c0280* data_027c0280;
-extern u8 gBmap083Layers[];  /* layer config for Screen_InitLayers */
-extern char data_02169c44[]; /* "/bmap" */
-extern char gBmapFile083[];  /* "083" */
-extern char gBmapFile084[];  /* "084" */
-extern char gBmapFile07d[];  /* "07d" */
-extern char gBmapFile07e[];  /* "07e" */
-extern char gBmapFile07f[];  /* "07f" */
-extern char gBmapFile080[];  /* "080" */
-extern char gBmapFile081[];  /* "081" */
-extern char gBmapFile082[];  /* "082" */
-extern u32 gTextMapBytes[];  /* map bytes of a text BG by screen size */
+extern GfxLayer gBmap083Layers[]; /* layer config for Screen_InitLayers */
+extern char data_02169c44[];      /* "/bmap" */
+extern char gBmapFile083[];       /* "083" */
+extern char gBmapFile084[];       /* "084" */
+extern char gBmapFile07d[];       /* "07d" */
+extern char gBmapFile07e[];       /* "07e" */
+extern char gBmapFile07f[];       /* "07f" */
+extern char gBmapFile080[];       /* "080" */
+extern char gBmapFile081[];       /* "081" */
+extern char gBmapFile082[];       /* "082" */
+extern u32 gTextMapBytes[];       /* map bytes of a text BG by screen size */
 extern u32
     gAffineMapBytes[]; /* map bytes of a rotation/scaling BG by screen size */
 

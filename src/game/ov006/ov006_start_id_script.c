@@ -1,7 +1,7 @@
 #include "types.h"
+#include "game/event_script.h"
 #include "game/Unk_ov006_0235f690.h"
 
-void* EventScript_Start(const void* script);
 int DesignMap_CopyName(int id, u8* buf);
 void Ov006_ClearLayer1Box(void);
 void Ov006_ClearLayer0Box(void);
@@ -10,10 +10,10 @@ int Ov006_HasNonSpace(u8* buf);
 void Ov006_LoadIdText(int id);
 
 extern Unk_ov006_0235f690* data_ov006_0236d640;
-extern u8 data_ov006_0236bb60[];
-extern u8 data_ov006_0236bc00[];
-extern u8 data_ov006_0236bca0[];
-extern u8 data_ov006_0236bd50[];
+extern EventScriptCommand data_ov006_0236bb60[];
+extern EventScriptCommand data_ov006_0236bc00[];
+extern EventScriptCommand data_ov006_0236bca0[];
+extern EventScriptCommand data_ov006_0236bd50[];
 
 void Ov006_StartIdScript(int id) {
   Ov006_ClearLayer1Box();

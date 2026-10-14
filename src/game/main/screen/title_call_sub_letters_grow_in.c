@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/oam_cells.h"
 #include "game/task.h"
 #include "game/Unk_02088d04.h"
 
@@ -16,7 +17,6 @@ extern Unk_027c0288 data_027c0288;
 extern const s16 gSineTable[];
 extern const u8 data_0215bb60[];
 extern const TaskScriptCmd data_0215bc10[];
-extern u8 data_027c0018[];
 
 #define FRAME(task) (*(s16*)&(task)->unk_4c)
 
@@ -49,9 +49,9 @@ void TitleCall_SubLettersGrowIn(Task* task) {
                             HwDiv32(gSineTable[0] << 4, d1),
                             HwDiv32(gSineTable[64] << 4, 256));
         Sprite_Queue(0, (data_0215bb60[i] & 0x1ff) | ((i + 1) << 9), 320,
-                     data_027c0018, 0, i * 32);
+                     &data_027c0018, 0, i * 32);
       } else {
-        Sprite_Queue(0, data_0215bb60[i] & 0x1ff, 320, data_027c0018, 0,
+        Sprite_Queue(0, data_0215bb60[i] & 0x1ff, 320, &data_027c0018, 0,
                      i * 32);
       }
     }

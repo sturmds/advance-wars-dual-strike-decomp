@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/oam_cells.h"
 #include "game/Unk_02088d04.h"
 #include "game/icon.h"
 
@@ -11,7 +12,6 @@ extern u8 data_021392a8[];
 extern u8 data_027c0028[];
 extern u8 data_027c0058[];
 extern u8 data_027c00a8[];
-extern u8 data_027c0020[];
 extern u8 data_027c00c8[];
 extern u8 data_027c00e8[];
 extern u8 data_027c0198[];
@@ -25,14 +25,11 @@ extern u8 data_027c00b8[];
 extern u8 data_027c015c[];
 extern u8 data_027c0108[];
 extern u8 data_027c01ac[];
-extern u8 data_027c0010[];
-extern u8 data_027c0000[];
 extern u8 data_027c0138[];
 extern u8 data_027c0048[];
 extern u8 data_027c0088[];
 extern u8 data_027c00d8[];
 extern u8 data_027c0170[];
-extern u8 data_027c0008[];
 extern u8 data_027c01dc[];
 extern u8 data_027c0030[];
 extern u8 data_027c0068[];

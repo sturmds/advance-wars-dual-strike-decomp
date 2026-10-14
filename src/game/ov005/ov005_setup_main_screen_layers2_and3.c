@@ -20,8 +20,8 @@ void Gfx_RequestLayerCopy(int layer);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_ov005_02368378[];   /* main screen layer config */
-extern char data_ov005_02368a08[]; /* "/rikiishi" */
+extern GfxLayer data_ov005_02368378[]; /* main screen layer config */
+extern char data_ov005_02368a08[];     /* "/rikiishi" */
 extern char gRikiishiFile022[];
 extern char gRikiishiFile023[];
 extern char gRikiishiFile024[];

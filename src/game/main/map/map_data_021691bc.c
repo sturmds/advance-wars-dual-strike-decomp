@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/script_slot.h"
 #include "game/event_script.h"
 #include "game/song.h"
 #include "game/task.h"
@@ -22,7 +23,7 @@ void func_020f20b4(void);
 void func_020f20ec(void);
 void func_020f20fc(void);
 void func_020f225c(void);
-extern u8 gMapScrollScript[];
+extern ScriptCommand gMapScrollScript[];
 
 /* "066" */
 char data_021691c4[] = {

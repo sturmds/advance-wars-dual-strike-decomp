@@ -19,7 +19,7 @@ void Gfx_RequestLayerCopy(int layer);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_ov005_02368a58[];
+extern GfxLayer data_ov005_02368a58[];
 extern char data_ov005_02369440[];
 extern char data_ov005_02369470[];
 extern char data_ov005_02369474[];

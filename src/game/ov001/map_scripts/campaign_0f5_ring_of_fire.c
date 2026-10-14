@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/event_script.h"
 #include "game/map_script.h"
 
@@ -16,7 +17,7 @@ extern EventScriptCommand data_ov001_0236ad18[];
 void func_ov001_02351804(void);
 void func_ov001_02351a4c(void);
 void func_ov001_02351af0(void);
-extern u8 data_02168140[];
+extern TaskScriptCmd data_02168140[];
 extern EventScriptCommand Ov001_gDefeatOtherTeams2Script[];
 extern EventTrigger data_ov001_02369bf0[];
 extern EventScriptCommand data_ov001_02369d18[];

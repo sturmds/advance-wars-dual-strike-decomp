@@ -8,12 +8,12 @@ PopupMenuTask* PopupMenu_Create(const MenuItem* items, int x, int y, int style,
 void func_ov006_02354680(PopupMenuTask* menu);
 void MenuDepth_Pop(void);
 void MenuDepth_Push(void);
-extern u8 data_ov006_0236ac74[];
-extern u8 data_ov006_0236ad1c[];
-extern u8 data_ov006_0236ad9c[];
-extern u8 data_ov006_0236ae1c[];
-extern u8 data_ov006_0236ae9c[];
-extern u8 data_ov006_0236af1c[];
+extern EventScriptCommand data_ov006_0236ac74[];
+extern EventScriptCommand data_ov006_0236ad1c[];
+extern EventScriptCommand data_ov006_0236ad9c[];
+extern EventScriptCommand data_ov006_0236ae1c[];
+extern EventScriptCommand data_ov006_0236ae9c[];
+extern EventScriptCommand data_ov006_0236af1c[];
 void func_ov006_02350f10(void);
 void func_ov006_023543e8(void);
 void func_ov006_023547b4(void);

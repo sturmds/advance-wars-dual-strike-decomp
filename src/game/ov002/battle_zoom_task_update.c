@@ -1,11 +1,11 @@
 #include "types.h"
+#include "game/oam_cells.h"
 #include "game/menu_state.h"
 #include "game/Unk_0229fb30.h"
 #include "game/BattleZoomTask.h"
 
 extern MenuState gMenuState;
 extern u8 data_ov002_023696ac;
-extern u8 data_027c0008;
 extern s16 gSineTable[];
 
 s32 HwDiv32(s32 numer, s32 denom);

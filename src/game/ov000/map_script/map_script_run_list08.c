@@ -1,15 +1,15 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/map_script.h"
 #include "game/Unk_02080440.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u8 data_ov000_022f6bd8[];
+extern TaskScriptCmd data_ov000_022f6bd8[];
 
 MapScript* MapScript_Get(void);
 int EventTriggers_Run(const EventTrigger* list, MapUnit* unit, int id,
                       int flag);
-void* Task_Create(const void* script, int list);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -27,7 +27,7 @@ int MapScript_RunList08(MapUnit* unit) {
   if (script != NULL && script->list08 != NULL) {
     result = EventTriggers_Run(script->list08, unit, 0, 1);
     if (result != 0) {
-      Task_Create(data_ov000_022f6bd8, 3);
+      Task_Create(data_ov000_022f6bd8, TASK_LIST(3));
     }
     return result;
   }

@@ -16,15 +16,15 @@ void BgExtPalette_LoadFromFile(const char* fileName, int a, int b, int c);
 void Gfx_RequestLayerCopy(int layer);
 
 extern Unk_027c0280* data_027c0280;
-extern u8 gBmap085Layers[];  /* layer config for Screen_InitLayers */
-extern char data_02169c44[]; /* "/bmap" */
-extern char gBmapFile085[];  /* "085" */
-extern char gBmapFile086[];  /* "086" */
-extern char gBmapFile087[];  /* "087" */
-extern char gBmapFile088[];  /* "088" */
-extern char gBmapFile08e[];  /* "08e" */
-extern char gBmapFile08f[];  /* "08f" */
-extern char gBmapFile090[];  /* "090" */
+extern GfxLayer gBmap085Layers[]; /* layer config for Screen_InitLayers */
+extern char data_02169c44[];      /* "/bmap" */
+extern char gBmapFile085[];       /* "085" */
+extern char gBmapFile086[];       /* "086" */
+extern char gBmapFile087[];       /* "087" */
+extern char gBmapFile088[];       /* "088" */
+extern char gBmapFile08e[];       /* "08e" */
+extern char gBmapFile08f[];       /* "08f" */
+extern char gBmapFile090[];       /* "090" */
 
 /* Sets up the current screen from /bmap files 085 to 090: layer priorities
  * 0 to 3, object tiles, the tiles and map of layer 3, two palettes, and

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/oam_cells.h"
 #include "game/keypad.h"
 #include "game/ov003_unit.h"
 #include "game/Unk_02088d04.h"
@@ -37,7 +38,6 @@ void Oam_PutCells(int attr1, int attr0, const void* cells, int attr2, int tile);
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern Ov003Input data_ov003_02365b04;
-extern u8 data_027c0008;
 
 /* Runs one frame of overlay 3, then the pause menu: START pauses and darkens
  * the screen; the top button (touch, or A/START on the cursor) resumes, the

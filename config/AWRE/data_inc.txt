@@ -5867,11 +5867,11 @@ ov006     Ov006_gDirStepY             0x0236d610  0x8    s16
 ov006     Ov006_gCrossDy              0x0236d618  0xa    s16
 ov006     Ov006_gCrossDx              0x0236d624  0xa    s16
 ov006     data_ov006_0236d630         0x0236d630  0x10   u32
-dtcm      data_027c0000               0x027c0000  0x8    u8
-dtcm      data_027c0008               0x027c0008  0x8    u8
-dtcm      data_027c0010               0x027c0010  0x8    u32
-dtcm      data_027c0018               0x027c0018  0x8    u8
-dtcm      data_027c0020               0x027c0020  0x8    u8
+dtcm      data_027c0000               0x027c0000  0x8    {s16,u16,u16,u16}
+dtcm      data_027c0008               0x027c0008  0x8    {s16,u16,u16,u16}
+dtcm      data_027c0010               0x027c0010  0x8    {s16,u16,u16,u16}
+dtcm      data_027c0018               0x027c0018  0x8    {s16,u16,u16,u16}
+dtcm      data_027c0020               0x027c0020  0x8    {s16,u16,u16,u16}
 dtcm      data_027c0028               0x027c0028  0x1    u8
 dtcm      data_dtcm_027c002c          0x027c002c  0x4    u32
 dtcm      data_027c0030               0x027c0030  0x1    u8

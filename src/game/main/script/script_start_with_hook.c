@@ -1,9 +1,10 @@
 #include "types.h"
+#include "game/script_slot.h"
 #include "game/Unk_02080440.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u8 gMapOverviewScript[];
+extern ScriptCommand gMapOverviewScript[];
 
 #define HOOKS (data_027c027c->unk_50[data_027c0284])
 

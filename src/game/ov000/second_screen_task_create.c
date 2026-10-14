@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/second_screen.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
@@ -6,11 +7,10 @@
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_ov000_023500f8[];
+extern TaskScriptCmd data_ov000_023500f8[];
 
 void Screen_SetCurrent(void* state);
 void Screen_SetCurrentGfx(void* state);
-void* Task_Create(const void* script, int list);
 u8 Player_GetArmyStyle(int playerIndex);
 BOOL func_ov000_022b0138(int unitType);
 void Gfx_LoadPlayerWindowFrame(int a0);
@@ -40,7 +40,7 @@ void SecondScreenTask_Create(int ownerAndUnitType) {
   SecondScreen_LoadIcons();
   NumberFont_LoadLow();
   func_01ff9ac4();
-  Task_Create(data_ov000_023500f8, 3);
+  Task_Create(data_ov000_023500f8, TASK_LIST(3));
   Screen_SetCurrent(savedScreen);
   Screen_SetCurrentGfx(savedGfx);
 }

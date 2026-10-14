@@ -4,7 +4,7 @@
 #include "game/screen_other_map.h"
 
 void CampaignMap_StartMode1(void);
-extern u8 data_0216710c[];
+extern TaskScriptCmd data_0216710c[];
 void func_020b983c(void);
 
 TaskScriptCmd data_021670a4[] = {

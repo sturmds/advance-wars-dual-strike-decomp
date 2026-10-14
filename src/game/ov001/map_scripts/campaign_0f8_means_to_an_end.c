@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/event_script.h"
 #include "game/map_script.h"
 
@@ -13,7 +14,7 @@ void Ov001_StartUnitTaskAt3_10(void);
 void Ov001_StartUnitTaskAt9_12(void);
 void Player1Team_HasPlayerInGame(void);
 void ScreenShake_Stop(void);
-extern u8 data_02157480[];
+extern TaskScriptCmd data_02157480[];
 extern EventScriptCommand Ov001_gDefeatOtherTeams2Script[];
 extern EventScriptCommand data_ov001_0236e90c[];
 extern EventScriptCommand data_ov001_0236e95c[];

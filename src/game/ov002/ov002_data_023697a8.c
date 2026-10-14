@@ -3,7 +3,7 @@
 #include "game/battle_gfx.h"
 
 extern u8 data_ov002_023608d8[];
-extern u8 data_ov002_023698cc[];
+extern BattleEffectFile data_ov002_023698cc[];
 
 char data_ov002_02369898[] = {
 #include "data/ov002/data_ov002_02369898.inc.c"

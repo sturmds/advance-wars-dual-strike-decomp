@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/script_slot.h"
 #include "game/task.h"
 
 void Layer0Picture_Load(void);
@@ -11,7 +12,7 @@ void PowerDamage_HitNextEnemy(void);
 void PowerDamage_SetWeather(void);
 void PowerDamage_StartBlend(void);
 void PowerHitEffectTask_Play(void);
-extern u8 data_02166d18[];
+extern ScriptCommand data_02166d18[];
 void func_020e36d8(void);
 void func_020e37c0(void);
 void func_020e3dfc(void);

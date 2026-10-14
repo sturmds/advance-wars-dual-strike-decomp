@@ -1,7 +1,8 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/screen_other_map.h"
 
-extern u8 data_ov000_023500f8[];
+extern TaskScriptCmd data_ov000_023500f8[];
 
 void* Task_FindByScript(const void* script);
 

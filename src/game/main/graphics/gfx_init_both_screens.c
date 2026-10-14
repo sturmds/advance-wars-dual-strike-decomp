@@ -11,8 +11,8 @@ void Screen_SetLayerDefaults(void);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_0215943c[];
-extern u8 data_0215952c[];
+extern GfxLayer data_0215943c[];
+extern GfxLayer data_0215952c[];
 
 /* Runs the same screen setup (func_02028d50, a config table through
  * Screen_InitLayers, then Screen_SetLayerDefaults) on both screens, each with its own

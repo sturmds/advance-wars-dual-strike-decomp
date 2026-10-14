@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/menu_button.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov004_022bf158.h"
@@ -16,7 +17,7 @@ void Ov004_CopyResource(const char* name, void* dest);
 void Ov004_ClearSlots(Unk_ov004_022bf158* state);
 
 extern Unk_ov004_022bf158* data_ov004_022bf158;
-extern u8 data_ov004_022be868[]; /* main screen layer config */
+extern GfxLayer data_ov004_022be868[]; /* main screen layer config */
 extern const MenuButtonTemplate data_ov004_022be840[];
 extern char data_ov004_022bdd40[];
 extern char data_ov004_022bdd44[]; /* "06f": layer 1 tiles */

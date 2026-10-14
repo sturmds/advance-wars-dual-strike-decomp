@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/screen_other_map.h"
 #include "game/task.h"
 #include "game/Unk_ov004_022bf158.h"
@@ -31,11 +32,11 @@ void func_ov004_022bdc08(Unk_ov004_022bf158* state);
 void func_ov004_022bd978(Unk_ov004_022bf158* state);
 void Ov004_LoadBgLayers1And2(Unk_ov004_022bf158* state);
 
-extern u8 data_ov004_022bf03c[];   /* main screen layer config */
-extern u8 data_ov004_022bf08c[];   /* sub screen layer config */
-extern char data_ov004_022bf0dc[]; /* "/rikiishi" */
-extern char data_ov004_022bf0e8[]; /* "0c6": texture */
-extern char data_ov004_022bf0ec[]; /* "0c8": texture palette */
+extern GfxLayer data_ov004_022bf03c[]; /* main screen layer config */
+extern GfxLayer data_ov004_022bf08c[]; /* sub screen layer config */
+extern char data_ov004_022bf0dc[];     /* "/rikiishi" */
+extern char data_ov004_022bf0e8[];     /* "0c6": texture */
+extern char data_ov004_022bf0ec[];     /* "0c8": texture palette */
 void Ov004Task_InitSprite(void);
 void Ov004Task_MoveSpriteOutward(void);
 void Ov004Task_ScrollLayers1And2Parallax(void);

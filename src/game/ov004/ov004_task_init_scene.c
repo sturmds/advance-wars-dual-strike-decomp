@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov004_022bf158.h"
 
@@ -18,8 +19,8 @@ void Ov004_LoadResourcePalette(const char* name, int dataOffset,
 void func_ov004_022bb38c(Unk_ov004_022bf158* state);
 void Ov004_ResetClock(Unk_ov004_022bf158* state);
 
-extern u8 data_ov004_022be868[];
-extern u8 data_ov004_022be9a8[];
+extern GfxLayer data_ov004_022be868[];
+extern GfxLayer data_ov004_022be9a8[];
 extern char data_ov004_022bde54[];
 extern char data_ov004_022bde64[];
 extern char data_ov004_022bde74[];

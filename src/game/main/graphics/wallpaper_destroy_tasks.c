@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
@@ -10,8 +11,8 @@ void Task_DestroyByScript(const void* script);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_0215937c[];
-extern u8 gWallpaperTaskScript[];
+extern TaskScriptCmd data_0215937c[];
+extern TaskScriptCmd gWallpaperTaskScript[];
 
 /* Destroys the tasks started from gWallpaperTaskScript and data_0215937c (the
  * wallpaper task of Wallpaper_LoadBoth) on both screens. */

@@ -2,8 +2,8 @@
 #include "game/task.h"
 
 Task* Task_FindByScript(void* script);
-extern u8 data_02168328[];
-extern u8 data_02168400[];
+extern TaskScriptCmd data_02168328[];
+extern TaskScriptCmd data_02168400[];
 
 /* TRUE while either of the two attack animation tasks is running. */
 BOOL Attack_TasksRunning(void) {

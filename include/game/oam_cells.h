@@ -16,4 +16,22 @@ typedef struct OamCell {
   u16 attr2; /* bits 0-9: tile */
 } OamCell;
 
+typedef char OamCell_size_check[sizeof(OamCell) == 6 ? 1 : -1];
+
+/* A cell list of one cell: one OBJ of a given OAM shape and size at the
+ * sprite's origin (Oam_GetShapeCells, Oam_GetAttrCells). */
+typedef struct OamCellList1 {
+  s16 count; /* 1 */
+  OamCell cell;
+} OamCellList1;
+
+typedef char OamCellList1_size_check[sizeof(OamCellList1) == 8 ? 1 : -1];
+
+/* One-cell lists in DTCM (dtcm_data_027c0000.c) */
+extern OamCellList1 data_027c0000; /* 16x32 */
+extern OamCellList1 data_027c0008; /* 64x32 */
+extern OamCellList1 data_027c0010; /* 8x32 */
+extern OamCellList1 data_027c0018; /* 32x64 */
+extern OamCellList1 data_027c0020; /* 32x8 */
+
 #endif

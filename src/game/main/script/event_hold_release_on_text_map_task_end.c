@@ -1,8 +1,9 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/event_script.h"
 
 int Task_FindByScript(void*);
-extern u8 data_02158548[];
+extern TaskScriptCmd data_02158548[];
 
 /* Hold function set by EventCmd_StartTextMapTask: clears the slot's hold
  * once the task it started no longer exists. */

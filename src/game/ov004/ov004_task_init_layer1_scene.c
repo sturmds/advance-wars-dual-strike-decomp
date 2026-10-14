@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov004_022bf158.h"
 
@@ -16,13 +17,13 @@ void Ov004_CopyResource(const char* name, void* dest); /* copies a named file */
 void Ov004_ClearSlots(Unk_ov004_022bf158* state);
 
 extern Unk_ov004_022bf158* data_ov004_022bf158;
-extern u8 data_ov004_022be868[];   /* main screen layer config */
-extern char data_ov004_022bdd44[]; /* "06f": layer 1 tiles */
-extern char data_ov004_022bdd5c[]; /* "074": layer 1 map */
-extern char data_ov004_022bddb8[]; /* "070": palette */
-extern char data_ov004_022bdd58[]; /* "075": layer 3 tiles */
-extern char data_ov004_022bdd50[]; /* "076": layer 3 map */
-extern u32 data_ov004_022bdc94[];  /* map bytes of a text BG by screen size */
+extern GfxLayer data_ov004_022be868[]; /* main screen layer config */
+extern char data_ov004_022bdd44[];     /* "06f": layer 1 tiles */
+extern char data_ov004_022bdd5c[];     /* "074": layer 1 map */
+extern char data_ov004_022bddb8[];     /* "070": palette */
+extern char data_ov004_022bdd58[];     /* "075": layer 3 tiles */
+extern char data_ov004_022bdd50[];     /* "076": layer 3 map */
+extern u32 data_ov004_022bdc94[]; /* map bytes of a text BG by screen size */
 extern u32 data_ov004_022bdc84
     []; /* map bytes of a rotation/scaling BG by screen size */
 

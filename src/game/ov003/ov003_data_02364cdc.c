@@ -1,16 +1,16 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-extern u8 data_ov003_02364f18[];
-extern u8 data_ov003_02364f50[];
-extern u8 data_ov003_02365004[];
-extern u8 data_ov003_023650a4[];
-extern u8 data_ov003_0236510c[];
-extern u8 data_ov003_023651f0[];
-extern u8 data_ov003_02364f88[];
-extern u8 data_ov003_02364fc0[];
-extern u8 data_ov003_02365054[];
-extern u8 data_ov003_02365178[];
+extern Ov003SpawnDef data_ov003_02364f18[];
+extern Ov003SpawnDef data_ov003_02364f50[];
+extern Ov003SpawnDef data_ov003_02365004[];
+extern Ov003SpawnDef data_ov003_023650a4[];
+extern Ov003SpawnDef data_ov003_0236510c[];
+extern Ov003SpawnDef data_ov003_023651f0[];
+extern Ov003SpawnDef data_ov003_02364f88[];
+extern Ov003SpawnDef data_ov003_02364fc0[];
+extern Ov003SpawnDef data_ov003_02365054[];
+extern Ov003SpawnDef data_ov003_02365178[];
 
 u16 data_ov003_02364cdc[][2] = {
 #include "data/ov003/data_ov003_02364cdc.inc.c"

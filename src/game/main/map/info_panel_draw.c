@@ -1,4 +1,6 @@
 #include "types.h"
+#include "game/task.h"
+#include "game/oam_cells.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/info_panel.h"
@@ -18,8 +20,7 @@ extern u16
 extern s8 Ov000_gUrbanTerrain[];
 extern u8 gArmyPalettes[][32];
 extern u8 data_ov000_022cb630[];
-extern u8 data_02166430[];
-extern u8 data_027c0010;
+extern TaskScriptCmd data_02166430[];
 extern u8 data_027c0038;
 extern u8 data_027c0028;
 

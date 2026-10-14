@@ -19,11 +19,11 @@ void Gfx_RequestLayerCopy(int layer);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_ov005_0236966c[];   /* layer config for Screen_InitLayers */
-extern char data_ov005_0236988c[]; /* directory of the files below */
-extern char data_ov005_02369898[]; /* layer 2 tiles */
-extern char data_ov005_0236989c[]; /* layer 2 map */
-extern char data_ov005_023698a0[]; /* layer 2 palette */
+extern GfxLayer data_ov005_0236966c[]; /* layer config for Screen_InitLayers */
+extern char data_ov005_0236988c[];     /* directory of the files below */
+extern char data_ov005_02369898[];     /* layer 2 tiles */
+extern char data_ov005_0236989c[];     /* layer 2 map */
+extern char data_ov005_023698a0[];     /* layer 2 palette */
 /* map bytes of a text BG by screen size */
 const u32 data_ov005_02367f8c[] = {
 #include "data/ov005/data_ov005_02367f8c.inc.c"

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/script_slot.h"
 #include "game/map_object.h"
 #include "game/song.h"
 #include "game/task.h"
@@ -42,7 +43,7 @@ void func_020d8f14(void);
 void func_020d8fac(void);
 void func_020d9234(void);
 void func_020d9ea8(void);
-extern u8 gMapScrollScript[];
+extern ScriptCommand gMapScrollScript[];
 void MapObjectFireTask_ShowNextShot(void);
 extern u32 data_02167f84[];
 

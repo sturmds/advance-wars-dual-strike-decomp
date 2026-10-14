@@ -1,7 +1,8 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/unit_show_task.h"
 
-extern u8 data_ov000_022db6cc[];
+extern TaskScriptCmd data_ov000_022db6cc[];
 
 UnitShowTask* Task_FindByScript(void* script);
 

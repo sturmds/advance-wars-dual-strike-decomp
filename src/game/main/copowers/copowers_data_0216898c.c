@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/script_slot.h"
 #include "game/task.h"
 
 void CoveringFire_PickFundsSite(void);
@@ -12,7 +13,7 @@ void UnitDrop_FindNextCity(void);
 void UnitDrop_SpawnUnit(void);
 void UnitDrop_Start(void);
 void func_020d5b0c(void);
-extern u8 gMapScrollScript[];
+extern ScriptCommand gMapScrollScript[];
 
 char data_0216898c[] = {
 #include "data/main/data_0216898c.inc.c"

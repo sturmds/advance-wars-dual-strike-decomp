@@ -8,7 +8,7 @@ void DesignRoom_Update(void);
 void MenuDepth_Pop(void);
 void MenuDepth_Push(void);
 void Ov006_StartSlotsSlideIn(void);
-extern u8 data_0216704c[];
+extern TaskScriptCmd data_0216704c[];
 void func_020d331c(void);
 void func_ov006_0235068c(void);
 void func_ov006_02350eb0(void);

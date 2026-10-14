@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/oam_cells.h"
 #include "game/second_screen.h"
 #include "game/icon.h"
 #include "game/screen_other_map.h"
@@ -6,8 +7,6 @@
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 int DoubleTerrainStars(int playerIndex, int unitType, int terrain);
 
-extern u8 data_027c0000;
-extern u8 data_027c0018;
 extern u8 data_027c0060;
 extern int gTerrainStarOffsets[];
 

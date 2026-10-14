@@ -1,10 +1,11 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/menu_state.h"
 
 extern MenuState gMenuState;
-extern u8 data_ov002_0236961c[];
-extern u8 data_ov002_0236963c[];
-extern u8 data_ov002_023604c4[];
+extern TaskScriptCmd data_ov002_0236961c[];
+extern TaskScriptCmd data_ov002_0236963c[];
+extern TaskScriptCmd data_ov002_023604c4[];
 
 s8 Task_DestroyByScript(const void* script);
 void func_ov002_02356410(void);

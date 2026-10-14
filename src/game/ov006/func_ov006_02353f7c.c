@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/menu_item.h"
 #include "game/Unk_ov006_0235f690.h"
 
 void func_ov006_0235402c(void);
@@ -9,7 +10,7 @@ void PopupMenu_OpenWithSound(const void* items, int x, int y, int arg,
                              int arg2);
 
 extern Unk_ov006_0235f690* data_ov006_0236d640;
-extern u8 data_ov006_0236b15c[];
+extern MenuItem data_ov006_0236b15c[];
 
 void func_ov006_02353f7c(void) {
   if (data_ov006_0236d640->unk_00 & 0x8000) {

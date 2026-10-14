@@ -1,11 +1,7 @@
 #include "types.h"
+#include "game/oam_cells.h"
 
 /* Cell tables in DTCM, one per OAM shape and size. */
-extern u8 data_027c0000;
-extern u8 data_027c0008;
-extern u8 data_027c0010;
-extern u8 data_027c0018;
-extern u8 data_027c0020;
 extern u8 data_027c0028;
 extern u8 data_027c0030;
 extern u8 data_027c0038;

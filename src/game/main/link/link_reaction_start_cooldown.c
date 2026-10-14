@@ -1,9 +1,10 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/link_reaction_queue.h"
 
 u16 gLinkReactionCooldown;
 void Task_ForEachByScript(void*, void*, void*, int);
-extern u8 data_0216050c[];
+extern TaskScriptCmd data_0216050c[];
 void LinkReaction_ClearOwnDestroyCallback(void);
 
 void LinkReaction_StartCooldown(void) {

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/menu_button.h"
 #include "game/screen_other_map.h"
 #include "game/ov005_task.h"
@@ -27,7 +28,7 @@ void Ov005SoundRoom_LoadSprites(Unk_ov005_0236bbac* work);
 void Ov005SoundRoom_PickCellCo(Unk_ov005_0236bbac* work);
 void func_ov005_02365e90(Unk_ov005_0236bbac* work);
 
-extern u8 data_ov005_0236b0bc[];
+extern GfxLayer data_ov005_0236b0bc[];
 extern char data_ov005_0236b324[];
 extern char data_ov005_0236b330[];
 extern const MenuButtonTemplate data_ov005_0236b02c;

@@ -26,9 +26,9 @@ extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern u8 data_021388f0[];
-extern u8 gOv005MessageMainLayers[]; /* main screen layer config */
-extern u8 gOv005MessageSubLayers[];  /* sub screen layer config */
-extern char data_ov005_02369594[];   /* "/rikiishi" */
+extern GfxLayer gOv005MessageMainLayers[]; /* main screen layer config */
+extern GfxLayer gOv005MessageSubLayers[];  /* sub screen layer config */
+extern char data_ov005_02369594[];         /* "/rikiishi" */
 extern char gOv005MessageFile016[];
 extern char gOv005MessageFile017[];
 extern char gOv005MessageFile01b[];

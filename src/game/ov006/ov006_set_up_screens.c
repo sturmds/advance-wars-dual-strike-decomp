@@ -16,7 +16,7 @@ void Ov006_LoadMapeditGraphics(void);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_021575c8[]; /* main screen layer config */
+extern GfxLayer data_021575c8[]; /* main screen layer config */
 
 #define RESET_LAYERS()                                        \
   data_027c0280->bgCnt[data_027c0280->layer0Bg].priority = 0; \

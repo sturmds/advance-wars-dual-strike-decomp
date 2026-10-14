@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/script_slot.h"
 #include "game/event_script.h"
 #include "game/task.h"
 
@@ -6,7 +7,7 @@ void CoSwapTask_ShowLine(void);
 void MenuDepth_Pop(void);
 void MenuDepth_Push(void);
 void RepairTask_ServiceUnit(void);
-extern u8 data_021666e8[];
+extern ScriptCommand data_021666e8[];
 void func_02055c94(void);
 void func_0205c014(void);
 void func_020c4018(void);

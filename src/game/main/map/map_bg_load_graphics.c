@@ -13,18 +13,18 @@ BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 
 extern Unk_027c0280* data_027c0280;
-extern u8 data_02169ef8[];   /* layer config for Screen_InitLayers */
-extern char data_0216a1a0[]; /* "/bmap" */
-extern char data_0216a1e0[]; /* "09c": layer 3 tiles */
-extern char data_0216a1e4[]; /* "09b": layer 3 map */
-extern char data_0216a1e8[]; /* "09d": layer 3 palette */
-extern char data_0216a1ec[]; /* "098": layer 0 tiles */
-extern char data_0216a1f0[]; /* "099": layer 0 map */
-extern char data_0216a1f4[]; /* "09a": layer 0 palette */
-extern char data_0216a1f8[]; /* "092": layer 2 tiles */
-extern char data_0216a1fc[]; /* "094": layer 2 map */
-extern char data_0216a200[]; /* "093": layer 2 palette */
-extern u32 data_0214d3b8[];  /* map bytes of a text BG by screen size */
+extern GfxLayer data_02169ef8[]; /* layer config for Screen_InitLayers */
+extern char data_0216a1a0[];     /* "/bmap" */
+extern char data_0216a1e0[];     /* "09c": layer 3 tiles */
+extern char data_0216a1e4[];     /* "09b": layer 3 map */
+extern char data_0216a1e8[];     /* "09d": layer 3 palette */
+extern char data_0216a1ec[];     /* "098": layer 0 tiles */
+extern char data_0216a1f0[];     /* "099": layer 0 map */
+extern char data_0216a1f4[];     /* "09a": layer 0 palette */
+extern char data_0216a1f8[];     /* "092": layer 2 tiles */
+extern char data_0216a1fc[];     /* "094": layer 2 map */
+extern char data_0216a200[];     /* "093": layer 2 palette */
+extern u32 data_0214d3b8[];      /* map bytes of a text BG by screen size */
 extern u32
     data_0214d3a8[]; /* map bytes of a rotation/scaling BG by screen size */
 

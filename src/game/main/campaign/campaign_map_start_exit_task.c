@@ -3,7 +3,7 @@
 #include "game/screen_other_map.h"
 
 void CampaignMap_StartAfterBattle(void);
-extern u8 data_0216710c[];
+extern TaskScriptCmd data_0216710c[];
 void func_02001588(void);
 void func_020b983c(void);
 void DesignMap_RefreshAllRows(void);
