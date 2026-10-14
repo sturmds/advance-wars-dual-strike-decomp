@@ -43,6 +43,7 @@ Found so far:
 - Nested arrays of structs in a struct, unions, bit fields and floats: the object needs a declaration the tool can write, or it is written from its bytes in a new file.
 - A host that already has `.data` or `.rodata` of its own takes no slice, so its neighbours go to new files.
 - An object whose `extern` declarations disagree across files keeps the chosen one; the others stay as they are.
+- Array sizes given by a macro (`s16 x[2][CELL_PAIR_COUNT]`): the tool does not expand them and writes the object from its bytes in a new file. Write the size as a number in the declaration (`include/game/ov006_cell_forms.h`).
 - String literals: a string the original wrote as a literal (with a compiler-made name) is written as a named array. Whether that differs from the original object is not known.
 
 ## What the ov003 pilot found

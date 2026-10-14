@@ -12,7 +12,6 @@ from:0x020008ec kind:load to:0x02000b00 module:main
 from:0x020008f4 kind:load to:0x01ffd878 module:itcm
 from:0x020008f8 kind:load to:0x02000b24 module:main
 from:0x02000a0c kind:load to:0x02000b00 module:main
-from:0x02000ad8 kind:load to:0x027c0023 module:dtcm
 from:0x02000ae0 kind:load to:0x027c0000 module:dtcm
 from:0x02000b00 kind:load to:0x02175180 module:main
 from:0x02000b04 kind:load to:0x02175198 module:main

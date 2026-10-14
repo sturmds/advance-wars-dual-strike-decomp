@@ -1,7 +1,6 @@
 #include "types.h"
 
 extern u32 data_027c0000;   /* start of DTCM */
-extern u32 data_027c0023;   /* region 2 setting; see below */
 
 #ifdef __MWERKS__
 /*
@@ -12,8 +11,8 @@ extern u32 data_027c0023;   /* region 2 setting; see below */
  *   0 I/O registers 64 MB, 1 main RAM 8 MB, 2 top 256 KB of main RAM,
  *   3 GBA slot 128 MB, 4 DTCM 16 KB, 5 ITCM 16 MB, 6 BIOS 32 KB,
  *   7 shared main RAM 4 KB.
- * Region 2's word 0x027c0023 is a plain constant; dsd took it for an
- * address in DTCM and gave it a relocation, which the symbol keeps.
+ * Region 2's word 0x027c0023 (base 0x027c0000, size code 0x11, enable)
+ * is a plain constant, not an address in DTCM.
  * Next come the ITCM and DTCM base registers, the cacheable bits (regions
  * 1 and 6), the write-buffer bit (region 1), the data and instruction
  * access permissions, and last the control register bits that turn it all
@@ -33,7 +32,7 @@ asm void init_cp15(void)
     mcr p15, 0, r0, c6, c0, 0
     ldr r0, =0x0200002d
     mcr p15, 0, r0, c6, c1, 0
-    ldr r0, =data_027c0023
+    ldr r0, =0x027c0023
     mcr p15, 0, r0, c6, c2, 0
     ldr r0, =0x08000035
     mcr p15, 0, r0, c6, c3, 0

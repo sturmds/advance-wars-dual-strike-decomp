@@ -1,2 +1,50 @@
     .data       start:0x027c0000 end:0x027c12e0 kind:data align:32
     .bss        start:0x027c12e0 end:0x027c12e0 kind:bss align:32
+
+src/game/dtcm/dtcm_data_027c0000.c:
+    complete
+    .data       start:0x027c0000 end:0x027c0028
+
+src/game/dtcm/dtcm_data_027c0028.c:
+    complete
+    .data       start:0x027c0028 end:0x027c0030
+
+src/game/dtcm/dtcm_data_027c0030.c:
+    complete
+    .data       start:0x027c0030 end:0x027c0040
+
+src/game/dtcm/dtcm_data_027c0040.c:
+    complete
+    .data       start:0x027c0040 end:0x027c0048
+
+src/game/dtcm/dtcm_data_027c0048.c:
+    complete
+    .data       start:0x027c0048 end:0x027c00d8
+
+src/game/dtcm/dtcm_data_027c00d8.c:
+    complete
+    .data       start:0x027c00d8 end:0x027c01dc
+
+src/game/dtcm/dtcm_data_027c01dc.c:
+    complete
+    .data       start:0x027c01dc end:0x027c0238
+
+src/game/dtcm/dtcm_data_027c0238.c:
+    complete
+    .data       start:0x027c0238 end:0x027c0518
+
+src/game/dtcm/dtcm_data_027c0518.c:
+    complete
+    .data       start:0x027c0518 end:0x027c0720
+
+src/game/dtcm/dtcm_data_027c0720.c:
+    complete
+    .data       start:0x027c0720 end:0x027c074c
+
+src/game/dtcm/dtcm_data_027c074c.c:
+    complete
+    .data       start:0x027c074c end:0x027c1278
+
+src/game/dtcm/dtcm_data_027c1278.c:
+    complete
+    .data       start:0x027c1278 end:0x027c12e0
