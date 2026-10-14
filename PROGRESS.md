@@ -61,7 +61,7 @@ sites. Not every count should reach 0: a hardware format stays a number.
 
 | Group | Gap | Game | SDK | Total |
 |---|---|---:|---:|---:|
-| Addresses | Aliases whose offset the C type does not give (`alias_check.py`) | - | - | 30 |
+| Addresses | Aliases whose offset the C type does not give (`alias_check.py`) | - | - | 26 |
 | Addresses | Unrelocated words, layout level (`scan_pointers.py`) | 0 | 0 | 0 |
 | Addresses | Unrelocated words, high level | 0 | 0 | 0 |
 | Addresses | Unrelocated words, medium level | 0 | 0 | 0 |
@@ -69,11 +69,11 @@ sites. Not every count should reach 0: a hardware format stays a number.
 | Sizes | `Mem_Alloc` with a literal size | 0 | 0 | 0 |
 | Sizes | Copy, fill and clear calls with a literal length | 35 | 0 | 35 |
 | Sizes | Byte offsets into objects (`(u8 *)x + N`) | 0 | 0 | 0 |
-| Sizes | `for` loops with a literal bound | 65 | 4 | 69 |
+| Sizes | `for` loops with a literal bound | 53 | 4 | 57 |
 | Tables | Initialised `u32` arrays with a literal length | 0 | 0 | 0 |
 | Tables | Initialised `char` arrays with a literal length | 0 | 0 | 0 |
 | Tables | Other initialised arrays with a literal length | 0 | 0 | 0 |
-| Tables | `u32` tables holding pointers and numbers (structs written as words) | 2 | 3 | 5 |
+| Tables | `u32` tables holding pointers and numbers (structs written as words) | 0 | 3 | 3 |
 | Tables | Extern arrays with a literal length | 0 | 0 | 0 |
 | Tables | `u8 NAME[N]` placeholders for zeroed variables | 4 | 12 | 16 |
 
