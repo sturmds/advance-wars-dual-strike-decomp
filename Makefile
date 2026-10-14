@@ -172,7 +172,8 @@ emu-smoke: shift
 # mwccarm emits data objects (test_data_order.py), and the .bss planner
 # (test_bss.py), the release cache (test_release_cache.py) and the .data
 # planner (test_data.py), and the sound archive's unpack and pack
-# (test_sound.py); no ROM or build needed
+# (test_sound.py), and the levels of scan_pointers.py (test_scan_pointers.py);
+# no ROM or build needed
 # (test_ds.py, test_pragmas.py, test_absolute.py, test_data_order.py,
 # test_bss.py and test_data.py use the compiler from make setup; test_ds.py
 # checks more when extract/ exists, test_bss.py when build/fnindex.json and
@@ -209,7 +210,8 @@ TESTS := \
 	tools/tests/test_release_cache.py \
 	tools/tests/test_data.py \
 	tools/tests/test_sound.py \
-	tools/tests/test_shift.py
+	tools/tests/test_shift.py \
+	tools/tests/test_scan_pointers.py
 
 test:
 	@for t in $(CACHED_TESTS) $(TESTS); do $(TEST_ENV) $(PYTHON) $$t || exit 1; done

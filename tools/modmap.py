@@ -77,6 +77,8 @@ class Module:
     data: bytes  # initialised bytes, loaded at `start`
     symbols: list[Symbol] = field(default_factory=list)
     relocs: dict[int, Reloc] = field(default_factory=dict)
+    # Source files of delinks.txt with each of their ranges: (start, end, path).
+    files: list[tuple[int, int, str]] = field(default_factory=list)
 
     @property
     def start(self) -> int:
@@ -113,6 +115,21 @@ def _sections(delinks: Path) -> list[Section]:
         if m:
             out.append(Section(m.group(1), int(m.group(2), 16), int(m.group(3), 16), m.group(4)))
     return out
+
+
+def read_files(delinks: Path) -> list[tuple[int, int, str]]:
+    """The (start, end, source path) ranges of the files in delinks.txt,
+    sorted by start."""
+    out = []
+    path = None
+    for line in delinks.read_text().splitlines():
+        if line and not line[0].isspace():
+            path = line.rstrip(":")
+            continue
+        m = re.match(r"\s+\S+\s+start:(0x[0-9a-f]+) end:(0x[0-9a-f]+)", line)
+        if path and m:
+            out.append((int(m.group(1), 16), int(m.group(2), 16), path))
+    return sorted(out)
 
 
 def read_symbols(path: Path) -> list[Symbol]:
@@ -152,6 +169,7 @@ def load() -> dict[str, Module]:
         m = Module(name, d, _sections(d / "delinks.txt"), bins[name].read_bytes())
         m.symbols = read_symbols(d / "symbols.txt")
         m.relocs = read_relocs(d / "relocs.txt")
+        m.files = read_files(d / "delinks.txt")
         mods[name] = m
     return mods
 
