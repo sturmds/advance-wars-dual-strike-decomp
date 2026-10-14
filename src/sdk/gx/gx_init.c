@@ -5,7 +5,7 @@
 u16 gGxDispMode;
 u16 GXi_VRamLockId;
 /* DMA channel the GX library uses, or GX_DMA_NOT_USE */
-u32 data_0216d958 = {
+int data_0216d958 = {
 #include "data/main/data_0216d958.inc.c"
 };
 

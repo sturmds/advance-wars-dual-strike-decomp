@@ -2319,7 +2319,7 @@ main      data_0216d934               0x0216d934  0x4    u32
 main      data_0216d938               0x0216d938  0x4    u32
 main      data_0216d93c               0x0216d93c  0x4    u32
 main      gGxDispOn                   0x0216d954  0x2    u16
-main      data_0216d958               0x0216d958  0x4    u32
+main      data_0216d958               0x0216d958  0x4    s32
 main      gOsIrqBitBySlot             0x0216d95c  0x10   u16
 main      data_0216d96c               0x0216d96c  0x4    u32
 main      gArchiveNameColonSlash      0x0216d970  0x4    u8

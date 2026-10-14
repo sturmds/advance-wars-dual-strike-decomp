@@ -4,7 +4,7 @@
 #include "game/rect.h"
 
 s16 gEventTextWindowPos;
-u16 data_02297788;
+s16 data_02297788;
 u8* data_02297790; /* layer 0 tile data in main BG VRAM */
 Rect data_0229779c;
 Rect data_02297794;
