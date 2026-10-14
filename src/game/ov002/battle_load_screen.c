@@ -7,7 +7,9 @@ void Battle_LoadSideBackgroundPalettes(void);
 void Battle_LoadSideTerrainLayers(void);
 void Battle_ShowQuote(void);
 
-extern const char data_ov002_023600e4[];
+char data_ov002_023600e4[8] = {
+#include "data/ov002/data_ov002_023600e4.inc.c"
+};
 
 void Battle_LoadScreen(void) {
   FS_ChangeDir(data_ov002_023600e4);

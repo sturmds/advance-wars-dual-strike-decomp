@@ -11,38 +11,102 @@ int Battle_IsSideDrawnInAir(int side); /* 1: the side is drawn in the sky */
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
 
-extern char data_ov002_023600ec[];
-extern char data_ov002_023600f0[];
-extern char data_ov002_023600f4[];
-extern char data_ov002_023600f8[];
-extern char data_ov002_023600fc[];
-extern char data_ov002_02360100[];
-extern char data_ov002_02360104[];
-extern char data_ov002_02360108[];
-extern char data_ov002_0236010c[];
-extern char data_ov002_02360110[];
-extern char data_ov002_02360114[];
-extern char data_ov002_02360118[];
-extern char data_ov002_0236011c[];
-extern char data_ov002_02360120[];
-extern char data_ov002_02360124[];
-extern char data_ov002_02360128[];
-extern char data_ov002_0236012c[];
-extern char data_ov002_02360130[];
-extern char data_ov002_02360134[];
-extern char data_ov002_02360138[];
-extern char data_ov002_0236013c[];
-extern char data_ov002_02360140[];
-extern char data_ov002_02360144[];
-extern char data_ov002_02360148[];
-extern char data_ov002_0236014c[];
-extern char data_ov002_02360150[];
-extern char data_ov002_02360154[];
-extern char data_ov002_02360158[];
-extern char data_ov002_0236015c[];
-extern char data_ov002_02360160[];
-extern char data_ov002_02360164[];
-extern char data_ov002_02360168[];
+static char data_ov002_02360164[4] = {
+#include "data/ov002/data_ov002_02360164.inc.c"
+};
+static char data_ov002_02360160[4] = {
+#include "data/ov002/data_ov002_02360160.inc.c"
+};
+static char data_ov002_0236015c[4] = {
+#include "data/ov002/data_ov002_0236015c.inc.c"
+};
+static char data_ov002_02360158[4] = {
+#include "data/ov002/data_ov002_02360158.inc.c"
+};
+static char data_ov002_02360154[4] = {
+#include "data/ov002/data_ov002_02360154.inc.c"
+};
+static char data_ov002_02360150[4] = {
+#include "data/ov002/data_ov002_02360150.inc.c"
+};
+static char data_ov002_0236014c[4] = {
+#include "data/ov002/data_ov002_0236014c.inc.c"
+};
+static char data_ov002_02360148[4] = {
+#include "data/ov002/data_ov002_02360148.inc.c"
+};
+static char data_ov002_02360144[4] = {
+#include "data/ov002/data_ov002_02360144.inc.c"
+};
+static char data_ov002_02360140[4] = {
+#include "data/ov002/data_ov002_02360140.inc.c"
+};
+static char data_ov002_0236013c[4] = {
+#include "data/ov002/data_ov002_0236013c.inc.c"
+};
+static char data_ov002_02360138[4] = {
+#include "data/ov002/data_ov002_02360138.inc.c"
+};
+static char data_ov002_02360134[4] = {
+#include "data/ov002/data_ov002_02360134.inc.c"
+};
+static char data_ov002_02360130[4] = {
+#include "data/ov002/data_ov002_02360130.inc.c"
+};
+static char data_ov002_0236012c[4] = {
+#include "data/ov002/data_ov002_0236012c.inc.c"
+};
+static char data_ov002_02360128[4] = {
+#include "data/ov002/data_ov002_02360128.inc.c"
+};
+static char data_ov002_02360124[4] = {
+#include "data/ov002/data_ov002_02360124.inc.c"
+};
+static char data_ov002_02360120[4] = {
+#include "data/ov002/data_ov002_02360120.inc.c"
+};
+static char data_ov002_0236011c[4] = {
+#include "data/ov002/data_ov002_0236011c.inc.c"
+};
+static char data_ov002_02360118[4] = {
+#include "data/ov002/data_ov002_02360118.inc.c"
+};
+static char data_ov002_02360114[4] = {
+#include "data/ov002/data_ov002_02360114.inc.c"
+};
+static char data_ov002_02360110[4] = {
+#include "data/ov002/data_ov002_02360110.inc.c"
+};
+static char data_ov002_0236010c[4] = {
+#include "data/ov002/data_ov002_0236010c.inc.c"
+};
+static char data_ov002_02360108[4] = {
+#include "data/ov002/data_ov002_02360108.inc.c"
+};
+static char data_ov002_02360104[4] = {
+#include "data/ov002/data_ov002_02360104.inc.c"
+};
+static char data_ov002_02360100[4] = {
+#include "data/ov002/data_ov002_02360100.inc.c"
+};
+static char data_ov002_023600fc[4] = {
+#include "data/ov002/data_ov002_023600fc.inc.c"
+};
+static char data_ov002_023600f8[4] = {
+#include "data/ov002/data_ov002_023600f8.inc.c"
+};
+static char data_ov002_023600f4[4] = {
+#include "data/ov002/data_ov002_023600f4.inc.c"
+};
+static char data_ov002_023600f0[4] = {
+#include "data/ov002/data_ov002_023600f0.inc.c"
+};
+static char data_ov002_023600ec[4] = {
+#include "data/ov002/data_ov002_023600ec.inc.c"
+};
+static char data_ov002_02360168[4] = {
+#include "data/ov002/data_ov002_02360168.inc.c"
+};
 
 #define CHAR_BASE(bg) \
   (data_027c0280->bgVram + (data_027c0280->bgCnt[bg].charBase << 14))

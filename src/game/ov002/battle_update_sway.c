@@ -3,7 +3,12 @@
 #include "game/menu_state.h"
 
 extern MenuState gMenuState;
-extern s16 data_ov002_023604dc[][3];
+s16 data_ov002_023604dc[4][3] = {
+#include "data/ov002/data_ov002_023604dc.inc.c"
+};
+volatile s32 data_ov002_023604f4[28] = {
+#include "data/ov002/data_ov002_023604f4.inc.c"
+};
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(void* task);

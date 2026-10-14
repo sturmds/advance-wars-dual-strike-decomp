@@ -8,74 +8,228 @@ void GX_BeginLoadTex(void);      /* guess: maps VRAM bank A to the CPU (LCDC) */
 void GX_EndLoadTex(void);        /* guess: undoes GX_BeginLoadTex */
 BOOL Battle_IsSideSea(int side); /* TRUE: the side's unit is a naval unit */
 
-extern char data_ov002_0236038c[];
-extern char data_ov002_02360390[];
-extern char data_ov002_02360394[];
-extern char data_ov002_02360398[];
-extern char data_ov002_0236039c[];
-extern char data_ov002_023603a0[];
-extern char data_ov002_023603a4[];
-extern char data_ov002_023603a8[];
-extern char data_ov002_023603ac[];
-extern char data_ov002_023603b0[];
-extern char data_ov002_023603b4[];
-extern char data_ov002_023603b8[];
-extern char data_ov002_023603bc[];
-extern char data_ov002_023603c0[];
-extern char data_ov002_023603c4[];
-extern char data_ov002_023603c8[];
-extern char data_ov002_023603cc[];
-extern char data_ov002_023603d0[];
-extern char data_ov002_023603d4[];
-extern char data_ov002_023603d8[];
-extern char data_ov002_023603dc[];
-extern char data_ov002_023603e0[];
-extern char data_ov002_023603e4[];
-extern char data_ov002_023603e8[];
-extern char data_ov002_023603ec[];
-extern char data_ov002_023603f0[];
-extern char data_ov002_023603f4[];
-extern char data_ov002_023603f8[];
-extern char data_ov002_023603fc[];
-extern char data_ov002_02360400[];
-extern char data_ov002_02360404[];
-extern char data_ov002_02360408[];
-extern char data_ov002_0236040c[];
-extern char data_ov002_02360410[];
-extern char data_ov002_02360414[];
-extern char data_ov002_02360418[];
-extern char data_ov002_0236041c[];
-extern char data_ov002_02360420[];
-extern char data_ov002_02360424[];
-extern char data_ov002_02360428[];
-extern char data_ov002_0236042c[];
-extern char data_ov002_02360430[];
-extern char data_ov002_02360434[];
-extern char data_ov002_02360438[];
-extern char data_ov002_0236043c[];
-extern char data_ov002_02360440[];
-extern char data_ov002_02360444[];
-extern char data_ov002_02360448[];
-extern char data_ov002_0236044c[];
-extern char data_ov002_02360450[];
-extern char data_ov002_02360454[];
-extern char data_ov002_02360458[];
-extern char data_ov002_0236045c[];
-extern char data_ov002_02360460[];
-extern char data_ov002_02360464[];
-extern char data_ov002_02360468[];
-extern char data_ov002_0236046c[];
-extern char data_ov002_02360470[];
-extern char data_ov002_02360474[];
-extern char data_ov002_02360478[];
-extern char data_ov002_0236047c[];
-extern char data_ov002_02360480[];
-extern char data_ov002_02360484[];
-extern char data_ov002_02360488[];
-extern char data_ov002_0236048c[];
-extern char data_ov002_02360490[];
-extern char data_ov002_02360494[];
-extern char data_ov002_02360498[];
+static char data_ov002_0236038c[4] = {
+#include "data/ov002/data_ov002_0236038c.inc.c"
+};
+char data_ov002_023604a8[4] = {
+#include "data/ov002/data_ov002_023604a8.inc.c"
+};
+char data_ov002_023604a4[4] = {
+#include "data/ov002/data_ov002_023604a4.inc.c"
+};
+char data_ov002_023604a0[4] = {
+#include "data/ov002/data_ov002_023604a0.inc.c"
+};
+char data_ov002_0236049c[4] = {
+#include "data/ov002/data_ov002_0236049c.inc.c"
+};
+static char data_ov002_02360498[4] = {
+#include "data/ov002/data_ov002_02360498.inc.c"
+};
+static char data_ov002_02360494[4] = {
+#include "data/ov002/data_ov002_02360494.inc.c"
+};
+static char data_ov002_02360490[4] = {
+#include "data/ov002/data_ov002_02360490.inc.c"
+};
+static char data_ov002_0236048c[4] = {
+#include "data/ov002/data_ov002_0236048c.inc.c"
+};
+static char data_ov002_02360488[4] = {
+#include "data/ov002/data_ov002_02360488.inc.c"
+};
+static char data_ov002_02360484[4] = {
+#include "data/ov002/data_ov002_02360484.inc.c"
+};
+static char data_ov002_02360480[4] = {
+#include "data/ov002/data_ov002_02360480.inc.c"
+};
+static char data_ov002_0236047c[4] = {
+#include "data/ov002/data_ov002_0236047c.inc.c"
+};
+static char data_ov002_02360478[4] = {
+#include "data/ov002/data_ov002_02360478.inc.c"
+};
+static char data_ov002_02360474[4] = {
+#include "data/ov002/data_ov002_02360474.inc.c"
+};
+static char data_ov002_02360470[4] = {
+#include "data/ov002/data_ov002_02360470.inc.c"
+};
+static char data_ov002_0236046c[4] = {
+#include "data/ov002/data_ov002_0236046c.inc.c"
+};
+static char data_ov002_02360468[4] = {
+#include "data/ov002/data_ov002_02360468.inc.c"
+};
+static char data_ov002_02360464[4] = {
+#include "data/ov002/data_ov002_02360464.inc.c"
+};
+static char data_ov002_02360460[4] = {
+#include "data/ov002/data_ov002_02360460.inc.c"
+};
+static char data_ov002_0236045c[4] = {
+#include "data/ov002/data_ov002_0236045c.inc.c"
+};
+static char data_ov002_02360458[4] = {
+#include "data/ov002/data_ov002_02360458.inc.c"
+};
+static char data_ov002_02360454[4] = {
+#include "data/ov002/data_ov002_02360454.inc.c"
+};
+static char data_ov002_02360450[4] = {
+#include "data/ov002/data_ov002_02360450.inc.c"
+};
+static char data_ov002_0236044c[4] = {
+#include "data/ov002/data_ov002_0236044c.inc.c"
+};
+static char data_ov002_02360448[4] = {
+#include "data/ov002/data_ov002_02360448.inc.c"
+};
+static char data_ov002_02360444[4] = {
+#include "data/ov002/data_ov002_02360444.inc.c"
+};
+static char data_ov002_02360440[4] = {
+#include "data/ov002/data_ov002_02360440.inc.c"
+};
+static char data_ov002_0236043c[4] = {
+#include "data/ov002/data_ov002_0236043c.inc.c"
+};
+static char data_ov002_02360438[4] = {
+#include "data/ov002/data_ov002_02360438.inc.c"
+};
+static char data_ov002_02360434[4] = {
+#include "data/ov002/data_ov002_02360434.inc.c"
+};
+static char data_ov002_02360430[4] = {
+#include "data/ov002/data_ov002_02360430.inc.c"
+};
+static char data_ov002_0236042c[4] = {
+#include "data/ov002/data_ov002_0236042c.inc.c"
+};
+static char data_ov002_02360428[4] = {
+#include "data/ov002/data_ov002_02360428.inc.c"
+};
+static char data_ov002_02360424[4] = {
+#include "data/ov002/data_ov002_02360424.inc.c"
+};
+static char data_ov002_02360420[4] = {
+#include "data/ov002/data_ov002_02360420.inc.c"
+};
+static char data_ov002_0236041c[4] = {
+#include "data/ov002/data_ov002_0236041c.inc.c"
+};
+static char data_ov002_02360418[4] = {
+#include "data/ov002/data_ov002_02360418.inc.c"
+};
+static char data_ov002_02360414[4] = {
+#include "data/ov002/data_ov002_02360414.inc.c"
+};
+static char data_ov002_02360410[4] = {
+#include "data/ov002/data_ov002_02360410.inc.c"
+};
+static char data_ov002_0236040c[4] = {
+#include "data/ov002/data_ov002_0236040c.inc.c"
+};
+static char data_ov002_02360408[4] = {
+#include "data/ov002/data_ov002_02360408.inc.c"
+};
+static char data_ov002_02360404[4] = {
+#include "data/ov002/data_ov002_02360404.inc.c"
+};
+static char data_ov002_02360400[4] = {
+#include "data/ov002/data_ov002_02360400.inc.c"
+};
+static char data_ov002_023603fc[4] = {
+#include "data/ov002/data_ov002_023603fc.inc.c"
+};
+static char data_ov002_023603f8[4] = {
+#include "data/ov002/data_ov002_023603f8.inc.c"
+};
+static char data_ov002_023603f4[4] = {
+#include "data/ov002/data_ov002_023603f4.inc.c"
+};
+static char data_ov002_023603f0[4] = {
+#include "data/ov002/data_ov002_023603f0.inc.c"
+};
+static char data_ov002_023603ec[4] = {
+#include "data/ov002/data_ov002_023603ec.inc.c"
+};
+static char data_ov002_023603e8[4] = {
+#include "data/ov002/data_ov002_023603e8.inc.c"
+};
+static char data_ov002_023603e4[4] = {
+#include "data/ov002/data_ov002_023603e4.inc.c"
+};
+static char data_ov002_023603e0[4] = {
+#include "data/ov002/data_ov002_023603e0.inc.c"
+};
+static char data_ov002_023603dc[4] = {
+#include "data/ov002/data_ov002_023603dc.inc.c"
+};
+static char data_ov002_023603d8[4] = {
+#include "data/ov002/data_ov002_023603d8.inc.c"
+};
+static char data_ov002_023603d4[4] = {
+#include "data/ov002/data_ov002_023603d4.inc.c"
+};
+static char data_ov002_023603d0[4] = {
+#include "data/ov002/data_ov002_023603d0.inc.c"
+};
+static char data_ov002_023603cc[4] = {
+#include "data/ov002/data_ov002_023603cc.inc.c"
+};
+static char data_ov002_023603c8[4] = {
+#include "data/ov002/data_ov002_023603c8.inc.c"
+};
+static char data_ov002_023603c4[4] = {
+#include "data/ov002/data_ov002_023603c4.inc.c"
+};
+static char data_ov002_023603c0[4] = {
+#include "data/ov002/data_ov002_023603c0.inc.c"
+};
+static char data_ov002_023603bc[4] = {
+#include "data/ov002/data_ov002_023603bc.inc.c"
+};
+static char data_ov002_023603b8[4] = {
+#include "data/ov002/data_ov002_023603b8.inc.c"
+};
+static char data_ov002_023603b4[4] = {
+#include "data/ov002/data_ov002_023603b4.inc.c"
+};
+static char data_ov002_023603b0[4] = {
+#include "data/ov002/data_ov002_023603b0.inc.c"
+};
+static char data_ov002_023603ac[4] = {
+#include "data/ov002/data_ov002_023603ac.inc.c"
+};
+static char data_ov002_023603a8[4] = {
+#include "data/ov002/data_ov002_023603a8.inc.c"
+};
+static char data_ov002_023603a4[4] = {
+#include "data/ov002/data_ov002_023603a4.inc.c"
+};
+static char data_ov002_023603a0[4] = {
+#include "data/ov002/data_ov002_023603a0.inc.c"
+};
+static char data_ov002_0236039c[4] = {
+#include "data/ov002/data_ov002_0236039c.inc.c"
+};
+static char data_ov002_02360398[4] = {
+#include "data/ov002/data_ov002_02360398.inc.c"
+};
+static char data_ov002_02360394[4] = {
+#include "data/ov002/data_ov002_02360394.inc.c"
+};
+static char data_ov002_02360390[4] = {
+#include "data/ov002/data_ov002_02360390.inc.c"
+};
+u8 data_ov002_023604ac[12] = {
+#include "data/ov002/data_ov002_023604ac.inc.c"
+};
+u8 data_ov002_023604b8[12] = {
+#include "data/ov002/data_ov002_023604b8.inc.c"
+};
 
 /* VRAM bank A while it is mapped to the CPU. */
 #define VRAM_LCDC_A 0x06800000

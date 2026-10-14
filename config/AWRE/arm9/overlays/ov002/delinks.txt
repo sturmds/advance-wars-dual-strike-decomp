@@ -3,6 +3,14 @@
     .data       start:0x02360040 end:0x0236bbc0 kind:data align:32
     .bss        start:0x0236bbc0 end:0x0236bca0 kind:bss align:32
 
+src/game/ov002/ov002_bss_0236bbec.c:
+    complete
+    .bss        start:0x0236bbec end:0x0236bca0
+
+src/game/ov002/ov002_bss_0236bbc0.c:
+    complete
+    .bss        start:0x0236bbc0 end:0x0236bbdc
+
 src/game/ov002/battle_start.c:
     complete
     .text       start:0x02350560 end:0x02350590
@@ -18,6 +26,7 @@ src/game/ov002/func_ov002_0235059c.c:
 src/game/ov002/battle_init.c:
     complete
     .text       start:0x023505b8 end:0x0235063c
+    .data       start:0x02360040 end:0x02360044
 
 src/game/ov002/battle_scene_fill_from_combat.c:
     complete
@@ -38,6 +47,7 @@ src/game/ov002/battle_draw_frame.c:
 src/game/ov002/battle_ensure_task.c:
     complete
     .text       start:0x02350ce0 end:0x02350d20
+    .data       start:0x02360044 end:0x02360094
 
 src/game/ov002/func_ov002_02350d20.c:
     complete
@@ -62,6 +72,7 @@ src/game/ov002/battle_fade_in_step.c:
 src/game/ov002/battle_init_screen_windows.c:
     complete
     .text       start:0x02350ea8 end:0x023511ac
+    .data       start:0x02360094 end:0x023600e4
 
 src/game/ov002/battle_start_fade_in.c:
     complete
@@ -70,18 +81,22 @@ src/game/ov002/battle_start_fade_in.c:
 src/game/ov002/battle_load_screen.c:
     complete
     .text       start:0x02351254 end:0x02351288
+    .data       start:0x023600e4 end:0x023600ec
 
 src/game/ov002/battle_load_side_terrain_layers.c:
     complete
     .text       start:0x02351288 end:0x023518ac
+    .data       start:0x023600ec end:0x0236016c
 
 src/game/ov002/battle_load_side_background_palettes.c:
     complete
     .text       start:0x023518ac end:0x023521e4
+    .data       start:0x0236016c end:0x0236038c
 
 src/game/ov002/battle_load_side_backgrounds.c:
     complete
     .text       start:0x023521e4 end:0x02352754
+    .data       start:0x0236038c end:0x023604c4
 
 src/game/ov002/battle_load_side_graphics.c:
     complete
@@ -103,10 +118,12 @@ src/game/ov002/func_ov002_02353218.c:
 src/game/ov002/func_ov002_0235323c.c:
     complete
     .text       start:0x0235323c end:0x02353254
+    .data       start:0x023604c4 end:0x023604dc
 
 src/game/ov002/battle_update_sway.c:
     complete
     .text       start:0x02353254 end:0x02353388
+    .data       start:0x023604dc end:0x02360564
 
 src/game/ov002/battle_init_sway.c:
     complete
@@ -160,10 +177,6 @@ src/game/ov002/battle_draw_scene.c:
     complete
     .text       start:0x02354174 end:0x02354464
     .bss        start:0x0236bbe0 end:0x0236bbec
-
-src/game/ov002/ov002_bss_0236bbec.c:
-    complete
-    .bss        start:0x0236bbec end:0x0236bca0
 
 src/game/ov002/battle_set_side_projection.c:
     complete
@@ -664,7 +677,3 @@ src/game/ov002/battle_footstep_task_start.c:
 src/game/ov002/battle_cue_task_update.c:
     complete
     .text       start:0x0235ffa8 end:0x02360030
-
-src/game/ov002/ov002_bss_0236bbc0.c:
-    complete
-    .bss        start:0x0236bbc0 end:0x0236bbdc
