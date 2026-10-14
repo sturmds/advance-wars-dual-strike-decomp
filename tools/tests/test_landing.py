@@ -581,6 +581,56 @@ class ChainedRenameTest(RepoCase):
         self.check(symbols_in_order=False)
 
 
+class MovedNameTest(RepoCase):
+    """Issue 0088: a commit moved Ov000_gTerrainStats from 0x022f4ccc to the
+    table's start at 0x022f4cb8 and gave 0x022f4ccc its address name; the
+    replay renamed mainline's readers to data_ov000_022f4ccc."""
+
+    READER = "extern int {t}[];\nint f(void) {{ return {t}[1]; }}\n"
+
+    def replay_move(self, base_rows, new_rows):
+        return self.repo.replay(
+            base={SYMBOLS: "".join(symbol(n, at) for n, at in base_rows),
+                  "src/reader.c": self.READER.format(t="Table")},
+            ours={"src/main.c": "int main(void) { return 1; }\n"},
+            theirs={SYMBOLS: "".join(symbol(n, at) for n, at in new_rows),
+                    "src/table.c": "int Table[3];\n"})
+
+    def test_name_moved_to_named_address(self):
+        r = self.replay_move([("data_02000900", 0x2000900), ("Table", 0x2000904)],
+                             [("Table", 0x2000900), ("data_02000904", 0x2000904)])
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertEqual(self.repo.read(SYMBOLS), symbol("Table", 0x2000900) + symbol("data_02000904", 0x2000904))
+        self.assertEqual(self.repo.read("src/reader.c"), self.READER.format(t="Table"))
+        self.assertIn("Table moved to another address", r.stdout)
+
+    def test_name_moved_to_new_address(self):
+        r = self.replay_move([("Table", 0x2000904)],
+                             [("Table", 0x2000900), ("data_02000904", 0x2000904)])
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertEqual(self.repo.read("src/reader.c"), self.READER.format(t="Table"))
+
+    def test_name_given_up_is_renamed(self):
+        """A name that no symbol keeps is a rename, also to an address name."""
+        r = self.replay_move([("Table", 0x2000904)], [("data_02000904", 0x2000904)])
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertEqual(self.repo.read("src/reader.c"), self.READER.format(t="data_02000904"))
+
+    def test_swap_follows_the_addresses(self):
+        """Two names swapped between two addresses: neither address gets its
+        address name back, so both are renames and the sources keep
+        pointing at the same addresses."""
+        r = self.repo.replay(
+            base={SYMBOLS: symbol("Load", 0x2000900) + symbol("Save", 0x2000a00),
+                  "src/caller.c": "void Load(void);\nvoid Save(void);\nvoid f(void) { Load(); Save(); }\n"},
+            ours={"src/main.c": "int main(void) { return 1; }\n"},
+            theirs={SYMBOLS: symbol("Save", 0x2000900) + symbol("Load", 0x2000a00)})
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertEqual(self.repo.read(SYMBOLS), symbol("Save", 0x2000900) + symbol("Load", 0x2000a00))
+        self.assertEqual(self.repo.read("src/caller.c"),
+                         "void Save(void);\nvoid Load(void);\nvoid f(void) { Save(); Load(); }\n")
+
+
 class LocalPrototypeTest(RepoCase):
     def replay_c(self, src: str):
         return self.repo.replay(

@@ -35,7 +35,10 @@ delinks.txt or symbols.txt, so this replays config changes by meaning:
 - Source files: the commit's symbol renames are applied to both older
   versions before the merge, and to the sources the commit did not touch.
   All renames apply in one pass, so a commit that renames A to B and gives
-  A's old name to C does not turn C into B. Afterwards, local prototypes of functions an
+  A's old name to C does not turn C into B. A name that moved (the commit
+  gives the old address its address name, such as data_ov000_022f4ccc,
+  and the name is still a symbol elsewhere) is not renamed in the sources.
+  Afterwards, local prototypes of functions an
   included header declares are dropped from the commit's .c files, and
   conflict blocks whose two sides have become equal are resolved.
 
@@ -130,7 +133,21 @@ def apply_symbols(path: str, old: str, new: str) -> list[tuple[str, str]]:
     (ROOT / path).write_text("\n".join(lines) + "\n")
     renamed = {n for n, _ in renames} | {n for _, n in renames}
     replay_lines(path, old, new, lambda ln: ln.split(" ", 1)[0], skip=renamed)
-    return renames
+    # A name the commit moved to another address is not a rename for the
+    # sources: the old address gets its address name back (data_ov000_022f4ccc)
+    # and the name lives on elsewhere (issue 0088).
+    still = set(after.values())
+    moved = {before[k] for k in renamed_keys if before[k] in still and is_address_name(after[k], k[0])}
+    for name in sorted(moved):
+        print(f"{path}: {name} moved to another address; the sources keep the name")
+    return [(o, n) for o, n in renames if o not in moved]
+
+
+def is_address_name(name: str, addr: str) -> bool:
+    """True for the name dsd gives a symbol at addr (func_02000900,
+    data_ov000_022f4ccc)."""
+    m = ADDR_NAME.fullmatch(name)
+    return bool(m) and "0x" + m.group(2) == addr
 
 
 RELOC_FROM = re.compile(r"\bfrom:(0x[0-9a-f]+)")

@@ -115,4 +115,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0085](0085-music-extraction.md) | Investigate how the music is stored and played, to extract it like the maps | closed | tools | later |
 | [0086](0086-shiftable-rom.md) | A shifted or modded build must still run | in progress | build | M3 |
 | [0087](0087-fully-shiftable-source.md) | Make the source fully shiftable: addresses, sizes and bounds from the C, counted in PROGRESS.md (GitHub #2) | open | decomp | M3 |
-| [0088](0088-replay-rename-of-moved-symbol.md) | The landing replay renames a symbol that moved to a new address | open | loop | M2 |
+| [0088](0088-replay-rename-of-moved-symbol.md) | The landing replay renames a symbol that moved to a new address | closed | loop | M2 |

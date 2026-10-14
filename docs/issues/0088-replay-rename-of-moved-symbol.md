@@ -1,6 +1,6 @@
 # 0088: The landing replay renames a symbol that moved to a new address
 
-- **Status:** open
+- **Status:** closed
 - **Area:** loop
 - **Opened:** 2026-10-14
 - **Milestone:** M2
@@ -19,3 +19,9 @@ Skip a rename when the old name is still a symbol after the commit (it moved, it
 ## Done when
 
 A commit that moves a name to another address replays without touching other files.
+
+## Fixed (2026-10-14)
+
+`apply_symbols` still renames the line in `symbols.txt`, but it no longer passes a rename on to the sources when the commit gives the old address its address name (`func_...`, `data_...`) and the old name is still a symbol after the commit: the name moved. A rename where the old name disappears, and a swap of two names between two addresses, still rewrite the sources, so they keep pointing at the same addresses (issue 0030's case `Count -> CountAny`, `func_02000a00 -> Count` stays a rename).
+
+Tests: `MovedNameTest` in `tools/tests/test_landing.py` (name moved to an address that had a symbol, name moved to a new address, name given up for the address name, two names swapped).
