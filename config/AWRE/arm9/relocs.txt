@@ -25938,7 +25938,7 @@ from:0x020dbcd0 kind:arm_call to:0x020ccb80 module:main
 from:0x020dbce0 kind:arm_call to:0x02003a60 module:main
 from:0x020dbcec kind:arm_call to:0x020ccb80 module:main
 from:0x020dbcf8 kind:arm_call to:0x02003a60 module:main
-from:0x020dbd04 kind:load to:0x0236d644 module:overlays(1,6)
+from:0x020dbd04 kind:load to:0x0236d644 module:overlay(6)
 from:0x020dbd14 kind:arm_call to:0x020fa6f8 module:main
 from:0x020dbd28 kind:arm_call to:0x020dbde8 module:main
 from:0x020dbd40 kind:arm_call to:0x02002e50 module:main

@@ -50,6 +50,17 @@ DECIDED = {
                                     " runs after func_02001564 loads ov002: Battle_StartScreen"),
     ("main", 0x0216A6EC): ("ov005", "the script calls func_020015f4 (loads ov005) first"),
     ("main", 0x0216A7DC): ("ov005", "the script calls func_020015f4 (loads ov005) first"),
+    ("main", 0x020DBD04): ("ov006", "every caller of Palette_QueueBlockCopy is in ov006, whose own code uses"
+                                    " the address as a 0x100-byte .bss buffer; ov001 has a 20-byte object there"),
+    ("ov000", 0x022E5288): ("ov001", "MapHeader.script: map scripts are ov001 .data (docs/maps.md)"),
+    ("ov000", 0x022E5328): ("ov001", "MapHeader.script: map scripts are ov001 .data (docs/maps.md)"),
+    ("ov000", 0x022E53C8): ("ov001", "MapHeader.script: map scripts are ov001 .data (docs/maps.md)"),
+    ("ov000", 0x022E5468): ("ov001", "MapHeader.script: map scripts are ov001 .data (docs/maps.md)"),
+    ("ov000", 0x022E5508): ("ov001", "MapHeader.script: map scripts are ov001 .data (docs/maps.md)"),
+    ("ov000", 0x022E55A8): ("ov001", "MapHeader.script: map scripts are ov001 .data (docs/maps.md)"),
+    ("ov000", 0x022E5648): ("ov001", "MapHeader.script: map scripts are ov001 .data (docs/maps.md)"),
+    ("ov000", 0x022E56E8): ("ov001", "MapHeader.script: map scripts are ov001 .data (docs/maps.md)"),
+    ("ov000", 0x022E5C88): ("ov001", "MapHeader.script: map scripts are ov001 .data (docs/maps.md)"),
 }
 
 
