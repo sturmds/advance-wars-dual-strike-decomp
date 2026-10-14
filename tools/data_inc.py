@@ -23,7 +23,8 @@ A row of data_inc.txt: module, symbol, address, size in bytes, element type.
     itcm gUnit3dTextureBlocks 0x01ffb9bc 0x288 u32[27]
 
 - module: main, itcm, dtcm, ovNNN or arm7.
-- type: u8, s8, u16, s16, u32, s32 or a pointer type (`void*`, `char*`),
+- type: u8, s8, u16, s16, u32, s32, u64 (written with ULL; mwccarm aligns it
+  to a word, as in PowerLedBlinkScript) or a pointer type (`void*`, `char*`),
   with an optional `[N]` that writes the values as rows of N in braces.
   For a struct or an array of structs, the field types in braces, no
   spaces, with `[N]` for an array field: `{u8,u8,u8[2],u32,u32,u16*,u8,u8[3]}`
@@ -64,8 +65,9 @@ EXTRACT = Path("extract")
 CONFIG9 = Path("config/AWRE/arm9")
 CONFIG7 = Path("config/AWRE/arm7")
 
-SIZES = {"u8": 1, "s8": 1, "u16": 2, "s16": 2, "u32": 4, "s32": 4}
-PER_LINE = {1: 16, 2: 8, 4: 8}
+SIZES = {"u8": 1, "s8": 1, "u16": 2, "s16": 2, "u32": 4, "s32": 4, "u64": 8}
+ALIGN_MAX = 4  # mwccarm aligns a u64 like a word
+PER_LINE = {1: 16, 2: 8, 4: 8, 8: 4}
 ROW = re.compile(r"(\S+)\s+(\w+)\s+(0x[0-9a-fA-F]+)\s+(0x[0-9a-fA-F]+|\d+)\s+(\w+\s*\**|\{[^\s{}]+\})(?:\[(\d+)\])?$")
 FIELD = re.compile(r"(\w+\**)(?::([A-Z][A-Z0-9_]*)|:(\d+))?(?:\[(\d+)\])?$")
 PAD = "pad"  # a struct field of padding bytes
@@ -90,7 +92,7 @@ class Row:
         if not self.pointer and self.type not in SIZES:
             sys.exit(f"error: {where}: unknown element type {self.type!r}")
         self.width = 4 if self.pointer else SIZES[self.type]
-        if self.size % self.width or self.addr % self.width:
+        if self.size % self.width or self.addr % min(self.width, ALIGN_MAX):
             sys.exit(f"error: {where}: address and size must be multiples of {self.width}")
         if self.columns and (self.size // self.width) % self.columns:
             sys.exit(f"error: {where}: {self.size // self.width} elements do not make rows of {self.columns}")
@@ -127,7 +129,7 @@ class Row:
                 unit[2] += bits
             else:
                 unit = None
-                if offset % width:
+                if offset % min(width, ALIGN_MAX):
                     sys.exit(f"error: {where}: field {text!r} at offset {offset:#x} is not aligned")
                 self.layout.append((offset, 0, 0))
                 offset += width * max(count, 1)
@@ -321,7 +323,7 @@ def literal(row: Row, rom: Rom, addr: int, raw: bytes, cast: str = "") -> str:
         return "0"
     if cast.startswith("s"):
         return str(value)
-    return f"{value:#0{2 + 2 * len(raw)}x}"
+    return f"{value:#0{2 + 2 * len(raw)}x}" + ("ULL" if len(raw) == 8 else "")
 
 
 def render_struct(row: Row, rom: Rom, addr: int, data: bytes) -> str:
