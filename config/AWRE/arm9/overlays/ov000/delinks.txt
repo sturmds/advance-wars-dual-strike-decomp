@@ -900,6 +900,42 @@ src/game/ov000/ov000_data_0232310c.c:
     complete
     .data       start:0x0232310c end:0x02325ebc
 
+src/game/ov000/ov000_data_02325ebc.c:
+    complete
+    .data       start:0x02325ebc end:0x02327528
+
+src/game/ov000/ov000_data_02327528.c:
+    complete
+    .data       start:0x02327528 end:0x02328cac
+
+src/game/ov000/ov000_data_02328cac.c:
+    complete
+    .data       start:0x02328cac end:0x0232a3a4
+
+src/game/ov000/ov000_data_0232a3a4.c:
+    complete
+    .data       start:0x0232a3a4 end:0x0232ba68
+
+src/game/ov000/ov000_data_0232ba68.c:
+    complete
+    .data       start:0x0232ba68 end:0x0232d6ac
+
+src/game/ov000/ov000_data_0232d6ac.c:
+    complete
+    .data       start:0x0232d6ac end:0x0232fd24
+
+src/game/ov000/ov000_data_0232fd24.c:
+    complete
+    .data       start:0x0232fd24 end:0x02331c84
+
+src/game/ov000/ov000_data_02331c84.c:
+    complete
+    .data       start:0x02331c84 end:0x02333d00
+
+src/game/ov000/ov000_data_02333d00.c:
+    complete
+    .data       start:0x02333d00 end:0x02335960
+
 src/game/ov000/task/unit_path_count_steps.c:
     complete
     .text       start:0x022ad560 end:0x022ad5cc
