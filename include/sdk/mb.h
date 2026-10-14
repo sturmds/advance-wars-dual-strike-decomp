@@ -346,6 +346,14 @@ typedef struct DlPlayHostMsgHead {
   u16 block;
 } DlPlayHostMsgHead;
 
+/* A child message as received: the type, the request halfword as two
+   bytes (it is not aligned), then the payload. */
+typedef struct DlPlayChildMsgWire {
+  u8 type;
+  u8 request[2];
+  u8 payload[1];
+} DlPlayChildMsgWire;
+
 /* The header of a child message. */
 typedef struct DlPlayChildMsgHead {
   u8 type;

@@ -10,7 +10,7 @@ int Wmsp_GetLinkLevel(void) {
   // address into one constant instead of keeping the base in a register.
   u8* work = (u8*)WMSP_WORK;
 
-  for (i = 0; i < 16; i++) {
+  for (i = 0; i < RSSI_HISTORY_LENGTH; i++) {
     sum += ((WmspState*)(work + WMSP_STATE_OFFSET))->history[i];
   }
   return Wmsp_RssiToLinkLevel(sum >> 4);

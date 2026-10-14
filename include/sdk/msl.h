@@ -4,6 +4,10 @@
 #include "stdarg.h"
 #include "types.h"
 
+/* Functions atexit registers, run in reverse by exit. */
+#define EXIT_TABLE_SIZE 64
+typedef void (*AtExitFunction)(void);
+
 /*
  * Floating-point trap interface of the runtime. Wrappers around the soft-float
  * routines pass their operands and an operation word to one dispatcher. The

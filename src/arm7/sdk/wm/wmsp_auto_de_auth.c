@@ -6,7 +6,7 @@ u16* func_arm7_027c2648(WlCommand* cmd, const void* src, int arg);
 /* Deauthenticates the station with the given MAC address (WL command 5,
    reason 19), then replies WM_APIID_AUTO_DEAUTH. */
 void WMSP_AutoDeAuth(WmspMacRequest* request) {
-  u8 macAddress[6];
+  u8 macAddress[MAC_ADDRESS_SIZE];
   u32 cmd[0x80];
   u16* result;
   WmspReply* reply;

@@ -19,7 +19,7 @@ void SndPlayer_Setup(SndPlayer* player, SoundBank* bank) {
   }
   if (data_arm7_0380808c != NULL) {
     data_arm7_0380808c->player[player->number].tickCounter = 0;
-    for (i = 0; i < 16; i++) {
+    for (i = 0; i < SOUND_VARIABLE_COUNT; i++) {
       data_arm7_0380808c->player[player->number].variable[i] = -1;
     }
   }

@@ -28,8 +28,8 @@ void WMSP_Reset(void) {
   WmspBuf* buf = func_arm7_027c05e0()->buf;
   WlCommandBuf wlBuf;
   WlCommand* cmd = &wlBuf.command;
-  u8 parentMac[6];
-  u8 broadcastMac[6];
+  u8 parentMac[MAC_ADDRESS_SIZE];
+  u8 broadcastMac[MAC_ADDRESS_SIZE];
   BOOL mpWasOn = FALSE;
   int intr;
   u16* wlReply;
@@ -79,13 +79,14 @@ void WMSP_Reset(void) {
     case 0x40:
       /* needed to match: the original adds 0xfffe, not subtracts 2 */
       if ((u16)(wlMode + (u16)-2) <= 1) {
-        Mem_CopyBytes_Arm7(buf->status->parentMacAddress, parentMac, 6);
+        Mem_CopyBytes_Arm7(buf->status->parentMacAddress, parentMac,
+                           MAC_ADDRESS_SIZE);
         wlReply = func_arm7_027c2648(cmd, parentMac, DEAUTH_REASON_LEAVING);
         if (wlReply[2] == 0) {
           buf->status->state = WM_STATE_CLASS1;
         }
       } else if (wlMode == 1) {
-        Mem_FillBytes_Arm7(broadcastMac, 0xff, 6);
+        Mem_FillBytes_Arm7(broadcastMac, 0xff, sizeof(broadcastMac));
         wlReply = func_arm7_027c2648(cmd, broadcastMac, DEAUTH_REASON_LEAVING);
         if (wlReply[2] == 0) {
           buf->status->state = WM_STATE_CLASS1;

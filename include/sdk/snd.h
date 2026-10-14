@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "sdk/os_common.h"
+#include "sdk/snd_hw.h"
 #include "game/sound_bank.h"
 #include "game/sound_wave_arc.h"
 #include "sdk/snd_seq.h"
@@ -51,8 +52,11 @@ enum {
 };
 
 /* Status block the ARM7 sound driver writes and the ARM9 reads after invalidating its cache lines. */
+#define SOUND_PLAYER_COUNT 16
+#define SOUND_VARIABLE_COUNT 16 /* sequence variables, per player and global */
+
 typedef struct SndPlayerInfo {
-  s16 variable[16];
+  s16 variable[SOUND_VARIABLE_COUNT];
   u32 tickCounter;
 } SndPlayerInfo;
 
@@ -62,8 +66,8 @@ typedef struct SndSharedWork {
   u16 channelStatus;
   u16 captureStatus;
   u8 pad_0C[20];
-  SndPlayerInfo player[16];
-  s16 globalVariable[16];
+  SndPlayerInfo player[SOUND_PLAYER_COUNT];
+  s16 globalVariable[SOUND_VARIABLE_COUNT];
 } SndSharedWork;
 
 /* One software alarm slot: the handler runs when the ARM7 reports the alarm, if tag still matches. */
@@ -80,7 +84,7 @@ typedef struct SndAlarm {
 
 /* Command queue state of the sound driver. The roles are read from the code. */
 extern int data_022a9c50;            /* SND_Init has run */
-extern u8 data_022a9c54[];           /* lock around the command lists */
+extern OSMutex data_022a9c54;        /* lock around the command lists */
 extern SndCommand* data_022a9c68;    /* free list head */
 #define SOUND_COMMAND_POOL_COUNT 256 /* commands in data_022a9f40 */
 
@@ -174,7 +178,7 @@ typedef struct SndArm7Work {
 /* Copy of the driver's state, written to a buffer the ARM9 passed in. */
 typedef struct SndArm7Snapshot {
   SndArm7Work work;
-  u32 channelControl[16]; /* SOUNDxCNT of each channel */
+  u32 channelControl[SOUND_CHANNEL_COUNT]; /* SOUNDxCNT of each channel */
   SndArm7Work* driver;
   u32 unk_11C4;
 } SndArm7Snapshot;

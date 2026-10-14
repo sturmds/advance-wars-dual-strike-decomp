@@ -30,7 +30,7 @@ void WifiTx_LayOutSlots(void) {
       zero; /* needed to match: the fill value goes through the stack */
 
   zero = 0;
-  Mem_FillWords_Arm7(zero, slots, 0xb4);
+  Mem_FillWords_Arm7(zero, slots, sizeof(WlTxSlots));
   slots->slot[0].busy = 0;
   slots->slot[0].queued = NULL;
   slots->slot[1].busy = 0;

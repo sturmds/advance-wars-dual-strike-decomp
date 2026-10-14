@@ -30,7 +30,11 @@ typedef struct RomHeader {
   u8 pad_84[0xdc];
 } RomHeader;
 
-/* Copy of the cartridge header in main RAM, 0x160 bytes. */
+typedef char RomHeader_size_check[sizeof(RomHeader) == 0x160 ? 1 : -1];
+
+/* Copy of the cartridge header in main RAM, and where a Download Play
+   child keeps it. */
 #define ROM_HEADER_BUF ((RomHeader*)0x027ffe00)
+#define ROM_HEADER_BUF_DOWNLOAD_PLAY ((RomHeader*)0x023fe940)
 
 #endif

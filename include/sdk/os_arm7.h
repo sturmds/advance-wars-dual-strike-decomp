@@ -136,6 +136,9 @@ OSIrqMask Irq_AckPending_Arm7(OSIrqMask mask);
 OSIrqMask Irq_ClearEnableBits_Arm7(OSIrqMask mask);
 OSIrqMask Irq_SetEnableBits_Arm7(OSIrqMask mask);
 OSIrqMask Irq_ReplaceEnableBits_Arm7(OSIrqMask mask);
+/* IE bits the ARM7 handler tables cover: 0 to 24. */
+#define IRQ_BIT_COUNT_ARM7 25
+
 void Irq_InstallHandlers_Arm7(OSIrqMask mask, OSIrqFunction function);
 void Timer_InstallIrqSlot_Arm7(int timer, void (*handler)(void*), void* arg);
 

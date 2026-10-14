@@ -4,7 +4,10 @@
 
 void MIi_CpuCopy16(const void* src, void* dest, u32 size);
 
-static u8 gWmGameInfoBuf[0x80];
+/* Room for the game info: at most 112 bytes, in whole cache lines. */
+#define GAME_INFO_BUF_SIZE 0x80
+
+static u8 gWmGameInfoBuf[GAME_INFO_BUF_SIZE];
 
 /* Parent side: sets the game data a beacon advertises. The data is copied
  * into a buffer the ARM7 reads. */

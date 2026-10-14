@@ -15,7 +15,7 @@ u32 WifiFrame_PutRatesElement(u8* dest) {
 
   WL_WriteByte(dest, 1);
   length += 2;
-  for (i = 0; i < 16; i++) {
+  for (i = 0; i < sizeof(link->supportedRates) * BITS_PER_BYTE; i++) {
     if (link->supportedRates & (1 << i)) {
       if (link->basicRates & (1 << i)) {
         WL_WriteByte(dest + length, (gWifiRateHalfMbps[i] | 0x80) & 0xff);

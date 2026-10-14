@@ -8,8 +8,9 @@ void func_arm7_027c84f4(void* dest, const void* src, u32 halfwords);
  */
 void WifiTx_CopyWithWepGap(void* dest, const void* header, const void* body,
                            u32 bodySize) {
-  func_arm7_027c84f4(dest, header, 18);
+  func_arm7_027c84f4(dest, header, WIFI_TX_RAM_HEADER_BYTES / 2);
   if (bodySize != 0) {
-    func_arm7_027c84f4((u8*)dest + 40, body, (bodySize + 1) >> 1);
+    func_arm7_027c84f4((u8*)dest + WIFI_TX_RAM_HEADER_BYTES + WIFI_WEP_IV_BYTES,
+                       body, (bodySize + 1) >> 1);
   }
 }

@@ -16,17 +16,20 @@ void G3X_InitTable(void) {
   int i;
 
   if (data_0216d958 != -1) {
-    MI_DmaFill32Async(data_0216d958, (void*)REG_EDGE_COLOR, 0, 16, NULL, NULL);
-    MI_DmaFill32(data_0216d958, (void*)REG_FOG_TABLE, 0, 96);
+    MI_DmaFill32Async(data_0216d958, (void*)REG_EDGE_COLOR, 0,
+                      EDGE_COLOR_TABLE_SIZE, NULL, NULL);
+    MI_DmaFill32(data_0216d958, (void*)REG_FOG_TABLE, 0,
+                 FOG_TABLE_SIZE + TOON_TABLE_SIZE);
   } else {
     volatile u32 zeroEdge = 0;
     volatile u32 zeroFog;
 
-    MIi_CpuClear32(zeroEdge, (void*)REG_EDGE_COLOR, 16);
+    MIi_CpuClear32(zeroEdge, (void*)REG_EDGE_COLOR, EDGE_COLOR_TABLE_SIZE);
     zeroFog = 0;
-    MIi_CpuClear32(zeroFog, (void*)REG_FOG_TABLE, 96);
+    MIi_CpuClear32(zeroFog, (void*)REG_FOG_TABLE,
+                   FOG_TABLE_SIZE + TOON_TABLE_SIZE);
   }
-  for (i = 0; i < 32; i++) {
+  for (i = 0; i < SHININESS_TABLE_WORDS; i++) {
     *REG_SHININESS = 0;
   }
 }

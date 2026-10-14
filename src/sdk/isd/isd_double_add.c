@@ -47,19 +47,19 @@ double Isd_DoubleAdd(double a, double b) {
   expB = Isd_DoubleExponent(b);
   mantB = 0;
 
-  topA = (char*)&a + 6;
+  topA = &ISD_DOUBLE_BYTES(a)->exponentLow;
   mantA |= 0x10;
   mantA |= Isd_ReadByte(topA) & 0xf;
   for (k = 5; k >= 0; k--) {
     mantA <<= 8;
-    mantA |= Isd_ReadByte((char*)&a + k);
+    mantA |= Isd_ReadByte(&ISD_DOUBLE_BYTES(a)->mantissa[k]);
   }
-  topB = (char*)&b + 6;
+  topB = &ISD_DOUBLE_BYTES(b)->exponentLow;
   mantB |= 0x10;
   mantB |= Isd_ReadByte(topB) & 0xf;
   for (k = 5; k >= 0; k--) {
     mantB <<= 8;
-    mantB |= Isd_ReadByte((char*)&b + k);
+    mantB |= Isd_ReadByte(&ISD_DOUBLE_BYTES(b)->mantissa[k]);
   }
 
   if (expA == 0 && mantA == 0) {
@@ -94,15 +94,15 @@ double Isd_DoubleAdd(double a, double b) {
   }
 
   result = 0;
-  readPtr = (char*)&result + 7;
+  readPtr = &ISD_DOUBLE_BYTES(result)->signExponent;
   byte = Isd_ReadByte(readPtr) | (expA >> 4);
-  writePtr = (char*)&result + 7;
+  writePtr = &ISD_DOUBLE_BYTES(result)->signExponent;
   Isd_StoreByte(writePtr, byte);
-  readPtr = (char*)&result + 6;
+  readPtr = &ISD_DOUBLE_BYTES(result)->exponentLow;
   /* Needed to match: the byte goes through i first, and the shift count below is a local. */
   i = Isd_ReadByte(readPtr) | ((expA & 0xf) << 4);
   byte = i;
-  writePtr = (char*)&result + 6;
+  writePtr = &ISD_DOUBLE_BYTES(result)->exponentLow;
   Isd_StoreByte(writePtr, byte);
   sum &= 0x000fffffffffffffULL;
   for (i = 6; i >= 0; i--) {

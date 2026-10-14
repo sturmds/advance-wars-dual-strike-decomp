@@ -39,11 +39,11 @@ void Fifo_Send16Words(const void* src, void* dst) {
             dst);
     abort();
   }
-  for (pass = 0; pass < 2; pass++) {
-    for (i = 0; i < 8; i++) {
+  for (pass = 0; pass < 16 / ARRAY_COUNT(block); pass++) {
+    for (i = 0; i < ARRAY_COUNT(block); i++) {
       block[i] = *from++;
     }
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < ARRAY_COUNT(block); i++) {
       to[i] = block[i];
     }
   }

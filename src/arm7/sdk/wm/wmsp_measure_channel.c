@@ -24,7 +24,7 @@ void WMSP_MeasureChannel(WMMeasureChannelReq* req) {
   WmspBuf* wmBuf = func_arm7_027c05e0()->buf;
   WlCommandBuf buf;
   WlCommand* cmd = &buf.command;
-  u8 channels[16];
+  u8 channels[CHANNEL_LIST_SIZE];
   WMMeasureChannelCallback* reply;
   u16* wlReply;
   u16 wlState;
@@ -72,7 +72,7 @@ void WMSP_MeasureChannel(WMMeasureChannelReq* req) {
   edThreshold = req->edThreshold;
   channel = req->channel;
   measureTime = req->measureTime;
-  Mem_FillBytes_Arm7(channels, 0, 16);
+  Mem_FillBytes_Arm7(channels, 0, sizeof(channels));
   channels[0] = channel;
   wlReply =
       func_arm7_027c2468(cmd, ccaMode, edThreshold, measureTime, channels);

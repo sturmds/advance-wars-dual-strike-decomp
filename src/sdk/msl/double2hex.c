@@ -117,10 +117,10 @@ char* double2hex(double value, char* bufferEnd, PrintFormat format) {
    * this order, and the exponent reads value directly (the original sets up
    * &value twice) in two steps. */
   swapBytes = (u8*)&value;
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < (int)sizeof(value) / 2; i++) {
     swap = swapBytes[i];
-    swapBytes[i] = swapBytes[7 - i];
-    swapBytes[7 - i] = swap;
+    swapBytes[i] = swapBytes[sizeof(value) - 1 - i];
+    swapBytes[sizeof(value) - 1 - i] = swap;
   }
 
   high = (((u8*)&value)[0] << 25) | (((u8*)&value)[1] << 17);

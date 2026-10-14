@@ -16,7 +16,7 @@ void WifiIrq_TxErrorCounted(void) {
 
     /* A protected frame whose last two halfwords before the FCS are
            zero: restart the WEP engine. */
-    for (i = 0; i < 3; i++) {
+    for (i = 0; i < WIFI_MP_COMMAND_SLOT; i++) {
       WlMpReplySlot* slot = &mp->txSlots[i];
 
       if (slot->busy != 0) {

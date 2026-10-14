@@ -71,12 +71,12 @@ static void StoreUnit(u8* at, const u8* pattern, int size) {
   if (size == 2) {
     u16 halfword;
 
-    memcpy(&halfword, pattern, 2);
+    memcpy(&halfword, pattern, sizeof(halfword));
     *(u16*)at = halfword;
   } else {
     u32 word;
 
-    memcpy(&word, pattern, 4);
+    memcpy(&word, pattern, sizeof(word));
     *(u32*)at = word;
   }
 }
@@ -94,7 +94,7 @@ void MI_CpuFill8(void* dest, u32 data, u32 size) {
   u8* end;
   int i;
 
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < ARRAY_COUNT(pattern); i++) {
     pattern[i] = (u8)(words >> (8 * i));
   }
   if (size != 0 && (uintptr_t)to % 2 != 0) {

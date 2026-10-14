@@ -93,7 +93,7 @@ void MIi_UncompressBackward(void* bottom) {
     u32 flags = *--src;
     int i;
 
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < BITS_PER_BYTE; i++) {
       if (flags & 0x80) {
         u32 high = *--src;
         u32 low = *--src;

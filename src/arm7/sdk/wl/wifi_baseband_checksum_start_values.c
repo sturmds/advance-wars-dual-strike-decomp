@@ -16,7 +16,7 @@ u16 WifiBaseband_ChecksumStartValues(void) {
   offset = 0x64;
   crc = 0;
   value = 0;
-  for (i = 0; i < 105; offset++, i++) {
+  for (i = 0; i < WIFI_BASEBAND_START_VALUES; offset++, i++) {
     WifiFlash_ReadRadioBytes(offset, 1, &value);
     if (i == 1) {
       value &= 0x80;

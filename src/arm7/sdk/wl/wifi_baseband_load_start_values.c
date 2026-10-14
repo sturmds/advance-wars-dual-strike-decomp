@@ -13,7 +13,7 @@ void WifiBaseband_LoadStartValues(void) {
   offset = 0x64;
   i = 0;
   value = 0;
-  for (; i < 105; offset++, i++) {
+  for (; i < WIFI_BASEBAND_START_VALUES; offset++, i++) {
     WifiFlash_ReadRadioBytes(offset, 1, &value);
     WifiBaseband_Put(i, value);
   }

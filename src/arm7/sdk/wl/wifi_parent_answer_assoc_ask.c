@@ -49,8 +49,8 @@ void WifiParent_AnswerAssocAsk(WlRxFrame* frame) {
   }
   zero = 0;
   Mem_FillWords_Arm7(zero, &elements, sizeof(elements));
-  elements.data = (const u8*)capability + 4;
-  elements.length = bodyLength - 4;
+  elements.data = ((WlMgmtBody*)capability)->assocRequest.elements;
+  elements.length = bodyLength - offsetof(WlMgmtBody, assocRequest.elements);
   WifiRx_ScanElements(&elements);
   if ((capability->raw & WIFI_CAPS_PARENT_REJECTS) != 0 || !capability->ess ||
       (view->state.unk_08 == 0 && capability->privacy == 1) ||

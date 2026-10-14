@@ -76,7 +76,7 @@ void func_arm7_027d6428(void* data, int size) {
     byte = *from++;
     value = (u16)((REG_RTC & ~(CLOCK_PINS_OUT | CLOCK_PINS)) | CLOCK_PINS_OUT |
                   CLOCK_PIN_SELECT);
-    for (bit = 0; bit < 8; bit++) {
+    for (bit = 0; bit < BITS_PER_BYTE; bit++) {
       value = (u16)((value & ~(CLOCK_PIN_DATA | CLOCK_PIN_CLOCK)) |
                     (byte >> bit & 1));
       REG_RTC = value;

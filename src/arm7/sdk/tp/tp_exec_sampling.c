@@ -2,6 +2,9 @@
 #include "sdk/tp.h"
 #include "sdk/os_arm7.h"
 
+/* Zero bytes clocked out in continuous mode before the last single byte. */
+#define TOUCH_CONTINUOUS_BYTES 12
+
 /* Takes one touch panel reading: pen state, then X and Y. density gets the
  * larger spread of the raw readings on either axis, or 0 when the pen is up
  * or the reading is suspect. */
@@ -37,7 +40,7 @@ void TP_ExecSampling(SPITpData* data, s32 range, u16* density) {
   data->e.y = pos;
 
   REG_SPICNT = SPICNT_TP_CONTINUOUS;
-  for (i = 0; i < 12; i++) {
+  for (i = 0; i < TOUCH_CONTINUOUS_BYTES; i++) {
     Touch_ShiftOutByte(0);
   }
   REG_SPICNT = SPICNT_TP_1BYTE;

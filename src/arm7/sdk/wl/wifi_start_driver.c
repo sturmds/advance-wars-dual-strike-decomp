@@ -56,7 +56,8 @@ u16 Wifi_StartDriver(Unk_arm7_038057d4* params) {
   WifiFlash_ReadRadioBytes(0x3e, 2, &WIFI_DRIVER_STATE->unk_638);
   WIFI_DRIVER_STATE->limits.fromHost = (struct OSMessageQueue*)params->unk_10;
   WIFI_DRIVER_STATE->limits.toHost = (struct OSMessageQueue*)params->unk_14;
-  Wifi_ClearSessionArea((u32)params->unk_2c, params->unk_30 / 28);
+  Wifi_ClearSessionArea((u32)params->unk_2c,
+                        params->unk_30 / sizeof(WlStation));
   WifiTask_ClearQueues();
   func_arm7_027cb920();
   func_arm7_027cb9ac();

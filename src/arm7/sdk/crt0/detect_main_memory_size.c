@@ -27,13 +27,16 @@ done:
     bx lr
 }
 #else
+/* The values written to the top of 8 MB and looked for at the top of 4 MB. */
+#define MEMORY_TEST_VALUES 2
+
 void DetectMainMemorySize(void) {
   volatile u16* flag = (volatile u16*)0x027ffffa;
   volatile u16* alias = (volatile u16*)0x023ffffa;
   u16 size = 1;
   u16 i;
 
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < MEMORY_TEST_VALUES; i++) {
     *flag = i;
     if (*alias != i) {
       size = 2;

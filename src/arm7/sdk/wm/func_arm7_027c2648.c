@@ -12,7 +12,7 @@ u16* func_arm7_027c2648(WlCommand* cmd, const void* src, int arg) {
   cmd->reserved[5] = 0;
   cmd->command = 5;
   cmd->length = 4;
-  Mem_CopyHalfwords_Arm7(src, &cmd->words[0], 6);
+  Mem_CopyHalfwords_Arm7(src, &cmd->words[0], MAC_ADDRESS_SIZE);
   cmd->words[3] = arg;
   slot = (u16*)cmd + cmd->length;
   reply = slot + 8;

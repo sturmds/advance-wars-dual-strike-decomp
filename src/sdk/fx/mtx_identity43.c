@@ -25,8 +25,8 @@ void MTX_Identity43(MtxFx43* mtx) {
   int row;
   int col;
 
-  for (row = 0; row < 4; row++) {
-    for (col = 0; col < 3; col++) {
+  for (row = 0; row < ARRAY_COUNT(mtx->m); row++) {
+    for (col = 0; col < ARRAY_COUNT(mtx->m[0]); col++) {
       mtx->m[row][col] = row == col ? FX32_ONE : 0;
     }
   }

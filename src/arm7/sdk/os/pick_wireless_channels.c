@@ -21,7 +21,7 @@ u16 PickWirelessChannels(u16 value) {
   if (channels == 0) {
     return 0;
   }
-  for (low = 0; low < 16; low++) {
+  for (low = 0; low < (int)(sizeof(value) * BITS_PER_BYTE); low++) {
     if (channels & (1 << low)) {
       break;
     }

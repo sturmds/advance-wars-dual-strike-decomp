@@ -41,12 +41,12 @@ double Isd_DoubleTimesTen(double x) {
   sign = Isd_DoubleSign(x);
   exponent = Isd_DoubleExponent(x);
   mantissa = 0;
-  topByte = (char*)&x + 6;
+  topByte = &ISD_DOUBLE_BYTES(x)->exponentLow;
   mantissa |= 0x10;
   mantissa |= Isd_ReadByte(topByte) & 0xf;
   for (k = 5; k >= 0; k--) {
     mantissa <<= 8;
-    mantissa |= Isd_ReadByte((char*)&x + k);
+    mantissa |= Isd_ReadByte(&ISD_DOUBLE_BYTES(x)->mantissa[k]);
   }
 
   /* The implicit leading 1 at bit 52. */
@@ -59,19 +59,19 @@ double Isd_DoubleTimesTen(double x) {
   }
 
   result = 0;
-  readPtr = (char*)&result + 7;
+  readPtr = &ISD_DOUBLE_BYTES(result)->signExponent;
   byte = Isd_ReadByte(readPtr) | (sign << 7);
-  writePtr = (char*)&result + 7;
+  writePtr = &ISD_DOUBLE_BYTES(result)->signExponent;
   Isd_StoreByte(writePtr, byte);
-  readPtr = (char*)&result + 7;
+  readPtr = &ISD_DOUBLE_BYTES(result)->signExponent;
   byte = Isd_ReadByte(readPtr) | (exponent >> 4);
-  writePtr = (char*)&result + 7;
+  writePtr = &ISD_DOUBLE_BYTES(result)->signExponent;
   Isd_StoreByte(writePtr, byte);
-  readPtr = (char*)&result + 6;
+  readPtr = &ISD_DOUBLE_BYTES(result)->exponentLow;
   /* Needed to match: the byte goes through i first, and the shift count below is a local. */
   i = Isd_ReadByte(readPtr) | ((exponent & 0xf) << 4);
   byte = i;
-  writePtr = (char*)&result + 6;
+  writePtr = &ISD_DOUBLE_BYTES(result)->exponentLow;
   Isd_StoreByte(writePtr, byte);
   mantissa &= 0x000fffffffffffffULL;
   for (i = 6; i >= 0; i--) {

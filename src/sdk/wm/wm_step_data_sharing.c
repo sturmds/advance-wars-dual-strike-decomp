@@ -122,7 +122,7 @@ int WM_StepDataSharing(WMDataSharingInfo* dsInfo, u16* sendData,
     if (sendFlag) {
       int sendResult;
       /* the child's block goes 32 bytes into a free set (a cache line in) */
-      u16* buf = (u16*)((u8*)&dsInfo->ds[dsInfo->sendIndex] + 32);
+      u16* buf = (u16*)((u8*)&dsInfo->ds[dsInfo->sendIndex] + CACHE_LINE_SIZE);
 
       MIi_CpuCopy16(sendData, buf, dsInfo->dataLength);
       sendResult = WM_SetMPDataToPortEx(DataShare_OnSetSent, dsInfo, buf,

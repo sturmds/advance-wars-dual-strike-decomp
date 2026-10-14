@@ -14,11 +14,11 @@ u16* func_arm7_027c27d4(WlCommand* cmd, u32 size, const void* mac, int arg0,
   cmd->reserved[5] = 0;
   cmd->command = 2;
   cmd->length = 31;
-  Mem_CopyHalfwords_Arm7(mac, &cmd->words[0], 6);
+  Mem_CopyHalfwords_Arm7(mac, &cmd->words[0], MAC_ADDRESS_SIZE);
   cmd->words[3] = arg0;
-  Mem_CopyHalfwords_Arm7(block32, &cmd->words[4], 32);
+  Mem_CopyHalfwords_Arm7(block32, &cmd->words[4], SSID_SIZE);
   cmd->words[20] = arg1;
-  Mem_CopyHalfwords_Arm7(block16, &cmd->words[21], 16);
+  Mem_CopyHalfwords_Arm7(block16, &cmd->words[21], CHANNEL_LIST_SIZE);
   cmd->words[29] = arg2;
   cmd->words[30] = 0;
   slot = (u16*)cmd + cmd->length;

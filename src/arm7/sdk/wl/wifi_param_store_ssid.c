@@ -25,7 +25,7 @@ int WifiParam_StoreSsid(u32 length, const u8* src) {
     WL_WriteByte(link->ssid + i, WL_ReadByte(src));
     src++;
   }
-  for (; i < 32; i++) {
+  for (; i < ARRAY_COUNT(link->ssid); i++) {
     WL_WriteByte(link->ssid + i, 0);
   }
   link->ssidLength = length;

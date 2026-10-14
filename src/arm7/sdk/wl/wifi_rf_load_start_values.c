@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
 
-extern const u16 gWlFirmwareRegOffsets[];
+extern const u16 gWlFirmwareRegOffsets[WIFI_RF_START_VALUES];
 
 void WifiFlash_ReadRadioBytes(u32 offset, u32 size, void* dest);
 
@@ -15,7 +15,7 @@ void WifiRf_LoadStartValues(void) {
 
   /* Firmware 0x44-0x63: start values for 16 registers listed in the table. */
   value = 0;
-  for (i = 0; i < 16; i++) {
+  for (i = 0; i < WIFI_RF_START_VALUES; i++) {
     WifiFlash_ReadRadioBytes(0x44 + i * 2, 2, &value);
     WIFI_MAC_REGISTER(gWlFirmwareRegOffsets[i]) = value;
   }

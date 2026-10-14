@@ -46,9 +46,21 @@ typedef struct WlStation {
   u16 timeoutReload; /* copied to timeout when a frame is queued for or received from it */
 } WlStation;
 
+/* The memory the ARM7 main gives the driver (func_arm7_038057d4): the driver
+   thread's stack, the work area right above it, and the station table. */
+#define WIFI_DRIVER_STACK_SIZE 0x600
+#define WIFI_DRIVER_WORK_SIZE 0x700
+#define WIFI_STATION_TABLE_ENTRIES 16
+
 /* The wifi block of the firmware flash header, from offset 0x2a: a CRC-16
  * of the bytes from length on, then the length, then the data. */
 #define WIFI_RADIO_BLOCK_FLASH_OFFSET 0x2a
+/* Baseband registers given start values from the flash, from offset 0x64. */
+#define WIFI_BASEBAND_START_VALUES 105
+/* RF registers given start values from the flash, from offset 0x44. */
+#define WIFI_RF_START_VALUES 16
+/* MAC registers given fixed values at start-up (gWlRegDefaults). */
+#define WIFI_MAC_REG_DEFAULTS 25
 #define WIFI_RADIO_BLOCK_SIZE_LOW 0xa4
 #define WIFI_RADIO_BLOCK_SIZE_HIGH 0x1d6
 
@@ -1035,6 +1047,13 @@ typedef struct WlMgmtFrame {
 
 #define WIFI_MANAGEMENT_FIELDS_OF(frame) (&((WlMgmtFrame*)(frame))->body)
 
+/* What WifiTx_PlaceFrameInRam copies of a WlTxFrame in front of the body:
+   result through the 802.11 header. */
+#define WIFI_TX_RAM_HEADER_BYTES \
+  (offsetof(WlTxFrame, body) - offsetof(WlTxFrame, result))
+/* Room left after the header of a protected frame for its WEP IV. */
+#define WIFI_WEP_IV_BYTES 4
+
 // Host buffer that carries a frame to send. The reply sits replyOffset
 // halfwords after the start of frame.
 typedef struct WlTxRequest {
@@ -1288,9 +1307,13 @@ typedef struct WlMpBuffer {
 // View of work offset 0x400 on, as the interrupt handlers and WifiCmd_ArmMpReply
 // address it: the TX slots as WlMpReplySlot entries (WlState.mpReplySlots),
 // then the fields after them. WlTxSlots lays out the same bytes.
+/* The TX slot of the MP command, after the data slots. */
+#define WIFI_MP_COMMAND_SLOT 3
+
 typedef struct WlTxSlotView {
-  WlMpReplySlot txSlots
-      [4]; /* [3]: the MP command; its frame's unk_02 holds one bit per child */
+  WlMpReplySlot
+      txSlots[WIFI_MP_COMMAND_SLOT +
+              1]; /* the MP command's frame: unk_02 holds one bit per child */
   WlMpReplySlot slots[2];
   u8 pad_78[0x80 - 0x78];
   WlTxFrame* txFrame; /* WlState.txFrame */

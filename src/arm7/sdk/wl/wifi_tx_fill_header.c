@@ -9,7 +9,7 @@ void WifiTx_FillHeader(WlTxFrame* frame, const u16* dest) {
   {
     volatile u16 zero =
         0; /* needed to match: the zero goes through the stack */
-    Mem_FillHalfwords_Arm7(zero, frame, 0x2c); /* everything before body */
+    Mem_FillHalfwords_Arm7(zero, frame, offsetof(WlTxFrame, body));
   }
   frame->rate = func_arm7_027c8c00();
   WifiMac_CopyAddressTriple(frame->addr1, dest, WIFI_DRIVER_STATE->macAddress,

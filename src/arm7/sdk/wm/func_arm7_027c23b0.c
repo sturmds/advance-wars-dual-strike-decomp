@@ -13,7 +13,7 @@ u16* func_arm7_027c23b0(WlCommand* cmd, u16* params) {
   cmd->reserved[5] = 0;
   cmd->command = 0x100;
   cmd->length = 24;
-  Mem_CopyHalfwords_Arm7(params, &cmd->words[0], 48);
+  Mem_CopyHalfwords_Arm7(params, &cmd->words[0], sizeof(WmspTxFrame));
   params[1] = 0;
   params[2] = 0;
   params[4] = 0;

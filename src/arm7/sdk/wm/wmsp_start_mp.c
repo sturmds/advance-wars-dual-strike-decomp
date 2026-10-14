@@ -73,7 +73,7 @@ void WMSP_StartMP(WmspStartMPRequest* request) {
     status->unk_bc = 4;
     status->unk_da = request->ignoreFatalError != 0;
     tick = Tick_Read64_Arm7() | 1;
-    for (i = 0; i < 16; i++) {
+    for (i = 0; i < AID_COUNT; i++) {
       status->mpLastRecvTick[i] = tick;
     }
     Wmsp_SetAltThreadPriorities();

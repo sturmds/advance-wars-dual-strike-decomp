@@ -26,12 +26,12 @@ u32 Isd_DoubleUnitsDigit(double x) {
 
   /* The 52 stored mantissa bits with the implicit leading 1 above them. */
   mantissa = 0;
-  topMantissaByte = (char*)&x + 6;
+  topMantissaByte = &ISD_DOUBLE_BYTES(x)->exponentLow;
   mantissa |= 0x10;
   mantissa |= Isd_ReadByte(topMantissaByte) & 0xf;
   for (i = 5; i >= 0; i--) {
     mantissa <<= 8;
-    mantissa |= Isd_ReadByte((char*)&x + i);
+    mantissa |= Isd_ReadByte(&ISD_DOUBLE_BYTES(x)->mantissa[i]);
   }
 
   /* Biased exponent 1023 means one integer bit. */

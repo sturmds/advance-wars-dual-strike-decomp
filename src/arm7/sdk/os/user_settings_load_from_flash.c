@@ -18,7 +18,7 @@ void UserSettings_LoadFromFlash(void) {
   int chosen;
   u16 channels;
   UserSettings copies[2];
-  u8 mac[6];
+  u8 mac[MAC_ADDRESS_SIZE];
   volatile u32
       zero; /* needed to match: the original stores and reloads the 0 */
   int i;
@@ -51,9 +51,9 @@ void UserSettings_LoadFromFlash(void) {
     Mem_FillWords_Arm7(zero, shared, sizeof(UserSettings));
   }
 
-  NVRAM_Read(FLASH_MAC_ADDRESS, 6, mac);
+  NVRAM_Read(FLASH_MAC_ADDRESS, sizeof(mac), mac);
   wireless = (SharedWirelessInfo*)(shared + 1);
-  Mem_CopyBytes_Arm7(mac, wireless->macAddress, 6);
+  Mem_CopyBytes_Arm7(mac, wireless->macAddress, MAC_ADDRESS_SIZE);
   NVRAM_Read(FLASH_CHANNELS, 2, &channels);
   wireless->channels = PickWirelessChannels(channels >> 1);
 }

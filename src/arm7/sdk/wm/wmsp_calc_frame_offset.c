@@ -5,6 +5,8 @@
 #define US_PER_FRAME 0x414b
 /* Lines are 63.5 us long, so the sum below counts half microseconds. */
 #define HALF_US_PER_LINE 127
+/* How many frames ahead the next MP start is looked for. */
+#define FRAMES_AHEAD_MAX 30
 #define US_COUNT_MASK 0x3fffc0
 
 /*
@@ -41,7 +43,7 @@ void WMSP_CalcFrameOffset(void) {
     buf->status->unk_d4 = 0;
     return;
   }
-  for (frame = 1; frame < 30; frame++) {
+  for (frame = 1; frame < FRAMES_AHEAD_MAX; frame++) {
     buf->status->unk_cc += US_PER_FRAME;
     if (buf->status->unk_cc > nextFrame) {
       buf->status->unk_d4 = buf->status->unk_cc - nextFrame;

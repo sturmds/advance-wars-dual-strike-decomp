@@ -27,7 +27,7 @@ void WMSP_StartScan(WMStartScanReq* req) {
   WmspBuf* buf = func_arm7_027c05e0()->buf;
   u16 bssid[3];
   u16 ssid[16];
-  u8 channels[16];
+  u8 channels[CHANNEL_LIST_SIZE];
   volatile u16 ssidFill;
   volatile u16 zeroInfo;
   volatile u16 zeroGameInfo;
@@ -100,7 +100,7 @@ void WMSP_StartScan(WMStartScanReq* req) {
   ssidFill = 0xffff;
   Mem_FillHalfwords_Arm7(ssidFill, ssid, sizeof(ssid));
   channels[0] = channel;
-  Mem_FillBytes_Arm7(&channels[1], 0, 15);
+  Mem_FillBytes_Arm7(&channels[1], 0, sizeof(channels) - 1);
   /* WlScanRequest: SSID length 0, and 1 sends no probe requests */
   scan = (WmspScanReply*)func_arm7_027c27d4(cmd, 0x11c, bssid, 0, ssid, 1,
                                             channels, maxChannelTime);

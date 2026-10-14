@@ -77,6 +77,19 @@ BOOL Isd_TryAcquireCartridge(u32* saved);
 void Isd_AcquireCartridge(u32* saved);
 void Isd_ReleaseCartridge(u32 saved);
 
+/* A double's bytes in memory (little-endian): 52 bits of mantissa, then 11 of exponent, then the sign. */
+typedef struct IsdDoubleBytes {
+  char mantissa[6]; /* mantissa bits 0-47 */
+  char
+      exponentLow; /* exponent bits 0-3 in the high nibble, mantissa bits 48-51 in the low */
+  char signExponent; /* sign in bit 7, exponent bits 4-10 below it */
+} IsdDoubleBytes;
+typedef char IsdDoubleBytes_size_check[sizeof(IsdDoubleBytes) == sizeof(double)
+                                           ? 1
+                                           : -1];
+
+#define ISD_DOUBLE_BYTES(x) ((IsdDoubleBytes*)&(x))
+
 /*
  * Reads one byte with a halfword load. The library does this for every byte
  * it reads, because some of the memory it uses (the debugger's buffers on the

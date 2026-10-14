@@ -89,8 +89,8 @@ void Wmsp_IndicateMpAck(WlMpAckIndication* ind) {
   if (!timedOut) {
     callback->timeStamp = frame->timeStamp;
     callback->rate_rssi = frame->rate_rssi;
-    Mem_CopyBytes_Arm7(frame->destAdrs, callback->destAdrs, 6);
-    Mem_CopyBytes_Arm7(frame->srcAdrs, callback->srcAdrs, 6);
+    Mem_CopyBytes_Arm7(frame->destAdrs, callback->destAdrs, MAC_ADDRESS_SIZE);
+    Mem_CopyBytes_Arm7(frame->srcAdrs, callback->srcAdrs, MAC_ADDRESS_SIZE);
     callback->seqNum = frame->seqNum;
     callback->tmptt = frame->tmptt;
     callback->pollbmp = frame->pollbmp;

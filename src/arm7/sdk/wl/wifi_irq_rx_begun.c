@@ -69,7 +69,7 @@ void WifiIrq_RxBegun(void) {
     }
   }
   p += 4;
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < ARRAY_COUNT(link->bssid); i++) {
     u16* q = WifiRx_FoldRingPointer(p);
     p = q + 1;
     if (*q != link->bssid[i]) {

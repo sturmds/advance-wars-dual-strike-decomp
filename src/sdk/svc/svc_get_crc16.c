@@ -31,7 +31,7 @@ u16 SVC_GetCRC16(u32 initial, const void* data, u32 size) {
   }
   for (i = 0; i < size; i++) {
     crc ^= bytes[i];
-    for (bit = 0; bit < 8; bit++) {
+    for (bit = 0; bit < BITS_PER_BYTE; bit++) {
       crc = (crc & 1) ? (crc >> 1) ^ 0xa001 : crc >> 1;
     }
   }

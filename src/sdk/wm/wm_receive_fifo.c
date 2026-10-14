@@ -125,11 +125,13 @@ void WmReceiveFifo(u32 tag, u32 data, BOOL err) {
         gWmConnectPortArg.aid = aid;
         gWmConnectPortArg.myAid = myAid;
         gWmConnectPortArg.seqNo = 0xffff;
-        Mem_CopyBytes(macAddress, gWmConnectPortArg.macAddress, 6);
+        Mem_CopyBytes(macAddress, gWmConnectPortArg.macAddress,
+                      sizeof(gWmConnectPortArg.macAddress));
         if (ssid != NULL) {
-          MIi_CpuCopy16(ssid, gWmConnectPortArg.ssid, 24);
+          MIi_CpuCopy16(ssid, gWmConnectPortArg.ssid,
+                        sizeof(gWmConnectPortArg.ssid));
         } else {
-          MI_CpuClear16(gWmConnectPortArg.ssid, 24);
+          MI_CpuClear16(gWmConnectPortArg.ssid, sizeof(gWmConnectPortArg.ssid));
         }
         for (port = 0; port < WM_NUM_OF_PORT; port++) {
           gWmConnectPortArg.port = port;

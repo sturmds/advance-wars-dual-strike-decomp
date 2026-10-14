@@ -13,7 +13,7 @@ void SND_DestroyBank(SoundBank* bank) {
 
   func_0210fed4();
   link = bank->waveArcs;
-  for (i = 0; i < 4; i++, link++) {
+  for (i = 0; i < (int)ARRAY_COUNT(bank->waveArcs); i++, link++) {
     SoundWaveArc* arc = bank->waveArcs[i].waveArc;
 
     if (arc != NULL) {

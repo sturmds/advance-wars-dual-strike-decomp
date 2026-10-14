@@ -3,10 +3,6 @@
 #include "sdk/msl.h"
 #include "sdk/msl_file.h"
 
-#define EXIT_TABLE_SIZE 64
-
-typedef void (*AtExitFunction)(void);
-
 extern OSMutex gMslExitMutex;
 extern int gMslExitFuncCount;
 extern AtExitFunction gMslExitFuncs[EXIT_TABLE_SIZE];

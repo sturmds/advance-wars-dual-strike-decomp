@@ -3,6 +3,8 @@
 /* Built for speed like func_arm7_027c70f8. */
 #pragma optimize_for_size off
 
+#define READY_QUEUE_PASSES 2
+
 /*
  * Removes the children in aidBitmap from every queued port send. An entry left with
  * no child to reach goes back to the free list with a PORT_SEND reply. The original
@@ -28,7 +30,7 @@ void SendQueue_DropChildren(u16 aidBitmap) {
   keep = ~aidBitmap & status->childBitmap;
 
   Mutex_Take_Arm7(&status->sendQueueMutex);
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < READY_QUEUE_PASSES; i++) {
     queues = status->readyQueue;
     for (priority = 0; priority < WIRELESS_URGENCY_LEVELS; priority++) {
       queue = &queues[priority];

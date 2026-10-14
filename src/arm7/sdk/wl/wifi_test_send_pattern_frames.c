@@ -1,6 +1,9 @@
 #include "sdk/mi.h"
 #include "sdk/wl.h"
 
+/* Body bytes of the test frame, filled with 0x5555. */
+#define TEST_FRAME_BODY_BYTES 0x5f8
+
 void Wifi_OpenSession(void);
 void Wifi_CloseSession(void);
 void WifiRf_TuneChannel(int channel, int arg1);
@@ -23,12 +26,13 @@ void WifiTest_SendPatternFrames(WlTestModeRequest* request) {
   }
   {
     volatile u16 zero = 0;
-    Mem_FillHalfwords_Arm7(zero, (void*)ram, 12);
+    Mem_FillHalfwords_Arm7(zero, (void*)ram,
+                           offsetof(WlRamFrame, frameControl));
   }
   ram[4] = 20;
   ram[5] = 2000;
   p = &ram[6];
-  for (i = 0; i < 0x5f8; i += 2) {
+  for (i = 0; i < TEST_FRAME_BODY_BYTES; i += 2) {
     *p++ = 0x5555;
   }
   ram[6] = 8;

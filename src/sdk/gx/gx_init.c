@@ -39,13 +39,15 @@ void GX_Init(void) {
   *REG_DISPCNT = 0;
   if (data_0216d958 != GX_DMA_NOT_USE) {
     /* Main engine: BG0CNT up to 0x04000068. Sub engine: DISPCNT through MASTER_BRIGHT. */
-    MI_DmaFill32(data_0216d958, (void*)REG_BG0CNT, 0, 0x60);
+    MI_DmaFill32(data_0216d958, (void*)REG_BG0CNT, 0,
+                 MAIN_DISPLAY_REGS_CLEAR_SIZE);
     *REG_MASTER_BRIGHT = 0;
-    MI_DmaFill32(data_0216d958, (void*)REG_DB_DISPCNT, 0, 0x70);
+    MI_DmaFill32(data_0216d958, (void*)REG_DB_DISPCNT, 0,
+                 SUB_DISPLAY_REGS_CLEAR_SIZE);
   } else {
-    CpuFill32((void*)REG_BG0CNT, 0, 0x60);
+    CpuFill32((void*)REG_BG0CNT, 0, MAIN_DISPLAY_REGS_CLEAR_SIZE);
     *REG_MASTER_BRIGHT = 0;
-    CpuFill32((void*)REG_DB_DISPCNT, 0, 0x70);
+    CpuFill32((void*)REG_DB_DISPCNT, 0, SUB_DISPLAY_REGS_CLEAR_SIZE);
   }
 
   *REG_BG2PA = 0x100;

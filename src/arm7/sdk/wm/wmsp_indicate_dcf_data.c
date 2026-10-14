@@ -34,8 +34,8 @@ void Wmsp_IndicateDcfData(WlDataIndication* ind) {
   recvBuf = status->dcfRecvBuf[status->dcfRecvBufSel];
   size = frame->length + sizeof(WlDataFrame);
   Mem_CopyBytes_Arm7(frame, recvBuf, (size + 1) & ~1);
-  Mem_CopyBytes_Arm7(frame->destAdrs, recvBuf->destAdrs, 6);
-  Mem_CopyBytes_Arm7(frame->srcAdrs, recvBuf->srcAdrs, 6);
+  Mem_CopyBytes_Arm7(frame->destAdrs, recvBuf->destAdrs, MAC_ADDRESS_SIZE);
+  Mem_CopyBytes_Arm7(frame->srcAdrs, recvBuf->srcAdrs, MAC_ADDRESS_SIZE);
 
   callback = Wmsp_GetCallbackBuffer();
   callback->apiid = WM_APIID_START_DCF;

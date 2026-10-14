@@ -89,8 +89,8 @@ void Wmsp_IndicateMp(WlMpIndication* ind) {
     reply->recvBuf = NULL;
     Wmsp_SendReply(reply);
   }
-  Mem_CopyBytes_Arm7(ind->frame.destAdrs, recvBuf->destAdrs, 6);
-  Mem_CopyBytes_Arm7(ind->frame.srcAdrs, recvBuf->srcAdrs, 6);
+  Mem_CopyBytes_Arm7(ind->frame.destAdrs, recvBuf->destAdrs, MAC_ADDRESS_SIZE);
+  Mem_CopyBytes_Arm7(ind->frame.srcAdrs, recvBuf->srcAdrs, MAC_ADDRESS_SIZE);
 
   if (recvBuf->length >= 2) {
     recvBuf->length -= 2;

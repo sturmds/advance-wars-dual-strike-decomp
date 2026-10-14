@@ -51,7 +51,7 @@ void SVC_UnpackBits(const void* src, void* dst, const void* params) {
     UnpackBitsFail("the output does not end on a word");
   }
   for (i = 0; i < p->srcBytes; i++) {
-    for (bit = 0; bit < 8; bit += p->srcBits) {
+    for (bit = 0; bit < BITS_PER_BYTE; bit += p->srcBits) {
       u32 value = (in[i] >> bit) & fieldMask;
 
       if (value != 0 || (p->offset & UNPACK_BITS_OFFSET_ZEROS)) {

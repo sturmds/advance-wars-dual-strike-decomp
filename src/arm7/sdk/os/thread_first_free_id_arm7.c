@@ -7,7 +7,7 @@ extern OSThreadInfo data_arm7_0380790c;
 int Thread_FirstFreeId_Arm7(void) {
   int id;
 
-  for (id = 0; id < 16; id++) {
+  for (id = 0; id < THREAD_ID_COUNT; id++) {
     if (data_arm7_0380790c.threads[id] == NULL) {
       return id;
     }

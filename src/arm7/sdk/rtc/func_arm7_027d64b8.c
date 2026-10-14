@@ -110,7 +110,7 @@ void func_arm7_027d64b8(void* data, int size) {
         (u16)((REG_RTC & ~(CLOCK_PINS_OUT | CLOCK_PINS)) | CLOCK_PIN_CLOCK_OUT |
               CLOCK_PIN_SELECT_OUT | CLOCK_PIN_SELECT);
     byte = 0;
-    for (bit = 0; bit < 8; bit++) {
+    for (bit = 0; bit < BITS_PER_BYTE; bit++) {
       value &= (u16) ~(CLOCK_PIN_DATA | CLOCK_PIN_CLOCK);
       REG_RTC = value;
       Delay(9);

@@ -1,6 +1,8 @@
 #include "sdk/gx.h"
 #include "sdk/wmsp.h"
 
+#define VCOUNT_HOLD_LINES_MAX 6
+
 /* Holds the line counter back by up to six lines while WMStatus.unk_d4 is at
    least 127, taking 63 off unk_d4 for each line. */
 void WMSP_AdjustVCount(void) {
@@ -12,7 +14,7 @@ void WMSP_AdjustVCount(void) {
   if (vcount >= 208 && vcount < 212) {
     lag = buf->status->unk_d4;
     if (lag >= 127) {
-      for (lines = 1; lines < 7; lines++) {
+      for (lines = 1; lines < VCOUNT_HOLD_LINES_MAX + 1; lines++) {
         if (lag < lines * 63 + 127) {
           break;
         }

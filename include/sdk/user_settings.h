@@ -2,6 +2,7 @@
 #define SDK_USER_SETTINGS_H
 
 #include "types.h"
+#include "sdk/os_common.h"
 
 /*
  * The console's user settings as the firmware flash stores them. The flash
@@ -22,6 +23,8 @@ typedef struct UserSettings {
 } UserSettings;
 
 #define USER_SETTINGS_CRC_SIZE 0x70
+/* The flash holds this many copies of the settings. */
+#define USER_SETTINGS_COPIES 2
 #define USER_SETTINGS_NICKNAME_MAX 10
 #define USER_SETTINGS_COMMENT_MAX 26
 
@@ -30,7 +33,7 @@ typedef struct UserSettings {
  * chosen UserSettings, then the wireless block right after it.
  */
 typedef struct SharedWirelessInfo {
-  u8 macAddress[6];
+  u8 macAddress[MAC_ADDRESS_SIZE];
   u16 channels; /* from flash offset 0x3c, through PickWirelessChannels */
 } SharedWirelessInfo;
 

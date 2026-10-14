@@ -31,7 +31,8 @@ void Wmsp_IndicateAssociate(WlAssocIndication* ind) {
       queued = FALSE;
     } else {
       request->apiid = WM_APIID_AUTO_DEAUTH;
-      Mem_CopyBytes_Arm7(ind->macAddress, request->macAddress, 6);
+      Mem_CopyBytes_Arm7(ind->macAddress, request->macAddress,
+                         MAC_ADDRESS_SIZE);
       queued = MsgQueue_PushBack_Arm7(&func_arm7_027c05e0()->requestQueue,
                                       request, OS_MESSAGE_NOBLOCK);
     }
@@ -47,7 +48,8 @@ void Wmsp_IndicateAssociate(WlAssocIndication* ind) {
     return;
   }
 
-  Mem_CopyBytes_Arm7(ind->macAddress, status->childMacAddress[aid - 1], 6);
+  Mem_CopyBytes_Arm7(ind->macAddress, status->childMacAddress[aid - 1],
+                     MAC_ADDRESS_SIZE);
   irqState = Cpu_MaskIrq_Arm7();
   status->childBitmap |= 1 << aid;
   status->mpReadyBitmap &= ~(1 << aid);
@@ -61,8 +63,8 @@ void Wmsp_IndicateAssociate(WlAssocIndication* ind) {
   callback->apiid = WM_APIID_START_PARENT;
   callback->errcode = WM_ERRCODE_SUCCESS;
   callback->state = WM_STATECODE_CONNECTED;
-  Mem_CopyBytes_Arm7(ind->macAddress, callback->macAddress, 6);
+  Mem_CopyBytes_Arm7(ind->macAddress, callback->macAddress, MAC_ADDRESS_SIZE);
   callback->aid = aid;
-  Mem_CopyHalfwords_Arm7(ind->ssid, callback->ssid, 24);
+  Mem_CopyHalfwords_Arm7(ind->ssid, callback->ssid, sizeof(callback->ssid));
   Wmsp_SendReply(callback);
 }

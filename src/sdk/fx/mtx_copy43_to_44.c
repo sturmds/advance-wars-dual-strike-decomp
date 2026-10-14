@@ -28,7 +28,7 @@ asm void Matrix_Expand43Into44(MtxFx43 *src, MtxFx44 *dest)
 void Matrix_Expand43Into44(MtxFx43* src, MtxFx44* dest) {
   int row;
 
-  for (row = 0; row < 4; row++) {
+  for (row = 0; row < ARRAY_COUNT(src->m); row++) {
     fx32 x = src->m[row][0];
     fx32 y = src->m[row][1];
     fx32 z = src->m[row][2];

@@ -6,7 +6,7 @@ u32 func_arm7_027d5150(u32 bcd) {
   u32 scale;
   int i;
 
-  for (i = 0; i < 8; i++) {
+  for (i = 0; i < (int)(sizeof(bcd) * BITS_PER_BYTE / 4); i++) {
     if (((bcd >> (i * 4)) & 0xf) >= 10) {
       return 0;
     }

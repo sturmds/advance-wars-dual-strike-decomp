@@ -24,7 +24,7 @@ asm void Matrix_Take33From44(MtxFx44 *src, MtxFx33 *dest)
 void Matrix_Take33From44(MtxFx44* src, MtxFx33* dest) {
   int row;
 
-  for (row = 0; row < 3; row++) {
+  for (row = 0; row < ARRAY_COUNT(dest->m); row++) {
     fx32 x = src->m[row][0];
     fx32 y = src->m[row][1];
     fx32 z = src->m[row][2];

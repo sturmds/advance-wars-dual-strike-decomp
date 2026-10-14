@@ -33,10 +33,10 @@ void func_0210d21c(void) {
   while (block->unk_6 != 0) {
     OSi_WaitByLoop();
   }
-  *(vu32*)0x027fffb0 = -1;
-  *(vu32*)0x027fffb4 = -0x10000;
+  LOCK_ID_AVAILABLE_BITS[0] = -1;
+  LOCK_ID_AVAILABLE_BITS[1] = -0x10000;
   zero = 0;
-  MIi_CpuClear32(zero, (void*)0x027fffc0, 0x28);
+  MIi_CpuClear32(zero, (void*)SHARED_LOCK_WORDS, SHARED_LOCK_WORDS_SIZE);
   REG_EXMEMCNT |= 0x800;
   REG_EXMEMCNT |= 0x80;
   OS_UnlockByWord(0x7e, SHARED_BLOCK, 0);

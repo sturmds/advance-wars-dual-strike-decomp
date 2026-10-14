@@ -5,7 +5,7 @@
 int OSi_GetUnusedThreadId(void) {
   int id;
 
-  for (id = 0; id < 16; id++) {
+  for (id = 0; id < THREAD_ID_COUNT; id++) {
     if (OSi_ThreadInfo.threads[id] == NULL) {
       return id;
     }

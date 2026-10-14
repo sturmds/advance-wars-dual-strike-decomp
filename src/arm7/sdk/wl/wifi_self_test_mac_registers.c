@@ -1,9 +1,10 @@
 #include "sdk/wl.h"
 
 #define WIFI_SELFTEST_MAC_TARGETS 27
+#define WIFI_SELFTEST_PATTERNS 3
 
 /* Test patterns 0xffff, 0x5a5a, 0xa5a5. */
-extern const u16 gWlTestPatterns[];
+extern const u16 gWlTestPatterns[WIFI_SELFTEST_PATTERNS];
 /* The MAC registers tested, with the bits of each that read back. */
 extern const WlRegMask gWlTestRegs[WIFI_SELFTEST_MAC_TARGETS];
 
@@ -20,7 +21,7 @@ void WifiSelfTest_MacRegisters(void) {
 
   errors = 0;
 
-  for (pattern = 0; pattern < 3; pattern++) {
+  for (pattern = 0; pattern < WIFI_SELFTEST_PATTERNS; pattern++) {
     for (i = 0; i < WIFI_SELFTEST_MAC_TARGETS; i++) {
       reg = &WIFI_MAC_REGISTER(gWlTestRegs[i].offset);
       bits = gWlTestPatterns[pattern] & gWlTestRegs[i].mask;

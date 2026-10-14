@@ -51,9 +51,10 @@ void WifiRx_BeginReassembly(WlRxHeader* header, WlRxAddrs* addrs) {
   buffer = (WlRxBuffer*)WifiBuffer_New(&WIFI_DRIVER_STATE->unk_15c, 0x622);
   if (buffer != NULL) {
     slot = &slots[freeSlot];
+    /* the addresses, the sequence and the padding */
     Mem_CopyHalfwords_Arm7(
         addrs, &slot->addrs,
-        16); /* the addresses, the sequence and the padding */
+        offsetof(WlDefragSlot, buffer) - offsetof(WlDefragSlot, addrs));
     slots[freeSlot].ticks =
         5; /* WifiTask_AgeReassembly runs left before the frame is dropped */
     slots[freeSlot].buffer = buffer;

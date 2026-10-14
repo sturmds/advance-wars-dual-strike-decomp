@@ -34,7 +34,7 @@ OSThread data_arm7_03807960;
 void Irq_InstallHandlers_Arm7(OSIrqMask mask, OSIrqFunction function) {
   int bit;
 
-  for (bit = 0; bit < 25; mask >>= 1, bit++) {
+  for (bit = 0; bit < IRQ_BIT_COUNT_ARM7; mask >>= 1, bit++) {
     IrqSlotEntry* slot;
 
     if ((mask & 1) == 0) {

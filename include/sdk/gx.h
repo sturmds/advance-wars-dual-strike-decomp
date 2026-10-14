@@ -147,6 +147,16 @@
 #define REG_FOG_TABLE \
   ((volatile u8*)0x04000360) /* fog table (32 bytes), then toon table (64 bytes) */
 #define REG_SHININESS ((volatile u32*)0x040004d0)
+/* Sizes of the 3D tables above, in bytes (GBATEK). */
+#define EDGE_COLOR_TABLE_SIZE 16 /* 8 colors */
+#define FOG_TABLE_SIZE 32
+#define TOON_TABLE_SIZE 64
+#define SHININESS_TABLE_WORDS 32 /* 128 bytes, written a word at a time */
+/* Display registers G2/GX initialisation zeroes: the main engine's from
+   BG0CNT up to 0x04000068, the sub engine's from DISPCNT through
+   MASTER_BRIGHT. */
+#define MAIN_DISPLAY_REGS_CLEAR_SIZE 0x60
+#define SUB_DISPLAY_REGS_CLEAR_SIZE 0x70
 #define REG_POLYGON_ATTR ((volatile u32*)0x040004a4)
 #define REG_TEXIMAGE_PARAM ((volatile u32*)0x040004a8)
 #define REG_PLTT_BASE ((volatile u32*)0x040004ac)

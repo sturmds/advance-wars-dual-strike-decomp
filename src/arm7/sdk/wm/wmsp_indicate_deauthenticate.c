@@ -15,13 +15,13 @@ void Wmsp_IndicateDeauthenticate(WlDeauthIndication* ind) {
   WMStatus* status = buf->status;
 
   if (status->state == WM_STATE_PARENT || status->state == WM_STATE_MP_PARENT) {
-    u8 mac[6];
+    u8 mac[MAC_ADDRESS_SIZE];
     u16 aid;
     int i;
 
-    Mem_CopyBytes_Arm7(ind->macAddress, mac, 6);
+    Mem_CopyBytes_Arm7(ind->macAddress, mac, MAC_ADDRESS_SIZE);
     aid = 0;
-    for (i = 0; i < 15; i++) {
+    for (i = 0; i < CHILD_COUNT_MAX; i++) {
       if (mac[0] == status->childMacAddress[i][0] &&
           mac[1] == status->childMacAddress[i][1] &&
           mac[2] == status->childMacAddress[i][2] &&
@@ -53,7 +53,8 @@ void Wmsp_IndicateDeauthenticate(WlDeauthIndication* ind) {
       callback->state = WM_STATECODE_DISCONNECTED;
       callback->reason = ind->reason;
       callback->aid = aid;
-      Mem_CopyBytes_Arm7(ind->macAddress, callback->macAddress, 6);
+      Mem_CopyBytes_Arm7(ind->macAddress, callback->macAddress,
+                         MAC_ADDRESS_SIZE);
       Wmsp_SendReply(callback);
       SendQueue_DropChildren(1 << aid);
     }

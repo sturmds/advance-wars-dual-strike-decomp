@@ -2,6 +2,9 @@
 #include "sdk/msl.h"
 #include "sdk/msl_string.h"
 
+/* %e writes at least two exponent digits. */
+#define MIN_EXPONENT_DIGITS 2
+
 const u16 __ctype_map[] = {
 #include "data/main/__ctype_map.inc.c"
 };
@@ -132,7 +135,7 @@ char* float2str(long double value, char* bufferEnd, PrintFormat format) {
         sign = '-';
       }
 
-      for (digits = 0; n || digits < 2; digits++) {
+      for (digits = 0; n || digits < MIN_EXPONENT_DIGITS; digits++) {
         *--p = n % 10 + '0';
         n /= 10;
       }

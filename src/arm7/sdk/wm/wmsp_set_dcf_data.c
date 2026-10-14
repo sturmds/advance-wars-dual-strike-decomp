@@ -24,7 +24,7 @@ void WMSP_SetDCFData(WmspSetDCFDataRequest* request) {
   u16* wlReply;
   WmspReply* reply;
 
-  Mem_CopyBytes_Arm7(request->destAdr, status->dcfDestAdr, 6);
+  Mem_CopyBytes_Arm7(request->destAdr, status->dcfDestAdr, MAC_ADDRESS_SIZE);
   status->dcfSendData = request->data;
   status->dcfSendSize = request->size;
   status->dcfSendFlag = 1;
@@ -33,8 +33,8 @@ void WMSP_SetDCFData(WmspSetDCFDataRequest* request) {
   frame.status = 0;
   frame.length = request->size;
   frame.rate = status->unk_1e8 == WIRELESS_BITRATE_TWO ? 20 : 10;
-  Mem_CopyBytes_Arm7(request->destAdr, frame.destAdr, 6);
-  Mem_CopyBytes_Arm7(status->macAddress, frame.srcAdr, 6);
+  Mem_CopyBytes_Arm7(request->destAdr, frame.destAdr, MAC_ADDRESS_SIZE);
+  Mem_CopyBytes_Arm7(status->macAddress, frame.srcAdr, MAC_ADDRESS_SIZE);
   frame.data = request->data;
   wlReply = func_arm7_027c23b0((WlCommand*)wlBuf, &frame);
 

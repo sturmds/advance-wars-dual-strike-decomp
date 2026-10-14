@@ -38,7 +38,7 @@ void MbBeacon_SendPlayers(u32 ggid, u16 tgid, u32 attribute) {
   if (data_022ace44 == 0 && data_022ace48 != NULL) {
     data_022ace48(data_022ace4c.currentGame->ggid);
   }
-  for (i = 0; i < 8; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(data_022ace60.roster.unk_4a8); i++) {
     data_022ace60.roster.unk_4a8[i] = data_022ace4c.currentGame->unk_4a8[i];
   }
 

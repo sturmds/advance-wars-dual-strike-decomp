@@ -45,6 +45,9 @@ struct OSThread {
 
 void OS_InitContext(OSContext* context, u32 pc, u32 sp);
 
+/* Bytes in one line of the ARM9 data cache. */
+#define CACHE_LINE_SIZE 32
+
 /* Data cache maintenance over a byte range. */
 void DC_FlushRange(const void* start, u32 size);
 void DC_InvalidateRange(void* start, u32 size);
@@ -63,6 +66,9 @@ OSIrqMask OS_EnableIrqMask(OSIrqMask mask);
 OSIrqMask OS_SetIrqMask(OSIrqMask mask);
 
 /* Sets the handler for every interrupt bit set in mask. */
+/* IE bits OS_SetIrqFunction can give a handler: 0 to 21. */
+#define IRQ_BIT_COUNT 22
+
 void OS_SetIrqFunction(OSIrqMask mask, OSIrqFunction function);
 
 /* Turn interrupts off and return the previous state; hand it back to restore. */
@@ -131,8 +137,24 @@ extern BOOL data_022a9b78;
 extern vu64 gOsiTickCounter;
 extern u32 gOsiNeedResetTimer;
 
+/* The record Exception_FillContextRecord writes when an exception is taken,
+   and Exception_RunUserHook passes to the user hook. */
+typedef struct ExceptionRecord {
+  OSContext context; /* registers at the exception; sp and lr of its mode */
+  u32 unk_64;
+  u32 unk_68;
+  u32 unk_6c; /* r0 on entry to Exception_FillContextRecord */
+  u32 frame;  /* 0x70: the frame OSi_ExceptionHandler pushed */
+  u32 cpsr;   /* 0x74: CPSR while the record is filled */
+  u32 unk_78;
+  u32 spsr; /* 0x7c: SPSR of the mode that took the exception */
+} ExceptionRecord;
+
+typedef char
+    ExceptionRecord_size_check[sizeof(ExceptionRecord) == 0x80 ? 1 : -1];
+
 /* Exception user hook (0 for none) and the context record passed to it. */
 extern u32 data_022a9b7c;
-extern u8 data_022a9b88[];
+extern ExceptionRecord data_022a9b88;
 
 #endif

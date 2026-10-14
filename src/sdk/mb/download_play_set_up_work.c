@@ -22,6 +22,8 @@ void Mem_CopyBytes(const void* src, void* dst, u32 size);
 u32 MbParent_GetBeaconJitter(void);
 
 #define DLPLAY_PLAYER_NAME_CHARS 10
+/* The most characters of L"multiboot" copied into DlPlayStationArea.unk_538. */
+#define DLPLAY_PROGRAM_NAME_MAX_CHARS 16
 
 /* Sets up Download Play in the caller's buffer: the parent work and then the
  * comm work, each 32-byte aligned, cleared and given defaults (256-byte
@@ -51,14 +53,14 @@ int DownloadPlay_SetUpWork(void* work, const DlPlayPlayerBadge* user, u32 ggid,
   zero32 = 0;
   MIi_CpuClear32(zero32, parent, sizeof(DlPlayStationArea));
   zero16 = 0;
-  MIi_CpuClear16(zero16, comm, 0x1340); /* up to childUsers */
+  MIi_CpuClear16(zero16, comm, offsetof(DlPlayHostLinkArea, childUsers));
 
   dst = parent->userName;
   for (i = 0; i < user->nameLength; i++) {
     *dst++ = user->name[i];
   }
   dst = parent->unk_538;
-  for (i = 0; i < 16; i++) {
+  for (i = 0; i < DLPLAY_PROGRAM_NAME_MAX_CHARS; i++) {
     if (*data_0216d99c == 0) {
       break;
     }

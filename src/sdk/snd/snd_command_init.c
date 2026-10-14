@@ -14,7 +14,7 @@ void SND_CommandInit(void) {
 
   Sound_WaitForArm7Listener();
   data_022a9c68 = data_022a9f40;
-  for (i = 0; i < 255; i++) {
+  for (i = 0; i < SOUND_COMMAND_POOL_COUNT - 1; i++) {
     data_022a9f40[i].next = &data_022a9f40[i + 1];
   }
   data_022a9f40[SOUND_COMMAND_POOL_COUNT - 1].next = NULL;

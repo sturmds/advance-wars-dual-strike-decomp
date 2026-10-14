@@ -30,8 +30,8 @@ int Wmsp_DisconnectCore(WmspRequest* request, int isAuto,
   RadioDropReply* error;
   WMStartConnectCallback* childReply;
   WMStartParentCallback* parentReply;
-  u8 parentMac[6];
-  u8 childMac[6];
+  u8 parentMac[MAC_ADDRESS_SIZE];
+  u8 childMac[MAC_ADDRESS_SIZE];
   WlCommandBuf cmd;
 
   reason = isAuto ? ((WmspAutoDisconnectRequest*)request)->reason : 0;
@@ -77,7 +77,8 @@ int Wmsp_DisconnectCore(WmspRequest* request, int isAuto,
 
   if (buf->status->state == WM_STATE_MP_CHILD ||
       buf->status->state == WM_STATE_CHILD) {
-    Mem_CopyBytes_Arm7(buf->status->parentMacAddress, parentMac, 6);
+    Mem_CopyBytes_Arm7(buf->status->parentMacAddress, parentMac,
+                       MAC_ADDRESS_SIZE);
     func_arm7_027c2648(&cmd.command, parentMac, 3);
     disconnected = 1;
     buf->status->unk_be = 0;
@@ -123,13 +124,14 @@ int Wmsp_DisconnectCore(WmspRequest* request, int isAuto,
       SendQueue_DropChildren(1);
     }
   } else {
-    for (aid = 1; aid < 16; aid++) {
+    for (aid = 1; aid < AID_COUNT; aid++) {
       WMStatus* status = buf->status;
 
       mask = 1 << aid;
       if (mask & (status->childBitmap & tryBitmap)) {
         aid16 = aid;
-        Mem_CopyBytes_Arm7(status->childMacAddress[aid - 1], childMac, 6);
+        Mem_CopyBytes_Arm7(status->childMacAddress[aid - 1], childMac,
+                           MAC_ADDRESS_SIZE);
         func_arm7_027c2648(&cmd.command, childMac, 3);
         disconnected |= 1 << aid16;
         irq = Cpu_MaskIrq_Arm7();
@@ -151,7 +153,8 @@ int Wmsp_DisconnectCore(WmspRequest* request, int isAuto,
           parentReply->state = WM_STATECODE_DISCONNECTED;
           parentReply->reason = reason;
           parentReply->aid = aid16;
-          Mem_CopyBytes_Arm7(childMac, parentReply->macAddress, 6);
+          Mem_CopyBytes_Arm7(childMac, parentReply->macAddress,
+                             MAC_ADDRESS_SIZE);
           Wmsp_SendReply(parentReply);
         }
         if (mpRan) {

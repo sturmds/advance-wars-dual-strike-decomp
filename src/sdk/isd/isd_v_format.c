@@ -62,6 +62,8 @@ enum {
 
 /* Exponent field of 1.0: a double is at least 1 when its exponent field is at least this. */
 #define ISD_DOUBLE_EXPONENT_ONE 0x3ff
+/* %e and %g write the exponent with three digits. */
+#define ISD_EXPONENT_DIGITS 3
 
 /*
  * Writes one byte with a halfword read and write, like Isd_ReadByte reads.
@@ -83,14 +85,14 @@ static inline void Isd_StoreByte(void* address, int value) {
 }
 
 static inline int DoubleTopByte(double* x) {
-  char* top = (char*)x + 7;
+  char* top = &((IsdDoubleBytes*)x)->signExponent;
 
   return Isd_ReadByte(top);
 }
 
 /* Isd_StoreByte without the byte mask, which the one use (a 7-bit value) does not need. Needed to match. */
 static inline void SetDoubleTopByte(double* x, int value) {
-  char* top = (char*)x + 7;
+  char* top = &((IsdDoubleBytes*)x)->signExponent;
 
   if ((u32)top & 1) {
     *(u16*)(top - 1) = (*(u16*)(top - 1) & 0x00ff) | (value << 8);
@@ -505,7 +507,7 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
               exponent *= -1;
               expPositive = 0;
             }
-            for (i = 0; i < 3; i++) {
+            for (i = 0; i < ISD_EXPONENT_DIGITS; i++) {
               expDigit = exponent - Isd_DivideByRadix(exponent, 10) * 10 + '0';
               exponent = Isd_DivideByRadix(exponent, 10);
               Isd_StoreByte(numberOut, expDigit);

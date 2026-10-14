@@ -47,12 +47,15 @@ asm void GXi_NopClearFifo128_(volatile u32 *fifo)
     bx lr
 }
 #else
+/* Zero words this function sends to the geometry FIFO. */
+#define NOP_CLEAR_WORDS 128
+
 /* 32 times, writes zero to the four words from fifo. All of them are the
    geometry FIFO port, so the port receives 128 zero words in order. */
 void GXi_NopClearFifo128_(volatile u32* fifo) {
   int i;
 
-  for (i = 0; i < 32; i++) {
+  for (i = 0; i < NOP_CLEAR_WORDS / 4; i++) {
     fifo[0] = 0;
     fifo[1] = 0;
     fifo[2] = 0;

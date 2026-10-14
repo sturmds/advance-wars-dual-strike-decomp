@@ -57,10 +57,10 @@ int LockId_Allocate_Arm7(void) {
   int word;
   int bit;
 
-  for (word = 0; word < 2; word++) {
+  for (word = 0; word < LOCK_ID_MAP_WORDS; word++) {
     u32 free = map[word];
 
-    for (bit = 0; bit < 32; bit++) {
+    for (bit = 0; bit < sizeof(u32) * BITS_PER_BYTE; bit++) {
       if (free & (0x80000000 >> bit)) {
         map[word] &= ~(0x80000000 >> bit);
         return 0x80 + word * 0x20 + bit;

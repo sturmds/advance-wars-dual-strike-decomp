@@ -2,11 +2,14 @@
 
 void OS_Terminate(void);
 
+/* The channels checked: 0 to 2, not channel 3. */
+#define CLASH_CHECKED_CHANNELS 3
+
 /* Halts if another channel is waiting on a different start event than the one about to be set. */
 void Dma_HaltOnStartModeClash(u32 dmaNo, u32 startMode) {
   int i;
 
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < CLASH_CHECKED_CHANNELS; i++) {
     u32 control;
     u32 timing;
 

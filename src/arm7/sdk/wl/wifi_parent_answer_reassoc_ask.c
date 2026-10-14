@@ -48,8 +48,8 @@ void WifiParent_AnswerReassocAsk(WlRxFrame* frame) {
   }
   zero = 0;
   Mem_FillWords_Arm7(zero, &elements, sizeof(elements));
-  elements.data = (const u8*)capability + 10;
-  elements.length = bodyLength - 10;
+  elements.data = ((WlMgmtBody*)capability)->reassocRequest.elements;
+  elements.length = bodyLength - offsetof(WlMgmtBody, reassocRequest.elements);
   elements.present = 0x800;
   WifiRx_ScanElements(&elements);
   if ((capability->raw & WIFI_CAPS_PARENT_REJECTS) != 0 ||

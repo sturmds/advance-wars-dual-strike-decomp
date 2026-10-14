@@ -5,6 +5,8 @@ int FsDir_SyncJumpToDirStart(FSFile* file, int dirId);
 int FSi_TranslateCommand(FSFile* file, u32 command);
 
 extern const char gArchiveNameColonSlash[]; /* ":/" */
+/* The characters of gArchiveNameColonSlash that a path takes, without the NUL. */
+#define ARCHIVE_NAME_SEPARATOR_LENGTH 2
 
 static inline BOOL FileHandle_IsDirectory(FSFile* file) {
   return (file->flags & FS_FILE_STATUS_IS_DIR) ? TRUE : FALSE;
@@ -127,7 +129,8 @@ int FSi_GetPathCommand(FSFile* file) {
 
     Mem_CopyBytes(arc, buffer + pos, nameLength);
     pos += nameLength;
-    Mem_CopyBytes(gArchiveNameColonSlash, buffer + pos, 2);
+    Mem_CopyBytes(gArchiveNameColonSlash, buffer + pos,
+                  ARCHIVE_NAME_SEPARATOR_LENGTH);
   }
   FsDir_SyncJumpToDirStart(&walk, dirId);
   if (fileId != FILE_ID_NONE) {

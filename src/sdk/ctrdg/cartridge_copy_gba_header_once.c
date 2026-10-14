@@ -68,7 +68,7 @@ void Cartridge_CopyGbaHeaderOnce(void) {
 
   info = GBA_SLOT_SNAPSHOT_PTR;
   info->reserved_be = data_022acf40.reserved_be;
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(info->reserved_b5); i++) {
     info->reserved_b5[i] = data_022acf40.reserved_b5[i];
   }
   info->makerCode = data_022acf40.makerCode;

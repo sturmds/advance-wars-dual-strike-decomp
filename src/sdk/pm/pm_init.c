@@ -8,7 +8,7 @@ u32 data_022ab8f4;
 void* data_022ab8f0;
 volatile int gPMSleepAck;
 PowerCommandState gPMWork;
-static u8 data_022ab90c[20];
+static OSMutex data_022ab90c;
 PowerChipReadSlot gPMRegisterReads[POWER_CHIP_READ_SLOTS];
 
 void func_0210e0c0(void* mutex);
@@ -31,6 +31,6 @@ void PM_Init(void) {
   for (i = 0; i < POWER_CHIP_READ_SLOTS; i++) {
     gPMRegisterReads[i].done = 0;
   }
-  func_0210e0c0(data_022ab90c);
+  func_0210e0c0(&data_022ab90c);
   data_022ab8f4 = *SHARED_FRAME_COUNTER;
 }

@@ -73,7 +73,7 @@ void Wmsp_Init(Unk_arm7_038057d4* params, Unk_arm7_038057d4_2* priorities) {
   Thread_MakeReady_Arm7(&gWmspRequestThread);
 
   work = (u8*)WMSP_WORK;
-  for (i = 0; i < 16; i++) {
+  for (i = 0; i < RSSI_HISTORY_LENGTH; i++) {
     ((WmspState*)(work + WMSP_STATE_OFFSET))->history[i] = 0;
   }
   data_arm7_027d7c44.historyIndex = 0;

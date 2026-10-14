@@ -3,6 +3,9 @@
 
 #include "types.h"
 
+/* The sound hardware's channels. */
+#define SOUND_CHANNEL_COUNT 16
+
 /* Sound hardware registers the ARM7 driver writes. */
 
 /* High byte of SOUNDCNT: bits 0-1 left output, 2-3 right output, 4 and 5 channel 1 and 3 direct output, 7 master enable. */

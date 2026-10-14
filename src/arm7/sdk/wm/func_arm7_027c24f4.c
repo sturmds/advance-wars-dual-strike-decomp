@@ -16,7 +16,7 @@ u16* func_arm7_027c24f4(WlCommand* cmd, u16 arg0, const void* block, u16 arg17,
   cmd->command = 9;
   cmd->length = _s32_div_f(size + 1, 2) + 23;
   cmd->words[0] = arg0;
-  Mem_CopyHalfwords_Arm7(block, &cmd->words[1], 32);
+  Mem_CopyHalfwords_Arm7(block, &cmd->words[1], SSID_SIZE);
   cmd->words[17] = arg17;
   cmd->words[18] = arg18;
   cmd->words[19] = arg19;

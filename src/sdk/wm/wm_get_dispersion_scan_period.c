@@ -1,4 +1,5 @@
 #include "types.h"
+#include "sdk/os_common.h"
 
 void func_0210ed9c(u8* mac);
 
@@ -7,13 +8,13 @@ void func_0210ed9c(u8* mac);
 /* Scan time per channel in milliseconds, 30 to 39. It depends on the MAC
  * address and the frame counter so that nearby consoles do not scan in step. */
 u16 WM_GetDispersionScanPeriod(void) {
-  u8 mac[6];
+  u8 mac[MAC_ADDRESS_SIZE];
   u16 sum;
   int i;
 
   func_0210ed9c(mac);
   sum = i = 0;
-  for (; i < 6; i++) {
+  for (; i < MAC_ADDRESS_SIZE; i++) {
     sum += mac[i];
   }
   sum += VBLANK_COUNT;

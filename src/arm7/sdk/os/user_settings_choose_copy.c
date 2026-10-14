@@ -12,7 +12,7 @@ int UserSettings_ChooseCopy(UserSettings* copies) {
   u16 i;
   u32 valid = 0;
 
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < USER_SETTINGS_COPIES; i++) {
     UserSettings* copy = &copies[i];
     u32 crc = CalcCrc16(0xffff, (const u16*)copy, USER_SETTINGS_CRC_SIZE);
     if (crc == copy->crc && copy->saveCount < 0x80) {

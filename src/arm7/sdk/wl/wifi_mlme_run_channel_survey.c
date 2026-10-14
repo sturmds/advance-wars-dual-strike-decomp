@@ -87,7 +87,7 @@ void WifiMlme_RunChannelSurvey(void) {
       func_arm7_027c94ac(job->savedReg040);
       job->reply->unk_04 = job->result;
       job->state = 0;
-      for (i = job->index; i < 16; i++) {
+      for (i = job->index; i < ARRAY_COUNT(job->reply->words); i++) {
         job->reply->words[i] = 0;
       }
       WifiHost_ReturnCurrentRequest();

@@ -8,7 +8,7 @@ int WifiCmd_ReportSsidMask(WlRequest* request, WlReply* reply) {
   reply->status = 17;
   dst = &reply->value;
   src = WIFI_DRIVER_STATE->state.words_58;
-  for (i = 0; i < 16; i++) {
+  for (i = 0; i < ARRAY_COUNT(WIFI_DRIVER_STATE->state.words_58); i++) {
     *dst++ = *src++;
   }
   return 0;

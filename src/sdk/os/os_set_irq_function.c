@@ -6,7 +6,7 @@ extern OSIrqFunction OS_IRQTable[];
 void OS_SetIrqFunction(OSIrqMask mask, OSIrqFunction function) {
   int bit;
 
-  for (bit = 0; bit < 22; bit++, mask >>= 1) {
+  for (bit = 0; bit < IRQ_BIT_COUNT; bit++, mask >>= 1) {
     IrqSlotEntry* slot;
 
     if ((mask & 1) == 0) {

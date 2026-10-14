@@ -4,6 +4,18 @@
 #include "types.h"
 #include "sdk/os_common.h"
 
+/* Bytes in an SSID, and in the part of it a child chooses (the parent
+   fills the first 8 with the game's ids). */
+#define SSID_SIZE 32
+#define CHILD_SSID_SIZE 24
+/* Channels in the list a scan or a measurement goes through; 0 ends it. */
+#define CHANNEL_LIST_SIZE 16
+/* Wireless channel numbers run from 1 up to, not including, this. */
+#define CHANNEL_NUMBER_END 15
+/* A parent takes up to 15 children, aid 1 to 15; the parent is aid 0. */
+#define CHILD_COUNT_MAX 15
+#define AID_COUNT (CHILD_COUNT_MAX + 1)
+
 /* WM flags in the system work area shared with the ARM7 (the field
  * OSSystemWork.wm_callback_control). */
 #define WIRELESS_CALLBACK_LOCK_WORD ((u16*)0x027fff96)
@@ -173,9 +185,9 @@ typedef struct WMGameInfo {
 typedef struct WMBssDesc {
   u16 length; /* in halfwords */
   u16 rssi;
-  u8 bssid[6];
+  u8 bssid[MAC_ADDRESS_SIZE];
   u16 ssidLength;
-  u8 ssid[32];
+  u8 ssid[SSID_SIZE];
   u16 capaInfo;
   u16 rateSetBasic;
   u16 rateSetSupport;
@@ -195,11 +207,11 @@ typedef struct WMStartScanCallback {
   u16 wlCmdID;
   u16 wlResult;
   u16 state;
-  u8 macAddress[6];
+  u8 macAddress[MAC_ADDRESS_SIZE];
   u16 channel;
   u16 linkLevel;
   u16 ssidLength;
-  u8 ssid[32];
+  u8 ssid[SSID_SIZE];
   u16 gameInfoLength;
   WMGameInfo gameInfo;
 } WMStartScanCallback;
@@ -208,9 +220,9 @@ typedef struct WMStartScanCallback {
 typedef struct WMScanParam {
   WMBssDesc* scanBuf; /* where a found parent is written */
   u16 channel;
-  u16 maxChannelTime;     /* milliseconds spent on the channel */
-  u8 bssid[6];            /* all 0xff scans for any parent */
-  u8 pad_0e[0x20 - 0x0e]; /* Wireless_Init allocates 0x20 bytes */
+  u16 maxChannelTime;         /* milliseconds spent on the channel */
+  u8 bssid[MAC_ADDRESS_SIZE]; /* all 0xff scans for any parent */
+  u8 pad_0e[0x20 - 0x0e];     /* Wireless_Init allocates 0x20 bytes */
 } WMScanParam;
 
 typedef struct WMMeasureChannelCallback {
@@ -228,10 +240,10 @@ typedef struct WMStartParentCallback {
   u16 wlCmdID;
   u16 wlResult;
   u16 state;
-  u8 macAddress[6];
+  u8 macAddress[MAC_ADDRESS_SIZE];
   u16 aid; /* the child's id, 1 to 15 */
   u16 reason;
-  u8 ssid[24];
+  u8 ssid[CHILD_SSID_SIZE];
 } WMStartParentCallback;
 
 /* Start of the reply to the MP start command; only these fields are read. */
@@ -243,8 +255,8 @@ typedef struct WMStartMPCallback {
   void* recvBuf;
   u16 timeStamp; /* MPACK_IND: copied from the ack frame */
   u16 rate_rssi;
-  u8 destAdrs[6];
-  u8 srcAdrs[6];
+  u8 destAdrs[MAC_ADDRESS_SIZE];
+  u8 srcAdrs[MAC_ADDRESS_SIZE];
   u16 seqNum;
   u16 tmptt;
   u16 pollbmp;
@@ -279,13 +291,13 @@ typedef struct WMPortRecvCallback {
   void* recvBuf;
   void* data;
   u16 length;
-  u16 aid;          /* the sender */
-  u8 macAddress[6]; /* who connected or disconnected */
-  u16 seqNo;        /* 0xffff: none */
-  void* arg;        /* what WM_SetPortCallback was given */
+  u16 aid;                         /* the sender */
+  u8 macAddress[MAC_ADDRESS_SIZE]; /* who connected or disconnected */
+  u16 seqNo;                       /* 0xffff: none */
+  void* arg;                       /* what WM_SetPortCallback was given */
   u16 myAid;
   u8 pad_22[2];
-  u8 ssid[24];
+  u8 ssid[CHILD_SSID_SIZE];
 } WMPortRecvCallback;
 
 /* Start of the reply to a port send; only these fields are read. */
@@ -341,8 +353,8 @@ typedef struct RadioChildFrameBuffer {
   u8 rate;
   u8 rssi; /* raw; see Wmsp_DecodeRssi */
   u8 pad_10[8];
-  u8 destAdrs[6];
-  u8 srcAdrs[6];
+  u8 destAdrs[MAC_ADDRESS_SIZE];
+  u8 srcAdrs[MAC_ADDRESS_SIZE];
   u8 pad_24[0xa];
   u16 pollBitmap; /* bit n set: the parent polls the child with aid n */
   u16 wmHeader;
@@ -486,7 +498,7 @@ typedef struct WMStatus {
   u16 unk_98; /* START_MP: defaultRetryCount */
   u16 unk_9a;
   u16 unk_9c; /* START_MP sets 60 */
-  u8 dcfDestAdr[6];
+  u8 dcfDestAdr[MAC_ADDRESS_SIZE];
   const u16* dcfSendData;
   u16 dcfSendSize;
   u16 dcfRecvBufSel;
@@ -506,18 +518,19 @@ typedef struct WMStatus {
   u32 unk_d4;
   u16 unk_d8;
   u16 unk_da; /* 1: a WL fatal error does not disconnect */
-  u8 macAddress[6];
+  u8 macAddress[MAC_ADDRESS_SIZE];
   u16 unk_e2; /* WMSP_MeasureChannel sets 2 */
   u8 pparam
       [0x10]; /* start of the WMParentParam the parent runs with; unk_f4 is its maxEntry */
   u16 unk_f4;
   u8 pad_f6[0x2e];
-  u8 childMacAddress[15][6]; /* [aid - 1] */
-  u16 childBitmap;           /* bit n set: the child with aid n is connected */
-  WMBssDesc* pInfoBuf;       /* the scan request's scanBuf */
-  u16 aid;                   /* this station's aid, 0 on a parent */
-  u8 parentMacAddress[6];    /* the parent this child is connected to */
-  u16 scanChannel;           /* the channel being scanned */
+  u8 childMacAddress[CHILD_COUNT_MAX][MAC_ADDRESS_SIZE]; /* [aid - 1] */
+  u16 childBitmap;     /* bit n set: the child with aid n is connected */
+  WMBssDesc* pInfoBuf; /* the scan request's scanBuf */
+  u16 aid;             /* this station's aid, 0 on a parent */
+  u8 parentMacAddress
+      [MAC_ADDRESS_SIZE]; /* the parent this child is connected to */
+  u16 scanChannel;        /* the channel being scanned */
   u16 unk_18e;
   u16 unk_190;
   u16 wepMode; /* WIRELESS_CIPHER_* */
@@ -536,7 +549,7 @@ typedef struct WMStatus {
   OSMutex sendQueueMutex;
   u32 sendQueueInUse; /* 1 from WMSP_BuildMpSendData until WMSP_UpdateSendQueue */
   u64 mpLastRecvTick
-      [16]; /* tick of the last MP frame from each aid, bit 0 set */
+      [AID_COUNT]; /* tick of the last MP frame from each aid, bit 0 set */
   u64 unk_7b0;
 } WMStatus;
 
@@ -556,7 +569,7 @@ typedef struct WMStartConnectReq {
   u16 apiid;
   u8 pad_02[2];
   WMBssDesc* pInfo; /* the parent to join */
-  u8 ssid[24];
+  u8 ssid[CHILD_SSID_SIZE];
   u32 powerSave;
   u16 reserved;
   u16 authMode;
@@ -568,7 +581,7 @@ typedef struct WMStartScanReq {
   u16 channel;
   WMBssDesc* scanBuf;
   u16 maxChannelTime;
-  u8 bssid[6];
+  u8 bssid[MAC_ADDRESS_SIZE];
 } WMStartScanReq;
 
 /* Arguments of the extended scan command. */
@@ -576,12 +589,12 @@ typedef struct RadioChannelSweepRequest {
   u16 apiid;
   u16 channelList; /* bit 0 for channel 1 */
   WMBssDesc* scanBuf;
-  u16 scanBufSize;    /* bytes, at least 64 */
-  u16 maxChannelTime; /* milliseconds spent on each channel */
-  u8 bssid[6];        /* all 0xff scans for any parent */
-  u16 scanType;       /* 1: passive, no probe requests */
+  u16 scanBufSize;            /* bytes, at least 64 */
+  u16 maxChannelTime;         /* milliseconds spent on each channel */
+  u8 bssid[MAC_ADDRESS_SIZE]; /* all 0xff scans for any parent */
+  u16 scanType;               /* 1: passive, no probe requests */
   u16 ssidLength;
-  u8 ssid[32];
+  u8 ssid[SSID_SIZE];
 } RadioChannelSweepRequest;
 
 /* Reply to the extended scan: every parent found, written one after the

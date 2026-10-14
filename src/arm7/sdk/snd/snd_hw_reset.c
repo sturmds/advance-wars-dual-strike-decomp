@@ -6,7 +6,7 @@ void SndHw_Reset(void) {
   int channel;
 
   func_arm7_037fe63c();
-  for (channel = 0; channel < 16; channel++) {
+  for (channel = 0; channel < SOUND_CHANNEL_COUNT; channel++) {
     SndHw_StopChannel(channel, 1);
   }
   AUDIO_RECORD0_CTRL = 0;

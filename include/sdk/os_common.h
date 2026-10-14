@@ -22,11 +22,20 @@ typedef volatile u64 vu64;
 /* EXMEMCNT: external memory bus control. */
 #define REG_EXMEMCNT (*(vu16*)0x04000204)
 
+/* Bytes in a wireless MAC address. */
+#define MAC_ADDRESS_SIZE 6
+
 /* Two words in shared main RAM: bit set = lock ID free (IDs 0x40 to 0x7f). */
 #define LOCK_ID_AVAILABLE_BITS ((volatile u32*)0x027fffb0)
 
+/* Shared main RAM from the end of the free-ID maps up to the cartridge
+   lock word (SLOTLOCK_WORD), which OS initialisation zeroes. */
+#define SHARED_LOCK_WORDS ((volatile u32*)0x027fffc0)
+#define SHARED_LOCK_WORDS_SIZE 0x28
+
 /* Two words in shared main RAM: bit set = ARM7 lock ID free (IDs 0x80 to 0xbf). */
 #define OS7_LOCK_ID_FREE_MAP ((volatile u32*)0x027fffb8)
+#define LOCK_ID_MAP_WORDS 2
 
 #define OS_LOCK_ID_ERROR (-3) /* OS_GetLockID found no free id */
 #define LOCK_NOT_OWNER (-2)
@@ -129,6 +138,9 @@ typedef struct OSMessageQueue {
 typedef void (*ThreadSwapHook)(OSThread* from, OSThread* to);
 
 /* Scheduler state. The thread list is sorted by priority, lowest value first. */
+/* Thread ids run from 0 to THREAD_ID_COUNT - 1. */
+#define THREAD_ID_COUNT 16
+
 typedef struct OSThreadInfo {
   u16 isNeedRescheduling;
   u16 maxEntry; /* number of entries in threads[] */
@@ -137,7 +149,7 @@ typedef struct OSThreadInfo {
   OSThread* current;
   OSThread* list;
   ThreadSwapHook switchCallback;
-  OSThread* threads[16];
+  OSThread* threads[THREAD_ID_COUNT];
 } OSThreadInfo;
 
 /* Memory areas the OS hands out as heaps. The ARM7 manages 1, 7 and 8. */

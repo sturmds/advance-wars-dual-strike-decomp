@@ -14,7 +14,8 @@ void WifiRx_SetUpRing(void) {
   u16 cursor;
 
   zero = 0;
-  Mem_FillWords_Arm7(zero, child, 0x50);
+  Mem_FillWords_Arm7(
+      zero, child, offsetof(WlWork, stationBits) - offsetof(WlWork, wepWatch));
   REG_W_RXCNT = 0x8000;
   switch (WIFI_DRIVER_STATE->state.unk_24) {
     case 0:

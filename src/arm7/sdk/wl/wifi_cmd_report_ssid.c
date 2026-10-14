@@ -9,7 +9,7 @@ int WifiCmd_ReportSsid(WlRequest* request, WlReply* reply) {
   reply->value = WIFI_DRIVER_STATE->state.unk_36;
   dst = reply->words;
   src = WIFI_DRIVER_STATE->state.words;
-  for (i = 0; i < 32; i += 2) {
+  for (i = 0; i < sizeof(WIFI_DRIVER_STATE->state.words); i += 2) {
     *dst++ = *src++;
   }
   return 0;

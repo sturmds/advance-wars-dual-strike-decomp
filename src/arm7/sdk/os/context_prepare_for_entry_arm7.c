@@ -41,7 +41,7 @@ void Context_PrepareForEntry_Arm7(OSContext *context, u32 pc, u32 sp) {
   context->spSvc = sp;
   context->sp = sp - 0x40;
   context->cpsr = (pc & 1) ? 0x3f : 0x1f;
-  for (i = 0; i < 13; i++) {
+  for (i = 0; i < ARRAY_COUNT(context->r); i++) {
     context->r[i] = 0;
   }
   context->lr = 0;

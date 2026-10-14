@@ -30,7 +30,7 @@ void MI_Copy36B(const void* src, void* dest) {
     fprintf(stderr, "MI_Copy36B: %p or %p is not word-aligned\n", src, dest);
     abort();
   }
-  for (i = 0; i < 9; i += 3) {
+  for (i = 0; i < 36 / sizeof(u32); i += 3) {
     u32 a = from[i];
     u32 b = from[i + 1];
     u32 c = from[i + 2];

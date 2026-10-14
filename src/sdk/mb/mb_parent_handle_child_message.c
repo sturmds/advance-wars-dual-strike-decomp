@@ -53,7 +53,9 @@ void MbParent_HandleChildMessage(WMMpRecvData* recv, u16 aid) {
                 data_022aced4->files[fileId].registry->ggid) {
           data_022aced4->childRequests[aid - 1] = DLPLAY_APP_WANTS_REFUSE;
         } else {
-          for (i = 0; i < 16; i++) {
+          for (i = 0; i < sizeof(data_022aced4->files[fileId].childBitmap) *
+                              BITS_PER_BYTE;
+               i++) {
             if (data_022aced4->files[fileId].childBitmap & (1 << i)) {
               count++;
             }

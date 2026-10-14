@@ -48,8 +48,8 @@ void WMSP_StartConnect(WMStartConnectReq* req) {
   WlCommand* cmd = (WlCommand*)wlBuf;
   WmspBuf* buf = func_arm7_027c05e0()->buf;
   volatile u16 one; /* needed to match: the 1 goes through the stack */
-  u8 authMac[6];
-  u8 assocMac[6];
+  u8 authMac[MAC_ADDRESS_SIZE];
+  u8 assocMac[MAC_ADDRESS_SIZE];
   WlJoinBssDesc join;
   WMStatus* status;
   WMStartConnectCallback* reply;
@@ -156,7 +156,8 @@ void WMSP_StartConnect(WMStartConnectReq* req) {
     WMSP_ReplyStartConnectFailed(WIFI_REQ_SYNC_TO_PARENT, wlReply[2]);
     return;
   }
-  Mem_CopyBytes_Arm7(&wlReply[4], buf->status->parentMacAddress, 6);
+  Mem_CopyBytes_Arm7(&wlReply[4], buf->status->parentMacAddress,
+                     MAC_ADDRESS_SIZE);
   buf->status->unk_18e =
       PARENT->gameInfo.childMaxSize + 2 +
       ((PARENT->gameInfo.attribute & WIRELESS_BEACON_BIT_KEYSHARE) ? 6 : 0);
@@ -164,7 +165,7 @@ void WMSP_StartConnect(WMStartConnectReq* req) {
       PARENT->gameInfo.parentMaxSize + 4 +
       ((PARENT->gameInfo.attribute & WIRELESS_BEACON_BIT_KEYSHARE) ? 42 : 0);
 
-  Mem_CopyBytes_Arm7(buf->status->parentMacAddress, authMac, 6);
+  Mem_CopyBytes_Arm7(buf->status->parentMacAddress, authMac, MAC_ADDRESS_SIZE);
   wlReply =
       func_arm7_027c26cc(cmd, authMac, req->authMode, WIFI_JOIN_STEP_WAIT_MS);
   if (wlReply[2] == WIFI_ANSWER_PEER_SAID_NO &&
@@ -181,7 +182,7 @@ void WMSP_StartConnect(WMStartConnectReq* req) {
     return;
   }
 
-  Mem_CopyBytes_Arm7(buf->status->parentMacAddress, assocMac, 6);
+  Mem_CopyBytes_Arm7(buf->status->parentMacAddress, assocMac, MAC_ADDRESS_SIZE);
   wlReply = func_arm7_027c25c8(cmd, assocMac, 1, WIFI_JOIN_STEP_WAIT_MS);
   intr = Cpu_MaskIrq_Arm7();
   if (wlReply[2] == WIFI_ANSWER_PEER_SAID_NO &&

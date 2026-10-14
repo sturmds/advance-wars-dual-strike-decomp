@@ -28,12 +28,13 @@ void WMSP_EndParent(void) {
     Wmsp_SendReply(reply);
     return;
   }
-  for (aid = 1; aid < 16; aid++) {
+  for (aid = 1; aid < AID_COUNT; aid++) {
     WMStatus* status = buf->status;
 
     mask = 1 << aid;
     if (status->childBitmap & mask) {
-      Mem_CopyBytes_Arm7(status->childMacAddress[aid - 1], macAddress, 6);
+      Mem_CopyBytes_Arm7(status->childMacAddress[aid - 1], macAddress,
+                         MAC_ADDRESS_SIZE);
       func_arm7_027c2648(&cmd.command, macAddress, 3);
       irq = Cpu_MaskIrq_Arm7();
       buf->status->childBitmap &= ~mask;

@@ -49,12 +49,12 @@ double Isd_DoubleDivideByTen(double x, int keepFraction) {
   sign = Isd_DoubleSign(x);
   exponent = Isd_DoubleExponent(x);
   mantissa = 0;
-  bytePtr = (char*)&x + 6;
+  bytePtr = &ISD_DOUBLE_BYTES(x)->exponentLow;
   mantissa |= 0x10;
   mantissa |= Isd_ReadByte(bytePtr) & 0xf;
   for (k = 5; k >= 0; k--) {
     mantissa <<= 8;
-    mantissa |= Isd_ReadByte((char*)&x + k);
+    mantissa |= Isd_ReadByte(&ISD_DOUBLE_BYTES(x)->mantissa[k]);
   }
 
   integerBits = exponent - 1021;
@@ -122,17 +122,17 @@ double Isd_DoubleDivideByTen(double x, int keepFraction) {
   }
 
   result = 0;
-  readPtr = (char*)&result + 7;
+  readPtr = &ISD_DOUBLE_BYTES(result)->signExponent;
   byte = Isd_ReadByte(readPtr) | (sign << 7);
-  writePtr = (char*)&result + 7;
+  writePtr = &ISD_DOUBLE_BYTES(result)->signExponent;
   Isd_StoreByte(writePtr, byte);
-  readPtr = (char*)&result + 7;
+  readPtr = &ISD_DOUBLE_BYTES(result)->signExponent;
   byte = Isd_ReadByte(readPtr) | (exponent >> 4);
-  writePtr = (char*)&result + 7;
+  writePtr = &ISD_DOUBLE_BYTES(result)->signExponent;
   Isd_StoreByte(writePtr, byte);
-  readPtr = (char*)&result + 6;
+  readPtr = &ISD_DOUBLE_BYTES(result)->exponentLow;
   byte = Isd_ReadByte(readPtr) | ((exponent & 0xf) << 4);
-  writePtr = (char*)&result + 6;
+  writePtr = &ISD_DOUBLE_BYTES(result)->exponentLow;
   Isd_StoreByte(writePtr, byte);
   /* Needed to match: this loop keeps its bits in fifth and its pointer in bytePtr. */
   for (i = 6; i >= 0; i--) {

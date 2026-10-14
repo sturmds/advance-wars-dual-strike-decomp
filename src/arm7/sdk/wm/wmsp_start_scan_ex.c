@@ -35,7 +35,7 @@ void WMSP_StartScanEx(RadioChannelSweepRequest* req) {
   WlCommand* cmd = &cmdBuf.command;
   u16 bssid[3];
   u8 ssid[32];
-  u8 channels[16];
+  u8 channels[CHANNEL_LIST_SIZE];
   volatile u16 zero;
   RadioChannelSweepReply* reply;
   WmspScanReply* scan;
@@ -120,7 +120,7 @@ void WMSP_StartScanEx(RadioChannelSweepRequest* req) {
   buf->status->state = WM_STATE_SCAN;
   count = 0;
   Mem_FillBytes_Arm7(channels, 0, sizeof(channels));
-  for (channel = 1; channel < 15; channel++) {
+  for (channel = 1; channel < CHANNEL_NUMBER_END; channel++) {
     if (channelMask & (1 << channel)) {
       channels[count] = channel;
       count++;

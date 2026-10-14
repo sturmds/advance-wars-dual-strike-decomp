@@ -11,7 +11,7 @@ extern OSIrqFunction
 void Irq_WriteVectorEntries(OSIrqMask mask, OSIrqFunction function) {
   int bit;
 
-  for (bit = 0; bit < 25; bit++) {
+  for (bit = 0; bit < IRQ_BIT_COUNT_ARM7; bit++) {
     if (mask & 1) {
       data_arm7_03807750[bit] = function;
     }

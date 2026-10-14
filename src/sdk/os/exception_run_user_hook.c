@@ -4,7 +4,7 @@
 u32 data_022a9b7c;
 u32 data_022a9b84;
 static u32 data_022a9b80;
-u8 data_022a9b88[0x80];
+ExceptionRecord data_022a9b88;
 extern void OS_EnableProtectionUnit(void);
 extern void OS_DisableProtectionUnit(void);
 

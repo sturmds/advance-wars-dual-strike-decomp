@@ -24,9 +24,9 @@ int Wireless_RequestJoinParent(WMCallbackFunc callback, WMBssDesc* bssDesc,
   req->apiid = WM_APIID_START_CONNECT;
   req->pInfo = bssDesc;
   if (ssid != NULL) {
-    Mem_CopyBytes(ssid, req->ssid, 24);
+    Mem_CopyBytes(ssid, req->ssid, sizeof(req->ssid));
   } else {
-    MI_CpuFill8(req->ssid, 0, 24);
+    MI_CpuFill8(req->ssid, 0, sizeof(req->ssid));
   }
   req->powerSave = powerSave;
   req->authMode = authMode;

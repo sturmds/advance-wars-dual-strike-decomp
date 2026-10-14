@@ -29,7 +29,7 @@ int WifiCmd_StartChannelSurvey(WlMeasureChannelRequest* request,
   if (request->sampleMs > 1000) {
     return WIFI_ANSWER_OUT_OF_RANGE;
   }
-  for (i = 0; i < 16; i++) {
+  for (i = 0; i < ARRAY_COUNT(request->channels); i++) {
     u8 channel = WL_ReadByte(&request->channels[i]);
     if (channel == 0) {
       break;

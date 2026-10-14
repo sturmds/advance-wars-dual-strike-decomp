@@ -51,7 +51,7 @@ void Bios_WidenBitDepth_Arm7(const void* src, void* dst, const void* params) {
     WidenFail("dst is not 4-byte aligned or the output is not whole words");
   }
   for (i = 0; i < widening->srcBytes; i++) {
-    for (shift = 0; shift < 8; shift += srcBits) {
+    for (shift = 0; shift < BITS_PER_BYTE; shift += srcBits) {
       u32 field = (in[i] >> shift) & ((1u << srcBits) - 1);
       if (field != 0 || addToZero) {
         field += addend;

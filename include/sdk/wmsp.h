@@ -53,16 +53,16 @@ typedef struct WlIndicationHeader {
 
 typedef struct WlDeauthIndication {
   WlIndicationHeader ind;
-  u8 macAddress[6]; /* the station that left */
+  u8 macAddress[MAC_ADDRESS_SIZE]; /* the station that left */
   u16 reason;
 } WlDeauthIndication;
 
 typedef struct WlAssocIndication {
   WlIndicationHeader ind;
-  u8 macAddress[6]; /* the station that joined */
+  u8 macAddress[MAC_ADDRESS_SIZE]; /* the station that joined */
   u16 aid;
   u8 pad_18[10];
-  u8 ssid[24];
+  u8 ssid[CHILD_SSID_SIZE];
 } WlAssocIndication;
 
 /* A received data frame: a 0x2c-byte header, then length bytes of data. */
@@ -72,8 +72,8 @@ typedef struct WlDataFrame {
   u8 pad_08[7];
   u8 rssi; /* raw, see Wmsp_DecodeRssi */
   u8 pad_10[8];
-  u8 destAdrs[6];
-  u8 srcAdrs[6];
+  u8 destAdrs[MAC_ADDRESS_SIZE];
+  u8 srcAdrs[MAC_ADDRESS_SIZE];
   u8 pad_24[8];
 } WlDataFrame;
 
@@ -107,8 +107,8 @@ typedef struct WlMpAckFrame {
   u16 timeStamp;
   u16 rate_rssi;
   u8 pad_10[8];
-  u8 destAdrs[6];
-  u8 srcAdrs[6];
+  u8 destAdrs[MAC_ADDRESS_SIZE];
+  u8 srcAdrs[MAC_ADDRESS_SIZE];
   u8 pad_24[6];
   u16 seqNum;
   u16 tmptt;
@@ -126,8 +126,8 @@ typedef struct WlMpAckIndication {
 
 /* Requests WMSP queues for itself in a slot from Wmsp_TakeFlaggedSlot. */
 typedef struct WmspAutoDeauthRequest {
-  u32 apiid;        /* WM_APIID_AUTO_DEAUTH */
-  u8 macAddress[6]; /* the station to deauthenticate */
+  u32 apiid;                       /* WM_APIID_AUTO_DEAUTH */
+  u8 macAddress[MAC_ADDRESS_SIZE]; /* the station to deauthenticate */
 } WmspAutoDeauthRequest;
 
 typedef struct WmspAutoDisconnectRequest {
@@ -161,11 +161,13 @@ typedef struct WmspTxFrame {
   u8 pad_08[6];
   u8 rate; /* in 100 kbit/s: 10 or 20 */
   u8 pad_0f[9];
-  u8 destAdr[6];
-  u8 srcAdr[6];
+  u8 destAdr[MAC_ADDRESS_SIZE];
+  u8 srcAdr[MAC_ADDRESS_SIZE];
   u8 pad_24[8];
   const u16* data;
 } WmspTxFrame;
+
+typedef char WmspTxFrame_size_check[sizeof(WmspTxFrame) == 0x30 ? 1 : -1];
 
 /* Stack space a WMSP handler gives a WL command and its reply. */
 typedef union WlCommandBuf {
@@ -183,9 +185,9 @@ typedef struct WmspScanReply {
   u16 bssCount;
   u16 bssLength; /* WMBssDesc.length: the beacon's size in halfwords */
   u16 rssi;      /* raw in the low byte, see Wmsp_DecodeRssi */
-  u8 bssid[6];
+  u8 bssid[MAC_ADDRESS_SIZE];
   u16 ssidLength;
-  u8 ssid[32];
+  u8 ssid[SSID_SIZE];
   u16 capaInfo;
   u16 rateSetBasic;
   u16 rateSetSupport;
@@ -205,8 +207,8 @@ typedef struct WlParamSetAllCommand {
   u16 reserved[6];
   u16 length;
   u16 index;
-  u8 macAddress[6]; /* 0x10 */
-  u16 unk_16;       /* always 7 */
+  u8 macAddress[MAC_ADDRESS_SIZE]; /* 0x10 */
+  u16 unk_16;                      /* always 7 */
   u16 enableChannel;
   u8 pad_1a[2];
   u16 unk_1c; /* WMStatus.unk_e2 */
@@ -270,7 +272,7 @@ typedef struct WmspBuf {
 typedef struct WlJoinBssDesc {
   u16 length;
   u16 rssi;
-  u8 bssid[6];
+  u8 bssid[MAC_ADDRESS_SIZE];
   u16 ssidLength;
   u16 ssid[16];
   u16 capaInfo;
@@ -285,6 +287,8 @@ typedef struct WlJoinBssDesc {
   u16 otherElementCount;
   u32 unk_40;
 } WlJoinBssDesc;
+
+typedef char WlJoinBssDesc_size_check[sizeof(WlJoinBssDesc) == 0x44 ? 1 : -1];
 
 /* What the ARM9 sends for a request with one value. */
 typedef struct WmspRequest {
@@ -318,7 +322,7 @@ typedef struct WmspStartDCFRequest {
 typedef struct WmspSetDCFDataRequest {
   u16 apiid;
   u8 pad_02[2];
-  u8 destAdr[6]; /* sent as two words */
+  u8 destAdr[MAC_ADDRESS_SIZE]; /* sent as two words */
   u8 pad_0a[2];
   const u16* data;
   u32 size;
@@ -387,18 +391,21 @@ extern WmspRequestHandler const gWmspRequestHandlers[WMSP_API_COUNT];
 typedef struct WmspMacRequest {
   u16 apiid;
   u8 pad_02[2];
-  u8 macAddress[6];
+  u8 macAddress[MAC_ADDRESS_SIZE];
 } WmspMacRequest;
 
 // The symbol data_arm7_027d7c44, which is the same memory as WmspWork from
 // 0x1000 on. Only the part WMSP uses.
+/* Link level samples WmspState keeps, averaged by WMSP_GetLinkLevel. */
+#define RSSI_HISTORY_LENGTH 16
+
 typedef struct WmspState {
   u8 pad_000[0x50c];
   u32 unk_50c;
   u32 unk_510;
   u32 unk_514;
   WmspBuf* buf;
-  u8 history[16];
+  u8 history[RSSI_HISTORY_LENGTH];
   volatile u32
       historyIndex; /* volatile: needed to match, the original reloads it */
   u32 threadPriority[2][3]; /* [1] is what the WMSP threads were created with */

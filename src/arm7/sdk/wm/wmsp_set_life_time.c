@@ -32,7 +32,7 @@ void WMSP_SetLifeTime(WmspSetLifeTimeRequest* request) {
     status->unk_7b0 = 0;
   }
   now = Tick_Read64_Arm7() | 1;
-  for (aid = 0; aid < 16; aid++) {
+  for (aid = 0; aid < AID_COUNT; aid++) {
     status->mpLastRecvTick[aid] = now;
   }
   reply = Wmsp_GetCallbackBuffer();
