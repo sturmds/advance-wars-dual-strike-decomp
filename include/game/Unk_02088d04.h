@@ -212,9 +212,10 @@ typedef char GfxLayer_size_check[sizeof(GfxLayer) == 0x14 ? 1 : -1];
 
 /* One BG screen block: a map of 32 x 32 entries (u16), 0x800 bytes. The
  * display shows its first 24 rows. */
-#define BG_SCREEN_ENTRIES (32 * 32)
+#define BG_ROW_ENTRIES 32
+#define BG_SCREEN_ENTRIES (BG_ROW_ENTRIES * 32)
 #define BG_SCREEN_SIZE (BG_SCREEN_ENTRIES * 2)
-#define BG_VISIBLE_ENTRIES (32 * 24)
+#define BG_VISIBLE_ENTRIES (BG_ROW_ENTRIES * 24)
 #define BG_VISIBLE_SIZE (BG_VISIBLE_ENTRIES * 2)
 
 /* Bytes of one 16-colour palette (BGR555), in a palette buffer or VRAM. */

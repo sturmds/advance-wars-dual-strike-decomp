@@ -1,12 +1,12 @@
 #include "types.h"
 #include "game/map_select.h"
 
+extern MenuState gMenuState;
+
 s32 HwDiv32(s32 numerator, s32 denominator);
 s32 HwMod32(s32 numerator, s32 denominator);
 void MapSelect_DrawMapNames(int list, int page);
 void MapSelect_AddMapButtons(void);
-
-extern MenuStateFrom400 data_0229ef30;
 
 /* After the lists are rebuilt for the second pick of a two-map battle:
  * finds the first map (firstMapId) in the new lists, makes its list the current
@@ -23,7 +23,7 @@ void MapSelect_SelectFirstMap(void) {
       index = 0;
       list++;
     }
-    if (MENU->setup.lists[list].mapIds[index] == data_0229ef30.firstMapId) {
+    if (MENU->setup.lists[list].mapIds[index] == gMenuState.setup.firstMapId) {
       break;
     }
     index++;

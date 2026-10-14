@@ -21392,7 +21392,7 @@ src/game/main/campaign/save_store_profile.c:
     complete
     .text       start:0x02103ed8 end:0x0210408c
 
-src/game/main/func_0210408c.c:
+src/game/main/profile_headers_clear.c:
     complete
     .text       start:0x0210408c end:0x021040dc
 

@@ -50,7 +50,7 @@ typedef char Unk_02290118_size_check[sizeof(Unk_02290118) == 0x180 ? 1 : -1];
 extern Unk_02290118 data_02290118;
 
 /* The saved copy of the first 16 bytes of Unk_02290118 for one profile.
- * data_02290a60 holds three, in the same memory as gPlayRecords.unk_348;
+ * data_02290a60 holds three, in the same memory as gPlayRecords.profiles;
  * Save_LoadProfile copies one over the start of data_02290118. */
 typedef struct ProfileHeader {
   u8 unk_00;

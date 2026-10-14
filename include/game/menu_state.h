@@ -134,8 +134,7 @@ typedef struct CampaignMapWork {
 /* gMenuState (gMenuState): work area of the menu screens. The first
  * 0x20 bytes mean the same on every screen; each screen lays out the rest
  * its own way. Field names with an offset give it from the start of
- * MenuState. The symbols data_0229eb70, data_0229ed30 and data_0229ef30
- * point inside it, at 0x40, 0x200 and 0x400. */
+ * MenuState. */
 /* Layout of MenuState for the player info (CO stats) screen, filled by
  * PlayerInfo_Init. */
 typedef struct PlayerInfoScreen {
@@ -414,27 +413,6 @@ typedef struct MenuState {
 /* Offset of LinkScreenState.picked in MenuState. Needed to match: the compiler adds it after
  * the player index, so the flags are reached through gMenuState's own address plus the player. */
 #define LINK_PICKED_OFFSET 0x162e
-
-/* data_0229ed30, gMenuState + 0x200. BattleSetup_LoadFromGame stores
- * setup.fundsPerProperty through this symbol: naming gMenuState there
- * changes which loads the compiler repeats. */
-typedef struct MenuStateFrom200 {
-  u8 pad_200[0x284 - 0x200];
-  BattleSway sway[2]; /* BattleScreenWork.sway */
-  u8 pad_294[0x2d8 - 0x294];
-  u16 fundsPerProperty; /* BattleSetupState.fundsPerProperty */
-} MenuStateFrom200;
-
-/* data_0229ef30, gMenuState + 0x400. MapSelect_GetTab reads
- * setup.firstMapId through this symbol. */
-typedef struct MenuStateFrom400 {
-  u8 pad_400[0x408 - 0x400];
-  u16 bgScroll[2]; /* BattleScreenWork.bgScroll */
-  u16 unk_40c[2];  /* BattleScreenWork.unk_40c */
-  u8 pad_410[0x4fa - 0x410];
-  u16 prevMapId;  /* BattleSetupState.prevMapId */
-  u16 firstMapId; /* BattleSetupState.firstMapId */
-} MenuStateFrom400;
 
 /* gMenuState on the result screen (ResultScreen_Init). The blocks
  * are copied from /ohashi/res_result and res_result_lang; it starts at

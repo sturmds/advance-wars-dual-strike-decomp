@@ -11,7 +11,6 @@ extern int data_02297f30;
 extern int gNextSaveCounter;
 extern SaveSlotTable data_02297f3c;
 extern SaveBuffer data_02298050;
-extern u8 data_0229a050[];
 
 void Save_WriteToBackup(u16 slot, SaveBuffer* buffer, int size);
 int Save_VerifyBackup(u16 slot, SaveBuffer* buffer, int size);
@@ -124,10 +123,10 @@ int Save_WriteRecord(int recordId, u8* unused, int size) {
         data_02298050.magic = SAVE_MAGIC;
         if (entry->unk_54[0] == 0x55) {
           data_02298050.unk_04 = 0x55;
-          data_0229a050[0xfff] = 0xaa;
+          data_02298050.endMark = 0xaa;
         } else {
           data_02298050.unk_04 = 0xaa;
-          data_0229a050[0xfff] = 0x55;
+          data_02298050.endMark = 0x55;
         }
         data_02298050.unk_05 = 29;
         data_02298050.checksumInv = 0xff;
@@ -177,13 +176,13 @@ int Save_WriteRecord(int recordId, u8* unused, int size) {
           part--;
           entry->flags[0] &= ~SAVE_SLOT_READ_FAILED;
           entry->part[0] = data_02298050.part;
-          entry->unk_54[0] = data_0229a050[0xfff];
+          entry->unk_54[0] = data_02298050.endMark;
           written[slot] = 1;
           SAVE_SLOT_WRITES(slot) = data_02298050.counter;
           partHigh -= 0x10;
         } else {
           entry->newId[0] = 0xff;
-          entry->unk_54[0] = data_0229a050[0xfff];
+          entry->unk_54[0] = data_02298050.endMark;
           tries += 2;
         }
       } while (part >= 0);

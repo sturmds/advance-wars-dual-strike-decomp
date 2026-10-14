@@ -2,12 +2,12 @@
 #include "game/event_queue.h"
 #include "game/map_select.h"
 
+extern MenuState gMenuState;
+
 u8 Map_IsFlagSet(u32 mapId);
 u32 Link_IsActive(void);
 void MapSelect_PickFirstMap(void);
 void MapSelect_ConfirmMap(void);
-
-extern MenuStateFrom400 data_0229ef30;
 
 /* Position of the selected map on its page. */
 #define PAGE_POS() (TABLES.unk_000[TAB()][LIST(TAB()).unk_64][PAGE()])
@@ -22,7 +22,7 @@ void MapSelect_PickMap(void) {
     return;
   }
   if (STATE->gameMode != GAME_MODE_WAR_ROOM && STATE->twoMaps == 1 &&
-      data_0229ef30.firstMapId == 0) {
+      gMenuState.setup.firstMapId == 0) {
     if (Link_IsActive() == 1) {
       EventQueue_Push(7, PAGE_POS());
     } else {

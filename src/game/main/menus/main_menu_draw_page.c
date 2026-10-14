@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/main_menu.h"
 #include "game/unlocks.h"
-#include "game/Unk_02290a18.h"
+#include "game/play_records.h"
 
 void Gx_DrawTexturedQuadFormat(int x, int y, int a2, int a3, int a4, int a5,
                                int a6, int a7, int a8, int a9);
@@ -11,7 +11,7 @@ void MainMenu_DrawRankIcon(int x, int y, int icon);
 /* Draws the current main menu page as 3D quads: the title on top, two rows
  * of two quads per entry 24 pixels apart (hidden entries use palette + 9),
  * then the bottom edge. On page 11, entry kinds 25 and 26 also get a rank
- * icon once game flag 33 or 34 is set, from the scores in data_02290a18. */
+ * icon once game flag 33 or 34 is set, from the best campaign averages (gPlayRecords.campaignBestAverage). */
 void MainMenu_DrawPage(void) {
   MainMenuPage* page = *data_0229c71c;
   MainMenuEntry* entry = page->entries;
@@ -39,14 +39,16 @@ void MainMenu_DrawPage(void) {
       switch (entry->kind) {
         case 25:
           if (GameFlag_IsSet(33)) {
-            MainMenu_DrawRankIcon(67, y + 2,
-                                  5 - Score_ToRank(data_02290a18.unk_78));
+            MainMenu_DrawRankIcon(
+                67, y + 2,
+                5 - Score_ToRank(gPlayRecords.campaignBestAverage[0]));
           }
           break;
         case 26:
           if (GameFlag_IsSet(34)) {
-            MainMenu_DrawRankIcon(67, y + 2,
-                                  5 - Score_ToRank(data_02290a18.unk_7a));
+            MainMenu_DrawRankIcon(
+                67, y + 2,
+                5 - Score_ToRank(gPlayRecords.campaignBestAverage[1]));
           }
           break;
       }

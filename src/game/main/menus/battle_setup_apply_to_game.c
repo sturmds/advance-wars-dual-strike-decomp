@@ -19,7 +19,6 @@ extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
-extern MenuStateFrom200 data_0229ed30;
 extern u32 gLinkPlay;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -90,7 +89,7 @@ void BattleSetup_ApplyToGame(void) {
   GAME->unk_1c4->fog = gMenuState.setup.fog;
   GAME->unk_1c4->tileset = gMenuState.setup.unk_2dd;
   GAME->dayLimit = gMenuState.setup.unk_2de;
-  GAME->fundsPerProperty = data_0229ed30.fundsPerProperty;
+  GAME->fundsPerProperty = gMenuState.setup.fundsPerProperty;
   GAME->coEffectsOn = gMenuState.setup.coEffectsOn;
   GAME->propertyGoal = gMenuState.setup.unk_2df;
   GAME->unk_8c = gMenuState.setup.unk_2e2;
@@ -106,7 +105,7 @@ void BattleSetup_ApplyToGame(void) {
     GAME->unk_1c4->fog = gMenuState.setup.fog;
     GAME->unk_1c4->tileset = gMenuState.setup.unk_2dd;
     GAME->dayLimit = gMenuState.setup.unk_2de;
-    GAME->fundsPerProperty = data_0229ed30.fundsPerProperty;
+    GAME->fundsPerProperty = gMenuState.setup.fundsPerProperty;
     GAME->coEffectsOn = gMenuState.setup.coEffectsOn;
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);

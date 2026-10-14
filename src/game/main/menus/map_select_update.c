@@ -5,6 +5,8 @@
 #include "game/keypad.h"
 #include "game/task.h"
 
+extern MenuState gMenuState;
+
 u8* Wireless_GetSharedData(int player);
 void func_0207b48c(void);
 u32 Link_IsActive(void);
@@ -20,8 +22,6 @@ void MapSelect_ConfirmMap(void);
 void MapSelect_PickFirstMap(void);
 void MapSelect_CancelFirstMap(void);
 void Task_ResumeScript(Task* task);
-
-extern MenuStateFrom400 data_0229ef30;
 
 /* Task step of the map select menu. In the War Room, left and right turn the
  * strip of MapSelect_PrevSubStrip and MapSelect_NextSubStrip. In link play
@@ -69,7 +69,7 @@ void MapSelect_Update(Task* task) {
           MapSelect_SelectPagePosition(msg[1]);
           break;
         case EVENT_MAP_SELECT_CONFIRM:
-          if (STATE->twoMaps == 1 && data_0229ef30.firstMapId == 0) {
+          if (STATE->twoMaps == 1 && gMenuState.setup.firstMapId == 0) {
             break;
           }
           confirm = TRUE;

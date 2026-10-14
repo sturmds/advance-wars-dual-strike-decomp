@@ -4,7 +4,6 @@
 extern u8 gHasBackupMemory;
 extern SaveSlotTable data_02297f3c;
 extern SaveBuffer data_02298050;
-extern u8 data_0229a050[];
 
 void Mem_FillBytesFF(void* dest, int count);
 void Save_WriteToBackup(u16 slot, SaveBuffer* buffer, int size);
@@ -37,7 +36,7 @@ int Save_EraseAll(void) {
       if (try == 4) {
         return 1;
       }
-      data_02297f3c.unk_54[i] = data_0229a050[0xfff];
+      data_02297f3c.unk_54[i] = data_02298050.endMark;
     }
     return 0;
   }

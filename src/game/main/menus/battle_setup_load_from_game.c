@@ -26,7 +26,6 @@ extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
-extern MenuStateFrom200 data_0229ed30;
 extern u32 gLinkPlay;
 extern DesignMap data_022a6c84[];
 
@@ -76,7 +75,7 @@ void BattleSetup_LoadFromGame(void) {
   state->setup.unk_2dd = GAME->unk_1c4->tileset & PLAYER_CO_ID_MASK;
   state->setup.coEffectsOn = GAME->coEffectsOn;
   state->setup.unk_2de = GAME->dayLimit;
-  data_0229ed30.fundsPerProperty = GAME->fundsPerProperty;
+  gMenuState.setup.fundsPerProperty = GAME->fundsPerProperty;
   state->setup.unk_2df = GAME->propertyGoal;
   if (gLinkPlay != 0) {
     state->setup.visualMode = VISUAL_A;

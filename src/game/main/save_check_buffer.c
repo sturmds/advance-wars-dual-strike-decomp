@@ -2,7 +2,6 @@
 #include "game/save_data.h"
 
 extern SaveBuffer data_02298050;
-extern u8 data_0229a050[];
 
 /* Checks the save buffer: the magic, the marker byte against the buffer's last byte (0x55 and
  * 0xaa, one each way round), the byte sum and its inverse, and the version byte 29. Returns 0
@@ -16,11 +15,11 @@ int Save_CheckBuffer(void) {
     return 1;
   }
   if (data_02298050.unk_04 == 0x55) {
-    if (data_0229a050[0xfff] != 0xaa) {
+    if (data_02298050.endMark != 0xaa) {
       return 1;
     }
   } else if (data_02298050.unk_04 == 0xaa) {
-    if (data_0229a050[0xfff] != 0x55) {
+    if (data_02298050.endMark != 0x55) {
       return 1;
     }
   } else {

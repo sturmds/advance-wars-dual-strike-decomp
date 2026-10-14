@@ -10,7 +10,7 @@ u8* gSaveBuffer;
 int (*gSavePackFunc)(u8* dest);
 int data_02297f30;
 extern SaveSlotTable data_02297f3c;
-extern u8 data_0229a050[];
+extern SaveBuffer data_02298050;
 
 u16 Save_FindNewestRecord(int recordId);
 int Save_ReadSlot(u16 slot);
@@ -53,7 +53,7 @@ void Save_Format(void) {
       for (try = 0; try < SAVE_WRITE_TRIES; try ++) {
         Save_NoBackupMemory(i);
         if (Save_ReadSlot(i)) {
-          data_02297f3c.unk_54[i] = data_0229a050[0xfff];
+          data_02297f3c.unk_54[i] = data_02298050.endMark;
           data_02297f3c.newId[i] = 0xff;
           data_02297f3c.id[i] = data_02297f3c.newId[i];
           data_02297f3c.flags[i] |= 4;
@@ -70,7 +70,7 @@ void Save_Format(void) {
       for (try = 0; try < SAVE_WRITE_TRIES; try ++) {
         Save_NoBackupMemory(i);
         if (Save_ReadSlot(i)) {
-          data_02297f3c.unk_54[i] = data_0229a050[0xfff];
+          data_02297f3c.unk_54[i] = data_02298050.endMark;
           data_02297f3c.newId[i] = 0xff;
           data_02297f3c.id[i] = data_02297f3c.newId[i];
           data_02297f3c.flags[i] |= 4;

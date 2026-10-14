@@ -6,6 +6,8 @@
 #include "game/event_queue.h"
 #include "game/war_room_records.h"
 
+extern MenuState gMenuState;
+
 void Gfx_InitBothScreens(void);
 void Screen_SetCurrent(void* state);
 void Screen_SetCurrentGfx(void* state);
@@ -52,7 +54,6 @@ void SpriteTask_Create(int a, int b, int c, int d);
 
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern MenuStateFrom400 data_0229ef30;
 extern const char gMapSelectResPath[];
 extern const char gMapSelectLangResPath[];
 extern const char gIconBlinkResPath[];
@@ -254,9 +255,9 @@ void MapSelect_Init(void) {
     }
   }
   MapSelect_DrawMapNames(LIST_OF_TAB(TAB()), PAGE());
-  data_0229ef30.prevMapId = SELECTED_MAP_ID();
+  gMenuState.setup.prevMapId = SELECTED_MAP_ID();
   MENU->setup.prevList = LIST_OF_TAB(TAB());
-  data_0229ef30.firstMapId = 0;
+  gMenuState.setup.firstMapId = 0;
   MapSelect_LoadWarRoomRecords();
   MapSelect_LoadEnemyCoPictures();
   NumberFont_LoadLow();

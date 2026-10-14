@@ -6,7 +6,6 @@ void Sound_PlaySe(u32 soundId);
 void VsSetup_ShowSettingHelp(void);
 
 extern MenuState gMenuState;
-extern MenuStateFrom200 data_0229ed30;
 
 /* Needed to match: the cast keeps the field offsets out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
@@ -38,8 +37,8 @@ void VsSetup_DecreaseSetting(void) {
       break;
     case 3:
       /* Funds per property in steps of 500, down to 500. Needed to
-         * match: the test reads through data_0229ed30. */
-      if (data_0229ed30.fundsPerProperty > 500) {
+         * match: the test names gMenuState, the update MENU. */
+      if (gMenuState.setup.fundsPerProperty > 500) {
         MENU->setup.fundsPerProperty -= 500;
       }
       break;

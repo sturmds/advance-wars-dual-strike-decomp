@@ -1,10 +1,10 @@
 #include "types.h"
 #include "game/map_select.h"
 
+extern MenuState gMenuState;
+
 void Sound_PlaySe(int id);
 void MapSelect_StartListSlide(int slideBack);
-
-extern MenuStateFrom400 data_0229ef30;
 
 /* Switches the current tab to the next map list, wrapping to the first, and
  * starts the slide between them (MapSelect_StartListSlide). The first switch plays a
@@ -14,7 +14,7 @@ void MapSelect_NextList(void) {
     Sound_PlaySe(0x10002);
     MENU->setup.listChanged = 1;
   }
-  data_0229ef30.prevMapId = SELECTED_MAP_ID();
+  gMenuState.setup.prevMapId = SELECTED_MAP_ID();
   MENU->setup.prevList = LIST_OF_TAB(TAB());
   if (LIST_OF_TAB(TAB()) < MENU->setup.mapListCount - 1) {
     LIST_OF_TAB(TAB())++;

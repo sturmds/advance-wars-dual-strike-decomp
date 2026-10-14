@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/co_data.h"
 #include "game/play_records.h"
-#include "game/Unk_02290a18.h"
 #include "game/visual_mode.h"
 
 extern u8 data_02291672[];
@@ -10,7 +9,7 @@ extern u8 data_02290256[];
 void Co_SetSavedPaletteVariant(int co, int variant);
 void Co_SetSavedPictureVariant(int co, int variant);
 void Co_SetAvailable(int co, int value);
-void func_0210408c(void);
+void ProfileHeaders_Clear(void);
 void Campaign_ResetProgress(void);
 void CoPicks_ResetToDefaults(void);
 void BattleRecord_ClearAll(void);
@@ -50,10 +49,10 @@ void Save_ResetProgress(void) {
     Co_SetSavedPictureVariant(co, 0);
     Co_SetAvailable(co, FALSE);
   }
-  func_0210408c();
+  ProfileHeaders_Clear();
   Campaign_ResetProgress();
-  data_02290a18.unk_78 = 0;
-  data_02290a18.unk_7a = 0;
+  gPlayRecords.campaignBestAverage[0] = 0;
+  gPlayRecords.campaignBestAverage[1] = 0;
   CoPicks_ResetToDefaults();
   BattleRecord_ClearAll();
   Unlocks_ResetToNewGame();

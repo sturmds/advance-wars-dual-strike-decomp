@@ -4,6 +4,7 @@
 #include "types.h"
 #include "game/co_data.h"
 #include "game/co_save.h"
+#include "game/Unk_02290118.h"
 #include "game/survival_record.h"
 
 /* Best run of one Survival mode variant (data_022a7b80.mode, 0-5).
@@ -43,8 +44,11 @@ typedef struct PlayRecords {
   CoPicks coPicksMode3;   /* gCoPicksMode3 */
   u8 pad_36[0x38 - 0x36];
   CoSaveRecord coRecords[CO_COUNT]; /* by CO id */
-  SaveHalfwords16 unk_348
-      [3]; /* one per profile; Save_LoadProfiles fills them from the save */
+  union {
+    SaveHalfwords16 unk_348
+        [3]; /* one per profile; Save_LoadProfiles fills them from the save */
+    ProfileHeader profiles[3]; /* the same bytes as data_02290a60 */
+  };
   u16 campaignBestAverage[2]; /* gCampaignBestAverage */
   u32 playFrames; /* frames counted by PlayRecords_CountFrame, capped by Counter_IncrementCapped */
   u32 unk_380; /* capped at 999999; Turn_AdvanceToNextPlayer adds 1 each time the turn order wraps past player 4, under conditions not yet understood */

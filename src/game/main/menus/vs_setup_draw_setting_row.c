@@ -12,7 +12,6 @@ void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
 extern MenuState gMenuState;
-extern MenuStateFrom200 data_0229ed30;
 extern s16 gSineTable[]; /* sine table, index 64 = cosine of 0 */
 
 /* Needed to match: the cast keeps the field offsets out of the literal pool. */
@@ -93,12 +92,12 @@ void VsSetup_DrawSettingRow(int row, int x, int y) {
                      0x1000, MENU->setup.unk_2dd * 4 + 464);
       break;
     case 3: {
-      int digit = HwMod32(HwDiv32(data_0229ed30.fundsPerProperty, 1000), 10);
+      int digit = HwMod32(HwDiv32(gMenuState.setup.fundsPerProperty, 1000), 10);
       if (digit != 0) {
         Sprite_QueueAt(1, x & 0x1ff, (y + 16) & 0xff, &data_027c0038, 0x1000,
                        TILE_DIGIT(digit));
       }
-      digit = HwMod32(HwDiv32(data_0229ed30.fundsPerProperty, 100), 10);
+      digit = HwMod32(HwDiv32(gMenuState.setup.fundsPerProperty, 100), 10);
       Sprite_QueueAt(1, (x + 8) & 0x1ff, (y + 16) & 0xff, &data_027c0038,
                      0x1000, TILE_DIGIT(digit));
       Sprite_QueueAt(1, (x + 16) & 0x1ff, (y + 16) & 0xff, &data_027c0038,

@@ -47,8 +47,8 @@ extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern BattleResults data_022a7a9c;
-extern u8 gMenuState[];
-extern u8 data_0229eb70[]; /* gMenuState + 0x40 */
+/* On this screen gMenuState starts with a BG map of 24 rows. */
+extern u16 gMenuState[][BG_ROW_ENTRIES];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define ROW(player) (data_022a7a9c.rows[player])
@@ -116,7 +116,9 @@ void ResultStats_Init(Task* task) {
       /* Text 0xc00000ad goes left of the day number, one tile
              * further left for each extra digit. */
       if (data_027c027c == MAIN_MAP) {
-        Mem_Copy32(data_0229eb70, data_027c0280->layer1Map, 0x5c0);
+        /* The main screen leaves out the map's first row. */
+        Mem_Copy32(gMenuState[1], data_027c0280->layer1Map,
+                   BG_VISIBLE_SIZE - BG_ROW_ENTRIES * sizeof(u16));
         Text_PrintStringImmediate(8, 2, data_027c0280->layer0Map, mapName, 0,
                                   0);
         Number_Draw(28, 2, data_027c0280->layer0Map, day, 0, 0);

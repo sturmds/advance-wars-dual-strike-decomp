@@ -2,8 +2,9 @@
 # .data or .rodata variable (docs/bss-tool.md, "Aliases"; issue 0083). One per line:
 #   MODULE SYMBOL = BASE+OFFSET GROUP
 # GROUP: `real FIELD` (an address inside the variable that code takes on
-# purpose), `hidden` (a separate variable the one before swallows) or
-# `unsorted` (not checked yet). bss.py plan refuses an alias not listed
+# purpose), `base` (an address mwcc made to reach the fields after it; no
+# field starts there), `hidden` (a separate variable the one before
+# swallows) or `unsorted` (not checked yet). bss.py plan refuses an alias not listed
 # here; bss.py aliases and tools/decomp_dev_report.py check this list
 # against symbols.txt.
 main data_02138a68 = gSineTable+0x80 real [64]
@@ -116,10 +117,10 @@ main data_02290750 = gPlayRecords+0x38 real coRecords[0]
 main data_02290754 = gPlayRecords+0x3c real coRecords[0].setMode1
 main data_02290758 = gPlayRecords+0x40 real coRecords[0].setMode3
 main data_0229075c = gPlayRecords+0x44 real coRecords[0].setsMode2
-main data_02290a18 = gPlayRecords+0x300 real +0x300 (literal base for unk_348 and pad_378)
-main data_02290a60 = gPlayRecords+0x348 real unk_348
+main data_02290a18 = gPlayRecords+0x300 base (campaignBestAverage)
+main data_02290a60 = gPlayRecords+0x348 real profiles
 main data_02290a62 = gPlayRecords+0x34a real unk_348[0].value[1] (low byte: ProfileHeader.hardMode)
-main data_02290a63 = gPlayRecords+0x34b real unk_348[0].value[1]+1 (high byte: ProfileHeader.inUse)
+main data_02290a63 = gPlayRecords+0x34b real profiles[0].inUse (Profile_IsInUse)
 main data_02290a64 = gPlayRecords+0x34c real unk_348[0].value[2] (low byte: ProfileHeader.unk_04)
 main data_02290a66 = gPlayRecords+0x34e real unk_348[0].value[3] (ProfileHeader.unk_06)
 main gCampaignBestAverage = gPlayRecords+0x378 real campaignBestAverage
@@ -144,7 +145,7 @@ main data_02297802 = data_022977f0+0x12 real [0].day
 main data_02297804 = data_022977f0+0x14 real [0].unk_14
 main data_02297c2e = gEventTextMap+0x4e real [39] (row 1, column 7 of the 32-tile map: text window origin tile)
 main data_02297f66 = data_02297f3c+0x2a real flags
-main data_0229a050 = data_02298050+0x2000 real +0x2000 (compiler base for the end marker at 0x2fff)
+main data_0229a050 = data_02298050+0x2000 base (endMark at 0x2fff)
 main gMenuButtonReserved = gMenuButtons+0x1284 real [79]
 main data_0229c74a = gCampaignMapState+0x2 real flags
 main data_0229c838 = data_0229c768+0xd0 real unk_0d0
@@ -171,16 +172,16 @@ main data_0229e5bf = data_0229e5bc+0x3 real [0].kind
 main data_0229e5c0 = data_0229e5bc+0x4 real [0].group
 main data_0229eaf1 = gSlotControllers+0x1 real [1]
 main data_0229eaf9 = gBuildMenuEntries+0x1 real [0].state
-main data_0229eb70 = gMenuState+0x40 real +0x40 (layer map that ResultStats_Init copies)
-main data_0229ed30 = gMenuState+0x200 real +0x200 (MenuStateFrom200: setup.fundsPerProperty)
-main data_0229ef30 = gMenuState+0x400 real +0x400 (MenuStateFrom400: setup.prevMapId, setup.firstMapId)
+main data_0229eb70 = gMenuState+0x40 base (row 1 of the result stats map, ResultStats_Init)
+main data_0229ed30 = gMenuState+0x200 base (setup.fundsPerProperty, battle.sway)
+main data_0229ef30 = gMenuState+0x400 base (setup.prevMapId and firstMapId, battle.bgScroll)
 main data_0229f330 = gMenuState+0x800 real tagBreak.layer0Map (Tag Break layer 0 map)
 main data_0229fb30 = gMenuState+0x1000 real shared.state (Unk_0229fb30: palettes, combat.unk_45a)
 main gTagBreakSparkPalette = gMenuState+0x1020 real tagBreak.palettes[1] (second palette of data_0229fb30)
 main data_0229fb70 = gMenuState+0x1040 real tagBreak.gaugeColours (tag gauge colours)
 main gTagChangePalette = gMenuState+0x1060 real tagBreak.changePalette (saved palette)
 main data_0229ff30 = gMenuState+0x1400 real combat.unk_1400 (Unk_0229ff30.playerMask)
-main data_022a0030 = gMenuState+0x1500 real +0x1500 (CO EXP screen work)
+main data_022a0030 = gMenuState+0x1500 base (coExp.exp[1].points)
 main data_022a6c97 = data_022a6c84+0x13 real [0].playerCount
 main data_022a6c9d = data_022a6c84+0x19 real [0].unk_19
 main data_022a6c9e = data_022a6c84+0x1a real [0].unk_1a
@@ -214,7 +215,7 @@ main data_022a98f0 = data_022a98ec+0x4 real [0].keepEnabled
 main data_022a98f4 = data_022a98ec+0x8 real [0].arg
 main data_022a9938 = OSi_ThreadInfo+0x8 real current
 main data_022a9944 = OSi_ThreadInfo+0x14 real threads
-main data_022aaf40 = data_022a9f40+0x1000 real +0x1000 (compiler base for [255].next)
+main data_022aaf40 = data_022a9f40+0x1000 base ([255].next)
 main data_022ab728 = data_022a9f40+0x17e8 real [255]
 main data_022ab8c4 = tpState+0x18 real calibrate
 main data_022ab924 = gPMRegisterReads+0x4 real [0].data
@@ -254,8 +255,8 @@ ov000 data_ov000_022f4fdb = Ov000_gUnitStats+0x23 real [0].chartDamage
 ov000 data_ov000_022f501c = Ov000_gUnitStats+0x64 real [0].repairTerrain
 ov000 data_ov000_022f5020 = Ov000_gUnitStats+0x68 real [0].dailyFuel
 ov000 data_ov000_022f5024 = Ov000_gUnitStats+0x6c real [1] (AI build loops start at type 1)
-ov000 data_ov000_022f50b8 = Ov000_gUnitStats+0x100 real +0x100 (literal base for [UNIT_MEDIUM_TANK].costDiv10)
-ov000 data_ov000_022f51b8 = Ov000_gUnitStats+0x200 real +0x200 (literal base for [UNIT_TANK].costDiv10)
+ov000 data_ov000_022f50b8 = Ov000_gUnitStats+0x100 base ([UNIT_MEDIUM_TANK].costDiv10)
+ov000 data_ov000_022f51b8 = Ov000_gUnitStats+0x200 base ([UNIT_TANK].costDiv10)
 ov000 data_ov000_022f5ed0 = Ov000_gForceRankTable+0x4 real [0].name
 ov000 data_ov000_022f5ed4 = Ov000_gForceRankTable+0x8 real [0].description
 ov000 data_ov000_0234eb88 = data_ov000_0234eb84+0x4 real [0][1]
@@ -317,7 +318,7 @@ arm7 data_arm7_027d813c = data_arm7_027d7c44+0x4f8 real pad_000[0x4f8] (reply OS
 arm7 data_arm7_027d8160 = data_arm7_027d7c44+0x51c real history
 arm7 data_arm7_027d81c4 = data_arm7_027d81b0+0x14 real messages
 arm7 data_arm7_027d81d4 = data_arm7_027d81b0+0x24 real thread
-arm7 data_arm7_027d82b0 = data_arm7_027d81b0+0x100 real +0x100 (compiler base for command)
+arm7 data_arm7_027d82b0 = data_arm7_027d81b0+0x100 base (command)
 arm7 data_arm7_027d834c = data_arm7_027d81b0+0x19c real stack[64] (stack top)
 arm7 data_arm7_03807890 = data_arm7_0380788c+0x4 real [0].keepEnabled
 arm7 data_arm7_03807894 = data_arm7_0380788c+0x8 real [0].arg
@@ -335,6 +336,6 @@ arm7 data_arm7_03809d30 = data_arm7_03809ab0+0x280 real msgQ
 arm7 data_arm7_03809d44 = data_arm7_03809ab0+0x294 real msgArray
 arm7 data_arm7_03809d84 = data_arm7_03809ab0+0x2d4 real entry
 arm7 data_arm7_03809d88 = data_arm7_03809ab0+0x2d8 real entry[0].process
-arm7 data_arm7_03809eb0 = data_arm7_03809ab0+0x400 real +0x400 (compiler base for waitQueue)
+arm7 data_arm7_03809eb0 = data_arm7_03809ab0+0x400 base (waitQueue)
 arm7 data_arm7_03809f08 = data_arm7_03809ab0+0x458 real waitQueue
 arm7 data_arm7_03809f44 = tpWork+0x2c real vAlarm

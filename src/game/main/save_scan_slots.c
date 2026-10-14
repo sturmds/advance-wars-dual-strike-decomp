@@ -6,7 +6,6 @@ extern int gNextSaveCounter;
 extern int data_02297f38;
 extern SaveSlotTable data_02297f3c;
 extern SaveBuffer data_02298050;
-extern u8 data_0229a050[];
 
 int Save_ReadSlot(u16 slot);
 u16 Save_FindNewestRecord(int recordId);
@@ -64,7 +63,7 @@ void Save_ScanSlots(int noFormat) {
       anyBad = 1;
       bad[i] = anyBad;
     }
-    data_02297f3c.unk_54[i] = data_0229a050[0xfff];
+    data_02297f3c.unk_54[i] = data_02298050.endMark;
   }
 
   if (newest == -1) {

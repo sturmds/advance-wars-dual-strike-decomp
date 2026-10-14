@@ -2,13 +2,13 @@
 #include "game/map_header.h"
 #include "game/map_select.h"
 
+extern MenuState gMenuState;
+
 void Sound_PlaySe(int id);
 void func_020b9890(void);
 /* Stores the battle's map and second map in the game state. */
 void State_SetMapIds(int mapId, int secondMapId);
 void func_0205f538(void);
-
-extern MenuStateFrom400 data_0229ef30;
 
 /* Map that goes with the selected one in a two-map battle; 0 if none. */
 #define SECOND_MAP_ID() (Ov000_gMapHeaders[SELECTED_MAP_ID()].variantMapIds[0])
@@ -26,7 +26,7 @@ void MapSelect_ConfirmMap(void) {
   } else if (STATE->twoMaps == 0) {
     State_SetMapIds(SELECTED_MAP_ID(), 0);
   } else {
-    State_SetMapIds(data_0229ef30.firstMapId, SELECTED_MAP_ID());
+    State_SetMapIds(gMenuState.setup.firstMapId, SELECTED_MAP_ID());
   }
   func_0205f538();
 }

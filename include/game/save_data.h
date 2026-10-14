@@ -38,10 +38,10 @@ extern u32 data_02297fa8[2 * SAVE_SLOT_COUNT];
 #define SAVE_WRITE_TRIES 4
 
 /* data_02298050: the 0x3000-byte save buffer. Only the fields that
- * Save_LoadRecord reads are known. The last 0x16 bytes hold the slot ids. */
+ * Save_LoadRecord reads are known. It ends with the slot ids and the end mark. */
 typedef struct SaveBuffer {
   u32 magic;   /* SAVE_MAGIC */
-  u8 unk_04;   /* 0x55 or 0xaa, the opposite of the buffer's last byte */
+  u8 unk_04;   /* 0x55 or 0xaa, the opposite of endMark */
   u8 unk_05;   /* 29 on every write */
   u8 checksum; /* byte sum of the 0x3000 bytes with these two set to 0xff and 0 */
   u8 checksumInv; /* ~checksum */
@@ -54,6 +54,7 @@ typedef struct SaveBuffer {
   u16 dataLength;        /* bytes of record data at data */
   u8 data[0x2fea - 0x66];
   u8 slotIds[SAVE_SLOT_COUNT];
+  u8 endMark; /* 0x55 or 0xaa, the opposite of unk_04 */
 } SaveBuffer;
 
 /* Fails to compile if a field change breaks the size of a save slot. */

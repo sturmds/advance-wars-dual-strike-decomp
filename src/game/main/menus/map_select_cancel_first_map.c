@@ -2,6 +2,8 @@
 #include "game/map_select.h"
 #include "game/screen_other_map.h"
 
+extern MenuState gMenuState;
+
 void Sound_PlaySe(int id);
 void MapSelect_BuildLists(
     MapList* lists,
@@ -11,8 +13,6 @@ void MapSelect_AddMapButtons(void);
 void Bg_ClearRect(u16* map, int x, int y, int w, int h);
 void Gfx_RequestLayerCopy(int layer);
 
-extern MenuStateFrom400 data_0229ef30;
-
 /* Undoes the first pick of a two-map battle (MapSelect_PickFirstMap): clears
  * the first map, rebuilds the lists with all maps, redraws the page and
  * clears the window on the other screen. */
@@ -21,7 +21,7 @@ void MapSelect_CancelFirstMap(void) {
   Unk_02080440* savedState;
 
   Sound_PlaySe(0x10009);
-  data_0229ef30.firstMapId = 0;
+  gMenuState.setup.firstMapId = 0;
   MapSelect_BuildLists(MENU->setup.lists, 0);
   MapSelect_DrawMapNames(LIST_OF_TAB(TAB()), PAGE());
   MapSelect_AddMapButtons();

@@ -4,6 +4,8 @@
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
 
+extern MenuState gMenuState;
+
 #define REG_MTX_PUSH ((volatile u32*)0x04000444)
 #define REG_MTX_POP ((volatile u32*)0x04000448)
 #define REG_MTX_SCALE ((volatile u32*)0x0400046c)
@@ -15,8 +17,6 @@ extern u8 data_ov002_023604b8[];
 /* The look-at target; never written, so the origin. */
 static VecFx32 data_ov002_0236bbe0;
 extern s16 data_0214d4c4[];
-extern MenuStateFrom200 data_0229ed30;
-extern MenuStateFrom400 data_0229ef30;
 
 void G3X_Reset(void);
 void G3i_LookAt_(void* cam, void* up, void* target, int load, void* mtx);
@@ -59,17 +59,17 @@ void Battle_DrawScene(void) {
     int idx;
 
     *REG_MTX_PUSH = side;
-    z = data_0229ed30.sway[0].z;
+    z = gMenuState.battle.sway[0].z;
     if (Battle_IsSideAir(side) == 1) {
-      y = data_0229ed30.sway[0].y + 88;
+      y = gMenuState.battle.sway[0].y + 88;
     } else {
-      y = data_0229ed30.sway[0].y - 8;
+      y = gMenuState.battle.sway[0].y - 8;
     }
-    *REG_MTX_TRANS = -64 - data_0229ed30.sway[0].x;
+    *REG_MTX_TRANS = -64 - gMenuState.battle.sway[0].x;
     *REG_MTX_TRANS = y;
     *REG_MTX_TRANS = z;
     Battle_StepSideShake(0);
-    idx = ((data_0229ed30.sway[0].angle + 0x600) & 0xffff) >> 4;
+    idx = ((gMenuState.battle.sway[0].angle + 0x600) & 0xffff) >> 4;
     G3_RotX(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
     *REG_MTX_SCALE = 0x2000;
     *REG_MTX_SCALE = 0x1000;
@@ -87,17 +87,17 @@ void Battle_DrawScene(void) {
     int idx;
 
     *REG_MTX_PUSH = 0;
-    z = data_0229ed30.sway[1].z;
+    z = gMenuState.battle.sway[1].z;
     if (Battle_IsSideAir(1) == 1) {
-      y = data_0229ed30.sway[1].y + 88;
+      y = gMenuState.battle.sway[1].y + 88;
     } else {
-      y = data_0229ed30.sway[1].y - 8;
+      y = gMenuState.battle.sway[1].y - 8;
     }
-    *REG_MTX_TRANS = data_0229ed30.sway[1].x + 64;
+    *REG_MTX_TRANS = gMenuState.battle.sway[1].x + 64;
     *REG_MTX_TRANS = y;
     *REG_MTX_TRANS = z;
     Battle_StepSideShake(1);
-    idx = ((data_0229ed30.sway[1].angle + 0x600) & 0xffff) >> 4;
+    idx = ((gMenuState.battle.sway[1].angle + 0x600) & 0xffff) >> 4;
     G3_RotX(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
     *REG_MTX_SCALE = 0x2000;
     *REG_MTX_SCALE = 0x1000;
@@ -109,7 +109,7 @@ void Battle_DrawScene(void) {
   *REG_MTX_POP = 1;
   *REG_MTX_POP = 1;
   data_027c0280->bgScrollX[data_027c0280->layer2Bg] =
-      data_0229ef30.unk_40c[0] + data_0229ef30.bgScroll[0];
+      gMenuState.battle.unk_40c[0] + gMenuState.battle.bgScroll[0];
   data_027c0280->bgScrollX[data_027c0280->layer3Bg] =
-      -(data_0229ef30.unk_40c[1] + data_0229ef30.bgScroll[1]);
+      -(gMenuState.battle.unk_40c[1] + gMenuState.battle.bgScroll[1]);
 }
