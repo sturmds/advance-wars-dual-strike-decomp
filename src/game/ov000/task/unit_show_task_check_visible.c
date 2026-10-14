@@ -6,7 +6,7 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern int gLinkPlay;
+extern u32 gLinkPlay;
 
 BOOL Unit_IsVisibleToActivePlayers(MapUnit* unit, int x, int y);
 void MapView_ScrollToPixel(int x, int y);

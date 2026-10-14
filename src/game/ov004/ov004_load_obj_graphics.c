@@ -31,7 +31,7 @@ char data_ov004_022bde10[] = {
 #include "data/ov004/data_ov004_022bde10.inc.c"
 };
 /* "08f": palette */
-u8 data_ov004_022bde0c[] = {
+char data_ov004_022bde0c[] = {
 #include "data/ov004/data_ov004_022bde0c.inc.c"
 };
 char data_ov004_022bde08[] = {
@@ -49,7 +49,7 @@ char data_ov004_022bddfc[] = {
 #include "data/ov004/data_ov004_022bddfc.inc.c"
 };
 /* "090": layer 2 map */
-u8 data_ov004_022bddf8[] = {
+char data_ov004_022bddf8[] = {
 #include "data/ov004/data_ov004_022bddf8.inc.c"
 };
 char data_ov004_022bddf4[] = {
@@ -140,7 +140,7 @@ char data_ov004_022bdd8c[] = {
 #include "data/ov004/data_ov004_022bdd8c.inc.c"
 };
 /* "08e": layer 2 tiles */
-u8 data_ov004_022bdd88[] = {
+char data_ov004_022bdd88[] = {
 #include "data/ov004/data_ov004_022bdd88.inc.c"
 };
 char data_ov004_022bdd84[] = {

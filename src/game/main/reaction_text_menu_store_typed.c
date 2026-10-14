@@ -1,12 +1,13 @@
 #include "types.h"
 #include "game/reaction_text_menu_task.h"
+#include "game/task.h"
 
 ReactionTextMenuTask* Task_FindByScript(const void* script);
 int func_020b983c(void);
 u8* func_021016e4(void);
 char* strcpy(char* dst, const char* src);
 
-extern u8 data_0215fc0c[];
+extern TaskScriptCmd data_0215fc0c[];
 
 /* Copies the text typed in the name entry into the chosen reaction text. */
 void ReactionTextMenu_StoreTyped(void) {

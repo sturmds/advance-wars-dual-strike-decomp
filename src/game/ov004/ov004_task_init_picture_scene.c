@@ -23,9 +23,9 @@ void Ov004_ClearSlots(Unk_ov004_022bf158* state);
 
 extern Unk_ov004_022bf158* data_ov004_022bf158;
 extern GfxLayer data_ov004_022be908[]; /* main screen layer config */
-extern u8 data_ov004_022bdd88[];       /* "08e": layer 2 tiles */
-extern u8 data_ov004_022bddf8[];       /* "090": layer 2 map */
-extern u8 data_ov004_022bde0c[];       /* "08f": palette */
+extern char data_ov004_022bdd88[];     /* "08e": layer 2 tiles */
+extern char data_ov004_022bddf8[];     /* "090": layer 2 map */
+extern char data_ov004_022bde0c[];     /* "08f": palette */
 extern u32 data_ov004_022bdc94[]; /* map bytes of a text BG by screen size */
 extern u32 data_ov004_022bdc84
     []; /* map bytes of a rotation/scaling BG by screen size */
