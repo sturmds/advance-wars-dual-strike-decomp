@@ -3,147 +3,147 @@
     .data       start:0x023522a0 end:0x0237a5a0 kind:data align:32
     .bss        start:0x0237a5a0 end:0x0237a5a0 kind:bss align:32
 
-src/game/ov001/ov001_data_023522a0.c:
+src/game/ov001/map_scripts/defeat_scripts.c:
     complete
     .data       start:0x023522a0 end:0x02352460
 
-src/game/ov001/ov001_data_02352460.c:
+src/game/ov001/map_scripts/terms_and_hint_scripts.c:
     complete
     .data       start:0x02352460 end:0x02353ba0
 
-src/game/ov001/ov001_data_02353ba0.c:
+src/game/ov001/map_scripts/campaign_0e0_jakes_trial.c:
     complete
     .data       start:0x02353ba0 end:0x02354754
 
-src/game/ov001/ov001_data_02354754.c:
+src/game/ov001/map_scripts/campaign_0e1_the_new_black.c:
     complete
     .data       start:0x02354754 end:0x023554d8
 
-src/game/ov001/ov001_data_023554d8.c:
+src/game/ov001/map_scripts/campaign_0e2_max_attacks.c:
     complete
     .data       start:0x023554d8 end:0x023564b4
 
-src/game/ov001/ov001_data_023564b4.c:
+src/game/ov001/map_scripts/campaign_0e3_reclaim_the_skies.c:
     complete
     .data       start:0x023564b4 end:0x02357068
 
-src/game/ov001/ov001_data_02357068.c:
+src/game/ov001/map_scripts/campaign_0e4_neverending_war.c:
     complete
     .data       start:0x02357068 end:0x02357e64
 
-src/game/ov001/ov001_data_02357e64.c:
+src/game/ov001/map_scripts/campaign_0e5_the_ocean_blue.c:
     complete
     .data       start:0x02357e64 end:0x02358988
 
-src/game/ov001/ov001_data_02358988.c:
+src/game/ov001/map_scripts/campaign_0e6_fog_rolls_in.c:
     complete
     .data       start:0x02358988 end:0x0235943c
 
-src/game/ov001/ov001_data_0235943c.c:
+src/game/ov001/map_scripts/campaign_0e7_tag_battle.c:
     complete
     .data       start:0x0235943c end:0x02359f28
 
-src/game/ov001/ov001_data_02359f28.c:
+src/game/ov001/map_scripts/campaign_0e8_victory_or_death.c:
     complete
     .data       start:0x02359f28 end:0x0235b6f4
 
-src/game/ov001/ov001_data_0235b6f4.c:
+src/game/ov001/map_scripts/campaign_0e9_black_boats_ahoy.c:
     complete
     .data       start:0x0235b6f4 end:0x0235c490
 
-src/game/ov001/ov001_data_0235c490.c:
+src/game/ov001/map_scripts/campaign_0ea_lightning_strikes.c:
     complete
     .data       start:0x0235c490 end:0x0235cf24
 
-src/game/ov001/ov001_data_0235cf24.c:
+src/game/ov001/map_scripts/campaign_0eb_frozen_fortress.c:
     complete
     .data       start:0x0235cf24 end:0x0235de50
 
-src/game/ov001/ov001_data_0235de50.c:
+src/game/ov001/map_scripts/campaign_0ec_verdant_hills.c:
     complete
     .data       start:0x0235de50 end:0x0235eacc
 
-src/game/ov001/ov001_data_0235eacc.c:
+src/game/ov001/map_scripts/campaign_0ed_snow_hunters.c:
     complete
     .data       start:0x0235eacc end:0x0235fb88
 
-src/game/ov001/ov001_data_0235fb88.c:
+src/game/ov001/map_scripts/campaign_0ee_omens_and_signs.c:
     complete
     .data       start:0x0235fb88 end:0x023612a4
 
-src/game/ov001/ov001_data_023612a4.c:
+src/game/ov001/map_scripts/campaign_0ef_into_the_woods.c:
     complete
     .data       start:0x023612a4 end:0x023624a8
 
-src/game/ov001/ov001_data_023624a8.c:
+src/game/ov001/map_scripts/campaign_0f0_muck_amok.c:
     complete
     .data       start:0x023624a8 end:0x02363724
 
-src/game/ov001/ov001_data_02363724.c:
+src/game/ov001/map_scripts/campaign_0f1_healing_touch.c:
     complete
     .data       start:0x02363724 end:0x02364ad0
 
-src/game/ov001/ov001_data_02364ad0.c:
+src/game/ov001/map_scripts/campaign_0f2_crystal_calamity.c:
     complete
     .data       start:0x02364ad0 end:0x0236604c
 
-src/game/ov001/ov001_data_0236669c.c:
+src/game/ov001/map_scripts/campaign_0f3_dark_ambition.c:
     complete
     .data       start:0x0236669c end:0x02368280
 
-src/game/ov001/ov001_data_02368280.c:
+src/game/ov001/map_scripts/campaign_0f4_pincer_strike.c:
     complete
     .data       start:0x02368280 end:0x02369bac
 
-src/game/ov001/ov001_data_02369bac.c:
+src/game/ov001/map_scripts/campaign_0f5_ring_of_fire.c:
     complete
     .data       start:0x02369bac end:0x0236b5a8
 
-src/game/ov001/ov001_data_0236b5a8.c:
+src/game/ov001/map_scripts/campaign_0f6_surrounded.c:
     complete
     .data       start:0x0236b5a8 end:0x0236cfb4
 
-src/game/ov001/ov001_data_0236cfb4.c:
+src/game/ov001/map_scripts/campaign_0f7_for_the_future.c:
     complete
     .data       start:0x0236cfb4 end:0x0236d5b8
 
-src/game/ov001/ov001_data_0236d5b8.c:
+src/game/ov001/map_scripts/campaign_0f7_for_the_future_2.c:
     complete
     .data       start:0x0236d5b8 end:0x0236d658
 
-src/game/ov001/ov001_data_0236e7c8.c:
+src/game/ov001/map_scripts/campaign_0f8_means_to_an_end.c:
     complete
     .data       start:0x0236e7c8 end:0x023704fc
 
-src/game/ov001/ov001_data_023717dc.c:
+src/game/ov001/map_scripts/campaign_0f9_the_long_march.c:
     complete
     .data       start:0x023717dc end:0x023721c8
 
-src/game/ov001/ov001_data_023721c8.c:
+src/game/ov001/map_scripts/campaign_0fa_lashs_test.c:
     complete
     .data       start:0x023721c8 end:0x02373264
 
-src/game/ov001/ov001_data_02373264.c:
+src/game/ov001/map_scripts/campaign_0fb_spiral_garden.c:
     complete
     .data       start:0x02373264 end:0x02374840
 
-src/game/ov001/ov001_data_02374840.c:
+src/game/ov001/map_scripts/mission_scripts.c:
     complete
     .data       start:0x02374840 end:0x02379290
 
-src/game/ov001/ov001_data_02379290.c:
+src/game/ov001/map_scripts/survival_scripts.c:
     complete
     .data       start:0x02379290 end:0x0237a5a0
 
-src/game/ov001/ov001_data_0236604c.c:
+src/game/ov001/map_scripts/campaign_0f2_crystal_calamity_2.c:
     complete
     .data       start:0x0236604c end:0x0236669c
 
-src/game/ov001/ov001_data_0236d658.c:
+src/game/ov001/map_scripts/campaign_0f7_for_the_future_3.c:
     complete
     .data       start:0x0236d658 end:0x0236e7c8
 
-src/game/ov001/ov001_data_023704fc.c:
+src/game/ov001/map_scripts/campaign_0f8_means_to_an_end_2.c:
     complete
     .data       start:0x023704fc end:0x023717dc
 
