@@ -13,5 +13,5 @@ void Save_LoadAndUnpackProgress(void) {
   if (Save_LoadRecord(0, &data_02291774)) {
     return;
   }
-  Save_UnpackProgress((SaveProgressBlocks*)&data_02291774);
+  Save_UnpackProgress(&data_02291774.blocks);
 }

@@ -30,7 +30,7 @@ void Save_LoadProgress(void) {
   int co;
   u8* saved;
   u8* src;
-  SaveProgress* progress = &data_02291774;
+  SaveProgress* progress = &data_02291774.progress;
 
   if (Save_LoadRecord(0, progress)) {
     return;

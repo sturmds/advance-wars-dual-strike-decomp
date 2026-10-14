@@ -20,7 +20,7 @@ void Save_LoadProfile(int profile);
 /* Loads save record 0 into data_02291774 and copies the data of its three
  * profiles to the live copies, then runs Save_LoadProfile for the current profile. */
 void Save_LoadProfiles(void) {
-  SaveProgress* progress = &data_02291774;
+  SaveProgress* progress = &data_02291774.progress;
   int i;
 
   if (Save_LoadRecord(0, progress)) {

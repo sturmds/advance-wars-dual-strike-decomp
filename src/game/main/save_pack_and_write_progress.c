@@ -10,7 +10,6 @@ void DesignMap_RefreshAllRows(void);
  * record 0. */
 void Save_PackAndWriteProgress(void) {
   func_02019920();
-  Save_WriteRecord(0, &data_02291774,
-                   Save_PackProgress((SaveProgressBlocks*)&data_02291774));
+  Save_WriteRecord(0, &data_02291774, Save_PackProgress(&data_02291774.blocks));
   DesignMap_RefreshAllRows();
 }

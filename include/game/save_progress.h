@@ -65,6 +65,18 @@ typedef char SaveProgressBlocks_size_check[sizeof(SaveProgressBlocks) == 0x1684
                                                ? 1
                                                : -1];
 
-extern SaveProgress data_02291774;
+/* The buffer Save_Init hands to the save code (gSaveBuffer). Each record is
+ * loaded into it and packed in it before it is written: record 0 as
+ * SaveProgress and SaveProgressBlocks (0x1684 bytes), the battle saves as
+ * BattleSaveRecord (0x2238), the design maps as DesignMapRecord. Those run
+ * past SaveProgress's 0x1590 bytes. bytes covers the 0x6000 bytes up to the
+ * next variable; no code names the part past 0x2238. */
+typedef union SaveRecordBuffer {
+  SaveProgress progress;
+  SaveProgressBlocks blocks;
+  u8 bytes[0x6000];
+} SaveRecordBuffer;
+
+extern SaveRecordBuffer data_02291774;
 
 #endif

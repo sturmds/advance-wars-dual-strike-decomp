@@ -14,7 +14,7 @@ int Save_LoadRecord(
  * PlayRecords_CapPoints and func_02017c88 limit to the record's. Does nothing when
  * the load fails. */
 void Save_LoadCombatSetup(void) {
-  SaveProgressBlocks* record = (SaveProgressBlocks*)&data_02291774;
+  SaveProgressBlocks* record = &data_02291774.blocks;
 
   if (Save_LoadRecord(0, record)) {
     return;

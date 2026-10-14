@@ -15,7 +15,7 @@ void PlayRecords_CapAtSnapshot(void);
  * its 0x180-byte block into data_02290118, its 16-byte header over the start
  * of that block, and its world map state. */
 void Save_LoadProfile(int profile) {
-  SaveProgressBlocks* save = (SaveProgressBlocks*)&data_02291774;
+  SaveProgressBlocks* save = &data_02291774.blocks;
   int co;
 
   if (Save_LoadRecord(0, save)) {
