@@ -900,6 +900,54 @@ src/game/main/ai/ai_data_02161a64.c:
     complete
     .data       start:0x02161a64 end:0x02161b80
 
+src/game/main/ai/ai_data_02161b80.c:
+    complete
+    .data       start:0x02161b80 end:0x021658c8
+
+src/game/main/menus/menus_data_021658c8.c:
+    complete
+    .data       start:0x021658c8 end:0x021662ac
+
+src/game/main/menus/menus_data_021662ac.c:
+    complete
+    .data       start:0x021662ac end:0x021662d8
+
+src/game/main/menus/menus_data_021662d8.c:
+    complete
+    .data       start:0x021662d8 end:0x021662f8
+
+src/game/main/data_021669a8.c:
+    complete
+    .data       start:0x021669a8 end:0x02166cb0
+
+src/game/main/units/units_data.c:
+    complete
+    .data       start:0x02166cb0 end:0x02166cdc
+
+src/game/main/weather/weather_data_02166cdc.c:
+    complete
+    .data       start:0x02166cdc end:0x02166d78
+
+src/game/main/weather/weather_data_02166d78.c:
+    complete
+    .data       start:0x02166d78 end:0x02166d8c
+
+src/game/main/map/map_data.c:
+    complete
+    .data       start:0x02166d8c end:0x02166e08
+
+src/game/main/menus/menus_data_02166e08.c:
+    complete
+    .data       start:0x02166e08 end:0x02166e7c
+
+src/game/main/units/units_data_02166e7c.c:
+    complete
+    .data       start:0x02166e7c end:0x02166eb4
+
+src/game/main/data_02166eb4.c:
+    complete
+    .data       start:0x02166eb4 end:0x02167044
+
 src/sdk/svc/svc_is_debugger.c:
     complete
     .text       start:0x0200006c end:0x02000070
@@ -19447,6 +19495,7 @@ src/game/main/func_020f3858.c:
 src/game/main/func_020f38ac.c:
     complete
     .text       start:0x020f38ac end:0x020f3914
+    .data       start:0x021662f8 end:0x021669a8
 
 src/game/main/map/two_maps_merge_other_front.c:
     complete
