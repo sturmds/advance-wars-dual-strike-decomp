@@ -31,6 +31,13 @@ hardware and SDK addresses that do not move. Each candidate gets a level:
   low     anything else in range: often two 16-bit numbers whose upper half
           happens to be 0x01ff-0x0235, or 0x027c-0x027d
 
+Two kinds of word leave the count (the last line of the summary counts
+them): the words of config/AWRE/shift_numbers.txt, each read in the code
+that uses it and found to be a number, and .data and .rodata words that the
+C type of their object makes numbers (every byte in a u8 or 16-bit field or
+element, or in padding; needs a build and build/dsindex.json, which it
+refreshes when stale).
+
 Usage:
   scan_pointers.py                      counts by module, section and level
   scan_pointers.py --list high          one line per candidate of that level
@@ -62,6 +69,7 @@ import sys
 from collections import Counter
 from pathlib import Path
 
+import dsindex
 import fnindex
 import modmap
 
@@ -86,9 +94,26 @@ RAM = ((0x01ff8000, 0x02000000, "itcm"), (0x02000000, 0x02400000, "main RAM"), (
 
 LAYOUT_SPAN = 0x20  # how far after a boundary a value counts as layout
 
+# Scalar types narrower than a pointer, with their sizes.
+NARROW = {"u8": 1, "s8": 1, "char": 1, "unsigned char": 1, "signed char": 1, "u16": 2, "s16": 2, "fx16": 2,
+          "short": 2, "unsigned short": 2, "signed short": 2}
+
+# Words read in the code and found to be numbers, `ADDRESS  reason` per line.
+NUMBERS = modmap.ROOT / "config/AWRE/shift_numbers.txt"
+
+COMMENT = re.compile(r"/\*.*?\*/|//[^\n]*", re.S)
+INCLUDE_LINE = re.compile(r'^\s*#\s*include\s+"([^"]+)"', re.M)
+# `TYPE NAME[N] =`, `TYPE *NAME;` and the like, with storage and qualifiers.
+DECL = re.compile(r"^\s*(?:(?:static|extern|const|volatile)\s+)*((?:struct\s+|union\s+|unsigned\s+|signed\s+)?\w+)"
+                  r"(?:\s+const)?\s*(\**)\s*(\w+)\s*((?:\[[^\]]*\])*)\s*[=;,]", re.M)
+
+TYPEDEF_STRUCT = re.compile(r"typedef\s+struct\s+\w*\s*\{([^{}]*)\}\s*(\w+)\s*;")
+MEMBER = re.compile(r"^((?:unsigned\s+|signed\s+)?\w+)\s+\w+\s*(?:\[[^\]]*\]\s*)*$")
+
 XMAP_LINE = re.compile(r"^  ([0-9A-F]{8}) ([0-9A-F]{8}) (\.\S+)\s+(\S+)\t\((\S+)\)")
 XMAP_LCF = re.compile(r"^#>([0-9A-F]{8})\s+(\S+) \(linker command file\)")
 R_ARM_ABS32 = 2
+STT_OBJECT = 1
 
 
 def instruction_ranges(index_path) -> dict[str, list[tuple[int, int]]]:
@@ -163,9 +188,12 @@ def linked_objects(objects_txt: Path, xmap: Path):
         yield path, syms, relas, base
 
 
-def linked_relocations(mods: dict[str, modmap.Module]) -> dict[str, set[int]] | None:
+def linked_relocations(mods: dict[str, modmap.Module],
+                       objects: list | None = None) -> dict[str, set[int]] | None:
     """Per ARM9 module, the addresses of the words that a linked object
-    relocates with R_ARM_ABS32. None without a build."""
+    relocates with R_ARM_ABS32. None without a build. Appends each data
+    object the linked objects define to `objects`, as (module, address, size,
+    name, source file)."""
     objects_txt, xmap = modmap.ROOT / "build/objects.link.txt", modmap.ROOT / "build/arm9.elf.xMAP"
     if not (objects_txt.exists() and xmap.exists()):
         return None
@@ -175,10 +203,14 @@ def linked_relocations(mods: dict[str, modmap.Module]) -> dict[str, set[int]] | 
         for _, _, path in m.files:
             module_of[path] = m.name
     out: dict[str, set[int]] = {m: set() for m in mods}
-    for path, _, relas, base in linked_objects(objects_txt, xmap):
-        mod = module_of.get(object_source(str(path.relative_to(modmap.ROOT))))
+    for path, syms, relas, base in linked_objects(objects_txt, xmap):
+        source = object_source(str(path.relative_to(modmap.ROOT)))
+        mod = module_of.get(source)
         if mod is None:
             continue
+        if objects is not None:
+            objects += [(mod, base[s.shndx] + s.value, s.size, s.name, source) for s in syms
+                        if s.kind == STT_OBJECT and s.size and s.shndx in base]
         for sec, entries in relas.items():
             if sec in base:
                 out[mod].update(base[sec] + off for off, rtype, _, _ in entries if rtype == R_ARM_ABS32)
@@ -244,6 +276,167 @@ class Levels:
             if ram:
                 return "medium", ram + ", no module"
         return None
+
+
+# ---------------------------------------------------------------- reviewed words
+
+def reviewed_numbers(path: Path = NUMBERS) -> dict[int, str]:
+    """`ADDRESS  reason` lines: words read in the code and found to be
+    numbers (shared with tools/shift_build.py's stale check)."""
+    out = {}
+    for line in path.read_text().splitlines():
+        if line.strip() and not line.startswith("#"):
+            addr, reason = line.split(None, 1)
+            out[int(addr, 16)] = reason
+    return out
+
+
+class DataTypes:
+    """Whether the C type of the object that holds a data word makes the
+    word a number: every byte of it lies in a field or element narrower
+    than 4 bytes (u8, s16, ...) or in padding, and none is a pointer. A
+    pointer needs 4 aligned bytes of a pointer type (or of a 32-bit integer
+    the C fills with `(u32)&x`), so such a word cannot be one, whatever its
+    value. The objects come from the linked objects, their declarations from
+    the C file that defines them (and the files it includes from build/gen),
+    and struct layouts from build/dsindex.json.
+
+    A narrow type is evidence: it comes from the code that reads the object,
+    or, from tools/data.py with no declaration, from bytes that read as a
+    string or a size that is not a multiple of 4, which no struct with a
+    pointer has."""
+
+    def __init__(self, objects: list[tuple[str, int, int, str, str]], structs: dict[str, list[tuple[str, dict]]]):
+        self.objects: dict[str, list[tuple[int, int, str, str]]] = {}  # overlays share addresses
+        for mod, *obj in objects:
+            self.objects.setdefault(mod, []).append(tuple(obj))
+        for v in self.objects.values():
+            v.sort()
+        self.starts = {mod: [o[0] for o in v] for mod, v in self.objects.items()}
+        self.structs = structs
+        self.decls: dict[str, dict[str, tuple[str, str]]] = {}
+        self.narrow: dict[str, set[str]] = {}
+
+    def holder(self, mod: str, addr: int) -> tuple[int, int, str, str] | None:
+        """The object of module `mod` that holds all of [addr, addr + 4)."""
+        objects = self.objects.get(mod, [])
+        i = bisect.bisect_right(self.starts.get(mod, []), addr) - 1
+        while i >= 0 and objects[i][0] <= addr:
+            start, size, name, path = objects[i]
+            if addr + 4 <= start + size:
+                return objects[i]
+            i -= 1
+        return None
+
+    def declarations(self, path: str) -> dict[str, tuple[str, str]]:
+        """name -> (type, `*` and `[N]` suffix) for the declarations in a C
+        file and the files it includes from build/gen."""
+        if path not in self.decls:
+            out: dict[str, tuple[str, str]] = {}
+            for text in source_texts(modmap.ROOT / path):
+                for m in DECL.finditer(COMMENT.sub(" ", text)):
+                    out.setdefault(m.group(3), (m.group(1), m.group(2) + m.group(4)))
+            self.decls[path] = out
+        return self.decls[path]
+
+    def number(self, mod: str, addr: int) -> bool:
+        obj = self.holder(mod, addr)
+        if obj is None:
+            return False
+        start, size, name, path = obj
+        if not path.endswith(".c"):
+            return False
+        decl = self.declarations(path).get(name)
+        if decl is None or "*" in decl[1]:
+            return False
+        if decl[0] in self.narrow_structs(path):
+            return True
+        source = path if path in self.structs else None
+        elem = self.size(decl[0], source)
+        if not elem:
+            return False
+        lo, hi = addr - start, addr - start + 4
+        return all(self.fits(decl[0], max(lo, i * elem) - i * elem, min(hi, (i + 1) * elem) - i * elem, source)
+                   for i in range(lo // elem, (hi - 1) // elem + 1))
+
+    def narrow_structs(self, path: str) -> set[str]:
+        """Structs that a file includes from build/gen (dsindex probes only
+        include/ and src/) whose members are all narrow scalars or arrays of
+        them: MapTileData."""
+        if path not in self.narrow:
+            out = set()
+            for text in source_texts(modmap.ROOT / path)[1:]:
+                for body, name in TYPEDEF_STRUCT.findall(COMMENT.sub(" ", text)):
+                    members = [m.strip() for m in body.split(";") if m.strip()]
+                    if members and all((m := MEMBER.match(x)) and m.group(1) in NARROW for x in members):
+                        out.add(name)
+            self.narrow[path] = out
+        return self.narrow[path]
+
+    def find(self, typ: str, source: str | None) -> dict | None:
+        name = typ.replace("struct ", "").replace("union ", "").strip()
+        hits = self.structs.get(name, [])
+        return next((r for f, r in hits if f == source), hits[0][1] if hits else None)
+
+    def size(self, typ: str, source: str | None) -> int | None:
+        typ = typ.replace("const ", "").replace("volatile ", "").strip()
+        if typ in NARROW:
+            return NARROW[typ]
+        rec = self.find(typ, source)
+        return rec["size"] if rec and rec.get("size") else None
+
+    def fits(self, typ: str, lo: int, hi: int, source: str | None, depth: int = 0) -> bool:
+        """True when bytes [lo, hi) of a `typ` hold no pointer and no part
+        of a 4-byte scalar."""
+        typ = typ.replace("const ", "").replace("volatile ", "").strip()
+        if typ in NARROW:
+            return True
+        if typ.endswith("*") or depth > 8:
+            return False
+        rec = self.find(typ, source)
+        return bool(rec and "fields" in rec and self.fields_fit(rec["fields"], lo, hi, source, depth))
+
+    def fields_fit(self, fields: list[dict], lo: int, hi: int, source: str | None, depth: int) -> bool:
+        for f in fields:
+            fs, fe = f["offset"], f["offset"] + f["size"]
+            if fe <= lo or fs >= hi:
+                continue
+            a, b = max(lo, fs) - fs, min(hi, fe) - fs
+            if "members" in f:
+                ok = self.fields_fit(f["members"], a, b, source, depth + 1)
+            elif f.get("count"):
+                elem, es = f["type"].split("[")[0].strip(), f["elem_size"]
+                ok = all(self.fits(f.get("struct") or elem, max(a, i * es) - i * es, min(b, (i + 1) * es) - i * es,
+                                   source, depth + 1) for i in range(a // es, (b - 1) // es + 1))
+            else:
+                ok = self.fits(f.get("struct") or f["type"], a, b, source, depth + 1)
+            if not ok:
+                return False
+        return True
+
+
+def struct_table(index: dict) -> dict[str, list[tuple[str, dict]]]:
+    """Struct name -> (file, record) for every file of a dsindex index."""
+    out: dict[str, list[tuple[str, dict]]] = {}
+    for group in ("sources", "headers"):
+        for path, rec in index.get(group, {}).items():
+            for s in rec.get("structs", []):
+                out.setdefault(s["name"], []).append((path, s))
+    return out
+
+
+def source_texts(path: Path) -> list[str]:
+    """A C file's text and the texts of the files it includes from
+    build/gen (the map tables)."""
+    if not path.exists():
+        return []
+    text = path.read_text(errors="replace")
+    out = [text]
+    for inc in INCLUDE_LINE.findall(text):
+        p = modmap.ROOT / "build/gen" / inc
+        if p.exists():
+            out.append(p.read_text(errors="replace"))
+    return out
 
 
 # ---------------------------------------------------------------- holders
@@ -373,16 +566,27 @@ def cmd_unused(mods: dict[str, modmap.Module], out) -> int:
 
 # ---------------------------------------------------------------- main
 
-def candidates(mods: dict[str, modmap.Module], index: Path, module: str | None = None):
+def candidates(mods: dict[str, modmap.Module], index: Path, module: str | None = None,
+               left_out: Counter | None = None):
     """Every unrelocated word that looks like an address, as
     (level, module, section, addr, value, target, symbol, neighbour, holder, path),
     and the number of words only a linked object relocates (None without a
-    build). Used by
-    tools/shift_gaps.py too."""
+    build). Used by tools/shift_gaps.py too.
+
+    Two kinds of word are left out, counted in `left_out` by reason: the
+    words of shift_numbers.txt, read one by one ("listed"; BuildInfo's .bss
+    end among them, which `dsd rom build` rewrites), and .data or .rodata
+    words that the C type of their object makes numbers ("C type", see
+    DataTypes; needs a build)."""
     insns = instruction_ranges(index)
-    linked = linked_relocations(mods)
+    objects: list[tuple[str, int, int, str, str]] = []
+    linked = linked_relocations(mods, objects)
     if linked is None:
         print("note: no build, so only relocs.txt counts as relocated (run `make`)", file=sys.stderr)
+    types = DataTypes(objects, struct_table(dsindex.load())) if objects else None
+    numbers = reviewed_numbers()
+    if left_out is None:
+        left_out = Counter()
     levels = Levels(mods)
     holders = Holders(mods, index)
 
@@ -410,6 +614,12 @@ def candidates(mods: dict[str, modmap.Module], index: Path, module: str | None =
             if got is None:
                 continue
             level, target = got
+            if addr in numbers:
+                left_out["listed"] += 1
+                continue
+            if types and not pool and types.number(m.name, addr):
+                left_out["C type"] += 1
+                continue
             targets = modmap.modules_at(mods, value & ~1)
             symbol = next((t.name for t in targets if value in levels.starts[t.name]), None)
             name = ""
@@ -435,7 +645,8 @@ def main() -> int:
         return cmd_unused(mods, open(args.tsv, "w") if args.tsv else sys.stdout)
     if not index.exists():
         raise SystemExit("error: build/fnindex.json is missing, run `make fnindex` first")
-    rows, only_linked = candidates(mods, index, args.module)
+    left_out: Counter = Counter()
+    rows, only_linked = candidates(mods, index, args.module, left_out)
 
     counts = Counter((r[1], r[2], r[0]) for r in rows)
     print(f"{'module':7} {'section':12} " + " ".join(f"{lv:>7}" for lv in LEVELS), file=sys.stderr)
@@ -447,6 +658,8 @@ def main() -> int:
     print(f"{'total':20} " + " ".join(f"{totals[lv]:7}" for lv in LEVELS), file=sys.stderr)
     if only_linked is not None:
         print(f"{only_linked} words relocated by the linked objects only", file=sys.stderr)
+    print(f"left out: {left_out['listed']} listed in {NUMBERS.relative_to(modmap.ROOT)}, "
+          f"{left_out['C type']} numbers by the C type of their object", file=sys.stderr)
 
     if args.list:
         out = open(args.tsv, "w") if args.tsv else sys.stdout

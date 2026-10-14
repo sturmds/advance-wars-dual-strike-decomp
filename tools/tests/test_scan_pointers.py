@@ -9,6 +9,11 @@
   the same value is no candidate.
 - --unused-symbols: which symbols count as unused, and their group.
 - The source file and holder of an address, and the module of a linked object.
+- C types: a data word in a u8/u16 array, or in narrow fields of a struct
+  (from a dsindex record or a typedef in an included build/gen file), is a
+  number; a u32 array, a pointer, or a word that reaches a pointer field or
+  the next object is not. Objects of two overlays at one address stay apart.
+- The list of reviewed numbers.
 
 No ROM or build needed.
 """
@@ -101,6 +106,65 @@ with tempfile.TemporaryDirectory() as tmp:
 expect("object of a C file", sp.object_source("build/align2/src/game/x.o"), "src/game/x.c")
 expect("object of an ARM7 C file", sp.object_source("build/arm7/src/arm7/sdk/y.o"), "src/arm7/sdk/y.c")
 expect("gap object", sp.object_source("build/delinks/_dsd_gap@main_12.o"), "main")
+
+
+# C types
+with tempfile.TemporaryDirectory() as tmp:
+    root = Path(tmp)
+    (root / "src").mkdir()
+    (root / "build/gen/maps").mkdir(parents=True)
+    (root / "src/a.c").write_text('''#include "types.h"
+#include "maps/gen.h"
+/* u8 Comment[4] = { */
+const u8 Bytes[16] = {
+#include "data/Bytes.inc.c"
+};
+u32 Words[4] = {0};
+void *Ptrs[2] = {0};
+Rec Recs[2] = {0};
+static const Mixed MixedOne = {0};
+GenTiles Tiles = {0};
+''')
+    (root / "build/gen/maps/gen.h").write_text(
+        "typedef struct GenTiles {\n    u8 m001[0x10]; /* tiles */\n    u16 m002[4];\n} GenTiles;\n")
+    structs = sp.struct_table({"headers": {"include/rec.h": {"structs": [
+        {"name": "Rec", "kind": "struct", "size": 8, "fields": [
+            {"name": "x", "offset": 0, "size": 1, "type": "u8"},
+            {"name": "pad", "offset": 1, "size": 1, "type": "u8[1]", "count": 1, "elem_size": 1},
+            {"name": "y", "offset": 2, "size": 2, "type": "s16"},
+            {"name": "inner", "offset": 4, "size": 4, "type": "Pair", "struct": "Pair"}]},
+        {"name": "Pair", "kind": "struct", "size": 4, "fields": [
+            {"name": "a", "offset": 0, "size": 2, "type": "u16[2]", "count": 2, "elem_size": 2}]},
+        {"name": "Mixed", "kind": "struct", "size": 12, "fields": [
+            {"name": "a", "offset": 0, "size": 2, "type": "u16"},
+            {"name": "p", "offset": 4, "size": 4, "type": "char *"},
+            {"name": "b", "offset": 8, "size": 4, "type": "u8[4]", "count": 4, "elem_size": 1}]}]}}})
+    objects = [("main", 0x100, 16, "Bytes", "src/a.c"), ("main", 0x110, 16, "Words", "src/a.c"),
+               ("main", 0x120, 8, "Ptrs", "src/a.c"), ("main", 0x128, 16, "Recs", "src/a.c"),
+               ("main", 0x138, 12, "MixedOne", "src/a.c"), ("main", 0x144, 24, "Tiles", "src/a.c"),
+               ("ov001", 0x100, 16, "Words", "src/a.c")]
+    saved_root = modmap.ROOT
+    modmap.ROOT = root
+    try:
+        types = sp.DataTypes(objects, structs)
+        expect("u8 array", types.number("main", 0x104), True)
+        expect("word past the end of its object", types.number("main", 0x10e), False)
+        expect("u32 array", types.number("main", 0x114), False)
+        expect("pointer array", types.number("main", 0x120), False)
+        expect("struct of narrow fields, second element", types.number("main", 0x130), True)
+        expect("struct across two elements", types.number("main", 0x12c), True)
+        expect("struct, word with a pointer field", types.number("main", 0x13a), False)
+        expect("struct, narrow field after a pointer", types.number("main", 0x140), True)
+        expect("narrow typedef from build/gen", types.number("main", 0x150), True)
+        expect("same address, other overlay", types.number("ov001", 0x104), False)
+        expect("address in no object", types.number("main", 0x200), False)
+    finally:
+        modmap.ROOT = saved_root
+
+    numbers = Path(tmp) / "numbers.txt"
+    numbers.write_text("# comment\n\n0x02000b10  BuildInfo[4]\n0x0213825c  halfword pairs, same run\n")
+    expect("reviewed numbers", sp.reviewed_numbers(numbers),
+           {0x02000b10: "BuildInfo[4]", 0x0213825c: "halfword pairs, same run"})
 
 if failures:
     print(f"{len(failures)} failed: {', '.join(failures)}")

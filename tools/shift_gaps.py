@@ -36,8 +36,9 @@ Kinds from the config and the build:
   mixed_u32 a u32 table whose ROM values (extracted/AWRE/data) hold both
             pointers and numbers: a struct written as words
   scan_*    words in data and literal pools that look like addresses and have
-            no relocation (tools/scan_pointers.py), by level; low is mostly
-            pairs of 16-bit numbers
+            no relocation (tools/scan_pointers.py), by level, left out when
+            shift_numbers.txt lists them or the C type makes them numbers;
+            low is mostly words of u32 tables written from the ROM bytes
 
 Also counted, as the measure that grows: `size_assert`, the structs whose
 size a `typedef char X_size_check[...]` checks.
@@ -80,7 +81,7 @@ LABELS = {
     "scan_layout": ("Addresses", "Unrelocated words, layout level (`scan_pointers.py`)"),
     "scan_high": ("Addresses", "Unrelocated words, high level"),
     "scan_medium": ("Addresses", "Unrelocated words, medium level"),
-    "scan_low": ("Addresses", "Unrelocated words, low level (mostly 16-bit pairs)"),
+    "scan_low": ("Addresses", "Unrelocated words, low level (mostly in `u32` tables)"),
     "alloc": ("Sizes", "`Mem_Alloc` with a literal size"),
     "copy": ("Sizes", "Copy, fill and clear calls with a literal length"),
     "offset": ("Sizes", "Byte offsets into objects (`(u8 *)x + N`)"),
