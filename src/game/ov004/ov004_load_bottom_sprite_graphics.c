@@ -8,8 +8,22 @@ void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           int paletteOffset, int size);
 
 extern char data_ov004_022bf0dc[]; /* directory */
-extern char data_ov004_022bf0f0[]; /* sprite tiles */
-extern char data_ov004_022bf0f4[]; /* sprite palette */
+/* sprite tiles */
+static char data_ov004_022bf0f0[4] = {
+#include "data/ov004/data_ov004_022bf0f0.inc.c"
+};
+/* "0c8": texture palette */
+char data_ov004_022bf0ec[4] = {
+#include "data/ov004/data_ov004_022bf0ec.inc.c"
+};
+/* "0c6": texture */
+char data_ov004_022bf0e8[4] = {
+#include "data/ov004/data_ov004_022bf0e8.inc.c"
+};
+/* sprite palette */
+static char data_ov004_022bf0f4[4] = {
+#include "data/ov004/data_ov004_022bf0f4.inc.c"
+};
 
 void Ov004_LoadBottomSpriteGraphics(Unk_ov004_022bf158* state) {
   Unk_027c0280* savedGfx;

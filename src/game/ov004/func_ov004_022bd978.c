@@ -11,12 +11,22 @@ BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 extern Unk_027c0280* data_027c0280;
 extern char data_ov004_022bf0dc[];
-extern char data_ov004_022bf128[];
-extern char data_ov004_022bf12c[];
+static char data_ov004_022bf134[4] = {
+#include "data/ov004/data_ov004_022bf134.inc.c"
+};
+static char data_ov004_022bf130[4] = {
+#include "data/ov004/data_ov004_022bf130.inc.c"
+};
+static char data_ov004_022bf12c[4] = {
+#include "data/ov004/data_ov004_022bf12c.inc.c"
+};
+static char data_ov004_022bf128[4] = {
+#include "data/ov004/data_ov004_022bf128.inc.c"
+};
+static char data_ov004_022bf138[8] = {
+#include "data/ov004/data_ov004_022bf138.inc.c"
+};
 extern char data_ov004_022bf100[];
-extern char data_ov004_022bf130[];
-extern char data_ov004_022bf134[];
-extern char data_ov004_022bf138[];
 extern u32 data_ov004_022bdca4[];
 extern u32 data_ov004_022bdcb4[];
 #define LAYER_MAP_BYTES(layer, i)                                    \

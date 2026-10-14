@@ -18,9 +18,14 @@ extern char data_ov004_022bf10c[]; /* layer 1 palette */
 extern char data_ov004_022bf110[]; /* layer 2 tiles */
 extern char data_ov004_022bf114[]; /* layer 2 map */
 extern char data_ov004_022bf118[]; /* layer 2 palette */
-extern u32 data_ov004_022bdca4[];  /* map bytes of a text BG by screen size */
-extern u32 data_ov004_022bdcb4
-    []; /* map bytes of a rotation/scaling BG by screen size */
+/* map bytes of a text BG by screen size */
+const u32 data_ov004_022bdca4[4] = {
+#include "data/ov004/data_ov004_022bdca4.inc.c"
+};
+/* map bytes of a rotation/scaling BG by screen size */
+const u32 data_ov004_022bdcb4[4] = {
+#include "data/ov004/data_ov004_022bdcb4.inc.c"
+};
 
 /* Size in bytes of the tile map of a layer (as in Gfx_LoadBmap083). */
 #define LAYER_MAP_BYTES(layer, i)                                    \

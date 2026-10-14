@@ -9,9 +9,14 @@
 
 extern Unk_ov004_022bf158* data_ov004_022bf158;
 extern u32 gTaskSystemReady;
-extern u32 data_ov004_022bdc94[]; /* map bytes of a text BG by screen size */
-extern u32 data_ov004_022bdc84
-    []; /* map bytes of a rotation/scaling BG by screen size */
+/* map bytes of a rotation/scaling BG by screen size */
+const u32 data_ov004_022bdc84[4] = {
+#include "data/ov004/data_ov004_022bdc84.inc.c"
+};
+/* map bytes of a text BG by screen size */
+const u32 data_ov004_022bdc94[4] = {
+#include "data/ov004/data_ov004_022bdc94.inc.c"
+};
 
 extern char data_ov004_022bdd68[];
 extern char data_ov004_022bdd94[];

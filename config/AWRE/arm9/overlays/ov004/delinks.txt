@@ -4,6 +4,22 @@
     .data       start:0x022bdce0 end:0x022bf140 kind:data align:32
     .bss        start:0x022bf140 end:0x02353960 kind:bss align:32
 
+src/game/ov004/ov004_data_022becf8.c:
+    complete
+    .data       start:0x022becf8 end:0x022befb8
+
+src/game/ov004/ov004_data_022bf03c.c:
+    complete
+    .data       start:0x022bf03c end:0x022bf0dc
+
+src/game/ov004/ov004_data_022bf0dc.c:
+    complete
+    .data       start:0x022bf0dc end:0x022bf0e8
+
+src/game/ov004/ov004_data_022bdce0.c:
+    complete
+    .data       start:0x022bdce0 end:0x022bdcf8
+
 src/game/ov004/ov004_send_textured_quad256.c:
     complete
     .text       start:0x022ad560 end:0x022ad71c
@@ -36,6 +52,7 @@ src/game/ov004/ov004_setup_perspective3d.c:
 src/game/ov004/ov004_load_rikiishi_textures.c:
     complete
     .text       start:0x022adc8c end:0x022ade10
+    .data       start:0x022bdcf8 end:0x022bdd04
 
 src/game/ov004/func_ov004_022ade10.c:
     complete
@@ -69,6 +86,7 @@ src/game/ov004/ov004_alloc_state.c:
 src/game/ov004/ov004_task_run_scene_timeline.c:
     complete
     .text       start:0x022ae83c end:0x022afc78
+    .rodata     start:0x022bdc84 end:0x022bdca4
 
 src/game/ov004/ov004_task_setup_entry_scene.c:
     complete
@@ -681,6 +699,7 @@ src/game/ov004/ov004_task_fade_hold_fade.c:
 src/game/ov004/ov004_task_init_layer1_scene_dark.c:
     complete
     .text       start:0x022ba558 end:0x022ba920
+    .data       start:0x022bdd04 end:0x022bdd6c
 
 src/game/ov004/ov004_destroy_slot_tasks.c:
     complete
@@ -701,6 +720,7 @@ src/game/ov004/ov004_create_slot_tasks.c:
 src/game/ov004/ov004_load_obj_graphics.c:
     complete
     .text       start:0x022baa4c end:0x022baa9c
+    .data       start:0x022bdd6c end:0x022bde38
 
 src/game/ov004/func_ov004_022baa9c.c:
     complete
@@ -857,6 +877,7 @@ src/game/ov004/ov004_find_resource.c:
 src/game/ov004/ov004_load_resources.c:
     complete
     .text       start:0x022bb744 end:0x022bb980
+    .data       start:0x022bde38 end:0x022becf8
 
 src/game/ov004/ov004_get_file_size.c:
     complete
@@ -877,6 +898,7 @@ src/game/ov004/ov004_task_run_press_start_screen.c:
 src/game/ov004/ov004_task_init_blended_scene.c:
     complete
     .text       start:0x022bc200 end:0x022bc984
+    .data       start:0x022befb8 end:0x022bf03c
 
 src/game/ov004/ov004_queue_bottom_sprites.c:
     complete
@@ -885,6 +907,7 @@ src/game/ov004/ov004_queue_bottom_sprites.c:
 src/game/ov004/ov004_load_bottom_sprite_graphics.c:
     complete
     .text       start:0x022bc9fc end:0x022bca9c
+    .data       start:0x022bf0e8 end:0x022bf0f8
 
 src/game/ov004/ov004_destroy_child_tasks.c:
     complete
@@ -897,6 +920,7 @@ src/game/ov004/ov004_create_child_tasks.c:
 src/game/ov004/ov004_load_sprite_graphics_both_screens.c:
     complete
     .text       start:0x022bd124 end:0x022bd244
+    .data       start:0x022bf0f8 end:0x022bf11c
 
 src/game/ov004/func_ov004_022bd244.c:
     complete
@@ -929,14 +953,17 @@ src/game/ov004/func_ov004_022bd654.c:
 src/game/ov004/ov004_load_bg_layers1_and2.c:
     complete
     .text       start:0x022bd660 end:0x022bd864
+    .rodata     start:0x022bdca4 end:0x022bdcc4
 
 src/game/ov004/ov004_load_bg_layer0.c:
     complete
     .text       start:0x022bd864 end:0x022bd978
+    .data       start:0x022bf11c end:0x022bf128
 
 src/game/ov004/func_ov004_022bd978.c:
     complete
     .text       start:0x022bd978 end:0x022bdb7c
+    .data       start:0x022bf128 end:0x022bf140
 
 src/game/ov004/ov004_destroy_scene_tasks.c:
     complete

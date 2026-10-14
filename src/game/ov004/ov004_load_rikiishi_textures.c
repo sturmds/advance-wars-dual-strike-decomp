@@ -15,7 +15,9 @@ void GX_LoadTexPltt(const void* src, u32 offset,
 void GX_EndLoadTexPltt(void);
 
 extern u8* data_ov004_022bf150;
-extern char gRikiishiDir[];
+static char gRikiishiDir[10] = {
+#include "data/ov004/gRikiishiDir.inc.c"
+};
 extern char gRikiishiFile0a4[];
 extern char gRikiishiFile0a6[];
 extern char gRikiishiFile0a7[];

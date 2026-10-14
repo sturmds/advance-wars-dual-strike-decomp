@@ -36,8 +36,33 @@ extern u8 data_ov004_022bf08c[];   /* sub screen layer config */
 extern char data_ov004_022bf0dc[]; /* "/rikiishi" */
 extern char data_ov004_022bf0e8[]; /* "0c6": texture */
 extern char data_ov004_022bf0ec[]; /* "0c8": texture palette */
-extern TaskScriptCmd data_ov004_022befd4[];
-extern TaskScriptCmd data_ov004_022befbc[];
+void Ov004Task_InitSprite(void);
+void Ov004Task_MoveSpriteOutward(void);
+void Ov004Task_ScrollLayers1And2Parallax(void);
+void func_ov004_022bd244(void);
+void func_ov004_022bd4c8(void);
+void func_ov004_022bd4d8(void);
+void func_ov004_022bd654(void);
+
+#pragma explicit_zero_data on
+/* 0x4 bytes no code names, before data_ov004_022befbc */
+u32 data_ov004_022befb8 = {
+#include "data/ov004/data_ov004_022befb8.inc.c"
+};
+static TaskScriptCmd data_ov004_022befbc[3] = {
+#include "data/ov004/data_ov004_022befbc.inc.c"
+};
+static TaskScriptCmd data_ov004_022befd4[4] = {
+#include "data/ov004/data_ov004_022befd4.inc.c"
+};
+TaskScriptCmd data_ov004_022beff4[4] = {
+#include "data/ov004/data_ov004_022beff4.inc.c"
+};
+/* script of each child task */
+TaskScriptCmd data_ov004_022bf014[5] = {
+#include "data/ov004/data_ov004_022bf014.inc.c"
+};
+#pragma explicit_zero_data reset
 
 /* Script step that sets up both screens with alpha blending (main screen:
  * layer 1 over layers 1 and 2 at 14/4; sub screen: layer 1 over layer 2 at

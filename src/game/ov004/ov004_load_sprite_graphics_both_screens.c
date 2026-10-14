@@ -9,10 +9,42 @@ void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           int paletteOffset, int size);
 
 extern char data_ov004_022bf0dc[]; /* directory */
-extern char
-    data_ov004_022bf0f8[]; /* sprite data read by Ov004Task_InitSprite */
-extern char data_ov004_022bf0fc[]; /* sprite tiles */
-extern char data_ov004_022bf100[]; /* sprite palette */
+/* layer 2 map */
+char data_ov004_022bf114[4] = {
+#include "data/ov004/data_ov004_022bf114.inc.c"
+};
+/* layer 2 tiles */
+char data_ov004_022bf110[4] = {
+#include "data/ov004/data_ov004_022bf110.inc.c"
+};
+/* layer 1 palette */
+char data_ov004_022bf10c[4] = {
+#include "data/ov004/data_ov004_022bf10c.inc.c"
+};
+/* layer 1 map */
+char data_ov004_022bf108[4] = {
+#include "data/ov004/data_ov004_022bf108.inc.c"
+};
+/* layer 1 tiles */
+char data_ov004_022bf104[4] = {
+#include "data/ov004/data_ov004_022bf104.inc.c"
+};
+/* sprite palette */
+char data_ov004_022bf100[4] = {
+#include "data/ov004/data_ov004_022bf100.inc.c"
+};
+/* sprite tiles */
+static char data_ov004_022bf0fc[4] = {
+#include "data/ov004/data_ov004_022bf0fc.inc.c"
+};
+/* sprite data read by Ov004Task_InitSprite */
+static char data_ov004_022bf0f8[4] = {
+#include "data/ov004/data_ov004_022bf0f8.inc.c"
+};
+/* layer 2 palette */
+char data_ov004_022bf118[4] = {
+#include "data/ov004/data_ov004_022bf118.inc.c"
+};
 
 /* Loads the sprite data into the state's buffer, then the same sprite tiles
  * and palette into OBJ VRAM of both screens. */
