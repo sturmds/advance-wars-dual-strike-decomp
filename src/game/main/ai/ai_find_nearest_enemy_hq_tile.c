@@ -25,7 +25,7 @@ BOOL Ai_FindNearestEnemyHqTile(s16* out) {
   s8 value;
 
   best = NO_TILE;
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (!Player_IsInGame(player)) {
       continue;
     }

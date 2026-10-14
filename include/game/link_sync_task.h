@@ -39,6 +39,9 @@ typedef struct LinkSyncTask {
   u16 receiveStarted; /* set when the first chunk arrived */
 } LinkSyncTask;
 
+/* COs in data_0216069c whose variants LinkCoVariantSyncTask swaps. */
+#define LINK_VARIANT_CO_COUNT 7
+
 /* Palette and picture variants of two COs, packed in one byte. */
 typedef struct LinkCoVariantPair {
   u8 palette0 : 3;
@@ -52,8 +55,9 @@ typedef struct LinkCoVariantPair {
  * one byte earlier than the other tasks'. */
 typedef struct LinkCoVariantSyncTask {
   u8 pad_00[0x29];
-  LinkCoVariantPair
-      variants[4]; /* 7 COs, two a byte; filled by LinkCoVariantSyncTask_Init */
+  LinkCoVariantPair variants
+      [(LINK_VARIANT_CO_COUNT + 1) /
+       2]; /* LINK_VARIANT_CO_COUNT COs, two a byte; filled by LinkCoVariantSyncTask_Init */
   u8 players
       [4]; /* the player in each link slot; the received chunk of player players[k] goes to army k + 1 */
   u8 pad_31;

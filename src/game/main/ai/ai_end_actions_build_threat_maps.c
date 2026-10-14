@@ -24,7 +24,7 @@ void AiEndActions_BuildThreatMaps(void) {
   Ai_ClearThreatMaps();
   Ai_AddObjectThreat();
   Ai_MarkObjectTileThreat();
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (Player_IsInGame(player) && STATE->players[STATE->currentPlayer].team !=
                                        STATE->players[player].team) {
       AiEndActions_AddEnemyThreat(player);

@@ -127,7 +127,7 @@ void SuperBreak_SetUpScreen(Task* task) {
   Data_Unpack(res + 0x2540, data_027c0280->layer0Map);
   Palette_Load(res + 0x2b74, 0x20, 0x60);
   Mem_Copy32(res + 0x2b74, gMenuState, 0x60);
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer0Map[i] += 0x1000;
   }
   Gfx_RequestLayerCopy(0);

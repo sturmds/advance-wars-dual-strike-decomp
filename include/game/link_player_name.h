@@ -5,8 +5,10 @@
 
 /* A player's nickname in link play: 10 characters, 20 bytes (the size
  * OwnerInfo_CopyNickname writes, as the stride of the table shows). */
+#define LINK_PLAYER_NAME_LENGTH 10
+
 typedef struct LinkPlayerName {
-  u16 chars[10];
+  u16 chars[LINK_PLAYER_NAME_LENGTH];
 } LinkPlayerName;
 
 /* gLinkPlayerNames (main bss): one name per aid. Slot 0 is this console. */

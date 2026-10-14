@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/Unk_0215fe84.h"
 #include "sdk/wm.h"
+#include "game/link_buffers.h"
 
 void Wireless_OnParentEvent(WMStartParentCallback* cb);
 void Wireless_ClearPlayerName(u8 aid);
@@ -13,7 +14,7 @@ BOOL Wireless_StartParent(void) {
 
   data_0215fe84->childAids = 0;
   data_0215fe84->childCount = 0;
-  for (aid = 1; aid < 8; aid++) {
+  for (aid = 1; aid < LINK_AID_COUNT; aid++) {
     Wireless_ClearPlayerName(aid);
   }
   return WM_StartParent(Wireless_OnParentEvent) == 2;

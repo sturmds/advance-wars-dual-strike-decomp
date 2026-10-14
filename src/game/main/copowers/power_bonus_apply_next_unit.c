@@ -4,6 +4,7 @@
 #include "game/task.h"
 #include "game/script_slot.h"
 #include "game/Unk_02080440.h"
+#include "game/map_unit.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
@@ -38,7 +39,7 @@ void PowerBonus_ApplyNextUnit(Task* task) {
   } else {
     return;
   }
-  for (; task->unk_68 < 51; task->unk_68++) {
+  for (; task->unk_68 < MAP_UNITS_MAX + 1; task->unk_68++) {
     unit = &STATE->units[STATE->currentUnitBase + task->unk_68];
     if (unit->type == 0) {
       continue;

@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/vision.h"
+#include "game/player.h"
 
 extern u8 gSlotControllers[];
 
@@ -10,11 +11,12 @@ BOOL Player_HasKindOneAlly(u16 player) {
   int slot;
   u16 i;
 
-  for (i = 1; i < 4; i++) {
+  for (i = 1; i < PLAYER_SLOT_LAST; i++) {
     slot = player + i;
-    if (Player_GetSlotRelation(player, slot >= 5 ? slot - 4 : slot) ==
+    if (Player_GetSlotRelation(
+            player, slot >= ARMY_SLOT_COUNT ? slot - PLAYER_SLOT_LAST : slot) ==
         SLOT_RELATION_ALLY) {
-      if (slot >= 5) {
+      if (slot >= ARMY_SLOT_COUNT) {
         slot -= 4;
       }
       if (gSlotControllers[slot] == 1) {

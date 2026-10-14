@@ -41,7 +41,7 @@ int AiBuild_PickAntiAir(void) {
   if (!(gAiTurnState->domainsOwn & AI_DOMAIN_SEA)) {
     return AI_ANTI_AIR_NONE;
   }
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (!Player_IsInGame(player)) {
       continue;
     }

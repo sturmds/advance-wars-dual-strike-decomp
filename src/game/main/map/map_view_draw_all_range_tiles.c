@@ -2,6 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/task.h"
+#include "game/map_bg.h"
 
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
@@ -30,11 +31,12 @@ void MapView_DrawAllRangeTiles(Task* task) {
   left = map->scrollX >> 4;
   top = map->scrollY >> 4;
 
-  rows = (map->mapHeight - top > 12) ? 13 : 12;
+  rows = (map->mapHeight - top > MAP_VIEW_ROWS) ? MAP_VIEW_ROWS + 1
+                                                : MAP_VIEW_ROWS;
   Gfx_ClearLayerMap(0);
   for (row = 0; row < rows; row++) {
     y = top + row;
-    for (col = 0; col < 16; col++) {
+    for (col = 0; col < MAP_VIEW_COLUMNS; col++) {
       MapView_DrawRangeTile(left + col, y);
     }
   }

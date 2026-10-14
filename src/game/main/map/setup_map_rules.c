@@ -36,7 +36,7 @@ void SetupMapRules(void) {
       saved027c = data_027c027c;
       Screen_SetCurrent(data_027c0288.unk_00);
       /* AI for the slot that equals the map's player count, else human */
-      for (i = 1; i < 5; i++) {
+      for (i = 1; i < ARMY_SLOT_COUNT; i++) {
         if (i == Map_GetPlayerCount(MAP_ID)) {
           STATE->slotControllers[i] = PLAYER_CONTROLLER_AI;
         } else {

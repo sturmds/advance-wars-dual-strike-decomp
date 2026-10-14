@@ -10,7 +10,7 @@ void CampaignMap_ResetState(void) {
 
   gCampaignMapState.playedMission = 28;
   gCampaignMapState.mission = 0;
-  for (i = 0; i < 28; i++) {
+  for (i = 0; i < CAMPAIGN_MISSION_COUNT; i++) {
     gCampaignMapState.flags[i] = 0;
   }
 }

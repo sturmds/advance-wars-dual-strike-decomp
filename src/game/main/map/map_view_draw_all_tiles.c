@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/screen_other_map.h"
+#include "game/map_bg.h"
 
 /* Draws map tile (mapX, mapY) into the BG tile maps. */
 void MapView_DrawUnitTile(int mapX, int mapY);
@@ -13,8 +14,8 @@ void MapView_DrawAllTiles(void) {
   u16 col;
   u16 row;
 
-  for (row = 0; row < 13; row++) {
-    for (col = 0; col < 17; col++) {
+  for (row = 0; row < MAP_VIEW_ROWS + 1; row++) {
+    for (col = 0; col < MAP_VIEW_COLUMNS + 1; col++) {
       MapView_DrawUnitTile((s16)(col + (VIEW->scrollX >> 4)),
                            (s16)(row + (VIEW->scrollY >> 4)));
     }

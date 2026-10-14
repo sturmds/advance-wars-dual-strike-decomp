@@ -26,7 +26,7 @@ int DesignMap_RefreshRow(u32 slot) {
   data_022a6c84[slot].playerCount = record->playerCount;
   data_022a6c84[slot].unk_19 = record->propertyCount;
   data_022a6c84[slot].unk_1a = record->unk_4ca;
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < ARMY_SLOT_COUNT; i++) {
     data_022a6c84[slot].armyColours[i] = record->armyColours[i];
   }
   return 1;

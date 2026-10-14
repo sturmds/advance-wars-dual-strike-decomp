@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/link_wait_task.h"
+#include "game/link_buffers.h"
 
 void LinkMenu_DrawSecondView(void);
 u8* Link_ReadUnflaggedPacket(int player);
@@ -12,7 +13,7 @@ void LinkMenu_UpdateParent(LinkWaitTask* task) {
   int aid;
 
   LinkMenu_DrawSecondView();
-  for (aid = 1; aid < 8; aid++) {
+  for (aid = 1; aid < LINK_AID_COUNT; aid++) {
     while (Link_ReadUnflaggedPacket(aid & 0xff) != NULL) {
     }
   }

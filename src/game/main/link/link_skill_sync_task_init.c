@@ -3,6 +3,7 @@
 #include "game/skills.h"
 #include "game/Unk_02080440.h"
 #include "game/link_sync_task.h"
+#include "game/player.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
@@ -21,8 +22,8 @@ void LinkSkillSyncTask_Init(LinkSyncTask* task) {
   int slot;
 
   task->skills = Mem_Alloc(sizeof(data_0229de6c));
-  for (player = 1; player <= 4; player++) {
-    for (slot = 0; slot < 2; slot++) {
+  for (player = 1; player <= PLAYER_SLOT_LAST; player++) {
+    for (slot = 0; slot < PLAYER_CO_COUNT; slot++) {
       co = STATE->playerCos[player][slot] & 0x7f;
       if (co != 0) {
         Skills_Copy(gCoEquippedSkills[co][Co_GetForceRankSetIndex(co, player)],

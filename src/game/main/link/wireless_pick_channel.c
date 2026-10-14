@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/wireless.h"
 
 u16 WM_GetAllowedChannel(void);
 int MainLoop_GetFrameCount(void);
@@ -15,9 +16,9 @@ u16 Wireless_PickChannel(void) {
   if (allowed == 0) {
     return 0;
   }
-  channel = HwMod32(MainLoop_GetFrameCount(), 14) + 1;
-  for (i = 1; i <= 14; i++) {
-    if (channel == 15) {
+  channel = HwMod32(MainLoop_GetFrameCount(), WIRELESS_CHANNEL_COUNT) + 1;
+  for (i = 1; i <= WIRELESS_CHANNEL_COUNT; i++) {
+    if (channel == WIRELESS_CHANNEL_COUNT + 1) {
       channel = 1;
     }
     if (allowed & (1 << (channel - 1))) {

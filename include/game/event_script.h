@@ -5,6 +5,9 @@
 
 #define EVENT_SCRIPT_SLOTS 10
 
+/* Choices of an event choice window (gEventChoiceButtons). */
+#define EVENT_CHOICE_COUNT 4
+
 struct EventScriptSlot;
 
 /* One 16-byte command of an event script. The opcode (EVENT_OP_*) indexes

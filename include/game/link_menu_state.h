@@ -11,6 +11,10 @@ typedef struct LinkMenuState {
   int locked; /* 1 once a choice was made; key handlers then ignore input */
 } LinkMenuState;
 
+/* Row buttons of the player list, ids 0 to LINK_MENU_ROW_COUNT - 1; the last
+ * one uses its own template. */
+#define LINK_MENU_ROW_COUNT 5
+
 extern LinkMenuState* data_0215fed0;
 
 extern LinkMenuState data_0229d88c; /* what data_0215fed0 points to */

@@ -45,7 +45,7 @@ void TwoMaps_StartResultScript(void) {
   script = 0;
 
   SWITCH_TO(OTHER_MAP, savedGfx, savedGame);
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < ARMY_SLOT_COUNT; i++) {
     if (Player_IsInGame(i) && gSlotControllers[i] == PLAYER_CONTROLLER_HUMAN) {
       script = data_021696c0[GAME->players[i].armyColour];
     }
@@ -54,7 +54,7 @@ void TwoMaps_StartResultScript(void) {
 
   if (script == 0) {
     SWITCH_TO(OTHER_MAP, savedGfx, savedGame);
-    for (j = 1; j < 5; j++) {
+    for (j = 1; j < ARMY_SLOT_COUNT; j++) {
       if (!Player_IsInGame(j) &&
           gSlotControllers[j] == PLAYER_CONTROLLER_HUMAN) {
         script = data_02169708[GAME->players[j].armyColour];
@@ -65,7 +65,7 @@ void TwoMaps_StartResultScript(void) {
 
   if (script == 0) {
     SWITCH_TO(OTHER_MAP, lastGfx, lastGame);
-    for (k = 1; k < 5; k++) {
+    for (k = 1; k < ARMY_SLOT_COUNT; k++) {
       if (Player_IsInGame(k)) {
         script = data_021696c0[GAME->players[k].armyColour];
       }

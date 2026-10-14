@@ -11,7 +11,7 @@ void ScriptSlot_Stop(int slot);
 s8 ScriptSlot_StopByScript(const ScriptCommand* script) {
   u8 i;
 
-  for (i = 0; i < 30; i++) {
+  for (i = 0; i < SCRIPT_SLOT_COUNT; i++) {
     if (data_027c027c->scriptSlots[i].start == script) {
       ScriptSlot_Stop(i);
       return i;

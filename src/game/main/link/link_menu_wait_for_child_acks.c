@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/link_wait_task.h"
+#include "game/link_buffers.h"
 
 #define LINK_UNFLAGGED_ACK 0x8f
 
@@ -17,7 +18,7 @@ void LinkMenu_WaitForChildAcks(LinkWaitTask* task) {
   int aid;
   u8* packet;
 
-  for (aid = 1; aid < 8; aid++) {
+  for (aid = 1; aid < LINK_AID_COUNT; aid++) {
     while ((packet = Link_ReadUnflaggedPacket(aid)) != NULL) {
       if (packet[0] == LINK_UNFLAGGED_ACK) {
         task->ackedAids |= 1 << aid;

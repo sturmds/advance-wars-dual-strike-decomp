@@ -43,7 +43,7 @@ int BattleScore_Technique(int player) {
   }
   built = 0;
   lost = 0;
-  for (i = 1; i <= 4; i++) {
+  for (i = 1; i <= PLAYER_SLOT_LAST; i++) {
     if (Player_IsInGame(i) &&
         STATE->players[player].team == STATE->players[i].team) {
       built += Player_CountUnitsBuilt(i);

@@ -25,7 +25,7 @@ void PowerMeter_UpdateFlash(int frameCount) {
   s16 frame;
 
   frame = (frameCount >> 2) & 15;
-  for (player = 1; player <= 4; player++) {
+  for (player = 1; player <= PLAYER_SLOT_LAST; player++) {
     if (GAME->players[player].controller == PLAYER_CONTROLLER_NONE) {
       continue;
     }

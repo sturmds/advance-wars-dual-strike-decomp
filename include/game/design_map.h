@@ -2,17 +2,21 @@
 #define GAME_DESIGN_MAP_H
 
 #include "types.h"
+#include "game/player.h"
 
 /* One row of data_022a6c84, 27 bytes. Row n holds map id
  * MAP_DESIGN_FIRST + n. */
 typedef struct DesignMap {
   u8 pad_00[2];
-  char name[0x11];   /* from offset 2 */
-  u8 playerCount;    /* 0xff: row unused */
-  u8 armyColours[5]; /* per slot, like MapHeader +0x88 */
+  char name[0x11];                 /* from offset 2 */
+  u8 playerCount;                  /* 0xff: row unused */
+  u8 armyColours[ARMY_SLOT_COUNT]; /* per slot, like MapHeader +0x88 */
   u8 unk_19;
   u8 unk_1a;
 } DesignMap;
+
+/* Link play: each player sends its first three rows of data_022a6c84. */
+#define LINK_DESIGN_MAPS_PER_PLAYER 3
 
 typedef char DesignMap_size_check[sizeof(DesignMap) == 0x1b ? 1 : -1];
 
@@ -23,10 +27,10 @@ typedef struct DesignMapRecord {
   u8 height;
   u16 tileCodes[600]; /* MapTiles.mapCells, row by row */
   char name[0x10];
-  u8 unk_4c2;        /* DesignMap_BuildRecord clears it */
-  u8 playerCount;    /* 0xff or 0: no map in this record */
-  u8 armyColours[5]; /* per slot, like DesignMap.armyColours */
-  u8 propertyCount;  /* urban tiles (Ov000_gUrbanTerrain) on the map */
+  u8 unk_4c2;                      /* DesignMap_BuildRecord clears it */
+  u8 playerCount;                  /* 0xff or 0: no map in this record */
+  u8 armyColours[ARMY_SLOT_COUNT]; /* per slot, like DesignMap.armyColours */
+  u8 propertyCount; /* urban tiles (Ov000_gUrbanTerrain) on the map */
   u8 unk_4ca; /* 1 + the most urban tiles one owner has, the neutral slot included */
   u8 units
       [600]; /* per tile: 0, or the unit type with an owner code in bits 6-7 (DesignMap_BuildRecord) */

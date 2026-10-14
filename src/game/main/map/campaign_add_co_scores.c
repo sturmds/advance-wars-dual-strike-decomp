@@ -29,9 +29,9 @@ void Campaign_AddCoScores(void) {
   if (!Player1Team_HasPlayerInGame()) {
     return;
   }
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (GAME->players[player].controller == PLAYER_CONTROLLER_HUMAN) {
-      for (slot = 0; slot < 2; slot++) {
+      for (slot = 0; slot < PLAYER_CO_COUNT; slot++) {
         co = (&data_022a7a9c.rows[player].unk_00)[slot] & PLAYER_CO_ID_MASK;
         if (co != 0) {
           data_02290118.coScore[co]++;

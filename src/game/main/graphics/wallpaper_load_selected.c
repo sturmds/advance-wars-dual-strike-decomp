@@ -68,7 +68,7 @@ void Wallpaper_LoadSelected(void) {
   Data_Unpack(res + 0x169c, data_027c0280->layer2Map);
   Palette_Load(res + 0x1a90, 0x1e0, 0x20);
   map = data_027c0280->layer2Map;
-  for (i = 0; i < 0x800; i++) {
+  for (i = 0; i < GFX_LAYER_MAP_ENTRIES; i++) {
     *map += 0xf000;
     map++;
   }
@@ -84,7 +84,7 @@ void Wallpaper_LoadSelected(void) {
   Data_Unpack(res + 0x984, data_027c0280->layer2Map);
   Palette_Load(res + 0x1a90, 0x1e0, 0x20);
   map = data_027c0280->layer2Map;
-  for (i = 0; i < 0x800; i++) {
+  for (i = 0; i < GFX_LAYER_MAP_ENTRIES; i++) {
     *map += 0xf000;
     map++;
   }
@@ -117,7 +117,8 @@ void Wallpaper_LoadSelected(void) {
   /* charBase is used as an address here */
   Mem_Copy32((void*)GFX_LAYER(FIRST_GFX, 3)->charBase,
              LAYER_CHARS(data_027c0280, data_027c0280->layer3Bg), 0x10000);
-  Mem_Copy32(GFX_LAYER(FIRST_GFX, 3)->map, data_027c0280->layer3Map, 0x1000);
+  Mem_Copy32(GFX_LAYER(FIRST_GFX, 3)->map, data_027c0280->layer3Map,
+             GFX_LAYER_MAP_SIZE);
   func_0210c610();
   GXS_LoadBGExtPltt(res + data_021593bc[index], 0x6000, 0x200);
   GXS_EndLoadBGExtPltt();

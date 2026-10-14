@@ -12,8 +12,8 @@ BOOL func_020e7f30(int mapId) {
   if (Campaign_IsHardMode() == TRUE) {
     return TRUE;
   }
-  for (player = 1; player < 5; player++) {
-    for (slot = 0; slot < 2; slot++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
+    for (slot = 0; slot < PLAYER_CO_COUNT; slot++) {
       if (Ov000_gMapHeaders[mapId].co[player][slot] == CO_PLAYER_PICKS) {
         return TRUE;
       }

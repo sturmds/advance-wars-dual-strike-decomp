@@ -18,7 +18,7 @@ void AiTurn_CountCaptureTargets(void) {
 
   gAiTurnState->captureTargets = 0;
   gAiTurnState->captureTargets += Player_CountPropertiesPlusOne(0);
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (Player_IsInGame(player) &&
         GAME->players[GAME->currentPlayer].team != GAME->players[player].team) {
       gAiTurnState->captureTargets += Player_CountPropertiesPlusOne(player);

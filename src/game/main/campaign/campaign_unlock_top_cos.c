@@ -8,7 +8,7 @@ int Co_GetRank(u32 co);
 int func_0210391c(void);
 
 extern u8 data_021687c4[];
-CampaignTopCo gCampaignUnlockedCos[4];
+CampaignTopCo gCampaignUnlockedCos[CAMPAIGN_UNLOCKED_CO_ROWS];
 
 /* A step of the data_0216d8ec task, which Campaign_ContinueProfile0-2 start
  * when the profile's unk_04 is 0xff. Unless data_02290118.unk_08 is set,
@@ -25,7 +25,8 @@ void Campaign_UnlockTopCos(void) {
   int place;
 
   top = gCampaignUnlockedCos;
-  for (clearSlot = 0; clearSlot < 4; clearSlot++, top++) {
+  for (clearSlot = 0; clearSlot < CAMPAIGN_UNLOCKED_CO_ROWS;
+       clearSlot++, top++) {
     top->co = 0;
     top->rank = 0;
     top->score = 0;
@@ -37,9 +38,10 @@ void Campaign_UnlockTopCos(void) {
     if (Co_IsAvailable(*co)) {
       continue;
     }
-    for (place = 0, top = gCampaignUnlockedCos; place < 3; place++, top++) {
+    for (place = 0, top = gCampaignUnlockedCos; place < CAMPAIGN_TOP_CO_COUNT;
+         place++, top++) {
       if (data_02290118.coScore[*co] > top->score) {
-        for (shift = 2; shift > place; shift--) {
+        for (shift = CAMPAIGN_TOP_CO_COUNT - 1; shift > place; shift--) {
           gCampaignUnlockedCos[shift].co = gCampaignUnlockedCos[shift - 1].co;
           gCampaignUnlockedCos[shift].score =
               gCampaignUnlockedCos[shift - 1].score;
@@ -51,7 +53,8 @@ void Campaign_UnlockTopCos(void) {
     }
   }
   top = gCampaignUnlockedCos;
-  for (unlockSlot = 0; unlockSlot < 3; unlockSlot++, top++) {
+  for (unlockSlot = 0; unlockSlot < CAMPAIGN_TOP_CO_COUNT;
+       unlockSlot++, top++) {
     if (top->co != 0) {
       top->rank = Co_GetRank(top->co);
       Co_SetAvailable(top->co, 1);

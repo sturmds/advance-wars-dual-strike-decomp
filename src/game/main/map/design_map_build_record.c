@@ -18,12 +18,12 @@ extern s8 Ov000_gUrbanTerrain
  * countHqs set to 1 the player count is the number of HQ tiles, else 0. */
 void DesignMap_BuildRecord(const char* name, DesignMapRecord* record,
                            int countHqs) {
-  u8 urbanCounts[6];
+  u8 urbanCounts[ARMY_SLOT_COUNT + 1]; /* per owner slot, then the total */
   u16 hqs;
   int x;
   u8 terrainTile;
   int terrain;
-  u8 ownerCodes[6];
+  u8 ownerCodes[ARMY_COLOUR_COUNT];
   int y;
   u16 tile;
   u16 i;
@@ -34,13 +34,13 @@ void DesignMap_BuildRecord(const char* name, DesignMapRecord* record,
   record->unk_4c2 = 0;
   record->width = GAME->unk_1c4->mapWidth;
   record->height = GAME->unk_1c4->mapHeight;
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < ARMY_SLOT_COUNT; i++) {
     record->armyColours[i] = 0;
   }
-  for (i = 0; i < 6; i++) {
+  for (i = 0; i < ARRAY_COUNT(urbanCounts); i++) {
     urbanCounts[i] = 0;
   }
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < ARMY_SLOT_COUNT; i++) {
     ownerCodes[GAME->army[i]] = (i - 1) << 6;
   }
 
@@ -61,7 +61,7 @@ void DesignMap_BuildRecord(const char* name, DesignMapRecord* record,
       terrainTile = state->mapTiles->tiles[x + state->mapTiles->rowStart[y]];
       terrain = MAP_TILE_TERRAIN(terrainTile);
       if (Ov000_gUrbanTerrain[terrain] != 0) {
-        urbanCounts[5]++;
+        urbanCounts[ARMY_SLOT_COUNT]++;
         urbanCounts[terrainTile >> 5]++;
       }
       if (terrain == TERRAIN_HQ) {
@@ -70,19 +70,19 @@ void DesignMap_BuildRecord(const char* name, DesignMapRecord* record,
     }
   }
 
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < ARMY_SLOT_COUNT; i++) {
     if (urbanCounts[0] < urbanCounts[i]) {
       urbanCounts[0] = urbanCounts[i];
     }
   }
-  record->propertyCount = urbanCounts[5];
+  record->propertyCount = urbanCounts[ARMY_SLOT_COUNT];
   record->unk_4ca = urbanCounts[0] + 1;
   if (countHqs == 1) {
     record->playerCount = hqs;
   } else {
     record->playerCount = 0;
   }
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < ARMY_SLOT_COUNT; i++) {
     record->armyColours[i] = GAME->army[i];
   }
 }

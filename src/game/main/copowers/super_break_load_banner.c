@@ -52,7 +52,7 @@ void SuperBreak_LoadBanner(Task* task) {
   Data_Unpack(langRes + 0x16c, data_027c0280->layer0Map);
   Palette_Load(res + 0x8e0 + (PLAYER->armyColour - 1) * 32, 0x20, 0x20);
   /* banner tiles use BG palette 1 */
-  for (i = 0; i < 0x400; i++) {
+  for (i = 0; i < BG_SCREEN_ENTRIES; i++) {
     data_027c0280->layer0Map[i] += 0x1000;
   }
   Data_Unpack(res + 0x6a4, data_027c0280->objVram + 0x3280);

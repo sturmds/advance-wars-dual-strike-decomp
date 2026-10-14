@@ -30,7 +30,7 @@ void func_020c4448(void) {
   count = 0;
   RangeMap_SetBuffer(&STATE->mapTiles->unk_1928);
   RangeMap_Fill(-1);
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < ARMY_SLOT_COUNT; i++) {
     STATE->players[i].propertyCount = 0;
   }
   for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {

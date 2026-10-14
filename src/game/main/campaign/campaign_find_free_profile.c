@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/play_records.h"
+#include "game/save_progress.h"
 
 void func_0210394c(void);
 
@@ -13,19 +14,19 @@ void func_0210394c(void);
 /* Returns the first of profile slots 0 to 2 that no saved profile uses, or 3
  * when all are used. */
 int Campaign_FindFreeProfile(void) {
-  int taken[4];
+  int taken[SAVE_PROFILE_COUNT + 1];
   int i;
   int slot;
 
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(taken); i++) {
     taken[i] = 0;
   }
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < SAVE_PROFILE_COUNT; i++) {
     if (PROFILE_BYTE(i, 3) != 0) {
       taken[PROFILE_BYTE(i, 1)] = 1;
     }
   }
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < SAVE_PROFILE_COUNT; i++) {
     if (taken[i] == 0) {
       slot = i;
       break;

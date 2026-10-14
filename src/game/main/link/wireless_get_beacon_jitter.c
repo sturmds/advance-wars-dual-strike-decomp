@@ -1,4 +1,5 @@
 #include "types.h"
+#include "sdk/os_common.h"
 
 void func_0210ed9c(u8* mac);
 s32 HwMod32(s32 numerator, s32 denominator);
@@ -9,13 +10,13 @@ s32 HwMod32(s32 numerator, s32 denominator);
  * frame counter at 0x027ffc3c. Wireless_InitParentParam adds it to the
  * beacon period so nearby parents do not all beacon at the same time. */
 int Wireless_GetBeaconJitter(void) {
-  u8 mac[6];
+  u8 mac[MAC_ADDRESS_SIZE];
   int sum;
   int i;
 
   func_0210ed9c(mac);
   sum = i = 0;
-  for (; i < 6; i++) {
+  for (; i < MAC_ADDRESS_SIZE; i++) {
     sum += mac[i];
   }
   return HwMod32((sum + VBLANK_COUNT) * 7, 20);

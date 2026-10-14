@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/map_bg.h"
 #include "game/Unk_02080440.h"
 
 extern Unk_02080440* data_027c027c;
@@ -14,7 +15,7 @@ extern u16 gOwnerCellCodes[];
 s16 MapCell_SetOwner(int x, int y, int tile) {
   int i;
 
-  for (i = 0; gOwnerCellCodes[i] != 0xffff; i++) {
+  for (i = 0; gOwnerCellCodes[i] != OWNER_CELL_END; i++) {
     if (gOwnerCellCodes[i] == CELL(x, y)) {
       break;
     }

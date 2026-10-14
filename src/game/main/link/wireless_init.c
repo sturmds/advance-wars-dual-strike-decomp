@@ -54,7 +54,7 @@ void Wireless_Init(void) {
   data_0229c8b4 = Mem_Alloc(sizeof(WMScanParam));
   gWirelessScanBuffer = Mem_Alloc(sizeof(WMBssDesc));
   data_0229c888 = Mem_Alloc(sizeof(WMBssDesc));
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < WIRELESS_PARENT_COUNT; i++) {
     gWirelessParents[i] = Mem_Alloc(sizeof(WMBssDesc));
   }
   data_0229c8ac = Mem_Alloc(sizeof(WMDataSharingInfo));

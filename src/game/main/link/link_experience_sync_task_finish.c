@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/link_sync_task.h"
+#include "game/link_slots.h"
 
 LinkCoRecord data_0229deec[LINK_SYNC_ARMY_COUNT][LINK_SYNC_CO_COUNT];
 
@@ -13,10 +14,11 @@ void Mem_Free(void* ptr);
 void LinkExperienceSyncTask_Finish(LinkSyncTask* task) {
   int i;
 
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < LINK_SLOT_COUNT; i++) {
     if (!((1 << i) & (Wireless_GetChildAids() | 1))) {
       Mem_CopyUnits(data_0229deec[Link_FindSlotOfPlayer(0) - 1],
-                    data_0229deec[Link_FindSlotOfPlayer(i) - 1], 112, 8);
+                    data_0229deec[Link_FindSlotOfPlayer(i) - 1],
+                    sizeof(data_0229deec[0]), 8);
     }
   }
   Mem_Free(task->experience);

@@ -56,7 +56,7 @@ void BattleScore_Compute(void) {
   data_022a7a9c.unk_0b = 0;
   data_022a7a9c.unk_0c = 0;
   data_022a7a9c.unk_0d = 0;
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < ARMY_SLOT_COUNT; i++) {
     if (STATE->players[i].controller == PLAYER_CONTROLLER_HUMAN) {
       data_022a7a9c.unk_08 += STATE->players[i].destroyedCounts[0];
       data_022a7a9c.unk_09 += STATE->players[i].destroyedCounts[1];

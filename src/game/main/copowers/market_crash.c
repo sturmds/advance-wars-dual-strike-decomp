@@ -33,7 +33,7 @@ void MarketCrash(int priority) {
     percent = 100;
   }
   hundred = 100;
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (!Player_IsInGame(player)) {
       continue;
     }
@@ -43,7 +43,7 @@ void MarketCrash(int priority) {
         data_027c027c->unk_48[data_027c0284]->players[player].team) {
       continue;
     }
-    for (slot = 0; slot < 2; slot++) {
+    for (slot = 0; slot < PLAYER_CO_COUNT; slot++) {
       if ((&data_027c027c->unk_48[data_027c0284]->players[player].front)[slot]
               .id &
           PLAYER_CO_ID_MASK) {

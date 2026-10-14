@@ -16,11 +16,11 @@ extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern u32 gLinkPlay;
-static u32 data_022a72b8[4];
+static u32 data_022a72b8[SKILL_SET_WORDS];
 /* skills a tag partner lends, per player and CO slot */
-BattleSaveSkillSet data_022a72c8[5][2];
-u32 gCoEquippedSkills[CO_COUNT][4][4];
-extern u32 gBattleSkillSets[][2][4];
+BattleSaveSkillSet data_022a72c8[ARMY_SLOT_COUNT][PLAYER_CO_COUNT];
+u32 gCoEquippedSkills[CO_COUNT][FORCE_RANK_SET_COUNT][SKILL_SET_WORDS];
+extern u32 gBattleSkillSets[][PLAYER_CO_COUNT][SKILL_SET_WORDS];
 /* Battle skill sets, indexed by player (1-4): gBattleSkillSets starts at player 1. */
 #define PLAYER_SKILLS (gBattleSkillSets - 1)
 
@@ -45,7 +45,7 @@ void Skills_SetupForBattle(int mode, int mapId, int frontSet, int backSet) {
   int player;
   int i;
   int versusI;
-  int sets[2];
+  int sets[PLAYER_CO_COUNT];
   int humanPlayer;
   int versusCo;
   int linkI;
@@ -54,8 +54,8 @@ void Skills_SetupForBattle(int mode, int mapId, int frontSet, int backSet) {
   sets[0] = frontSet;
   sets[1] = backSet;
 
-  for (player = 1; player < 5; player++) {
-    for (i = 0; i < 2; i++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
+    for (i = 0; i < PLAYER_CO_COUNT; i++) {
       Skills_Copy(data_022a72b8, PLAYER_SKILLS[player][sets[i]]);
     }
   }
@@ -63,9 +63,9 @@ void Skills_SetupForBattle(int mode, int mapId, int frontSet, int backSet) {
     return;
   }
   if (gLinkPlay != 0) {
-    for (linkPlayer = 1; linkPlayer < 5; linkPlayer++) {
+    for (linkPlayer = 1; linkPlayer < ARMY_SLOT_COUNT; linkPlayer++) {
       if (STATE->players[linkPlayer].controller != PLAYER_CONTROLLER_NONE) {
-        for (linkI = 0; linkI < 2; linkI++) {
+        for (linkI = 0; linkI < PLAYER_CO_COUNT; linkI++) {
           if ((&STATE->players[linkPlayer].front)[linkI].id &
               PLAYER_CO_ID_MASK) {
             Skills_Copy(LinkSkills_GetPlayerSet(linkPlayer, sets[linkI]),
@@ -76,11 +76,11 @@ void Skills_SetupForBattle(int mode, int mapId, int frontSet, int backSet) {
     }
     return;
   }
-  for (humanPlayer = 1; humanPlayer < 5; humanPlayer++) {
+  for (humanPlayer = 1; humanPlayer < ARMY_SLOT_COUNT; humanPlayer++) {
     if (STATE->players[humanPlayer].controller != PLAYER_CONTROLLER_NONE &&
         SCREEN_STATE->players[humanPlayer].controller ==
             PLAYER_CONTROLLER_HUMAN) {
-      for (humanI = 0; humanI < 2; humanI++) {
+      for (humanI = 0; humanI < PLAYER_CO_COUNT; humanI++) {
         humanCo =
             (&STATE->players[humanPlayer].front)[humanI].id & PLAYER_CO_ID_MASK;
         if (humanCo != 0) {
@@ -93,12 +93,12 @@ void Skills_SetupForBattle(int mode, int mapId, int frontSet, int backSet) {
       }
     }
   }
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (STATE->players[player].controller != PLAYER_CONTROLLER_NONE &&
         SCREEN_STATE->players[player].controller != PLAYER_CONTROLLER_HUMAN) {
       switch (mode) {
         case GAME_MODE_CAMPAIGN:
-          for (i = 0; i < 2; i++) {
+          for (i = 0; i < PLAYER_CO_COUNT; i++) {
             Skills_SetFromList(
                 Campaign_IsHardMode()
                     ? Ov000_gMapHeaders[mapId].skills[player][sets[i]]
@@ -108,13 +108,13 @@ void Skills_SetupForBattle(int mode, int mapId, int frontSet, int backSet) {
           break;
         case GAME_MODE_WAR_ROOM:
         case GAME_MODE_SURVIVAL:
-          for (i = 0; i < 2; i++) {
+          for (i = 0; i < PLAYER_CO_COUNT; i++) {
             Skills_SetFromList(Ov000_gMapHeaders[mapId].skills[player][sets[i]],
                                PLAYER_SKILLS[player][sets[i]]);
           }
           break;
         case GAME_MODE_VERSUS:
-          for (versusI = 0; versusI < 2; versusI++) {
+          for (versusI = 0; versusI < PLAYER_CO_COUNT; versusI++) {
             versusCo =
                 (&STATE->players[player].front)[versusI].id & PLAYER_CO_ID_MASK;
             if (versusCo != 0) {

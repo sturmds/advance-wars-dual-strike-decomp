@@ -20,7 +20,7 @@ BOOL func_020990c4(int mode) {
     return TRUE;
   }
   if ((u32)STATE->players[STATE->currentPlayer].funds >= 30000) {
-    for (player = 1; player < 5; player++) {
+    for (player = 1; player < ARMY_SLOT_COUNT; player++) {
       if (!Player_IsInGame(player)) {
         continue;
       }

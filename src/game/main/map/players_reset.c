@@ -16,7 +16,7 @@ void Players_Reset(void) {
   int slot;
   int unitType;
 
-  for (slot = 0; slot < 5; slot++) {
+  for (slot = 0; slot < ARMY_SLOT_COUNT; slot++) {
     STATE->players[slot].funds = 0;
     STATE->players[slot].unk_04 = 0;
     STATE->players[slot].damageTaken = 0;

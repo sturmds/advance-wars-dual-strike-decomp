@@ -29,7 +29,7 @@ int AiUnit_CruiserCanReachSub(void) {
   RangeMap_FillMoves(acting->x, acting->y, acting->type,
                      AiActingUnit_GetSearchMovement(), 1);
   RangeMap_MarkAdjacentTiles(111);
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (Player_IsInGame(player) && STATE->players[STATE->currentPlayer].team !=
                                        STATE->players[player].team) {
       for (i = Ov000_gPlayerFirstUnitSlot[player] + 1;

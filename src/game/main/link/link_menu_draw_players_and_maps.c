@@ -43,17 +43,19 @@ void LinkMenu_DrawPlayersAndMaps(void) {
                             0);
   map = data_027c0280->layer0Map;
   Number_Draw(30, 1, map, func_0207a324(), 0, 0);
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < LINK_MENU_PLAYER_COUNT; i++) {
     if ((1 << i) & (Wireless_GetChildAids() | 1)) {
       LargeFont_DrawName(Wireless_GetPlayerName(i), 7, 7 + i * 2,
                          0x200 + i * 40);
     }
   }
-  for (player = 0; player < 2; player++) {
-    for (slot = 0; slot < 3; slot++) {
+  for (player = 0; player < LINK_MENU_PLAYER_COUNT; player++) {
+    for (slot = 0; slot < LINK_DESIGN_MAPS_PER_PLAYER; slot++) {
       /* Needed to match: the row rebuilt from the player's first row at each
        * slot, not stepped with row++. */
-      row = &((MenuState*)&gMenuState)->linkMenu.rows[player * 3] + slot;
+      row = &((MenuState*)&gMenuState)
+                 ->linkMenu.rows[player * LINK_DESIGN_MAPS_PER_PLAYER] +
+            slot;
       if (DesignMap_IsUsed(row) == 1) {
         /* Needed to match: a map local of its own, read before the call. */
         u16* layer = data_027c0280->layer0Map;
@@ -66,7 +68,7 @@ void LinkMenu_DrawPlayersAndMaps(void) {
     }
   }
   Gfx_RequestLayerCopy(0);
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < LINK_MENU_PLAYER_COUNT; i++) {
     if (LinkMenu_PlayerHasMap(i) == 1) {
       HelpBand_Start(0x7f8, 0);
       HelpText_Show(0x48000004, 0x3c0);

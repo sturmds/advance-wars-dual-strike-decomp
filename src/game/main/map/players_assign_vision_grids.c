@@ -20,7 +20,7 @@ int Player_GetSlotRelation(u16 player, u16 other); /* SLOT_RELATION_* */
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Player slots 1-4 counted on from a slot wrap round past 4. */
-#define SLOT_WRAP(n) ((n) >= 5 ? (n) - 4 : (n))
+#define SLOT_WRAP(n) ((n) >= ARMY_SLOT_COUNT ? (n) - PLAYER_SLOT_LAST : (n))
 
 /* Sets Player.visionGrids, the vision grids each player's sight goes into (see
  * game/vision.h), for the current player's turn. The current player gets the
@@ -38,7 +38,7 @@ void Players_AssignVisionGrids(void) {
 
   /* needed to match: slot 0 is cleared before the loop */
   STATE->players[0].visionGrids = 0;
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < ARMY_SLOT_COUNT; i++) {
     STATE->players[i].visionGrids = 0;
   }
   Players_RecordControllers();
@@ -49,13 +49,13 @@ void Players_AssignVisionGrids(void) {
   STATE->players[STATE->currentPlayer].visionGrids = gridMask;
   Player_SetAlliesVisionGrids(STATE->currentPlayer, gridMask);
   if (Player_FacesOneHumanTeam(STATE->currentPlayer)) {
-    for (i = 1; i < 4; i++) {
+    for (i = 1; i < PLAYER_SLOT_LAST; i++) {
       enemy = SLOT_WRAP(STATE->currentPlayer + i);
       if (Player_GetSlotRelation(STATE->currentPlayer, enemy) ==
               SLOT_RELATION_ENEMY &&
           gSlotControllers[enemy] == 1) {
         STATE->players[enemy].visionGrids = gridMask ^ 3;
-        for (j = 1; j < 4; j++) {
+        for (j = 1; j < PLAYER_SLOT_LAST; j++) {
           enemyAlly = enemy + j;
           if (Player_GetSlotRelation(enemy, SLOT_WRAP(enemyAlly)) ==
               SLOT_RELATION_ALLY) {

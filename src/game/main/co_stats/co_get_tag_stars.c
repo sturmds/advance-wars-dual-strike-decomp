@@ -9,7 +9,7 @@ int Co_GetTagStars(int co, int partner) {
   int i;
   CoRecord* record = (CoRecord*)((u8*)gCoTable + offset);
 
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(record->tagPartners); i++) {
     if (partner == record->tagPartners[i].co) {
       /* needed to match: the address is rebuilt from field 0 of CO 0, not from record */
       return *(u16*)((u8*)&gCoTable[0].tagPartners[0].stars + offset +

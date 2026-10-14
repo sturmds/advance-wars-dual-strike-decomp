@@ -2,6 +2,11 @@
 #include "game/Unk_022a7c5c.h"
 #include "sdk/os.h"
 
+/* Colours of the texture palette made grey, and of the second, shorter
+ * load of the same file. */
+#define GREY_PALETTE_COLOURS 256
+#define GREY_RELOAD_COLOURS 96
+
 const char* MapGfx_GetPaletteFile(
     int variant, int style); /* guess: path of the map palette file */
 void MapGfx_LoadTextures(int variant,
@@ -26,24 +31,26 @@ void MapGfx_LoadGreyscale(int variant, int style) {
   MapGfx_LoadTextures(variant, style);
 
   palette = File_Load(path);
-  for (i = 0; i < 256; i++) {
+  for (i = 0; i < GREY_PALETTE_COLOURS; i++) {
     palette[i] = Rgb_ToGrey(palette[i] & 0x1f, (palette[i] & 0x3e0) >> 5,
                             (palette[i] & 0x7c00) >> 10);
   }
-  DC_FlushRange(palette, 256 * sizeof(u16));
+  DC_FlushRange(palette, GREY_PALETTE_COLOURS * sizeof(u16));
   GX_BeginLoadTexPltt();
-  GX_LoadTexPltt(palette, gfx->texPaletteOffset, 256 * sizeof(u16));
+  GX_LoadTexPltt(palette, gfx->texPaletteOffset,
+                 GREY_PALETTE_COLOURS * sizeof(u16));
   GX_EndLoadTexPltt();
   Mem_Free(palette);
 
   palette = File_Load(path);
-  for (i = 0; i < 96; i++) {
+  for (i = 0; i < GREY_RELOAD_COLOURS; i++) {
     palette[i] = Rgb_ToGrey(palette[i] & 0x1f, (palette[i] & 0x3e0) >> 5,
                             (palette[i] & 0x7c00) >> 10);
   }
-  DC_FlushRange(palette, 96 * sizeof(u16));
+  DC_FlushRange(palette, GREY_RELOAD_COLOURS * sizeof(u16));
   GX_BeginLoadTexPltt();
-  GX_LoadTexPltt(palette, gfx->texPaletteOffset, 96 * sizeof(u16));
+  GX_LoadTexPltt(palette, gfx->texPaletteOffset,
+                 GREY_RELOAD_COLOURS * sizeof(u16));
   GX_EndLoadTexPltt();
   Mem_Free(palette);
 

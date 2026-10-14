@@ -37,14 +37,14 @@ void Map_SetupPlayerCos(void) {
   cos = GetCoPicksForMode(STATE->gameMode);
   SetupCoSelection();
 
-  for (clearPlayer = 1; clearPlayer < 5; clearPlayer++) {
-    for (clearSlot = 0; clearSlot < 2; clearSlot++) {
+  for (clearPlayer = 1; clearPlayer < ARMY_SLOT_COUNT; clearPlayer++) {
+    for (clearSlot = 0; clearSlot < PLAYER_CO_COUNT; clearSlot++) {
       STATE->playerCos[clearPlayer][clearSlot] = 0;
     }
   }
 
-  for (player = 1; player < 5; player++) {
-    for (slot = 0; slot < 2; slot++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
+    for (slot = 0; slot < PLAYER_CO_COUNT; slot++) {
       switch (STATE->gameMode) {
         case 0:
           if (Campaign_IsHardMode() == 1 &&

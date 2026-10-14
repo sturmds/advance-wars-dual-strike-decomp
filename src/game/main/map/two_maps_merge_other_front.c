@@ -48,7 +48,7 @@ void TwoMaps_MergeOtherFront(void) {
   Screen_SetCurrentGfx(OTHER_MAP);
   saved027c = data_027c027c;
   Screen_SetCurrent(OTHER_MAP);
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (!Player_IsInGame(player & 0xff)) {
       continue;
     }

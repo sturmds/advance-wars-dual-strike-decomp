@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/map_unit.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
@@ -13,10 +14,10 @@ extern int data_027c0284;
 MapUnit* CurrentPlayer_NextIdleUnit(void) {
   u16 i;
 
-  for (i = GAME->cycleUnitIndex + 1; i < 51; i++) {
+  for (i = GAME->cycleUnitIndex + 1; i < MAP_UNITS_MAX + 1; i++) {
     if (UNIT(i).type != 0 && !(UNIT(i).flags & MAP_UNIT_WAITED)) {
       GAME->cycleUnitIndex = i;
-      if (GAME->cycleUnitIndex >= 50) {
+      if (GAME->cycleUnitIndex >= MAP_UNITS_MAX) {
         GAME->cycleUnitIndex = 0;
       }
       return &UNIT(i);
@@ -25,7 +26,7 @@ MapUnit* CurrentPlayer_NextIdleUnit(void) {
   for (i = 1; i < GAME->cycleUnitIndex + 1; i++) {
     if (UNIT(i).type != 0 && !(UNIT(i).flags & MAP_UNIT_WAITED)) {
       GAME->cycleUnitIndex = i;
-      if (GAME->cycleUnitIndex >= 50) {
+      if (GAME->cycleUnitIndex >= MAP_UNITS_MAX) {
         GAME->cycleUnitIndex = 0;
       }
       return &UNIT(i);

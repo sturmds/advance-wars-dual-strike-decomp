@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/player.h"
 
 BOOL Player_IsInGame(u8 player);
 int func_020cf17c(u16 player);
@@ -10,7 +11,7 @@ void LinkPlayer_MarkDefeated(int player, int code);
 void LinkPlayers_RecordFirstFailure(void) {
   s16 player;
 
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (!Player_IsInGame(player)) {
       continue;
     }

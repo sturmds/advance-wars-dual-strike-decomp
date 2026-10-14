@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 #include "sdk/msl_string.h"
+#include "game/link_slots.h"
 
 extern char data_02159980[];
 
@@ -23,7 +24,7 @@ void LinkTask_WaitForPeerReply(Task* task) {
     return;
   }
   found = 0;
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < LINK_SLOT_COUNT; i++) {
     if ((Wireless_GetChildAids() | 1) & (1 << i)) {
       if (strcmp((const char*)Wireless_GetSharedData((u16)i), data_02159980)) {
         found = 1;

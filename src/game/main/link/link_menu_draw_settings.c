@@ -19,7 +19,7 @@ void LinkMenu_DrawSettings(void) {
   Screen_SetCurrentGfx(data_027c0288.unk_00);
   savedState = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_00);
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < LINK_SETTING_COUNT; i++) {
     if (data_0229fb30.unk_45b == i) {
       LinkMenu_DrawSetting(data_02160af0[i * 2], data_02160af0[i * 2 + 1], i,
                            31);

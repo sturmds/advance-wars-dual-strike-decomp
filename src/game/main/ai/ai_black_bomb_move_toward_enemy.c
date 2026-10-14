@@ -15,6 +15,10 @@ void AiUnit_MoveTowardTile(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
+/* rangeMap marks RangeMap_MarkAdjacentTiles writes, 110 to 112. */
+#define BLAST_MARK_FIRST 110
+#define BLAST_MARK_COUNT 3
+
 /* Moves the acting Black Bomb toward an enemy unit it cannot reach this
  * turn. Prefers the nearest such unit that is not carried, has over 60 hp
  * and costs at least a quarter of a Black Bomb per hp. Without one, goes
@@ -39,12 +43,12 @@ void AiBlackBomb_MoveTowardEnemy(void) {
   nearestX = valuableX;
   nearestY = valuableX;
   RangeMap_FillUnitMoves(STATE->actingUnit);
-  for (i = 0; i < 3; i++) {
-    RangeMap_MarkAdjacentTiles(110 + i);
+  for (i = 0; i < BLAST_MARK_COUNT; i++) {
+    RangeMap_MarkAdjacentTiles(BLAST_MARK_FIRST + i);
   }
   bestDist = 0x7fff;
   bestValuableDist = 0x7fff;
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (!Player_IsInGame(player)) {
       continue;
     }

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/player.h"
 
 u8 (*GetCoPicksForMode(int mode))[2];
 
@@ -15,8 +16,8 @@ void CoPicks_ResetToDefaults(void) {
   int player;
   int slot;
 
-  for (player = 1; player < 5; player++) {
-    for (slot = 0; slot < 2; slot++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
+    for (slot = 0; slot < PLAYER_CO_COUNT; slot++) {
       mode0[player][slot] = gCoPicksDefault[player][slot];
       mode1[player][slot] = gCoPicksDefault[player][slot];
       mode2[player][slot] = data_02167d30[player][slot];

@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/Unk_0229fb30.h"
 #include "game/menu_button.h"
+#include "game/menu_state.h"
 
 extern const MenuButtonTemplate data_02160150;
 
@@ -15,7 +16,7 @@ void LinkMenu_RestoreStage2Buttons(void) {
   if (func_0207a260() != 0) {
     MenuButton_Close(254);
   }
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < LINK_DESIGN_MAPS_PER_PLAYER; i++) {
     if (data_0229fb30.unk_631 != func_0207a260() ||
         LinkMenu_IsMapSlotUsed(func_0207a260(), i) != 0) {
       MenuButton_Add(func_0207a260() * 96 + 40, i * 16 + 120, &data_02160150,

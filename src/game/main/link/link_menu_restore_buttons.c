@@ -13,7 +13,7 @@ void LinkMenu_RestoreButtons(void) {
   if (data_0229fb30.unk_45a != 0) {
     return;
   }
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < LINK_SETTING_COUNT; i++) {
     MenuButton_EnableTouch(i + 4);
     MenuButton_EnableTouch(i + 8);
     MenuButton_EnableTouch(i + 12);

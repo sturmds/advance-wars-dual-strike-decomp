@@ -16,14 +16,14 @@ void WinLoseSides_Fill(void) {
   int i;
   int player;
 
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(data_022a7a88.sideA); i++) {
     data_022a7a88.sideA[i] = 0;
     data_022a7a88.sideB[i] = 0;
   }
   data_022a7a88.countA = 0;
   data_022a7a88.countB = 0;
 
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (data_027c027c->unk_48[data_027c0284]->players[player].controller !=
         PLAYER_CONTROLLER_NONE) {
       if (Player_IsInGame(player)) {

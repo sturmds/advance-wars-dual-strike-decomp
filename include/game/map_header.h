@@ -2,6 +2,7 @@
 #define GAME_MAP_HEADER_H
 
 #include "types.h"
+#include "game/player.h"
 #include "game/text_ref.h"
 #include "game/predeployed_unit.h"
 
@@ -96,15 +97,16 @@ typedef struct MapHeader {
   const PredeployedUnit* units; /* pre-deployed units; NULL: none */
   const PredeployedUnit*
       hardUnits; /* read with units as a two-entry array, indexed by Campaign_IsHardMode */
-  u8 co[5]
-       [2]; /* front and back CO per slot, row 0 unused; 0x1c: player picks */
+  u8 co
+      [ARMY_SLOT_COUNT]
+      [PLAYER_CO_COUNT]; /* front and back CO per slot, row 0 unused; 0x1c: player picks */
   u8 unk_5e[0x60 - 0x5e];
   const u8* skills
-      [5]
-      [2]; /* skill ids for computer players per slot and CO, up to 4 ended by 0; NULL: none */
-  u8 army[5]; /* army colour (palette) per slot */
-  u8 team[5]; /* team per slot */
-  MapSlotFlags slotFlags[5];
+      [ARMY_SLOT_COUNT]
+      [PLAYER_CO_COUNT]; /* skill ids for computer players per slot and CO, up to 4 ended by 0; NULL: none */
+  u8 army[ARMY_SLOT_COUNT]; /* army colour (palette) per slot */
+  u8 team[ARMY_SLOT_COUNT]; /* team per slot */
+  MapSlotFlags slotFlags[ARMY_SLOT_COUNT];
   u8 tileArmy; /* nonzero: army style (sprite set) of every tile but HQs, see Map_GetTileArmy */
   u8 pad_9d[0xa0 - 0x9d];
 } MapHeader;
@@ -115,7 +117,6 @@ typedef char MapHeader_size_check[sizeof(MapHeader) == 0xa0 ? 1 : -1];
 extern MapHeader Ov000_gMapHeaders[]; /* length unknown, indexed by map id */
 extern MapHeader Ov000_gMapHeaders[];
 
-#define ARMY_SLOT_COUNT 5                /* slot 0 neutral, then players 1-4 */
 extern u8 gArmyColours[ARMY_SLOT_COUNT]; /* army colour of each slot */
 #define MAP_DESIGN_FIRST \
   0x101 /* ids 0x101-0x10c: player-made maps (a guess), kept in data_022a6c84 */

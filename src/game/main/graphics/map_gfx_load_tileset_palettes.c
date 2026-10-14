@@ -25,7 +25,7 @@ void MapGfx_LoadTilesetPalettes(int weather, int tileset, int row) {
   palette = data_02167e30[tileset].bgPalettes;
 
   Palette_Load(palette, row, 0x60);
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < ARMY_SLOT_COUNT; i++) {
     src = palette + data_0216826c[STATE->players[i].armyColour];
     dst = row + data_0216826c[i];
     Palette_Load(src + 10, dst + 10, 2);

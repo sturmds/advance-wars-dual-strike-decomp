@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/screen_other_map.h"
+#include "game/link_slots.h"
 
 int Link_IsActive(void);
 u32 Link_GetConnectedSlotMask(void);
@@ -17,7 +18,7 @@ void Link_SetSlotControllers(void) {
   if (Link_IsActive() == 0) {
     return;
   }
-  for (slot = 0; slot < 4; slot++) {
+  for (slot = 0; slot < LINK_SLOT_COUNT; slot++) {
     if ((1 << slot) & Link_GetConnectedSlotMask()) {
       STATE->slotControllers[slot + 1] = PLAYER_CONTROLLER_HUMAN;
     } else {

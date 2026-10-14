@@ -28,7 +28,7 @@ extern const TaskScriptCmd data_0215937c[];
   Data_Unpack(res + 0x2eac, data_027c0280->layer3Map);                         \
   Palette_Load(res + 0x36ec, 0x1e0, 0x20);                                     \
   map = data_027c0280->layer3Map;                                              \
-  for (i = 0; i < 0x800; i++) {                                                \
+  for (i = 0; i < GFX_LAYER_MAP_ENTRIES; i++) {                                \
     *map += 0xf000;                                                            \
     map++;                                                                     \
   }                                                                            \

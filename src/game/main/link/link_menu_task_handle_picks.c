@@ -2,6 +2,8 @@
 #include "game/event_queue.h"
 #include "game/menu_state.h"
 #include "game/task.h"
+#include "game/link_slots.h"
+#include "game/link_buffers.h"
 
 extern MenuState gMenuState;
 
@@ -34,10 +36,10 @@ void LinkMenuTask_HandlePicks(Task* task) {
   allPicked = 1;
   back = 0;
   if (func_0207bd94() == 1) {
-    for (player = 0; player < 4; player++) {
+    for (player = 0; player < LINK_SLOT_COUNT; player++) {
       if ((Wireless_GetChildAids() | 1) & (1 << player)) {
         msg = Wireless_GetSharedData((u16)player);
-        for (i = 0; i < 4; i++, msg += 2) {
+        for (i = 0; i < LINK_MESSAGE_COUNT; i++, msg += LINK_MESSAGE_SIZE) {
           switch (msg[0]) {
             case 3: /* pick */
               LinkMenu_PickButton(player, msg[1]);
@@ -58,14 +60,14 @@ void LinkMenuTask_HandlePicks(Task* task) {
   if (back == 1) {
     LinkMenu_EnterStage1();
     func_0207b48c();
-    for (i = 0; i < 2; i++) {
+    for (i = 0; i < LINK_MENU_PLAYER_COUNT; i++) {
       ((u8*)&gMenuState + i)[LINK_PICKED_OFFSET] = 0;
     }
     func_020b9864();
     Task_ResumeScript(task);
     return;
   }
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < LINK_MENU_PLAYER_COUNT; i++) {
     if ((Wireless_GetChildAids() | 1) & (1 << i)) {
       if (!((u8*)&gMenuState + i)[LINK_PICKED_OFFSET]) {
         allPicked = 0;
@@ -76,7 +78,7 @@ void LinkMenuTask_HandlePicks(Task* task) {
   if (allPicked == 1) {
     func_0207dcfc();
     func_0207b48c();
-    for (i = 0; i < 2; i++) {
+    for (i = 0; i < LINK_MENU_PLAYER_COUNT; i++) {
       ((u8*)&gMenuState + i)[LINK_PICKED_OFFSET] = 0;
     }
     func_020b9890();

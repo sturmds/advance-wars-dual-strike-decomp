@@ -22,7 +22,7 @@ void AiOozium_BuildThreatMaps(void) {
   MapUnit* unit;
 
   Ai_ClearThreatMaps();
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (Player_IsInGame(player) && STATE->players[STATE->currentPlayer].team !=
                                        STATE->players[player].team) {
       for (slot = Ov000_gPlayerFirstUnitSlot[player] + 1;

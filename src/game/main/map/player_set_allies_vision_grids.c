@@ -20,10 +20,10 @@ void Player_SetAlliesVisionGrids(int player, int gridMask) {
   mask = gridMask;
   self = player;
 
-  for (i = 1; i < 4; i++) {
+  for (i = 1; i < PLAYER_SLOT_LAST; i++) {
     ally = player + i;
-    if (ally >= 5) {
-      ally -= 4;
+    if (ally >= ARMY_SLOT_COUNT) {
+      ally -= PLAYER_SLOT_LAST;
     }
     if (Player_GetSlotRelation(self, ally) == SLOT_RELATION_ALLY) {
       STATE->players[ally].visionGrids = mask;

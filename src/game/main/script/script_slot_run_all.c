@@ -12,7 +12,7 @@ void ScriptSlot_RunPendingByPriority(void);
 void ScriptSlot_RunAll(void) {
   u8 i;
 
-  for (i = 0; i < 30; i++) {
+  for (i = 0; i < SCRIPT_SLOT_COUNT; i++) {
     if (data_027c027c->scriptSlots[i].start != NULL) {
       data_027c027c->scriptSlots[i].unk_12 |= 1;
     }

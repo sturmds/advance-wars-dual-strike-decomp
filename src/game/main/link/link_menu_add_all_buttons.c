@@ -11,8 +11,8 @@ void LinkMenu_AddAllButtons(void) {
   int i;
 
   MenuButton_Add(0, 0, &data_0215ff74, 254);
-  for (i = 0; i < 5; i++) {
-    if (i == 4) {
+  for (i = 0; i < LINK_MENU_ROW_COUNT; i++) {
+    if (i == LINK_MENU_ROW_COUNT - 1) {
       MenuButton_Add(0, i * 40, &data_0215ff24, i);
     } else {
       MenuButton_Add(0, i * 40, &data_0215fefc, i);

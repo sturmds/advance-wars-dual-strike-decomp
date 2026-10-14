@@ -2,6 +2,7 @@
 #include "game/wireless.h"
 #include "game/Unk_0215fe84.h"
 #include "game/Unk_0229c910.h"
+#include "game/link_buffers.h"
 
 void OwnerInfo_CopyNickname(void* buffer);
 void Wireless_ClearPlayerName(u8 aid);
@@ -28,7 +29,7 @@ void Wireless_ResetState(void) {
   data_0215fe84->beaconLostCount = 0;
   OwnerInfo_CopyNickname(&data_0229c910);
   OwnerInfo_CopyNickname(data_0229c8f8);
-  for (aid = 0; aid < 8; aid++) {
+  for (aid = 0; aid < LINK_AID_COUNT; aid++) {
     Wireless_ClearPlayerName(aid);
   }
   Wireless_ClearParents();

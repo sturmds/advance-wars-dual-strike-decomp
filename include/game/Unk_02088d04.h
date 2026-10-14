@@ -203,6 +203,27 @@ typedef char GfxLayer_size_check[sizeof(GfxLayer) == 0x14 ? 1 : -1];
  * (screen_contexts.h). */
 #define GFX_LAYER_MAP_SIZE 0x1000
 #define GFX_LAYER3_MAP_SIZE 0x3000
+/* Entries (u16) in GFX_LAYER_MAP_SIZE bytes of a layer map. */
+#define GFX_LAYER_MAP_ENTRIES (GFX_LAYER_MAP_SIZE / 2)
+
+/* One BG screen block: a map of 32 x 32 entries (u16), 0x800 bytes. The
+ * display shows its first 24 rows. */
+#define BG_SCREEN_ENTRIES (32 * 32)
+#define BG_SCREEN_SIZE (BG_SCREEN_ENTRIES * 2)
+#define BG_VISIBLE_ENTRIES (32 * 24)
+#define BG_VISIBLE_SIZE (BG_VISIBLE_ENTRIES * 2)
+
+/* Bytes of one 16-colour palette (BGR555), in a palette buffer or VRAM. */
+#define PALETTE_16_SIZE 0x20
+#define PALETTE_16_COLOURS 16
+
+/* Pixels of a screen, and of the side of an 8x8 tile. */
+#define SCREEN_WIDTH 256
+#define SCREEN_HEIGHT 192
+#define TILE_PIXELS 8
+
+/* Bytes of one 8x8 tile at 4 bits per pixel. */
+#define TILE_4BPP_SIZE 0x20
 
 /* GfxLayer.mode */
 #define GFX_LAYER_NO_COPY 2
@@ -212,9 +233,12 @@ typedef char GfxLayer_size_check[sizeof(GfxLayer) == 0x14 ? 1 : -1];
 
 /* Unk_027c0280 seen as its layer array; reaching a layer this way adds the
  * layer's offset before the field's, as some ITCM code does. */
+/* Layers of a screen (GFX_LAYER). */
+#define GFX_LAYER_COUNT 4
+
 typedef struct GfxLayerView {
   u8 pad_00[0xe0];
-  GfxLayer layer[4];
+  GfxLayer layer[GFX_LAYER_COUNT];
 } GfxLayerView;
 
 #define GFX_LAYERS(gfx) (((GfxLayerView*)(gfx))->layer)

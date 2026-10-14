@@ -181,7 +181,7 @@ void TagPowerScreen_SetUp(Task* task) {
     Data_Unpack(file, BG_CHARS(data_027c0280->layer3Bg));
     Data_Unpack(file + 0x245c, data_027c0280->layer3Map);
     Palette_Load(file + 0x2a00, 32, 64);
-    for (i = 0; i < 0x800; i++) {
+    for (i = 0; i < GFX_LAYER_MAP_ENTRIES; i++) {
       data_027c0280->layer3Map[i] += 0x1000;
     }
     Gfx_RequestLayerCopy(3);
@@ -189,7 +189,8 @@ void TagPowerScreen_SetUp(Task* task) {
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     Mem_Copy32(MAIN_LAYER_CHARS(3), BG_CHARS(data_027c0280->layer3Bg), 0x6000);
-    Mem_Copy32(MAIN_GFX->layer3Map, data_027c0280->layer3Map, 0x1000);
+    Mem_Copy32(MAIN_GFX->layer3Map, data_027c0280->layer3Map,
+               GFX_LAYER_MAP_SIZE);
     Palette_Load(file + 0x2a00, 32, 64);
     Gfx_RequestLayerCopy(3);
     Screen_SetCurrentGfx(saved0280);
@@ -205,7 +206,7 @@ void TagPowerScreen_SetUp(Task* task) {
     Data_Unpack(file, BG_CHARS(data_027c0280->layer3Bg));
     Data_Unpack(file + 0x2b4c, data_027c0280->layer3Map);
     Palette_Load(file + 0x3214, 32, 64);
-    for (i = 0; i < 0x800; i++) {
+    for (i = 0; i < GFX_LAYER_MAP_ENTRIES; i++) {
       data_027c0280->layer3Map[i] += 0x1000;
     }
     Gfx_RequestLayerCopy(3);
@@ -213,7 +214,8 @@ void TagPowerScreen_SetUp(Task* task) {
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     Mem_Copy32(MAIN_LAYER_CHARS(3), BG_CHARS(data_027c0280->layer3Bg), 0x6000);
-    Mem_Copy32(MAIN_GFX->layer3Map, data_027c0280->layer3Map, 0x1000);
+    Mem_Copy32(MAIN_GFX->layer3Map, data_027c0280->layer3Map,
+               GFX_LAYER_MAP_SIZE);
     Palette_Load(file + 0x3214, 32, 64);
     Gfx_RequestLayerCopy(3);
     Screen_SetCurrentGfx(saved0280);
@@ -225,7 +227,7 @@ void TagPowerScreen_SetUp(Task* task) {
     Data_Unpack(file, BG_CHARS(data_027c0280->layer3Bg));
     Data_Unpack(file + 0x2b48, data_027c0280->layer3Map);
     Palette_Load(file + 0x31d4, 32, 64);
-    for (i = 0; i < 0x800; i++) {
+    for (i = 0; i < GFX_LAYER_MAP_ENTRIES; i++) {
       data_027c0280->layer3Map[i] += 0x1000;
     }
     Gfx_RequestLayerCopy(3);
@@ -233,7 +235,8 @@ void TagPowerScreen_SetUp(Task* task) {
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     Mem_Copy32(MAIN_LAYER_CHARS(3), BG_CHARS(data_027c0280->layer3Bg), 0x6000);
-    Mem_Copy32(MAIN_GFX->layer3Map, data_027c0280->layer3Map, 0x1000);
+    Mem_Copy32(MAIN_GFX->layer3Map, data_027c0280->layer3Map,
+               GFX_LAYER_MAP_SIZE);
     Palette_Load(file + 0x31d4, 32, 64);
     Gfx_RequestLayerCopy(3);
     Screen_SetCurrentGfx(saved0280);
@@ -254,11 +257,11 @@ void TagPowerScreen_SetUp(Task* task) {
   saved0280 = data_027c0280;
   Screen_SetCurrentGfx(data_027c0288.unk_04);
   Mem_Copy32(MAIN_LAYER_CHARS(2), BG_CHARS(data_027c0280->layer2Bg), 0x4000);
-  Mem_Copy32(MAIN_GFX->layer2Map, data_027c0280->layer2Map, 0x800);
+  Mem_Copy32(MAIN_GFX->layer2Map, data_027c0280->layer2Map, BG_SCREEN_SIZE);
   Palette_Load(file + 0x2c60, 0, 32);
   Gfx_RequestLayerCopy(2);
   Mem_Copy32(MAIN_LAYER_CHARS(1), BG_CHARS(data_027c0280->layer1Bg), 0x100);
-  Mem_Copy32(MAIN_GFX->layer1Map, data_027c0280->layer1Map, 0x800);
+  Mem_Copy32(MAIN_GFX->layer1Map, data_027c0280->layer1Map, BG_SCREEN_SIZE);
   Gfx_RequestLayerCopy(1);
   Screen_SetCurrentGfx(saved0280);
   Mem_Free(file);
@@ -281,7 +284,7 @@ void TagPowerScreen_SetUp(Task* task) {
   /* Extra head tiles from res_tagbreak_head for Grit (variant 0) and
      * Kindle (variants 0 and 1); blank tiles for other COs. */
   file = File_Load(data_0215c670);
-  for (i = 0; i <= 1; i++) {
+  for (i = 0; i <= PLAYER_CO_COUNT - 1; i++) {
     if (((&PLAYER->front)[i].id & PLAYER_CO_ID_MASK) == CO_GRIT &&
         Co_GetArmyPictureVariant((&PLAYER->front)[i].id,
                                  STATE->currentPlayer) == 0) {
@@ -308,7 +311,7 @@ void TagPowerScreen_SetUp(Task* task) {
   Data_Unpack(file + 0x28f0, data_027c0280->layer0Map);
   Palette_Load(file + 0x2cd0, 0x60, 0x60);
   Mem_Copy32(file + 0x2cd0, gTagChangePalette, 0x60);
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer0Map[i] += 0x3000;
   }
   Gfx_RequestLayerCopy(0);
@@ -318,7 +321,7 @@ void TagPowerScreen_SetUp(Task* task) {
   Mem_Copy32(MAIN_LAYER_CHARS(0), BG_CHARS(data_027c0280->layer0Bg), 0x6000);
   Data_Unpack(file + 0x24dc, data_027c0280->layer0Map);
   Palette_Load(file + 0x2cd0, 0x60, 0x60);
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer0Map[i] += 0x3000;
   }
   Gfx_RequestLayerCopy(0);

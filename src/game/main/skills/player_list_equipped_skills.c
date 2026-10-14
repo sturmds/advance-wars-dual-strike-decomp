@@ -11,7 +11,7 @@ extern int data_027c0284;
 void Player_ListEquippedSkills(u8* out, int player, int slot) {
   int skill;
 
-  for (skill = SKILL_RANK_BRUISER; skill < 128; skill++) {
+  for (skill = SKILL_RANK_BRUISER; skill < SKILL_ID_COUNT; skill++) {
     if (CheckSkillsEquipped(
             data_027c027c->unk_48[data_027c0284]->players[player].skills[slot],
             skill)) {

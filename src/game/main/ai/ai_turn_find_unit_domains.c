@@ -56,7 +56,7 @@ void AiTurn_FindUnitDomains(void) {
   }
   gAiTurnState->factoryDomainsOwn = gAiTurnState->domainsOwn;
   gAiTurnState->factoryDomainsEnemy = gAiTurnState->domainsEnemy;
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (!Player_IsInGame(player)) {
       continue;
     }

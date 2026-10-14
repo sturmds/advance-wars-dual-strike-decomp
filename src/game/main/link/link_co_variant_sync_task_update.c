@@ -1,5 +1,7 @@
 #include "types.h"
 #include "game/link_sync_task.h"
+#include "game/link_data_sync_task.h"
+#include "game/link_buffers.h"
 
 int func_0207bd94(void);
 u8* Wireless_GetSharedData(int player);
@@ -18,7 +20,7 @@ void LinkCoVariantSyncTask_Update(LinkCoVariantSyncTask* task) {
   LinkCoVariantPair* src;
   int j;
   int i; /* needed to match: one variable for the link slot and the chunk loops */
-  u8 chunk[8];
+  u8 chunk[LINK_SYNC_CHUNK];
   int player;
 
   if (!func_0207bd94()) {
@@ -29,9 +31,9 @@ void LinkCoVariantSyncTask_Update(LinkCoVariantSyncTask* task) {
       task->receiveStarted = 1;
     }
   } else if (task->receiveStarted != 0) {
-    for (player = 0; player < 8; player++) {
+    for (player = 0; player < LINK_AID_COUNT; player++) {
       if ((Wireless_GetChildAids() | 1) & (1 << player)) {
-        for (i = 0; i < 4; i++) {
+        for (i = 0; i < (int)ARRAY_COUNT(task->players); i++) {
           if (player == task->players[i]) {
             break;
           }
@@ -40,7 +42,8 @@ void LinkCoVariantSyncTask_Update(LinkCoVariantSyncTask* task) {
           continue;
         }
         src = (LinkCoVariantPair*)Wireless_GetSharedData((u16)player);
-        for (j = task->receivedBytes; j < task->receivedBytes + 8; j++, src++) {
+        for (j = task->receivedBytes; j < task->receivedBytes + LINK_SYNC_CHUNK;
+             j++, src++) {
           if (j >= task->sentBytes) {
             break;
           }
@@ -55,7 +58,7 @@ void LinkCoVariantSyncTask_Update(LinkCoVariantSyncTask* task) {
         }
       }
     }
-    task->receivedBytes += 8;
+    task->receivedBytes += LINK_SYNC_CHUNK;
   }
   if (task->sendDone != 0 && task->receivedBytes >= task->sentBytes) {
     task->sentBytes = 0;
@@ -69,7 +72,7 @@ void LinkCoVariantSyncTask_Update(LinkCoVariantSyncTask* task) {
   }
   if (task->started == 0) {
     chunk[0] = 1;
-    for (i = 1; i < 8; i++) {
+    for (i = 1; i < LINK_SYNC_CHUNK; i++) {
       chunk[i] = 0;
     }
     task->started = 1;
@@ -78,21 +81,21 @@ void LinkCoVariantSyncTask_Update(LinkCoVariantSyncTask* task) {
         chunk; /* needed to match: chunk[i] keeps the data pointer in the wrong register */
     u8* data = (u8*)task->variants;
 
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < LINK_SYNC_CHUNK; i++) {
       *out = data[task->sentBytes];
       task->sentBytes++;
-      if (task->sentBytes == 4) {
+      if (task->sentBytes == sizeof(task->variants)) {
         task->sendDone = 1;
         i++;
         break;
       }
       out++;
     }
-    for (; i < 8; i++) {
+    for (; i < LINK_SYNC_CHUNK; i++) {
       chunk[i] = 0;
     }
   } else {
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < LINK_SYNC_CHUNK; i++) {
       chunk[i] = 0;
     }
   }

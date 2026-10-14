@@ -32,7 +32,7 @@ int Unit_CopyToOtherMap(MapUnit* unit, int x, int y) {
   copy->x = x;
   copy->y = y;
   MapUnit_ResetAiState(copy);
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < MAP_UNIT_CARGO_COUNT; i++) {
     if (unit->cargo[i] != 0) {
       copy->cargo[i] = Unit_CopyToOtherMap(&STATE->units[unit->cargo[i]], x, y);
     }

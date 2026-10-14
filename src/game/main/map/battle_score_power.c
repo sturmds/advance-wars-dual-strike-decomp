@@ -28,7 +28,7 @@ int BattleScore_Power(int player) {
     return 0;
   }
   enemyBuilt = 0;
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < ARMY_SLOT_COUNT; i++) {
     if (STATE->players[i].controller != PLAYER_CONTROLLER_NONE &&
         STATE->players[player].team != STATE->players[i].team) {
       enemyBuilt += Player_CountUnitsBuilt(i);

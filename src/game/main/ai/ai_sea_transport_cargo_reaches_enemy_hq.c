@@ -22,7 +22,7 @@ BOOL AiSeaTransport_CargoReachesEnemyHq(void) {
   if (AiUnit_HasReachableTarget() == TRUE) {
     return FALSE;
   }
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (!Player_IsInGame(player)) {
       continue;
     }

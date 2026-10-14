@@ -94,17 +94,17 @@ void LinkMenu_InitScreen(Task* task) {
   Palette_Load(file + 0x6cc, 0x20, 0x20);
   Mem_Free(file);
   map = (u16*)&gMenuState;
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     map[i] += 0x1000; /* palette 1 */
   }
   map = data_0229f330;
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     map[i] += 0x1000;
   }
   if (data_0215fed0->view == 0) {
-    Mem_Copy32(&gMenuState, data_027c0280->layer2Map, 0x600);
+    Mem_Copy32(&gMenuState, data_027c0280->layer2Map, BG_VISIBLE_SIZE);
   } else {
-    Mem_Copy32(data_0229f330, data_027c0280->layer2Map, 0x600);
+    Mem_Copy32(data_0229f330, data_027c0280->layer2Map, BG_VISIBLE_SIZE);
   }
   Gfx_RequestLayerCopy(2);
 

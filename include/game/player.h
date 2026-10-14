@@ -2,6 +2,22 @@
 #define GAME_PLAYER_H
 
 #include "types.h"
+#include "game/unit_stats.h"
+
+/* Player slots: slot 0 neutral, then players 1-4 (Unk_02080440_48.players,
+ * MapHeader.army and the other per-slot arrays). */
+#define ARMY_SLOT_COUNT 5
+#define PLAYER_SLOT_LAST (ARMY_SLOT_COUNT - 1) /* the last player slot, 4 */
+
+/* COs per player: front and back (Player.front and back, playerCos). */
+#define PLAYER_CO_COUNT 2
+
+/* u32 words in a skill bit set (Player.skills): one bit per skill id. */
+#define SKILL_SET_WORDS 4
+
+/* Skill ids in a skill list (Force Rank sets as saved, MapHeader.skills):
+ * up to 4, ended by 0 when fewer. */
+#define SKILL_LIST_LENGTH 4
 
 /* CO id bits of PlayerCo.id and of other CO bytes. */
 #define PLAYER_CO_ID_MASK 0x7f
@@ -26,6 +42,8 @@ typedef struct PlayerCo {
  * Star (red) ... 5 Black Hole (dark purple). Army style, the sprite set
  * (Player.armyStyle), uses the same numbers. */
 #define ARMY_BLACK_HOLE 5
+#define ARMY_COLOUR_COUNT \
+  (ARMY_BLACK_HOLE + 1) /* 0, none, to ARMY_BLACK_HOLE */
 
 /* Player.tagPowerHalf: which CO's half of a tag power runs (doc 890). */
 #define TAG_POWER_FRONT 1
@@ -76,11 +94,13 @@ typedef struct Player {
   u8 unk_33; /* cleared by Players_Reset */
   u8 unk_34;
   u8 unitCount; /* units on the map: +1 per unit built, up to 255 (Player_IncUnitCount), -1 per unit lost (Player_DecUnitCount) */
-  u8 unitsBuilt[27]; /* per unit type, up to 255; see Player_CountUnitBuilt */
-  u8 unitsLost[27];  /* per unit type (doc 890) */
+  u8 unitsBuilt
+      [UNIT_TYPE_COUNT]; /* per unit type, up to 255; see Player_CountUnitBuilt */
+  u8 unitsLost[UNIT_TYPE_COUNT]; /* per unit type (doc 890) */
   PlayerCo front;
   PlayerCo back;
-  u32 skills[2][4];   /* front CO, back CO; ids in game/skills.h */
+  u32 skills[PLAYER_CO_COUNT]
+            [SKILL_SET_WORDS]; /* front CO, back CO; ids in game/skills.h */
   u32 playTimeFrames; /* frames spent on this player's turns (Game_TickPlayerTimer); Time Survival's timer */
 } Player;
 

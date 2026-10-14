@@ -22,7 +22,7 @@ void Map_LoadHeaderSetup(int mapId) {
     return;
   }
 
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     GAME->team[player] = CURRENT_MAP_HEADER.team[player];
     GAME->army[player] = CURRENT_MAP_HEADER.army[player];
   }

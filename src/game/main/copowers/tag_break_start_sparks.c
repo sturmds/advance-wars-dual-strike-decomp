@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/screen_other_map.h"
+#include "game/Unk_02088d04.h"
 
 extern u16 data_0229f330[];        /* layer 0 map to show */
 extern u8 gTagBreakSparkPalette[]; /* 16-color palette for it */
@@ -17,9 +18,9 @@ void Sound_PlaySe(u32 soundId);
 void TagBreak_StartSparks(void) {
   int i;
 
-  Mem_Copy32(data_0229f330, data_027c0280->layer0Map, 0x800);
+  Mem_Copy32(data_0229f330, data_027c0280->layer0Map, BG_SCREEN_SIZE);
   Palette_Load(gTagBreakSparkPalette, 32, 32);
-  for (i = 0; i < 1024; i++) {
+  for (i = 0; i < BG_SCREEN_ENTRIES; i++) {
     data_027c0280->layer0Map[i] += 1 << 12;
   }
   Gfx_RequestLayerCopy(0);

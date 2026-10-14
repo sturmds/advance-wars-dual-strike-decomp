@@ -21,7 +21,7 @@ void Ai_CountEnemySubReach(void) {
   RangeMap_SetBuffer(STATE->mapTiles->rangeScratch);
   RangeMap_Fill(0);
   RangeMap_SetBuffer(STATE->mapTiles->rangeMapTiles);
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (Player_IsInGame(player) && STATE->players[STATE->currentPlayer].team !=
                                        STATE->players[player].team) {
       Ai_AddSubReach(player);

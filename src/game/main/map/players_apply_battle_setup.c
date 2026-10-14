@@ -29,15 +29,16 @@ void Players_ApplyBattleSetup(void) {
   int i; /* needed to match: one counter for the slot loop and the unit loop */
   int unused;
 
-  for (unused = 4 - Map_GetLoadedPlayerCount(); unused >= 1; unused--) {
-    STATE->slotControllers[5 - unused] = PLAYER_CONTROLLER_NONE;
+  for (unused = PLAYER_SLOT_LAST - Map_GetLoadedPlayerCount(); unused >= 1;
+       unused--) {
+    STATE->slotControllers[ARMY_SLOT_COUNT - unused] = PLAYER_CONTROLLER_NONE;
   }
   STATE->players[1].controller = STATE->slotControllers[1];
   STATE->players[2].controller = STATE->slotControllers[2];
   STATE->players[3].controller = STATE->slotControllers[3];
   STATE->players[4].controller = STATE->slotControllers[4];
 
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < ARMY_SLOT_COUNT; i++) {
     STATE->players[i].armyColour = STATE->army[i];
     if (STATE->players[i].controller == PLAYER_CONTROLLER_NONE) {
       Player_SetCo(i, 0, 0);
@@ -77,7 +78,7 @@ void Players_ApplyBattleSetup(void) {
   if (STATE->coEffectsOn == 0) {
     STATE->unk_5c = 0;
   }
-  for (i = 1; i < 256; i++) {
+  for (i = 1; i < MAP_UNIT_COUNT; i++) {
     if (STATE->units[i].type != 0) {
       Player_CountUnitBuilt((i >> 6) + 1, STATE->units[i].type);
     }

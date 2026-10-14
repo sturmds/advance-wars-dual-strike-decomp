@@ -13,7 +13,7 @@ void VersusTask_SetDefaultRules(void) {
   Unk_027c0280* saved0280;
   Unk_02080440* saved027c;
 
-  for (slot = 1; slot <= 4; slot++) {
+  for (slot = 1; slot <= PLAYER_SLOT_LAST; slot++) {
     if (slot == 1) {
       STATE->slotControllers[slot] = PLAYER_CONTROLLER_HUMAN;
     } else {

@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/event_queue.h"
 #include "game/task.h"
+#include "game/link_buffers.h"
 
 u8* Wireless_GetSharedData(int player);
 void func_0207b48c(void);
@@ -22,7 +23,7 @@ void LinkMenuTask_HandlePeerMessages(Task* task) {
     return;
   }
   msg = Wireless_GetSharedData(0);
-  for (i = 0; i < 4; msg += 2, i++) {
+  for (i = 0; i < LINK_MESSAGE_COUNT; msg += LINK_MESSAGE_SIZE, i++) {
     switch (msg[0]) {
       case 1:
         LinkMenu_PickStage1Button(msg[1]);

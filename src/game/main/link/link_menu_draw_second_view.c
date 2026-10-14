@@ -2,6 +2,7 @@
 #include "game/link_menu_state.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_0229fb30.h"
+#include "game/link_buffers.h"
 
 void Mem_Copy32(const void* src, void* dst, u32 size);
 void Gfx_RequestLayerCopy(int layer);
@@ -65,7 +66,7 @@ void LinkMenu_DrawSecondView(void) {
       break;
   }
   if (data_0215fed0->view == 0) {
-    Mem_Copy32(data_0229f330, data_027c0280->layer2Map, 0x600);
+    Mem_Copy32(data_0229f330, data_027c0280->layer2Map, BG_VISIBLE_SIZE);
     Gfx_RequestLayerCopy(2);
     func_0207c380();
     LinkMenu_ResetBackButton();
@@ -79,7 +80,7 @@ void LinkMenu_DrawSecondView(void) {
                             0);
   map = data_027c0280->layer0Map;
   Number_Draw(30, 1, map, func_0207a324(), 0, 0);
-  for (i = 0; i < 8; i++) {
+  for (i = 0; i < LINK_AID_COUNT; i++) {
     if ((1 << i) & (Wireless_GetChildAids() | 1)) {
       LargeFont_DrawName(Wireless_GetPlayerName(i), 7, row + i * 2,
                          0x200 + i * 40);

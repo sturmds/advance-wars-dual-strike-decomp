@@ -3,6 +3,7 @@
 #include "game/design_map.h"
 #include "game/menu_state.h"
 #include "game/link_text_sync_task.h"
+#include "game/link_data_sync_task.h"
 
 extern MenuState gMenuState;
 extern DesignMap data_022a6c84[];
@@ -25,7 +26,7 @@ void Task_ResumeScript(Task* task);
 void LinkMapRowSync_Update(LinkTextSyncTask* task) {
   u8* dest;
   int i;
-  u8 chunk[8];
+  u8 chunk[LINK_SYNC_CHUNK];
   int slot;
   u8* src;
 
@@ -38,13 +39,14 @@ void LinkMapRowSync_Update(LinkTextSyncTask* task) {
     }
   } else if (task->receiveStarted !=
              0) { /* needed to match: tests the flag again */
-    for (slot = 0; slot < 2; slot++) {
+    for (slot = 0; slot < LINK_MENU_PLAYER_COUNT; slot++) {
       if ((Wireless_GetChildAids() | 1) & (1 << slot)) {
         /* needed to match: the cast keeps the offset out of the relocation */
-        dest = (u8*)&((MenuState*)&gMenuState)->linkMenu.rows[slot * 3] +
+        dest = (u8*)&((MenuState*)&gMenuState)
+                   ->linkMenu.rows[slot * LINK_DESIGN_MAPS_PER_PLAYER] +
                task->receivedBytes;
         src = Wireless_GetSharedData((u16)slot);
-        for (i = task->receivedBytes; i < task->receivedBytes + 8;
+        for (i = task->receivedBytes; i < task->receivedBytes + LINK_SYNC_CHUNK;
              i++, dest++) {
           if (i >= task->sentBytes) {
             break;
@@ -53,7 +55,7 @@ void LinkMapRowSync_Update(LinkTextSyncTask* task) {
         }
       }
     }
-    task->receivedBytes += 8;
+    task->receivedBytes += LINK_SYNC_CHUNK;
   }
   if (task->sendDone != 0 && task->receivedBytes >= task->sentBytes) {
     task->sentBytes = 0;
@@ -67,13 +69,13 @@ void LinkMapRowSync_Update(LinkTextSyncTask* task) {
   }
   if (task->started == 0) {
     chunk[0] = 1;
-    for (i = 1; i < 8; i++) {
+    for (i = 1; i < LINK_SYNC_CHUNK; i++) {
       chunk[i] = 0;
     }
     task->started = 1;
   } else if (task->sendDone == 0) {
     src = (u8*)data_022a6c84 + task->sentBytes;
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < LINK_SYNC_CHUNK; i++) {
       chunk[i] = *src;
       src++;
       task->sentBytes++;
@@ -83,11 +85,11 @@ void LinkMapRowSync_Update(LinkTextSyncTask* task) {
         break;
       }
     }
-    for (; i < 8; i++) {
+    for (; i < LINK_SYNC_CHUNK; i++) {
       chunk[i] = 0;
     }
   } else {
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < LINK_SYNC_CHUNK; i++) {
       chunk[i] = 0;
     }
   }

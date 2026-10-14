@@ -64,7 +64,7 @@ void DownloadPlay_InitScreen(void) {
   Data_Unpack(file + 0x5f4, data_027c0280->layer2Map);
   Palette_Load(file + 0x6cc, 0x20, 0x20);
   Mem_Free(file);
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer2Map[i] += 0x1000; /* palette 1 */
   }
   Gfx_RequestLayerCopy(2);

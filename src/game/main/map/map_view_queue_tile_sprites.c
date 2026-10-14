@@ -46,9 +46,9 @@ void MapView_QueueTileSprites(void) {
     height--;
   }
   MapObjects_QueueSpritesInRect(left, top, width, height);
-  for (i = 0; i < 92; i++) {
+  for (i = 0; i < MAP_SITE_COUNT; i++) {
     tile = SITE.tile;
-    if (tile == 0xff) {
+    if (tile == MAP_SITE_END) {
       return;
     }
     if (left > SITE.x || SITE.x > left + width || top > SITE.y ||

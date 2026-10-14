@@ -2,6 +2,7 @@
 #define GAME_MENU_STATE_H
 
 #include "types.h"
+#include "game/player.h"
 #include "game/campaign_map.h"
 #include "game/BattleSideData.h"
 #include "game/battle_layout.h"
@@ -128,7 +129,8 @@ typedef struct CampaignMapWork {
 typedef struct PlayerInfoScreen {
   u8 pad_020[0x8c - 0x20];
   u8 skills
-      [5]; /* skill ids the shown CO has equipped, ended by 0 or 0xff (CoStatsScreen_DrawSkills) */
+      [SKILL_LIST_LENGTH +
+       1]; /* skill ids the shown CO has equipped, ended by 0 or 0xff (CoStatsScreen_DrawSkills) */
   u8 coShown[4][2]; /* nonzero: this CO of the player gets a button */
   u8 playerArmy
       [4]; /* per player 1-4 (index player - 1); guess: army colour, ARMY_BLACK_HOLE (5) as in UnitRow_IsAvailable */
@@ -285,12 +287,15 @@ typedef struct SpriteStripState {
   u8 spriteCount; /* entries of MenuState.colours that are drawn */
 } SpriteStripState;
 
+/* Players of the two-player link menu. */
+#define LINK_MENU_PLAYER_COUNT 2
+
 /* Two-player link menu layout of MenuState. */
 typedef struct LinkMenuMaps {
-  DesignMapRecord maps[3]; /* MenuState.linkMaps */
-  DesignMap
-      rows[2 *
-           3]; /* LINK_MAP_ROWS: 3 per link player, received from each player */
+  DesignMapRecord maps[LINK_DESIGN_MAPS_PER_PLAYER]; /* MenuState.linkMaps */
+  DesignMap rows
+      [LINK_MENU_PLAYER_COUNT *
+       LINK_DESIGN_MAPS_PER_PLAYER]; /* LINK_MAP_ROWS: 3 per link player, received from each player */
 } LinkMenuMaps;
 
 /* Bytes in gMenuState. */
@@ -310,7 +315,7 @@ typedef struct MenuState {
     CoExpScreenWork coExp;
     CombatMenuState combat;
     DesignMapRecord linkMaps
-        [3]; /* the maps of the two-player link menu, shown by its stage 2 buttons */
+        [LINK_DESIGN_MAPS_PER_PLAYER]; /* the maps of the two-player link menu, shown by its stage 2 buttons */
     LinkMenuMaps linkMenu;
     /* the whole work area: ov003 keeps two CO pictures in it, from offset 0 */
     u8 work[MENU_STATE_SIZE - 16 * sizeof(u16)];
@@ -331,7 +336,7 @@ typedef struct MenuState {
  * MenuState.linkMaps (DesignMap.playerCount 0xff: no map in the slot). */
 #define LINK_MAP_ROWS                                           \
   ((DesignMap*)((u8*)&gMenuState + sizeof(gMenuState.colours) + \
-                sizeof(DesignMapRecord) * 3))
+                sizeof(DesignMapRecord) * LINK_DESIGN_MAPS_PER_PLAYER))
 
 /* Offset of LinkScreenState.picked in MenuState. Needed to match: the compiler adds it after
  * the player index, so the flags are reached through gMenuState's own address plus the player. */

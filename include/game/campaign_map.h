@@ -22,10 +22,14 @@ typedef struct Unk_0204f960 {
 } Unk_0204f960;
 
 /* World map state (gCampaignMapState). */
+/* Missions of the campaign map (CampaignMapState.flags). */
+#define CAMPAIGN_MISSION_COUNT 28
+
 typedef struct CampaignMapState {
   u8 playedMission; /* mission last started (CampaignMap_StartMissionScript) */
   u8 mission;       /* index into the mission table */
-  u8 flags[28];     /* per mission; bit 0: done (CampaignMap_MarkMissionDone) */
+  u8 flags
+      [CAMPAIGN_MISSION_COUNT]; /* per mission; bit 0: done (CampaignMap_MarkMissionDone) */
 } CampaignMapState;
 
 /* A CO of the three the world map shows, filled by CampaignMap_FindTopCos;
@@ -36,6 +40,11 @@ typedef struct CampaignTopCo {
   u8 score; /* save data byte 0x11a + co; sorted highest first */
   u8 pad_3;
 } CampaignTopCo;
+
+/* COs the world map shows and Campaign_UnlockTopCos unlocks; the rows of
+ * gCampaignUnlockedCos are one more, the last left empty. */
+#define CAMPAIGN_TOP_CO_COUNT 3
+#define CAMPAIGN_UNLOCKED_CO_ROWS (CAMPAIGN_TOP_CO_COUNT + 1)
 
 extern CampaignTopCo gCampaignUnlockedCos[];
 

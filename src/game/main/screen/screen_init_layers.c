@@ -34,7 +34,7 @@ void Screen_InitLayers(const GfxLayer* config) {
 
   Screen_ResetBgRegisters();
   has3dLayer = FALSE;
-  for (i = 0; i < 4; i++, config++) {
+  for (i = 0; i < GFX_LAYER_COUNT; i++, config++) {
     layer = GFX_LAYER(data_027c0280, i);
     layer->mode = config->mode;
     layer->bg = config->bg;

@@ -3,6 +3,7 @@
 #include "game/Unk_0229c910.h"
 #include "sdk/wm.h"
 #include "game/wireless.h"
+#include "sdk/os_common.h"
 
 extern u16 gWirelessParentTimers[];
 extern u8 gWirelessParentLinkLevels[];
@@ -23,7 +24,7 @@ void Wireless_AddParent(u8 linkLevel) {
   int slot;
 
   for (i = 0; i < data_0215fe84->parentCount; i++) {
-    for (j = 0; j < 6; j++) {
+    for (j = 0; j < MAC_ADDRESS_SIZE; j++) {
       if (gWirelessScanBuffer->bssid[j] != gWirelessParents[i]->bssid[j]) {
         break;
       }

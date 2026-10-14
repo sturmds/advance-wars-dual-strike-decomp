@@ -20,9 +20,9 @@ void Sound_PlaySe(int id);
 void PowerScreen_SwapMapWithSparks(void) {
   int i;
 
-  Mem_Copy32(gMenuState, data_027c0280->layer0Map, 0x800);
+  Mem_Copy32(gMenuState, data_027c0280->layer0Map, BG_SCREEN_SIZE);
   Palette_Load(&data_0229fb30, 32, 32);
-  for (i = 0; i < 1024; i++) {
+  for (i = 0; i < BG_SCREEN_ENTRIES; i++) {
     data_027c0280->layer0Map[i] += 0x1000;
   }
   Gfx_RequestLayerCopy(0);

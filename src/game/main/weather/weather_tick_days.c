@@ -22,7 +22,7 @@ BOOL Weather_TickDays(void) {
   if (days > 0) {
     return FALSE;
   }
-  for (player = 1; player <= 4; player++) {
+  for (player = 1; player <= PLAYER_SLOT_LAST; player++) {
     if (player == STATE->currentPlayer || !Player_IsInGame(player)) {
       continue;
     }
@@ -30,7 +30,7 @@ BOOL Weather_TickDays(void) {
       break;
     }
   }
-  if (player <= 4) {
+  if (player <= PLAYER_SLOT_LAST) {
     return FALSE;
   }
   return TRUE;

@@ -38,13 +38,13 @@ void Link_ParentHandlePackets(void) {
   if (Wireless_GetState() != 4) {
     return;
   }
-  for (aid = 1; aid <= 7; aid++) {
+  for (aid = 1; aid <= LINK_PEER_COUNT; aid++) {
     while (Link_PopFlaggedPacket(aid, &packet) == 1) {
       bit = 1 << aid;
       switch (packet.type) {
         case LINK_PACKET_STOP:
           data_0215fe8c->stopAcks |= bit;
-          for (i = 1; i <= 7; i++) {
+          for (i = 1; i <= LINK_PEER_COUNT; i++) {
             if ((Wireless_GetChildAids() & (1 << i)) &&
                 !(data_0215fe8c->stopAcks & (1 << i))) {
               break;
@@ -58,7 +58,7 @@ void Link_ParentHandlePackets(void) {
           break;
         case LINK_PACKET_SHARING_STARTED:
           data_0215fe8c->sharingAcks |= bit;
-          for (i = 1; i <= 7; i++) {
+          for (i = 1; i <= LINK_PEER_COUNT; i++) {
             if ((Wireless_GetChildAids() & (1 << i)) &&
                 !(data_0215fe8c->sharingAcks & (1 << i))) {
               break;
@@ -72,7 +72,7 @@ void Link_ParentHandlePackets(void) {
           break;
         case LINK_PACKET_SHARING_ENDED:
           data_0215fe8c->sharingAcks |= bit;
-          for (i = 1; i <= 7; i++) {
+          for (i = 1; i <= LINK_PEER_COUNT; i++) {
             if ((Wireless_GetChildAids() & (1 << i)) &&
                 !(data_0215fe8c->sharingAcks & (1 << i))) {
               break;

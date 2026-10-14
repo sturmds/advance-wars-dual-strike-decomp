@@ -9,7 +9,7 @@ void AiTurn_ClearCaptureMarks(void) {
   int i;
 
   entry = data_027c027c->unk_48[data_027c0284]->unk_6088;
-  for (i = 0; i < 92; i++) {
+  for (i = 0; i < MAP_SITE_COUNT; i++) {
     entry->claimCount = 0;
     entry->unk_04 = 0;
     entry->unk_05 = 0;

@@ -4,6 +4,9 @@
 #include "types.h"
 #include "game/co_data.h"
 
+/* aiOrder values a new unit may roll (AiUnitProfile.orderWeights). */
+#define AI_ORDER_WEIGHT_COUNT 7
+
 /* How the AI rates one unit type, inside AiProfile. Field meanings unknown. */
 typedef struct AiUnitProfile {
   u8 unk_00;         /* from AiProfileMods.units */
@@ -13,7 +16,7 @@ typedef struct AiUnitProfile {
   u8 unk_04;
   u8 unk_05; /* from AiProfileMods.units */
   s8 orderWeights
-      [7]; /* weight of each aiOrder for a new unit (AiBuild_RollOrder); negative first entry: none */
+      [AI_ORDER_WEIGHT_COUNT]; /* weight of each aiOrder for a new unit (AiBuild_RollOrder); negative first entry: none */
 } AiUnitProfile;
 
 /* The AI player's profile for this turn, built by AiProfile_Build from an
@@ -37,7 +40,7 @@ typedef struct AiUnitProfileTemplate {
   u8 spread2;
   u8 unk_04;
   u8 unk_05;
-  s8 orderWeights[7];
+  s8 orderWeights[AI_ORDER_WEIGHT_COUNT];
 } AiUnitProfileTemplate;
 
 /* 0x15c bytes; table at gAiProfileTemplates. */

@@ -22,7 +22,7 @@ void EventChoice_DrawCursor(Task* task) {
   int i;
   u16(*tiles)[32] = *(u16(**)[32]) & task->unk_34;
 
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(data_021584c8); i++) {
     /* The clear scales the row by 32 rows where the draw below does not;
          * every marker sits in row 0, so both reach the same tiles. */
     tiles[data_021584c8[i][1] * 32][data_021584c8[i][0]] = 0;

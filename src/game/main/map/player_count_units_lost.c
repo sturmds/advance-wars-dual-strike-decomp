@@ -19,7 +19,7 @@ int Player_CountUnitsLost(int player) {
   total = 0;
   base = (u8*)&STATE->players[player];
 
-  for (type = 0; type < 27; type++) {
+  for (type = 0; type < UNIT_TYPE_COUNT; type++) {
     total += base[PLAYER_OFFSET(unitsLost)];
     base++;
   }

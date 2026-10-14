@@ -21,6 +21,7 @@ extern u8 gMenuState[]; /* SuperBreak_SetUpScreen saved BG palettes 1-3 here */
 #define FADE_IN_FRAMES 16
 #define WHITE 0x7fff
 #define PALETTE_SIZE 32
+#define FLASH_PALETTE_COUNT 3 /* BG palettes 1-3 */
 
 /* Step of the Super CO Power cut-in script, after SuperBreak_BlendUpdate. Draws the
  * power name letters, raises layer 0's blend EVA to 16 over 16 frames, then
@@ -80,8 +81,8 @@ void SuperBreak_FlashUpdate(Task* task) {
   }
 
   Mem_Copy32(gMenuState, data_027c0280->paletteBuffer + 1 * PALETTE_SIZE,
-             3 * PALETTE_SIZE);
-  for (i = 0; i < 3; i++) {
+             FLASH_PALETTE_COUNT * PALETTE_SIZE);
+  for (i = 0; i < FLASH_PALETTE_COUNT; i++) {
     Palette_BlendWithColor(
         (u16*)(data_027c0280->paletteBuffer + (i + 1) * PALETTE_SIZE), WHITE,
         16 - white, white);

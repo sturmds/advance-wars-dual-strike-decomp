@@ -11,8 +11,8 @@ extern int data_027c0284;
 void MapSiteList_RefreshTiles(void) {
   int i;
 
-  for (i = 0; i < 92; i++) {
-    if (STATE->unk_608c[i].tile == 0xff) {
+  for (i = 0; i < MAP_SITE_COUNT; i++) {
+    if (STATE->unk_608c[i].tile == MAP_SITE_END) {
       return;
     }
     STATE->unk_608c[i].tile =

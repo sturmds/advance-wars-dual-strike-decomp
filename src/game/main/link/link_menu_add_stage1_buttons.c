@@ -2,6 +2,7 @@
 #include "game/Unk_0229fb30.h"
 #include "game/menu_button.h"
 #include "game/screen_other_map.h"
+#include "game/menu_state.h"
 
 extern const MenuButtonTemplate data_02160128;
 
@@ -20,7 +21,7 @@ void LinkMenu_AddStage1Buttons(void) {
   if (func_0207a260() != 0) {
     return;
   }
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < LINK_MENU_PLAYER_COUNT; i++) {
     if (LinkMenu_PlayerHasMap(i) != 0) {
       MenuButton_Add(40, i * 16 + 56, &data_02160128, i);
     }

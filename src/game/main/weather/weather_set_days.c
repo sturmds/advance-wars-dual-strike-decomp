@@ -29,7 +29,7 @@ void Weather_SetDays(int weather) {
       break;
   }
 
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (Player_IsInGame(player)) {
       data_027c027c->unk_5c[data_027c0284]->weatherDays[player] =
           (u8)days; /* needed to match: the cast */

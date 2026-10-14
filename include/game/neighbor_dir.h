@@ -12,6 +12,9 @@ typedef struct NeighborDir {
   s8 pathStep[2];
 } NeighborDir;
 
+/* The four tiles next to a tile, and the rows of data_02166378. */
+#define NEIGHBOR_DIR_COUNT 4
+
 extern NeighborDir data_02166378[];
 
 #endif

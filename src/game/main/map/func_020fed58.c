@@ -46,7 +46,7 @@ void func_020fed58(CampaignRecap* recap, int mission) {
   STATE->players[2].armyStyle = 2;
   STATE->players[3].armyStyle = 3;
   STATE->players[4].armyStyle = 4;
-  for (slot = 1; slot <= 4; slot++) {
+  for (slot = 1; slot <= PLAYER_SLOT_LAST; slot++) {
     coId = (Ov000_gMapHeaders + MAP_CAMPAIGN_FIRST)[mission].co[slot][0] &
            PLAYER_CO_ID_MASK;
     if (coId != 0) {

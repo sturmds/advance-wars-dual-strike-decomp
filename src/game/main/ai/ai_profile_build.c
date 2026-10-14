@@ -71,7 +71,7 @@ void AiProfile_Build(AiProfile* profile, int modsId, int templateId) {
                             template->units[type - 1].spread2, roll);
     profile->units[type - 1].unk_03 = template->units[type - 1].unk_04;
     profile->units[type - 1].unk_04 = template->units[type - 1].unk_05;
-    for (i = 0; i < 7; i++) {
+    for (i = 0; i < AI_ORDER_WEIGHT_COUNT; i++) {
       profile->units[type - 1].orderWeights[i] =
           template->units[type - 1].orderWeights[i];
     }

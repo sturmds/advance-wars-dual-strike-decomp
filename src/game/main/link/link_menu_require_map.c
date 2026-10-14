@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/task.h"
+#include "game/menu_state.h"
 
 int LinkMenu_PlayerHasMap(int player);
 void LinkBanner_CreateWithText(Task* task, u32 textId);
@@ -11,7 +12,7 @@ void LinkMenu_RequireMap(Task* task) {
   int anyMap = 0;
   int player;
 
-  for (player = 0; player < 2; player++) {
+  for (player = 0; player < LINK_MENU_PLAYER_COUNT; player++) {
     if (LinkMenu_PlayerHasMap(player) == 1) {
       anyMap = 1;
     }

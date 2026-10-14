@@ -13,8 +13,8 @@ int func_0207a260(void);
 void LinkMenu_AddRowButtons(void) {
   int i;
 
-  for (i = 0; i < 5; i++) {
-    if (i == 4) {
+  for (i = 0; i < LINK_MENU_ROW_COUNT; i++) {
+    if (i == LINK_MENU_ROW_COUNT - 1) {
       MenuButton_Add(0, i * 40, &data_0215ff24, i);
     } else {
       MenuButton_Add(0, i * 40, &data_0215fefc, i);

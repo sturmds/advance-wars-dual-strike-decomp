@@ -37,7 +37,7 @@ void Players_RecordControllers(void) {
   int j;
 
   SWITCH_TO(CURRENT_MAP, savedGfx, savedGame);
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < ARMY_SLOT_COUNT; i++) {
     gSlotControllers[i] = GAME->players[i].controller;
   }
   SWITCH_BACK(savedGfx, savedGame);
@@ -51,7 +51,7 @@ void Players_RecordControllers(void) {
     return;
   }
   SWITCH_TO(OTHER_MAP, savedGfx, savedGame);
-  for (j = 1; j < 5; j++) {
+  for (j = 1; j < ARMY_SLOT_COUNT; j++) {
     if (GAME->players[j].controller == PLAYER_CONTROLLER_HUMAN) {
       gSlotControllers[j] = PLAYER_CONTROLLER_HUMAN;
     }

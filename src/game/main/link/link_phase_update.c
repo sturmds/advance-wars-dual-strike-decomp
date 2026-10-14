@@ -2,6 +2,8 @@
 #include "game/event_queue.h"
 #include "game/menu_state.h"
 #include "game/task.h"
+#include "game/link_slots.h"
+#include "game/link_buffers.h"
 
 u8* Wireless_GetSharedData(int player);
 void func_0207b48c(void);
@@ -37,10 +39,10 @@ void LinkPhase_Update(Task* task) {
   allReady = 1;
   cancel = 0;
   if (func_0207bd94() == 1) {
-    for (player = 0; player < 4; player++) {
+    for (player = 0; player < LINK_SLOT_COUNT; player++) {
       if ((Wireless_GetChildAids() | 1) & (1 << player)) {
         msg = Wireless_GetSharedData((u16)player);
-        for (i = 0; i < 4; i++, msg += 2) {
+        for (i = 0; i < LINK_MESSAGE_COUNT; i++, msg += LINK_MESSAGE_SIZE) {
           switch (msg[0]) {
             case 1:
               LinkScreen_SetReady(player);
@@ -73,7 +75,7 @@ void LinkPhase_Update(Task* task) {
     Task_ResumeScript(task);
     return;
   }
-  for (player = 0; player < 4; player++) {
+  for (player = 0; player < LINK_SLOT_COUNT; player++) {
     if ((Wireless_GetChildAids() | 1) & (1 << player)) {
       if (LINK_READY_FLAG(gMenuState, player) == 0) {
         allReady = 0;

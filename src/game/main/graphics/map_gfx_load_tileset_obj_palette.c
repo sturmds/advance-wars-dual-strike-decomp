@@ -32,7 +32,7 @@ void MapGfx_LoadTilesetObjPalette(int weather, int tileset, int row) {
     Palette_Load(armyPalettes + STATE->players[0].armyColour * 32,
                  (row + 16) * 32, 32);
     Palette_Load(armyPalettes + 6 * 32, (row + 21) * 32, 32);
-    for (i = 1; i < 5; i++) {
+    for (i = 1; i < ARMY_SLOT_COUNT; i++) {
       Palette_Load(armyPalettes + STATE->players[i].armyColour * 32,
                    (row + 16 + i) * 32, 32);
     }

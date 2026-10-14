@@ -26,7 +26,7 @@ void MapBg_DrawMaskRow(int startCol, int row, int tileX, int tileY) {
 
   col = startCol & 31;
   map = data_027c0280->layer3Map + (row & 31) * 64;
-  for (i = 0; i < 17; i++) {
+  for (i = 0; i < MAP_VIEW_COLUMNS + 1; i++) {
     at = data_02169eb8[col];
     if ((tileX + i) >= 0 && (tileX + i) < STATE->unk_1c4->mapWidth &&
         tileY >= 0 && tileY < STATE->unk_1c4->mapHeight) {

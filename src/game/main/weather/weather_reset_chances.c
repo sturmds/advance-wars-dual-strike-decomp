@@ -21,7 +21,7 @@ void Weather_ResetChances(void) {
   chance1 = 6;
   chance0 = 6;
 
-  for (player = 1; player <= 4; player++) {
+  for (player = 1; player <= PLAYER_SLOT_LAST; player++) {
     if (STATE->players[player].controller != PLAYER_CONTROLLER_NONE) {
       chance1--;
       chance2--;

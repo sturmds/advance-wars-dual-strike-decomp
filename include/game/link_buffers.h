@@ -58,10 +58,16 @@ typedef struct Unk_0229cb4c {
 
 /* Peers of a link, aids 1-7. */
 #define LINK_PEER_COUNT 7
+/* Aids of a link: 0, the parent, then the peers. */
+#define LINK_AID_COUNT (LINK_PEER_COUNT + 1)
 /* Last sequence number received from each peer, 0x80 before the first. */
 extern u8 gLinkLastSequence[];
 /* The block Link_PollPeerReply sends through data sharing. */
 #define LINK_SHARED_BLOCK_SIZE 8
+/* Messages in a player's shared block: LINK_MESSAGE_SIZE bytes each, a type
+ * and an argument. */
+#define LINK_MESSAGE_SIZE 2
+#define LINK_MESSAGE_COUNT (LINK_SHARED_BLOCK_SIZE / LINK_MESSAGE_SIZE)
 extern u8 data_0229ca48[];
 /* The packet Link_ReadUnflaggedPacket took from the queue. */
 extern LinkPacket data_0229ca50;

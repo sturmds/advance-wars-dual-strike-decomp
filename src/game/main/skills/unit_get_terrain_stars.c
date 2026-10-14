@@ -24,7 +24,7 @@ int Unit_GetTerrainStars(int player, int unitType, int terrain) {
     return 0;
   }
   defense = Ov000_gTerrainStats[terrain].defenseStars * 10;
-  for (enemy = 1; enemy < 5; enemy++) {
+  for (enemy = 1; enemy < ARMY_SLOT_COUNT; enemy++) {
     if (Player_IsInGame(enemy) && PLAYERS[player].team != PLAYERS[enemy].team) {
       defense -= gCoTable[PLAYERS[enemy].front.id & PLAYER_CO_ID_MASK]
                      .blocks[0]

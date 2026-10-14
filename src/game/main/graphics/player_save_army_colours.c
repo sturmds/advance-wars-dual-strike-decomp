@@ -14,7 +14,7 @@ extern u8 gSavedArmyColours[];
 void Player_SaveArmyColours(void) {
   int i;
 
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < ARMY_SLOT_COUNT; i++) {
     gSavedArmyColours[i] = STATE->players[i].armyColour;
   }
 }

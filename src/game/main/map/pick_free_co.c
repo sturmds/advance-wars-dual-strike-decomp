@@ -28,8 +28,8 @@ u8 PickFreeCo(int co) {
     isFree[data_022a7a68[i]] = 1;
   }
 
-  for (player = 1; player < 5; player++) {
-    for (slot = 0; slot < 2; slot++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
+    for (slot = 0; slot < PLAYER_CO_COUNT; slot++) {
       if (STATE->slotControllers[player] == PLAYER_CONTROLLER_HUMAN) {
         taken = STATE->playerCos[player][slot] & PLAYER_CO_ID_MASK;
         if (taken > CO_NONE && taken < CO_COUNT) {

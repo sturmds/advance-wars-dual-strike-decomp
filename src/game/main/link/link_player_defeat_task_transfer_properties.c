@@ -50,8 +50,8 @@ void LinkPlayerDefeatTask_TransferProperties(Task* task) {
   }
   /* needed to match: a local, kept on the stack */
   cellTile = 0;
-  for (i = 0; i < 92; i++) {
-    if (SITE.tile == 0xff) {
+  for (i = 0; i < MAP_SITE_COUNT; i++) {
+    if (SITE.tile == MAP_SITE_END) {
       break;
     }
     if (Ov000_gUrbanTerrain[MAP_TILE_TERRAIN(SITE.tile)] == 0) {

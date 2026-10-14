@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/menu_button.h"
+#include "game/menu_state.h"
 
 extern const MenuButtonTemplate data_02160178;
 extern const MenuButtonTemplate data_02160128;
@@ -17,7 +18,7 @@ void LinkMenu_InitStage1Buttons(void) {
     return;
   }
   MenuButton_Add(0, 0, &data_02160178, 254);
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < LINK_MENU_PLAYER_COUNT; i++) {
     if (LinkMenu_PlayerHasMap(i) != 0) {
       MenuButton_Add(40, i * 16 + 56, &data_02160128, i);
       if (first > i) {

@@ -44,7 +44,7 @@ BOOL Players_AnyHumanInGame(void) {
   /* needed to match: the declaration order sets the registers */
   anyHuman = FALSE;
   SWITCH_TO(CURRENT_MAP, outerGfx, outerGame);
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < ARMY_SLOT_COUNT; i++) {
     if (!Player_IsInGame(i)) {
       continue;
     }

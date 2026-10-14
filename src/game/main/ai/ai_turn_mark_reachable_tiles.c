@@ -26,7 +26,7 @@ void AiTurn_MarkReachableTiles(void) {
   RangeMap_SetBuffer(GAME->mapTiles->rangeScratch);
   RangeMap_Fill(0);
   RangeMap_SetBuffer(GAME->mapTiles->rangeMapTiles);
-  for (; entry->terrain != 0xff; entry++) {
+  for (; entry->terrain != MAP_SITE_END; entry++) {
     if (GAME->mapTiles->rangeScratch[entry->x +
                                      GAME->mapTiles->rowStart[entry->y]] != 0) {
       continue;

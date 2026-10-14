@@ -139,13 +139,13 @@ void Map_InitBattle(void) {
         (GAME->unk_1c4->mapId == MAP_LIGHTNING_STRIKES ||
          GAME->unk_1c4->mapId == MAP_RING_OF_FIRE)) {
       SWITCH_TO(SECOND_MAP);
-      for (i = 1; i < 5; i++) {
+      for (i = 1; i < ARMY_SLOT_COUNT; i++) {
         GAME->slotControllers[i] = GAME->players[i].controller;
       }
       SWITCH_BACK();
     } else {
       SWITCH_TO(SECOND_MAP);
-      for (i = 1; i < 5; i++) {
+      for (i = 1; i < ARMY_SLOT_COUNT; i++) {
         if (GAME->slotControllers[i] != PLAYER_CONTROLLER_NONE) {
           GAME->slotControllers[i] = PLAYER_CONTROLLER_AI;
         }

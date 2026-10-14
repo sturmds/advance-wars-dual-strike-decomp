@@ -28,7 +28,7 @@ void AiBuild_SumUnitHp(void) {
   for (type = 0; type < UNIT_TYPE_COUNT; type++) {
     gAiOwnHpByType[type] = gAiEnemyHpByType[type] = 0;
   }
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (!Player_IsInGame(player)) {
       continue;
     }

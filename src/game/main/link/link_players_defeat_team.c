@@ -16,7 +16,7 @@ void Game_EnterState20(void);
 void LinkPlayers_DefeatTeam(int loser, int code) {
   int i;
 
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < ARMY_SLOT_COUNT; i++) {
     if (STATE->players[loser].team == STATE->players[i].team &&
         Player_IsInGame(i)) {
       LinkPlayer_MarkDefeated(i, code);

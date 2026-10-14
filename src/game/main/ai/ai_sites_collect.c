@@ -24,7 +24,8 @@ int AiSites_Collect(void) {
   Unk_02080440_6088* property;
   AiSite* site = data_0229e5bc;
 
-  for (property = STATE->unk_6088; property->terrain != 0xff; property++) {
+  for (property = STATE->unk_6088; property->terrain != MAP_SITE_END;
+       property++) {
     if (Map_IsFreeDeployCity(property->x, property->y) != 1) {
       continue;
     }

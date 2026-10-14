@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/screen_other_map.h"
+#include "game/map_bg.h"
 
 void MapBg_DrawTileRow(u16 startCol, u16 row, s16 tileX, s16 tileY);
 
@@ -12,7 +13,7 @@ void MapBg_DrawTileRow(u16 startCol, u16 row, s16 tileX, s16 tileY);
 void MapView_DrawAllBgRows(void) {
   s16 i;
 
-  for (i = 0; i < 13; i++) {
+  for (i = 0; i < MAP_VIEW_ROWS + 1; i++) {
     MapBg_DrawTileRow((VIEW->scrollX >> 4) - VIEW->unk_26,
                       i + ((VIEW->scrollY >> 4) - VIEW->unk_28),
                       VIEW->scrollX >> 4, i + (VIEW->scrollY >> 4));

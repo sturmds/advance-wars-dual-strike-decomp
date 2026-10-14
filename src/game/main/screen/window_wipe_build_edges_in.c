@@ -13,7 +13,7 @@ void WindowWipe_BuildEdgesIn(void) {
 
   data_0216e2b0.unk_02 = 0;
   data_0216e2b0.unk_03 = 192;
-  for (line = 0; line < 96; line++) {
+  for (line = 0; line < WIPE_LINES / 2; line++) {
     width = data_0216e29c - ((line + 1) >> 1);
     if (width <= 0) {
       width = 0;
@@ -35,7 +35,7 @@ void WindowWipe_BuildEdgesIn(void) {
       }
     }
   }
-  for (line = WIPE_LINES - 1; line >= 96; line--) {
+  for (line = WIPE_LINES - 1; line >= WIPE_LINES / 2; line--) {
     width = data_0216e29c + ((line + 1) >> 1) - 96;
     if (width <= 0) {
       width = 0;

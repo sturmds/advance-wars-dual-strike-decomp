@@ -22,10 +22,10 @@ void Map_SaveCoPicks(void) {
   if (gLinkPlay != 0) {
     return;
   }
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (STATE->gameMode == 3 || STATE->gameMode == 2 ||
         STATE->players[player].controller == PLAYER_CONTROLLER_HUMAN) {
-      for (slot = 0; slot < 2; slot++) {
+      for (slot = 0; slot < PLAYER_CO_COUNT; slot++) {
         cos[player][slot] = STATE->playerCos[player][slot] & 0x7f;
       }
     }

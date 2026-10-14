@@ -30,7 +30,7 @@ void MapBg_DrawTileColumn(int col, int row, int tileX, int tileY) {
   at = (row & 15) * 64;
   ground = data_027c0280->layer3Map + data_02169eb8[col & 31];
   overhang = data_027c0280->layer2Map + data_02169eb8[col & 31];
-  for (i = 0; i < 13; i++) {
+  for (i = 0; i < MAP_VIEW_ROWS + 1; i++) {
     if (tileX >= 0 && tileX < STATE->unk_1c4->mapWidth && (tileY + i) >= 0 &&
         (tileY + i) < STATE->unk_1c4->mapHeight) {
       tile = STATE->mapTiles->rowStart[tileY + i] + tileX;

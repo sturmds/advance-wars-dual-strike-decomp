@@ -39,8 +39,8 @@ void UpdatePlayerSkills(int player) {
   frontSkills = GetCoPowerSkills(frontCo, PLAYER(player).front.powerState);
   backSkills = GetCoPowerSkills(backCo, PLAYER(player).front.powerState);
 
-  for (slot = 0; slot < 2; slot++) {
-    for (i = 0; i < 4; i++) {
+  for (slot = 0; slot < PLAYER_CO_COUNT; slot++) {
+    for (i = 0; i < SKILL_SET_WORDS; i++) {
       PLAYER(player).skills[slot][i] = 0;
     }
   }
@@ -67,7 +67,7 @@ void UpdatePlayerSkills(int player) {
       if (frontCo == 0) {
         return;
       }
-      for (i = 0; i < 4; i++) {
+      for (i = 0; i < SKILL_SET_WORDS; i++) {
         PLAYER(player).skills[0][i] = frontSkills[i];
         if (PartnerBoost1(player)) {
           PLAYER(player).skills[0][i] |= data_022a72c8[player][lentSlot][i];
@@ -78,7 +78,7 @@ void UpdatePlayerSkills(int player) {
   }
 
   if (backCo != 0) {
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < SKILL_SET_WORDS; i++) {
       PLAYER(player).skills[1][i] = backSkills[i];
       if (PartnerBoost1(player)) {
         PLAYER(player).skills[1][i] |= data_022a72c8[player][1][i];
@@ -89,7 +89,7 @@ void UpdatePlayerSkills(int player) {
   if (frontCo == 0) {
     return;
   }
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < SKILL_SET_WORDS; i++) {
     PLAYER(player).skills[0][i] = frontSkills[i];
     if (PartnerBoost1(player)) {
       PLAYER(player).skills[0][i] |= data_022a72c8[player][0][i];

@@ -8,7 +8,7 @@ void CoSet_ListEquippedSkills(u8* out, int co, int set) {
   int skill;
   u32* equipped = gCoEquippedSkills[co][set];
 
-  for (skill = 0; skill < 128; skill++) {
+  for (skill = 0; skill < SKILL_ID_COUNT; skill++) {
     if (CheckSkillsEquipped(equipped, skill)) {
       *out++ = skill;
     }

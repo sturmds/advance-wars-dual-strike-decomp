@@ -21,7 +21,7 @@ BOOL Player_FacesOneHumanTeam(u16 player) {
   }
   humanTeam = 0;
   found = 0;
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < ARMY_SLOT_COUNT; i++) {
     if (i == player || !Player_IsInGame(i)) {
       continue;
     }

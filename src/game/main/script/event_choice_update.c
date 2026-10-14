@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/rect.h"
 #include "game/task.h"
+#include "game/event_script.h"
 
 extern u16 gEventChoiceAnswer;
 extern Rect gEventChoiceButtons[];
@@ -38,7 +39,7 @@ void EventChoice_Update(Task* task) {
   int oldCursor;
 
   keys = EventChoice_ReadKeys();
-  touched = Touch_TestButtonRects(gEventChoiceButtons, 4);
+  touched = Touch_TestButtonRects(gEventChoiceButtons, EVENT_CHOICE_COUNT);
   DialogueCursor_Animate();
   oldCursor = CURSOR(task);
   if (keys & CHOICE_KEY_CANCEL) {

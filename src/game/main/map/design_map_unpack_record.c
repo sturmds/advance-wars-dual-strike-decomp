@@ -23,7 +23,7 @@ void DesignMap_UnpackRecord(char* name, DesignMapRecord* record) {
   String_Copy(name, record->name);
   STATE->unk_1c4->playerCount = record->playerCount;
   if (STATE == &data_02183b08) {
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < ARMY_SLOT_COUNT; i++) {
       STATE->army[i] = record->armyColours[i];
     }
   }

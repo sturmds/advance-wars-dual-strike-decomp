@@ -7,7 +7,7 @@ extern u8 gSavedArmyColours[];
 void SavedArmyColours_Reset(void) {
   int i;
 
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < ARMY_SLOT_COUNT; i++) {
     gSavedArmyColours[i] = i;
   }
 }

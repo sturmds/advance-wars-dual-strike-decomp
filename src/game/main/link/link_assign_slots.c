@@ -9,14 +9,14 @@ void Link_AssignSlots(void) {
   int i;
   u8* slot = gLinkSlotPlayers;
 
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < LINK_SLOT_COUNT; i++) {
     if ((Wireless_GetChildAids() | 1) & (1 << i)) {
       *slot++ = i + 1;
       count++;
     }
   }
   slot = &gLinkSlotPlayers[count];
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < LINK_SLOT_COUNT; i++) {
     if (((Wireless_GetChildAids() | 1) & (1 << i)) == 0) {
       *slot++ = i + 1;
       count++;

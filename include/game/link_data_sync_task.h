@@ -20,8 +20,6 @@ typedef struct LinkDataSyncTask {
 
 #define LINK_SYNC_CHUNK 8 /* bytes per packet */
 
-/* Each player sends its first three rows of data_022a6c84. */
-#define LINK_DESIGN_MAPS_PER_PLAYER 3
 #define LINK_DESIGN_MAP_BLOCK_SIZE \
   (LINK_DESIGN_MAPS_PER_PLAYER * sizeof(DesignMap))
 

@@ -2,6 +2,7 @@
 #define GAME_MAP_UNIT_H
 
 #include "types.h"
+#include "game/player.h"
 
 /* MapUnit.flags. From romhacking.net doc 890 (RadioTails); only the bits
  * named in code comments have been seen used. */
@@ -18,6 +19,10 @@
 
 /* Unit slots per player in Unk_02080440_48.units. */
 #define MAP_UNITS_PER_PLAYER 64
+/* Units a player may have: slots 1 to MAP_UNITS_MAX of its block. */
+#define MAP_UNITS_MAX 50
+/* Unit slots of players 1-4 in Unk_02080440_48.units. */
+#define MAP_UNIT_COUNT (PLAYER_SLOT_LAST * MAP_UNITS_PER_PLAYER)
 
 /* First slot in Unk_02080440_48.units for each player slot: 0, 0, 64,
  * 128, 192. */

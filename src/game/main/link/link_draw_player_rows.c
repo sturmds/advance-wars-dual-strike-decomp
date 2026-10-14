@@ -39,7 +39,7 @@ void Link_DrawPlayerRows(void) {
   int count;
 
   if (data_0215fed0->view == 1) {
-    Mem_Copy32(gMenuState, data_027c0280->layer2Map, 0x600);
+    Mem_Copy32(gMenuState, data_027c0280->layer2Map, BG_VISIBLE_SIZE);
     Gfx_RequestLayerCopy(2);
     LinkMenu_AddRowButtons();
     data_0215fed0->view = 0;

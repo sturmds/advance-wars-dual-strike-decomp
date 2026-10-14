@@ -18,7 +18,7 @@ BOOL Ai_EnemyHasAirUnit(void) {
   int i;
   MapUnit* unit;
 
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (!Player_IsInGame(player)) {
       continue;
     }

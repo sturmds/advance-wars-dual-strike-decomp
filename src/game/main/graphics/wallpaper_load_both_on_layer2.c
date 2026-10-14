@@ -72,7 +72,8 @@ void Wallpaper_LoadBothOnLayer2(u32 index) {
   /* charBase is used as an address here */
   Mem_Copy32((void*)GFX_LAYER(FIRST_GFX, 2)->charBase,
              LAYER_CHARS(data_027c0280, data_027c0280->layer2Bg), 0x10000);
-  Mem_Copy32(FIRST_GFX->layer2Map, data_027c0280->layer2Map, 0x1000);
+  Mem_Copy32(FIRST_GFX->layer2Map, data_027c0280->layer2Map,
+             GFX_LAYER_MAP_SIZE);
   func_0210c610();
   GXS_LoadBGExtPltt(res + data_021593bc[index], 0x4000, 0x200);
   GXS_EndLoadBGExtPltt();

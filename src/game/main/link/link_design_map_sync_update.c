@@ -2,6 +2,7 @@
 #include "game/task.h"
 #include "game/design_map.h"
 #include "game/link_data_sync_task.h"
+#include "game/link_slots.h"
 
 extern DesignMap data_022a6c84[];
 
@@ -33,7 +34,7 @@ void LinkDesignMapSync_Update(LinkDataSyncTask* task) {
     }
   } else if (task->receiveStarted !=
              0) { /* needed to match: tests the flag again */
-    for (slot = 0; slot < 4; slot++) {
+    for (slot = 0; slot < LINK_SLOT_COUNT; slot++) {
       if ((Wireless_GetChildAids() | 1) & (1 << slot)) {
         dest = (u8*)&data_022a6c84[slot * LINK_DESIGN_MAPS_PER_PLAYER] +
                task->receivedBytes;

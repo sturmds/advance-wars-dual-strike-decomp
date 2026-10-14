@@ -12,7 +12,7 @@ const CoTagRecord* Co_GetTagRecord(int co, int partner) {
   found = NULL;
   record = &gCoTable[co & PLAYER_CO_ID_MASK];
 
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(record->tagPartners); i++) {
     if ((partner & PLAYER_CO_ID_MASK) == record->tagPartners[i].co) {
       found = record->tagPartners[i].record;
     }

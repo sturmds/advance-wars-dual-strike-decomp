@@ -15,14 +15,14 @@ void Link_ResetBuffers(void) {
 
   data_0229ca88.writeIndex = 0;
   data_0229ca88.readIndex = data_0229ca88.writeIndex;
-  for (i = 0; i < 7; i++) {
+  for (i = 0; i < LINK_PEER_COUNT; i++) {
     data_0229cdfc[i].writeIndex = 0;
     data_0229cdfc[i].readIndex = data_0229cdfc[i].writeIndex;
     data_0229cb4c[i].writeIndex = 0;
     data_0229cb4c[i].readIndex = data_0229cb4c[i].writeIndex;
     gLinkLastSequence[i] = 0x80;
   }
-  for (i = 0; i < 8; i++) {
+  for (i = 0; i < LINK_SHARED_BLOCK_SIZE; i++) {
     data_0229ca48[i] = 0;
   }
   func_02080668();

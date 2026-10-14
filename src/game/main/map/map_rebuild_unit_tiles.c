@@ -45,7 +45,7 @@ void Map_RebuildUnitTiles(void) {
     }
   }
 
-  for (i = 1; i < 256; i++) {
+  for (i = 1; i < MAP_UNIT_COUNT; i++) {
     if (GAME->units[i].type != UNIT_NONE &&
         (!(GAME->units[i].flags & MAP_UNIT_SELECTED) ||
          (GAME->units[i].flags & MAP_UNIT_LOCKED))) {
@@ -71,7 +71,7 @@ void Map_RebuildUnitTiles(void) {
     }
   }
 
-  for (i = 1; i < 256; i++) {
+  for (i = 1; i < MAP_UNIT_COUNT; i++) {
     if (GAME->units[i].type != UNIT_NONE &&
         !(GAME->units[i].flags & MAP_UNIT_SELECTED) &&
         GAME->players[GAME->currentPlayer].controller != PLAYER_CONTROLLER_AI) {

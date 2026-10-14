@@ -5,7 +5,7 @@
 int Link_FindSlotOfPlayer(int player) {
   int slot;
 
-  for (slot = 0; slot < 4; slot++) {
+  for (slot = 0; slot < LINK_SLOT_COUNT; slot++) {
     if (gLinkSlotPlayers[slot] == player + 1) {
       return slot + 1;
     }

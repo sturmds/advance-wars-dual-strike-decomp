@@ -68,7 +68,7 @@ void MapGfx_LoadTextures(int weather, int tileset) {
   Gfx_LoadTexImageFile(texB, gfx->mapTex2Offset);
   Gfx_LoadTexImageFile(anim0, (u32)gfx->animDst);
 
-  for (slot = 1; slot < 5; slot++) {
+  for (slot = 1; slot < ARMY_SLOT_COUNT; slot++) {
     if (GAME->players[slot].controller != PLAYER_CONTROLLER_NONE) {
       switch (Player_GetArmyStyle(slot)) {
         default:

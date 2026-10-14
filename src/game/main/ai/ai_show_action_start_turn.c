@@ -2,6 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/ai_unit_action.h"
 #include "game/unit_action.h"
+#include "game/player.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
@@ -24,7 +25,7 @@ void AiShowAction_StartTurn(void) {
   EXTRA->sandChance = gUnitAction.unk_07;
   EXTRA->rainChance = gUnitAction.packed[0];
   EXTRA->snowChance = gUnitAction.packed[1];
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < PLAYER_SLOT_LAST; i++) {
     EXTRA->weatherDays[i + 1] = gUnitAction.packed[i + 2];
   }
 }

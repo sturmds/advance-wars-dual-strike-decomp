@@ -10,8 +10,8 @@ extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 
 void func_020f8848(void) {
-  Mem_CopyAuto(data_027c0280->layer0Map, data_027c0280->unk_e4, 0x800);
-  Mem_CopyAuto(data_027c0280->layer1Map, data_027c0280->unk_f8, 0x800);
+  Mem_CopyAuto(data_027c0280->layer0Map, data_027c0280->unk_e4, BG_SCREEN_SIZE);
+  Mem_CopyAuto(data_027c0280->layer1Map, data_027c0280->unk_f8, BG_SCREEN_SIZE);
   Gfx_LoadPlayerWindowFrame(
       data_027c027c->unk_48[data_027c0284]->currentPlayer);
 }

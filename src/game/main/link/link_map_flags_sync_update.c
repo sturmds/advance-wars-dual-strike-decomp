@@ -2,6 +2,7 @@
 #include "game/task.h"
 #include "game/link_data_sync_task.h"
 #include "game/save_progress.h"
+#include "game/link_slots.h"
 
 u16 Wireless_GetChildAids(void);
 u8* Wireless_GetSharedData(u16 slot);
@@ -34,7 +35,7 @@ void LinkMapFlagsSync_Update(LinkDataSyncTask* task) {
     }
   } else if (task->receiveStarted !=
              0) { /* needed to match: tests the flag again */
-    for (slot = 0; slot < 4; slot++) {
+    for (slot = 0; slot < LINK_SLOT_COUNT; slot++) {
       if ((Wireless_GetChildAids() | 1) & (1 << slot)) {
         src = Wireless_GetSharedData((u16)slot);
         for (i = task->receivedBytes; i < task->receivedBytes + LINK_SYNC_CHUNK;

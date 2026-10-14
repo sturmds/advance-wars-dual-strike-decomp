@@ -11,6 +11,11 @@ extern u8 gUnlockFlags[];
 u8 Unlock_IsSet(u32 id);
 
 /* What a Battle Maps shop condition routine returns for one item. */
+/* Game flags Campaign_ResetProgress clears: GAME_FLAG_CAMPAIGN_FIRST up to,
+ * not including, GAME_FLAG_CAMPAIGN_END. */
+#define GAME_FLAG_CAMPAIGN_FIRST 95
+#define GAME_FLAG_CAMPAIGN_END 159
+
 #define SHOP_ITEM_BOUGHT (-1)
 #define SHOP_ITEM_LOCKED 0
 #define SHOP_ITEM_FOR_SALE 1

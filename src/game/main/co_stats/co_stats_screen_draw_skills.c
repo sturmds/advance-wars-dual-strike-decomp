@@ -4,6 +4,7 @@
 #include "game/screen_other_map.h"
 #include "game/force_rank_screen.h"
 #include "game/text_print.h"
+#include "game/skills.h"
 
 BOOL Skills_AreDisabled(void);
 void ForceRank_LoadSets(int mode);
@@ -45,10 +46,10 @@ void CoStatsScreen_DrawSkills(void) {
   count = 0;
   if (MENU.player != 1 || Skills_AreDisabled() != TRUE) {
     ForceRank_LoadSets(GAME->gameMode);
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < SKILL_LIST_LENGTH; i++) {
       MENU.skills[i] = 0;
     }
-    MENU.skills[4] = 0xff;
+    MENU.skills[SKILL_LIST_LENGTH] = 0xff;
     if (MENU.unk_0a8 == 1 && GAME->gameMode == 3) {
       Co_ListDefaultSkills(MENU_SKILLS, MENU_SHOWN_CO);
     } else {
@@ -65,7 +66,7 @@ void CoStatsScreen_DrawSkills(void) {
       Screen_SetCurrent(saved027c);
       Screen_SetCurrentGfx(saved0280);
     }
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < SKILL_LIST_LENGTH; i++) {
       if (MENU.skills[i] == 0 || MENU.skills[i] == 0xff) {
         break;
       }

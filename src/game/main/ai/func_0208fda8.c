@@ -20,7 +20,7 @@ void func_0208fda8(void) {
   data_0229d8c8.target = gUnitAction.target;
   data_0229d8c8.unk_07 = gUnitAction.unk_07;
   data_0229d8c8.fuelLeft = gUnitAction.fuelLeft;
-  for (i = 0; i < 6; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(data_0229d8c8.packed); i++) {
     data_0229d8c8.packed[i] = gUnitAction.packed[i];
   }
   Link_SendPacket(&data_0229d8c8);

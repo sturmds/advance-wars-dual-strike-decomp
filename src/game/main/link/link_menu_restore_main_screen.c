@@ -28,7 +28,7 @@ void LinkMenu_RestoreMainScreen(void) {
   Screen_SetCurrentGfx(data_027c0288.unk_00);
   savedScreen = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_00);
-  Mem_Copy32(&gMenuState, data_027c0280->layer2Map, 0x600);
+  Mem_Copy32(&gMenuState, data_027c0280->layer2Map, BG_VISIBLE_SIZE);
   Gfx_RequestLayerCopy(2);
   data_027c0280->blendMode = BLEND_MODE_ALPHA;
   data_027c0280->blendEva = 8;

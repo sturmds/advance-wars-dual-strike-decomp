@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 
 /* Blends the 16 colours of palette (RGB555) with color, channel by channel:
  * (palette * palWeight + color * colorWeight) / 16. The weights are meant
@@ -15,7 +16,7 @@ void Palette_BlendWithColor(u16* palette, u16 color, int palWeight,
   int g0 = colorG * colorWeight;
   int b0 = colorB * colorWeight;
 
-  for (i = 0; i < 16; i++) {
+  for (i = 0; i < PALETTE_16_COLOURS; i++) {
     c = palette[i];
     r = c & 0x1f;
     g = (c & 0x3e0) >> 5;

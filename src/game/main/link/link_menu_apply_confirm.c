@@ -13,7 +13,7 @@ void LinkMenu_ApplyConfirm(void) {
 
   Sound_PlaySe(0x10006);
   if (data_0229fb30.unk_45a == 0) {
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < LINK_SETTING_COUNT; i++) {
       MenuButton_DisableTouch(i + 4);
       MenuButton_DisableTouch(i + 8);
       MenuButton_DisableTouch(i + 12);

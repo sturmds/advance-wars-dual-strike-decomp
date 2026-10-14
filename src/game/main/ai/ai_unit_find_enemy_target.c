@@ -46,7 +46,7 @@ BOOL AiUnit_FindEnemyTarget(s16* tile) {
   bestWeakCost = 0x7fff;
 
   AiActingUnit_MarkAttackRange(AiActingUnit_GetSearchMovement());
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (!Player_IsInGame(player) || STATE->players[STATE->currentPlayer].team ==
                                         STATE->players[player].team) {
       continue;

@@ -31,7 +31,7 @@ BOOL AiPowerCheck_EnemiesOnProperties(int powerKind) {
       return TRUE;
     }
   } else {
-    for (player = 1; player < 5; player++) {
+    for (player = 1; player < ARMY_SLOT_COUNT; player++) {
       if (Player_IsInGame(player) &&
           STATE->players[STATE->currentPlayer].team !=
               STATE->players[player].team) {

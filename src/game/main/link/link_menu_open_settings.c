@@ -42,7 +42,7 @@ void LinkMenu_OpenSettings(void) {
     func_02088528(0);
   }
   if (data_0229fb30.unk_45a == 0) {
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < LINK_SETTING_COUNT; i++) {
       MenuButton_Add(data_02160af0[i * 2], data_02160af0[i * 2 + 1],
                      &data_02160d68, i + 4);
       MenuButton_Add(data_02160af0[i * 2], data_02160af0[i * 2 + 1],

@@ -4,6 +4,9 @@
 #include "types.h"
 
 /* data_0229fb30 (main bss). */
+/* Entries of the link settings menu (positions in data_02160af0). */
+#define LINK_SETTING_COUNT 5
+
 typedef struct Unk_0229fb30 {
   u8 pad_00[2];
   u8 unk_02; /* Battle_ShowQuote sets it to 1 */
@@ -18,7 +21,7 @@ typedef struct Unk_0229fb30 {
   u32 unk_10; /* frame counter of the battle screen */
   u8 pad_14[0x45a - 0x14];
   u8 unk_45a; /* index into MenuState.combat.players */
-  s8 unk_45b; /* menu entry 0-4 whose help text LinkMenu_DrawHelpText shows */
+  s8 unk_45b; /* menu entry (LINK_SETTING_COUNT) whose help text LinkMenu_DrawHelpText shows */
   u8 pad_45c[0x630 - 0x45c];
   u8 unk_630; /* stage of the two-player link menu, 0-3 */
   u8 unk_631; /* stage 1 button picked (0 or 1); the link player with that number chooses in stage 2 */

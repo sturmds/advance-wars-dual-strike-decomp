@@ -8,7 +8,7 @@ extern Unk_02080440* data_027c027c;
 s8 ScriptSlot_Find(const ScriptCommand* script) {
   u8 i;
 
-  for (i = 0; i < 30; i++) {
+  for (i = 0; i < SCRIPT_SLOT_COUNT; i++) {
     if (data_027c027c->scriptSlots[i].start == script) {
       return i;
     }

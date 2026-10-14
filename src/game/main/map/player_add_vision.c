@@ -25,7 +25,7 @@ void Player_AddVision(int player) {
   if (STATE->players[player].visionGrids == 0) {
     return;
   }
-  for (i = 0; i < 51; i++) {
+  for (i = 0; i < MAP_UNITS_MAX + 1; i++) {
     Unit_AddVision(&STATE->units[Ov000_gPlayerFirstUnitSlot[player] + i], 1);
   }
   for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {

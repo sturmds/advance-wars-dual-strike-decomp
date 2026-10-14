@@ -18,7 +18,7 @@ extern u8 data_022a6c9e[][27];
  * loaded first (Map_LoadIntoState), since the tiles are read from the loaded
  * state. BattleSetup_LoadFromGame stores the results in the battle setup. */
 void Map_LoadAndCountProperties(int mapId, u8* most, u8* total) {
-  u8 counts[6];
+  u8 counts[ARMY_SLOT_COUNT + 1]; /* per owner slot, then the total */
   int i;
   int x;
   int y;
@@ -30,26 +30,26 @@ void Map_LoadAndCountProperties(int mapId, u8* most, u8* total) {
     return;
   }
   Map_LoadIntoState(mapId);
-  for (i = 0; i < 6; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(counts); i++) {
     counts[i] = 0;
   }
   for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
     for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
       tile = STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]];
       if (Ov000_gUrbanTerrain[tile & 0x1f] != 0) {
-        counts[5]++;
+        counts[ARMY_SLOT_COUNT]++;
         counts[(tile & 0xe0) >> 5]++;
       }
     }
   }
   counts[0] = 0;
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < ARMY_SLOT_COUNT; i++) {
     if (counts[0] < counts[i]) {
       counts[0] = counts[i];
     }
   }
-  *total = counts[5];
-  if (counts[0] < counts[5]) {
+  *total = counts[ARMY_SLOT_COUNT];
+  if (counts[0] < counts[ARMY_SLOT_COUNT]) {
     counts[0]++;
   }
   *most = counts[0];

@@ -20,6 +20,9 @@ extern u8 data_0229c8f8[WIRELESS_SSID_SIZE];
 
 /* Parents a scan keeps, and their link levels. */
 #define WIRELESS_PARENT_COUNT 4
+
+/* Wireless channels, 1 to WIRELESS_CHANNEL_COUNT. */
+#define WIRELESS_CHANNEL_COUNT 14
 extern struct WMBssDesc* gWirelessParents[];
 extern u8 gWirelessParentLinkLevels[WIRELESS_PARENT_COUNT];
 

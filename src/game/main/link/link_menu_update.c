@@ -2,6 +2,7 @@
 #include "game/event_queue.h"
 #include "game/task.h"
 #include "game/Unk_0229fb30.h"
+#include "game/link_buffers.h"
 
 u8* Wireless_GetSharedData(int player);
 void func_0207b48c(void);
@@ -26,7 +27,7 @@ void LinkMenu_Update(Task* task) {
 
   if (func_0207bd94() == 1) {
     msg = Wireless_GetSharedData(0);
-    for (i = 0; i < 4; i++, msg += 2) {
+    for (i = 0; i < LINK_MESSAGE_COUNT; i++, msg += LINK_MESSAGE_SIZE) {
       switch (msg[0]) {
         case 4:
           confirm = 1;

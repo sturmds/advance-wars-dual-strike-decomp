@@ -4,6 +4,7 @@
 #include "game/menu_state.h"
 #include "game/Unk_0229fb30.h"
 #include "game/link_text_sync_task.h"
+#include "game/link_data_sync_task.h"
 
 extern MenuState gMenuState;
 extern DesignMapRecord data_02291774;
@@ -24,7 +25,7 @@ void Task_ResumeScript(Task* task);
 void LinkPickedMapSync_Update(LinkTextSyncTask* task) {
   u8* dest;
   int i;
-  u8 chunk[8];
+  u8 chunk[LINK_SYNC_CHUNK];
   u8* src;
 
   if (!func_0207bd94()) {
@@ -39,14 +40,15 @@ void LinkPickedMapSync_Update(LinkTextSyncTask* task) {
     if (data_0229fb30.unk_631 != func_0207a260()) {
       dest = (u8*)&data_02291774 + task->receivedBytes;
       src = Wireless_GetSharedData(data_0229fb30.unk_631);
-      for (i = task->receivedBytes; i < task->receivedBytes + 8; i++, dest++) {
+      for (i = task->receivedBytes; i < task->receivedBytes + LINK_SYNC_CHUNK;
+           i++, dest++) {
         if (i >= task->sentBytes) {
           break;
         }
         *dest = src[i - task->receivedBytes];
       }
     }
-    task->receivedBytes += 8;
+    task->receivedBytes += LINK_SYNC_CHUNK;
   }
   if (task->sendDone != 0 && task->receivedBytes >= task->sentBytes) {
     task->sentBytes = 0;
@@ -60,14 +62,14 @@ void LinkPickedMapSync_Update(LinkTextSyncTask* task) {
   }
   if (task->started == 0) {
     chunk[0] = 1;
-    for (i = 1; i < 8; i++) {
+    for (i = 1; i < LINK_SYNC_CHUNK; i++) {
       chunk[i] = 0;
     }
     task->started = 1;
   } else if (task->sendDone == 0) {
     if (data_0229fb30.unk_631 == func_0207a260()) {
       src = (u8*)&LINK_MAPS[data_0229fb30.unk_632] + task->sentBytes;
-      for (i = 0; i < 8; i++) {
+      for (i = 0; i < LINK_SYNC_CHUNK; i++) {
         chunk[i] = *src;
         src++;
         task->sentBytes++;
@@ -77,23 +79,23 @@ void LinkPickedMapSync_Update(LinkTextSyncTask* task) {
           break;
         }
       }
-      for (; i < 8; i++) {
+      for (; i < LINK_SYNC_CHUNK; i++) {
         chunk[i] = 0;
       }
     } else {
-      for (i = 0; i < 8; i++) {
+      for (i = 0; i < LINK_SYNC_CHUNK; i++) {
         task->sentBytes++;
         if (task->sentBytes == sizeof(DesignMapRecord)) {
           task->sendDone = 1;
           break;
         }
       }
-      for (i = 0; i < 8; i++) {
+      for (i = 0; i < LINK_SYNC_CHUNK; i++) {
         chunk[i] = 0;
       }
     }
   } else {
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < LINK_SYNC_CHUNK; i++) {
       chunk[i] = 0;
     }
   }

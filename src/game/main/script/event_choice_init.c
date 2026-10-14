@@ -2,6 +2,7 @@
 #include "game/Unk_022977a4.h"
 #include "game/rect.h"
 #include "game/task.h"
+#include "game/event_script.h"
 
 extern u16 gEventTextMap[][32];    /* tile map of the event text window */
 extern Rect gEventChoiceButtons[]; /* touch buttons of the four choices */
@@ -31,7 +32,7 @@ void EventChoice_Init(Task* task) {
   DialogueCursor_Animate();
   /* unk_34 holds a tile pointer here (EventCmd_StartTextMapTask); pos is not used */
   TileMap_GetPixelPos(*(u16**)&task->unk_34, gEventTextMap[0], pos);
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < EVENT_CHOICE_COUNT; i++) {
     EventScript_GetTextWindowRect(
         &gEventChoiceButtons[i]); /* the whole text window */
   }

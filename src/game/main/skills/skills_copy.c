@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/skills.h"
 
 void Skills_Clear(u32* skills);
 
@@ -11,7 +12,7 @@ void Skills_Copy(const u32* src, u32* dest) {
   if (src == NULL) {
     return;
   }
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < SKILL_SET_WORDS; i++) {
     dest[i] = src[i];
   }
 }

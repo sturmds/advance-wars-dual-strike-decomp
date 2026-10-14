@@ -22,13 +22,13 @@ void MovementCost(void) {
   int player; /* needed to match: declared before enemy */
   int enemy;
 
-  for (p = 1; p < 5; p++) {
+  for (p = 1; p < ARMY_SLOT_COUNT; p++) {
     if (Player_IsInGame(p)) {
       UpdatePlayerSkills(p);
     }
   }
 
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (!Player_IsInGame(player)) {
       continue;
     }
@@ -47,7 +47,7 @@ void MovementCost(void) {
 
     /* Each enemy star cut takes 10 off this player's terrain defense value. */
     PLAYERS[player].terrainDefense = 0;
-    for (enemy = 1; enemy < 5; enemy++) {
+    for (enemy = 1; enemy < ARMY_SLOT_COUNT; enemy++) {
       if (Player_IsInGame(enemy) &&
           PLAYERS[player].team != PLAYERS[enemy].team) {
         /* Needed to match: the original reads the CO id with a byte

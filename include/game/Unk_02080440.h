@@ -43,10 +43,15 @@ typedef struct MapTiles {
 
 /* Terrain ids (MAP_TILE_TERRAIN) are in game/terrain.h. */
 
+/* Entries of the site lists Unk_02080440_48.unk_6088 and unk_608c. A list
+ * that is not full ends with MAP_SITE_END (in terrain or tile). */
+#define MAP_SITE_COUNT 92
+#define MAP_SITE_END 0xff
+
 /* Reached through Unk_02080440_48.unk_6088, 6 bytes; indexed by
  * MapTiles.unk_1928. */
 typedef struct Unk_02080440_6088 {
-  u8 terrain; /* property terrain (func_020c4448); 0xff ends the table */
+  u8 terrain; /* property terrain (func_020c4448); MAP_SITE_END ends the table */
   u8 x;
   u8 y;
   u8 claimCount; /* AI units heading for the tile to capture it; cleared at the start of an AI turn */
@@ -203,11 +208,13 @@ typedef struct Unk_02080440_48 {
   u8 twoMaps; /* 1: a two-map battle (see secondMapId) */
   u8 unk_8b;  /* 0-4: picks the title text of the link login screens */
   u8 unk_8c;
-  u8 army[5]; /* army colour per slot, copied from the map header */
+  u8 army
+      [ARMY_SLOT_COUNT]; /* army colour per slot, copied from the map header */
   u8 slotControllers
-      [5]; /* per slot: PLAYER_CONTROLLER_*, set from the game mode and map */
-  u8 playerCos[5][2]; /* front and back CO id per slot; 0: none */
-  u8 team[5];         /* team per slot, copied from the map header */
+      [ARMY_SLOT_COUNT]; /* per slot: PLAYER_CONTROLLER_*, set from the game mode and map */
+  u8 playerCos[ARMY_SLOT_COUNT]
+              [PLAYER_CO_COUNT]; /* front and back CO id per slot; 0: none */
+  u8 team[ARMY_SLOT_COUNT];      /* team per slot, copied from the map header */
   u8 pad_a6[0xaa - 0xa6];
   u16 unk_aa[8];
   u8 coSelectPhase; /* 1 on maps where a player picks a CO; turns off Scout and Eagle Eye, see Map_IsCoSelectPhase */
@@ -236,14 +243,15 @@ typedef struct Unk_02080440_48 {
       [0x508]; /* per tile like MapTiles; bits 0-6: hp of a tile units can attack (pipe seams) */
   MapObject objects[0x1d0]; /* the list ends at the first object with kind 0 */
   MapUnit* units;           /* MAP_UNITS_PER_PLAYER slots per player */
-  Player playerSlots[5];    /* the slots players points to, probably */
-  Player* players;          /* 5 slots: 0 neutral, then players 1-4 */
+  Player
+      playerSlots[ARMY_SLOT_COUNT]; /* the slots players points to, probably */
+  Player* players;                  /* 5 slots: 0 neutral, then players 1-4 */
   u8 tileCodeTerrainBuf[0x5e5c - 0x5a5c]; /* tileCodeTerrain points here */
   u8* tileCodeTerrain; /* per map tile code: bits 0-4 terrain id */
-  Unk_02080440_6088 unk_6088Buf[92]; /* unk_6088 points here */
+  Unk_02080440_6088 unk_6088Buf[MAP_SITE_COUNT]; /* unk_6088 points here */
   Unk_02080440_6088* unk_6088;
   Unk_02080440_608c unk_608c
-      [92]; /* tiles with urban terrain (or terrain 16 in game mode 4), filled by func_020c4448; the list ends at tile 0xff when not full */
+      [MAP_SITE_COUNT]; /* tiles with urban terrain (or terrain 16 in game mode 4), filled by func_020c4448; the list ends at tile MAP_SITE_END when not full */
   Combatant combatants[2]; /* attacker, defender */
 } Unk_02080440_48;
 
@@ -253,7 +261,7 @@ typedef struct Unk_02080440_5c {
   u8 rainChance;
   u8 snowChance;
   u8 weatherDays
-      [5]; /* per player slot: days the current weather lasts; set by Weather_SetDays */
+      [ARMY_SLOT_COUNT]; /* per player slot: days the current weather lasts; set by Weather_SetDays */
   u8 unk_08; /* the struct is 9 bytes: battle saves copy it bytewise (BattleSaveMap.unk_e34) */
 } Unk_02080440_5c;
 

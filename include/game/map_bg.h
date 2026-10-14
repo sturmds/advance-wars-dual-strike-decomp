@@ -3,6 +3,14 @@
 
 #include "types.h"
 
+/* Map tiles (16x16 pixels) the screen shows, 256 / 16 by 192 / 16. A
+ * redraw covers one more column and row, for a view between tiles. */
+#define MAP_VIEW_COLUMNS 16
+#define MAP_VIEW_ROWS 12
+
+/* gOwnerCellCodes, rows of owner variants of a map cell, ends with this. */
+#define OWNER_CELL_END 0xffff
+
 /* BG tile map entries: bits 0-9 character, 10-11 flips, 12-15 palette. */
 #define BG_TILE_CHAR_AND_FLIP 0xfff
 #define BG_TILE_HFLIP 0x400

@@ -26,13 +26,13 @@ void ForceRank_SaveSets(int mode) {
       saved = ForceRank_GetSavedSet(mode, co, set);
       if (saved != NULL) {
         n = zero;
-        for (skill = n; skill < 128; skill++) {
+        for (skill = n; skill < SKILL_ID_COUNT; skill++) {
           if (CheckSkillsEquipped(gCoEquippedSkills[co][set], skill)) {
             saved[n] = skill;
             n++;
           }
         }
-        if (n < 4) {
+        if (n < SKILL_LIST_LENGTH) {
           saved[n] = 0;
         }
       }

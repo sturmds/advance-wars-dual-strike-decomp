@@ -59,7 +59,7 @@ void LinkMenu_InitTwoPlayerScreen(Task* task) {
   u8* file;
   int i;
 
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < LINK_DESIGN_MAPS_PER_PLAYER; i++) {
     DesignMap_LoadFromSlot((u8)i,
                            &LINK_MAPS[i]); /* needed to match: the cast */
   }
@@ -92,7 +92,7 @@ void LinkMenu_InitTwoPlayerScreen(Task* task) {
   Data_Unpack(file + 0x4d4, data_027c0280->layer2Map);
   Palette_Load(file + 0x6cc, 0x20, 0x20);
   Mem_Free(file);
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer2Map[i] += 0x1000;
   }
   Gfx_RequestLayerCopy(2);
@@ -124,7 +124,7 @@ void LinkMenu_InitTwoPlayerScreen(Task* task) {
   data_0229fb30.unk_631 = 0;
   data_0229fb30.unk_632 = 0;
   data_0229fb30.unk_633 = 0;
-  for (i = 0; i < 2; i++) {
+  for (i = 0; i < LINK_MENU_PLAYER_COUNT; i++) {
     ((u8*)&gMenuState + i)[LINK_PICKED_OFFSET] = 0;
   }
   EventQueue_Reset();

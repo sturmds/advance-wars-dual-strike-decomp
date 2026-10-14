@@ -40,7 +40,7 @@ void MapBg_DrawTileRow(int startCol, int row, int tileX, int tileY) {
   overhang = data_027c0280->layer2Map + (row & 15) * 64;
   col = startCol & 31;
   nextY = tileY + 1;
-  for (i = 0; i < 17; i++) {
+  for (i = 0; i < MAP_VIEW_COLUMNS + 1; i++) {
     at = data_02169eb8[col];
     if ((tileX + i) >= 0 && (tileX + i) < STATE->unk_1c4->mapWidth &&
         tileY >= 0 && tileY < STATE->unk_1c4->mapHeight) {

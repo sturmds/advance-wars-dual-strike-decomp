@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/map_bg.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
@@ -14,7 +15,7 @@ void MapView_DrawRangeRow(int bufX, int bufY, s16 mapX, s16 mapY) {
   u16 i;
 
   if (GAME->unk_1c4->mapHeight - mapY > 12) {
-    for (i = 0; i < 17; i++) {
+    for (i = 0; i < MAP_VIEW_COLUMNS + 1; i++) {
       MapView_DrawRangeTile(mapX + i, mapY);
     }
   }

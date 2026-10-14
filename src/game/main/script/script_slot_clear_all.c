@@ -8,7 +8,7 @@ extern Unk_02080440* data_027c027c;
 void ScriptSlot_ClearAll(void) {
   u8 i;
 
-  for (i = 0; i < 30; i++) {
+  for (i = 0; i < SCRIPT_SLOT_COUNT; i++) {
     data_027c027c->scriptSlots[i].start = NULL;
   }
   *data_027c027c->unk_40 = 0;

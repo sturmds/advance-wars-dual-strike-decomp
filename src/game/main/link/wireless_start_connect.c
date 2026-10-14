@@ -2,6 +2,7 @@
 #include "game/wireless.h"
 #include "game/Unk_0215fe84.h"
 #include "sdk/wm.h"
+#include "game/link_buffers.h"
 
 extern WMBssDesc* data_0229c888;
 
@@ -17,7 +18,7 @@ int Wireless_RequestJoinParent(void (*callback)(void* event), WMBssDesc* parent,
 BOOL Wireless_StartConnect(void) {
   int aid;
 
-  for (aid = 0; aid < 8; aid++) {
+  for (aid = 0; aid < LINK_AID_COUNT; aid++) {
     Wireless_ClearPlayerName(aid);
   }
   Wireless_SetPlayerName(0, data_0229c888->gameInfo.userGameInfo);
