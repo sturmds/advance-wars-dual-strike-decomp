@@ -5,10 +5,10 @@
     release_cache.py begin | record
     release_cache.py test SCRIPT...
 
-hooks/pre-commit runs `make release` on every commit, and land_self.py runs
-it again on the tree its last replayed commit already checked, so a landing
-of N commits used to cost N+2 releases. This tool remembers the trees that
-passed.
+hooks/pre-commit runs `make release` on every commit (but those that
+land_self.py replays), and land_self.py runs it on the final tree of a
+landing, which the agent's last commit often checked already. This tool
+remembers the trees that passed.
 
 The key of a tree: `git write-tree` of the index with PROGRESS.md and
 PROGRESS.json left out (only the build writes them). make release builds the

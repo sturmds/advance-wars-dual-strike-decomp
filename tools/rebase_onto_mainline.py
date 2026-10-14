@@ -14,9 +14,13 @@ to merge.
 It takes the commits from the merge base with mainline to HEAD, replays
 each with tools/apply_commit.py (so headers and config merge by meaning)
 on a temporary branch started at mainline, then moves this branch there.
-Each replayed commit runs the hooks, so `make release` must pass.
+Each replayed commit runs the hooks, so `make release` must pass. Inside a
+landing (land_self.py starts the replay with LAND_SELF_REPLAY=1) the hooks
+run only their cheap checks, and land_self.py runs one `make release` on the
+final tree. The state file records which kind of replay it is, so
+--continue of a landing's replay commits the same way.
 
-When a replay stops (a conflict, or a failed `make release`), the changes
+When a replay stops (a conflict, or a failed hook), the changes
 are staged. Fix them, `git add` the files, and run it with --continue.
 PROGRESS.md and PROGRESS.json are never committed here: mainline writes
 them when the commit lands.
@@ -73,6 +77,15 @@ def lock_worktree():
     return f
 
 
+def child_env(state: dict) -> dict:
+    """The environment for the commits: LAND_SELF_REPLAY=1 only in a
+    landing's replay, so their hooks leave make release to land_self.py."""
+    env = {k: v for k, v in os.environ.items() if k != "LAND_SELF_REPLAY"}
+    if state.get("landing"):
+        env["LAND_SELF_REPLAY"] = "1"
+    return env
+
+
 def save(state: dict) -> None:
     STATE.write_text(json.dumps(state, indent=1))
 
@@ -103,7 +116,8 @@ def start() -> int:
     head = git("rev-parse", "HEAD")
     temp = f"{branch}-rebase"
     git("switch", "-q", "-C", temp, mainline)
-    state = {"branch": branch, "temp": temp, "orig": head, "todo": commits, "done": []}
+    landing = os.environ.get("LAND_SELF_REPLAY") == "1"
+    state = {"branch": branch, "temp": temp, "orig": head, "todo": commits, "done": [], "landing": landing}
     save(state)
     print(f"replaying {len(commits)} commit(s) of {branch} onto mainline {mainline[:10]}")
     return replay(state)
@@ -112,7 +126,8 @@ def start() -> int:
 def replay(state: dict) -> int:
     while state["todo"]:
         commit = state["todo"][0]
-        r = subprocess.run([sys.executable, str(Path(__file__).resolve().parent / "apply_commit.py"), commit], cwd=ROOT)
+        r = subprocess.run([sys.executable, str(Path(__file__).resolve().parent / "apply_commit.py"), commit], cwd=ROOT,
+                           env=child_env(state))
         if r.returncode:
             stop(commit)
             return 1
@@ -149,7 +164,7 @@ def resume() -> int:
     git("checkout", "-q", "HEAD", "--", "PROGRESS.md", "PROGRESS.json", check=False)
     git("add", "-A", "config", "src", "include")
     if git("status", "--porcelain", "--untracked-files=no"):
-        r = subprocess.run(["git", "commit", "-q", "-C", commit], cwd=ROOT)
+        r = subprocess.run(["git", "commit", "-q", "-C", commit], cwd=ROOT, env=child_env(state))
         if r.returncode:
             stop(commit)
             return 1

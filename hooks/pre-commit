@@ -8,6 +8,11 @@
 #    worktree of it (tools/release_cache.py: the working tree must equal
 #    the index, with no untracked files; PROGRESS.* do not count).
 #    RELEASE_CACHE=off runs it in full.
+#    Inside a landing (LAND_SELF_REPLAY=1, set only by land_self.py for the
+#    replay it starts and by rebase_onto_mainline.py --continue of that
+#    replay; only in a linked worktree) it stops after step 1:
+#    land_self.py runs one make release on the final tree instead of one
+#    per replayed commit.
 # 3. Rewrite PROGRESS.md from the decomp.dev report that make release just
 #    wrote, copy the report to PROGRESS.json, and stage both, so they go into
 #    this commit. .github/workflows/decomp-dev.yml uploads PROGRESS.json. Not in
@@ -28,7 +33,17 @@ if [ -n "$bad" ]; then
     exit 1
 fi
 
-if [ "$(git rev-parse --path-format=absolute --git-dir)" = "$(git rev-parse --path-format=absolute --git-common-dir)" ]; then
+linked=
+if [ "$(git rev-parse --path-format=absolute --git-dir)" != "$(git rev-parse --path-format=absolute --git-common-dir)" ]; then
+    linked=1
+fi
+
+if [ "${LAND_SELF_REPLAY:-}" = 1 ] && [ -n "$linked" ]; then
+    echo "pre-commit: replayed inside a landing; land_self.py runs make release on the final tree"
+    exit 0
+fi
+
+if [ -z "$linked" ]; then
     # --report: a skipped release still leaves the decomp.dev report of this tree.
     python3 tools/release_cache.py release --report --label pre-commit
     python3 tools/progress.py --write PROGRESS.md

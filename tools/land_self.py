@@ -10,13 +10,19 @@ each agent lands its own branch:
 0. Wait for its turn in the landing queue (<git common dir>/land-queue.lock),
    so landings run one at a time and a waiting run uses no CPU. While it
    waits it prints who holds the queue. It keeps its turn through step 4.
-1. Replay the branch onto the current mainline (tools/rebase_onto_mainline.py).
+1. Replay the branch onto the current mainline (tools/rebase_onto_mainline.py),
+   with LAND_SELF_REPLAY=1: the hook of each replayed commit runs only its
+   cheap checks (timezone, forbidden paths), not `make release`.
    If that stops, the run leaves the queue. Fix the files, run
-   `rebase_onto_mainline.py --continue`, then run this again.
-2. Run `make release`, unless this tree has already passed it (usually in
-   the hook of the last replayed commit; tools/release_cache.py, which also
-   makes sure the decomp.dev report is for this tree). RELEASE_CACHE=off
-   runs it in full.
+   `rebase_onto_mainline.py --continue` (it commits the same way), then run
+   this again.
+2. Run one `make release` on the final tree, unless this tree has already
+   passed it (tools/release_cache.py, which also makes sure the decomp.dev
+   report is for this tree). RELEASE_CACHE=off runs it in full. So on
+   mainline the tree at the end of each landing passes `make release`; the
+   commits in between passed only the cheap checks. If it fails, nothing
+   lands (exit 2) and the message lists the replayed commits and how to
+   bisect them.
 3. Write PROGRESS.md and PROGRESS.json for the rebased tree and amend them
    into the branch's last commit, so mainline's copies stay current. This is the only amend
    in the loop.
@@ -105,9 +111,14 @@ def tool_texts() -> list[bytes | None]:
 STARTED_WITH = tool_texts()
 
 
-def run(*cmd) -> int:
+def run(*cmd, replay: bool = False) -> int:
     # The replay started here sees that this run holds the worktree lock.
-    return subprocess.run(list(cmd), cwd=ROOT, env={**os.environ, "LAND_SELF_LOCK_HELD": "1"}).returncode
+    # Only the replay's commits skip make release in their hooks.
+    env = {k: v for k, v in os.environ.items() if k != "LAND_SELF_REPLAY"}
+    env["LAND_SELF_LOCK_HELD"] = "1"
+    if replay:
+        env["LAND_SELF_REPLAY"] = "1"
+    return subprocess.run(list(cmd), cwd=ROOT, env=env).returncode
 
 
 def lock_worktree():
@@ -163,9 +174,23 @@ def rebase() -> tuple[int | None, str]:
         print("a rebase is under way: finish it with rebase_onto_mainline.py --continue, then rerun this")
         return CONFLICT, ""
     onto = git("rev-parse", "refs/heads/mainline")
-    if run(sys.executable, "tools/rebase_onto_mainline.py", "--onto", onto):
+    if run(sys.executable, "tools/rebase_onto_mainline.py", "--onto", onto, replay=True):
         return CONFLICT, onto
     return None, onto
+
+
+def release_failed(onto: str) -> None:
+    """Step 2 failed: name the replayed commits, whose hooks did not run make release."""
+    commits = git("log", "--reverse", "--format=    %h %s", f"{onto}..HEAD").splitlines()
+    msg = (f"error: make release failed on the final tree; nothing landed. The replay checked\n"
+           f"these {len(commits)} commit(s) only with the cheap hook checks:\n" + "\n".join(commits))
+    if len(commits) > 1:
+        msg += ("\nTo find the first commit that fails (about 100 s per step):\n"
+                f"    git bisect start HEAD {onto[:10]}\n"
+                "    git bisect run make release\n"
+                "    git bisect reset")
+    msg += "\nFix it in a new commit on this branch, then run land_self.py again."
+    print(msg, file=sys.stderr)
 
 
 def write_progress() -> int | None:
@@ -324,6 +349,7 @@ def main() -> int:
         if unreviewed(show_findings=False):
             return UNREVIEWED
         if run(sys.executable, "tools/release_cache.py", "release", "--report", "--label", "land_self"):
+            release_failed(onto)
             return BUILD_FAILED
         code = write_progress()
         if code is not None:

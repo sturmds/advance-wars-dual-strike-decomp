@@ -22,7 +22,8 @@ from pathlib import Path
 # Git exports GIT_DIR, GIT_INDEX_FILE and others to hooks. Run from a hook,
 # every git command below, and the tools it starts, would go to the
 # repository being committed instead of the throwaway one (issue 0076).
-for _name in [n for n in os.environ if n.startswith("GIT_") and n != "GIT_EDITOR"]:
+for _name in [n for n in os.environ if n.startswith("GIT_") and n != "GIT_EDITOR"
+              or n in ("LAND_SELF_REPLAY", "LAND_SELF_LOCK_HELD", "LAND_QUEUE_FD", "RELEASE_CACHE")]:
     del os.environ[_name]
 
 TOOLS = Path(__file__).resolve().parent.parent
@@ -947,6 +948,141 @@ class LandQueueTest(RepoCase):
         self.assertEqual(self.log.read_text().split(), ["start", "end", "start", "end"])
         self.assertEqual(self.repo.git("log", "--format=%s", "-3", "mainline").splitlines(),
                          ["Add b", "Add a", "base"])
+
+
+class LandBatchTest(RepoCase):
+    """2026-10-14: each replayed commit ran make release in its hook, so a
+    landing of N commits onto a moved mainline cost N releases. The replay's
+    hooks now run only the cheap checks, and land_self.py runs one release
+    on the final tree. The throwaway repo uses this checkout's pre-commit
+    hook and a stub make release that logs each run."""
+
+    MAKEFILE = (
+        "release:\n"
+        "\t@python3 tools/release_cache.py begin\n"
+        "\t@echo release >> {log}\n"
+        # a.txt (mainline) and b.txt (the agent) build alone but not together.
+        "\t@test ! -e a.txt -o ! -e b.txt\n"
+        "\t@$(MAKE) --no-print-directory decomp-dev-report\n"
+        "\t@python3 tools/release_cache.py record\n\n"
+        "decomp-dev-report:\n"
+        "\t@mkdir -p build/artifacts/AWRE_report && ls *.txt > build/artifacts/AWRE_report/report.json\n")
+    PROGRESS = ('import shutil\nfor p in ("PROGRESS.md", "PROGRESS.json"):\n'
+                '    shutil.copy("build/artifacts/AWRE_report/report.json", p)\n')
+
+    def setUp(self):
+        super().setUp()
+        self.env = {**os.environ, "GIT_CONFIG_GLOBAL": os.devnull, "GIT_CONFIG_NOSYSTEM": "1", "TZ": "UTC"}
+        for k in ("MAKEFLAGS", "MFLAGS", "MAKELEVEL"):
+            self.env.pop(k, None)
+        self.log_file = Path(self.tmp.name) / "release.log"
+        files = {f"tools/{t}": (TOOLS / t).read_text() for t in LandSelfReexecTest.TOOL_FILES}
+        files["tools/progress.py"] = self.PROGRESS
+        files["Makefile"] = self.MAKEFILE.format(log=self.log_file)
+        files["hooks/pre-commit"] = (TOOLS.parent / "hooks/pre-commit").read_text()
+        # The log and the worktree are inside the repo's directory.
+        files[".gitignore"] = "build/\n__pycache__/\nrelease.log\nwt/\n"
+        for rel, text in files.items():
+            self.repo.write(rel, text)
+        (self.repo.path / "hooks/pre-commit").chmod(0o755)
+        self.repo.commit({}, "base")
+        self.repo.git("config", "core.hooksPath", "hooks")
+        self.wt = Path(self.tmp.name) / "wt"
+        self.repo.git("worktree", "add", "-q", "-b", "agent", str(self.wt))
+
+    def commit(self, cwd: Path, name: str, env: dict | None = None) -> str:
+        """Add name.txt in cwd and commit it with the hooks; return their output."""
+        (cwd / f"{name}.txt").write_text(f"{name}\n")
+        self.repo.git("-C", str(cwd), "add", f"{name}.txt")
+        r = subprocess.run(["git", "commit", "-q", "-m", f"Add {name}"], cwd=cwd, capture_output=True,
+                           text=True, env={**self.env, **(env or {})})
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        return r.stdout + r.stderr
+
+    def releases(self) -> int:
+        """make release runs since the last call."""
+        n = len(self.log_file.read_text().split()) if self.log_file.exists() else 0
+        self.log_file.unlink(missing_ok=True)
+        return n
+
+    def land(self) -> subprocess.CompletedProcess:
+        return subprocess.run([sys.executable, "tools/land_self.py"], cwd=self.wt, capture_output=True,
+                              text=True, env=self.env)
+
+    def test_replay_runs_release_once(self):
+        for name in ("c", "d", "e"):
+            self.commit(self.wt, name)
+        self.commit(self.repo.path, "m")
+        self.assertEqual(self.releases(), 4)  # a plain commit runs it, in a worktree or not
+        r = self.land()
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertEqual(self.releases(), 1)
+        self.assertEqual((r.stdout + r.stderr).count("replayed inside a landing"), 3)
+        self.assertEqual(self.repo.git("log", "--format=%s", "-5", "mainline").splitlines(),
+                         ["Add e", "Add d", "Add c", "Add m", "base"])
+
+    def test_plain_commit_runs_release(self):
+        """Outside a landing's replay, or in the main checkout, the hook runs make release."""
+        self.commit(self.wt, "c")
+        self.assertEqual(self.releases(), 1)
+        out = self.commit(self.repo.path, "m", env={"LAND_SELF_REPLAY": "1"})
+        self.assertNotIn("replayed inside a landing", out)
+        self.assertEqual(self.releases(), 1)
+
+    def test_failing_release_does_not_land(self):
+        self.commit(self.wt, "b")
+        self.commit(self.wt, "c")
+        self.commit(self.repo.path, "a")
+        before = self.repo.git("rev-parse", "mainline")
+        self.releases()
+        r = self.land()
+        self.assertEqual(r.returncode, 2, r.stdout + r.stderr)
+        self.assertEqual(self.repo.git("rev-parse", "mainline"), before)
+        self.assertEqual(self.releases(), 1)
+        self.assertIn("make release failed on the final tree; nothing landed", r.stderr)
+        self.assertIn("Add b", r.stderr)
+        self.assertIn("Add c", r.stderr)
+        self.assertIn(f"git bisect start HEAD {before[:10]}", r.stderr)
+        self.assertIn("git bisect run make release", r.stderr)
+
+    def test_unmoved_mainline_hits_the_cache(self):
+        """The branch's own commits passed make release on its final tree, so
+        a landing onto the same mainline runs none."""
+        self.commit(self.wt, "c")
+        self.commit(self.wt, "d")
+        self.releases()
+        r = self.land()
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertEqual(self.releases(), 0)
+        self.assertIn("already passed make release; skipping it", r.stdout + r.stderr)
+        self.assertEqual(self.repo.git("log", "--format=%s", "-1", "mainline"), "Add d")
+
+    def test_continue_keeps_the_kind_of_replay(self):
+        """rebase_onto_mainline.py records whether a landing started the
+        replay, and --continue commits the same way."""
+        rebase = [sys.executable, "tools/rebase_onto_mainline.py"]
+        env = {k: v for k, v in self.env.items() if k != "LAND_SELF_REPLAY"}
+        state = Path(self.repo.git("-C", str(self.wt), "rev-parse", "--path-format=absolute",
+                                   "--git-path", "rebase-onto-mainline.json"))
+        for landing in (True, False):
+            with self.subTest(landing=landing):
+                self.repo.git("-C", str(self.wt), "reset", "-q", "--hard", "mainline")
+                (self.wt / "s.txt").write_text(f"agent {landing}\n")
+                self.repo.git("-C", str(self.wt), "add", "s.txt")
+                self.commit(self.wt, "x")
+                (self.repo.path / "s.txt").write_text(f"mainline {landing}\n")
+                self.repo.git("add", "s.txt")
+                self.commit(self.repo.path, "y" if landing else "z")
+                self.releases()
+                start_env = {**env, "LAND_SELF_REPLAY": "1"} if landing else env
+                r = subprocess.run(rebase, cwd=self.wt, capture_output=True, text=True, env=start_env)
+                self.assertEqual(r.returncode, 1, r.stdout + r.stderr)  # s.txt conflicts
+                self.assertTrue(state.exists())
+                (self.wt / "s.txt").write_text("both\n")
+                self.repo.git("-C", str(self.wt), "add", "s.txt")
+                r = subprocess.run([*rebase, "--continue"], cwd=self.wt, capture_output=True, text=True, env=env)
+                self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+                self.assertEqual(self.releases(), 0 if landing else 1)
 
 
 sys.path.insert(0, str(TOOLS))

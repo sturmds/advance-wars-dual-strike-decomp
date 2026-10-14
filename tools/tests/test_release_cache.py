@@ -21,7 +21,7 @@ from pathlib import Path
 # MAKEFLAGS. Run from a hook, the git commands below would go to the
 # repository being committed (issue 0076).
 for _name in [n for n in os.environ if n.startswith("GIT_") and n != "GIT_EDITOR"
-              or n in ("MAKEFLAGS", "MFLAGS", "MAKELEVEL", "RELEASE_CACHE")]:
+              or n in ("MAKEFLAGS", "MFLAGS", "MAKELEVEL", "RELEASE_CACHE", "LAND_SELF_REPLAY")]:
     del os.environ[_name]
 
 TOOLS = Path(__file__).resolve().parent.parent
