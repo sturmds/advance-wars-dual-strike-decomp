@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/co_data.h"
 
 void Co_LoadArmyGraphics(int coId, int tile, int army);
 void Co_LoadArmyPalette(int coId, int paletteSlot, int army);
@@ -11,7 +12,7 @@ extern u32 gLinkPlay;
  * means army 0. */
 void Co_LoadArmyGraphicsAndPalette(int coId, int tile, int paletteSlot,
                                    int army) {
-  if (gLinkPlay == 0 || (coId & 0x80)) {
+  if (gLinkPlay == 0 || (coId & CO_CLONE)) {
     army = 0;
   }
   Co_LoadArmyGraphics(coId, tile, army);

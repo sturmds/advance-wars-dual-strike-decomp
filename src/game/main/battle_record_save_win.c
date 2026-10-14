@@ -5,6 +5,7 @@
 #include "game/play_records.h"
 #include "game/survival_record.h"
 #include "game/war_room_records.h"
+#include "game/co_data.h"
 
 int Campaign_IsHardMode(void);
 s32 HwDiv32(s32 num, s32 den);
@@ -20,8 +21,8 @@ extern WarRoomRecord gCampaignBestRecords[][2];
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 /* CO ids of the winning slot's result row. */
-#define FRONT_CO(slot) (data_022a7ab8[slot].unk_00 & 0x7f)
-#define BACK_CO(slot) (data_022a7aba[slot].unk_00 & 0x7f)
+#define FRONT_CO(slot) (data_022a7ab8[slot].unk_00 & CO_ID_MASK)
+#define BACK_CO(slot) (data_022a7aba[slot].unk_00 & CO_ID_MASK)
 #define WAR_ROOM_RECORD(map, place) (gWarRoomRecords[STATE->unk_59][map][place])
 #define CAMPAIGN_RECORD(map) \
   (gCampaignBestRecords[(map) - CAMPAIGN_FIRST_MAP][Campaign_IsHardMode()])

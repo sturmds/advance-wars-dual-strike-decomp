@@ -5,9 +5,9 @@ int Co_GetSavedPictureVariant(
     int coId); /* bit 30 of the CO's saved record: alternate picture */
 
 /* Picture variant to show for a CO: the stored one for a playable CO,
- * 0 when bit 7 of coId is set or the id is out of range. */
+ * 0 when coId is a clone (CO_CLONE) or the id is out of range. */
 int Co_GetPictureVariant(int coId) {
-  if (coId & 0x80) {
+  if (coId & CO_CLONE) {
     return 0;
   }
   coId &= 0x7f;

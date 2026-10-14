@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/co_data.h"
 
 void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
@@ -15,16 +16,16 @@ extern const char* const data_02152b60[][7][3];
 /* Unpacks a CO picture from /syogun to dest and loads its palette into
  * paletteSlot. Bits 0-6 of coMood are the CO id, bits 8-9 the mood (which of
  * 3 pictures). The army picks the palette variant; it is ignored (0) unless
- * gLinkPlay is set, and when bit 7 is set. */
+ * gLinkPlay is set, and for a clone (CO_CLONE). */
 void Co_LoadMoodPicture(int coMood, void* dest, int paletteSlot, int army) {
   int variant;
 
-  if (gLinkPlay == 0 || (coMood & 0x80)) {
+  if (gLinkPlay == 0 || (coMood & CO_CLONE)) {
     army = 0;
   }
   FS_ChangeDir(data_02151e44);
   variant = Co_GetArmyPictureVariant(coMood, army);
-  File_UnpackTo(dest,
-                data_02152b60[coMood & 0x7f][variant][(coMood & 0x300) >> 8]);
+  File_UnpackTo(
+      dest, data_02152b60[coMood & CO_ID_MASK][variant][(coMood & 0x300) >> 8]);
   Co_LoadArmyPalette(coMood, paletteSlot, army);
 }

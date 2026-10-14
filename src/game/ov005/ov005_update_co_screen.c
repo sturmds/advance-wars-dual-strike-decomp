@@ -4,6 +4,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov005_0236bba8.h"
+#include "game/co_data.h"
 
 void Screen_SetCurrent(void* state);
 void Screen_SetCurrentGfx(void* state);
@@ -251,8 +252,8 @@ void Ov005_UpdateCoScreen(Ov005Task* task) {
         work->paletteConfirmTouched = 0;
         if (work->variant == CO_PICTURE_SWAP_VARIANT) {
           Co_SetPictureVariant(
-              work->coId & 0x7f,
-              (Co_GetPictureVariant(work->coId & 0x7f) + 1) & 1);
+              work->coId & CO_ID_MASK,
+              (Co_GetPictureVariant(work->coId & CO_ID_MASK) + 1) & 1);
           saved0280 = data_027c0280;
           Screen_SetCurrentGfx(data_027c0288.unk_04);
           saved027c = data_027c027c;

@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/co_graphics.h"
+#include "game/co_data.h"
 
 int Co_GetPictureVariant(int coId);
 void TransferQueue_Add(
@@ -16,6 +17,6 @@ extern const void* const data_02152b78[][sizeof(CoGraphics) / sizeof(void*)];
 void Co_QueueSmallPicture(int coId, void* dest, int paletteSlot) {
   int variant = Co_GetPictureVariant(coId);
 
-  TransferQueue_Add(data_02152b78[coId & 0x7f][variant], dest, 0x180);
+  TransferQueue_Add(data_02152b78[coId & CO_ID_MASK][variant], dest, 0x180);
   Co_LoadPalette(coId, paletteSlot);
 }

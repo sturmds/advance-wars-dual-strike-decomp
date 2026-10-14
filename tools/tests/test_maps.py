@@ -11,6 +11,9 @@
   address, a module that has no symbol there, and a word of another form
   stay as written, so the link names them.
 - c_scalar: the pointer field's C uses the current name and declares it.
+- enum_expressions: an enum constant written as `A | B` or `A + 1` gets its
+  value (CO_CLONE_DRAKE = CO_CLONE | CO_DRAKE), and value 138 reads back as
+  its name.
 
 Builds a stand-in config/AWRE/arm9/ in a temporary directory, so no ROM or
 build is needed.
@@ -56,6 +59,17 @@ with tempfile.TemporaryDirectory() as tmp:
     expect("c_scalar", maps.c_scalar("data_ov001_02353ba8", "MapScript *", "test", externs),
            "(void *)Ov001_gMapScript_0e0")
     expect("c_scalar_extern", externs, {"Ov001_gMapScript_0e0"})
+
+with tempfile.TemporaryDirectory() as tmp:
+    root = Path(tmp)
+    (root / maps.INCLUDE / "game").mkdir(parents=True)
+    (root / maps.INCLUDE / "game/co.h").write_text(
+        "enum CoId {\n  CO_NONE,\n  CO_DRAKE = 10,\n  CO_COUNT,\n  CO_PICKS = CO_COUNT, /* note */\n"
+        "  CO_CLONE = 0x80,\n  CO_CLONE_DRAKE = CO_CLONE | CO_DRAKE,\n  CO_NEXT = CO_DRAKE + 2\n};\n")
+    maps.ROOT = root
+    values = maps.enum_values("game/co.h", "CoId")
+    expect("enum_expressions", (values["CO_PICKS"], values["CO_CLONE_DRAKE"], values["CO_NEXT"]), (11, 138, 12))
+    expect("enum_names", maps.enum_names("game/co.h", "CoId")[138], "CO_CLONE_DRAKE")
 
 if failures:
     print(f"test_maps: {len(failures)} failed: {', '.join(failures)}")

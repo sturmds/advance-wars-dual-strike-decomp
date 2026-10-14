@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/co_data.h"
 
 void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
@@ -19,10 +20,10 @@ void Co_QueueArmyMediumPicture(int coId, void* dest, int paletteSlot,
                                int army) {
   void* buffer;
 
-  if (gLinkPlay == 0 || (coId & 0x80)) {
+  if (gLinkPlay == 0 || (coId & CO_CLONE)) {
     army = 0;
   }
-  if ((coId & 0x7f) == 0) {
+  if ((coId & CO_ID_MASK) == 0) {
     Mem_Zero32(0, dest, 0x240);
     return;
   }

@@ -1,10 +1,11 @@
 #include "types.h"
 #include "game/Unk_ov005_0236bba8.h"
+#include "game/co_data.h"
 
 int Co_GetSavedPaletteVariant(int coId);
 
 void Ov005_ReadCoPaletteVariant(Unk_ov005_0236bba8* work) {
-  work->prevVariant = Co_GetSavedPaletteVariant(work->coId & 0x7f);
+  work->prevVariant = Co_GetSavedPaletteVariant(work->coId & CO_ID_MASK);
   work->variant = work->prevVariant;
   if (work->variant != 8) {
     work->row0Variant = work->variant;

@@ -1,9 +1,10 @@
 #include "types.h"
 #include "game/play_records.h"
+#include "game/co_data.h"
 
-/* Saves experience for CO `co`, at most 100000. Ids with bit 7 set have none. */
+/* Saves experience for CO `co`, at most 100000. Clones (CO_CLONE) have none. */
 void Co_SetExperience(u32 co, u32 experience) {
-  if (co & 0x80) {
+  if (co & CO_CLONE) {
     return;
   }
   if (experience >= 100000) {

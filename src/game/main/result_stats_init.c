@@ -6,6 +6,7 @@
  * battle_results_fill.c), so hide the header's one-entry declaration. */
 #define data_022a7a9c data_022a7a9c_entry
 #include "game/Unk_022a7a9c.h"
+#include "game/co_data.h"
 #undef data_022a7a9c
 
 void Screen_SetCurrent(void* state);
@@ -170,7 +171,7 @@ void ResultStats_Init(Task* task) {
     func_0200208c(ROW(i + 1).unk_00,
                   data_027c0280->objVram + ((i * 2 * 12 + 174) << 5),
                   i * 2 + 18, i + 1);
-    Co_UnpackPicture(ROW(i + 1).unk_00 & 0x7f, i * 2 * 12 + 0x10e);
+    Co_UnpackPicture(ROW(i + 1).unk_00 & CO_ID_MASK, i * 2 * 12 + 0x10e);
     if (ROW(i + 1).unk_02 & 0x7f) {
       func_0200208c(ROW(i + 1).unk_02,
                     data_027c0280->objVram + (((i * 2 + 1) * 12 + 174) << 5),

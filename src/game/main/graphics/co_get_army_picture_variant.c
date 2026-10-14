@@ -11,10 +11,10 @@ int Co_GetArmyPictureVariantRaw(
 int Co_GetArmyPictureVariant(int coId, int army) {
   int id;
 
-  if (gLinkPlay == 0 || (coId & 0x80)) {
+  if (gLinkPlay == 0 || (coId & CO_CLONE)) {
     army = 0;
   }
-  id = coId & 0x7f;
+  id = coId & CO_ID_MASK;
   if (id >= CO_COUNT) {
     return 0;
   }

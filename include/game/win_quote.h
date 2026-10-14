@@ -4,6 +4,7 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/Unk_022a7a9c.h"
+#include "game/co_data.h"
 
 /* The win quote screen, a task script with its steps at 0x0215a0bc-0x0215a0dc:
  * WinQuote_Init loads the COs of result record task->unk_64,
@@ -24,7 +25,7 @@ void Sprite_QueueDefaultTile(int x, int y, int attr, int tile, int list);
 /* Draws the CO sprites that WinQuote_Init loaded: the front CO, plus the
  * back CO when the record has a tag partner. */
 static inline void WinQuote_DrawCos(Task* task) {
-  if (data_022a7aba[WIN_QUOTE_RECORD(task)].unk_00 & 0x7f) {
+  if (data_022a7aba[WIN_QUOTE_RECORD(task)].unk_00 & CO_ID_MASK) {
     Sprite_QueueCoPortrait(64, 160, 0x5800, 0x224, 5, FALSE);
     Sprite_QueueCoPortrait(192, 160, 0x6800, 0x3d4, 6, TRUE);
     Sprite_QueueDefaultTile(96, 88, 0x4000, 0x1dc, 6);

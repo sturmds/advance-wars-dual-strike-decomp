@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/co_graphics.h"
 #include "sdk/os.h"
+#include "game/co_data.h"
 
 void* Mem_Alloc(u32 size);
 void Mem_Free(void* ptr);
@@ -18,7 +19,7 @@ extern const u8* const data_02152b78[][sizeof(CoGraphics) / sizeof(void*)];
  * tiles), copied to texOffset, and the CO's palette goes to paletteOffset. */
 void Co_LoadTexture(int coId, u32 texOffset, u32 paletteOffset) {
   u8* image = Mem_Alloc(0x180);
-  int co = coId & 0x7f;
+  int co = coId & CO_ID_MASK;
   const u8* tiles = data_02152b78[co][Co_GetPictureVariant(coId)];
 
   Image4bpp_UntileStrip(tiles, image, 4);

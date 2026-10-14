@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/co_graphics.h"
+#include "game/co_data.h"
 
 extern u32 gLinkPlay;
 
@@ -16,11 +17,11 @@ extern const void* const data_02152b78[][sizeof(CoGraphics) / sizeof(void*)];
  * to dest through TransferQueue_Add, and its palette to paletteSlot. Bit 7 of
  * coId, or gLinkPlay being 0, means army 0. */
 void Co_QueueArmySmallPicture(int coId, void* dest, int paletteSlot, int army) {
-  if (gLinkPlay == 0 || (coId & 0x80)) {
+  if (gLinkPlay == 0 || (coId & CO_CLONE)) {
     army = 0;
   }
   TransferQueue_Add(
-      data_02152b78[coId & 0x7f][Co_GetArmyPictureVariant(coId, army)], dest,
-      0x180);
+      data_02152b78[coId & CO_ID_MASK][Co_GetArmyPictureVariant(coId, army)],
+      dest, 0x180);
   Co_LoadArmyPalette(coId, paletteSlot, army);
 }

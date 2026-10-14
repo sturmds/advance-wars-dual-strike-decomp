@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/co_data.h"
 
 extern u32 gLinkPlay;
 
@@ -9,10 +10,10 @@ int Co_GetArmyPaletteVariantRaw(
     int army, int coId); /* palette variant of this CO in this army's colours */
 
 /* Loads the palette of a CO picture into palette slot paletteSlot, in the
- * colours of an army. Bit 7 of coId uses the plain palette (Co_LoadPalette);
- * gLinkPlay being 0 means army 0. */
+ * colours of an army. A clone (CO_CLONE) uses the plain palette
+ * (Co_LoadPalette); gLinkPlay being 0 means army 0. */
 void Co_LoadArmyPalette(int coId, int paletteSlot, int army) {
-  if (coId & 0x80) {
+  if (coId & CO_CLONE) {
     Co_LoadPalette(coId, paletteSlot);
     return;
   }

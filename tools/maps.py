@@ -177,7 +177,11 @@ def enum_values(header: str, name: str) -> dict[str, int]:
         key, _, expr = item.partition("=")
         key, expr = key.strip(), expr.strip()
         if expr:
-            nxt = values[expr] if expr in values else int(expr, 0)
+            # A number, an earlier constant, or several joined by `|` or `+`.
+            nxt = 0
+            for op, term in re.findall(r"(^|[|+])\s*(\w+)", expr):
+                v = values[term] if term in values else int(term, 0)
+                nxt = nxt | v if op == "|" else nxt + v
         values[key] = nxt
         nxt += 1
     return values

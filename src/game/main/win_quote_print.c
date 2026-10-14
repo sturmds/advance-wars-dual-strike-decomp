@@ -2,6 +2,7 @@
 #include "game/text_printer.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_022a7a9c.h"
+#include "game/co_data.h"
 
 s32 HwMod32(s32 numerator, s32 denominator);
 u32 Rng_Next(void);
@@ -19,23 +20,23 @@ void WinQuote_Print(int record) {
   int pick = HwMod32(Rng_Next(), 2);
   TextPrinter* printer;
 
-  if (data_022a7aba[record].unk_00 & 0x7f) {
+  if (data_022a7aba[record].unk_00 & CO_ID_MASK) {
     printer = Text_PrintByIdOnLayer0(
         1, 13, data_027c0280->layer0Map,
-        Co_GetPairWinQuote(data_022a7ab8[record].unk_00 & 0x7f,
-                           data_022a7aba[record].unk_00 & 0x7f, 0, pick),
+        Co_GetPairWinQuote(data_022a7ab8[record].unk_00 & CO_ID_MASK,
+                           data_022a7aba[record].unk_00 & CO_ID_MASK, 0, pick),
         0, 0x41);
     printer->charDelay = 2;
     printer = Text_PrintByIdOnLayer0(
         1, 18, data_027c0280->layer0Map,
-        Co_GetPairWinQuote(data_022a7ab8[record].unk_00 & 0x7f,
-                           data_022a7aba[record].unk_00 & 0x7f, 1, pick),
+        Co_GetPairWinQuote(data_022a7ab8[record].unk_00 & CO_ID_MASK,
+                           data_022a7aba[record].unk_00 & CO_ID_MASK, 1, pick),
         0, 0x81);
     printer->charDelay = 2;
   } else {
     printer = Text_PrintByIdOnLayer0(
         1, 18, data_027c0280->layer0Map,
-        Co_PickWinQuote(data_022a7ab8[record].unk_00 & 0x7f), 0, 0x41);
+        Co_PickWinQuote(data_022a7ab8[record].unk_00 & CO_ID_MASK), 0, 0x41);
     printer->charDelay = 2;
   }
 }

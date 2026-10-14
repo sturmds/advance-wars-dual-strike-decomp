@@ -3,6 +3,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_022a7a9c.h"
+#include "game/co_data.h"
 
 void Screen_SetCurrent(void* state);
 void Screen_SetCurrentGfx(void* state);
@@ -66,14 +67,16 @@ void WinQuote_Init(Task* task) {
   Co_LoadArmyGraphicsAndPalette(data_022a7ab8[RECORD_INDEX(task)].unk_00, 0x224,
                                 5, RECORD_INDEX(task));
   func_0201e6e8(0, 17, 32, 4);
-  if (data_022a7aba[RECORD_INDEX(task)].unk_00 & 0x7f) {
+  if (data_022a7aba[RECORD_INDEX(task)].unk_00 & CO_ID_MASK) {
     Co_LoadArmyGraphicsAndPalette(data_022a7aba[RECORD_INDEX(task)].unk_00,
                                   0x3d4, 6, RECORD_INDEX(task));
     func_0201e6e8(0, 12, 32, 4);
   }
-  Co_UnpackPicture(data_022a7ab8[RECORD_INDEX(task)].unk_00 & 0x7f, 0x1dc);
-  if (data_022a7aba[RECORD_INDEX(task)].unk_00 & 0x7f) {
-    Co_UnpackPicture(data_022a7aba[RECORD_INDEX(task)].unk_00 & 0x7f, 0x1e8);
+  Co_UnpackPicture(data_022a7ab8[RECORD_INDEX(task)].unk_00 & CO_ID_MASK,
+                   0x1dc);
+  if (data_022a7aba[RECORD_INDEX(task)].unk_00 & CO_ID_MASK) {
+    Co_UnpackPicture(data_022a7aba[RECORD_INDEX(task)].unk_00 & CO_ID_MASK,
+                     0x1e8);
   }
   Palette_LoadObjRow(4);
   data_027c0280->bgScrollX[data_027c0280->layer1Bg] = 0;

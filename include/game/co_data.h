@@ -36,8 +36,21 @@ enum CoId {
   CO_FLAK,
   CO_ADDER,
   CO_COUNT,
-  CO_PLAYER_PICKS = CO_COUNT /* in map headers: the player chooses */
+  CO_PLAYER_PICKS = CO_COUNT, /* in map headers: the player chooses */
+  /* Bit 7 marks a clone: one of Black Hole's copies of a CO, met in the
+   * campaign (Dark Ambition, Pincer Strike, Ring of Fire, Surrounded). The
+   * code masks it off with CO_ID_MASK to index CO tables. A clone has no
+   * experience, picture variant 0 and palette CO_CLONE_PALETTE. */
+  CO_CLONE = 0x80,
+  CO_ID_MASK = 0x7f,
+  CO_CLONE_ANDY = CO_CLONE | CO_ANDY,
+  CO_CLONE_OLAF = CO_CLONE | CO_OLAF,
+  CO_CLONE_KANBEI = CO_CLONE | CO_KANBEI,
+  CO_CLONE_DRAKE = CO_CLONE | CO_DRAKE
 };
+
+/* The palette a clone's pictures use, in place of the saved variant. */
+#define CO_CLONE_PALETTE 7
 
 /* Which power block of a CO record is in effect. */
 enum CoPowerState {

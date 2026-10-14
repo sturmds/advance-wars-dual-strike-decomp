@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/co_graphics.h"
 #include "game/Unk_02088d04.h"
+#include "game/co_data.h"
 
 void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
@@ -16,12 +17,12 @@ extern const CoGraphics data_02152b3c[];
 /* Unpacks a CO picture from /syogun into sprite tile memory, starting at tile
  * `tile` (32 bytes each). Bit 7 of coId, or gLinkPlay being 0, means army 0. */
 void Co_LoadObjPicture(int coId, int tile, int army) {
-  if (gLinkPlay == 0 || (coId & 0x80)) {
+  if (gLinkPlay == 0 || (coId & CO_CLONE)) {
     army = 0;
   }
   FS_ChangeDir(data_02151e44);
   File_UnpackTo(data_027c0280->objVram + tile * 32,
-                ((const CoPictureFiles*)&data_02152b3c[coId & 0x7f])
+                ((const CoPictureFiles*)&data_02152b3c[coId & CO_ID_MASK])
                     [Co_GetArmyPictureVariant(coId, army)]
                         .name);
 }

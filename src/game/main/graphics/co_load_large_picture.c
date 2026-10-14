@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/co_data.h"
 
 void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
@@ -13,7 +14,7 @@ extern const char* const data_02152b48[][7][3];
  * paletteSlot. */
 void Co_LoadLargePicture(int coMood, void* dest, int paletteSlot) {
   FS_ChangeDir(data_02151e44);
-  File_UnpackTo(dest, data_02152b48[coMood & 0x7f][Co_GetPictureVariant(coMood)]
-                                   [(coMood & 0x300) >> 8]);
+  File_UnpackTo(dest, data_02152b48[coMood & CO_ID_MASK][Co_GetPictureVariant(
+                          coMood)][(coMood & 0x300) >> 8]);
   Co_LoadPalette(coMood, paletteSlot);
 }

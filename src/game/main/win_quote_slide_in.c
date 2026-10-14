@@ -2,6 +2,7 @@
 #include "game/task.h"
 #include "game/win_quote.h"
 #include "game/Unk_02088d04.h"
+#include "game/co_data.h"
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task* task);
@@ -22,7 +23,7 @@ void WinQuote_SlideIn(Task* task) {
   slideX = Math_Ease(4, 256, 0, WIN_QUOTE_FRAME(task), SLIDE_FRAMES);
   slideY = Math_Ease(4, 168, 0, WIN_QUOTE_FRAME(task), SLIDE_FRAMES);
 
-  if (data_022a7aba[WIN_QUOTE_RECORD(task)].unk_00 & 0x7f) {
+  if (data_022a7aba[WIN_QUOTE_RECORD(task)].unk_00 & CO_ID_MASK) {
     Sprite_QueueCoPortrait((slideX + 64) & 0x1ff, 160, 0x5800, 0x224, 5, FALSE);
     Sprite_QueueCoPortrait((192 - slideX) & 0x1ff, 160, 0x6800, 0x3d4, 6, TRUE);
     if (slideY + 88 <= 240) {
