@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/os_common.h"
 
-void OS_GetMacAddress(u8* mac);
+void SharedInfo_GetMacAddress(u8* mac);
 
 #define VBLANK_COUNT (*(u32*)0x027ffc3c)
 
@@ -12,7 +12,7 @@ u16 WM_GetDispersionScanPeriod(void) {
   u16 sum;
   int i;
 
-  OS_GetMacAddress(mac);
+  SharedInfo_GetMacAddress(mac);
   sum = i = 0;
   for (; i < MAC_ADDRESS_SIZE; i++) {
     sum += mac[i];
