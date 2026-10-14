@@ -38,8 +38,9 @@ Kinds from the config and the build:
 
   alias     an alias in config/AWRE/aliases.txt whose offset the C type of
             its base does not give: a FIELD that is a byte count (`+0x1000`,
-            a compiler base or a flat table) or ends in one
-            (tools/alias_check.py, which `make release` runs, checks the rest)
+            a flat table) or ends in one. tools/alias_check.py, which
+            `make release` runs, checks the rest, and the `base` aliases
+            (compiler bases) another way
   mixed_u32 a u32 table whose ROM values (extracted/AWRE/data) hold both
             pointers and numbers: a struct written as words
   scan_*    words in data and literal pools that look like addresses and have

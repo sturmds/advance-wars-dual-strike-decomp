@@ -2097,7 +2097,7 @@ def lcf_object_lines(entry: Entry, section: str, symbols: list[Symbol]) -> tuple
 # ---------------------------------------------------------------- aliases.txt
 
 ALIAS_LIST = Path("config/AWRE/aliases.txt")
-ALIAS_LINE = re.compile(r"(\w+) (\w+) = (\w+)\+(0x[0-9a-f]+) (unsorted|hidden|real \S.*)")
+ALIAS_LINE = re.compile(r"(\w+) (\w+) = (\w+)\+(0x[0-9a-f]+) (unsorted|hidden|real \S.*|base(?: .*)?)")
 
 
 @dataclass
@@ -2118,7 +2118,7 @@ def read_alias_list(path: Path | None = None) -> dict[tuple[str, str], Listed]:
         m = ALIAS_LINE.fullmatch(line.strip())
         if not m:
             fail(f"{ALIAS_LIST}:{n}: want `MODULE SYMBOL = BASE+OFFSET GROUP`, GROUP one of unsorted, hidden, "
-                 "real FIELD")
+                 "real FIELD, base")
         if (m[1], m[2]) in out:
             fail(f"{ALIAS_LIST}:{n}: {m[2]} is listed twice")
         out[(m[1], m[2])] = Listed(m[3], int(m[4], 16), m[5])

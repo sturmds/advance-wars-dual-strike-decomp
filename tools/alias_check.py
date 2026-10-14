@@ -20,9 +20,18 @@ error too. So when a struct grows, or a field moves, the check names every
 alias that went wrong (issue 0086, section 4).
 
 An alias counts as computed from C when FIELD has a path and no byte count.
-The others (only a byte count such as a compiler base `+0x1000`, or a path
-plus bytes) are checked for the path part only; `--list` prints them,
-and tools/shift_gaps.py counts them as the `alias` row.
+The others (a path plus bytes, or only a byte count) are checked for the
+path part only; `--list` prints them, and tools/shift_gaps.py counts them
+as the `alias` row.
+
+A `base` alias is an address that mwcc made itself to reach fields past
+the offset range of a load or store (BASE+0x200 for a halfword at 0x2d8):
+no field starts there, and no C names it. Two checks stand in for the
+field: OFFSET lies inside BASE (a probe line adds `sizeof(BASE)`), and a
+literal pool word inside a function holds the address (a `kind:load`
+relocation in relocs.txt from inside a function of symbols.txt). A base
+whose code is rewritten so the compiler no longer makes it fails the
+second check, and the line goes.
 
 Results are kept in build/alias_check.json, keyed by this tool, include/,
 build/gen/, the defining file, its object in build/ and the probe lines, so
@@ -50,8 +59,11 @@ ALIAS_LIST = ROOT / "config/AWRE/aliases.txt"
 CACHE = ROOT / "build/alias_check.json"
 MAPS = ((ROOT / "build/arm9.elf.xMAP", ROOT / "build/objects.txt"),
         (ROOT / "build/arm7/arm7.elf.xMAP", ROOT / "build/arm7/objects.txt"))
-LINE = re.compile(r"(\w+) (\w+) = (\w+)\+(0x[0-9a-f]+) (unsorted|hidden|real (\S+).*)")
+LINE = re.compile(r"(\w+) (\w+) = (\w+)\+(0x[0-9a-f]+) (unsorted|hidden|real (\S+).*|base(?: .*)?)")
 FIELD = re.compile(r"((?:\.?[A-Za-z_]\w*|\[[^\]\s]+\])*)(?:\+(0x[0-9a-fA-F]+|\d+))?")
+CONFIG = ROOT / "config/AWRE"
+SYMBOL = re.compile(r"^(\w+) kind:(\w+)(?:\(([^)]*)\))? addr:(0x[0-9a-f]+)", re.M)
+LOAD = re.compile(r"^from:(0x[0-9a-f]+) kind:load to:(0x[0-9a-f]+) module:(\S+)", re.M)
 MAP_ENTRY = re.compile(r"^\s+[0-9A-F]{8} [0-9A-F]{8} \.[\w.]+\s+(\w+)\t\((\S+)\.o\)", re.M)
 
 
@@ -63,6 +75,7 @@ class Alias:
     offset: int
     line: int
     field: str | None  # None for a group other than `real`
+    base_group: bool = False  # the `base` group
     path: str = ""     # the element and field part of FIELD, as C
     extra: int = 0     # the byte count after it
 
@@ -82,7 +95,7 @@ def read_aliases(path: Path = ALIAS_LIST) -> tuple[list[Alias], list[str]]:
         if not m:
             errors.append(f"{path.name}:{n}: cannot read the line")
             continue
-        a = Alias(m[1], m[2], m[3], int(m[4], 16), n, m[6])
+        a = Alias(m[1], m[2], m[3], int(m[4], 16), n, m[6], m[5].split(" ")[0] == "base")
         if a.field is not None:
             f = FIELD.fullmatch(a.field)
             if not f:
@@ -178,11 +191,13 @@ def elf_relocs(d: bytes) -> dict[str, tuple[str, int]]:
 
 def check_file(src: str, aliases: list[Alias]) -> dict[str, dict]:
     """{alias: {"offset": N} or {"error": text}} for the aliases whose base
-    `src` defines."""
+    `src` defines; a `base` alias gets "size", the size of BASE, too."""
     text = (ROOT / src).read_text(errors="replace") + "\n"
     exprs = [f"(char *)&({a.base}{a.path})" for a in aliases]
     bases = sorted({a.base for a in aliases})
     lines = "".join(probe_line(f"b{k}", f"&{b}") for k, b in enumerate(bases))
+    lines += "".join(probe_line(f"s{k}", f"(char *)&{b} + sizeof({b})") for k, b in enumerate(bases)
+                     if any(a.base_group and a.base == b for a in aliases))
     lines += "".join(probe_line(i, e) for i, e in enumerate(exprs))
     relocs, msg = compile_relocs(src, text + lines)
     out = {}
@@ -199,6 +214,51 @@ def check_file(src: str, aliases: list[Alias]) -> dict[str, dict]:
             out[a.name] = {"error": f"no relocation against {a.base} for {a.base}{a.path}"}
         else:
             out[a.name] = {"offset": got[1] - base[1]}
+            size = relocs.get(f"alias_probe_s{bases.index(a.base)}")
+            if a.base_group and size is not None:
+                out[a.name]["size"] = size[1] - base[1]
+    return out
+
+
+def config_dir(module: str) -> Path:
+    if module == "arm7":
+        return CONFIG / "arm7"
+    if module == "main":
+        return CONFIG / "arm9"
+    if module in ("itcm", "dtcm"):
+        return CONFIG / "arm9" / module
+    return CONFIG / "arm9/overlays" / module
+
+
+def reloc_module(module: str) -> str:
+    """The name relocs.txt gives `module` in its `module:` field."""
+    m = re.fullmatch(r"ov(\d+)", module)
+    return f"overlay({int(m[1])})" if m else module
+
+
+def code_loads(aliases: list[Alias]) -> dict[str, int]:
+    """{alias: literal pool words inside functions that hold its address},
+    from relocs.txt and symbols.txt."""
+    want: dict[tuple[str, int], str] = {}
+    for a in aliases:
+        text = (config_dir(a.module) / "symbols.txt").read_text()
+        m = re.search(rf"^{re.escape(a.name)} kind:\S+ addr:(0x[0-9a-f]+)", text, re.M)
+        if m:
+            want[(reloc_module(a.module), int(m[1], 16))] = a.name
+    out = {name: 0 for name in want.values()}
+    for relocs in sorted(CONFIG.rglob("relocs.txt")):
+        loads = [(int(f, 16), want[(mod, int(t, 16))]) for f, t, mod in LOAD.findall(relocs.read_text())
+                 if (mod, int(t, 16)) in want]
+        if not loads:
+            continue
+        funcs = []
+        for _, kind, args, addr in SYMBOL.findall((relocs.parent / "symbols.txt").read_text()):
+            size = re.search(r"size=(0x[0-9a-f]+)", args or "")
+            if kind == "function" and size:
+                funcs.append((int(addr, 16), int(addr, 16) + int(size[1], 16)))
+        for at, name in loads:
+            if any(lo <= at < hi for lo, hi in funcs):
+                out[name] += 1
     return out
 
 
@@ -208,7 +268,7 @@ def compute(aliases: list[Alias], use_cache: bool = True) -> dict[str, dict]:
     groups: dict[str, list[Alias]] = {}
     out: dict[str, dict] = {}
     for a in aliases:
-        if a.field is None:
+        if a.field is None and not a.base_group:
             continue
         src = where.get(a.base)
         if src is None or not (ROOT / src).exists():
@@ -235,7 +295,7 @@ def compute(aliases: list[Alias], use_cache: bool = True) -> dict[str, dict]:
         h.update((ROOT / src).read_bytes())
         obj = ROOT / configure.obj_of(src)
         h.update(obj.read_bytes() if obj.exists() else b"")
-        h.update("\n".join(f"{a.name} {a.base}{a.path}" for a in group).encode())
+        h.update("\n".join(f"{a.name} {a.base}{a.path} {a.base_group}" for a in group).encode())
         return h.hexdigest()
 
     keys = {src: key(src, g) for src, g in groups.items()}
@@ -244,7 +304,10 @@ def compute(aliases: list[Alias], use_cache: bool = True) -> dict[str, dict]:
         for src, res in zip(todo, pool.map(lambda s: check_file(s, groups[s]), todo)):
             cache[src] = {"key": keys[src], "results": res}
     for src in groups:
-        out.update(cache[src]["results"])
+        out.update({name: dict(r) for name, r in cache[src]["results"].items()})
+    for name, count in code_loads([a for a in aliases if a.base_group]).items():
+        if "error" not in out.get(name, {"error": ""}):
+            out[name]["loads"] = count
     if use_cache and CACHE.parent.exists():
         new = json.dumps({s: cache[s] for s in sorted(groups)}, indent=1, sort_keys=True) + "\n"
         if not CACHE.exists() or CACHE.read_text() != new:
@@ -262,14 +325,21 @@ def check(aliases: list[Alias], results: dict[str, dict]) -> list[str]:
         where = f"aliases.txt:{a.line}: {a.name} = {a.base}+{a.offset:#x} `{a.field}`"
         if "error" in r:
             errors.append(f"{where}: {r['error']}")
+        elif a.base_group:
+            where = f"aliases.txt:{a.line}: {a.name} = {a.base}+{a.offset:#x} base"
+            if not 0 < a.offset < r.get("size", 0):
+                errors.append(f"{where}: not inside {a.base} ({r.get('size', 0):#x} bytes)")
+            if not r.get("loads"):
+                errors.append(f"{where}: no function loads it (relocs.txt), so the compiler does not make it")
         elif r["offset"] + a.extra != a.offset:
             errors.append(f"{where}: the C type puts it at {a.base}+{r['offset'] + a.extra:#x}")
     return errors
 
 
 def not_from_c(aliases: list[Alias]) -> list[Alias]:
-    """The aliases whose offset the C type does not give in full."""
-    return [a for a in aliases if not a.from_c]
+    """The aliases whose offset the C type does not give in full, other
+    than the checked `base` aliases."""
+    return [a for a in aliases if not a.from_c and not a.base_group]
 
 
 def main() -> int:
@@ -286,7 +356,9 @@ def main() -> int:
         print("alias_check: aliases whose FIELD and C type disagree:\n  " + "\n  ".join(errors))
         return 1
     rest = len(not_from_c(aliases))
-    print(f"alias_check: {len(aliases)} aliases, {len(aliases) - rest} computed from C, {rest} not")
+    bases = sum(a.base_group for a in aliases)
+    print(f"alias_check: {len(aliases)} aliases, {len(aliases) - rest - bases} computed from C, "
+          f"{bases} compiler bases, {rest} not")
     return 0
 
 
