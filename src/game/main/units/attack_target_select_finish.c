@@ -5,10 +5,11 @@
 #include "game/task.h"
 #include "game/unit_stats.h"
 #include "game/unit_target_entry.h"
+#include "game/script_slot.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern const EventScriptCommand gMapScrollScript[];
+extern ScriptCommand gMapScrollScript[];
 extern int data_022a6dd4;
 
 void MenuDepth_Pop(void);

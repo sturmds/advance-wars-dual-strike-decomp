@@ -1,8 +1,9 @@
 #include "types.h"
 #include "game/event_script.h"
+#include "game/script_slot.h"
 
-extern const EventScriptCommand gMapScrollScript[];
-s16 ScriptSlot_Find(const EventScriptCommand* script);
+extern ScriptCommand gMapScrollScript[];
+s16 ScriptSlot_Find(const ScriptCommand* script);
 
 /* Hold callback set by EventScript_ScrollMapAndWait: lets the script go on once
  * no slot runs the scroll script gMapScrollScript any more. */

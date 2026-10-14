@@ -7,6 +7,7 @@
 #include "game/co_save.h"
 #include "game/design_map.h"
 #include "game/play_records.h"
+#include "game/reaction_text_menu_task.h"
 #include "game/Unk_022a7b80.h"
 #include "game/Unk_0229e148.h"
 
@@ -48,10 +49,6 @@ typedef struct SaveProfileBlock {
 #define SAVE_PROFILE_COUNT 3
 extern SaveProfileBlock data_02290298[SAVE_PROFILE_COUNT];
 extern SaveBytes30 data_022900bc[SAVE_PROFILE_COUNT];
-
-typedef struct SaveLinkReactionTexts {
-  u8 value[198]; /* data_0229da8c, see LinkReaction_LoadTexts */
-} SaveLinkReactionTexts;
 
 /* Save record 0 as Save_PackProgress and Save_UnpackProgress see it: the
  * live data that the record keeps, in order. 0x1684 bytes. */

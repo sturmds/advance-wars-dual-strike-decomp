@@ -3,7 +3,7 @@
 #include "game/reaction_text_menu_task.h"
 
 LinkReactionQueue data_0229da68;
-char data_0229da8c[REACTION_TEXT_COUNT][REACTION_TEXT_SIZE];
+SaveLinkReactionTexts data_0229da8c;
 u8 data_0229db54[4][6][33];
 
 void Mem_CopyBytes(void* src, void* dest, int size);

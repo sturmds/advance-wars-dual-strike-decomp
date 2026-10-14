@@ -1,12 +1,13 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/event_script.h"
+#include "game/script_slot.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern EventScriptCommand gMapOverviewScript[];
+extern ScriptCommand gMapOverviewScript[];
 
-s16 ScriptSlot_Find(const EventScriptCommand* script);
+s16 ScriptSlot_Find(const ScriptCommand* script);
 int func_020d1bc4(void);
 int MapScript_RunList18(int flag);
 void Counter_IncrementCapped(u32* timer);

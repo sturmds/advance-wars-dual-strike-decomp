@@ -15,9 +15,6 @@ void Gfx_RequestLayerCopy(int layer);
 
 extern Unk_027c0280* data_027c0280;
 extern char data_0215fcd4[]; /* reaction text menu graphics file */
-extern char data_0229da8c[][REACTION_TEXT_SIZE]; /* the six reaction texts */
-
-#define REACTION_TEXT_COUNT 6
 
 /* Draws the reaction text menu screen: layers 1 and 2 from one file, the
  * six reaction texts on layer 0 (rows 6 to 16), BG0-3 and OBJ on, with
@@ -46,7 +43,7 @@ void ReactionTextMenu_DrawScreen(void) {
   }
   for (i = 0; i < REACTION_TEXT_COUNT; i++) {
     Text_PrintStringImmediate(9, 6 + i * 2, data_027c0280->layer0Map,
-                              data_0229da8c[i], 0, 0);
+                              data_0229da8c.texts[i], 0, 0);
   }
   data_027c0280->dispCnt |= 0x100;
   data_027c0280->dispCnt |= 0x200;

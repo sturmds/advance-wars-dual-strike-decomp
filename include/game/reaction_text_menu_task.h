@@ -6,6 +6,17 @@
 #define REACTION_TEXT_SIZE 33 /* bytes of each reaction text in data_0229da8c */
 #define REACTION_TEXT_COUNT 6 /* reaction texts in data_0229da8c */
 
+/* The link reaction texts, kept in save record 0 (SaveProgressBlocks). */
+typedef struct SaveLinkReactionTexts {
+  char texts[REACTION_TEXT_COUNT][REACTION_TEXT_SIZE];
+} SaveLinkReactionTexts;
+
+typedef char
+    SaveLinkReactionTexts_size_check[sizeof(SaveLinkReactionTexts) == 198 ? 1
+                                                                          : -1];
+
+extern SaveLinkReactionTexts data_0229da8c;
+
 /* Task of the menu that edits the six link reaction texts (data_0215fc0c is
  * its script). Reached by Task_FindByScript. */
 typedef struct ReactionTextMenuTask {

@@ -7,7 +7,6 @@ u8* func_021016e4(void);
 char* strcpy(char* dst, const char* src);
 
 extern u8 data_0215fc0c[];
-extern char data_0229da8c[];
 
 /* Copies the text typed in the name entry into the chosen reaction text. */
 void ReactionTextMenu_StoreTyped(void) {
@@ -16,7 +15,6 @@ void ReactionTextMenu_StoreTyped(void) {
   if (func_020b983c() != 1) {
     return;
   }
-  strcpy(&data_0229da8c[menu->selected * REACTION_TEXT_SIZE],
-         (char*)func_021016e4());
+  strcpy(data_0229da8c.texts[menu->selected], (char*)func_021016e4());
   menu->done = 1;
 }

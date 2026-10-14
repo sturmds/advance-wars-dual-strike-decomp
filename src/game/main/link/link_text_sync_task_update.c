@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/reaction_text_menu_task.h"
 #include "game/link_text_sync_task.h"
 #include "game/link_data_sync_task.h"
 #include "game/link_slots.h"
@@ -11,7 +12,6 @@ void func_0207b48c(void);
 void func_0207b4b0(u8* chunk);
 void Task_ResumeScript(void* task);
 
-extern u8 data_0229da8c[];
 extern u8 data_0229db54[][6][33];
 
 /* Swaps the reaction texts with the other players, 8 bytes a frame: sends
@@ -67,12 +67,12 @@ void LinkTextSyncTask_Update(LinkTextSyncTask* task) {
   } else if (task->sendDone == 0) {
     u8* out =
         chunk; /* needed to match: chunk[i] keeps the text pointer in the wrong register */
-    u8* text = data_0229da8c;
+    u8* text = (u8*)&data_0229da8c;
 
     for (i = 0; i < LINK_SYNC_CHUNK; i++) {
       *out = text[task->sentBytes];
       task->sentBytes++;
-      if (task->sentBytes == 198) {
+      if (task->sentBytes == sizeof(data_0229da8c)) {
         task->sendDone = 1;
         i++;
         break;

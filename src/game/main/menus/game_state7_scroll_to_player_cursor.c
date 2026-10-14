@@ -2,16 +2,17 @@
 #include "game/Unk_02080440.h"
 #include "game/event_script.h"
 #include "game/player.h"
+#include "game/script_slot.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern u32 gLinkPlay;
-extern const EventScriptCommand gMapScrollScript[];
+extern ScriptCommand gMapScrollScript[];
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 BOOL EventScript_IsRunning(void);
-s16 ScriptSlot_Find(const EventScriptCommand* script);
+s16 ScriptSlot_Find(const ScriptCommand* script);
 void Font_LoadDigits(int baseTile);
 void func_020f5888(int x, int y);
 void Player_PlayTheme(int player);

@@ -8,14 +8,15 @@
 #include "game/unit_action.h"
 #include "game/unit_stats.h"
 #include "game/Unk_02080440.h"
+#include "game/script_slot.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern const EventScriptCommand gMapScrollScript[];
+extern ScriptCommand gMapScrollScript[];
 extern u32 gLinkPlay;
 
 void func_020f5878(int x, int y);
-s16 ScriptSlot_Find(const EventScriptCommand* script);
+s16 ScriptSlot_Find(const ScriptCommand* script);
 MapUnit* CurrentPlayer_BuyUnit(int x, int y, int unitType);
 int Ai_CountFootUnitsByUnk0c4(int skipSlot, int flag);
 int GetUnitMaxRange(int player, int unitType);

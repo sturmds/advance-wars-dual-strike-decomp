@@ -2,12 +2,13 @@
 #include "game/Unk_02080440.h"
 #include "game/event_script.h"
 #include "game/screen_other_map.h"
+#include "game/script_slot.h"
 
 extern int gCameraPresetIndex;
 extern u8 data_021576fa[][20];
 extern u8 data_021576fb[][20];
 extern u32 gLinkPlay;
-extern const EventScriptCommand gMapScrollScript[];
+extern ScriptCommand gMapScrollScript[];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -18,7 +19,7 @@ int SceneMode_IsChanging(void);
 int Map_IsThisMapsTurn(void);
 s8 MenuDepth_Get(void);
 s16 func_020b9914(void);
-s16 ScriptSlot_Find(const EventScriptCommand* script);
+s16 ScriptSlot_Find(const ScriptCommand* script);
 void SidePanel_Place(int mode);
 int Link_GetOwnPlayer(void);
 void MapView_ScrollStep(int step);

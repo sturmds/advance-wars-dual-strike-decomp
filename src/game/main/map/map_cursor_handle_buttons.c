@@ -3,10 +3,11 @@
 #include "game/event_script.h"
 #include "game/keypad.h"
 #include "game/map_unit.h"
+#include "game/script_slot.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern const EventScriptCommand gMapScrollScript[];
+extern ScriptCommand gMapScrollScript[];
 
 void func_020d1420(void);
 BOOL Map_IsCoSelectPhase(void);
@@ -18,7 +19,7 @@ int Map_GetDisplayTile(int x, int y);
 void SecondScreen_ShowCursorInfo(int tile, MapUnit* unit);
 MapUnit* CurrentPlayer_NextIdleUnit(void);
 void func_020f5888(int x, int y);
-s16 ScriptSlot_Find(const EventScriptCommand* script);
+s16 ScriptSlot_Find(const ScriptCommand* script);
 void ScreenConfig_RunActionHook(void);
 BOOL MapCursor_SelectTile(int x, int y, int a, int b);
 void MapCursor_ShowRange(int x, int y);

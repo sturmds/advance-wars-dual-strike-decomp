@@ -4,13 +4,14 @@
 #include "game/map_unit.h"
 #include "game/task.h"
 #include "game/unit_target_entry.h"
+#include "game/script_slot.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern const EventScriptCommand gMapScrollScript[];
+extern ScriptCommand gMapScrollScript[];
 extern int data_022a6dd4;
 
-s16 ScriptSlot_Find(const EventScriptCommand* script);
+s16 ScriptSlot_Find(const ScriptCommand* script);
 u32 Keypad_ReadConfirmCancel(void);
 u32 MapTouch_ReadListTileTap(int count);
 void func_020ef260(int* index, int count);
