@@ -15,6 +15,7 @@ Any mod that grows or shrinks main changes the secure area: it holds crt0, the m
 
 - DeSmuME 0.9.13 boots the shifted ROM without complaint (issue 0006). Other emulators, flash carts or real hardware may check the CRC.
 - Fix options: give `dsd rom build` an ARM7 BIOS dump (`--arm7-bios`; a dump from sturmds's own DS, never committed), or compute the CRC ourselves, which needs the same key.
+- 2026-10-14 (issue 0086): checked with grown dtcm, itcm and ov001 builds. Everything else in the header (sizes, entry points, offsets, ROM size, header CRC) is recomputed by dsd; this CRC is the only one left.
 
 ## Done when
 

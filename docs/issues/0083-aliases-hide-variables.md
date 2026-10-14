@@ -24,6 +24,10 @@ so the linker script gets `gSoundStreamReady = gWaveArcHeader + 0x3c;`, and `src
 
 There are 200 aliases of size 0: 164 in main, 26 in ARM7, 10 in ov003. Some are real addresses inside a variable (`&array[1]`, a field), some may be hidden variables like this one.
 
+### Shift pass (2026-10-14)
+
+`aliases.txt` has 310 aliases, all `real`. The 141 not checked above (139 that `data.py` added for .data/.rodata, plus `data_02175180` and `data_02175198`) were compared with their base's C type: no hidden variable. Two notes for issue 0086: `data_02175180`/`data_02175198` are crt0's autoload list, which lands inside `data_02173788` by chance; and an alias on element 1 or later of an array goes wrong when the element size changes, so a mod-safe alias needs its offset computed from the C type.
+
 ## Fix
 
 1. This case: give `gWaveArcHeader` a type of 0x3c bytes (`u32 table[]`, if mwccarm 2.0-72 accepts it; otherwise a separate header struct), set `gWaveArcHeader` to `size=0x3c` and `gSoundStreamReady` to `size=0x4` in `symbols.txt`, and define the flag in C. Every function that uses `SoundWaveArc` must still score 100% in `fn.py diff`.

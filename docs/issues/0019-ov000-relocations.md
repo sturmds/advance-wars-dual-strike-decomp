@@ -21,6 +21,8 @@ Resolved 2026-10-11 by `tools/resolve_overlay_relocs.py` (run once with `--write
 - A small script can rewrite the `module:` field of those lines in `config/AWRE/arm9/relocs.txt` to `overlay(0)` when the target is past ov004's end, then `make release` checks it.
 - The ov000 symbols near these targets are marked `ambiguous` in `symbols.txt` for the same reason.
 
+- 2026-10-14: the stale check of `make shift` (issue 0086) finds no word left with an old ov000 or ov004 address when ov000 grows, so these decisions hold in a shifted build.
+
 ## Done when
 
 No relocation with a target above ov004's end is marked `overlays(0,4)`.

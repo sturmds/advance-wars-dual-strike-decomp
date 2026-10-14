@@ -22,6 +22,7 @@ ov001, ov002, ov003, ov005 and ov006 all load at `0x02350560`. After `tools/reso
 - Telling them apart needs to know which overlay is loaded when the code runs: follow the callers of the main tables to their `FS_LoadOverlay` calls, or watch it in the emulator.
 - The two pointers to `0x02350560` may mean "whichever overlay is loaded" (an entry point). A symbol cannot express that; the C for those tables may need the address as a number on purpose, with a comment.
 - The 10 ov000 words sit 0xa0 apart inside `data_ov000_022e022d` (an odd address, so the symbol boundaries there are guesses). They may be numbers that look like addresses, not pointers. If so, the relocations are wrong and must go: a shifted build would change those numbers.
+- 2026-10-14: the stale check of `make shift` (issue 0086) reports these. Growing ov001 leaves `0x0216831c`, `0x0216a6ec` (= 0x02350560) and `0x0216a7dc` unchanged; growing ov002, ov003, ov005 or ov006 leaves the ov000 words and `Palette_QueueBlockCopy`'s `0x0236d644` unchanged. So `make shift` leaves out ov001-ov006 until this issue is done; then add them.
 
 ## Done when
 

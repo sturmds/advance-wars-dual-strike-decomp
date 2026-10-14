@@ -33,6 +33,10 @@ The four pointers found point at crt0 and itcm, which the default shift does not
 
 The scanner only finds words whose value is an address. It cannot find pointers built in code from two halves, offsets from one known address to another added at run time, or numbers that dsd wrongly turned into relocations (issue 0055 has 10 suspects in ov000).
 
+### Shiftable-ROM pass (2026-10-14)
+
+The arena crash in `OS_GetInitArenaLo` (a layout address written as a number, past the end of the overlays, so the scanner's in-module test missed it) started issue 0086, which now holds the plan. Counts at mainline 054c0bb65: high 1, medium 57, low 1,129. All were classified: no real pointer lacks a relocation; 6 are layout constants (now linker symbols, or rewritten by `dsd rom build`); the rest are numbers or fixed hardware addresses. The rise since 10-11 is the 114 false relocations deleted by the data work. `make shift` now also finds words that kept the old address of a moved symbol (issue 0086).
+
 ## Done when
 
 A build with padding inserted in main runs the M3 scenario the same as retail.

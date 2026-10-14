@@ -17,6 +17,7 @@ sturmds wants mods (first: War Room army colour from the CO, and both maps shown
 - Check that the delink step still treats a modded file as C and that `dsd rom build` accepts modules whose size changed. 2026-10-11: `make shift` (issue 0012) shows `dsd rom build` accepts a larger main and moves the overlays after it; the secure-area CRC is then wrong (issue 0056). `tools/shift_build.py` shows how to link a changed copy into its own build directory.
 - Same rules as here: local only, no ROM or built output in git, everything through make, tools from `tools.lock`.
 - First mod: `Map_LoadHeaderSetup` in War Room mode sets `army[p]` from `CoRecord.armyStyle + 1`; two-map battles get it per state; the map select preview needs it too. It grows code in `main`, so it needs the shiftable build. See issue 0022 for the style/colour facts.
+- 2026-10-14: the arena start was a number, so a mod that grew main and ov000 crashed (issue 0086, fixed). `make shift` now grows main, ov000, itcm and dtcm, and checks for stale addresses; ov001-ov006 wait for issue 0055. Issue 0086 lists what else a mod can still hit (sizes written as numbers, growth budgets of the heap, ITCM and DTCM).
 
 ## Done when
 
