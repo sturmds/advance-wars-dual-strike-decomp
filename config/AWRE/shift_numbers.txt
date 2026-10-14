@@ -9,7 +9,6 @@
 0x02138258  data_02137ca8, halfword pairs in an ascending run (0x0219, 0x021b, ...)
 0x0213825c  data_02137ca8, same run
 0x02138274  data_02137ca8, same table
-0x02138280  data_02137ca8, same table
 0x0213845c  data_02137ca8, same table
 0x021393c4  gWeatherParticleSpeeds, s16 pairs
 0x0213b91c  data_0213b8f0, ascending u16 run
@@ -23,7 +22,6 @@
 0x0214e36c  data_0214d4c4, s16 table
 0x0215061c  data_02150100, u16 progression
 0x02150620  data_02150100, u16 progression
-0x02150628  data_02150100, u16 progression
 0x0215974c  data_02159748, ascending u16 offsets (text_data.c)
 0x022bbc0c  Ov000_gMapTiles, u16 tiles
 0x022c3bb8  Ov000_gMapTiles, u16 tiles

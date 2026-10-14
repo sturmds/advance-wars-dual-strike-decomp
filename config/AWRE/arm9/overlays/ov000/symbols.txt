@@ -557,8 +557,6 @@ data_ov000_022dbd7c kind:data(any) addr:0x022dbd7c
 data_ov000_022dbd7d kind:data(any) addr:0x022dbd7d
 data_ov000_022dbd7f kind:data(any) addr:0x022dbd7f
 data_ov000_022dbdc4 kind:data(any) addr:0x022dbdc4
-data_ov000_022df026 kind:data(any) addr:0x022df026
-data_ov000_022e022d kind:data(any) addr:0x022e022d
 Ov000_gMapUnits_0cb kind:data(byte[13]) addr:0x022e6548
 Ov000_gMapUnits_0dd kind:data(byte[13]) addr:0x022e6558
 Ov000_gMapUnits_0de kind:data(byte[13]) addr:0x022e6568

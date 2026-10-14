@@ -37,6 +37,21 @@ The scanner only finds words whose value is an address. It cannot find pointers 
 
 The arena crash in `OS_GetInitArenaLo` (a layout address written as a number, past the end of the overlays, so the scanner's in-module test missed it) started issue 0086, which now holds the plan. Counts at mainline 054c0bb65: high 1, medium 57, low 1,129. All were classified: no real pointer lacks a relocation; 6 are layout constants (now linker symbols, or rewritten by `dsd rom build`); the rest are numbers or fixed hardware addresses. The rise since 10-11 is the 114 false relocations deleted by the data work. `make shift` now also finds words that kept the old address of a moved symbol (issue 0086).
 
+### Scanner results (2026-10-14)
+
+The scanner now also counts the relocations of the linked objects, adds a `layout` level (a value within 0x20 bytes after a module or section boundary or the end of the overlays, tested first), checks literal pools against all of ITCM, main RAM and DTCM, leaves out 9 fixed hardware and SDK addresses, and names the holder and file of each word.
+
+| Level | Count | What they are |
+|---|---|---|
+| layout | 6 | crt0's module parameters hold main's .bss end (`dsd rom build` rewrites it); 5 byte-table words `0x02000001`-`0x0200001c` that only match main's start, which does not move. Before the arena fix in 7d07c56fa it also found `OS_GetInitArenaLo`'s three bounds, the end of the overlays among them. |
+| high | 0 | |
+| medium | 54 | Was 57. 32 are byte tables whose value equals a placeholder object's address (below). |
+| low | 1,115 | Was 1,129. |
+
+11 words have a relocation only in the linked objects: the absolute symbols in `OS_InitThread`, `OS_GetInitArenaHi` and `OS_GetInitArenaLo`, and the pointers in the pools of `Isd_RestoreFiq` and `Isd_RestoreIrq`, which `relocs.txt` lacks.
+
+`scan_pointers.py --unused-symbols` lists the data symbols nothing refers to. Two were aliases inside `Ov000_gMapHeaders` (`data_ov000_022df026`, `data_ov000_022e022d`) left by false relocations from the sine table and an LZ77 stream; they are gone. 78 start an object defined in C and stay. Of those, 32 lost their last relocation in the commits that deleted false relocations, so dsd made them from numbers: merging each with the object before it would end the false matches above, but changes the C layout.
+
 ## Done when
 
 A build with padding inserted in main runs the M3 scenario the same as retail.
