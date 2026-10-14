@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/map_object.h"
 #include "game/song.h"
 #include "game/task.h"
 
@@ -54,14 +55,14 @@ u32 data_02167e94 = {
 };
 void* data_02167e8c = &data_02148000;
 void* data_02167e98[] = {&data_02167e94, &data_02167f50, &data_02167f84};
-int data_02167ea4[] = {
-#include "data/main/data_02167ea4.inc.c"
+int gBlackCannonShotOrigins[] = {
+#include "data/main/gBlackCannonShotOrigins.inc.c"
 };
-int data_02167eb4[] = {
-#include "data/main/data_02167eb4.inc.c"
+int gMapObjectConeLengths[] = {
+#include "data/main/gMapObjectConeLengths.inc.c"
 };
-int data_02167ed0[] = {
-#include "data/main/data_02167ed0.inc.c"
+int gMinicannonShotOrigins[] = {
+#include "data/main/gMinicannonShotOrigins.inc.c"
 };
 TaskScriptCmd data_02167ef0[] = {
 #include "data/main/data_02167ef0.inc.c"

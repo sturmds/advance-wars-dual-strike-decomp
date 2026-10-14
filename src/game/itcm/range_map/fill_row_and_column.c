@@ -8,7 +8,8 @@ extern int data_027c0284;
 #define TILE(x, y) (GAME->rangeMap[y][x])
 
 /* Writes value into every tile of the row and the column through (x, y),
- * except (x, y) itself. MapObject_Draw calls it for object kind 1. */
+ * except (x, y) itself. MapObject_MarkFireRange calls it for
+ * MAP_OBJECT_LASER. */
 void RangeMap_FillRowAndColumn(int x, int y, s8 value) {
   int i;
 

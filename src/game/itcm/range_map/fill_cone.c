@@ -1,21 +1,16 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/range_map.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* Directions of the cone */
-#define CONE_DOWN 0
-#define CONE_UP 1
-#define CONE_LEFT 2
-#define CONE_RIGHT 3
-
-/* Writes value into a cone of range map tiles: length lines from (x, y)
- * in direction dir, 1 tile wide at the tip and 2 wider on each line after,
- * cut at the map edges. The cannon map objects use it for their fire
- * range, with their variant as dir. */
+/* Writes value into a cone of range map tiles: length lines from (x, y) in
+ * direction dir (a ConeDirection), 1 tile wide at the tip and 2 wider on
+ * each line after, cut at the map edges. The cannon map objects use it for
+ * their fire range, with their variant as dir. */
 void RangeMap_FillCone(int x, int y, int dir, int length, s8 value) {
   int col; /* needed to match: col and row are separate variables */
   int colEnd;

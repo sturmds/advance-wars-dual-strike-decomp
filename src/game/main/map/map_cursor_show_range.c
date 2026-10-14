@@ -7,7 +7,6 @@ extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 MapObject* Map_FindObjectCovering(int x, int y);
-BOOL MapObject_Draw(MapObject* object, int value);
 void RangeMap_SetBuffer(void* tileMap);
 void RangeMap_Fill(int value);
 void RangeMap_FillUnitMoves(MapUnit* unit);
@@ -25,9 +24,10 @@ void Sound_PlaySe(int se);
 #define HOOKS (data_027c027c->unk_50[data_027c0284])
 
 /* B on the map: shows the attack range of what stands on tile (x, y). A map
- * object that MapObject_Draw handles gets its own range. On a unit, a direct
- * attacker gets its move range spread by RangeMap_MarkDirectAttackRange, and an indirect one
- * its fire range around its tile; a unit with neither plays sound 0x10008
+ * object that MapObject_MarkFireRange handles gets its fire range. On a unit,
+ * a direct attacker gets its move range spread by
+ * RangeMap_MarkDirectAttackRange, and an indirect one its fire range around
+ * its tile; a unit with neither plays sound 0x10008
  * and returns FALSE. An empty tile goes to Game_State15_EnterState8. */
 BOOL MapCursor_ShowRange(int x, int y) {
   MapObject* object;
@@ -38,7 +38,7 @@ BOOL MapCursor_ShowRange(int x, int y) {
   if (object != NULL) {
     RangeMap_SetBuffer(GAME->mapTiles->rangeMapTiles);
     RangeMap_Fill(-1);
-    if (MapObject_Draw(object, 0)) {
+    if (MapObject_MarkFireRange(object, 0)) {
       if (HOOKS->unk_2c != NULL) {
         HOOKS->unk_2c();
       }

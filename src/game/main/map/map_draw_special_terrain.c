@@ -74,7 +74,7 @@ void Map_DrawSpecialTerrain(void) {
           Map_AddGrandBoltWeakPointObject(x, y, MAP_TILE_OWNER(tile));
           break;
         case TERRAIN_DEATHRAY:
-          Map_AddDeathrayObject(x, y, 3, 3, 7, 7);
+          Map_AddDeathrayObject(x, y, DEATHRAY_SIZE, DEATHRAY_SIZE, 7, 7);
           break;
         case TERRAIN_BLACK_OBELISK:
           Map_AddBlackObeliskObject(x, y);

@@ -5,18 +5,18 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
-/* For objects of kinds 1 to 5 whose unk_06 is still 0, copies in the 4-bit
- * value stored with the object (startState). */
+/* For the Laser, volcano, cannons and Deathray whose state is still 0, copies
+ * in the 4-bit value stored with the object (startState). */
 void MapObjects_InitState(void) {
   MapObject* object = data_027c027c->unk_48[data_027c0284]->objects;
 
-  for (; object->kind != 0; object++) {
+  for (; object->kind != MAP_OBJECT_NONE; object++) {
     switch (object->kind) {
-      case 1:
-      case 2:
-      case 3:
-      case 4:
-      case 5:
+      case MAP_OBJECT_LASER:
+      case MAP_OBJECT_VOLCANO:
+      case MAP_OBJECT_BLACK_CANNON:
+      case MAP_OBJECT_MINICANNON:
+      case MAP_OBJECT_DEATHRAY:
         if (object->state == 0) {
           object->state = object->startState;
         }

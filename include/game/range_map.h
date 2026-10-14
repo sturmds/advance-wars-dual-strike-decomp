@@ -15,6 +15,11 @@ void RangeMap_Fill(int value);
 /* Sets every tile of a per-tile map to value, without touching rangeMap. */
 void TileMap_Fill(void* tileMap, u8 value);
 
+/* Direction of a RangeMap_FillCone cone, and the facing (variant) of the
+ * cannon map objects. The Minicannons on Fortress Isle (map 0x0ae) face
+ * away from the island this way. */
+enum ConeDirection { CONE_DOWN, CONE_UP, CONE_LEFT, CONE_RIGHT };
+
 /* Breadth-first search that fills rangeMap with move costs. Two lists of
  * nodes take turns: one holds the tiles to expand, the other collects the
  * tiles found from them. */

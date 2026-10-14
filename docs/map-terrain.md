@@ -24,13 +24,13 @@ A 3x3 or 4x4 object has one centre tile with the object's terrain id. The other 
 - On Cape Splinter the volcano's top row is code 0x1a5 instead of 0x1a4 (still terrain 9).
 - The missile platform and the fortress share terrain id 31 and object kind 8 (`MAP_OBJECT_BLOCKED`); only their codes differ. Kind 8 is created with 0 HP and has no target tile, so `Map_GetObjectAt` never returns it. Its picture comes from `/bmap/0a5` or `0a6` (`MapHeader.extraObjTileFile`), or `0a7` when the game state's `unk_5c` callback returns 1 (`Map_LoadExtraObjTiles`). Which code sets that callback is not known yet.
 - The Grand Bolt's body is 158 tiles of terrain 27 (`TERRAIN_GRAND_BOLT`). They use codes that `/bmap/003` gives to sea, shoal, river or no terrain, and that `/bmap/002` maps to terrain 27, which is why that map has its own table. Each weak point's owner bits pick its object kind (11 + owner). A destroyed weak point becomes terrain 27, code 0x17a (`MapObject_DestroyWeakPoint`). Two of the three weak points are 3 tiles above a base.
-- The Minicannon's owner bits are its facing, not its owner: `Map_DrawSpecialTerrain` passes them to `Map_AddMinicannonObject`, and `MapObject_Draw` uses the variant to point the range cone. Watery Downs (0x0ad) has two `m0` cannons; Fortress Isle (0x0ae) has two of each code.
+- The Minicannon's owner bits are its facing, not its owner: `Map_DrawSpecialTerrain` passes them to `Map_AddMinicannonObject`, and `MapObject_MarkFireRange` uses the variant to point the fire cone (`enum ConeDirection`: m0 down, m1 up, m2 left, m3 right; the cannons around Fortress Isle's HQ face outwards this way). Watery Downs (0x0ad) has two `m0` cannons; Fortress Isle (0x0ae) has two of each code.
 
 ## When the weapons fire
 
 `MapObjects_TickCountdowns` counts down kinds 1, 3, 4 and 5 (the Laser, see below, the Black Cannon, the Minicannon and the Deathray) on the turn of any player whose army colour is Black Hole (`ARMY_BLACK_HOLE`). The tile's owner bits play no part. On Watery Downs the cannons fire on Lash's turn because the map's header gives slot 2 army colour 5. The volcano counts down on player 1's turn instead.
 
-`MapObject_Draw` does not draw the object: it marks the object's range for the B-button range display. Kind 1 marks its whole row and column, kind 3 a cone of size 10, kind 4 a cone of size 4 in the cannon's facing, and kind 5 three columns from 3 tiles below its top-left to the bottom of the map.
+`MapObject_MarkFireRange` marks the tiles an object's shot covers, for the B-button range display (`MapCursor_ShowRange`) and the AI's threat map (`Ai_AddObjectThreat`). Kind 1 (`MAP_OBJECT_LASER`) marks its whole row and column. The Black Cannon marks a cone 10 lines long and the Minicannon one 4 lines long (`BLACK_CANNON_RANGE`, `MINICANNON_RANGE`), in the cannon's facing, from the tile `MapObject_GetShotOriginX/Y` give. The Deathray marks three columns from the row below it (`DEATHRAY_SIZE`) to the bottom of the map.
 
 ## Unused terrain
 
@@ -48,7 +48,7 @@ A scan of every map in `extracted/AWRE/assets/maps/` (2026-10-14) finds two terr
 | B-button range | none | three columns down to the bottom of the map |
 | Attackable | no | no: `MapObject_GetTargetTile` gives it a target tile, but `TargetKind_GetChartColumn` has no case for kind 5 and returns column 0, so no weapon is picked and `RangeMap_MarkAttackTargets` never marks it |
 
-Kind 1 is probably the Laser's object. No `Map_Add*Object` function creates it, but the code still handles it: it counts down on Black Hole turns, `TargetKind_GetChartColumn` gives it `DAMAGE_COLUMN_OBJECT_A`, `MapObject_GetTargetTile` gives it a 1x1 target, and its range is its row and column, the Laser's pattern in Advance Wars 2. Nothing ties it to terrain 25 yet.
+Kind 1 (`MAP_OBJECT_LASER`) is probably the Laser's object. No `Map_Add*Object` function creates it, but the code still handles it: it counts down on Black Hole turns, `TargetKind_GetChartColumn` gives it `DAMAGE_COLUMN_OBJECT_A`, `MapObject_GetTargetTile` gives it a 1x1 target, and its range is its row and column, the Laser's pattern in Advance Wars 2. Nothing ties it to terrain 25 yet.
 
 Other codes in `/bmap/003` that no map uses:
 

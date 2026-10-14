@@ -17283,7 +17283,7 @@ src/game/main/map/map_objects_tick_countdowns.c:
     complete
     .text       start:0x020d9f44 end:0x020da068
 
-src/game/main/map/map_object_draw.c:
+src/game/main/map/map_object_mark_fire_range.c:
     complete
     .text       start:0x020da068 end:0x020da1dc
 
@@ -17291,11 +17291,11 @@ src/game/main/ai/cannon_add_best_target.c:
     complete
     .text       start:0x020da1dc end:0x020da4f0
 
-src/game/main/map/map_object_get_draw_offset_y.c:
+src/game/main/map/map_object_get_shot_origin_y.c:
     complete
     .text       start:0x020da4f0 end:0x020da524
 
-src/game/main/map/map_object_get_draw_offset_x.c:
+src/game/main/map/map_object_get_shot_origin_x.c:
     complete
     .text       start:0x020da524 end:0x020da554
 

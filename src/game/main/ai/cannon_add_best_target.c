@@ -1,10 +1,10 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/map_object.h"
 #include "game/unit_stats.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern int data_02167eb4[];
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 /* needed to match: the original reads the slot again for each use. */
@@ -13,8 +13,6 @@ extern int data_02167eb4[];
 
 void RangeMap_SetBuffer(void* tileMap);
 void RangeMap_Fill(int value);
-int MapObject_GetDrawOffsetX(int kind, int variant);
-int MapObject_GetDrawOffsetY(int kind, int variant);
 void RangeMap_FillCone(u16 x, u16 y, u16 variant, u16 size, int value);
 BOOL Player_CanSeeUnitAt(u16 player, s16 x, s16 y);
 BOOL Unit_IsVisibleToCurrentPlayer(u16 unitSlot);
@@ -46,9 +44,9 @@ void Cannon_AddBestTarget(int x, int y, int damage, int kind, int variant) {
   bestSlot = 0;
   RangeMap_SetBuffer(STATE->mapTiles->rangeMapTiles);
   RangeMap_Fill(-1);
-  dx = MapObject_GetDrawOffsetX(kind, variant);
-  RangeMap_FillCone(x + dx, y + MapObject_GetDrawOffsetY(kind, variant),
-                    variant, data_02167eb4[kind], 0);
+  dx = MapObject_GetShotOriginX(kind, variant);
+  RangeMap_FillCone(x + dx, y + MapObject_GetShotOriginY(kind, variant),
+                    variant, gMapObjectConeLengths[kind], 0);
 
   for (ty = 0; ty < STATE->unk_1c4->mapHeight; ty++) {
     for (tx = 0; tx < STATE->unk_1c4->mapWidth; tx++) {

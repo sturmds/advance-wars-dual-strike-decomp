@@ -4013,10 +4013,10 @@ MapObjectFireTask_FinishWhenDone kind:function(arm,size=0x38) addr:0x020d9e70
 func_020d9ea8 kind:function(arm,size=0xc) addr:0x020d9ea8
 MapObjects_InitState kind:function(arm,size=0x90) addr:0x020d9eb4
 MapObjects_TickCountdowns kind:function(arm,size=0x124) addr:0x020d9f44
-MapObject_Draw kind:function(arm,size=0x174) addr:0x020da068
+MapObject_MarkFireRange kind:function(arm,size=0x174) addr:0x020da068
 Cannon_AddBestTarget kind:function(arm,size=0x314) addr:0x020da1dc
-MapObject_GetDrawOffsetY kind:function(arm,size=0x34) addr:0x020da4f0
-MapObject_GetDrawOffsetX kind:function(arm,size=0x30) addr:0x020da524
+MapObject_GetShotOriginY kind:function(arm,size=0x34) addr:0x020da4f0
+MapObject_GetShotOriginX kind:function(arm,size=0x30) addr:0x020da524
 AiTargetList_AddUnitsOnTiles kind:function(arm,size=0x8c) addr:0x020da554
 AiTargetList_Add kind:function(arm,size=0x5c) addr:0x020da5e0
 AiTargetList_Clear kind:function(arm,size=0x14) addr:0x020da63c
@@ -7771,9 +7771,9 @@ data_02167e38 kind:data(byte[0]) addr:0x02167e38
 data_02167e3c kind:data(byte[0]) addr:0x02167e3c
 data_02167e94 kind:data(byte[4]) addr:0x02167e94
 data_02167e98 kind:data(byte[12]) addr:0x02167e98
-data_02167ea4 kind:data(byte[16]) addr:0x02167ea4
-data_02167eb4 kind:data(byte[28]) addr:0x02167eb4
-data_02167ed0 kind:data(byte[32]) addr:0x02167ed0
+gBlackCannonShotOrigins kind:data(byte[16]) addr:0x02167ea4
+gMapObjectConeLengths kind:data(byte[28]) addr:0x02167eb4
+gMinicannonShotOrigins kind:data(byte[32]) addr:0x02167ed0
 data_02167ef0 kind:data(byte[48]) addr:0x02167ef0
 data_02167f20 kind:data(byte[48]) addr:0x02167f20
 data_02167f50 kind:data(byte[52]) addr:0x02167f50

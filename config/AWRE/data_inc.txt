@@ -1725,9 +1725,9 @@ main      gDefaultCoList              0x02167d70  0x1c   u8
 main      gOwnerCellCodes             0x02167d8c  0x48   u16
 main      gMapPaletteFiles            0x02167dd4  0x50   {void*[4],u32}
 main      data_02167e94               0x02167e94  0x4    u32
-main      data_02167ea4               0x02167ea4  0x10   s32
-main      data_02167eb4               0x02167eb4  0x1c   s32
-main      data_02167ed0               0x02167ed0  0x20   s32
+main      gBlackCannonShotOrigins     0x02167ea4  0x10   s32
+main      gMapObjectConeLengths       0x02167eb4  0x1c   s32
+main      gMinicannonShotOrigins      0x02167ed0  0x20   s32
 main      data_02167ef0               0x02167ef0  0x30   {s16,s16,u32}
 main      data_02167f20               0x02167f20  0x30   {s16,s16,u32}
 main      data_02167f50               0x02167f50  0x34   u32

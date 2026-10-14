@@ -69,7 +69,7 @@ sites. Not every count should reach 0: a hardware format stays a number.
 | Sizes | `Mem_Alloc` with a literal size | 11 | 0 | 11 |
 | Sizes | Copy, fill and clear calls with a literal length | 240 | 0 | 240 |
 | Sizes | Byte offsets into objects (`(u8 *)x + N`) | 41 | 0 | 41 |
-| Sizes | `for` loops with a literal bound | 851 | 4 | 855 |
+| Sizes | `for` loops with a literal bound | 850 | 4 | 854 |
 | Tables | Initialised `u32` arrays with a literal length | 0 | 0 | 0 |
 | Tables | Initialised `char` arrays with a literal length | 0 | 0 | 0 |
 | Tables | Other initialised arrays with a literal length | 0 | 0 | 0 |
