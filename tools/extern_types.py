@@ -16,7 +16,9 @@ Two declarations agree when their element types are the same after
 resolving typedefs (`u8` and `unsigned char`, `struct Tag` and its typedef
 name) and ignoring `const` and `volatile`, and they have the same number of
 array dimensions, with the same lengths past the first (the first may be
-`[]` in either). An extern of a name no C file defines (an alias inside a
+`[]` in either). An extern whose type is a struct the reading C file
+defines for itself also differs: that copy of the layout does not follow
+the definition. An extern of a name no C file defines (an alias inside a
 larger object, a linker symbol) is left out, and so is a declaration this
 scanner cannot read (a function pointer).
 
@@ -260,15 +262,28 @@ def collect() -> tuple[dict[str, list[Decl]], dict[str, list[Decl]], dict[str, s
     return defs, exts, typedefs(declaring)
 
 
+@cache
+def file_types(path: str) -> frozenset[str]:
+    return frozenset(local_types((ROOT / path).read_text(errors="replace")))
+
+
+def local_copy(e: Decl, d: Decl) -> bool:
+    """The extern's type is a struct the reading C file defines itself while
+    the object is defined in another file: a copy of the layout that a
+    change to the definition's type does not reach."""
+    return e.path != d.path and e.path.endswith(".c") and e.base in file_types(e.path)
+
+
 def mismatches() -> list[tuple[Decl, Decl]]:
-    """(extern, definition) for each extern whose type differs."""
+    """(extern, definition) for each extern whose type differs, or that uses
+    a local copy of the type."""
     defs, exts, aliases = collect()
     out = []
     for name, ds in sorted(exts.items()):
         if name not in defs:
             continue
         d = defs[name][0]
-        out += [(e, d) for e in ds if not agree(e, d, aliases)]
+        out += [(e, d) for e in ds if not agree(e, d, aliases) or local_copy(e, d)]
     return sorted(out, key=lambda x: (x[0].path, x[0].line))
 
 

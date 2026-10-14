@@ -76,6 +76,8 @@ def extern_types_tree(root: Path) -> None:
         '#include "types.h"\n\nextern u8 data_table[]; /* rows */\nextern u8 data_bytes[];\n'
         "extern u32 data_grid[][4];\nextern u8\n    gFoo;\nextern u8 not_defined[];\n\n"
         "void g(void) {}\n")
+    (root / "src/game/copy.c").write_text(
+        '#include "types.h"\n\ntypedef struct Foo {\n  u32 a;\n} Foo;\n\nextern Foo gFoo;\n')
 
 
 with tempfile.TemporaryDirectory(prefix="test_extern_types") as d:
@@ -84,26 +86,27 @@ with tempfile.TemporaryDirectory(prefix="test_extern_types") as d:
     root = Path(d)
     extern_types_tree(root)
     extern_types.ROOT = root
-    for f in (extern_types.collect, extern_types.defines, extern_types.type_headers):
+    for f in (extern_types.collect, extern_types.defines, extern_types.type_headers, extern_types.file_types):
         f.cache_clear()
     got = [(e.name, e.line) for e, _ in extern_types.mismatches()]
     # data_bytes agrees (unsigned char is u8), data_grid agrees (FOO_ROWS is 4),
-    # not_defined has no definition.
-    if got != [("data_table", 3), ("gFoo", 6)]:
-        errors.append(f"extern_types: got {got}, want data_table and gFoo in reader.c")
+    # not_defined has no definition; copy.c declares gFoo with a Foo of its own.
+    if got != [("gFoo", 7), ("data_table", 3), ("gFoo", 6)]:
+        errors.append(f"extern_types: got {got}, want gFoo in copy.c, data_table and gFoo in reader.c")
     else:
         print("extern_types differ: ok")
     done, left = extern_types.fix(None)
     text = (root / "src/game/reader.c").read_text()
     want = ('#include "types.h"\n#include "game/foo.h"\n\nextern const Foo data_table[]; /* rows */\n'
             "extern u8 data_bytes[];\nextern u32 data_grid[][4];\nextern Foo gFoo;\n")
-    if done != 2 or left or not text.startswith(want):
+    if done != 2 or len(left) != 1 or not text.startswith(want):
         errors.append(f"extern_types --fix: {done} rewritten, left {left}, text:\n{text}")
     else:
         print("extern_types --fix: ok")
     extern_types.collect.cache_clear()
-    if extern_types.mismatches():
-        errors.append("extern_types: differs after --fix")
+    extern_types.file_types.cache_clear()
+    if [e.path for e, _ in extern_types.mismatches()] != ["src/game/copy.c"]:
+        errors.append("extern_types: reader.c differs after --fix")
 
 if errors:
     sys.exit("test_shift_gaps: " + "\n  ".join(errors))
