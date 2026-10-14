@@ -19,9 +19,14 @@ extern Unk_027c0280* data_027c0280;
  * the symbols sit at the folded addresses. */
 extern u32 data_ov000_022f4cc4[][6];
 extern u32 data_ov000_022f4cc8[][6];
-extern int data_ov000_023500b4[3]; /* unit types checked for repairs */
-extern u32
-    data_ov000_023500a8[3]; /* first map entry of each type's 3x2 picture */
+/* first map entry of each type's 3x2 picture */
+static u32 data_ov000_023500a8[3] = {
+#include "data/ov000/data_ov000_023500a8.inc.c"
+};
+/* unit types checked for repairs */
+static int data_ov000_023500b4[3] = {
+#include "data/ov000/data_ov000_023500b4.inc.c"
+};
 
 /* Second screen: draws the text part of the terrain panel at pixel x. The terrain name
  * (TerrainStats.unk_10) goes centered on row 1, text 0xc00000a6 on row 3. Text 0xc00000af

@@ -936,6 +936,70 @@ src/game/ov000/ov000_data_02333d00.c:
     complete
     .data       start:0x02333d00 end:0x02335960
 
+src/game/ov000/ov000_data_02335960.c:
+    complete
+    .data       start:0x02335960 end:0x02338ae0
+
+src/game/ov000/ov000_data_02338ae0.c:
+    complete
+    .data       start:0x02338ae0 end:0x0233b2cc
+
+src/game/ov000/ov000_data_0233b2cc.c:
+    complete
+    .data       start:0x0233b2cc end:0x0233d4ec
+
+src/game/ov000/ov000_data_0233d4ec.c:
+    complete
+    .data       start:0x0233d4ec end:0x0233f978
+
+src/game/ov000/ov000_data_0233f978.c:
+    complete
+    .data       start:0x0233f978 end:0x02340224
+
+src/game/ov000/ov000_data_02340224.c:
+    complete
+    .data       start:0x02340224 end:0x02341f98
+
+src/game/ov000/ov000_data_02341f98.c:
+    complete
+    .data       start:0x02341f98 end:0x02344330
+
+src/game/ov000/ov000_data_02344330.c:
+    complete
+    .data       start:0x02344330 end:0x023499d0
+
+src/game/ov000/ov000_data_023499d0.c:
+    complete
+    .data       start:0x023499d0 end:0x0234abf0
+
+src/game/ov000/ov000_data_0234abf0.c:
+    complete
+    .data       start:0x0234abf0 end:0x0234c794
+
+src/game/ov000/ov000_data_0234c794.c:
+    complete
+    .data       start:0x0234c794 end:0x0234e778
+
+src/game/ov000/ov000_data_0234e778.c:
+    complete
+    .data       start:0x0234e778 end:0x0234eb60
+
+src/game/ov000/ov000_data_0234eb60.c:
+    complete
+    .data       start:0x0234eb60 end:0x0234ebe8
+
+src/game/ov000/player_hud/player_hud_data.c:
+    complete
+    .data       start:0x0234ebe8 end:0x0234ec6c
+
+src/game/ov000/unit_info_panel/unit_info_panel_data.c:
+    complete
+    .data       start:0x0234ec6c end:0x0234f9d8
+
+src/game/ov000/unit_info_panel/unit_info_panel_data_0234f9d8.c:
+    complete
+    .data       start:0x0234f9d8 end:0x023500a8
+
 src/game/ov000/task/unit_path_count_steps.c:
     complete
     .text       start:0x022ad560 end:0x022ad5cc
@@ -1421,7 +1485,9 @@ src/game/ov000/second_screen_draw_terrain_panel.c:
 src/game/ov000/second_screen_draw_terrain_details.c:
     complete
     .text       start:0x022b3180 end:0x022b34a4
+    .data       start:0x023500a8 end:0x023500c0
 
 src/game/ov000/second_screen_draw_terrain_move_costs.c:
     complete
     .text       start:0x022b34a4 end:0x022b3834
+    .data       start:0x023500c0 end:0x02350320
