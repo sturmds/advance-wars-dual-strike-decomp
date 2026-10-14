@@ -65,8 +65,7 @@ TaskScriptCmd data_0215c2fc[] = {
 TaskScriptCmd gTagGaugeScript[] = {
 #include "data/main/gTagGaugeScript.inc.c"
 };
-/* declared `s8 gSparkBurstOffsets[SPARK_BURST_SPARKS * 2]` in spark_burst_update.c: declared as one element of 0x1 bytes, but takes 0x48 */
-u32 gSparkBurstOffsets[] = {
+s8 gSparkBurstOffsets[] = {
 #include "data/main/gSparkBurstOffsets.inc.c"
 };
 GfxLayer data_0215c3f4[] = {

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/tile_offset.h"
 #include "game/script_slot.h"
 #include "game/event_script.h"
 
@@ -20,7 +21,7 @@ extern ScriptCommand gMapScrollScript[];
 u32 data_021669a8[] = {
 #include "data/main/data_021669a8.inc.c"
 };
-u32 data_021669b0[] = {
+TileOffset data_021669b0[] = {
 #include "data/main/data_021669b0.inc.c"
 };
 ScriptCommand data_02166a18[] = {
@@ -35,6 +36,6 @@ EventScriptCommand data_02166a88[] = {
 EventScriptCommand data_02166b88[] = {
 #include "data/main/data_02166b88.inc.c"
 };
-u32 data_02166c08[] = {
+TileOffset data_02166c08[] = {
 #include "data/main/data_02166c08.inc.c"
 };

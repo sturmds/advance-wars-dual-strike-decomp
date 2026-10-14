@@ -1,10 +1,6 @@
 #include "types.h"
 #include "game/unit_show_task.h"
 
-typedef void (*UnitShowStateHandler)(UnitShowTask* task);
-
-extern UnitShowStateHandler data_ov000_022db6b4[];
-
 void UnitShowTask_RunScript(UnitShowTask* task);
 BOOL UnitShowTask_CheckVisible(UnitShowTask* task);
 void UnitShowTask_PlaceSprite(UnitShowTask* task);

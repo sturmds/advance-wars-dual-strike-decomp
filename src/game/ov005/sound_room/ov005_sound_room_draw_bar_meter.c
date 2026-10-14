@@ -21,14 +21,6 @@ static const u32 data_ov005_02367ffc[] = {
 #include "data/ov005/data_ov005_02367ffc.inc.c"
 };
 
-/* Two map entries side by side: one bar column is two tiles wide. */
-typedef struct TilePair {
-  u16 left;
-  u16 right;
-} TilePair;
-
-extern TilePair data_ov005_0236b054[]; /* tiles of each bar row */
-
 /* While music plays: draws barHeights as 16 bars, two tiles wide and up to
  * 10 tiles high, standing on row 20 of layer 1 of the data_027c0288.unk_04
  * screen. Then sets both OBJ scales from a 16-bit mask that SND_GetChannelStatus

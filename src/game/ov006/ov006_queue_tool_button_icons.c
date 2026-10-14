@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ov006_cursor_steps.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov006_0235f690.h"
 
@@ -38,40 +39,31 @@ ButtonPos data_ov006_0236b6f4[] = {
 ButtonPos data_ov006_0236b6e8[] = {
 #include "data/ov006/data_ov006_0236b6e8.inc.c"
 };
-/* declared `CursorSteps18 data_ov006_0236b700` in ov006_entry_button_keys.c: declared in src/game/ov006/ov006_entry_button_keys.c, with a type no header defines */
-u16 data_ov006_0236b700[] = {
+CursorSteps18 data_ov006_0236b700 = {
 #include "data/ov006/data_ov006_0236b700.inc.c"
 };
-/* declared `CursorSteps18 data_ov006_0236b714` in ov006_entry_button_keys.c: declared in src/game/ov006/ov006_entry_button_keys.c, with a type no header defines */
-u16 data_ov006_0236b714[] = {
+CursorSteps18 data_ov006_0236b714 = {
 #include "data/ov006/data_ov006_0236b714.inc.c"
 };
-/* declared `CursorSteps24 data_ov006_0236b728` in ov006_entry_button_keys.c: declared in src/game/ov006/ov006_entry_button_keys.c, with a type no header defines */
-u32 data_ov006_0236b728[] = {
+CursorSteps24 data_ov006_0236b728 = {
 #include "data/ov006/data_ov006_0236b728.inc.c"
 };
-/* declared `CursorSteps24 data_ov006_0236b740` in ov006_entry_button_keys.c: declared in src/game/ov006/ov006_entry_button_keys.c, with a type no header defines */
-u32 data_ov006_0236b740[] = {
+CursorSteps24 data_ov006_0236b740 = {
 #include "data/ov006/data_ov006_0236b740.inc.c"
 };
-/* declared `CursorSteps25 data_ov006_0236b774` in ov006_entry_button_keys.c: declared in src/game/ov006/ov006_entry_button_keys.c, with a type no header defines */
-u8 data_ov006_0236b774[] = {
+CursorSteps25 data_ov006_0236b774 = {
 #include "data/ov006/data_ov006_0236b774.inc.c"
 };
-/* declared `CursorSteps25 data_ov006_0236b790` in ov006_entry_button_keys.c: declared in src/game/ov006/ov006_entry_button_keys.c, with a type no header defines */
-u8 data_ov006_0236b790[] = {
+CursorSteps25 data_ov006_0236b790 = {
 #include "data/ov006/data_ov006_0236b790.inc.c"
 };
-/* declared `CursorSteps25 data_ov006_0236b758` in ov006_entry_button_keys.c: declared in src/game/ov006/ov006_entry_button_keys.c, with a type no header defines */
-u8 data_ov006_0236b758[] = {
+CursorSteps25 data_ov006_0236b758 = {
 #include "data/ov006/data_ov006_0236b758.inc.c"
 };
-/* declared `CursorSteps25 data_ov006_0236b7ac` in ov006_entry_button_keys.c: declared in src/game/ov006/ov006_entry_button_keys.c, with a type no header defines */
-u8 data_ov006_0236b7ac[] = {
+CursorSteps25 data_ov006_0236b7ac = {
 #include "data/ov006/data_ov006_0236b7ac.inc.c"
 };
-/* declared `CursorSteps26 data_ov006_0236b7c8` in ov006_entry_button_keys.c: declared in src/game/ov006/ov006_entry_button_keys.c, with a type no header defines */
-u16 data_ov006_0236b7c8[] = {
+CursorSteps26 data_ov006_0236b7c8 = {
 #include "data/ov006/data_ov006_0236b7c8.inc.c"
 };
 

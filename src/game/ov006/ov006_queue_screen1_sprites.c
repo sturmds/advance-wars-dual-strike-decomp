@@ -2,6 +2,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov006_0235f690.h"
+#include "game/ov006_property_counts.h"
 #include "game/screen_contexts.h"
 
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
@@ -72,18 +73,12 @@ static u8 data_ov006_0236a9f8[] = {
 u8 data_ov006_0236a9f0[] = {
 #include "data/ov006/data_ov006_0236a9f0.inc.c"
 };
-/* declared `RowShapes data_ov006_0236aa70` in ov006_draw_property_counts.c: declared in src/game/ov006/ov006_draw_property_counts.c, with a type no header defines */
-void* data_ov006_0236aa70[] = {0, &data_ov006_0236aa20, &data_ov006_0236aa60,
-                               &data_ov006_0236aa10, &data_ov006_0236aa08};
-/* declared `ColumnShapes data_ov006_0236aa84` in ov006_draw_property_counts.c: declared in src/game/ov006/ov006_draw_property_counts.c, with a type no header defines */
-void* data_ov006_0236aa84[] = {0,
-                               &data_ov006_0236aa58,
-                               &data_ov006_0236aa50,
-                               &data_ov006_0236aa48,
-                               &data_ov006_0236aa40,
-                               &data_ov006_0236aa38};
-/* declared `TileGrid data_ov006_0236aa9c` in ov006_draw_property_counts.c: declared in src/game/ov006/ov006_draw_property_counts.c, with a type no header defines */
-u32 data_ov006_0236aa9c[] = {
+RowShapes data_ov006_0236aa70 = {{0, &data_ov006_0236aa20, &data_ov006_0236aa60,
+                                  &data_ov006_0236aa10, &data_ov006_0236aa08}};
+ColumnShapes data_ov006_0236aa84 = {
+    {0, &data_ov006_0236aa58, &data_ov006_0236aa50, &data_ov006_0236aa48,
+     &data_ov006_0236aa40, &data_ov006_0236aa38}};
+TileGrid data_ov006_0236aa9c = {
 #include "data/ov006/data_ov006_0236aa9c.inc.c"
 };
 GfxLayer data_ov006_0236aad8[] = {

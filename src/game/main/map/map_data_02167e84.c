@@ -3,6 +3,7 @@
 #include "game/map_object.h"
 #include "game/song.h"
 #include "game/task.h"
+#include "game/tile_point.h"
 
 void CannonShotTask_PlayImpact(void);
 void CannonShotTask_PlayMuzzleFlash(void);
@@ -34,7 +35,7 @@ extern u8 data_02148000[];
 extern u8 data_02167cd4[];
 extern u8 data_02167ce8[];
 extern u8 data_02167cf0[];
-extern u32 data_02167f50[];
+extern TilePointU16 data_02167f50[];
 extern TaskScriptCmd data_021680e0[];
 void func_02021b34(void);
 void func_020d8c8c(void);
@@ -45,17 +46,18 @@ void func_020d9234(void);
 void func_020d9ea8(void);
 extern ScriptCommand gMapScrollScript[];
 void MapObjectFireTask_ShowNextShot(void);
-extern u32 data_02167f84[];
+extern TilePointU16 data_02167f84[];
 
 void* data_02167e88 = &data_02167cd4;
 /* 0x10 bytes no code names, before data_02167e94, cut in 4 to keep the sizes ascending */
 void* data_02167e84 = &data_02167cf0;
 void* data_02167e90 = &data_02167ce8;
-u32 data_02167e94 = {
+TilePointU16 data_02167e94[] = {
 #include "data/main/data_02167e94.inc.c"
 };
 void* data_02167e8c = &data_02148000;
-void* data_02167e98[] = {&data_02167e94, &data_02167f50, &data_02167f84};
+/* Per object variant: its tiles (see map_object.h) */
+TilePointU16* data_02167e98[] = {data_02167e94, data_02167f50, data_02167f84};
 int gBlackCannonShotOrigins[] = {
 #include "data/main/gBlackCannonShotOrigins.inc.c"
 };
@@ -71,10 +73,10 @@ TaskScriptCmd data_02167ef0[] = {
 TaskScriptCmd data_02167f20[] = {
 #include "data/main/data_02167f20.inc.c"
 };
-u32 data_02167f84[] = {
+TilePointU16 data_02167f84[] = {
 #include "data/main/data_02167f84.inc.c"
 };
-u32 data_02167f50[] = {
+TilePointU16 data_02167f50[] = {
 #include "data/main/data_02167f50.inc.c"
 };
 TaskScriptCmd data_02167fb8[] = {

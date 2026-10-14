@@ -1,21 +1,10 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/map_power_line.h"
 #include "game/player.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-
-/* Campaign map lines: a CO power used on map (mapId - 224) starts the script
- * when the CO and the number of power uses match; player 0 means any player. */
-typedef struct MapPowerLine {
-  u8 player;
-  s8 co;
-  u8 powerUses;
-  u8 pad_03;
-  u32 script;
-} MapPowerLine;
-
-extern MapPowerLine* data_02166f9c[];
 
 void CoQuote_StartText(u32 script);
 

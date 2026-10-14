@@ -4,40 +4,13 @@
 #include "game/screen_other_map.h"
 #include "game/unlocks.h"
 #include "game/Unk_ov006_0235f690.h"
+#include "game/ov006_cursor_steps.h"
 
 void Ov006_SetEntryPage(int next);
 void func_ov006_023576f4(int arg);
 void func_ov006_02357734(void);
 void func_ov006_02358fec(void);
 void Ov006_UpdateEntryView(int index);
-
-/* Per-button cursor steps (added to the button id), copied to the stack
- * before use. The sizes are those of the copies. */
-typedef struct {
-  s8 step[25];
-} CursorSteps25;
-typedef struct {
-  s8 step[26];
-} CursorSteps26;
-typedef struct {
-  s8 step[24];
-} CursorSteps24;
-typedef struct {
-  s8 step[18];
-} CursorSteps18;
-
-extern CursorSteps18 data_ov006_0236b700;
-extern CursorSteps18 data_ov006_0236b714;
-extern CursorSteps24 data_ov006_0236b728;
-extern CursorSteps24 data_ov006_0236b740;
-extern CursorSteps25 data_ov006_0236b758;
-extern CursorSteps25 data_ov006_0236b774;
-extern CursorSteps25 data_ov006_0236b790;
-extern CursorSteps25 data_ov006_0236b7ac;
-extern CursorSteps26 data_ov006_0236b7c8;
-extern CursorSteps26 data_ov006_0236b800;
-extern CursorSteps26 data_ov006_0236b81c;
-extern CursorSteps26 data_ov006_0236b838;
 
 extern Unk_ov006_0235f690* data_ov006_0236d640;
 

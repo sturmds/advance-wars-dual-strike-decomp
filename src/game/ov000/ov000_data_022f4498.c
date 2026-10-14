@@ -72,16 +72,16 @@ u32 data_ov000_022f4618[] = {
 u32 data_ov000_022f45f8[] = {
 #include "data/ov000/data_ov000_022f45f8.inc.c"
 };
-u32 Ov000_gIncomeTerrain[] = {
+s8 Ov000_gIncomeTerrain[] = {
 #include "data/ov000/Ov000_gIncomeTerrain.inc.c"
 };
-u32 Ov000_gUrbanTerrain[] = {
+s8 Ov000_gUrbanTerrain[] = {
 #include "data/ov000/Ov000_gUrbanTerrain.inc.c"
 };
-u32 Ov000_gGroundDeployTerrain[] = {
+s8 Ov000_gGroundDeployTerrain[] = {
 #include "data/ov000/Ov000_gGroundDeployTerrain.inc.c"
 };
-u32 data_ov000_022f4578[] = {
+s8 data_ov000_022f4578[] = {
 #include "data/ov000/data_ov000_022f4578.inc.c"
 };
 u32 Ov000_gKindleCOP[] = {

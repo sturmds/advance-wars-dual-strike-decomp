@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/tile_offset.h"
 #include "game/terrain.h"
 #include "game/event_script.h"
 #include "game/screen_other_map.h"
@@ -40,7 +41,6 @@ void UnloadTask_Step(void);
 void ZoomSpriteTask_Init(void);
 void ZoomSpriteTask_InitWithSound(void);
 void ZoomSpriteTask_Update(void);
-extern u32 data_02166720[];
 extern TaskScriptCmd data_02168328[];
 extern TaskScriptCmd data_02168400[];
 void func_02019bec(void);
@@ -64,11 +64,9 @@ void ScreenWipe_PhaseDownInit(void);
 void ScreenWipe_PhaseUpInit(void);
 void TargetListPicker_Update(void);
 void ZoomSpriteTask_UpdateThenResume(void);
-extern u32 data_021669b0[];
 void MapOverview_DimStep(void);
 void ScreenWipe_PhaseDownStep(void);
 void ScreenWipe_PhaseUpStep(void);
-extern u32 data_02166c08[];
 
 /* "002" */
 char gTileCodeFileMap248First[] = {
@@ -131,9 +129,8 @@ void* data_021663c8[] = {&data_02166338, &data_02166318, &data_02166338,
 NeighborDir data_02166378[] = {
 #include "data/main/data_02166378.inc.c"
 };
-/* declared `TileOffset* data_0216638c[]` in map_add_tile_offset.c: declared in src/game/main/map/map_add_tile_offset.c, with a type no header defines */
-void* data_0216638c[] = {0, &data_02166720, &data_02166720, &data_021669b0,
-                         &data_02166c08};
+TileOffset* data_0216638c[] = {0, data_02166720, data_02166720, data_021669b0,
+                               data_02166c08};
 u32 data_021663a0[] = {
 #include "data/main/data_021663a0.inc.c"
 };
@@ -196,7 +193,7 @@ TaskScriptCmd data_021666b0[] = {
 ScriptCommand data_021666e8[] = {
 #include "data/main/data_021666e8.inc.c"
 };
-u32 data_02166720[] = {
+TileOffset data_02166720[] = {
 #include "data/main/data_02166720.inc.c"
 };
 TerrainIcon data_02166758[] = {

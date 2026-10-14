@@ -13,13 +13,13 @@ extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern void* data_027c0288;
 void UnitShowTask_OnDestroy(void);
-void func_ov000_022ad7e0(void);
+void func_ov000_022ad7e0(int arg);
 void UnitShowTask_Update(void);
-void func_ov000_022ad7dc(void);
-void UnitShowTask_StateMove(void);
+void func_ov000_022ad7dc(int arg);
+void UnitShowTask_StateMove(UnitShowTask* task);
 void func_ov000_022ad7e4(void);
-void UnitShowTask_StateScript(void);
-void func_ov000_022ad820(void);
+void UnitShowTask_StateScript(UnitShowTask* task);
+int func_ov000_022ad820(UnitShowTask* task);
 
 char data_ov000_022db568[] = {
 #include "data/ov000/data_ov000_022db568.inc.c"
@@ -261,10 +261,13 @@ static Vec3 data_ov000_022db698 = {
 s16 data_ov000_022db6a4[] = {
 #include "data/ov000/data_ov000_022db6a4.inc.c"
 };
-/* declared `UnitShowStateHandler data_ov000_022db6b4[]` in unit_show_task_update.c: declared in src/game/ov000/task/unit_show_task_update.c, with a type no header defines */
-void* data_ov000_022db6b4[] = {&func_ov000_022ad7e0,      &func_ov000_022ad7dc,
-                               &UnitShowTask_StateMove,   &func_ov000_022ad7e4,
-                               &UnitShowTask_StateScript, &func_ov000_022ad820};
+UnitShowStateHandler data_ov000_022db6b4[] = {
+    (UnitShowStateHandler)&func_ov000_022ad7e0,
+    (UnitShowStateHandler)&func_ov000_022ad7dc,
+    &UnitShowTask_StateMove,
+    (UnitShowStateHandler)&func_ov000_022ad7e4,
+    &UnitShowTask_StateScript,
+    (UnitShowStateHandler)&func_ov000_022ad820};
 TaskScriptCmd data_ov000_022db6cc[] = {
 #include "data/ov000/data_ov000_022db6cc.inc.c"
 };

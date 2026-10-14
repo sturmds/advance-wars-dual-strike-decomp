@@ -89,4 +89,13 @@ typedef struct Unk_ov005_0236bbac {
   u8 pad_1340[0x1360 - 0x1340]; /* Ov005SoundRoom_AllocWork allocates 0x1360 */
 } Unk_ov005_0236bbac;
 
+/* Two map entries side by side: one Sound Room bar column is two tiles
+ * wide. */
+typedef struct TilePair {
+  u16 left;
+  u16 right;
+} TilePair;
+
+extern TilePair data_ov005_0236b054[]; /* tiles of each bar row */
+
 #endif

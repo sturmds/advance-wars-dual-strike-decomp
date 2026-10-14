@@ -43,6 +43,12 @@ typedef struct UnitShowTask {
   s8 script[0x20]; /* commands of UnitShowTask_RunScript */
 } UnitShowTask;
 
+typedef void (*UnitShowStateHandler)(UnitShowTask* task);
+
+/* The handler of each state (UnitShowTask_Update). Handlers written with
+ * another signature are cast. */
+extern UnitShowStateHandler data_ov000_022db6b4[];
+
 /* path: UNIT_SHOW_PATH_LENGTH signed steps, read as bytes */
 void UnitShowTask_SetPath(UnitShowTask* task, const u8* path);
 

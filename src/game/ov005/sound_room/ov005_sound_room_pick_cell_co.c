@@ -33,8 +33,7 @@ static u8* data_ov005_0236af24[] = {
     (u8*)&data_ov005_0236ae9c, (u8*)&data_ov005_0236ae94,
     (u8*)&data_ov005_0236ae84, (u8*)&data_ov005_0236ae8c,
     (u8*)&data_ov005_0236aea4, (u8*)&data_ov005_0236aeb0};
-/* declared `TilePair data_ov005_0236b054[]` in ov005_sound_room_draw_bar_meter.c: declared in src/game/ov005/sound_room/ov005_sound_room_draw_bar_meter.c, with a type no header defines */
-u32 data_ov005_0236b054[] = {
+TilePair data_ov005_0236b054[] = {
 #include "data/ov005/data_ov005_0236b054.inc.c"
 };
 MenuButtonTemplate data_ov005_0236b02c = {
