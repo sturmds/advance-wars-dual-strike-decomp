@@ -1,13 +1,7 @@
 #include "types.h"
+#include "game/Unk_0215fe84.h"
 
-typedef struct Unk_02079ee0_0 Unk_02079ee0_0;
-
-struct Unk_02079ee0_0 {
-  u8 pad_00[0x2c];
-  int unk_2c;
-};
-
-extern Unk_02079ee0_0* data_0215fe84;
+extern Unk_0215fe84* data_0215fe84;
 extern u32 data_0229c880;
 void func_02079180(void*, int, int);
 

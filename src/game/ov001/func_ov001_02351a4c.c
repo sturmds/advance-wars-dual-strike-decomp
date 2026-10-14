@@ -2,9 +2,10 @@
 #include "game/task.h"
 #include "game/Unk_02168140.h"
 #include "game/screen_other_map.h"
+#include "game/tile_point.h"
 
 extern const TaskScriptCmd data_02168140[];
-extern void* data_02167e98[];
+extern TilePointU16* data_02167e98[];
 
 /* Starts the data_02168140 task on the other screen's map state with arguments 7, 3 and data_02167e98[0]. Name kept: the script's purpose is unknown. */
 void func_ov001_02351a4c(void) {

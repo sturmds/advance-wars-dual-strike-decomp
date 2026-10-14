@@ -1,12 +1,6 @@
 #include "types.h"
+#include "game/Unk_0215fe84.h"
 
-typedef struct Unk_0207a1ac_0 Unk_0207a1ac_0;
+extern Unk_0215fe84* data_0215fe84;
 
-struct Unk_0207a1ac_0 {
-  u8 pad_00[0x10];
-  int unk_10;
-};
-
-extern Unk_0207a1ac_0* data_0215fe84;
-
-int func_0207a1ac(void) { return data_0215fe84->unk_10; }
+int func_0207a1ac(void) { return data_0215fe84->dataSharingActive; }

@@ -7,11 +7,12 @@
 #include "game/player.h"
 #include "game/task.h"
 #include "game/unit_target_entry.h"
+#include "game/tile_point.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern UnitTargetEntry* data_022a6dcc;
-extern void* data_02167e98[];
+extern TilePointU16* data_02167e98[];
 
 MapObject* Map_FindObjectCovering(int x, int y);
 void TileListTask_StartChild(int tileX, int tileY, void* list, Task* parent);

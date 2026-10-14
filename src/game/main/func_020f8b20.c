@@ -1,18 +1,12 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 
-typedef struct Unk_020f8b20_0 Unk_020f8b20_0;
-
-struct Unk_020f8b20_0 {
-  u8 pad_00[0x6c];
-  u16 unk_6c;
-};
-
-extern Unk_020f8b20_0* data_027c0280;
+extern Unk_027c0280* data_027c0280;
 
 int func_020f8b20(void) {
-  Unk_020f8b20_0* t0 = data_027c0280;
-  u16 t1 = t0->unk_6c;
+  Unk_027c0280* t0 = data_027c0280;
+  u16 t1 = t0->dispCnt;
   int t2 = t1 | 0x200;
-  t0->unk_6c = t2;
+  t0->dispCnt = t2;
   return t2;
 }
