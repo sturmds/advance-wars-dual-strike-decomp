@@ -188,6 +188,10 @@ src/game/main/bss_02290298.c:
     complete
     .bss        start:0x02290298 end:0x02297774
 
+src/game/main/power_meter/power_meter_rodata.c:
+    complete
+    .rodata     start:0x02130100 end:0x02131fb8
+
 src/sdk/svc/svc_is_debugger.c:
     complete
     .text       start:0x0200006c end:0x02000070
@@ -16909,6 +16913,7 @@ src/game/main/power_meter/power_panel_right_draw_meter.c:
 src/game/main/power_meter/power_panel_right_draw.c:
     complete
     .text       start:0x020e0694 end:0x020e0970
+    .rodata     start:0x021298b8 end:0x02130100
 
 src/game/main/power_meter/power_panel_right_draw_player.c:
     complete

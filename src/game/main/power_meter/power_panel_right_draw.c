@@ -10,7 +10,171 @@ extern int data_027c0284;
 extern Unk_02080440_48 data_02183b08;
 extern u8 data_021686f0[];
 extern u8 data_02168670[];
-extern u8 data_0212e9b8[];
+const u32 data_0212e838[96] = {
+#include "data/main/data_0212e838.inc.c"
+};
+const u32 data_0212e6b8[96] = {
+#include "data/main/data_0212e6b8.inc.c"
+};
+const u32 data_0212e538[96] = {
+#include "data/main/data_0212e538.inc.c"
+};
+const u32 data_0212e3b8[96] = {
+#include "data/main/data_0212e3b8.inc.c"
+};
+const u32 data_0212e238[96] = {
+#include "data/main/data_0212e238.inc.c"
+};
+const u32 data_0212e0b8[96] = {
+#include "data/main/data_0212e0b8.inc.c"
+};
+const u32 data_0212df38[96] = {
+#include "data/main/data_0212df38.inc.c"
+};
+const u32 data_0212ddb8[96] = {
+#include "data/main/data_0212ddb8.inc.c"
+};
+const u32 data_0212dc38[96] = {
+#include "data/main/data_0212dc38.inc.c"
+};
+const u32 data_0212dab8[96] = {
+#include "data/main/data_0212dab8.inc.c"
+};
+const u32 data_0212d938[96] = {
+#include "data/main/data_0212d938.inc.c"
+};
+const u32 data_0212d7b8[96] = {
+#include "data/main/data_0212d7b8.inc.c"
+};
+const u32 data_0212d638[96] = {
+#include "data/main/data_0212d638.inc.c"
+};
+const u32 data_0212d4b8[96] = {
+#include "data/main/data_0212d4b8.inc.c"
+};
+const u32 data_0212d338[96] = {
+#include "data/main/data_0212d338.inc.c"
+};
+const u32 data_0212d1b8[96] = {
+#include "data/main/data_0212d1b8.inc.c"
+};
+const u32 data_0212d038[96] = {
+#include "data/main/data_0212d038.inc.c"
+};
+const u32 data_0212ceb8[96] = {
+#include "data/main/data_0212ceb8.inc.c"
+};
+const u32 data_0212cd38[96] = {
+#include "data/main/data_0212cd38.inc.c"
+};
+const u32 data_0212cbb8[96] = {
+#include "data/main/data_0212cbb8.inc.c"
+};
+const u32 data_0212ca38[96] = {
+#include "data/main/data_0212ca38.inc.c"
+};
+const u32 data_0212c8b8[96] = {
+#include "data/main/data_0212c8b8.inc.c"
+};
+const u32 data_0212c738[96] = {
+#include "data/main/data_0212c738.inc.c"
+};
+const u32 data_0212c5b8[96] = {
+#include "data/main/data_0212c5b8.inc.c"
+};
+const u32 data_0212c438[96] = {
+#include "data/main/data_0212c438.inc.c"
+};
+const u32 data_0212c2b8[96] = {
+#include "data/main/data_0212c2b8.inc.c"
+};
+const u32 data_0212c138[96] = {
+#include "data/main/data_0212c138.inc.c"
+};
+const u32 data_0212bfb8[96] = {
+#include "data/main/data_0212bfb8.inc.c"
+};
+const u32 data_0212be38[96] = {
+#include "data/main/data_0212be38.inc.c"
+};
+const u32 data_0212bcb8[96] = {
+#include "data/main/data_0212bcb8.inc.c"
+};
+const u32 data_0212bb38[96] = {
+#include "data/main/data_0212bb38.inc.c"
+};
+const u32 data_0212b9b8[96] = {
+#include "data/main/data_0212b9b8.inc.c"
+};
+const u32 data_0212b838[96] = {
+#include "data/main/data_0212b838.inc.c"
+};
+const u32 data_0212b6b8[96] = {
+#include "data/main/data_0212b6b8.inc.c"
+};
+const u32 data_0212b538[96] = {
+#include "data/main/data_0212b538.inc.c"
+};
+const u32 data_0212b3b8[96] = {
+#include "data/main/data_0212b3b8.inc.c"
+};
+const u32 data_0212b238[96] = {
+#include "data/main/data_0212b238.inc.c"
+};
+const u32 data_0212b0b8[96] = {
+#include "data/main/data_0212b0b8.inc.c"
+};
+const u32 data_0212af38[96] = {
+#include "data/main/data_0212af38.inc.c"
+};
+const u32 data_0212adb8[96] = {
+#include "data/main/data_0212adb8.inc.c"
+};
+const u32 data_0212ac38[96] = {
+#include "data/main/data_0212ac38.inc.c"
+};
+const u32 data_0212aab8[96] = {
+#include "data/main/data_0212aab8.inc.c"
+};
+const u32 data_0212a938[96] = {
+#include "data/main/data_0212a938.inc.c"
+};
+const u32 data_0212a7b8[96] = {
+#include "data/main/data_0212a7b8.inc.c"
+};
+const u32 data_0212a638[96] = {
+#include "data/main/data_0212a638.inc.c"
+};
+const u32 data_0212a4b8[96] = {
+#include "data/main/data_0212a4b8.inc.c"
+};
+const u32 data_0212a338[96] = {
+#include "data/main/data_0212a338.inc.c"
+};
+const u32 data_0212a1b8[96] = {
+#include "data/main/data_0212a1b8.inc.c"
+};
+const u32 data_0212a038[96] = {
+#include "data/main/data_0212a038.inc.c"
+};
+const u32 data_02129eb8[96] = {
+#include "data/main/data_02129eb8.inc.c"
+};
+const u32 data_02129d38[96] = {
+#include "data/main/data_02129d38.inc.c"
+};
+const u32 data_02129bb8[96] = {
+#include "data/main/data_02129bb8.inc.c"
+};
+const u32 data_02129a38[96] = {
+#include "data/main/data_02129a38.inc.c"
+};
+const u32 data_021298b8[96] = {
+#include "data/main/data_021298b8.inc.c"
+};
+const u8 data_0212e9b8[5960] = {
+#include "data/main/data_0212e9b8.inc.c"
+};
 extern u8 data_021304b8[];
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
