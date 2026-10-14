@@ -72,7 +72,8 @@ void Ov003_UpdateBannerText(Unk_ov003_0235dd38* task) {
     FRAME++;
   }
   if (FRAME == 1) {
-    Mem_Copy32(data_ov003_02365b0c, data_027c0280->objVram + 0xb1c0, 0x2000);
+    Mem_Copy32(data_ov003_02365b0c, data_027c0280->objVram + 0xb1c0,
+               OV003_TEXT_TILES_SIZE);
   }
 
   x = 128 - (Ov003_GetTextWidth(Text_Get(TEXT_BANNER_TOP)) >> 1);

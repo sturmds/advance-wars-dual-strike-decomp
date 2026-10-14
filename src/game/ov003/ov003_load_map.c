@@ -3,7 +3,6 @@
 #include "game/ov003_unit.h"
 #include "game/ov003_marker.h"
 
-extern Ov003Marker data_ov003_02369bb8[];
 extern u8
     data_ov003_02365d10[]; /* per tile code: bits 5-7 row, bits 0-4 terrain */
 static char data_ov003_0236492c[] = {
@@ -35,7 +34,7 @@ void Ov003_LoadMap(void) {
   int i;
 
   cleared = data_ov003_02369bb8;
-  for (i = 0; i < 4; i++, cleared++) {
+  for (i = 0; i < OV003_MARKER_COUNT; i++, cleared++) {
     cleared->busy = 0;
     cleared->unk_0a = 0;
     cleared->burstCount = 0;

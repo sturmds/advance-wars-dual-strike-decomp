@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/menu_state.h"
 #include "game/ov003_unit.h"
 
@@ -14,6 +15,9 @@ void GX_EndLoadTexPltt(void);
 /* VRAM banks A and F while they are mapped to the CPU. */
 #define VRAM_LCDC_A(offset) ((void*)(0x06800000 + (offset)))
 #define VRAM_LCDC_F(offset) ((void*)(0x06890000 + (offset)))
+
+/* The palettes the row colours pick from, one per colour. */
+#define ROW_PALETTES_SIZE (OV003_ROW_COLOR_COUNT * PALETTE_16_SIZE)
 
 /* Unpacks graphics from file (and one image from the localized file) into VRAM
  * bank A and copies palettes into bank F. The 160-byte palette block is also kept
@@ -34,16 +38,17 @@ void Ov003_LoadMainScreenGraphics(u8* file, void* localizedFile) {
   Data_Unpack(file + 0x1d30, VRAM_LCDC_A(0xa4a0));
   GX_EndLoadTex();
   GX_BeginLoadTexPltt();
-  Mem_Copy32(file + 0x1084, VRAM_LCDC_F(0x160), 160);
-  Mem_Copy32(file + 0x1084, &gMenuState, 160);
+  Mem_Copy32(file + 0x1084, VRAM_LCDC_F(0x160), ROW_PALETTES_SIZE);
+  Mem_Copy32(file + 0x1084, &gMenuState, ROW_PALETTES_SIZE);
   for (i = 0; i < data_ov003_02364928->rowCount; i++) {
-    Mem_Copy32((u8*)&gMenuState + (data_ov003_02364928->rows[i].color - 1) * 32,
-               VRAM_LCDC_F((i + 11) * 32), 32);
+    Mem_Copy32((u8*)&gMenuState +
+                   (data_ov003_02364928->rows[i].color - 1) * PALETTE_16_SIZE,
+               VRAM_LCDC_F((i + 11) * PALETTE_16_SIZE), PALETTE_16_SIZE);
   }
-  Mem_Copy32(file + 0x1cf0, VRAM_LCDC_F(0x200), 32);
-  Mem_Copy32(file + 0x1d10, VRAM_LCDC_F(0x220), 32);
-  Mem_Copy32(file + 0x24d0, VRAM_LCDC_F(0x240), 32);
-  Mem_Copy32(file + 0x22f0, VRAM_LCDC_F(0x260), 32);
-  Mem_Copy32(file + 0x2684, VRAM_LCDC_F(0x280), 32);
+  Mem_Copy32(file + 0x1cf0, VRAM_LCDC_F(0x200), PALETTE_16_SIZE);
+  Mem_Copy32(file + 0x1d10, VRAM_LCDC_F(0x220), PALETTE_16_SIZE);
+  Mem_Copy32(file + 0x24d0, VRAM_LCDC_F(0x240), PALETTE_16_SIZE);
+  Mem_Copy32(file + 0x22f0, VRAM_LCDC_F(0x260), PALETTE_16_SIZE);
+  Mem_Copy32(file + 0x2684, VRAM_LCDC_F(0x280), PALETTE_16_SIZE);
   GX_EndLoadTexPltt();
 }

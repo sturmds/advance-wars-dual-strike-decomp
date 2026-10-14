@@ -29,7 +29,8 @@ void Ov003_ShakeTextStep(Unk_ov003_0235dd38* obj) {
     obj->frame++;
   }
   if (obj->frame == 1) {
-    Mem_Copy32(data_ov003_02365b0c, data_027c0280->objVram + 0xb1c0, 0x2000);
+    Mem_Copy32(data_ov003_02365b0c, data_027c0280->objVram + 0xb1c0,
+               OV003_TEXT_TILES_SIZE);
   }
   if (data_02160abc->unk_0a ==
       data_ov003_02364928->slots[data_ov003_02364928->currentSlot].row) {

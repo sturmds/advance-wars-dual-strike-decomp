@@ -30,7 +30,7 @@ void Ov003Object_Impact(Ov003Object* object) {
   int tileX;
 
   unit = data_ov003_02369538;
-  for (i = 0; i < 16; i++, unit++) {
+  for (i = 0; i < OV003_UNIT_COUNT; i++, unit++) {
     if (unit->hp != 0 && !unit->unk_17_6 && i != object->owner &&
         Math_Distance(object->x >> 3, object->y >> 3, unit->x >> 3,
                       unit->y >> 3) < 35) {

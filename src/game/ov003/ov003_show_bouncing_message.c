@@ -33,7 +33,8 @@ void Ov003_ShowBouncingMessage(Ov003MessageTask* task) {
     task->frames++;
   }
   if (task->frames == 1) {
-    Mem_Copy32(data_ov003_02365b0c, data_027c0280->objVram, 0x2000);
+    Mem_Copy32(data_ov003_02365b0c, data_027c0280->objVram,
+               OV003_TEXT_TILES_SIZE);
   }
   x = 128 - (Ov003_GetTextWidth(Text_Get(MESSAGE_TEXT)) >> 1);
   if (task->frames <= SLIDE_FRAMES) {

@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-/* The byte of Ov003Slot at 0x139 + 4 * slot, which holds two nibbles. Read
- * through its own base so the compiler loads 0x139 from the literal pool
+/* Ov003Slot.rowState of a slot, which holds two nibbles. Read
+ * through its own base so the compiler loads its offset from the literal pool
  * as the original does. */
 typedef struct SlotByte {
   u8 row : 4;  /* same as Ov003Slot.row */
@@ -19,7 +19,7 @@ int Ov003_IsCurrentSlotRowOpen(void) {
   if (state->unk_1df_1) {
     return 0;
   }
-  slot = (SlotByte*)((u8*)state + 0x139) + state->currentSlot;
+  slot = (SlotByte*)&state->slots[0].rowState + state->currentSlot;
   if (slot->mode == 3 || slot->mode == 0) {
     if (state->rows[slot->row - 1].active) {
       return 0;

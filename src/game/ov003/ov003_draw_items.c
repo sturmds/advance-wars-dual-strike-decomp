@@ -4,7 +4,7 @@
 #include "game/ov003_marker.h"
 
 Ov003Item data_ov003_02369b98[OV003_ITEM_COUNT];
-Ov003Marker data_ov003_02369bb8[4];
+Ov003Marker data_ov003_02369bb8[OV003_MARKER_COUNT];
 
 void Ov003_DrawItem(Ov003Item* item);
 int Ov003_IsPhase0OrAbove6(void);

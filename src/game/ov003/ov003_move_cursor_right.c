@@ -17,13 +17,13 @@ int Ov003_MoveCursorRight(int slot) {
 
   rowNumber = data_ov003_02364928->slots[slot].row;
   cursor = data_ov003_02364928->slots[slot].cursor;
-  if (cursor >= 10) {
+  if (cursor >= OV003_COLUMN_CELL_COUNT) {
     return Ov003_MoveCursorLeft(slot);
   }
   row = &data_ov003_02364928->rows[rowNumber - 1];
-  cell = &row->cells[cursor] + 10;
-  for (i = cursor + 10; i < data_ov003_02364928->rows[rowNumber - 1].spawnCount;
-       i++, cell++) {
+  cell = &row->cells[cursor] + OV003_COLUMN_CELL_COUNT;
+  for (i = cursor + OV003_COLUMN_CELL_COUNT;
+       i < data_ov003_02364928->rows[rowNumber - 1].spawnCount; i++, cell++) {
     if (cell->state == 1) {
       if (slot == data_ov003_02364928->currentSlot) {
         Sound_PlaySe(0x10002);
@@ -32,8 +32,9 @@ int Ov003_MoveCursorRight(int slot) {
       return 1;
     }
   }
-  cell = &row->cells[cursor] + 9;
-  for (i = cursor + 9; i >= 10; i--, cell--) {
+  cell = &row->cells[cursor] + (OV003_COLUMN_CELL_COUNT - 1);
+  for (i = cursor + (OV003_COLUMN_CELL_COUNT - 1); i >= OV003_COLUMN_CELL_COUNT;
+       i--, cell--) {
     if (cell->state == 1) {
       if (slot == data_ov003_02364928->currentSlot) {
         Sound_PlaySe(0x10002);

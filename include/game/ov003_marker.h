@@ -22,4 +22,7 @@ typedef struct Ov003Marker {
 
 typedef char Ov003Marker_size_check[sizeof(Ov003Marker) == 12 ? 1 : -1];
 
+#define OV003_MARKER_COUNT 4
+extern Ov003Marker data_ov003_02369bb8[OV003_MARKER_COUNT];
+
 #endif

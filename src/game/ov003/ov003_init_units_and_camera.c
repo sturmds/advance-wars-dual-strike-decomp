@@ -30,7 +30,7 @@ void Ov003_InitUnitsAndCamera(void) {
 
   unit = data_ov003_02369538;
   object = data_ov003_02369738;
-  for (i = 0; i < 16; i++, unit++) {
+  for (i = 0; i < OV003_UNIT_COUNT; i++, unit++) {
     unit->hp = 0;
   }
   for (i = 0; i < OV003_OBJECT_COUNT; i++, object++) {
@@ -40,7 +40,7 @@ void Ov003_InitUnitsAndCamera(void) {
   if (data_02160ac0->unk_7c == 0) {
     unit->row = 1;
   } else {
-    for (i = 0; i < 8; i++, unit++) {
+    for (i = 0; i < OV003_SLOT_COUNT; i++, unit++) {
       unit->row = STATE->slots[i].row;
     }
   }
@@ -57,7 +57,7 @@ void Ov003_InitUnitsAndCamera(void) {
       }
     }
   }
-  for (i = 0; i < 8; i++) {
+  for (i = 0; i < OV003_SLOT_COUNT; i++) {
     if ((Wireless_GetChildAids() | 1) & (1 << i)) {
       Ov003_StartSlotPlacing(i);
     }

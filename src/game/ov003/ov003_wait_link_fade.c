@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/Unk_02160ac0.h"
+#include "game/ov003_unit.h"
 #include "game/ov003_frame_task.h"
 #include "sdk/msl_string.h"
 #include "game/task.h"
@@ -30,7 +31,7 @@ void Ov003_WaitLinkFade(Ov003FrameTask* task) {
     return;
   }
   found = 0;
-  for (i = 0; i < 8; i++) {
+  for (i = 0; i < OV003_SLOT_COUNT; i++) {
     if ((Wireless_GetChildAids() | 1) & (1 << i)) {
       if (strcmp((const char*)Wireless_GetSharedData((u16)i),
                  data_ov003_02364b44)) {

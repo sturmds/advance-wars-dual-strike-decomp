@@ -13,7 +13,7 @@ void Ov003_DamageUnitsNear(int row, int x, int y) {
   Ov003Unit* unit = data_ov003_02369538;
   int i;
 
-  for (i = 0; i < 16; i++, unit++) {
+  for (i = 0; i < OV003_UNIT_COUNT; i++, unit++) {
     /* needed to match: the (u16) cast makes the load unsigned; the field is s16 */
     if (unit->hp == 0 || unit->unk_17_6 || unit->row == row ||
         unit->safeTimer != 0) {

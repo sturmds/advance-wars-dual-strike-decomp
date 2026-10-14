@@ -14,7 +14,7 @@ void Ov003_DrawUnitAnims(void) {
   int i;
   int frame;
 
-  for (i = 0; i < 16; i++, unit++) {
+  for (i = 0; i < OV003_UNIT_COUNT; i++, unit++) {
     if (unit->hp != 0 && !unit->unk_17_6 && unit->unk_04 > 30) {
       frame = 20 - HwDiv32((unit->unk_04 - 30) * 20,
                            data_ov003_02364d88[unit->kind].unk_00);

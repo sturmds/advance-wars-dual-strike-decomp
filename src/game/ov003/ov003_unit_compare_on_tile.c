@@ -17,7 +17,7 @@ int Ov003Unit_CompareOnTile(Ov003Unit* unit) {
   tileY = unit->y >> 7;
   result = 0;
   other = data_ov003_02369538;
-  for (i = 0; i < 16; i++, other++) {
+  for (i = 0; i < OV003_UNIT_COUNT; i++, other++) {
     if (unit != other && other->hp != 0 && !other->unk_17_6 &&
         (other->x >> 7) == tileX && (other->y >> 7) == tileY) {
       if (other->row != unit->row) {

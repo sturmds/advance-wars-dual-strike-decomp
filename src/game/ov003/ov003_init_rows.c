@@ -34,7 +34,7 @@ void Ov003_InitRows(void) {
   STATE->currentSlot = SETUP->unk_7c ? func_0207a260() : 0;
   STATE->activeRows = 0;
   data_02160abc->unk_0a = 0;
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < OV003_ROW_COUNT; i++) {
     STATE->rows[i].charge = 0;
     STATE->rows[i].powerTimer = 0;
     STATE->rows[i].co = 0;
@@ -43,11 +43,11 @@ void Ov003_InitRows(void) {
     STATE->rows[i].unk_3b_4 = 0;
     STATE->rows[i].unk_38 = 0xff;
     STATE->rows[i].unk_39 = 0xff;
-    for (n = 0; n < 10; n++) {
+    for (n = 0; n < (int)ARRAY_COUNT(STATE->rows[i].unk_28); n++) {
       STATE->rows[i].unk_28[n] = 0;
     }
   }
-  for (i = 0; i < 8; i++) {
+  for (i = 0; i < OV003_SLOT_COUNT; i++) {
     STATE->slots[i].cursor = 0;
     if (SETUP->unk_7c) {
       STATE->slots[i].row = SETUP->unk_70[i];
@@ -71,10 +71,10 @@ void Ov003_InitRows(void) {
     STATE->slots[STATE->currentSlot].state = 2;
   } else {
     STATE->activeRows = 0;
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < OV003_ROW_COUNT; i++) {
       STATE->rows[i].active = 0;
     }
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < OV003_SLOT_COUNT; i++) {
       if ((Wireless_GetChildAids() | 1) & (1 << i)) {
         STATE->slots[i].state = 2;
         STATE->rows[STATE->slots[i].row - 1].active = 1;
@@ -87,7 +87,7 @@ void Ov003_InitRows(void) {
   }
 
   n = 0;
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < OV003_TEAM_ROW_COUNT; i++) {
     if (STATE->rows[i].active) {
       STATE->rows[i].unk_3b_4 = n * 2;
       n++;
@@ -104,7 +104,7 @@ void Ov003_InitRows(void) {
       n = 0;
       break;
   }
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < OV003_TEAM_ROW_COUNT; i++) {
     if (STATE->rows[i].active) {
       STATE->rows[i].unk_3b_4 += n;
     }
@@ -146,7 +146,7 @@ void Ov003_InitRows(void) {
   STATE->phases = (STATE->phases & ~0xf0) | 0x30;
   STATE->frameCount = 0;
   STATE->unk_1cc = 0;
-  for (i = 0; i < 8; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(STATE->unk_1c0); i++) {
     STATE->unk_1c0[i] = 0;
   }
 

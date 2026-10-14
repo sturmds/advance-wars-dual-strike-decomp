@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/co_data.h"
 #include "game/co_graphics.h"
+#include "game/ov003_gfx.h"
 #include "game/ov003_unit.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov003_0235dd38.h"
@@ -38,7 +39,9 @@ void Ov003_StepCoPowerBanner(Unk_ov003_0235dd38* task) {
     case 1:
       row = task->unk_52;
       Mem_Copy32(
-          (row - 1 < 2) ? gMenuState[row - 1] : data_ov003_02365b10[row - 3],
+          (row - 1 < OV003_PICTURES_IN_MENU_STATE)
+              ? gMenuState[row - 1]
+              : data_ov003_02365b10[row - 1 - OV003_PICTURES_IN_MENU_STATE],
           data_027c0280->objVram + 0xb1c0, CO_LARGE_PICTURE_SIZE);
       break;
     case 2:

@@ -1,5 +1,7 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
+#include "game/co_graphics.h"
+#include "game/ov003_gfx.h"
 #include "game/menu_state.h"
 #include "game/ov003_unit.h"
 
@@ -71,14 +73,16 @@ void Ov003_LoadScreenGraphics(void) {
   Mem_Free(file);
 
   Wallpaper_LoadSingle();
-  data_ov003_02365b10 = Mem_Alloc(0x6c00);
+  data_ov003_02365b10 =
+      Mem_Alloc(OV003_PICTURES_ALLOCATED * CO_LARGE_PICTURE_SIZE);
   for (i = 0; i < data_ov003_02364928->rowCount; i++) {
     row = &data_ov003_02364928->rows[i];
     if (row->active) {
-      if (i < 2) {
-        dst = (u8*)&gMenuState + i * 0x3600;
+      if (i < OV003_PICTURES_IN_MENU_STATE) {
+        dst = (u8*)&gMenuState + i * CO_LARGE_PICTURE_SIZE;
       } else {
-        dst = data_ov003_02365b10 + (i - 2) * 0x3600;
+        dst = data_ov003_02365b10 +
+              (i - OV003_PICTURES_IN_MENU_STATE) * CO_LARGE_PICTURE_SIZE;
       }
       Co_LoadArmyGraphicsToBuffer(CombatCo_IdFromNumber(row->co), dst, i + 1);
     }

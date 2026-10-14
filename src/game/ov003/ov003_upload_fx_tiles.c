@@ -5,6 +5,10 @@
 /* Tile frames the effect copies from (0x06600000 is sub-screen OBJ VRAM). */
 #define EFFECT_TILE_VRAM ((u8*)0x06610000)
 #define EFFECT_TILE_VRAM_SECOND ((u8*)0x06618000)
+/* Bytes per copy: unk_09 sends a frame in two halves, unk_0a one block. */
+#define EFFECT_HALF_FRAME_SIZE 0x1000
+#define EFFECT_BLOCK_SIZE 0xc00
+
 #define BG0_CHAR_BASE      \
   (data_027c0280->bgVram + \
    (data_027c0280->bgCnt[data_027c0280->layer0Bg].charBase << 14))
@@ -24,19 +28,19 @@ void Ov003_UploadFxTiles(void) {
   Screen_SetCurrent(data_027c0288.unk_00);
   if (data_ov003_02364a84->unk_09_0 == 1) {
     Mem_Copy32(EFFECT_TILE_VRAM + data_ov003_02364a84->unk_09_2 * 0x2000,
-               BG0_CHAR_BASE + 0x2000, 0x1000);
+               BG0_CHAR_BASE + 0x2000, EFFECT_HALF_FRAME_SIZE);
     data_ov003_02364a84->unk_09_0++;
     return;
   } else if (data_ov003_02364a84->unk_09_0 == 2) {
     Mem_Copy32(
         EFFECT_TILE_VRAM + (data_ov003_02364a84->unk_09_2 * 2 + 1) * 0x1000,
-        BG0_CHAR_BASE + 0x3000, 0x1000);
+        BG0_CHAR_BASE + 0x3000, EFFECT_HALF_FRAME_SIZE);
     data_ov003_02364a84->unk_09_0 = 0;
     return;
   } else if (data_ov003_02364a84->unk_0a_0 != 0) {
     Mem_Copy32(
         EFFECT_TILE_VRAM_SECOND + (data_ov003_02364a84->unk_0a_2 * 0x60 << 5),
-        BG0_CHAR_BASE + 0x4000, 0xc00);
+        BG0_CHAR_BASE + 0x4000, EFFECT_BLOCK_SIZE);
     data_ov003_02364a84->unk_0a_0 = 0;
     return;
   }

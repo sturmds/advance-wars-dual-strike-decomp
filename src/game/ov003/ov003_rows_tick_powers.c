@@ -8,7 +8,7 @@ void Ov003Rows_TickPowers(void) {
   int rowNumber;
   Ov003Row* row;
 
-  for (rowNumber = 1; rowNumber <= 4; rowNumber++) {
+  for (rowNumber = 1; rowNumber <= OV003_TEAM_ROW_COUNT; rowNumber++) {
     row = &data_ov003_02364928->rows[rowNumber - 1];
     if (row->active && row->powerTimer != 0) {
       row->powerTimer--;

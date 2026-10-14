@@ -1,9 +1,13 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/Ov003Fx.h"
 #include "game/screen_other_map.h"
 
 void Palette_Load(const void* src, int offset, u32 size);
 #define EFFECT_TILE_VRAM ((u8*)0x0661e000) /* sub-screen OBJ VRAM */
+/* Bytes of one tile image copied: two 4bpp tiles. */
+#define EFFECT_IMAGE_SIZE (2 * TILE_4BPP_SIZE)
+
 #define BG0_CHAR_BASE      \
   (data_027c0280->bgVram + \
    (data_027c0280->bgCnt[data_027c0280->layer0Bg].charBase << 14))
@@ -29,10 +33,10 @@ void Ov003_UploadFxColorsAndTiles(void) {
   }
   if (data_ov003_02364a84->unk_0b_0 != 0) {
     Mem_Copy32(EFFECT_TILE_VRAM + data_ov003_02364a84->unk_0b_2 * 0x80,
-               BG0_CHAR_BASE + 0x57c0, 0x40);
+               BG0_CHAR_BASE + 0x57c0, EFFECT_IMAGE_SIZE);
     Mem_Copy32(
         EFFECT_TILE_VRAM + (data_ov003_02364a84->unk_0b_2 * 4 + 2) * 0x20,
-        BG0_CHAR_BASE + 0x5bc0, 0x40);
+        BG0_CHAR_BASE + 0x5bc0, EFFECT_IMAGE_SIZE);
     data_ov003_02364a84->unk_0b_0 = 0;
   }
   Screen_SetCurrent(saved027c);

@@ -38,7 +38,7 @@ int Ov003_CanPlaceUnit(int tile, int x, int y) {
   maxY = top + 112;
   x = left + 16;
   y = top + 16;
-  for (i = 0; i < 16; i++, unit++) {
+  for (i = 0; i < OV003_UNIT_COUNT; i++, unit++) {
     if (unit->hp != 0) {
       s16 unitX = unit->x;
       s16 unitY;

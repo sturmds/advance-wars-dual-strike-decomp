@@ -105,7 +105,7 @@ void Ov003Unit_Move(Ov003Unit* unit, int dir, int distance, int straight) {
     }
 
     other = data_ov003_02369538;
-    for (i = 0; i < 16; i++, other++) {
+    for (i = 0; i < OV003_UNIT_COUNT; i++, other++) {
       if (other == unit) {
         continue;
       }

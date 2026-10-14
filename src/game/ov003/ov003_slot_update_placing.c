@@ -39,13 +39,13 @@ void Ov003Slot_UpdatePlacing(int slot, Keypad* keypad, Ov003Input* input) {
   }
   /* Counts down to 3 and stops there. Only a failed placement sets it to 1,
      * so the next frame tries again without a button. */
-  OV003_SLOT_COOLDOWN(STATE, slot)--;
-  if (OV003_SLOT_COOLDOWN(STATE, slot) == 2) {
-    OV003_SLOT_COOLDOWN(STATE, slot) = 3;
+  STATE->slots[slot].cooldown--;
+  if (STATE->slots[slot].cooldown == 2) {
+    STATE->slots[slot].cooldown = 3;
   }
   if (Ov003_InputTouchedCircle(input, 240, 176, 24) != 1 &&
       !(keypad->pressed & (PAD_BUTTON_A | PAD_BUTTON_Y)) &&
-      OV003_SLOT_COOLDOWN(STATE, slot) != 0) {
+      STATE->slots[slot].cooldown != 0) {
     return;
   }
   /* needed to match: the slot goes to the create calls as a u8 */
@@ -60,7 +60,7 @@ void Ov003Slot_UpdatePlacing(int slot, Keypad* keypad, Ov003Input* input) {
         STATE->slots[slot].state = OV003_SLOT_PLACED;
         return;
       }
-      for (i = 0; i < 8; i++) {
+      for (i = 0; i < OV003_SLOT_COUNT; i++) {
         if (((Wireless_GetChildAids() | 1) & (1 << i)) && i != slot &&
             STATE->slots[i].state == OV003_SLOT_PLACING &&
             STATE->slots[i].row == STATE->slots[slot].row &&
@@ -70,7 +70,7 @@ void Ov003Slot_UpdatePlacing(int slot, Keypad* keypad, Ov003Input* input) {
       }
       STATE->slots[slot].state = OV003_SLOT_PLACED;
     } else {
-      OV003_SLOT_COOLDOWN(STATE, slot) = 1;
+      STATE->slots[slot].cooldown = 1;
     }
   } else {
     if (Ov003Unit_CreateWithSprite((u8)slot, STATE->slots[slot].cursor,
@@ -81,7 +81,7 @@ void Ov003Slot_UpdatePlacing(int slot, Keypad* keypad, Ov003Input* input) {
       }
       STATE->slots[slot].state = OV003_SLOT_STATE_1;
       if (data_02160ac0->unk_7c != 0) {
-        for (i = 0; i < 8; i++) {
+        for (i = 0; i < OV003_SLOT_COUNT; i++) {
           if (((Wireless_GetChildAids() | 1) & (1 << i)) && i != slot &&
               STATE->slots[i].state == OV003_SLOT_PLACING &&
               STATE->slots[i].row == STATE->slots[slot].row &&
@@ -93,7 +93,7 @@ void Ov003Slot_UpdatePlacing(int slot, Keypad* keypad, Ov003Input* input) {
         }
       }
     } else {
-      OV003_SLOT_COOLDOWN(STATE, slot) = 1;
+      STATE->slots[slot].cooldown = 1;
     }
   }
 }

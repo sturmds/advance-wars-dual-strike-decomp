@@ -5,7 +5,6 @@
 
 extern u8
     data_ov003_02365d10[]; /* per tile code: bits 5-7 owner, bits 0-4 terrain */
-extern Ov003Marker data_ov003_02369bb8[];
 
 Ov003Marker* Ov003_FindMarkerAtTile(int x, int y);
 int Ov003_IsNearMarker(Ov003Marker* entry, int x, int y);

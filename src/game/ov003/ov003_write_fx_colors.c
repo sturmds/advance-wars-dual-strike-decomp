@@ -15,15 +15,23 @@ void GX_EndLoadTexPltt(void); /* guess: undoes GX_BeginLoadTexPltt */
 void Ov003_WriteFxColors(void) {
   GX_BeginLoadTexPltt();
   if (data_ov003_02364a84->mode == 0) {
-    Mem_CopyUnits(&data_ov003_02364a84->colors, BANK_F_COLOR(0), 4, 16);
-    Mem_CopyUnits(&data_ov003_02364a84->colors, BANK_F_COLOR(1), 4, 16);
-    Mem_CopyUnits(&data_ov003_02364a84->colors, BANK_F_COLOR(2), 4, 16);
-    Mem_CopyUnits(&data_ov003_02364a84->colors, BANK_F_COLOR(3), 4, 16);
+    Mem_CopyUnits(&data_ov003_02364a84->colors, BANK_F_COLOR(0),
+                  sizeof(data_ov003_02364a84->colors), 16);
+    Mem_CopyUnits(&data_ov003_02364a84->colors, BANK_F_COLOR(1),
+                  sizeof(data_ov003_02364a84->colors), 16);
+    Mem_CopyUnits(&data_ov003_02364a84->colors, BANK_F_COLOR(2),
+                  sizeof(data_ov003_02364a84->colors), 16);
+    Mem_CopyUnits(&data_ov003_02364a84->colors, BANK_F_COLOR(3),
+                  sizeof(data_ov003_02364a84->colors), 16);
   } else if (data_ov003_02364a84->mode == 11) {
-    Mem_CopyUnits(data_ov003_02364a84, BANK_F_COLOR(0), 4, 16);
-    Mem_CopyUnits(data_ov003_02364a84, BANK_F_COLOR(1), 4, 16);
-    Mem_CopyUnits(data_ov003_02364a84, BANK_F_COLOR(2), 4, 16);
-    Mem_CopyUnits(data_ov003_02364a84, BANK_F_COLOR(3), 4, 16);
+    Mem_CopyUnits(data_ov003_02364a84, BANK_F_COLOR(0),
+                  sizeof(data_ov003_02364a84->colors), 16);
+    Mem_CopyUnits(data_ov003_02364a84, BANK_F_COLOR(1),
+                  sizeof(data_ov003_02364a84->colors), 16);
+    Mem_CopyUnits(data_ov003_02364a84, BANK_F_COLOR(2),
+                  sizeof(data_ov003_02364a84->colors), 16);
+    Mem_CopyUnits(data_ov003_02364a84, BANK_F_COLOR(3),
+                  sizeof(data_ov003_02364a84->colors), 16);
   }
   GX_EndLoadTexPltt();
 }

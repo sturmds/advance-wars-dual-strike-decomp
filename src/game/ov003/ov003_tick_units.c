@@ -15,7 +15,7 @@ void Ov003_TickUnits(void) {
 
   Ov003_UpdateUnitTerrain();
   Ov003_SnapshotUnits();
-  for (i = 0; i < 16; i++, unit++) {
+  for (i = 0; i < OV003_UNIT_COUNT; i++, unit++) {
     if (unit->hp != 0 && !unit->unk_17_6) {
       if (unit->unk_15 != 0) {
         unit->unk_15--;

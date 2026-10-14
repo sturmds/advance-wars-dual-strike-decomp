@@ -22,7 +22,7 @@ void Ov003_ResetSlotStates(void) {
       active = 1;
     }
   } else {
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < OV003_SLOT_COUNT; i++) {
       if ((Wireless_GetChildAids() | 1) & (1 << i)) {
         if (data_ov003_02364928->slots[i].state != 4) {
           active = 1;
@@ -33,7 +33,7 @@ void Ov003_ResetSlotStates(void) {
   if (active == 1) {
     return;
   }
-  for (i = 0; i < 8; i++) {
+  for (i = 0; i < OV003_SLOT_COUNT; i++) {
     if ((Wireless_GetChildAids() | 1) & (1 << i)) {
       data_ov003_02364928->slots[i].state = 1;
     }

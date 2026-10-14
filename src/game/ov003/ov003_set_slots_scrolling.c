@@ -3,15 +3,15 @@
 #include "game/Unk_02160ac0.h"
 #include "game/ov003_unit.h"
 
-/* Needed to match: the slot byte at 0x139 of Ov003State (Ov003Slot.row and
- * state), read as a nibble pair at a 0x139 base. */
+/* Needed to match: Ov003Slot.rowState (row and state), read as a nibble pair
+ * from the first slot's byte. */
 typedef struct SlotNibbles {
   u8 low : 4;
   u8 high : 4;
   u8 pad[3];
 } SlotNibbles;
 
-#define SLOT_NIBBLES(state) ((SlotNibbles*)((u8*)(state) + 0x139))
+#define SLOT_NIBBLES(state) ((SlotNibbles*)&(state)->slots[0].rowState)
 
 u16 Wireless_GetChildAids(void);
 
@@ -32,7 +32,7 @@ void Ov003_SetSlotsScrolling(void) {
     [data_ov003_02364928->currentSlot].high = 3;
     return;
   }
-  for (i = 0; i < 8; i++) {
+  for (i = 0; i < OV003_SLOT_COUNT; i++) {
     if ((Wireless_GetChildAids() | 1) & (1 << i)) {
       state = data_ov003_02364928;
       slot = &SLOT_NIBBLES(state)[i];

@@ -4,7 +4,6 @@
 #include "game/ov003_marker.h"
 
 extern Ov003Unit data_ov003_02369538[];
-extern Ov003Marker data_ov003_02369bb8[];
 
 int func_ov003_02362098(int row);
 void Ov003_StartSlotPlacing(int unitIndex);
@@ -36,13 +35,13 @@ void Ov003Unit_Remove(Ov003Unit* unit) {
   index = unit - data_ov003_02369538;
   unit->unk_17_7 = 0;
   entry = data_ov003_02369bb8;
-  for (i = 0; i < 4; i++, entry++) {
+  for (i = 0; i < OV003_MARKER_COUNT; i++, entry++) {
     if (entry->busy && entry->target == unit) {
       entry->target = NULL;
     }
   }
   if (data_02160ac0->unk_7c != 0 && unit->row == data_ov003_02364928->row) {
-    for (j = 0; j < 8; j++) {
+    for (j = 0; j < (int)ARRAY_COUNT(data_ov003_02364928->unk_1c0); j++) {
       if (data_ov003_02364928->unk_1c0[j] == 0) {
         data_ov003_02364928->unk_1c0[j] = 120;
         break;
@@ -50,7 +49,7 @@ void Ov003Unit_Remove(Ov003Unit* unit) {
     }
   }
   cell = row->cells;
-  for (i = 0; i < 20; i++, cell++) {
+  for (i = 0; i < OV003_ROW_CELL_COUNT; i++, cell++) {
     if (cell->state == 2 && CELL_UNIT(cell) == index) {
       cell->state = 3;
       CELL_UNIT(cell) = -1;

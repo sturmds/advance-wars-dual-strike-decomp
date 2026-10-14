@@ -10,7 +10,7 @@ Ov003Unit* Ov003_FindUnitNear(int x, int y, int skipUnit) {
   Ov003Unit* unit = data_ov003_02369538;
   int i;
 
-  for (i = 0; i < 16; i++, unit++) {
+  for (i = 0; i < OV003_UNIT_COUNT; i++, unit++) {
     if (unit->hp != 0 && !unit->unk_17_6 && i != skipUnit) {
       int unitX = unit->x >> 3;
 

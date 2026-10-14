@@ -1,18 +1,18 @@
 #include "types.h"
 #include "game/ov003_unit.h"
-#include "game/ov003_pickup.h"
+#include "game/ov003_item.h"
 
 extern Ov003Unit data_ov003_02369538[];
 
 int func_ov003_023622b8(void);
-void Ov003_ApplyPickup(Ov003Unit* unit, Ov003Pickup* pickup);
+void Ov003_ApplyPickup(Ov003Unit* unit, Ov003Item* pickup);
 
 /* Each frame: the first live unit within 48 of a pickup (not one of the row
  * being spawned into, not one with unk_17_6 set) takes it with
  * Ov003_ApplyPickup; a pickup nobody takes counts its time down. Then each
  * row's slowTimer counts down. Needed to match: the declaration order. */
 void Ov003_UpdatePickups(void) {
-  Ov003Pickup* pickup;
+  Ov003Item* pickup;
   Ov003Unit* unit;
   int index;
   int left;
@@ -22,8 +22,8 @@ void Ov003_UpdatePickups(void) {
   int i;
   pickup = data_ov003_02369b98;
 
-  for (i = 0; i < 4; i++, pickup++) {
-    if (pickup->time == 0) {
+  for (i = 0; i < OV003_ITEM_COUNT; i++, pickup++) {
+    if (pickup->timer == 0) {
       continue;
     }
     left = pickup->x - 48;
@@ -40,12 +40,12 @@ void Ov003_UpdatePickups(void) {
         goto next;
       }
     }
-    if (pickup->time != 0) {
-      pickup->time--;
+    if (pickup->timer != 0) {
+      pickup->timer--;
     }
   next:;
   }
-  for (i = 1; i <= 5; i++) {
+  for (i = 1; i <= OV003_ROW_COUNT; i++) {
     if (data_ov003_02364928->rows[i - 1].slowTimer != 0) {
       data_ov003_02364928->rows[i - 1].slowTimer--;
     }

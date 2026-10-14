@@ -4,7 +4,6 @@
 #include "game/Unk_02160ac0.h"
 
 extern Ov003Unit data_ov003_02369538[];
-extern Ov003Marker data_ov003_02369bb8[];
 
 u16 Wireless_GetChildAids(void);
 void Ov003_CreateSprite(int x, int y);
@@ -32,7 +31,7 @@ void Ov003_DefeatTeam(int team) {
 
   unit = data_ov003_02369538;
   if (STATE->phase == 7) {
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < OV003_SLOT_COUNT; i++) {
       if ((Wireless_GetChildAids() | 1) & (1 << i)) {
         STATE->slots[i].state = 0;
       }
@@ -43,7 +42,7 @@ void Ov003_DefeatTeam(int team) {
   STATE->rows[team - 1].active = 0;
   Ov003Row_StopPower(team);
 
-  for (i = 0; i < 16; i++, unit++) {
+  for (i = 0; i < OV003_UNIT_COUNT; i++, unit++) {
     if (unit->hp == 0 && !unit->unk_17_7) {
       continue;
     }
@@ -58,7 +57,7 @@ void Ov003_DefeatTeam(int team) {
     }
     /* drop the unit from the busy entries that point at it */
     entry = data_ov003_02369bb8;
-    for (j = 0; j < 4; j++, entry++) {
+    for (j = 0; j < OV003_MARKER_COUNT; j++, entry++) {
       if (entry->busy && entry->target == unit) {
         entry->target = NULL;
       }
@@ -85,7 +84,7 @@ void Ov003_DefeatTeam(int team) {
   if (data_02160ac0->unk_7c == 0) {
     STATE->slots[STATE->currentSlot].state = 0;
   } else {
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < OV003_SLOT_COUNT; i++) {
       if ((Wireless_GetChildAids() | 1) & (1 << i)) {
         if (alive >= 2) {
           if (team == STATE->slots[i].row) {

@@ -1,15 +1,13 @@
 #include "types.h"
 #include "game/ov003_marker.h"
 
-extern Ov003Marker data_ov003_02369bb8[];
-
 /* Finds the busy marker covering a tile: the tile itself for kind 6, the 3 by 3
  * tiles around it for kind 7. */
 Ov003Marker* Ov003_FindMarkerAtTile(int x, int y) {
   Ov003Marker* marker = data_ov003_02369bb8;
   int i;
 
-  for (i = 0; i < 4; i++, marker++) {
+  for (i = 0; i < OV003_MARKER_COUNT; i++, marker++) {
     if (!marker->busy) {
       continue;
     }

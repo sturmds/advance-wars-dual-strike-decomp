@@ -30,11 +30,12 @@ void Ov003Row_DrawCells(int row) {
 
   cell = ROW.cells;
   column = ROW.unk_3b_4 * 4;
-  for (i = 0; i < 20; i++, cell++) {
-    if (i < 10) {
+  for (i = 0; i < OV003_ROW_CELL_COUNT; i++, cell++) {
+    if (i < OV003_COLUMN_CELL_COUNT) {
       map = data_027c0280->layer0Map + (column + 1) + (i * 2 + 1) * 32;
     } else {
-      map = data_027c0280->layer0Map + (column + 4) + ((i - 10) * 2 + 1) * 32;
+      map = data_027c0280->layer0Map + (column + 4) +
+            ((i - OV003_COLUMN_CELL_COUNT) * 2 + 1) * 32;
     }
     if (cell->state == 0) {
       map[0] = 0;
@@ -91,7 +92,7 @@ void Ov003Row_DrawCells(int row) {
         }
         /* the digit tiles start at 190, two per digit */
         if (hpTenths <= 9) {
-          if (i < 10) {
+          if (i < OV003_COLUMN_CELL_COUNT) {
             Sprite_Queue(1, ((column + 2) * 8 + 4) & 0x1ff,
                          ((i * 2 + 2) * 8 + 1) & 0xff, &data_027c0028,
                          (hpTenths * 2 + 188) | 0x1000, 0);

@@ -20,7 +20,7 @@ void Ov003_UpdateUnits(void) {
   Ov003Unit* unit = data_ov003_02369538;
   int i;
 
-  for (i = 0; i < 16; i++, unit++) {
+  for (i = 0; i < OV003_UNIT_COUNT; i++, unit++) {
     int tile;
 
     if (unit->hp == 0) {

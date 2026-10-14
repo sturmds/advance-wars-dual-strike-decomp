@@ -28,7 +28,7 @@ void Ov003_UpdateSpawns(void) {
       count++;
     } while (count < data_ov003_02364928->unk_1dc);
   } else {
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < (int)ARRAY_COUNT(data_ov003_02364928->unk_1c0); i++) {
       if (data_ov003_02364928->unk_1c0[i] != 0) {
         data_ov003_02364928->unk_1c0[i]--;
         if (data_ov003_02364928->unk_1c0[i] == 0) {

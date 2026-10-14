@@ -17,11 +17,11 @@ void Ov003_StartSlotPlacing(int slot) {
   hasUnit = 0;
   row = data_ov003_02364928->slots[slot].row;
   cell = data_ov003_02364928->rows[row - 1].cells;
-  for (i = 0; i < 20; i++, cell++) {
+  for (i = 0; i < OV003_ROW_CELL_COUNT; i++, cell++) {
     if (cell->state == 1) {
       data_ov003_02364928->slots[slot].cursor = i;
       data_ov003_02364928->slots[slot].state = 2;
-      OV003_SLOT_TIMER(slot) = 900;
+      data_ov003_02364928->slots[slot].cooldown = 900;
       return;
     }
     if (cell->state == 2) {

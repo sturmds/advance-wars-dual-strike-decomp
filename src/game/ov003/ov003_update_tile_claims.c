@@ -41,7 +41,7 @@ void Ov003_UpdateTileClaims(void) {
   unit = data_ov003_02369538;
   soundPlayed = 0;
 
-  for (i = 0; i < 16; i++, unit++) {
+  for (i = 0; i < OV003_UNIT_COUNT; i++, unit++) {
     if (unit->hp == 0) {
       continue;
     }

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/ov003_gfx.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_02160ac0.h"
@@ -27,14 +28,14 @@ void Ov003_LoadSubScreenGraphics(u8* file, u8* localizedFile) {
   Palette_Load(file + 0x89c, 96, 160);
   Data_Unpack(localizedFile, data_027c0280->objVram + 0x200);
   Palette_Load(file + 0x93c, 512, 32);
-  Mem_Copy32(file + 0x95c, data_ov003_02369be8, 32);
+  Mem_Copy32(file + 0x95c, data_ov003_02369be8, PALETTE_16_SIZE);
   Data_Unpack(file, data_027c0280->objVram + 0x1780);
   Palette_Load(file + 0x89c, 544, 32);
   Gfx_ClearLayerMap(0);
   Gfx_ClearLayerMap(1);
   Gfx_ClearLayerMap(2);
   Gfx_ClearLayerMap(3);
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < OV003_TEAM_ROW_COUNT; i++) {
     row = &data_ov003_02364928->rows[i];
     if (row->active) {
       Bg_PutTileBlock(data_027c0280->layer1Map + row->unk_3b_4 * 4, 0, 0,

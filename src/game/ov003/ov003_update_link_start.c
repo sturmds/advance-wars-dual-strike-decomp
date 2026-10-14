@@ -30,7 +30,7 @@ void Ov003_UpdateLinkStart(void) {
     if (!func_0207bd94()) {
       return;
     }
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < OV003_SLOT_COUNT; i++) {
       if ((Wireless_GetChildAids() | 1) & (1 << i)) {
         if (strcmp((const char*)Wireless_GetSharedData((u16)i),
                    Ov003_StartMessage)) {

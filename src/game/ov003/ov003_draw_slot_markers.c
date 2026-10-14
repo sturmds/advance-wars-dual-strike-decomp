@@ -14,7 +14,7 @@ void Ov003_DrawSlotMarkers(void) {
   int i;
 
   if (data_02160ac0->unk_7c != 0) {
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < OV003_SLOT_COUNT; i++) {
       if (((Wireless_GetChildAids() | 1) & (1 << i)) &&
           STATE->slots[i].state == 2 &&
           STATE->slots[i].row == STATE->slots[STATE->currentSlot].row &&

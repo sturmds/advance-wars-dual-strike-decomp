@@ -17,6 +17,6 @@ void Ov003_LoadObjGraphics(u8* pack, const void* tiles) {
   Palette_Load(pack, 0x200, 0x40);
   Data_Unpack(pack + 0x40, data_027c0280->objVram + 0xaf00);
   Palette_Load(pack + 0x574, 0x240, 0x20);
-  data_ov003_02365b0c = Mem_Alloc(0x2000);
+  data_ov003_02365b0c = Mem_Alloc(OV003_TEXT_TILES_SIZE);
   Data_Unpack(pack + 0xf8, data_ov003_02365b0c);
 }

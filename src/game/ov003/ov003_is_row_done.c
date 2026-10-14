@@ -2,8 +2,6 @@
 #include "game/ov003_unit.h"
 #include "game/ov003_marker.h"
 
-extern Ov003Marker data_ov003_02369bb8[];
-
 int Ov003Unit_CountInCurrentRow(void);
 
 /* Returns 1 when the spawn row (not row 5) has used all its spawn records,
@@ -23,7 +21,7 @@ int Ov003_IsRowDone(void) {
     return 0;
   }
   entry = data_ov003_02369bb8;
-  for (i = 0; i < 4; i++, entry++) {
+  for (i = 0; i < OV003_MARKER_COUNT; i++, entry++) {
     if (entry->busy) {
       return 0;
     }

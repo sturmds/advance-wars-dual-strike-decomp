@@ -30,7 +30,7 @@ void Ov003_RecordWinner(int row) {
   data_02160abc->unk_0d = STATE->rows[row - 1].color;
   data_02160abc->unk_0c = STATE->rows[other - 1].co;
   data_02160abc->unk_0e = STATE->rows[other - 1].color;
-  for (i = 0; i < 10; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(STATE->rows[0].unk_28); i++) {
     data_02160abc->unk_00[i] = STATE->rows[row - 1].unk_28[i];
   }
   if (data_02160ac0->unk_7c == 0 && data_02160abc->unk_0a == 1) {

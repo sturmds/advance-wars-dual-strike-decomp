@@ -25,4 +25,12 @@ typedef struct Ov003UnitSprite {
   Ov003Unit* unit;
 } Ov003UnitSprite;
 
+/* An entry of the part lists that overlay 3's sprite frame lists point to
+ * (data_ov003_023657b4 and the others reached through TableSpriteTask.unk_30):
+ * two words. A list ends with an entry of zeros. */
+typedef struct Ov003SpritePart {
+  u32 unk_00;
+  u32 unk_04;
+} Ov003SpritePart;
+
 #endif

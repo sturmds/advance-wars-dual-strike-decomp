@@ -47,7 +47,7 @@ void Ov003_RunSlotInput(void) {
         break;
     }
   } else {
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < OV003_SLOT_COUNT; i++) {
       if ((Wireless_GetChildAids() | 1) & (1 << i)) {
         input = Wireless_GetSharedData((u16)i);
         Keypad_UpdateState(&data_0216e4e4[i], input->keys);

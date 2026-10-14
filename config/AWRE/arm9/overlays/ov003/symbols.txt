@@ -382,4 +382,4 @@ data_ov003_02369b98 kind:bss(size=0x20) addr:0x02369b98
 data_ov003_02369bb8 kind:bss(size=0x30) addr:0x02369bb8
 data_ov003_02369be8 kind:bss(size=0x20) addr:0x02369be8
 data_ov003_02369c08 kind:bss(size=0x4) addr:0x02369c08
-data_ov003_02369c0c kind:bss(size=0x14) addr:0x02369c0c
+data_ov003_02369c0c kind:bss(size=0x8) addr:0x02369c0c

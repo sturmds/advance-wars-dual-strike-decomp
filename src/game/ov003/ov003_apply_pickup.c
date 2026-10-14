@@ -1,6 +1,6 @@
 #include "types.h"
 #include "game/ov003_unit.h"
-#include "game/ov003_pickup.h"
+#include "game/ov003_item.h"
 
 void Sound_PlaySe(u32 soundId);
 void Ov003Row_AddCharge(int a0, int a1);
@@ -11,7 +11,7 @@ void Ov003_CreateSpriteVariant0(int a0, int a1);
  * (to 100 at most), 2 sets unit->safeTimer to 360, 3 and 4 call routines not
  * understood yet with the unit's row (4 also with the pickup's position), 5
  * sets Ov003Row.slowTimer of every other row to 420. Then the pickup is freed. */
-void Ov003_ApplyPickup(Ov003Unit* unit, Ov003Pickup* pickup) {
+void Ov003_ApplyPickup(Ov003Unit* unit, Ov003Item* pickup) {
   int i;
 
   Sound_PlaySe(244);
@@ -33,12 +33,12 @@ void Ov003_ApplyPickup(Ov003Unit* unit, Ov003Pickup* pickup) {
       Ov003_CreateSpriteVariant0(pickup->x >> 3, pickup->y >> 3);
       break;
     case 5:
-      for (i = 1; i <= 5; i++) {
+      for (i = 1; i <= OV003_ROW_COUNT; i++) {
         if (i != unit->row) {
           data_ov003_02364928->rows[i - 1].slowTimer = 420;
         }
       }
       break;
   }
-  pickup->time = 0;
+  pickup->timer = 0;
 }

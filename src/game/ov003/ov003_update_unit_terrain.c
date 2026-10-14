@@ -18,7 +18,7 @@ void Ov003_UpdateUnitTerrain(void) {
   Ov003Unit* unit = data_ov003_02369538;
   int i;
 
-  for (i = 0; i < 16; i++, unit++) {
+  for (i = 0; i < OV003_UNIT_COUNT; i++, unit++) {
     if (unit->hp != 0) {
       switch (unit->kind) {
         case 1:

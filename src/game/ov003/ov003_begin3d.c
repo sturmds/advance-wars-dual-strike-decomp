@@ -1,6 +1,7 @@
 #include "types.h"
 #include "sdk/fx.h"
 #include "game/Ov003Fx.h"
+#include "game/ov003_gfx.h"
 #include "game/ov003_unit.h"
 
 #define GXFIFO_MTX_PUSH (*(volatile u32*)0x04000444)
@@ -20,8 +21,8 @@ static u8 data_ov003_02364a78[] = {
 static VecFx32 data_ov003_02365cf4;
 Ov003Fx data_ov003_02365d00;
 u8 data_ov003_02365d10[OV003_TILE_CODE_COUNT];
-u16 data_ov003_02367110[512][4]; /* layer 2 and 3 map entries per 16x16 tile */
-u16 data_ov003_02366110[512][4]; /* layer 1 map entries per 16x16 tile */
+u16 data_ov003_02367110[OV003_METATILE_COUNT][4];
+u16 data_ov003_02366110[OV003_METATILE_COUNT][4];
 Ov003Map data_ov003_02368110;
 void G3X_Reset(void);
 void G3i_LookAt_(void* a, void* b, void* c, int d, int e);

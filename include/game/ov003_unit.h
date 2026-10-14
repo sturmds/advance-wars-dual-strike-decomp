@@ -2,6 +2,7 @@
 #define GAME_OV003_UNIT_H
 
 #include "types.h"
+#include "game/link_buffers.h"
 
 /* One of the 16 32-byte entries in data_ov003_02369538 (overlay 3). A new
  * entry starts with hp 100; a free entry has hp 0. */
@@ -68,10 +69,16 @@ typedef struct Ov003Cell {
   s8 unit;      /* index in data_ov003_02369538, -1 for none */
 } Ov003Cell;
 
+/* A row's cells form two columns: cell n and n + 10 sit side by side. */
+#define OV003_COLUMN_CELL_COUNT 10
+#define OV003_ROW_CELL_COUNT (2 * OV003_COLUMN_CELL_COUNT)
+/* Rows a team can play in: Ov003Preset gives each a colour and a CO. */
+#define OV003_TEAM_ROW_COUNT 4
+
 /* Five 62-byte rows at the start of Ov003State: 20 cells, then the row's
  * settings. Ov003_InitRows clears 0x28-0x39. */
 typedef struct Ov003Row {
-  Ov003Cell cells[20];
+  Ov003Cell cells[OV003_ROW_CELL_COUNT];
   u8 unk_28[10];
   u16 charge;     /* filled by Ov003Row_AddCharge, up to a limit per CO */
   u16 powerTimer; /* not 0 while the CO power runs */
@@ -82,17 +89,37 @@ typedef struct Ov003Row {
   u8 co
       : 4; /* CO choice (CombatCo_IdFromNumber gives the CO id); picks the power tables; 8-10 are resolved by Ov003_InitRows */
   u8 unk_3b_4 : 4; /* even number per active row, then shifted to centre them */
-  u8 color : 7;    /* 1-based: picks this row's palette colours and tiles */
+  u8 color
+      : 7; /* 1 to OV003_ROW_COLOR_COUNT: picks this row's palette colours and tiles */
   u8 active : 1;
   u8 pad_3d;
 } Ov003Row;
 
+typedef char Ov003Row_size_check[sizeof(Ov003Row) == 0x3e ? 1 : -1];
+
+#define OV003_ROW_COUNT 5
+
+/* Colours a row can have (Ov003Row.color). */
+#define OV003_ROW_COLOR_COUNT 5
+
+/* One slot per link aid (only slot 0 in a single game), at Ov003State.slots;
+ * Ov003State.currentSlot is this console's. */
 typedef struct Ov003Slot {
+  u16 cooldown; /* frames left: 900 when placing starts (Ov003_StartSlotPlacing),
+                   counted down by Ov003Slot_UpdatePlacing */
   u8 cursor;    /* cell of its row under the placing cursor */
-  u8 row : 4;   /* 1 + row of cells; bit 0 picks Ov003Unit.facing */
-  u8 state : 4; /* OV003_SLOT_*: what Ov003_RunSlotInput runs for it */
-  u8 pad_02[2];
+  union {
+    u8 rowState; /* row and state as one byte */
+    struct {
+      u8 row : 4;   /* 1 + row of cells; bit 0 picks Ov003Unit.facing */
+      u8 state : 4; /* OV003_SLOT_*: what Ov003_RunSlotInput runs for it */
+    };
+  };
 } Ov003Slot;
+
+typedef char Ov003Slot_size_check[sizeof(Ov003Slot) == 4 ? 1 : -1];
+
+#define OV003_SLOT_COUNT LINK_AID_COUNT
 
 /* Ov003Slot.state, as Ov003_RunSlotInput dispatches it. */
 #define OV003_SLOT_STATE_1 1 /* Ov003Unit_HandleInput runs the slot */
@@ -131,9 +158,9 @@ typedef struct Ov003SpawnDef {
  * how Ov003_InitRows sets up the rows. */
 typedef struct Ov003Preset {
   u8 pad_00[4];
-  u32 unk_04;   /* passed to Ov003_LoadSpawns */
-  u8 colors[4]; /* Ov003Row.color per row */
-  u8 unk_0c[4]; /* Ov003Row.co per row */
+  u32 unk_04;                      /* passed to Ov003_LoadSpawns */
+  u8 colors[OV003_TEAM_ROW_COUNT]; /* Ov003Row.color per row */
+  u8 unk_0c[OV003_TEAM_ROW_COUNT]; /* Ov003Row.co per row */
   u8 rowCount : 3;
   u8 unk_10_3 : 1;     /* default for Ov003State.unk_1df_0 */
   u8 unk_10_4 : 4;     /* default for Ov003State.unk_1df_2 */
@@ -146,14 +173,12 @@ typedef char Ov003Preset_size_check[sizeof(Ov003Preset) == 0x14 ? 1 : -1];
 
 /* Overlay 3 state, through data_ov003_02364928. */
 typedef struct Ov003State {
-  Ov003Row rows[5];
-  u8 pad_136[0x138 - 0x136];
-  Ov003Slot slots[7]; /* length unknown */
-  u8 pad_154[0x156 - 0x154];
+  Ov003Row rows[OV003_ROW_COUNT];
+  Ov003Slot slots[OV003_SLOT_COUNT];
   Ov003Spawn spawns[1]; /* length unknown */
   u8 pad_15b[0x1bc - 0x15b];
   Ov003Preset* preset;
-  u8 unk_1c0[8];
+  u8 unk_1c0[OV003_SLOT_COUNT];
   u32 frameCount; /* frames on which Ov003_IsPhase0OrAbove6 returns 1 */
   u32 unk_1cc;
   s16 scrollX; /* map scroll in pixels */
@@ -191,15 +216,7 @@ typedef struct Ov003State {
   u8 pauseCursor : 1; /* pause menu: 0 top button, 1 bottom button */
 } Ov003State;
 
-/* Cast view of the slots from pad_136: each slot's u16 cooldown sits in the
- * 2 bytes before its Ov003Slot, so the slot record really starts at 0x136. */
-typedef struct Ov003SlotCooldown {
-  u16 cooldown;
-  u8 pad_02[2];
-} Ov003SlotCooldown;
-
-#define OV003_SLOT_COOLDOWN(state, slot) \
-  (((Ov003SlotCooldown*)(state)->pad_136)[slot].cooldown)
+typedef char Ov003State_size_check[sizeof(Ov003State) == 0x1e0 ? 1 : -1];
 
 /* Map of overlay 3, through data_ov003_02364a88. */
 #define OV003_MAP_TILE_MAX 0x508
@@ -225,11 +242,6 @@ typedef struct Ov003Input {
 
 extern Ov003State* data_ov003_02364928;
 extern Ov003Map* data_ov003_02364a88;
-
-/* Frames left on a slot's cursor (halfword at 0x136 + 4 * slot, just before
- * Ov003Slot.unk_00). */
-#define OV003_SLOT_TIMER(slot) \
-  (((u16*)((u8*)data_ov003_02364928 + 0x136))[(slot) * 2])
 
 /* Byte 0x1d7 of Ov003State: the high byte of unk_1d6 (a halfword that is also
  * passed to func_02027aa0). */

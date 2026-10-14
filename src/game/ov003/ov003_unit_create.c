@@ -26,7 +26,7 @@ Ov003Unit* Ov003Unit_Create(int slot, int column, int x, int y) {
   } else {
     unit += func_ov003_023622b8();
     slot = func_ov003_023622b8();
-    for (; slot < 16; slot++, unit++) {
+    for (; slot < OV003_UNIT_COUNT; slot++, unit++) {
       if (unit->hp == 0) {
         break;
       }

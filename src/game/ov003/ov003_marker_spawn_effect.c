@@ -3,7 +3,6 @@
 #include "game/ov003_marker.h"
 #include "game/ov003_unit.h"
 
-extern Ov003Marker data_ov003_02369bb8[];
 extern Ov003EffectGroup data_ov003_02369738[];
 extern u8 data_ov003_02364d8a[][20];
 extern u8 data_ov003_02364d8b[][20];

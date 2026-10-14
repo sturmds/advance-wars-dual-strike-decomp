@@ -14,7 +14,7 @@ void Ov003_DamageUnitsAround(int row, int x, int y) {
   int pixelY = y >> 3;
   int pixelX = x >> 3;
 
-  for (i = 0; i < 16; i++, unit++) {
+  for (i = 0; i < OV003_UNIT_COUNT; i++, unit++) {
     /* needed to match: the (u16) cast makes the load unsigned; the field is s16 */
     if (unit->hp == 0 || unit->unk_17_6 || unit->row == row ||
         unit->safeTimer != 0) {

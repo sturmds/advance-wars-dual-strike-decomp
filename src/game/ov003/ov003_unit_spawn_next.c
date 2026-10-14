@@ -33,7 +33,7 @@ Ov003Unit* Ov003Unit_SpawnNext(void) {
   spawn = &STATE->spawns[next];
   cell = &row->cells[next];
   unit += func_ov003_023622b8();
-  for (slot = func_ov003_023622b8(); slot < 16; slot++, unit++) {
+  for (slot = func_ov003_023622b8(); slot < OV003_UNIT_COUNT; slot++, unit++) {
     if (unit->hp == 0 && !unit->unk_17_7) {
       break;
     }
