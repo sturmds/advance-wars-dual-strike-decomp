@@ -5,8 +5,11 @@
 
 struct Task;
 
-/* Entries of the CO list (Ov005_AddCoListButtons, data_ov005_0236a48c). */
-#define OV005_CO_LIST_ENTRIES 33
+/* Entries of the CO list (Ov005_AddCoListButtons, data_ov005_0236a48c): a
+ * grid of columns of rows, entry = column * OV005_CO_LIST_ROWS + row. */
+#define OV005_CO_LIST_COLUMNS 3
+#define OV005_CO_LIST_ROWS 11
+#define OV005_CO_LIST_ENTRIES (OV005_CO_LIST_COLUMNS * OV005_CO_LIST_ROWS)
 
 /* Overlay 5 work block (0x918 bytes) that Ov005_AllocCoListWork allocates
  * into Ov005Task.work and data_ov005_0236bba0. It belongs to a screen with

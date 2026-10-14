@@ -11,7 +11,7 @@ void Ov005_GetCursorRanges(int column, int row, int* minColumn, int* maxColumn,
 /* Looks for an entry with a button in the column of *entry, trying the rows
  * around the current one in the order row-1, row+1, row-2, row+2, ... within
  * the column's row range. Sets *entry to the entry found and returns 1, or
- * puts *entry back and returns 0 after 10 tries. */
+ * puts *entry back and returns 0 after trying each other row. */
 int Ov005_FindCoListEntryNearRow(Unk_ov005_0236bba0* work, int* entry) {
   int candidate;
   int tries;
@@ -29,7 +29,8 @@ int Ov005_FindCoListEntryNearRow(Unk_ov005_0236bba0* work, int* entry) {
 
   Ov005_GetCursorRanges(column, row, &minColumn, &maxColumn, &minRow, &maxRow);
   step = 2;
-  for (tries = 0; tries < 10; tries++) {
+  /* each of the other rows once */
+  for (tries = 0; tries < OV005_CO_LIST_ROWS - 1; tries++) {
     int lowest = minRow;
     int highest = maxRow;
 

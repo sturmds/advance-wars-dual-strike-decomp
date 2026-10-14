@@ -8,14 +8,15 @@ void Ov005_GetCursorRanges(int column, int row, int* minColumn, int* maxColumn,
                            int* minRow, int* maxRow);
 
 /* Moves *entry one step up (direction 1) or down (direction 2) within its
- * column, wrapping at the ends, and repeats up to 10 times until it lands on
+ * column, wrapping at the ends, and repeats for each other row until it lands on
  * an entry with a button. Returns 1 if it found one. Ov005_GetCursorRanges
  * gives the column and row ranges (guessed from its constants). */
 int Ov005_MoveCoListCursorVertical(Unk_ov005_0236bba0* work, int* entry,
                                    int direction) {
   int tries;
 
-  for (tries = 0; tries < 10; tries++) {
+  /* each of the other rows once */
+  for (tries = 0; tries < OV005_CO_LIST_ROWS - 1; tries++) {
     int row = *entry;
     int column;
     int minRow;

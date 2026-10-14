@@ -1,6 +1,8 @@
 #include "types.h"
+#include "game/Unk_ov005_0236bba0.h"
 
-/* The CO list cursor moves on a grid of 3 columns of 11 rows. Sets the
+/* The CO list cursor moves on a grid of OV005_CO_LIST_COLUMNS columns of
+ * OV005_CO_LIST_ROWS rows. Sets the
  * index range the cursor can reach along each axis from its position; -1:
  * no range. */
 void Ov005_GetCursorRanges(int column, int row, int* minColumn, int* maxColumn,
@@ -14,7 +16,7 @@ void Ov005_GetCursorRanges(int column, int row, int* minColumn, int* maxColumn,
     case 1:
     case 2:
       *minRow = 0;
-      *maxRow = 10;
+      *maxRow = OV005_CO_LIST_ROWS - 1;
       break;
   }
   switch (row) {
@@ -30,7 +32,7 @@ void Ov005_GetCursorRanges(int column, int row, int* minColumn, int* maxColumn,
     case 9:
     case 10:
       *minColumn = 0;
-      *maxColumn = 2;
+      *maxColumn = OV005_CO_LIST_COLUMNS - 1;
       break;
   }
 }

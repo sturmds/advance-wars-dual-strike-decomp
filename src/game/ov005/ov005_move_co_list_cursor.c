@@ -15,8 +15,8 @@ u8 Ov005_GetCoListEntryColumn(int entry);
 
 extern Unk_ov005_0236bba0* data_ov005_0236bba0;
 
-/* Moves the CO list cursor with the d-pad. Left and right move 11 entries
- * at a time (one column), wrapping at the ends, starting from the row in
+/* Moves the CO list cursor with the d-pad. Left and right move one column
+ * (OV005_CO_LIST_ROWS entries), wrapping at the ends, starting from the row in
  * work->cursorRow; if that entry has no button, a nearby row of the new column
  * is tried, and then the next column. Up and down move within the column
  * and remember the new row. The button of the new entry is selected. */
@@ -52,7 +52,8 @@ void Ov005_MoveCoListCursor(void) {
   if (horizontal != 0) {
     entry = Ov005_FindCoListEntryAt(Ov005_GetCoListEntryColumn(entry),
                                     work->cursorRow);
-    for (tries = 0; tries < 2; tries++) {
+    /* each of the other columns once */
+    for (tries = 0; tries < OV005_CO_LIST_COLUMNS - 1; tries++) {
       current = entry;
       column = Ov005_GetCoListEntryColumn(current);
       row = Ov005_GetCoListEntryRow(current);
@@ -60,15 +61,15 @@ void Ov005_MoveCoListCursor(void) {
                             &maxRow);
       if (horizontal == 1) {
         if (column > minColumn) {
-          entry -= 11;
+          entry -= OV005_CO_LIST_ROWS;
         } else {
-          entry += maxColumn * 11;
+          entry += maxColumn * OV005_CO_LIST_ROWS;
         }
       } else {
         if (column < maxColumn) {
-          entry += 11;
+          entry += OV005_CO_LIST_ROWS;
         } else {
-          entry -= maxColumn * 11;
+          entry -= maxColumn * OV005_CO_LIST_ROWS;
         }
       }
       if (Ov005_IsCoListEntryActive(work, entry) != 0) {

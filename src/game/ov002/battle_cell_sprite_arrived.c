@@ -9,6 +9,8 @@ extern MenuState gMenuState;
 
 #define SPRITE (MENU->battle.cellSprites[side][cell])
 
+enum { AXIS_X, AXIS_Y, AXIS_COUNT };
+
 /* Needed to match: the side's record is reached as a byte offset of the scene. */
 #define SIDE_WEAPON(side) \
   (((u8*)Ov002_gBattleScene + (side) * sizeof(BattleSide))[9])
@@ -24,9 +26,9 @@ BOOL BattleCellSprite_Arrived(int side, int cell) {
   int axis;
   int other = (side + 1) & 1;
 
-  for (axis = 0; axis < 2; axis++) {
+  for (axis = 0; axis < AXIS_COUNT; axis++) {
     switch (axis) {
-      case 0:
+      case AXIS_X:
         direction =
             MENU->battle.unk_27c[other]->effects[SIDE_WEAPON(other)]->unk_2e.x;
         if (direction == 0) {
@@ -35,7 +37,7 @@ BOOL BattleCellSprite_Arrived(int side, int cell) {
         next = SPRITE.pos.x + SPRITE.step.x;
         target = SPRITE.target.x;
         break;
-      case 1:
+      case AXIS_Y:
         direction =
             MENU->battle.unk_27c[other]->effects[SIDE_WEAPON(other)]->unk_2e.y;
         if (direction == 0) {
@@ -69,5 +71,5 @@ BOOL BattleCellSprite_Arrived(int side, int cell) {
         break;
     }
   }
-  return reached == 2;
+  return reached == AXIS_COUNT;
 }

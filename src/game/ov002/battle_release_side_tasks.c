@@ -7,11 +7,14 @@ extern MenuState gMenuState;
 void Task_Destroy(Task* task);
 int Battle_IsSideDrawnInAir(int side);
 
+/* The task lists of a side's cells: unk_22c and unk_254 */
+#define SIDE_TASK_LIST_COUNT 2
+
 /* Per frame, for each task kept in the two per-side lists: when Battle_IsSideDrawnInAir reports 1
  * for the side, advance the task's two counters; destroy the task once its unk_5d is zero.
  * Needed to match: the two lists are read through a ternary on j, not as one array. */
 void Battle_ReleaseSideTasks(void) {
-  int found[2];
+  int found[BATTLE_SIDE_COUNT];
   int side;
   int i;
   int j;
@@ -21,7 +24,7 @@ void Battle_ReleaseSideTasks(void) {
   }
   for (side = 0; side < BATTLE_SIDE_COUNT; side++) {
     for (i = 0; i < BATTLE_CELL_COUNT; i++) {
-      for (j = 0; j < 2; j++) {
+      for (j = 0; j < SIDE_TASK_LIST_COUNT; j++) {
         BattleCounterTask* task = (j == 0) ? gMenuState.battle.unk_22c[side][i]
                                            : gMenuState.battle.unk_254[side][i];
 

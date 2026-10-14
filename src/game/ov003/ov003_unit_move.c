@@ -10,6 +10,10 @@ extern u8 data_ov003_02365d10[];
 #define TERRAIN(tx, ty) \
   (data_ov003_02365d10[MAP->cells[(ty) * MAP->width + (tx)]] & 31)
 
+/* The two corners of the unit's leading edge that a move checks: bit j of
+ * `blocked` is set when corner j stands on a tile the unit cannot cross. */
+#define EDGE_CORNER_COUNT 2
+
 /* Moves a unit up to `distance` (its own speed when negative) in direction
  * `dir`. A unit fills a 96 by 96 box around (x, y), 128 units per tile. It
  * stops against other live units and against tiles its kind cannot cross
@@ -167,7 +171,7 @@ void Ov003Unit_Move(Ov003Unit* unit, int dir, int distance, int straight) {
     blocked = 0;
     switch (dir) {
       case OV003_DIR_LEFT:
-        for (j = 0; j < 2; j++) {
+        for (j = 0; j < EDGE_CORNER_COUNT; j++) {
           switch (j) {
             case 0:
               cx = edge >> 7;
@@ -209,7 +213,7 @@ void Ov003Unit_Move(Ov003Unit* unit, int dir, int distance, int straight) {
         }
         break;
       case OV003_DIR_RIGHT:
-        for (j = 0; j < 2; j++) {
+        for (j = 0; j < EDGE_CORNER_COUNT; j++) {
           switch (j) {
             case 0:
               cx = edge >> 7;
@@ -249,7 +253,7 @@ void Ov003Unit_Move(Ov003Unit* unit, int dir, int distance, int straight) {
         }
         break;
       case OV003_DIR_UP:
-        for (j = 0; j < 2; j++) {
+        for (j = 0; j < EDGE_CORNER_COUNT; j++) {
           switch (j) {
             case 0:
               cx = left >> 7;
@@ -289,7 +293,7 @@ void Ov003Unit_Move(Ov003Unit* unit, int dir, int distance, int straight) {
         }
         break;
       case OV003_DIR_DOWN:
-        for (j = 0; j < 2; j++) {
+        for (j = 0; j < EDGE_CORNER_COUNT; j++) {
           switch (j) {
             case 0:
               cx = left >> 7;
