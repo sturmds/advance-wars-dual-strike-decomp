@@ -173,6 +173,7 @@ const u16 data_02129a38[][CO_PALETTE_COLOURS] = {
 const u16 data_021298b8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_021298b8.inc.c"
 };
+/* CO icon tiles: 256 bytes for each CO id from 1 */
 const u8 data_0212e9b8[] = {
 #include "data/main/data_0212e9b8.inc.c"
 };

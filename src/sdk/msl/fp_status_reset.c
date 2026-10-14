@@ -1,10 +1,9 @@
 #include "sdk/fp_status.h"
-
-extern u8 *func_02129754(void);
+#include "sdk/msl.h"
 
 /*
- * Called from Entry. Clears the word __fp_status returns and the five words
- * after the first in the block func_02129754 returns. Written as assembly
+ * Called from Entry. Clears the word __fp_status returns and the handlers
+ * 1-5 of the table FpTrap_GetHandlers returns. Written as assembly
  * because the original keeps the stack 4 bytes off 8-byte alignment, which
  * compiled C never does.
  */
@@ -15,7 +14,7 @@ asm void FpStatus_Reset(void)
     bl __fp_status
     mov r1, #0
     str r1, [r0]
-    bl func_02129754
+    bl FpTrap_GetHandlers
     mov r1, #0
     str r1, [r0, #4]
     str r1, [r0, #8]
@@ -28,14 +27,13 @@ asm void FpStatus_Reset(void)
 #else
 void FpStatus_Reset(void)
 {
-    u32 *words;
+    FpTrapHandler *handlers;
+    int i;
 
     *__fp_status() = 0;
-    words = (u32 *)func_02129754();
-    words[1] = 0;
-    words[2] = 0;
-    words[3] = 0;
-    words[4] = 0;
-    words[5] = 0;
+    handlers = FpTrap_GetHandlers();
+    for (i = 1; i < FP_TRAP_HANDLER_COUNT; i++) {
+        handlers[i] = NULL;
+    }
 }
 #endif

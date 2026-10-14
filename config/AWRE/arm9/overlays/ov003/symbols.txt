@@ -353,7 +353,7 @@ data_ov003_023658f0 kind:data(byte[56]) addr:0x023658f0
 data_ov003_02365928 kind:data(byte[56]) addr:0x02365928
 data_ov003_02365960 kind:data(byte[116]) addr:0x02365960
 data_ov003_023659d4 kind:data(byte[144]) addr:0x023659d4
-data_ov003_02365a64 kind:data(byte[156]) addr:0x02365a64
+data_ov003_02365a64 kind:data(byte[144]) addr:0x02365a64
 gOv003RandState kind:bss(size=0x4) addr:0x02365b00
 data_ov003_02365b04 kind:bss(size=0x6) addr:0x02365b04
 data_ov003_02365b0c kind:bss(size=0x4) addr:0x02365b0c

@@ -11,7 +11,7 @@ extern u32 data_ov003_023654e8[];
 extern u16 data_ov003_023656e8[];
 extern u32 data_ov003_0236572c[];
 extern QuadSpritePart data_ov003_023658f0[];
-extern u32 data_ov003_02365a64[];
+extern QuadSpritePart data_ov003_02365a64[];
 extern u32 data_ov003_02365500[];
 extern u32 data_ov003_023656c0[];
 extern u32 data_ov003_023656d4[];
@@ -179,6 +179,6 @@ void* data_ov003_02365960[] = {
 QuadSpritePart data_ov003_023659d4[] = {
 #include "data/ov003/data_ov003_023659d4.inc.c"
 };
-u32 data_ov003_02365a64[] = {
+QuadSpritePart data_ov003_02365a64[] = {
 #include "data/ov003/data_ov003_02365a64.inc.c"
 };

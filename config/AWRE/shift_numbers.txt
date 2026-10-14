@@ -26,8 +26,10 @@
 0x021480f4  data_021480e0, ascending u16 run
 0x0214e368  data_0214d4c4, s16 table (campaign_recap_set_up_screens.c)
 0x0214e36c  data_0214d4c4, s16 table
-0x0215061c  data_02150100, u16 progression
-0x02150620  data_02150100, u16 progression
+0x0215775c  data_0215775c, GX TEXCOORD word (t << 16 | s, 12.4 fixed point) that Gx_SendPlainQuad_0200d1a8 sends
+0x0215777c  data_0215777c, GX TEXCOORD word (t << 16 | s) of a Gx_SendPlainQuad table
+0x021577cc  data_021577cc, GX TEXCOORD word (t << 16 | s) of a Gx_SendPlainQuad table
+0x021577fc  data_021577fc, GX TEXCOORD word (t << 16 | s) of a Gx_SendPlainQuad table
 0x0215974c  data_02159748, ascending u16 offsets (text_data.c)
 0x022bbc0c  Ov000_gMapTiles, u16 tiles
 0x022c3bb8  Ov000_gMapTiles, u16 tiles

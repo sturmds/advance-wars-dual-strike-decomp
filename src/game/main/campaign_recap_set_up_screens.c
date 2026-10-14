@@ -48,7 +48,7 @@ static const u32 data_0214d3f0[] = {
 const s16 data_0214d410[] = {
 #include "data/main/data_0214d410.inc.c"
 };
-/* a sine and cosine pair per 16 angle units */
+/* sine and cosine (4.12 fixed point) of 4096 angles, a pair per 16 angle units */
 const s16 data_0214d4c4[] = {
 #include "data/main/data_0214d4c4.inc.c"
 };

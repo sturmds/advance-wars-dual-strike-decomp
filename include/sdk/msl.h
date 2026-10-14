@@ -27,6 +27,12 @@ typedef union FpValue {
 
 typedef FpValue (*FpTrapHandler)(FpValue x, FpValue y, u32 op);
 
+/* Handlers by operation (__fp_trap uses 1-5; FpStatus_Reset clears those). */
+#define FP_TRAP_HANDLER_COUNT 6
+
+/* The handler table (main .bss). */
+FpTrapHandler* FpTrap_GetHandlers(void);
+
 /* Returns a pointer to the first byte equal to ch in the first count bytes of buf, or NULL. */
 void* memchr(const void* buf, int ch, u32 count);
 /* Copies count bytes from the start; returns dest. */

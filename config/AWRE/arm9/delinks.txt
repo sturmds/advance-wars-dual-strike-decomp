@@ -124,7 +124,7 @@ src/game/main/bss_02290298.c:
 
 src/game/main/power_meter/power_meter_rodata.c:
     complete
-    .rodata     start:0x02130100 end:0x02131fb8
+    .rodata     start:0x021304b8 end:0x02131fb8
 
 src/game/main/rodata_02131fb8.c:
     complete
@@ -353,14 +353,6 @@ src/game/main/graphics/graphics_rodata_0214d19c.c:
 src/game/main/map/map_rodata_0214d39c.c:
     complete
     .rodata     start:0x0214d39c end:0x0214d3e0
-
-src/game/main/rodata_0214f4c4.c:
-    complete
-    .rodata     start:0x0214f4c4 end:0x02151088
-
-src/game/main/rodata_02151088.c:
-    complete
-    .rodata     start:0x02151088 end:0x021514c4
 
 src/sdk/fs/fs_rodata.c:
     complete
@@ -17900,7 +17892,7 @@ src/game/main/power_meter/power_panel_right_draw_meter.c:
 src/game/main/power_meter/power_panel_right_draw.c:
     complete
     .text       start:0x020e0694 end:0x020e0970
-    .rodata     start:0x021298b8 end:0x02130100
+    .rodata     start:0x021298b8 end:0x021304b8
 
 src/game/main/power_meter/power_panel_right_draw_player.c:
     complete
@@ -20727,7 +20719,7 @@ src/game/main/campaign_recap_update.c:
 src/game/main/campaign_recap_set_up_screens.c:
     complete
     .text       start:0x020fe44c end:0x020feadc
-    .rodata     start:0x0214d3e0 end:0x0214f4c4
+    .rodata     start:0x0214d3e0 end:0x021514c4
 
 src/game/main/campaign_recap_task_init.c:
     complete
@@ -25135,7 +25127,7 @@ src/sdk/runtime/__fp_status.c:
     .text       start:0x02129748 end:0x02129754
     .bss        start:0x022ad540 end:0x022ad548
 
-src/sdk/func_02129754.c:
+src/sdk/msl/fp_trap_get_handlers.c:
     complete
     .text       start:0x02129754 end:0x02129760
     .bss        start:0x022ad548 end:0x022ad560

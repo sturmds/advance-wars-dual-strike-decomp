@@ -1,12 +1,11 @@
 #include "types.h"
 #include "sdk/msl.h"
 
-FpTrapHandler* func_02129754(void);
 u32 FpStatus_Update(u32 clearMask, u32 xorMask);
 int raise(int sig);
 
 FpValue __fp_trap(FpValue x, FpValue y, u32 op) {
-  FpTrapHandler* handlers = func_02129754();
+  FpTrapHandler* handlers = FpTrap_GetHandlers();
   FpTrapHandler handler;
 
   if ((op & FP_TRAP_ROUNDING_MASK) == 0) {

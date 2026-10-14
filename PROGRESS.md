@@ -12,7 +12,7 @@ the rest is in dsd gap units, delinked from the ROM with no source file.
 
 | Code | Code decompiled | Code linked | Bytes decompiled | Bytes linked | Functions matched | Data linked | Data bytes linked |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| all | 100.0000% | 100.0000% | 1845012 / 1845012 | 1845012 / 1845012 | 8571 / 8571 | 99.9996% | 3136112 / 3136124 |
+| all | 100.0000% | 100.0000% | 1845012 / 1845012 | 1845012 / 1845012 | 8571 / 8571 | 99.9991% | 3136096 / 3136124 |
 
 ## By module
 
@@ -23,7 +23,7 @@ ARM9 is main, ITCM and the overlays; ARM7 is `arm7.bin`.
 | main | 100.0000% | 100.0000% | 1216386 / 1216386 | 1216386 / 1216386 | 6004 / 6004 | 100.0000% | 1588712 / 1588712 |
 | itcm | 100.0000% | 100.0000% | 24184 / 24184 | 24184 / 24184 | 117 / 117 | - | 0 / 0 |
 | dtcm | - | - | 0 / 0 | 0 / 0 | 0 / 0 | 100.0000% | 4832 / 4832 |
-| ov000 | 100.0000% | 100.0000% | 25300 / 25300 | 25300 / 25300 | 120 / 120 | 100.0000% | 642344 / 642344 |
+| ov000 | 100.0000% | 100.0000% | 25300 / 25300 | 25300 / 25300 | 120 / 120 | 99.9975% | 642328 / 642344 |
 | ov001 | 100.0000% | 100.0000% | 7472 / 7472 | 7472 / 7472 | 76 / 76 | 100.0000% | 164608 / 164608 |
 | ov002 | 100.0000% | 100.0000% | 64208 / 64208 | 64208 / 64208 | 164 / 164 | 100.0000% | 48224 / 48224 |
 | ov003 | 100.0000% | 100.0000% | 82696 / 82696 | 82696 / 82696 | 235 / 235 | 100.0000% | 21408 / 21408 |
@@ -38,9 +38,9 @@ Gap units are code and data that dsd delinks with no source file.
 
 | Kind | Code decompiled | Code linked | Bytes decompiled | Bytes linked | Functions matched | Data linked | Data bytes linked |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| game | 100.0000% | 100.0000% | 1556336 / 1556336 | 1556336 / 1556336 | 6748 / 6748 | 100.0000% | 3093836 / 3093836 |
+| game | 100.0000% | 100.0000% | 1556336 / 1556336 | 1556336 / 1556336 | 6748 / 6748 | 100.0000% | 3093820 / 3093820 |
 | SDK/library | 100.0000% | 100.0000% | 288676 / 288676 | 288676 / 288676 | 1823 / 1823 | 100.0000% | 42276 / 42276 |
-| gap units | - | - | 0 / 0 | 0 / 0 | 0 / 0 | 0.0000% | 0 / 12 |
+| gap units | - | - | 0 / 0 | 0 / 0 | 0 / 0 | 0.0000% | 0 / 28 |
 
 ## Below 100%
 
@@ -65,7 +65,7 @@ sites. Not every count should reach 0: a hardware format stays a number.
 | Addresses | Unrelocated words, layout level (`scan_pointers.py`) | 0 | 0 | 0 |
 | Addresses | Unrelocated words, high level | 0 | 0 | 0 |
 | Addresses | Unrelocated words, medium level | 0 | 0 | 0 |
-| Addresses | Unrelocated words, low level (mostly in `u32` tables) | 17 | 0 | 17 |
+| Addresses | Unrelocated words, low level (mostly in `u32` tables) | 0 | 0 | 0 |
 | Sizes | `Mem_Alloc` with a literal size | 0 | 0 | 0 |
 | Sizes | Copy, fill and clear calls with a literal length | 24 | 0 | 24 |
 | Sizes | Byte offsets into objects (`(u8 *)x + N`) | 0 | 0 | 0 |
@@ -76,6 +76,6 @@ sites. Not every count should reach 0: a hardware format stays a number.
 | Tables | `u32` tables holding pointers and numbers (structs written as words) | 0 | 0 | 0 |
 | Tables | Extern arrays with a literal length | 0 | 0 | 0 |
 | Tables | Externs whose type differs from the definition (`extern_types.py`) | 329 | 15 | 344 |
-| Tables | `u8 NAME[N]` placeholders for zeroed variables | 4 | 12 | 16 |
+| Tables | `u8 NAME[N]` placeholders for zeroed variables | 3 | 11 | 14 |
 
 Structs with a size assert: 67.

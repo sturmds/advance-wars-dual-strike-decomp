@@ -6211,4 +6211,3 @@ data_ov000_02350548 kind:bss(size=0x4) addr:0x02350548
 data_ov000_0235054c kind:bss(size=0x4) addr:0x0235054c
 Ov000_gPlayerPanelCache kind:bss(size=0x3c) addr:0x023504d4
 UnitPath_CountSteps kind:function(arm,size=0x6c) addr:0x022ad560
-data_ov000_02350550 kind:bss(size=0x10) addr:0x02350550
