@@ -3,6 +3,46 @@
     .data       start:0x0236a1e0 end:0x0236d640 kind:data align:32
     .bss        start:0x0236d640 end:0x0236d9a0 kind:bss align:32
 
+src/game/ov006/ov006_bss_0236d99c.c:
+    complete
+    .bss        start:0x0236d99c end:0x0236d9a0
+
+src/game/ov006/ov006_data_0236ab28.c:
+    complete
+    .data       start:0x0236ab28 end:0x0236ab34
+
+src/game/ov006/ov006_data_0236b56c.c:
+    complete
+    .data       start:0x0236b56c end:0x0236b5cc
+
+src/game/ov006/ov006_data_0236b5cc.c:
+    complete
+    .data       start:0x0236b5cc end:0x0236b62c
+
+src/game/ov006/ov006_data_0236b6ac.c:
+    complete
+    .data       start:0x0236b6ac end:0x0236b6b8
+
+src/game/ov006/ov006_data_0236b800.c:
+    complete
+    .data       start:0x0236b800 end:0x0236b8a4
+
+src/game/ov006/ov006_data_0236b8a4.c:
+    complete
+    .data       start:0x0236b8a4 end:0x0236b8b0
+
+src/game/ov006/ov006_data_0236c0c8.c:
+    complete
+    .data       start:0x0236c0c8 end:0x0236c0d4
+
+src/game/ov006/ov006_data_0236d2dc.c:
+    complete
+    .data       start:0x0236d2dc end:0x0236d534
+
+src/game/ov006/ov006_data_0236d534.c:
+    complete
+    .data       start:0x0236d534 end:0x0236d5e8
+
 src/game/ov006/ov006_refresh_slots.c:
     complete
     .text       start:0x02350560 end:0x023505c4
@@ -31,6 +71,7 @@ src/game/ov006/design_room_update.c:
 src/game/ov006/design_room_init.c:
     complete
     .text       start:0x02350874 end:0x02350cdc
+    .data       start:0x0236a1e0 end:0x0236a1f0
 
 src/game/ov006/ov006_reset_map_view.c:
     complete
@@ -47,6 +88,7 @@ src/game/ov006/func_ov006_02350eb0.c:
 src/game/ov006/func_ov006_02350ec0.c:
     complete
     .text       start:0x02350ec0 end:0x02350ee8
+    .data       start:0x0236a1f0 end:0x0236a408
 
 src/game/ov006/func_ov006_02350ee8.c:
     complete
@@ -63,6 +105,7 @@ src/game/ov006/ov006_post_request.c:
 src/game/ov006/ov006_match_cell_to_left_tile.c:
     complete
     .text       start:0x02350f44 end:0x02351238
+    .data       start:0x0236a408 end:0x0236a4cc
 
 src/game/ov006/ov006_get_cell_matched_to_left.c:
     complete
@@ -116,6 +159,7 @@ src/game/ov006/ov006_load_slot_tiles.c:
 src/game/ov006/ov006_queue_slot_sprites.c:
     complete
     .text       start:0x02351bf0 end:0x02351c80
+    .data       start:0x0236a4cc end:0x0236a7a0
 
 src/game/ov006/ov006_set_entry_tile.c:
     complete
@@ -124,10 +168,12 @@ src/game/ov006/ov006_set_entry_tile.c:
 src/game/ov006/ov006_load_terrain_icons.c:
     complete
     .text       start:0x02351f4c end:0x02351fac
+    .data       start:0x0236a7a0 end:0x0236a7ac
 
 src/game/ov006/ov006_load_army_tiles.c:
     complete
     .text       start:0x02351fac end:0x02352048
+    .data       start:0x0236a7ac end:0x0236a7b4
 
 src/game/ov006/ov006_load_terrain_tiles.c:
     complete
@@ -144,6 +190,7 @@ src/game/ov006/ov006_queue_terrain_entry_sprites.c:
 src/game/ov006/func_ov006_02352400.c:
     complete
     .text       start:0x02352400 end:0x0235248c
+    .data       start:0x0236a7b4 end:0x0236a810
 
 src/game/ov006/ov006_load_co_icons.c:
     complete
@@ -152,6 +199,7 @@ src/game/ov006/ov006_load_co_icons.c:
 src/game/ov006/ov006_queue_entry_sprites.c:
     complete
     .text       start:0x0235257c end:0x023526c8
+    .data       start:0x0236a810 end:0x0236a9d8
 
 src/game/ov006/func_ov006_023526c8.c:
     complete
@@ -208,6 +256,7 @@ src/game/ov006/ov006_load_entry_terrain_graphics.c:
 src/game/ov006/ov006_queue_screen1_sprites.c:
     complete
     .text       start:0x02353e24 end:0x02353f7c
+    .data       start:0x0236a9d8 end:0x0236ab28
 
 src/game/ov006/func_ov006_02353f7c.c:
     complete
@@ -260,18 +309,22 @@ src/game/ov006/func_ov006_02354250.c:
 src/game/ov006/func_ov006_0235427c.c:
     complete
     .text       start:0x0235427c end:0x023542a8
+    .data       start:0x0236ab34 end:0x0236abc4
 
 src/game/ov006/func_ov006_023542a8.c:
     complete
     .text       start:0x023542a8 end:0x023542d4
+    .data       start:0x0236abc4 end:0x0236abfc
 
 src/game/ov006/func_ov006_023542d4.c:
     complete
     .text       start:0x023542d4 end:0x02354300
+    .data       start:0x0236abfc end:0x0236ac34
 
 src/game/ov006/func_ov006_02354300.c:
     complete
     .text       start:0x02354300 end:0x0235432c
+    .data       start:0x0236ac34 end:0x0236acc4
 
 src/game/ov006/func_ov006_0235432c.c:
     complete
@@ -312,6 +365,7 @@ src/game/ov006/func_ov006_02354414.c:
 src/game/ov006/func_ov006_02354444.c:
     complete
     .text       start:0x02354444 end:0x023544c4
+    .data       start:0x0236acc4 end:0x0236af9c
 
 src/game/ov006/func_ov006_023544c4.c:
     complete
@@ -332,6 +386,7 @@ src/game/ov006/func_ov006_023545ec.c:
 src/game/ov006/ov006_open_popup_menu.c:
     complete
     .text       start:0x02354648 end:0x02354680
+    .data       start:0x0236af9c end:0x0236b56c
 
 src/game/ov006/func_ov006_02354680.c:
     complete
@@ -368,6 +423,7 @@ src/game/ov006/func_ov006_023547b4.c:
 src/game/ov006/func_ov006_023547bc.c:
     complete
     .text       start:0x023547bc end:0x02354870
+    .data       start:0x0236b62c end:0x0236b634
 
 src/game/ov006/ov006_load_slot_button_graphics.c:
     complete
@@ -440,10 +496,12 @@ src/game/ov006/func_ov006_02355444.c:
 src/game/ov006/ov006_add_screen0_button.c:
     complete
     .text       start:0x023554a4 end:0x02355514
+    .data       start:0x0236b634 end:0x0236b65c
 
 src/game/ov006/func_ov006_02355514.c:
     complete
     .text       start:0x02355514 end:0x02355584
+    .data       start:0x0236b65c end:0x0236b6ac
 
 src/game/ov006/func_ov006_02355584.c:
     complete
@@ -464,6 +522,7 @@ src/game/ov006/ov006_add_tool_buttons.c:
 src/game/ov006/ov006_queue_tool_button_icons.c:
     complete
     .text       start:0x023557b8 end:0x02355a10
+    .data       start:0x0236b6b8 end:0x0236b7e4
 
 src/game/ov006/ov006_set_entry_page.c:
     complete
@@ -504,6 +563,7 @@ src/game/ov006/func_ov006_023564b0.c:
 src/game/ov006/ov006_update_army_co_panel.c:
     complete
     .text       start:0x023564c4 end:0x02357674
+    .data       start:0x0236b7e4 end:0x0236b800
 
 src/game/ov006/func_ov006_02357674.c:
     complete
@@ -556,6 +616,7 @@ src/game/ov006/func_ov006_02357920.c:
 src/game/ov006/ov006_open_load_menu.c:
     complete
     .text       start:0x0235794c end:0x02357a6c
+    .data       start:0x0236b8b0 end:0x0236c040
 
 src/game/ov006/func_ov006_02357a6c.c:
     complete
@@ -716,6 +777,7 @@ src/game/ov006/ov006_queue_page2_icons.c:
 src/game/ov006/ov006_queue_menu_sprites.c:
     complete
     .text       start:0x02358ef0 end:0x02358fec
+    .data       start:0x0236c040 end:0x0236c0c8
 
 src/game/ov006/func_ov006_02358fec.c:
     complete
@@ -761,10 +823,6 @@ src/game/ov006/ov006_scatter_mountains.c:
     complete
     .text       start:0x02359b7c end:0x02359c20
     .bss        start:0x0236d744 end:0x0236d99c
-
-src/game/ov006/ov006_bss_0236d99c.c:
-    complete
-    .bss        start:0x0236d99c end:0x0236d9a0
 
 src/game/ov006/ov006_scatter_sea.c:
     complete
@@ -1233,6 +1291,7 @@ src/game/ov006/ov006_place_road.c:
 src/game/ov006/ov006_get_road_cell.c:
     complete
     .text       start:0x023670ec end:0x02367260
+    .data       start:0x0236c0d4 end:0x0236d2dc
 
 src/game/ov006/ov006_is_road_or_vertical_bridge.c:
     complete
@@ -1289,6 +1348,7 @@ src/game/ov006/ov006_get_pipe_neighbor_hold.c:
 src/game/ov006/ov006_get_pipe_link.c:
     complete
     .text       start:0x02369e04 end:0x0236a1d0
+    .data       start:0x0236d5e8 end:0x0236d640
 
 src/game/ov006/func_ov006_0236a1d0.c:
     complete

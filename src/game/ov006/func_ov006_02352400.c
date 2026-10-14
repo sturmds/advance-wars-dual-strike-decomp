@@ -6,8 +6,16 @@ void TransferQueue_Add(const void* src, void* dst, u32 size);
 u8* UnitType_GetPictureTiles(int unitType);
 
 extern Unk_027c0280* data_027c0280;
-extern s8 data_ov006_0236a7b4[];
-extern s8 data_ov006_0236a7d0[];
+s8 data_ov006_0236a7d0[28] = {
+#include "data/ov006/data_ov006_0236a7d0.inc.c"
+};
+s8 data_ov006_0236a7b4[28] = {
+#include "data/ov006/data_ov006_0236a7b4.inc.c"
+};
+/* (x, y) per entry when unitMode is 0 */
+u8 data_ov006_0236a7ec[36] = {
+#include "data/ov006/data_ov006_0236a7ec.inc.c"
+};
 
 void func_ov006_02352400(void) {
   u8* dst;

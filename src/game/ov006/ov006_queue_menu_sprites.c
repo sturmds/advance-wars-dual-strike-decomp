@@ -2,13 +2,40 @@
 
 void Sprite_Queue(int list, int x, int y, const void* data, int attr, int tile);
 
-extern u8 data_ov006_0236c040[];
-extern u8 data_ov006_0236c048[];
-extern u8 data_ov006_0236c050[];
-extern u8 data_ov006_0236c058[];
-extern u8 data_ov006_0236c060[];
-extern u8 data_ov006_0236c068[];
-extern u8 data_ov006_0236c070[];
+void MenuDepth_Push(void);
+void func_ov006_02350ee8(void);
+void func_ov006_02354778(void);
+void Ov006_UpdateTextPages(void);
+void MenuDepth_Pop(void);
+
+static u8 data_ov006_0236c040[8] = {
+#include "data/ov006/data_ov006_0236c040.inc.c"
+};
+static u8 data_ov006_0236c070[8] = {
+#include "data/ov006/data_ov006_0236c070.inc.c"
+};
+static u8 data_ov006_0236c068[8] = {
+#include "data/ov006/data_ov006_0236c068.inc.c"
+};
+static u8 data_ov006_0236c060[8] = {
+#include "data/ov006/data_ov006_0236c060.inc.c"
+};
+static u8 data_ov006_0236c058[8] = {
+#include "data/ov006/data_ov006_0236c058.inc.c"
+};
+static u8 data_ov006_0236c050[8] = {
+#include "data/ov006/data_ov006_0236c050.inc.c"
+};
+static u8 data_ov006_0236c048[8] = {
+#include "data/ov006/data_ov006_0236c048.inc.c"
+};
+u32 data_ov006_0236c078[4] = {
+#include "data/ov006/data_ov006_0236c078.inc.c"
+};
+/* declared `u8 data_ov006_0236c088[]` in func_ov006_023586e0.c: relocation at data_ov006_0236c088+0x0 is not on a 4-byte field */
+u32 data_ov006_0236c088[16] = {
+#include "data/ov006/data_ov006_0236c088.inc.c"
+};
 
 /* Queues seven sprites on list 0: four at y 0x458 (x 32, 80, 128, 176) and three at
  * y 0x488 (x 32, 80, 128). */

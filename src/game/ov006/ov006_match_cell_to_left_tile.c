@@ -1,17 +1,14 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/ov006_cell_forms.h"
 #include "game/terrain.h"
+
+s16 Ov006_gCellsOpen[2][49] = {
+#include "data/ov006/Ov006_gCellsOpen.inc.c"
+};
 
 extern Unk_02080440* data_027c027c;
 extern u32 data_027c0284;
-
-/* Two lists of 49 map cell codes, entry by entry the same cell in two
- * forms: Ov006_gCellsOpen holds the form for a tile with open ground to its
- * left, Ov006_gCellsBesideTall the form beside a mountain, wood or
- * building. The last 25 are the same in both. */
-#define CELL_PAIR_COUNT 49
-extern s16 Ov006_gCellsOpen[CELL_PAIR_COUNT];
-extern s16 Ov006_gCellsBesideTall[CELL_PAIR_COUNT];
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -19,7 +16,7 @@ extern s16 Ov006_gCellsBesideTall[CELL_PAIR_COUNT];
  * tile to its left; -1 when `cell` is in neither list. Guess: the second
  * form draws the shadow that tall tiles cast to their right. */
 int Ov006_MatchCellToLeftTile(int x, int y, int cell) {
-  s16* open = Ov006_gCellsOpen;
+  s16* open = Ov006_gCellsOpen[0];
   s16* besideTall = Ov006_gCellsBesideTall;
   int i;
 

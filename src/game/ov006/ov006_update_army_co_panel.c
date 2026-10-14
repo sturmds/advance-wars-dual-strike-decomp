@@ -35,7 +35,9 @@ extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern s16 gSineTable[]; /* looks like a sine table: index 64 = cosine of 0 */
 /* Matrix scales per frame (256 = 1x): 256, 224, 160, 112, 16 (zoom out or
  * squash), then 0, 0, 0, 0, 128, 224, 256 (way back), then -1. */
-extern s16 Ov006_gPanelScaleSteps[];
+static s16 Ov006_gPanelScaleSteps[14] = {
+#include "data/ov006/Ov006_gPanelScaleSteps.inc.c"
+};
 extern const char data_ov006_0236b8a4[]; /* "/mapedit" */
 extern const char data_ov006_0236b8b0[]; /* "002" */
 extern const char data_ov006_0236b8b4[]; /* "001" */

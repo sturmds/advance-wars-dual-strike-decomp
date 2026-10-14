@@ -41,7 +41,11 @@ void Ov006_LoadArmyTerrainGraphics(void);
 extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern u8 data_022a7d5c[];
 extern const TaskScriptCmd data_ov006_0236a218[];
-extern const TaskScriptCmd data_ov006_0236a1e0[];
+void Ov006_UpdateSubScreen(void);
+
+static TaskScriptCmd data_ov006_0236a1e0[2] = {
+#include "data/ov006/data_ov006_0236a1e0.inc.c"
+};
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define OV6 data_ov006_0236d640

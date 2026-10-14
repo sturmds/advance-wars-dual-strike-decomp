@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/popup_menu.h"
 #include "game/Unk_ov006_0235f690.h"
+#include "game/menu_item.h"
 
 PopupMenuTask* PopupMenu_Create(const MenuItem* items, int x, int y, int style,
                                 int selected, int center);
@@ -9,7 +10,106 @@ void Ov006_DrawMenuLineFixedText(int unused, int row);
 void Ov006_DrawMenuLineWithIcon(int unused, int row, const char* text);
 
 extern Unk_ov006_0235f690* data_ov006_0236d640;
-extern const MenuItem data_ov006_0236b9e0[];
+void MenuDepth_Pop(void);
+void MenuDepth_Push(void);
+void PopupMenu_PopState(void);
+void ScreenTransition_IsRunning(void);
+extern u32 data_ov006_0236be00[];
+extern u32 data_ov006_0236bf20[];
+void func_01ff95fc(void);
+void func_01ff9610(void);
+void func_0201e954(void);
+void func_020d7ea4(void);
+void func_ov006_02350f10(void);
+void func_ov006_02357770(void);
+void func_ov006_023578e8(void);
+void func_ov006_02357c80(void);
+void func_ov006_02357c90(void);
+void func_ov006_02357cb8(void);
+void func_ov006_02357d40(void);
+void func_ov006_02357f84(void);
+void func_ov006_02357f94(void);
+void func_ov006_02357fa4(void);
+void Ov006_OpenLoadMenu(void);
+void Ov006_OpenSaveMenu(void);
+void func_020199a4(void);
+void func_020c4018(void);
+void func_020d7eb8(void);
+void func_ov006_02357ef4(void);
+void func_ov006_023582c0(void);
+void func_ov006_023582d0(void);
+void func_ov006_023582e0(void);
+void func_ov006_02357a98(void);
+void func_ov006_02357aa8(void);
+void func_ov006_02357ab8(void);
+void func_ov006_02357ca0(void);
+void func_ov006_02357dc8(void);
+void func_ov006_02357e14(void);
+void func_ov006_02357e60(void);
+void func_ov006_0235869c(void);
+void func_ov006_02354680(void);
+void func_ov006_023578bc(void);
+void func_ov006_02357a6c(void);
+
+/* "001" */
+char data_ov006_0236b8b4[4] = {
+#include "data/ov006/data_ov006_0236b8b4.inc.c"
+};
+/* "002" */
+char data_ov006_0236b8b0[4] = {
+#include "data/ov006/data_ov006_0236b8b0.inc.c"
+};
+/* declared `u8 data_ov006_0236b8e0[]` in func_ov006_02357770.c: relocation at data_ov006_0236b8e0+0x0 is not on a 4-byte field */
+u32 data_ov006_0236b8e0[10] = {
+#include "data/ov006/data_ov006_0236b8e0.inc.c"
+};
+/* declared `u8 data_ov006_0236b8b8[]` in func_ov006_02357920.c: relocation at data_ov006_0236b8b8+0x0 is not on a 4-byte field */
+u32 data_ov006_0236b8b8[10] = {
+#include "data/ov006/data_ov006_0236b8b8.inc.c"
+};
+/* declared `u8 data_ov006_0236b908[]` in func_ov006_023578bc.c: relocation at data_ov006_0236b908+0x0 is not on a 4-byte field */
+u32 data_ov006_0236b908[14] = {
+#include "data/ov006/data_ov006_0236b908.inc.c"
+};
+/* declared `u8 data_ov006_0236b940[]` in func_ov006_02357a6c.c: relocation at data_ov006_0236b940+0x0 is not on a 4-byte field */
+u32 data_ov006_0236b940[14] = {
+#include "data/ov006/data_ov006_0236b940.inc.c"
+};
+/* declared `u8 data_ov006_0236b978[]` in func_ov006_02357eac.c: relocation at data_ov006_0236b978+0x8 is not on a 4-byte field */
+u32 data_ov006_0236b978[26] = {
+#include "data/ov006/data_ov006_0236b978.inc.c"
+};
+MenuItem data_ov006_0236ba60[4] = {
+#include "data/ov006/data_ov006_0236ba60.inc.c"
+};
+u32 data_ov006_0236bae0[32] = {
+#include "data/ov006/data_ov006_0236bae0.inc.c"
+};
+static MenuItem data_ov006_0236b9e0[4] = {
+#include "data/ov006/data_ov006_0236b9e0.inc.c"
+};
+/* declared `u8 data_ov006_0236bb60[]` in ov006_start_id_script.c: relocation at data_ov006_0236bb60+0x14 is not on a 4-byte field */
+u32 data_ov006_0236bb60[40] = {
+#include "data/ov006/data_ov006_0236bb60.inc.c"
+};
+/* declared `u8 data_ov006_0236bc00[]` in ov006_start_id_script.c: relocation at data_ov006_0236bc00+0x14 is not on a 4-byte field */
+u32 data_ov006_0236bc00[40] = {
+#include "data/ov006/data_ov006_0236bc00.inc.c"
+};
+/* declared `u8 data_ov006_0236bd50[]` in ov006_start_id_script.c: relocation at data_ov006_0236bd50+0x14 is not on a 4-byte field */
+u32 data_ov006_0236bd50[44] = {
+#include "data/ov006/data_ov006_0236bd50.inc.c"
+};
+/* declared `u8 data_ov006_0236bca0[]` in ov006_start_id_script.c: relocation at data_ov006_0236bca0+0x14 is not on a 4-byte field */
+u32 data_ov006_0236bca0[44] = {
+#include "data/ov006/data_ov006_0236bca0.inc.c"
+};
+u32 data_ov006_0236be00[72] = {
+#include "data/ov006/data_ov006_0236be00.inc.c"
+};
+u32 data_ov006_0236bf20[72] = {
+#include "data/ov006/data_ov006_0236bf20.inc.c"
+};
 
 /* Opens the menu of the three design map slots with the cursor on the last
  * chosen slot, drawn like Ov006_OpenSaveMenu. Choosing a row starts a script

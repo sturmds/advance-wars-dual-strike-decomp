@@ -4,8 +4,38 @@
 
 extern Unk_02080440* data_027c027c;
 extern u32 data_027c0284;
-extern s16 Ov006_gDirStepX[4];
-extern s16 Ov006_gDirStepY[4];
+#pragma explicit_zero_data on
+static s16 Ov006_gDirStepX[4] = {
+#include "data/ov006/Ov006_gDirStepX.inc.c"
+};
+s16 Ov006_gNeighborDy[4] = {
+#include "data/ov006/Ov006_gNeighborDy.inc.c"
+};
+static s16 Ov006_gDirStepY[4] = {
+#include "data/ov006/Ov006_gDirStepY.inc.c"
+};
+s16 data_ov006_0236d608[4] = {
+#include "data/ov006/data_ov006_0236d608.inc.c"
+};
+/* left, right, up, down */
+s16 Ov006_gNeighborDx[4] = {
+#include "data/ov006/Ov006_gNeighborDx.inc.c"
+};
+s16 data_ov006_0236d5f8[4] = {
+#include "data/ov006/data_ov006_0236d5f8.inc.c"
+};
+s16 Ov006_gCrossDy[5] = {
+#include "data/ov006/Ov006_gCrossDy.inc.c"
+};
+/* offsets: centre, left, right, up, down */
+s16 Ov006_gCrossDx[5] = {
+#include "data/ov006/Ov006_gCrossDx.inc.c"
+};
+/* 0x10 bytes no code names, before the end */
+u32 data_ov006_0236d630[4] = {
+#include "data/ov006/data_ov006_0236d630.inc.c"
+};
+#pragma explicit_zero_data reset
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
