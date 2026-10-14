@@ -1,6 +1,9 @@
 # Inputs and outputs that never enter git (D5).
 /orig
-/extract/
+/extract/*
+!/extract/README.md
+!/extract/.gitkeep
+/extract.tmp/
 /build/
 /.cache
 
@@ -28,7 +31,9 @@ __pycache__/
 /.claude/worktrees/
 
 # Generated or local-only, never in git
-/extracted
+/extracted/*
+!/extracted/README.md
+!/extracted/.gitkeep
 /work/
 /.claude/
 /assets/maps/*/

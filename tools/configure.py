@@ -237,7 +237,10 @@ def main() -> int:
         f"ldflags7 = {LDFLAGS7}",
         "",
         "rule extract",
-        "  command = rm -rf extract && $dsd rom extract -r $in -o extract > /dev/null",
+        # Replaces everything in extract/ except README.md and .gitkeep, which are in git.
+        "  command = rm -rf extract.tmp && $dsd rom extract -r $in -o extract.tmp > /dev/null"
+        " && mkdir -p extract && find extract -mindepth 1 -maxdepth 1 ! -name README.md ! -name .gitkeep -exec rm -rf {} +"
+        " && mv extract.tmp/* extract/ && rmdir extract.tmp",
         "  description = EXTRACT $in",
         "",
         # -gccdep -MD writes build/src/x.d next to the object.

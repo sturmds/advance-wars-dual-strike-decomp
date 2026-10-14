@@ -26,7 +26,7 @@ if [ "$(date +%z)" != "+0000" ] && [ -z "${GIT_COMMITTER_DATE:-}" ]; then
     exit 1
 fi
 
-bad=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '(^|/)(orig|extract|extracted|build|work)/|^assets/maps/[^/]+/|\.(nds|bin|o|exe)$' || true)
+bad=$(git diff --cached --name-only --diff-filter=ACMR | grep -v -E '^(extract|extracted)/(README\.md|\.gitkeep)$' | grep -E '(^|/)(orig|extract|extracted|build|work)/|^assets/maps/[^/]+/|\.(nds|bin|o|exe)$' || true)
 if [ -n "$bad" ]; then
     echo "pre-commit: these paths must not enter git:" >&2
     echo "$bad" | sed 's/^/  /' >&2
