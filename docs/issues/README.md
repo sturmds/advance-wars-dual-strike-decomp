@@ -114,3 +114,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0084](0084-landing-train.md) | Land several waiting branches with one release | open | loop | later |
 | [0085](0085-music-extraction.md) | Investigate how the music is stored and played, to extract it like the maps | closed | tools | later |
 | [0086](0086-shiftable-rom.md) | A shifted or modded build must still run | in progress | build | M3 |
+| [0087](0087-fully-shiftable-source.md) | Make the source fully shiftable: addresses, sizes and bounds from the C, counted in PROGRESS.md | open | decomp | M3 |

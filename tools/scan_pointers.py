@@ -373,20 +373,12 @@ def cmd_unused(mods: dict[str, modmap.Module], out) -> int:
 
 # ---------------------------------------------------------------- main
 
-def main() -> int:
-    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--list", choices=LEVELS + ("all",), help="print candidates of this level")
-    ap.add_argument("--module", help="only this module (main, itcm, dtcm, ov000...)")
-    ap.add_argument("--tsv", help="write candidates to this file instead of stdout")
-    ap.add_argument("--unused-symbols", action="store_true", help="list data symbols nothing refers to")
-    args = ap.parse_args()
-
-    index = modmap.ROOT / "build/fnindex.json"
-    mods = modmap.load()
-    if args.unused_symbols:
-        return cmd_unused(mods, open(args.tsv, "w") if args.tsv else sys.stdout)
-    if not index.exists():
-        raise SystemExit("error: build/fnindex.json is missing, run `make fnindex` first")
+def candidates(mods: dict[str, modmap.Module], index: Path, module: str | None = None):
+    """Every unrelocated word that looks like an address, as
+    (level, module, section, addr, value, target, symbol, neighbour, holder, path),
+    and the number of words only a linked object relocates (None without a
+    build). Used by
+    tools/shift_gaps.py too."""
     insns = instruction_ranges(index)
     linked = linked_relocations(mods)
     if linked is None:
@@ -397,7 +389,7 @@ def main() -> int:
     rows = []
     only_linked = 0  # words a linked object relocates and relocs.txt does not
     for m in mods.values():
-        if args.module and m.name != args.module:
+        if module and m.name != module:
             continue
         relocated = set(m.relocs) | (linked or {}).get(m.name, set())
         only_linked += len(relocated) - len(m.relocs)
@@ -426,6 +418,24 @@ def main() -> int:
                              if s.addr in (value, value & ~1)), "")
             holder, path = holders.holder(m.name, addr, pool)
             rows.append((level, m.name, section, addr, value, target, name, neighbour, holder, path))
+    return rows, (only_linked if linked is not None else None)
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    ap.add_argument("--list", choices=LEVELS + ("all",), help="print candidates of this level")
+    ap.add_argument("--module", help="only this module (main, itcm, dtcm, ov000...)")
+    ap.add_argument("--tsv", help="write candidates to this file instead of stdout")
+    ap.add_argument("--unused-symbols", action="store_true", help="list data symbols nothing refers to")
+    args = ap.parse_args()
+
+    index = modmap.ROOT / "build/fnindex.json"
+    mods = modmap.load()
+    if args.unused_symbols:
+        return cmd_unused(mods, open(args.tsv, "w") if args.tsv else sys.stdout)
+    if not index.exists():
+        raise SystemExit("error: build/fnindex.json is missing, run `make fnindex` first")
+    rows, only_linked = candidates(mods, index, args.module)
 
     counts = Counter((r[1], r[2], r[0]) for r in rows)
     print(f"{'module':7} {'section':12} " + " ".join(f"{lv:>7}" for lv in LEVELS), file=sys.stderr)
@@ -435,7 +445,7 @@ def main() -> int:
         totals.update(dict(zip(LEVELS, n)))
         print(f"{mod:7} {section:12} " + " ".join(f"{x:7}" for x in n), file=sys.stderr)
     print(f"{'total':20} " + " ".join(f"{totals[lv]:7}" for lv in LEVELS), file=sys.stderr)
-    if linked is not None:
+    if only_linked is not None:
         print(f"{only_linked} words relocated by the linked objects only", file=sys.stderr)
 
     if args.list:

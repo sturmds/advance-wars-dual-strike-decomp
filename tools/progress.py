@@ -16,6 +16,8 @@ and dsd gap units, which have no source file). Then every symbol in code
 that the report scores below 100%, every source unit whose data it scores
 below 100% matched, and every function written as `asm` that
 the report leaves out (config/AWRE/asm_functions.txt does not list it).
+Last, the counts of tools/shift_gaps.py: what still stops the source from
+being fully shiftable (issue 0087).
 
 The row for all code reads, for example:
 
@@ -114,7 +116,7 @@ def header(first: str) -> list[str]:
             "|---|---:|---:|---:|---:|---:|---:|---:|"]
 
 
-def markdown(report: dict, report_path: str) -> str:
+def markdown(report: dict, report_path: str, gaps: list[str] | None = None) -> str:
     import decomp_dev_report
 
     modules = decomp_dev_report.source_modules()
@@ -192,6 +194,12 @@ def markdown(report: dict, report_path: str) -> str:
         lines += ["", "Functions written as `asm` that the report does not count:", "",
                   "| Module | File | Function |", "|---|---|---|"]
         lines += [f"| {m} | `{p}` | {n} |" for m, p, n in asm]
+    if gaps is not None:
+        lines += ["", "## Shiftable", "",
+                  "Places where the source still writes an address, a size, a length or a bound as a number,",
+                  "so that growing a function, struct or table can break the ROM without an error (issue 0087,",
+                  "the measure of issue 0086's goal). Counted by `tools/shift_gaps.py`; `--list KIND` names the",
+                  "sites. Not every count should reach 0: a hardware format stays a number.", "", *gaps]
     return "\n".join(lines) + "\n"
 
 
@@ -204,7 +212,10 @@ def main() -> int:
     rel = path.relative_to(ROOT).as_posix()
     if not path.exists():
         sys.exit(f"progress.py: {rel} is missing; run `make release` (or `make decomp-dev-report`) first")
-    text = markdown(json.loads(path.read_text()), rel)
+    import shift_gaps
+
+    counts, _, missing = shift_gaps.collect()
+    text = markdown(json.loads(path.read_text()), rel, shift_gaps.markdown(counts, missing))
     if len(sys.argv) == 1:
         sys.stdout.write(text)
         return 0

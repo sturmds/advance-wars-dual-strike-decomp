@@ -18,7 +18,7 @@ DSD      := .cache/tools/dsd/dsd
 LOCKED_NINJA := mkdir -p build && flock build/.ninja.lock $(NINJA)
 
 
-.PHONY: all configure fnindex dsindex progress setup tools assets release release-nocheck decomp-dev-report pnc-check check check-rom check-modules check-out hooks extract sound music test test-release clean shift emu-smoke emu-check format format-check
+.PHONY: all configure fnindex dsindex progress setup tools assets release release-nocheck decomp-dev-report pnc-check check check-rom check-modules check-out hooks extract sound music test test-release clean shift emu-check format format-check
 
 all: check-rom configure
 	@$(LOCKED_NINJA)
@@ -155,12 +155,6 @@ shift: all
 	@flock build/.ninja.lock $(PYTHON) tools/shift_build.py --module dtcm
 	@flock build/.ninja.lock $(PYTHON) tools/shift_build.py --module main --module ov000 --pad 0x40
 
-# Starts retail, our build and the shifted build in DeSmuME without a window
-# and compares exit status, log and the save file the game writes. A smoke
-# test only (issue 0006).
-emu-smoke: shift
-	@$(PYTHON) tools/emu_smoke.py $(ROM) $(OUT) build/shift/AWRE.nds
-
 # Boots retail, our build and every shifted build from make shift in melonDS
 # (env MELONDS, a local build) with no window and no sound, opens the main
 # menu, and fails on an ARM9 exception, a hang, a heap that starts inside
@@ -183,14 +177,15 @@ emu-check: shift
 # mwccarm emits data objects (test_data_order.py), and the .bss planner
 # (test_bss.py), the release cache (test_release_cache.py) and the .data
 # planner (test_data.py), and the sound archive's unpack and pack
-# (test_sound.py), and the levels of scan_pointers.py (test_scan_pointers.py);
+# (test_sound.py), and the levels of scan_pointers.py (test_scan_pointers.py),
+# and the C text shift_gaps.py counts as a gap (test_shift_gaps.py);
 # no ROM or build needed
 # (test_ds.py, test_pragmas.py, test_absolute.py, test_data_order.py,
 # test_bss.py and test_data.py use the compiler from make setup; test_ds.py
 # checks more when extract/ exists, test_bss.py when build/fnindex.json and
 # build/dsindex.json exist, test_data.py when the ROM exists as well;
 # test_sound.py checks the round trip of the ROM's archive when extract/ exists;
-# test_gdb_rsp.py boots retail in melonDS for 300 frames when melonDS and the ROM exist).
+# test_gdb_rsp.py never starts melonDS).
 # Git exports GIT_DIR, GIT_INDEX_FILE and others to hooks, so a test run from
 # pre-commit would send the git commands meant for a throwaway repo to the
 # repository being committed (issue 0076). TEST_ENV drops every GIT_ variable
@@ -224,6 +219,7 @@ TESTS := \
 	tools/tests/test_sound.py \
 	tools/tests/test_shift.py \
 	tools/tests/test_scan_pointers.py \
+	tools/tests/test_shift_gaps.py \
 	tools/tests/test_gdb_rsp.py
 
 test:

@@ -50,3 +50,30 @@ None.
 Units with data (from `src/`) whose data the report scores below 100% matched.
 
 None.
+
+## Shiftable
+
+Places where the source still writes an address, a size, a length or a bound as a number,
+so that growing a function, struct or table can break the ROM without an error (issue 0087,
+the measure of issue 0086's goal). Counted by `tools/shift_gaps.py`; `--list KIND` names the
+sites. Not every count should reach 0: a hardware format stays a number.
+
+| Group | Gap | Game | SDK | Total |
+|---|---|---:|---:|---:|
+| Addresses | Aliases written as BASE+number (`aliases.txt`) | - | - | 331 |
+| Addresses | Unrelocated words, layout level (`scan_pointers.py`) | 5 | 1 | 6 |
+| Addresses | Unrelocated words, high level | 0 | 0 | 0 |
+| Addresses | Unrelocated words, medium level | 52 | 2 | 54 |
+| Addresses | Unrelocated words, low level (mostly 16-bit pairs) | 1102 | 13 | 1115 |
+| Sizes | `Mem_Alloc` with a literal size | 11 | 0 | 11 |
+| Sizes | Copy, fill and clear calls with a literal length | 243 | 60 | 303 |
+| Sizes | Byte offsets into objects (`(u8 *)x + N`) | 41 | 33 | 74 |
+| Sizes | `for` loops with a literal bound | 851 | 89 | 940 |
+| Tables | Initialised `u32` arrays with a literal length | 6375 | 13 | 6388 |
+| Tables | Initialised `char` arrays with a literal length | 3759 | 56 | 3815 |
+| Tables | Other initialised arrays with a literal length | 937 | 37 | 974 |
+| Tables | `u32` tables holding pointers and numbers (structs written as words) | 884 | 3 | 887 |
+| Tables | Extern arrays with a literal length | 489 | 26 | 515 |
+| Tables | `u8 NAME[N]` placeholders for zeroed variables | 245 | 34 | 279 |
+
+Structs with a size assert: 24.

@@ -6,12 +6,10 @@
 Packet encoding and decoding, the `g` and stop replies, and a session with a
 fake stub that behaves like melonDS's (it waits for `+` after the connect,
 acks each packet, and sends a stop reply only when the target stops). Then
-the key script, the overlay table end and the ELF symbol reader. When
-melonDS (env MELONDS) and orig/AWRE.nds exist, it also boots retail for 300
-frames and checks the heap start; otherwise that part prints "skipped".
+the key script, the overlay table end and the ELF symbol reader. It never
+starts melonDS: `make emu-check` boots the ROMs.
 """
 
-import os
 import socket
 import struct
 import sys
@@ -158,21 +156,6 @@ with tempfile.TemporaryDirectory() as tmp:
     (Path(tmp) / "a.elf").write_bytes(bytes(header) + body + sections)
     expect("elf symbols", melonds_check.elf_symbols(Path(tmp) / "a.elf"), {"Foo": 0x02000800})
 
-
-# A real boot, when melonDS and the ROM are here
-
-retail = TOOLS.parent / "orig/AWRE.nds"
-if not os.access(melonds_check.MELONDS, os.X_OK):
-    print(f"test_gdb_rsp: boot skipped (no melonDS at {melonds_check.MELONDS}; set MELONDS)")
-elif not retail.exists():
-    print("test_gdb_rsp: boot skipped (no orig/AWRE.nds)")
-else:
-    melonds_check.OUT = TOOLS.parent / "build/melonds-test"
-    run = melonds_check.Run(retail, None, 0)
-    run.run(300, tuple(melonds_check.free_ports(2)), None, [])
-    expect("boot problems", run.problems, [])
-    expect("boot heap start", run.heap, 0x0237A5A0)
-    expect("boot reaches Mem_InitHeaps", "Mem_InitHeaps" in run.markers, True)
 
 if errors:
     sys.exit("test_gdb_rsp: " + "\n  ".join(errors))

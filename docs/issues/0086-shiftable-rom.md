@@ -4,7 +4,7 @@
 - **Area:** build
 - **Opened:** 2026-10-14
 - **Milestone:** M3
-- **Related:** 0006 (emulator check), 0012 (hard-coded addresses), 0019 and 0055 (overlay relocations), 0023 (mod build repo), 0050 (Download Play child), 0054 (ARM7 words), 0056 (secure-area CRC), 0060 (symbol sizes), 0064 (terrain stats framing), 0083 (aliases)
+- **Related:** 0006 (emulator check), 0012 (hard-coded addresses), 0019 and 0055 (overlay relocations), 0023 (mod build repo), 0050 (Download Play child), 0054 (ARM7 words), 0056 (secure-area CRC), 0060 (symbol sizes), 0064 (terrain stats framing), 0083 (aliases), 0087 (the source-level gaps, by measure)
 
 ## Problem
 
@@ -20,7 +20,7 @@ This issue holds the scope: the kinds of hazard, how many of each, the plan in o
 - **No hard dependency on fixed struct sizes.** Every size, copy length, allocation size, stride and offset is computed from the structure (`sizeof`, field access, `offsetof`, element counts from the array), so that changing a struct or table recomputes them.
 - **Each fix keeps the retail match** (`make release`).
 
-The class 3 findings below (sizes written as numbers) are therefore core work, not cleanup.
+The class 3 findings below (sizes written as numbers) are therefore core work, not cleanup. Issue 0087 tracks them by measure: `tools/shift_gaps.py` counts each kind, and `PROGRESS.md` shows the counts.
 
 ## Pilot (2026-10-14)
 
@@ -134,6 +134,7 @@ Nobody fixes:
 ### 6. Tests
 
 - `make shift` (above). Decided by sturmds (2026-10-14): it stays a separate target, not part of `make release`. It takes about 40 s and needs `arm-none-eabi-readelf`.
+- 2026-10-14: `make emu-smoke` (DeSmuME) is gone; `make test` no longer boots melonDS.
 - Emulator: melonDS 1.1 (a local build at `~/repos/melonDS/build/melonDS`, with its GDB stub) replaces DeSmuME. Issue 0006 has the boot check; it must stop on the crash ROM above and pass the fixed one.
   - 2026-10-14: `make emu-check` does: the old arena start fails on the heap check and a data abort in `Ov004_SetSlotTask`, the fixed one reaches the main menu. It also stops the dtcm shift on a prefetch abort at boot (the DTCM region in `init_cp15`).
 
