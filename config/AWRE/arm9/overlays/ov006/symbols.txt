@@ -546,7 +546,6 @@ Ov006_gWaterCellTable kind:data(any) addr:0x0236c2dc
 Ov006_gShoalGraphicTable kind:data(any) addr:0x0236c6dc
 data_ov006_0236cadc kind:data(any) addr:0x0236cadc
 data_ov006_0236cedc kind:data(any) addr:0x0236cedc
-data_ov006_0236cfe4 kind:data(any) addr:0x0236cfe4 ambiguous
 Ov006_gPresetMapTiles kind:data(any) addr:0x0236d2dc
 Ov006_gSlotArmyColours kind:data(any) addr:0x0236d534
 Ov006_gComTowerCells kind:data(any) addr:0x0236d538

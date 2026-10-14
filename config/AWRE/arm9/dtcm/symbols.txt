@@ -46,7 +46,6 @@ data_027c0254 kind:data(any) addr:0x027c0254
 data_027c0258 kind:data(any) addr:0x027c0258
 data_027c025c kind:data(any) addr:0x027c025c
 data_027c0260 kind:data(any) addr:0x027c0260
-data_027c0262 kind:data(any) addr:0x027c0262
 data_027c0264 kind:data(any) addr:0x027c0264
 data_027c0268 kind:data(any) addr:0x027c0268
 data_027c026c kind:data(any) addr:0x027c026c

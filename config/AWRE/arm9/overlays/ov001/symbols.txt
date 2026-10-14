@@ -640,7 +640,7 @@ data_ov001_0236cfb4 kind:data(any) addr:0x0236cfb4
 data_ov001_0236cfbc kind:data(any) addr:0x0236cfbc
 data_ov001_0236cfc4 kind:data(any) addr:0x0236cfc4
 data_ov001_0236cfcc kind:data(any) addr:0x0236cfcc
-data_ov001_0236cfe4 kind:data(any) addr:0x0236cfe4 ambiguous
+data_ov001_0236cfe4 kind:data(any) addr:0x0236cfe4
 data_ov001_0236d000 kind:data(any) addr:0x0236d000
 data_ov001_0236d020 kind:data(any) addr:0x0236d020
 data_ov001_0236d068 kind:data(any) addr:0x0236d068
