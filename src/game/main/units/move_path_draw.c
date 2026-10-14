@@ -1,7 +1,9 @@
 #include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/Unk_02088d04.h"
 
-extern void* data_027c027c;
-extern void* data_027c0288;
+extern Unk_02080440* data_027c027c;
+extern Unk_027c0288 data_027c0288;
 
 void MovePath_FollowCursor(void);
 void MovePath_DrawArrows3d(void);
@@ -12,7 +14,7 @@ void MovePath_DrawArrowSprites(void);
  * data_027c0288 hold the same pointer. The name is a guess. */
 void MovePath_Draw(void) {
   MovePath_FollowCursor();
-  if (data_027c027c != data_027c0288) {
+  if (data_027c027c != data_027c0288.unk_00) {
     MovePath_DrawArrowSprites();
   } else {
     MovePath_DrawArrows3d();

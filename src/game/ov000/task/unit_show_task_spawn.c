@@ -1,11 +1,12 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/Unk_02080440.h"
 #include "game/task.h"
 #include "game/unit_show_task.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern void* data_027c0288;
+extern Unk_027c0288 data_027c0288;
 char data_ov000_022dbd20[] = {
 #include "data/ov000/data_ov000_022dbd20.inc.c"
 };
@@ -59,7 +60,7 @@ UnitShowTask* UnitShowTask_Spawn(int x, int y, int owner, int type) {
   FS_ChangeDir(data_ov000_022dbd1c);
   file = File_Load(UnitShowEntry_GetSpritePath(type));
   task = (UnitShowTask*)Task_Create(data_ov000_022db6cc, TASK_LIST(5));
-  if ((void*)data_027c027c == data_027c0288) {
+  if ((void*)data_027c027c == data_027c0288.unk_00) {
     task->sprite = SpriteAnim_Create(file, 2, 14);
     task->sprite->flags |= 0x20;
   } else {
@@ -84,7 +85,7 @@ UnitShowTask* UnitShowTask_Spawn(int x, int y, int owner, int type) {
   task->unk_48 = file;
   SpriteAnim_SetAnimation(task->sprite, task->frame);
   task->sprite->unk_2c = task->unk_44;
-  if ((void*)data_027c027c == data_027c0288) {
+  if ((void*)data_027c027c == data_027c0288.unk_00) {
     task->sprite->unk_24 = UnitShowTask_GetObjBase(task->slot);
     task->sprite->unk_28 = (u32)data_022a7c5c->unk_64;
     GfxQueue_AddKind2(

@@ -1,5 +1,6 @@
 #include "types.h"
+#include "game/unit_target_entry.h"
 
-extern int data_022a6dcc;
+extern UnitTargetEntry* data_022a6dcc;
 
-int func_020dc524(int a0) { return data_022a6dcc + (a0 << 3); }
+UnitTargetEntry* func_020dc524(int index) { return &data_022a6dcc[index]; }

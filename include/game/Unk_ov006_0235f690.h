@@ -125,4 +125,6 @@ typedef struct Unk_ov006_0235f690 {
   u8 pad_ec[0x10c - 0xec]; /* DesignRoom_Init allocates 0x10c bytes */
 } Unk_ov006_0235f690;
 
+extern Unk_ov006_0235f690* data_ov006_0236d640; /* the Design Room state */
+
 #endif

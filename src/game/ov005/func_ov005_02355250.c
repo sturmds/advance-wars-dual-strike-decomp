@@ -1,6 +1,6 @@
 #include "types.h"
-#include "game/Unk_ov005_0236bb80.h"
+#include "game/Unk_ov005_0236bb84.h"
 
-extern Unk_ov005_0236bb80* data_ov005_0236bb84;
+extern Unk_ov005_0236bb84* data_ov005_0236bb84;
 
 void func_ov005_02355250(void) { data_ov005_0236bb84->unk_08 = 1; }

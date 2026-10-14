@@ -6,7 +6,7 @@
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
-extern void* data_027c0288;
+extern Unk_027c0288 data_027c0288;
 extern u8 data_021492c0[];
 extern MovePath* gMovePath;
 
@@ -25,7 +25,7 @@ void MovePath_FollowCursor(void);
  * puts the unit's own tile first with its full move points, and runs
  * MovePath_FollowCursor. */
 void MovePath_Start(void) {
-  if (data_027c027c != data_027c0288) {
+  if (data_027c027c != data_027c0288.unk_00) {
     TransferQueue_Add(data_021492c0, data_027c0280->objVram + 0x3280, 0xa00);
     IconBank_LoadPalette(1, 19);
   }

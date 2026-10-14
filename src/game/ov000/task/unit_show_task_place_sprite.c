@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/unit_show_task.h"
@@ -11,7 +12,7 @@ typedef struct Vec3 {
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern void* data_027c0288;
+extern Unk_027c0288 data_027c0288;
 void UnitShowTask_OnDestroy(void);
 void func_ov000_022ad7e0(int arg);
 void UnitShowTask_Update(void);
@@ -285,7 +286,7 @@ void UnitShowTask_PlaceSprite(UnitShowTask* task) {
   Vec3 pos;
   Vec3 rot;
 
-  if ((void*)data_027c027c == data_027c0288) {
+  if ((void*)data_027c027c == data_027c0288.unk_00) {
     rot = data_ov000_022db698;
     *(volatile int*)0x04000444 = 0;
     pos.x = ((task->x + 8) << 13) / 256;
