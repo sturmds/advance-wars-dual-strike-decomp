@@ -34,6 +34,10 @@ An alias is a symbol inside an object: a field or element address that code load
 
 dsd takes some words for pointers that are not: two 16-bit values whose bytes happen to look like an address (the ov003 pilot below). `data.py relocs MODULE` lists the relocations in the module's data that may be wrong: one that is not on a 4-byte boundary, one with an odd target, one where the object's declared type has no 4-byte field, and one into `.bss` or another module whose target symbol nothing else refers to. Each comes with the functions that read the object. Check each against that code (`python3 tools/fn.py show`, `python3 tools/ds.py field`), and delete it from `relocs.txt` only when the code proves it is not a pointer; delete the target symbol too when nothing else refers to it.
 
+Found so far:
+
+- main `.rodata` and `.data`, ov002 `.data`: of 8,618 relocations, 43 were false and are gone: 11 inside LZ77-compressed streams, 12 in the cell offset tables of sprite files, 12 in the sine and cosine table, 7 in tables of halfwords or bytes, and 1 in a `BattleSideWeapon` record. No missed pointers turned up. `data.py relocs` does not flag these kinds yet; it should flag a relocation inside an LZ77 block, a sprite file or the sine table.
+
 ## What it cannot do yet
 
 - Nested arrays of structs in a struct, unions, bit fields and floats: the object needs a declaration the tool can write, or it is written from its bytes in a new file.
