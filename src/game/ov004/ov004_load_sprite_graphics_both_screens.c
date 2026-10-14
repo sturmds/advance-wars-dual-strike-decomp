@@ -54,7 +54,7 @@ void Ov004_LoadSpriteGraphicsBothScreens(Unk_ov004_022bf158* state) {
   Unk_02080440* savedState;
 
   FS_ChangeDir(data_ov004_022bf0dc);
-  buffer = (u8*)state->buffer + 0x8000;
+  buffer = (u8*)state->buffer + OV004_SPRITE_GRAPHICS_OFFSET;
   File_UnpackTo(buffer, data_ov004_022bf0f8);
   File_ReadTo(buffer, data_ov004_022bf0f8);
 

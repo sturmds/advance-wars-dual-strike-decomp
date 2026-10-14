@@ -21,22 +21,23 @@ void Ov004_BlitBlockWithFlags(Unk_ov004_022bf158* state, int blockX, int blockY,
   int col;
   int origin;
 
-  stride = state->blocksWide * 32;
+  stride = state->blocksWide * OV004_BLOCK_TILES;
   block = state->mapBlock;
   map = state->tileMap;
   origin = stride * (blockY << 5) + (blockX << 5);
   Ov004_UnpackResource(name, block);
   if (flags & BG_TILE_HFLIP) {
-    for (row = 0; row < 32; row++) {
-      for (col = 0; col < 32; col++) {
-        ((map + origin) + row * stride)[31 - col] =
-            (block + row * 32)[col] | flags;
+    for (row = 0; row < OV004_BLOCK_TILES; row++) {
+      for (col = 0; col < OV004_BLOCK_TILES; col++) {
+        ((map + origin) + row * stride)[OV004_BLOCK_TILES - 1 - col] =
+            (block + row * OV004_BLOCK_TILES)[col] | flags;
       }
     }
   } else {
-    for (row = 0; row < 32; row++) {
-      for (col = 0; col < 32; col++) {
-        ((map + origin) + row * stride)[col] = (block + row * 32)[col] | flags;
+    for (row = 0; row < OV004_BLOCK_TILES; row++) {
+      for (col = 0; col < OV004_BLOCK_TILES; col++) {
+        ((map + origin) + row * stride)[col] =
+            (block + row * OV004_BLOCK_TILES)[col] | flags;
       }
     }
   }

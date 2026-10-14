@@ -96,7 +96,8 @@ void Ov004Task_SetupLayer3Scene(Ov004Task* task) {
   Gfx_RequestLayerCopy(3);
   Palette_Flush();
   /* keep the palettes, then black out BG palette 8 that layer 3 uses */
-  Mem_Copy32(data_027c0280->paletteBuffer, state->savedPalette, 0x400);
+  Mem_Copy32(data_027c0280->paletteBuffer, state->savedPalette,
+             sizeof(state->savedPalette));
   Mem_Zero32(0, data_027c0280->paletteBuffer + 0x100, 0x100);
   Palette_Flush();
   Screen_SetCurrent(savedScreen);

@@ -4,7 +4,12 @@
 #include "types.h"
 #include "game/affine_params.h"
 
-#define OV004_SLOT_COUNT 32        /* task slots in the state */
+#define OV004_SLOT_COUNT 32      /* task slots in the state */
+#define OV004_SLOT_TASK_COUNT 24 /* slotTask and slotState */
+#define OV004_CHILD_TASK_COUNT 16
+#define OV004_RESOURCE_COUNT 128
+/* Tiles on a side of a map block (mapBlock, Ov004_BlitBlock, Ov004_FillBlock). */
+#define OV004_BLOCK_TILES 32
 #define OV004_TIMED_EVENT_COUNT 40 /* flags in timedEventFired */
 /* Bytes of the three work buffers Ov004_AllocState hands out: the resource
  * buffer (buffer), the BG3 picture buffer (data_ov004_022bf150) and the tile
@@ -12,6 +17,8 @@
 #define OV004_BUFFER_SIZE 0x80000
 #define OV004_BG3_BUFFER_SIZE 0x10000
 #define OV004_TILE_MAP_SIZE 0x4800
+/* Where the sprite graphics start in buffer, after the textures. */
+#define OV004_SPRITE_GRAPHICS_OFFSET 0x8000
 #define OV004_EASE_COUNT \
   8 /* eased values from unk_8f8 on (unk_8f8 to unk_914) */
 #define OV004_EASE_VALUES(state) (&(state)->unk_8f8)
@@ -73,15 +80,16 @@ typedef struct Unk_ov004_022bf158 {
       slotTasks[OV004_SLOT_COUNT]; /* task of each slot, 0 when free */
   u32 unk_998[1]; /* indexed by Ov004Task.slot; length unknown */
   u8 pad_99c[0xa18 - 0x99c];
-  struct Task*
-      slotTask[24]; /* tasks made by Ov004_CreateSlotTasks, one per slot */
+  struct Task* slotTask
+      [OV004_SLOT_TASK_COUNT]; /* tasks made by Ov004_CreateSlotTasks, one per slot */
   int slotState
-      [24]; /* per slot: 0 unused, 1 running, 2 set by func_ov004_022ba98c */
-  struct Task*
-      childTasks[16]; /* destroyed together by Ov004_DestroyChildTasks */
+      [OV004_SLOT_TASK_COUNT]; /* per slot: 0 unused, 1 running, 2 set by func_ov004_022ba98c */
+  struct Task* childTasks
+      [OV004_CHILD_TASK_COUNT]; /* destroyed together by Ov004_DestroyChildTasks */
   int resourceCount; /* entries of resources in use, from Ov004_LoadResources */
-  Ov004Resource resources[128]; /* looked up by Ov004_FindResource */
-  u32 bufferUsed;               /* bytes of buffer taken by resources */
+  Ov004Resource
+      resources[OV004_RESOURCE_COUNT]; /* looked up by Ov004_FindResource */
+  u32 bufferUsed;                      /* bytes of buffer taken by resources */
   void* buffer; /* 0x80000 bytes, data_ov004_022bf14c (Ov004Task_ResetState) */
   u32 vramUsed; /* bytes from vramArea taken by resources */
   u32 vramArea; /* 0x20000 bytes from 0x06860000, an LCDC VRAM address */
@@ -95,7 +103,8 @@ typedef struct Unk_ov004_022bf158 {
   u16 blocksHigh;
   void*
       tileMap; /* u16 entries; filled by Ov004_BlitBlock and Ov004_FillBlock */
-  u16 mapBlock[32 * 32]; /* one unpacked 32x32 block of map entries */
+  u16 mapBlock[OV004_BLOCK_TILES *
+               OV004_BLOCK_TILES]; /* one unpacked 32x32 block of map entries */
   int elapsedFrames; /* frames since startTick, from Ov004_UpdateElapsedFrames */
   u64 startTick;     /* clock reading taken by Ov004_StartClock */
   u32 timedEventFired

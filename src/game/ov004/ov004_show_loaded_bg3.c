@@ -19,7 +19,7 @@ void Ov004_ShowLoadedBg3(void) {
         data_ov004_022bf150,
         data_027c0280->bgVram +
             data_027c0280->bgCnt[data_027c0280->layer3Bg].charBase * 0x4000,
-        0x10000);
+        OV004_BG3_BUFFER_SIZE);
     state->bgCharBase = 0;
     state->bg3InSecondHalf = 1;
   } else {
@@ -27,8 +27,8 @@ void Ov004_ShowLoadedBg3(void) {
         data_ov004_022bf150,
         data_027c0280->bgVram +
             data_027c0280->bgCnt[data_027c0280->layer3Bg].charBase * 0x4000 +
-            0x10000,
-        0x10000);
+            OV004_BG3_BUFFER_SIZE,
+        OV004_BG3_BUFFER_SIZE);
     state->bgCharBase = 1;
     state->bg3InSecondHalf = 0;
   }

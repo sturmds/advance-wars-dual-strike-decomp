@@ -11,8 +11,8 @@ void Ov004Task_InitSprite(Ov004Task* task) {
   ShowSprite* sprite;
 
   /* A slot of -1 sends the task to step 100 without setting a frame. */
-  task->sprite =
-      SpriteAnim_Create((u8*)data_ov004_022bf158->buffer + 0x8000, 0, 2);
+  task->sprite = SpriteAnim_Create(
+      (u8*)data_ov004_022bf158->buffer + OV004_SPRITE_GRAPHICS_OFFSET, 0, 2);
   sprite = task->sprite;
   if (task->slot == -1) {
     task->step = 100;

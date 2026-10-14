@@ -9,7 +9,7 @@ Ov004Resource* Ov004_FindResource(Unk_ov004_022bf158* state, const char* name) {
   u32 i;
   Ov004Resource* resource = state->resources;
 
-  for (i = 0; i < 128; i++, resource++) {
+  for (i = 0; i < ARRAY_COUNT(state->resources); i++, resource++) {
     BOOL found = FALSE;
 
     if (((u32)name & 0xffff0000) != 0 &&

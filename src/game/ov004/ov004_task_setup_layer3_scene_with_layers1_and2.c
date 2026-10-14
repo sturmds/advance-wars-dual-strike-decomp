@@ -101,7 +101,8 @@ void Ov004Task_SetupLayer3SceneWithLayers1And2(Ov004Task* task) {
                        0x8000);
   Gfx_RequestLayerCopy(3);
   Palette_Flush();
-  Mem_Copy32(data_027c0280->paletteBuffer, state->savedPalette, 0x400);
+  Mem_Copy32(data_027c0280->paletteBuffer, state->savedPalette,
+             sizeof(state->savedPalette));
   Mem_Zero32(0, data_027c0280->paletteBuffer + 0x100, 0x100);
 
   data_027c0280->bgScrollX[data_027c0280->layer1Bg] = 256;

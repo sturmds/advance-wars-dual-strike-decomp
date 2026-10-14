@@ -510,7 +510,7 @@ void Ov004_LoadResources(Unk_ov004_022bf158* state) {
   done = FALSE;
   state->resourceCount = 0;
   resource = state->resources;
-  for (i = 0; i < 128; i++) {
+  for (i = 0; i < OV004_RESOURCE_COUNT; i++) {
     dir = data_ov004_022becf8[i].dir;
     if (dir == NULL) {
       done = TRUE;

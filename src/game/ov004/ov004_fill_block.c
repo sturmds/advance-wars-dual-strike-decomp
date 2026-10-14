@@ -9,12 +9,12 @@ void Ov004_FillBlock(Unk_ov004_022bf158* state, int x, int y, u16 tile) {
   int j;
   u16* map;
 
-  stride = state->blocksWide * 32;
+  stride = state->blocksWide * OV004_BLOCK_TILES;
   map = (u16*)state->tileMap;
-  offset = y * 32 * stride + x * 32;
+  offset = y * OV004_BLOCK_TILES * stride + x * OV004_BLOCK_TILES;
 
-  for (i = 0; i < 32; i++) {
-    for (j = 0; j < 32; j++) {
+  for (i = 0; i < OV004_BLOCK_TILES; i++) {
+    for (j = 0; j < OV004_BLOCK_TILES; j++) {
       (map + offset + i * stride)[j] = tile;
     }
   }

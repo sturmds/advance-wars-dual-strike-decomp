@@ -10,7 +10,7 @@ void Ov004_CreateSlotTasks(Unk_ov004_022bf158* state) {
   const Ov004SlotInit* init = data_ov004_022bea58;
   Ov004Task* task;
 
-  for (i = 0; i < 24; i++) {
+  for (i = 0; i < OV004_SLOT_TASK_COUNT; i++) {
     task = (Ov004Task*)Task_Create(data_ov004_022be818, TASK_LIST(5));
     task->unk_38 = init->unk_38;
     task->tweenFrom = init->tweenFrom;

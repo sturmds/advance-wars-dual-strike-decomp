@@ -26,7 +26,7 @@ void Ov004_CreateChildTasks(Unk_ov004_022bf158* state) {
   int i;
   Ov004Task* task;
 
-  for (i = 0; i < 16; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(state->childTasks); i++) {
     task = (Ov004Task*)Task_Create(data_ov004_022bf014, TASK_LIST(4));
     state->childTasks[i] = (struct Task*)task;
     task->slot = -1;

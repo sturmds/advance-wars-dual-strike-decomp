@@ -86,7 +86,8 @@ void Ov004Task_InitLayer1Scene(Ov004Task* task) {
                        0x1000);
   Gfx_RequestLayerCopy(1);
   Ov004_CopyResource(data_ov004_022bddb8, data_027c0280->paletteBuffer + 0x20);
-  Mem_Copy32(data_027c0280->paletteBuffer, state->savedPalette, 0x400);
+  Mem_Copy32(data_027c0280->paletteBuffer, state->savedPalette,
+             sizeof(state->savedPalette));
   Mem_Zero32(0, data_027c0280->paletteBuffer + 0x20, 0x20);
   Ov004_UnpackResource(
       data_ov004_022bdd58,
