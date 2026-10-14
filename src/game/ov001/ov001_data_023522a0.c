@@ -1,35 +1,36 @@
 #include "types.h"
+#include "game/event_script.h"
 
 void MenuDepth_Pop(void);
 void MenuDepth_Push(void);
 
-u8 data_ov001_023522a0[32] = {
+EventScriptCommand data_ov001_023522a0[] = {
 #include "data/ov001/data_ov001_023522a0.inc.c"
 };
-u8 data_ov001_02352380[32] = {
-#include "data/ov001/data_ov001_02352380.inc.c"
+EventScriptCommand Ov001_gDefeatOtherTeams2Script[] = {
+#include "data/ov001/Ov001_gDefeatOtherTeams2Script.inc.c"
 };
-u8 data_ov001_02352360[32] = {
-#include "data/ov001/data_ov001_02352360.inc.c"
+EventScriptCommand Ov001_gDefeatTeam2Script[] = {
+#include "data/ov001/Ov001_gDefeatTeam2Script.inc.c"
 };
-u8 data_ov001_02352340[32] = {
-#include "data/ov001/data_ov001_02352340.inc.c"
+EventScriptCommand Ov001_gDefeatOtherTeams4Script[] = {
+#include "data/ov001/Ov001_gDefeatOtherTeams4Script.inc.c"
 };
-u8 data_ov001_02352320[32] = {
-#include "data/ov001/data_ov001_02352320.inc.c"
+EventScriptCommand Ov001_gDefeatOtherTeams3Script[] = {
+#include "data/ov001/Ov001_gDefeatOtherTeams3Script.inc.c"
 };
-u8 data_ov001_02352300[32] = {
-#include "data/ov001/data_ov001_02352300.inc.c"
+EventScriptCommand Ov001_gDefeatTeam1Script[] = {
+#include "data/ov001/Ov001_gDefeatTeam1Script.inc.c"
 };
-u8 data_ov001_023522e0[32] = {
-#include "data/ov001/data_ov001_023522e0.inc.c"
+EventScriptCommand Ov001_gDefeatTeam3Script[] = {
+#include "data/ov001/Ov001_gDefeatTeam3Script.inc.c"
 };
-u8 data_ov001_023522c0[32] = {
-#include "data/ov001/data_ov001_023522c0.inc.c"
+EventScriptCommand Ov001_gDefeatTeam4Script[] = {
+#include "data/ov001/Ov001_gDefeatTeam4Script.inc.c"
 };
-u32 data_ov001_023523a0[24] = {
+EventScriptCommand data_ov001_023523a0[] = {
 #include "data/ov001/data_ov001_023523a0.inc.c"
 };
-u32 data_ov001_02352400[24] = {
+EventScriptCommand data_ov001_02352400[] = {
 #include "data/ov001/data_ov001_02352400.inc.c"
 };

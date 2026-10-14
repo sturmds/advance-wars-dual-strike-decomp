@@ -6,6 +6,7 @@
 #include "game/predeployed_unit.h"
 
 struct MapScript;
+struct EventScriptCommand;
 
 #define MAP_CAMPAIGN_FIRST 0xe0 /* campaign mission n is map id 0xe0 + n */
 #define MAP_COUNT 0x10d         /* entries in Ov000_gMapHeaders */
@@ -61,8 +62,10 @@ typedef struct MapSlotFlags {
  * slot: 0 neutral, then players 1-4. */
 typedef struct MapHeader {
   struct MapScript* script; /* the map's event trigger lists (MapScript_Get) */
-  const void* termsScript;  /* "Terms" option script; NULL: none */
-  const void* hintScript;   /* "Hint" option script; NULL: none */
+  const struct EventScriptCommand*
+      termsScript; /* "Terms" option event script; NULL: none */
+  const struct EventScriptCommand*
+      hintScript; /* "Hint" option event script; NULL: none */
   const char*
       extraObjTileFile; /* /bmap file name (0a5 or 0a6) loaded by Map_LoadExtraObjTiles, NULL on most maps */
   u16 variantMapIds

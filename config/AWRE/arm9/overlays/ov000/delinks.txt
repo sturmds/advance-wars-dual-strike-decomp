@@ -1187,7 +1187,7 @@ src/game/ov000/map_script/map_script_run_list10.c:
     complete
     .text       start:0x022af308 end:0x022af35c
 
-src/game/ov000/func_ov000_022af35c.c:
+src/game/ov000/map_script/map_script_run_list0c.c:
     complete
     .text       start:0x022af35c end:0x022af3a0
 
@@ -1199,11 +1199,11 @@ src/game/ov000/gfx_load_current_army_palette.c:
     complete
     .text       start:0x022af400 end:0x022af45c
 
-src/game/ov000/func_ov000_022af45c.c:
+src/game/ov000/map_script/map_script_run_list08.c:
     complete
     .text       start:0x022af45c end:0x022af520
 
-src/game/ov000/func_ov000_022af520.c:
+src/game/ov000/map_script/map_script_run_list04.c:
     complete
     .text       start:0x022af520 end:0x022af56c
 

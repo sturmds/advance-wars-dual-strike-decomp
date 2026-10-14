@@ -51,7 +51,7 @@ extern u8 data_ov000_0233f0bc[];
 extern u8 data_ov000_0234a138[];
 extern u8 data_ov000_0234eb60[];
 
-/* declared `u8 data_ov000_022f6bd8[]` in func_ov000_022af45c.c: relocation at data_ov000_022f6bd8+0x4 is not on a 4-byte field */
+/* declared `u8 data_ov000_022f6bd8[]` in src/game/ov000/map_script/map_script_run_list08.c: relocation at data_ov000_022f6bd8+0x4 is not on a 4-byte field */
 u32 data_ov000_022f6bd8[] = {
 #include "data/ov000/data_ov000_022f6bd8.inc.c"
 };

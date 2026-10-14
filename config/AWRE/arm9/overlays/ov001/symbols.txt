@@ -75,13 +75,13 @@ Ov001_CanSpawnOoziumAt3_10 kind:function(arm,size=0xac) addr:0x023521a4
 func_ov001_02352250 kind:function(arm,size=0x30) addr:0x02352250
 func_ov001_02352280 kind:function(arm,size=0x10) addr:0x02352280
 data_ov001_023522a0 kind:data(byte[32]) addr:0x023522a0
-data_ov001_023522c0 kind:data(byte[32]) addr:0x023522c0
-data_ov001_023522e0 kind:data(byte[32]) addr:0x023522e0
-data_ov001_02352300 kind:data(byte[32]) addr:0x02352300
-data_ov001_02352320 kind:data(byte[32]) addr:0x02352320
-data_ov001_02352340 kind:data(byte[32]) addr:0x02352340
-data_ov001_02352360 kind:data(byte[32]) addr:0x02352360
-data_ov001_02352380 kind:data(byte[32]) addr:0x02352380
+Ov001_gDefeatTeam4Script kind:data(byte[32]) addr:0x023522c0
+Ov001_gDefeatTeam3Script kind:data(byte[32]) addr:0x023522e0
+Ov001_gDefeatTeam1Script kind:data(byte[32]) addr:0x02352300
+Ov001_gDefeatOtherTeams3Script kind:data(byte[32]) addr:0x02352320
+Ov001_gDefeatOtherTeams4Script kind:data(byte[32]) addr:0x02352340
+Ov001_gDefeatTeam2Script kind:data(byte[32]) addr:0x02352360
+Ov001_gDefeatOtherTeams2Script kind:data(byte[32]) addr:0x02352380
 data_ov001_023523a0 kind:data(byte[96]) addr:0x023523a0
 data_ov001_02352460 kind:data(byte[96]) addr:0x02352460
 data_ov001_023524c0 kind:data(byte[96]) addr:0x023524c0
@@ -147,7 +147,7 @@ data_ov001_02353ae0 kind:data(byte[96]) addr:0x02353ae0
 data_ov001_02353b40 kind:data(byte[96]) addr:0x02353b40
 data_ov001_02353ba0 kind:data(byte[8]) addr:0x02353ba0
 data_ov001_02353ba8 kind:data(byte[28]) addr:0x02353ba8
-data_ov001_02353bc4 kind:data(byte[32]) addr:0x02353bc4
+Ov001_gSlideInScript kind:data(byte[32]) addr:0x02353bc4
 data_ov001_02353be4 kind:data(byte[40]) addr:0x02353be4
 data_ov001_02353c0c kind:data(byte[80]) addr:0x02353c0c
 data_ov001_02353c5c kind:data(byte[80]) addr:0x02353c5c
@@ -530,8 +530,7 @@ data_ov001_023655cc kind:data(byte[192]) addr:0x023655cc
 data_ov001_0236568c kind:data(byte[336]) addr:0x0236568c
 data_ov001_023657dc kind:data(byte[368]) addr:0x023657dc
 data_ov001_0236594c kind:data(byte[432]) addr:0x0236594c
-data_ov001_02365afc kind:data(byte[940]) addr:0x02365afc
-data_ov001_02365ea8 kind:data(byte[420]) addr:0x02365ea8
+data_ov001_02365afc kind:data(byte[1360]) addr:0x02365afc
 data_ov001_0236604c kind:data(byte[1616]) addr:0x0236604c
 data_ov001_0236669c kind:data(byte[8]) addr:0x0236669c
 data_ov001_023666a4 kind:data(byte[8]) addr:0x023666a4
@@ -652,8 +651,7 @@ data_ov001_0236d338 kind:data(byte[160]) addr:0x0236d338
 data_ov001_0236d3d8 kind:data(byte[160]) addr:0x0236d3d8
 data_ov001_0236d478 kind:data(byte[160]) addr:0x0236d478
 data_ov001_0236d518 kind:data(byte[160]) addr:0x0236d518
-data_ov001_0236d5b8 kind:data(byte[140]) addr:0x0236d5b8
-data_ov001_0236d644 kind:data(byte[20]) addr:0x0236d644
+data_ov001_0236d5b8 kind:data(byte[160]) addr:0x0236d5b8
 data_ov001_0236d658 kind:data(byte[160]) addr:0x0236d658
 data_ov001_0236d6f8 kind:data(byte[192]) addr:0x0236d6f8
 data_ov001_0236d7b8 kind:data(byte[272]) addr:0x0236d7b8
@@ -692,8 +690,7 @@ data_ov001_0236f38c kind:data(byte[352]) addr:0x0236f38c
 data_ov001_0236f4ec kind:data(byte[400]) addr:0x0236f4ec
 data_ov001_0236f67c kind:data(byte[528]) addr:0x0236f67c
 data_ov001_0236f88c kind:data(byte[992]) addr:0x0236f88c
-data_ov001_0236fc6c kind:data(byte[1108]) addr:0x0236fc6c
-data_ov001_023700c0 kind:data(byte[1084]) addr:0x023700c0
+data_ov001_0236fc6c kind:data(byte[2192]) addr:0x0236fc6c
 data_ov001_023704fc kind:data(byte[2288]) addr:0x023704fc
 data_ov001_02370dec kind:data(byte[2544]) addr:0x02370dec
 data_ov001_023717dc kind:data(byte[8]) addr:0x023717dc
@@ -778,7 +775,7 @@ data_ov001_02377ac0 kind:data(byte[1312]) addr:0x02377ac0
 data_ov001_02377fe0 kind:data(byte[1344]) addr:0x02377fe0
 data_ov001_02378520 kind:data(byte[1424]) addr:0x02378520
 data_ov001_02378ab0 kind:data(byte[2016]) addr:0x02378ab0
-data_ov001_02379290 kind:data(byte[8]) addr:0x02379290
+Ov001_gNoTriggers kind:data(byte[8]) addr:0x02379290
 data_ov001_02379298 kind:data(byte[24]) addr:0x02379298
 data_ov001_023792b0 kind:data(byte[24]) addr:0x023792b0
 data_ov001_023792c8 kind:data(byte[24]) addr:0x023792c8
@@ -886,5 +883,5 @@ data_ov001_0237a398 kind:data(byte[80]) addr:0x0237a398
 data_ov001_0237a3e8 kind:data(byte[80]) addr:0x0237a3e8
 data_ov001_0237a438 kind:data(byte[112]) addr:0x0237a438
 data_ov001_0237a4a8 kind:data(byte[112]) addr:0x0237a4a8
-data_ov001_0237a518 kind:data(byte[136]) addr:0x0237a518
+data_ov001_0237a518 kind:data(byte[112]) addr:0x0237a518
 data_ov001_02352400 kind:data(byte[96]) addr:0x02352400

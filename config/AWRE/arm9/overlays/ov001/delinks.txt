@@ -85,11 +85,7 @@ src/game/ov001/ov001_data_02363724.c:
 
 src/game/ov001/ov001_data_02364ad0.c:
     complete
-    .data       start:0x02364ad0 end:0x02365ea8
-
-src/game/ov001/ov001_data_02365ea8.c:
-    complete
-    .data       start:0x02365ea8 end:0x0236669c
+    .data       start:0x02364ad0 end:0x0236604c
 
 src/game/ov001/ov001_data_0236669c.c:
     complete
@@ -113,19 +109,11 @@ src/game/ov001/ov001_data_0236cfb4.c:
 
 src/game/ov001/ov001_data_0236d5b8.c:
     complete
-    .data       start:0x0236d5b8 end:0x0236d644
-
-src/game/ov001/ov001_data_0236d644.c:
-    complete
-    .data       start:0x0236d644 end:0x0236e7c8
+    .data       start:0x0236d5b8 end:0x0236d658
 
 src/game/ov001/ov001_data_0236e7c8.c:
     complete
-    .data       start:0x0236e7c8 end:0x023700c0
-
-src/game/ov001/ov001_data_023700c0.c:
-    complete
-    .data       start:0x023700c0 end:0x023717dc
+    .data       start:0x0236e7c8 end:0x023704fc
 
 src/game/ov001/ov001_data_023717dc.c:
     complete
@@ -146,6 +134,18 @@ src/game/ov001/ov001_data_02374840.c:
 src/game/ov001/ov001_data_02379290.c:
     complete
     .data       start:0x02379290 end:0x0237a5a0
+
+src/game/ov001/ov001_data_0236604c.c:
+    complete
+    .data       start:0x0236604c end:0x0236669c
+
+src/game/ov001/ov001_data_0236d658.c:
+    complete
+    .data       start:0x0236d658 end:0x0236e7c8
+
+src/game/ov001/ov001_data_023704fc.c:
+    complete
+    .data       start:0x023704fc end:0x023717dc
 
 src/game/ov001/ov001_map_lacks_object_kinds11_to13.c:
     complete

@@ -15,7 +15,7 @@ extern PlayRecords gPlayRecords;
 BOOL Map_IsFreeDeployCity(int x, int y);
 void BuildMenu_Open(int x, int y);
 void func_020bc56c(void);
-int func_ov000_022af45c(MapUnit* unit);
+int MapScript_RunList08(MapUnit* unit);
 void UnitShowTask_Create(MapUnit* unit);
 void func_020c8888(void);
 void RangeMap_SetBuffer(void* tileMap);
@@ -54,7 +54,7 @@ BOOL MapCursor_SelectTile(int x, int y, int allowBuild, int allowMenu) {
     func_020bc56c();
     return TRUE;
   }
-  func_ov000_022af45c(GAME->actingUnit);
+  MapScript_RunList08(GAME->actingUnit);
   GAME->pathSteps[0] = PATH_STEP_END;
   UnitShowTask_Create(GAME->actingUnit);
   if (data_027c027c->unk_50[data_027c0284]->unk_30 != NULL) {

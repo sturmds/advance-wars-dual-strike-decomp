@@ -1,88 +1,90 @@
 #include "types.h"
+#include "game/event_script.h"
+#include "game/map_script.h"
 
 void MenuDepth_Pop(void);
 void MenuDepth_Push(void);
 void Player1Team_HasPlayerInGame(void);
-extern u32 data_ov001_0236250c[];
-extern u32 data_ov001_02362594[];
-extern u32 data_ov001_02362694[];
-extern u32 data_ov001_02362734[];
-extern u32 data_ov001_02362874[];
-extern u32 data_ov001_02362ab4[];
-extern u32 data_ov001_02362bd4[];
-extern u32 data_ov001_02362f24[];
+extern EventTrigger data_ov001_0236250c[];
+extern EventScriptCommand data_ov001_02362594[];
+extern EventScriptCommand data_ov001_02362694[];
+extern EventScriptCommand data_ov001_02362734[];
+extern EventScriptCommand data_ov001_02362874[];
+extern EventScriptCommand data_ov001_02362ab4[];
+extern EventScriptCommand data_ov001_02362bd4[];
+extern EventScriptCommand data_ov001_02362f24[];
 void func_ov001_02351640(void);
 void func_ov001_023516a4(void);
-extern u32 data_ov001_023624ec[];
-extern u32 data_ov001_02362604[];
-extern u32 data_ov001_023627d4[];
-extern u32 data_ov001_02362914[];
-extern u32 data_ov001_023629b4[];
-extern u32 data_ov001_02362cf4[];
-extern u32 data_ov001_023631f4[];
-extern u32 data_ov001_02362544[];
+extern EventTrigger data_ov001_023624ec[];
+extern EventScriptCommand data_ov001_02362604[];
+extern EventScriptCommand data_ov001_023627d4[];
+extern EventScriptCommand data_ov001_02362914[];
+extern EventScriptCommand data_ov001_023629b4[];
+extern EventScriptCommand data_ov001_02362cf4[];
+extern EventScriptCommand data_ov001_023631f4[];
+extern EventTrigger data_ov001_02362544[];
 
-u32 data_ov001_023624b0[2] = {
+EventTrigger data_ov001_023624b0[] = {
 #include "data/ov001/data_ov001_023624b0.inc.c"
 };
-u32 data_ov001_023624a8[2] = {
+EventTrigger data_ov001_023624a8[] = {
 #include "data/ov001/data_ov001_023624a8.inc.c"
 };
-u32 data_ov001_023624b8[6] = {
+EventTrigger data_ov001_023624b8[] = {
 #include "data/ov001/data_ov001_023624b8.inc.c"
 };
-void* data_ov001_023624d0[7] = {&data_ov001_0236250c,
-                                &data_ov001_023624ec,
-                                &data_ov001_023624b0,
-                                &data_ov001_023624b8,
-                                &data_ov001_023624a8,
-                                &data_ov001_02362544,
-                                0};
-u32 data_ov001_023624ec[8] = {
+MapScript data_ov001_023624d0 = {data_ov001_0236250c,
+                                 data_ov001_023624ec,
+                                 data_ov001_023624b0,
+                                 data_ov001_023624b8,
+                                 data_ov001_023624a8,
+                                 data_ov001_02362544,
+                                 NULL};
+EventTrigger data_ov001_023624ec[] = {
 #include "data/ov001/data_ov001_023624ec.inc.c"
 };
-u32 data_ov001_0236250c[14] = {
+EventTrigger data_ov001_0236250c[] = {
 #include "data/ov001/data_ov001_0236250c.inc.c"
 };
-u32 data_ov001_02362544[20] = {
+EventTrigger data_ov001_02362544[] = {
 #include "data/ov001/data_ov001_02362544.inc.c"
 };
-u32 data_ov001_02362594[28] = {
+EventScriptCommand data_ov001_02362594[] = {
 #include "data/ov001/data_ov001_02362594.inc.c"
 };
-u32 data_ov001_02362604[36] = {
+EventScriptCommand data_ov001_02362604[] = {
 #include "data/ov001/data_ov001_02362604.inc.c"
 };
-u32 data_ov001_02362734[40] = {
+EventScriptCommand data_ov001_02362734[] = {
 #include "data/ov001/data_ov001_02362734.inc.c"
 };
-u32 data_ov001_023627d4[40] = {
+EventScriptCommand data_ov001_023627d4[] = {
 #include "data/ov001/data_ov001_023627d4.inc.c"
 };
-u32 data_ov001_02362874[40] = {
+EventScriptCommand data_ov001_02362874[] = {
 #include "data/ov001/data_ov001_02362874.inc.c"
 };
-u32 data_ov001_02362914[40] = {
+EventScriptCommand data_ov001_02362914[] = {
 #include "data/ov001/data_ov001_02362914.inc.c"
 };
-u32 data_ov001_02362694[40] = {
+EventScriptCommand data_ov001_02362694[] = {
 #include "data/ov001/data_ov001_02362694.inc.c"
 };
-u32 data_ov001_023629b4[64] = {
+EventScriptCommand data_ov001_023629b4[] = {
 #include "data/ov001/data_ov001_023629b4.inc.c"
 };
-u32 data_ov001_02362ab4[72] = {
+EventScriptCommand data_ov001_02362ab4[] = {
 #include "data/ov001/data_ov001_02362ab4.inc.c"
 };
-u32 data_ov001_02362bd4[72] = {
+EventScriptCommand data_ov001_02362bd4[] = {
 #include "data/ov001/data_ov001_02362bd4.inc.c"
 };
-u32 data_ov001_02362cf4[140] = {
+EventScriptCommand data_ov001_02362cf4[] = {
 #include "data/ov001/data_ov001_02362cf4.inc.c"
 };
-u32 data_ov001_02362f24[180] = {
+EventScriptCommand data_ov001_02362f24[] = {
 #include "data/ov001/data_ov001_02362f24.inc.c"
 };
-u32 data_ov001_023631f4[332] = {
+EventScriptCommand data_ov001_023631f4[] = {
 #include "data/ov001/data_ov001_023631f4.inc.c"
 };

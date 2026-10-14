@@ -3,13 +3,16 @@
 
 #include "types.h"
 
+struct EventScriptCommand;
+
 /* One campaign mission on the world map (gCampaignMissions, 12 bytes each). */
 typedef struct CampaignMission {
   s16 mapId; /* MAP_CAMPAIGN_FIRST + mission */
   u16 unk_02;
   s16 x; /* position on the world map */
   s16 y;
-  const void* unk_08;
+  const struct EventScriptCommand*
+      script; /* event script in ov001 that CampaignMap_StartMissionScript starts */
 } CampaignMission;
 
 /* Passed to the world map setup by the screen table at data_0215b5e8. */

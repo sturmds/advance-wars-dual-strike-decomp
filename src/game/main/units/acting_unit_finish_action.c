@@ -12,7 +12,7 @@ void Unit_SubtractMoveFuel(
 void UnitShowTask_DestroyRunning(void);
 void func_020c8888(void);
 void func_020c7398(int unitSlot); /* removes the unit */
-void func_ov000_022af35c(MapUnit* unit);
+void MapScript_RunList0c(MapUnit* unit);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -36,5 +36,5 @@ void ActingUnit_FinishAction(void) {
   if (GAME->actingUnit->hp == 0) {
     func_020c7398(GAME->actingUnit - GAME->units);
   }
-  func_ov000_022af35c(GAME->actingUnit);
+  MapScript_RunList0c(GAME->actingUnit);
 }
