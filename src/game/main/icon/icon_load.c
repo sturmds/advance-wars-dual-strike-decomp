@@ -2,6 +2,224 @@
 #include "game/Unk_02088d04.h"
 #include "game/icon.h"
 
+extern u8 data_02139208[];
+extern u8 data_02139228[];
+extern u8 data_02139248[];
+extern u8 data_02139268[];
+extern u8 data_02139288[];
+extern u8 data_021392a8[];
+extern u8 data_027c0028[];
+extern u8 data_027c0058[];
+extern u8 data_027c00a8[];
+extern u8 data_027c0020[];
+extern u8 data_027c00c8[];
+extern u8 data_027c00e8[];
+extern u8 data_027c0198[];
+extern u8 data_027c0118[];
+extern u8 data_027c0038[];
+extern u8 data_027c0040[];
+extern u8 data_027c0078[];
+extern u8 data_027c0060[];
+extern u8 data_027c00f8[];
+extern u8 data_027c00b8[];
+extern u8 data_027c015c[];
+extern u8 data_027c0108[];
+extern u8 data_027c01ac[];
+extern u8 data_027c0010[];
+extern u8 data_027c0000[];
+extern u8 data_027c0138[];
+extern u8 data_027c0048[];
+extern u8 data_027c0088[];
+extern u8 data_027c00d8[];
+extern u8 data_027c0170[];
+extern u8 data_027c0008[];
+extern u8 data_027c01dc[];
+extern u8 data_027c0030[];
+extern u8 data_027c0068[];
+
+char data_02158988[19] = {
+#include "data/main/data_02158988.inc.c"
+};
+char data_02158974[19] = {
+#include "data/main/data_02158974.inc.c"
+};
+char data_02158960[19] = {
+#include "data/main/data_02158960.inc.c"
+};
+char data_021589c4[19] = {
+#include "data/main/data_021589c4.inc.c"
+};
+char data_021589b0[19] = {
+#include "data/main/data_021589b0.inc.c"
+};
+char data_0215899c[19] = {
+#include "data/main/data_0215899c.inc.c"
+};
+const char* gIconBankFiles[ICON_BANK_COUNT] = {
+    (char*)&data_021589b0, (char*)&data_021589c4, (char*)&data_02158988,
+    (char*)&data_0215899c, (char*)&data_02158960, (char*)&data_02158974};
+IconBankInfo gIconBankInfo[ICON_BANK_COUNT] = {
+#include "data/main/gIconBankInfo.inc.c"
+};
+/* OBJ shape for a sprite of [height][width] tiles */
+void* gObjShapeBySize[9][17] = {0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                &data_027c0028,
+                                &data_027c0058,
+                                &data_027c00a8,
+                                &data_027c0020,
+                                &data_027c00c8,
+                                &data_027c00e8,
+                                &data_027c0198,
+                                &data_027c0118,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                &data_027c0038,
+                                &data_027c0040,
+                                &data_027c0078,
+                                &data_027c0060,
+                                &data_027c00f8,
+                                &data_027c00b8,
+                                &data_027c015c,
+                                &data_027c0108,
+                                0,
+                                &data_027c01ac,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                &data_027c0010,
+                                &data_027c0000,
+                                &data_027c0138,
+                                &data_027c0048,
+                                &data_027c0088,
+                                &data_027c00d8,
+                                &data_027c0170,
+                                &data_027c0008,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                &data_027c01dc,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                &data_027c0030,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                &data_027c0068};
+/* per icon: width, height in tiles */
+u8 gIconSize[ICON_COUNT][2] = {
+#include "data/main/gIconSize.inc.c"
+};
+
 const char* File_LocalizePath(const char* path);
 void File_ReadAt(void* dest, const char* path, u32 offset,
                  u32 size); /* reads size bytes at offset of a file */

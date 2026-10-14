@@ -2,12 +2,32 @@
 #include "game/Unk_02080440.h"
 #include "game/event_script.h"
 #include "game/menu_button.h"
+#include "game/song.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 extern EventScriptCommand data_02168fd8[];
-extern MenuButtonTemplate data_02158f7c;
+void Menu_CancelCallback(void);
+void SongFadeOut_End(void);
+void SongFadeOut_Step(void);
+void SongRequest_Start(void);
+
+/* in .data, so not const */
+TaskScriptCmd gSongFadeOutScript[5] = {
+#include "data/main/gSongFadeOutScript.inc.c"
+};
+/* in .data, so not const */
+TaskScriptCmd gSongRequestScript[5] = {
+#include "data/main/gSongRequestScript.inc.c"
+};
+static MenuButtonTemplate data_02158f7c = {
+#include "data/main/data_02158f7c.inc.c"
+};
+/* declared `u32 gUnitSoundItems[UNIT_TYPE_COUNT * 2]` in sound_load_battle_unit_data.c: declared as one element of 0x4 bytes, but takes 0xd8 */
+u32 gUnitSoundItems[54] = {
+#include "data/main/gUnitSoundItems.inc.c"
+};
 
 /* Starts the script at data_02168fd8, points the view target (cursorX, cursorY)
  * at the acting unit's destination tile and adds a menu button. Purpose

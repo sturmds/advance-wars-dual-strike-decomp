@@ -1,9 +1,17 @@
 #include "types.h"
 #include "sdk/fx.h"
 #include "game/camera_pan.h"
+#include "game/camera_preset.h"
 
-extern VecFx32 data_021576dc;
-extern VecFx32 data_021576d0;
+static VecFx32 data_021576dc = {
+#include "data/main/data_021576dc.inc.c"
+};
+static VecFx32 data_021576d0 = {
+#include "data/main/data_021576d0.inc.c"
+};
+CameraPreset gCameraPresets[5] = {
+#include "data/main/gCameraPresets.inc.c"
+};
 
 /* Places the camera at (x, y, z) with the given rotation and resets its
  * look-at vectors to their defaults. */

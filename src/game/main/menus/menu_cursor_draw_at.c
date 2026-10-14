@@ -3,7 +3,9 @@
 
 void Oam_PutSprite(int x, int y, void* shape, int tileAndPalette);
 
-extern u8 data_02158f3c[];
+u8 data_02158f3c[8] = {
+#include "data/main/data_02158f3c.inc.c"
+};
 
 /* Draws the four corners of the menu cursor around a rectangle: sprite
  * tiles 0x3b0, 0x3b2, 0x3b4 and 0x3b6 with palette 15. */

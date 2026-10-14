@@ -14,7 +14,17 @@ extern u16 gMapPreviewColumnOffsets[];
 extern u16 gMapPreviewRowOffsets[];
 extern u16 data_022a6b40[];
 extern u16 data_02166e3c[];
-extern u16 data_021587e0[];
+/* "09f" */
+char data_021587dc[4] = {
+#include "data/main/data_021587dc.inc.c"
+};
+/* "0a0" */
+char data_021587d8[4] = {
+#include "data/main/data_021587d8.inc.c"
+};
+u16 data_021587e0[32] = {
+#include "data/main/data_021587e0.inc.c"
+};
 extern u16 data_02149080[];
 
 /* Draws the lower half of the map preview into dst: rows from half the

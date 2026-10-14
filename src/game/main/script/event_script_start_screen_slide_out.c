@@ -4,7 +4,9 @@
 #include "game/Unk_02088d04.h"
 #include "game/event_script.h"
 
-extern const char data_02158734[];
+static char data_02158734[17] = {
+#include "data/main/data_02158734.inc.c"
+};
 extern u16 data_022978e0[];
 extern s16 data_02297780;
 extern EventSlotHold data_022977f8[];

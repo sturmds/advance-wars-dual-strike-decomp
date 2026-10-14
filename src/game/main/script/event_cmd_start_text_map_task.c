@@ -7,7 +7,15 @@
 
 extern Unk_0201d320 data_022977f4[];
 extern EventSlotHold data_022977f8[];
-extern const TaskScriptCmd data_02158548[];
+void EventChoice_Init(void);
+void EventChoice_Update(void);
+
+TaskScriptCmd data_02158548[5] = {
+#include "data/main/data_02158548.inc.c"
+};
+EventScriptCommand data_02158570[5] = {
+#include "data/main/data_02158570.inc.c"
+};
 extern u8 data_02297c2e[];
 extern u8 gEventTextMap[];
 

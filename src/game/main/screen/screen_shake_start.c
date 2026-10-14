@@ -2,7 +2,19 @@
 #include "game/task.h"
 
 extern TaskScriptCmd gScreenShakeScript[];
-extern s16* data_021571ec[];
+extern u32 data_02157210[];
+extern u32 data_021571fc[];
+extern u8 data_021574c0[];
+extern u8 data_02157364[];
+
+static s16* data_021571ec[4] = {(s16*)&data_02157210, (s16*)&data_021571fc,
+                                (s16*)&data_021574c0, (s16*)&data_02157364};
+u32 data_021571fc[5] = {
+#include "data/main/data_021571fc.inc.c"
+};
+u32 data_02157210[5] = {
+#include "data/main/data_02157210.inc.c"
+};
 
 /* Starts a screen shake task: tableIndex picks the offset table, steps is the
  * number of frames (-1: one pass of the table). Runs under parent if given. */

@@ -7,7 +7,14 @@ void Oam_PutSprite(int x, int y, void* shape, int tileAndPalette);
 int MenuButton_TestFlags(MenuButton* entry, int mask);
 
 extern u8 data_02158f3c[];
-extern u8 gMenuCursorShake[16];
+void Menu_CancelCallback(void);
+
+static u8 gMenuCursorShake[16] = {
+#include "data/main/gMenuCursorShake.inc.c"
+};
+MenuButtonTemplate data_02158f54 = {
+#include "data/main/data_02158f54.inc.c"
+};
 
 #define ABS(x) ((x) < 0 ? -(x) : (x))
 #define EASE(cur, target) \

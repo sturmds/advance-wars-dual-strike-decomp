@@ -1,7 +1,24 @@
 #include "types.h"
 
 extern u32 data_0215777c[4];
-extern u16 data_0215785c[12];
+u16 data_021578bc[12] = {
+#include "data/main/data_021578bc.inc.c"
+};
+u16 data_021578a4[12] = {
+#include "data/main/data_021578a4.inc.c"
+};
+u16 data_0215788c[12] = {
+#include "data/main/data_0215788c.inc.c"
+};
+u16 data_02157874[12] = {
+#include "data/main/data_02157874.inc.c"
+};
+u16 data_0215785c[12] = {
+#include "data/main/data_0215785c.inc.c"
+};
+u16 data_021578d4[12] = {
+#include "data/main/data_021578d4.inc.c"
+};
 extern u16 data_022a7c64[4];
 
 /* Sends one textured quad to the geometry engine. Each vertex is a

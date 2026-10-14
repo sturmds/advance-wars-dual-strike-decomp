@@ -1,0 +1,18 @@
+#include "types.h"
+#include "game/break_text.h"
+
+extern u8 data_0229c6c4[];
+
+BreakText* gBreakText = (BreakText*)&data_0229c6c4;
+/* letters of the font, in glyph order */
+s8 data_02159684[65] = {
+#include "data/main/data_02159684.inc.c"
+};
+/* per glyph: offset in res_breakfont */
+u16 data_021596c8[64] = {
+#include "data/main/data_021596c8.inc.c"
+};
+/* per glyph: offset in res_tagbreakfont */
+u16 data_02159748[64] = {
+#include "data/main/data_02159748.inc.c"
+};

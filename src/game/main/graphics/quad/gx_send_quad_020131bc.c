@@ -1,7 +1,9 @@
 #include "types.h"
 
 extern u32 data_021577fc[4];
-extern u16 data_021578ec[12];
+u16 data_021578ec[12] = {
+#include "data/main/data_021578ec.inc.c"
+};
 extern u16 data_022a7c64[4];
 
 void Gx_SendQuad_020131bc(void) {

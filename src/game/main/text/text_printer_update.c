@@ -2,6 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 #include "game/text_printer.h"
+#include "game/task.h"
 
 #define KEY_CONFIRM 0x10 /* A, or a touch in the text window */
 #define KEY_SKIP 0x400   /* Start */
@@ -108,3 +109,29 @@ void TextPrinter_Update(TextPrinter* printer) {
     ADVANCE(1);
   } while (printer->frameCounter < 0);
 }
+
+void TextPrinter_CopyFromShared(void);
+void func_02014c64(void);
+void func_020154c4(void);
+void func_02015ea8(void);
+
+/* declared `u8 data_02158354[]` in func_02014c24.c: relocation at data_02158354+0x4 is not on a 4-byte field */
+u32 data_02158354[4] = {
+#include "data/main/data_02158354.inc.c"
+};
+TaskScriptCmd data_02158344[2] = {
+#include "data/main/data_02158344.inc.c"
+};
+ScriptCommand data_0215837c[3] = {
+#include "data/main/data_0215837c.inc.c"
+};
+ScriptCommand data_02158364[3] = {
+#include "data/main/data_02158364.inc.c"
+};
+ScriptCommand data_02158394[4] = {
+#include "data/main/data_02158394.inc.c"
+};
+/* declared `u8 data_021583b4[]` in func_020151c4.c: relocation at data_021583b4+0x0 is not on a 4-byte field */
+u32 data_021583b4[8] = {
+#include "data/main/data_021583b4.inc.c"
+};

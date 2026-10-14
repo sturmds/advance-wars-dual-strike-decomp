@@ -8,7 +8,9 @@ typedef struct Viewport {
   u32 y2;
 } Viewport;
 
-extern const Viewport gFullScreenViewport;
+static Viewport gFullScreenViewport = {
+#include "data/main/gFullScreenViewport.inc.c"
+};
 
 /* Sets the 3D viewport to the given corners (0 to 255 and 0 to 191 when
  * viewport is NULL). */

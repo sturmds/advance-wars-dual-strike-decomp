@@ -1,7 +1,82 @@
 #include "types.h"
 
 extern u32 data_0215776c[4];
-extern u16 data_02157904[12];
+u16 data_02157934[12] = {
+#include "data/main/data_02157934.inc.c"
+};
+u16 data_0215791c[12] = {
+#include "data/main/data_0215791c.inc.c"
+};
+u16 data_02157904[12] = {
+#include "data/main/data_02157904.inc.c"
+};
+u16 data_02157acc[12] = {
+#include "data/main/data_02157acc.inc.c"
+};
+u16 data_02157ab4[12] = {
+#include "data/main/data_02157ab4.inc.c"
+};
+u16 data_02157a9c[12] = {
+#include "data/main/data_02157a9c.inc.c"
+};
+u16 data_02157a84[12] = {
+#include "data/main/data_02157a84.inc.c"
+};
+u16 data_02157a6c[12] = {
+#include "data/main/data_02157a6c.inc.c"
+};
+u16 data_02157a54[12] = {
+#include "data/main/data_02157a54.inc.c"
+};
+u16 data_02157a3c[12] = {
+#include "data/main/data_02157a3c.inc.c"
+};
+u16 data_02157a24[12] = {
+#include "data/main/data_02157a24.inc.c"
+};
+u16 data_02157a0c[12] = {
+#include "data/main/data_02157a0c.inc.c"
+};
+u16 data_021579f4[12] = {
+#include "data/main/data_021579f4.inc.c"
+};
+u16 data_021579dc[12] = {
+#include "data/main/data_021579dc.inc.c"
+};
+u16 data_021579c4[12] = {
+#include "data/main/data_021579c4.inc.c"
+};
+u16 data_021579ac[12] = {
+#include "data/main/data_021579ac.inc.c"
+};
+u16 data_02157994[12] = {
+#include "data/main/data_02157994.inc.c"
+};
+u16 data_0215797c[12] = {
+#include "data/main/data_0215797c.inc.c"
+};
+u16 data_02157964[12] = {
+#include "data/main/data_02157964.inc.c"
+};
+u16 data_0215794c[12] = {
+#include "data/main/data_0215794c.inc.c"
+};
+/* texture palette per terrain id */
+u16 data_02157ae4[32] = {
+#include "data/main/data_02157ae4.inc.c"
+};
+/* per tall tile graphic: [0] TILE_DRAW_* */
+u8 data_02157b24[80][2] = {
+#include "data/main/data_02157b24.inc.c"
+};
+/* per map cell code: tile model, with flags 0x4000 and 0x8000 */
+u16 data_02157bc4[480] = {
+#include "data/main/data_02157bc4.inc.c"
+};
+/* the same for map 248 */
+u16 data_02157f84[480] = {
+#include "data/main/data_02157f84.inc.c"
+};
 extern u16 data_022a7c64[4];
 
 void Gx_SendQuad_020135cc(void) {

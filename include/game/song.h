@@ -13,10 +13,10 @@ extern u16 gPendingSong; /* song to start later, SONG_NONE: none */
 
 /* Task script that counts down while the song fades out, then clears
  * gCurrentSong. Pairs of (opcode, argument) words. */
-extern const TaskScriptCmd gSongFadeOutScript[];
+extern TaskScriptCmd gSongFadeOutScript[]; /* in .data, so not const */
 
 /* Task script of Sound_RequestSong's task. */
-extern const TaskScriptCmd gSongRequestScript[];
+extern TaskScriptCmd gSongRequestScript[]; /* in .data, so not const */
 
 /* The task that runs gSongFadeOutScript (a 0x6c-byte task). */
 typedef struct SongFadeOutTask {

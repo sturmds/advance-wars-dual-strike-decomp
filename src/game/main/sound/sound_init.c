@@ -6,7 +6,9 @@
 extern void* data_0218feb0;
 extern u8 data_0218ff58[];
 extern SoundArc gSoundArc;
-extern const char gSoundArcPath[];
+static char gSoundArcPath[24] = {
+#include "data/main/gSoundArcPath.inc.c"
+};
 
 SoundHeap* SoundHeap_Create(u32 mem, u32 size);
 void SoundArc_Open(SoundArc* arc, const char* path, void* heap, int symbolLoad);

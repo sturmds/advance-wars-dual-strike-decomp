@@ -3,7 +3,9 @@
 #define GXFIFO_NORMAL ((volatile u32*)0x04000484)
 #define GXFIFO_TEXCOORD ((volatile u32*)0x04000488)
 #define GXFIFO_VTX_16 ((volatile u32*)0x0400048c)
-extern u32 data_0215776c[4];
+u32 data_0215776c[4] = {
+#include "data/main/data_0215776c.inc.c"
+};
 extern u16 data_021579c4[12];
 
 void Gx_SendPlainQuad_0200d730(void) {
