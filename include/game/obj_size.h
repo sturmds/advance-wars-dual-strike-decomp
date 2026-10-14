@@ -10,6 +10,6 @@ typedef struct ObjSize {
   s16 height;
 } ObjSize;
 
-extern ObjSize gObjSizes[4][4];
+extern ObjSize gObjSizes[][4];
 
 #endif

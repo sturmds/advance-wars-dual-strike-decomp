@@ -3,7 +3,7 @@
 #define WIFI_SELFTEST_MAC_TARGETS 27
 
 /* Test patterns 0xffff, 0x5a5a, 0xa5a5. */
-extern const u16 gWlTestPatterns[3];
+extern const u16 gWlTestPatterns[];
 /* The MAC registers tested, with the bits of each that read back. */
 extern const WlRegMask gWlTestRegs[WIFI_SELFTEST_MAC_TARGETS];
 

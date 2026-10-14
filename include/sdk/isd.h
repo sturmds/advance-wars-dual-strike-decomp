@@ -181,6 +181,6 @@ void Isd_OverlayTableInsert(IsdOverlayInfo* table, int index);
 extern BOOL gIsdOverlayHooksEnabled;
 
 /* One overlay table per processor (MIProcessor: 0 ARM9, 1 ARM7); NULL when there is none. */
-extern IsdOverlayInfo* gIsdOverlayTables[2];
+extern IsdOverlayInfo* gIsdOverlayTables[];
 
 #endif

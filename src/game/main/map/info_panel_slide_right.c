@@ -3,7 +3,7 @@
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u16 data_02166308[3]; /* panel width by unit boxes shown */
+extern u16 data_02166308[]; /* panel width by unit boxes shown */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 

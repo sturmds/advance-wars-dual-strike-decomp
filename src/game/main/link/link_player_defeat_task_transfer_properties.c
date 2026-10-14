@@ -7,9 +7,9 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern u16 Ov000_gPlayerTileOwnerBits
-    [5]; /* per player slot: slot << 5, the owner bits of MapTiles.tiles */
+    []; /* per player slot: slot << 5, the owner bits of MapTiles.tiles */
 extern s8 Ov000_gUrbanTerrain
-    [32]; /* nonzero for urban terrain, indexed by terrain id */
+    []; /* nonzero for urban terrain, indexed by terrain id */
 
 s16 MapCell_SetOwner(int x, int y, int tile);
 s16 func_020f6488(int x, int y, int tile);

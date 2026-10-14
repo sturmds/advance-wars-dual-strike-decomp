@@ -4,8 +4,8 @@
 #include "game/map_object.h"
 #include "game/Unk_02080440.h"
 
-extern u16 data_02157ae4[32];   /* texture palette per terrain id */
-extern u8 data_02157b24[80][2]; /* per tall tile graphic: [0] TILE_DRAW_* */
+extern u16 data_02157ae4[];   /* texture palette per terrain id */
+extern u8 data_02157b24[][2]; /* per tall tile graphic: [0] TILE_DRAW_* */
 
 u8 Map_GetTileColour(int tile);
 MapObject* Map_FindObjectCovering(int x, int y);

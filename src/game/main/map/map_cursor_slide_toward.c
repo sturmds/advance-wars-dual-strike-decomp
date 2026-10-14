@@ -3,7 +3,7 @@
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u16 data_0229ead8[2];
+extern u16 data_0229ead8[];
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 

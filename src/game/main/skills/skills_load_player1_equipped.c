@@ -6,7 +6,7 @@
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u32 gBattleSkillSets[4][2][4];
+extern u32 gBattleSkillSets[][2][4];
 
 void Skills_Copy(const u32* src, u32* dst);
 

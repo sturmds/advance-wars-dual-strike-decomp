@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-extern Ov003Unit data_ov003_02369538[16];
+extern Ov003Unit data_ov003_02369538[];
 extern u8 data_ov003_02364d8e[][20];
 
 int func_ov003_023622b8(void);

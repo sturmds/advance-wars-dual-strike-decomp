@@ -1,7 +1,7 @@
 #include "sdk/wl.h"
 
 /* CRC-16 with the reflected polynomial 0xa001, one entry per nibble. */
-extern const u16 gWlCrc16Table[16];
+extern const u16 gWlCrc16Table[];
 
 /* Adds the low byte of data to crc, low nibble first. */
 u16 Wifi_Crc16FeedByte(u16 data, u16 crc) {

@@ -10,7 +10,7 @@ extern int data_027c0284;
 extern u8 gTerrainFactoryKind
     []; /* per terrain id: 1 base, 2 airport, 3 port, else 0 */
 extern u8 gAiTransportsSentToUnit
-    [64]; /* per unit slot & 63: empty transports already sent to that foot unit this turn */
+    []; /* per unit slot & 63: empty transports already sent to that foot unit this turn */
 
 /* movement is int here (s16 in fill_unit_moves.c): needed to match, the
  * caller passes footMove without narrowing it. */

@@ -10,7 +10,7 @@ void func_0207b4b0(u8* chunk);
 void Task_ResumeScript(void* task);
 
 extern u8 data_0229da8c[];
-extern u8 data_0229db54[4][6][33];
+extern u8 data_0229db54[][6][33];
 
 /* Swaps the reaction texts with the other players, 8 bytes a frame: sends
  * the next chunk of data_0229da8c and copies the chunk each player sent into

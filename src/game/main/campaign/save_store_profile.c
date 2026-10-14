@@ -6,8 +6,8 @@
 #include "game/screen_other_map.h"
 
 extern CampaignMapState gCampaignMapState;
-extern SaveProfileBlock data_02290298[3];
-extern SaveBytes30 data_022900bc[3];
+extern SaveProfileBlock data_02290298[];
+extern SaveBytes30 data_022900bc[];
 
 int CampaignRecords_GetNextNumber(void);
 

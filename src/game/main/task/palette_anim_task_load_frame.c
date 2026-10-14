@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 
-extern u16 data_0214a528[16];
+extern u16 data_0214a528[];
 
 void Palette_LoadWithCopy(const void* src, int offset, u32 size);
 

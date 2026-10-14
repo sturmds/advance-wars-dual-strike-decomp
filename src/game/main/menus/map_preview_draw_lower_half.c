@@ -6,7 +6,7 @@
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u8 gSavedArmyColours[5];
+extern u8 gSavedArmyColours[];
 u8 gHasBackupMemory;
 int data_0229b058;
 int data_0229b054;

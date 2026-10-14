@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ai_unit_action.h"
 
-extern void* data_0229eacc[2];
+extern void* data_0229eacc[];
 
 int func_020b9914(void);
 void UnitShowTask_Destroy(void* task);

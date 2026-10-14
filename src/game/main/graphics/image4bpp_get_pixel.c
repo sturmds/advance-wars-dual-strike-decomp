@@ -13,8 +13,8 @@ static u8 gNibbleMasks[] = {
 u8 data_02151cc8[] = {
 #include "data/main/data_02151cc8.inc.c"
 };
-extern u8 gTile4bppPixelOffsets
-    [64]; /* byte offset of each pixel inside an 8x8 tile */
+extern u8
+    gTile4bppPixelOffsets[]; /* byte offset of each pixel inside an 8x8 tile */
 
 /* Reads the 4bpp pixel at (x, y) from an image stored as 8x8 tiles of
  * 32 bytes, tiles in a row left to right. */

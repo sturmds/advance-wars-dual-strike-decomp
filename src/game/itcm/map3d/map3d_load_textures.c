@@ -24,7 +24,7 @@ void Gfx_LoadTexPaletteFile(const char* fileName, u32 offset, u32 size);
 void Gfx_LoadTexPalette(const void* src, u32 offset, u32 size);
 void File_UnpackTo(void* dest, const char* fileName);
 
-extern u32 gMap3dClearBlock[8]; /* 32 zero bytes */
+extern u32 gMap3dClearBlock[]; /* 32 zero bytes */
 
 /* Makes gfx the current 3D map graphics object, clears three of its texture
  * areas (16 KB at unk_68, 2 KB each at unk_5c and unk_60) and loads the

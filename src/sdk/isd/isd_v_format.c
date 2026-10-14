@@ -20,8 +20,8 @@ double Isd_DoubleAdd(double a, double b); /* a + b */
 extern char gIsdNullString[]; /* "(null)" */
 extern char gIsdZeroString[]; /* "0" */
 /* Parser tables: a class for each character, and the action for each (state, class); one byte used per halfword. */
-extern u16 gIsdFormatActions[8][9];
-extern u16 gIsdFormatCharClass[256];
+extern u16 gIsdFormatActions[][9];
+extern u16 gIsdFormatCharClass[];
 
 /* Parser states. The action table gives the next state, so the same values name the actions. */
 enum {

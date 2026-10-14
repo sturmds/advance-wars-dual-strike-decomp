@@ -53,7 +53,7 @@ typedef struct CoSelectPictureTask {
 
 /* COs the player may pick, ended by CO_NONE; 0x20 bytes up to the next
  * symbol. */
-extern u8 data_022a7a68[0x20];
+extern u8 data_022a7a68[];
 
 /* One bit per CO id: the COs the CO select screen offers. */
 extern u32 data_0229c740;

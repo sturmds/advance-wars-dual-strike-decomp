@@ -2,7 +2,7 @@
 #include "game/touch.h"
 
 extern TouchSample gTouchSample;
-extern u32 gTouchRawSample[2];
+extern u32 gTouchRawSample[];
 
 u32 TP_WaitRawResult(u32* raw);
 void TP_RequestSamplingAsync(void);

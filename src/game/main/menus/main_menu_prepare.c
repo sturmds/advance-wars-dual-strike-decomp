@@ -14,7 +14,7 @@ BOOL VersusSave_CanContinue(int gameMode);
 
 /* One byte per save record id (see BattleSave_GetRecordId); game/Unk_022a7fac.h
  * describes the same bytes as a struct. */
-extern u8 data_022a7fac[12];
+extern u8 data_022a7fac[];
 
 /* Sets gameMode 5 on both screens' states, sets MainMenu.unk_0f_4 from
  * gPlayRecords.unk_10, loads the tile code table, and fills data_022a7fac:

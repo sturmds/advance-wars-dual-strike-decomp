@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
 
-extern const WlRegValue gWlRegDefaults[25];
+extern const WlRegValue gWlRegDefaults[];
 
 void WifiMac_LoadRegisterTable(void) {
   u32 i;

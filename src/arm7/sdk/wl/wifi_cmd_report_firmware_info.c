@@ -3,7 +3,7 @@
 
 u16 WifiBaseband_ChecksumStartValues(void);
 
-extern char gWlVersionString[8];
+extern char gWlVersionString[];
 
 int WifiCmd_ReportFirmwareInfo(WlRequest* request, WlVersionReply* reply) {
   reply->status = 9;

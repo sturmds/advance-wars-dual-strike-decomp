@@ -20,7 +20,7 @@ static u32 data_022a72b8[4];
 /* skills a tag partner lends, per player and CO slot */
 BattleSaveSkillSet data_022a72c8[5][2];
 u32 gCoEquippedSkills[CO_COUNT][4][4];
-extern u32 gBattleSkillSets[4][2][4];
+extern u32 gBattleSkillSets[][2][4];
 /* Battle skill sets, indexed by player (1-4): gBattleSkillSets starts at player 1. */
 #define PLAYER_SKILLS (gBattleSkillSets - 1)
 

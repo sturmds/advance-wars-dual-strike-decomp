@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/terrain.h"
 
-extern u8 gTerrainIsProperty[32];
+extern u8 gTerrainIsProperty[];
 
 /* TRUE for a property terrain other than a missile silo. */
 BOOL Terrain_IsPropertyNotSilo(int terrain) {

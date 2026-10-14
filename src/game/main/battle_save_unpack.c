@@ -4,10 +4,9 @@
 #include "game/screen_other_map.h"
 
 extern u8 data_02291774[];
-extern u8 gGameFlagsLow[4];
+extern u8 gGameFlagsLow[];
 extern BattleSaveSkillSet
-    data_022a72c8[5]
-                 [2]; /* skills a tag partner lends, per player and CO slot */
+    data_022a72c8[][2]; /* skills a tag partner lends, per player and CO slot */
 extern BattleSaveBlock40 data_022a7b98;
 
 void BattleSave_LoadMap(BattleSaveMap* save);

@@ -69,11 +69,11 @@ sites. Not every count should reach 0: a hardware format stays a number.
 | Sizes | Copy, fill and clear calls with a literal length | 243 | 60 | 303 |
 | Sizes | Byte offsets into objects (`(u8 *)x + N`) | 41 | 33 | 74 |
 | Sizes | `for` loops with a literal bound | 851 | 89 | 940 |
-| Tables | Initialised `u32` arrays with a literal length | 6375 | 13 | 6388 |
-| Tables | Initialised `char` arrays with a literal length | 3759 | 56 | 3815 |
-| Tables | Other initialised arrays with a literal length | 937 | 37 | 974 |
+| Tables | Initialised `u32` arrays with a literal length | 741 | 0 | 741 |
+| Tables | Initialised `char` arrays with a literal length | 0 | 0 | 0 |
+| Tables | Other initialised arrays with a literal length | 9 | 0 | 9 |
 | Tables | `u32` tables holding pointers and numbers (structs written as words) | 884 | 3 | 887 |
-| Tables | Extern arrays with a literal length | 489 | 26 | 515 |
+| Tables | Extern arrays with a literal length | 0 | 0 | 0 |
 | Tables | `u8 NAME[N]` placeholders for zeroed variables | 245 | 34 | 279 |
 
 Structs with a size assert: 24.

@@ -15,7 +15,7 @@ extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern Unk_02080440_48 data_02183b08;
 extern u32
-    data_022a72c8[4][2]
+    data_022a72c8[][2]
                  [4]; /* skills a tag partner lends, per player and CO slot */
 
 /* Shorthand for player i of the current state; the original code reloads

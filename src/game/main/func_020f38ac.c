@@ -77,7 +77,7 @@ char gTileCodeFileDefault[] = {
 #include "data/main/gTileCodeFileDefault.inc.c"
 };
 /* panel width by unit boxes shown */
-u16 data_02166308[] = {
+u16 data_02166308[INFO_PANEL_WIDTH_COUNT] = {
 #include "data/main/data_02166308.inc.c"
 };
 /* "/bmap" */

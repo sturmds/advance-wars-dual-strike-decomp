@@ -2,8 +2,8 @@
 
 u8 (*GetCoPicksForMode(int mode))[2];
 
-extern u8 gCoPicksDefault[5][2];
-extern u8 data_02167d30[5][2];
+extern u8 gCoPicksDefault[][2];
+extern u8 data_02167d30[][2];
 
 /* Resets the CO picks of players 1-4 in all four modes: Versus (mode 2) to
  * data_02167d30, the others to gCoPicksDefault. */

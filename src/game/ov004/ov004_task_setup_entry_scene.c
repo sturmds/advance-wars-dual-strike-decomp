@@ -7,7 +7,7 @@ void Screen_SetBgMode(int bgMode);
 void Ov004_ClearSlots(Unk_ov004_022bf158* state);
 
 extern Unk_ov004_022bf158* data_ov004_022bf158;
-extern GfxLayer data_ov004_022be958[4];
+extern GfxLayer data_ov004_022be958[];
 
 /* An entry starts hidden; width and height hold the end values of
  * Ov004_EntryAppear's eases. */

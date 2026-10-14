@@ -13,8 +13,8 @@ void Ov006_StoreMapCell(int x, int y,
 
 extern Unk_02080440* data_027c027c;
 extern u32 data_027c0284;
-extern s16 Ov006_gNeighborDx[4]; /* left, right, up, down */
-extern s16 Ov006_gNeighborDy[4];
+extern s16 Ov006_gNeighborDx[]; /* left, right, up, down */
+extern s16 Ov006_gNeighborDy[];
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MAP (STATE->unk_1c4)

@@ -109,7 +109,7 @@ static TaskScriptCmd data_ov005_0236b374[] = {
 extern const MenuButtonTemplate data_ov005_0236b3b4;
 extern const MenuButtonTemplate data_ov005_0236b404;
 extern const MenuButtonTemplate data_ov005_0236b42c;
-extern const EventScriptCommand* const data_ov005_0236b454[17];
+extern const EventScriptCommand* const data_ov005_0236b454[];
 extern const EventScriptCommand data_ov005_0236b4f0[];
 extern const EventScriptCommand data_ov005_0236b520[];
 extern const EventScriptCommand data_ov005_0236b550[];

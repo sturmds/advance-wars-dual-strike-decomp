@@ -3,8 +3,8 @@
 #include "game/rect.h"
 #include "game/task.h"
 
-extern u16 gEventTextMap[][32];     /* tile map of the event text window */
-extern Rect gEventChoiceButtons[4]; /* touch buttons of the four choices */
+extern u16 gEventTextMap[][32];    /* tile map of the event text window */
+extern Rect gEventChoiceButtons[]; /* touch buttons of the four choices */
 
 s8 Text_PrintId(s16 x, s16 y, u16* map, u32 textId, u16 unk_30, u16 unk_32);
 void EventChoice_DrawCursor(Task* task);

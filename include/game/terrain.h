@@ -60,6 +60,6 @@ typedef struct TerrainStats {
 
 typedef char TerrainStats_size_check[sizeof(TerrainStats) == 0x18 ? 1 : -1];
 
-extern TerrainStats Ov000_gTerrainStats[31];
+extern TerrainStats Ov000_gTerrainStats[];
 
 #endif

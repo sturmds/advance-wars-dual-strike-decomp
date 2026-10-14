@@ -4,7 +4,7 @@ void WL_WriteByte(void* addr, u32 value);
 
 /* 802.11 rates in 500 kbit/s units (1 to 54 Mbit/s), indexed by the bits of
    WlLink.supportedRates and basicRates. */
-extern u16 gWifiRateHalfMbps[16];
+extern u16 gWifiRateHalfMbps[];
 
 // Writes the Supported Rates element (id 1) with one byte per supported rate,
 // bit 7 set for a basic rate, and returns its size.

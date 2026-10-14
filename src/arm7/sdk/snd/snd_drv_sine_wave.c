@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern s8 gSndSineQuarterTable[33];
+extern s8 gSndSineQuarterTable[];
 
 /* One period is 128 steps; the table holds the first quarter plus the peak. */
 s8 SndDrv_SineWave(int phase) {

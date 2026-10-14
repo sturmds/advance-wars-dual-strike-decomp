@@ -21,7 +21,7 @@
 
 /* First slot in Unk_02080440_48.units for each player slot: 0, 0, 64,
  * 128, 192. */
-extern u16 Ov000_gPlayerFirstUnitSlot[5];
+extern u16 Ov000_gPlayerFirstUnitSlot[];
 
 /* MapUnit.aiTargetX and aiTargetY when the unit has no target. */
 #define MAP_UNIT_NO_TARGET 63

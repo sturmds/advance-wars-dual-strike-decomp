@@ -6,7 +6,7 @@ void PowerDefaultBonus(void);
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern s8 Ov000_gUrbanTerrain
-    [32]; /* nonzero for urban terrain, indexed by terrain id */
+    []; /* nonzero for urban terrain, indexed by terrain id */
 
 /* Kindle's High Society: +3 firepower for every urban tile the current player
  * owns, on top of the default power bonus. */

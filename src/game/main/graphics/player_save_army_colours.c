@@ -6,7 +6,7 @@ extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-extern u8 gSavedArmyColours[5];
+extern u8 gSavedArmyColours[];
 
 /* Copies the army colour of the five player slots into gSavedArmyColours
  * (SavedArmyColours_Reset sets slot i back to colour i). */

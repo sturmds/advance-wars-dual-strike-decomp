@@ -10,7 +10,7 @@ void func_0207b48c(void);
 void func_0207b4b0(u8* chunk);
 void Task_ResumeScript(void* task);
 
-extern u8 data_0216069c[7]; /* the 7 CO ids whose variants are sent */
+extern u8 data_0216069c[]; /* the 7 CO ids whose variants are sent */
 
 /* Swaps the palette and picture variants of the COs in data_0216069c with the
  * other players and stores what player players[i] sent as army i + 1's. */

@@ -7,7 +7,7 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern u16 Ov000_gPlayerTileOwnerBits
-    [5]; /* per player slot: slot << 5, the owner bits of MapTiles.tiles */
+    []; /* per player slot: slot << 5, the owner bits of MapTiles.tiles */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 

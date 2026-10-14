@@ -45,7 +45,7 @@ extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern const Ov005CoGridEntry data_ov005_0236ac90[OV005_CO_GRID_ENTRIES];
-extern const u8 data_ov005_0236ac24[0x6c];
+extern const u8 data_ov005_0236ac24[];
 void Ov005_UpdateCoPicture(void);
 void func_ov005_0236279c(void);
 

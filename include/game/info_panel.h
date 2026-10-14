@@ -7,6 +7,9 @@
  * points or tile hp), a unit box (icon, hp, fuel, ammo) and a cargo box
  * for the unit under the cursor. */
 
+/* Entries of data_02166308, the panel width by unit boxes shown. */
+#define INFO_PANEL_WIDTH_COUNT 3
+
 /* Offset of one item from its box's corner, in pixels. */
 typedef struct InfoPanelPos {
   u8 x;

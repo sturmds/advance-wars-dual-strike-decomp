@@ -464,7 +464,7 @@ void* Wmsp_GetCallbackBuffer(void);
 void Wmsp_SendReply(void* reply);
 
 /* The same 16 bytes as WmspState.history; the original names them apart. */
-extern u8 data_arm7_027d8160[16];
+extern u8 data_arm7_027d8160[];
 
 WmspWork* func_arm7_027c05e0(void);
 /* Sends the WL parameters kept in WMStatus; on failure replies to apiid and returns FALSE. */

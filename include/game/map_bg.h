@@ -16,9 +16,9 @@ extern const u16
 extern const u16 gMapCellOverhangTiles
     []; /* same for layer 2: the part of a cell drawn into the row above */
 extern u16
-    gMountainCellVariants[16]; /* mountain cells, picked by tile position */
-extern u16 data_02169e78[32];  /* per terrain id; 0: keep the map's cell */
+    gMountainCellVariants[]; /* mountain cells, picked by tile position */
+extern u16 data_02169e78[];  /* per terrain id; 0: keep the map's cell */
 extern u16 data_02169eb8
-    [32]; /* tile map offset of each map tile column: two 32x32 screen blocks */
+    []; /* tile map offset of each map tile column: two 32x32 screen blocks */
 
 #endif

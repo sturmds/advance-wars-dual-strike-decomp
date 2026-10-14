@@ -19,6 +19,6 @@ typedef struct Unk_02290a60 {
   u16 unk_0e;
 } Unk_02290a60;
 
-extern Unk_02290a60 data_02290a60[3];
+extern Unk_02290a60 data_02290a60[];
 
 #endif

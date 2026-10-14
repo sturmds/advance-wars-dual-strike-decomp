@@ -8,7 +8,7 @@
 #define MARK_UNIT 4    /* a unit of the current row stands here */
 
 extern Ov003Unit* data_ov003_02369534;
-extern Ov003Unit data_ov003_02369538[16];
+extern Ov003Unit data_ov003_02369538[];
 extern u8
     data_ov003_02365d10[]; /* per tile code: bits 5-7 row, bits 0-4 terrain */
 extern Unk_027c0280* data_027c0280;

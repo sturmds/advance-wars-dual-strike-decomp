@@ -226,7 +226,7 @@ void Vram_ClearAllBankControl(void);
 
 /* VRAM bank masks: [0] the banks given to the LCDC, then the banks of
  * each use the GX_SetBankFor* functions set (13 in all). */
-extern u16 gGxVramBankMasks[13];
+extern u16 gGxVramBankMasks[];
 /* Lock id GX_Init takes for the VRAM banks. */
 extern u16 GXi_VRamLockId;
 #define GX_DMA_NOT_USE \

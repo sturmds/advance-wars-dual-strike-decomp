@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-extern Ov003Unit data_ov003_02369538[16];
+extern Ov003Unit data_ov003_02369538[];
 extern u8
     data_ov003_02365d10[]; /* per tile code: bits 5-7 row, bits 0-4 terrain */
 extern Ov003TileInfo data_ov003_02364d88[];

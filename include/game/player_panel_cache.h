@@ -11,6 +11,6 @@ typedef struct PlayerPanelCache {
   int inGame;
 } PlayerPanelCache;
 
-extern PlayerPanelCache Ov000_gPlayerPanelCache[5];
+extern PlayerPanelCache Ov000_gPlayerPanelCache[];
 
 #endif

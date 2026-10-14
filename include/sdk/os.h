@@ -133,6 +133,6 @@ extern u32 gOsiNeedResetTimer;
 
 /* Exception user hook (0 for none) and the context record passed to it. */
 extern u32 data_022a9b7c;
-extern u8 data_022a9b88[0x80];
+extern u8 data_022a9b88[];
 
 #endif

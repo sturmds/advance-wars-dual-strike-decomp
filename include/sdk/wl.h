@@ -1553,7 +1553,7 @@ void func_arm7_027cb324(u32 station);
 #define WIFI_NO_PEER 0xff
 
 /* ff:ff:ff:ff:ff:ff, the MAC address of station 0. */
-extern u16 gWlBroadcastAddress[3];
+extern u16 gWlBroadcastAddress[];
 
 /*
  * WlLimits 0xf0-0xf7 seen as one struct: unk_f0 holds the station table

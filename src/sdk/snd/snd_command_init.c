@@ -4,7 +4,7 @@ int SND_FlushCommand(u32 flags);
 
 /* aligned to 32: no symbol covers the bytes before it */
 static __attribute__((aligned(32))) SndSharedWork data_022a9cc0;
-SndCommand data_022a9f40[256]; /* command pool */
+SndCommand data_022a9f40[SOUND_COMMAND_POOL_COUNT]; /* command pool */
 extern SndSharedWork* data_022ab7a0;
 extern int data_022a9c7c;
 
@@ -17,8 +17,8 @@ void SND_CommandInit(void) {
   for (i = 0; i < 255; i++) {
     data_022a9f40[i].next = &data_022a9f40[i + 1];
   }
-  data_022a9f40[255].next = NULL;
-  data_022a9c78 = &data_022a9f40[255];
+  data_022a9f40[SOUND_COMMAND_POOL_COUNT - 1].next = NULL;
+  data_022a9c78 = &data_022a9f40[SOUND_COMMAND_POOL_COUNT - 1];
   data_022a9c70 = NULL;
   data_022a9c74 = NULL;
   data_022a9c84 = 0;

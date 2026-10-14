@@ -39,10 +39,9 @@ u8 data_ov005_0236a48c[] = {
 #include "data/ov005/data_ov005_0236a48c.inc.c"
 };
 extern u8 data_ov005_0236a5a0
-    [33][4]; /* per entry: x and y in pixels, then grid column and row */
+    [][4]; /* per entry: x and y in pixels, then grid column and row */
 extern u8
-    data_ov005_0236a5a1[33]
-                       [4]; /* the same table from byte 1: [entry][0] is y */
+    data_ov005_0236a5a1[][4]; /* the same table from byte 1: [entry][0] is y */
 extern const MenuButtonTemplate data_ov005_0236a500;
 
 /* Per-frame update of the CO list screen (Ov005_SetUpCoListScreen runs

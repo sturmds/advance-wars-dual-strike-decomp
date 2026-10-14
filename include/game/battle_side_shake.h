@@ -4,6 +4,6 @@
 #include "types.h"
 
 /* Step of each side's hit shake (Battle_StepSideShake); 0 when idle. */
-extern u8 data_ov002_0236bbdc[2];
+extern u8 data_ov002_0236bbdc[];
 
 #endif

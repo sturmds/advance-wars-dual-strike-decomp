@@ -3,8 +3,8 @@
 #include "game/link_buffers.h"
 
 extern Unk_0215fe8c* data_0215fe8c;
-extern Unk_0229cdfc data_0229cdfc[7];
-extern Unk_0229cb4c data_0229cb4c[7];
+extern Unk_0229cdfc data_0229cdfc[];
+extern Unk_0229cb4c data_0229cb4c[];
 u8 gLinkLastSequence[7];
 
 void Mem_CopyBytes(const void* src, void* dest, u32 size);

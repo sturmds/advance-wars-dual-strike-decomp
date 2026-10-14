@@ -5,7 +5,7 @@ u8* Palette_GetBlock(int index, int player);
 void TransferQueue_Add(const void* src, void* dst, u32 size);
 
 extern Unk_027c0280* data_027c0280;
-extern const u8 data_ov006_0236a4cc[4];
+extern const u8 data_ov006_0236a4cc[];
 u8 data_ov006_0236d644[0x100]; /* size: up to the next symbol */
 
 /* Fills four slots of 8 object tiles each, from tile 0x25e: 6 tiles from

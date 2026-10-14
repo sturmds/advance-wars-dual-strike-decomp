@@ -6,7 +6,7 @@ void MapCursor_DrawAt(s16 x, s16 y, int mode);
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern s16 data_0229eae0[2];
+extern s16 data_0229eae0[];
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 

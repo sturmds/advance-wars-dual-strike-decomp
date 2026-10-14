@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/design_map.h"
 
-extern u8 gSavedArmyColours[5];
+extern u8 gSavedArmyColours[];
 
 /* Copies the army colours of a design map record into gSavedArmyColours. */
 void SavedArmyColours_LoadFromRecord(DesignMapRecord* record) {

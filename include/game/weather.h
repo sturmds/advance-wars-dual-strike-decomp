@@ -25,7 +25,7 @@ typedef struct WeatherFiles {
   u32 sound;               /* Sound_PlaySe id played when the weather starts */
 } WeatherFiles;
 
-extern WeatherFiles gMapPaletteFiles[4];
+extern WeatherFiles gMapPaletteFiles[];
 
 /* One record of gWeatherInfo, per WEATHER_* value (0 to 3). gWeatherInfo
  * is gMapPaletteFiles[0].sound, so files are the next weather's palettes. */

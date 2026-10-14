@@ -8,7 +8,7 @@ void Sprite_Queue(int a0, int x, int y, void* a3, int attr, int tile);
 int Ov003_RowKindGroup(int value);
 
 extern Unk_027c0280* data_027c0280;
-extern Ov003Unit data_ov003_02369538[16];
+extern Ov003Unit data_ov003_02369538[];
 extern u8 data_027c0028;
 
 #define STATE data_ov003_02364928

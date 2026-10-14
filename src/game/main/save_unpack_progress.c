@@ -2,8 +2,8 @@
 #include "game/save_progress.h"
 #include "game/visual_mode.h"
 
-extern SaveProfileBlock data_02290298[3];
-extern SaveBytes30 data_022900bc[3];
+extern SaveProfileBlock data_02290298[];
+extern SaveBytes30 data_022900bc[];
 extern Unk_022a7b80 data_022a7b80;
 extern Unk_0229e148 data_0229e148;
 extern SaveLinkReactionTexts data_0229da8c;

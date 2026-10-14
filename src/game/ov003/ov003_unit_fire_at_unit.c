@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-extern Ov003Unit data_ov003_02369538[16];
+extern Ov003Unit data_ov003_02369538[];
 
 void Ov003Unit_SpawnEffect(Ov003Unit* unit, int dx, int dy);
 

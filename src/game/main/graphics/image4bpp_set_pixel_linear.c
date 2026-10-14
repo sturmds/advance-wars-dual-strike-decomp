@@ -1,7 +1,7 @@
 #include "types.h"
 
-extern u8 data_02151cc4[2];
-extern u8 data_02151cc8[2];
+extern u8 data_02151cc4[];
+extern u8 data_02151cc8[];
 
 /* Writes one 4-bit pixel of a linear 4bpp image, two pixels per byte. Keeps the other nibble
  * of the byte through the mask table and shifts value into place by the shift table. */

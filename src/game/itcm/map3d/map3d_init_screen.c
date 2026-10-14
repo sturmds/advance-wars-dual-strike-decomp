@@ -11,7 +11,7 @@ void func_0210a994(void);
 void func_0210a934(void);
 void func_0210b7d4(const void* table); /* copies 32 colours to the toon table */
 
-extern u16 gMap3dToonTable[32];
+extern u16 gMap3dToonTable[];
 
 /* Sets up the main screen for the 3D map: BG0 shows the 3D engine, layer 0
  * gets priority 3 and layers 1-3 priority 0 in the screen state, the clear

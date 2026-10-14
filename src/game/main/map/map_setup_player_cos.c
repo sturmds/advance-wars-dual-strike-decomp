@@ -9,7 +9,7 @@
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u8 data_02167d30[5][2];
+extern u8 data_02167d30[][2];
 extern u32 gLinkPlay;
 
 u8 (*GetCoPicksForMode(int mode))[2];

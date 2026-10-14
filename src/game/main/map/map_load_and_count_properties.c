@@ -6,7 +6,7 @@ void Map_LoadIntoState(int mapId);
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern s8 Ov000_gUrbanTerrain[32];
+extern s8 Ov000_gUrbanTerrain[];
 extern u8 data_022a6c9d[][27];
 extern u8 data_022a6c9e[][27];
 

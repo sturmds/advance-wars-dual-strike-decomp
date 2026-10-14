@@ -8,7 +8,7 @@ void String_Copy(char* dest, const char* src);
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern s8 Ov000_gUrbanTerrain
-    [32]; /* nonzero for urban terrain, indexed by terrain id */
+    []; /* nonzero for urban terrain, indexed by terrain id */
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define TILE_INDEX(x, y) ((x) + GAME->mapTiles->rowStart[y])

@@ -18,7 +18,7 @@ void Ov004_LoadObjGraphics(Unk_ov004_022bf158* state);
 void func_ov004_022ba964(Unk_ov004_022bf158* state);
 
 extern Unk_ov004_022bf158* data_ov004_022bf158;
-extern GfxLayer data_ov004_022be908[4];
+extern GfxLayer data_ov004_022be908[];
 extern char data_ov004_022bdd88[]; /* layer 2 tiles */
 extern char data_ov004_022bddf8[]; /* layer 2 map */
 extern char data_ov004_022bde0c[]; /* palette */

@@ -6,7 +6,7 @@ extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 /* Skills used when CO effects are off; it lies inside gCoTable. */
-extern u32 data_02153af4[4];
+extern u32 data_02153af4[];
 
 /* The four skill words of a CO in a power state: CoPowerBlock.skills1 on,
  * 16 bytes. */

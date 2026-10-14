@@ -3,13 +3,13 @@
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u8 gSavedArmyColours[5];
+extern u8 gSavedArmyColours[];
 extern u16 gMapPreviewColumnOffsets[];
 extern u16 gMapPreviewRowOffsets[];
 extern u16 data_021587e0[];
 extern u16 data_02139d90[];
 /* One u16 (four 4bpp pixels) per row of a 4x4 cell: the pixels a unit dot keeps. */
-extern u16 gMapPreviewBlockUnitMask[4];
+extern u16 gMapPreviewBlockUnitMask[];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 

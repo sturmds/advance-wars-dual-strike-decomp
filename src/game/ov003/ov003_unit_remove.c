@@ -3,8 +3,8 @@
 #include "game/Unk_02160ac0.h"
 #include "game/ov003_marker.h"
 
-extern Ov003Unit data_ov003_02369538[16];
-extern Ov003Marker data_ov003_02369bb8[4];
+extern Ov003Unit data_ov003_02369538[];
+extern Ov003Marker data_ov003_02369bb8[];
 
 int func_ov003_02362098(int row);
 void Ov003_StartSlotPlacing(int unitIndex);

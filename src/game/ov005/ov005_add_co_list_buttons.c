@@ -9,9 +9,9 @@
 BOOL Co_IsAvailable(int coId);
 u32 Ov005_GetCoListEntryName(int entry);
 
-extern u8 data_ov005_0236a48c[33];
+extern u8 data_ov005_0236a48c[];
 extern u8 data_ov005_0236a5a0
-    [33][4]; /* per entry: x and y in pixels, then grid column and row */
+    [][4]; /* per entry: x and y in pixels, then grid column and row */
 void Ov005_MoveCoListCursor(void);
 void func_ov005_0235d714(void);
 void func_ov005_0235d13c(void);

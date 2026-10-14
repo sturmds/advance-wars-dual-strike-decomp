@@ -5,8 +5,8 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern Unk_02080440_48 data_02183b08;
-extern u16 data_0213fdcc[16];
-extern u16 data_0213fdec[16];
+extern u16 data_0213fdcc[];
+extern u16 data_0213fdec[];
 
 BOOL PowerMeter_IsShown(int screen);
 BOOL CanUseCoPower(int player, int slot);

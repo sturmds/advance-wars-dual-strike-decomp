@@ -2,7 +2,7 @@
 
 u8 WL_ReadByte(const void* addr);
 
-extern u16 gWlRateBits[120];
+extern u16 gWlRateBits[];
 
 // element is an 802.11 Supported Rates element: id, length, then one byte
 // per rate in 500 kbit/s units, bit 7 set for a basic rate. A rate the

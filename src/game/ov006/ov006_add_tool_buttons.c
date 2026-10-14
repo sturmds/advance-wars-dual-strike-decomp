@@ -4,9 +4,9 @@
 #include "game/menu_button.h"
 
 extern Unk_ov006_0235f690* data_ov006_0236d640;
-extern u8 data_ov006_0236b6e8[5]
+extern u8 data_ov006_0236b6e8[]
                              [2]; /* (x, y) of each button when unitMode is 0 */
-extern u8 data_ov006_0236b6f4[5][2]; /* the same when unitMode is 1 */
+extern u8 data_ov006_0236b6f4[][2]; /* the same when unitMode is 1 */
 extern const MenuButtonTemplate gOv006ToolButtonTemplate;
 
 #define OV6 data_ov006_0236d640

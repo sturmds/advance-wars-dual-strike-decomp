@@ -7,7 +7,7 @@
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u8 gAiTransportsSentToUnit[64];
+extern u8 gAiTransportsSentToUnit[];
 
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 void RangeMap_MarkAdjacentTiles(int value);

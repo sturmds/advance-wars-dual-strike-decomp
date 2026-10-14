@@ -1,25 +1,26 @@
 #include "types.h"
+#include "game/gx_quad.h"
 
-extern u32 data_0215777c[4];
-u16 data_021578bc[] = {
+extern u32 data_0215777c[];
+u16 data_021578bc[QUAD_VERTEX_COORDS] = {
 #include "data/main/data_021578bc.inc.c"
 };
-u16 data_021578a4[] = {
+u16 data_021578a4[QUAD_VERTEX_COORDS] = {
 #include "data/main/data_021578a4.inc.c"
 };
-u16 data_0215788c[] = {
+u16 data_0215788c[QUAD_VERTEX_COORDS] = {
 #include "data/main/data_0215788c.inc.c"
 };
-u16 data_02157874[] = {
+u16 data_02157874[QUAD_VERTEX_COORDS] = {
 #include "data/main/data_02157874.inc.c"
 };
-u16 data_0215785c[] = {
+u16 data_0215785c[QUAD_VERTEX_COORDS] = {
 #include "data/main/data_0215785c.inc.c"
 };
-u16 data_021578d4[] = {
+u16 data_021578d4[QUAD_VERTEX_COORDS] = {
 #include "data/main/data_021578d4.inc.c"
 };
-extern u16 data_022a7c64[4];
+extern u16 data_022a7c64[];
 
 /* Sends one textured quad to the geometry engine. Each vertex is a
  * NORMAL, TEXCOORD, COLOR and VTX_16 command; the texcoords are sent

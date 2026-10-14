@@ -26,8 +26,8 @@ int WifiParam_SetAntennaChoice(int bit3);
 int WifiParam_SetBeaconForwarding(int bit6);
 void Wifi_SeedLcg(u32 mul, u32 add);
 
-extern u8 gWlDefaultWifiRamBlocks[80];
-extern u16 gWlDefaultWords58[16];
+extern u8 gWlDefaultWifiRamBlocks[];
+extern u16 gWlDefaultWords58[];
 static WlRateSet gWlDefaultRateSet = {
 #include "data/arm7/gWlDefaultRateSet.inc.c"
 };

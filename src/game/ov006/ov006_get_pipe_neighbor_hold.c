@@ -8,8 +8,8 @@ extern Unk_02080440* data_027c027c;
 extern u32 data_027c0284;
 /* Steps per direction (DESIGN_DIR_*). Copies of Ov006_gDirStepX and
  * Ov006_gDirStepY that only this function reads. */
-extern s16 data_ov006_0236d608[4];
-extern s16 data_ov006_0236d5f8[4];
+extern s16 data_ov006_0236d608[];
+extern s16 data_ov006_0236d5f8[];
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define CELL_AT(x, y) \

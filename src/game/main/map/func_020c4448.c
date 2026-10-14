@@ -7,8 +7,8 @@ void Map_MarkCrystalObeliskRange(void);
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern s8 Ov000_gUrbanTerrain[32];
-extern s8 data_ov000_022f4578[32];
+extern s8 Ov000_gUrbanTerrain[];
+extern s8 data_ov000_022f4578[];
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 

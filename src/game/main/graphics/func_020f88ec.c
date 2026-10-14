@@ -12,7 +12,7 @@ void PowerPanel_LoadGfx(int player, BOOL coSelectPhase);
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u16 data_021396f0[16];
+extern u16 data_021396f0[];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define STATE_50 (data_027c027c->unk_50[data_027c0284])

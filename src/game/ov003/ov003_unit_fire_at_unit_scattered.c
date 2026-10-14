@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-extern Ov003Unit data_ov003_02369538[16];
+extern Ov003Unit data_ov003_02369538[];
 
 s32 HwMod32(s32 numerator, s32 denominator);
 u32 Ov003_RandNext(void);

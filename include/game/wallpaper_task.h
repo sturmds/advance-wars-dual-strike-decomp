@@ -25,6 +25,6 @@ typedef struct WallpaperSingleTask {
 } WallpaperSingleTask;
 
 /* per wallpaper: offset of its tiles in the file */
-extern u16 data_0229c684[0x20];
+extern u16 data_0229c684[];
 
 #endif

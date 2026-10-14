@@ -26,7 +26,7 @@ void LinkMenu_ResetBackButton(void);
 void LargeFont_DrawName(void* data, int a, u16 b, int c);
 
 extern Unk_027c0280* data_027c0280;
-extern u16 data_0229f330[0x300];
+extern u16 data_0229f330[];
 extern char data_02167c88[];
 extern const s16 gSineTable
     []; /* needed to match: const lets the compiler move the loads out of the loop */

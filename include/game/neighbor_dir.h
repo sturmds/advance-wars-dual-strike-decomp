@@ -12,6 +12,6 @@ typedef struct NeighborDir {
   s8 pathStep[2];
 } NeighborDir;
 
-extern NeighborDir data_02166378[4];
+extern NeighborDir data_02166378[];
 
 #endif

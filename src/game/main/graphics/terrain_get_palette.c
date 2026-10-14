@@ -1,7 +1,7 @@
 #include "types.h"
 
 extern s8 Ov000_gUrbanTerrain
-    [32]; /* nonzero for urban terrain, indexed by terrain id */
+    []; /* nonzero for urban terrain, indexed by terrain id */
 extern u8 data_0214d19c[]; /* terrain palettes, 32 bytes each */
 extern u8 data_02166759
     []; /* per terrain, 2 bytes each: the palette index is the second byte */

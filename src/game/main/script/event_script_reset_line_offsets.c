@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern u16 data_022978e0[192];
+extern u16 data_022978e0[];
 extern u16 data_027c0240;
 extern u16 data_027c024c;
 

@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
 
-extern const u16 gWlFirmwareRegOffsets[16];
+extern const u16 gWlFirmwareRegOffsets[];
 
 void WifiFlash_ReadRadioBytes(u32 offset, u32 size, void* dest);
 

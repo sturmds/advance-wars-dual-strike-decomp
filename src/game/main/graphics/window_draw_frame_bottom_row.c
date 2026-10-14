@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern u16 gWindowFrameBottomTiles[2];
+extern u16 gWindowFrameBottomTiles[];
 
 /* Writes the bottom row of a window frame into a tile map row: a corner tile,
  * edge tiles that alternate between the two entries of gWindowFrameBottomTiles

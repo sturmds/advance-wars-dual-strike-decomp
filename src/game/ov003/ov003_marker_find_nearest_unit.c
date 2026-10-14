@@ -2,7 +2,7 @@
 #include "game/ov003_unit.h"
 #include "game/ov003_marker.h"
 
-extern Ov003Unit data_ov003_02369538[16];
+extern Ov003Unit data_ov003_02369538[];
 extern Ov003TileInfo data_ov003_02364d88[];
 
 int func_ov003_023622b8(void);

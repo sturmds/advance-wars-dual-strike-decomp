@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/gx_quad.h"
 
 #define GXFIFO_NORMAL ((volatile u32*)0x04000484)
 #define GXFIFO_TEXCOORD ((volatile u32*)0x04000488)
@@ -9,7 +10,7 @@ u32 data_021577ec[] = {
 u32 data_021577fc[] = {
 #include "data/main/data_021577fc.inc.c"
 };
-extern u16 data_02157964[12];
+extern u16 data_02157964[QUAD_VERTEX_COORDS];
 
 void Gx_SendPlainQuad_0200d9f4(void) {
   *GXFIFO_NORMAL = 0x127b6127;

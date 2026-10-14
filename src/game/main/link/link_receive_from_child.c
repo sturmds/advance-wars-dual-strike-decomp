@@ -7,12 +7,12 @@ extern Unk_0215fe8c* data_0215fe8c;
 /* The per-peer queues as Link_PopFlaggedPacket and Link_PopUnflaggedPacket
  * declare them: each index byte is a symbol of its own (cbac and cf7c read,
  * cbad and cf7d write). */
-extern u8 data_0229cb4c[7][98];
-extern u8 data_0229cbac[7][98];
-extern u8 data_0229cbad[7][98];
-extern u8 data_0229cdfc[7][386];
-extern u8 data_0229cf7c[7][386];
-extern u8 data_0229cf7d[7][386];
+extern u8 data_0229cb4c[][98];
+extern u8 data_0229cbac[][98];
+extern u8 data_0229cbad[][98];
+extern u8 data_0229cdfc[][386];
+extern u8 data_0229cf7c[][386];
+extern u8 data_0229cf7d[][386];
 
 void Mem_CopyBytes(const void* src, void* dest, u32 size);
 

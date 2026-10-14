@@ -126,6 +126,6 @@ extern u8* data_022a8aa4; /* buffer that ADPCM data is read into */
 extern LinkList data_022a8ab8;
 extern LinkList data_022a8aac; /* unused refill requests */
 /* mutex around the stream slots and request lists */
-extern u8 data_022a8ad8[0x14];
+extern u8 data_022a8ad8[];
 
 #endif

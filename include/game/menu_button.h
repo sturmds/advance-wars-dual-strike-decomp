@@ -78,7 +78,7 @@ enum {
   MENU_BUTTON_TOUCH_HELD     /* held; releasing no longer confirms */
 };
 
-extern MenuButton gMenuButtons[80];
+extern MenuButton gMenuButtons[];
 
 /* What a button is made from; copied into MenuButton from x on, with
  * x and y moved by the position passed to the maker. */

@@ -3,10 +3,10 @@
 
 extern Unk_02080440* data_027c027c;
 extern u32 data_027c0284;
-extern u8 data_ov006_0236d568[2][16];
-extern u8 data_ov006_0236d588[2][16];
-extern u8 data_ov006_0236d5a8[2][16];
-extern u8 data_ov006_0236d5c8[2][16];
+extern u8 data_ov006_0236d568[][16];
+extern u8 data_ov006_0236d588[][16];
+extern u8 data_ov006_0236d5a8[][16];
+extern u8 data_ov006_0236d5c8[][16];
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 

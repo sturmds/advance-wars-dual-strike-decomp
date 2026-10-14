@@ -3,7 +3,7 @@
 #include "game/task.h"
 
 extern u16 gEventChoiceAnswer;
-extern Rect gEventChoiceButtons[4];
+extern Rect gEventChoiceButtons[];
 
 /* EventChoice_ReadKeys bits */
 #define CHOICE_KEY_LEFT 0x04

@@ -10,7 +10,7 @@ void func_0207b48c(void);
 void func_0207b4b0(u8* chunk);
 void Task_ResumeScript(void* task);
 
-u8 data_0229de6c[4][2][16];
+u8 data_0229de6c[LINK_SYNC_ARMY_COUNT][2][16];
 
 /* Swaps the equipped skills with the other players, 8 bytes a frame. Each
  * link slot owns 32 bytes of data_0229de6c; a byte is taken from the player in

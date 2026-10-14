@@ -18,7 +18,7 @@ void Ov004_UnpackResource(const char* name, void* dest);
 void Ov004_CopyResource(const char* name, void* dest);
 
 extern Unk_ov004_022bf158* data_ov004_022bf158;
-extern GfxLayer data_ov004_022be8b8[4];
+extern GfxLayer data_ov004_022be8b8[];
 extern char data_ov004_022bdd54[]; /* "096": layer 3 tiles */
 extern char data_ov004_022bde00[]; /* "098": layer 3 map */
 extern char data_ov004_022bdda0[]; /* "097": layer 3 palette */

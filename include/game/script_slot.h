@@ -174,6 +174,6 @@ typedef BOOL (*ScriptCommandFunc)(int slot);
 
 /* Distance the map scroll moves on each step (ScriptSlot.step); 0x80 bytes
  * up to the next symbol. */
-extern u8 gMapScrollSpeeds[0x80];
+extern u8 gMapScrollSpeeds[];
 
 #endif

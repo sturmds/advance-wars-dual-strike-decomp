@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-extern Ov003Unit data_ov003_02369538[16];
+extern Ov003Unit data_ov003_02369538[];
 
 int Ov003_IsPathClearColumnFirst(Ov003Unit* unit, s16 fromX, s16 fromY, s16 toX,
                                  s16 toY);

@@ -8,7 +8,7 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern s8 Ov000_gGroundDeployTerrain
-    [32]; /* nonzero where ground units can be built, by terrain id */
+    []; /* nonzero where ground units can be built, by terrain id */
 
 /* Needed to match: after the first skill check the original reloads the
  * player through the globals instead of reusing state. */

@@ -39,7 +39,7 @@ extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
 extern u16 data_0229f330
-    [0x300]; /* layer 2 map of the second view, beside the list's map in gMenuState */
+    []; /* layer 2 map of the second view, beside the list's map in gMenuState */
 extern const char gLinkLoginResPath[];
 extern const char gLinkMenuCommonLangResPath[];
 extern const char gLinkMenuCommonResPath[];

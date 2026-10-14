@@ -2,9 +2,9 @@
 
 /* Per-peer ring buffer of received packets with bit 7 clear in the header: 7
  * peers of 386 bytes (16 slots of 24 bytes, then the read and write indexes). */
-extern u8 data_0229cdfc[7][386];
-extern u8 data_0229cf7c[7][386];
-extern u8 data_0229cf7d[7][386];
+extern u8 data_0229cdfc[][386];
+extern u8 data_0229cf7c[][386];
+extern u8 data_0229cf7d[][386];
 
 void Mem_CopyBytes(void* src, void* dest, int size);
 

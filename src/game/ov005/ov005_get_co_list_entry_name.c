@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/co_data.h"
 
-extern u8 data_ov005_0236a48c[33];
+extern u8 data_ov005_0236a48c[];
 
 /* Text id of an entry label: entries 0 and 28-30 have fixed texts, the others
  * show the name of the CO in data_ov005_0236a48c (bit 7 is a flag). */

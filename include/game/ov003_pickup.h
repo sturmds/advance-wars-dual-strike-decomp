@@ -14,6 +14,6 @@ typedef struct Ov003Pickup {
   u8 pad_07;
 } Ov003Pickup;
 
-extern Ov003Pickup data_ov003_02369b98[4];
+extern Ov003Pickup data_ov003_02369b98[];
 
 #endif

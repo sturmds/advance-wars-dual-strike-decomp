@@ -12,7 +12,7 @@
 #define CELL_PAIR_COUNT 49
 /* The sizes are written as numbers because tools/data.py does not expand
  * macros in a declaration. */
-extern s16 Ov006_gCellsOpen[2][49];
-extern s16 Ov006_gCellsBesideTall[49];
+extern s16 Ov006_gCellsOpen[][49];
+extern s16 Ov006_gCellsBesideTall[];
 
 #endif

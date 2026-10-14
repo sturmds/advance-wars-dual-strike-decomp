@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern u8 gAiTransportsSentToUnit[64];
+extern u8 gAiTransportsSentToUnit[];
 
 void Ai_ClearTransportsSentToUnit(void) {
   int i;

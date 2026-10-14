@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-extern Ov003Unit data_ov003_02369538[16];
+extern Ov003Unit data_ov003_02369538[];
 
 u32 Math_Distance(int x1, int y1, int x2, int y2);
 int func_ov003_0235d468(int row);

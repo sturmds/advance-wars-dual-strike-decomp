@@ -6,7 +6,7 @@
 void Mem_Copy32(const void* src, void* dst, u32 size);
 
 extern NameEntryKey data_0216afb4[NAME_ENTRY_KEY_COUNT];
-extern u8 data_0216aae0[0x24];
+extern u8 data_0216aae0[];
 
 void NameEntry_LoadKeyTable(NameEntry* entry) {
   Mem_Copy32(data_0216afb4, entry->keys, sizeof(entry->keys));

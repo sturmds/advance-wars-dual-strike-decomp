@@ -2,7 +2,7 @@
 #include "game/ov003_unit.h"
 #include "game/ov003_marker.h"
 
-extern Ov003Marker data_ov003_02369bb8[4];
+extern Ov003Marker data_ov003_02369bb8[];
 
 int Ov003Unit_CountInCurrentRow(void);
 

@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/gx.h"
 
-extern s16 data_0214f4c4[2];
+extern s16 data_0214f4c4[];
 
 /* Sets the 3D matrix mode to 2 (position and vector together), moves by (0, 0, 0xf00)
  * and (0, -0x30, 0) with MTX_TRANS, then multiplies a rotation made from the

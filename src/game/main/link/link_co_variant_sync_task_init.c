@@ -4,7 +4,7 @@
 int Co_GetSavedPaletteVariant(int coId);
 int Co_GetSavedPictureVariant(int coId);
 
-extern u8 data_0216069c[7];
+extern u8 data_0216069c[];
 
 /* Packs the saved palette and picture variant of the 7 COs in data_0216069c, two a byte, and clears the counters. */
 void LinkCoVariantSyncTask_Init(LinkCoVariantSyncTask* task) {

@@ -17,6 +17,9 @@
 #define PAD_BUTTON_X 0x0400
 #define PAD_BUTTON_Y 0x0800
 
+/* Entries of a table indexed by the 4 d-pad bits (data_02169454). */
+#define DPAD_PATTERN_COUNT 16
+
 /* Key state of the current frame, reached through gKeypad. */
 typedef struct Keypad {
   u16 held;   /* keys down this frame */

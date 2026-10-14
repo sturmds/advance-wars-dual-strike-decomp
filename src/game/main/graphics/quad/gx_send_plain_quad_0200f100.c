@@ -1,11 +1,12 @@
 #include "types.h"
+#include "game/gx_quad.h"
 
 #define GXFIFO_NORMAL ((volatile u32*)0x04000484)
 #define GXFIFO_TEXCOORD ((volatile u32*)0x04000488)
 #define GXFIFO_VTX_16 ((volatile u32*)0x0400048c)
 
-extern u32 data_021577ac[4];
-extern u16 data_02157844[12];
+extern u32 data_021577ac[];
+extern u16 data_02157844[QUAD_VERTEX_COORDS];
 
 /* Sends a textured quad to the 3D geometry FIFO: four vertices, each
  * with a normal, a texture coordinate and a 16-bit position. */

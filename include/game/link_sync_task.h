@@ -14,11 +14,14 @@ typedef struct LinkCoRecord {
 
 typedef char LinkCoRecord_size_check[sizeof(LinkCoRecord) == 4 ? 1 : -1];
 
+#define LINK_SYNC_ARMY_COUNT 4 /* rows of data_0229deec and data_0229de6c */
+#define LINK_SYNC_CO_COUNT 28  /* LinkCoRecords in one row of data_0229deec */
+
 /* Each army's CO records as received in the experience sync. */
-extern LinkCoRecord data_0229deec[4][28];
+extern LinkCoRecord data_0229deec[LINK_SYNC_ARMY_COUNT][LINK_SYNC_CO_COUNT];
 /* Equipped skills received in the skill sync: 16 bytes per link slot and
  * CO (LinkSkills_GetPlayerSet). */
-extern u8 data_0229de6c[4][2][16];
+extern u8 data_0229de6c[LINK_SYNC_ARMY_COUNT][2][16];
 
 /* Fields of the tasks that swap a block of data between players over the
  * link, 8 bytes a frame (LinkSkillSyncTask_Update: equipped skills, LinkExperienceSyncTask_Update: CO

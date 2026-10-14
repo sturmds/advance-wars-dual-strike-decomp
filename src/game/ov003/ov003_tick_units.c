@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-extern Ov003Unit data_ov003_02369538[16];
+extern Ov003Unit data_ov003_02369538[];
 
 void Ov003_UpdateUnitTerrain(void);
 void Ov003_SnapshotUnits(void);

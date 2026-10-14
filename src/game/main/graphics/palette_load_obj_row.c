@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern u16 gObjRowPalette[16];
+extern u16 gObjRowPalette[];
 
 void Palette_Load(const void* src, int offset, u32 size);
 

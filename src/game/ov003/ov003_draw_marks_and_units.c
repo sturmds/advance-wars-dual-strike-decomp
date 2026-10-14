@@ -2,7 +2,7 @@
 #include "game/ov003_unit.h"
 #include "game/Unk_02160ac0.h"
 
-extern Ov003Unit data_ov003_02369538[16];
+extern Ov003Unit data_ov003_02369538[];
 extern u8 data_ov003_02365270[];
 extern u8 data_ov003_0236528c[];
 extern u8 data_ov003_023652a8[];

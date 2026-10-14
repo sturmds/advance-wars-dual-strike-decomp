@@ -1,8 +1,9 @@
 #include "types.h"
+#include "game/gx_quad.h"
 
-extern u32 data_0215781c[4];
-extern u16 data_0215785c[12];
-extern u16 data_022a7c64[4];
+extern u32 data_0215781c[];
+extern u16 data_0215785c[QUAD_VERTEX_COORDS];
+extern u16 data_022a7c64[];
 
 void Gx_SendQuad_02012a88(void) {
   *((u32*)0x4000484) = 0x127b6127;

@@ -13,7 +13,8 @@ extern Unk_027c0280* data_027c0280;
 extern s16 data_0216635c[INFO_PANEL_SIDES][3]; /* terrain box */
 extern s16 data_0216635e[INFO_PANEL_SIDES][3]; /* unit box */
 extern s16 data_02166360[INFO_PANEL_SIDES][3]; /* cargo box */
-extern u16 data_02166308[3]; /* panel width by unit boxes shown */
+extern u16
+    data_02166308[INFO_PANEL_WIDTH_COUNT]; /* panel width by unit boxes shown */
 extern s8 Ov000_gUrbanTerrain[];
 extern u8 gArmyPalettes[][32];
 extern u8 data_ov000_022cb630[];

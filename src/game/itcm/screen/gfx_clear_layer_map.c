@@ -3,8 +3,8 @@
 
 extern Unk_027c0280* data_027c0280;
 /* Map size in bytes by screen size (BGxCNT bits 14-15). */
-extern u32 gBgTextMapBytes[4];
-extern u32 gBgAffineMapBytes[4];
+extern u32 gBgTextMapBytes[];
+extern u32 gBgAffineMapBytes[];
 
 BOOL Screen_IsTextBg(int layer);
 BOOL Screen_IsAffineBg(int layer);

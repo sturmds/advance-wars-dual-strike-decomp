@@ -5,8 +5,10 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern s16 data_02169454
-    [16][2]; /* per d-pad bit pattern (right, left, up, down): x step, y step */
-extern s16 data_02169456[16][2]; /* the same table from its y steps */
+    [DPAD_PATTERN_COUNT]
+    [2]; /* per d-pad bit pattern (right, left, up, down): x step, y step */
+extern s16 data_02169456[DPAD_PATTERN_COUNT]
+                        [2]; /* the same table from its y steps */
 
 void Sound_PlaySe(int se);
 

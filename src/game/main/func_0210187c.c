@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern u8 gGameFlagsLow[4];
+extern u8 gGameFlagsLow[];
 
 void func_0210187c(void) {
   int i;

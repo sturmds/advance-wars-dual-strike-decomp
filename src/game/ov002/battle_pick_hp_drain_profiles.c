@@ -7,11 +7,11 @@
 extern MenuState gMenuState;
 /* Tables of 20 bytes: five halfwords, then ten bytes counting up in fives. How
  * the HP drain uses them is not known yet. */
-extern const u8 gBattleDrainProfile0[20];
-extern const u8 gBattleDrainProfile1[20];
-extern const u8 gBattleDrainProfile2[20];
-extern const u8 gBattleDrainProfile3[20];
-extern const u8 gBattleDrainProfile4[20];
+extern const u8 gBattleDrainProfile0[];
+extern const u8 gBattleDrainProfile1[];
+extern const u8 gBattleDrainProfile2[];
+extern const u8 gBattleDrainProfile3[];
+extern const u8 gBattleDrainProfile4[];
 
 /* Needed to match: through the cast the compiler keeps field offsets out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)

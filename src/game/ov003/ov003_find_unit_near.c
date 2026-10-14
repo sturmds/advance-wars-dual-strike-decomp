@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-extern Ov003Unit data_ov003_02369538[16];
+extern Ov003Unit data_ov003_02369538[];
 
 /* Returns the first live unit, other than entry skipUnit and with unk_17_6
  * clear, whose position is within 6 of (x, y); all in 8-pixel units. Returns

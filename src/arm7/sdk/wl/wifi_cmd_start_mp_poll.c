@@ -4,7 +4,7 @@
 void func_arm7_027c84e0(void* dest, const void* src, u32 size);
 
 /* Nintendo multicast address 03:09:bf:00:00:00, the first address of MP poll frames. */
-extern u16 data_arm7_027d6698[3];
+extern u16 data_arm7_027d6698[];
 
 /* Wireless registers for the CMD TX location (GBATEK names). */
 #define REG_W_TXBUF_CMD (*(volatile u16*)0x04808090)

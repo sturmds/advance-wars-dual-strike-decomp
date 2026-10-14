@@ -2,10 +2,10 @@
 
 /* CO picks kept between maps, [player 1-4][front, back] (row 0 unused),
  * one table per mode. Player setup (Map_SetupPlayerCos) reads and refills them. */
-extern u8 gCoPicksMode0[5][2];
-extern u8 gCoPicksMode1[5][2];
-extern u8 gCoPicksMode2[5][2];
-extern u8 gCoPicksMode3[5][2];
+extern u8 gCoPicksMode0[][2];
+extern u8 gCoPicksMode1[][2];
+extern u8 gCoPicksMode2[][2];
+extern u8 gCoPicksMode3[][2];
 
 /* mode: Unk_02080440_48.gameMode. */
 u8 (*GetCoPicksForMode(int mode))[2] {

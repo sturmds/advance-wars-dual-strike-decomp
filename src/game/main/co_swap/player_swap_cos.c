@@ -4,7 +4,7 @@
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern BattleSaveSkillSet data_022a72c8[5][2];
+extern BattleSaveSkillSet data_022a72c8[][2];
 
 void MovementCost(void);
 

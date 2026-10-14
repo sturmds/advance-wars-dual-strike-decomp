@@ -2,8 +2,8 @@
 #include "game/Unk_02088d04.h"
 
 extern Unk_027c0280* data_027c0280;
-extern u32 gBgTextMapBytes[4];
-extern u32 gBgAffineMapBytes[4];
+extern u32 gBgTextMapBytes[];
+extern u32 gBgAffineMapBytes[];
 
 void Mem_CopyAuto(const void* src, void* dst, u16 size);
 BOOL Screen_IsTextBg(int layer);

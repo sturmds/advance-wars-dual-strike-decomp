@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern u16 gCrc16NibbleTable[16]; /* CRC-16 (polynomial 0xa001) per nibble */
+extern u16 gCrc16NibbleTable[]; /* CRC-16 (polynomial 0xa001) per nibble */
 
 /*
  * Updates `crc` over `size` bytes (rounded down to whole halfwords) of

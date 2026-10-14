@@ -79,18 +79,20 @@ typedef struct SndAlarm {
 #define SND_ALARM_COUNT 8
 
 /* Command queue state of the sound driver. The roles are read from the code. */
-extern int data_022a9c50;         /* SND_Init has run */
-extern u8 data_022a9c54[];        /* lock around the command lists */
-extern SndCommand* data_022a9c68; /* free list head */
-extern u32 data_022a9c6c;         /* tag of the last finished command batch */
-extern SndCommand* data_022a9c70; /* queued, unflushed commands: head */
-extern SndCommand* data_022a9c74; /* queued, unflushed commands: tail */
-extern SndCommand* data_022a9c78; /* free list tail */
-extern int data_022a9c80;         /* next slot in data_022a9c8c */
-extern int data_022a9c84;         /* batches sent and not yet finished */
-extern u32 data_022a9c88;         /* tag of the newest flushed batch */
-extern SndCommand* data_022a9c8c[9]; /* first command of each batch in flight */
-extern SndCommand data_022a9f40[256]; /* command pool */
+extern int data_022a9c50;            /* SND_Init has run */
+extern u8 data_022a9c54[];           /* lock around the command lists */
+extern SndCommand* data_022a9c68;    /* free list head */
+#define SOUND_COMMAND_POOL_COUNT 256 /* commands in data_022a9f40 */
+
+extern u32 data_022a9c6c;           /* tag of the last finished command batch */
+extern SndCommand* data_022a9c70;   /* queued, unflushed commands: head */
+extern SndCommand* data_022a9c74;   /* queued, unflushed commands: tail */
+extern SndCommand* data_022a9c78;   /* free list tail */
+extern int data_022a9c80;           /* next slot in data_022a9c8c */
+extern int data_022a9c84;           /* batches sent and not yet finished */
+extern u32 data_022a9c88;           /* tag of the newest flushed batch */
+extern SndCommand* data_022a9c8c[]; /* first command of each batch in flight */
+extern SndCommand data_022a9f40[SOUND_COMMAND_POOL_COUNT]; /* command pool */
 
 #define SOUND_FIFO_TAG 7 /* FIFO tag of the sound driver */
 #define SOUND_BATCHES_IN_FLIGHT_MAX \
@@ -183,7 +185,7 @@ extern SndArm7Alarm data_arm7_03809010
 
 /* Command lists the ARM9 sends are queued here for the driver thread. */
 extern OSMessageQueue data_arm7_03809210;
-extern OSMessage data_arm7_03809224[8];
+extern OSMessage data_arm7_03809224[];
 
 void SndArm7_StartAlarm(int alarmNo);
 void SndArm7_AlarmHandler(void* arg);

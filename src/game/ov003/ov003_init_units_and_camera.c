@@ -3,7 +3,7 @@
 #include "game/ov003_object.h"
 #include "game/ov003_unit.h"
 
-extern Ov003Unit data_ov003_02369538[16];
+extern Ov003Unit data_ov003_02369538[];
 extern Ov003Unit* data_ov003_02369534;
 
 u16 Wireless_GetChildAids(void);

@@ -44,6 +44,6 @@ typedef struct ForceRankScreen {
 } ForceRankScreen;
 
 extern ForceRankScreen* gForceRankScreen;
-extern ForceRankInfo Ov000_gForceRankTable[128];
+extern ForceRankInfo Ov000_gForceRankTable[];
 
 #endif

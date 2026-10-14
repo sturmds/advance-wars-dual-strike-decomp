@@ -8,8 +8,8 @@
 #include "game/song.h"
 
 extern const MenuButtonTemplate gNextTurnButton;
-extern const u16 gNextTurnBobOffsets[10]; /* 0, 1, 2, 3, 3, 3, 2, 1, 0, 0 */
-extern char gNextTurnTextEnglish[];       /* "NEXT TURN" */
+extern const u16 gNextTurnBobOffsets[]; /* 0, 1, 2, 3, 3, 3, 2, 1, 0, 0 */
+extern char gNextTurnTextEnglish[];     /* "NEXT TURN" */
 extern char gNextTurnTextFrench[];
 extern char gNextTurnTextGerman[];
 extern char gNextTurnTextSpanish[];

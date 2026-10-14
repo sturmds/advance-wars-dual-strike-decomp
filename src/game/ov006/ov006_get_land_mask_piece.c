@@ -6,7 +6,7 @@ int Ov006_IsLandNeighbor(int x, int y);
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern s16 data_ov006_0236cadc
-    [512]; /* indexed by a 3x3 neighbour mask, bit 8 top left to bit 0 bottom right */
+    []; /* indexed by a 3x3 neighbour mask, bit 8 top left to bit 0 bottom right */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 

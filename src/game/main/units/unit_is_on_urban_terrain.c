@@ -5,7 +5,7 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern s8 Ov000_gUrbanTerrain
-    [32]; /* nonzero for urban terrain, indexed by terrain id */
+    []; /* nonzero for urban terrain, indexed by terrain id */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 

@@ -2,7 +2,7 @@
 #include "game/keypad.h"
 
 extern Keypad data_0216e4e4
-    [9]; /* the last entry is data_0216e594, the one gKeypad points to */
+    []; /* the last entry is data_0216e594, the one gKeypad points to */
 extern Keypad data_0216e594;
 
 void Keypad_Init(void) {
