@@ -3,7 +3,13 @@
 #include "types.h"
 #include "sdk/isd.h"
 
-extern char gIsdAssertionFormat[];
+/* "0" */
+const char gIsdZeroString[4] = {
+#include "data/main/gIsdZeroString.inc.c"
+};
+static const char gIsdAssertionFormat[52] = {
+#include "data/main/gIsdAssertionFormat.inc.c"
+};
 extern char gIsdWarningFormat[];
 
 void Isd_Breakpoint(void);

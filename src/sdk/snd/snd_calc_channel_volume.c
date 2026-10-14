@@ -1,6 +1,8 @@
 #include "sdk/snd.h"
 
-extern u8 data_02151634[724];
+static const u8 data_02151634[724] = {
+#include "data/main/data_02151634.inc.c"
+};
 
 u16 SND_CalcChannelVolume(int volume) {
   int shift;

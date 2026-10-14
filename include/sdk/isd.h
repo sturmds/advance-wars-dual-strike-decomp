@@ -164,11 +164,11 @@ typedef struct IsdOverlayInfo {
 } IsdOverlayInfo;
 
 /* "isdoverlay.c", the file name in the overlay table's assertions, and the assertion texts the table code shares. */
-extern char gIsdOverlayFileName[];
-extern char gIsdEntryStartCheck[];
-extern char gIsdEntryEndCheck[];
-extern char gIsdEntryAtAddressCheck[];
-extern char gIsdWrapSizeCheck[];
+extern const char gIsdOverlayFileName[];
+extern const char gIsdEntryStartCheck[];
+extern const char gIsdEntryEndCheck[];
+extern const char gIsdEntryAtAddressCheck[];
+extern const char gIsdWrapSizeCheck[];
 
 void Isd_OverlayTableRemove(IsdOverlayInfo* table, u32 index);
 void Isd_OverlayTableInsert(IsdOverlayInfo* table, int index);

@@ -376,6 +376,62 @@ src/game/main/rodata_02149280.c:
     complete
     .rodata     start:0x02149280 end:0x02149cc0
 
+src/game/main/text/text_rodata.c:
+    complete
+    .rodata     start:0x02149cc0 end:0x02149de0
+
+src/game/main/units/units_rodata_02149de0.c:
+    complete
+    .rodata     start:0x02149de0 end:0x0214a528
+
+src/game/main/rodata_0214a528.c:
+    complete
+    .rodata     start:0x0214a528 end:0x0214a618
+
+src/game/main/units/units_rodata_0214a618.c:
+    complete
+    .rodata     start:0x0214a618 end:0x0214a670
+
+src/game/main/rodata_0214a670.c:
+    complete
+    .rodata     start:0x0214a670 end:0x0214c79c
+
+src/game/main/graphics/graphics_rodata_0214c79c.c:
+    complete
+    .rodata     start:0x0214c79c end:0x0214d19c
+
+src/game/main/graphics/graphics_rodata_0214d19c.c:
+    complete
+    .rodata     start:0x0214d19c end:0x0214d39c
+
+src/game/main/map/map_rodata_0214d39c.c:
+    complete
+    .rodata     start:0x0214d39c end:0x0214d3e0
+
+src/game/main/rodata_0214f4c4.c:
+    complete
+    .rodata     start:0x0214f4c4 end:0x02151088
+
+src/game/main/rodata_02151088.c:
+    complete
+    .rodata     start:0x02151088 end:0x021514c4
+
+src/sdk/fs/fs_rodata.c:
+    complete
+    .rodata     start:0x02151908 end:0x0215196c
+
+src/sdk/isd/isd_rodata.c:
+    complete
+    .rodata     start:0x021519a4 end:0x021519ac
+
+src/sdk/isd/isd_rodata_021519e4.c:
+    complete
+    .rodata     start:0x021519e4 end:0x02151a0c
+
+src/sdk/isd/isd_rodata_02151a7c.c:
+    complete
+    .rodata     start:0x02151a7c end:0x02151acc
+
 src/sdk/svc/svc_is_debugger.c:
     complete
     .text       start:0x0200006c end:0x02000070
@@ -19923,6 +19979,7 @@ src/game/main/campaign_recap_update.c:
 src/game/main/campaign_recap_set_up_screens.c:
     complete
     .text       start:0x020fe44c end:0x020feadc
+    .rodata     start:0x0214d3e0 end:0x0214f4c4
 
 src/game/main/campaign_recap_task_init.c:
     complete
@@ -21648,6 +21705,7 @@ src/sdk/gx/gx_load_tex_pltt.c:
 src/sdk/gx/gx_begin_load_tex_pltt.c:
     complete
     .text       start:0x0210c8e8 end:0x0210c930
+    .rodata     start:0x021514c4 end:0x021514d4
 
 src/sdk/gx/gx_end_load_tex.c:
     complete
@@ -21661,6 +21719,7 @@ src/sdk/gx/gx_load_tex.c:
 src/sdk/gx/gx_begin_load_tex.c:
     complete
     .text       start:0x0210cb04 end:0x0210cb84
+    .rodata     start:0x021514d4 end:0x02151634
 
 src/sdk/os/fifo_send16_words.c:
     complete
@@ -22476,6 +22535,7 @@ src/sdk/snd/snd_get_player_status.c:
 src/sdk/snd/snd_calc_channel_volume.c:
     complete
     .text       start:0x0211099c end:0x02110a10
+    .rodata     start:0x02151634 end:0x02151908
 
 src/sdk/snd/snd_get_wave_data_address.c:
     complete
@@ -23427,6 +23487,7 @@ src/sdk/mb/mb_comm_set_callback.c:
 src/sdk/mb/mb_file_can_load_segment.c:
     complete
     .text       start:0x0211a614 end:0x0211a728
+    .rodata     start:0x0215196c end:0x02151990
 
 src/sdk/mb/mb_file_can_receive_segment.c:
     complete
@@ -23811,6 +23872,7 @@ src/sdk/isd/isd_divide_by_radix.c:
 src/sdk/isd/isd_write_spaces.c:
     complete
     .text       start:0x02120a4c end:0x02120a9c
+    .rodata     start:0x02151990 end:0x021519a4
 
 src/sdk/isd/isd_string_length.c:
     complete
@@ -23835,6 +23897,7 @@ src/sdk/isd/isd_printf.c:
 src/sdk/isd/isd_report_failure.c:
     complete
     .text       start:0x02120d9c end:0x02120df4
+    .rodata     start:0x021519ac end:0x021519e4
 
 src/sdk/isd/isd_bus_restore.c:
     complete
@@ -23871,10 +23934,12 @@ src/sdk/isd/isd_register_overlay.c:
 src/sdk/isd/isd_overlay_table_remove_range.c:
     complete
     .text       start:0x021210d8 end:0x02121424
+    .rodata     start:0x02151a0c end:0x02151a7c
 
 src/sdk/isd/isd_overlay_table_add_range.c:
     complete
     .text       start:0x02121424 end:0x02121908
+    .rodata     start:0x02151acc end:0x02151b18
 
 src/sdk/isd/isd_close_debug_region.c:
     complete
@@ -23888,10 +23953,12 @@ src/sdk/isd/isd_open_debug_region.c:
 src/sdk/isd/isd_overlay_table_remove.c:
     complete
     .text       start:0x021219b0 end:0x02121a2c
+    .rodata     start:0x02151b18 end:0x02151b40
 
 src/sdk/isd/isd_overlay_table_insert.c:
     complete
     .text       start:0x02121a2c end:0x02121ab8
+    .rodata     start:0x02151b40 end:0x02151b68
 
 src/sdk/isd/isd_fiq.c:
     complete
@@ -24026,6 +24093,7 @@ src/sdk/msl/__pformatter.c:
 src/sdk/msl/float2str.c:
     complete
     .text       start:0x02122d44 end:0x0212339c
+    .rodata     start:0x02151b68 end:0x02151c68
 
 src/sdk/msl/round_decimal.c:
     complete

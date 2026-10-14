@@ -2,7 +2,13 @@
 #include "sdk/gx_load.h"
 
 /* Rows of three LCDC addresses, in 4 KB pages, by bank mask: columns 0, 1, 2. */
-extern u16 gGxTexLcdcPages0[];
+const u16 gGxTexLcdcPages0[16][3] = {
+#include "data/main/gGxTexLcdcPages0.inc.c"
+};
+/* volume table */
+const s16 data_02151534[128] = {
+#include "data/main/data_02151534.inc.c"
+};
 extern u16 gGxTexLcdcPages1[];
 extern u16 gGxTexLcdcPages2[];
 

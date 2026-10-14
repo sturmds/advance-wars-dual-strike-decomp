@@ -26,6 +26,7 @@ decomp.dev shows all code decompiled and linked, but 94% of the data bytes are s
 - False relocations in main `.rodata` and `.data` and ov002 `.data`: 43 deleted after checking the code that reads each table (`docs/data-tool.md`, "Relocations to check").
 - `.data` ov002 (all, 48,000 bytes, 1,989 objects, 13 existing files and 20 new) and ov001 (all, 164,608 bytes, 813 objects, 36 new files: MapScript tables, trigger lists and event scripts as words); all 1,431 ov001 relocations checked by walking the scripts from the map headers, two false ones in ov000 LZ77 streams deleted; linked data 2,356,900 bytes (75.2%).
 - `.data` and `.rodata` of the small modules (`tools/data.py`): ov004 5,280 bytes in 15 files, arm7 1,932 in 18, ov003 4,564 in 15, ov005 15,456 in 55, ov006 13,408 in 33, dtcm 4,832 in 12; 26 aliases listed, 4 false relocations deleted and one narrowed to ov001; linked data 2,495,652 bytes (79.6%), counting the main, ov001 and ov002 data that landed before it.
+- `.rodata` main 0x021298b8-0x02151c68: 249 objects, 164,784 bytes, in 82 files (19 existing, 63 new), five commits by address range; `gSineTable` is one s16[320] table (sine plus 64 entries for the cosine), `gGxTexLcdcPages0` one u16[16][3] table, with the other names as aliases; one false relocation (ov000 0x022c976c, inside a sprite cell offset table) and nine unused symbols deleted. Left: the MSL exception table at 0x02129760 (0x158 bytes), which the linker builds from the objects' exception records.
 
 ## Decisions (sturmds, 2026-10-13)
 

@@ -3,7 +3,9 @@
 #include "types.h"
 #include "sdk/isd.h"
 
-extern char gIsdInsertIndexCheck[];
+static const char gIsdInsertIndexCheck[39] = {
+#include "data/main/gIsdInsertIndexCheck.inc.c"
+};
 
 /* Opens a free entry at index in the overlay table, moving the later entries up. */
 void Isd_OverlayTableInsert(IsdOverlayInfo* table, int index) {

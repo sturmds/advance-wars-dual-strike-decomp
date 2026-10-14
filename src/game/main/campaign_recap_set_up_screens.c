@@ -32,9 +32,26 @@ extern const char data_0216a928[]; /* "/rikiishi" */
 extern const char data_0216a934[]; /* "013": layer 2 tiles */
 extern const char data_0216a938[]; /* "014": layer 2 map */
 extern const char data_0216a93c[]; /* "015": layer 2 palette */
-extern u32 data_0214d3e0[];        /* map bytes of a text BG by screen size */
-extern u32
-    data_0214d3f0[]; /* map bytes of a rotation/scaling BG by screen size */
+/* map bytes of a text BG by screen size */
+static const u32 data_0214d3e0[4] = {
+#include "data/main/data_0214d3e0.inc.c"
+};
+/* ADPCM step index change per nibble */
+const s8 data_0214d400[16] = {
+#include "data/main/data_0214d400.inc.c"
+};
+/* map bytes of a rotation/scaling BG by screen size */
+static const u32 data_0214d3f0[4] = {
+#include "data/main/data_0214d3f0.inc.c"
+};
+/* ADPCM step sizes */
+const s16 data_0214d410[89] = {
+#include "data/main/data_0214d410.inc.c"
+};
+/* a sine and cosine pair per 16 angle units */
+const s16 data_0214d4c4[4096] = {
+#include "data/main/data_0214d4c4.inc.c"
+};
 
 /* Task step of data_0216a8b0, between the work allocation (CampaignRecapTask_Init)
  * and CampaignRecap_Update. Sub screen (data_027c0288.unk_04): BG2 and OBJ

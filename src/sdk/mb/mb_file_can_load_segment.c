@@ -1,6 +1,13 @@
 #include "types.h"
 #include "sdk/mb.h"
 
+const u32 gMbSegmentTypes[DLPLAY_PROGRAM_PART_COUNT] = {
+#include "data/main/gMbSegmentTypes.inc.c"
+};
+const u32 data_02151978[6] = {
+#include "data/main/data_02151978.inc.c"
+};
+
 BOOL MbFile_CanReceiveSegment(u8 segment, u32 address, u32 size);
 
 /* Whether a program segment of this size can be loaded at this address. The

@@ -2,7 +2,9 @@
 #include "sdk/gx_load.h"
 
 /* LCDC address of the texture palette bank, in 4 KB pages, by bank >> 4. */
-extern u16 gGxTexPlttLcdcPage[8];
+static const u16 gGxTexPlttLcdcPage[8] = {
+#include "data/main/gGxTexPlttLcdcPage.inc.c"
+};
 
 int func_0210a934(void);
 

@@ -4,8 +4,12 @@
 #include "sdk/fs.h"
 #include "sdk/isd.h"
 
-extern char gIsdSizePositiveCheck[];
-extern char gIsdSizeLimitCheck[];
+static const char gIsdSizePositiveCheck[32] = {
+#include "data/main/gIsdSizePositiveCheck.inc.c"
+};
+static const char gIsdSizeLimitCheck[41] = {
+#include "data/main/gIsdSizeLimitCheck.inc.c"
+};
 
 /*
  * Adds the range [address, address + size), loaded from fileOffset, to target's

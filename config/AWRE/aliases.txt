@@ -9,6 +9,8 @@
 main data_02138a68 = gSineTable+0x80 real [64]
 main data_02138ae8 = gSineTable+0x100 real [128]
 main data_02138be8 = gSineTable+0x200 real [256]
+main gGxTexLcdcPages1 = gGxTexLcdcPages0+0x2 real [0][1]
+main gGxTexLcdcPages2 = gGxTexLcdcPages0+0x4 real [0][2]
 main data_0216e060 = data_0216e05c+0x4 real [0].dst
 main data_0216e064 = data_0216e05c+0x8 real [0].size
 main data_0216e066 = data_0216e05c+0xa real [0].kind

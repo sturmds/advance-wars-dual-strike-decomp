@@ -418,7 +418,7 @@ typedef struct DlPlayBlockSpot {
 #define DLPLAY_PART_CART_HEADER 2
 #define DLPLAY_PROGRAM_PART_COUNT 3
 
-extern u32 gMbSegmentTypes[DLPLAY_PROGRAM_PART_COUNT];
+extern const u32 gMbSegmentTypes[DLPLAY_PROGRAM_PART_COUNT];
 
 /* Where a file's segments start, in the file and in blocks, 20 bytes. */
 typedef struct DlPlaySegmentStarts {

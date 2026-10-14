@@ -4,6 +4,16 @@
 #include "sdk/fs.h"
 #include "sdk/isd.h"
 
+const char gIsdOverlayFileName[13] = {
+#include "data/main/gIsdOverlayFileName.inc.c"
+};
+const char gIsdEntryStartCheck[31] = {
+#include "data/main/gIsdEntryStartCheck.inc.c"
+};
+const char gIsdEntryEndCheck[61] = {
+#include "data/main/gIsdEntryEndCheck.inc.c"
+};
+
 /*
  * Removes the range [address, address + size) from target's overlay table:
  * entries inside it go, an entry it starts in is split, an entry it ends in

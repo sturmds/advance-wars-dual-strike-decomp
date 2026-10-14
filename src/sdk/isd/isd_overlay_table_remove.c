@@ -3,7 +3,9 @@
 #include "types.h"
 #include "sdk/isd.h"
 
-extern char gIsdRemoveIndexCheck[];
+static const char gIsdRemoveIndexCheck[38] = {
+#include "data/main/gIsdRemoveIndexCheck.inc.c"
+};
 
 /* Removes entry index from the overlay table, moving the later entries down. */
 void Isd_OverlayTableRemove(IsdOverlayInfo* table, u32 index) {

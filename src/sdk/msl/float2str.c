@@ -2,6 +2,10 @@
 #include "sdk/msl.h"
 #include "sdk/msl_string.h"
 
+const u16 __ctype_map[128] = {
+#include "data/main/__ctype_map.inc.c"
+};
+
 /* __ctype_map bit 0x200 marks upper case letters. */
 static inline int IsUpper(int c) {
   return (c < 0 || c >= 128) ? 0 : (__ctype_map[c] & 0x200);
