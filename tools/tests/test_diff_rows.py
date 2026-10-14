@@ -11,6 +11,8 @@
   value.
 - same_bytes: the same bytes match however objdiff decodes them; other
   bytes, or bytes under a relocation, do not.
+- symbol_addresses gives configure.py's layout symbols their retail value
+  (read from config/; the other checks stub it).
 
 Rows are shaped like objdiff-cli's JSON. Symbol addresses and ROM words are
 stubbed, so no ROM or build is needed.
@@ -30,6 +32,10 @@ def expect(what: str, got, want) -> None:
     if bool(got) != want:
         failures.append(what)
 
+
+# Read from config/ before the stub below replaces it.
+expect("addresses: a layout symbol at its retail value",
+       fn.symbol_addresses().get("AUTOLOAD_LIST_START") == 0x02175180, True)
 
 FUNC, NEXT = 0x02000100, 0x02000110
 fn.symbol_addresses = lambda: {"Func": FUNC, "Next": NEXT, "Data": 0x02000208}

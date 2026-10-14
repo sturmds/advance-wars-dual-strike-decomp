@@ -36,8 +36,11 @@ A row of data_inc.txt: module, symbol, address, size in bytes, element type.
   does, and as a number otherwise; the C file includes that header.
 
 A word that the module's relocs.txt says points somewhere is written as the
-symbol at its target, `(u32)&Name` or `(void*)&Name`, so a build with moved
-code keeps it right. The C file that includes the values declares those
+symbol at its target (`to` plus `add`), `(u32)&Name` or `(void*)&Name`, so a
+build with moved code keeps it right. A target where no symbol starts but
+that is the retail value of one of configure.py's ARM9_LAYOUT_SYMBOLS is
+written as that linker symbol (crt0's autoload list in BuildInfo, issue
+0086); otherwise as the symbol below it plus an offset. The C file that includes the values declares those
 symbols. A pointer element that is neither 0 nor relocated stops the tool.
 """
 
@@ -227,31 +230,47 @@ class Rom:
         return self.symbols[module]
 
     def reloc_table(self, module: str) -> dict[int, tuple[str, int, str]]:
-        """from -> (kind, to, target module)."""
+        """from -> (kind, target address (to plus add), target module)."""
         if module not in self.relocs:
             table = {}
             path = ROOT / config_dir(module) / "relocs.txt"
             for line in path.read_text().splitlines():
-                m = re.match(r"from:(0x\w+) kind:(\S+) to:(0x\w+) module:(\S+)", line)
+                m = re.match(r"from:(0x\w+) kind:(\S+) to:(0x\w+)(?: add:(-?0x\w+))? module:(\S+)", line)
                 if m:
-                    table[int(m.group(1), 16)] = (m.group(2), int(m.group(3), 16), m.group(4))
+                    to = int(m.group(3), 16) + int(m.group(4) or "0", 16)
+                    table[int(m.group(1), 16)] = (m.group(2), to, m.group(5))
             self.relocs[module] = table
         return self.relocs[module]
 
     def target(self, module: str, to: int, where: str) -> tuple[str, int]:
-        """(symbol, offset) for a relocation target: the symbol at `to`, or
-        the nearest one below it. A Thumb function's address has bit 0 set,
-        which the linker adds to `&function` itself."""
+        """(symbol, offset) for a relocation target: the symbol at `to`, a
+        layout symbol whose retail value is `to`, or the nearest symbol below
+        it. A Thumb function's address has bit 0 set, which the linker adds
+        to `&function` itself."""
         table = self.symbol_table(module)
         if to in table:
             return table[to], 0
         if to & 1 and to - 1 in self.thumb.get(module, ()):
             return table[to - 1], 0
+        layout = layout_symbols(module)
+        if to in layout:
+            return layout[to], 0
         below = [a for a in table if a <= to]
         if not below:
             sys.exit(f"error: {where}: no symbol at or below {to:#x} in {module}")
         base = max(below)
         return table[base], to - base
+
+
+def layout_symbols(module: str) -> dict[int, str]:
+    """Retail value -> name of the symbols the linker script computes that
+    a module's data may point at: configure.py's ARM9_LAYOUT_SYMBOLS for
+    ARM9, none for ARM7."""
+    if module == "arm7":
+        return {}
+    import configure  # here, not at the top: configure imports this module
+
+    return {retail: name for name, (_, retail) in configure.ARM9_LAYOUT_SYMBOLS.items()}
 
 
 def literal(row: Row, rom: Rom, addr: int, raw: bytes, cast: str = "") -> str:

@@ -6,7 +6,8 @@
 - Rows of data_inc.txt parse, and bad ones stop the tool.
 - render() writes plain values as hex or decimal by type, rows in braces for
   `type[N]`, relocated words as symbols (with an offset when the target is
-  inside a symbol), and stops on a pointer without a relocation.
+  inside a symbol, or a layout symbol of that value), relocs.txt's `add:`,
+  and stops on a pointer without a relocation.
 - A definition between `#pragma section TEXT_DATA begin` and `end` compiles
   into a section named .text with its relocations, one section per
   definition, smallest first.
@@ -109,6 +110,20 @@ stops("row: struct field not aligned", lambda: data_inc.Row("itcm gS 0x1000 8 {u
 stops("row: size not whole structs", lambda: data_inc.Row("itcm gS 0x1000 6 {u32}", "t"))
 rom = FakeRom(words(0x1100), {}, {})
 stops("render: pointer without a relocation", lambda: data_inc.render(data_inc.Row("itcm gP 0x1000 4 void*", "t"), rom))
+rom = FakeRom(words(0x02175180, 0x02175184), {0x02173788: "gPool"},
+              {0x1000: ("load", 0x02175180, "itcm"), 0x1004: ("load", 0x02175184, "itcm")})
+expect("render: a layout symbol's value inside a symbol",
+       body(data_inc.render(data_inc.Row("itcm gL 0x1000 8 u32", "t"), rom)),
+       "(u32)&AUTOLOAD_LIST_START, (u32)((char*)&gPool + 0x19fc),\n")
+with tempfile.TemporaryDirectory() as tmp:
+    (Path(tmp) / "relocs.txt").write_text("from:0x00001000 kind:load to:0x00001100 add:0x8 module:itcm\n")
+    saved = data_inc.config_dir
+    data_inc.config_dir = lambda module: Path(tmp)
+    try:
+        expect("relocs: add is part of the target", data_inc.Rom().reloc_table("itcm"),
+               {0x1000: ("load", 0x1108, "itcm")})
+    finally:
+        data_inc.config_dir = saved
 rom = FakeRom(words(0x1100), {}, {0x1000: ("arm_call", 0x1100, "itcm")})
 stops("render: relocation that is not a data word", lambda: data_inc.render(data_inc.Row("itcm gP 0x1000 4 void*", "t"), rom))
 

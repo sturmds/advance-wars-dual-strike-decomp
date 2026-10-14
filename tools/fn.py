@@ -879,7 +879,11 @@ def cmd_check(args) -> int:
 
 @cache
 def symbol_addresses() -> dict[str, int | None]:
-    """Name -> address over all modules; None when a name has two addresses."""
+    """Name -> address over all modules; None when a name has two addresses.
+    The linker-computed symbols of configure.ARM9_LAYOUT_SYMBOLS count at
+    their retail value, so that a word relocated to one matches the
+    original's relocation to the same address (BuildInfo's autoload list)."""
+    from configure import ARM9_LAYOUT_SYMBOLS
     out = {}
     for mod in all_modules().values():
         for line in (mod.dir / "symbols.txt").read_text().splitlines():
@@ -887,6 +891,8 @@ def symbol_addresses() -> dict[str, int | None]:
             if m:
                 addr = int(m.group(3), 16)
                 out[m.group(1)] = addr if out.get(m.group(1), addr) == addr else None
+    for name, (_, retail) in ARM9_LAYOUT_SYMBOLS.items():
+        out.setdefault(name, retail)
     return out
 
 
