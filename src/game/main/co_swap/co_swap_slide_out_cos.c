@@ -76,10 +76,15 @@ void CoSwap_SlideOutCos(Task* task) {
       Task_ResumeScript(task);
       break;
   }
-  Mem_Copy32(&gMenuState, data_027c0280->paletteBuffer + 0x20, 0x60);
-  for (i = 0; i < 3; i++) {
-    Palette_BlendWithColor((u16*)(data_027c0280->paletteBuffer + (i + 1) * 32),
-                           0x7fff, 16 - level, level);
+  Mem_Copy32(&gMenuState,
+             data_027c0280->paletteBuffer +
+                 CO_SWAP_FIRST_PALETTE_ROW * PALETTE_16_SIZE,
+             CO_SWAP_PALETTE_ROWS * PALETTE_16_SIZE);
+  for (i = 0; i < CO_SWAP_PALETTE_ROWS; i++) {
+    Palette_BlendWithColor(
+        (u16*)(data_027c0280->paletteBuffer +
+               (i + CO_SWAP_FIRST_PALETTE_ROW) * PALETTE_16_SIZE),
+        0x7fff, 16 - level, level);
   }
   Palette_Flush();
 }

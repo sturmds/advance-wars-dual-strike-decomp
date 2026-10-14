@@ -92,7 +92,7 @@ src/game/main/bss_022a6c30.c:
 
 src/game/main/bss_022a7a88.c:
     complete
-    .bss        start:0x022a7a88 end:0x022a7ac4
+    .bss        start:0x022a7a88 end:0x022a7b80
 
 src/game/main/bss_022a7b80.c:
     complete
@@ -18762,7 +18762,6 @@ src/game/main/battle_exp_bonus_scale.c:
 src/game/main/battle_results_fill.c:
     complete
     .text       start:0x020e9c24 end:0x020ea14c
-    .bss        start:0x022a7ac4 end:0x022a7b80
 
 src/game/main/map/win_lose_sides_fill.c:
     complete

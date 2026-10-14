@@ -11,9 +11,10 @@ extern const MenuButtonTemplate data_02160de0;
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 
-/* data_0229fb30, which sits at gMenuState + 0x1000. Needed to match: read through
+/* data_0229fb30, which sits at MenuState.shared.state. Needed to match: read through
  * gMenuState, so the compiler keeps the load after the store to MENU. */
-#define LINK_STATE ((Unk_0229fb30*)((u8*)&gMenuState + 0x1000))
+#define LINK_STATE \
+  ((Unk_0229fb30*)((u8*)&gMenuState + offsetof(MenuState, shared.state)))
 
 /* Link message 9: a player is ready. A player who is already ready is
  * skipped. For the local player, the Ready button (254) closes and, unless

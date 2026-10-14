@@ -14,8 +14,10 @@ void Screen_SetCurrentBoth(void* state);
 int MainLoop_GetFrameCount(void);
 void Palette_Load(const void* src, u32 offset, u32 size);
 
-/* Needed to match: the compiler adds 0x1400 to the address of gMenuState at run time. */
-#define COMBAT_PALETTE ((u16*)((u8*)&gMenuState + 0x1400))
+/* MenuState.combat.unk_1400. Needed to match: the compiler adds the offset to
+ * the address of gMenuState at run time. */
+#define COMBAT_PALETTE \
+  ((u16*)((u8*)&gMenuState + offsetof(MenuState, combat.unk_1400)))
 
 /* Loads one colour of the 16-colour palette in the Combat setup layout (res_linkcommon) into
  * byte offset 564 of the palette of both screens, stepping every 4 frames. */

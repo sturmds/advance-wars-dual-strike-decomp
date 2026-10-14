@@ -167,7 +167,8 @@ void CoExp_InitScreen(void) {
       GAME->unk_1c4->mapId <= 231) {
     /* exp[1] gets level 0 and 0 points, back CO or not. Needed to
          * match: written through the symbols at gMenuState + 0x1000 and + 0x1500. */
-    ((u8*)&data_0229fb30)[0x5ac] = 0;
+    ((u8*)&data_0229fb30)[offsetof(MenuState, coExp.exp[1].level) -
+                          offsetof(MenuState, shared.state)] = 0;
     *(s16*)(data_022a0030 + 0xae) = 0;
   }
 }

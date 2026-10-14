@@ -12,8 +12,8 @@ extern u8 data_02160ae0[];
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 
-/* Link message 18: the row's player picks the previous of the seven COs
- * (unk_19 of the row, 0-6, wraps to 6) and the row's picture is loaded
+/* Link message 18: the row's player picks the previous of the COMBAT_CO_COUNT COs
+ * (unk_19 of the row, wraps to the last) and the row's picture is loaded
  * again, 36 tiles per row from tile 0x400. A confirmed row ignores it. */
 void CombatSetup_PrevCo(int player) {
   int row;
@@ -29,11 +29,11 @@ void CombatSetup_PrevCo(int player) {
   }
   Sound_PlaySe(0x10002);
   offset = index * sizeof(Unk_02160ac0_Row);
-  coIndex = (u8*)data_02160ac0 + 0x19 + offset;
+  coIndex = (u8*)data_02160ac0 + offsetof(Unk_02160ac0_Row, unk_19) + offset;
   if (*coIndex != 0) {
     (*coIndex)--;
   } else {
-    *coIndex = 6;
+    *coIndex = COMBAT_CO_COUNT - 1;
   }
   Co_QueueLargePictureCopy(
       data_02160ae0[LINK_ROWS[index].unk_19],

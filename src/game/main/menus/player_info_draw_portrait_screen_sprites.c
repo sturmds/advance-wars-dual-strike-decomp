@@ -19,7 +19,7 @@ void PlayerInfo_DrawPortraitScreenSprites(void) {
   int icon;
 
   Sprite_QueueDefaultTile(8, 17, 0x1000, 0, 0);
-  for (row = 0; row < 3; row++) {
+  for (row = 0; row < (int)ARRAY_COUNT(MENU.unk_09d); row++) {
     if (MENU.unk_09d[row] == 0) {
       break;
     }

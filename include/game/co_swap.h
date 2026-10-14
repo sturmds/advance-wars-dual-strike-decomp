@@ -18,4 +18,9 @@
 #define CO_SWAP_CO_Y 160
 #define CO_SWAP_TITLE_Y 80
 
+/* Palette rows the CO swap whitens: CO_SWAP_PALETTE_ROWS rows from row
+ * CO_SWAP_FIRST_PALETTE_ROW, saved at the start of gMenuState. */
+#define CO_SWAP_FIRST_PALETTE_ROW 1
+#define CO_SWAP_PALETTE_ROWS 3
+
 #endif

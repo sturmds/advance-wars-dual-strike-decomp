@@ -13,10 +13,10 @@ extern MenuState gMenuState;
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 
-/* Tile blocks of a player panel in gMenuState, for one map and for two
- * maps. What loads them is not decompiled yet. */
-#define PANEL_ONE_MAP ((u8*)MENU + 0x20)
-#define PANEL_TWO_MAPS ((u8*)MENU + 0xe4)
+/* Tile blocks of a player panel, for one map and for two maps (VsSetup_Init
+ * copies them from res_versus). */
+#define PANEL_ONE_MAP (MENU->vsPanels.oneMap)
+#define PANEL_TWO_MAPS (MENU->vsPanels.twoMaps)
 
 /* Needed to match: through an inline function the compiler loads the map
  * before the VsSetup_GetPanelTileX call, as the original does. */

@@ -20,14 +20,14 @@ void DownloadPlay_SetSendSizeAndChildren(int size, int count);
 void func_020fc700(u32 aid, u32 state, void* arg);
 BOOL func_020fc698(void);
 
-/* Stops the sound, then sets up the wireless host with a 0xc000-byte work
+/* Stops the sound, then sets up the wireless host with a DLPLAY_WORK_SIZE-byte work
  * area and state 3. */
 void DownloadPlay_Start(void) {
   u32 tick;
 
   Sound_StopSong();
   Sound_Shutdown();
-  data_022a7e6c = Mem_Alloc(0xc000);
+  data_022a7e6c = Mem_Alloc(DLPLAY_WORK_SIZE);
   data_022a7e68 = 3;
   WirelessHost_FillInfo();
   /* needed to match: volatile read keeps the tick load before the other arguments */

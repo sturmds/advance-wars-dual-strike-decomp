@@ -53,25 +53,25 @@ void PlayerInfo_LoadCoPictures(void) {
       found++;
     }
   }
-  for (; found < 3; found++) {
+  for (; found < (int)ARRAY_COUNT(MENU.unk_09d); found++) {
     MENU.unk_09d[found] = 0;
   }
 
   switch (MENU_PLAYER_ARMY) {
     case 5:
-      frame = (u8*)&gMenuState + 112;
+      frame = PLAYER_INFO_FRAMES->frames[4].tiles;
       break;
     case 4:
-      frame = (u8*)&gMenuState + 84;
+      frame = PLAYER_INFO_FRAMES->frames[3].tiles;
       break;
     case 3:
-      frame = (u8*)&gMenuState + 56;
+      frame = PLAYER_INFO_FRAMES->frames[2].tiles;
       break;
     case 2:
-      frame = (u8*)&gMenuState + 28;
+      frame = PLAYER_INFO_FRAMES->frames[1].tiles;
       break;
     default:
-      frame = (u8*)&gMenuState;
+      frame = PLAYER_INFO_FRAMES->frames[0].tiles;
       break;
   }
   Bg_PutTileBlock(data_027c0280->layer1Map, 4, 0, frame, 0);

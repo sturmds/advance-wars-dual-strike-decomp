@@ -10,16 +10,19 @@ extern const char data_0215a400[];
 extern const char data_0215a41c[];
 extern MenuState gMenuState;
 
-/* Copies two sprite files into the CO experience screen's work area: the
- * first (0x160 bytes, localized path) at gMenuState + 0x1364, the second
- * (0xe4 bytes) right after it at + 0x14c4. */
+/* Copies two sprite files into the CO experience screen's work area:
+ * the first (localized path) into MenuState.coExp.unk_1364, the second
+ * into coExp.cellSprites. Needed to match: the offsets are added to
+ * gMenuState's address at run time. */
 void CoExp_LoadSpriteFiles(void) {
   void* file;
 
   file = File_Load(File_LocalizePath(data_0215a400));
-  Mem_Copy32(file, (u8*)&gMenuState + 0x1364, 0x160);
+  Mem_Copy32(file, (u8*)&gMenuState + offsetof(MenuState, coExp.unk_1364),
+             sizeof(gMenuState.coExp.unk_1364));
   Mem_Free(file);
   file = File_Load(data_0215a41c);
-  Mem_Copy32(file, (u8*)&gMenuState + 0x14c4, 0xe4);
+  Mem_Copy32(file, (u8*)&gMenuState + offsetof(MenuState, coExp.cellSprites),
+             sizeof(gMenuState.coExp.cellSprites));
   Mem_Free(file);
 }

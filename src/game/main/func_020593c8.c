@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/screen_other_map.h"
+#include "game/menu_state.h"
 
 void Sound_PlaySe(int id);
 void Screen_SetCurrentBoth(void* state);
@@ -39,13 +40,17 @@ extern u8 gTagChangePalette[];
   data_027c0280->dispCnt |= 0x800;                           \
   data_027c0280->dispCnt |= 0x1000
 
-#define WHITEN_PALETTES(palWeight, colorWeight)                      \
-  Mem_Copy32(palette, data_027c0280->paletteBuffer + 0x60, 0x60);    \
-  for (i = 0; i < 3; i++) {                                          \
-    Palette_BlendWithColor(                                          \
-        (u16*)(data_027c0280->paletteBuffer + (i + 3) * 32), 0x7fff, \
-        palWeight, colorWeight);                                     \
-  }                                                                  \
+#define WHITEN_PALETTES(palWeight, colorWeight)                              \
+  Mem_Copy32(                                                                \
+      palette,                                                               \
+      data_027c0280->paletteBuffer + TAG_CHANGE_FIRST_ROW * PALETTE_16_SIZE, \
+      TAG_CHANGE_PALETTE_ROWS * PALETTE_16_SIZE);                            \
+  for (i = 0; i < TAG_CHANGE_PALETTE_ROWS; i++) {                            \
+    Palette_BlendWithColor(                                                  \
+        (u16*)(data_027c0280->paletteBuffer +                                \
+               (i + TAG_CHANGE_FIRST_ROW) * PALETTE_16_SIZE),                \
+        0x7fff, palWeight, colorWeight);                                     \
+  }                                                                          \
   Palette_Flush()
 
 /* Script task step. Frame 0 plays sound effect 0xbd and sets both screens to

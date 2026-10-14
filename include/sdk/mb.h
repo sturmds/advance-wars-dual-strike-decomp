@@ -16,6 +16,9 @@
 #define DLPLAY_CHILD_SLOTS 15
 #define DLPLAY_PLAYER_BADGE_BYTES 22
 
+/* Bytes of the work area the parent hands DownloadPlay_SetUpWork. */
+#define DLPLAY_WORK_SIZE 0xc000
+
 /* One game on the parent's list. The beacon sends it in 98-byte pieces,
  * from iconPalette (game has an icon) or from userParam (no icon). */
 typedef struct DlPlayGameEntry {

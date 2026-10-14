@@ -8,6 +8,8 @@
 
 u8 Map_GetLoadedPlayerCount(void);
 int Player_GetCoByte(int player, int slot);
+#define FRAME_SIZE sizeof(PLAYER_INFO_FRAMES->frames[0].tiles)
+
 void Gfx_InitBothScreens(void);
 void Screen_SetCurrent(void* state);
 void Screen_SetCurrentGfx(void* state);
@@ -178,8 +180,9 @@ void PlayerInfo_Init(Task* task) {
                  gfx->bgVram + (gfx->bgCnt[bg].charBase << 14) + 0x6ca0,
                  UnitIcons_GetTileCount() << 5);
     }
-    for (i = 0; i < 4; i++) {
-      Palette_Load(Player_GetPalette(i + 1), (u16)((i + 5) * 32), 32);
+    for (i = 0; i < (int)ARRAY_COUNT(MENU.playerArmy); i++) {
+      Palette_Load(Player_GetPalette(i + 1), (u16)((i + 5) * PALETTE_16_SIZE),
+                   PALETTE_16_SIZE);
     }
     Data_Unpack(langFile, data_027c0280->objVram + 0x8000);
     Palette_Load(file, 0x280, 32);
@@ -218,12 +221,12 @@ void PlayerInfo_Init(Task* task) {
     Screen_SetCurrentGfx(saved0280);
   }
 
-  /* Five rows of 26 bytes, 28 apart, over the start of gMenuState. */
-  Mem_Copy32(file + 0x99c, (u8*)&gMenuState, 26);
-  Mem_Copy32(file + 0x9b8, (u8*)&gMenuState + 28, 26);
-  Mem_Copy32(file + 0x9d4, (u8*)&gMenuState + 56, 26);
-  Mem_Copy32(file + 0x9f0, (u8*)&gMenuState + 84, 26);
-  Mem_Copy32(file + 0xa0c, (u8*)&gMenuState + 112, 26);
+  /* One frame tile block per army colour (PlayerInfoFrames). */
+  Mem_Copy32(file + 0x99c, PLAYER_INFO_FRAMES->frames[0].tiles, FRAME_SIZE);
+  Mem_Copy32(file + 0x9b8, PLAYER_INFO_FRAMES->frames[1].tiles, FRAME_SIZE);
+  Mem_Copy32(file + 0x9d4, PLAYER_INFO_FRAMES->frames[2].tiles, FRAME_SIZE);
+  Mem_Copy32(file + 0x9f0, PLAYER_INFO_FRAMES->frames[3].tiles, FRAME_SIZE);
+  Mem_Copy32(file + 0xa0c, PLAYER_INFO_FRAMES->frames[4].tiles, FRAME_SIZE);
   Mem_Free(file);
   Mem_Free(langFile);
 

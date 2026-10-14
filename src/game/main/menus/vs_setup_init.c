@@ -7,13 +7,7 @@
 /* Needed to match: the cast keeps the field offsets out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 
-/* Tile blocks of the Vs setup screen that VsSetup_DrawSlotPanels and
- * others read from gMenuState. */
-#define PANEL_ONE_MAP ((u8*)MENU + 0x20)
-#define PANEL_TWO_MAPS ((u8*)MENU + 0xe4)
-/* Two more blocks from res_versus; what reads them is not known yet. */
-#define VS_BLOCK_1A8 ((u8*)MENU + 0x1a8)
-#define VS_BLOCK_21C ((u8*)MENU + 0x21c)
+#define PANELS (MENU->vsPanels)
 
 /* Start of the tile data of a BG layer in BG VRAM. */
 #define LAYER_CHAR_BASE(gfx, layerBg) \
@@ -115,10 +109,10 @@ void VsSetup_Init(void) {
   Palette_Load(res + 0x4fc, 0x60, 0xa0);
   Screen_SetCurrentGfx(saved);
 
-  Mem_Copy32(res + 0x59c, PANEL_ONE_MAP, 0xc2);
-  Mem_Copy32(res + 0x660, PANEL_TWO_MAPS, 0xc2);
-  Mem_Copy32(res + 0x724, VS_BLOCK_1A8, 0x72);
-  Mem_Copy32(res + 0x798, VS_BLOCK_21C, 0x92);
+  Mem_Copy32(res + 0x59c, PANELS.oneMap, sizeof(PANELS.oneMap));
+  Mem_Copy32(res + 0x660, PANELS.twoMaps, sizeof(PANELS.twoMaps));
+  Mem_Copy32(res + 0x724, PANELS.teamPanels, sizeof(PANELS.teamPanels));
+  Mem_Copy32(res + 0x798, PANELS.subPanels, sizeof(PANELS.subPanels));
   Mem_Free(res);
 
   savedIcons = data_027c0280;

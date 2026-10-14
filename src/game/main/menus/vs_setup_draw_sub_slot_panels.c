@@ -12,15 +12,15 @@ extern MenuState gMenuState;
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 
-/* Tile block from res_versus that VsSetup_Init copies to gMenuState + 0x21c. */
-#define TEAM_PANEL_BLOCK ((u8*)MENU + 0x21c)
+/* Tile block from res_versus that VsSetup_Init copies. */
+#define TEAM_PANEL_BLOCK (MENU->vsPanels.subPanels)
 
 /* Needed to match: through an inline function the compiler loads the map
  * before the VsSetup_GetSlotTileX call, as the original does. */
 static inline u16* Gfx_GetLayer2Map(void) { return data_027c0280->layer2Map; }
 
 /* Like VsSetup_DrawSlotPanels, on the other screen (data_027c0288.unk_04):
- * puts the block at gMenuState + 0x21c for each player slot on BG layer 2 at
+ * puts the block MenuState.vsPanels.subPanels for each player slot on BG layer 2 at
  * row 8, column VsSetup_GetSlotTileX(slot), with BG palette army colour + 2.
  * Block rows 0-1, columns 3-4 get (army colour - 1) * 4 added; Black Hole
  * also changes columns 1-2 and 5-6. */

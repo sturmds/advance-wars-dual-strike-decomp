@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/co_select_screen.h"
 #include "sdk/os.h"
 
@@ -22,10 +23,10 @@ void CoSelectScreen_LoadListTextures(void) {
 
   slot = 0;
   co = data_0229c73c->coList;
-  blankPalette = Mem_Alloc(32);
+  blankPalette = Mem_Alloc(PALETTE_16_SIZE);
 
-  Mem_Fill32(0, blankPalette, 32);
-  DC_FlushRange(blankPalette, 32);
+  Mem_Fill32(0, blankPalette, PALETTE_16_SIZE);
+  DC_FlushRange(blankPalette, PALETTE_16_SIZE);
   if (*co != 0xfe) {
     paletteOffset = 0;
     texOffset = 0;

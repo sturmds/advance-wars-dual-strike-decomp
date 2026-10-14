@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/player.h"
 #include "game/tab_list.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
@@ -99,7 +100,7 @@ void HistoryScreen_Init(void) {
   Palette_Load(res + 0x2b4, 0x20, 0x40);
   Palette_Load(res + 0x2b4, 0x200, 32);
   Mem_Copy32(data_027c0280->paletteBuffer + 0x200,
-             data_027c0280->paletteBuffer + 0x220, 32);
+             data_027c0280->paletteBuffer + 0x220, PALETTE_16_SIZE);
   Palette_BlendWithColor(data_027c0280->paletteBuffer + 0x220, 0, 8, 8);
   Screen_SetCurrentGfx(saved0280);
   saved0280 = data_027c0280;
@@ -109,7 +110,8 @@ void HistoryScreen_Init(void) {
   Screen_SetCurrentGfx(saved0280);
   /* Needed to match: the field offset is added to gMenuState at run time. */
   Mem_Copy32(res + 0x2f4,
-             (u8*)&gMenuState + (u32) & ((TabListView*)0)->unk_1000, 32);
+             (u8*)&gMenuState + (u32) & ((TabListView*)0)->unk_1000,
+             sizeof(((TabListView*)0)->unk_1000));
   Mem_Free(res);
 
   res = File_Load(data_0215f7e0);
@@ -163,8 +165,10 @@ void HistoryScreen_Init(void) {
       (u16)(size * 32));
   /* Orange Star and Black Hole. Needed to match: the second as a byte
      * offset; gArmyPalettes[4] folds into the literal. */
-  Palette_Load(gArmyPalettes[0], 0x60, 32);
-  Palette_Load((u8*)gArmyPalettes + 0x80, 0x80, 32);
+  Palette_Load(gArmyPalettes[0], 0x60, sizeof(gArmyPalettes[0]));
+  Palette_Load(
+      (u8*)gArmyPalettes + (ARMY_BLACK_HOLE - 1) * sizeof(gArmyPalettes[0]),
+      0x80, sizeof(gArmyPalettes[0]));
   Screen_SetCurrentGfx(saved0280);
 
   NumberFont_LoadLow();

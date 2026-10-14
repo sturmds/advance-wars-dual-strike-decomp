@@ -12,6 +12,8 @@
 #include "game/co_exp.h"
 #include "game/design_map.h"
 #include "game/Unk_02160ac0.h"
+#include "game/Unk_0229fb30.h"
+#include "game/Unk_02088d04.h"
 
 /* One list of map ids in the map select menu. */
 typedef struct MapList {
@@ -146,6 +148,33 @@ typedef struct PlayerInfoScreen {
   u8 pad_0a5[0xa8 - 0xa5];
   u32 unk_0a8; /* 1 with gameMode 3: Player_GetShownFirepower uses Player_GetSlotFirepower for every slot */
 } PlayerInfoScreen;
+
+/* gMenuState on the player info screen seen from offset 0, over
+ * MenuState.colours: PlayerInfo_Init copies a frame tile block for each army
+ * colour (1 to ARMY_BLACK_HOLE) from res_playerinfo, and
+ * PlayerInfo_LoadCoPictures draws the player's one. */
+typedef struct PlayerInfoFrame {
+  u8 tiles[26]; /* the block Bg_PutTileBlock draws */
+  u8 pad_1a[2];
+} PlayerInfoFrame;
+
+typedef struct PlayerInfoFrames {
+  PlayerInfoFrame frames[ARMY_BLACK_HOLE]; /* by army colour - 1 */
+} PlayerInfoFrames;
+
+#define PLAYER_INFO_FRAMES ((PlayerInfoFrames*)&gMenuState)
+
+/* Tile blocks of the Vs setup screen, copied from res_versus by VsSetup_Init
+ * and drawn by VsSetup_DrawSlotPanels and the functions after it. */
+typedef struct VsSetupPanels {
+  u8 oneMap[0xc2]; /* slot panels with one map */
+  u8 pad_0e2[2];
+  u8 twoMaps[0xc2]; /* slot panels with two maps */
+  u8 pad_1a6[2];
+  u8 teamPanels[0x72]; /* VsSetup_DrawTeamSlotPanels */
+  u8 pad_21a[2];
+  u8 subPanels[0x92]; /* VsSetup_DrawSubSlotPanels */
+} VsSetupPanels;
 
 /* Battle animation layout of MenuState (ov002, Battle_ShowQuote). */
 struct BattleSpriteTask;
@@ -307,6 +336,30 @@ typedef struct LinkMenuMaps {
        LINK_DESIGN_MAPS_PER_PLAYER]; /* LINK_MAP_ROWS: 3 per link player, received from each player */
 } LinkMenuMaps;
 
+/* data_0229fb30 at gMenuState + 0x1000: state that the battle screen, the
+ * Combat setup and the two-player link menu keep in the same place. */
+typedef struct MenuStateShared {
+  u8 pad_020[0x1000 - 0x20];
+  Unk_0229fb30 state;
+} MenuStateShared;
+
+/* Palette rows the tag change screens whiten: TAG_CHANGE_PALETTE_ROWS rows
+ * from row TAG_CHANGE_FIRST_ROW, saved in TagBreakWork.changePalette. */
+#define TAG_CHANGE_FIRST_ROW 3
+#define TAG_CHANGE_PALETTE_ROWS 3
+
+/* Layout of MenuState on the Tag Break and Tag Power screens. */
+typedef struct TagBreakWork {
+  u8 pad_020[0x800 - 0x20];
+  u16 layer0Map
+      [BG_SCREEN_ENTRIES]; /* data_0229f330, unpacked by TagBreak_LoadThunder */
+  u16 palettes[2][16];     /* data_0229fb30, then gTagBreakSparkPalette */
+  u16 gaugeColours[16]; /* data_0229fb70: the tag gauge cycles through them */
+  u16 changePalette
+      [TAG_CHANGE_PALETTE_ROWS]
+      [16]; /* gTagChangePalette: palette rows 3-5 from res_tagchange */
+} TagBreakWork;
+
 /* Bytes in gMenuState. */
 #define MENU_STATE_SIZE 0x8000
 
@@ -326,6 +379,9 @@ typedef struct MenuState {
     DesignMapRecord linkMaps
         [LINK_DESIGN_MAPS_PER_PLAYER]; /* the maps of the two-player link menu, shown by its stage 2 buttons */
     LinkMenuMaps linkMenu;
+    MenuStateShared shared;
+    VsSetupPanels vsPanels;
+    TagBreakWork tagBreak;
     /* the whole work area: ov003 keeps two CO pictures in it, from offset 0 */
     u8 work[MENU_STATE_SIZE - 16 * sizeof(u16)];
   };

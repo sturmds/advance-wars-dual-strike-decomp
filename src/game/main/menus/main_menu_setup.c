@@ -145,11 +145,11 @@ void MainMenu_Setup(MainMenuTask* task) {
   Screen_SetCurrentGfx(savedGfx2);
   Mem_Free(res);
 
-  res = Mem_Alloc(32);
-  File_ReadAt(res, data_02159c20, 32, 32);
-  DC_FlushRange(res, 32);
+  res = Mem_Alloc(PALETTE_16_SIZE);
+  File_ReadAt(res, data_02159c20, 32, PALETTE_16_SIZE);
+  DC_FlushRange(res, PALETTE_16_SIZE);
   GX_BeginLoadTexPltt();
-  GX_LoadTexPltt(res, 0x260, 32);
+  GX_LoadTexPltt(res, 0x260, PALETTE_16_SIZE);
   GX_EndLoadTexPltt();
   Mem_Free(res);
 
