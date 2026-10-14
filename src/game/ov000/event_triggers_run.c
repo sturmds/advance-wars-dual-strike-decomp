@@ -26,11 +26,12 @@ const EventTrigger* EventTriggers_SkipBlock(const EventTrigger* trigger);
     break;                                      \
   }
 
-/* Kind base applies only on data_02183b08, base + 1 only on the other
- * state. */
+/* Kind base applies only on data_02183b08, base + EVENT_KIND_SECOND_MAP
+ * only on the other state. */
 #define FAIL_IF_WRONG_STATE(base)                            \
   FAIL_IF(trigger->kind == (base) && GAME == &data_02189cd8) \
-  FAIL_IF(trigger->kind == (base) + 1 && GAME == &data_02183b08)
+  FAIL_IF(trigger->kind == (base) + EVENT_KIND_SECOND_MAP && \
+          GAME == &data_02183b08)
 
 /* Walks a map's trigger list (EventTrigger). For each block whose
  * conditions all hold: with run, starts its script and sets its done flag;
@@ -45,8 +46,8 @@ BOOL EventTriggers_Run(const EventTrigger* trigger, MapUnit* unit, int id,
   for (; trigger->kind != EVENT_TRIGGER_END; trigger++) {
     switch (trigger->kind) {
       case EVENT_TRIGGER_DAY:
-      case EVENT_TRIGGER_DAY + 1:
-      case EVENT_TRIGGER_DAY + 2:
+      case EVENT_TRIGGER_DAY + EVENT_KIND_SECOND_MAP:
+      case EVENT_TRIGGER_DAY + EVENT_KIND_BOTH_MAPS:
         FAIL_IF_WRONG_STATE(EVENT_TRIGGER_DAY)
         matched = FALSE;
         if ((trigger->day == EVENT_TRIGGER_NO_DAY ||
@@ -57,8 +58,8 @@ BOOL EventTriggers_Run(const EventTrigger* trigger, MapUnit* unit, int id,
         FAIL_IF(!matched)
         break;
       case EVENT_TRIGGER_RUN:
-      case EVENT_TRIGGER_RUN + 1:
-      case EVENT_TRIGGER_RUN + 2:
+      case EVENT_TRIGGER_RUN + EVENT_KIND_SECOND_MAP:
+      case EVENT_TRIGGER_RUN + EVENT_KIND_BOTH_MAPS:
         FAIL_IF_WRONG_STATE(EVENT_TRIGGER_RUN)
         /* a block with a done flag fires once */
         FAIL_IF(trigger->param != EVENT_TRIGGER_NO_FLAG &&
@@ -76,40 +77,40 @@ BOOL EventTriggers_Run(const EventTrigger* trigger, MapUnit* unit, int id,
         }
         break;
       case EVENT_TRIGGER_TEST_TRUE:
-      case EVENT_TRIGGER_TEST_TRUE + 1:
-      case EVENT_TRIGGER_TEST_TRUE + 2:
+      case EVENT_TRIGGER_TEST_TRUE + EVENT_KIND_SECOND_MAP:
+      case EVENT_TRIGGER_TEST_TRUE + EVENT_KIND_BOTH_MAPS:
         FAIL_IF_WRONG_STATE(EVENT_TRIGGER_TEST_TRUE)
         test = trigger->u.test;
         FAIL_IF(test() != TRUE)
         break;
       case EVENT_TRIGGER_TEST_FALSE:
-      case EVENT_TRIGGER_TEST_FALSE + 1:
-      case EVENT_TRIGGER_TEST_FALSE + 2:
+      case EVENT_TRIGGER_TEST_FALSE + EVENT_KIND_SECOND_MAP:
+      case EVENT_TRIGGER_TEST_FALSE + EVENT_KIND_BOTH_MAPS:
         FAIL_IF_WRONG_STATE(EVENT_TRIGGER_TEST_FALSE)
         test = trigger->u.test;
         FAIL_IF(test() != FALSE)
         break;
       case EVENT_TRIGGER_UNIT_TYPE:
-      case EVENT_TRIGGER_UNIT_TYPE + 1:
-      case EVENT_TRIGGER_UNIT_TYPE + 2:
+      case EVENT_TRIGGER_UNIT_TYPE + EVENT_KIND_SECOND_MAP:
+      case EVENT_TRIGGER_UNIT_TYPE + EVENT_KIND_BOTH_MAPS:
         FAIL_IF_WRONG_STATE(EVENT_TRIGGER_UNIT_TYPE)
         FAIL_IF(unit->type != trigger->param)
         break;
       case EVENT_TRIGGER_ID:
-      case EVENT_TRIGGER_ID + 1:
-      case EVENT_TRIGGER_ID + 2:
+      case EVENT_TRIGGER_ID + EVENT_KIND_SECOND_MAP:
+      case EVENT_TRIGGER_ID + EVENT_KIND_BOTH_MAPS:
         FAIL_IF_WRONG_STATE(EVENT_TRIGGER_ID)
         FAIL_IF(trigger->param != id)
         break;
       case EVENT_TRIGGER_FLAG_SET:
-      case EVENT_TRIGGER_FLAG_SET + 1:
-      case EVENT_TRIGGER_FLAG_SET + 2:
+      case EVENT_TRIGGER_FLAG_SET + EVENT_KIND_SECOND_MAP:
+      case EVENT_TRIGGER_FLAG_SET + EVENT_KIND_BOTH_MAPS:
         FAIL_IF_WRONG_STATE(EVENT_TRIGGER_FLAG_SET)
         FAIL_IF(!GameFlag_IsSet(trigger->param))
         break;
       case EVENT_TRIGGER_FLAG_CLEAR:
-      case EVENT_TRIGGER_FLAG_CLEAR + 1:
-      case EVENT_TRIGGER_FLAG_CLEAR + 2:
+      case EVENT_TRIGGER_FLAG_CLEAR + EVENT_KIND_SECOND_MAP:
+      case EVENT_TRIGGER_FLAG_CLEAR + EVENT_KIND_BOTH_MAPS:
         FAIL_IF_WRONG_STATE(EVENT_TRIGGER_FLAG_CLEAR)
         FAIL_IF(GameFlag_IsSet(trigger->param))
         break;

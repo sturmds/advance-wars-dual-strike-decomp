@@ -150,9 +150,10 @@ extern const EventScriptCommand* gEventScriptQueue[EVENT_SCRIPT_QUEUE_SIZE];
 
 /* One 8-byte entry of a map's trigger list. A list holds blocks of
  * conditions, each block closed by one EVENT_TRIGGER_RUN_* entry, and ends
- * with EVENT_TRIGGER_END. Condition kinds come in threes: the first applies
- * only on the map state at data_02183b08, the second only on the other one,
- * the third on both. */
+ * with EVENT_TRIGGER_END. Condition kinds come in threes: the kind applies
+ * only on the first map state (data_02183b08), kind +
+ * EVENT_KIND_SECOND_MAP only on the other one, kind +
+ * EVENT_KIND_BOTH_MAPS on both. */
 typedef struct EventTrigger {
   u8 kind;  /* EVENT_TRIGGER_* */
   u8 param; /* game flag, unit type, player slot or id, by kind */
@@ -177,6 +178,14 @@ typedef char EventTrigger_size_check[sizeof(EventTrigger) == 8 ? 1 : -1];
 #define EVENT_TRIGGER_RUN \
   23 /* run script once; param: game flag that marks it done, 0xff none */
 #define EVENT_TRIGGER_END 26
+
+#define EVENT_KIND_SECOND_MAP 1 /* added to a kind */
+#define EVENT_KIND_BOTH_MAPS 2  /* added to a kind */
+
+/* The second-map kinds that map scripts use. */
+#define EVENT_TRIGGER_TEST_TRUE_SECOND_MAP 16
+#define EVENT_TRIGGER_TEST_FALSE_SECOND_MAP 19
+#define EVENT_TRIGGER_RUN_SECOND_MAP 24
 
 #define EVENT_TRIGGER_NO_DAY 0xffff
 #define EVENT_TRIGGER_NO_FLAG 0xff
