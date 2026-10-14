@@ -2343,7 +2343,7 @@ main      data_0216dd74               0x0216dd74  0x10   {s32,s32,s32,u16*}
 main      data_0216dda4               0x0216dda4  0x55   u8
 main      data_0216ddfc               0x0216ddfc  0x74   u16
 main      data_0216de70               0x0216de70  0x86   u8
-main      data_0216def8               0x0216def8  0x4    u32
+main      data_0216def8               0x0216def8  0x4    u16
 main      data_0216defc               0x0216defc  0x4    u8
 main      data_0216df00               0x0216df00  0x5    u8
 main      data_0216df08               0x0216df08  0x5    u8
@@ -2424,7 +2424,7 @@ arm7      data_arm7_038077c0          0x038077c0  0x24   u8
 arm7      gCardNextPollFrame          0x038077e4  0x4    u32
 arm7      gCardFirstPoll              0x038077e8  0x4    u32
 arm7      gPowerLedLastState          0x038077ec  0x4    s32
-arm7      gPowerLedBlinkTable         0x038077f0  0x90   u32
+arm7      gPowerLedBlinkTable         0x038077f0  0x90   {u64,u16,u16}
 arm7      gCtrdgFirstPoll             0x03807880  0x4    u32
 arm7      gCtrdgNextPollFrame         0x03807884  0x4    u32
 ov003     Ov003_StartMessage          0x02364880  0x8    u8

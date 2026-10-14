@@ -1,5 +1,7 @@
 #include "types.h"
+#include "sdk/card_arm7.h"
 
-extern u32 data_arm7_03809860;
-
-void func_arm7_038032a4(u32 state) { data_arm7_03809860 = state; }
+/* Sets the number of bytes the next SPI transaction moves. */
+void func_arm7_038032a4(u32 byteCount) {
+  data_arm7_03809860.remaining = byteCount;
+}

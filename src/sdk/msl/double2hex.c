@@ -1,6 +1,7 @@
 #include "types.h"
 #include "sdk/msl.h"
 #include "sdk/msl_string.h"
+#include "sdk/msl_wchar.h"
 
 /*
  * Built with mwccarm 2.0 build 56 (config/AWRE/compilers.txt, issue 0061):
@@ -13,8 +14,8 @@
 
 extern char data_0216df30[]; /* "0x0p0" */
 #pragma explicit_zero_data on
-/* declared `const wchar_t data_0216def8[]` in __pformatter.c: type const wchar_t is not one the tool can write */
-u32 data_0216def8 = {
+/* L"", padded to a word */
+wchar_t data_0216def8[] = {
 #include "data/main/data_0216def8.inc.c"
 };
 /* "" */

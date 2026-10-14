@@ -32,11 +32,10 @@ OSThreadInfo OSi_ThreadInfo;
 /* the code that called this, made thread 0 */
 static OSThread OSi_LauncherThread;
 OSThread data_022a9984;
-/* The idle thread's stack; it grows down from data_022a9b74. */
+/* The idle thread's stack; it grows down from its end. */
 u8 data_022a9aac[IDLE_THREAD_STACK_BYTES];
 extern OSThread*
-    data_022a9938;          /* OSi_ThreadInfo.current, under its own symbol */
-extern u32 data_022a9b74[]; /* end of the idle thread's stack */
+    data_022a9938; /* OSi_ThreadInfo.current, under its own symbol */
 
 void OSi_IdleThreadProc(void* arg);
 void OS_CreateThread(OSThread* thread, void (*func)(void*), void* arg,
@@ -85,7 +84,8 @@ void OS_InitThread(void) {
   THREAD_TABLE_PTR_ARM9 = &OSi_ThreadInfo;
   OS_SetSwitchThreadCallback(NULL);
 
-  OS_CreateThread(&data_022a9984, OSi_IdleThreadProc, NULL, data_022a9b74,
+  OS_CreateThread(&data_022a9984, OSi_IdleThreadProc, NULL,
+                  &data_022a9aac[IDLE_THREAD_STACK_BYTES],
                   IDLE_THREAD_STACK_BYTES, OS_THREAD_PRIORITY_MAX);
   data_022a9984.priority = OS_THREAD_PRIORITY_MAX + 1;
   data_022a9984.state = OS_THREAD_STATE_READY;
