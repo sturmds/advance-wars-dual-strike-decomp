@@ -644,6 +644,262 @@ src/game/main/data_0215c004.c:
     complete
     .data       start:0x0215c004 end:0x0215c018
 
+src/game/main/copowers/copowers_data.c:
+    complete
+    .data       start:0x0215c018 end:0x0215c268
+
+src/game/main/copowers/copowers_data_0215c268.c:
+    complete
+    .data       start:0x0215c268 end:0x0215c2a0
+
+src/game/main/copowers/copowers_data_0215c2a0.c:
+    complete
+    .data       start:0x0215c2a0 end:0x0215c2bc
+
+src/game/main/data_0215c2bc.c:
+    complete
+    .data       start:0x0215c2bc end:0x0215c604
+
+src/game/main/data_0215c604.c:
+    complete
+    .data       start:0x0215c604 end:0x0215c63c
+
+src/game/main/data_0215c63c.c:
+    complete
+    .data       start:0x0215c63c end:0x0215c658
+
+src/game/main/data_0215c658.c:
+    complete
+    .data       start:0x0215c658 end:0x0215c68c
+
+src/game/main/copowers/copowers_data_0215c68c.c:
+    complete
+    .data       start:0x0215c68c end:0x0215c7f4
+
+src/game/main/copowers/copowers_data_0215c7f4.c:
+    complete
+    .data       start:0x0215c7f4 end:0x0215c810
+
+src/game/main/menus/menus_data_0215c810.c:
+    complete
+    .data       start:0x0215c810 end:0x0215ca08
+
+src/game/main/menus/menus_data_0215ca08.c:
+    complete
+    .data       start:0x0215ca08 end:0x0215ca3c
+
+src/game/main/menus/menus_data_0215ca3c.c:
+    complete
+    .data       start:0x0215ca3c end:0x0215ca70
+
+src/game/main/menus/menus_data_0215ca70.c:
+    complete
+    .data       start:0x0215ca70 end:0x0215ca88
+
+src/game/main/menus/menus_data_0215ca88.c:
+    complete
+    .data       start:0x0215ca88 end:0x0215d278
+
+src/game/main/menus/menus_data_0215d278.c:
+    complete
+    .data       start:0x0215d278 end:0x0215d2a8
+
+src/game/main/menus/menus_data_0215d2a8.c:
+    complete
+    .data       start:0x0215d2a8 end:0x0215d2c0
+
+src/game/main/menus/menus_data_0215d2c0.c:
+    complete
+    .data       start:0x0215d2c0 end:0x0215d478
+
+src/game/main/menus/menus_data_0215d478.c:
+    complete
+    .data       start:0x0215d478 end:0x0215d4ac
+
+src/game/main/data_0215d4ac.c:
+    complete
+    .data       start:0x0215d4ac end:0x0215f7c4
+
+src/game/main/menus/menus_data_0215f7c4.c:
+    complete
+    .data       start:0x0215f7c4 end:0x0215f7e0
+
+src/game/main/menus/menus_data_0215f7e0.c:
+    complete
+    .data       start:0x0215f7e0 end:0x0215f810
+
+src/game/main/link/link_data.c:
+    complete
+    .data       start:0x0215f810 end:0x0215f944
+
+src/game/main/menus/menus_data_0215f944.c:
+    complete
+    .data       start:0x0215f944 end:0x0215f978
+
+src/game/main/menus/menus_data_0215f978.c:
+    complete
+    .data       start:0x0215f978 end:0x0215fb10
+
+src/game/main/menus/menus_data_0215fb10.c:
+    complete
+    .data       start:0x0215fb10 end:0x0215fba0
+
+src/game/main/data_0215fba0.c:
+    complete
+    .data       start:0x0215fba0 end:0x0215fcd4
+
+src/game/main/data_0215fcd4.c:
+    complete
+    .data       start:0x0215fcd4 end:0x0215fcec
+
+src/game/main/data_0215fcec.c:
+    complete
+    .data       start:0x0215fcec end:0x0215fdb4
+
+src/game/main/data_0215fdb4.c:
+    complete
+    .data       start:0x0215fdb4 end:0x0215fe3c
+
+src/game/main/data_0215fe3c.c:
+    complete
+    .data       start:0x0215fe3c end:0x0215fe6c
+
+src/game/main/data_0215fe6c.c:
+    complete
+    .data       start:0x0215fe6c end:0x0215fe84
+
+src/game/main/data_0215fe84.c:
+    complete
+    .data       start:0x0215fe84 end:0x0215fed0
+
+src/game/main/link/link_data_0215fed0.c:
+    complete
+    .data       start:0x0215fed0 end:0x021600c4
+
+src/game/main/link/link_data_021600c4.c:
+    complete
+    .data       start:0x021600c4 end:0x021600f8
+
+src/game/main/link/link_data_021600f8.c:
+    complete
+    .data       start:0x021600f8 end:0x02160110
+
+src/game/main/link/link_data_02160110.c:
+    complete
+    .data       start:0x02160110 end:0x02160460
+
+src/game/main/link/link_data_02160460.c:
+    complete
+    .data       start:0x02160460 end:0x021604c4
+
+src/game/main/link/link_data_021604c4.c:
+    complete
+    .data       start:0x021604c4 end:0x021604dc
+
+src/game/main/data_021604dc.c:
+    complete
+    .data       start:0x021604dc end:0x02160608
+
+src/game/main/weather/weather_data.c:
+    complete
+    .data       start:0x02160608 end:0x0216061c
+
+src/game/main/data_0216061c.c:
+    complete
+    .data       start:0x0216061c end:0x0216069c
+
+src/game/main/link/link_data_0216069c.c:
+    complete
+    .data       start:0x0216069c end:0x021606a4
+
+src/game/main/data_021606a4.c:
+    complete
+    .data       start:0x021606a4 end:0x021606e4
+
+src/game/main/data_021606e4.c:
+    complete
+    .data       start:0x021606e4 end:0x0216072c
+
+src/game/main/graphics/graphics_data_0216072c.c:
+    complete
+    .data       start:0x0216072c end:0x0216074c
+
+src/game/main/data_0216074c.c:
+    complete
+    .data       start:0x0216074c end:0x02160a14
+
+src/game/main/data_02160a14.c:
+    complete
+    .data       start:0x02160a14 end:0x02160aa0
+
+src/game/main/link/link_data_02160aa0.c:
+    complete
+    .data       start:0x02160aa0 end:0x02160abc
+
+src/game/main/graphics/graphics_data_02160abc.c:
+    complete
+    .data       start:0x02160abc end:0x02160adc
+
+src/game/main/menus/menus_data_02160adc.c:
+    complete
+    .data       start:0x02160adc end:0x021612f8
+
+src/game/main/menus/menus_data_021612f8.c:
+    complete
+    .data       start:0x021612f8 end:0x02161310
+
+src/game/main/menus/menus_data_02161310.c:
+    complete
+    .data       start:0x02161310 end:0x02161318
+
+src/game/main/menus/menus_data_02161318.c:
+    complete
+    .data       start:0x02161318 end:0x0216133c
+
+src/game/main/menus/menus_data_0216133c.c:
+    complete
+    .data       start:0x0216133c end:0x02161388
+
+src/game/main/menus/menus_data_02161388.c:
+    complete
+    .data       start:0x02161388 end:0x021613a0
+
+src/game/main/menus/menus_data_021613a0.c:
+    complete
+    .data       start:0x021613a0 end:0x02161658
+
+src/game/main/menus/menus_data_02161658.c:
+    complete
+    .data       start:0x02161658 end:0x0216168c
+
+src/game/main/data_0216168c.c:
+    complete
+    .data       start:0x0216168c end:0x0216172c
+
+src/game/main/data_0216172c.c:
+    complete
+    .data       start:0x0216172c end:0x021617d4
+
+src/game/main/menus/menus_data_021617d4.c:
+    complete
+    .data       start:0x021617d4 end:0x021617ec
+
+src/game/main/menus/menus_data_021617ec.c:
+    complete
+    .data       start:0x021617ec end:0x021618b0
+
+src/game/main/data_021618b0.c:
+    complete
+    .data       start:0x021618b0 end:0x021619c0
+
+src/game/main/ai/ai_data.c:
+    complete
+    .data       start:0x021619c0 end:0x02161a64
+
+src/game/main/ai/ai_data_02161a64.c:
+    complete
+    .data       start:0x02161a64 end:0x02161b80
+
 src/sdk/svc/svc_is_debugger.c:
     complete
     .text       start:0x0200006c end:0x02000070

@@ -12,7 +12,7 @@ the rest is in dsd gap units, delinked from the ROM with no source file.
 
 | Code | Code decompiled | Code linked | Bytes decompiled | Bytes linked | Functions matched | Data linked | Data bytes linked |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| all | 100.0000% | 100.0000% | 1845012 / 1845012 | 1845012 / 1845012 | 8571 / 8571 | 81.8576% | 2567156 / 3136124 |
+| all | 100.0000% | 100.0000% | 1845012 / 1845012 | 1845012 / 1845012 | 8571 / 8571 | 83.9391% | 2632436 / 3136124 |
 
 ## By module
 
@@ -20,7 +20,7 @@ ARM9 is main, ITCM and the overlays; ARM7 is `arm7.bin`.
 
 | Module | Code decompiled | Code linked | Bytes decompiled | Bytes linked | Functions matched | Data linked | Data bytes linked |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| main | 100.0000% | 100.0000% | 1216386 / 1216386 | 1216386 / 1216386 | 6004 / 6004 | 92.7010% | 1472752 / 1588712 |
+| main | 100.0000% | 100.0000% | 1216386 / 1216386 | 1216386 / 1216386 | 6004 / 6004 | 96.8099% | 1538032 / 1588712 |
 | itcm | 100.0000% | 100.0000% | 24184 / 24184 | 24184 / 24184 | 117 / 117 | - | 0 / 0 |
 | dtcm | - | - | 0 / 0 | 0 / 0 | 0 / 0 | 100.0000% | 4832 / 4832 |
 | ov000 | 100.0000% | 100.0000% | 25300 / 25300 | 25300 / 25300 | 120 / 120 | 29.4757% | 189336 / 642344 |
@@ -38,9 +38,9 @@ Gap units are code and data that dsd delinks with no source file.
 
 | Kind | Code decompiled | Code linked | Bytes decompiled | Bytes linked | Functions matched | Data linked | Data bytes linked |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| game | 100.0000% | 100.0000% | 1556364 / 1556364 | 1556364 / 1556364 | 6749 / 6749 | 100.0000% | 2526964 / 2526964 |
+| game | 100.0000% | 100.0000% | 1556364 / 1556364 | 1556364 / 1556364 | 6749 / 6749 | 100.0000% | 2592244 / 2592244 |
 | SDK/library | 100.0000% | 100.0000% | 288648 / 288648 | 288648 / 288648 | 1822 / 1822 | 100.0000% | 40192 / 40192 |
-| gap units | - | - | 0 / 0 | 0 / 0 | 0 / 0 | 0.0000% | 0 / 568968 |
+| gap units | - | - | 0 / 0 | 0 / 0 | 0 / 0 | 0.0000% | 0 / 503688 |
 
 ## Below 100%
 
