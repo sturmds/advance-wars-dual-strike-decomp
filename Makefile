@@ -197,6 +197,7 @@ TEST_ENV = env $(foreach v,$(filter-out GIT_EDITOR,$(filter GIT_%,$(.VARIABLES))
 CACHED_TESTS := tools/tests/test_landing.py
 TESTS := \
 	tools/tests/test_propagate.py \
+	tools/tests/test_fn_rename.py \
 	tools/tests/test_loop_state.py \
 	tools/tests/test_fnshow.py \
 	tools/tests/test_fnadd.py \

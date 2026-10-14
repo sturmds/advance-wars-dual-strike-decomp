@@ -62,6 +62,7 @@ INTERESTING = ROOT / "config/AWRE/interesting.txt"
 PROVENANCE = ROOT / "config/AWRE/names-provenance.csv"
 COMPILERS = ROOT / "config/AWRE/compilers.txt"
 ASM_FUNCTIONS = ROOT / "config/AWRE/asm_functions.txt"
+DATA_INC = ROOT / "config/AWRE/data_inc.txt"
 OBJDIFF = ROOT / ".cache/tools/objdiff-cli/objdiff-cli"
 OBJDUMP = "arm-none-eabi-objdump"
 
@@ -541,6 +542,15 @@ def snake_case(name: str) -> str:
     return re.sub(r"([A-Z]+)([A-Z][a-z])", r"\1_\2", name).lower()
 
 
+def rename_data_inc(text: str, old: str, new: str) -> str:
+    """data_inc.txt with the row of symbol `old` naming `new`. The columns
+    after the name keep their place while the name fits its column."""
+    def row(m: re.Match) -> str:
+        width = len(m.group(2)) + len(m.group(3))
+        return m.group(1) + new + " " * max(1, width - len(new))
+    return re.sub(rf"^(\w+\s+)({re.escape(old)})(\s+)", row, text, flags=re.M)
+
+
 def cmd_rename(args) -> int:
     old, new = args.old, args.new
     if not re.fullmatch(r"[A-Za-z_]\w*", new):
@@ -596,6 +606,13 @@ def cmd_rename(args) -> int:
     if new_text != text:
         ASM_FUNCTIONS.write_text(new_text)
         print(f"updated {ASM_FUNCTIONS.relative_to(ROOT)}")
+    # A data object's values come from the inc.c file its data_inc.txt row
+    # names; the build writes the file under the new name.
+    text = DATA_INC.read_text()
+    new_text = rename_data_inc(text, old, new)
+    if new_text != text:
+        DATA_INC.write_text(new_text)
+        print(f"updated {DATA_INC.relative_to(ROOT)}")
     print(f"renamed {old} -> {new}")
     return 0
 
