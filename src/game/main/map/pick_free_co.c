@@ -7,7 +7,7 @@
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-u8 data_022a7a68[0x20];
+u8 data_022a7a68[CO_LIST_SIZE];
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 

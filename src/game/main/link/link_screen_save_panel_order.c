@@ -15,7 +15,7 @@ extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
-u8 gLinkSlotPlayers[4];
+u8 gLinkSlotPlayers[LINK_SLOT_COUNT];
 
 /* Step of the link screen's closing task script: stops the palette cycle on
  * the current screen and on screen data_027c0288.unk_04, then stores each

@@ -18,6 +18,9 @@
 
 /* Unk_02080440_48 from gameMode (0x58) up to sidePanelRight (0xbc), copied
  * as one block. */
+/* Bytes of gGameFlagsLow: one bit per flag id 0-31. */
+#define GAME_FLAGS_LOW_SIZE 4
+
 typedef struct BattleSaveSettings {
   union {
     u32 words[25];
@@ -86,11 +89,11 @@ typedef struct BattleSaveRecord {
   u8 unk_00; /* 0 or 1; nonzero sets the current state's unk_18 to 4 on load */
   u8 screen; /* data_027c0284 */
   u8 pad_02[2];
-  u32 rngState;                        /* gRngState */
-  u8 gameFlagsLow[4];                  /* gGameFlagsLow */
-  Unk_022977a4 eventScript;            /* data_022977a4 */
-  BattleSaveSkillSet lentSkills[4][2]; /* data_022a72c8 of players 1-4 */
-  BattleSaveBlock40 unk_98;            /* data_022a7b98 */
+  u32 rngState;                         /* gRngState */
+  u8 gameFlagsLow[GAME_FLAGS_LOW_SIZE]; /* gGameFlagsLow */
+  Unk_022977a4 eventScript;             /* data_022977a4 */
+  BattleSaveSkillSet lentSkills[4][2];  /* data_022a72c8 of players 1-4 */
+  BattleSaveBlock40 unk_98;             /* data_022a7b98 */
   BattleSaveMap
       maps[2]; /* current screen, then the second map of a two-map battle */
 } BattleSaveRecord;

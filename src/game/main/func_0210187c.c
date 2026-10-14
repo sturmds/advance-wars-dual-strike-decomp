@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/battle_save.h"
 
 extern u8 gGameFlagsLow[];
 

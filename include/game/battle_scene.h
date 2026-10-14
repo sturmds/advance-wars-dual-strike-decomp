@@ -20,12 +20,15 @@ typedef struct BattleSide {
 } BattleSide;
 
 /* The battle animation state that Ov002_gBattleScene points to. */
+/* The attacker and the defender. */
+#define BATTLE_SIDE_COUNT 2
+
 typedef struct BattleScene {
   u8 attackerSide; /* index into sides */
   u8 weather;      /* WEATHER_* */
   u8 tileset;      /* low 7 bits of Unk_02080440_1c4.tileset */
   u8 pad_03;       /* side 0's unit type, see BATTLE_SIDE_UNIT_TYPE */
-  BattleSide sides[2];
+  BattleSide sides[BATTLE_SIDE_COUNT];
 } BattleScene;
 
 /* The fields of a battle animation task that Battle_UpdateSway and

@@ -1169,7 +1169,7 @@ src/game/ov005/shop/ov005_get_shop_visits.c:
 src/game/ov005/shop/ov005_is_shop_script_running.c:
     complete
     .text       start:0x02367e9c end:0x02367eac
-    .bss        start:0x0236bbb4 end:0x0236bbc0
+    .bss        start:0x0236bbb4 end:0x0236bbb8
 
 src/game/ov005/func_ov005_02367eac.c:
     complete

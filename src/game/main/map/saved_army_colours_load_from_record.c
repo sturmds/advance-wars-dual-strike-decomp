@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/map_header.h"
 #include "game/design_map.h"
 
 extern u8 gSavedArmyColours[];

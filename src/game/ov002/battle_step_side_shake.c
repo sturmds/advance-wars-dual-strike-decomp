@@ -3,7 +3,7 @@
 #include "game/battle_side_shake.h"
 #include "game/screen_other_map.h"
 
-u8 data_ov002_0236bbdc[2];
+u8 data_ov002_0236bbdc[BATTLE_SIDE_COUNT];
 /* Vertical offsets of the shake, indexed by step; 0 ends it. Volatile only to
  * match: the original reads the entry again for the scroll write. */
 extern volatile s32 data_ov002_023604f4[];

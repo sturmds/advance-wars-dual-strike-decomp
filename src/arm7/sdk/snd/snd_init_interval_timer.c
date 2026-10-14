@@ -21,8 +21,8 @@ SndSeqCache data_arm7_03808074;
 static OSMessage data_arm7_03807ba4[SOUND_THREAD_MSG_SLOTS];
 OSAlarm data_arm7_03807bc4;  /* the interval alarm */
 OSThread data_arm7_03807bf0; /* the driver thread */
-/* 0x400 bytes no code names, before data_arm7_03808068 */
-u8 data_arm7_03807c68[0x400];
+/* The driver thread's stack; it grows down from data_arm7_03808068. */
+u8 data_arm7_03807c68[SOUND_THREAD_STACK_BYTES];
 
 void SND_InitIntervalTimer(void) {
   MsgQueue_SetUpRing_Arm7(&data_arm7_03807b90, data_arm7_03807ba4,

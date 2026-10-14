@@ -3,8 +3,6 @@
 #include "sdk/os.h"
 #include "sdk/wm.h"
 
-extern WMScanParam data_022acee0;
-
 void MI_DmaCopy16(u32 dmaNo, const void* src, void* dest, u32 size);
 void MIi_CpuCopy16(const void* src, void* dst, u32 size);
 void MbParent_ReportError(u16 apiid, int errcode);

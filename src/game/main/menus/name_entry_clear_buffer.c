@@ -2,8 +2,7 @@
 #pragma optimization_level 0
 
 #include "types.h"
-
-#define NAME_ENTRY_TEXT_SIZE 34
+#include "game/name_entry_work.h"
 
 void Mem_Zero32(u32 value, void* dst, u32 size);
 

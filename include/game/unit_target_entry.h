@@ -12,6 +12,11 @@ typedef struct UnitTargetEntry {
   s16 y;
 } UnitTargetEntry;
 
+/* Storage of the target lists: data_02168314 points data_022a6dcc (as
+ * UnitTargetEntry) and data_022a6dd0 (as AiReachTile) at it. */
+#define TARGET_LIST_ENTRIES 151
+extern UnitTargetEntry data_022a6dd8[TARGET_LIST_ENTRIES];
+
 extern int
     gFireTargetCount; /* entries in the fire target list (FireTargets_Add) */
 

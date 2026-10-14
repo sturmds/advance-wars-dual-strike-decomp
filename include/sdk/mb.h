@@ -622,4 +622,7 @@ extern DlPlayAdvertProgress data_022ace4c;
 extern void (*data_022ace48)(u32 ggid);
 extern DlPlayBeaconFrame data_022ace60;
 
+/* The child's scan request (MbChild_WmCallback). */
+extern WMScanParam data_022acee0;
+
 #endif

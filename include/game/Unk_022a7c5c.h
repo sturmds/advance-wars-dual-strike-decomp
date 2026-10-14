@@ -33,5 +33,6 @@ typedef struct Unk_022a7c5c {
 } Unk_022a7c5c;
 
 extern Unk_022a7c5c* data_022a7c5c;
+extern Unk_022a7c5c data_022a7cec; /* set up by Map3d_Init */
 
 #endif

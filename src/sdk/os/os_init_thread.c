@@ -32,7 +32,8 @@ OSThreadInfo OSi_ThreadInfo;
 /* the code that called this, made thread 0 */
 static OSThread OSi_LauncherThread;
 OSThread data_022a9984;
-u8 data_022a9aac[0xc8]; /* 0xc8 bytes no code names, before data_022a9b74 */
+/* The idle thread's stack; it grows down from data_022a9b74. */
+u8 data_022a9aac[IDLE_THREAD_STACK_BYTES];
 extern OSThread*
     data_022a9938;          /* OSi_ThreadInfo.current, under its own symbol */
 extern u32 data_022a9b74[]; /* end of the idle thread's stack */

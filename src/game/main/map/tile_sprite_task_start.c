@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/map_header.h"
 #include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/tile_sprite_task.h"
@@ -18,7 +19,7 @@ extern const TaskScriptCmd data_02166ed4[];
 extern const TaskScriptCmd data_02166efc[];
 extern CoSoundRow data_021536ec[];
 int data_022a6c78;
-u8 gSavedArmyColours[5];
+u8 gSavedArmyColours[ARMY_SLOT_COUNT];
 DesignMap data_022a6c84[0xc]; /* size: up to the next symbol */
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;

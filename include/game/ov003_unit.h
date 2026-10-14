@@ -230,6 +230,12 @@ extern Ov003Map* data_ov003_02364a88;
  * passed to func_02027aa0). */
 #define OV003_UNK_1D7(state) (((u8*)&(state)->unk_1d6)[1])
 
+/* Entries of the tile code table data_ov003_02365d10, which
+ * Ov003_LoadGraphics unpacks from a file: per tile code, bits 5-7 the row
+ * and bits 0-4 the terrain. */
+#define OV003_TILE_CODE_COUNT 0x400
+extern u8 data_ov003_02365d10[OV003_TILE_CODE_COUNT];
+
 extern Ov003Map data_ov003_02368110; /* what data_ov003_02364a88 points to */
 
 extern Ov003State data_ov003_02365b14; /* what data_ov003_02364928 points to */

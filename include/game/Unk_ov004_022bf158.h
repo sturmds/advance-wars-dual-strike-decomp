@@ -6,6 +6,12 @@
 
 #define OV004_SLOT_COUNT 32        /* task slots in the state */
 #define OV004_TIMED_EVENT_COUNT 40 /* flags in timedEventFired */
+/* Bytes of the three work buffers Ov004_AllocState hands out: the resource
+ * buffer (buffer), the BG3 picture buffer (data_ov004_022bf150) and the tile
+ * map (tileMap). */
+#define OV004_BUFFER_SIZE 0x80000
+#define OV004_BG3_BUFFER_SIZE 0x10000
+#define OV004_TILE_MAP_SIZE 0x4800
 #define OV004_EASE_COUNT \
   8 /* eased values from unk_8f8 on (unk_8f8 to unk_914) */
 #define OV004_EASE_VALUES(state) (&(state)->unk_8f8)

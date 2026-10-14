@@ -56,9 +56,14 @@ typedef struct Unk_0229cb4c {
   u8 writeIndex;
 } Unk_0229cb4c;
 
+/* Peers of a link, aids 1-7. */
+#define LINK_PEER_COUNT 7
 /* Last sequence number received from each peer, 0x80 before the first. */
 extern u8 gLinkLastSequence[];
-/* The 8-byte block Link_PollPeerReply sends through data sharing. */
+/* The block Link_PollPeerReply sends through data sharing. */
+#define LINK_SHARED_BLOCK_SIZE 8
 extern u8 data_0229ca48[];
+/* The packet Link_ReadUnflaggedPacket took from the queue. */
+extern LinkPacket data_0229ca50;
 
 #endif

@@ -6,7 +6,7 @@ extern int data_022a7e68;
 extern void* data_022a7e6c;
 /* also declared in src/game/main/wireless_host_fill_info.c */
 WirelessHostUser gWirelessHostUser;
-u8 data_022a7e88[0x1c];
+WirelessHostGame data_022a7e88;
 
 #define VBLANK_COUNT_ADDR 0x027ffc3c
 

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/map_unit.h"
 #include "game/ai_unit_action.h"
 #include "game/ai_site.h"
 #include "game/ai_site_group.h"
@@ -16,10 +17,10 @@ int (*gAiUnloadScore)(void);
 AiTurnState data_0229e178;
 AiBuildState data_0229e184;
 UnitAction gUnitAction;
-u8 gAiTransportsSentToUnit[64];
+u8 gAiTransportsSentToUnit[MAP_UNITS_PER_PLAYER];
 /* sort key of each gAiQueue entry, same index; size: up to the next symbol */
-u8 gAiQueueSortKeys[0x44];
-u8 gAiQueue[0x44]; /* size: up to the next symbol */
+u8 gAiQueueSortKeys[AI_QUEUE_SIZE];
+u8 gAiQueue[AI_QUEUE_SIZE];
 /* per unit type: build score; 0: not a candidate; size: up to the next symbol */
 u32 gAiBuildScores[0x1b];
 AiProfile data_0229e2e4;

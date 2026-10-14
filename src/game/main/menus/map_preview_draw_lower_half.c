@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/map_header.h"
 #include "game/map_data.h"
 #include "game/terrain.h"
 #include "game/Unk_02080440.h"

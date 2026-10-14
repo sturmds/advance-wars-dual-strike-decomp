@@ -27,13 +27,16 @@ extern u16 Ov000_gPlayerFirstUnitSlot[];
 #define MAP_UNIT_NO_TARGET 63
 
 /* A unit on the map, 0xe bytes. */
+/* Units a transport carries at most. */
+#define MAP_UNIT_CARGO_COUNT 2
+
 typedef struct MapUnit {
   u8 type;  /* enum UnitType */
   u8 flags; /* MAP_UNIT_* */
   u8 x;
   u8 y;
-  u8 cargo[2]; /* slot of each carried unit */
-  u16 hp : 7;  /* 100 = full */
+  u8 cargo[MAP_UNIT_CARGO_COUNT]; /* slot of each carried unit */
+  u16 hp : 7;                     /* 100 = full */
   u16 ammo : 4;
   u16 captureProgress : 5;
   u8 fuel : 7;

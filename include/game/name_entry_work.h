@@ -7,6 +7,8 @@ struct SpriteAnim;
 
 #define NAME_ENTRY_KEY_COUNT \
   75 /* cursor values from this on select a control key */
+/* Bytes of the name being entered (gNameEntryText, gNameEntryStartText). */
+#define NAME_ENTRY_TEXT_SIZE 34
 #define NAME_ENTRY_CONTROL_KEY_COUNT 3 /* kept in unk_4b8, right after keys */
 #define NAME_ENTRY_KEY_BUTTON_ID 128   /* menu button id of key 0 */
 

@@ -1,7 +1,8 @@
 #include "types.h"
+#include "game/battle_save.h"
 #include "game/save_progress.h"
 
-u8 gGameFlagsLow[4];
+u8 gGameFlagsLow[GAME_FLAGS_LOW_SIZE];
 SaveGameFlagsMid gGameFlagsMid;
 SaveGameFlagsMid gGameFlagsMidBackup;
 void DesignMap_RefreshAllRows(void);

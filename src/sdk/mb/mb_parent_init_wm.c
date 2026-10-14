@@ -6,8 +6,7 @@ u16 data_022aced0;
 void* data_022acedc;
 DlPlayHostLinkArea* data_022aced4;
 DlPlayStationArea* data_022aced8;
-/* declared in src/game/main/func_0211bfb8.c, with a type no header defines */
-u8 data_022acee0[0x8];
+WMScanParam data_022acee0;
 
 void func_0211bfb8(int);
 void MbParent_SetIndAndLifeTime(void);

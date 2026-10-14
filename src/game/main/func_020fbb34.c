@@ -11,7 +11,7 @@ int data_022a7c60;
 u16 data_022a7c64[4];
 MtxFx44 data_022a7cac;
 MtxFx44 data_022a7c6c;
-u8 data_022a7cec[0x70]; /* size: up to the next symbol */
+Unk_022a7c5c data_022a7cec;
 Camera data_022a7d5c;
 
 void func_020fbb34(u32 state) { data_022a7c58 = state; }

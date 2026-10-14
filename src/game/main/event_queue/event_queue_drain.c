@@ -1,13 +1,13 @@
 #include "game/event_queue.h"
 #include "game/link_menu_state.h"
 
-static u8 gEventQueueBatch[0x8]; /* size: up to the next symbol */
+static u8 gEventQueueBatch[2 * EVENT_BATCH_SIZE];
 LinkMenuState data_0229d88c;
 EventQueue gEventQueue;
 
 void func_0207b4b0(void* events);
 
-/* Moves up to 4 events into gEventQueueBatch (id, arg pairs), pads the rest
+/* Moves up to EVENT_BATCH_SIZE events into gEventQueueBatch (id, arg pairs), pads the rest
  * with id 0 and hands them on. Needed to match: writeIndex is read in the loop
  * condition, not kept in a local. */
 void EventQueue_Drain(void) {
@@ -22,11 +22,11 @@ void EventQueue_Drain(void) {
       gEventQueue.readIndex = 0;
     }
     count++;
-    if (count == 4) {
+    if (count == EVENT_BATCH_SIZE) {
       break;
     }
   }
-  while (count < 4) {
+  while (count < EVENT_BATCH_SIZE) {
     gEventQueueBatch[count * 2] = 0;
     count++;
   }

@@ -193,6 +193,9 @@ typedef struct GfxLayer {
   u8 pad_11[0x14 - 0x11];
 } GfxLayer;
 
+/* Bytes of a screen's BG and OBJ palette buffer (Unk_027c0280.paletteBuffer). */
+#define PALETTE_BUFFER_SIZE 0x400
+
 /* Bytes in the map buffer (GfxLayer.map) of layers 0-2 of a screen, and of
  * layer 3. Screens_InitContexts gives each screen four, in layer order
  * (screen_contexts.h). */

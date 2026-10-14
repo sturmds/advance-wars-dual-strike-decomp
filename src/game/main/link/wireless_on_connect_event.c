@@ -1,10 +1,10 @@
 #include "types.h"
+#include "game/wireless.h"
 #include "game/Unk_0215fe84.h"
 #include "sdk/wm.h"
 
 extern u32 data_0229c880;
 extern u32 gWirelessState;
-extern u8 data_0229c8f8[];
 
 int func_02079180(void);
 void Wireless_SetPlayerName(u8 aid, u8* ssid);

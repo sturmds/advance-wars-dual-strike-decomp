@@ -99,7 +99,10 @@ extern AiTurnState* gAiTurnState;
 #define AI_TARGET_FLAGS ((AiTargetFlags*)&gAiTurnState->flags)
 extern u8* gAiQueueCursor;            /* write position in gAiQueue */
 extern void (*gAiQueueRoutine)(void); /* run on each entry */
-extern u8 gAiQueue[];
+/* Bytes in gAiQueue and gAiQueueSortKeys: unit slots, then the 0 that ends
+ * the queue. */
+#define AI_QUEUE_SIZE 0x44
+extern u8 gAiQueue[AI_QUEUE_SIZE];
 extern u8 gAiQueueSortKeys[]; /* sort key of each gAiQueue entry, same index */
 
 /* Each sea transport routine sets the test and the score that

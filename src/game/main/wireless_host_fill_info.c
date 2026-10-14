@@ -2,7 +2,6 @@
 #include "game/wireless_host.h"
 
 extern WirelessHostUser gWirelessHostUser;
-extern WirelessHostGame data_022a7e88;
 extern const char data_0216a5b8[];
 extern const char data_0216a5d0[];
 extern const char data_0216a604[];

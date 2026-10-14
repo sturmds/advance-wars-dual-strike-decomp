@@ -29,4 +29,6 @@ typedef struct WirelessHostGame {
   u8 count; /* 8 */
 } WirelessHostGame;
 
+extern WirelessHostGame data_022a7e88;
+
 #endif

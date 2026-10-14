@@ -683,4 +683,3 @@ data_ov005_0236bbac kind:bss(size=0x4) addr:0x0236bbac
 data_ov005_0236bbb0 kind:bss(size=0x4) addr:0x0236bbb0
 data_ov005_0236bbb4 kind:bss(size=0x4) addr:0x0236bbb4
 Ov005_DestroyEntryTasks kind:function(arm,size=0x4c) addr:0x0235abfc
-data_ov005_0236bbb8 kind:bss(size=0x8) addr:0x0236bbb8

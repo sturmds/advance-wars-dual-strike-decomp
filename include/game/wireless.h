@@ -13,6 +13,14 @@ extern s32 data_0229c89c;               /* MP send buffer size, at least 0x60 */
 #define WIRELESS_MP_RECEIVE_SIZE 0x940  /* Wireless_Init sets data_0229c8a4 */
 extern s32 data_0229c8a4;               /* MP receive buffer size */
 extern struct WMBssDesc* gWirelessScanBuffer;
-extern struct WMBssDesc* gWirelessParents[]; /* parents found by the scan */
+/* Bytes of the child SSID sent with a connect request; it holds this
+ * console's nickname (Wireless_ResetState). */
+#define WIRELESS_SSID_SIZE 24
+extern u8 data_0229c8f8[WIRELESS_SSID_SIZE];
+
+/* Parents a scan keeps, and their link levels. */
+#define WIRELESS_PARENT_COUNT 4
+extern struct WMBssDesc* gWirelessParents[];
+extern u8 gWirelessParentLinkLevels[WIRELESS_PARENT_COUNT];
 
 #endif

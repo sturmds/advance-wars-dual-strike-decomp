@@ -19,8 +19,7 @@ static u8 data_ov003_02364a78[] = {
 /* The look-at target; never written, so the origin. */
 static VecFx32 data_ov003_02365cf4;
 Ov003Fx data_ov003_02365d00;
-/* per tile code: bits 5-7 row, bits 0-4 terrain; size: up to the next symbol */
-u8 data_ov003_02365d10[0x400];
+u8 data_ov003_02365d10[OV003_TILE_CODE_COUNT];
 u16 data_ov003_02367110[512][4]; /* layer 2 and 3 map entries per 16x16 tile */
 u16 data_ov003_02366110[512][4]; /* layer 1 map entries per 16x16 tile */
 Ov003Map data_ov003_02368110;

@@ -1,9 +1,9 @@
 #include "types.h"
+#include "game/wireless.h"
 #include "game/Unk_0215fe84.h"
 #include "sdk/wm.h"
 
 extern WMBssDesc* data_0229c888;
-extern u8 data_0229c8f8[];
 
 void Wireless_OnConnectEvent(void* event);
 void Wireless_SetPlayerName(u8 aid, u8* ssid);

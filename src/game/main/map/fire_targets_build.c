@@ -10,7 +10,7 @@ int gFireTargetCount;
 int data_022a6dd4;
 UnitTargetEntry* data_022a6dcc;
 AiReachTile* data_022a6dd0;
-u8 data_022a6dd8[0x4b8]; /* size: up to the next symbol */
+UnitTargetEntry data_022a6dd8[TARGET_LIST_ENTRIES];
 
 void FireTargets_Clear(void);
 /* Defined with u16 parameters. Declared here with int x, y and slot because

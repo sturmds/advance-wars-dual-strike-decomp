@@ -3,8 +3,6 @@
 
 /* OS_CreateThread and OS_WakeupThreadDirect, by their arguments and the ARM9 copies. */
 
-#define SOUND_THREAD_STACK_BYTES 0x400
-
 extern OSThread data_arm7_03807bf0; /* the driver thread */
 
 void SND_CreateThread(u32 priority) {

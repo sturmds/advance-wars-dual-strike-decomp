@@ -83,8 +83,11 @@ typedef struct SndAlarm {
 #define SND_ALARM_COUNT 8
 
 /* Command queue state of the sound driver. The roles are read from the code. */
-extern int data_022a9c50;            /* SND_Init has run */
-extern OSMutex data_022a9c54;        /* lock around the command lists */
+extern int data_022a9c50;     /* SND_Init has run */
+extern OSMutex data_022a9c54; /* lock around the command lists */
+
+/* Bytes of the ARM7 sound driver thread's stack (data_arm7_03807c68). */
+#define SOUND_THREAD_STACK_BYTES 0x400
 extern SndCommand* data_022a9c68;    /* free list head */
 #define SOUND_COMMAND_POOL_COUNT 256 /* commands in data_022a9f40 */
 

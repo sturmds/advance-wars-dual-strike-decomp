@@ -3,7 +3,7 @@
 #include "game/link_buffers.h"
 
 extern Unk_0215fe8c* data_0215fe8c;
-u8 data_0229ca48[8];
+u8 data_0229ca48[LINK_SHARED_BLOCK_SIZE];
 
 int Wireless_StepDataSharing(void* key, u16* out);
 u16 Wireless_GetChildAids(void);

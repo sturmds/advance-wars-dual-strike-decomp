@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/map_unit.h"
 
 extern u8 gAiTransportsSentToUnit[];
 

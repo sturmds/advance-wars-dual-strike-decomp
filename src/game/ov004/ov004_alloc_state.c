@@ -9,9 +9,9 @@ Unk_ov004_022bf158* data_ov004_022bf158;
 void* data_ov004_022bf150;
 /* also declared in src/game/ov004/ov004_init_tile_map.c */
 void* data_ov004_022bf154;
-static u8 data_ov004_022bf15c[0x4800];  /* size: up to the next symbol */
-static u8 data_ov004_022c395c[0x10000]; /* size: up to the next symbol */
-static u8 data_ov004_022d395c[0x80004]; /* size: up to the next symbol */
+static u8 data_ov004_022bf15c[OV004_TILE_MAP_SIZE];
+static u8 data_ov004_022c395c[OV004_BG3_BUFFER_SIZE];
+static u8 data_ov004_022d395c[OV004_BUFFER_SIZE];
 
 void* Mem_Alloc(u32 size);
 

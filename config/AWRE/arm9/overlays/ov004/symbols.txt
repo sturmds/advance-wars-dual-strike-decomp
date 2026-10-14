@@ -450,5 +450,5 @@ data_ov004_022bf154 kind:bss(size=0x4) addr:0x022bf154
 data_ov004_022bf158 kind:bss(size=0x4) addr:0x022bf158
 data_ov004_022bf15c kind:bss(size=0x4800) addr:0x022bf15c
 data_ov004_022c395c kind:bss(size=0x10000) addr:0x022c395c
-data_ov004_022d395c kind:bss(size=0x80004) addr:0x022d395c
+data_ov004_022d395c kind:bss(size=0x80000) addr:0x022d395c
 data_ov004_022befb8 kind:data(byte[4]) addr:0x022befb8

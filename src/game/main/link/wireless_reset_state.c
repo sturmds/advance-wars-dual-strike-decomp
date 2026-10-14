@@ -1,8 +1,7 @@
 #include "types.h"
+#include "game/wireless.h"
 #include "game/Unk_0215fe84.h"
 #include "game/Unk_0229c910.h"
-
-extern u8 data_0229c8f8[];
 
 void OwnerInfo_CopyNickname(void* buffer);
 void Wireless_ClearPlayerName(u8 aid);

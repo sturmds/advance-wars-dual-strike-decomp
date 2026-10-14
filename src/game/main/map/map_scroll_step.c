@@ -8,7 +8,7 @@ s8 ScriptSlot_StopSlot(ScriptSlot* target);
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-u8 gMapScrollSpeeds[0x80];
+u8 gMapScrollSpeeds[MAP_SCROLL_STEP_COUNT];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 

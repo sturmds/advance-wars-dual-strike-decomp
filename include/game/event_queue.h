@@ -4,6 +4,8 @@
 #include "types.h"
 
 #define EVENT_QUEUE_SIZE 16
+/* Events EventQueue_Drain hands on at a time, as (id, arg) byte pairs. */
+#define EVENT_BATCH_SIZE 4
 
 /* Link messages of the map select menu. */
 #define EVENT_MAP_SELECT_PREV_LIST 1

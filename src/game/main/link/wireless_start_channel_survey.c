@@ -1,11 +1,12 @@
 #include "types.h"
+#include "game/wireless.h"
 #include "game/Unk_0215fe88.h"
 #include "game/Unk_0229c960.h"
 #include "sdk/wm.h"
 
 extern Unk_0229c960* data_0229c8a0;
 static u16 gWirelessTgidCounter;
-u8 gWirelessParentLinkLevels[4];
+u8 gWirelessParentLinkLevels[WIRELESS_PARENT_COUNT];
 u32 data_0229c880;
 void* data_0229c884;
 WMBssDesc* data_0229c888;

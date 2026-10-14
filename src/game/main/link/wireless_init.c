@@ -24,7 +24,7 @@ u16 gWirelessParentTimers[4];
 Unk_0215fe88 data_0229c8c0;
 WMBssDesc* gWirelessParents[4];
 Unk_0229c910 data_0229c910;
-u8 data_0229c8f8[0x18]; /* size: up to the next symbol */
+u8 data_0229c8f8[WIRELESS_SSID_SIZE];
 /* size: up to the next symbol; aligned to 32: no symbol covers the bytes before it */
 __attribute__((aligned(32))) u8 data_0229c8e0[0x18];
 Unk_0215fe84 data_0229c928;
