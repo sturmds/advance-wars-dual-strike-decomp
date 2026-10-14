@@ -51,8 +51,7 @@ TaskScriptCmd data_0215c028[] = {
 TaskScriptCmd data_0215c038[] = {
 #include "data/main/data_0215c038.inc.c"
 };
-/* declared `u8 data_0215c0a0[]` in co_power_screen_set_up.c: relocation at data_0215c0a0+0xc is not on a 4-byte field */
-u32 data_0215c0a0[] = {
+GfxLayer data_0215c0a0[] = {
 #include "data/main/data_0215c0a0.inc.c"
 };
 GfxLayer data_0215c050[] = {

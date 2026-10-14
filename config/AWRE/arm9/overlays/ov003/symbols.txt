@@ -255,8 +255,7 @@ data_ov003_02364a84 kind:data(byte[4]) addr:0x02364a84
 data_ov003_02364a88 kind:data(byte[4]) addr:0x02364a88
 data_ov003_02364a8c kind:data(byte[32]) addr:0x02364a8c
 data_ov003_02364aac kind:data(byte[32]) addr:0x02364aac
-data_ov003_02364acc kind:data(byte[36]) addr:0x02364acc
-data_ov003_02364af0 kind:data(byte[36]) addr:0x02364af0
+data_ov003_02364acc kind:data(byte[72]) addr:0x02364acc
 data_ov003_02364b14 kind:data(byte[16]) addr:0x02364b14
 data_ov003_02364b24 kind:data(byte[32]) addr:0x02364b24
 data_ov003_02364b44 kind:data(byte[7]) addr:0x02364b44

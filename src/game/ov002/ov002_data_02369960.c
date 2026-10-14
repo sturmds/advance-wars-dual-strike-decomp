@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/battle_gfx.h"
 
 extern u8 data_ov002_02360c30[];
 extern u8 data_ov002_02360c60[];
@@ -80,61 +81,61 @@ extern u8 data_ov002_02369870[];
 extern u8 data_ov002_02369884[];
 extern u8 data_ov002_02369898[];
 
-u32 data_ov002_02369a08[] = {
+BattleGfxFile data_ov002_02369a08[] = {
 #include "data/ov002/data_ov002_02369a08.inc.c"
 };
-u32 data_ov002_023699c0[] = {
+BattleGfxFile data_ov002_023699c0[] = {
 #include "data/ov002/data_ov002_023699c0.inc.c"
 };
-u32 data_ov002_02369a14[] = {
+BattleGfxFile data_ov002_02369a14[] = {
 #include "data/ov002/data_ov002_02369a14.inc.c"
 };
-u32 data_ov002_023699d8[] = {
+BattleGfxFile data_ov002_023699d8[] = {
 #include "data/ov002/data_ov002_023699d8.inc.c"
 };
-u32 data_ov002_023699e4[] = {
+BattleGfxFile data_ov002_023699e4[] = {
 #include "data/ov002/data_ov002_023699e4.inc.c"
 };
-u32 data_ov002_023699a8[] = {
+BattleGfxFile data_ov002_023699a8[] = {
 #include "data/ov002/data_ov002_023699a8.inc.c"
 };
-u32 data_ov002_02369a20[] = {
+BattleGfxFile data_ov002_02369a20[] = {
 #include "data/ov002/data_ov002_02369a20.inc.c"
 };
-u32 data_ov002_023699b4[] = {
+BattleGfxFile data_ov002_023699b4[] = {
 #include "data/ov002/data_ov002_023699b4.inc.c"
 };
-u32 data_ov002_02369978[] = {
+BattleGfxFile data_ov002_02369978[] = {
 #include "data/ov002/data_ov002_02369978.inc.c"
 };
-u32 data_ov002_023699cc[] = {
+BattleGfxFile data_ov002_023699cc[] = {
 #include "data/ov002/data_ov002_023699cc.inc.c"
 };
-u32 data_ov002_02369984[] = {
+BattleGfxFile data_ov002_02369984[] = {
 #include "data/ov002/data_ov002_02369984.inc.c"
 };
-u32 data_ov002_02369960[] = {
+BattleGfxFile data_ov002_02369960[] = {
 #include "data/ov002/data_ov002_02369960.inc.c"
 };
-u32 data_ov002_02369990[] = {
+BattleGfxFile data_ov002_02369990[] = {
 #include "data/ov002/data_ov002_02369990.inc.c"
 };
-u32 data_ov002_023699f0[] = {
+BattleGfxFile data_ov002_023699f0[] = {
 #include "data/ov002/data_ov002_023699f0.inc.c"
 };
-u32 data_ov002_023699fc[] = {
+BattleGfxFile data_ov002_023699fc[] = {
 #include "data/ov002/data_ov002_023699fc.inc.c"
 };
-u32 data_ov002_0236999c[] = {
+BattleGfxFile data_ov002_0236999c[] = {
 #include "data/ov002/data_ov002_0236999c.inc.c"
 };
-u32 data_ov002_0236996c[] = {
+BattleGfxFile data_ov002_0236996c[] = {
 #include "data/ov002/data_ov002_0236996c.inc.c"
 };
-u32 data_ov002_02369a38[] = {
+BattleGfxFile data_ov002_02369a38[] = {
 #include "data/ov002/data_ov002_02369a38.inc.c"
 };
-u32 data_ov002_02369a2c[] = {
+BattleGfxFile data_ov002_02369a2c[] = {
 #include "data/ov002/data_ov002_02369a2c.inc.c"
 };
 void* data_ov002_02369ad0[] = {&data_ov002_023697c0, &data_ov002_0236982c,

@@ -146,8 +146,7 @@ InfoPanelLayout data_021663f4 = {
 TaskScriptCmd data_02166410[] = {
 #include "data/main/data_02166410.inc.c"
 };
-/* declared `u8 data_02166430[]` in info_panel_draw.c: relocation at data_02166430+0x4 is not on a 4-byte field */
-u32 data_02166430[] = {
+TaskScriptCmd data_02166430[] = {
 #include "data/main/data_02166430.inc.c"
 };
 ScriptCommand data_02166450[] = {

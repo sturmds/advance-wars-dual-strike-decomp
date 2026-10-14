@@ -92,13 +92,13 @@ ScriptCommand gMapScrollScript[] = {
 u16 gMountainCellVariants[] = {
 #include "data/main/gMountainCellVariants.inc.c"
 };
-u32 data_02169dd8[] = {
+TaskScriptCmd data_02169dd8[] = {
 #include "data/main/data_02169dd8.inc.c"
 };
 TaskScriptCmd data_02169df8[] = {
 #include "data/main/data_02169df8.inc.c"
 };
-u32 data_02169e18[] = {
+TaskScriptCmd data_02169e18[] = {
 #include "data/main/data_02169e18.inc.c"
 };
 /* tile map offset of each map tile column: two 32x32 screen blocks */

@@ -51,11 +51,3 @@
 0x023659f0  data_ov003_023659d4, u16 pairs
 0x023659f8  data_ov003_023659d4, u16 pairs
 0x02367e60  data_ov002_02367e5c, fighter script bytes repeating every 5 words
-0x0236aab8  data_ov002_0236aa90+0x28, BattleSideWeapon's u8 bit fields after gfx
-0x0236aae4  data_ov002_0236aabc+0x28, BattleSideWeapon's u8 bit fields
-0x0236ac44  data_ov002_0236ac1c+0x28, BattleSideWeapon's u8 bit fields
-0x0236ac70  data_ov002_0236ac48+0x28, BattleSideWeapon's u8 bit fields
-0x0236ac9c  data_ov002_0236ac74+0x28, BattleSideWeapon's u8 bit fields
-0x0236ad78  data_ov002_0236ad50+0x28, BattleSideWeapon's u8 bit fields
-0x0236ada4  data_ov002_0236ad7c+0x28, BattleSideWeapon's u8 bit fields
-0x0236ae80  data_ov002_0236ae58+0x28, BattleSideWeapon's u8 bit fields

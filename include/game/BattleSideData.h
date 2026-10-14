@@ -58,6 +58,9 @@ typedef struct BattleSideWeapon {
   u8 unk_2b; /* index argument of BattleSpriteTask_Create, like spriteIndex */
 } BattleSideWeapon;
 
+typedef char
+    BattleSideWeapon_size_check[sizeof(BattleSideWeapon) == 0x2c ? 1 : -1];
+
 /* What BattleScreenWork.unk_27c points to, one per side of the battle in ov002. */
 typedef struct BattleSideData {
   const BattleSideWeapon* weapons[2]; /* by BattleSide.usesSecondary */

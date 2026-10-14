@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/menu_button.h"
 
 void PopupMenuButton_Update(void);
@@ -30,8 +31,7 @@ u8 data_0215875c[] = {
 MenuButtonTemplate data_02158780 = {
 #include "data/main/data_02158780.inc.c"
 };
-/* declared `u8 data_021587a8[]` in func_0201e954.c: relocation at data_021587a8+0xc is not on a 4-byte field */
-u32 data_021587a8[] = {
+TaskScriptCmd data_021587a8[] = {
 #include "data/main/data_021587a8.inc.c"
 };
 
