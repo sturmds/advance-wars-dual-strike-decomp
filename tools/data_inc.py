@@ -36,7 +36,8 @@ A row of data_inc.txt: module, symbol, address, size in bytes, element type.
   does, and as a number otherwise; the C file includes that header.
   `u8:4` is a bit field of 4 bits: as mwcc does, bit fields of one type
   fill a unit of that type from the low end, and one that does not fit
-  starts the next unit.
+  starts the next unit. `u32:0` ends the unit and takes no value, as in C;
+  it stands where one struct of bit fields ends and the next begins.
 
 A word that the module's relocs.txt says points somewhere is written as the
 symbol at its target (`to` plus `add`), `(u32)&Name` or `(void*)&Name`, so a
@@ -107,6 +108,11 @@ class Row:
                 sys.exit(f"error: {where}: field {text!r}: only a number field takes constant names")
             count = int(m.group(4)) if m.group(4) else 0
             bits = int(m.group(3)) if m.group(3) else 0
+            if m.group(3) == "0":
+                if m.group(1) not in SIZES or count:
+                    sys.exit(f"error: {where}: bad bit field {text!r}")
+                unit = None
+                continue
             if bits:
                 # mwcc fills a bit field unit from the low end and opens a
                 # new one when the next field of the same type does not fit

@@ -113,6 +113,11 @@ expect("render: bit fields from the low end, signed ones too",
 rom = FakeRom(bytes([0x0f, 0x2a]), {}, {})
 expect("render: a bit field that does not fit opens a new unit",
        body(data_inc.render(data_inc.Row("itcm gS 0x1000 2 {u8:4,u8:6}", "t"), rom)), "0xf, 0x2a,\n")
+rom = FakeRom(words(0x0b, 0x05), {}, {})
+expect("render: a :0 field ends the unit and takes no value",
+       body(data_inc.render(data_inc.Row("itcm gS 0x1000 8 {u32:2,u32:3,u32:0,u32:3}", "t"), rom)),
+       "0x3, 0x2, 0x5,\n")
+stops("row: a :0 field with a count", lambda: data_inc.Row("itcm gS 0x1000 4 {u32:0[2],u32}", "t"))
 stops("row: bit field wider than its type", lambda: data_inc.Row("itcm gS 0x1000 1 {u8:9}", "t"))
 stops("row: struct field not aligned", lambda: data_inc.Row("itcm gS 0x1000 8 {u8,u32,u8[3]}", "t"))
 stops("row: size not whole structs", lambda: data_inc.Row("itcm gS 0x1000 6 {u32}", "t"))
