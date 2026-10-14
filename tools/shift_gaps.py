@@ -17,8 +17,8 @@ code (src/game/, include/game/) and SDK/library code (everything else):
 
   alloc     Mem_Alloc with a literal size
   copy      a copy, fill or clear call (Mem_Copy*, Mem_Fill*, the SDK's
-            MI CPU and DMA functions, memcpy, memset) whose last argument,
-            the length, is a literal
+            MI CPU and DMA functions, memcpy, memset) whose length (the last
+            argument; the third of Mem_CopyUnits) is a literal
   offset    a byte offset into an object: `(u8 *)x + 0x10`, `(char *)x + 3`
   loop      a `for` loop whose condition compares with a literal other than 0
   array_u32, array_char, array_other
@@ -65,6 +65,9 @@ NUM = r"(?:0x[0-9a-fA-F]+|\d+)[uUlL]*"
 LITERAL = re.compile(rf"^\(?\s*{NUM}(?:\s*[-+*/|<>]+\s*{NUM})*\s*\)?$")
 COPY = re.compile(r"\b(Mem_(?:Copy|Fill|Clear)\w*|MIi?_(?:Cpu|Dma)\w+|memcpy|memset)\s*\(")
 ALLOC = re.compile(r"\bMem_Alloc\s*\(")
+# Copy calls whose length is not the last argument: Mem_CopyUnits(src, dst,
+# size, unitBits).
+SIZE_ARG = {"Mem_CopyUnits": 2}
 OFFSET = re.compile(rf"\(\s*(?:const\s+)?(?:u8|s8|char)\s*\*\s*\)\s*[&\w][\w.\->\[\]]*\s*\+\s*{NUM}\b")
 FOR = re.compile(r"\bfor\s*\(")
 BOUND = re.compile(rf"(?:<=?|>=?|!=)\s*\(?\s*({NUM})\s*\)?\s*$")
@@ -146,7 +149,8 @@ def source_sites(path: str, text: str) -> list[tuple[str, int, str]]:
             if re.match(r"[A-Za-z_][\w\s\*]*[\s\*]$", text[start:m.start()]):
                 continue  # a prototype or definition: at file scope, after a type
             args = call_args(text, m.end() - 1)
-            if args and len(args) > (size_arg if size_arg >= 0 else 0) and is_literal(args[size_arg]):
+            arg = SIZE_ARG.get(m.group(1), size_arg) if kind == "copy" else size_arg
+            if args and len(args) > (arg if arg >= 0 else 0) and is_literal(args[arg]):
                 out.append((kind, line(m.start()), excerpt(m.start())))
     for m in OFFSET.finditer(text):
         out.append(("offset", line(m.start()), excerpt(m.start())))

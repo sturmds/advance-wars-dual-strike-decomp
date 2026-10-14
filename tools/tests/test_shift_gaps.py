@@ -27,6 +27,8 @@ def expect(name: str, text: str, want: list[str]) -> None:
 expect("prototype is not a call", "void Mem_Copy32(const void* src, void* dst, u32 size);\n", [])
 expect("literal copy length", "void f(void) {\n  Mem_Copy32(a, b, 0x40);\n}\n", ["copy"])
 expect("sizeof copy length", "void f(void) {\n  Mem_Copy32(a, b, sizeof(*b));\n}\n", [])
+expect("Mem_CopyUnits length", "void f(void) {\n  Mem_CopyUnits(a, b, 4, 16);\n}\n", ["copy"])
+expect("Mem_CopyUnits unit bits", "void f(void) {\n  Mem_CopyUnits(a, b, sizeof(*a), 16);\n}\n", [])
 expect("literal expression", "void f(void) {\n  memset(a, 0, (4 * 0x10));\n}\n", ["copy"])
 expect("literal alloc", "void f(void) {\n  p = Mem_Alloc(0x2f4);\n}\n", ["alloc"])
 expect("sizeof alloc", "void f(void) {\n  p = Mem_Alloc(sizeof(Work));\n}\n", [])
