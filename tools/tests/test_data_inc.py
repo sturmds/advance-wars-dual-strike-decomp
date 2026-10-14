@@ -112,6 +112,26 @@ stops("render: pointer without a relocation", lambda: data_inc.render(data_inc.R
 rom = FakeRom(words(0x1100), {}, {0x1000: ("arm_call", 0x1100, "itcm")})
 stops("render: relocation that is not a data word", lambda: data_inc.render(data_inc.Row("itcm gP 0x1000 4 void*", "t"), rom))
 
+# Values named by #define (the prefix's names from a header made here)
+with tempfile.TemporaryDirectory() as tmp:
+    (Path(tmp) / "game").mkdir()
+    (Path(tmp) / "game" / "k.h").write_text("#define TKIND_A 1\n#define TKIND_B \\\n  2\n#define TKIND_C 3\n"
+                                            "#define TKIND_D 3\n#define TKINDX_E 4\n")
+    saved_root, saved_cache = data_inc.ROOT, dict(data_inc._constants)
+    data_inc.ROOT, data_inc._constants = Path(tmp), {}
+    (Path(tmp) / "include").mkdir()
+    (Path(tmp) / "game").rename(Path(tmp) / "include" / "game")
+    try:
+        rom = FakeRom(bytes([1, 0, 2, 0, 3, 0, 4, 0, 5, 0]), {}, {})
+        named = data_inc.Row("itcm gK 0x1000 10 {u8:TKIND,u8}", "t")
+        expect("names: one name per value, numbers otherwise", body(data_inc.render(named, rom)),
+               "TKIND_A, 0x00,\nTKIND_B, 0x00,\n0x03, 0x00,\n0x04, 0x00,\n0x05, 0x00,\n")
+        expect("names: the header is an input", [f for f in data_inc.config_inputs([named]) if f.startswith("include")],
+               ["include/game/k.h"])
+    finally:
+        data_inc.ROOT, data_inc._constants = saved_root, saved_cache
+stops("row: names on a pointer field", lambda: data_inc.Row("itcm gK 0x1000 4 {void*:TKIND}", "t"))
+
 # The section pragma, with the compiler
 src = """#include "types.h"
 #include "text_data.h"

@@ -30,7 +30,10 @@ A row of data_inc.txt: module, symbol, address, size in bytes, element type.
   writes one line of values per struct, with no braces in it, so the
   same file initializes one struct or an array of them (C fills the
   members in order). `pad[N]` stands for N bytes of padding, which must be
-  zero and get no value. Fields must be aligned to their size.
+  zero and get no value. Fields must be aligned to their size. A number
+  field may name its values: `u8:EVENT_OP` writes a value as the
+  `#define EVENT_OP_...` under include/ that has it, when exactly one
+  does, and as a number otherwise; the C file includes that header.
 
 A word that the module's relocs.txt says points somewhere is written as the
 symbol at its target, `(u32)&Name` or `(void*)&Name`, so a build with moved
@@ -57,7 +60,7 @@ CONFIG7 = Path("config/AWRE/arm7")
 SIZES = {"u8": 1, "s8": 1, "u16": 2, "s16": 2, "u32": 4, "s32": 4}
 PER_LINE = {1: 16, 2: 8, 4: 8}
 ROW = re.compile(r"(\S+)\s+(\w+)\s+(0x[0-9a-fA-F]+)\s+(0x[0-9a-fA-F]+|\d+)\s+(\w+\s*\**|\{[^\s{}]+\})(?:\[(\d+)\])?$")
-FIELD = re.compile(r"(\w+\**)(?:\[(\d+)\])?$")
+FIELD = re.compile(r"(\w+\**)(?::([A-Z][A-Z0-9_]*))?(?:\[(\d+)\])?$")
 PAD = "pad"  # a struct field of padding bytes
 
 
@@ -72,6 +75,7 @@ class Row:
         self.columns = int(m.group(6)) if m.group(6) else 0
         self.pointer = self.type.endswith("*")
         self.fields: list[tuple[str, int]] = []  # (type, count; 0 for a single value)
+        self.names: list[str | None] = []  # per field: the #define prefix its values are named by
         if self.type.startswith("{"):
             self._struct(where)
             return
@@ -93,8 +97,11 @@ class Row:
             width = 4 if m.group(1).endswith("*") else 1 if m.group(1) == PAD else SIZES[m.group(1)]
             if offset % width:
                 sys.exit(f"error: {where}: field {text!r} at offset {offset:#x} is not aligned")
-            count = int(m.group(2)) if m.group(2) else 0
+            if m.group(2) and m.group(1) not in SIZES:
+                sys.exit(f"error: {where}: field {text!r}: only a number field takes constant names")
+            count = int(m.group(3)) if m.group(3) else 0
             self.fields.append((m.group(1), count))
+            self.names.append(m.group(2))
             offset += width * max(count, 1)
         self.width = offset
         if self.columns or self.size % self.width or self.addr % 4:
@@ -131,10 +138,32 @@ def module_key(name: str) -> str:
     return f"ov{int(m.group(1)):03d}" if m else name
 
 
+DEFINE = re.compile(r"^#define\s+([A-Z][A-Z0-9_]*)\s+(?:\\\n\s*)?(0x[0-9a-fA-F]+|\d+)\b", re.M)
+INCLUDE = Path("include")
+_constants: dict[str, tuple[set[str], dict[int, str]]] = {}
+
+
+def constants(prefix: str) -> tuple[set[str], dict[int, str]]:
+    """The headers under include/ that #define names PREFIX_*, and value ->
+    name for each value exactly one of those names has."""
+    if prefix not in _constants:
+        headers, names = set(), {}
+        for h in sorted((ROOT / INCLUDE).rglob("*.h")):
+            for m in DEFINE.finditer(h.read_text(errors="replace")):
+                if m.group(1).startswith(prefix + "_"):
+                    headers.add((INCLUDE / h.relative_to(ROOT / INCLUDE)).as_posix())
+                    names.setdefault(int(m.group(2), 0), []).append(m.group(1))
+        _constants[prefix] = (headers, {v: n[0] for v, n in names.items() if len(n) == 1})
+    return _constants[prefix]
+
+
 def config_inputs(rows: list[Row]) -> list[str]:
     """The files `write` reads from config/: relocs.txt of each row's module,
-    and symbols.txt of every module a relocation may point into."""
+    and symbols.txt of every module a relocation may point into; and the
+    headers that name a field's values."""
     files = {(config_dir(r.module) / "relocs.txt").as_posix() for r in rows}
+    for prefix in {n for r in rows for n in r.names if n}:
+        files |= constants(prefix)[0]
     for cpu in {CONFIG7 if r.module == "arm7" else CONFIG9 for r in rows}:
         files |= {p.relative_to(ROOT).as_posix() for p in (ROOT / cpu).rglob("symbols.txt")}
     return sorted(files)
@@ -255,7 +284,7 @@ def render_struct(row: Row, rom: Rom, addr: int, data: bytes) -> str:
     one struct or an array. A brace at the start of a line would take the
     whole element when the struct's first member is an array."""
     parts, offset = [], 0
-    for cast, count in row.fields:
+    for (cast, count), prefix in zip(row.fields, row.names):
         if cast == PAD:
             if any(data[offset:offset + count]):
                 sys.exit(f"error: {row.symbol} at {addr + offset:#x}: padding bytes are not zero")
@@ -265,7 +294,9 @@ def render_struct(row: Row, rom: Rom, addr: int, data: bytes) -> str:
         values = []
         for i in range(max(count, 1)):
             at = offset + i * width
-            values.append(literal(row, rom, addr + at, data[at:at + width], cast))
+            raw = data[at:at + width]
+            name = constants(prefix)[1].get(int.from_bytes(raw, "little", signed=cast.startswith("s"))) if prefix else None
+            values.append(name or literal(row, rom, addr + at, raw, cast))
         parts += values
         offset += width * max(count, 1)
     return ", ".join(parts) + ","
