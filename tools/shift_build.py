@@ -26,7 +26,7 @@ Checks, each printed with its count; exit 1 if any fails:
   symbols    every symbol of the normal build either stayed or moved by the
              pad, as the list above says;
   arena      the main arena starts past main and every overlay
-             (SDK_MAIN_ARENA_LO, issue 0086);
+             (MAIN_ARENA_START, issue 0086);
   stale      a word with no relocation in the shifted build whose value is
              the old address of a symbol that moved (`OS_GetInitArenaLo`
              returning the old end of the overlays, for example). Words in
@@ -247,11 +247,11 @@ def check_symbols(base: dict, moved: dict, pads: list[tuple[str, int]], pad: int
 
 def check_arena(moved: dict) -> int:
     """The main arena starts at or past the end of main and every overlay."""
-    arena = moved.get("SDK_MAIN_ARENA_LO", (None,))[0]
+    arena = moved.get("MAIN_ARENA_START", (None,))[0]
     ends = {n: a for n, (a, _) in moved.items() if re.fullmatch(r"(ARM9|OV\d{3})_BSS_END", n)}
     last = max(ends, key=ends.get)
     if arena is None:
-        print("shift: arena: SDK_MAIN_ARENA_LO is not defined")
+        print("shift: arena: MAIN_ARENA_START is not defined")
         return 1
     if arena < ends[last] or arena % 32:
         print(f"shift: arena: starts at {arena:#010x}, inside the modules ({last} = {ends[last]:#010x})")
@@ -265,7 +265,7 @@ def check_arena(moved: dict) -> int:
 # stack (0x400 bytes) ends at 0x027c3f80, and the system stack below it
 # shrinks as DTCM grows.
 BUDGETS = [
-    ("game heap", "SDK_MAIN_ARENA_LO", 0x023C0000),
+    ("game heap", "MAIN_ARENA_START", 0x023C0000),
     ("ITCM room", "ITCM_BSS_END", 0x02000000),
     ("DTCM stack", "DTCM_BSS_END", 0x027C3F80 - 0x400),
 ]

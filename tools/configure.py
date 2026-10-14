@@ -94,8 +94,8 @@ ARM9_ABSOLUTE_SYMBOLS = {
 # moved values (issue 0086), so they cannot be numbers. `fn.py diff` and
 # `fn.py check` compare them with the retail value, like the constants above.
 ARM9_LAYOUT_SYMBOLS = {
-    "SDK_MAIN_ARENA_LO": ("@SPACE", 0x0237A5A0),  # past main and every overlay
-    "SDK_SECTION_ARENA_ITCM_START": ("ITCM_BSS_END", 0x01FFDE80),
+    "MAIN_ARENA_START": ("@SPACE", 0x0237A5A0),  # past main and every overlay
+    "ITCM_ARENA_START": ("ITCM_BSS_END", 0x01FFDE80),
     "SDK_SECTION_ARENA_DTCM_START": ("DTCM_BSS_END", 0x027C12E0),
 }
 

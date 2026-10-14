@@ -16,7 +16,7 @@ This issue holds the scope: the kinds of hazard, how many of each, the plan in o
 
 ## Pilot (2026-10-14)
 
-- **The arena fix.** `OS_GetInitArenaLo` returns linker symbols for the main, ITCM and DTCM arenas: `SDK_MAIN_ARENA_LO`, `SDK_SECTION_ARENA_ITCM_START` and `SDK_SECTION_ARENA_DTCM_START`.
+- **The arena fix.** `OS_GetInitArenaLo` returns linker symbols for the main, ITCM and DTCM arenas: `MAIN_ARENA_START`, `ITCM_ARENA_START` and `SDK_SECTION_ARENA_DTCM_START`.
   - `tools/configure.py` lists them in `ARM9_LAYOUT_SYMBOLS`, each with its linker-script value and its retail value. `fn.py diff` and `check` compare against the retail value.
   - `tools/lcf_absolute.py` writes them at the end of `build/arm9.lcf`. The main arena is a section placed in dsd's `SPACE` region (`ORIGIN = AFTER(ARM9, OV000, ..., OV006)`), whose start, rounded to 32 bytes, is the first address past main and every overlay. The other two are `ITCM_BSS_END` and `DTCM_BSS_END`.
   - `SDK_SECTION_ARENA_DTCM_START` was a fixed number (0x027c12e0) in `ARM9_ABSOLUTE_SYMBOLS`. `OS_InitThread` writes a stack guard word at that address and `OS_GetInitArenaHi` reads it, so growing DTCM would have put the guard on a variable.

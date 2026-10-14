@@ -11,22 +11,22 @@ u32 func_0210dbec(void);
  * the ends of ITCM and DTCM. tools/configure.py defines them in the linker
  * script (ARM9_LAYOUT_SYMBOLS), so they move when a module grows.
  */
-extern char SDK_MAIN_ARENA_LO[];
-extern char SDK_SECTION_ARENA_ITCM_START[];
+extern char MAIN_ARENA_START[];
+extern char ITCM_ARENA_START[];
 extern char SDK_SECTION_ARENA_DTCM_START[];
 
 /* Initial low end of each arena; 0 for an id with no arena. */
 u32 OS_GetInitArenaLo(int id) {
   switch (id) {
     case 0:
-      return (u32)SDK_MAIN_ARENA_LO;
+      return (u32)MAIN_ARENA_START;
     case 2:
       if (data_022a9b78 == 0 || (func_0210dbec() & 3) == 1) {
         return 0;
       }
       return 0x02400000;
     case 3:
-      return (u32)SDK_SECTION_ARENA_ITCM_START;
+      return (u32)ITCM_ARENA_START;
     case 4:
       return (u32)SDK_SECTION_ARENA_DTCM_START;
     case 5:

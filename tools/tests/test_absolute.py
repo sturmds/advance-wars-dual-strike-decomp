@@ -49,8 +49,8 @@ expect("lcf: layout, second run changes nothing",
        lcf_absolute.add(layout, {"END": "DTCM_BSS_END", "ARENA": "@SPACE"}), layout)
 expect("lcf: parse", [lcf_absolute.parse("0x400"), lcf_absolute.parse("@SPACE")], [0x400, "@SPACE"])
 expect("configure: layout symbols have their retail value for fn.py",
-       configure.absolute_symbols("main")["SDK_MAIN_ARENA_LO"], 0x0237A5A0)
-expect("configure: not on ARM7", "SDK_MAIN_ARENA_LO" in configure.absolute_symbols("arm7"), False)
+       configure.absolute_symbols("main")["MAIN_ARENA_START"], 0x0237A5A0)
+expect("configure: not on ARM7", "MAIN_ARENA_START" in configure.absolute_symbols("arm7"), False)
 
 
 # fn.absolute_word, on rows shaped like objdiff-cli's JSON
