@@ -5,7 +5,7 @@
 BOOL func_020fa6f8(void);
 
 /* Damage chart column for a target kind (0-13: map objects, see
- * MapObject.kind, and 6 for a tile with hp). The Grand Bolt weak points use
+ * MapObject.kind, and MAP_OBJECT_TILE for a tile with hp). The Grand Bolt weak points use
  * the Oozium column; the cannons pick OBJECT_A or OBJECT_B from a game-state
  * callback (func_020fa6f8). */
 int TargetKind_GetChartColumn(int target) {
@@ -30,7 +30,7 @@ int TargetKind_GetChartColumn(int target) {
         column = DAMAGE_COLUMN_OBJECT_B;
       }
       break;
-    case 6:
+    case MAP_OBJECT_TILE:
       column = DAMAGE_COLUMN_TILE;
       break;
   }

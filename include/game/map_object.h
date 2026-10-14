@@ -35,6 +35,11 @@ enum MapObjectKind {
   MAP_OBJECT_BLACK_CANNON = 3, /* terrain 26 */
   MAP_OBJECT_MINICANNON = 4,   /* terrain 21 */
   MAP_OBJECT_DEATHRAY = 5,     /* terrain 30 */
+  /* No object: a tile with hp (tileHp; likely a pipe seam) as a damage
+   * target (TargetKind_GetChartColumn). Kind 7 has no name: no
+   * Map_Add*Object function creates it, and MapObjects_QueueSpritesInRect
+   * draws it like MAP_OBJECT_BLOCKED with other tiles. */
+  MAP_OBJECT_TILE = 6,
   MAP_OBJECT_BLOCKED =
       8, /* terrain 31: a missile platform or fortress, created with 0 HP */
   MAP_OBJECT_BLACK_CRYSTAL = 9,  /* terrain 23 */
@@ -46,6 +51,12 @@ enum MapObjectKind {
 /* Width and height of a Deathray in tiles; it fires down the columns
  * under it (RangeMap_FillColumnsBelow). */
 #define DEATHRAY_SIZE 3
+
+/* Width and height in tiles of the other large objects. */
+#define VOLCANO_SIZE 4
+#define BLACK_CANNON_SIZE 3
+#define BLOCKED_SIZE 4 /* missile platform or fortress */
+#define BLACK_OBELISK_SIZE 3
 
 /* Lines in a cannon's fire cone (RangeMap_FillCone's length), the same
  * values as gMapObjectConeLengths. */

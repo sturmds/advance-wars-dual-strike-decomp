@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/map_object.h"
 #include "game/rng.h"
 #include "game/Unk_02080440.h"
 #include "game/object_attack_task.h"
@@ -15,9 +16,6 @@ void ScreenConfig_RunActionHook(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* Damage chart target kind of tiles with hp (tileHp); likely pipe seams. */
-#define TARGET_KIND_TILE 6
-
 #define TILE_INDEX(x, y) ((x) + STATE->mapTiles->rowStart[y])
 #define DAMAGE (STATE->combatants[0].damageNoLuck)
 
@@ -33,7 +31,7 @@ void ActingUnit_AttackTile(int x, int y, int flag) {
   ObjectAttackTask* task;
 
   data_0229d8c8.rngState = gRngState;
-  Combat_CalcDamageToTarget(STATE->actingUnitIndex, TARGET_KIND_TILE,
+  Combat_CalcDamageToTarget(STATE->actingUnitIndex, MAP_OBJECT_TILE,
                             &STATE->actingUnitDestX);
   if ((STATE->tileHp[TILE_INDEX(x, y)] & TILE_HP_MASK) < DAMAGE) {
     hp = 0;

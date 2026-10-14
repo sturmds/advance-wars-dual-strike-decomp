@@ -53,22 +53,22 @@ void Map_DrawSpecialTerrain(void) {
         case TERRAIN_VOLCANO:
           switch (MAP_TILE_OWNER(tile)) {
             case 0:
-              Map_AddVolcanoObject(x, y, 4, 4, 0, 2, 0);
+              Map_AddVolcanoObject(x, y, VOLCANO_SIZE, VOLCANO_SIZE, 0, 2, 0);
               break;
             case 1:
-              Map_AddVolcanoObject(x, y, 4, 4, 2, 1, 1);
+              Map_AddVolcanoObject(x, y, VOLCANO_SIZE, VOLCANO_SIZE, 2, 1, 1);
               break;
             case 2:
-              Map_AddVolcanoObject(x, y, 4, 4, 2, 1, 2);
+              Map_AddVolcanoObject(x, y, VOLCANO_SIZE, VOLCANO_SIZE, 2, 1, 2);
               break;
           }
           break;
         case TERRAIN_BLACK_CANNON:
-          Map_AddBlackCannonObject(x, y, 3, 3, mapA, mapB,
-                                   MAP_TILE_OWNER(tile));
+          Map_AddBlackCannonObject(x, y, BLACK_CANNON_SIZE, BLACK_CANNON_SIZE,
+                                   mapA, mapB, MAP_TILE_OWNER(tile));
           break;
         case TERRAIN_BLOCKED:
-          Map_AddBlockedObject(x, y, 4, 4);
+          Map_AddBlockedObject(x, y, BLOCKED_SIZE, BLOCKED_SIZE);
           break;
         case TERRAIN_GRAND_BOLT_WEAK_POINT:
           Map_AddGrandBoltWeakPointObject(x, y, MAP_TILE_OWNER(tile));

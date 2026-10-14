@@ -36,9 +36,6 @@ void AiUnit_PerformAction(
 #define TILE_INDEX(x, y) ((x) + MAP->rowStart[y])
 #define UNIT_TILE(unit) (MAP->tiles[TILE_INDEX((unit)->x, (unit)->y)])
 
-/* Damage chart target kind of tiles with hp (tileHp); likely pipe seams. */
-#define TARGET_KIND_TILE 6
-
 /* Plans the attack of the AI's acting unit, an indirect unit, from where it
  * stands. Every tile in range is tried: a map object or a tile with hp when
  * gAiTurnState allows, otherwise an enemy unit there. The best unit (by
@@ -154,7 +151,7 @@ void Ai_PlanIndirectAttack(void) {
         }
       }
       if (AI_TARGET_FLAGS->attackTiles) {
-        kind = TARGET_KIND_TILE;
+        kind = MAP_OBJECT_TILE;
         hp = STATE->tileHp[TILE_INDEX(x, y)] & 0x7f;
         if (hp != 0 && MAP->unitAt[TILE_INDEX(x, y)] == 0) {
           goto attack_tile;
