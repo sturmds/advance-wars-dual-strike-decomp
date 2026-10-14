@@ -137,6 +137,7 @@ Nobody fixes:
 4. **The emulator boot check on melonDS** (issue 0006). Size: medium; in progress on branch `melonds-check`.
 5. **Sizes:** the 30 literal `Mem_Alloc` sizes and the `*_WORK_SIZE` defines become `sizeof`; then the ~25 whole-struct copies; then size asserts on the save and link formats. Matching is unchanged, since `sizeof` is a constant. Check each with `fn.py diff`. Size: medium, mechanical.
 6. **Growth budgets in the shift test:** report the heap left (arena hi − arena lo), the ITCM room and the DTCM stack in every shifted build, and fail below a floor. Size: small.
+   - 2026-10-14: done. Each shifted build prints the room left in the game heap, ITCM and the DTCM stack, and fails when one is used up (a dtcm pad of 0x3000 leaves the stack -0x760 bytes and fails; the link itself does not complain). No floor above zero: how much heap the game needs is only known from playing.
 7. **Aliases from C:** compute each alias offset with `offsetof` from the C type, and fail when it disagrees with `aliases.txt`. Replace `data_02175180`/`data_02175198` with linker symbols. Delete the two unused map-header symbols. Size: medium.
 8. **`bss.py gen` types:** use the declared type when a header gives one, not `u8[size]`. Size: small to medium.
 9. **ARM7** (issue 0054): `arm7.py bin` rewrites `BuildInfo_Arm7` and the crt0 words from ELF symbols; `WMSP_WORK` becomes a `.bss` variable. Size: medium. It matters only when ARM7 changes.

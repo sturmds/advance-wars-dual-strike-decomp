@@ -31,7 +31,9 @@ Checks, each printed with its count; exit 1 if any fails:
              the old address of a symbol that moved (`OS_GetInitArenaLo`
              returning the old end of the overlays, for example). Words in
              config/AWRE/shift_numbers.txt are numbers, read one by one,
-             and are only counted.
+             and are only counted;
+  room       what is left of the game heap, ITCM and the DTCM stack, which
+             fail only when used up.
 
 A shifted ROM that passes can still crash: a pointer to the middle of an
 object, or one built at run time, is not seen (`tools/scan_pointers.py`
@@ -258,6 +260,31 @@ def check_arena(moved: dict) -> int:
     return 0
 
 
+# Fixed tops of the space each grown part comes out of (os_get_init_arena_hi.c):
+# the main arena ends at 0x023c0000; ITCM ends at 0x02000000; DTCM's IRQ
+# stack (0x400 bytes) ends at 0x027c3f80, and the system stack below it
+# shrinks as DTCM grows.
+BUDGETS = [
+    ("game heap", "SDK_MAIN_ARENA_LO", 0x023C0000),
+    ("ITCM room", "ITCM_BSS_END", 0x02000000),
+    ("DTCM stack", "DTCM_BSS_END", 0x027C3F80 - 0x400),
+]
+
+
+def check_budgets(base: dict, moved: dict) -> int:
+    """How much room each fixed space has left, against the normal build.
+    Fails only when one is used up; a smaller game heap may still run out
+    at some point in the game, which only playing shows."""
+    failed = 0
+    parts = []
+    for what, name, top in BUDGETS:
+        left, was = top - moved[name][0], top - base[name][0]
+        parts.append(f"{what} {left:#x} bytes (normal build {was:#x})")
+        failed |= left <= 0
+    print("shift: room: " + ", ".join(parts))
+    return failed
+
+
 # Regions that load at the same addresses: a word in one never points into
 # another of the same group, so an old address there is not a stale pointer.
 OVERLAPPING = [{"OV000", "OV004"}, {"OV001", "OV002", "OV003", "OV005", "OV006"}]
@@ -347,6 +374,7 @@ def main() -> int:
     failed = check_symbols(base, moved, pads, args.pad)
     failed |= check_arena(moved)
     failed |= check_stale(base, moved, out, pads, args.pad)
+    failed |= check_budgets(base, moved)
     return failed
 
 
