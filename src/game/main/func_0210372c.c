@@ -8,7 +8,7 @@ void MainMenu_ClearCursors(void);
 void MainMenu_Prepare(void);
 void MapSelect_ResetTables(void);
 extern u8 data_02151c80[];
-extern u32 data_0216d754[];
+extern TaskScriptCmd data_0216d754[];
 void func_0200a630(void);
 void func_0202d6a8(void);
 void func_020b983c(void);
@@ -16,7 +16,7 @@ void func_020b983c(void);
 TaskScriptCmd data_0216d724[] = {
 #include "data/main/data_0216d724.inc.c"
 };
-u32 data_0216d754[] = {
+TaskScriptCmd data_0216d754[] = {
 #include "data/main/data_0216d754.inc.c"
 };
 

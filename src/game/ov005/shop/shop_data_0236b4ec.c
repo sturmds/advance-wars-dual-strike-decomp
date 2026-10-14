@@ -16,6 +16,6 @@ EventScriptCommand data_ov005_0236b4f0[] = {
 EventScriptCommand data_ov005_0236b550[] = {
 #include "data/ov005/data_ov005_0236b550.inc.c"
 };
-u32 data_ov005_0236b580[] = {
+EventScriptCommand data_ov005_0236b580[] = {
 #include "data/ov005/data_ov005_0236b580.inc.c"
 };

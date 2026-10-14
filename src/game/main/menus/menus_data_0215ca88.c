@@ -40,10 +40,10 @@ void VsSetup_ShowTeamScreen(void);
 void VsSetup_TeamSlotOnKeys(void);
 void VsSetup_UpdateTeamScreenLink(void);
 void Wallpaper_DestroyTasks(void);
-extern u32 data_0215cfe8[];
+extern TaskScriptCmd data_0215cfe8[];
 extern TaskScriptCmd data_0215d038[];
-extern u32 data_0215d090[];
-extern u32 data_0215d0f0[];
+extern TaskScriptCmd data_0215d090[];
+extern TaskScriptCmd data_0215d0f0[];
 void func_020648b8(void);
 void func_020648d0(void);
 void func_02064904(void);
@@ -78,16 +78,16 @@ u8 gVsSetupSettingRowY[] = {
 u8 gVsSetupSettingRowX[] = {
 #include "data/main/gVsSetupSettingRowX.inc.c"
 };
-u32 data_0215cad8[] = {
+TaskScriptCmd data_0215cad8[] = {
 #include "data/main/data_0215cad8.inc.c"
 };
-u32 data_0215cac8[] = {
+TaskScriptCmd data_0215cac8[] = {
 #include "data/main/data_0215cac8.inc.c"
 };
-u32 data_0215cab8[] = {
+TaskScriptCmd data_0215cab8[] = {
 #include "data/main/data_0215cab8.inc.c"
 };
-u32 data_0215caa8[] = {
+TaskScriptCmd data_0215caa8[] = {
 #include "data/main/data_0215caa8.inc.c"
 };
 TaskScriptCmd data_0215cae8[] = {
@@ -180,16 +180,16 @@ TaskScriptCmd gVsSetupSlot3TaskScript[] = {
 TaskScriptCmd data_0215cfa8[] = {
 #include "data/main/data_0215cfa8.inc.c"
 };
-u32 data_0215cfe8[] = {
+TaskScriptCmd data_0215cfe8[] = {
 #include "data/main/data_0215cfe8.inc.c"
 };
 TaskScriptCmd data_0215d038[] = {
 #include "data/main/data_0215d038.inc.c"
 };
-u32 data_0215d0f0[] = {
+TaskScriptCmd data_0215d0f0[] = {
 #include "data/main/data_0215d0f0.inc.c"
 };
-u32 data_0215d090[] = {
+TaskScriptCmd data_0215d090[] = {
 #include "data/main/data_0215d090.inc.c"
 };
 TaskScriptCmd data_0215d150[] = {

@@ -48,7 +48,7 @@ void func_0207e4fc(void);
 char data_02160110[] = {
 #include "data/main/data_02160110.inc.c"
 };
-u32 data_02160118[] = {
+TaskScriptCmd data_02160118[] = {
 #include "data/main/data_02160118.inc.c"
 };
 MenuButtonTemplate data_02160178 = {

@@ -53,14 +53,12 @@ char data_0216830c[] = {
 TaskScriptCmd data_02168318[] = {
 #include "data/main/data_02168318.inc.c"
 };
-/* declared `u8 data_02168328[]` in func_020f38ac.c: relocation at data_02168328+0x4 is not on a 4-byte field */
-u32 data_02168328[] = {
+TaskScriptCmd data_02168328[] = {
 #include "data/main/data_02168328.inc.c"
 };
 TaskScriptCmd data_02168380[] = {
 #include "data/main/data_02168380.inc.c"
 };
-/* declared `u8 data_02168400[]` in func_020f38ac.c: relocation at data_02168400+0x4 is not on a 4-byte field */
-u32 data_02168400[] = {
+TaskScriptCmd data_02168400[] = {
 #include "data/main/data_02168400.inc.c"
 };

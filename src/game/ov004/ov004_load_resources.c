@@ -456,8 +456,7 @@ TaskScriptCmd data_ov004_022be818[] = {
 MenuButtonTemplate data_ov004_022be840[] = {
 #include "data/ov004/data_ov004_022be840.inc.c"
 };
-/* declared `u8 data_ov004_022be868[]` in ov004_task_init_button_scene.c: relocation at data_ov004_022be868+0xc is not on a 4-byte field */
-u32 data_ov004_022be868[] = {
+GfxLayer data_ov004_022be868[] = {
 #include "data/ov004/data_ov004_022be868.inc.c"
 };
 GfxLayer data_ov004_022be8b8[] = {
@@ -466,12 +465,10 @@ GfxLayer data_ov004_022be8b8[] = {
 GfxLayer data_ov004_022be958[] = {
 #include "data/ov004/data_ov004_022be958.inc.c"
 };
-/* declared `u8 data_ov004_022be9a8[]` in ov004_task_init_scene.c: relocation at data_ov004_022be9a8+0xc is not on a 4-byte field */
-u32 data_ov004_022be9a8[] = {
+GfxLayer data_ov004_022be9a8[] = {
 #include "data/ov004/data_ov004_022be9a8.inc.c"
 };
-/* declared `u8 data_ov004_022be908[]` in ov004_task_init_picture_scene.c: relocation at data_ov004_022be908+0xc is not on a 4-byte field */
-u32 data_ov004_022be908[] = {
+GfxLayer data_ov004_022be908[] = {
 #include "data/ov004/data_ov004_022be908.inc.c"
 };
 TaskScriptCmd data_ov004_022be9f8[] = {

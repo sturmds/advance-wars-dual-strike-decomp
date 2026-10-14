@@ -121,7 +121,6 @@ TaskScriptCmd data_02169028[] = {
 TaskScriptCmd data_02169088[] = {
 #include "data/main/data_02169088.inc.c"
 };
-/* declared `u8 data_021690f8[]` in func_020eedf0.c: relocation at data_021690f8+0x4 is not on a 4-byte field */
-u32 data_021690f8[] = {
+TaskScriptCmd data_021690f8[] = {
 #include "data/main/data_021690f8.inc.c"
 };

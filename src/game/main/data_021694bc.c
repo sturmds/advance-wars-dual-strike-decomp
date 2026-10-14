@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/Unk_021694c0.h"
 #include "game/screen_contexts.h"
 #include "game/song.h"
@@ -25,8 +26,8 @@ void TwoMaps_MergeOtherFront(void);
 void TwoMaps_StartResultScript(void);
 void UnitInfoPanel_Close(void);
 extern u32 data_02169590[];
-extern u32 data_021697b8[];
-extern u32 data_02169818[];
+extern TaskScriptCmd data_021697b8[];
+extern TaskScriptCmd data_02169818[];
 extern u8 data_0217eb08[];
 extern u8 data_02180b08[];
 extern u8 data_022a7b98[];
@@ -129,62 +130,62 @@ int* data_021695a4[] = {(int*)&data_02169590, (int*)&data_0216951c,
 u32 data_02169590[] = {
 #include "data/main/data_02169590.inc.c"
 };
-u32 data_02169738[] = {
+TaskScriptCmd data_02169738[] = {
 #include "data/main/data_02169738.inc.c"
 };
-u32 data_021696d8[] = {
+TaskScriptCmd data_021696d8[] = {
 #include "data/main/data_021696d8.inc.c"
 };
-u32 data_021696f0[] = {
+TaskScriptCmd data_021696f0[] = {
 #include "data/main/data_021696f0.inc.c"
 };
 /* event script per army colour, for a player out of it */
 u32 data_02169708[] = {
 #include "data/main/data_02169708.inc.c"
 };
-u32 data_02169720[] = {
+TaskScriptCmd data_02169720[] = {
 #include "data/main/data_02169720.inc.c"
 };
-u32 data_02169750[] = {
+TaskScriptCmd data_02169750[] = {
 #include "data/main/data_02169750.inc.c"
 };
-u32 data_02169768[] = {
+TaskScriptCmd data_02169768[] = {
 #include "data/main/data_02169768.inc.c"
 };
-u32 data_02169780[] = {
+TaskScriptCmd data_02169780[] = {
 #include "data/main/data_02169780.inc.c"
 };
-u32 data_02169678[] = {
+TaskScriptCmd data_02169678[] = {
 #include "data/main/data_02169678.inc.c"
 };
 TaskScriptCmd data_021695b8[] = {
 #include "data/main/data_021695b8.inc.c"
 };
-u32 data_021695d0[] = {
+TaskScriptCmd data_021695d0[] = {
 #include "data/main/data_021695d0.inc.c"
 };
 TaskScriptCmd data_021695e8[] = {
 #include "data/main/data_021695e8.inc.c"
 };
-u32 data_02169600[] = {
+TaskScriptCmd data_02169600[] = {
 #include "data/main/data_02169600.inc.c"
 };
-u32 data_02169618[] = {
+TaskScriptCmd data_02169618[] = {
 #include "data/main/data_02169618.inc.c"
 };
-u32 data_02169630[] = {
+TaskScriptCmd data_02169630[] = {
 #include "data/main/data_02169630.inc.c"
 };
-u32 data_02169648[] = {
+TaskScriptCmd data_02169648[] = {
 #include "data/main/data_02169648.inc.c"
 };
-u32 data_02169660[] = {
+TaskScriptCmd data_02169660[] = {
 #include "data/main/data_02169660.inc.c"
 };
-u32 data_02169690[] = {
+TaskScriptCmd data_02169690[] = {
 #include "data/main/data_02169690.inc.c"
 };
-u32 data_021696a8[] = {
+TaskScriptCmd data_021696a8[] = {
 #include "data/main/data_021696a8.inc.c"
 };
 /* event script per army colour, for a player in the game */
@@ -194,22 +195,22 @@ u32 data_021696c0[] = {
 TaskScriptCmd data_021697f8[] = {
 #include "data/main/data_021697f8.inc.c"
 };
-u32 data_02169818[] = {
+TaskScriptCmd data_02169818[] = {
 #include "data/main/data_02169818.inc.c"
 };
-u32 data_02169838[] = {
+TaskScriptCmd data_02169838[] = {
 #include "data/main/data_02169838.inc.c"
 };
 TaskScriptCmd gNumberSpriteTaskScript[] = {
 #include "data/main/gNumberSpriteTaskScript.inc.c"
 };
-u32 data_02169798[] = {
+TaskScriptCmd data_02169798[] = {
 #include "data/main/data_02169798.inc.c"
 };
-u32 data_021697b8[] = {
+TaskScriptCmd data_021697b8[] = {
 #include "data/main/data_021697b8.inc.c"
 };
-u32 data_021697d8[] = {
+TaskScriptCmd data_021697d8[] = {
 #include "data/main/data_021697d8.inc.c"
 };
 TaskScriptCmd data_02169878[] = {
@@ -227,20 +228,16 @@ TaskScriptCmd data_02169900[] = {
 TaskScriptCmd data_02169930[] = {
 #include "data/main/data_02169930.inc.c"
 };
-/* declared `u8 data_02169970[]` in screen_init_with_player_frame.c: relocation at data_02169970+0xc is not on a 4-byte field */
-u32 data_02169970[] = {
+GfxLayer data_02169970[] = {
 #include "data/main/data_02169970.inc.c"
 };
-/* declared `u8 gBmap085Layers[]` in gfx_load_bmap085.c: relocation at gBmap085Layers+0xc is not on a 4-byte field */
-u32 gBmap085Layers[] = {
+GfxLayer gBmap085Layers[] = {
 #include "data/main/gBmap085Layers.inc.c"
 };
-/* declared `u8 data_02169a10[]` in func_020f4870.c: relocation at data_02169a10+0x4 is not on a 4-byte field */
-u32 data_02169a10[] = {
+TaskScriptCmd data_02169a10[] = {
 #include "data/main/data_02169a10.inc.c"
 };
-/* declared `u8 gBmap083Layers[]` in gfx_load_bmap083.c: relocation at gBmap083Layers+0xc is not on a 4-byte field */
-u32 gBmap083Layers[] = {
+GfxLayer gBmap083Layers[] = {
 #include "data/main/gBmap083Layers.inc.c"
 };
 TaskScriptCmd data_02169ab0[] = {

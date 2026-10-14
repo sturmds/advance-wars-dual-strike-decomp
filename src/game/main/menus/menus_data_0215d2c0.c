@@ -20,10 +20,10 @@ void PlayerInfo_SlideCoPortrait(void);
 void func_0206cf98(void);
 void PlayerInfo_OnCoSelected(void);
 
-u32 data_0215d2c0[] = {
+TaskScriptCmd data_0215d2c0[] = {
 #include "data/main/data_0215d2c0.inc.c"
 };
-u32 data_0215d2d0[] = {
+TaskScriptCmd data_0215d2d0[] = {
 #include "data/main/data_0215d2d0.inc.c"
 };
 u8 gUnitRowTypes[] = {

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/Unk_ov005_0236bbac.h"
 #include "game/menu_button.h"
 #include "game/screen_contexts.h"
@@ -51,8 +52,7 @@ MenuButtonTemplate data_ov005_0236afb4 = {
 MenuButtonTemplate data_ov005_0236af8c = {
 #include "data/ov005/data_ov005_0236af8c.inc.c"
 };
-/* declared `u8 data_ov005_0236b004[]` in ov005_sound_room_add_cell_buttons.c: relocation at data_ov005_0236b004+0x14 is not on a 4-byte field */
-u32 data_ov005_0236b004[] = {
+MenuButtonTemplate data_ov005_0236b004 = {
 #include "data/ov005/data_ov005_0236b004.inc.c"
 };
 MenuButtonTemplate data_ov005_0236af3c = {
@@ -61,8 +61,7 @@ MenuButtonTemplate data_ov005_0236af3c = {
 u8 data_ov005_0236b07c[] = {
 #include "data/ov005/data_ov005_0236b07c.inc.c"
 };
-/* declared `u8 data_ov005_0236b0bc[]` in ov005_set_up_sound_room.c: relocation at data_ov005_0236b0bc+0xc is not on a 4-byte field */
-u32 data_ov005_0236b0bc[] = {
+GfxLayer data_ov005_0236b0bc[] = {
 #include "data/ov005/data_ov005_0236b0bc.inc.c"
 };
 

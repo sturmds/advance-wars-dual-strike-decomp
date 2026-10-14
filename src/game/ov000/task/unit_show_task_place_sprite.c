@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/unit_show_task.h"
 
@@ -264,8 +265,7 @@ s16 data_ov000_022db6a4[] = {
 void* data_ov000_022db6b4[] = {&func_ov000_022ad7e0,      &func_ov000_022ad7dc,
                                &UnitShowTask_StateMove,   &func_ov000_022ad7e4,
                                &UnitShowTask_StateScript, &func_ov000_022ad820};
-/* declared `u8 data_ov000_022db6cc[]` in unit_show_task_destroy_running.c: relocation at data_ov000_022db6cc+0x4 is not on a 4-byte field */
-u32 data_ov000_022db6cc[] = {
+TaskScriptCmd data_ov000_022db6cc[] = {
 #include "data/ov000/data_ov000_022db6cc.inc.c"
 };
 

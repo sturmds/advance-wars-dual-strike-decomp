@@ -14,8 +14,7 @@ void Battle_TaskUpdate(void);
 static s8 data_ov002_02369610[] = {
 #include "data/ov002/data_ov002_02369610.inc.c"
 };
-/* declared `u8 data_ov002_0236961c[]` in battle_reset_screen.c: relocation at data_ov002_0236961c+0xc is not on a 4-byte field */
-u32 data_ov002_0236961c[] = {
+TaskScriptCmd data_ov002_0236961c[] = {
 #include "data/ov002/data_ov002_0236961c.inc.c"
 };
 TaskScriptCmd data_ov002_0236963c[] = {

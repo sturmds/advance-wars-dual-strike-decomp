@@ -22,7 +22,7 @@ char data_0215f810[] = {
 u16 gLinkPhaseArmyGfxOffsets[] = {
 #include "data/main/gLinkPhaseArmyGfxOffsets.inc.c"
 };
-u32 data_0215f824[] = {
+TaskScriptCmd data_0215f824[] = {
 #include "data/main/data_0215f824.inc.c"
 };
 MenuButtonTemplate data_0215f85c = {

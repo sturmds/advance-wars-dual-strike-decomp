@@ -44,8 +44,7 @@ MenuButtonTemplate data_0215ff24 = {
 MenuButtonTemplate data_0215ff74 = {
 #include "data/main/data_0215ff74.inc.c"
 };
-/* declared `u8 data_0215ff9c[]` in func_0207c018.c: relocation at data_0215ff9c+0x14 is not on a 4-byte field */
-u32 data_0215ff9c[] = {
+TaskScriptCmd data_0215ff9c[] = {
 #include "data/main/data_0215ff9c.inc.c"
 };
 TaskScriptCmd data_0215ffdc[] = {

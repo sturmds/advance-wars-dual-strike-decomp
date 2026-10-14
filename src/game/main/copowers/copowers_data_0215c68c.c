@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/screen_contexts.h"
 #include "game/song.h"
 #include "game/task.h"
@@ -31,12 +32,10 @@ char data_0215c68c[] = {
 char gTagBreakThunderPath[] = {
 #include "data/main/gTagBreakThunderPath.inc.c"
 };
-/* declared `u8 data_0215c6c4[]` in co_swap_screen_set_up.c: relocation at data_0215c6c4+0xc is not on a 4-byte field */
-u32 data_0215c6c4[] = {
+GfxLayer data_0215c6c4[] = {
 #include "data/main/data_0215c6c4.inc.c"
 };
-/* declared `u8 data_0215c714[]` in co_swap_screen_set_up.c: relocation at data_0215c714+0xc is not on a 4-byte field */
-u32 data_0215c714[] = {
+GfxLayer data_0215c714[] = {
 #include "data/main/data_0215c714.inc.c"
 };
 TaskScriptCmd data_0215c764[] = {

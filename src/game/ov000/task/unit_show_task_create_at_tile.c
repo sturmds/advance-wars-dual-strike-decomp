@@ -89,8 +89,7 @@ extern u8 data_ov000_022db644[];
 extern u8 data_ov000_022db668[];
 extern u8 data_ov000_022db640[];
 
-/* declared `u8 data_ov000_022db70c[]` in show_entry_finish.c: relocation at data_ov000_022db70c+0x4 is not on a 4-byte field */
-u32 data_ov000_022db70c[] = {
+TaskScriptCmd data_ov000_022db70c[] = {
 #include "data/ov000/data_ov000_022db70c.inc.c"
 };
 static TaskScriptCmd data_ov000_022db6e4[] = {

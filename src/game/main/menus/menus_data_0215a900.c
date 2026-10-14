@@ -34,10 +34,10 @@ void func_020428f4(void);
 void CoSelectScreen_OnGridButtonSelect(void);
 void CoSelectScreen_SelectCoListSlot(void);
 
-u32 data_0215a900[] = {
+TaskScriptCmd data_0215a900[] = {
 #include "data/main/data_0215a900.inc.c"
 };
-u32 data_0215a928[] = {
+TaskScriptCmd data_0215a928[] = {
 #include "data/main/data_0215a928.inc.c"
 };
 TaskScriptCmd data_0215a910[] = {
@@ -49,8 +49,7 @@ TaskScriptCmd data_0215a940[] = {
 TaskScriptCmd data_0215a960[] = {
 #include "data/main/data_0215a960.inc.c"
 };
-/* declared `const u8 data_0215a980[]` in co_select_screen_destroy_tasks.c: relocation at data_0215a980+0x4 is not on a 4-byte field */
-u32 data_0215a980[] = {
+TaskScriptCmd data_0215a980[] = {
 #include "data/main/data_0215a980.inc.c"
 };
 MenuButtonTemplate gCoGridButtonTemplate = {

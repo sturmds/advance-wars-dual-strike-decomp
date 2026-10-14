@@ -26,12 +26,10 @@ u32 data_02166ecc[] = {
 u8 data_02166eb4[] = {
 #include "data/main/data_02166eb4.inc.c"
 };
-/* declared `u8 data_02166ed4[]` in func_020d5b0c.c: relocation at data_02166ed4+0xc is not on a 4-byte field */
-u32 data_02166ed4[] = {
+TaskScriptCmd data_02166ed4[] = {
 #include "data/main/data_02166ed4.inc.c"
 };
-/* declared `u8 data_02166efc[]` in func_020d5b0c.c: relocation at data_02166efc+0xc is not on a 4-byte field */
-u32 data_02166efc[] = {
+TaskScriptCmd data_02166efc[] = {
 #include "data/main/data_02166efc.inc.c"
 };
 TaskScriptCmd data_02166f24[] = {

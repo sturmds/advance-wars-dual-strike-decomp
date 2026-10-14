@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/screen_contexts.h"
 #include "game/task.h"
 
@@ -26,7 +27,6 @@ TaskScriptCmd data_0216a898[] = {
 TaskScriptCmd data_0216a8b0[] = {
 #include "data/main/data_0216a8b0.inc.c"
 };
-/* declared `u8 data_0216a8d8[]` in campaign_recap_set_up_screens.c: relocation at data_0216a8d8+0xc is not on a 4-byte field */
-u32 data_0216a8d8[] = {
+GfxLayer data_0216a8d8[] = {
 #include "data/main/data_0216a8d8.inc.c"
 };

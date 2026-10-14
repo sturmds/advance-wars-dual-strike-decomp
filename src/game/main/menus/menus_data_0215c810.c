@@ -27,7 +27,7 @@ void MapSelect_Cancel(void);
 char data_0215c810[] = {
 #include "data/main/data_0215c810.inc.c"
 };
-u32 data_0215c818[] = {
+TaskScriptCmd data_0215c818[] = {
 #include "data/main/data_0215c818.inc.c"
 };
 /* (32, 0), previous list */
@@ -42,8 +42,7 @@ MenuButtonTemplate data_0215c8c8 = {
 MenuButtonTemplate data_0215c8f0 = {
 #include "data/main/data_0215c8f0.inc.c"
 };
-/* declared `u8 data_0215c8a0[]` in map_select_add_map_buttons.c: relocation at data_0215c8a0+0x14 is not on a 4-byte field */
-u32 data_0215c8a0[] = {
+MenuButtonTemplate data_0215c8a0 = {
 #include "data/main/data_0215c8a0.inc.c"
 };
 /* (224, 96), previous page */

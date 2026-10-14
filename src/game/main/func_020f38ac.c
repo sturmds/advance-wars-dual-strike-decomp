@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/event_script.h"
 #include "game/screen_other_map.h"
 #include "game/task.h"
 #include "game/info_panel.h"
@@ -152,12 +153,10 @@ u32 data_02166430[] = {
 ScriptCommand data_02166450[] = {
 #include "data/main/data_02166450.inc.c"
 };
-/* declared `u8 data_02166470[]` in func_020cce70.c: relocation at data_02166470+0x0 is not on a 4-byte field */
-u32 data_02166470[] = {
+ScriptCommand data_02166470[] = {
 #include "data/main/data_02166470.inc.c"
 };
-/* declared `const u8 data_02166490[]` in func_020cab68.c: relocation at data_02166490+0x0 is not on a 4-byte field */
-u32 data_02166490[] = {
+ScriptCommand data_02166490[] = {
 #include "data/main/data_02166490.inc.c"
 };
 TaskScriptCmd data_021664b8[] = {
@@ -166,8 +165,7 @@ TaskScriptCmd data_021664b8[] = {
 TaskScriptCmd data_021664e0[] = {
 #include "data/main/data_021664e0.inc.c"
 };
-/* declared `const u8 data_02166508[]` in func_020cab50.c: relocation at data_02166508+0x0 is not on a 4-byte field */
-u32 data_02166508[] = {
+ScriptCommand data_02166508[] = {
 #include "data/main/data_02166508.inc.c"
 };
 TaskScriptCmd data_02166538[] = {
@@ -180,8 +178,7 @@ TaskScriptCmd data_02166568[] = {
 u16 data_02166598[] = {
 #include "data/main/data_02166598.inc.c"
 };
-/* declared `u8 data_021665d0[]` in func_020cfd30.c: relocation at data_021665d0+0x4 is not on a 4-byte field */
-u32 data_021665d0[] = {
+TaskScriptCmd data_021665d0[] = {
 #include "data/main/data_021665d0.inc.c"
 };
 TaskScriptCmd data_02166608[] = {
@@ -206,10 +203,10 @@ u32 data_02166720[] = {
 u8 data_02166758[] = {
 #include "data/main/data_02166758.inc.c"
 };
-u32 data_02166798[] = {
+EventScriptCommand data_02166798[] = {
 #include "data/main/data_02166798.inc.c"
 };
-u32 data_021667d8[] = {
+EventScriptCommand data_021667d8[] = {
 #include "data/main/data_021667d8.inc.c"
 };
 TaskScriptCmd data_02166888[] = {
@@ -221,8 +218,7 @@ TaskScriptCmd data_02166828[] = {
 static TaskScriptCmd data_021668e8[] = {
 #include "data/main/data_021668e8.inc.c"
 };
-/* declared `EventScriptCommand gMapOverviewScript[]` in game_tick_player_timer.c: relocation at gMapOverviewScript+0x0 is not on a 4-byte field */
-u32 gMapOverviewScript[] = {
+ScriptCommand gMapOverviewScript[] = {
 #include "data/main/gMapOverviewScript.inc.c"
 };
 

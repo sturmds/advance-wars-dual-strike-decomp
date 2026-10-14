@@ -88,29 +88,29 @@ char data_02160ae8[] = {
 u8 data_02160af0[] = {
 #include "data/main/data_02160af0.inc.c"
 };
-u32 data_02160b2c[] = {
+TaskScriptCmd data_02160b2c[] = {
 #include "data/main/data_02160b2c.inc.c"
 };
-u32 data_02160b1c[] = {
+TaskScriptCmd data_02160b1c[] = {
 #include "data/main/data_02160b1c.inc.c"
 };
 /* declared `UnitCountTable data_02160afc` in combat_setup_draw_row_sprites.c: declared in src/game/main/menus/combat_setup_draw_row_sprites.c, with a type no header defines */
 u32 data_02160afc[] = {
 #include "data/main/data_02160afc.inc.c"
 };
-u32 data_02160b3c[] = {
+TaskScriptCmd data_02160b3c[] = {
 #include "data/main/data_02160b3c.inc.c"
 };
-u32 data_02160b0c[] = {
+TaskScriptCmd data_02160b0c[] = {
 #include "data/main/data_02160b0c.inc.c"
 };
-u32 data_02160b5c[] = {
+TaskScriptCmd data_02160b5c[] = {
 #include "data/main/data_02160b5c.inc.c"
 };
-u32 data_02160b4c[] = {
+TaskScriptCmd data_02160b4c[] = {
 #include "data/main/data_02160b4c.inc.c"
 };
-u32 data_02160b6c[] = {
+TaskScriptCmd data_02160b6c[] = {
 #include "data/main/data_02160b6c.inc.c"
 };
 TaskScriptCmd data_02160b84[] = {
@@ -122,8 +122,7 @@ u8 data_02160b9c[] = {
 TaskScriptCmd data_02160bb8[] = {
 #include "data/main/data_02160bb8.inc.c"
 };
-/* declared `u8 data_02160db8[]` in combat_setup_add_shop_buttons.c: relocation at data_02160db8+0x14 is not on a 4-byte field */
-u32 data_02160db8[] = {
+MenuButtonTemplate data_02160db8 = {
 #include "data/main/data_02160db8.inc.c"
 };
 MenuButtonTemplate data_02160c00 = {
@@ -156,8 +155,7 @@ MenuButtonTemplate data_02160e08 = {
 MenuButtonTemplate data_02160e30 = {
 #include "data/main/data_02160e30.inc.c"
 };
-/* declared `u8 data_02160e58[]` in combat_setup_add_shop_buttons.c: relocation at data_02160e58+0x18 is not on a 4-byte field */
-u32 data_02160e58[] = {
+MenuButtonTemplate data_02160e58 = {
 #include "data/main/data_02160e58.inc.c"
 };
 MenuButtonTemplate data_02160e80 = {
@@ -166,8 +164,7 @@ MenuButtonTemplate data_02160e80 = {
 MenuButtonTemplate data_02160ea8 = {
 #include "data/main/data_02160ea8.inc.c"
 };
-/* declared `u8 data_02160bd8[]` in combat_setup_add_shop_buttons.c: relocation at data_02160bd8+0x18 is not on a 4-byte field */
-u32 data_02160bd8[] = {
+MenuButtonTemplate data_02160bd8 = {
 #include "data/main/data_02160bd8.inc.c"
 };
 MenuButtonTemplate data_02160c28 = {
@@ -194,19 +191,19 @@ TaskScriptCmd gRowLockMarkRow4Script[] = {
 TaskScriptCmd gRowLockMarkRow1Script[] = {
 #include "data/main/gRowLockMarkRow1Script.inc.c"
 };
-u32 data_02160f90[] = {
+TaskScriptCmd data_02160f90[] = {
 #include "data/main/data_02160f90.inc.c"
 };
-u32 data_02160ff0[] = {
+TaskScriptCmd data_02160ff0[] = {
 #include "data/main/data_02160ff0.inc.c"
 };
-u32 data_02161050[] = {
+TaskScriptCmd data_02161050[] = {
 #include "data/main/data_02161050.inc.c"
 };
-u32 data_021610b0[] = {
+TaskScriptCmd data_021610b0[] = {
 #include "data/main/data_021610b0.inc.c"
 };
-u32 data_02161150[] = {
+TaskScriptCmd data_02161150[] = {
 #include "data/main/data_02161150.inc.c"
 };
 TaskScriptCmd gCombatSetupTaskScript[] = {

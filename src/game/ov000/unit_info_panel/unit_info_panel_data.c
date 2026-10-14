@@ -1,4 +1,6 @@
 #include "types.h"
+#include "game/script_slot.h"
+#include "game/task.h"
 #include "game/menu_button.h"
 #include "game/unit_info_panel.h"
 
@@ -526,7 +528,7 @@ u32 data_ov000_0234ef18[] = {
 u32 data_ov000_0234ef20[] = {
 #include "data/ov000/data_ov000_0234ef20.inc.c"
 };
-u32 data_ov000_0234ef28[] = {
+TaskScriptCmd data_ov000_0234ef28[] = {
 #include "data/ov000/data_ov000_0234ef28.inc.c"
 };
 u32 data_ov000_0234ef4c[] = {
@@ -607,22 +609,22 @@ u32 data_ov000_0234f1e4[] = {
 u32 data_ov000_0234f244[] = {
 #include "data/ov000/data_ov000_0234f244.inc.c"
 };
-u32 data_ov000_0234f264[] = {
+TaskScriptCmd data_ov000_0234f264[] = {
 #include "data/ov000/data_ov000_0234f264.inc.c"
 };
-u32 data_ov000_0234f28c[] = {
+MenuButtonTemplate data_ov000_0234f28c = {
 #include "data/ov000/data_ov000_0234f28c.inc.c"
 };
-u32 data_ov000_0234f2b4[] = {
+MenuButtonTemplate data_ov000_0234f2b4 = {
 #include "data/ov000/data_ov000_0234f2b4.inc.c"
 };
-u32 data_ov000_0234f30c[] = {
+ScriptCommand data_ov000_0234f30c[] = {
 #include "data/ov000/data_ov000_0234f30c.inc.c"
 };
-u32 data_ov000_0234f2dc[] = {
+ScriptCommand data_ov000_0234f2dc[] = {
 #include "data/ov000/data_ov000_0234f2dc.inc.c"
 };
-u32 data_ov000_0234f33c[] = {
+TaskScriptCmd data_ov000_0234f33c[] = {
 #include "data/ov000/data_ov000_0234f33c.inc.c"
 };
 void* data_ov000_0234f384[] = {0,

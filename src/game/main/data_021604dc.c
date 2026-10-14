@@ -14,12 +14,10 @@ void LinkReactionTask_Update(void);
 char data_021604dc[] = {
 #include "data/main/data_021604dc.inc.c"
 };
-/* declared `u8 data_021604e4[]` in func_02080708.c: relocation at data_021604e4+0x14 is not on a 4-byte field */
-u32 data_021604e4[] = {
+TaskScriptCmd data_021604e4[] = {
 #include "data/main/data_021604e4.inc.c"
 };
-/* declared `u8 data_0216050c[]` in func_02080708.c: relocation at data_0216050c+0xc is not on a 4-byte field */
-u32 data_0216050c[] = {
+TaskScriptCmd data_0216050c[] = {
 #include "data/main/data_0216050c.inc.c"
 };
 TaskScriptCmd data_02160534[] = {

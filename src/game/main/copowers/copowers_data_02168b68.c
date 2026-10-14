@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/event_script.h"
 #include "game/task.h"
 
 void Map_InitBattle(void);
@@ -43,12 +44,12 @@ TaskScriptCmd data_02168b94[] = {
 TaskScriptCmd data_02168bc4[] = {
 #include "data/main/data_02168bc4.inc.c"
 };
-u32 data_02168bfc[] = {
+EventScriptCommand data_02168bfc[] = {
 #include "data/main/data_02168bfc.inc.c"
 };
 TaskScriptCmd data_02168c3c[] = {
 #include "data/main/data_02168c3c.inc.c"
 };
-u32 data_02168c84[] = {
+EventScriptCommand data_02168c84[] = {
 #include "data/main/data_02168c84.inc.c"
 };

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/script_slot.h"
 #include "game/event_script.h"
 
 void DailyRepair_Step(void);
@@ -22,19 +23,16 @@ u32 data_021669a8[] = {
 u32 data_021669b0[] = {
 #include "data/main/data_021669b0.inc.c"
 };
-/* declared `const u8 data_02166a18[]` in func_020cce44.c: relocation at data_02166a18+0x0 is not on a 4-byte field */
-u32 data_02166a18[] = {
+ScriptCommand data_02166a18[] = {
 #include "data/main/data_02166a18.inc.c"
 };
-/* declared `u8 data_02166b08[]` in event_script_start_for_game_mode.c: relocation at data_02166b08+0x4 is not on a 4-byte field */
-u32 data_02166b08[] = {
+EventScriptCommand data_02166b08[] = {
 #include "data/main/data_02166b08.inc.c"
 };
 EventScriptCommand data_02166a88[] = {
 #include "data/main/data_02166a88.inc.c"
 };
-/* declared `u8 data_02166b88[]` in event_script_start_for_game_mode.c: relocation at data_02166b88+0x4 is not on a 4-byte field */
-u32 data_02166b88[] = {
+EventScriptCommand data_02166b88[] = {
 #include "data/main/data_02166b88.inc.c"
 };
 u32 data_02166c08[] = {

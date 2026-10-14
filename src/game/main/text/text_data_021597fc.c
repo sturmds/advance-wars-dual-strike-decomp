@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/mode_font_task.h"
 
 void ModeFontTask_GrowIn(void);
@@ -15,11 +16,9 @@ char data_021597fc[] = {
 u8 data_02159814[] = {
 #include "data/main/data_02159814.inc.c"
 };
-/* declared `u8 data_02159830[]` in func_0202a7c0.c: relocation at data_02159830+0x14 is not on a 4-byte field */
-u32 data_02159830[] = {
+TaskScriptCmd data_02159830[] = {
 #include "data/main/data_02159830.inc.c"
 };
-/* declared `u8 data_02159870[]` in func_0202a7c0.c: relocation at data_02159870+0x14 is not on a 4-byte field */
-u32 data_02159870[] = {
+TaskScriptCmd data_02159870[] = {
 #include "data/main/data_02159870.inc.c"
 };

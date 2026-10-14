@@ -17,8 +17,7 @@ void func_ov003_0235cb08(void);
 
 Ov003Map* data_ov003_02364a88 = &data_ov003_02368110;
 Ov003Fx* data_ov003_02364a84 = &data_ov003_02365d00;
-/* declared `u8 data_ov003_02364aac[]` in func_ov003_0235ca24.c: relocation at data_ov003_02364aac+0xc is not on a 4-byte field */
-u32 data_ov003_02364aac[] = {
+TaskScriptCmd data_ov003_02364aac[] = {
 #include "data/ov003/data_ov003_02364aac.inc.c"
 };
 TaskScriptCmd data_ov003_02364a8c[] = {

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/task.h"
 #include "game/ov005_task.h"
 #include "game/screen_contexts.h"
@@ -65,12 +66,10 @@ TaskScriptCmd data_ov005_0236960c[] = {
 TaskScriptCmd data_ov005_02369634[] = {
 #include "data/ov005/data_ov005_02369634.inc.c"
 };
-/* declared `u8 data_ov005_0236966c[]` in ov005_set_up_main_screen_layer2.c: relocation at data_ov005_0236966c+0xc is not on a 4-byte field */
-u32 data_ov005_0236966c[] = {
+GfxLayer data_ov005_0236966c[] = {
 #include "data/ov005/data_ov005_0236966c.inc.c"
 };
-/* declared `u8 gOv005CreditsSubLayers[]` in ov005_set_up_staff_credits_screen.c: relocation at gOv005CreditsSubLayers+0xc is not on a 4-byte field */
-u32 gOv005CreditsSubLayers[] = {
+GfxLayer gOv005CreditsSubLayers[] = {
 #include "data/ov005/gOv005CreditsSubLayers.inc.c"
 };
 u16 data_ov005_0236970c[] = {

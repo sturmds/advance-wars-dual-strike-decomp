@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/big_font.h"
 #include "game/screen_contexts.h"
 #include "game/task.h"
@@ -47,12 +48,10 @@ TaskScriptCmd data_0215bbe8[] = {
 TaskScriptCmd data_0215bc10[] = {
 #include "data/main/data_0215bc10.inc.c"
 };
-/* declared `const u8 data_0215bc40[]` in title_call_set_up_screens.c: relocation at data_0215bc40+0xc is not on a 4-byte field */
-u32 data_0215bc40[] = {
+GfxLayer data_0215bc40[] = {
 #include "data/main/data_0215bc40.inc.c"
 };
-/* declared `const u8 data_0215bc90[]` in title_call_set_up_screens.c: relocation at data_0215bc90+0xc is not on a 4-byte field */
-u32 data_0215bc90[] = {
+GfxLayer data_0215bc90[] = {
 #include "data/main/data_0215bc90.inc.c"
 };
 BigFontGlyph data_0215bce0[] = {

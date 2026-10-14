@@ -29,7 +29,7 @@ void MainMenu_UpdateFallingSprites(void);
 void MainMenu_CancelEntry(void);
 
 MainMenu* data_021599d0 = &data_0229c720;
-u32 data_021599d4[] = {
+TaskScriptCmd data_021599d4[] = {
 #include "data/main/data_021599d4.inc.c"
 };
 FallingSpriteFrame data_021599f8[] = {
@@ -38,32 +38,28 @@ FallingSpriteFrame data_021599f8[] = {
 FallingSpriteFrame data_021599e4[] = {
 #include "data/main/data_021599e4.inc.c"
 };
-/* declared `u8 data_02159a0c[]` in func_0202d874.c: relocation at data_02159a0c+0x4 is not on a 4-byte field */
-u32 data_02159a0c[] = {
+TaskScriptCmd data_02159a0c[] = {
 #include "data/main/data_02159a0c.inc.c"
 };
-u32 data_02159a24[] = {
+TaskScriptCmd data_02159a24[] = {
 #include "data/main/data_02159a24.inc.c"
 };
 TaskScriptCmd data_02159a7c[] = {
 #include "data/main/data_02159a7c.inc.c"
 };
-u32 data_02159a3c[] = {
+TaskScriptCmd data_02159a3c[] = {
 #include "data/main/data_02159a3c.inc.c"
 };
 TaskScriptCmd data_02159a5c[] = {
 #include "data/main/data_02159a5c.inc.c"
 };
-/* declared `u8 data_02159ac4[]` in main_menu_add_side_buttons.c: relocation at data_02159ac4+0x18 is not on a 4-byte field */
-u32 data_02159ac4[] = {
+MenuButtonTemplate data_02159ac4 = {
 #include "data/main/data_02159ac4.inc.c"
 };
-/* declared `u8 data_02159aec[]` in main_menu_add_entry_buttons.c: relocation at data_02159aec+0x14 is not on a 4-byte field */
-u32 data_02159aec[] = {
+MenuButtonTemplate data_02159aec = {
 #include "data/main/data_02159aec.inc.c"
 };
-/* declared `u8 data_02159a9c[]` in main_menu_add_side_buttons.c: relocation at data_02159a9c+0x18 is not on a 4-byte field */
-u32 data_02159a9c[] = {
+MenuButtonTemplate data_02159a9c = {
 #include "data/main/data_02159a9c.inc.c"
 };
 TaskScriptCmd data_02159b14[] = {

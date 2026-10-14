@@ -33,7 +33,7 @@ extern u8 data_02167cd4[];
 extern u8 data_02167ce8[];
 extern u8 data_02167cf0[];
 extern u32 data_02167f50[];
-extern u32 data_021680e0[];
+extern TaskScriptCmd data_021680e0[];
 void func_02021b34(void);
 void func_020d8c8c(void);
 void func_020d8e70(void);
@@ -87,7 +87,7 @@ TaskScriptCmd data_02168088[] = {
 TaskScriptCmd data_02168030[] = {
 #include "data/main/data_02168030.inc.c"
 };
-u32 data_021680e0[] = {
+TaskScriptCmd data_021680e0[] = {
 #include "data/main/data_021680e0.inc.c"
 };
 TaskScriptCmd data_02168140[] = {

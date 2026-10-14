@@ -66,8 +66,34 @@ typedef struct TaskScriptCmd {
   u32 value; /* second argument of commands that take one (a sound id, a script pointer) */
 } TaskScriptCmd;
 
-#define TASK_CMD_END 0    /* last command of a script */
-#define TASK_CMD_LABEL 11 /* jump target for Task_JumpToLabel */
+typedef char TaskScriptCmd_size_check[sizeof(TaskScriptCmd) == 8 ? 1 : -1];
+
+/* Opcodes, named after their handlers in gTaskCommands (Task_RunScript).
+ * value holds the function or script the command takes. */
+#define TASK_CMD_END 0  /* last command of a script */
+#define TASK_CMD_SKIP 1 /* does nothing */
+#define TASK_CMD_CALL 2 /* calls value(task), then runs the next command */
+#define TASK_CMD_SET_UPDATE 3 /* value(task) runs each frame from now on */
+#define TASK_CMD_SET_DESTROY_CALLBACK 4  /* Task.onDestroy = value */
+#define TASK_CMD_START_TASK_UNDER_THIS 5 /* task script in value */
+#define TASK_CMD_START_CHILD_AND_WAIT 6
+#define TASK_CMD_START_TASK_IN_LIST 7 /* list arg */
+#define TASK_CMD_WAIT_FOR_SCRIPT_END 8
+#define TASK_CMD_LABEL 11       /* jump target for Task_JumpToLabel */
+#define TASK_CMD_WAIT_FRAMES 14 /* arg frames */
+#define TASK_CMD_SET_GROUP 15
+#define TASK_CMD_EXIT_IF_SCRIPT_RUNNING 17
+#define TASK_CMD_CALL_WHILE_BUSY 20
+#define TASK_CMD_CALL_WITH_TASK 22
+#define TASK_CMD_DESTROY_OTHER_WITH_SCRIPT 23
+#define TASK_CMD_CALL_WITH_ARG 24
+#define TASK_CMD_START_EVENT_SCRIPT \
+  25 /* slot script (ScriptCommand) in value */
+#define TASK_CMD_WAIT_FOR_EVENT_SCRIPT_END 26
+#define TASK_CMD_START_TASK_ON_BOTH_SCREENS 46
+#define TASK_CMD_START_CHILD_ON_BOTH_SCREENS 48
+#define TASK_CMD_JUMP_TO_LABEL_IF_CHECK 57
+#define TASK_CMD_JUMP_TO_LABEL_UNLESS_CHECK 58
 
 /* Runs one command of a task's script; nonzero: run the next one too. */
 typedef BOOL (*TaskCommandFunc)(Task* task);

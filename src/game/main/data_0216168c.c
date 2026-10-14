@@ -17,8 +17,7 @@ void func_0208b97c(void);
 TaskScriptCmd data_0216168c[] = {
 #include "data/main/data_0216168c.inc.c"
 };
-/* declared `u8 data_0216169c[]` in func_0208b95c.c: relocation at data_0216169c+0x18 is not on a 4-byte field */
-u32 data_0216169c[] = {
+MenuButtonTemplate data_0216169c = {
 #include "data/main/data_0216169c.inc.c"
 };
 TaskScriptCmd data_021616c4[] = {

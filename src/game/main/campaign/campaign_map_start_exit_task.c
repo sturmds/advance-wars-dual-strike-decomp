@@ -12,8 +12,7 @@ void func_0210372c(void);
 char gPowerHighlightDir[] = {
 #include "data/main/gPowerHighlightDir.inc.c"
 };
-/* declared `u8 data_0216704c[]` in func_ov006_02350ec0.c: relocation at data_0216704c+0xc is not on a 4-byte field */
-u32 data_0216704c[] = {
+TaskScriptCmd data_0216704c[] = {
 #include "data/main/data_0216704c.inc.c"
 };
 static TaskScriptCmd data_02167074[] = {

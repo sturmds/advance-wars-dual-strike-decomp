@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/script_slot.h"
 
 void MenuDepth_Push(void);
 void ScreenTransition_IsRunning(void);
@@ -20,6 +21,6 @@ u16 gWeatherRainSprites[][4] = {
 u16 gWeatherSnowSprites[][4] = {
 #include "data/main/gWeatherSnowSprites.inc.c"
 };
-u32 data_02166d18[] = {
+ScriptCommand data_02166d18[] = {
 #include "data/main/data_02166d18.inc.c"
 };

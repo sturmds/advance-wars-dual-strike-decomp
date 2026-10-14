@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/script_slot.h"
 #include "game/Unk_0201d320.h"
 #include "game/event_script.h"
 
@@ -12,12 +13,10 @@ void EventScript_StopTextIfSkipping(void);
 EventScriptCommand data_021584d8[] = {
 #include "data/main/data_021584d8.inc.c"
 };
-/* declared `u8 data_021584f8[]` in func_020154c4.c: relocation at data_021584f8+0x8 is not on a 4-byte field */
-u32 data_021584f8[] = {
+ScriptCommand data_021584f8[] = {
 #include "data/main/data_021584f8.inc.c"
 };
-/* declared `u8 data_02158520[]` in func_020154c4.c: relocation at data_02158520+0x8 is not on a 4-byte field */
-u32 data_02158520[] = {
+ScriptCommand data_02158520[] = {
 #include "data/main/data_02158520.inc.c"
 };
 

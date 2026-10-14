@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/task.h"
 #include "game/sound.h"
 #include "game/screen_contexts.h"
@@ -78,12 +79,10 @@ char gRikiishiFile00f[] = {
 static TaskScriptCmd data_ov005_023682e0[] = {
 #include "data/ov005/data_ov005_023682e0.inc.c"
 };
-/* declared `u8 gOv005BlendInSubLayers[]` in ov005_setup_blend_in_screens_with_song.c: relocation at gOv005BlendInSubLayers+0xc is not on a 4-byte field */
-u32 gOv005BlendInSubLayers[] = {
+GfxLayer gOv005BlendInSubLayers[] = {
 #include "data/ov005/gOv005BlendInSubLayers.inc.c"
 };
-/* declared `u8 data_ov005_02368378[]` in ov005_set_up_main_screen.c: relocation at data_ov005_02368378+0xc is not on a 4-byte field */
-u32 data_ov005_02368378[] = {
+GfxLayer data_ov005_02368378[] = {
 #include "data/ov005/data_ov005_02368378.inc.c"
 };
 

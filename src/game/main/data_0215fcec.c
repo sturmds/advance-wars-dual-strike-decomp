@@ -19,13 +19,13 @@ void TapPrompt_Draw(void);
 void SubScreenSprite_ZoomInUpdate(void);
 void SubScreenSprite_ShakeUpdate(void);
 
-u32 data_0215fcec[] = {
+TaskScriptCmd data_0215fcec[] = {
 #include "data/main/data_0215fcec.inc.c"
 };
 TaskScriptCmd data_0215fcfc[] = {
 #include "data/main/data_0215fcfc.inc.c"
 };
-u32 data_0215fd2c[] = {
+TaskScriptCmd data_0215fd2c[] = {
 #include "data/main/data_0215fd2c.inc.c"
 };
 TaskScriptCmd data_0215fd64[] = {

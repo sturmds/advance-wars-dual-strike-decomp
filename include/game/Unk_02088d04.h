@@ -193,6 +193,8 @@ typedef struct GfxLayer {
   u8 pad_11[0x14 - 0x11];
 } GfxLayer;
 
+typedef char GfxLayer_size_check[sizeof(GfxLayer) == 0x14 ? 1 : -1];
+
 /* Bytes of a screen's BG and OBJ palette buffer (Unk_027c0280.paletteBuffer). */
 #define PALETTE_BUFFER_SIZE 0x400
 

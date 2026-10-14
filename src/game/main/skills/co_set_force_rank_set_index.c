@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/script_slot.h"
 #include "game/play_records.h"
 #include "game/song.h"
 
@@ -12,8 +13,7 @@ void MenuDepth_Pop(void);
 static u8 gForceRankSetKeepMask[] = {
 #include "data/main/gForceRankSetKeepMask.inc.c"
 };
-/* declared `u8 data_02158468[]` in func_02017cf8.c: relocation at data_02158468+0x8 is not on a 4-byte field */
-u32 data_02158468[] = {
+ScriptCommand data_02158468[] = {
 #include "data/main/data_02158468.inc.c"
 };
 

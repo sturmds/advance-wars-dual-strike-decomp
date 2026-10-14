@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/event_script.h"
 #include "game/falling_sprites.h"
 #include "game/menu_button.h"
@@ -92,8 +93,7 @@ TaskScriptCmd data_02159c90[] = {
 TaskScriptCmd data_02159ce0[] = {
 #include "data/main/data_02159ce0.inc.c"
 };
-/* declared `u8 data_02159cc0[]` in func_02032264.c: relocation at data_02159cc0+0xc is not on a 4-byte field */
-u32 data_02159cc0[] = {
+TaskScriptCmd data_02159cc0[] = {
 #include "data/main/data_02159cc0.inc.c"
 };
 MenuButtonTemplate data_02159d00 = {
@@ -105,8 +105,7 @@ MenuButtonTemplate data_02159d28 = {
 TaskScriptCmd data_02159d50[] = {
 #include "data/main/data_02159d50.inc.c"
 };
-/* declared `u8 data_02159d78[]` in func_02031a14.c: relocation at data_02159d78+0x4 is not on a 4-byte field */
-u32 data_02159d78[] = {
+TaskScriptCmd data_02159d78[] = {
 #include "data/main/data_02159d78.inc.c"
 };
 TaskScriptCmd data_02159da8[] = {
@@ -124,12 +123,10 @@ EventScriptCommand data_02159de0[] = {
 TaskScriptCmd data_02159e20[] = {
 #include "data/main/data_02159e20.inc.c"
 };
-/* declared `const u8 data_02159ee0[]` in result_screen_init.c: relocation at data_02159ee0+0xc is not on a 4-byte field */
-u32 data_02159ee0[] = {
+GfxLayer data_02159ee0[] = {
 #include "data/main/data_02159ee0.inc.c"
 };
-/* declared `const u8 data_02159f30[]` in result_screen_init.c: relocation at data_02159f30+0xc is not on a 4-byte field */
-u32 data_02159f30[] = {
+GfxLayer data_02159f30[] = {
 #include "data/main/data_02159f30.inc.c"
 };
 TaskScriptCmd data_02159f80[] = {

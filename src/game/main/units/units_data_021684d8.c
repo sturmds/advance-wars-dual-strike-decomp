@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/event_script.h"
 #include "game/task.h"
 
 void CoSwapTask_ShowLine(void);
@@ -31,6 +32,6 @@ TaskScriptCmd data_021684f8[] = {
 TaskScriptCmd data_02168578[] = {
 #include "data/main/data_02168578.inc.c"
 };
-u32 data_021685c8[] = {
+EventScriptCommand data_021685c8[] = {
 #include "data/main/data_021685c8.inc.c"
 };

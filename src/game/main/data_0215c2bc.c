@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/screen_contexts.h"
 #include "game/song.h"
 #include "game/task.h"
@@ -51,10 +52,10 @@ extern u8 data_0217fb08[];
 void TagBreak_FadeInBlend(void);
 void TagBreak_ScrollFrame(void);
 
-u32 data_0215c2bc[] = {
+TaskScriptCmd data_0215c2bc[] = {
 #include "data/main/data_0215c2bc.inc.c"
 };
-u32 data_0215c2d4[] = {
+TaskScriptCmd data_0215c2d4[] = {
 #include "data/main/data_0215c2d4.inc.c"
 };
 TaskScriptCmd data_0215c2fc[] = {
@@ -68,12 +69,10 @@ TaskScriptCmd gTagGaugeScript[] = {
 u32 gSparkBurstOffsets[] = {
 #include "data/main/gSparkBurstOffsets.inc.c"
 };
-/* declared `u8 data_0215c3f4[]` in tag_break_set_up_screens.c: relocation at data_0215c3f4+0xc is not on a 4-byte field */
-u32 data_0215c3f4[] = {
+GfxLayer data_0215c3f4[] = {
 #include "data/main/data_0215c3f4.inc.c"
 };
-/* declared `u8 data_0215c3a4[]` in tag_break_set_up_screens.c: relocation at data_0215c3a4+0xc is not on a 4-byte field */
-u32 data_0215c3a4[] = {
+GfxLayer data_0215c3a4[] = {
 #include "data/main/data_0215c3a4.inc.c"
 };
 TaskScriptCmd data_0215c444[] = {

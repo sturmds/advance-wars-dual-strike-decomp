@@ -1,4 +1,6 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
+#include "game/event_script.h"
 #include "game/menu_button.h"
 #include "game/name_entry_work.h"
 #include "game/screen_contexts.h"
@@ -244,31 +246,25 @@ MenuButtonTemplate data_0216ab04 = {
 MenuButtonTemplate data_0216ab2c = {
 #include "data/main/data_0216ab2c.inc.c"
 };
-/* declared `u8 data_0216abb4[]` in name_entry_update.c: relocation at data_0216abb4+0x14 is not on a 4-byte field */
-u32 data_0216abb4[] = {
+EventScriptCommand data_0216abb4[] = {
 #include "data/main/data_0216abb4.inc.c"
 };
 TaskScriptCmd gNameEntryScript[] = {
 #include "data/main/gNameEntryScript.inc.c"
 };
-/* declared `u8 data_0216ac44[]` in name_entry_update.c: relocation at data_0216ac44+0x14 is not on a 4-byte field */
-u32 data_0216ac44[] = {
+EventScriptCommand data_0216ac44[] = {
 #include "data/main/data_0216ac44.inc.c"
 };
-/* declared `u8 data_0216ab54[]` in name_entry_update.c: relocation at data_0216ab54+0x14 is not on a 4-byte field */
-u32 data_0216ab54[] = {
+EventScriptCommand data_0216ab54[] = {
 #include "data/main/data_0216ab54.inc.c"
 };
-/* declared `u8 data_0216ab84[]` in name_entry_update.c: relocation at data_0216ab84+0x14 is not on a 4-byte field */
-u32 data_0216ab84[] = {
+EventScriptCommand data_0216ab84[] = {
 #include "data/main/data_0216ab84.inc.c"
 };
-/* declared `u8 data_0216abe4[]` in name_entry_update.c: relocation at data_0216abe4+0x14 is not on a 4-byte field */
-u32 data_0216abe4[] = {
+EventScriptCommand data_0216abe4[] = {
 #include "data/main/data_0216abe4.inc.c"
 };
-/* declared `u8 data_0216ac74[]` in name_entry_set_up_screen.c: relocation at data_0216ac74+0xc is not on a 4-byte field */
-u32 data_0216ac74[] = {
+GfxLayer data_0216ac74[] = {
 #include "data/main/data_0216ac74.inc.c"
 };
 /* tile x and y of each key label, two bytes per key */

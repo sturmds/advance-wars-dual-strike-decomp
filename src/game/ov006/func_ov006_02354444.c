@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/event_script.h"
 #include "game/task.h"
 #include "game/Unk_ov006_0235f690.h"
 
@@ -27,19 +28,19 @@ void func_ov006_023545dc(void);
 static TaskScriptCmd data_ov006_0236acc4[] = {
 #include "data/ov006/data_ov006_0236acc4.inc.c"
 };
-u32 data_ov006_0236ae1c[] = {
+EventScriptCommand data_ov006_0236ae1c[] = {
 #include "data/ov006/data_ov006_0236ae1c.inc.c"
 };
-u32 data_ov006_0236ad9c[] = {
+EventScriptCommand data_ov006_0236ad9c[] = {
 #include "data/ov006/data_ov006_0236ad9c.inc.c"
 };
-u32 data_ov006_0236ad1c[] = {
+EventScriptCommand data_ov006_0236ad1c[] = {
 #include "data/ov006/data_ov006_0236ad1c.inc.c"
 };
-u32 data_ov006_0236ae9c[] = {
+EventScriptCommand data_ov006_0236ae9c[] = {
 #include "data/ov006/data_ov006_0236ae9c.inc.c"
 };
-u32 data_ov006_0236af1c[] = {
+EventScriptCommand data_ov006_0236af1c[] = {
 #include "data/ov006/data_ov006_0236af1c.inc.c"
 };
 

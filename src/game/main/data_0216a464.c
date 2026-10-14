@@ -57,13 +57,13 @@ char data_0216a47c[] = {
 char data_0216a478[] = {
 #include "data/main/data_0216a478.inc.c"
 };
-u32 data_0216a48c[] = {
+TaskScriptCmd data_0216a48c[] = {
 #include "data/main/data_0216a48c.inc.c"
 };
-u32 data_0216a49c[] = {
+TaskScriptCmd data_0216a49c[] = {
 #include "data/main/data_0216a49c.inc.c"
 };
-u32 data_0216a4ac[] = {
+TaskScriptCmd data_0216a4ac[] = {
 #include "data/main/data_0216a4ac.inc.c"
 };
 MenuButtonTemplate data_0216a4c4 = {

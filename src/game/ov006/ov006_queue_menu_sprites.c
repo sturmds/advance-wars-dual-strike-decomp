@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/script_slot.h"
 
 void Sprite_Queue(int list, int x, int y, const void* data, int attr, int tile);
 
@@ -29,11 +30,10 @@ static u8 data_ov006_0236c050[] = {
 static u8 data_ov006_0236c048[] = {
 #include "data/ov006/data_ov006_0236c048.inc.c"
 };
-u32 data_ov006_0236c078[] = {
+ScriptCommand data_ov006_0236c078[] = {
 #include "data/ov006/data_ov006_0236c078.inc.c"
 };
-/* declared `u8 data_ov006_0236c088[]` in func_ov006_023586e0.c: relocation at data_ov006_0236c088+0x0 is not on a 4-byte field */
-u32 data_ov006_0236c088[] = {
+ScriptCommand data_ov006_0236c088[] = {
 #include "data/ov006/data_ov006_0236c088.inc.c"
 };
 

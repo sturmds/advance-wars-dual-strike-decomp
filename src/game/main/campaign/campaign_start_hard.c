@@ -9,7 +9,7 @@ void Map_SetupPlayerCos(void);
 void SetupMapRules(void);
 void Survival_LoadPlayerCos(void);
 void Survival_SetCurrentMap(void);
-extern u32 data_0216710c[];
+extern TaskScriptCmd data_0216710c[];
 void func_02048238(void);
 void func_020b983c(void);
 void func_020fd85c(void);
@@ -19,7 +19,7 @@ void func_02050664(void);
 TaskScriptCmd data_021670d4[] = {
 #include "data/main/data_021670d4.inc.c"
 };
-u32 data_0216710c[] = {
+TaskScriptCmd data_0216710c[] = {
 #include "data/main/data_0216710c.inc.c"
 };
 TaskScriptCmd gSurvivalResumeScript[] = {

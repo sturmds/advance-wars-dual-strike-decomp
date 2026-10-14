@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/screen_contexts.h"
 #include "game/task.h"
 
@@ -115,8 +116,7 @@ char data_02159368[] = {
 TaskScriptCmd data_0215937c[] = {
 #include "data/main/data_0215937c.inc.c"
 };
-/* declared `u8 gWallpaperTaskScript[]` in wallpaper_destroy_tasks.c: relocation at gWallpaperTaskScript+0xc is not on a 4-byte field */
-u32 gWallpaperTaskScript[] = {
+TaskScriptCmd gWallpaperTaskScript[] = {
 #include "data/main/gWallpaperTaskScript.inc.c"
 };
 /* per wallpaper: offset of its tile map */
@@ -127,24 +127,19 @@ u16 data_021593fc[] = {
 u16 data_021593bc[] = {
 #include "data/main/data_021593bc.inc.c"
 };
-/* declared `u8 data_0215943c[]` in gfx_init_both_screens.c: relocation at data_0215943c+0xc is not on a 4-byte field */
-u32 data_0215943c[] = {
+GfxLayer data_0215943c[] = {
 #include "data/main/data_0215943c.inc.c"
 };
-/* declared `u8 data_021594dc[]` in func_02028978.c: relocation at data_021594dc+0xc is not on a 4-byte field */
-u32 data_021594dc[] = {
+GfxLayer data_021594dc[] = {
 #include "data/main/data_021594dc.inc.c"
 };
-/* declared `u8 data_0215952c[]` in gfx_init_both_screens.c: relocation at data_0215952c+0xc is not on a 4-byte field */
-u32 data_0215952c[] = {
+GfxLayer data_0215952c[] = {
 #include "data/main/data_0215952c.inc.c"
 };
-/* declared `u8 data_0215948c[]` in func_02028a30.c: relocation at data_0215948c+0xc is not on a 4-byte field */
-u32 data_0215948c[] = {
+GfxLayer data_0215948c[] = {
 #include "data/main/data_0215948c.inc.c"
 };
-/* declared `u8 data_0215957c[]` in func_02028978.c: relocation at data_0215957c+0xc is not on a 4-byte field */
-u32 data_0215957c[] = {
+GfxLayer data_0215957c[] = {
 #include "data/main/data_0215957c.inc.c"
 };
 /* "res_wall_default", "res_wall_cathy", ... */

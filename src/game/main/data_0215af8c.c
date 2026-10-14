@@ -57,8 +57,7 @@ void func_0204923c(void);
 u8 data_0215af8c[] = {
 #include "data/main/data_0215af8c.inc.c"
 };
-/* declared `u8 data_0215af94[]` in co_rank_are_markers_running.c: relocation at data_0215af94+0xc is not on a 4-byte field */
-u32 data_0215af94[] = {
+TaskScriptCmd data_0215af94[] = {
 #include "data/main/data_0215af94.inc.c"
 };
 TaskScriptCmd data_0215afdc[] = {
@@ -67,8 +66,7 @@ TaskScriptCmd data_0215afdc[] = {
 MenuButtonTemplate data_0215afb4 = {
 #include "data/main/data_0215afb4.inc.c"
 };
-/* declared `u8 data_0215b004[]` in co_rank_are_markers_running.c: relocation at data_0215b004+0x4 is not on a 4-byte field */
-u32 data_0215b004[] = {
+TaskScriptCmd data_0215b004[] = {
 #include "data/main/data_0215b004.inc.c"
 };
 TaskScriptCmd data_0215b06c[] = {

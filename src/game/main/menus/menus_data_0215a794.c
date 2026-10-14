@@ -17,7 +17,7 @@ void ForceRankScreen_ToggleSkill(void);
 void ForceRankScreen_OnSkillCancel(void);
 void ForceRankScreen_OnSkillSelected(void);
 
-u32 data_0215a794[] = {
+TaskScriptCmd data_0215a794[] = {
 #include "data/main/data_0215a794.inc.c"
 };
 MenuButtonTemplate gForceRankSlotButtonTemplate = {

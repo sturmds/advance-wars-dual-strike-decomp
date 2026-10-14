@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/second_screen.h"
 #include "game/screen_other_map.h"
 #include "game/co_data.h"
@@ -40,8 +41,7 @@ static u16 Ov000_gTerrainPanelMoveTypeTiles[] = {
 static int Ov000_gTerrainPanelMoveTypes[] = {
 #include "data/ov000/Ov000_gTerrainPanelMoveTypes.inc.c"
 };
-/* declared `u8 data_ov000_023500f8[]` in second_screen_task_create.c: relocation at data_ov000_023500f8+0x4 is not on a 4-byte field */
-u32 data_ov000_023500f8[] = {
+TaskScriptCmd data_ov000_023500f8[] = {
 #include "data/ov000/data_ov000_023500f8.inc.c"
 };
 /* tile x, y of the n-th icon shown */

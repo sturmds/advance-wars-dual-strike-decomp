@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/event_script.h"
 #include "game/task.h"
 
 void func_0201e954(void);
@@ -12,7 +13,7 @@ void func_ov006_023543c4(void);
 static TaskScriptCmd data_ov006_0236ac34[] = {
 #include "data/ov006/data_ov006_0236ac34.inc.c"
 };
-u32 data_ov006_0236ac74[] = {
+EventScriptCommand data_ov006_0236ac74[] = {
 #include "data/ov006/data_ov006_0236ac74.inc.c"
 };
 

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/screen_contexts.h"
 #include "game/task.h"
 
@@ -16,11 +17,9 @@ extern u8 data_0217fb08[];
 TaskScriptCmd data_ov005_023694cc[] = {
 #include "data/ov005/data_ov005_023694cc.inc.c"
 };
-/* declared `u8 gOv005MessageMainLayers[]` in ov005_set_up_message_screen.c: relocation at gOv005MessageMainLayers+0xc is not on a 4-byte field */
-u32 gOv005MessageMainLayers[] = {
+GfxLayer gOv005MessageMainLayers[] = {
 #include "data/ov005/gOv005MessageMainLayers.inc.c"
 };
-/* declared `u8 gOv005MessageSubLayers[]` in ov005_set_up_message_screen.c: relocation at gOv005MessageSubLayers+0xc is not on a 4-byte field */
-u32 gOv005MessageSubLayers[] = {
+GfxLayer gOv005MessageSubLayers[] = {
 #include "data/ov005/gOv005MessageSubLayers.inc.c"
 };

@@ -1,4 +1,6 @@
 #include "types.h"
+#include "game/script_slot.h"
+#include "game/Unk_02088d04.h"
 #include "game/Unk_02080440.h"
 #include "game/map_bg.h"
 #include "game/screen_contexts.h"
@@ -77,15 +79,13 @@ u8 data_02169d94[] = {
 u8 gCycleHookSteps[] = {
 #include "data/main/gCycleHookSteps.inc.c"
 };
-/* declared `u8 data_02169dac[]` in func_020f77bc.c: relocation at data_02169dac+0x4 is not on a 4-byte field */
-u32 data_02169dac[] = {
+TaskScriptCmd data_02169dac[] = {
 #include "data/main/data_02169dac.inc.c"
 };
 u32 data_02169dbc[] = {
 #include "data/main/data_02169dbc.inc.c"
 };
-/* declared `const EventScriptCommand gMapScrollScript[]` in ai_build_buy_at_site.c: relocation at gMapScrollScript+0x8 is not on a 4-byte field */
-u32 gMapScrollScript[] = {
+ScriptCommand gMapScrollScript[] = {
 #include "data/main/gMapScrollScript.inc.c"
 };
 /* mountain cells, picked by tile position */
@@ -109,8 +109,7 @@ u16 data_02169eb8[] = {
 u16 data_02169e78[] = {
 #include "data/main/data_02169e78.inc.c"
 };
-/* declared `u8 data_02169ef8[]` in map_bg_load_graphics.c: relocation at data_02169ef8+0xc is not on a 4-byte field */
-u32 data_02169ef8[] = {
+GfxLayer data_02169ef8[] = {
 #include "data/main/data_02169ef8.inc.c"
 };
 Unk_02080440_50 data_02169f48[] = {

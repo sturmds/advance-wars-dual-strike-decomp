@@ -11,6 +11,31 @@ typedef struct ScriptCommand {
   u16 opcode; /* index into gScriptCommands */
 } ScriptCommand;
 
+typedef char ScriptCommand_size_check[sizeof(ScriptCommand) == 8 ? 1 : -1];
+
+/* Opcodes, named after their handlers in gScriptCommands (ScriptSlot_Run).
+ * Opcode 9 has the same handler as SCRIPT_CMD_WAIT and 8 the same as
+ * SCRIPT_CMD_END. */
+#define SCRIPT_CMD_WAIT 0         /* arg16 frames */
+#define SCRIPT_CMD_SET_CALLBACK 1 /* arg: ScriptSlot.callback */
+#define SCRIPT_CMD_CALL_FUNCTION 2
+#define SCRIPT_CMD_JUMP 3
+#define SCRIPT_CMD_WAIT_FOR_SCRIPT 5
+#define SCRIPT_CMD_START_SCRIPT 6
+#define SCRIPT_CMD_END 7 /* stops the slot */
+#define SCRIPT_CMD_SET_ON_STOP 10
+#define SCRIPT_CMD_WAIT_FOR_EVENT_SCRIPTS 12
+#define SCRIPT_CMD_STOP_SLOT 13
+#define SCRIPT_CMD_MOVE_PATH 16
+#define SCRIPT_CMD_MOVE_ACCEL 17
+#define SCRIPT_CMD_MOVE_ARC 18
+#define SCRIPT_CMD_MOVE_X 21
+#define SCRIPT_CMD_MOVE_Y 22
+#define SCRIPT_CMD_WAIT_UNTIL_ONE 23
+#define SCRIPT_CMD_WAIT_WHILE 24
+#define SCRIPT_CMD_JUMP_IF_FLAG 29
+#define SCRIPT_CMD_SET_FLAG 34
+
 #define SCRIPT_SLOT_COUNT 30 /* slots in Unk_02080440.scriptSlots */
 
 /* One of SCRIPT_SLOT_COUNT script slots at data_027c027c->scriptSlots. The handlers call

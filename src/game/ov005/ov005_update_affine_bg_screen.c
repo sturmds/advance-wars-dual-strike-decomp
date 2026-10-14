@@ -48,20 +48,16 @@ static TaskScriptCmd data_ov005_02368098[] = {
 static TaskScriptCmd data_ov005_023680c0[] = {
 #include "data/ov005/data_ov005_023680c0.inc.c"
 };
-/* declared `u8 gOv005DarkenedSubLayers[]` in ov005_setup_darkened_screens_with_song.c: relocation at gOv005DarkenedSubLayers+0xc is not on a 4-byte field */
-u32 gOv005DarkenedSubLayers[] = {
+GfxLayer gOv005DarkenedSubLayers[] = {
 #include "data/ov005/gOv005DarkenedSubLayers.inc.c"
 };
-/* declared `u8 gOv005BlendSubLayers[]` in ov005_setup_screens_with_blend.c: relocation at gOv005BlendSubLayers+0xc is not on a 4-byte field */
-u32 gOv005BlendSubLayers[] = {
+GfxLayer gOv005BlendSubLayers[] = {
 #include "data/ov005/gOv005BlendSubLayers.inc.c"
 };
-/* declared `u8 data_ov005_023680f0[]` in ov005_setup_darkened_screens_with_song.c: relocation at data_ov005_023680f0+0xc is not on a 4-byte field */
-u32 data_ov005_023680f0[] = {
+GfxLayer data_ov005_023680f0[] = {
 #include "data/ov005/data_ov005_023680f0.inc.c"
 };
-/* declared `u8 gOv005AffineSubLayers[]` in ov005_setup_screens_with_affine_bg.c: relocation at gOv005AffineSubLayers+0xc is not on a 4-byte field */
-u32 gOv005AffineSubLayers[] = {
+GfxLayer gOv005AffineSubLayers[] = {
 #include "data/ov005/gOv005AffineSubLayers.inc.c"
 };
 TaskScriptCmd data_ov005_02368230[] = {

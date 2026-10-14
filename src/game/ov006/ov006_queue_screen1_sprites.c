@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov006_0235f690.h"
 #include "game/screen_contexts.h"
@@ -85,8 +86,7 @@ void* data_ov006_0236aa84[] = {0,
 u32 data_ov006_0236aa9c[] = {
 #include "data/ov006/data_ov006_0236aa9c.inc.c"
 };
-/* declared `u8 data_ov006_0236aad8[]` in ov006_load_mapedit_graphics.c: relocation at data_ov006_0236aad8+0xc is not on a 4-byte field */
-u32 data_ov006_0236aad8[] = {
+GfxLayer data_ov006_0236aad8[] = {
 #include "data/ov006/data_ov006_0236aad8.inc.c"
 };
 
