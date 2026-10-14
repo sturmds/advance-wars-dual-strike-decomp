@@ -6,7 +6,8 @@
 
 Tenet 10: a name shaped like a DS library name (OS_Foo, CARDi_Bar, WMFoo,
 REG_X) must be in tools/pnc_sdk_names.txt, the names with a public source.
-Any other name needs a name of our own.
+Any other name needs a name of our own. PROGRESS.md and PROGRESS.json are
+left out of this part: they are written from names checked elsewhere.
 
 Tenet 8: the patterns are case-insensitive regexes, one per line, in
 .git/info/pnc-patterns. That file is never committed: a list of what must
@@ -50,6 +51,9 @@ def patterns() -> re.Pattern | None:
     return re.compile("|".join(f"(?:{l})" for l in lines).encode(), re.I) if lines else None
 
 
+NAME_CHECK_SKIP = {b"tools/pnc_sdk_names.txt", b"tools/pnc_check.py", b"PROGRESS.md", b"PROGRESS.json"}
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--message", type=Path, help="a commit message file")
@@ -77,7 +81,10 @@ def main() -> int:
         data = p.read_bytes() if p.is_file() and not p.is_symlink() else b""
         if pat and (pat.search(f) or pat.search(data)):
             bad.append(f.decode())
-        if f != b"tools/pnc_sdk_names.txt" and f != b"tools/pnc_check.py":
+        # PROGRESS.md and PROGRESS.json are written from the report of the names in
+        # src/ and config/, which this loop checks already; a landing replays
+        # mainline's copy, so a rename would fail here until the hook rewrites it.
+        if f not in NAME_CHECK_SKIP:
             for n in unsourced(data, allowed):
                 names.setdefault(n.decode(), f.decode())
     if bad:
