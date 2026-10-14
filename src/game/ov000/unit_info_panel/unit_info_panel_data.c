@@ -589,7 +589,7 @@ u32 data_ov000_0234f224[] = {
 u32 data_ov000_0234efa4[] = {
 #include "data/ov000/data_ov000_0234efa4.inc.c"
 };
-u32 data_ov000_0234f004[] = {
+u16 data_ov000_0234f004[] = {
 #include "data/ov000/data_ov000_0234f004.inc.c"
 };
 u32 data_ov000_0234f064[] = {

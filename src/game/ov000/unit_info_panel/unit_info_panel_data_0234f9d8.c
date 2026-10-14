@@ -10,6 +10,6 @@ char data_ov000_0234f9e0[] = {
 UnitInfoPanelMarker data_ov000_0234f9e8[] = {
 #include "data/ov000/data_ov000_0234f9e8.inc.c"
 };
-u32 data_ov000_0234fa28[] = {
+u32 data_ov000_0234fa28[][UNIT_INFO_PANEL_PAGES] = {
 #include "data/ov000/data_ov000_0234fa28.inc.c"
 };

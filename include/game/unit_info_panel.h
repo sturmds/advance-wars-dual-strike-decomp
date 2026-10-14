@@ -41,6 +41,12 @@ typedef char
 extern UnitInfoPanel
     data_ov000_02350520; /* what data_ov000_0234ec8c points to */
 
+/* Pages of the panel (UnitInfoPanel.page). data_ov000_0234fa28 has a row
+ * per unit type group (data_ov000_022b3850[type] - 1) and the text id of
+ * each page in it, 0 for a page the group does not have. */
+#define UNIT_INFO_PANEL_PAGES 16
+extern u32 data_ov000_0234fa28[][UNIT_INFO_PANEL_PAGES];
+
 /* Tile blocks of layer 0 that the panel clears before drawing: the page's
  * text area and the picture block. */
 #define UNIT_INFO_TEXT_COLUMNS 14

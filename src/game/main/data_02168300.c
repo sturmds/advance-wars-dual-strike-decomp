@@ -43,7 +43,8 @@ char data_02168304[] = {
 char data_02168300[] = {
 #include "data/main/data_02168300.inc.c"
 };
-int data_02168314 = {
+/* the buffer that the unit target list and the AI reach tiles share */
+void* data_02168314 = {
 #include "data/main/data_02168314.inc.c"
 };
 char data_02168310[] = {

@@ -1770,7 +1770,7 @@ main      data_02168304               0x02168304  0x4    u8
 main      data_02168308               0x02168308  0x4    u8
 main      data_0216830c               0x0216830c  0x4    u8
 main      data_02168310               0x02168310  0x4    u8
-main      data_02168314               0x02168314  0x4    s32
+main      data_02168314               0x02168314  0x4    void*
 main      data_02168318               0x02168318  0x10   {s16,s16,u32}
 main      data_02168328               0x02168328  0x58   {s16:TASK_CMD,s16,u32}
 main      data_02168380               0x02168380  0x80   {s16,s16,u32}
@@ -11617,7 +11617,7 @@ ov000     data_ov000_0234ef84         0x0234ef84  0x20   u32
 ov000     data_ov000_0234efa4         0x0234efa4  0x20   u32
 ov000     data_ov000_0234efc4         0x0234efc4  0x20   u32
 ov000     data_ov000_0234efe4         0x0234efe4  0x20   u32
-ov000     data_ov000_0234f004         0x0234f004  0x20   u32
+ov000     data_ov000_0234f004         0x0234f004  0x20   u16
 ov000     data_ov000_0234f024         0x0234f024  0x20   u32
 ov000     data_ov000_0234f044         0x0234f044  0x20   u32
 ov000     data_ov000_0234f064         0x0234f064  0x20   u32
@@ -11645,7 +11645,7 @@ ov000     data_ov000_0234f33c         0x0234f33c  0x48   {s16:TASK_CMD,s16,u32}
 ov000     data_ov000_0234f9d8         0x0234f9d8  0x7    u8
 ov000     data_ov000_0234f9e0         0x0234f9e0  0x8    u8
 ov000     data_ov000_0234f9e8         0x0234f9e8  0x40   {u8,u8,u8,u8}
-ov000     data_ov000_0234fa28         0x0234fa28  0x680  u32
+ov000     data_ov000_0234fa28         0x0234fa28  0x680  u32[16]
 ov000     data_ov000_023500a8         0x023500a8  0xc    u32
 ov000     data_ov000_023500b4         0x023500b4  0xc    s32
 ov000     Ov000_gTerrainPanelMoveTypeTiles 0x023500c0  0x12   u16

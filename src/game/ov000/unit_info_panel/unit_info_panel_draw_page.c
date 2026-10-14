@@ -6,8 +6,6 @@ extern Unk_027c0280* data_027c0280;
 
 /* Per unit type: 1-based row of data_ov000_0234fa28. */
 extern s8 data_ov000_022b3850[];
-/* Per row, per page: text id. */
-extern u32 data_ov000_0234fa28[][16];
 
 void Map_ScrollViewToTile(int mode);
 void Text_StopPrinting(void);
