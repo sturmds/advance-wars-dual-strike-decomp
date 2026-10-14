@@ -19,4 +19,9 @@ typedef s32 fx32;
 #define TRUE 1
 #define FALSE 0
 
+/* The number of elements of an array (not of a pointer). */
+#define ARRAY_COUNT(a) (sizeof(a) / sizeof((a)[0]))
+/* The byte offset of a field in a struct type. */
+#define offsetof(type, field) ((u32) & ((type*)0)->field)
+
 #endif
