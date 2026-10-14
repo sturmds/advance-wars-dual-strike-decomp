@@ -3,6 +3,94 @@
     .data       start:0x023522a0 end:0x0237a5a0 kind:data align:32
     .bss        start:0x0237a5a0 end:0x0237a5a0 kind:bss align:32
 
+src/game/ov001/ov001_data_023522a0.c:
+    complete
+    .data       start:0x023522a0 end:0x02352460
+
+src/game/ov001/ov001_data_02352460.c:
+    complete
+    .data       start:0x02352460 end:0x02353ba0
+
+src/game/ov001/ov001_data_02353ba0.c:
+    complete
+    .data       start:0x02353ba0 end:0x02354754
+
+src/game/ov001/ov001_data_02354754.c:
+    complete
+    .data       start:0x02354754 end:0x023554d8
+
+src/game/ov001/ov001_data_023554d8.c:
+    complete
+    .data       start:0x023554d8 end:0x023564b4
+
+src/game/ov001/ov001_data_023564b4.c:
+    complete
+    .data       start:0x023564b4 end:0x02357068
+
+src/game/ov001/ov001_data_02357068.c:
+    complete
+    .data       start:0x02357068 end:0x02357e64
+
+src/game/ov001/ov001_data_02357e64.c:
+    complete
+    .data       start:0x02357e64 end:0x02358988
+
+src/game/ov001/ov001_data_02358988.c:
+    complete
+    .data       start:0x02358988 end:0x0235943c
+
+src/game/ov001/ov001_data_0235943c.c:
+    complete
+    .data       start:0x0235943c end:0x02359f28
+
+src/game/ov001/ov001_data_02359f28.c:
+    complete
+    .data       start:0x02359f28 end:0x0235b6f4
+
+src/game/ov001/ov001_data_0235b6f4.c:
+    complete
+    .data       start:0x0235b6f4 end:0x0235c490
+
+src/game/ov001/ov001_data_0235c490.c:
+    complete
+    .data       start:0x0235c490 end:0x0235cf24
+
+src/game/ov001/ov001_data_0235cf24.c:
+    complete
+    .data       start:0x0235cf24 end:0x0235de50
+
+src/game/ov001/ov001_data_0235de50.c:
+    complete
+    .data       start:0x0235de50 end:0x0235eacc
+
+src/game/ov001/ov001_data_0235eacc.c:
+    complete
+    .data       start:0x0235eacc end:0x0235fb88
+
+src/game/ov001/ov001_data_0235fb88.c:
+    complete
+    .data       start:0x0235fb88 end:0x023612a4
+
+src/game/ov001/ov001_data_023612a4.c:
+    complete
+    .data       start:0x023612a4 end:0x023624a8
+
+src/game/ov001/ov001_data_023624a8.c:
+    complete
+    .data       start:0x023624a8 end:0x02363724
+
+src/game/ov001/ov001_data_02363724.c:
+    complete
+    .data       start:0x02363724 end:0x02364ad0
+
+src/game/ov001/ov001_data_02364ad0.c:
+    complete
+    .data       start:0x02364ad0 end:0x02365ea8
+
+src/game/ov001/ov001_data_02365ea8.c:
+    complete
+    .data       start:0x02365ea8 end:0x0236669c
+
 src/game/ov001/ov001_map_lacks_object_kinds11_to13.c:
     complete
     .text       start:0x02350560 end:0x023505c0
