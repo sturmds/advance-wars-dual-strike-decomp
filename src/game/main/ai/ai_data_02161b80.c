@@ -14,16 +14,16 @@ void func_020994b8(void);
 void func_02099520(void);
 
 /* per target group: the unit type that stands for it */
-u8 gAiTargetGroupType[12] = {
+u8 gAiTargetGroupType[] = {
 #include "data/main/gAiTargetGroupType.inc.c"
 };
 /* sets of 29 bytes: a mods id, then a template id per CO id */
-u8 data_02161b8c[1220] = {
+u8 data_02161b8c[] = {
 #include "data/main/data_02161b8c.inc.c"
 };
-AiProfileMods gAiProfileMods[41] = {
+AiProfileMods gAiProfileMods[] = {
 #include "data/main/gAiProfileMods.inc.c"
 };
-AiProfileTemplate gAiProfileTemplates[34] = {
+AiProfileTemplate gAiProfileTemplates[] = {
 #include "data/main/gAiProfileTemplates.inc.c"
 };

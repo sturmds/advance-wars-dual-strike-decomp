@@ -59,60 +59,60 @@ void Screen_ShowBg0(void);
 void func_020f869c(void);
 void MapGfx_LoadTilesetAndWeather(void);
 
-char data_02169d78[4] = {
+char data_02169d78[] = {
 #include "data/main/data_02169d78.inc.c"
 };
-u8 data_02169d8c[8] = {
+u8 data_02169d8c[] = {
 #include "data/main/data_02169d8c.inc.c"
 };
-u32 data_02169d7c[2] = {
+u32 data_02169d7c[] = {
 #include "data/main/data_02169d7c.inc.c"
 };
-u8 gCornerSpriteShape[8] = {
+u8 gCornerSpriteShape[] = {
 #include "data/main/gCornerSpriteShape.inc.c"
 };
-u8 data_02169d94[8] = {
+u8 data_02169d94[] = {
 #include "data/main/data_02169d94.inc.c"
 };
-u8 gCycleHookSteps[16] = {
+u8 gCycleHookSteps[] = {
 #include "data/main/gCycleHookSteps.inc.c"
 };
 /* declared `u8 data_02169dac[]` in func_020f77bc.c: relocation at data_02169dac+0x4 is not on a 4-byte field */
-u32 data_02169dac[4] = {
+u32 data_02169dac[] = {
 #include "data/main/data_02169dac.inc.c"
 };
-u32 data_02169dbc[7] = {
+u32 data_02169dbc[] = {
 #include "data/main/data_02169dbc.inc.c"
 };
 /* declared `const EventScriptCommand gMapScrollScript[]` in ai_build_buy_at_site.c: relocation at gMapScrollScript+0x8 is not on a 4-byte field */
-u32 gMapScrollScript[8] = {
+u32 gMapScrollScript[] = {
 #include "data/main/gMapScrollScript.inc.c"
 };
 /* mountain cells, picked by tile position */
-u16 gMountainCellVariants[16] = {
+u16 gMountainCellVariants[] = {
 #include "data/main/gMountainCellVariants.inc.c"
 };
-u32 data_02169dd8[8] = {
+u32 data_02169dd8[] = {
 #include "data/main/data_02169dd8.inc.c"
 };
-TaskScriptCmd data_02169df8[4] = {
+TaskScriptCmd data_02169df8[] = {
 #include "data/main/data_02169df8.inc.c"
 };
-u32 data_02169e18[8] = {
+u32 data_02169e18[] = {
 #include "data/main/data_02169e18.inc.c"
 };
 /* tile map offset of each map tile column: two 32x32 screen blocks */
-u16 data_02169eb8[32] = {
+u16 data_02169eb8[] = {
 #include "data/main/data_02169eb8.inc.c"
 };
 /* per terrain id; 0: keep the map's cell */
-u16 data_02169e78[32] = {
+u16 data_02169e78[] = {
 #include "data/main/data_02169e78.inc.c"
 };
 /* declared `u8 data_02169ef8[]` in map_bg_load_graphics.c: relocation at data_02169ef8+0xc is not on a 4-byte field */
-u32 data_02169ef8[20] = {
+u32 data_02169ef8[] = {
 #include "data/main/data_02169ef8.inc.c"
 };
-Unk_02080440_50 data_02169f48[6] = {
+Unk_02080440_50 data_02169f48[] = {
 #include "data/main/data_02169f48.inc.c"
 };

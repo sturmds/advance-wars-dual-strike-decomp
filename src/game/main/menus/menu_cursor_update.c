@@ -9,7 +9,7 @@ int MenuButton_TestFlags(MenuButton* entry, int mask);
 extern u8 data_02158f3c[];
 void Menu_CancelCallback(void);
 
-static u8 gMenuCursorShake[16] = {
+static u8 gMenuCursorShake[] = {
 #include "data/main/gMenuCursorShake.inc.c"
 };
 MenuButtonTemplate data_02158f54 = {

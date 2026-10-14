@@ -3,9 +3,9 @@
 
 void PaletteCycle_Update(void);
 
-u16 gMapPreviewBlockUnitMask[4] = {
+u16 gMapPreviewBlockUnitMask[] = {
 #include "data/main/gMapPreviewBlockUnitMask.inc.c"
 };
-TaskScriptCmd data_02159944[4] = {
+TaskScriptCmd data_02159944[] = {
 #include "data/main/data_02159944.inc.c"
 };

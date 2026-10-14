@@ -16,13 +16,13 @@ void func_020fd85c(void);
 void func_020e8970(void);
 void func_02050664(void);
 
-TaskScriptCmd data_021670d4[7] = {
+TaskScriptCmd data_021670d4[] = {
 #include "data/main/data_021670d4.inc.c"
 };
-u32 data_0216710c[16] = {
+u32 data_0216710c[] = {
 #include "data/main/data_0216710c.inc.c"
 };
-TaskScriptCmd gSurvivalResumeScript[8] = {
+TaskScriptCmd gSurvivalResumeScript[] = {
 #include "data/main/gSurvivalResumeScript.inc.c"
 };
 

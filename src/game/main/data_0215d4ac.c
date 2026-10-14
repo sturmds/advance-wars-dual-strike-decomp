@@ -40,7 +40,7 @@ void func_02071da0(void);
 void func_02071e90(void);
 void TabList_IsValueZero(void);
 
-u32 data_0215d4ac[6] = {
+u32 data_0215d4ac[] = {
 #include "data/main/data_0215d4ac.inc.c"
 };
 MenuButtonTemplate data_0215d4c4 = {
@@ -70,12 +70,12 @@ MenuButtonTemplate data_0215d514 = {
 MenuButtonTemplate data_0215d58c = {
 #include "data/main/data_0215d58c.inc.c"
 };
-TaskScriptCmd data_0215d62c[7] = {
+TaskScriptCmd data_0215d62c[] = {
 #include "data/main/data_0215d62c.inc.c"
 };
-TaskScriptCmd data_0215d664[12] = {
+TaskScriptCmd data_0215d664[] = {
 #include "data/main/data_0215d664.inc.c"
 };
-TabListEntry data_0215d6c4[4][44] = {
+TabListEntry data_0215d6c4[][44] = {
 #include "data/main/data_0215d6c4.inc.c"
 };

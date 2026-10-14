@@ -1,18 +1,18 @@
 #include "types.h"
 
 /* "0b0" */
-char gWeatherSnowFileName[4] = {
+char gWeatherSnowFileName[] = {
 #include "data/main/gWeatherSnowFileName.inc.c"
 };
 /* "0b1" */
-char gWeatherRainFileName[4] = {
+char gWeatherRainFileName[] = {
 #include "data/main/gWeatherRainFileName.inc.c"
 };
 /* "0b2" */
-char gWeatherSandFileName[4] = {
+char gWeatherSandFileName[] = {
 #include "data/main/gWeatherSandFileName.inc.c"
 };
 /* "/bmap" */
-char gWeatherCloudDirName[6] = {
+char gWeatherCloudDirName[] = {
 #include "data/main/gWeatherCloudDirName.inc.c"
 };

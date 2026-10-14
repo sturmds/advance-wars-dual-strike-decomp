@@ -62,7 +62,7 @@ void TaskCmd_JumpToLabelIfCheck(void);
 void TaskCmd_JumpToLabelUnlessCheck(void);
 void func_0202326c(void);
 
-static TaskCommandFunc gTaskCommands[62] = {
+static TaskCommandFunc gTaskCommands[] = {
     (TaskCommandFunc)&func_020235d0,
     (TaskCommandFunc)&Task_SkipCommand,
     (TaskCommandFunc)&TaskCmd_CallAndContinue,

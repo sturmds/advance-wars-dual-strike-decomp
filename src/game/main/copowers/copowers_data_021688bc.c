@@ -20,12 +20,12 @@ void func_020e3e2c(void);
 void BgLayer0_NudgeScroll(void);
 
 /* declared `u8 gPowerEffectTaskDesc[]` in black_storm.c: relocation at gPowerEffectTaskDesc+0xc is not on a 4-byte field */
-u32 gPowerEffectTaskDesc[8] = {
+u32 gPowerEffectTaskDesc[] = {
 #include "data/main/gPowerEffectTaskDesc.inc.c"
 };
-TaskScriptCmd data_021688dc[5] = {
+TaskScriptCmd data_021688dc[] = {
 #include "data/main/data_021688dc.inc.c"
 };
-TaskScriptCmd gPowerDamageTaskDesc[16] = {
+TaskScriptCmd gPowerDamageTaskDesc[] = {
 #include "data/main/gPowerDamageTaskDesc.inc.c"
 };

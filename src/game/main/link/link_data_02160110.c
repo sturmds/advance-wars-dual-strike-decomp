@@ -45,10 +45,10 @@ void func_0207e5bc(void);
 void LinkMenu_PreviewMapSlot(void);
 void func_0207e4fc(void);
 
-char data_02160110[7] = {
+char data_02160110[] = {
 #include "data/main/data_02160110.inc.c"
 };
-u32 data_02160118[4] = {
+u32 data_02160118[] = {
 #include "data/main/data_02160118.inc.c"
 };
 MenuButtonTemplate data_02160178 = {
@@ -60,21 +60,21 @@ MenuButtonTemplate data_02160150 = {
 MenuButtonTemplate data_02160128 = {
 #include "data/main/data_02160128.inc.c"
 };
-TaskScriptCmd data_021601a0[6] = {
+TaskScriptCmd data_021601a0[] = {
 #include "data/main/data_021601a0.inc.c"
 };
-TaskScriptCmd gLinkMarkerScript1[7] = {
+TaskScriptCmd gLinkMarkerScript1[] = {
 #include "data/main/gLinkMarkerScript1.inc.c"
 };
-TaskScriptCmd gLinkMarkerScript2[7] = {
+TaskScriptCmd gLinkMarkerScript2[] = {
 #include "data/main/gLinkMarkerScript2.inc.c"
 };
-TaskScriptCmd gLinkMarkerScript0[7] = {
+TaskScriptCmd gLinkMarkerScript0[] = {
 #include "data/main/gLinkMarkerScript0.inc.c"
 };
-TaskScriptCmd data_02160278[11] = {
+TaskScriptCmd data_02160278[] = {
 #include "data/main/data_02160278.inc.c"
 };
-TaskScriptCmd data_021602d0[50] = {
+TaskScriptCmd data_021602d0[] = {
 #include "data/main/data_021602d0.inc.c"
 };

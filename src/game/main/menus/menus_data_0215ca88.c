@@ -67,30 +67,30 @@ void func_020678e0(void);
 void VsSetup_OnButtonSelected(void);
 void VsSetup_OnSlotButtonSelected(void);
 
-char data_0215ca88[7] = {
+char data_0215ca88[] = {
 #include "data/main/data_0215ca88.inc.c"
 };
 /* declared `u8 gVsSetupSettingRowY[SETTING_ROWS]` in vs_setup_add_setting_buttons.c: declared in src/game/main/menus/vs_setup_add_setting_buttons.c, with a type no header defines */
-u8 gVsSetupSettingRowY[9] = {
+u8 gVsSetupSettingRowY[] = {
 #include "data/main/gVsSetupSettingRowY.inc.c"
 };
 /* declared `u8 gVsSetupSettingRowX[SETTING_ROWS]` in vs_setup_add_setting_buttons.c: declared in src/game/main/menus/vs_setup_add_setting_buttons.c, with a type no header defines */
-u8 gVsSetupSettingRowX[9] = {
+u8 gVsSetupSettingRowX[] = {
 #include "data/main/gVsSetupSettingRowX.inc.c"
 };
-u32 data_0215cad8[4] = {
+u32 data_0215cad8[] = {
 #include "data/main/data_0215cad8.inc.c"
 };
-u32 data_0215cac8[4] = {
+u32 data_0215cac8[] = {
 #include "data/main/data_0215cac8.inc.c"
 };
-u32 data_0215cab8[4] = {
+u32 data_0215cab8[] = {
 #include "data/main/data_0215cab8.inc.c"
 };
-u32 data_0215caa8[4] = {
+u32 data_0215caa8[] = {
 #include "data/main/data_0215caa8.inc.c"
 };
-TaskScriptCmd data_0215cae8[2] = {
+TaskScriptCmd data_0215cae8[] = {
 #include "data/main/data_0215cae8.inc.c"
 };
 MenuButtonTemplate data_0215cc38 = {
@@ -135,7 +135,7 @@ MenuButtonTemplate data_0215cd00 = {
 MenuButtonTemplate data_0215cbe8 = {
 #include "data/main/data_0215cbe8.inc.c"
 };
-TaskScriptCmd data_0215ccb0[5] = {
+TaskScriptCmd data_0215ccb0[] = {
 #include "data/main/data_0215ccb0.inc.c"
 };
 MenuButtonTemplate data_0215cc10 = {
@@ -159,42 +159,42 @@ MenuButtonTemplate data_0215cbc0 = {
 MenuButtonTemplate data_0215caf8 = {
 #include "data/main/data_0215caf8.inc.c"
 };
-TaskScriptCmd data_0215ce68[6] = {
+TaskScriptCmd data_0215ce68[] = {
 #include "data/main/data_0215ce68.inc.c"
 };
-TaskScriptCmd data_0215ce98[6] = {
+TaskScriptCmd data_0215ce98[] = {
 #include "data/main/data_0215ce98.inc.c"
 };
-TaskScriptCmd gVsSetupSlot0TaskScript[7] = {
+TaskScriptCmd gVsSetupSlot0TaskScript[] = {
 #include "data/main/gVsSetupSlot0TaskScript.inc.c"
 };
-TaskScriptCmd gVsSetupSlot1TaskScript[7] = {
+TaskScriptCmd gVsSetupSlot1TaskScript[] = {
 #include "data/main/gVsSetupSlot1TaskScript.inc.c"
 };
-TaskScriptCmd gVsSetupSlot2TaskScript[7] = {
+TaskScriptCmd gVsSetupSlot2TaskScript[] = {
 #include "data/main/gVsSetupSlot2TaskScript.inc.c"
 };
-TaskScriptCmd gVsSetupSlot3TaskScript[7] = {
+TaskScriptCmd gVsSetupSlot3TaskScript[] = {
 #include "data/main/gVsSetupSlot3TaskScript.inc.c"
 };
-TaskScriptCmd data_0215cfa8[8] = {
+TaskScriptCmd data_0215cfa8[] = {
 #include "data/main/data_0215cfa8.inc.c"
 };
-u32 data_0215cfe8[20] = {
+u32 data_0215cfe8[] = {
 #include "data/main/data_0215cfe8.inc.c"
 };
-TaskScriptCmd data_0215d038[11] = {
+TaskScriptCmd data_0215d038[] = {
 #include "data/main/data_0215d038.inc.c"
 };
-u32 data_0215d0f0[24] = {
+u32 data_0215d0f0[] = {
 #include "data/main/data_0215d0f0.inc.c"
 };
-u32 data_0215d090[24] = {
+u32 data_0215d090[] = {
 #include "data/main/data_0215d090.inc.c"
 };
-TaskScriptCmd data_0215d150[17] = {
+TaskScriptCmd data_0215d150[] = {
 #include "data/main/data_0215d150.inc.c"
 };
-TaskScriptCmd data_0215d1d8[20] = {
+TaskScriptCmd data_0215d1d8[] = {
 #include "data/main/data_0215d1d8.inc.c"
 };

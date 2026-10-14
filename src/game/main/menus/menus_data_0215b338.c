@@ -67,29 +67,29 @@ void CampaignMap_DrawMarkers(void);
 void CampaignMap_DrawNumberAtMission(void);
 void func_0204f160(void);
 
-u32 data_0215b350[6] = {
+u32 data_0215b350[] = {
 #include "data/main/data_0215b350.inc.c"
 };
-u32 data_0215b398[6] = {
+u32 data_0215b398[] = {
 #include "data/main/data_0215b398.inc.c"
 };
-u32 data_0215b368[6] = {
+u32 data_0215b368[] = {
 #include "data/main/data_0215b368.inc.c"
 };
-u32 data_0215b338[6] = {
+u32 data_0215b338[] = {
 #include "data/main/data_0215b338.inc.c"
 };
-u32 data_0215b380[6] = {
+u32 data_0215b380[] = {
 #include "data/main/data_0215b380.inc.c"
 };
-u32 data_0215b3b0[8] = {
+u32 data_0215b3b0[] = {
 #include "data/main/data_0215b3b0.inc.c"
 };
 MenuButtonTemplate data_0215b448 = {
 #include "data/main/data_0215b448.inc.c"
 };
 /* declared `u8 data_0215b420[]` in campaign_map_center_on_mission.c: relocation at data_0215b420+0x4 is not on a 4-byte field */
-u32 data_0215b420[10] = {
+u32 data_0215b420[] = {
 #include "data/main/data_0215b420.inc.c"
 };
 MenuButtonTemplate data_0215b3d0 = {
@@ -99,45 +99,45 @@ MenuButtonTemplate data_0215b3f8 = {
 #include "data/main/data_0215b3f8.inc.c"
 };
 /* declared `u8 data_0215b470[]` in func_0204ec78.c: relocation at data_0215b470+0xc is not on a 4-byte field */
-u32 data_0215b470[12] = {
+u32 data_0215b470[] = {
 #include "data/main/data_0215b470.inc.c"
 };
 /* declared `u8 data_0215b4a0[]` in func_0204ec78.c: relocation at data_0215b4a0+0xc is not on a 4-byte field */
-u32 data_0215b4a0[12] = {
+u32 data_0215b4a0[] = {
 #include "data/main/data_0215b4a0.inc.c"
 };
-u32 data_0215b4d0[14] = {
+u32 data_0215b4d0[] = {
 #include "data/main/data_0215b4d0.inc.c"
 };
-u32 data_0215b508[16] = {
+u32 data_0215b508[] = {
 #include "data/main/data_0215b508.inc.c"
 };
 /* declared `u8 data_0215b598[]` in campaign_map_init.c: relocation at data_0215b598+0xc is not on a 4-byte field */
-u32 data_0215b598[20] = {
+u32 data_0215b598[] = {
 #include "data/main/data_0215b598.inc.c"
 };
 /* declared `u8 data_0215b548[]` in campaign_map_init.c: relocation at data_0215b548+0xc is not on a 4-byte field */
-u32 data_0215b548[20] = {
+u32 data_0215b548[] = {
 #include "data/main/data_0215b548.inc.c"
 };
-TaskScriptCmd data_0215b5e8[12] = {
+TaskScriptCmd data_0215b5e8[] = {
 #include "data/main/data_0215b5e8.inc.c"
 };
-TaskScriptCmd data_0215b648[13] = {
+TaskScriptCmd data_0215b648[] = {
 #include "data/main/data_0215b648.inc.c"
 };
-u32 data_0215b6b0[28] = {
+u32 data_0215b6b0[] = {
 #include "data/main/data_0215b6b0.inc.c"
 };
 /* declared `u8 data_0215b720[]` in campaign_map_find_task.c: relocation at data_0215b720+0x4 is not on a 4-byte field */
-u32 data_0215b720[36] = {
+u32 data_0215b720[] = {
 #include "data/main/data_0215b720.inc.c"
 };
 /* declared `u8 data_0215b7b0[]` in campaign_map_find_task.c: relocation at data_0215b7b0+0x4 is not on a 4-byte field */
-u32 data_0215b7b0[48] = {
+u32 data_0215b7b0[] = {
 #include "data/main/data_0215b7b0.inc.c"
 };
 /* declared `u8 data_0215b870[]` in campaign_map_find_task.c: relocation at data_0215b870+0x4 is not on a 4-byte field */
-u32 data_0215b870[72] = {
+u32 data_0215b870[] = {
 #include "data/main/data_0215b870.inc.c"
 };

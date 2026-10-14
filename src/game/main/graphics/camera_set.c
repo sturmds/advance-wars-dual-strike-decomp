@@ -9,7 +9,7 @@ static VecFx32 data_021576dc = {
 static VecFx32 data_021576d0 = {
 #include "data/main/data_021576d0.inc.c"
 };
-CameraPreset gCameraPresets[5] = {
+CameraPreset gCameraPresets[] = {
 #include "data/main/gCameraPresets.inc.c"
 };
 

@@ -8,18 +8,18 @@ void WeatherTask_PlaySound(void);
 void func_020c4018(void);
 
 /* palette file in /bmap */
-char data_02166cdc[4] = {
+char data_02166cdc[] = {
 #include "data/main/data_02166cdc.inc.c"
 };
-u16 gWeatherSandSprite[4] = {
+u16 gWeatherSandSprite[] = {
 #include "data/main/gWeatherSandSprite.inc.c"
 };
-u16 gWeatherRainSprites[3][4] = {
+u16 gWeatherRainSprites[][4] = {
 #include "data/main/gWeatherRainSprites.inc.c"
 };
-u16 gWeatherSnowSprites[3][4] = {
+u16 gWeatherSnowSprites[][4] = {
 #include "data/main/gWeatherSnowSprites.inc.c"
 };
-u32 data_02166d18[24] = {
+u32 data_02166d18[] = {
 #include "data/main/data_02166d18.inc.c"
 };

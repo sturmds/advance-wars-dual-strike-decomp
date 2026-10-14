@@ -7,9 +7,9 @@ void LinkMapRecordSync_Update(void);
 void func_020824e4(void);
 void func_020825a4(void);
 
-char data_021606e4[7] = {
+char data_021606e4[] = {
 #include "data/main/data_021606e4.inc.c"
 };
-TaskScriptCmd gLinkMapRecordSyncScript[8] = {
+TaskScriptCmd gLinkMapRecordSyncScript[] = {
 #include "data/main/gLinkMapRecordSyncScript.inc.c"
 };

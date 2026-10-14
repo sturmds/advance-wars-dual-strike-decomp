@@ -1,5 +1,5 @@
 #include "types.h"
 
-char data_0215c004[20] = {
+char data_0215c004[] = {
 #include "data/main/data_0215c004.inc.c"
 };

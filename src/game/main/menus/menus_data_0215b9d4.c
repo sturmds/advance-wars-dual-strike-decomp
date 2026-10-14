@@ -31,13 +31,13 @@ extern u8 data_ov001_02378520[];
 extern u8 data_ov001_02378ab0[];
 
 /* "/ohashi/res_gmap_map2" */
-char data_0215b9ec[22] = {
+char data_0215b9ec[] = {
 #include "data/main/data_0215b9ec.inc.c"
 };
 /* "/ohashi/res_gmap_map1" */
-char data_0215b9d4[22] = {
+char data_0215b9d4[] = {
 #include "data/main/data_0215b9d4.inc.c"
 };
-CampaignMission gCampaignMissions[29] = {
+CampaignMission gCampaignMissions[] = {
 #include "data/main/gCampaignMissions.inc.c"
 };

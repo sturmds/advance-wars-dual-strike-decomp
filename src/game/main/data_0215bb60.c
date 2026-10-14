@@ -26,35 +26,35 @@ void func_020517cc(void);
 extern u8 data_02179b08[];
 extern u8 data_0217fb08[];
 
-u8 data_0215bb60[8] = {
+u8 data_0215bb60[] = {
 #include "data/main/data_0215bb60.inc.c"
 };
-TaskScriptCmd data_0215bb68[4] = {
+TaskScriptCmd data_0215bb68[] = {
 #include "data/main/data_0215bb68.inc.c"
 };
-TaskScriptCmd data_0215bb88[4] = {
+TaskScriptCmd data_0215bb88[] = {
 #include "data/main/data_0215bb88.inc.c"
 };
-TaskScriptCmd data_0215bba8[4] = {
+TaskScriptCmd data_0215bba8[] = {
 #include "data/main/data_0215bba8.inc.c"
 };
-TaskScriptCmd data_0215bbc8[4] = {
+TaskScriptCmd data_0215bbc8[] = {
 #include "data/main/data_0215bbc8.inc.c"
 };
-TaskScriptCmd data_0215bbe8[5] = {
+TaskScriptCmd data_0215bbe8[] = {
 #include "data/main/data_0215bbe8.inc.c"
 };
-TaskScriptCmd data_0215bc10[6] = {
+TaskScriptCmd data_0215bc10[] = {
 #include "data/main/data_0215bc10.inc.c"
 };
 /* declared `const u8 data_0215bc40[]` in title_call_set_up_screens.c: relocation at data_0215bc40+0xc is not on a 4-byte field */
-u32 data_0215bc40[20] = {
+u32 data_0215bc40[] = {
 #include "data/main/data_0215bc40.inc.c"
 };
 /* declared `const u8 data_0215bc90[]` in title_call_set_up_screens.c: relocation at data_0215bc90+0xc is not on a 4-byte field */
-u32 data_0215bc90[20] = {
+u32 data_0215bc90[] = {
 #include "data/main/data_0215bc90.inc.c"
 };
-BigFontGlyph data_0215bce0[65] = {
+BigFontGlyph data_0215bce0[] = {
 #include "data/main/data_0215bce0.inc.c"
 };

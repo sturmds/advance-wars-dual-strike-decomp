@@ -54,44 +54,44 @@ void func_0204ccc0(void);
 void func_02049390(void);
 void func_0204923c(void);
 
-u8 data_0215af8c[7] = {
+u8 data_0215af8c[] = {
 #include "data/main/data_0215af8c.inc.c"
 };
 /* declared `u8 data_0215af94[]` in co_rank_are_markers_running.c: relocation at data_0215af94+0xc is not on a 4-byte field */
-u32 data_0215af94[8] = {
+u32 data_0215af94[] = {
 #include "data/main/data_0215af94.inc.c"
 };
-TaskScriptCmd data_0215afdc[5] = {
+TaskScriptCmd data_0215afdc[] = {
 #include "data/main/data_0215afdc.inc.c"
 };
 MenuButtonTemplate data_0215afb4 = {
 #include "data/main/data_0215afb4.inc.c"
 };
 /* declared `u8 data_0215b004[]` in co_rank_are_markers_running.c: relocation at data_0215b004+0x4 is not on a 4-byte field */
-u32 data_0215b004[12] = {
+u32 data_0215b004[] = {
 #include "data/main/data_0215b004.inc.c"
 };
-TaskScriptCmd data_0215b06c[7] = {
+TaskScriptCmd data_0215b06c[] = {
 #include "data/main/data_0215b06c.inc.c"
 };
-TaskScriptCmd data_0215b034[7] = {
+TaskScriptCmd data_0215b034[] = {
 #include "data/main/data_0215b034.inc.c"
 };
-EventScriptCommand data_0215b0a4[4] = {
+EventScriptCommand data_0215b0a4[] = {
 #include "data/main/data_0215b0a4.inc.c"
 };
-EventScriptCommand data_0215b0e4[4] = {
+EventScriptCommand data_0215b0e4[] = {
 #include "data/main/data_0215b0e4.inc.c"
 };
-EventScriptCommand data_0215b124[4] = {
+EventScriptCommand data_0215b124[] = {
 #include "data/main/data_0215b124.inc.c"
 };
-TaskScriptCmd data_0215b164[11] = {
+TaskScriptCmd data_0215b164[] = {
 #include "data/main/data_0215b164.inc.c"
 };
-TaskScriptCmd data_0215b1bc[14] = {
+TaskScriptCmd data_0215b1bc[] = {
 #include "data/main/data_0215b1bc.inc.c"
 };
-TaskScriptCmd data_0215b22c[17] = {
+TaskScriptCmd data_0215b22c[] = {
 #include "data/main/data_0215b22c.inc.c"
 };

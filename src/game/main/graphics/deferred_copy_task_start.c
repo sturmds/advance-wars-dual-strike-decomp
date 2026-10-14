@@ -4,10 +4,10 @@
 void DeferredCopyTask_Copy(void);
 
 /* runs DeferredCopyTask_Copy */
-static TaskScriptCmd gDeferredCopyTaskScript[3] = {
+static TaskScriptCmd gDeferredCopyTaskScript[] = {
 #include "data/main/gDeferredCopyTaskScript.inc.c"
 };
-u8 gCoPictureSprite[28] = {
+u8 gCoPictureSprite[] = {
 #include "data/main/gCoPictureSprite.inc.c"
 };
 

@@ -74,26 +74,26 @@ void func_02032298(void);
 void CoExpTask_HoldSprite(void);
 void func_02031bec(void);
 
-FallingSpriteFrame data_02159c64[10] = {
+FallingSpriteFrame data_02159c64[] = {
 #include "data/main/data_02159c64.inc.c"
 };
-FallingSpriteFrame data_02159c50[10] = {
+FallingSpriteFrame data_02159c50[] = {
 #include "data/main/data_02159c50.inc.c"
 };
-TaskScriptCmd data_02159ca8[3] = {
+TaskScriptCmd data_02159ca8[] = {
 #include "data/main/data_02159ca8.inc.c"
 };
-TaskScriptCmd data_02159c78[3] = {
+TaskScriptCmd data_02159c78[] = {
 #include "data/main/data_02159c78.inc.c"
 };
-TaskScriptCmd data_02159c90[3] = {
+TaskScriptCmd data_02159c90[] = {
 #include "data/main/data_02159c90.inc.c"
 };
-TaskScriptCmd data_02159ce0[4] = {
+TaskScriptCmd data_02159ce0[] = {
 #include "data/main/data_02159ce0.inc.c"
 };
 /* declared `u8 data_02159cc0[]` in func_02032264.c: relocation at data_02159cc0+0xc is not on a 4-byte field */
-u32 data_02159cc0[8] = {
+u32 data_02159cc0[] = {
 #include "data/main/data_02159cc0.inc.c"
 };
 MenuButtonTemplate data_02159d00 = {
@@ -102,42 +102,42 @@ MenuButtonTemplate data_02159d00 = {
 MenuButtonTemplate data_02159d28 = {
 #include "data/main/data_02159d28.inc.c"
 };
-TaskScriptCmd data_02159d50[5] = {
+TaskScriptCmd data_02159d50[] = {
 #include "data/main/data_02159d50.inc.c"
 };
 /* declared `u8 data_02159d78[]` in func_02031a14.c: relocation at data_02159d78+0x4 is not on a 4-byte field */
-u32 data_02159d78[12] = {
+u32 data_02159d78[] = {
 #include "data/main/data_02159d78.inc.c"
 };
-TaskScriptCmd data_02159da8[7] = {
+TaskScriptCmd data_02159da8[] = {
 #include "data/main/data_02159da8.inc.c"
 };
-EventScriptCommand data_02159e60[4] = {
+EventScriptCommand data_02159e60[] = {
 #include "data/main/data_02159e60.inc.c"
 };
-EventScriptCommand data_02159ea0[4] = {
+EventScriptCommand data_02159ea0[] = {
 #include "data/main/data_02159ea0.inc.c"
 };
-EventScriptCommand data_02159de0[4] = {
+EventScriptCommand data_02159de0[] = {
 #include "data/main/data_02159de0.inc.c"
 };
-TaskScriptCmd data_02159e20[8] = {
+TaskScriptCmd data_02159e20[] = {
 #include "data/main/data_02159e20.inc.c"
 };
 /* declared `const u8 data_02159ee0[]` in result_screen_init.c: relocation at data_02159ee0+0xc is not on a 4-byte field */
-u32 data_02159ee0[20] = {
+u32 data_02159ee0[] = {
 #include "data/main/data_02159ee0.inc.c"
 };
 /* declared `const u8 data_02159f30[]` in result_screen_init.c: relocation at data_02159f30+0xc is not on a 4-byte field */
-u32 data_02159f30[20] = {
+u32 data_02159f30[] = {
 #include "data/main/data_02159f30.inc.c"
 };
-TaskScriptCmd data_02159f80[15] = {
+TaskScriptCmd data_02159f80[] = {
 #include "data/main/data_02159f80.inc.c"
 };
-TaskScriptCmd data_02159ff8[30] = {
+TaskScriptCmd data_02159ff8[] = {
 #include "data/main/data_02159ff8.inc.c"
 };
-s16 gResultPathPoints[362] = {
+s16 gResultPathPoints[] = {
 #include "data/main/gResultPathPoints.inc.c"
 };

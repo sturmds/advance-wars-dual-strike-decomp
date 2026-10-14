@@ -1,8 +1,8 @@
 #include "types.h"
 
-char gLinkLoginResPath[21] = {
+char gLinkLoginResPath[] = {
 #include "data/main/gLinkLoginResPath.inc.c"
 };
-char gLinkMenuCommonLangResPath[27] = {
+char gLinkMenuCommonLangResPath[] = {
 #include "data/main/gLinkMenuCommonLangResPath.inc.c"
 };

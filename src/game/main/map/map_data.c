@@ -6,18 +6,18 @@ void MenuDepth_Push(void);
 void func_020d3bf8(void);
 
 /* "0b3" */
-char gWeatherCloudFileName[4] = {
+char gWeatherCloudFileName[] = {
 #include "data/main/gWeatherCloudFileName.inc.c"
 };
-char gTilesetPaletteFileDefault[4] = {
+char gTilesetPaletteFileDefault[] = {
 #include "data/main/gTilesetPaletteFileDefault.inc.c"
 };
-char gTilesetPaletteFileAlt[4] = {
+char gTilesetPaletteFileAlt[] = {
 #include "data/main/gTilesetPaletteFileAlt.inc.c"
 };
-TaskScriptCmd data_02166d98[6] = {
+TaskScriptCmd data_02166d98[] = {
 #include "data/main/data_02166d98.inc.c"
 };
-u8 data_02166dc8[64] = {
+u8 data_02166dc8[] = {
 #include "data/main/data_02166dc8.inc.c"
 };

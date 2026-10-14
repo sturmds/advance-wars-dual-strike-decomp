@@ -116,22 +116,22 @@ void func_020154c4(void);
 void func_02015ea8(void);
 
 /* declared `u8 data_02158354[]` in func_02014c24.c: relocation at data_02158354+0x4 is not on a 4-byte field */
-u32 data_02158354[4] = {
+u32 data_02158354[] = {
 #include "data/main/data_02158354.inc.c"
 };
-TaskScriptCmd data_02158344[2] = {
+TaskScriptCmd data_02158344[] = {
 #include "data/main/data_02158344.inc.c"
 };
-ScriptCommand data_0215837c[3] = {
+ScriptCommand data_0215837c[] = {
 #include "data/main/data_0215837c.inc.c"
 };
-ScriptCommand data_02158364[3] = {
+ScriptCommand data_02158364[] = {
 #include "data/main/data_02158364.inc.c"
 };
-ScriptCommand data_02158394[4] = {
+ScriptCommand data_02158394[] = {
 #include "data/main/data_02158394.inc.c"
 };
 /* declared `u8 data_021583b4[]` in func_020151c4.c: relocation at data_021583b4+0x0 is not on a 4-byte field */
-u32 data_021583b4[8] = {
+u32 data_021583b4[] = {
 #include "data/main/data_021583b4.inc.c"
 };

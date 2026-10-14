@@ -53,43 +53,43 @@ u32 data_02167e94 = {
 #include "data/main/data_02167e94.inc.c"
 };
 void* data_02167e8c = &data_02148000;
-void* data_02167e98[3] = {&data_02167e94, &data_02167f50, &data_02167f84};
-int data_02167ea4[4] = {
+void* data_02167e98[] = {&data_02167e94, &data_02167f50, &data_02167f84};
+int data_02167ea4[] = {
 #include "data/main/data_02167ea4.inc.c"
 };
-int data_02167eb4[7] = {
+int data_02167eb4[] = {
 #include "data/main/data_02167eb4.inc.c"
 };
-int data_02167ed0[8] = {
+int data_02167ed0[] = {
 #include "data/main/data_02167ed0.inc.c"
 };
-TaskScriptCmd data_02167ef0[6] = {
+TaskScriptCmd data_02167ef0[] = {
 #include "data/main/data_02167ef0.inc.c"
 };
-TaskScriptCmd data_02167f20[6] = {
+TaskScriptCmd data_02167f20[] = {
 #include "data/main/data_02167f20.inc.c"
 };
-u32 data_02167f84[13] = {
+u32 data_02167f84[] = {
 #include "data/main/data_02167f84.inc.c"
 };
-u32 data_02167f50[13] = {
+u32 data_02167f50[] = {
 #include "data/main/data_02167f50.inc.c"
 };
-TaskScriptCmd data_02167fb8[7] = {
+TaskScriptCmd data_02167fb8[] = {
 #include "data/main/data_02167fb8.inc.c"
 };
-TaskScriptCmd data_02167ff0[8] = {
+TaskScriptCmd data_02167ff0[] = {
 #include "data/main/data_02167ff0.inc.c"
 };
-TaskScriptCmd data_02168088[11] = {
+TaskScriptCmd data_02168088[] = {
 #include "data/main/data_02168088.inc.c"
 };
-TaskScriptCmd data_02168030[11] = {
+TaskScriptCmd data_02168030[] = {
 #include "data/main/data_02168030.inc.c"
 };
-u32 data_021680e0[24] = {
+u32 data_021680e0[] = {
 #include "data/main/data_021680e0.inc.c"
 };
-TaskScriptCmd data_02168140[19] = {
+TaskScriptCmd data_02168140[] = {
 #include "data/main/data_02168140.inc.c"
 };

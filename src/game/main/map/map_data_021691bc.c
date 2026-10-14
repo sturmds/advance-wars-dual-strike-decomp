@@ -25,145 +25,145 @@ void func_020f225c(void);
 extern u8 gMapScrollScript[];
 
 /* "066" */
-char data_021691c4[4] = {
+char data_021691c4[] = {
 #include "data/main/data_021691c4.inc.c"
 };
 /* "065" */
-char data_021691c0[4] = {
+char data_021691c0[] = {
 #include "data/main/data_021691c0.inc.c"
 };
 /* "04d" */
-char data_021691c8[4] = {
+char data_021691c8[] = {
 #include "data/main/data_021691c8.inc.c"
 };
 /* "0ba", the text's palette */
-char data_021691bc[4] = {
+char data_021691bc[] = {
 #include "data/main/data_021691bc.inc.c"
 };
 /* "04c" */
-char data_02169238[4] = {
+char data_02169238[] = {
 #include "data/main/data_02169238.inc.c"
 };
 /* "04b" */
-char data_02169234[4] = {
+char data_02169234[] = {
 #include "data/main/data_02169234.inc.c"
 };
 /* "04a" */
-char data_02169230[4] = {
+char data_02169230[] = {
 #include "data/main/data_02169230.inc.c"
 };
 /* "049" */
-char data_0216922c[4] = {
+char data_0216922c[] = {
 #include "data/main/data_0216922c.inc.c"
 };
 /* "048" */
-char data_02169228[4] = {
+char data_02169228[] = {
 #include "data/main/data_02169228.inc.c"
 };
 /* "047" */
-char data_02169224[4] = {
+char data_02169224[] = {
 #include "data/main/data_02169224.inc.c"
 };
 /* "046" */
-char data_02169220[4] = {
+char data_02169220[] = {
 #include "data/main/data_02169220.inc.c"
 };
 /* "045" */
-char data_0216921c[4] = {
+char data_0216921c[] = {
 #include "data/main/data_0216921c.inc.c"
 };
 /* "044" */
-char data_02169218[4] = {
+char data_02169218[] = {
 #include "data/main/data_02169218.inc.c"
 };
 /* "05d" */
-char data_02169214[4] = {
+char data_02169214[] = {
 #include "data/main/data_02169214.inc.c"
 };
 /* "05c" */
-char data_02169210[4] = {
+char data_02169210[] = {
 #include "data/main/data_02169210.inc.c"
 };
 /* "05b" */
-char data_0216920c[4] = {
+char data_0216920c[] = {
 #include "data/main/data_0216920c.inc.c"
 };
 /* "05a" */
-char data_02169208[4] = {
+char data_02169208[] = {
 #include "data/main/data_02169208.inc.c"
 };
 /* "059" */
-char data_02169204[4] = {
+char data_02169204[] = {
 #include "data/main/data_02169204.inc.c"
 };
 /* "058" */
-char data_02169200[4] = {
+char data_02169200[] = {
 #include "data/main/data_02169200.inc.c"
 };
 /* "063" */
-char data_021691fc[4] = {
+char data_021691fc[] = {
 #include "data/main/data_021691fc.inc.c"
 };
 /* "062" */
-char data_021691f8[4] = {
+char data_021691f8[] = {
 #include "data/main/data_021691f8.inc.c"
 };
 /* "061" */
-char data_021691f4[4] = {
+char data_021691f4[] = {
 #include "data/main/data_021691f4.inc.c"
 };
 /* "057" */
-char data_021691f0[4] = {
+char data_021691f0[] = {
 #include "data/main/data_021691f0.inc.c"
 };
 /* "056" */
-char data_021691ec[4] = {
+char data_021691ec[] = {
 #include "data/main/data_021691ec.inc.c"
 };
 /* "055" */
-char data_021691e8[4] = {
+char data_021691e8[] = {
 #include "data/main/data_021691e8.inc.c"
 };
 /* "054" */
-char data_021691e4[4] = {
+char data_021691e4[] = {
 #include "data/main/data_021691e4.inc.c"
 };
 /* "053" */
-char data_021691e0[4] = {
+char data_021691e0[] = {
 #include "data/main/data_021691e0.inc.c"
 };
 /* "052" */
-char data_021691dc[4] = {
+char data_021691dc[] = {
 #include "data/main/data_021691dc.inc.c"
 };
 /* "051" */
-char data_021691d8[4] = {
+char data_021691d8[] = {
 #include "data/main/data_021691d8.inc.c"
 };
 /* "050" */
-char data_021691d4[4] = {
+char data_021691d4[] = {
 #include "data/main/data_021691d4.inc.c"
 };
 /* "04f" */
-char data_021691d0[4] = {
+char data_021691d0[] = {
 #include "data/main/data_021691d0.inc.c"
 };
 /* "04e" */
-char data_021691cc[4] = {
+char data_021691cc[] = {
 #include "data/main/data_021691cc.inc.c"
 };
-EventScriptCommand data_0216923c[5] = {
+EventScriptCommand data_0216923c[] = {
 #include "data/main/data_0216923c.inc.c"
 };
-TaskScriptCmd data_0216928c[11] = {
+TaskScriptCmd data_0216928c[] = {
 #include "data/main/data_0216928c.inc.c"
 };
-TaskScriptCmd data_021692e4[12] = {
+TaskScriptCmd data_021692e4[] = {
 #include "data/main/data_021692e4.inc.c"
 };
-TaskScriptCmd data_02169344[15] = {
+TaskScriptCmd data_02169344[] = {
 #include "data/main/data_02169344.inc.c"
 };
-TaskScriptCmd data_021693bc[19] = {
+TaskScriptCmd data_021693bc[] = {
 #include "data/main/data_021693bc.inc.c"
 };

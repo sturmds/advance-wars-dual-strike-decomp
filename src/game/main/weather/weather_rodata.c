@@ -1,11 +1,11 @@
 #include "types.h"
 
-const s16 gSidePanelRestX[2] = {
+const s16 gSidePanelRestX[] = {
 #include "data/main/gSidePanelRestX.inc.c"
 };
-const u16 gWeatherParticleSpeeds[48] = {
+const u16 gWeatherParticleSpeeds[] = {
 #include "data/main/gWeatherParticleSpeeds.inc.c"
 };
-const u32 gWeatherCloudSpeeds[24] = {
+const u32 gWeatherCloudSpeeds[] = {
 #include "data/main/gWeatherCloudSpeeds.inc.c"
 };

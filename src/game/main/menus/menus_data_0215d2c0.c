@@ -20,13 +20,13 @@ void PlayerInfo_SlideCoPortrait(void);
 void func_0206cf98(void);
 void PlayerInfo_OnCoSelected(void);
 
-u32 data_0215d2c0[4] = {
+u32 data_0215d2c0[] = {
 #include "data/main/data_0215d2c0.inc.c"
 };
-u32 data_0215d2d0[6] = {
+u32 data_0215d2d0[] = {
 #include "data/main/data_0215d2d0.inc.c"
 };
-u8 gUnitRowTypes[32] = {
+u8 gUnitRowTypes[] = {
 #include "data/main/gUnitRowTypes.inc.c"
 };
 MenuButtonTemplate data_0215d380 = {
@@ -44,12 +44,12 @@ MenuButtonTemplate data_0215d330 = {
 MenuButtonTemplate data_0215d3a8 = {
 #include "data/main/data_0215d3a8.inc.c"
 };
-TaskScriptCmd gPlayerInfoRedrawScript[6] = {
+TaskScriptCmd gPlayerInfoRedrawScript[] = {
 #include "data/main/gPlayerInfoRedrawScript.inc.c"
 };
-TaskScriptCmd data_0215d400[6] = {
+TaskScriptCmd data_0215d400[] = {
 #include "data/main/data_0215d400.inc.c"
 };
-TaskScriptCmd data_0215d430[9] = {
+TaskScriptCmd data_0215d430[] = {
 #include "data/main/data_0215d430.inc.c"
 };

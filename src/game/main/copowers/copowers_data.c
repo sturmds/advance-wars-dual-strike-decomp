@@ -41,26 +41,26 @@ void SuperBreak_EaseInBackground(void);
 extern u8 data_02179b08[];
 extern u8 data_0217fb08[];
 
-u32 data_0215c018[4] = {
+u32 data_0215c018[] = {
 #include "data/main/data_0215c018.inc.c"
 };
-u32 data_0215c028[4] = {
+u32 data_0215c028[] = {
 #include "data/main/data_0215c028.inc.c"
 };
-u32 data_0215c038[6] = {
+u32 data_0215c038[] = {
 #include "data/main/data_0215c038.inc.c"
 };
 /* declared `u8 data_0215c0a0[]` in co_power_screen_set_up.c: relocation at data_0215c0a0+0xc is not on a 4-byte field */
-u32 data_0215c0a0[20] = {
+u32 data_0215c0a0[] = {
 #include "data/main/data_0215c0a0.inc.c"
 };
 /* declared `u8 data_0215c050[]` in co_power_screen_set_up.c: relocation at data_0215c050+0xc is not on a 4-byte field */
-u32 data_0215c050[20] = {
+u32 data_0215c050[] = {
 #include "data/main/data_0215c050.inc.c"
 };
-TaskScriptCmd data_0215c0f0[21] = {
+TaskScriptCmd data_0215c0f0[] = {
 #include "data/main/data_0215c0f0.inc.c"
 };
-TaskScriptCmd data_0215c198[26] = {
+TaskScriptCmd data_0215c198[] = {
 #include "data/main/data_0215c198.inc.c"
 };

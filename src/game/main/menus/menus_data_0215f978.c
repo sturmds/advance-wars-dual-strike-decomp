@@ -16,7 +16,7 @@ void UnitList_UpdateUpButton(void);
 void UnitList_PickRow(void);
 void func_02073af0(void);
 
-char gLinkCommonResPath[22] = {
+char gLinkCommonResPath[] = {
 #include "data/main/gLinkCommonResPath.inc.c"
 };
 MenuButtonTemplate data_0215fa80 = {
@@ -43,6 +43,6 @@ MenuButtonTemplate data_0215f990 = {
 MenuButtonTemplate data_0215faa8 = {
 #include "data/main/data_0215faa8.inc.c"
 };
-TaskScriptCmd data_0215fad0[8] = {
+TaskScriptCmd data_0215fad0[] = {
 #include "data/main/data_0215fad0.inc.c"
 };

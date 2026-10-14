@@ -6,28 +6,28 @@ extern u8 data_02167ccc[];
 extern u8 data_02167cb8[];
 extern u8 data_02167cbc[];
 
-u8 data_02167d30[5][2] = {
+u8 data_02167d30[][2] = {
 #include "data/main/data_02167d30.inc.c"
 };
-u8 gCoPicksDefault[5][2] = {
+u8 gCoPicksDefault[][2] = {
 #include "data/main/gCoPicksDefault.inc.c"
 };
-u32 data_02167d3c[3] = {
+u32 data_02167d3c[] = {
 #include "data/main/data_02167d3c.inc.c"
 };
-u32 data_02167d48[4] = {
+u32 data_02167d48[] = {
 #include "data/main/data_02167d48.inc.c"
 };
 /* text id of each army's name */
-u32 gArmyNameTextIds[6] = {
+u32 gArmyNameTextIds[] = {
 #include "data/main/gArmyNameTextIds.inc.c"
 };
-u8 gDefaultCoList[28] = {
+u8 gDefaultCoList[] = {
 #include "data/main/gDefaultCoList.inc.c"
 };
-u16 gOwnerCellCodes[36] = {
+u16 gOwnerCellCodes[] = {
 #include "data/main/gOwnerCellCodes.inc.c"
 };
-WeatherFiles gMapPaletteFiles[4] = {
+WeatherFiles gMapPaletteFiles[] = {
 #include "data/main/gMapPaletteFiles.inc.c"
 };

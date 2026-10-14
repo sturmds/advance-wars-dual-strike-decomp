@@ -20,21 +20,21 @@ void Unpack_RunLengthByHalfwords(void);
 void Unpack_RunLengthByBytes(void);
 
 /* DMA task on channel 0 */
-TaskScriptCmd data_021571ac[4] = {
+TaskScriptCmd data_021571ac[] = {
 #include "data/main/data_021571ac.inc.c"
 };
 /* Two unpackers per compression type (header bits 4-7): [0] when dst is
  * outside main RAM (VRAM), [1] for main RAM. Type 0 (raw) has none. */
-static UnpackFunc gUnpackFuncs[8] = {0,
-                                     0,
-                                     (UnpackFunc)&Unpack_Lz77ByHalfwords,
-                                     (UnpackFunc)&MI_UncompressLZ8,
-                                     (UnpackFunc)&Unpack_HuffmanToWords,
-                                     (UnpackFunc)&Unpack_HuffmanToWords,
-                                     (UnpackFunc)&Unpack_RunLengthByHalfwords,
-                                     (UnpackFunc)&Unpack_RunLengthByBytes};
+static UnpackFunc gUnpackFuncs[] = {0,
+                                    0,
+                                    (UnpackFunc)&Unpack_Lz77ByHalfwords,
+                                    (UnpackFunc)&MI_UncompressLZ8,
+                                    (UnpackFunc)&Unpack_HuffmanToWords,
+                                    (UnpackFunc)&Unpack_HuffmanToWords,
+                                    (UnpackFunc)&Unpack_RunLengthByHalfwords,
+                                    (UnpackFunc)&Unpack_RunLengthByBytes};
 /* DMA task on channel 1 */
-TaskScriptCmd data_021571cc[4] = {
+TaskScriptCmd data_021571cc[] = {
 #include "data/main/data_021571cc.inc.c"
 };
 

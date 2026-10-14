@@ -9,11 +9,11 @@ void func_02017d1c(void);
 void MenuDepth_Pop(void);
 
 /* By player 1-4 (index 0 unused): 0xFC, 0xF3, 0xCF, 0x3F. Clears that player's two bits. */
-static u8 gForceRankSetKeepMask[8] = {
+static u8 gForceRankSetKeepMask[] = {
 #include "data/main/gForceRankSetKeepMask.inc.c"
 };
 /* declared `u8 data_02158468[]` in func_02017cf8.c: relocation at data_02158468+0x8 is not on a 4-byte field */
-u32 data_02158468[24] = {
+u32 data_02158468[] = {
 #include "data/main/data_02158468.inc.c"
 };
 

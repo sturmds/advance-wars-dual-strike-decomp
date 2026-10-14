@@ -3,7 +3,7 @@
 
 void Oam_PutSprite(int x, int y, void* shape, int tileAndPalette);
 
-u8 data_02158f3c[8] = {
+u8 data_02158f3c[] = {
 #include "data/main/data_02158f3c.inc.c"
 };
 

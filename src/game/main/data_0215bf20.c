@@ -15,18 +15,18 @@ void MenuDepth_Push(void);
 void func_020526e0(void);
 
 /* "/ohashi/res_titlecall" */
-char data_0215bf20[22] = {
+char data_0215bf20[] = {
 #include "data/main/data_0215bf20.inc.c"
 };
-char data_0215bf38[27] = {
+char data_0215bf38[] = {
 #include "data/main/data_0215bf38.inc.c"
 };
-TaskScriptCmd gDayBannerScript[6] = {
+TaskScriptCmd gDayBannerScript[] = {
 #include "data/main/gDayBannerScript.inc.c"
 };
-TaskScriptCmd data_0215bf84[8] = {
+TaskScriptCmd data_0215bf84[] = {
 #include "data/main/data_0215bf84.inc.c"
 };
-TaskScriptCmd data_0215bfc4[8] = {
+TaskScriptCmd data_0215bfc4[] = {
 #include "data/main/data_0215bfc4.inc.c"
 };

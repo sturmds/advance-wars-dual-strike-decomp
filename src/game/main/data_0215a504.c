@@ -35,11 +35,11 @@ void func_0203b67c(void);
 void func_020d42b0(void);
 void func_020d42e4(void);
 
-u32 data_0215a504[6] = {
+u32 data_0215a504[] = {
 #include "data/main/data_0215a504.inc.c"
 };
 /* unit types, 7 rows of 4; 0 leaves a cell empty */
-u8 data_0215a51c[28] = {
+u8 data_0215a51c[] = {
 #include "data/main/data_0215a51c.inc.c"
 };
 MenuButtonTemplate data_0215a5d8 = {
@@ -60,9 +60,9 @@ MenuButtonTemplate data_0215a600 = {
 MenuButtonTemplate data_0215a538 = {
 #include "data/main/data_0215a538.inc.c"
 };
-TaskScriptCmd data_0215a628[13] = {
+TaskScriptCmd data_0215a628[] = {
 #include "data/main/data_0215a628.inc.c"
 };
-TaskScriptCmd data_0215a690[26] = {
+TaskScriptCmd data_0215a690[] = {
 #include "data/main/data_0215a690.inc.c"
 };

@@ -1,6 +1,6 @@
 #include "types.h"
 
 /* reaction text menu graphics file */
-char data_0215fcd4[21] = {
+char data_0215fcd4[] = {
 #include "data/main/data_0215fcd4.inc.c"
 };

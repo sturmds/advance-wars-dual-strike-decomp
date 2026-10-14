@@ -24,21 +24,21 @@ extern u8 data_02179b08[];
 extern u8 data_0217fb08[];
 
 /* "/ohashi/res_tagchange" */
-char data_0215c68c[22] = {
+char data_0215c68c[] = {
 #include "data/main/data_0215c68c.inc.c"
 };
 /* "/ohashi/res_tagbreak_thunder" */
-char gTagBreakThunderPath[29] = {
+char gTagBreakThunderPath[] = {
 #include "data/main/gTagBreakThunderPath.inc.c"
 };
 /* declared `u8 data_0215c6c4[]` in co_swap_screen_set_up.c: relocation at data_0215c6c4+0xc is not on a 4-byte field */
-u32 data_0215c6c4[20] = {
+u32 data_0215c6c4[] = {
 #include "data/main/data_0215c6c4.inc.c"
 };
 /* declared `u8 data_0215c714[]` in co_swap_screen_set_up.c: relocation at data_0215c714+0xc is not on a 4-byte field */
-u32 data_0215c714[20] = {
+u32 data_0215c714[] = {
 #include "data/main/data_0215c714.inc.c"
 };
-TaskScriptCmd data_0215c764[18] = {
+TaskScriptCmd data_0215c764[] = {
 #include "data/main/data_0215c764.inc.c"
 };

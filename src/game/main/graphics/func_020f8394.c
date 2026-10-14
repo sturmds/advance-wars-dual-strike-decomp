@@ -3,14 +3,14 @@
 void Palette_Load(const void* src, u32 offset, u32 size);
 
 /* palette of the number font */
-const u8 data_02138c68[32] = {
+const u8 data_02138c68[] = {
 #include "data/main/data_02138c68.inc.c"
 };
-static const u16 data_02138c88[64] = {
+static const u16 data_02138c88[] = {
 #include "data/main/data_02138c88.inc.c"
 };
 /* digit font: 40 tiles, 4bpp */
-const u8 gDigitFontTiles[1280] = {
+const u8 gDigitFontTiles[] = {
 #include "data/main/gDigitFontTiles.inc.c"
 };
 extern u16 data_02139308[];

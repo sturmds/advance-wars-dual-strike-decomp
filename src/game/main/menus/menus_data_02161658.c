@@ -1,10 +1,10 @@
 #include "types.h"
 
 /* "/combat_st/res_cmmenu" */
-char gCombatMenuResPath[22] = {
+char gCombatMenuResPath[] = {
 #include "data/main/gCombatMenuResPath.inc.c"
 };
 /* "/combat_st/res_cmmenu_la..." (localized) */
-char gCombatMenuLangResPath[27] = {
+char gCombatMenuLangResPath[] = {
 #include "data/main/gCombatMenuLangResPath.inc.c"
 };

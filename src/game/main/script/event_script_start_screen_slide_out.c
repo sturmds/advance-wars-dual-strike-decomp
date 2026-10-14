@@ -4,7 +4,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/event_script.h"
 
-static char data_02158734[17] = {
+static char data_02158734[] = {
 #include "data/main/data_02158734.inc.c"
 };
 extern u16 data_022978e0[];

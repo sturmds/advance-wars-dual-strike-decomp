@@ -19,5 +19,5 @@ u32 data_0216d92c = {
 #include "data/main/data_0216d92c.inc.c"
 };
 /* 0x10 bytes no code names, before gGxDispOn */
-void* data_0216d944[4] = {&data_0216d93c, &data_0216d938, &data_0216d934,
-                          &data_0216d930};
+void* data_0216d944[] = {&data_0216d93c, &data_0216d938, &data_0216d934,
+                         &data_0216d930};

@@ -3,10 +3,10 @@
 #define GXFIFO_NORMAL ((volatile u32*)0x04000484)
 #define GXFIFO_TEXCOORD ((volatile u32*)0x04000488)
 #define GXFIFO_VTX_16 ((volatile u32*)0x0400048c)
-u32 data_021577ec[4] = {
+u32 data_021577ec[] = {
 #include "data/main/data_021577ec.inc.c"
 };
-u32 data_021577fc[4] = {
+u32 data_021577fc[] = {
 #include "data/main/data_021577fc.inc.c"
 };
 extern u16 data_02157964[12];

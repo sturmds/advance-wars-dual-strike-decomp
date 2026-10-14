@@ -6,13 +6,13 @@ extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0280* data_027c0280;
 extern u8 data_02169970[];
-const u32 gBgAffineMapBytes[4] = {
+const u32 gBgAffineMapBytes[] = {
 #include "data/main/gBgAffineMapBytes.inc.c"
 };
-const u32 gBgTextMapBytes[4] = {
+const u32 gBgTextMapBytes[] = {
 #include "data/main/gBgTextMapBytes.inc.c"
 };
-static const u8 data_02134e8c[11772] = {
+static const u8 data_02134e8c[] = {
 #include "data/main/data_02134e8c.inc.c"
 };
 extern u8 data_02137ca8[];

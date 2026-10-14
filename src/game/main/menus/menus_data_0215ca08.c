@@ -1,8 +1,8 @@
 #include "types.h"
 
-char gMapSelectResPath[22] = {
+char gMapSelectResPath[] = {
 #include "data/main/gMapSelectResPath.inc.c"
 };
-char gMapSelectLangResPath[27] = {
+char gMapSelectLangResPath[] = {
 #include "data/main/gMapSelectLangResPath.inc.c"
 };

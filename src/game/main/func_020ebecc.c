@@ -14,18 +14,18 @@ void SongFadeOut_Step(void);
 void SongRequest_Start(void);
 
 /* in .data, so not const */
-TaskScriptCmd gSongFadeOutScript[5] = {
+TaskScriptCmd gSongFadeOutScript[] = {
 #include "data/main/gSongFadeOutScript.inc.c"
 };
 /* in .data, so not const */
-TaskScriptCmd gSongRequestScript[5] = {
+TaskScriptCmd gSongRequestScript[] = {
 #include "data/main/gSongRequestScript.inc.c"
 };
 static MenuButtonTemplate data_02158f7c = {
 #include "data/main/data_02158f7c.inc.c"
 };
 /* declared `u32 gUnitSoundItems[UNIT_TYPE_COUNT * 2]` in sound_load_battle_unit_data.c: declared as one element of 0x4 bytes, but takes 0xd8 */
-u32 gUnitSoundItems[54] = {
+u32 gUnitSoundItems[] = {
 #include "data/main/gUnitSoundItems.inc.c"
 };
 

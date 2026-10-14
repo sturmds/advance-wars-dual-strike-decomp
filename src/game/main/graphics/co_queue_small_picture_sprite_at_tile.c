@@ -1,6 +1,6 @@
 #include "types.h"
 
-u8 data_02151ccc[16] = {
+u8 data_02151ccc[] = {
 #include "data/main/data_02151ccc.inc.c"
 };
 

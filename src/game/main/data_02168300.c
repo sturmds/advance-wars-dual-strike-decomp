@@ -30,37 +30,37 @@ void AttackTask_StartScene(void);
 void func_020dc710(void);
 
 /* "0a4" */
-char data_02168308[4] = {
+char data_02168308[] = {
 #include "data/main/data_02168308.inc.c"
 };
 /* "0a9" */
-char data_02168304[4] = {
+char data_02168304[] = {
 #include "data/main/data_02168304.inc.c"
 };
 /* "0a8" */
-char data_02168300[4] = {
+char data_02168300[] = {
 #include "data/main/data_02168300.inc.c"
 };
 int data_02168314 = {
 #include "data/main/data_02168314.inc.c"
 };
-char data_02168310[4] = {
+char data_02168310[] = {
 #include "data/main/data_02168310.inc.c"
 };
-char data_0216830c[4] = {
+char data_0216830c[] = {
 #include "data/main/data_0216830c.inc.c"
 };
-TaskScriptCmd data_02168318[2] = {
+TaskScriptCmd data_02168318[] = {
 #include "data/main/data_02168318.inc.c"
 };
 /* declared `u8 data_02168328[]` in func_020f38ac.c: relocation at data_02168328+0x4 is not on a 4-byte field */
-u32 data_02168328[22] = {
+u32 data_02168328[] = {
 #include "data/main/data_02168328.inc.c"
 };
-TaskScriptCmd data_02168380[16] = {
+TaskScriptCmd data_02168380[] = {
 #include "data/main/data_02168380.inc.c"
 };
 /* declared `u8 data_02168400[]` in func_020f38ac.c: relocation at data_02168400+0x4 is not on a 4-byte field */
-u32 data_02168400[54] = {
+u32 data_02168400[] = {
 #include "data/main/data_02168400.inc.c"
 };

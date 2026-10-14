@@ -41,56 +41,56 @@ void EventChoice_AnswerIsNotLast(void);
 void func_020199a4(void);
 void func_020d7eb8(void);
 
-u8 data_021674c4[4] = {
+u8 data_021674c4[] = {
 #include "data/main/data_021674c4.inc.c"
 };
 /* declared `u8 data_021674c8[]` in menus_data_0215b338.c: relocation at data_021674c8+0x4 is not on a 4-byte field */
-u32 data_021674c8[6] = {
+u32 data_021674c8[] = {
 #include "data/main/data_021674c8.inc.c"
 };
-TaskScriptCmd gBattleRecordExitScript[4] = {
+TaskScriptCmd gBattleRecordExitScript[] = {
 #include "data/main/gBattleRecordExitScript.inc.c"
 };
-TaskScriptCmd data_021674e0[4] = {
+TaskScriptCmd data_021674e0[] = {
 #include "data/main/data_021674e0.inc.c"
 };
-TaskScriptCmd data_02167520[6] = {
+TaskScriptCmd data_02167520[] = {
 #include "data/main/data_02167520.inc.c"
 };
-u32 data_02167550[16] = {
+u32 data_02167550[] = {
 #include "data/main/data_02167550.inc.c"
 };
-u32 data_02167590[20] = {
+u32 data_02167590[] = {
 #include "data/main/data_02167590.inc.c"
 };
-TaskScriptCmd gBattleRecordTaskScript[12] = {
+TaskScriptCmd gBattleRecordTaskScript[] = {
 #include "data/main/gBattleRecordTaskScript.inc.c"
 };
-u32 data_02167640[24] = {
+u32 data_02167640[] = {
 #include "data/main/data_02167640.inc.c"
 };
-TaskScriptCmd data_021676a0[12] = {
+TaskScriptCmd data_021676a0[] = {
 #include "data/main/data_021676a0.inc.c"
 };
-u32 data_02167700[28] = {
+u32 data_02167700[] = {
 #include "data/main/data_02167700.inc.c"
 };
-u32 data_02167770[32] = {
+u32 data_02167770[] = {
 #include "data/main/data_02167770.inc.c"
 };
 /* declared `u8 data_021677f0[]` in func_020d80c4.c: relocation at data_021677f0+0x34 is not on a 4-byte field */
-u32 data_021677f0[36] = {
+u32 data_021677f0[] = {
 #include "data/main/data_021677f0.inc.c"
 };
-EventScriptCommand data_02167880[12] = {
+EventScriptCommand data_02167880[] = {
 #include "data/main/data_02167880.inc.c"
 };
-u32 data_02167940[64] = {
+u32 data_02167940[] = {
 #include "data/main/data_02167940.inc.c"
 };
-u32 data_02167a40[68] = {
+u32 data_02167a40[] = {
 #include "data/main/data_02167a40.inc.c"
 };
-u32 data_02167b50[72] = {
+u32 data_02167b50[] = {
 #include "data/main/data_02167b50.inc.c"
 };

@@ -14,30 +14,30 @@ void UnitDrop_Start(void);
 void func_020d5b0c(void);
 extern u8 gMapScrollScript[];
 
-char data_0216898c[4] = {
+char data_0216898c[] = {
 #include "data/main/data_0216898c.inc.c"
 };
-char data_021689a4[4] = {
+char data_021689a4[] = {
 #include "data/main/data_021689a4.inc.c"
 };
-char data_021689a0[4] = {
+char data_021689a0[] = {
 #include "data/main/data_021689a0.inc.c"
 };
-char data_0216899c[4] = {
+char data_0216899c[] = {
 #include "data/main/data_0216899c.inc.c"
 };
-char data_02168998[4] = {
+char data_02168998[] = {
 #include "data/main/data_02168998.inc.c"
 };
-char data_02168994[4] = {
+char data_02168994[] = {
 #include "data/main/data_02168994.inc.c"
 };
-char data_02168990[4] = {
+char data_02168990[] = {
 #include "data/main/data_02168990.inc.c"
 };
-TaskScriptCmd gUnitDropScript[14] = {
+TaskScriptCmd gUnitDropScript[] = {
 #include "data/main/gUnitDropScript.inc.c"
 };
-TaskScriptCmd gCoveringFireScript[14] = {
+TaskScriptCmd gCoveringFireScript[] = {
 #include "data/main/gCoveringFireScript.inc.c"
 };

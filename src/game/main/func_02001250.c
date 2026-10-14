@@ -4,7 +4,7 @@
 extern u8 data_0216d724[];
 void func_020fd934(void);
 
-TaskScriptCmd data_02151c80[4] = {
+TaskScriptCmd data_02151c80[] = {
 #include "data/main/data_02151c80.inc.c"
 };
 

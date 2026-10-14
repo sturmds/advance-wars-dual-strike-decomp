@@ -7,7 +7,7 @@ void CampaignMap_StartMode1(void);
 extern u8 data_0216710c[];
 void func_020b983c(void);
 
-TaskScriptCmd data_021670a4[6] = {
+TaskScriptCmd data_021670a4[] = {
 #include "data/main/data_021670a4.inc.c"
 };
 

@@ -16,13 +16,13 @@ void func_02072f84(void);
 void func_020737a8(void);
 void func_02073868(void);
 
-char data_0215f810[8] = {
+char data_0215f810[] = {
 #include "data/main/data_0215f810.inc.c"
 };
-u16 gLinkPhaseArmyGfxOffsets[6] = {
+u16 gLinkPhaseArmyGfxOffsets[] = {
 #include "data/main/gLinkPhaseArmyGfxOffsets.inc.c"
 };
-u32 data_0215f824[4] = {
+u32 data_0215f824[] = {
 #include "data/main/data_0215f824.inc.c"
 };
 MenuButtonTemplate data_0215f85c = {
@@ -34,9 +34,9 @@ MenuButtonTemplate data_0215f884 = {
 MenuButtonTemplate data_0215f834 = {
 #include "data/main/data_0215f834.inc.c"
 };
-TaskScriptCmd data_0215f8ac[8] = {
+TaskScriptCmd data_0215f8ac[] = {
 #include "data/main/data_0215f8ac.inc.c"
 };
-TaskScriptCmd data_0215f8ec[11] = {
+TaskScriptCmd data_0215f8ec[] = {
 #include "data/main/data_0215f8ec.inc.c"
 };

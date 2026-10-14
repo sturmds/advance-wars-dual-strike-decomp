@@ -51,77 +51,77 @@ extern u8 gMapScrollScript[];
 void CaptureCountUp_Start(void);
 void CapturePicture_InitOffset(void);
 
-char data_02168d28[4] = {
+char data_02168d28[] = {
 #include "data/main/data_02168d28.inc.c"
 };
-char data_02168d20[4] = {
+char data_02168d20[] = {
 #include "data/main/data_02168d20.inc.c"
 };
-char data_02168d24[4] = {
+char data_02168d24[] = {
 #include "data/main/data_02168d24.inc.c"
 };
-char data_02168d1c[4] = {
+char data_02168d1c[] = {
 #include "data/main/data_02168d1c.inc.c"
 };
-char data_02168d2c[4] = {
+char data_02168d2c[] = {
 #include "data/main/data_02168d2c.inc.c"
 };
 /* file name per army style */
-char* data_02168d30[6] = {(char*)&data_02168d2c, (char*)&data_02168d2c,
-                          (char*)&data_02168d20, (char*)&data_02168d24,
-                          (char*)&data_02168d28, (char*)&data_02168d1c};
-TaskScriptCmd data_02168d48[4] = {
+char* data_02168d30[] = {(char*)&data_02168d2c, (char*)&data_02168d2c,
+                         (char*)&data_02168d20, (char*)&data_02168d24,
+                         (char*)&data_02168d28, (char*)&data_02168d1c};
+TaskScriptCmd data_02168d48[] = {
 #include "data/main/data_02168d48.inc.c"
 };
-TaskScriptCmd data_02168d68[4] = {
+TaskScriptCmd data_02168d68[] = {
 #include "data/main/data_02168d68.inc.c"
 };
-TaskScriptCmd data_02168d88[4] = {
+TaskScriptCmd data_02168d88[] = {
 #include "data/main/data_02168d88.inc.c"
 };
-TaskScriptCmd data_02168da8[4] = {
+TaskScriptCmd data_02168da8[] = {
 #include "data/main/data_02168da8.inc.c"
 };
-TaskScriptCmd data_02168dc8[5] = {
+TaskScriptCmd data_02168dc8[] = {
 #include "data/main/data_02168dc8.inc.c"
 };
-TaskScriptCmd data_02168df0[5] = {
+TaskScriptCmd data_02168df0[] = {
 #include "data/main/data_02168df0.inc.c"
 };
-TaskScriptCmd data_02168e18[6] = {
+TaskScriptCmd data_02168e18[] = {
 #include "data/main/data_02168e18.inc.c"
 };
-TaskScriptCmd data_02168e48[6] = {
+TaskScriptCmd data_02168e48[] = {
 #include "data/main/data_02168e48.inc.c"
 };
-TaskScriptCmd data_02168e78[6] = {
+TaskScriptCmd data_02168e78[] = {
 #include "data/main/data_02168e78.inc.c"
 };
-TaskScriptCmd data_02168ea8[6] = {
+TaskScriptCmd data_02168ea8[] = {
 #include "data/main/data_02168ea8.inc.c"
 };
-TaskScriptCmd data_02168f10[7] = {
+TaskScriptCmd data_02168f10[] = {
 #include "data/main/data_02168f10.inc.c"
 };
-TaskScriptCmd gTileEffectTaskScript[7] = {
+TaskScriptCmd gTileEffectTaskScript[] = {
 #include "data/main/gTileEffectTaskScript.inc.c"
 };
-TaskScriptCmd data_02168f48[9] = {
+TaskScriptCmd data_02168f48[] = {
 #include "data/main/data_02168f48.inc.c"
 };
-TaskScriptCmd data_02168f90[9] = {
+TaskScriptCmd data_02168f90[] = {
 #include "data/main/data_02168f90.inc.c"
 };
-EventScriptCommand data_02168fd8[5] = {
+EventScriptCommand data_02168fd8[] = {
 #include "data/main/data_02168fd8.inc.c"
 };
-TaskScriptCmd data_02169028[12] = {
+TaskScriptCmd data_02169028[] = {
 #include "data/main/data_02169028.inc.c"
 };
-TaskScriptCmd data_02169088[14] = {
+TaskScriptCmd data_02169088[] = {
 #include "data/main/data_02169088.inc.c"
 };
 /* declared `u8 data_021690f8[]` in func_020eedf0.c: relocation at data_021690f8+0x4 is not on a 4-byte field */
-u32 data_021690f8[34] = {
+u32 data_021690f8[] = {
 #include "data/main/data_021690f8.inc.c"
 };

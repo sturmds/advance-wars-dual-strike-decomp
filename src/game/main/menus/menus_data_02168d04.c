@@ -1,5 +1,5 @@
 #include "types.h"
 
-int gSurvivalModeBudgets[6] = {
+int gSurvivalModeBudgets[] = {
 #include "data/main/gSurvivalModeBudgets.inc.c"
 };

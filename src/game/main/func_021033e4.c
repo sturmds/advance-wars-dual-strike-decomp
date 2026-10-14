@@ -7,13 +7,13 @@ void func_020b983c(void);
 void func_020fd8ec(void);
 void func_02103714(void);
 
-TaskScriptCmd data_0216d6bc[3] = {
+TaskScriptCmd data_0216d6bc[] = {
 #include "data/main/data_0216d6bc.inc.c"
 };
-static TaskScriptCmd data_0216d6a4[3] = {
+static TaskScriptCmd data_0216d6a4[] = {
 #include "data/main/data_0216d6a4.inc.c"
 };
-TaskScriptCmd data_0216d6d4[5] = {
+TaskScriptCmd data_0216d6d4[] = {
 #include "data/main/data_0216d6d4.inc.c"
 };
 

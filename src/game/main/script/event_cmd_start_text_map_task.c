@@ -10,10 +10,10 @@ extern EventSlotHold data_022977f8[];
 void EventChoice_Init(void);
 void EventChoice_Update(void);
 
-TaskScriptCmd data_02158548[5] = {
+TaskScriptCmd data_02158548[] = {
 #include "data/main/data_02158548.inc.c"
 };
-EventScriptCommand data_02158570[5] = {
+EventScriptCommand data_02158570[] = {
 #include "data/main/data_02158570.inc.c"
 };
 extern u8 data_02297c2e[];

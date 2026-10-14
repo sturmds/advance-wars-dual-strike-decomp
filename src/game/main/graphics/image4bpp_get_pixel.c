@@ -1,16 +1,16 @@
 #include "types.h"
 
-u8 data_02151cc4[2] = {
+u8 data_02151cc4[] = {
 #include "data/main/data_02151cc4.inc.c"
 };
-static u8 gNibbleShifts[2] = {
+static u8 gNibbleShifts[] = {
 #include "data/main/gNibbleShifts.inc.c"
 };
 /* indexed by x & 1 */
-static u8 gNibbleMasks[2] = {
+static u8 gNibbleMasks[] = {
 #include "data/main/gNibbleMasks.inc.c"
 };
-u8 data_02151cc8[2] = {
+u8 data_02151cc8[] = {
 #include "data/main/data_02151cc8.inc.c"
 };
 extern u8 gTile4bppPixelOffsets

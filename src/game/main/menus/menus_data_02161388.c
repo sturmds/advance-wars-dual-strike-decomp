@@ -1,5 +1,5 @@
 #include "types.h"
 
-char gCombatSetupMenuResPath[22] = {
+char gCombatSetupMenuResPath[] = {
 #include "data/main/gCombatSetupMenuResPath.inc.c"
 };

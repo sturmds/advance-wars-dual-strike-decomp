@@ -1,5 +1,5 @@
 #include "types.h"
 
-const u8 data_0213bda0[636] = {
+const u8 data_0213bda0[] = {
 #include "data/main/data_0213bda0.inc.c"
 };

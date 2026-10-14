@@ -6,7 +6,7 @@
 u32 data_02158f24 = {
 #include "data/main/data_02158f24.inc.c"
 };
-static u32 gRectHitBits[4] = {
+static u32 gRectHitBits[] = {
 #include "data/main/gRectHitBits.inc.c"
 };
 #pragma explicit_zero_data reset

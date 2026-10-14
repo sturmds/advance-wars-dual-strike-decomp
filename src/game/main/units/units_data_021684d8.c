@@ -15,22 +15,22 @@ void func_020dd5f8(void);
 void Game_EnterState18(void);
 
 /* dx, dy per direction */
-s16 data_021684e8[8] = {
+s16 data_021684e8[] = {
 #include "data/main/data_021684e8.inc.c"
 };
 /* dx, dy per direction */
-s16 data_021684d8[8] = {
+s16 data_021684d8[] = {
 #include "data/main/data_021684d8.inc.c"
 };
-TaskScriptCmd data_02168538[8] = {
+TaskScriptCmd data_02168538[] = {
 #include "data/main/data_02168538.inc.c"
 };
-TaskScriptCmd data_021684f8[8] = {
+TaskScriptCmd data_021684f8[] = {
 #include "data/main/data_021684f8.inc.c"
 };
-TaskScriptCmd data_02168578[10] = {
+TaskScriptCmd data_02168578[] = {
 #include "data/main/data_02168578.inc.c"
 };
-u32 data_021685c8[36] = {
+u32 data_021685c8[] = {
 #include "data/main/data_021685c8.inc.c"
 };

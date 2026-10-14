@@ -27,10 +27,10 @@ void func_0207c6f0(void);
 void LinkMenu_OnButtonSelect(void);
 
 LinkMenuState* data_0215fed0 = (LinkMenuState*)&data_0229d88c;
-TaskScriptCmd data_0215fed4[2] = {
+TaskScriptCmd data_0215fed4[] = {
 #include "data/main/data_0215fed4.inc.c"
 };
-TaskScriptCmd data_0215fee4[3] = {
+TaskScriptCmd data_0215fee4[] = {
 #include "data/main/data_0215fee4.inc.c"
 };
 MenuButtonTemplate data_0215ff4c = {
@@ -46,12 +46,12 @@ MenuButtonTemplate data_0215ff74 = {
 #include "data/main/data_0215ff74.inc.c"
 };
 /* declared `u8 data_0215ff9c[]` in func_0207c018.c: relocation at data_0215ff9c+0x14 is not on a 4-byte field */
-u32 data_0215ff9c[16] = {
+u32 data_0215ff9c[] = {
 #include "data/main/data_0215ff9c.inc.c"
 };
-TaskScriptCmd data_0215ffdc[13] = {
+TaskScriptCmd data_0215ffdc[] = {
 #include "data/main/data_0215ffdc.inc.c"
 };
-TaskScriptCmd data_02160044[16] = {
+TaskScriptCmd data_02160044[] = {
 #include "data/main/data_02160044.inc.c"
 };

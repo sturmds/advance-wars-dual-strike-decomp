@@ -37,7 +37,7 @@ void func_02016950(void);
 void func_020169a4(void);
 void ScriptSlot_CmdSetFlag(void);
 
-static ScriptCommandFunc gScriptCommands[35] = {
+static ScriptCommandFunc gScriptCommands[] = {
     (ScriptCommandFunc)&ScriptSlot_CmdWait,
     (ScriptCommandFunc)&ScriptSlot_CmdSetCallback,
     (ScriptCommandFunc)&ScriptSlot_CmdCallFunction,

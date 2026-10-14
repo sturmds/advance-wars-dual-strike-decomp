@@ -3,7 +3,7 @@
 
 /* Tile position {x, y} of each choice marker: (0, 0), (5, 0), (10, 0), (16, 0).
  * data_021584ca is the same table from its first y. */
-s16 data_021584c8[4][2] = {
+s16 data_021584c8[][2] = {
 #include "data/main/data_021584c8.inc.c"
 };
 extern s16 data_021584ca[][2];

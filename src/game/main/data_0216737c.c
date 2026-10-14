@@ -27,12 +27,12 @@ void func_020d6a64(void);
 void func_020d6a94(void);
 void func_020e33e4(void);
 
-TaskScriptCmd data_0216737c[5] = {
+TaskScriptCmd data_0216737c[] = {
 #include "data/main/data_0216737c.inc.c"
 };
-TaskScriptCmd data_021673a4[7] = {
+TaskScriptCmd data_021673a4[] = {
 #include "data/main/data_021673a4.inc.c"
 };
-TaskScriptCmd data_021673dc[27] = {
+TaskScriptCmd data_021673dc[] = {
 #include "data/main/data_021673dc.inc.c"
 };

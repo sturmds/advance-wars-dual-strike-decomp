@@ -37,58 +37,58 @@ void WindowWipe_StartShow(void);
 void WindowWipe_StartShowCurrent(void);
 void func_02005a0c(void);
 
-TaskScriptCmd data_021572e4[4] = {
+TaskScriptCmd data_021572e4[] = {
 #include "data/main/data_021572e4.inc.c"
 };
-TaskScriptCmd data_02157284[4] = {
+TaskScriptCmd data_02157284[] = {
 #include "data/main/data_02157284.inc.c"
 };
-TaskScriptCmd data_02157264[4] = {
+TaskScriptCmd data_02157264[] = {
 #include "data/main/data_02157264.inc.c"
 };
-TaskScriptCmd data_021572a4[4] = {
+TaskScriptCmd data_021572a4[] = {
 #include "data/main/data_021572a4.inc.c"
 };
-TaskScriptCmd data_021572c4[4] = {
+TaskScriptCmd data_021572c4[] = {
 #include "data/main/data_021572c4.inc.c"
 };
-TaskScriptCmd data_02157244[4] = {
+TaskScriptCmd data_02157244[] = {
 #include "data/main/data_02157244.inc.c"
 };
-TaskScriptCmd data_02157224[4] = {
+TaskScriptCmd data_02157224[] = {
 #include "data/main/data_02157224.inc.c"
 };
-TaskScriptCmd data_02157344[4] = {
+TaskScriptCmd data_02157344[] = {
 #include "data/main/data_02157344.inc.c"
 };
-TaskScriptCmd data_02157324[4] = {
+TaskScriptCmd data_02157324[] = {
 #include "data/main/data_02157324.inc.c"
 };
-TaskScriptCmd data_02157304[4] = {
+TaskScriptCmd data_02157304[] = {
 #include "data/main/data_02157304.inc.c"
 };
-u32 data_02157364[11] = {
+u32 data_02157364[] = {
 #include "data/main/data_02157364.inc.c"
 };
-TaskScriptCmd data_02157390[6] = {
+TaskScriptCmd data_02157390[] = {
 #include "data/main/data_02157390.inc.c"
 };
-TaskScriptCmd data_021573c0[6] = {
+TaskScriptCmd data_021573c0[] = {
 #include "data/main/data_021573c0.inc.c"
 };
-TaskScriptCmd data_02157420[6] = {
+TaskScriptCmd data_02157420[] = {
 #include "data/main/data_02157420.inc.c"
 };
-TaskScriptCmd gScreenShakeScript[6] = {
+TaskScriptCmd gScreenShakeScript[] = {
 #include "data/main/gScreenShakeScript.inc.c"
 };
-TaskScriptCmd data_021573f0[6] = {
+TaskScriptCmd data_021573f0[] = {
 #include "data/main/data_021573f0.inc.c"
 };
-TaskScriptCmd data_02157480[8] = {
+TaskScriptCmd data_02157480[] = {
 #include "data/main/data_02157480.inc.c"
 };
-u32 data_021574c0[66] = {
+u32 data_021574c0[] = {
 #include "data/main/data_021574c0.inc.c"
 };
 

@@ -6,7 +6,7 @@ void MainMenu_Prepare(void);
 extern u8 data_0216d754[];
 void func_0200a630(void);
 
-TaskScriptCmd data_0216d6fc[5] = {
+TaskScriptCmd data_0216d6fc[] = {
 #include "data/main/data_0216d6fc.inc.c"
 };
 

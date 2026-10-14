@@ -10,12 +10,12 @@ void func_02081214(void);
 void func_02081900(void);
 void func_020819c0(void);
 
-char data_0216061c[7] = {
+char data_0216061c[] = {
 #include "data/main/data_0216061c.inc.c"
 };
-TaskScriptCmd data_02160624[7] = {
+TaskScriptCmd data_02160624[] = {
 #include "data/main/data_02160624.inc.c"
 };
-TaskScriptCmd data_0216065c[8] = {
+TaskScriptCmd data_0216065c[] = {
 #include "data/main/data_0216065c.inc.c"
 };

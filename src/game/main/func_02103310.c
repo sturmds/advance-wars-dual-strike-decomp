@@ -11,25 +11,25 @@ void func_020fd904(void);
 void func_020fd91c(void);
 void func_02103714(void);
 
-TaskScriptCmd data_0216d674[3] = {
+TaskScriptCmd data_0216d674[] = {
 #include "data/main/data_0216d674.inc.c"
 };
-TaskScriptCmd data_0216d65c[3] = {
+TaskScriptCmd data_0216d65c[] = {
 #include "data/main/data_0216d65c.inc.c"
 };
-TaskScriptCmd data_0216d644[3] = {
+TaskScriptCmd data_0216d644[] = {
 #include "data/main/data_0216d644.inc.c"
 };
-TaskScriptCmd data_0216d62c[3] = {
+TaskScriptCmd data_0216d62c[] = {
 #include "data/main/data_0216d62c.inc.c"
 };
-TaskScriptCmd data_0216d614[3] = {
+TaskScriptCmd data_0216d614[] = {
 #include "data/main/data_0216d614.inc.c"
 };
-static TaskScriptCmd data_0216d5fc[3] = {
+static TaskScriptCmd data_0216d5fc[] = {
 #include "data/main/data_0216d5fc.inc.c"
 };
-TaskScriptCmd data_0216d68c[3] = {
+TaskScriptCmd data_0216d68c[] = {
 #include "data/main/data_0216d68c.inc.c"
 };
 

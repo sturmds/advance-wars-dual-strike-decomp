@@ -1,8 +1,8 @@
 #include "types.h"
 
-char gIconBlinkResPath[23] = {
+char gIconBlinkResPath[] = {
 #include "data/main/gIconBlinkResPath.inc.c"
 };
-char gMapSelectLinkCommonLangResPath[27] = {
+char gMapSelectLinkCommonLangResPath[] = {
 #include "data/main/gMapSelectLinkCommonLangResPath.inc.c"
 };

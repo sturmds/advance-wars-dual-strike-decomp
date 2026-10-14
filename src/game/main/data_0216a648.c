@@ -22,61 +22,61 @@ void func_ov005_02361544(void);
 void func_ov005_023634e0(void);
 void func_ov005_02365ea8(void);
 
-char data_0216a648[15] = {
+char data_0216a648[] = {
 #include "data/main/data_0216a648.inc.c"
 };
 /* screen 0, in */
-TaskScriptCmd data_0216a678[2] = {
+TaskScriptCmd data_0216a678[] = {
 #include "data/main/data_0216a678.inc.c"
 };
 /* screen 1, in */
-TaskScriptCmd data_0216a668[2] = {
+TaskScriptCmd data_0216a668[] = {
 #include "data/main/data_0216a668.inc.c"
 };
 /* screen 1, out */
-TaskScriptCmd data_0216a688[2] = {
+TaskScriptCmd data_0216a688[] = {
 #include "data/main/data_0216a688.inc.c"
 };
 /* screen 0, out */
-TaskScriptCmd data_0216a658[2] = {
+TaskScriptCmd data_0216a658[] = {
 #include "data/main/data_0216a658.inc.c"
 };
-TaskScriptCmd gSongFadeOutWaitScript[3] = {
+TaskScriptCmd gSongFadeOutWaitScript[] = {
 #include "data/main/gSongFadeOutWaitScript.inc.c"
 };
-TaskScriptCmd data_0216a698[3] = {
+TaskScriptCmd data_0216a698[] = {
 #include "data/main/data_0216a698.inc.c"
 };
-TaskScriptCmd gSongSwitchScript[3] = {
+TaskScriptCmd gSongSwitchScript[] = {
 #include "data/main/gSongSwitchScript.inc.c"
 };
-TaskScriptCmd data_0216a758[5] = {
+TaskScriptCmd data_0216a758[] = {
 #include "data/main/data_0216a758.inc.c"
 };
-TaskScriptCmd data_0216a7a8[5] = {
+TaskScriptCmd data_0216a7a8[] = {
 #include "data/main/data_0216a7a8.inc.c"
 };
-TaskScriptCmd data_0216a7d0[5] = {
+TaskScriptCmd data_0216a7d0[] = {
 #include "data/main/data_0216a7d0.inc.c"
 };
-TaskScriptCmd data_0216a6e0[5] = {
+TaskScriptCmd data_0216a6e0[] = {
 #include "data/main/data_0216a6e0.inc.c"
 };
-TaskScriptCmd data_0216a708[5] = {
+TaskScriptCmd data_0216a708[] = {
 #include "data/main/data_0216a708.inc.c"
 };
-TaskScriptCmd data_0216a780[5] = {
+TaskScriptCmd data_0216a780[] = {
 #include "data/main/data_0216a780.inc.c"
 };
-TaskScriptCmd data_0216a7f8[5] = {
+TaskScriptCmd data_0216a7f8[] = {
 #include "data/main/data_0216a7f8.inc.c"
 };
-TaskScriptCmd data_0216a730[5] = {
+TaskScriptCmd data_0216a730[] = {
 #include "data/main/data_0216a730.inc.c"
 };
-TaskScriptCmd data_0216a820[5] = {
+TaskScriptCmd data_0216a820[] = {
 #include "data/main/data_0216a820.inc.c"
 };
-TaskScriptCmd data_0216a848[5] = {
+TaskScriptCmd data_0216a848[] = {
 #include "data/main/data_0216a848.inc.c"
 };

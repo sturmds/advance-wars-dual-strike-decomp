@@ -9,15 +9,15 @@ void SpriteAnim3dTask_Update(void);
 void SpriteAnimTask_Update(void);
 
 /* declared `u8 data_02158838[]` in func_02021b34.c: relocation at data_02158838+0x4 is not on a 4-byte field */
-u32 data_02158838[6] = {
+u32 data_02158838[] = {
 #include "data/main/data_02158838.inc.c"
 };
 /* width and height in tiles, by OAM shape * 4 + size */
-static u8 gObjSizeInTiles[24] = {
+static u8 gObjSizeInTiles[] = {
 #include "data/main/gObjSizeInTiles.inc.c"
 };
 /* declared `u8 data_02158850[]` in func_02021b34.c: relocation at data_02158850+0x4 is not on a 4-byte field */
-u32 data_02158850[6] = {
+u32 data_02158850[] = {
 #include "data/main/data_02158850.inc.c"
 };
 

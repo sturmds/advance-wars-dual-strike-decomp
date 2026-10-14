@@ -17,10 +17,10 @@ void func_0205cd80(void);
 void func_020b983c(void);
 void func_020e8970(void);
 
-static TaskScriptCmd data_0216718c[13] = {
+static TaskScriptCmd data_0216718c[] = {
 #include "data/main/data_0216718c.inc.c"
 };
-TaskScriptCmd gSurvivalNewRunScript[20] = {
+TaskScriptCmd gSurvivalNewRunScript[] = {
 #include "data/main/gSurvivalNewRunScript.inc.c"
 };
 

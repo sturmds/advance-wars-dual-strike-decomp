@@ -1,8 +1,8 @@
 #include "types.h"
 
-char gLinkPhaseResPath[22] = {
+char gLinkPhaseResPath[] = {
 #include "data/main/gLinkPhaseResPath.inc.c"
 };
-char gLinkCommonLangResPath[27] = {
+char gLinkCommonLangResPath[] = {
 #include "data/main/gLinkCommonLangResPath.inc.c"
 };

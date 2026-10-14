@@ -1,12 +1,12 @@
 #include "types.h"
 
 /* "NEXT TURN" */
-char gNextTurnTextEnglish[10] = {
+char gNextTurnTextEnglish[] = {
 #include "data/main/gNextTurnTextEnglish.inc.c"
 };
-char gNextTurnTextFrench[15] = {
+char gNextTurnTextFrench[] = {
 #include "data/main/gNextTurnTextFrench.inc.c"
 };
-char gNextTurnTextGerman[16] = {
+char gNextTurnTextGerman[] = {
 #include "data/main/gNextTurnTextGerman.inc.c"
 };

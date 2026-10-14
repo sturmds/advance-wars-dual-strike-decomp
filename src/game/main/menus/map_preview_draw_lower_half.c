@@ -15,14 +15,14 @@ extern u16 gMapPreviewRowOffsets[];
 extern u16 data_022a6b40[];
 extern u16 data_02166e3c[];
 /* "09f" */
-char data_021587dc[4] = {
+char data_021587dc[] = {
 #include "data/main/data_021587dc.inc.c"
 };
 /* "0a0" */
-char data_021587d8[4] = {
+char data_021587d8[] = {
 #include "data/main/data_021587d8.inc.c"
 };
-u16 data_021587e0[32] = {
+u16 data_021587e0[] = {
 #include "data/main/data_021587e0.inc.c"
 };
 extern u16 data_02149080[];

@@ -17,9 +17,9 @@ void func_020e4e7c(void);
 void func_020e4e98(void);
 extern u8 gMapScrollScript[];
 
-TaskScriptCmd gExMachinaScript[9] = {
+TaskScriptCmd gExMachinaScript[] = {
 #include "data/main/gExMachinaScript.inc.c"
 };
-TaskScriptCmd gExMachinaBoltScript[18] = {
+TaskScriptCmd gExMachinaBoltScript[] = {
 #include "data/main/gExMachinaBoltScript.inc.c"
 };

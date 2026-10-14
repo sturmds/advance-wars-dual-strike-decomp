@@ -1,28 +1,28 @@
 #include "types.h"
 
-char gSubDiveGfxFile3d[4] = {
+char gSubDiveGfxFile3d[] = {
 #include "data/main/gSubDiveGfxFile3d.inc.c"
 };
-char gStealthHidePaletteFile[4] = {
+char gStealthHidePaletteFile[] = {
 #include "data/main/gStealthHidePaletteFile.inc.c"
 };
-char gStealthHideGfxFile2d[4] = {
+char gStealthHideGfxFile2d[] = {
 #include "data/main/gStealthHideGfxFile2d.inc.c"
 };
-char gStealthHideGfxFile3d[4] = {
+char gStealthHideGfxFile3d[] = {
 #include "data/main/gStealthHideGfxFile3d.inc.c"
 };
-char gSubDivePaletteFile[4] = {
+char gSubDivePaletteFile[] = {
 #include "data/main/gSubDivePaletteFile.inc.c"
 };
-char gSubDiveGfxFile2d[4] = {
+char gSubDiveGfxFile2d[] = {
 #include "data/main/gSubDiveGfxFile2d.inc.c"
 };
 /* "/bmap" */
-char data_02166cc8[6] = {
+char data_02166cc8[] = {
 #include "data/main/data_02166cc8.inc.c"
 };
 /* "/national" */
-char data_02166cd0[10] = {
+char data_02166cd0[] = {
 #include "data/main/data_02166cd0.inc.c"
 };

@@ -7,12 +7,12 @@ extern u32 data_021571fc[];
 extern u8 data_021574c0[];
 extern u8 data_02157364[];
 
-static s16* data_021571ec[4] = {(s16*)&data_02157210, (s16*)&data_021571fc,
-                                (s16*)&data_021574c0, (s16*)&data_02157364};
-u32 data_021571fc[5] = {
+static s16* data_021571ec[] = {(s16*)&data_02157210, (s16*)&data_021571fc,
+                               (s16*)&data_021574c0, (s16*)&data_02157364};
+u32 data_021571fc[] = {
 #include "data/main/data_021571fc.inc.c"
 };
-u32 data_02157210[5] = {
+u32 data_02157210[] = {
 #include "data/main/data_02157210.inc.c"
 };
 

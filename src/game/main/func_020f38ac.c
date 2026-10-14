@@ -69,43 +69,43 @@ void ScreenWipe_PhaseUpStep(void);
 extern u8 data_02166c08[];
 
 /* "002" */
-char gTileCodeFileMap248First[4] = {
+char gTileCodeFileMap248First[] = {
 #include "data/main/gTileCodeFileMap248First.inc.c"
 };
 /* "003" */
-char gTileCodeFileDefault[4] = {
+char gTileCodeFileDefault[] = {
 #include "data/main/gTileCodeFileDefault.inc.c"
 };
 /* panel width by unit boxes shown */
-u16 data_02166308[3] = {
+u16 data_02166308[] = {
 #include "data/main/data_02166308.inc.c"
 };
 /* "/bmap" */
-char gBmapDir[6] = {
+char gBmapDir[] = {
 #include "data/main/gBmapDir.inc.c"
 };
-u32 data_02166318[2] = {
+u32 data_02166318[] = {
 #include "data/main/data_02166318.inc.c"
 };
-u32 data_02166338[2] = {
+u32 data_02166338[] = {
 #include "data/main/data_02166338.inc.c"
 };
-u8 data_02166320[8] = {
+u8 data_02166320[] = {
 #include "data/main/data_02166320.inc.c"
 };
 /* sprite shape of the picture */
-u8 gInfoPanelUnitPictureShape[8] = {
+u8 gInfoPanelUnitPictureShape[] = {
 #include "data/main/gInfoPanelUnitPictureShape.inc.c"
 };
 /* sprite shape of the terrain icon */
-u8 data_02166348[8] = {
+u8 data_02166348[] = {
 #include "data/main/data_02166348.inc.c"
 };
 /* sprite shape of the terrain picture */
-u8 data_02166330[8] = {
+u8 data_02166330[] = {
 #include "data/main/data_02166330.inc.c"
 };
-u8 data_02166310[8] = {
+u8 data_02166310[] = {
 #include "data/main/data_02166310.inc.c"
 };
 InfoPanelRestPos gInfoPanelRestPos[INFO_PANEL_SIDES] = {
@@ -118,111 +118,111 @@ s16 gInfoPanelWindowLeft[INFO_PANEL_SIDES][3] = {
 s16 data_0216635c[INFO_PANEL_SIDES][3] = {
 #include "data/main/data_0216635c.inc.c"
 };
-u32 data_02166368[4] = {
+u32 data_02166368[] = {
 #include "data/main/data_02166368.inc.c"
 };
 /* [owner - 1]: unit sprite shape with a badge */
-void* data_021663b4[5] = {&data_02166368, &data_02166318, &data_02166368,
-                          &data_02166318, &data_02166318};
-void* data_021663c8[5] = {&data_02166338, &data_02166318, &data_02166338,
-                          &data_02166318, &data_02166318};
-NeighborDir data_02166378[4] = {
+void* data_021663b4[] = {&data_02166368, &data_02166318, &data_02166368,
+                         &data_02166318, &data_02166318};
+void* data_021663c8[] = {&data_02166338, &data_02166318, &data_02166338,
+                         &data_02166318, &data_02166318};
+NeighborDir data_02166378[] = {
 #include "data/main/data_02166378.inc.c"
 };
 /* declared `TileOffset* data_0216638c[]` in map_add_tile_offset.c: declared in src/game/main/map/map_add_tile_offset.c, with a type no header defines */
-void* data_0216638c[5] = {0, &data_02166720, &data_02166720, &data_021669b0,
-                          &data_02166c08};
-u32 data_021663a0[5] = {
+void* data_0216638c[] = {0, &data_02166720, &data_02166720, &data_021669b0,
+                         &data_02166c08};
+u32 data_021663a0[] = {
 #include "data/main/data_021663a0.inc.c"
 };
 /* 3 per side of the unit: bit for data_022a6dd4, tile x offset, tile y offset */
-s16 data_021663dc[12] = {
+s16 data_021663dc[] = {
 #include "data/main/data_021663dc.inc.c"
 };
 InfoPanelLayout data_021663f4 = {
 #include "data/main/data_021663f4.inc.c"
 };
-TaskScriptCmd data_02166410[4] = {
+TaskScriptCmd data_02166410[] = {
 #include "data/main/data_02166410.inc.c"
 };
 /* declared `u8 data_02166430[]` in info_panel_draw.c: relocation at data_02166430+0x4 is not on a 4-byte field */
-u32 data_02166430[8] = {
+u32 data_02166430[] = {
 #include "data/main/data_02166430.inc.c"
 };
-ScriptCommand data_02166450[4] = {
+ScriptCommand data_02166450[] = {
 #include "data/main/data_02166450.inc.c"
 };
 /* declared `u8 data_02166470[]` in func_020cce70.c: relocation at data_02166470+0x0 is not on a 4-byte field */
-u32 data_02166470[8] = {
+u32 data_02166470[] = {
 #include "data/main/data_02166470.inc.c"
 };
 /* declared `const u8 data_02166490[]` in func_020cab68.c: relocation at data_02166490+0x0 is not on a 4-byte field */
-u32 data_02166490[10] = {
+u32 data_02166490[] = {
 #include "data/main/data_02166490.inc.c"
 };
-TaskScriptCmd data_021664b8[5] = {
+TaskScriptCmd data_021664b8[] = {
 #include "data/main/data_021664b8.inc.c"
 };
-TaskScriptCmd data_021664e0[5] = {
+TaskScriptCmd data_021664e0[] = {
 #include "data/main/data_021664e0.inc.c"
 };
 /* declared `const u8 data_02166508[]` in func_020cab50.c: relocation at data_02166508+0x0 is not on a 4-byte field */
-u32 data_02166508[12] = {
+u32 data_02166508[] = {
 #include "data/main/data_02166508.inc.c"
 };
-TaskScriptCmd data_02166538[6] = {
+TaskScriptCmd data_02166538[] = {
 #include "data/main/data_02166538.inc.c"
 };
-TaskScriptCmd data_02166568[6] = {
+TaskScriptCmd data_02166568[] = {
 #include "data/main/data_02166568.inc.c"
 };
 /* picture number of each unit type */
-u16 data_02166598[28] = {
+u16 data_02166598[] = {
 #include "data/main/data_02166598.inc.c"
 };
 /* declared `u8 data_021665d0[]` in func_020cfd30.c: relocation at data_021665d0+0x4 is not on a 4-byte field */
-u32 data_021665d0[14] = {
+u32 data_021665d0[] = {
 #include "data/main/data_021665d0.inc.c"
 };
-TaskScriptCmd data_02166608[7] = {
+TaskScriptCmd data_02166608[] = {
 #include "data/main/data_02166608.inc.c"
 };
-TaskScriptCmd gFireTargetTaskScript[7] = {
+TaskScriptCmd gFireTargetTaskScript[] = {
 #include "data/main/gFireTargetTaskScript.inc.c"
 };
-TaskScriptCmd data_02166678[7] = {
+TaskScriptCmd data_02166678[] = {
 #include "data/main/data_02166678.inc.c"
 };
-TaskScriptCmd data_021666b0[7] = {
+TaskScriptCmd data_021666b0[] = {
 #include "data/main/data_021666b0.inc.c"
 };
-ScriptCommand data_021666e8[7] = {
+ScriptCommand data_021666e8[] = {
 #include "data/main/data_021666e8.inc.c"
 };
-u32 data_02166720[14] = {
+u32 data_02166720[] = {
 #include "data/main/data_02166720.inc.c"
 };
 /* per terrain, 2 bytes each: the icon number is the first byte */
-u8 data_02166758[64] = {
+u8 data_02166758[] = {
 #include "data/main/data_02166758.inc.c"
 };
-u32 data_02166798[16] = {
+u32 data_02166798[] = {
 #include "data/main/data_02166798.inc.c"
 };
-u32 data_021667d8[20] = {
+u32 data_021667d8[] = {
 #include "data/main/data_021667d8.inc.c"
 };
-TaskScriptCmd data_02166888[12] = {
+TaskScriptCmd data_02166888[] = {
 #include "data/main/data_02166888.inc.c"
 };
-TaskScriptCmd data_02166828[12] = {
+TaskScriptCmd data_02166828[] = {
 #include "data/main/data_02166828.inc.c"
 };
-static TaskScriptCmd data_021668e8[12] = {
+static TaskScriptCmd data_021668e8[] = {
 #include "data/main/data_021668e8.inc.c"
 };
 /* declared `EventScriptCommand gMapOverviewScript[]` in game_tick_player_timer.c: relocation at gMapOverviewScript+0x0 is not on a 4-byte field */
-u32 gMapOverviewScript[24] = {
+u32 gMapOverviewScript[] = {
 #include "data/main/gMapOverviewScript.inc.c"
 };
 

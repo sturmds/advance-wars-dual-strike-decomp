@@ -1,19 +1,19 @@
 #include "types.h"
 
-u8 data_02151d10[40] = {
+u8 data_02151d10[] = {
 #include "data/main/data_02151d10.inc.c"
 };
-u8 data_02151d38[52] = {
+u8 data_02151d38[] = {
 #include "data/main/data_02151d38.inc.c"
 };
 /* byte offset of each pixel inside an 8x8 tile */
-u8 gTile4bppPixelOffsets[64] = {
+u8 gTile4bppPixelOffsets[] = {
 #include "data/main/gTile4bppPixelOffsets.inc.c"
 };
-u8 gCoPortraitSprite[76] = {
+u8 gCoPortraitSprite[] = {
 #include "data/main/gCoPortraitSprite.inc.c"
 };
-u8 data_02151df8[76] = {
+u8 data_02151df8[] = {
 #include "data/main/data_02151df8.inc.c"
 };
 

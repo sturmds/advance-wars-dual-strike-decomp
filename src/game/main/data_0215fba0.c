@@ -19,7 +19,7 @@ void func_020760e0(void);
 void func_02075e84(void);
 
 /* status screen background file */
-char data_0215fba0[25] = {
+char data_0215fba0[] = {
 #include "data/main/data_0215fba0.inc.c"
 };
 MenuButtonTemplate data_0215fbbc = {
@@ -29,12 +29,12 @@ MenuButtonTemplate data_0215fbe4 = {
 #include "data/main/data_0215fbe4.inc.c"
 };
 /* declared `u8 data_0215fc0c[]` in func_02075fa4.c: relocation at data_0215fc0c+0xc is not on a 4-byte field */
-u32 data_0215fc0c[14] = {
+u32 data_0215fc0c[] = {
 #include "data/main/data_0215fc0c.inc.c"
 };
-TaskScriptCmd data_0215fc44[9] = {
+TaskScriptCmd data_0215fc44[] = {
 #include "data/main/data_0215fc44.inc.c"
 };
-TaskScriptCmd data_0215fc8c[9] = {
+TaskScriptCmd data_0215fc8c[] = {
 #include "data/main/data_0215fc8c.inc.c"
 };

@@ -9,29 +9,29 @@ void PopupMenuButton_Confirm(void);
 void PopupMenuButton_Cancel(void);
 void PopupMenuButton_Select(void);
 
-static u16 data_02158748[2] = {
+static u16 data_02158748[] = {
 #include "data/main/data_02158748.inc.c"
 };
-static u16 data_0215874c[2] = {
+static u16 data_0215874c[] = {
 #include "data/main/data_0215874c.inc.c"
 };
-static u16 data_02158758[2] = {
+static u16 data_02158758[] = {
 #include "data/main/data_02158758.inc.c"
 };
-static u16 data_02158754[2] = {
+static u16 data_02158754[] = {
 #include "data/main/data_02158754.inc.c"
 };
-u16 gWindowFrameBottomTiles[2] = {
+u16 gWindowFrameBottomTiles[] = {
 #include "data/main/gWindowFrameBottomTiles.inc.c"
 };
-u8 data_0215875c[36] = {
+u8 data_0215875c[] = {
 #include "data/main/data_0215875c.inc.c"
 };
 MenuButtonTemplate data_02158780 = {
 #include "data/main/data_02158780.inc.c"
 };
 /* declared `u8 data_021587a8[]` in func_0201e954.c: relocation at data_021587a8+0xc is not on a 4-byte field */
-u32 data_021587a8[10] = {
+u32 data_021587a8[] = {
 #include "data/main/data_021587a8.inc.c"
 };
 

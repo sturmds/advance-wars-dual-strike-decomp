@@ -9,15 +9,15 @@ void func_0201b888(void);
 void ChoicePrompt_Update(void);
 void EventScript_StopTextIfSkipping(void);
 
-EventScriptCommand data_021584d8[2] = {
+EventScriptCommand data_021584d8[] = {
 #include "data/main/data_021584d8.inc.c"
 };
 /* declared `u8 data_021584f8[]` in func_020154c4.c: relocation at data_021584f8+0x8 is not on a 4-byte field */
-u32 data_021584f8[10] = {
+u32 data_021584f8[] = {
 #include "data/main/data_021584f8.inc.c"
 };
 /* declared `u8 data_02158520[]` in func_020154c4.c: relocation at data_02158520+0x8 is not on a 4-byte field */
-u32 data_02158520[10] = {
+u32 data_02158520[] = {
 #include "data/main/data_02158520.inc.c"
 };
 

@@ -1,10 +1,10 @@
 #include "types.h"
 
 /* "/ohashi/res_survival" */
-char gCoRankSurvivalPath[21] = {
+char gCoRankSurvivalPath[] = {
 #include "data/main/gCoRankSurvivalPath.inc.c"
 };
 /* "/ohashi/res_result_lang" */
-char gCoRankLangPath[24] = {
+char gCoRankLangPath[] = {
 #include "data/main/gCoRankLangPath.inc.c"
 };

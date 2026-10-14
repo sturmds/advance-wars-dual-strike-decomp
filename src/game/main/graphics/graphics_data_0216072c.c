@@ -3,6 +3,6 @@
 
 void SpriteTask_Update(void);
 
-TaskScriptCmd gSpriteTaskScript[4] = {
+TaskScriptCmd gSpriteTaskScript[] = {
 #include "data/main/gSpriteTaskScript.inc.c"
 };

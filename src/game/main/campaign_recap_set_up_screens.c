@@ -33,23 +33,23 @@ extern const char data_0216a934[]; /* "013": layer 2 tiles */
 extern const char data_0216a938[]; /* "014": layer 2 map */
 extern const char data_0216a93c[]; /* "015": layer 2 palette */
 /* map bytes of a text BG by screen size */
-static const u32 data_0214d3e0[4] = {
+static const u32 data_0214d3e0[] = {
 #include "data/main/data_0214d3e0.inc.c"
 };
 /* ADPCM step index change per nibble */
-const s8 data_0214d400[16] = {
+const s8 data_0214d400[] = {
 #include "data/main/data_0214d400.inc.c"
 };
 /* map bytes of a rotation/scaling BG by screen size */
-static const u32 data_0214d3f0[4] = {
+static const u32 data_0214d3f0[] = {
 #include "data/main/data_0214d3f0.inc.c"
 };
 /* ADPCM step sizes */
-const s16 data_0214d410[89] = {
+const s16 data_0214d410[] = {
 #include "data/main/data_0214d410.inc.c"
 };
 /* a sine and cosine pair per 16 angle units */
-const s16 data_0214d4c4[4096] = {
+const s16 data_0214d4c4[] = {
 #include "data/main/data_0214d4c4.inc.c"
 };
 

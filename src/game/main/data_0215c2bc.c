@@ -51,34 +51,34 @@ extern u8 data_0217fb08[];
 void TagBreak_FadeInBlend(void);
 void TagBreak_ScrollFrame(void);
 
-u32 data_0215c2bc[6] = {
+u32 data_0215c2bc[] = {
 #include "data/main/data_0215c2bc.inc.c"
 };
-u32 data_0215c2d4[10] = {
+u32 data_0215c2d4[] = {
 #include "data/main/data_0215c2d4.inc.c"
 };
-TaskScriptCmd data_0215c2fc[6] = {
+TaskScriptCmd data_0215c2fc[] = {
 #include "data/main/data_0215c2fc.inc.c"
 };
 /* script of the tag firepower gauge */
-TaskScriptCmd gTagGaugeScript[6] = {
+TaskScriptCmd gTagGaugeScript[] = {
 #include "data/main/gTagGaugeScript.inc.c"
 };
 /* declared `s8 gSparkBurstOffsets[SPARK_BURST_SPARKS * 2]` in spark_burst_update.c: declared as one element of 0x1 bytes, but takes 0x48 */
-u32 gSparkBurstOffsets[18] = {
+u32 gSparkBurstOffsets[] = {
 #include "data/main/gSparkBurstOffsets.inc.c"
 };
 /* declared `u8 data_0215c3f4[]` in tag_break_set_up_screens.c: relocation at data_0215c3f4+0xc is not on a 4-byte field */
-u32 data_0215c3f4[20] = {
+u32 data_0215c3f4[] = {
 #include "data/main/data_0215c3f4.inc.c"
 };
 /* declared `u8 data_0215c3a4[]` in tag_break_set_up_screens.c: relocation at data_0215c3a4+0xc is not on a 4-byte field */
-u32 data_0215c3a4[20] = {
+u32 data_0215c3a4[] = {
 #include "data/main/data_0215c3a4.inc.c"
 };
-TaskScriptCmd data_0215c444[22] = {
+TaskScriptCmd data_0215c444[] = {
 #include "data/main/data_0215c444.inc.c"
 };
-TaskScriptCmd data_0215c4f4[34] = {
+TaskScriptCmd data_0215c4f4[] = {
 #include "data/main/data_0215c4f4.inc.c"
 };

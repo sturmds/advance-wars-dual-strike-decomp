@@ -148,52 +148,51 @@ void BuildMenu_OnSelect(void);
 void func_020c0330(void);
 
 /* declared `MenuHelpPair gMusicMenuHelpFns` in menu_toggle_music.c: declared in src/game/main/menus/menu_toggle_music.c, with a type no header defines */
-void* gMusicMenuHelpFns[2] = {&BattleMenu_DrawMusicOffHelp,
-                              &BattleMenu_DrawMusicOnHelp};
-u16 data_021658c8[4] = {
+void* gMusicMenuHelpFns[] = {&BattleMenu_DrawMusicOffHelp,
+                             &BattleMenu_DrawMusicOnHelp};
+u16 data_021658c8[] = {
 #include "data/main/data_021658c8.inc.c"
 };
 /* declared `MenuHelpFour gAiBehaviourMenuHelpFns` in menu_cycle_ai_behaviour.c: declared in src/game/main/menus/menu_cycle_ai_behaviour.c, with a type no header defines */
-void* gAiBehaviourMenuHelpFns[4] = {
+void* gAiBehaviourMenuHelpFns[] = {
     &BattleMenu_DrawAiStrikeHelp, &BattleMenu_DrawAiAssaultHelp,
     &BattleMenu_DrawAiGeneralHelp, &BattleMenu_DrawAiDefenseHelp};
 /* declared `MenuHelpFive gAnimationMenuHelpFns` in menu_cycle_animation_mode.c: declared in src/game/main/menus/menu_cycle_animation_mode.c, with a type no header defines */
-void* gAnimationMenuHelpFns[5] = {&func_020bc960, &func_020bc9b0,
-                                  &func_020bc99c, &func_020bc988,
-                                  &func_020bc974};
+void* gAnimationMenuHelpFns[] = {&func_020bc960, &func_020bc9b0, &func_020bc99c,
+                                 &func_020bc988, &func_020bc974};
 MenuButtonTemplate gBuildMenuRowButton = {
 #include "data/main/gBuildMenuRowButton.inc.c"
 };
 MenuButtonTemplate gNextTurnButton = {
 #include "data/main/gNextTurnButton.inc.c"
 };
-TaskScriptCmd data_0216594c[6] = {
+TaskScriptCmd data_0216594c[] = {
 #include "data/main/data_0216594c.inc.c"
 };
-EventScriptCommand gSendNoSlotScript[5] = {
+EventScriptCommand gSendNoSlotScript[] = {
 #include "data/main/gSendNoSlotScript.inc.c"
 };
-EventScriptCommand gSendNoTileScript[5] = {
+EventScriptCommand gSendNoTileScript[] = {
 #include "data/main/gSendNoTileScript.inc.c"
 };
-TaskScriptCmd data_02165a1c[13] = {
+TaskScriptCmd data_02165a1c[] = {
 #include "data/main/data_02165a1c.inc.c"
 };
-TaskScriptCmd data_02165a84[13] = {
+TaskScriptCmd data_02165a84[] = {
 #include "data/main/data_02165a84.inc.c"
 };
-MenuItem data_02165aec[7] = {
+MenuItem data_02165aec[] = {
 #include "data/main/data_02165aec.inc.c"
 };
-MenuItem data_02165d2c[11] = {
+MenuItem data_02165d2c[] = {
 #include "data/main/data_02165d2c.inc.c"
 };
-MenuItem data_02165bcc[11] = {
+MenuItem data_02165bcc[] = {
 #include "data/main/data_02165bcc.inc.c"
 };
-MenuItem gBattleMenuItems[12] = {
+MenuItem gBattleMenuItems[] = {
 #include "data/main/gBattleMenuItems.inc.c"
 };
-MenuItem gUnitMenuItems[21] = {
+MenuItem gUnitMenuItems[] = {
 #include "data/main/gUnitMenuItems.inc.c"
 };

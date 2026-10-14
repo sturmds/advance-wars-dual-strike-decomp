@@ -1,5 +1,5 @@
 #include "types.h"
 
-char gMapSelectLinkCommonResPath[22] = {
+char gMapSelectLinkCommonResPath[] = {
 #include "data/main/gMapSelectLinkCommonResPath.inc.c"
 };

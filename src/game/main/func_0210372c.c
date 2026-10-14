@@ -13,10 +13,10 @@ void func_0200a630(void);
 void func_0202d6a8(void);
 void func_020b983c(void);
 
-TaskScriptCmd data_0216d724[6] = {
+TaskScriptCmd data_0216d724[] = {
 #include "data/main/data_0216d724.inc.c"
 };
-u32 data_0216d754[22] = {
+u32 data_0216d754[] = {
 #include "data/main/data_0216d754.inc.c"
 };
 
