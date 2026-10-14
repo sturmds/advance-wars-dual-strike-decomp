@@ -90,13 +90,14 @@ Each alias was checked against its variable's type and the code that loads it (`
 - `gTouch` is a variable of its own: `gTouchDriverState` has size 0x8 (was 0x18) and `gTouch` size 0x10 in `symbols.txt`; the generated `bss_0216e4b8.inc.c` defines `gTouch` as `TouchState`, and `touch_init.c` declares the calibration as `TPCalibrateParam`.
 - `data_02290118` has size 0x180 (was 0x138): `Unk_02290118` ends with `pad_136`, the placeholder `data_02290250` is gone, `bss_022900b8.c` ends at 0x02290298 and `bss_02290250.c` became `bss_02290298.c`.
 - 11 aliases with no relocation and no user are deleted. `aliases.txt` holds 186 aliases: 169 real, 17 unsorted (the false symbols above).
+- The 17 false symbols are deleted, with their lines in `aliases.txt`. Twelve had lost their last relocation in issue 0082's work on main and ov002. The other nine relocations came from ov000 `.rodata` and are deleted too: four sit inside the LZ77 streams at 0x022cf9b0, 0x022d6af0, 0x022d816c and 0x022d9914 (pictures that `Data_Unpack` reads through `gNumberFontByLanguage` and the picture columns of `Ov000_gTerrainStats` and `data_ov000_023501e8`/`02350278`), and five, all `0x02222222`, sit in the 0x800 bytes of tiles at 0x022dabfc that `PlayerPanels_Init` copies to VRAM with `Mem_CopyAuto`. `aliases.txt` holds 169 aliases, all `real`.
 
 ## Open items
 
 These need a decision from sturmds and are not part of this issue's changes yet:
 
 - A tenet 11 in `TENETS.md` about sizes and aliases, and a matching check in the tenets-review skill.
-- A check of the groups of the second pass by sturmds, and deleting the 17 false symbols with their relocations.
+- A check of the groups of the second pass by sturmds.
 - A `make shift` run with a grown struct, to see whether the shiftable build catches a hidden alias that moves.
 
 ## Done when
