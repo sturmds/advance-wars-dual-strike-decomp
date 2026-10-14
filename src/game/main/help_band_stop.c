@@ -2,15 +2,16 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/script_slot.h"
+#include "game/task.h"
 
 void Screen_SetCurrent(void* state);
 void Screen_SetCurrentGfx(void* state);
-void Task_DestroyByScript(const ScriptCommand* script);
+void Task_DestroyByScript(const TaskScriptCmd* script);
 
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern ScriptCommand data_021590ec[];
+extern TaskScriptCmd data_021590ec[];
 
 /* Ends the help band: destroys its task (HelpBand_Start) and resets the lower
  * screen's layer 0 scroll, which the task moves. Also clears DISPCNT bit 15

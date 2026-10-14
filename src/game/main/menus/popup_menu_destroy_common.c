@@ -4,9 +4,9 @@
 
 extern Unk_027c0280* data_027c0280;
 extern s16 data_0229eae0[];
-extern s16 data_0229ead8[];
+extern u16 data_0229ead8[];
 
-void func_020c436c(s16* tile, s16* pixels);
+void func_020c436c(s16* tile, u16* pixels);
 void func_0201dc64(Task* task);
 void Layer0_ClearMap(void);
 void TransferQueue_Add(const void* src, void* dst, u32 size);

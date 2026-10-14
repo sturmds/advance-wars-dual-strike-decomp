@@ -20,7 +20,7 @@ void Task_ResumeScript(Ov005Task* task);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern const MenuButtonTemplate data_ov005_02368070[];
+extern MenuButtonTemplate data_ov005_02368070;
 
 /* Like Ov005_UpdateTextPromptScreen, but the sub screen's BG layers 1 and 2
  * scroll vertically each frame by a linear tween (0 to 192 and 256 to 448,
@@ -62,7 +62,7 @@ void Ov005_UpdateScrollingTextPromptScreen(Ov005Task* task) {
       }
       return;
     case 11:
-      MenuButton_Add(0, 0, data_ov005_02368070, 253);
+      MenuButton_Add(0, 0, &data_ov005_02368070, 253);
       MenuButton_Select(253);
       work->unk_08 = 0;
       task->step++;

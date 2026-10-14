@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/Unk_02160abc.h"
 #include "game/Unk_02160ac0.h"
 #include "game/ov003_unit.h"
 #include "game/oam_cells.h"
@@ -8,7 +9,6 @@
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8* data_02160abc;
 
 s32 HwDiv32(s32 numer, s32 denom);
 s32 HwMod32(s32 numerator, s32 denominator);
@@ -41,7 +41,7 @@ void Ov003_DrawTimeLeft(void) {
   }
   limitFrames = state->preset->timeLimitMinutes * 3600;
   if (limitFrames - 60 <= state->unk_1cc) {
-    if (state->rows[0].active && data_02160abc[10] == 0) {
+    if (state->rows[0].active && data_02160abc->unk_0a == 0) {
       Ov003_DefeatTeam(1);
     }
     framesLeft = 0;

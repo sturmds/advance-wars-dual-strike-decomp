@@ -22,7 +22,7 @@ void func_ov005_023531d8(void);
 static TaskScriptCmd data_ov005_02368020[] = {
 #include "data/ov005/data_ov005_02368020.inc.c"
 };
-extern const MenuButtonTemplate data_ov005_02368070[];
+extern MenuButtonTemplate data_ov005_02368070;
 
 /* Opens a text box with a child task, waits for the text to finish, then
  * for A or button 253 (a touch). Closes the box, fades the song out and
@@ -49,7 +49,7 @@ void Ov005_UpdateTextPromptScreen(Ov005Task* task) {
       }
       return;
     case 11:
-      MenuButton_Add(0, 0, data_ov005_02368070, 253);
+      MenuButton_Add(0, 0, &data_ov005_02368070, 253);
       MenuButton_Select(253);
       work->unk_08 = 0;
       task->step++;

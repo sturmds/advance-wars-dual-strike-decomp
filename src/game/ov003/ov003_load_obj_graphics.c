@@ -6,7 +6,7 @@
 void Data_Unpack(const void* src, void* dest);
 void Palette_Load(const void* src, u32 offset, u32 size);
 void* Mem_Alloc(u32 size);
-void* data_ov003_02365b10;
+u8* data_ov003_02365b10;
 void* data_ov003_02365b0c;
 Ov003State data_ov003_02365b14;
 
