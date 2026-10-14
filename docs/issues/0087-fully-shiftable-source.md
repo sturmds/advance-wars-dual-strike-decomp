@@ -70,3 +70,57 @@ Not counted by the tool, tracked in issue 0086: ARM7's module parameters and `WM
 ## Done when
 
 Every count in the table is 0, or each site left is listed in a file that says why the number stays (for example, a hardware register layout), and `shift_gaps.py` leaves the listed sites out.
+
+## Status 2026-10-14 (end of the first wave of work)
+
+Posted on GitHub #2 as well.
+
+A day of work brought the counts of `tools/shift_gaps.py` from about 20,000 sites to 54. Every landing passed `make release`, and the ROM still matches retail byte for byte. The counts are in the "Shiftable" section of `PROGRESS.md`; `python3 tools/shift_gaps.py --list KIND` names each site.
+
+| Gap | Start | Now |
+|---|---:|---:|
+| Table and extern array lengths | 11,692 | 0 |
+| Externs whose type differs from the definition (new measure) | 4,359 | 0 (1 listed) |
+| `u32` tables holding pointers and numbers | 887 | 0 |
+| Aliases written as BASE+number | 331 | 0 |
+| Unrelocated words that look like addresses (all levels) | 1,175 | 0 |
+| `Mem_Alloc` with a literal size, byte offsets into objects | 85 | 0 |
+| `u8 NAME[N]` placeholders | 279 | 14 |
+| Copy, fill and clear calls with a literal length | 303 | 24 |
+| `for` loops with a literal bound | 940 | 16 |
+| Structs with a size assert (should grow) | 24 | 70 |
+
+`make release` now also checks every alias against its C type (compiler bases included), every extern's type against its definition, and the size of every generated `.bss` variable.
+
+### Remaining gaps
+
+**Loops (16).**
+- Counts not understood yet: the combat setup button and sprite rows (`func_02075e08` 6, `func_0208798c` and `func_02087b88` 4), combat shop button ids 8 to 11, the 4 sprites of `ResultPoint_DrawBar`, the 18 texture palettes of `MainMenu_LoadPageColour`, the 15 of `Text_AddSpacerCodes`, the 6 of `Ov003_RecordWinner`, the 6 of `PackNibblePairs`.
+- ARM7 wireless: the first 2 of 4 TX slots in `wifi_irq_beacon_sent`, 7 halfwords in `wifi_task_drain_rx_ring`, a bit walk in `WifiParent_StoreMpReply`.
+- Only match as written: `>= 1` in `Players_ApplyBattleSetup` and `double2hex`; the two halving loops of `MapPreview_FillTileMap`.
+
+**Copies (24).** Lengths of blocks unpacked from game files, and OBJ or BG tile ranges copied between the two screens (CO rank, result, combat setup, Vs setup, win/lose, CO EXP, map select, help band, player panels, the ov004 blended scene). Only the files give these lengths; the `ResultScreen` work fields are 2 bytes longer than their file blocks, so `sizeof` does not match. Also a 64-byte copy into an unknown struct in `func_ov005_02365100`. Next step: give the file layouts types (they are game data, so through `inc.c`-style generated headers, never committed bytes).
+
+**Placeholders (14).** Blocks nothing reads (`data_02297a60`, the two `unk_28` slots in `screen_bss.c`) and ARM7 filler between thread stacks, the 0x78 block `func_arm7_038058b0` clears, and filler after the ARM7 `.bss` end symbols. Those end symbols should become linker symbols, as main's `MAIN_BSS_END` did.
+
+**Not counted by the tool:**
+- ARM7 module parameters, `BuildInfo_Arm7` and the ARM7 crt0 words: nothing rewrites them when ARM7 grows (repo issue 0054).
+- The secure-area CRC stays the retail value in a shifted ROM (issue 0056), and a ROM larger than 32 MiB needs the capacity byte.
+- `.exceptix` and `.ctor` placement for new C++ code in the linker script.
+- The Download Play child `mb_combat_sgn.srl` is copied unchanged (issue 0050).
+- The landing replay's moved-name rule does not recognise ARM7 address names (`func_arm7_...`).
+- Local function declarations that disagree with the definitions (`tools/protocheck.py` lists them, e.g. the `PowerHook_*` callers).
+- `gEventTextMap` is declared 12 rows of 32 while the window uses 6.
+- ov005's shop and sound room define their own `ICON_DIGIT_0` and `ICON_SLASH`; `ICON_DIGITS_SMALL` and `ICON_SMALL_SLASH` exist.
+- `make shift` grows modules but no test grows a struct yet (issue 0083's open item).
+- The emulator check uses a local melonDS build, not one pinned in `tools.lock` (issue 0006).
+
+### Decisions for the maintainer
+1. **Score struct overlap.** `Unk_022a7a9c` (the battle score) and `BattleResults` overlap: `totalPoints`/`previousBest` share bytes 0x14-0x1b with `expGain`/`expTaken`, and `frontCo`/`backCo` are `rows[0]`'s first halfwords. How to model that as one struct. This is the one extern listed in `config/AWRE/extern_types.txt`.
+2. **Battle cell X/Y getters.** `BattleCellTask_GetCellOffsetX/Y` and `GetOffsetX/Y` were swapped to follow the readers that take x before y; what the two halves mean is still a guess. Keep the swap or revert it.
+3. **GX texture coordinates.** Four TEXCOORD words of `Gx_SendPlainQuad` are listed as numbers in `config/AWRE/shift_numbers.txt`; a struct type means changing about 100 quad readers.
+4. **Names that are guesses**, each with a comment: `CO_MOOD_PICTURE_SIZE`, `GREY_RELOAD_COLOURS`, `HEAD_OBJECT_COUNT`, `THUNDER_SPRITE_DATA_SIZE`, `EDGE_SPRITE_FILE_SIZE`, `GAME_FLAG_CAMPAIGN_FIRST`/`END`, `CAMPAIGN_MISSION_COUNT`, `ICON_DIGITS_GREY` ("not available"), `ICON_AI_KINDS`, `ICON_TILESETS`, `MAP_OBJECT_LASER` (kind 1, inferred). Confirm or rename from play.
+5. **Original-game overrun.** `Link_SendPacket` copies a 24-byte `LinkPacket` into a 22-byte `payload`; the C keeps it to match. A mod that grows these structs must know.
+
+### Done when (unchanged)
+Every count above is 0 or each site left is listed with its reason; the items not counted have their own fixes; and a mod that grows main and a struct builds a ROM that boots and plays.
