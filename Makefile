@@ -142,10 +142,17 @@ release-nocheck: setup
 decomp-dev-report: all
 	@$(PYTHON) tools/decomp_dev_report.py
 
-# A ROM with 0x20 bytes inserted in main, in build/shift/ (issue 0012).
-# Checks that every symbol after the pad moved; not part of release.
+# Shifted ROMs (issues 0012, 0086): 0x20 bytes inserted in main (build/shift/),
+# then in ov000, itcm and dtcm, then 0x40 in main and ov000 together (the
+# case of the arena-lo crash). Each checks symbol moves, the arena start and
+# words that kept an old address. ov001-ov006 are left out until issue 0055
+# is done: their builds report its relocations. Not part of release.
 shift: all
 	@flock build/.ninja.lock $(PYTHON) tools/shift_build.py
+	@flock build/.ninja.lock $(PYTHON) tools/shift_build.py --module ov000
+	@flock build/.ninja.lock $(PYTHON) tools/shift_build.py --module itcm
+	@flock build/.ninja.lock $(PYTHON) tools/shift_build.py --module dtcm
+	@flock build/.ninja.lock $(PYTHON) tools/shift_build.py --module main --module ov000 --pad 0x40
 
 # Starts retail, our build and the shifted build in DeSmuME without a window
 # and compares exit status, log and the save file the game writes. A smoke
@@ -201,7 +208,8 @@ TESTS := \
 	tools/tests/test_bss.py \
 	tools/tests/test_release_cache.py \
 	tools/tests/test_data.py \
-	tools/tests/test_sound.py
+	tools/tests/test_sound.py \
+	tools/tests/test_shift.py
 
 test:
 	@for t in $(CACHED_TESTS) $(TESTS); do $(TEST_ENV) $(PYTHON) $$t || exit 1; done

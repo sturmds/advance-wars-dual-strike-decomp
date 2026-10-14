@@ -1,0 +1,42 @@
+# Words that tools/shift_build.py's stale check finds but that are not
+# pointers: their value equals the address of a symbol that moves, by chance.
+# Each was read in the code or table that uses it (issue 0086). One per line:
+#   ADDRESS  reason
+# ADDRESS is the word's address in the normal (retail) build.
+
+0x02000b10  BuildInfo[4], main .bss end: dsd rom build writes the moved value into the ROM (shifted ROM 0x022ad580, arm9.bin 0x022ad560)
+0x02136dac  data_02134e8c, u8 data (screen_init_with_player_frame.c)
+0x02138258  data_02137ca8, halfword pairs in an ascending run (0x0219, 0x021b, ...)
+0x0213825c  data_02137ca8, same run
+0x02138274  data_02137ca8, same table
+0x02138280  data_02137ca8, same table
+0x0213845c  data_02137ca8, same table
+0x021393c4  gWeatherParticleSpeeds, s16 pairs
+0x0213b91c  data_0213b8f0, ascending u16 run
+0x0213b920  data_0213b8f0, ascending u16 run
+0x0213b924  data_0213b8f0, ascending u16 run
+0x0213c748  data_0213c734, ascending u16 run
+0x0213fe54  data_0213fe0c, ascending u16 run
+0x02140124  data_021400d8, ascending u16 run
+0x021480f4  data_021480e0, ascending u16 run
+0x0214e368  data_0214d4c4, s16 table (campaign_recap_set_up_screens.c)
+0x0214e36c  data_0214d4c4, s16 table
+0x0215061c  data_02150100, u16 progression
+0x02150620  data_02150100, u16 progression
+0x02150628  data_02150100, u16 progression
+0x0215974c  data_02159748, ascending u16 offsets (text_data.c)
+0x022bbc0c  Ov000_gMapTiles, u16 tiles
+0x022c3bb8  Ov000_gMapTiles, u16 tiles
+0x022ea5a4  Ov000_gMapUnits_*, PredeployedUnit records of u8 fields
+0x022eaf08  map unit records, u8
+0x022ed8b0  map unit records, u8
+0x022efd58  map unit records, u8
+0x022efdc0  map unit records, u8
+0x022f1488  map unit records, u8
+0x022f1b00  map unit records, u8
+0x022f21f8  map unit records, u8
+0x022f32e0  map unit records, u8
+0x022f3730  map unit records, u8
+0x022f405c  map unit records, u8
+0x023659f0  data_ov003_023659d4, u16 pairs
+0x023659f8  data_ov003_023659d4, u16 pairs
