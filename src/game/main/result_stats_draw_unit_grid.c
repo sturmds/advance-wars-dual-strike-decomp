@@ -10,8 +10,11 @@ int Player_GetUnitsLost(int player, int unitType);
 BOOL Sprite_IsOnScreenX(int x, int width);
 void ResultStats_DrawCount(int x, int y, int value);
 
-extern const u8
-    data_0215a51c[]; /* unit types, 7 rows of 4; 0 leaves a cell empty */
+/* data_0215a51c: unit types, UNIT_GRID_ROWS rows of UNIT_GRID_COLUMNS; 0
+ * leaves a cell empty. */
+#define UNIT_GRID_ROWS 7
+#define UNIT_GRID_COLUMNS 4
+extern const u8 data_0215a51c[];
 extern u8 data_027c0040;
 
 /* Draws the unit grid of a stats page for player task->unk_66, moved right
@@ -24,9 +27,9 @@ void ResultStats_DrawUnitGrid(int offset, Task* task) {
   int x;
   u8 type;
 
-  for (row = 0; row < 7; row++) {
-    for (col = 0; col < 4; col++) {
-      type = data_0215a51c[row * 4 + col];
+  for (row = 0; row < UNIT_GRID_ROWS; row++) {
+    for (col = 0; col < UNIT_GRID_COLUMNS; col++) {
+      type = data_0215a51c[row * UNIT_GRID_COLUMNS + col];
       if (type == 0) {
         continue;
       }

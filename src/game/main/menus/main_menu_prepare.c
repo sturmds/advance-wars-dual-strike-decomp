@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/save_progress.h"
 #include "game/screen_other_map.h"
 #include "game/play_records.h"
 
@@ -47,7 +48,7 @@ void MainMenu_Prepare(void) {
   for (gameMode = 0; gameMode <= GAME_MODE_SURVIVAL; gameMode++) {
     switch (gameMode) {
       case GAME_MODE_CAMPAIGN:
-        for (slot = 0; slot < 3; slot++) {
+        for (slot = 0; slot < SAVE_PROFILE_COUNT; slot++) {
           recordId = BattleSave_GetRecordId(gameMode, slot);
           if ((func_020193bc(recordId) != 0 && func_0201fe28(recordId) == 0) ||
               Profile_IsInUse(slot)) {

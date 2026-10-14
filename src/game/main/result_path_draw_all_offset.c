@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/result_sprite_task.h"
 
 void ResultPath_DrawSpriteOffset(int step, int sprite, int dx, int dy);
 
@@ -8,8 +9,9 @@ void ResultPath_DrawAllOffset(int lead, int dx, int dy) {
   int behind;
 
   behind = i = 0;
-  for (; i < 4; i++) {
-    ResultPath_DrawSpriteOffset(lead - behind, 3 - i, dx, dy);
-    behind += 35;
+  for (; i < RESULT_PATH_SPRITE_COUNT; i++) {
+    ResultPath_DrawSpriteOffset(lead - behind, RESULT_PATH_SPRITE_COUNT - 1 - i,
+                                dx, dy);
+    behind += RESULT_PATH_SPACING;
   }
 }

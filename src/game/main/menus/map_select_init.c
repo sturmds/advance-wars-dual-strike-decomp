@@ -209,13 +209,19 @@ void MapSelect_Init(void) {
   IconBank_LoadPalette(4, 19);
   Window_Draw(-1, 16, 10, 9, data_027c0280->layer0Map, 0);
   Gfx_RequestLayerCopy(0);
-  Mem_Copy32(Palette_GetBlock(14, 0), data_027c0280->objVram + 0xf80, 0x100);
+  Mem_Copy32(Palette_GetBlock(14, 0), data_027c0280->objVram + 0xf80,
+             PALETTE_BLOCK_SIZE);
   Mem_Zero32(0, data_027c0280->objVram + 0xf80, 0x80);
-  Mem_Copy32(Palette_GetBlock(10, 0), data_027c0280->objVram + 0x1080, 0x100);
-  Mem_Copy32(Palette_GetBlock(11, 0), data_027c0280->objVram + 0x1180, 0x100);
-  Mem_Copy32(Palette_GetBlock(6, 0), data_027c0280->objVram + 0x1280, 0x100);
-  Mem_Copy32(Palette_GetBlock(22, 0), data_027c0280->objVram + 0x1380, 0x100);
-  Mem_Copy32(Palette_GetBlock(17, 0), data_027c0280->objVram + 0x1480, 0x100);
+  Mem_Copy32(Palette_GetBlock(10, 0), data_027c0280->objVram + 0x1080,
+             PALETTE_BLOCK_SIZE);
+  Mem_Copy32(Palette_GetBlock(11, 0), data_027c0280->objVram + 0x1180,
+             PALETTE_BLOCK_SIZE);
+  Mem_Copy32(Palette_GetBlock(6, 0), data_027c0280->objVram + 0x1280,
+             PALETTE_BLOCK_SIZE);
+  Mem_Copy32(Palette_GetBlock(22, 0), data_027c0280->objVram + 0x1380,
+             PALETTE_BLOCK_SIZE);
+  Mem_Copy32(Palette_GetBlock(17, 0), data_027c0280->objVram + 0x1480,
+             PALETTE_BLOCK_SIZE);
   Palette_Load(Terrain_GetPalette(6, 0), 0x340, 0x20);
   Palette_Load(Terrain_GetPalette(6, 0), 0x360, 0x20);
   Palette_BlendWithColor(data_027c0280->paletteBuffer + 0x360, 0, 8, 0);

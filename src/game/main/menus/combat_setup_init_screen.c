@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/co_graphics.h"
 #include "game/menu_button.h"
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
@@ -69,10 +70,12 @@ void CombatSetup_InitScreen(void) {
   data_027c0280->bgScrollX[data_027c0280->layer2Bg] = -16;
   data_027c0280->bgScrollY[data_027c0280->layer2Bg] = -16;
   for (i = 0; i < COMBAT_ROW_COUNT; i++) {
-    Mem_Copy32(MAIN_GFX->objVram + (0x490 + i * 12) * 32,
-               data_027c0280->objVram + (300 + i * 12) * 32, 0x180);
-    Mem_Copy32(MAIN_GFX->paletteBuffer + (i + 18) * 32,
-               data_027c0280->paletteBuffer + (i + 20) * 32, 32);
+    Mem_Copy32(MAIN_GFX->objVram + (0x490 + i * 12) * TILE_4BPP_SIZE,
+               data_027c0280->objVram + (300 + i * 12) * TILE_4BPP_SIZE,
+               CO_SMALL_PICTURE_SIZE);
+    Mem_Copy32(MAIN_GFX->paletteBuffer + (i + 18) * PALETTE_16_SIZE,
+               data_027c0280->paletteBuffer + (i + 20) * PALETTE_16_SIZE,
+               PALETTE_16_SIZE);
   }
   Palette_Flush();
   Screen_SetCurrent(savedState);

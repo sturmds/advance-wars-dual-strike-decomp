@@ -152,6 +152,16 @@
 #define FOG_TABLE_SIZE 32
 #define TOON_TABLE_SIZE 64
 #define SHININESS_TABLE_WORDS 32 /* 128 bytes, written a word at a time */
+/* The toon table: REG_FOG_TABLE + FOG_TABLE_SIZE. */
+#define TOON_TABLE_REG_ADDR 0x04000380
+/* Palette RAM and OAM: the main engine's, then the sub engine's, one size
+ * each; and VRAM banks A-I mapped as LCDC memory. */
+#define PALETTE_RAM 0x05000000
+#define PALETTE_RAM_SIZE 0x400
+#define OAM_RAM 0x07000000
+#define OAM_RAM_SIZE 0x400
+#define LCDC_VRAM 0x06800000
+#define LCDC_VRAM_SIZE 0xa4000
 /* Display registers G2/GX initialisation zeroes: the main engine's from
    BG0CNT up to 0x04000068, the sub engine's from DISPCNT through
    MASTER_BRIGHT. */
