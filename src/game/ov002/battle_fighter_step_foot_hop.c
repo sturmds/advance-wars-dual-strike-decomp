@@ -5,8 +5,22 @@
 #include "game/unit_stats.h"
 #include "game/BattleSpriteTask.h"
 #include "game/BattleCellTask.h"
+#include "game/task.h"
 
-extern s8 data_ov002_02369610[];
+void BattleCellTask_Update(void);
+void BattleScreenTask_Init(void);
+void Battle_TaskUpdate(void);
+
+static s8 data_ov002_02369610[12] = {
+#include "data/ov002/data_ov002_02369610.inc.c"
+};
+/* declared `u8 data_ov002_0236961c[]` in battle_reset_screen.c: relocation at data_ov002_0236961c+0xc is not on a 4-byte field */
+u32 data_ov002_0236961c[8] = {
+#include "data/ov002/data_ov002_0236961c.inc.c"
+};
+TaskScriptCmd data_ov002_0236963c[5] = {
+#include "data/ov002/data_ov002_0236963c.inc.c"
+};
 
 /* One frame of the hop of an infantry or mech side: moves the fighter by the next pair of
  * offsets in data_ov002_02369610 (6 frames) and puts its place into its first sprite task. */

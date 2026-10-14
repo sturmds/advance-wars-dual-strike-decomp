@@ -55,6 +55,42 @@ src/game/ov002/ov002_data_023695b8.c:
     complete
     .data       start:0x023695b8 end:0x02369610
 
+src/game/ov002/ov002_data_02369664.c:
+    complete
+    .data       start:0x02369664 end:0x023696f8
+
+src/game/ov002/ov002_data_02369790.c:
+    complete
+    .data       start:0x02369790 end:0x023697a8
+
+src/game/ov002/ov002_data_023697a8.c:
+    complete
+    .data       start:0x023697a8 end:0x023698bc
+
+src/game/ov002/ov002_data_023698bc.c:
+    complete
+    .data       start:0x023698bc end:0x02369960
+
+src/game/ov002/ov002_data_02369960.c:
+    complete
+    .data       start:0x02369960 end:0x02369bc4
+
+src/game/ov002/ov002_data_02369bc4.c:
+    complete
+    .data       start:0x02369bc4 end:0x02369bd4
+
+src/game/ov002/ov002_data_02369bd4.c:
+    complete
+    .data       start:0x02369bd4 end:0x0236a38c
+
+src/game/ov002/ov002_data_0236a38c.c:
+    complete
+    .data       start:0x0236a38c end:0x0236a95c
+
+src/game/ov002/ov002_data_0236a95c.c:
+    complete
+    .data       start:0x0236a95c end:0x0236bbc0
+
 src/game/ov002/battle_start.c:
     complete
     .text       start:0x02350560 end:0x02350590
@@ -501,6 +537,7 @@ src/game/ov002/battle_fighter_step_slide_mode0.c:
 src/game/ov002/battle_fighter_step_foot_hop.c:
     complete
     .text       start:0x0235a624 end:0x0235a814
+    .data       start:0x02369610 end:0x02369664
 
 src/game/ov002/battle_cell_task_remake_sprites_with_effect.c:
     complete
@@ -573,6 +610,7 @@ src/game/ov002/func_ov002_0235d514.c:
 src/game/ov002/battle_show_quote.c:
     complete
     .text       start:0x0235d530 end:0x0235db58
+    .data       start:0x023696f8 end:0x02369724
 
 src/game/ov002/battle_quotes_angry.c:
     complete
@@ -645,6 +683,7 @@ src/game/ov002/battle_put_fighter_sprite.c:
 src/game/ov002/func_ov002_0235ec84.c:
     complete
     .text       start:0x0235ec84 end:0x0235ecbc
+    .data       start:0x02369724 end:0x02369784
 
 src/game/ov002/battle_start_fighter_task.c:
     complete
@@ -721,3 +760,4 @@ src/game/ov002/battle_footstep_task_start.c:
 src/game/ov002/battle_cue_task_update.c:
     complete
     .text       start:0x0235ffa8 end:0x02360030
+    .data       start:0x02369784 end:0x02369790

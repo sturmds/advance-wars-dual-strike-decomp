@@ -2,7 +2,9 @@
 #include "game/battle_cue_task.h"
 #include "game/task.h"
 
-extern const u8 data_ov002_02369784[];
+static u8 data_ov002_02369784[12] = {
+#include "data/ov002/data_ov002_02369784.inc.c"
+};
 
 void Sound_PlaySe(u32 soundId);
 void Task_ResumeScript(Task* task);

@@ -6,8 +6,12 @@
 
 extern MenuState gMenuState;
 extern Unk_027c0280* data_027c0280;
-extern const char Ov002_gBattleResPath[];
-extern const char Ov002_gBattleLangResPath[];
+static char Ov002_gBattleResPath[19] = {
+#include "data/ov002/Ov002_gBattleResPath.inc.c"
+};
+static char Ov002_gBattleLangResPath[24] = {
+#include "data/ov002/Ov002_gBattleLangResPath.inc.c"
+};
 
 void* File_Load(const char* path);
 const char* File_LocalizePath(const char* path);
