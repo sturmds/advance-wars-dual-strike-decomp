@@ -1,0 +1,240 @@
+#include "types.h"
+
+extern u32 data_ov000_0231dfbc[];
+extern u32 data_ov000_0231dbe4[];
+extern u32 data_ov000_0231e1d4[];
+extern u32 data_ov000_0231dd0c[];
+extern u32 data_ov000_0231de3c[];
+
+u32 data_ov000_0231c6ac[3] = {
+#include "data/ov000/data_ov000_0231c6ac.inc.c"
+};
+u32 data_ov000_0231c6a0[3] = {
+#include "data/ov000/data_ov000_0231c6a0.inc.c"
+};
+u32 data_ov000_0231c6b8[4] = {
+#include "data/ov000/data_ov000_0231c6b8.inc.c"
+};
+u32 data_ov000_0231c6c8[5] = {
+#include "data/ov000/data_ov000_0231c6c8.inc.c"
+};
+u32 data_ov000_0231c6dc[6] = {
+#include "data/ov000/data_ov000_0231c6dc.inc.c"
+};
+u32 data_ov000_0231c6f4[7] = {
+#include "data/ov000/data_ov000_0231c6f4.inc.c"
+};
+u32 data_ov000_0231c72c[7] = {
+#include "data/ov000/data_ov000_0231c72c.inc.c"
+};
+u32 data_ov000_0231c710[7] = {
+#include "data/ov000/data_ov000_0231c710.inc.c"
+};
+u32 data_ov000_0231c748[8] = {
+#include "data/ov000/data_ov000_0231c748.inc.c"
+};
+u32 data_ov000_0231c7d4[9] = {
+#include "data/ov000/data_ov000_0231c7d4.inc.c"
+};
+u32 data_ov000_0231c7b0[9] = {
+#include "data/ov000/data_ov000_0231c7b0.inc.c"
+};
+u32 data_ov000_0231c768[9] = {
+#include "data/ov000/data_ov000_0231c768.inc.c"
+};
+u32 data_ov000_0231c78c[9] = {
+#include "data/ov000/data_ov000_0231c78c.inc.c"
+};
+u32 data_ov000_0231c848[10] = {
+#include "data/ov000/data_ov000_0231c848.inc.c"
+};
+u32 data_ov000_0231c7f8[10] = {
+#include "data/ov000/data_ov000_0231c7f8.inc.c"
+};
+u32 data_ov000_0231c820[10] = {
+#include "data/ov000/data_ov000_0231c820.inc.c"
+};
+u32 data_ov000_0231c870[10] = {
+#include "data/ov000/data_ov000_0231c870.inc.c"
+};
+u32 data_ov000_0231c898[11] = {
+#include "data/ov000/data_ov000_0231c898.inc.c"
+};
+u32 data_ov000_0231c8c4[12] = {
+#include "data/ov000/data_ov000_0231c8c4.inc.c"
+};
+u32 data_ov000_0231c8f4[13] = {
+#include "data/ov000/data_ov000_0231c8f4.inc.c"
+};
+u32 data_ov000_0231c928[14] = {
+#include "data/ov000/data_ov000_0231c928.inc.c"
+};
+u32 data_ov000_0231c960[15] = {
+#include "data/ov000/data_ov000_0231c960.inc.c"
+};
+u32 data_ov000_0231c99c[16] = {
+#include "data/ov000/data_ov000_0231c99c.inc.c"
+};
+u32 data_ov000_0231c9dc[17] = {
+#include "data/ov000/data_ov000_0231c9dc.inc.c"
+};
+u32 data_ov000_0231ca20[17] = {
+#include "data/ov000/data_ov000_0231ca20.inc.c"
+};
+u32 data_ov000_0231ca64[17] = {
+#include "data/ov000/data_ov000_0231ca64.inc.c"
+};
+u32 data_ov000_0231caa8[17] = {
+#include "data/ov000/data_ov000_0231caa8.inc.c"
+};
+u32 data_ov000_0231caec[18] = {
+#include "data/ov000/data_ov000_0231caec.inc.c"
+};
+u32 data_ov000_0231cb34[18] = {
+#include "data/ov000/data_ov000_0231cb34.inc.c"
+};
+u32 data_ov000_0231cb7c[19] = {
+#include "data/ov000/data_ov000_0231cb7c.inc.c"
+};
+u32 data_ov000_0231cbc8[19] = {
+#include "data/ov000/data_ov000_0231cbc8.inc.c"
+};
+u32 data_ov000_0231cddc[19] = {
+#include "data/ov000/data_ov000_0231cddc.inc.c"
+};
+u32 data_ov000_0231cc14[19] = {
+#include "data/ov000/data_ov000_0231cc14.inc.c"
+};
+u32 data_ov000_0231cc60[19] = {
+#include "data/ov000/data_ov000_0231cc60.inc.c"
+};
+u32 data_ov000_0231ccac[19] = {
+#include "data/ov000/data_ov000_0231ccac.inc.c"
+};
+u32 data_ov000_0231ccf8[19] = {
+#include "data/ov000/data_ov000_0231ccf8.inc.c"
+};
+u32 data_ov000_0231cd44[19] = {
+#include "data/ov000/data_ov000_0231cd44.inc.c"
+};
+u32 data_ov000_0231cd90[19] = {
+#include "data/ov000/data_ov000_0231cd90.inc.c"
+};
+u32 data_ov000_0231ce28[19] = {
+#include "data/ov000/data_ov000_0231ce28.inc.c"
+};
+u32 data_ov000_0231ce74[20] = {
+#include "data/ov000/data_ov000_0231ce74.inc.c"
+};
+u32 data_ov000_0231cec4[20] = {
+#include "data/ov000/data_ov000_0231cec4.inc.c"
+};
+u32 data_ov000_0231cf14[20] = {
+#include "data/ov000/data_ov000_0231cf14.inc.c"
+};
+u32 data_ov000_0231cf64[20] = {
+#include "data/ov000/data_ov000_0231cf64.inc.c"
+};
+u32 data_ov000_0231cfb4[21] = {
+#include "data/ov000/data_ov000_0231cfb4.inc.c"
+};
+u32 data_ov000_0231d008[21] = {
+#include "data/ov000/data_ov000_0231d008.inc.c"
+};
+u32 data_ov000_0231d05c[21] = {
+#include "data/ov000/data_ov000_0231d05c.inc.c"
+};
+u32 data_ov000_0231d0b0[24] = {
+#include "data/ov000/data_ov000_0231d0b0.inc.c"
+};
+u32 data_ov000_0231d110[28] = {
+#include "data/ov000/data_ov000_0231d110.inc.c"
+};
+u32 data_ov000_0231d180[28] = {
+#include "data/ov000/data_ov000_0231d180.inc.c"
+};
+u32 data_ov000_0231d1f0[28] = {
+#include "data/ov000/data_ov000_0231d1f0.inc.c"
+};
+u32 data_ov000_0231d260[29] = {
+#include "data/ov000/data_ov000_0231d260.inc.c"
+};
+u32 data_ov000_0231d2d4[30] = {
+#include "data/ov000/data_ov000_0231d2d4.inc.c"
+};
+u32 data_ov000_0231d34c[31] = {
+#include "data/ov000/data_ov000_0231d34c.inc.c"
+};
+u32 data_ov000_0231d3c8[32] = {
+#include "data/ov000/data_ov000_0231d3c8.inc.c"
+};
+u32 data_ov000_0231d448[36] = {
+#include "data/ov000/data_ov000_0231d448.inc.c"
+};
+u32 data_ov000_0231d4d8[38] = {
+#include "data/ov000/data_ov000_0231d4d8.inc.c"
+};
+u32 data_ov000_0231d570[38] = {
+#include "data/ov000/data_ov000_0231d570.inc.c"
+};
+u32 data_ov000_0231d608[39] = {
+#include "data/ov000/data_ov000_0231d608.inc.c"
+};
+u32 data_ov000_0231d6a4[40] = {
+#include "data/ov000/data_ov000_0231d6a4.inc.c"
+};
+u32 data_ov000_0231d744[41] = {
+#include "data/ov000/data_ov000_0231d744.inc.c"
+};
+u32 data_ov000_0231d7e8[42] = {
+#include "data/ov000/data_ov000_0231d7e8.inc.c"
+};
+u32 data_ov000_0231d890[42] = {
+#include "data/ov000/data_ov000_0231d890.inc.c"
+};
+u32 data_ov000_0231d938[49] = {
+#include "data/ov000/data_ov000_0231d938.inc.c"
+};
+u32 data_ov000_0231d9fc[53] = {
+#include "data/ov000/data_ov000_0231d9fc.inc.c"
+};
+/* declared `u8 data_ov000_0231dad0[]` in ov000_data_022f6bd8.c: relocation at data_ov000_0231dad0+0x0 is not on a 4-byte field */
+void* data_ov000_0231dad0[69] = {
+    &data_ov000_0231cfb4, &data_ov000_0231d008, &data_ov000_0231caec,
+    &data_ov000_0231c6dc, &data_ov000_0231d34c, &data_ov000_0231d3c8,
+    &data_ov000_0231d260, &data_ov000_0231cc60, &data_ov000_0231c7f8,
+    &data_ov000_0231c820, &data_ov000_0231c848, &data_ov000_0231c8c4,
+    &data_ov000_0231d608, &data_ov000_0231cbc8, &data_ov000_0231ccf8,
+    &data_ov000_0231c898, &data_ov000_0231dfbc, &data_ov000_0231c72c,
+    &data_ov000_0231d448, &data_ov000_0231dbe4, &data_ov000_0231e1d4,
+    &data_ov000_0231cd44, &data_ov000_0231d05c, &data_ov000_0231c928,
+    &data_ov000_0231cd90, &data_ov000_0231c9dc, &data_ov000_0231ce74,
+    &data_ov000_0231cb34, &data_ov000_0231dd0c, &data_ov000_0231d890,
+    &data_ov000_0231c78c, &data_ov000_0231cf64, &data_ov000_0231caa8,
+    &data_ov000_0231d0b0, &data_ov000_0231c710, &data_ov000_0231c768,
+    &data_ov000_0231cf14, &data_ov000_0231c6b8, &data_ov000_0231cec4,
+    &data_ov000_0231c6ac, &data_ov000_0231d6a4, &data_ov000_0231cb7c,
+    &data_ov000_0231d744, &data_ov000_0231d9fc, &data_ov000_0231c7b0,
+    &data_ov000_0231ca20, &data_ov000_0231c870, &data_ov000_0231d938,
+    &data_ov000_0231cc14, &data_ov000_0231cddc, &data_ov000_0231d7e8,
+    &data_ov000_0231d4d8, &data_ov000_0231c6a0, &data_ov000_0231c748,
+    &data_ov000_0231c6c8, &data_ov000_0231ccac, &data_ov000_0231c960,
+    &data_ov000_0231ce28, &data_ov000_0231c8f4, &data_ov000_0231c7d4,
+    &data_ov000_0231d180, &data_ov000_0231c99c, &data_ov000_0231d570,
+    &data_ov000_0231d2d4, &data_ov000_0231c6f4, &data_ov000_0231d1f0,
+    &data_ov000_0231d110, &data_ov000_0231de3c, &data_ov000_0231ca64};
+u32 data_ov000_0231dbe4[74] = {
+#include "data/ov000/data_ov000_0231dbe4.inc.c"
+};
+u32 data_ov000_0231dd0c[76] = {
+#include "data/ov000/data_ov000_0231dd0c.inc.c"
+};
+u32 data_ov000_0231de3c[96] = {
+#include "data/ov000/data_ov000_0231de3c.inc.c"
+};
+u32 data_ov000_0231dfbc[134] = {
+#include "data/ov000/data_ov000_0231dfbc.inc.c"
+};
+u32 data_ov000_0231e1d4[183] = {
+#include "data/ov000/data_ov000_0231e1d4.inc.c"
+};
