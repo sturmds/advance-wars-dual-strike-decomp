@@ -26,7 +26,7 @@ Tracked as `docs/issues/0007-dsd-init-abort.md`.
 ## dsd: relocations to overlays that share an address
 
 - **Behaviour:** when a pointer targets an address that several overlays cover, `dsd init` writes `module:overlays(A,B,...)` and adds a symbol marked `ambiguous` in each candidate. `dsd delink` then names the first candidate's symbol in the object. The matching build links the same bytes either way; a shifted build would link to the first candidate even when another one is meant.
-- **What we do:** `tools/resolve_overlay_relocs.py` narrows them by rule (issue 0019); 15 are left (issue 0055).
+- **What we do:** `tools/resolve_overlay_relocs.py` narrows them by rule (issue 0019); the 15 that no rule decides are listed by hand in its `DECIDED` table (issue 0055).
 
 ## dsd: smaller warnings
 

@@ -127,7 +127,6 @@ Nobody fixes:
 
 - the secure-area CRC (issue 0056);
 - ARM7's module parameters (above);
-- the overlay relocations that name several overlays (issue 0055). The stale check reports them in ov001-ov006 shifts, for example `ARM9 0x0216a6ec = 0x02350560` and the ten ov000 words at `0x022e5288`-`0x022e5c88`;
 - `.exceptix` and `.ctor` for new C++ code: the link drops our objects' `.exceptix`, and `dsd lcf` places no new `.ctor` section;
 - `__CODE_HI` and `__ITCM_HI`, which have wrong values (unused);
 - the Download Play child `mb_combat_sgn.srl`, which is copied unchanged (issue 0050).
@@ -172,6 +171,7 @@ Counted over `src/` (2026-10-14). Each is a size written as a number, and most a
 2. **Leftover symbols and scanner.** Delete the dsd symbols that only existed as targets of deleted false relocations. That shrinks `shift_numbers.txt` and the medium count. Scanner changes: take relocations from the linked objects, add a level for section-end values, scan pools across all of RAM with an allowlist of hardware addresses, give holder and file per hit, scan ARM7 too. Size: small; in progress on branch `shift-symbols`.
    - 2026-10-14: done except ARM7 scanning. `scan_pointers.py --unused-symbols` found 80 data symbols nothing refers to: the two map-header aliases are deleted (their words left `shift_numbers.txt`, now 34 numbers); the other 78 start objects defined in C and stay, 32 of them made by dsd from false relocations (merging them changes the C layout). The scanner takes relocations from the linked objects too, has a `layout` level, scans pools across ITCM, main RAM and DTCM with 9 fixed addresses left out, and gives holder and file: layout 6, high 0, medium 54, low 1,115 (issue 0012).
 3. **Issue 0055: the 15 relocations that name several overlays.** They make every ov001-ov006 shift fail the stale check, so they are the next real bug class. Follow the callers to `FS_LoadOverlay`, or watch in melonDS. Size: medium. Then add the ov001-ov006 shifts to `make shift`.
+   - 2026-10-14: done. Every relocation names one overlay (issue 0055 lists each decision); `termsScript` of map 0xf7 named ov006 and now names ov001. The stale check leaves out words with a relocation in the linked ELF, since overlays at one address share values. `make shift` grows each of ov000-ov006, and all pass the three checks.
 4. **The emulator boot check on melonDS** (issue 0006). Size: medium.
    - 2026-10-14: done, `make emu-check` (`tools/melonds_check.py`, `tools/gdb_rsp.py`). Every `make shift` ROM boots to the main menu; the old arena code fails it.
 5. **Sizes:** the 30 literal `Mem_Alloc` sizes and the `*_WORK_SIZE` defines become `sizeof`; then the ~25 whole-struct copies; then size asserts on the save and link formats. Matching is unchanged, since `sizeof` is a constant. Check each with `fn.py diff`. Size: medium, mechanical.

@@ -143,13 +143,14 @@ decomp-dev-report: all
 	@$(PYTHON) tools/decomp_dev_report.py
 
 # Shifted ROMs (issues 0012, 0086): 0x20 bytes inserted in main (build/shift/),
-# then in ov000, itcm and dtcm, then 0x40 in main and ov000 together (the
-# case of the arena-lo crash). Each checks symbol moves, the arena start and
-# words that kept an old address. ov001-ov006 are left out until issue 0055
-# is done: their builds report its relocations. Not part of release.
+# then in each overlay, itcm and dtcm, one at a time, then 0x40 in main and
+# ov000 together (the case of the arena-lo crash). Each checks symbol moves,
+# the arena start and words that kept an old address. Not part of release.
 shift: all
 	@flock build/.ninja.lock $(PYTHON) tools/shift_build.py
-	@flock build/.ninja.lock $(PYTHON) tools/shift_build.py --module ov000
+	@for m in ov000 ov001 ov002 ov003 ov004 ov005 ov006; do \
+		flock build/.ninja.lock $(PYTHON) tools/shift_build.py --module $$m || exit 1; \
+	done
 	@flock build/.ninja.lock $(PYTHON) tools/shift_build.py --module itcm
 	@flock build/.ninja.lock $(PYTHON) tools/shift_build.py --module dtcm
 	@flock build/.ninja.lock $(PYTHON) tools/shift_build.py --module main --module ov000 --pad 0x40

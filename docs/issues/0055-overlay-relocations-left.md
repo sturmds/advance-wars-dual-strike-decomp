@@ -1,6 +1,6 @@
 # 0055: 15 relocations still name several overlays
 
-- **Status:** open
+- **Status:** closed
 - **Area:** tools
 - **Opened:** 2026-10-11
 - **Milestone:** M3
@@ -27,3 +27,17 @@ ov001, ov002, ov003, ov005 and ov006 all load at `0x02350560`. After `tools/reso
 ## Done when
 
 Each of the 15 names one overlay, or is removed with the reason written down.
+
+## Resolution
+
+2026-10-14. Each of the 15 names one overlay. None was a number. The decisions are in `DECIDED` in `tools/resolve_overlay_relocs.py`:
+
+- main `0x0213fe58`: no longer in `relocs.txt` (gone before this pass).
+- main `0x0216831c`: ov002, `Battle_StartScreen` (commit 8f9ad2bd5). The attack script `data_02168400` calls `func_02001564` (unload ov001, load ov002) just before `AttackTask_StartScene`, which starts the task script `data_02168318` that holds the word.
+- main `0x0216a6ec`, `0x0216a7dc`: ov005, `func_ov005_02350560` and `func_ov005_02365ea8` (same commit). Both task scripts call `func_020015f4` (unload ov001, load ov005) in their first command.
+- main `0x020dbd04`: ov006, `data_ov006_0236d644`. All 16 calls to `Palette_QueueBlockCopy` are in ov006. ov006's own `Ov006_LoadSlotTiles` uses the same address as a 0x100-byte `.bss` buffer that no code writes; ov001's object there is 20 bytes, and the function copies 128 from it. The ov006 variable is no longer `static`, so main can name it.
+- ov000 `0x022e5288` to `0x022e5c88` (10 words): ov001. Each is `MapHeader.script` (offset 0 of a 0xa0-byte entry of `Ov000_gMapHeaders`, maps 0xef-0xf6 and 0xff), not a number in `data_ov000_022e022d`. `MapScript_Get` returns it and the map script code reads through it in battle, where ov001 is loaded (`func_02001540` loads it back after a battle scene). The map scripts are ov001 `.data` (`docs/maps.md`): the 123 other `script`, `termsScript` and `hintScript` words of the table name ov001, and the targets here are ov001 script objects in the same ascending order.
+
+Found on the way: ov000 `0x022e578c`, `termsScript` of map 0xf7, named ov006 (`func_ov006_02352400`): the `function` rule chose ov006 because a function starts there, but the word points into ov001's `data_ov001_023523a0`, 0x60 bytes in. That object held two terms scripts; it is split into `data_ov001_023523a0` and `data_ov001_02352400` (0x60 bytes each), and the relocation names ov001. The map files in `extracted/` keep the old name until `python3 tools/maps.py unpack` (or `make setup`) runs again; the build matches either way.
+
+`tools/shift_build.py`'s stale check now leaves out words that have a relocation in the linked ELF: a word in main that points at ov002's first function also holds the old address of ov001's first function, and only the relocation tells them apart. With that and the decisions above, `make shift` grows every overlay and passes.

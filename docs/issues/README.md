@@ -82,7 +82,7 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0052](0052-partials-strategy.md) | The game partials need a better tool than permute.py and agent retries | open | tools | M2 |
 | [0053](0053-duplicate-data-symbol-name.md) | Two data symbols with the same name break the arm9 checksum during a replay | open | loop | M1 |
 | [0054](0054-arm7-unrelocated-pointers.md) | 25 ARM7 words that look like pointers have no relocation | open | decomp | M2 |
-| [0055](0055-overlay-relocations-left.md) | 15 relocations still name several overlays | open | tools | M3 |
+| [0055](0055-overlay-relocations-left.md) | 15 relocations still name several overlays | closed | tools | M3 |
 | [0056](0056-shifted-secure-area-crc.md) | A ROM with changed main code has a wrong secure-area CRC | open | build | M3 |
 | [0057](0057-diff-below-100-for-matching-asm.md) | `fn.py diff` scores below 100% for hand-written asm whose ROM bytes match | open | tools | M1 |
 | [0058](0058-dsd-arm-branch-unconditional.md) | dsd writes an `arm_branch` relocation in a delinked range as an unconditional `b` | worked around | tools | M1 |
