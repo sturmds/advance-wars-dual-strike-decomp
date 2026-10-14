@@ -19,17 +19,6 @@
  * up to 4, ended by 0 when fewer. */
 #define SKILL_LIST_LENGTH 4
 
-/* Player slots: slot 0 neutral, then players 1-4 (Unk_02080440_48.players,
- * MapHeader.army and the other per-slot arrays). */
-#define ARMY_SLOT_COUNT 5
-#define PLAYER_SLOT_LAST (ARMY_SLOT_COUNT - 1) /* the last player slot, 4 */
-
-/* COs per player: front and back (Player.front and back, playerCos). */
-#define PLAYER_CO_COUNT 2
-
-/* u32 words in a skill bit set (Player.skills): one bit per skill id. */
-#define SKILL_SET_WORDS 4
-
 /* CO id bits of PlayerCo.id and of other CO bytes. */
 #define PLAYER_CO_ID_MASK 0x7f
 
