@@ -28,7 +28,9 @@ void Wifi_SeedLcg(u32 mul, u32 add);
 
 extern u8 gWlDefaultWifiRamBlocks[80];
 extern u16 gWlDefaultWords58[16];
-extern WlRateSet gWlDefaultRateSet;
+static WlRateSet gWlDefaultRateSet = {
+#include "data/arm7/gWlDefaultRateSet.inc.c"
+};
 
 void WifiParam_LoadDefaults(void) {
   u16 channels;

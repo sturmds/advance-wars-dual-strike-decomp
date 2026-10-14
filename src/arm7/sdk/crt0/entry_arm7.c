@@ -1,7 +1,10 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
 
-extern u32 BuildInfo_Arm7[];    /* module parameters the linker fills in */
+/* module parameters the linker fills in */
+const u32 BuildInfo_Arm7[2] = {
+#include "data/arm7/BuildInfo_Arm7.inc.c"
+};
 void do_autoload_Arm7(void);
 void DetectMainMemorySize(void);
 void Arm7Main(void);

@@ -9,7 +9,35 @@ void func_arm7_027c90ec(u16* dest,
                         const u16* src); /* copies a 6-byte MAC address */
 void WifiRx_ScanElements(WlElements* elements);
 
-extern const u16 gWlZeroMacAddr[3];
+#pragma explicit_zero_data on
+u16 data_arm7_027d6698[3] = {
+#include "data/arm7/data_arm7_027d6698.inc.c"
+};
+static u16 gWlZeroMacAddr[3] = {
+#include "data/arm7/gWlZeroMacAddr.inc.c"
+};
+u16 gWlFirmwareRegOffsets[16] = {
+#include "data/arm7/gWlFirmwareRegOffsets.inc.c"
+};
+u16 gWifiRateHalfMbps[16] = {
+#include "data/arm7/gWifiRateHalfMbps.inc.c"
+};
+u16 gWlDefaultWords58[16] = {
+#include "data/arm7/gWlDefaultWords58.inc.c"
+};
+u16 gWlCrc16Table[16] = {
+#include "data/arm7/gWlCrc16Table.inc.c"
+};
+u8 gWlDefaultWifiRamBlocks[80] = {
+#include "data/arm7/gWlDefaultWifiRamBlocks.inc.c"
+};
+WlRegValue gWlRegDefaults[25] = {
+#include "data/arm7/gWlRegDefaults.inc.c"
+};
+u16 gWlRateBits[120] = {
+#include "data/arm7/gWlRateBits.inc.c"
+};
+#pragma explicit_zero_data reset
 
 /* WlScanJob.state values (see WifiMlme_RunScan). */
 #define WIFI_SCAN_STATE_LISTENING 0x13

@@ -1,6 +1,9 @@
 #include "sdk/os_arm7.h"
 
-extern u16 data_arm7_0380773c[]; /* IE bit of each ARM7 IRQ slot */
+/* IE bit of each ARM7 IRQ slot */
+static const u16 data_arm7_0380773c[2] = {
+#include "data/arm7/data_arm7_0380773c.inc.c"
+};
 
 /*
  * ARM7 copy of IrqSlot_CallAndClear, the shared body of the DMA and timer interrupt

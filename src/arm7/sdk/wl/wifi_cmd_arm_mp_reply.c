@@ -3,7 +3,9 @@
 void func_arm7_027c84e0(void* dest, const void* src, u32 size);
 
 /* Nintendo multicast address 03:09:bf:00:00:10, the third address of MP reply frames. */
-extern u16 data_arm7_027d6688[3];
+static u16 data_arm7_027d6688[3] = {
+#include "data/arm7/data_arm7_027d6688.inc.c"
+};
 
 // Child side (phase 2): builds the frame the hardware sends in reply to the
 // parent's next MP poll, in the first free of two WIFI_PACKET_RAM slots.

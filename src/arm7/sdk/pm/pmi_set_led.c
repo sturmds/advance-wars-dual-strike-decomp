@@ -2,6 +2,14 @@
 #include "sdk/pm.h"
 #include "sdk/os_arm7.h"
 
+int gPowerLedLastState = {
+#include "data/arm7/gPowerLedLastState.inc.c"
+};
+/* declared `PowerLedBlinkScript gPowerLedBlinkTable[]` in power_led_step_pattern.c: PowerLedBlinkScript.bits has type u64 */
+u32 gPowerLedBlinkTable[36] = {
+#include "data/arm7/gPowerLedBlinkTable.inc.c"
+};
+
 /* Sets the power LED to steady, slow blink or fast blink; any other state halts. */
 void PMi_SetLED(int status) {
   switch (status) {

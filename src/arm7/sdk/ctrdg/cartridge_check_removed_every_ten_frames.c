@@ -4,9 +4,14 @@
 #include "sdk/os_arm7.h"
 #include "sdk/pxi.h"
 
-extern u32 gCtrdgFirstPoll; /* 1 until the first check ran */
-extern u32
-    gCtrdgNextPollFrame; /* VBlank count of the next check; 0xffffffff before the first call */
+/* 1 until the first check ran */
+static u32 gCtrdgFirstPoll = {
+#include "data/arm7/gCtrdgFirstPoll.inc.c"
+};
+/* VBlank count of the next check; 0xffffffff before the first call */
+static u32 gCtrdgNextPollFrame = {
+#include "data/arm7/gCtrdgNextPollFrame.inc.c"
+};
 extern u32
     gCtrdgPollStopped; /* set when no cartridge was there at the first check */
 extern u32 gCtrdgPulledOut; /* set once the cartridge was found pulled out */

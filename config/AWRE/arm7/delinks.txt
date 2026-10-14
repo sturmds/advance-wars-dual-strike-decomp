@@ -16,9 +16,58 @@ src/arm7/sdk/wm/wmsp_request_handlers.c:
     complete
     .rodata     start:0x027d6570 end:0x027d661c
 
+src/arm7/sdk/os/os_bss.c:
+    complete
+    .bss        start:0x027d84fc end:0x027d8518
+
+src/arm7/sdk/os/os_bss_03807888.c:
+    complete
+    .sbss       start:0x03807888 end:0x038078a0
+
+src/arm7/sdk/arm7_bss_03807aac.c:
+    complete
+    .bss        start:0x03807aac end:0x03807b38
+
+src/arm7/sdk/ctrdg/ctrdg_bss.c:
+    complete
+    .bss        start:0x0380afc0 end:0x0380afe8
+
+src/arm7/sdk/os/os_bss_0380afe8.c:
+    complete
+    .bss        start:0x0380afe8 end:0x0380b004
+
+src/arm7/sdk/wl/wl_data_027d68c4.c:
+    complete
+    .data       start:0x027d68c4 end:0x027d69a4
+
+src/arm7/sdk/wl/wl_data_027d69a4.c:
+    complete
+    .data       start:0x027d69a4 end:0x027d6c34
+
+src/arm7/sdk/wl/wl_data_027d6c34.c:
+    complete
+    .data       start:0x027d6c34 end:0x027d6c44
+
+src/arm7/sdk/os/os_data.c:
+    complete
+    .data       start:0x03807740 end:0x038077b4
+
+src/arm7/sdk/snd/snd_data.c:
+    complete
+    .data       start:0x038077b4 end:0x038077b8
+
+src/arm7/sdk/arm7_data_02380160.c:
+    complete
+    .data       start:0x02380160 end:0x02380170
+
+src/arm7/sdk/wl/wl_data.c:
+    complete
+    .data       start:0x027d661c end:0x027d667c
+
 src/arm7/sdk/crt0/entry_arm7.c:
     complete
     .text       start:0x02380000 end:0x023800c0
+    .rodata     start:0x02380158 end:0x02380160
 
 src/arm7/sdk/crt0/do_autoload_arm7.c:
     complete
@@ -936,6 +985,7 @@ src/arm7/sdk/wl/wifi_rf_tune_channel.c:
 src/arm7/sdk/wl/wifi_param_load_defaults.c:
     complete
     .text       start:0x027c98d8 end:0x027c9a20
+    .data       start:0x027d667c end:0x027d6680
 
 src/arm7/sdk/wl/func_arm7_027c9a20.c:
     complete
@@ -1080,6 +1130,7 @@ src/arm7/sdk/wl/wifi_station_forget_peers.c:
 src/arm7/sdk/wl/wifi_station_clear_table.c:
     complete
     .text       start:0x027cacec end:0x027cada4
+    .data       start:0x027d6680 end:0x027d6688
 
 src/arm7/sdk/wl/wifi_task_age_stations.c:
     complete
@@ -1648,6 +1699,7 @@ src/arm7/sdk/wl/wifi_cmd_start_mp_poll.c:
 src/arm7/sdk/wl/wifi_cmd_arm_mp_reply.c:
     complete
     .text       start:0x027cee38 end:0x027cefb0
+    .data       start:0x027d6688 end:0x027d6690
 
 src/arm7/sdk/wl/wifi_tx_enqueue_host_data.c:
     complete
@@ -1856,6 +1908,7 @@ src/arm7/sdk/wl/wifi_rx_handle_auth_frame.c:
 src/arm7/sdk/wl/wifi_scan_record_heard_network.c:
     complete
     .text       start:0x027d26c4 end:0x027d2a04
+    .data       start:0x027d6690 end:0x027d68c4
 
 src/arm7/sdk/wl/wifi_parent_answer_probe.c:
     complete
@@ -2042,14 +2095,6 @@ src/arm7/sdk/rtc/func_arm7_027d5a24.c:
     complete
     .text       start:0x027d5a24 end:0x027d5b18
     .bss        start:0x027d81ac end:0x027d84fc
-
-src/arm7/sdk/os/os_bss.c:
-    complete
-    .bss        start:0x027d84fc end:0x027d8518
-
-src/arm7/sdk/os/os_bss_03807888.c:
-    complete
-    .sbss       start:0x03807888 end:0x038078a0
 
 src/arm7/sdk/rtc/func_arm7_027d5b18.c:
     complete
@@ -2410,6 +2455,7 @@ src/arm7/sdk/os/dma0_irq_call_slot_handler_arm7.c:
 src/arm7/sdk/os/irq_slot_call_and_clear_arm7.c:
     complete
     .text       start:0x037fb588 end:0x037fb61c
+    .rodata     start:0x0380773c end:0x03807740
 
 src/arm7/sdk/os/irq_ignore_unused_arm7.c:
     complete
@@ -2820,10 +2866,6 @@ src/arm7/sdk/os/line_alarm_set_up_queue_arm7.c:
     .text       start:0x037fdb04 end:0x037fdb6c
     .bss        start:0x03807a98 end:0x03807aac
 
-src/arm7/sdk/arm7_bss_03807aac.c:
-    complete
-    .bss        start:0x03807aac end:0x03807b38
-
 src/arm7/sdk/os/cpu_unmask_irq_arm7.c:
     complete
     .text       start:0x037fdb6c end:0x037fdb80
@@ -3012,6 +3054,7 @@ src/arm7/sdk/snd/func_arm7_037fe73c.c:
 src/arm7/sdk/snd/snd_hw_set_pan_override.c:
     complete
     .text       start:0x037fe74c end:0x037fe7b0
+    .data       start:0x038077b8 end:0x038077bc
 
 src/arm7/sdk/snd/snd_hw_is_channel_busy.c:
     complete
@@ -3049,6 +3092,7 @@ src/arm7/sdk/snd/snd_hw_setup_pcm.c:
 src/arm7/sdk/snd/snd_drv_next_random.c:
     complete
     .text       start:0x037feb48 end:0x037feb7c
+    .data       start:0x038077bc end:0x038077e4
 
 src/arm7/sdk/snd/snd_drv_sine_wave.c:
     complete
@@ -3663,6 +3707,7 @@ src/arm7/sdk/card/func_arm7_0380390c.c:
 src/arm7/sdk/card/card_check_removed_every_ten_frames.c:
     complete
     .text       start:0x0380392c end:0x03803a04
+    .data       start:0x038077e4 end:0x038077ec
 
 src/arm7/sdk/card/card_test_removal_irq_flag.c:
     complete
@@ -3914,6 +3959,7 @@ src/arm7/sdk/pm/func_arm7_038052e8.c:
 src/arm7/sdk/pm/pmi_set_led.c:
     complete
     .text       start:0x03805304 end:0x0380536c
+    .data       start:0x038077ec end:0x03807880
 
 src/arm7/sdk/pm/power_apply_arm9_command.c:
     complete
@@ -3991,14 +4037,6 @@ src/arm7/sdk/os/irq_nest_dispatch_by_priority.c:
     .text       start:0x0380624c end:0x038063d0
     .bss        start:0x0380afb0 end:0x0380afc0
 
-src/arm7/sdk/ctrdg/ctrdg_bss.c:
-    complete
-    .bss        start:0x0380afc0 end:0x0380afe8
-
-src/arm7/sdk/os/os_bss_0380afe8.c:
-    complete
-    .bss        start:0x0380afe8 end:0x0380b004
-
 src/arm7/sdk/os/irq_nest_unhook_vector.c:
     complete
     .text       start:0x038063d0 end:0x0380641c
@@ -4054,6 +4092,7 @@ src/arm7/sdk/ctrdg/func_arm7_038067bc.c:
 src/arm7/sdk/ctrdg/cartridge_check_removed_every_ten_frames.c:
     complete
     .text       start:0x038067dc end:0x038068f0
+    .data       start:0x03807880 end:0x03807888
 
 src/arm7/sdk/ctrdg/cartridge_logo_matches_bios.c:
     complete

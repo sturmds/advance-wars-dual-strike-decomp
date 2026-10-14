@@ -1,6 +1,10 @@
 #include "sdk/mi.h"
 #include "sdk/wl.h"
 
+u16 gWlBroadcastAddress[3] = {
+#include "data/arm7/gWlBroadcastAddress.inc.c"
+};
+
 void WifiStation_SetUpEntry(u32 index, const u16* macAddress);
 void WifiStation_ChangeState(u16 station, u16 state);
 

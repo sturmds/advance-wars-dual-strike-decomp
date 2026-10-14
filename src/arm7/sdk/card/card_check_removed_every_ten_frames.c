@@ -5,9 +5,14 @@
 void Card_PushRemovalTagWord_Arm7(u32 word, u32 waitCount);
 
 extern u32 gCardPulledOut; /* set once the card was found pulled out */
-extern u32
-    gCardNextPollFrame; /* VBlank count of the next check; 0xffffffff before the first call */
-extern u32 gCardFirstPoll; /* 1 until the first check ran */
+/* VBlank count of the next check; 0xffffffff before the first call */
+static u32 gCardNextPollFrame = {
+#include "data/arm7/gCardNextPollFrame.inc.c"
+};
+/* 1 until the first check ran */
+static u32 gCardFirstPoll = {
+#include "data/arm7/gCardFirstPoll.inc.c"
+};
 
 /*
  * Checks the game card every 10 frames, except on a multiboot download. Once

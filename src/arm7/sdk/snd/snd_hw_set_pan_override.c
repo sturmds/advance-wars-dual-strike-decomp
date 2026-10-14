@@ -1,5 +1,9 @@
 #include "sdk/snd_hw.h"
 
+int gSndHwPanOverride = {
+#include "data/arm7/gSndHwPanOverride.inc.c"
+};
+
 void SndHw_SetPanOverride(int pan) {
   int channel;
 
