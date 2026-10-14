@@ -11,6 +11,50 @@ src/game/ov002/ov002_bss_0236bbc0.c:
     complete
     .bss        start:0x0236bbc0 end:0x0236bbdc
 
+src/game/ov002/ov002_data_02360564.c:
+    complete
+    .data       start:0x02360564 end:0x023612b0
+
+src/game/ov002/ov002_data_023612b0.c:
+    complete
+    .data       start:0x023612b0 end:0x023624bc
+
+src/game/ov002/ov002_data_023624bc.c:
+    complete
+    .data       start:0x023624bc end:0x023624d0
+
+src/game/ov002/ov002_data_023624d0.c:
+    complete
+    .data       start:0x023624d0 end:0x02363748
+
+src/game/ov002/ov002_data_02363748.c:
+    complete
+    .data       start:0x02363748 end:0x02364ae8
+
+src/game/ov002/ov002_data_02364ae8.c:
+    complete
+    .data       start:0x02364ae8 end:0x023666a8
+
+src/game/ov002/ov002_data_023666a8.c:
+    complete
+    .data       start:0x023666a8 end:0x023666c4
+
+src/game/ov002/ov002_data_023666c4.c:
+    complete
+    .data       start:0x023666c4 end:0x0236825c
+
+src/game/ov002/ov002_data_0236825c.c:
+    complete
+    .data       start:0x0236825c end:0x02368298
+
+src/game/ov002/ov002_data_02368298.c:
+    complete
+    .data       start:0x02368298 end:0x023695b8
+
+src/game/ov002/ov002_data_023695b8.c:
+    complete
+    .data       start:0x023695b8 end:0x02369610
+
 src/game/ov002/battle_start.c:
     complete
     .text       start:0x02350560 end:0x02350590
