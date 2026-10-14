@@ -89,8 +89,8 @@ typedef struct SoundArcInfo {
   u32 unk_14;
   u32 unk_18;
   u32 unk_1c;
-  u32 strmOffset; /* table of stream entries */
-  u32 unk_24;
+  u32 strmPlayerOffset; /* stream player entries (SDAT "player2") */
+  u32 strmInfoOffset;   /* SoundArcStrmInfo entries */
 } SoundArcInfo;
 
 /* Two words of an archive, a start and an end by their use. */

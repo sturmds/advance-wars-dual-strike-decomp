@@ -20,13 +20,14 @@ static inline const void* ArcInfoItem(const SoundArc* arc, u32 offset) {
   return info + offset;
 }
 
-/* Entry number index of the stream table in the current sound archive's
+/* Entry number index of the stream player table in the current sound archive's
  * info block, or NULL when there is no such table or index is out of range.
  * Same shape as NNS_SndArcGetSeqInfo, another table. */
 const void* func_02106420(int index) {
   const SoundArcSeqInfoTable* table;
 
-  table = InfoItem(gCurrentSoundArc->info, gCurrentSoundArc->info->strmOffset);
+  table = InfoItem(gCurrentSoundArc->info,
+                   gCurrentSoundArc->info->strmPlayerOffset);
   if (table == NULL) {
     return NULL;
   }
