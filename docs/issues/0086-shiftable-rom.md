@@ -73,7 +73,7 @@ Result:
 | `OS_GetInitArenaLo` main, ITCM, DTCM | 0x0237a5a0, 0x01ffde80, 0x027c12e0 | fixed (pilot) |
 | `SDK_SECTION_ARENA_DTCM_START` (`OS_InitThread`, `OS_GetInitArenaHi`) | 0x027c12e0 | fixed (pilot) |
 | main `BuildInfo` (autoload list, .bss bounds), autoload entries, overlay table | | `dsd rom config` / `dsd rom build` rewrite them (checked with grown dtcm, itcm and ov001) |
-| `data_02175180`, `data_02175198` (aliases inside `data_02173788`) | crt0's autoload list | The list lands inside the task pool by chance; dsd writes the right address into the ROM, but the symbols mislead. Replace them with linker symbols or numbers. |
+| `data_02175180`, `data_02175198` (aliases inside `data_02173788`), BuildInfo[4] | crt0's autoload list, main's .bss end | fixed: `AUTOLOAD_LIST_START`, `AUTOLOAD_LIST_END` and `MAIN_BSS_END` (configure.py `ARM9_LAYOUT_SYMBOLS`), computed in the linker script; relocs.txt points them at `data_02173788` and `data_022ad548` with `add:`, and `data_inc.py` names them by retail value |
 | `MAIN_ARENA_HI` 0x023c0000, stacks at the top of DTCM, Download Play limits | | hardware; never move |
 | ARM7 `BuildInfo_Arm7`, `data_arm7_02380160`, arena lows on `data_arm7_027d84fc` / `0380afec` | | not rewritten when ARM7 grows (issue 0054) |
 

@@ -2,8 +2,11 @@
 #include "text_data.h"
 #include "game/overlay.h"
 
-extern u32 data_02175180[]; /* autoload list: destination, size, .bss size */
-extern u32 data_02175198[]; /* end of the autoload list */
+/* crt0's autoload list: destination, size and .bss size of ITCM and DTCM.
+ * The linker script computes both ends (ARM9_LAYOUT_SYMBOLS). */
+extern char AUTOLOAD_LIST_START[];
+extern char AUTOLOAD_LIST_END[];
+extern char MAIN_BSS_END[]; /* ARM9_LAYOUT_SYMBOLS */
 
 /* The values come from the ROM at build time (config/AWRE/data_inc.txt);
  * the words that hold addresses are written as the symbols above.
