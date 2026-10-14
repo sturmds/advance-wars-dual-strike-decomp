@@ -13,4 +13,6 @@ typedef struct LinkMenuState {
 
 extern LinkMenuState* data_0215fed0;
 
+extern LinkMenuState data_0229d88c; /* what data_0215fed0 points to */
+
 #endif

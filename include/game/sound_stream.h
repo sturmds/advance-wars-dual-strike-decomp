@@ -2,6 +2,7 @@
 #define GAME_SOUND_STREAM_H
 
 #include "types.h"
+#include "sdk/os_common.h"
 #include "game/sound_handle.h"
 #include "game/sound_strm.h"
 #include "sdk/fs.h"
@@ -126,6 +127,10 @@ extern u8* data_022a8aa4; /* buffer that ADPCM data is read into */
 extern LinkList data_022a8ab8;
 extern LinkList data_022a8aac; /* unused refill requests */
 /* mutex around the stream slots and request lists */
-extern u8 data_022a8ad8[];
+extern OSMutex data_022a8ad8;
+/* message queue the sound thread waits on, and its message buffer */
+#define SOUND_STREAM_MESSAGE_COUNT 1
+extern OSMessageQueue data_022a8ac4;
+extern OSMessage data_022a8aa8[SOUND_STREAM_MESSAGE_COUNT];
 
 #endif

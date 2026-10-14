@@ -1,4 +1,5 @@
 #include "types.h"
+#include "sdk/fx.h"
 
 #define GXFIFO_MTX_MODE ((volatile u32*)0x04000440)
 #define GXFIFO_MTX_PUSH ((volatile u32*)0x04000444)
@@ -15,13 +16,14 @@ void G3i_LookAt_(const void* a, const void* b, void* c, int d, int e);
 
 extern u8 data_ov004_022bdcec[];
 extern u8 data_ov004_022bdce0[];
-static u8 data_ov004_022bf140[0xc]; /* size: up to the next symbol */
+/* The look-at target; never written, so the origin. */
+static VecFx32 data_ov004_022bf140;
 
 /* Sets up the 3D engine for overlay 4: a projection, then light 0 and the
  * material colours, an identity matrix, and the polygon attributes. */
 void Ov004_Init3d(void) {
   G3X_Reset();
-  G3i_LookAt_(data_ov004_022bdcec, data_ov004_022bdce0, data_ov004_022bf140, 1,
+  G3i_LookAt_(data_ov004_022bdcec, data_ov004_022bdce0, &data_ov004_022bf140, 1,
               0);
   *GXFIFO_LIGHT_VECTOR = 0x1ff00000;
   *GXFIFO_LIGHT_COLOR = 0x7fff;

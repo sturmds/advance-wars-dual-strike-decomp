@@ -3,13 +3,9 @@
 #include "game/ai_profile.h"
 #include "game/ai_unit_action.h"
 
-extern u8 data_0229e178[];
-extern u8 data_0229e184[];
-extern u8 data_0229e2e4[];
-
-AiTurnState* gAiTurnState = (AiTurnState*)&data_0229e178;
-AiProfile* gAiProfile = (AiProfile*)&data_0229e2e4;
-AiBuildState* data_021619c0 = (AiBuildState*)&data_0229e184;
+AiTurnState* gAiTurnState = &data_0229e178;
+AiProfile* gAiProfile = &data_0229e2e4;
+AiBuildState* data_021619c0 = &data_0229e184;
 /* per unit type; nonzero: ground units a Lander carries, without Piperunner */
 u8 gUnitFitsLander[] = {
 #include "data/main/gUnitFitsLander.inc.c"

@@ -16,8 +16,12 @@ typedef struct Ov003Fx {
   u8 unk_0a_2 : 6;
   u8 unk_0b_0 : 2;
   u8 unk_0b_2 : 6;
+  u8 unk_0c_0 : 4; /* Unk_ov003_02364a84.unk_0c_0 */
+  u8 unk_0c_4 : 4;
 } Ov003Fx;
 
 extern Ov003Fx* data_ov003_02364a84;
+
+extern Ov003Fx data_ov003_02365d00; /* what data_ov003_02364a84 points to */
 
 #endif

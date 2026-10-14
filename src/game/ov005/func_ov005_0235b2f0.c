@@ -1,4 +1,5 @@
 #include "types.h"
+#include "sdk/fx.h"
 
 #define GXFIFO_MTX_MODE ((volatile u32*)0x04000440)
 #define GXFIFO_MTX_PUSH ((volatile u32*)0x04000444)
@@ -13,11 +14,12 @@ void G3X_Reset(void);
 void G3i_LookAt_(const void* a, const void* b, void* c, int d, int e);
 extern u8 data_ov005_023695d0[];
 extern u8 data_ov005_023695c4[];
-static u8 data_ov005_0236bb94[0xc]; /* size: up to the next symbol */
+/* The look-at target; never written, so the origin. */
+static VecFx32 data_ov005_0236bb94;
 
 void func_ov005_0235b2f0(void) {
   G3X_Reset();
-  G3i_LookAt_(data_ov005_023695d0, data_ov005_023695c4, data_ov005_0236bb94, 1,
+  G3i_LookAt_(data_ov005_023695d0, data_ov005_023695c4, &data_ov005_0236bb94, 1,
               0);
   *GXFIFO_LIGHT_VECTOR = 0x1ff00000;
   *GXFIFO_LIGHT_COLOR = 0x7fff;

@@ -14,7 +14,6 @@ void Ov003_RandSeed(u32 seed);
 void Keypad_Init(void);
 
 /* The state itself, in ov003's .bss (ov003_load_obj_graphics.c). */
-extern Ov003State data_ov003_02365b14;
 
 Ov003State* data_ov003_02364928 = &data_ov003_02365b14;
 

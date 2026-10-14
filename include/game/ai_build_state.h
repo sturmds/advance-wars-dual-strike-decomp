@@ -47,4 +47,6 @@ extern AiBuildState* data_021619c0;
 #define TARGET_GROUP_COUNT 9
 #define TARGET_GROUP_NONE 10
 
+extern AiBuildState data_0229e184; /* what data_021619c0 points to */
+
 #endif

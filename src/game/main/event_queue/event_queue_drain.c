@@ -1,7 +1,8 @@
 #include "game/event_queue.h"
+#include "game/link_menu_state.h"
 
 static u8 gEventQueueBatch[0x8]; /* size: up to the next symbol */
-u8 data_0229d88c[0x8];           /* size: up to the next symbol */
+LinkMenuState data_0229d88c;
 EventQueue gEventQueue;
 
 void func_0207b4b0(void* events);

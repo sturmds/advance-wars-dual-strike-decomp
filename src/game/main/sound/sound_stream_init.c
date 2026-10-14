@@ -2,23 +2,21 @@
 #include "game/link_list.h"
 #include "game/sound_stream.h"
 #include "sdk/fs.h"
+#include "sdk/os.h"
 
 #define SOUND_STREAM_REQUEST_COUNT 8
 #define SOUND_STREAM_READ_BUFFER_SIZE 0x200
 #define SOUND_STREAM_THREAD_STACK_SIZE 0x400
 
 u8* data_022a8aa4;
-/* message buffer of the queue, one message; size: up to the next symbol */
-u8 data_022a8aa8[0x4];
+OSMessage data_022a8aa8[SOUND_STREAM_MESSAGE_COUNT];
 /* TRUE once the stream system is set up */
 static BOOL gSoundStreamReady;
 LinkList data_022a8ab8;
 LinkList data_022a8aac;
-u8 data_022a8ad8[0x14];
-/* message queue the sound thread waits on; size: up to the next symbol */
-u8 data_022a8ac4[0x14];
-/* the sound stream thread; size: up to the next symbol */
-static u8 gSoundStreamThread[0x94];
+OSMutex data_022a8ad8;
+OSMessageQueue data_022a8ac4;
+static OSThread gSoundStreamThread;
 static SoundStreamRequest gSoundStreamRequests[SOUND_STREAM_REQUEST_COUNT];
 /* The ADPCM read buffer, then the thread's stack, which grows down from its
  * end. */
@@ -63,10 +61,10 @@ void SoundStream_Init(u32 threadPriority, void* heap) {
     stream->channelLockCount = 0;
   }
   SoundStream_AllocBuffers(heap);
-  func_0210e0c0(data_022a8ad8);
-  OS_CreateThread(gSoundStreamThread, SoundStream_ThreadMain, NULL,
+  func_0210e0c0(&data_022a8ad8);
+  OS_CreateThread(&gSoundStreamThread, SoundStream_ThreadMain, NULL,
                   data_022a8d00 + SOUND_STREAM_READ_BUFFER_SIZE +
                       SOUND_STREAM_THREAD_STACK_SIZE,
                   SOUND_STREAM_THREAD_STACK_SIZE, threadPriority);
-  OS_WakeupThreadDirect(gSoundStreamThread);
+  OS_WakeupThreadDirect(&gSoundStreamThread);
 }

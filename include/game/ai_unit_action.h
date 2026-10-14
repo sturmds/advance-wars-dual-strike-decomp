@@ -125,4 +125,6 @@ extern int data_0229eac8;
 #define AI_ATTACK_NO_CHIP \
   0x100000 /* aiBehaviour not AI_BEHAVIOUR_STRIKE, target not a Sub: target killed or loses 20 hp or more, and not an unarmed ship */
 
+extern AiTurnState data_0229e178; /* what gAiTurnState points to */
+
 #endif

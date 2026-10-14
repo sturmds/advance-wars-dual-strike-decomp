@@ -16,4 +16,6 @@ typedef struct Unk_0215fe88 {
 
 extern Unk_0215fe88* data_0215fe88;
 
+extern Unk_0215fe88 data_0229c8c0; /* what data_0215fe88 points to */
+
 #endif

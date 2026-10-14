@@ -13,7 +13,7 @@ void SoundStream_ReleaseBuffer(void* buffer, u32 unused, SoundStream* stream) {
   if (buffer != stream->buffer) {
     return;
   }
-  OS_LockMutex(data_022a8ad8);
+  OS_LockMutex(&data_022a8ad8);
   SoundStream_Close(stream);
   stream->buffer = NULL;
   stream->bufferSize = 0;
@@ -22,5 +22,5 @@ void SoundStream_ReleaseBuffer(void* buffer, u32 unused, SoundStream* stream) {
     SoundStrm_UnlockChannels(&stream->strm);
     stream->channelLockCount = 0;
   }
-  OS_UnlockMutex(data_022a8ad8);
+  OS_UnlockMutex(&data_022a8ad8);
 }

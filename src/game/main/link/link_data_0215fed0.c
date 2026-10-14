@@ -11,7 +11,6 @@ void LinkMenu_ResumeScript(void);
 void LinkMenu_UpdatePlayerList(void);
 void LinkMenu_WaitForChildAcks(void);
 void LinkSubScreen_ClearLayer0(void);
-extern u8 data_0229d88c[];
 void func_0207c380(void);
 void func_0207c414(void);
 void func_0207c6d8(void);
@@ -26,7 +25,7 @@ void LinkBanner_ShrinkBox(void);
 void func_0207c6f0(void);
 void LinkMenu_OnButtonSelect(void);
 
-LinkMenuState* data_0215fed0 = (LinkMenuState*)&data_0229d88c;
+LinkMenuState* data_0215fed0 = &data_0229d88c;
 TaskScriptCmd data_0215fed4[] = {
 #include "data/main/data_0215fed4.inc.c"
 };

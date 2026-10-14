@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/sound_stream.h"
 
-extern u8 data_022a8ac4[]; /* message queue the sound thread waits on */
-
 SoundStreamRequest* SoundStreamRequest_Alloc(void);
 void SoundStreamRequest_Free(SoundStreamRequest* request);
 void MI_CpuFill8(void* dest, int value, u32 size);
@@ -43,5 +41,5 @@ void SoundStream_QueueRefill(int status, int channelCount, void* blocks[],
   request->blockSize = blockSize;
   stream->pendingRequests++;
   LinkList_Append(&data_022a8ab8, request);
-  OS_SendMessage(data_022a8ac4, NULL, 0);
+  OS_SendMessage(&data_022a8ac4, NULL, 0);
 }

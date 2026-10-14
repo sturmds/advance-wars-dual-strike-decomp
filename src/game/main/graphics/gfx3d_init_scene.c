@@ -1,4 +1,5 @@
 #include "types.h"
+#include "sdk/fx.h"
 
 #define GXFIFO_MTX_PUSH (*(volatile u32*)0x04000444)
 #define GXFIFO_MTX_MODE (*(volatile u32*)0x04000440)
@@ -11,7 +12,8 @@
 
 extern u8 data_02159168[];
 extern u8 data_0215915c[];
-static u8 data_0229c678[0xc]; /* size: up to the next symbol */
+/* The look-at target; never written, so the origin. */
+static VecFx32 data_0229c678;
 
 void G3X_Reset(void);
 void G3i_LookAt_(void* a, void* b, void* c, int d, int e);
@@ -21,7 +23,7 @@ void Gfx3d_SetDefaultLight(void);
  * matrix and the default polygon attributes. */
 void Gfx3d_InitScene(void) {
   G3X_Reset();
-  G3i_LookAt_(data_02159168, data_0215915c, data_0229c678, 1, 0);
+  G3i_LookAt_(data_02159168, data_0215915c, &data_0229c678, 1, 0);
   Gfx3d_SetDefaultLight();
   GXFIFO_MTX_PUSH = 0;
   GXFIFO_MTX_MODE = GEOM_TARGET_TEXCOORD;

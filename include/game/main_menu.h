@@ -54,4 +54,6 @@ typedef struct MainMenuTask {
 extern MainMenuPage** data_0229c71c;
 extern MainMenu* data_021599d0;
 
+extern MainMenu data_0229c720; /* what data_021599d0 points to */
+
 #endif

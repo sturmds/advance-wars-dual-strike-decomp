@@ -3,7 +3,7 @@
 #include "game/unit_info_panel.h"
 
 MapUnit data_ov000_02350510;
-u8 data_ov000_02350520[0x10]; /* size: up to the next symbol */
+UnitInfoPanel data_ov000_02350520;
 
 u8 Player_GetArmyStyle(int playerIndex);
 void Unit_Init(MapUnit* unit, int type);

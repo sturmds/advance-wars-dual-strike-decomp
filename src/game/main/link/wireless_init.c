@@ -6,6 +6,7 @@
 #include "game/Unk_0229c960.h"
 #include "game/link_player_name.h"
 #include "game/wireless.h"
+#include "game/Unk_0215fe88.h"
 
 extern void* data_0229c884;
 extern WMBssDesc* data_0229c888;
@@ -20,13 +21,13 @@ s32 data_0229c8a4;
 WMBssDesc* gWirelessScanBuffer;
 static void* gWirelessSystemBuf;
 u16 gWirelessParentTimers[4];
-u8 data_0229c8c0[0xc]; /* size: up to the next symbol */
+Unk_0215fe88 data_0229c8c0;
 WMBssDesc* gWirelessParents[4];
 Unk_0229c910 data_0229c910;
 u8 data_0229c8f8[0x18]; /* size: up to the next symbol */
 /* size: up to the next symbol; aligned to 32: no symbol covers the bytes before it */
 __attribute__((aligned(32))) u8 data_0229c8e0[0x18];
-u8 data_0229c928[0x38]; /* size: up to the next symbol */
+Unk_0215fe84 data_0229c928;
 Unk_0229c960 data_0229c960;
 LinkPlayerName gLinkPlayerNames[0x8]; /* size: up to the next symbol */
 

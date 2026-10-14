@@ -9,7 +9,6 @@ void UnitInfoPanel_Draw(void);
 void UnitInfoPanel_DrawPageMarker(void);
 void UnitInfoPanel_RequestLayerCopies(void);
 void UnitInfoPanel_StartTask(void);
-extern u8 data_ov000_02350520[];
 void func_ov000_022b2410(void);
 void MenuDepth_Push(void);
 void UnitInfoPanel_DrawPage(void);
@@ -69,7 +68,7 @@ char data_ov000_0234ecc0[] = {
 char data_ov000_0234ec90[] = {
 #include "data/ov000/data_ov000_0234ec90.inc.c"
 };
-UnitInfoPanel* data_ov000_0234ec8c = (UnitInfoPanel*)&data_ov000_02350520;
+UnitInfoPanel* data_ov000_0234ec8c = &data_ov000_02350520;
 char data_ov000_0234ecf0[] = {
 #include "data/ov000/data_ov000_0234ecf0.inc.c"
 };

@@ -1,9 +1,7 @@
 #include "types.h"
 #include "game/break_text.h"
 
-extern u8 data_0229c6c4[];
-
-BreakText* gBreakText = (BreakText*)&data_0229c6c4;
+BreakText* gBreakText = &data_0229c6c4;
 /* letters of the font, in glyph order */
 s8 data_02159684[] = {
 #include "data/main/data_02159684.inc.c"

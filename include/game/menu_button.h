@@ -153,4 +153,6 @@ void Menu_Reset(void);
 u8 MenuButton_GetTouchState(MenuButton* button);
 void MenuButton_SetTouchState(MenuButton* button, int state);
 
+extern MenuCursor data_0229b38c; /* what gMenuCursor points to */
+
 #endif

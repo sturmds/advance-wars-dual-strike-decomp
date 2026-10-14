@@ -23,4 +23,6 @@ typedef struct Unk_0215fe8c {
   u32 linkActive; /* 1 between Link_Start and Link_Stop (Link_IsActive returns it) */
 } Unk_0215fe8c;
 
+extern Unk_0215fe8c data_0229ca68; /* what data_0215fe8c points to */
+
 #endif

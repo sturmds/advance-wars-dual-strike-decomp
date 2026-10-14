@@ -2,7 +2,7 @@
 #include "game/main_menu.h"
 
 MainMenuPage** data_0229c71c;
-u8 data_0229c720[0x14]; /* size: up to the next symbol */
+MainMenu data_0229c720;
 
 void MenuButton_Add(int x, int y, void* def, int id);
 void* MenuButton_Select(int id);

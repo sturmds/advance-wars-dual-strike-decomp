@@ -62,4 +62,6 @@ extern AiProfile* gAiProfile;
 extern AiUnitProfile*
     gAiActiveUnitProfile; /* entry of the active unit's type */
 
+extern AiProfile data_0229e2e4; /* what gAiProfile points to */
+
 #endif

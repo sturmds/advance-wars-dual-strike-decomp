@@ -1,4 +1,5 @@
 #include "types.h"
+#include "sdk/fx.h"
 #include "game/task.h"
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
@@ -11,7 +12,8 @@
 
 extern u8 data_ov002_023604ac[];
 extern u8 data_ov002_023604b8[];
-static u8 data_ov002_0236bbe0[0xc]; /* size: up to the next symbol */
+/* The look-at target; never written, so the origin. */
+static VecFx32 data_ov002_0236bbe0;
 extern s16 data_0214d4c4[];
 extern MenuStateFrom200 data_0229ed30;
 extern MenuStateFrom400 data_0229ef30;
@@ -37,7 +39,7 @@ void Battle_DrawScene(void) {
   int side = 0;
 
   G3X_Reset();
-  G3i_LookAt_(data_ov002_023604ac, data_ov002_023604b8, data_ov002_0236bbe0, 1,
+  G3i_LookAt_(data_ov002_023604ac, data_ov002_023604b8, &data_ov002_0236bbe0, 1,
               NULL);
   func_ov002_02354124();
   *REG_VIEWPORT = 0xbfff0000;

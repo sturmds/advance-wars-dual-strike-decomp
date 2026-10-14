@@ -5,14 +5,16 @@
 #include "game/sound_arc.h"
 #include "game/unit_action.h"
 #include "sdk/wl.h"
+#include "game/ai_build_state.h"
+#include "game/ai_profile.h"
 
 void (*gAiQueueRoutine)(void); /* run on each entry */
 int (*data_0229e174)(int a, int b, int c);
 u8* gAiQueueCursor; /* write position in gAiQueue */
 BOOL (*gAiUnloadTest)(void);
 int (*gAiUnloadScore)(void);
-u8 data_0229e178[0xc];  /* size: up to the next symbol */
-u8 data_0229e184[0x14]; /* size: up to the next symbol */
+AiTurnState data_0229e178;
+AiBuildState data_0229e184;
 UnitAction gUnitAction;
 u8 gAiTransportsSentToUnit[64];
 /* sort key of each gAiQueue entry, same index; size: up to the next symbol */
@@ -20,7 +22,7 @@ u8 gAiQueueSortKeys[0x44];
 u8 gAiQueue[0x44]; /* size: up to the next symbol */
 /* per unit type: build score; 0: not a candidate; size: up to the next symbol */
 u32 gAiBuildScores[0x1b];
-u8 data_0229e2e4[0x168];         /* size: up to the next symbol */
+AiProfile data_0229e2e4;
 AiSiteGroup gAiSiteGroups[0x5c]; /* size: up to the next symbol */
 AiSite data_0229e5bc[0x5c];      /* size: up to the next symbol */
 

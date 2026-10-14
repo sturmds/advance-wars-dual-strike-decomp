@@ -15,4 +15,6 @@ typedef struct BreakText {
 
 extern BreakText* gBreakText;
 
+extern BreakText data_0229c6c4; /* what gBreakText points to */
+
 #endif

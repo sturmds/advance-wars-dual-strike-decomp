@@ -28,4 +28,6 @@ typedef struct Unk_0215fe84 {
 
 extern Unk_0215fe84* data_0215fe84;
 
+extern Unk_0215fe84 data_0229c928; /* what data_0215fe84 points to */
+
 #endif

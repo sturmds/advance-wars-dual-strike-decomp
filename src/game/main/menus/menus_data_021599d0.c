@@ -17,7 +17,6 @@ void MainMenu_PageFlipUpdate(void);
 void MainMenu_Setup(void);
 void MedalCountTask_Update(void);
 extern TaskScriptCmd data_02159b44[];
-extern u8 data_0229c720[];
 void func_0202dd90(void);
 void func_0202df78(void);
 void func_0202ea08(void);
@@ -29,7 +28,7 @@ void MainMenu_ConfirmEntry(void);
 void MainMenu_UpdateFallingSprites(void);
 void MainMenu_CancelEntry(void);
 
-MainMenu* data_021599d0 = (MainMenu*)&data_0229c720;
+MainMenu* data_021599d0 = &data_0229c720;
 u32 data_021599d4[] = {
 #include "data/main/data_021599d4.inc.c"
 };

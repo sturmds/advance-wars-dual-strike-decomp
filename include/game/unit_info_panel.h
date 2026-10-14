@@ -25,4 +25,7 @@ extern UnitInfoPanel* data_ov000_0234ec8c;
 extern MapUnit
     data_ov000_02350510; /* scratch unit for UnitInfoPanel_OpenForType */
 
+extern UnitInfoPanel
+    data_ov000_02350520; /* what data_ov000_0234ec8c points to */
+
 #endif
