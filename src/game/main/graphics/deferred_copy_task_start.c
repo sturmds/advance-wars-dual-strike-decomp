@@ -1,8 +1,15 @@
 #include "types.h"
 #include "game/deferred_copy_task.h"
 
-extern const TaskScriptCmd
-    gDeferredCopyTaskScript[]; /* runs DeferredCopyTask_Copy */
+void DeferredCopyTask_Copy(void);
+
+/* runs DeferredCopyTask_Copy */
+static TaskScriptCmd gDeferredCopyTaskScript[3] = {
+#include "data/main/gDeferredCopyTaskScript.inc.c"
+};
+u8 gCoPictureSprite[28] = {
+#include "data/main/gCoPictureSprite.inc.c"
+};
 
 /* Starts a task that copies size bytes from the heap buffer src to dest and
  * frees src (see DeferredCopyTask_Copy). */

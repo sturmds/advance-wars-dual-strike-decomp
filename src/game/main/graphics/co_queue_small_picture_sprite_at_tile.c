@@ -1,6 +1,8 @@
 #include "types.h"
 
-extern u8 data_02151ccc[];
+u8 data_02151ccc[16] = {
+#include "data/main/data_02151ccc.inc.c"
+};
 
 void Sprite_Queue(int list, int x, int y, const void* data, int unk08,
                   int unk0a);

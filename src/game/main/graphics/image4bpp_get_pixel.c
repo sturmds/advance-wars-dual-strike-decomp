@@ -1,7 +1,18 @@
 #include "types.h"
 
-extern u8 gNibbleMasks[2]; /* indexed by x & 1 */
-extern u8 gNibbleShifts[2];
+u8 data_02151cc4[2] = {
+#include "data/main/data_02151cc4.inc.c"
+};
+static u8 gNibbleShifts[2] = {
+#include "data/main/gNibbleShifts.inc.c"
+};
+/* indexed by x & 1 */
+static u8 gNibbleMasks[2] = {
+#include "data/main/gNibbleMasks.inc.c"
+};
+u8 data_02151cc8[2] = {
+#include "data/main/data_02151cc8.inc.c"
+};
 extern u8 gTile4bppPixelOffsets
     [64]; /* byte offset of each pixel inside an 8x8 tile */
 

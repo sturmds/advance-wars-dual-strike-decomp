@@ -432,6 +432,10 @@ src/sdk/isd/isd_rodata_02151a7c.c:
     complete
     .rodata     start:0x02151a7c end:0x02151acc
 
+src/game/main/data_02151e44.c:
+    complete
+    .data       start:0x02151e44 end:0x02151e4c
+
 src/sdk/svc/svc_is_debugger.c:
     complete
     .text       start:0x0200006c end:0x02000070
@@ -571,6 +575,7 @@ src/game/main/boot_enable_display.c:
 src/game/main/func_02001250.c:
     complete
     .text       start:0x02001250 end:0x02001268
+    .data       start:0x02151c80 end:0x02151ca0
 
 src/game/main/boot_try_start_key_combo_screen.c:
     complete
@@ -627,6 +632,7 @@ src/game/main/overlay/overlay_swap_slots0_and_1_for_slot4.c:
 src/game/main/overlay/overlay_unload.c:
     complete
     .text       start:0x02001670 end:0x020016bc
+    .data       start:0x02151ca0 end:0x02151cbc
     .bss        start:0x0216e020 end:0x0216e03c
 
 src/game/main/overlay/overlay_load.c:
@@ -680,6 +686,7 @@ src/game/main/graphics/image4bpp_set_pixel_linear.c:
 src/game/main/graphics/image4bpp_get_pixel.c:
     complete
     .text       start:0x02001d94 end:0x02001e04
+    .data       start:0x02151cbc end:0x02151ccc
 
 src/game/main/graphics/image4bpp_untile_strip.c:
     complete
@@ -692,6 +699,7 @@ src/game/main/graphics/co_load_texture.c:
 src/game/main/graphics/co_queue_small_picture_sprite_at_tile.c:
     complete
     .text       start:0x02001f50 end:0x02001fa8
+    .data       start:0x02151ccc end:0x02151cdc
 
 src/game/main/graphics/co_queue_small_picture_sprite.c:
     complete
@@ -740,6 +748,7 @@ src/game/main/graphics/co_load_large_picture.c:
 src/game/main/graphics/deferred_copy_task_start.c:
     complete
     .text       start:0x020024b4 end:0x020024e8
+    .data       start:0x02151cdc end:0x02151d10
 
 src/game/main/graphics/deferred_copy_task_copy.c:
     complete
@@ -800,6 +809,7 @@ src/game/main/graphics/co_load_graphics_and_palette.c:
 src/game/main/graphics/sprite_queue_default_tile.c:
     complete
     .text       start:0x02002a64 end:0x02002ab0
+    .data       start:0x02151d10 end:0x02151e44
 
 src/game/main/graphics/sprite_queue_default.c:
     complete
@@ -812,6 +822,7 @@ src/game/main/graphics/palette_load_obj_row.c:
 src/game/main/graphics/co_unpack_picture.c:
     complete
     .text       start:0x02002b24 end:0x02002b74
+    .data       start:0x02151e4c end:0x0215718c
 
 src/game/main/graphics/co_set_picture_variant.c:
     complete

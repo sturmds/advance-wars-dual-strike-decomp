@@ -2,7 +2,10 @@
 #include "game/overlay.h"
 
 u32 gOverlayLoaded[OVERLAY_SLOT_COUNT];
-extern u32 data_02151ca0[7]; /* overlay id of each slot (0 to 6) */
+/* overlay id of each slot (0 to 6) */
+u32 data_02151ca0[7] = {
+#include "data/main/data_02151ca0.inc.c"
+};
 
 int FS_UnloadOverlay(int target, u32 overlayId); /* unloads an overlay */
 
