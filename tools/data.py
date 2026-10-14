@@ -6,6 +6,7 @@ marked `complete` (issue 0082, docs/data-tool.md).
     data.py plan MODULE [--range LO-HI] [--show]    the files it would write, and where (--show: their C)
     data.py plan MODULE [--range LO-HI] --write     write them, build, and check the ROM and the report
     data.py relocs MODULE                           relocations in the module's data to check by hand
+    data.py open-counts [PATH...]                   write `[]` for the counts of initialised arrays
 
 MODULE: main, dtcm, ovNNN or arm7. The counterpart of tools/bss.py, whose
 rules it follows and whose code it reuses; what differs:
@@ -58,7 +59,9 @@ dsindex`) and the compiler, and the same inputs give the same output.
 """
 
 import argparse
+import concurrent.futures
 import dataclasses
+import os
 import json
 import math
 import re
@@ -532,6 +535,18 @@ def inc_path(module: str, name: str) -> str:
     return f"data/{module}/{name}.inc.c"
 
 
+def open_dims(dims: list[str]) -> list[str]:
+    """The dimensions a definition is written with: a first count that is a
+    number becomes `[]`, so the initializer gives the length and a longer
+    table needs no edit to the C (issue 0087). The initializer always holds
+    every element: data_inc writes the object's whole size, and written-out
+    values have one per element; the compile check compares the size. A
+    count given by a macro stays."""
+    if dims and re.fullmatch(r"0x[0-9a-fA-F]+|\d+", dims[0]):
+        return [""] + dims[1:]
+    return dims
+
+
 @dataclass
 class Written:
     """One object's definition and what it needs."""
@@ -549,12 +564,13 @@ def definition(module: DataModule, v: Var, shape: Shape, section: str, static: b
     notes = ([decl.comment] if decl is not None and decl.comment else []) + shape.notes + own
     lead = ("static " if static else "") + (bss.ALIGN32 if v.align32 else "")
     base = const_base(shape.base, section)
+    dims = open_dims(shape.dims)
     if shape.function_pointer:
         fp = shape.function_pointer
         fp = fp.replace("(*NAME", "(* const NAME") if section == ".rodata" else fp
-        declarator = Shape(base, shape.dims, function_pointer=fp).declarator(v.name)
+        declarator = Shape(base, dims, function_pointer=fp).declarator(v.name)
     else:
-        declarator = Shape(base, shape.dims).declarator(v.name)
+        declarator = Shape(base, dims).declarator(v.name)
     if shape.values is not None:
         init = shape.values[0] if not shape.dims else "{" + ", ".join(shape.values) + "}"
         code = f"{lead}{declarator} = {init};"
@@ -1227,6 +1243,87 @@ def cmd_relocs(args) -> int:
     return 0
 
 
+# ---------------------------------------------------------------- open counts
+
+# A definition at the start of a line (file scope) whose first count is a
+# number and that has an initializer: `T NAME[12][4] = `, or a function
+# pointer array `R (*NAME[12])(args) = `. Read on the text with comments
+# and strings blanked (shift_gaps.strip), which keeps every offset.
+OPEN_COUNT = re.compile(r"^(?!extern\b|typedef\b)[A-Za-z_][^;{}=\n]*?\b\w+\s*(\[\s*(?:0x[0-9a-fA-F]+|\d+)\s*\])"
+                        r"(?:\s*\[[^\]\n]*\])*(?:\)\s*\([^()\n]*\))?\s*=", re.M)
+
+
+def open_count_sites(text: str) -> list[tuple[int, int]]:
+    """The (start, end) of each `[N]` that `open-counts` would write as `[]`."""
+    import shift_gaps
+    return [m.span(1) for m in OPEN_COUNT.finditer(shift_gaps.strip(text))]
+
+
+def open_counts(text: str, sites: list[tuple[int, int]]) -> str:
+    for start, end in sorted(sites, reverse=True):
+        text = text[:start] + "[]" + text[end:]
+    return text
+
+
+def compile_object(src: str, text: str) -> bytes | None:
+    """The object mwccarm makes of `text` compiled as `src`, or None."""
+    cc, flags = configure.compiler_for(src)
+    cmd = [sys.executable, str(ROOT / cc)] if cc.endswith(".py") else [str(ROOT / cc)]
+    flags = flags.replace("-i include", f"-i {Path(src).parent} -i include")
+    with tempfile.TemporaryDirectory(prefix="data_open") as d:
+        c, obj = Path(d) / Path(src).name, Path(d) / "out.o"
+        c.write_text(text)
+        r = subprocess.run([*cmd, "-c", *flags.split(), "-o", str(obj), str(c)], cwd=ROOT,
+                           capture_output=True, text=True)
+        return obj.read_bytes() if r.returncode == 0 and obj.exists() else None
+
+
+def open_file(src: str) -> tuple[str | None, list[str]]:
+    """The file with every count it can leave out written `[]`, or None for
+    no change, and the counts it kept. A count goes only when the object
+    file stays byte for byte the same, so a string or an initializer with
+    fewer elements than the count keeps its number."""
+    text = (ROOT / src).read_text()
+    sites = open_count_sites(text)
+    if not sites:
+        return None, []
+    old = compile_object(src, text)
+    if old is None:
+        return None, [f"{src}: does not compile"]
+    if compile_object(src, open_counts(text, sites)) == old:
+        return open_counts(text, sites), []
+    kept, good = [], []
+    for site in sites:
+        if compile_object(src, open_counts(text, [site])) == old:
+            good.append(site)
+        else:
+            kept.append(f"{src}:{text.count(chr(10), 0, site[0]) + 1}: the object changes without the count")
+    if good and compile_object(src, open_counts(text, good)) != old:
+        return None, kept + [f"{src}: the object changes with all of them"]
+    return (open_counts(text, good) if good else None), kept
+
+
+def cmd_open_counts(args) -> int:
+    """Rewrites `T x[12] = {...}` as `T x[] = {...}` in the C files under the
+    paths (default src/), so the initializer gives the count (issue 0087)."""
+    files = []
+    for p in args.paths or ["src"]:
+        path = ROOT / p
+        files += sorted(path.rglob("*.c")) if path.is_dir() else [path]
+    srcs = [f.relative_to(ROOT).as_posix() for f in files]
+    changed, kept = 0, []
+    with concurrent.futures.ThreadPoolExecutor(os.cpu_count() or 4) as pool:
+        for src, (text, notes) in zip(srcs, pool.map(open_file, srcs)):
+            kept += notes
+            if text is not None:
+                (ROOT / src).write_text(text)
+                changed += 1
+    for note in kept:
+        print(note)
+    print(f"open-counts: {changed} files changed, {len(kept)} counts kept")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     sub = parser.add_subparsers(required=True)
@@ -1243,6 +1340,9 @@ def main() -> int:
     p = sub.add_parser("relocs", help="relocations in the module's data to check by hand")
     p.add_argument("module")
     p.set_defaults(func=cmd_relocs)
+    p = sub.add_parser("open-counts", help="write `[]` for the counts of initialised arrays")
+    p.add_argument("paths", nargs="*", help="C files or directories (default src)")
+    p.set_defaults(func=cmd_open_counts)
     args = parser.parse_args()
     return args.func(args)
 

@@ -161,10 +161,38 @@ def test_definition() -> None:
     v = bss.Var(0x1000, 8, 8, "gPtrs")
     w = data.definition(module, v, data.Shape("void*", ["2"], values=["&gData", "0"]), ".rodata", True, None,
                         None, True)
-    check("definition: const pointer table", w.text == "static void* const gPtrs[2] = {&gData, 0};", w.text)
+    check("definition: const pointer table", w.text == "static void* const gPtrs[] = {&gData, 0};", w.text)
     w = data.definition(module, v, data.Shape("u32", ["2"], row="u32"), ".data", False, None, None, True)
     check("definition: values from an inc.c file",
-          w.text == 'u32 gPtrs[2] = {\n#include "data/itcm/gPtrs.inc.c"\n};', w.text)
+          w.text == 'u32 gPtrs[] = {\n#include "data/itcm/gPtrs.inc.c"\n};', w.text)
+    w = data.definition(module, v, data.Shape("u16", ["2", "2"], row="u16[2]"), ".data", False, None, None, True)
+    check("definition: only the first count is left out", w.text.startswith("u16 gPtrs[][2] = {"), w.text)
+    w = data.definition(module, v, data.Shape("u32", ["COUNT"], row="u32"), ".data", False, None, None, True)
+    check("definition: a count given by a macro stays", w.text.startswith("u32 gPtrs[COUNT] = {"), w.text)
+
+
+def test_open_counts() -> None:
+    text = ("u32 gA[12] = {\n#include \"x.inc.c\"\n};\n"
+            "static const u16 gB[3][4] = {0};\n"
+            "void (*gC[2])(void) = {f, g};\n"
+            "extern u32 gD[5];\n"
+            "u32 gE[COUNT] = {0};\n"
+            "/* u32 gF[2] = {0}; */\n"
+            "void f(void) {\n    u32 local[2] = {1, 2};\n}\n")
+    got = data.open_counts(text, data.open_count_sites(text))
+    want = text.replace("gA[12]", "gA[]").replace("gB[3]", "gB[]").replace("gC[2]", "gC[]")
+    check("open-counts: file-scope definitions only, first count only", got == want, got)
+    if not pragmas.CC.exists():
+        print("test_data: no compiler, run make setup (open-counts compile test skipped)")
+        return
+    src = "src/x/open_test.c"
+    for what, before, same in (("a full initializer", "unsigned long gA[2] = {1, 2};\n", True),
+                               ("a shorter string", 'char gS[8] = "abc";\n', False),
+                               ("a partial initializer", "unsigned long gP[4] = {1, 2};\n", False)):
+        old = data.compile_object(src, before)
+        new = data.compile_object(src, data.open_counts(before, data.open_count_sites(before)))
+        check(f"open-counts: {what} {'keeps' if same else 'changes'} the object",
+              old is not None and (old == new) == same)
 
 
 def test_edit_symbols() -> None:
@@ -268,6 +296,7 @@ def main() -> int:
     test_strings()
     test_const()
     test_dims()
+    test_open_counts()
     test_struct_row()
     test_plain_shapes()
     test_definition()
