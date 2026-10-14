@@ -1,10 +1,6 @@
 #include "types.h"
 #include "game/Unk_021694c0.h"
 
-typedef struct ShakeOffsets {
-  s8 xy[8][2];
-} ShakeOffsets;
-
 extern Unk_021694c0* data_021694c0;
 extern ShakeOffsets gEffectSceneShakeOffsets;
 

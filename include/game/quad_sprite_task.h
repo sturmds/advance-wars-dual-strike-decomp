@@ -19,6 +19,8 @@ typedef struct QuadSpritePart {
   u8 z : 2;       /* added to QuadSpriteTask.z */
 } QuadSpritePart;
 
+typedef char QuadSpritePart_size_check[sizeof(QuadSpritePart) == 8 ? 1 : -1];
+
 /* Task made by Sprite_CreateTask (scripts data_02159114 and data_02159134)
  * that draws its current frame as 3D quads. The first 0x2c bytes belong
  * to the task system (Task_Create). */

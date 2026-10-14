@@ -14,10 +14,6 @@ void Sprite_QueueDefaultTile(int x, int y, int attr, int tile, int list);
 void CombatSetup_DrawRowPlayerIcons(int x, int y);
 void LinkMenu_DrawSetting(int a0, int a1, int a2, int a3);
 
-typedef struct UnitCountTable {
-  u8 counts[4 * 4]; /* 4 per kind; needed to match: indexed as one array */
-} UnitCountTable;
-
 extern MenuState gMenuState;
 extern u8 data_02160ae0[];
 extern UnitCountTable data_02160afc;

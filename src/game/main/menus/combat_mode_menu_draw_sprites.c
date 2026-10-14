@@ -10,11 +10,6 @@ void Sprite_QueueAt(int list, int x, int y, const void* data, int attr,
 void Sprite_QueueDefault(int x, int y, int attr, int list);
 void Co_QueueSmallPictureSprite(int x, int y, int attr, int list);
 
-/* Four counts per menu entry (8 to 11), one per row of icons. */
-typedef struct IconCounts {
-  u8 n[4 * 4];
-} IconCounts;
-
 extern u8
     gCombatModeCos[]; /* CO ids: Andy, Max, Sami, Flak, Lash, Adder, Hawke */
 extern IconCounts gCombatModeIconCounts;

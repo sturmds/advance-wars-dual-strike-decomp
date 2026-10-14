@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02160ac0.h"
 #include "game/menu_button.h"
 #include "game/task.h"
 
@@ -37,8 +38,7 @@ void func_020892f0(void);
 u8 gCombatModeCos[] = {
 #include "data/main/gCombatModeCos.inc.c"
 };
-/* declared `IconCounts gCombatModeIconCounts` in combat_mode_menu_draw_sprites.c: declared in src/game/main/menus/combat_mode_menu_draw_sprites.c, with a type no header defines */
-u32 gCombatModeIconCounts[] = {
+IconCounts gCombatModeIconCounts = {
 #include "data/main/gCombatModeIconCounts.inc.c"
 };
 TaskScriptCmd data_021613c8[] = {

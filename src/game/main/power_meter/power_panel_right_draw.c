@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/co_graphics.h"
 #include "game/co_data.h"
 #include "game/player.h"
 #include "game/Unk_02080440.h"
@@ -10,166 +11,166 @@ extern int data_027c0284;
 extern Unk_02080440_48 data_02183b08;
 extern u8 data_021686f0[];
 extern u8 data_02168670[];
-const u32 data_0212e838[] = {
+const u16 data_0212e838[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212e838.inc.c"
 };
-const u32 data_0212e6b8[] = {
+const u16 data_0212e6b8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212e6b8.inc.c"
 };
-const u32 data_0212e538[] = {
+const u16 data_0212e538[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212e538.inc.c"
 };
-const u32 data_0212e3b8[] = {
+const u16 data_0212e3b8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212e3b8.inc.c"
 };
-const u32 data_0212e238[] = {
+const u16 data_0212e238[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212e238.inc.c"
 };
-const u32 data_0212e0b8[] = {
+const u16 data_0212e0b8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212e0b8.inc.c"
 };
-const u32 data_0212df38[] = {
+const u16 data_0212df38[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212df38.inc.c"
 };
-const u32 data_0212ddb8[] = {
+const u16 data_0212ddb8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212ddb8.inc.c"
 };
-const u32 data_0212dc38[] = {
+const u16 data_0212dc38[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212dc38.inc.c"
 };
-const u32 data_0212dab8[] = {
+const u16 data_0212dab8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212dab8.inc.c"
 };
-const u32 data_0212d938[] = {
+const u16 data_0212d938[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212d938.inc.c"
 };
-const u32 data_0212d7b8[] = {
+const u16 data_0212d7b8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212d7b8.inc.c"
 };
-const u32 data_0212d638[] = {
+const u16 data_0212d638[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212d638.inc.c"
 };
-const u32 data_0212d4b8[] = {
+const u16 data_0212d4b8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212d4b8.inc.c"
 };
-const u32 data_0212d338[] = {
+const u16 data_0212d338[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212d338.inc.c"
 };
-const u32 data_0212d1b8[] = {
+const u16 data_0212d1b8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212d1b8.inc.c"
 };
-const u32 data_0212d038[] = {
+const u16 data_0212d038[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212d038.inc.c"
 };
-const u32 data_0212ceb8[] = {
+const u16 data_0212ceb8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212ceb8.inc.c"
 };
-const u32 data_0212cd38[] = {
+const u16 data_0212cd38[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212cd38.inc.c"
 };
-const u32 data_0212cbb8[] = {
+const u16 data_0212cbb8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212cbb8.inc.c"
 };
-const u32 data_0212ca38[] = {
+const u16 data_0212ca38[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212ca38.inc.c"
 };
-const u32 data_0212c8b8[] = {
+const u16 data_0212c8b8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212c8b8.inc.c"
 };
-const u32 data_0212c738[] = {
+const u16 data_0212c738[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212c738.inc.c"
 };
-const u32 data_0212c5b8[] = {
+const u16 data_0212c5b8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212c5b8.inc.c"
 };
-const u32 data_0212c438[] = {
+const u16 data_0212c438[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212c438.inc.c"
 };
-const u32 data_0212c2b8[] = {
+const u16 data_0212c2b8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212c2b8.inc.c"
 };
-const u32 data_0212c138[] = {
+const u16 data_0212c138[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212c138.inc.c"
 };
-const u32 data_0212bfb8[] = {
+const u16 data_0212bfb8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212bfb8.inc.c"
 };
-const u32 data_0212be38[] = {
+const u16 data_0212be38[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212be38.inc.c"
 };
-const u32 data_0212bcb8[] = {
+const u16 data_0212bcb8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212bcb8.inc.c"
 };
-const u32 data_0212bb38[] = {
+const u16 data_0212bb38[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212bb38.inc.c"
 };
-const u32 data_0212b9b8[] = {
+const u16 data_0212b9b8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212b9b8.inc.c"
 };
-const u32 data_0212b838[] = {
+const u16 data_0212b838[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212b838.inc.c"
 };
-const u32 data_0212b6b8[] = {
+const u16 data_0212b6b8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212b6b8.inc.c"
 };
-const u32 data_0212b538[] = {
+const u16 data_0212b538[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212b538.inc.c"
 };
-const u32 data_0212b3b8[] = {
+const u16 data_0212b3b8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212b3b8.inc.c"
 };
-const u32 data_0212b238[] = {
+const u16 data_0212b238[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212b238.inc.c"
 };
-const u32 data_0212b0b8[] = {
+const u16 data_0212b0b8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212b0b8.inc.c"
 };
-const u32 data_0212af38[] = {
+const u16 data_0212af38[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212af38.inc.c"
 };
-const u32 data_0212adb8[] = {
+const u16 data_0212adb8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212adb8.inc.c"
 };
-const u32 data_0212ac38[] = {
+const u16 data_0212ac38[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212ac38.inc.c"
 };
-const u32 data_0212aab8[] = {
+const u16 data_0212aab8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212aab8.inc.c"
 };
-const u32 data_0212a938[] = {
+const u16 data_0212a938[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212a938.inc.c"
 };
-const u32 data_0212a7b8[] = {
+const u16 data_0212a7b8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212a7b8.inc.c"
 };
-const u32 data_0212a638[] = {
+const u16 data_0212a638[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212a638.inc.c"
 };
-const u32 data_0212a4b8[] = {
+const u16 data_0212a4b8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212a4b8.inc.c"
 };
-const u32 data_0212a338[] = {
+const u16 data_0212a338[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212a338.inc.c"
 };
-const u32 data_0212a1b8[] = {
+const u16 data_0212a1b8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212a1b8.inc.c"
 };
-const u32 data_0212a038[] = {
+const u16 data_0212a038[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_0212a038.inc.c"
 };
-const u32 data_02129eb8[] = {
+const u16 data_02129eb8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_02129eb8.inc.c"
 };
-const u32 data_02129d38[] = {
+const u16 data_02129d38[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_02129d38.inc.c"
 };
-const u32 data_02129bb8[] = {
+const u16 data_02129bb8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_02129bb8.inc.c"
 };
-const u32 data_02129a38[] = {
+const u16 data_02129a38[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_02129a38.inc.c"
 };
-const u32 data_021298b8[] = {
+const u16 data_021298b8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_021298b8.inc.c"
 };
 const u8 data_0212e9b8[] = {

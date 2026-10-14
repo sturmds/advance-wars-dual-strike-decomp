@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02160ac0.h"
 #include "game/menu_button.h"
 #include "game/task.h"
 
@@ -94,8 +95,7 @@ TaskScriptCmd data_02160b2c[] = {
 TaskScriptCmd data_02160b1c[] = {
 #include "data/main/data_02160b1c.inc.c"
 };
-/* declared `UnitCountTable data_02160afc` in combat_setup_draw_row_sprites.c: declared in src/game/main/menus/combat_setup_draw_row_sprites.c, with a type no header defines */
-u32 data_02160afc[] = {
+UnitCountTable data_02160afc = {
 #include "data/main/data_02160afc.inc.c"
 };
 TaskScriptCmd data_02160b3c[] = {

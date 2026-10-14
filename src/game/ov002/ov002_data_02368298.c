@@ -257,25 +257,25 @@ void* data_ov002_023682ac[] = {&data_ov002_023648c8,
                                0,
                                &data_ov002_02364b48,
                                &data_ov002_02364b88};
-u32 data_ov002_0236852c[] = {
+u16 data_ov002_0236852c[] = {
 #include "data/ov002/data_ov002_0236852c.inc.c"
 };
 u32 data_ov002_02368580[] = {
 #include "data/ov002/data_ov002_02368580.inc.c"
 };
-u32 data_ov002_023685e0[] = {
+u16 data_ov002_023685e0[] = {
 #include "data/ov002/data_ov002_023685e0.inc.c"
 };
-u32 data_ov002_023686c4[] = {
+u16 data_ov002_023686c4[] = {
 #include "data/ov002/data_ov002_023686c4.inc.c"
 };
-u32 data_ov002_02368738[] = {
+u16 data_ov002_02368738[] = {
 #include "data/ov002/data_ov002_02368738.inc.c"
 };
-u32 data_ov002_023687ac[] = {
+u16 data_ov002_023687ac[] = {
 #include "data/ov002/data_ov002_023687ac.inc.c"
 };
-u32 data_ov002_02368650[] = {
+u16 data_ov002_02368650[] = {
 #include "data/ov002/data_ov002_02368650.inc.c"
 };
 u32 data_ov002_02368d48[] = {

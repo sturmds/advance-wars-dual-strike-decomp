@@ -39,4 +39,10 @@ typedef struct Unk_021694c0Task {
   s16 frame;
 } Unk_021694c0Task;
 
+/* gEffectSceneShakeOffsets: x, y pairs EffectScene_ShakeStep steps
+ * through, ended by (0, 0). */
+typedef struct ShakeOffsets {
+  s8 xy[8][2];
+} ShakeOffsets;
+
 #endif

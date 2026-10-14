@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/terrain.h"
 
 extern u8 data_ov000_022d3118[];
 extern u8 data_ov000_022d3ad0[];
@@ -62,7 +63,7 @@ u32 data_ov000_022f4678[] = {
 u32 data_ov000_022f4658[] = {
 #include "data/ov000/data_ov000_022f4658.inc.c"
 };
-u32 data_ov000_022f4638[] = {
+u8 data_ov000_022f4638[] = {
 #include "data/ov000/data_ov000_022f4638.inc.c"
 };
 u32 data_ov000_022f4618[] = {
@@ -89,19 +90,19 @@ u32 Ov000_gKindleCOP[] = {
 u32 data_ov000_022f4538[] = {
 #include "data/ov000/data_ov000_022f4538.inc.c"
 };
-u32 Ov000_gCostDefaultMovement[] = {
+s8 Ov000_gCostDefaultMovement[][TERRAIN_ID_COUNT] = {
 #include "data/ov000/Ov000_gCostDefaultMovement.inc.c"
 };
-u32 Ov000_gCostPathfinderMovement[] = {
+s8 Ov000_gCostPathfinderMovement[][TERRAIN_ID_COUNT] = {
 #include "data/ov000/Ov000_gCostPathfinderMovement.inc.c"
 };
-u32 Ov000_gCostPrairiePathMovement[] = {
+s8 Ov000_gCostPrairiePathMovement[][TERRAIN_ID_COUNT] = {
 #include "data/ov000/Ov000_gCostPrairiePathMovement.inc.c"
 };
-u32 Ov000_gCostPrairieDogMovement[] = {
+s8 Ov000_gCostPrairieDogMovement[][TERRAIN_ID_COUNT] = {
 #include "data/ov000/Ov000_gCostPrairieDogMovement.inc.c"
 };
-u32 Ov000_gCostFreeMovement[] = {
+s8 Ov000_gCostFreeMovement[][TERRAIN_ID_COUNT] = {
 #include "data/ov000/Ov000_gCostFreeMovement.inc.c"
 };
 u32 data_ov000_022f4cb8[] = {

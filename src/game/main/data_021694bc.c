@@ -109,8 +109,7 @@ u32 data_0216951c[] = {
 u32 data_0216955c[] = {
 #include "data/main/data_0216955c.inc.c"
 };
-/* declared `ShakeOffsets gEffectSceneShakeOffsets` in effect_scene_shake_step.c: declared in src/game/main/effect_scene_shake_step.c, with a type no header defines */
-u32 gEffectSceneShakeOffsets[] = {
+ShakeOffsets gEffectSceneShakeOffsets = {
 #include "data/main/gEffectSceneShakeOffsets.inc.c"
 };
 TaskScriptCmd data_0216956c[] = {

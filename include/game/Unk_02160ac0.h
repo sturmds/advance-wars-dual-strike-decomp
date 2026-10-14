@@ -51,4 +51,14 @@ typedef struct Unk_02160ac0 {
 extern Unk_02160ac0 data_0229e0bc; /* what data_02160ac0 points to */
 extern Unk_02160ac0* data_02160ac0;
 
+/* Four counts per menu entry (8 to 11), one per row of icons. */
+typedef struct IconCounts {
+  u8 n[4 * 4];
+} IconCounts;
+
+/* data_02160afc, read by CombatSetup_DrawRowSprites. */
+typedef struct UnitCountTable {
+  u8 counts[4 * 4]; /* 4 per kind; needed to match: indexed as one array */
+} UnitCountTable;
+
 #endif

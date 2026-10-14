@@ -65,6 +65,10 @@ typedef char TerrainStats_size_check[sizeof(TerrainStats) == 0x18 ? 1 : -1];
 
 extern TerrainStats Ov000_gTerrainStats[];
 
+/* Terrain ids run from 0 to 31: a row of a movement cost chart
+ * (CoPowerBlock.movementCost, Ov000_gCost*Movement) has a cost for each. */
+#define TERRAIN_ID_COUNT 32
+
 /* One entry of data_02166758 per terrain id: Terrain_GetIconTiles reads
  * tiles, Terrain_GetPalette reads palette (through data_02166759). */
 typedef struct TerrainIcon {

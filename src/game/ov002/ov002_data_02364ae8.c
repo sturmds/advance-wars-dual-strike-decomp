@@ -328,7 +328,7 @@ u32 data_ov002_02365b68[] = {
 u32 data_ov002_02365b48[] = {
 #include "data/ov002/data_ov002_02365b48.inc.c"
 };
-u32 data_ov002_02365b28[] = {
+u16 data_ov002_02365b28[] = {
 #include "data/ov002/data_ov002_02365b28.inc.c"
 };
 u32 data_ov002_02365b08[] = {
@@ -370,7 +370,7 @@ u32 data_ov002_023659a8[] = {
 u32 data_ov002_02365988[] = {
 #include "data/ov002/data_ov002_02365988.inc.c"
 };
-u32 data_ov002_02365968[] = {
+u16 data_ov002_02365968[] = {
 #include "data/ov002/data_ov002_02365968.inc.c"
 };
 u32 data_ov002_02365948[] = {
@@ -418,7 +418,7 @@ u32 data_ov002_023657a8[] = {
 u32 data_ov002_02365788[] = {
 #include "data/ov002/data_ov002_02365788.inc.c"
 };
-u32 data_ov002_02365768[] = {
+u16 data_ov002_02365768[] = {
 #include "data/ov002/data_ov002_02365768.inc.c"
 };
 u32 data_ov002_02365748[] = {
@@ -479,7 +479,7 @@ u32 data_ov002_02365528[] = {
 u32 data_ov002_02365508[] = {
 #include "data/ov002/data_ov002_02365508.inc.c"
 };
-u32 data_ov002_023654e8[] = {
+u16 data_ov002_023654e8[] = {
 #include "data/ov002/data_ov002_023654e8.inc.c"
 };
 u32 data_ov002_023654c8[] = {

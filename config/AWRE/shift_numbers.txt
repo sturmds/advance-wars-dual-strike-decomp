@@ -42,12 +42,5 @@
 0x022f32e0  map unit records, u8
 0x022f3730  map unit records, u8
 0x022f405c  map unit records, u8
-0x023615f8  data_ov002_023615f4, ov002 fighter script bytes (20 fc 04 00 04 01 04 02 ...)
-0x02361700  data_ov002_023616fc, fighter script bytes, same pattern
-0x0236170c  data_ov002_02361708, fighter script bytes, same pattern
-0x02361d44  data_ov002_02361d40, fighter script bytes, same pattern
-0x02361dc4  data_ov002_02361dc0, fighter script bytes, same pattern
-0x023621a0  data_ov002_0236219c, fighter script bytes, same pattern
 0x023659f0  data_ov003_023659d4, u16 pairs
 0x023659f8  data_ov003_023659d4, u16 pairs
-0x02367e60  data_ov002_02367e5c, fighter script bytes repeating every 5 words

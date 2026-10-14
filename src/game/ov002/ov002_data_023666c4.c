@@ -638,13 +638,13 @@ void* data_ov002_02366ebc[] = {
 u32 data_ov002_02366ee0[] = {
 #include "data/ov002/data_ov002_02366ee0.inc.c"
 };
-u32 data_ov002_02367134[] = {
+u16 data_ov002_02367134[] = {
 #include "data/ov002/data_ov002_02367134.inc.c"
 };
 u32 data_ov002_02366f04[] = {
 #include "data/ov002/data_ov002_02366f04.inc.c"
 };
-u32 data_ov002_02366f2c[] = {
+u8 data_ov002_02366f2c[] = {
 #include "data/ov002/data_ov002_02366f2c.inc.c"
 };
 u32 data_ov002_02366f54[] = {
@@ -659,7 +659,7 @@ u32 data_ov002_02366fa4[] = {
 u32 data_ov002_02366fcc[] = {
 #include "data/ov002/data_ov002_02366fcc.inc.c"
 };
-u32 data_ov002_02366ff4[] = {
+u8 data_ov002_02366ff4[] = {
 #include "data/ov002/data_ov002_02366ff4.inc.c"
 };
 u32 data_ov002_0236701c[] = {
@@ -674,22 +674,22 @@ u32 data_ov002_0236706c[] = {
 u32 data_ov002_02367094[] = {
 #include "data/ov002/data_ov002_02367094.inc.c"
 };
-u32 data_ov002_023670bc[] = {
+u16 data_ov002_023670bc[] = {
 #include "data/ov002/data_ov002_023670bc.inc.c"
 };
-u32 data_ov002_023670e4[] = {
+u16 data_ov002_023670e4[] = {
 #include "data/ov002/data_ov002_023670e4.inc.c"
 };
 u32 data_ov002_0236710c[] = {
 #include "data/ov002/data_ov002_0236710c.inc.c"
 };
-u32 data_ov002_0236715c[] = {
+u16 data_ov002_0236715c[] = {
 #include "data/ov002/data_ov002_0236715c.inc.c"
 };
 u32 data_ov002_02367188[] = {
 #include "data/ov002/data_ov002_02367188.inc.c"
 };
-u32 data_ov002_023671b4[] = {
+u16 data_ov002_023671b4[] = {
 #include "data/ov002/data_ov002_023671b4.inc.c"
 };
 u32 data_ov002_023671e0[] = {
@@ -701,7 +701,7 @@ u32 data_ov002_0236720c[] = {
 u32 data_ov002_02367238[] = {
 #include "data/ov002/data_ov002_02367238.inc.c"
 };
-u32 data_ov002_02367264[] = {
+u16 data_ov002_02367264[] = {
 #include "data/ov002/data_ov002_02367264.inc.c"
 };
 u32 data_ov002_02367290[] = {
@@ -741,7 +741,7 @@ void* data_ov002_023673dc[] = {
     &data_ov002_023659e8, &data_ov002_02365a08, &data_ov002_02365a28,
     &data_ov002_02365a68, &data_ov002_02365a88, &data_ov002_02365aa8,
     &data_ov002_02365ac8, &data_ov002_02365ae8, &data_ov002_02365b08};
-u32 data_ov002_0236743c[] = {
+u16 data_ov002_0236743c[] = {
 #include "data/ov002/data_ov002_0236743c.inc.c"
 };
 u32 data_ov002_02367470[] = {
@@ -756,7 +756,7 @@ u32 data_ov002_023674d8[] = {
 u32 data_ov002_0236750c[] = {
 #include "data/ov002/data_ov002_0236750c.inc.c"
 };
-u32 data_ov002_02367540[] = {
+u16 data_ov002_02367540[] = {
 #include "data/ov002/data_ov002_02367540.inc.c"
 };
 u32 data_ov002_02367578[] = {
@@ -831,7 +831,7 @@ void* data_ov002_02367be0[] = {
     &data_ov002_02366b48, &data_ov002_02366b68, &data_ov002_02366b88,
     &data_ov002_02366ba8, &data_ov002_02366bc8, &data_ov002_02366be8,
     &data_ov002_02366c08, &data_ov002_02366c28, &data_ov002_02366c48};
-u32 data_ov002_023677a8[] = {
+u16 data_ov002_023677a8[] = {
 #include "data/ov002/data_ov002_023677a8.inc.c"
 };
 u32 data_ov002_023677e4[] = {
@@ -840,7 +840,7 @@ u32 data_ov002_023677e4[] = {
 u32 data_ov002_02367820[] = {
 #include "data/ov002/data_ov002_02367820.inc.c"
 };
-u32 data_ov002_0236785c[] = {
+u16 data_ov002_0236785c[] = {
 #include "data/ov002/data_ov002_0236785c.inc.c"
 };
 u32 data_ov002_02367898[] = {
@@ -873,7 +873,7 @@ u32 data_ov002_02367988[] = {
 u32 data_ov002_023679c4[] = {
 #include "data/ov002/data_ov002_023679c4.inc.c"
 };
-u32 data_ov002_02367c1c[] = {
+u16 data_ov002_02367c1c[] = {
 #include "data/ov002/data_ov002_02367c1c.inc.c"
 };
 void* data_ov002_02367c5c[] = {&data_ov002_023610d0, &data_ov002_02360f68,
@@ -985,7 +985,7 @@ void* data_ov002_02367e10[] = {&data_ov002_023652a8,
                                0,
                                &data_ov002_02362938,
                                &data_ov002_02362954};
-u32 data_ov002_02367e5c[] = {
+u16 data_ov002_02367e5c[] = {
 #include "data/ov002/data_ov002_02367e5c.inc.c"
 };
 u32 data_ov002_02367ea8[] = {

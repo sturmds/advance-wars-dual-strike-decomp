@@ -1087,7 +1087,7 @@ u32 data_ov002_02360740[] = {
 u32 data_ov002_02360748[] = {
 #include "data/ov002/data_ov002_02360748.inc.c"
 };
-u32 data_ov002_023607e0[] = {
+u16 data_ov002_023607e0[] = {
 #include "data/ov002/data_ov002_023607e0.inc.c"
 };
 u32 data_ov002_023607e8[] = {

@@ -1,6 +1,6 @@
 #include "types.h"
 
-const u32 data_02134bb8[] = {
+const u8 data_02134bb8[] = {
 #include "data/main/data_02134bb8.inc.c"
 };
 const u32 data_02134c48[] = {

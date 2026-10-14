@@ -35,16 +35,16 @@ u16 Ov000_gPlayerTileOwnerBits[] = {
 u32 data_ov000_022f5c5c[] = {
 #include "data/ov000/data_ov000_022f5c5c.inc.c"
 };
-u32 data_ov000_022f5c7c[] = {
+u8 data_ov000_022f5c7c[] = {
 #include "data/ov000/data_ov000_022f5c7c.inc.c"
 };
-u32 data_ov000_022f5c8c[] = {
+u8 data_ov000_022f5c8c[] = {
 #include "data/ov000/data_ov000_022f5c8c.inc.c"
 };
 u32 data_ov000_022f5c9c[] = {
 #include "data/ov000/data_ov000_022f5c9c.inc.c"
 };
-u32 data_ov000_022f5c6c[] = {
+u8 data_ov000_022f5c6c[] = {
 #include "data/ov000/data_ov000_022f5c6c.inc.c"
 };
 u8 data_ov000_022f5cac[] = {
