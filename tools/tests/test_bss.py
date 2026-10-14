@@ -12,13 +12,13 @@ slice_run, the filler that goes to the file before a 32-aligned one, the
 run counts of a --range), dsd's link-order check, the parts of an
 ARM7-like module, the linker script lines for .bss and .sbss, the
 generated definitions (`bss.py gen` on a made-up config, under two hash
-seeds) and the definitions `bss.py move` takes out of a file. best_host
+seeds, with types from a header and from a `.c` file) and the definitions `bss.py move` takes out of a file. best_host
 runs under two hash seeds and must pick the file first in fnindex order
 both times. With the compiler from `make setup`, also compiles files
 written by body_lines and checks their sections: three .bss runs with the
 ARM9 flags, and two .sbss runs and three .bss runs with the ARM7 flags; a
 pointer and an array aligned to 32 (in .bss and .bss.run1); and the
-generated definitions. With build/fnindex.json and build/dsindex.json,
+generated definitions, and the check of their sizes against symbols.txt. With build/fnindex.json and build/dsindex.json,
 runs `bss.py plan --show` under PYTHONHASHSEED 1 and 2 on every module
 and compares the output.
 """
@@ -396,6 +396,15 @@ def test_gen() -> None:
         changed = sorted(set(typed.splitlines()) ^ set(first.splitlines()))
         check("gen: a header type changes only that line", changed == ["u32 data_02100010[2];",
                                                                        "u8 data_02100010[0x8];"], changed)
+        (root / "src/x").mkdir(parents=True)
+        (root / "include/test_pair.h").write_text("typedef struct Pair { u32 a, b; } Pair;\n#define PAIRS 1\n")
+        (root / "src/x/user.c").write_text('#include "test_pair.h"\nextern Pair data_02100018[PAIRS];\n'
+                                            "extern struct Local data_02100040;\n")
+        from_c = run_gen(root, out, "1")
+        changed = sorted(set(from_c.splitlines()) ^ set(typed.splitlines()))
+        check("gen: a .c extern with a header type, and its header", changed == [
+            '#include "test_pair.h"', "Pair data_02100018[PAIRS];", "u8 data_02100018[0x8];"], changed)
+        (root / "src/x/user.c").unlink()
         if not pragmas.CC.exists():
             return
         names = [("data_02100004", 4), ("gTestTable", 6), ("data_02100010", 8), ("data_02100018", 8),
@@ -407,6 +416,31 @@ def test_gen() -> None:
         if elf is not None:
             errors = bss.order_errors(elf, g)
             check("gen: variables come out in address order, aligned", not errors, errors)
+        check("gen: a type of the size in symbols.txt passes", gen_size_errors(root, typed) == [])
+        symbols = root / "config/AWRE/arm9/symbols.txt"
+        symbols.write_text(symbols.read_text().replace("data_02100010 kind:bss(size=0x8)",
+                                                       "data_02100010 kind:bss(size=0xc)"))
+        wrong = gen_size_errors(root, typed)
+        check("gen: a type of another size is refused", wrong == [
+            "src/x/x_bss.c: data_02100010 is 0x8 bytes, symbols.txt says 0xc"], wrong)
+
+
+def gen_size_errors(root: Path, text: str) -> list[str]:
+    """bss.gen_size_errors on the made-up repo, with `text` compiled as the
+    object of src/x/x_bss.c."""
+    obj = root / "build/src/x/x_bss.o"
+    obj.parent.mkdir(parents=True, exist_ok=True)
+    cc, flags = bss.configure.compiler_for("src/x/x_bss.c")
+    cmd = [sys.executable, str(ROOT / cc)] if cc.endswith(".py") else [str(ROOT / cc)]
+    c = root / "include/x_bss_probe.c"
+    c.write_text(text)
+    flags = flags.replace("-i include", f"-i include -i {root / 'include'}")
+    subprocess.run([*cmd, "-c", *flags.split(), "-o", str(obj), str(c)], cwd=ROOT, check=True, capture_output=True)
+    saved, bss.ROOT = bss.ROOT, root
+    try:
+        return bss.gen_size_errors()
+    finally:
+        bss.ROOT = saved
 
 
 class NoDecls:

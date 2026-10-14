@@ -66,7 +66,8 @@ compiler; the same inputs give the same output. The rules:
   half untyped (placeholders, or no `extern` in a header) is listed in
   config/AWRE/bss_gen.txt; its C is a comment and one #include of
   build/gen/bss/<stem>.inc.c, which `bss.py gen` writes at build time from
-  delinks.txt, symbols.txt and the headers. When all its variables have a
+  delinks.txt, symbols.txt and the `extern` statements: a header's, else
+  the most common one in src/ whose type names a header defines. When all its variables have a
   header type, `plan --write` writes its definitions into the file and
   drops it from the list. `move` takes a variable out of one.
 - The C: definitions in the order mwcc_order.definition_order gives, each
@@ -1593,41 +1594,72 @@ def stub_text(module: str, path: str) -> str:
             f'#include "{gen_include(path)}"\n')
 
 
-def gen_body(d: Decl | None, name: str, size: int) -> tuple[str, str | None]:
-    """A definition's text and the header it needs, from a header's `extern`
-    statement: the statement without `extern`, an array with no count given
-    one when its elements are of a basic type, else `u8 NAME[SIZE]`."""
-    plain = f"u8 {name}[{size:#x}]", None
-    if d is None:
-        return plain
-    body = d.body
+def gen_headers(decls: Decls, d: Decl) -> set[str] | None:
+    """The headers a `.c` file's `extern` statement needs outside that file:
+    one for each type or constant name in it (types.h covers the basic
+    types); None when a name is defined in no header."""
+    out = set()
+    for word in sorted(set(re.findall(r"\b[A-Za-z_]\w*\b", d.body)) - {d.name}):
+        if word in BASIC_SIZES or word in C_WORDS:
+            continue
+        paths = decls.type_headers.get(word)
+        if not paths:
+            return None
+        out.add(pick_header(paths, d.file))
+    return out
+
+
+def gen_decl(decls: Decls, name: str) -> tuple[Decl, set[str]] | None:
+    """The declaration a generated definition copies, and the headers it
+    needs: the first header's `extern` statement, else the most common one
+    in a `.c` file whose names all come from headers (ties: the first in
+    path order)."""
+    found = decls.of(name)
+    header = next((d for d in found if d.file.startswith("include/")), None)
+    if header is not None:
+        return header, {header.file.removeprefix("include/")}
+    usable = [(d, h) for d in found if (h := gen_headers(decls, d)) is not None]
+    if not usable:
+        return None
+    count = Counter(d.body for d, _ in usable)
+    best = max(count.values())
+    return next((d, h) for d, h in usable if count[d.body] == best)
+
+
+def gen_body(d: Decl, name: str, size: int) -> str | None:
+    """A definition's text from an `extern` statement: the statement without
+    `extern`, an array with no count given one when its elements are of a
+    basic type or pointers; None when the count cannot be worked out."""
+    body = re.sub(r"\s+\[", "[", d.body)
     if "*" not in body.split(name)[0]:
         body = re.sub(r"^const\s+", "", body)
-    m = re.search(rf"\b{name}\s*\[\s*\]((?:\s*\[\s*(?:0x[0-9a-fA-F]+|\d+)\s*\])*)", body)
+    m = re.search(rf"\b{name}\[\s*\]((?:\s*\[\s*(?:0x[0-9a-fA-F]+|\d+)\s*\])*)", body)
     if m:
         base = body[:body.index(name)].strip()
         elem = 4 if "*" in base else BASIC_SIZES.get(" ".join(re.sub(r"\b(const|volatile)\b", " ", base).split()))
         for n in re.findall(r"\[\s*(\w+)\s*\]", m.group(1)):
             elem = elem * int(n, 0) if elem else None
         if not elem or size % elem:
-            return plain
+            return None
         body = body[:m.start()] + f"{name}[{size // elem:#x}]{m.group(1)}" + body[m.end():]
-    return body, d.file.removeprefix("include/")
+    return body
 
 
 def generated_text(module: str, variables: list[tuple[str, int, bool]], section: str, decls: Decls) -> str:
     """The definitions of a listed file: (name, size, aligned to 32) in
-    address order, each with the type of the first `extern` statement in a
-    header that declares it, else `u8 NAME[SIZE]`, in the order that makes
+    address order, each with the type of its `extern` statement (gen_decl),
+    else `u8 NAME[SIZE]`, in the order that makes
     mwccarm emit them in address order."""
     sizes = [size for _, size, _ in variables]
     lines, headers = [], set()
     for i in definition_order(sizes, initialized=False):
         name, size, align = variables[i]
-        decl = next((d for d in decls.of(name) if d.file.startswith("include/")), None)
-        body, header = gen_body(decl, name, size)
-        if header:
-            headers.add(header)
+        chosen = gen_decl(decls, name)
+        body = chosen and gen_body(chosen[0], name, size)
+        if body:
+            headers |= chosen[1]
+        else:
+            body = f"u8 {name}[{size:#x}]"
         lines.append(f"{ALIGN32 if align else ''}{body};")
     if section != ".bss":
         headers.add(RUN_HEADER)
@@ -1681,8 +1713,9 @@ def config_variables(module: str, entry: Entry, symbols: list[Symbol]) -> tuple[
 def gen_files(out_dir: Path, only: list[str] | None = None) -> list[Path]:
     """Writes OUT_DIR/bss/<stem>.inc.c for each listed file, only where the
     text changes (the build rule has restat), and removes files no longer
-    listed. Reads the config and the headers only: it is part of the build."""
-    decls = Decls(headers_only=True)
+    listed. Reads the config, the headers and the `extern` statements in
+    src/ only: it is part of the build."""
+    decls = Decls()
     wanted = {}
     symbols_of: dict[str, list[Symbol]] = {}
     for path in gen_list():
@@ -1702,6 +1735,28 @@ def gen_files(out_dir: Path, only: list[str] | None = None) -> list[Path]:
         if not out.exists() or out.read_text() != text:
             out.write_text(text)
     return list(wanted)
+
+
+def gen_size_errors() -> list[str]:
+    """Variables of the listed files whose size in the built object differs
+    from the size in symbols.txt: a declared type of the wrong size. The
+    ROM check misses one at the end of main, which the linker script rounds
+    up to 32. Files not built yet are skipped."""
+    errors = []
+    symbols_of: dict[str, list[Symbol]] = {}
+    for path in gen_list():
+        obj = ROOT / configure.obj_of(path)
+        if not obj.exists():
+            continue
+        module, entry = find_entry(path)
+        if module not in symbols_of:
+            symbols_of[module] = read_symbols(ROOT / data_inc.config_dir(module) / "symbols.txt")
+        _, variables = config_variables(module, entry, symbols_of[module])
+        built = {s["name"]: s["size"] for s in elf_read(obj)[1] if s["type"] == 1}
+        for v in variables:
+            if v.name in built and built[v.name] != v.sort:
+                errors.append(f"{path}: {v.name} is {built[v.name]:#x} bytes, symbols.txt says {v.sort:#x}")
+    return errors
 
 
 def cmd_gen(args) -> int:

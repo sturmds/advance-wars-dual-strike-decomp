@@ -41,7 +41,9 @@ It also stops when config/AWRE/aliases.txt and symbols.txt disagree: every
 .bss alias must be listed once, with its base and offset (bss.py
 alias_list_errors, docs/bss-tool.md "Aliases", issue 0083), and when an
 alias's FIELD and the C type of its base give different offsets
-(tools/alias_check.py).
+(tools/alias_check.py), and when a
+variable of a generated .bss file has a size in its object other than the
+one in symbols.txt (bss.py gen_size_errors).
 
 The report is read back
 with `objdiff-cli report changes` to check that it parses. It is not
@@ -287,6 +289,9 @@ def main() -> int:
     if alias_errors:
         sys.exit("decomp_dev_report: aliases whose FIELD and C type disagree (tools/alias_check.py):\n  "
                  + "\n  ".join(alias_errors))
+    size_errors = bss.gen_size_errors()
+    if size_errors:
+        sys.exit("decomp_dev_report: generated .bss sizes:\n  " + "\n  ".join(size_errors))
     subprocess.run(fn.ninja("objdiff.json", "build/arm7/objdiff.json"), cwd=ROOT, check=True, capture_output=True)
     units = merged_units()
     PROJECT.mkdir(parents=True, exist_ok=True)

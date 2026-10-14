@@ -181,7 +181,8 @@ def bss_gen_outputs() -> dict[str, str]:
 
 def bss_gen_inputs(listed: list[str]) -> list[str]:
     """What `bss.py gen` reads: the list, the delinks.txt and symbols.txt of
-    each module that has a listed file, and every header."""
+    each module that has a listed file, every header, and every `.c` file
+    in src/ (a type can come from an `extern` statement there)."""
     inputs = [BSS_GEN.as_posix()]
     for delinks in sorted((ROOT / "config/AWRE").rglob("delinks.txt")):
         names = {line[:-1] for line in delinks.read_text().splitlines()
@@ -190,6 +191,7 @@ def bss_gen_inputs(listed: list[str]) -> list[str]:
             rel = delinks.relative_to(ROOT)
             inputs += [rel.as_posix(), (rel.parent / "symbols.txt").as_posix()]
     inputs += sorted(p.relative_to(ROOT).as_posix() for p in (ROOT / "include").rglob("*.h"))
+    inputs += sorted(p.relative_to(ROOT).as_posix() for p in (ROOT / "src").rglob("*.c"))
     return inputs
 
 
