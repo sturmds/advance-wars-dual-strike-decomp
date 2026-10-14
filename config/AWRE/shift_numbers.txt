@@ -1,10 +1,17 @@
-# Words that tools/shift_build.py's stale check finds but that are not
-# pointers: their value equals the address of a symbol that moves, by chance.
-# Each was read in the code or table that uses it (issue 0086). One per line:
+# Words that look like addresses but are numbers, read one by one in the code
+# or table that uses them (issues 0012, 0086). tools/shift_build.py's stale
+# check allows them (their value equals the old address of a moved symbol by
+# chance), and tools/scan_pointers.py leaves them out of its count. One per
+# line:
 #   ADDRESS  reason
 # ADDRESS is the word's address in the normal (retail) build.
 
+0x01ffbd94  Map3d_DrawScrollingQuad pool, 0x02080080 written to REG_POLYGON_ATTR
 0x02000b10  BuildInfo[4], main .bss end: dsd rom build writes the moved value into the ROM (shifted ROM 0x022ad580, arm9.bin 0x022ad560)
+0x02000b18  BuildInfo[6], the SDK library version (build_info.c)
+0x021150a8  Power_PostCommandWithReply pool, PXI command word 0x02006300 | command
+0x02115160  Power_AskArm7ToSleep pool, PXI command word 0x02006100 | trigger
+0x0211fc30  Isd_VFormat pool, a constant the compiler built from the C (no address in the source)
 0x02136dac  data_02134e8c, u8 data (screen_init_with_player_frame.c)
 0x02138258  data_02137ca8, halfword pairs in an ascending run (0x0219, 0x021b, ...)
 0x0213825c  data_02137ca8, same run
@@ -36,5 +43,20 @@
 0x022f32e0  map unit records, u8
 0x022f3730  map unit records, u8
 0x022f405c  map unit records, u8
+0x023615f8  data_ov002_023615f4, ov002 fighter script bytes (20 fc 04 00 04 01 04 02 ...)
+0x02361700  data_ov002_023616fc, fighter script bytes, same pattern
+0x0236170c  data_ov002_02361708, fighter script bytes, same pattern
+0x02361d44  data_ov002_02361d40, fighter script bytes, same pattern
+0x02361dc4  data_ov002_02361dc0, fighter script bytes, same pattern
+0x023621a0  data_ov002_0236219c, fighter script bytes, same pattern
 0x023659f0  data_ov003_023659d4, u16 pairs
 0x023659f8  data_ov003_023659d4, u16 pairs
+0x02367e60  data_ov002_02367e5c, fighter script bytes repeating every 5 words
+0x0236aab8  data_ov002_0236aa90+0x28, BattleSideWeapon's u8 bit fields after gfx
+0x0236aae4  data_ov002_0236aabc+0x28, BattleSideWeapon's u8 bit fields
+0x0236ac44  data_ov002_0236ac1c+0x28, BattleSideWeapon's u8 bit fields
+0x0236ac70  data_ov002_0236ac48+0x28, BattleSideWeapon's u8 bit fields
+0x0236ac9c  data_ov002_0236ac74+0x28, BattleSideWeapon's u8 bit fields
+0x0236ad78  data_ov002_0236ad50+0x28, BattleSideWeapon's u8 bit fields
+0x0236ada4  data_ov002_0236ad7c+0x28, BattleSideWeapon's u8 bit fields
+0x0236ae80  data_ov002_0236ae58+0x28, BattleSideWeapon's u8 bit fields

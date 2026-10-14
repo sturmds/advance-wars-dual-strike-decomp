@@ -34,6 +34,10 @@ Growing measure: structs with a size assert (`typedef char X_size_check[...]`): 
 
 Not counted by the tool, tracked in issue 0086: ARM7's module parameters and `WMSP_WORK` (issue 0054), the secure-area CRC (issue 0056), `.exceptix` and `.ctor` placement for new C++ code.
 
+## Progress
+
+- 2026-10-14, scanner review: `scan_layout` 6 to 0, `scan_high` 0, `scan_medium` 54 to 0, `scan_low` 1,115 to 218. No real pointer without a relocation turned up. `scan_pointers.py` leaves out the words `shift_numbers.txt` lists (20 added: the PXI command words of the two PM functions, three pool constants, BuildInfo's SDK version, ov002 fighter script bytes and `BattleSideWeapon` bit fields) and the .data and .rodata words that the C type of their object makes numbers (903: `PredeployedUnit`, `MapHeader`, `MapTileData` and u8, u16 and s16 tables). The 6 layout words were BuildInfo's .bss end (listed) and five words in u8 tables. The 218 left are all in `u32` tables that `data.py` wrote from the bytes for want of a declared type; they fall as those tables get their types.
+
 ## How to count
 
 - `python3 tools/shift_gaps.py` prints the table that `PROGRESS.md` shows; `--list KIND` prints `file:line: text` for each site.

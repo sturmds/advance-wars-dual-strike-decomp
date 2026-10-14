@@ -61,10 +61,10 @@ sites. Not every count should reach 0: a hardware format stays a number.
 | Group | Gap | Game | SDK | Total |
 |---|---|---:|---:|---:|
 | Addresses | Aliases written as BASE+number (`aliases.txt`) | - | - | 331 |
-| Addresses | Unrelocated words, layout level (`scan_pointers.py`) | 5 | 1 | 6 |
+| Addresses | Unrelocated words, layout level (`scan_pointers.py`) | 0 | 0 | 0 |
 | Addresses | Unrelocated words, high level | 0 | 0 | 0 |
-| Addresses | Unrelocated words, medium level | 52 | 2 | 54 |
-| Addresses | Unrelocated words, low level (mostly 16-bit pairs) | 1102 | 13 | 1115 |
+| Addresses | Unrelocated words, medium level | 0 | 0 | 0 |
+| Addresses | Unrelocated words, low level (mostly in `u32` tables) | 218 | 0 | 218 |
 | Sizes | `Mem_Alloc` with a literal size | 11 | 0 | 11 |
 | Sizes | Copy, fill and clear calls with a literal length | 243 | 60 | 303 |
 | Sizes | Byte offsets into objects (`(u8 *)x + N`) | 41 | 33 | 74 |
