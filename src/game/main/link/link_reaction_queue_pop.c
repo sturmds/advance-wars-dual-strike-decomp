@@ -1,8 +1,9 @@
 #include "types.h"
 #include "game/link_reaction_queue.h"
+#include "game/reaction_text_menu_task.h"
 
 LinkReactionQueue data_0229da68;
-char data_0229da8c[0xc6];
+char data_0229da8c[REACTION_TEXT_COUNT][REACTION_TEXT_SIZE];
 u8 data_0229db54[4][6][33];
 
 void Mem_CopyBytes(void* src, void* dest, int size);

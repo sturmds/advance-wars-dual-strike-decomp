@@ -887,7 +887,7 @@ main      data_02157668               0x02157668  0x50   u32
 main      gSoundArcPath               0x021576b8  0x18   u8
 main      data_021576d0               0x021576d0  0xc    {s32,s32,s32}
 main      data_021576dc               0x021576dc  0xc    {s32,s32,s32}
-main      gCameraPresets              0x021576e8  0x64   {s32,s32,s32,u16,u16,u16,u16}
+main      gCameraPresets              0x021576e8  0x64   {s32,s32,s32,u16,u16,u16,u8,u8}
 main      gFullScreenViewport         0x0215774c  0x10   {u32,u32,u32,u32}
 main      data_0215775c               0x0215775c  0x10   u32
 main      data_0215776c               0x0215776c  0x10   u32

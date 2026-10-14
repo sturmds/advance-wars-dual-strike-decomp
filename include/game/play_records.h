@@ -4,6 +4,7 @@
 #include "types.h"
 #include "game/co_data.h"
 #include "game/co_save.h"
+#include "game/survival_record.h"
 
 /* Best run of one Survival mode variant (data_022a7b80.mode, 0-5).
  * Survival_SaveRecord writes it at the end of a run. */
@@ -37,11 +38,14 @@ typedef struct PlayRecords {
   u8 unk_15;    /* copied to MenuState.setup.unk_2e2 */
   u8 warRoomAiBehaviour; /* aiBehaviour of slot 1 in the War Room (Players_ApplyBattleSetup) */
   u8 campaignAiBehaviour; /* aiBehaviour of every slot but the last in the campaign (Players_ApplyBattleSetup) */
-  u8 pad_18[0x38 - 0x18];
+  CoPicks coPicksMode1;   /* gCoPicksMode1 */
+  CoPicks coPicksMode2;   /* gCoPicksMode2 */
+  CoPicks coPicksMode3;   /* gCoPicksMode3 */
+  u8 pad_36[0x38 - 0x36];
   CoSaveRecord coRecords[CO_COUNT]; /* by CO id */
   SaveHalfwords16 unk_348
       [3]; /* one per profile; Save_LoadProfiles fills them from the save */
-  u8 pad_378[0x37c - 0x378];
+  u16 campaignBestAverage[2]; /* gCampaignBestAverage */
   u32 playFrames; /* frames counted by PlayRecords_CountFrame, capped by Counter_IncrementCapped */
   u32 unk_380; /* capped at 999999; Turn_AdvanceToNextPlayer adds 1 each time the turn order wraps past player 4, under conditions not yet understood */
   u32 unk_384; /* capped at 999999; PlayRecords_AddCoins adds to it */
@@ -95,10 +99,16 @@ typedef struct PlayRecords {
       [27]; /* per unit type, capped at 999999: enemy units that human players destroyed */
   WarRoomRecord warRoomRecords[4][44]
                               [3]; /* the same bytes as gWarRoomRecords */
-  u8 pad_d5c[0xe3c - 0xd5c];
-  SurvivalRecord survivalRecords[6]; /* by Survival mode variant */
-  u8 pad_e6c[0x105c - 0xe6c];
+  WarRoomRecord campaignBestRecords[28][2]; /* gCampaignBestRecords */
+  SurvivalRecord survivalRecords[6];        /* by Survival mode variant */
+  SurvivalRecordFunds survivalMaps
+      [SURVIVAL_RECORD_COUNT]; /* data_02291584, by Survival_GetRecordIndex */
+  u16 survivalBestTimes[SURVIVAL_RECORD_COUNT]; /* data_02291650 */
+  u8 unk_f5a[0x100]; /* data_02291672: Save_ResetProgress clears it */
+  u8 pad_105a[0x105c - 0x105a];
 } PlayRecords;
+
+typedef char PlayRecords_size_check[sizeof(PlayRecords) == 0x105c ? 1 : -1];
 
 extern PlayRecords gPlayRecords;
 

@@ -6,6 +6,10 @@
 /* Skill ids of one saved Force Rank set, ended by 0 when fewer than 4. */
 typedef u8 ForceRankSet[4];
 
+/* CO picks of one game mode, kept between maps: a front and a tag CO id per
+ * player 0-4 (Map_SaveCoPicks). */
+typedef u8 CoPicks[5][2];
+
 /* Saved progress of one CO. The records sit in PlayRecords.coRecords,
  * indexed by CO id. */
 typedef struct CoSaveRecord {

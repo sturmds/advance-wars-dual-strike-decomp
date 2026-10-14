@@ -16,7 +16,10 @@ typedef struct Unk_0229c960 {
   u16 ksFlag;
   u16 csFlag;
   u16 beaconPeriod; /* Wireless_Init: 180 plus a value derived from the console's MAC address */
-  u8 pad_1a[0x32 - 0x1a];
+  u8 unk_1a[4]; /* Wireless_InitParentParam clears it (data_0229c97a) */
+  u8 pad_1e[0x22 - 0x1e];
+  u8 unk_22[8]; /* cleared too (data_0229c982) */
+  u8 pad_2a[0x32 - 0x2a];
   u16 channel;
   u16 parentMaxSize; /* largest packet a parent sends */
   u16 childMaxSize;  /* largest packet a child sends */

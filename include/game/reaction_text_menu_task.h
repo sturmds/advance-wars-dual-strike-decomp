@@ -4,6 +4,7 @@
 #include "types.h"
 
 #define REACTION_TEXT_SIZE 33 /* bytes of each reaction text in data_0229da8c */
+#define REACTION_TEXT_COUNT 6 /* reaction texts in data_0229da8c */
 
 /* Task of the menu that edits the six link reaction texts (data_0215fc0c is
  * its script). Reached by Task_FindByScript. */

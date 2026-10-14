@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "game/co_data.h"
+#include "game/co_save.h"
 
 /* One campaign map record. The 28 records start at data_02290118.unk_8c and
  * end at the first entry with days 0. */
@@ -29,16 +30,22 @@ typedef struct Unk_02290118 {
   u16 unk_0a;
   u16 unk_0c;
   u16 unk_0e;
-  u8 pad_010[0x8c - 0x10];
+  ForceRankSet
+      forceRankSets[CO_COUNT]; /* mode 0, by CO id (ForceRank_GetSavedSet) */
+  CoPicks coPicksMode0;        /* gCoPicksMode0 */
+  u8 pad_08a[0x8c - 0x8a];
   union {
     u32 unk_8c; /* bits 8-19 are cleared when a campaign starts (Campaign_ResetProgress) */
     MapRecord records[28];
   };
   u8 pad_0fc[0x11a - 0xfc];
   u8 coScore[CO_COUNT]; /* per CO id; the world map shows the three highest */
-  u8 pad_136[0x180 -
-             0x136]; /* gGameFlagsHigh at 0x136, data_02290256 at 0x13e */
+  u8 flagsHigh[8];      /* gGameFlagsHigh: game flag ids 95-158 */
+  u8 unk_13e[0x40];     /* data_02290256: Save_ResetProgress clears it */
+  u8 pad_17e[0x180 - 0x17e];
 } Unk_02290118;
+
+typedef char Unk_02290118_size_check[sizeof(Unk_02290118) == 0x180 ? 1 : -1];
 
 extern Unk_02290118 data_02290118;
 

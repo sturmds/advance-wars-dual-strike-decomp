@@ -12,7 +12,8 @@ typedef struct CameraPreset {
   u16 rotX;
   u16 rotY;
   u16 rotZ;
-  u16 pad_12;
+  u8 viewWidth;  /* map tiles the view shows across (MapView_FindScroll) */
+  u8 viewHeight; /* and down */
 } CameraPreset;
 
 extern CameraPreset gCameraPresets[];
