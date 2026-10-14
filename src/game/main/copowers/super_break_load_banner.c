@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/menu_state.h"
 #include "game/player.h"
 #include "game/task.h"
 #include "game/Unk_02080440.h"
@@ -21,7 +22,6 @@ extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern char data_0215c268[]; /* "/ohashi/res_syogunbreak" */
 extern char data_0215c280[]; /* "/ohashi/res_syogunbreak_lang" */
-extern u8 gMenuState[];      /* gets the edge sprite file */
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define PLAYER (&GAME->players[GAME->currentPlayer])
@@ -60,7 +60,7 @@ void SuperBreak_LoadBanner(Task* task) {
   }
   Data_Unpack(res + 0x6a4, data_027c0280->objVram + 0x3280);
   Palette_Load(res + 0x8e0 + (PLAYER->armyColour - 1) * 32, 0x260, 0x20);
-  Mem_Copy32(res + 0x86c, gMenuState, EDGE_SPRITE_FILE_SIZE);
+  Mem_Copy32(res + 0x86c, gMenuState.bytes, EDGE_SPRITE_FILE_SIZE);
   Mem_Free(res);
   Mem_Free(langRes);
   Gfx_RequestLayerCopy(0);

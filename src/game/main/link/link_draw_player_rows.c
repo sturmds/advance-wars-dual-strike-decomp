@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/menu_state.h"
 #include "game/Unk_02088d04.h"
 #include "game/link_menu_state.h"
 
@@ -13,7 +14,6 @@ typedef struct LinkPlayerInfo {
 } LinkPlayerInfo;
 
 extern Unk_027c0280* data_027c0280;
-extern u8 gMenuState[];
 extern char data_02167c88[];
 
 void Mem_Copy32(const void* src, void* dst, u32 size);
@@ -39,7 +39,7 @@ void Link_DrawPlayerRows(void) {
   int count;
 
   if (data_0215fed0->view == 1) {
-    Mem_Copy32(gMenuState, data_027c0280->layer2Map, BG_VISIBLE_SIZE);
+    Mem_Copy32(gMenuState.bytes, data_027c0280->layer2Map, BG_VISIBLE_SIZE);
     Gfx_RequestLayerCopy(2);
     LinkMenu_AddRowButtons();
     data_0215fed0->view = 0;

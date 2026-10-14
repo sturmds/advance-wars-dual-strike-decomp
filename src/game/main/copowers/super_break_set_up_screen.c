@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/menu_state.h"
 #include "game/co_data.h"
 #include "game/player.h"
 #include "game/task.h"
@@ -34,7 +35,6 @@ extern GfxLayer data_0215c0a0[]; /* layer config otherwise */
 extern char data_0215c268[];     /* "/ohashi/res_syogunbreak" */
 extern char data_0215c280[];     /* "/ohashi/res_syogunbreak_lang" */
 extern char data_0215c2a0[];     /* "/ohashi/res_syogunchange" */
-extern u8 gMenuState[];          /* gets a copy of the BG0 palette */
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define BANNER_PALETTE_COUNT 3 /* BG palettes 1-3 */
@@ -128,7 +128,8 @@ void SuperBreak_SetUpScreen(Task* task) {
   Data_Unpack(res, LAYER_TILES(data_027c0280->layer0Bg));
   Data_Unpack(res + 0x2540, data_027c0280->layer0Map);
   Palette_Load(res + 0x2b74, 0x20, 0x60);
-  Mem_Copy32(res + 0x2b74, gMenuState, BANNER_PALETTE_COUNT * PALETTE_16_SIZE);
+  Mem_Copy32(res + 0x2b74, gMenuState.bytes,
+             BANNER_PALETTE_COUNT * PALETTE_16_SIZE);
   for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer0Map[i] += 0x1000;
   }

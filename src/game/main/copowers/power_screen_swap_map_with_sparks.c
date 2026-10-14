@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/menu_state.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_0229fb30.h"
 
@@ -6,7 +7,6 @@ extern Unk_027c0280* data_027c0280;
 
 /* The tile map and palette this step loads sit in main's bss at gMenuState
  * and data_0229fb30 (shared buffers). */
-extern u8 gMenuState[];
 
 void Mem_Copy32(const void* src, void* dst, u32 size);
 void Palette_Load(const void* src, int offset, int size);
@@ -20,7 +20,7 @@ void Sound_PlaySe(int id);
 void PowerScreen_SwapMapWithSparks(void) {
   int i;
 
-  Mem_Copy32(gMenuState, data_027c0280->layer0Map, BG_SCREEN_SIZE);
+  Mem_Copy32(gMenuState.bytes, data_027c0280->layer0Map, BG_SCREEN_SIZE);
   Palette_Load(&data_0229fb30, 32, 32);
   for (i = 0; i < BG_SCREEN_ENTRIES; i++) {
     data_027c0280->layer0Map[i] += 0x1000;

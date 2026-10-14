@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/menu_state.h"
 #include "game/task.h"
 #include "game/Unk_02088d04.h"
 
@@ -12,10 +13,6 @@ Task* EaseTask_Start(int from, int to, int frames, Task* parent);
 
 extern Unk_027c0280* data_027c0280;
 extern char gTagBreakThunderPath[]; /* "/ohashi/res_tagbreak_thunder" */
-extern u8 gMenuState[];             /* gets a sprite file */
-extern u16 data_0229f330[]; /* layer 0 map that TagBreak_StartSparks shows */
-extern u8
-    data_0229fb30[]; /* two palettes; the second is gTagBreakSparkPalette */
 
 #define LAYER_TILES(layerBg) \
   (data_027c0280->bgVram + (data_027c0280->bgCnt[layerBg].charBase << 14))
@@ -23,7 +20,7 @@ extern u8
 /* The frame counter shares its slot with Task.unk_4c. */
 #define FRAME(task) (*(s16*)&(task)->unk_4c)
 
-/* Bytes at 0x280c of the thunder file that go to data_0229fb30. */
+/* Bytes at 0x280c of the thunder file that go to TagBreakWork.palettes. */
 #define THUNDER_SPRITE_DATA_SIZE 0x40
 
 /* Step of the tag break script: loads res_tagbreak_thunder (layer 0 tiles,
@@ -36,9 +33,10 @@ void TagBreak_LoadThunder(Task* task) {
 
   res = File_Load(gTagBreakThunderPath);
   Data_Unpack(res, LAYER_TILES(data_027c0280->layer0Bg));
-  Data_Unpack(res + 0x2254, gMenuState);
-  Data_Unpack(res + 0x252c, data_0229f330);
-  Mem_Copy32(res + 0x280c, data_0229fb30, THUNDER_SPRITE_DATA_SIZE);
+  Data_Unpack(res + 0x2254, gMenuState.bytes);
+  Data_Unpack(res + 0x252c, gMenuState.tagBreak.layer0Map);
+  Mem_Copy32(res + 0x280c, gMenuState.tagBreak.palettes,
+             THUNDER_SPRITE_DATA_SIZE);
   Data_Unpack(res + 0x284c, data_027c0280->objVram + 0x3280);
   Palette_Load(res + 0x28a8, 0x260, 0x20);
   Mem_Free(res);

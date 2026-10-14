@@ -1,11 +1,11 @@
 #include "types.h"
+#include "game/menu_state.h"
 #include "game/Ov003Fx.h"
 #include "game/ov003_gfx.h"
 #include "game/ov003_unit.h"
 #include "game/Unk_02088d04.h"
 
 extern Unk_027c0280* data_027c0280;
-extern u8 gMenuState[];
 extern u8 data_ov003_02365d10[];
 char data_ov003_023649f4[] = {
 #include "data/ov003/data_ov003_023649f4.inc.c"
@@ -64,22 +64,23 @@ void Ov003_LoadGraphics(u8* res) {
   u16* buf;
   int topLeft;
 
-  Data_Unpack(res, gMenuState);
+  Data_Unpack(res, gMenuState.bytes);
   for (i = 0; i < STATE->rowCount; i++) {
     if (i & 1) {
-      Mem_Copy32(gMenuState + ((STATE->rows[i].color - 1) * ROW_COLOR_TILES +
-                               ROW_TILES) *
-                                  TILE_4BPP_SIZE,
-                 BG0_CHARS + (0x260 + i * ROW_TILES) * TILE_4BPP_SIZE,
-                 ROW_TILES * TILE_4BPP_SIZE);
+      Mem_Copy32(
+          gMenuState.bytes +
+              ((STATE->rows[i].color - 1) * ROW_COLOR_TILES + ROW_TILES) *
+                  TILE_4BPP_SIZE,
+          BG0_CHARS + (0x260 + i * ROW_TILES) * TILE_4BPP_SIZE,
+          ROW_TILES * TILE_4BPP_SIZE);
     } else {
-      Mem_Copy32(gMenuState + (STATE->rows[i].color - 1) * ROW_COLOR_TILES *
-                                  TILE_4BPP_SIZE,
+      Mem_Copy32(gMenuState.bytes + (STATE->rows[i].color - 1) *
+                                        ROW_COLOR_TILES * TILE_4BPP_SIZE,
                  BG0_CHARS + (0x260 + i * ROW_TILES) * TILE_4BPP_SIZE,
                  ROW_TILES * TILE_4BPP_SIZE);
     }
-    Mem_Copy32(gMenuState + (STATE->rows[i].color - 1) * ROW_COLOR_TILES *
-                                TILE_4BPP_SIZE,
+    Mem_Copy32(gMenuState.bytes + (STATE->rows[i].color - 1) * ROW_COLOR_TILES *
+                                      TILE_4BPP_SIZE,
                BG0_CHARS + (0x300 + i * ROW_TILES) * TILE_4BPP_SIZE,
                ROW_TILES * TILE_4BPP_SIZE);
   }
@@ -88,7 +89,7 @@ void Ov003_LoadGraphics(u8* res) {
   Palette_Load(res + 0x1384, 0x40, 0x180);
   /* Keep the colours rows 0-3 had, in groups of four (group 4 from
      * palette 8), then give each of those rows the group of its colour. */
-  buf = (u16*)gMenuState;
+  buf = (u16*)gMenuState.bytes;
   buf[0] = PALETTE[0x95];
   buf[1] = PALETTE[0x97];
   buf[2] = PALETTE[0x99];
@@ -137,19 +138,20 @@ void Ov003_LoadGraphics(u8* res) {
 
   GX_BeginLoadTex();
   Data_Unpack(res + 0x1524, (void*)VRAM_LCDC_A);
-  Mem_Copy32((void*)(VRAM_LCDC_A + 0x100), gMenuState,
+  Mem_Copy32((void*)(VRAM_LCDC_A + 0x100), gMenuState.bytes,
              OV003_ROW_COLOR_COUNT * ROW_TEXTURE_SIZE);
   for (i = 0; i < STATE->rowCount; i++) {
-    Mem_Copy32(gMenuState + (STATE->rows[i].color - 1) * ROW_TEXTURE_SIZE,
+    Mem_Copy32(gMenuState.bytes + (STATE->rows[i].color - 1) * ROW_TEXTURE_SIZE,
                (void*)(((8 + i * 4) << 5) + VRAM_LCDC_A), ROW_TEXTURE_SIZE);
   }
   GX_EndLoadTex();
 
   GX_BeginLoadTexPltt();
   Mem_Copy32(res + 0x1a90, (void*)VRAM_LCDC_F, TEXTURE_PALETTES_SIZE);
-  Mem_Copy32(res + 0x1b10, gMenuState, OV003_ROW_COLOR_COUNT * PALETTE_16_SIZE);
+  Mem_Copy32(res + 0x1b10, gMenuState.bytes,
+             OV003_ROW_COLOR_COUNT * PALETTE_16_SIZE);
   for (i = 0; i < STATE->rowCount; i++) {
-    Mem_Copy32(gMenuState + (STATE->rows[i].color - 1) * PALETTE_16_SIZE,
+    Mem_Copy32(gMenuState.bytes + (STATE->rows[i].color - 1) * PALETTE_16_SIZE,
                (u8*)VRAM_LCDC_F + (i + 4) * PALETTE_16_SIZE, PALETTE_16_SIZE);
   }
   GX_EndLoadTexPltt();
@@ -158,8 +160,8 @@ void Ov003_LoadGraphics(u8* res) {
 
   /* buf holds two 32 x 32 tile maps side by side: metatiles 0-15 of a row
      * come from the first, 16-31 from the second. */
-  Data_Unpack(res + 0x770, gMenuState);
-  buf = (u16*)gMenuState;
+  Data_Unpack(res + 0x770, gMenuState.bytes);
+  buf = (u16*)gMenuState.bytes;
 
   for (i = 0; i < OV003_METATILE_COUNT; i++) {
     if (!(i & 16)) {
@@ -180,8 +182,8 @@ void Ov003_LoadGraphics(u8* res) {
     }
   }
 
-  Data_Unpack(res + 0x1078, gMenuState);
-  buf = (u16*)gMenuState;
+  Data_Unpack(res + 0x1078, gMenuState.bytes);
+  buf = (u16*)gMenuState.bytes;
   for (i = 0; i < OV003_METATILE_COUNT; i++) {
     if (!(i & 16)) {
       topLeft = (i >> 5) * 64 + (i & 15) * 2;

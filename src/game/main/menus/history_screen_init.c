@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/menu_state.h"
 #include "game/icon.h"
 #include "game/player.h"
 #include "game/tab_list.h"
@@ -38,7 +39,6 @@ u8* UnitIcons_GetTiles(void);
 void TabList_AddNavButtons(void);
 void TabList_UpdateHelpText(void);
 
-extern TabListView gMenuState;
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
@@ -67,12 +67,12 @@ void HistoryScreen_Init(void) {
   int size;
   int i;
 
-  gMenuState.tab = 0;
-  for (i = 0; i < (int)ARRAY_COUNT(gMenuState.pageOfTab); i++) {
-    gMenuState.pageOfTab[i] = 0;
+  gMenuState.tabList.tab = 0;
+  for (i = 0; i < (int)ARRAY_COUNT(gMenuState.tabList.pageOfTab); i++) {
+    gMenuState.tabList.pageOfTab[i] = 0;
   }
-  gMenuState.row = 0;
-  gMenuState.unk_06 = 0;
+  gMenuState.tabList.row = 0;
+  gMenuState.tabList.unk_06 = 0;
   func_02028a30();
 
   saved0280 = data_027c0280;

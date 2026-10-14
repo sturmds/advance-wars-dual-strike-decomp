@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/menu_state.h"
 #include "sdk/fx.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
@@ -9,7 +10,6 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern u8 gMenuState[];
 extern char data_021681d8[];
 extern char data_021681fc[];
 extern char data_02168204[];
@@ -51,13 +51,13 @@ void TileListTask_PlayEffect(Unk_02168140Task* task) {
                               (u32)data_022a7c5c->unk_6c, 0, 1);
   } else {
     FS_ChangeDir(data_021681d8);
-    File_UnpackTo(gMenuState, data_02168208);
+    File_UnpackTo(gMenuState.bytes, data_02168208);
     Palette_LoadFromFile(data_021681fc, 0, 672, 32);
     spriteTask = SpriteAnimTask_Start(
         data_021480e0,
         (task->unk_2c * 16 - STATE->unk_1c4->scrollX + 32) & 0x1ff,
         (task->unk_30 * 16 - STATE->unk_1c4->scrollY + 8) & 0xff, 0x5194, 0, 1);
-    spriteTask->sprite->tileSource = gMenuState;
+    spriteTask->sprite->tileSource = gMenuState.bytes;
   }
   Sound_PlaySe(160);
 }

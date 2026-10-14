@@ -1,11 +1,11 @@
 #include "types.h"
+#include "game/menu_state.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_02160ac0.h"
 #include "game/co_graphics.h"
 #include "game/ov003_unit.h"
 
 /* gMenuState as the CO pictures Ov003_LoadScreenGraphics puts there. */
-extern u8 gMenuState[][CO_LARGE_PICTURE_SIZE];
 
 void Mem_Copy32(const void* src, void* dst, u32 size);
 int CombatCo_IdFromNumber(int value);
@@ -27,10 +27,10 @@ void Ov003_UploadCoPictures(void) {
   savedScreen = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_04);
   if (data_02160ac0->unk_7c == 0) {
-    Mem_Copy32(gMenuState[0], data_027c0280->objVram + 0x1a00,
+    Mem_Copy32(gMenuState.coPictures[0], data_027c0280->objVram + 0x1a00,
                CO_LARGE_PICTURE_SIZE);
     Co_LoadPalette(CombatCo_IdFromNumber(data_ov003_02364928->rows[0].co), 18);
-    Mem_Copy32(gMenuState[1], data_027c0280->objVram + 0x5000,
+    Mem_Copy32(gMenuState.coPictures[1], data_027c0280->objVram + 0x5000,
                CO_LARGE_PICTURE_SIZE);
     Co_LoadPalette(CombatCo_IdFromNumber(data_ov003_02364928->rows[1].co), 19);
   } else {

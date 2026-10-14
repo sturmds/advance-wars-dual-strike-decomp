@@ -1,8 +1,8 @@
 #include "types.h"
+#include "game/menu_state.h"
 #include "game/menu_button.h"
 #include "game/tab_list.h"
 
-extern TabListView gMenuState;
 extern const MenuButtonTemplate data_0215d4c4;
 extern const MenuButtonTemplate data_0215d53c;
 
@@ -16,8 +16,8 @@ void TabList_RebuildButtons(void) {
   int selected;
   int count;
 
-  tab = gMenuState.tab;
-  first = gMenuState.pageOfTab[tab] * 9;
+  tab = gMenuState.tabList.tab;
+  first = gMenuState.tabList.pageOfTab[tab] * 9;
   selected = Menu_GetSelectedId();
 
   MenuButtons_RemoveSelectable();
@@ -32,7 +32,7 @@ void TabList_RebuildButtons(void) {
   }
   if (selected >= count * 4) {
     selected = (selected & 3) + (count - 1) * 4;
-    gMenuState.row = selected >> 2;
+    gMenuState.tabList.row = selected >> 2;
     MenuButton_Select(selected);
   } else {
     MenuButton_Select(selected);

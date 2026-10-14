@@ -1,9 +1,8 @@
 #include "types.h"
+#include "game/menu_state.h"
 #include "game/screen_other_map.h"
 #include "game/tab_list.h"
 #include "game/oam_cells.h"
-
-extern TabListView gMenuState;
 
 void TabList_CountMedals(u16* earnedOut, u16* totalOut);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
@@ -53,7 +52,7 @@ void TabList_DrawFrame(void) {
   saved = data_027c0280;
   Screen_SetCurrentGfx(data_027c0288.unk_00);
   for (i = 0; i < TAB_LIST_TAB_COUNT; i++) {
-    if (i == gMenuState.tab) {
+    if (i == gMenuState.tabList.tab) {
       Sprite_QueueAt(0, (i * 64) & 0x1ff, 0, &data_027c0008, i * 32, 0);
     } else {
       Sprite_QueueAt(0, (i * 64) & 0x1ff, 0, &data_027c0008, (i * 32) | 0x1000,

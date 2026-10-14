@@ -1,8 +1,8 @@
 #include "types.h"
+#include "game/menu_state.h"
 #include "game/Unk_02088d04.h"
 #include "game/tab_list.h"
 
-extern TabListView gMenuState;
 extern Unk_027c0280* data_027c0280;
 
 void Gfx_ClearLayerMap(int layer);
@@ -24,8 +24,8 @@ void TabList_DrawPage(void) {
   TabListEntry* item;
   int entry;
 
-  tab = gMenuState.tab;
-  first = gMenuState.pageOfTab[tab] * 9;
+  tab = gMenuState.tabList.tab;
+  first = gMenuState.tabList.pageOfTab[tab] * 9;
   Gfx_ClearLayerMap(0);
   for (row = 0, y = 5; row < TAB_LIST_PAGE_ROWS; row++, y += 2) {
     entry = first + row;

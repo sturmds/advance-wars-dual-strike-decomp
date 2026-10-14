@@ -14,6 +14,8 @@
 #include "game/Unk_02160ac0.h"
 #include "game/Unk_0229fb30.h"
 #include "game/Unk_02088d04.h"
+#include "game/co_graphics.h"
+#include "game/tab_list.h"
 
 /* Kinds of map list (MapList.unk_64): 1-8 the lists of the Versus tabs,
  * by map case (MapSelect_ListKindToMapCase), 9-12 the War Room lists for 2,
@@ -44,7 +46,9 @@ typedef struct LinkScreenState {
   u8 armyColours[4];  /* army colour of each player, from the map header */
   u8 readyFlags[4];   /* per player: 1 once ready */
   u8 playerCount;     /* number of players on the map */
-  u8 pad_02d[0x162e - 0x2d];
+  u8 pad_02d[0x2eb - 0x2d];
+  u8 unk_2eb; /* 1 from func_020647f8, 0 from func_02064820 */
+  u8 pad_2ec[0x162e - 0x2ec];
   u8 picked
       [2]; /* per link player: has picked a button of the two-player link menu */
 } LinkScreenState;
@@ -371,28 +375,45 @@ typedef struct TagBreakWork {
 #define MENU_STATE_SIZE 0x8000
 
 typedef struct MenuState {
-  u16 colours[16]; /* a 16-colour palette: map select copies one entry to the
-                                        * palette every 4 frames; the link screen and the world map
-                                        * load it from a file */
   union {
-    LinkScreenState link;
-    BattleSetupState setup;
-    CampaignMapWork campaignMap;
-    PlayerInfoScreen unk_0206d67c;
-    SpriteStripState spriteStrip;
-    BattleScreenWork battle;
-    CoExpScreenWork coExp;
-    CombatMenuState combat;
-    DesignMapRecord linkMaps
-        [LINK_DESIGN_MAPS_PER_PLAYER]; /* the maps of the two-player link menu, shown by its stage 2 buttons */
-    LinkMenuMaps linkMenu;
-    MenuStateShared shared;
-    VsSetupPanels vsPanels;
-    TagBreakWork tagBreak;
-    /* the whole work area: ov003 keeps two CO pictures in it, from offset 0 */
-    u8 work[MENU_STATE_SIZE - 16 * sizeof(u16)];
+    struct {
+      u16 colours
+          [16]; /* a 16-colour palette: map select copies one entry to the
+                                            * palette every 4 frames; the link screen and the world map
+                                            * load it from a file */
+      union {
+        LinkScreenState link;
+        BattleSetupState setup;
+        CampaignMapWork campaignMap;
+        PlayerInfoScreen unk_0206d67c;
+        SpriteStripState spriteStrip;
+        BattleScreenWork battle;
+        CoExpScreenWork coExp;
+        CombatMenuState combat;
+        DesignMapRecord linkMaps
+            [LINK_DESIGN_MAPS_PER_PLAYER]; /* the maps of the two-player link menu, shown by its stage 2 buttons */
+        LinkMenuMaps linkMenu;
+        MenuStateShared shared;
+        VsSetupPanels vsPanels;
+        TagBreakWork tagBreak;
+        /* the whole work area after colours */
+        u8 work[MENU_STATE_SIZE - 16 * sizeof(u16)];
+      };
+    };
+    /* Views from offset 0, over colours: */
+    u8 bytes[MENU_STATE_SIZE]; /* an unpack or copy buffer */
+    u16 bgRows[MENU_STATE_SIZE / (BG_ROW_ENTRIES * sizeof(u16))]
+              [BG_ROW_ENTRIES]; /* a BG map (the result screen) */
+    u8 coPictures[MENU_STATE_SIZE / CO_LARGE_PICTURE_SIZE]
+                 [CO_LARGE_PICTURE_SIZE]; /* CO pictures (ov003) */
+    TabListView tabList;
   };
 } MenuState;
+
+typedef char
+    MenuState_size_check[sizeof(MenuState) == MENU_STATE_SIZE ? 1 : -1];
+
+extern MenuState gMenuState;
 
 /* BattleScreenWork.unk_27c[side]. Needed to match: the compiler adds the 0x27c after
  * the side index, so the array is reached through gMenuState's own address. */

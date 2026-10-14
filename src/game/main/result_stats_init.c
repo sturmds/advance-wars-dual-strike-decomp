@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/menu_state.h"
 #include "game/icon.h"
 #include "game/task.h"
 #include "game/Unk_02080440.h"
@@ -48,7 +49,6 @@ extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern BattleResults data_022a7a9c;
 /* On this screen gMenuState starts with a BG map of 24 rows. */
-extern u16 gMenuState[][BG_ROW_ENTRIES];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define ROW(player) (data_022a7a9c.rows[player])
@@ -117,7 +117,7 @@ void ResultStats_Init(Task* task) {
              * further left for each extra digit. */
       if (data_027c027c == MAIN_MAP) {
         /* The main screen leaves out the map's first row. */
-        Mem_Copy32(gMenuState[1], data_027c0280->layer1Map,
+        Mem_Copy32(gMenuState.bgRows[1], data_027c0280->layer1Map,
                    BG_VISIBLE_SIZE - BG_ROW_ENTRIES * sizeof(u16));
         Text_PrintStringImmediate(8, 2, data_027c0280->layer0Map, mapName, 0,
                                   0);
@@ -133,7 +133,8 @@ void ResultStats_Init(Task* task) {
                               0);
         }
       } else {
-        Mem_Copy32(gMenuState, data_027c0280->layer1Map, BG_VISIBLE_SIZE);
+        Mem_Copy32(gMenuState.bgRows, data_027c0280->layer1Map,
+                   BG_VISIBLE_SIZE);
         Text_PrintStringImmediate(8, 3, data_027c0280->layer0Map, mapName, 0,
                                   0);
         Number_Draw(28, 3, data_027c0280->layer0Map, day, 0, 0);

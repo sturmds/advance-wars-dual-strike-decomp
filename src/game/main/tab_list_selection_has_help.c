@@ -1,7 +1,7 @@
 #include "types.h"
+#include "game/menu_state.h"
 #include "game/tab_list.h"
 
-extern TabListView gMenuState;
 int TabList_CallUnk1c(int row, int col);
 
 /* Whether the selected button has help text: not for an entry whose unk_1c
@@ -12,9 +12,9 @@ BOOL TabList_SelectionHasHelp(void) {
   int entry;
   u8 col;
   u32 value;
-  tab = gMenuState.tab;
-  col = gMenuState.unk_06;
-  entry = gMenuState.pageOfTab[tab] * 9 + gMenuState.row;
+  tab = gMenuState.tabList.tab;
+  col = gMenuState.tabList.unk_06;
+  entry = gMenuState.tabList.pageOfTab[tab] * 9 + gMenuState.tabList.row;
 
   if (TabList_CallUnk1c(tab, entry) == 1) {
     return FALSE;

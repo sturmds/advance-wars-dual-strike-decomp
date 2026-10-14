@@ -1,9 +1,8 @@
 #include "types.h"
+#include "game/menu_state.h"
 #include "game/keypad.h"
 #include "game/menu_button.h"
 #include "game/tab_list.h"
-
-extern TabListView gMenuState;
 
 void Sound_PlaySe(int id);
 void TabList_RebuildButtons(void);
@@ -14,7 +13,7 @@ void func_02070800(MenuButton* button);
 
 /* Needed to match: a volatile read of the tab, so that the original's second
  * read in the else branch is not merged with it. */
-#define TAB_RELOAD (*(volatile u8*)&gMenuState.tab)
+#define TAB_RELOAD (*(volatile u8*)&gMenuState.tabList.tab)
 
 /* onKeys of the tab list's buttons (id 4 * row + column). The d-pad moves
  * the selection: up and down by rows, down only onto an entry that exists
@@ -38,8 +37,10 @@ void TabList_OnKeys(MenuButton* button) {
   if (repeat & PAD_KEY_DOWN) {
     row = next >> 2;
     if (row < 8) {
-      if (data_0215d6c4[gMenuState.tab]
-                       [gMenuState.pageOfTab[gMenuState.tab] * 9 + row + 1]
+      if (data_0215d6c4[gMenuState.tabList.tab]
+                       [gMenuState.tabList.pageOfTab[gMenuState.tabList.tab] *
+                            9 +
+                        row + 1]
                            .unk_04 != TAB_LIST_END_MARK) {
         next += 4;
       }
@@ -65,9 +66,9 @@ void TabList_OnKeys(MenuButton* button) {
   if (gKeypad->pressed & PAD_BUTTON_L) {
     Sound_PlaySe(0x10002);
     if (TAB_RELOAD == 0) {
-      gMenuState.tab = 3;
+      gMenuState.tabList.tab = 3;
     } else {
-      gMenuState.tab--;
+      gMenuState.tabList.tab--;
     }
     TabList_RebuildButtons();
     TabList_UpdateHelpText();
@@ -75,9 +76,9 @@ void TabList_OnKeys(MenuButton* button) {
   if (gKeypad->pressed & PAD_BUTTON_R) {
     Sound_PlaySe(0x10002);
     if (TAB_RELOAD == 3) {
-      gMenuState.tab = 0;
+      gMenuState.tabList.tab = 0;
     } else {
-      gMenuState.tab++;
+      gMenuState.tabList.tab++;
     }
     TabList_RebuildButtons();
     TabList_UpdateHelpText();

@@ -1,7 +1,7 @@
 #include "types.h"
+#include "game/menu_state.h"
 #include "game/tab_list.h"
 
-extern TabListView gMenuState;
 void HelpText_Clear(void);
 void HelpText_Show(u32 textId, int tile);
 BOOL TabList_SelectionHasHelp(void);
@@ -13,10 +13,10 @@ void TabList_UpdateHelpText(void) {
   u8 row;
   int entry;
   u8 col;
-  tab = gMenuState.tab;
-  row = gMenuState.row;
-  col = gMenuState.unk_06;
-  entry = gMenuState.pageOfTab[tab] * 9 + row;
+  tab = gMenuState.tabList.tab;
+  row = gMenuState.tabList.row;
+  col = gMenuState.tabList.unk_06;
+  entry = gMenuState.tabList.pageOfTab[tab] * 9 + row;
 
   if (!TabList_SelectionHasHelp()) {
     HelpText_Clear();

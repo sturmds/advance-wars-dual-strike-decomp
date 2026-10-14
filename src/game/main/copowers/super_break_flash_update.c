@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/menu_state.h"
 #include "game/task.h"
 #include "game/screen_other_map.h"
 
@@ -12,8 +13,6 @@ void Palette_BlendWithColor(u16* palette, u16 color, u8 palWeight,
                             u8 colorWeight);
 void Palette_Flush(void);
 void Task_ResumeScript(Task* task);
-
-extern u8 gMenuState[]; /* SuperBreak_SetUpScreen saved BG palettes 1-3 here */
 
 /* The frame counter shares its slot with Task.unk_4c. */
 #define FRAME(task) (*(s16*)&(task)->unk_4c)
@@ -80,7 +79,7 @@ void SuperBreak_FlashUpdate(Task* task) {
       break;
   }
 
-  Mem_Copy32(gMenuState, data_027c0280->paletteBuffer + 1 * PALETTE_SIZE,
+  Mem_Copy32(gMenuState.bytes, data_027c0280->paletteBuffer + 1 * PALETTE_SIZE,
              FLASH_PALETTE_COUNT * PALETTE_SIZE);
   for (i = 0; i < FLASH_PALETTE_COUNT; i++) {
     Palette_BlendWithColor(

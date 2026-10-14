@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/menu_state.h"
 #include "game/task.h"
 #include "game/Unk_02088d04.h"
 
@@ -9,8 +10,6 @@ struct SpriteAnimTask* SpriteAnimTask_Start(const void* file, int x, int y,
 void Task_ResumeScript(Task* task);
 
 extern Unk_027c0280* data_027c0280;
-extern u8
-    gMenuState[]; /* holds the sprite file the banner's load step copies in */
 
 /* The frame counter shares its slot with Task.unk_4c. */
 #define FRAME(task) (*(s16*)&(task)->unk_4c)
@@ -42,9 +41,10 @@ void SuperBreak_SlideInBanner(Task* task) {
   }
   for (i = 0; i < EDGE_SPRITE_COUNT; i++) {
     x = i * EDGE_SPRITE_SPACING + 24;
-    SpriteAnimTask_Start(gMenuState, (x & 0x1ff) | SPRITE_FLIP_V, 36,
+    SpriteAnimTask_Start(gMenuState.bytes, (x & 0x1ff) | SPRITE_FLIP_V, 36,
                          EDGE_SPRITE_TILES, 0, 0);
-    SpriteAnimTask_Start(gMenuState, x & 0x1ff, 140, EDGE_SPRITE_TILES, 0, 0);
+    SpriteAnimTask_Start(gMenuState.bytes, x & 0x1ff, 140, EDGE_SPRITE_TILES, 0,
+                         0);
   }
   FRAME(task) = 0;
   Task_ResumeScript(task);

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/menu_state.h"
 #include "game/icon.h"
 #include "game/co_rank_task.h"
 #include "game/player.h"
@@ -36,7 +37,6 @@ extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern Unk_022a7b80 data_022a7b80;
-extern u8 gMenuState[];
 extern const char gCoRankPointObjPath[]; /* "/ohashi/res_result_point_obj" */
 extern const char gCoRankSurvivalPath[]; /* "/ohashi/res_survival" */
 extern const char gCoRankLangPath[];     /* "/ohashi/res_result_lang" */
@@ -185,7 +185,7 @@ void CoRankScreen_Init(CoRankTask* task) {
   Mem_Free(file);
 
   file = File_Load(File_LocalizePath(gCoRankCtcLangPath));
-  Mem_Copy32(file, gMenuState, 0x160);
+  Mem_Copy32(file, gMenuState.bytes, 0x160);
   Mem_Free(file);
 
   GFX_TO(MAIN_MAP);
