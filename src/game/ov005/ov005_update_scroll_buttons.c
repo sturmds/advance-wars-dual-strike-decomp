@@ -5,7 +5,11 @@
 #include "game/Unk_ov005_0236bba0.h"
 
 extern const MenuButtonTemplate data_ov005_0236a550;
-extern const MenuButtonTemplate data_ov005_0236a4b0;
+void func_ov005_0235cee4(void);
+
+static MenuButtonTemplate data_ov005_0236a4b0 = {
+#include "data/ov005/data_ov005_0236a4b0.inc.c"
+};
 
 /* Shows button 243 while the list is scrolled down (scroll above 0) and
  * button 244 while it can still scroll further (scroll below 64), on the

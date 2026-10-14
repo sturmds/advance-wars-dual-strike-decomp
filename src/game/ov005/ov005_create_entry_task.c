@@ -1,8 +1,81 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/ov005_task.h"
+#include "game/screen_contexts.h"
 
-extern const TaskScriptCmd gOv005EntryTaskScript[];
+void Ov005Entry_WaitThenTurn(void);
+void Ov005Screen_AllocLargeWork(void);
+void Ov005Screen_EndSetFlag57(void);
+void Ov005Screen_StartPaletteTask(void);
+void Ov005Slide_Update(void);
+void Ov005_SetUpMainScreenLayer2(void);
+void Ov005_SetUpStaffCreditsScreen(void);
+void Ov005_UpdateStaffCreditsScreen(void);
+void Ov005_UpdateTimedScreen(void);
+extern u8 data_02178b08[];
+extern u8 data_0217ab08[];
+extern u8 data_0217eb08[];
+extern u8 data_02180b08[];
+void func_ov005_0235a81c(void);
+extern u8 data_02179b08[];
+extern u8 data_0217fb08[];
+
+char gOv005MessageFile01c[4] = {
+#include "data/ov005/gOv005MessageFile01c.inc.c"
+};
+char gOv005MessageFile014[4] = {
+#include "data/ov005/gOv005MessageFile014.inc.c"
+};
+char gOv005MessageFile013[4] = {
+#include "data/ov005/gOv005MessageFile013.inc.c"
+};
+char gOv005MessageFile01d[4] = {
+#include "data/ov005/gOv005MessageFile01d.inc.c"
+};
+char gOv005MessageFile015[4] = {
+#include "data/ov005/gOv005MessageFile015.inc.c"
+};
+char gOv005MessageFile017[4] = {
+#include "data/ov005/gOv005MessageFile017.inc.c"
+};
+char gOv005MessageFile01b[4] = {
+#include "data/ov005/gOv005MessageFile01b.inc.c"
+};
+char gOv005MessageFile016[4] = {
+#include "data/ov005/gOv005MessageFile016.inc.c"
+};
+char gOv005MessageFile01e[4] = {
+#include "data/ov005/gOv005MessageFile01e.inc.c"
+};
+u8 data_ov005_023695c4[12] = {
+#include "data/ov005/data_ov005_023695c4.inc.c"
+};
+u8 data_ov005_023695d0[12] = {
+#include "data/ov005/data_ov005_023695d0.inc.c"
+};
+static TaskScriptCmd gOv005EntryTaskScript[3] = {
+#include "data/ov005/gOv005EntryTaskScript.inc.c"
+};
+TaskScriptCmd data_ov005_023695f4[3] = {
+#include "data/ov005/data_ov005_023695f4.inc.c"
+};
+TaskScriptCmd data_ov005_0236960c[5] = {
+#include "data/ov005/data_ov005_0236960c.inc.c"
+};
+TaskScriptCmd data_ov005_02369634[7] = {
+#include "data/ov005/data_ov005_02369634.inc.c"
+};
+/* declared `u8 data_ov005_0236966c[]` in ov005_set_up_main_screen_layer2.c: relocation at data_ov005_0236966c+0xc is not on a 4-byte field */
+u32 data_ov005_0236966c[20] = {
+#include "data/ov005/data_ov005_0236966c.inc.c"
+};
+/* declared `u8 gOv005CreditsSubLayers[]` in ov005_set_up_staff_credits_screen.c: relocation at gOv005CreditsSubLayers+0xc is not on a 4-byte field */
+u32 gOv005CreditsSubLayers[20] = {
+#include "data/ov005/gOv005CreditsSubLayers.inc.c"
+};
+u16 data_ov005_0236970c[192] = {
+#include "data/ov005/data_ov005_0236970c.inc.c"
+};
 
 Ov005Task* Ov005_CreateEntryTask(void* work, int entryIndex, int arg) {
   Ov005Task* task =

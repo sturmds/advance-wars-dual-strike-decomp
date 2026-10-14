@@ -15,7 +15,13 @@ BOOL Text_IsPrinting(void);
 void Text_StopPrinting(void);
 void Task_Destroy(void* task);
 void Task_ResumeScript(Ov005Task* task);
-extern const TaskScriptCmd data_ov005_02368020[];
+void Ov005Ripple_ReleaseObjects(void);
+void Ov005_UpdateAffineBgScreen(void);
+void func_ov005_023531d8(void);
+
+static TaskScriptCmd data_ov005_02368020[5] = {
+#include "data/ov005/data_ov005_02368020.inc.c"
+};
 extern const MenuButtonTemplate data_ov005_02368070[];
 
 /* Opens a text box with a child task, waits for the text to finish, then

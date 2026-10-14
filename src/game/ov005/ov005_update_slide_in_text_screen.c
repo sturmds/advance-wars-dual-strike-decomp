@@ -18,8 +18,18 @@ void Text_StopPrinting(void);
 void Task_Destroy(Task* task);
 void Task_ResumeScript(Ov005Task* task);
 
-extern const TaskScriptCmd data_ov005_02368048[];
-extern const MenuButtonTemplate data_ov005_02368070;
+void Ov005Ripple_FreeBuffers(void);
+void Ov005_UpdateBgWave(void);
+void func_ov005_02353574(void);
+void func_ov005_023536a0(void);
+void func_ov005_023536a4(void);
+
+static TaskScriptCmd data_ov005_02368048[5] = {
+#include "data/ov005/data_ov005_02368048.inc.c"
+};
+MenuButtonTemplate data_ov005_02368070 = {
+#include "data/ov005/data_ov005_02368070.inc.c"
+};
 
 /* Per-frame update. Every frame it eases the x scroll of layers 1 and 2 on
  * screen data_027c0288.unk_04 (0 to 120 and 256 to 376 pixels). Steps: start

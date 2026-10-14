@@ -25,9 +25,14 @@ extern char data_ov005_02368a08[]; /* directory of the files below */
 extern char data_ov005_02368a14[]; /* layer 2 tiles */
 extern char data_ov005_02368a18[]; /* layer 2 map */
 extern char data_ov005_02368a1c[]; /* layer 2 palette */
-extern u32 data_ov005_02367f2c[];  /* map bytes of a text BG by screen size */
-extern u32 data_ov005_02367f3c
-    []; /* map bytes of a rotation/scaling BG by screen size */
+/* map bytes of a text BG by screen size */
+const u32 data_ov005_02367f2c[4] = {
+#include "data/ov005/data_ov005_02367f2c.inc.c"
+};
+/* map bytes of a rotation/scaling BG by screen size */
+const u32 data_ov005_02367f3c[4] = {
+#include "data/ov005/data_ov005_02367f3c.inc.c"
+};
 
 /* Task step: sets up the main screen (data_027c0288.unk_00) like
  * func_ov005_02355bb0 does, with other files: BG0, BG2 and OBJ on, layer

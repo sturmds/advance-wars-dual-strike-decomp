@@ -12,7 +12,17 @@ u32 Ov005_GetCoListEntryName(int entry);
 extern u8 data_ov005_0236a48c[33];
 extern u8 data_ov005_0236a5a0
     [33][4]; /* per entry: x and y in pixels, then grid column and row */
-extern const MenuButtonTemplate data_ov005_0236a4d8;
+void Ov005_MoveCoListCursor(void);
+void func_ov005_0235d714(void);
+void func_ov005_0235d13c(void);
+void Ov005_SelectCoListEntry(void);
+
+static MenuButtonTemplate data_ov005_0236a4d8 = {
+#include "data/ov005/data_ov005_0236a4d8.inc.c"
+};
+MenuButtonTemplate data_ov005_0236a500 = {
+#include "data/ov005/data_ov005_0236a500.inc.c"
+};
 
 /* Marks which of the 33 list entries are available, then gives each
  * available entry a button (id 128 + entry) and prints its name on the top

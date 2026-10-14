@@ -4,7 +4,15 @@
 
 void Mem_Copy32(const void* src, void* dst, u32 size);
 
-extern const Unk_ov005_0236bba4_State data_ov005_0236a74c[41];
+void Ov005State_ShowLayer2BothScreens(void);
+void Ov005State_ShowLayer2Picture(void);
+void Ov005State_ShowLayer2PictureA(void);
+void Ov005State_ShowPicture(void);
+void Ov005State_ShowTotalRankWall(void);
+
+static Unk_ov005_0236bba4_State data_ov005_0236a74c[41] = {
+#include "data/ov005/data_ov005_0236a74c.inc.c"
+};
 
 void Ov005_InitStateWork(Unk_ov005_0236bba4* work) {
   work->wall1Unlocked = GameFlag_IsSet(61);

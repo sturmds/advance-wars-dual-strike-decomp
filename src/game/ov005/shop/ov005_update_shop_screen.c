@@ -55,8 +55,57 @@ void Ov005_DrawShopPageNumber(
 extern u16 gEventChoiceAnswer; /* answer of the yes/no question, 0: yes */
 extern u8 gEventTextMap[];
 extern u8 data_022978e0[];
-extern const TaskScriptCmd data_ov005_0236b35c[];
-extern const TaskScriptCmd data_ov005_0236b374[];
+void Ov005_UpdateShopTransition(void);
+void func_ov005_0236701c(void);
+void func_ov005_0236703c(void);
+
+char data_ov005_0236b330[4] = {
+#include "data/ov005/data_ov005_0236b330.inc.c"
+};
+/* "%s" */
+char data_ov005_0236b358[4] = {
+#include "data/ov005/data_ov005_0236b358.inc.c"
+};
+/* "048": OBJ tiles */
+char data_ov005_0236b354[4] = {
+#include "data/ov005/data_ov005_0236b354.inc.c"
+};
+/* "04d": OBJ palette */
+char data_ov005_0236b350[4] = {
+#include "data/ov005/data_ov005_0236b350.inc.c"
+};
+/* "04b": OBJ tiles */
+char data_ov005_0236b34c[4] = {
+#include "data/ov005/data_ov005_0236b34c.inc.c"
+};
+/* "047": OBJ palette */
+char data_ov005_0236b348[4] = {
+#include "data/ov005/data_ov005_0236b348.inc.c"
+};
+/* "045": OBJ tiles */
+char data_ov005_0236b344[4] = {
+#include "data/ov005/data_ov005_0236b344.inc.c"
+};
+/* "04c" */
+char data_ov005_0236b340[4] = {
+#include "data/ov005/data_ov005_0236b340.inc.c"
+};
+/* "046" */
+char data_ov005_0236b33c[4] = {
+#include "data/ov005/data_ov005_0236b33c.inc.c"
+};
+char data_ov005_0236b338[4] = {
+#include "data/ov005/data_ov005_0236b338.inc.c"
+};
+char data_ov005_0236b334[4] = {
+#include "data/ov005/data_ov005_0236b334.inc.c"
+};
+static TaskScriptCmd data_ov005_0236b35c[3] = {
+#include "data/ov005/data_ov005_0236b35c.inc.c"
+};
+static TaskScriptCmd data_ov005_0236b374[3] = {
+#include "data/ov005/data_ov005_0236b374.inc.c"
+};
 extern const MenuButtonTemplate data_ov005_0236b3b4;
 extern const MenuButtonTemplate data_ov005_0236b404;
 extern const MenuButtonTemplate data_ov005_0236b42c;

@@ -2,7 +2,11 @@
 #include "game/menu_button.h"
 #include "game/screen_other_map.h"
 
-extern const MenuButtonTemplate data_ov005_0236ab84;
+void func_ov005_023634c8(void);
+
+MenuButtonTemplate data_ov005_0236ab84 = {
+#include "data/ov005/data_ov005_0236ab84.inc.c"
+};
 
 void func_ov005_02362cf8(void) {
   Unk_027c0280* saved0280 = data_027c0280;

@@ -34,9 +34,14 @@ extern char gRikiishiFile009[];
 extern char gRikiishiFile00a[];
 extern char gRikiishiFile00b[];
 extern char gRikiishiFile00c[];
-extern u32 data_ov005_02367f0c[]; /* map bytes of a text BG by screen size */
-extern u32 data_ov005_02367f1c
-    []; /* map bytes of a rotation/scaling BG by screen size */
+/* map bytes of a text BG by screen size */
+static const u32 data_ov005_02367f0c[4] = {
+#include "data/ov005/data_ov005_02367f0c.inc.c"
+};
+/* map bytes of a rotation/scaling BG by screen size */
+static const u32 data_ov005_02367f1c[4] = {
+#include "data/ov005/data_ov005_02367f1c.inc.c"
+};
 
 /* Screen setup step of an overlay 5 screen (task script data_ov005_02368230).
  * Main screen: BG0 and OBJ on, no blending, a text printer on layer 0. Sub

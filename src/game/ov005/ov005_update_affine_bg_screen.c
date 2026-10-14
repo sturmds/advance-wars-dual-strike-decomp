@@ -6,6 +6,7 @@
 #include "game/task.h"
 #include "game/unit_show_task.h"
 #include "game/Unk_ov005_0236bb80.h"
+#include "game/screen_contexts.h"
 
 void Screen_SetCurrent(void* state);
 void Screen_SetCurrentGfx(void* state);
@@ -21,8 +22,51 @@ void Palette_Darken(u8* palettes, int first, int count, int level);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern TaskScriptCmd data_ov005_02368098[];
-extern TaskScriptCmd data_ov005_023680c0[];
+void Ov005Screen_WaitTaskThenResume(void);
+void Ov005_ClearHasTaskB(void);
+void Ov005_SetHasTaskB(void);
+void Ov005_SetupDarkenedScreensWithSong(void);
+void Ov005_SetupScreensWithAffineBg(void);
+void Ov005_SetupScreensWithBlend(void);
+void Ov005_UpdateScrollingTextPromptScreen(void);
+void Ov005_UpdateSlideInTextScreen(void);
+void Ov005_UpdateTextPromptScreen(void);
+extern u8 data_02178b08[];
+extern u8 data_0217ab08[];
+extern u8 data_0217eb08[];
+extern u8 data_02180b08[];
+void func_ov005_02350578(void);
+void func_ov005_02352790(void);
+void func_ov005_02353204(void);
+void func_ov005_02353214(void);
+extern u8 data_02179b08[];
+extern u8 data_0217fb08[];
+
+static TaskScriptCmd data_ov005_02368098[5] = {
+#include "data/ov005/data_ov005_02368098.inc.c"
+};
+static TaskScriptCmd data_ov005_023680c0[6] = {
+#include "data/ov005/data_ov005_023680c0.inc.c"
+};
+/* declared `u8 gOv005DarkenedSubLayers[]` in ov005_setup_darkened_screens_with_song.c: relocation at gOv005DarkenedSubLayers+0xc is not on a 4-byte field */
+u32 gOv005DarkenedSubLayers[20] = {
+#include "data/ov005/gOv005DarkenedSubLayers.inc.c"
+};
+/* declared `u8 gOv005BlendSubLayers[]` in ov005_setup_screens_with_blend.c: relocation at gOv005BlendSubLayers+0xc is not on a 4-byte field */
+u32 gOv005BlendSubLayers[20] = {
+#include "data/ov005/gOv005BlendSubLayers.inc.c"
+};
+/* declared `u8 data_ov005_023680f0[]` in ov005_setup_darkened_screens_with_song.c: relocation at data_ov005_023680f0+0xc is not on a 4-byte field */
+u32 data_ov005_023680f0[20] = {
+#include "data/ov005/data_ov005_023680f0.inc.c"
+};
+/* declared `u8 gOv005AffineSubLayers[]` in ov005_setup_screens_with_affine_bg.c: relocation at gOv005AffineSubLayers+0xc is not on a 4-byte field */
+u32 gOv005AffineSubLayers[20] = {
+#include "data/ov005/gOv005AffineSubLayers.inc.c"
+};
+TaskScriptCmd data_ov005_02368230[11] = {
+#include "data/ov005/data_ov005_02368230.inc.c"
+};
 
 /* Fades OBJ palette `palette` from black back to its saved colours in
  * block80, by the ease of the task's frame count. */

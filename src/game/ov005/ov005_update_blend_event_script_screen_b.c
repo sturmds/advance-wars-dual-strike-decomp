@@ -19,7 +19,11 @@ void func_ov005_0235785c(void);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern const TaskScriptCmd data_ov005_02369180[];
+void func_ov005_02357844(void);
+
+static TaskScriptCmd data_ov005_02369180[88] = {
+#include "data/ov005/data_ov005_02369180.inc.c"
+};
 
 /* Same steps as Ov005_UpdateBlendEventScriptScreen with another script, and
  * the script-done flag of data_ov005_0236bb88 (func_ov005_02357830); it

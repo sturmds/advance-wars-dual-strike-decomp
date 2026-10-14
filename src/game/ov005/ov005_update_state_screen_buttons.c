@@ -2,9 +2,36 @@
 #include "game/menu_button.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov005_0236bba4.h"
+#include "game/task.h"
 
-extern const MenuButtonTemplate data_ov005_0236a65c;
-extern const MenuButtonTemplate data_ov005_0236a6fc;
+void Ov005StateScreen_OnBTouched(void);
+void Ov005StateScreen_OnPrevTouched(void);
+void Ov005StateScreen_OnRTouched(void);
+void Ov005_AllocStateWork(void);
+void Ov005_FreeStateWork(void);
+void Ov005_SetUpStateScreen(void);
+void Ov005_UpdateLeftTouched(void);
+void Ov005_UpdateRightTouched(void);
+void Ov005_UpdateStateScreen(void);
+
+static MenuButtonTemplate data_ov005_0236a6fc = {
+#include "data/ov005/data_ov005_0236a6fc.inc.c"
+};
+MenuButtonTemplate data_ov005_0236a6d4 = {
+#include "data/ov005/data_ov005_0236a6d4.inc.c"
+};
+MenuButtonTemplate data_ov005_0236a6ac = {
+#include "data/ov005/data_ov005_0236a6ac.inc.c"
+};
+MenuButtonTemplate data_ov005_0236a684 = {
+#include "data/ov005/data_ov005_0236a684.inc.c"
+};
+static MenuButtonTemplate data_ov005_0236a65c = {
+#include "data/ov005/data_ov005_0236a65c.inc.c"
+};
+TaskScriptCmd data_ov005_0236a724[5] = {
+#include "data/ov005/data_ov005_0236a724.inc.c"
+};
 
 /* Shows the Left button (245) while the scroll is above 0 and the Right
  * button (246) while it is below the current state's scrollMax, on the top

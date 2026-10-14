@@ -27,7 +27,15 @@ void Ov005_RemoveStateScreenButtons(Unk_ov005_0236bba4* work);
 void func_ov005_0235ec40(Unk_ov005_0236bba4* work);
 
 extern Keypad* gKeypad;
-extern const MenuButtonTemplate data_ov005_0236a634;
+void Ov005StateScreen_OnNextTouched(void);
+
+/* "039" */
+char data_ov005_0236a630[4] = {
+#include "data/ov005/data_ov005_0236a630.inc.c"
+};
+MenuButtonTemplate data_ov005_0236a634 = {
+#include "data/ov005/data_ov005_0236a634.inc.c"
+};
 extern const MenuButtonTemplate data_ov005_0236a684;
 extern const MenuButtonTemplate data_ov005_0236a6ac;
 

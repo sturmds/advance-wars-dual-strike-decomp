@@ -19,18 +19,51 @@ extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern char data_ov005_0236aa80[]; /* "/rikiishi" */
-extern char data_ov005_0236ab34[]; /* "01f": tiles, picture 0 */
-extern char data_ov005_0236ab38[]; /* "020": map */
-extern char data_ov005_0236ab3c[]; /* "021": palette */
-extern char data_ov005_0236ab40[]; /* "022": tiles, picture 1 */
-extern char data_ov005_0236ab44[]; /* "023": map */
-extern char data_ov005_0236ab48[]; /* "026": palette, pictures 1 and 2 */
-extern char data_ov005_0236ab4c[]; /* "024": tiles, picture 2 */
-extern char data_ov005_0236ab50[]; /* "025": map */
-extern char data_ov005_0236ab54[]; /* "027": tiles, picture 3 */
-extern char data_ov005_0236ab58[]; /* "028": map */
-extern char data_ov005_0236ab5c[]; /* "029": palette */
-extern u32 data_ov005_02367fac[];  /* map bytes of a text BG by screen size */
+/* "028": map */
+static char data_ov005_0236ab58[4] = {
+#include "data/ov005/data_ov005_0236ab58.inc.c"
+};
+/* "027": tiles, picture 3 */
+static char data_ov005_0236ab54[4] = {
+#include "data/ov005/data_ov005_0236ab54.inc.c"
+};
+/* "025": map */
+static char data_ov005_0236ab50[4] = {
+#include "data/ov005/data_ov005_0236ab50.inc.c"
+};
+/* "024": tiles, picture 2 */
+static char data_ov005_0236ab4c[4] = {
+#include "data/ov005/data_ov005_0236ab4c.inc.c"
+};
+/* "026": palette, pictures 1 and 2 */
+static char data_ov005_0236ab48[4] = {
+#include "data/ov005/data_ov005_0236ab48.inc.c"
+};
+/* "023": map */
+static char data_ov005_0236ab44[4] = {
+#include "data/ov005/data_ov005_0236ab44.inc.c"
+};
+/* "022": tiles, picture 1 */
+static char data_ov005_0236ab40[4] = {
+#include "data/ov005/data_ov005_0236ab40.inc.c"
+};
+/* "021": palette */
+static char data_ov005_0236ab3c[4] = {
+#include "data/ov005/data_ov005_0236ab3c.inc.c"
+};
+/* "020": map */
+static char data_ov005_0236ab38[4] = {
+#include "data/ov005/data_ov005_0236ab38.inc.c"
+};
+/* "01f": tiles, picture 0 */
+static char data_ov005_0236ab34[4] = {
+#include "data/ov005/data_ov005_0236ab34.inc.c"
+};
+/* "029": palette */
+static char data_ov005_0236ab5c[4] = {
+#include "data/ov005/data_ov005_0236ab5c.inc.c"
+};
+extern u32 data_ov005_02367fac[]; /* map bytes of a text BG by screen size */
 extern u32 data_ov005_02367fbc
     []; /* map bytes of a rotation/scaling BG by screen size */
 

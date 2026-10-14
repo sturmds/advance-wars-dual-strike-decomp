@@ -4,7 +4,9 @@
 int HwDiv32(int numerator, int denominator);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 
-extern const ShopButton data_ov005_0236b498[6];
+static ShopButton data_ov005_0236b498[6] = {
+#include "data/ov005/data_ov005_0236b498.inc.c"
+};
 
 void Ov005_InitShopPaging(Unk_ov005_0236bbb0* work) {
   work->cursorRow = 0;

@@ -4,6 +4,70 @@
     .data       start:0x02368020 end:0x0236bb80 kind:data align:32
     .bss        start:0x0236bb80 end:0x0236bbc0 kind:bss align:32
 
+src/game/ov005/ov005_data_02368288.c:
+    complete
+    .data       start:0x02368288 end:0x02368294
+
+src/game/ov005/ov005_data_02368a08.c:
+    complete
+    .data       start:0x02368a08 end:0x02368a14
+
+src/game/ov005/ov005_data_02369440.c:
+    complete
+    .data       start:0x02369440 end:0x0236944c
+
+src/game/ov005/ov005_data_023694cc.c:
+    complete
+    .data       start:0x023694cc end:0x02369594
+
+src/game/ov005/ov005_data_02369594.c:
+    complete
+    .data       start:0x02369594 end:0x023695a0
+
+src/game/ov005/ov005_data_0236988c.c:
+    complete
+    .data       start:0x0236988c end:0x02369898
+
+src/game/ov005/ov005_data_02369bc8.c:
+    complete
+    .data       start:0x02369bc8 end:0x02369bd4
+
+src/game/ov005/ov005_data_02369bd4.c:
+    complete
+    .data       start:0x02369bd4 end:0x0236a48c
+
+src/game/ov005/ov005_data_0236a624.c:
+    complete
+    .data       start:0x0236a624 end:0x0236a630
+
+src/game/ov005/ov005_data_0236aa80.c:
+    complete
+    .data       start:0x0236aa80 end:0x0236aa8c
+
+src/game/ov005/ov005_data_0236aa8c.c:
+    complete
+    .data       start:0x0236aa8c end:0x0236aaf4
+
+src/game/ov005/ov005_data_0236ae50.c:
+    complete
+    .data       start:0x0236ae50 end:0x0236ae5c
+
+src/game/ov005/sound_room/sound_room_data.c:
+    complete
+    .data       start:0x0236b324 end:0x0236b330
+
+src/game/ov005/shop/shop_data.c:
+    complete
+    .data       start:0x0236b4e0 end:0x0236b4ec
+
+src/game/ov005/shop/shop_data_0236b4ec.c:
+    complete
+    .data       start:0x0236b4ec end:0x0236b5c0
+
+src/game/ov005/shop/shop_data_0236b5c0.c:
+    complete
+    .data       start:0x0236b5c0 end:0x0236bb80
+
 src/game/ov005/func_ov005_02350560.c:
     complete
     .text       start:0x02350560 end:0x02350578
@@ -15,6 +79,7 @@ src/game/ov005/func_ov005_02350578.c:
 src/game/ov005/ov005_update_text_prompt_screen.c:
     complete
     .text       start:0x02350588 end:0x023507e0
+    .data       start:0x02368020 end:0x02368048
 
 src/game/ov005/ov005_setup_screens_with_affine_bg.c:
     complete
@@ -23,10 +88,12 @@ src/game/ov005/ov005_setup_screens_with_affine_bg.c:
 src/game/ov005/ov005_update_slide_in_text_screen.c:
     complete
     .text       start:0x02350e2c end:0x023512dc
+    .data       start:0x02368048 end:0x02368098
 
 src/game/ov005/ov005_setup_screens_with_blend.c:
     complete
     .text       start:0x023512dc end:0x02351b50
+    .rodata     start:0x02367f0c end:0x02367f2c
 
 src/game/ov005/ov005_update_scrolling_text_prompt_screen.c:
     complete
@@ -52,6 +119,7 @@ src/game/ov005/ov005_ripple_release_objects.c:
 src/game/ov005/ov005_update_affine_bg_screen.c:
     complete
     .text       start:0x02352860 end:0x023531d8
+    .data       start:0x02368098 end:0x02368288
 
 src/game/ov005/func_ov005_023531d8.c:
     complete
@@ -116,6 +184,7 @@ src/game/ov005/func_ov005_023536a4.c:
 src/game/ov005/func_ov005_023536bc.c:
     complete
     .text       start:0x023536bc end:0x023536d4
+    .data       start:0x02368294 end:0x023683c8
 
 src/game/ov005/func_ov005_023536d4.c:
     complete
@@ -128,6 +197,7 @@ src/game/ov005/ov005_update_song_event_script_screen.c:
 src/game/ov005/ov005_set_up_main_screen.c:
     complete
     .text       start:0x02353a88 end:0x02353e48
+    .rodata     start:0x02367f2c end:0x02367f4c
 
 src/game/ov005/ov005_update_scrolling_event_script_screen.c:
     complete
@@ -140,6 +210,7 @@ src/game/ov005/ov005_setup_main_screen_layers2_and3.c:
 src/game/ov005/ov005_update_blend_event_script_screen.c:
     complete
     .text       start:0x023545c4 end:0x02354874
+    .data       start:0x023683c8 end:0x02368a08
 
 src/game/ov005/ov005_setup_blend_in_screens_with_song.c:
     complete
@@ -165,6 +236,7 @@ src/game/ov005/func_ov005_02355250.c:
 src/game/ov005/func_ov005_02355268.c:
     complete
     .text       start:0x02355268 end:0x02355280
+    .data       start:0x02368a14 end:0x02368b60
 
 src/game/ov005/func_ov005_02355280.c:
     complete
@@ -173,10 +245,12 @@ src/game/ov005/func_ov005_02355280.c:
 src/game/ov005/ov005_update_event_script_screen_end_song.c:
     complete
     .text       start:0x02355290 end:0x0235560c
+    .data       start:0x02368b60 end:0x02368ca0
 
 src/game/ov005/func_ov005_0235560c.c:
     complete
     .text       start:0x0235560c end:0x023559dc
+    .rodata     start:0x02367f4c end:0x02367f6c
 
 src/game/ov005/ov005_update_event_script_screen.c:
     complete
@@ -197,6 +271,7 @@ src/game/ov005/ov005_setup_main_screen_and_start_song.c:
 src/game/ov005/ov005_update_event_script_song_screen.c:
     complete
     .text       start:0x02356530 end:0x02356768
+    .data       start:0x02368ca0 end:0x02369180
 
 src/game/ov005/func_ov005_02356768.c:
     complete
@@ -205,6 +280,7 @@ src/game/ov005/func_ov005_02356768.c:
 src/game/ov005/ov005_update_blend_event_script_screen_b.c:
     complete
     .text       start:0x02356b38 end:0x02356e1c
+    .data       start:0x02369180 end:0x02369440
 
 src/game/ov005/ov005_setup_blend_in_screens_by_difficulty.c:
     complete
@@ -238,10 +314,12 @@ src/game/ov005/func_ov005_0235788c.c:
 src/game/ov005/ov005_update_message_screen.c:
     complete
     .text       start:0x0235789c end:0x02357e0c
+    .data       start:0x0236944c end:0x023694cc
 
 src/game/ov005/ov005_set_up_message_screen.c:
     complete
     .text       start:0x02357e0c end:0x02358928
+    .rodata     start:0x02367f6c end:0x02367f8c
 
 src/game/ov005/func_ov005_02358928.c:
     complete
@@ -271,6 +349,7 @@ src/game/ov005/ov005_update_timed_screen.c:
 src/game/ov005/ov005_set_up_main_screen_layer2.c:
     complete
     .text       start:0x02358cb8 end:0x02359034
+    .rodata     start:0x02367f8c end:0x02367fac
 
 src/game/ov005/ov005_update_staff_credits_screen.c:
     complete
@@ -328,6 +407,7 @@ src/game/ov005/ov005_slide_update.c:
 src/game/ov005/ov005_create_entry_task.c:
     complete
     .text       start:0x0235aa54 end:0x0235aa98
+    .data       start:0x023695a0 end:0x0236988c
 
 src/game/ov005/ov005_entry_wait_then_turn.c:
     complete
@@ -421,6 +501,7 @@ src/game/ov005/ov005_load_credits_page.c:
 src/game/ov005/ov005_screen_init3d_and_entries.c:
     complete
     .text       start:0x0235b8ec end:0x0235bab4
+    .data       start:0x02369898 end:0x02369bc8
 
 src/game/ov005/func_ov005_0235bab4.c:
     complete
@@ -437,6 +518,7 @@ src/game/ov005/func_ov005_0235bad0.c:
 src/game/ov005/ov005_update_co_list_screen.c:
     complete
     .text       start:0x0235bae0 end:0x0235c4cc
+    .data       start:0x0236a48c end:0x0236a4b0
 
 src/game/ov005/ov005_set_up_co_list_screen.c:
     complete
@@ -474,6 +556,7 @@ src/game/ov005/ov005_remove_scroll_buttons.c:
 src/game/ov005/ov005_update_scroll_buttons.c:
     complete
     .text       start:0x0235cddc end:0x0235cee4
+    .data       start:0x0236a4b0 end:0x0236a4d8
 
 src/game/ov005/func_ov005_0235cee4.c:
     complete
@@ -486,6 +569,7 @@ src/game/ov005/ov005_set_scroll_speed_minus_on_touch.c:
 src/game/ov005/ov005_add_co_list_buttons.c:
     complete
     .text       start:0x0235cf38 end:0x0235d0f4
+    .data       start:0x0236a4d8 end:0x0236a528
 
 src/game/ov005/ov005_select_co_list_entry.c:
     complete
@@ -534,6 +618,7 @@ src/game/ov005/ov005_get_cursor_ranges.c:
 src/game/ov005/ov005_add_state_screen_buttons.c:
     complete
     .text       start:0x0235d674 end:0x0235d6fc
+    .data       start:0x0236a528 end:0x0236a624
 
 src/game/ov005/func_ov005_0235d6fc.c:
     complete
@@ -554,6 +639,7 @@ src/game/ov005/ov005_free_state_work.c:
 src/game/ov005/ov005_update_state_screen.c:
     complete
     .text       start:0x0235d780 end:0x0235e380
+    .data       start:0x0236a630 end:0x0236a65c
 
 src/game/ov005/ov005_set_up_state_screen.c:
     complete
@@ -571,6 +657,7 @@ src/game/ov005/ov005_remove_state_screen_arrows.c:
 src/game/ov005/ov005_update_state_screen_buttons.c:
     complete
     .text       start:0x0235eb1c end:0x0235ec40
+    .data       start:0x0236a65c end:0x0236a74c
 
 src/game/ov005/func_ov005_0235ec40.c:
     complete
@@ -587,22 +674,27 @@ src/game/ov005/ov005_state_is_enabled.c:
 src/game/ov005/ov005_init_state_work.c:
     complete
     .text       start:0x0235ecc4 end:0x0235ed38
+    .data       start:0x0236a74c end:0x0236aa80
 
 src/game/ov005/ov005_state_show_total_rank_wall.c:
     complete
     .text       start:0x0235ed38 end:0x0235f9f4
+    .rodata     start:0x02367fac end:0x02367fcc
 
 src/game/ov005/ov005_state_show_layer2_picture.c:
     complete
     .text       start:0x0235f9f4 end:0x02360604
+    .data       start:0x0236aaf4 end:0x0236ab34
 
 src/game/ov005/ov005_state_show_layer2_picture_a.c:
     complete
     .text       start:0x02360604 end:0x02360fec
+    .data       start:0x0236ab34 end:0x0236ab60
 
 src/game/ov005/ov005_state_show_layer2_both_screens.c:
     complete
     .text       start:0x02360fec end:0x02361344
+    .data       start:0x0236ab60 end:0x0236ab6c
 
 src/game/ov005/ov005_state_show_picture.c:
     complete
@@ -643,10 +735,12 @@ src/game/ov005/ov005_free_co_screen_work.c:
 src/game/ov005/ov005_update_co_screen.c:
     complete
     .text       start:0x02361598 end:0x02362118
+    .rodata     start:0x02367fcc end:0x02367fec
 
 src/game/ov005/ov005_init_co_screen.c:
     complete
     .text       start:0x02362118 end:0x02362618
+    .data       start:0x0236ab6c end:0x0236ab84
 
 src/game/ov005/func_ov005_02362618.c:
     complete
@@ -704,6 +798,7 @@ src/game/ov005/ov005_init_co_palette_buttons.c:
 src/game/ov005/func_ov005_02362cf8.c:
     complete
     .text       start:0x02362cf8 end:0x02362d68
+    .data       start:0x0236ab84 end:0x0236abac
 
 src/game/ov005/func_ov005_02362d68.c:
     complete
@@ -712,6 +807,7 @@ src/game/ov005/func_ov005_02362d68.c:
 src/game/ov005/ov005_add_co_grid_buttons.c:
     complete
     .text       start:0x02362dd8 end:0x02362ea8
+    .data       start:0x0236abac end:0x0236ae50
 
 src/game/ov005/ov005_draw_co_grid_cells.c:
     complete
@@ -857,10 +953,12 @@ src/game/ov005/func_ov005_02364a1c.c:
 src/game/ov005/func_ov005_02364a2c.c:
     complete
     .text       start:0x02364a2c end:0x02364a50
+    .data       start:0x0236ae5c end:0x0236af24
 
 src/game/ov005/sound_room/ov005_sound_room_draw_bar_meter.c:
     complete
     .text       start:0x02364a50 end:0x02364cd0
+    .rodata     start:0x02367fec end:0x0236800c
 
 src/game/ov005/sound_room/ov005_sound_room_load_layer1_tiles.c:
     complete
@@ -925,6 +1023,7 @@ src/game/ov005/sound_room/ov005_sound_room_on_b_touched.c:
 src/game/ov005/sound_room/ov005_sound_room_pick_cell_co.c:
     complete
     .text       start:0x02365b04 end:0x02365b90
+    .data       start:0x0236af24 end:0x0236b10c
 
 src/game/ov005/sound_room/ov005_sound_room_draw_selected_cell_name.c:
     complete
@@ -937,6 +1036,7 @@ src/game/ov005/sound_room/ov005_sound_room_draw_cell_names.c:
 src/game/ov005/func_ov005_02365e90.c:
     complete
     .text       start:0x02365e90 end:0x02365ea8
+    .data       start:0x0236b10c end:0x0236b324
 
 src/game/ov005/func_ov005_02365ea8.c:
     complete
@@ -949,6 +1049,7 @@ src/game/ov005/func_ov005_02365ec0.c:
 src/game/ov005/shop/ov005_update_shop_screen.c:
     complete
     .text       start:0x02365ed0 end:0x02366b40
+    .data       start:0x0236b330 end:0x0236b38c
 
 src/game/ov005/shop/ov005_set_up_shop_screen.c:
     complete
@@ -978,10 +1079,12 @@ src/game/ov005/shop/ov005_remove_shop_buttons.c:
 src/game/ov005/shop/ov005_add_shop_page_buttons.c:
     complete
     .text       start:0x023670f0 end:0x023671f4
+    .data       start:0x0236b38c end:0x0236b498
 
 src/game/ov005/shop/ov005_init_shop_paging.c:
     complete
     .text       start:0x023671f4 end:0x02367258
+    .data       start:0x0236b498 end:0x0236b4e0
 
 src/game/ov005/shop/ov005_draw_shop_page_number.c:
     complete

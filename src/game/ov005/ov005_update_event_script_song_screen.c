@@ -14,7 +14,17 @@ void* EventScript_Start(const void* script);
 void Task_ResumeScript(Ov005Task* task);
 int func_ov005_02357830(void);
 void func_ov005_0235785c(void);
-extern const TaskScriptCmd data_ov005_02368ca0[];
+void func_ov005_02357844(void);
+
+TaskScriptCmd data_ov005_02368e40[52] = {
+#include "data/ov005/data_ov005_02368e40.inc.c"
+};
+static TaskScriptCmd data_ov005_02368ca0[52] = {
+#include "data/ov005/data_ov005_02368ca0.inc.c"
+};
+TaskScriptCmd data_ov005_02368fe0[52] = {
+#include "data/ov005/data_ov005_02368fe0.inc.c"
+};
 
 /* Like Ov005_UpdateEventScriptScreen, but starts a sound task (Sound_StartSongSwitchTask
  * with id 51) before the script and fades the song out (func_020fcb08)

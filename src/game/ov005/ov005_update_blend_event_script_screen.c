@@ -19,7 +19,17 @@ void func_ov005_02355250(void);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern const TaskScriptCmd data_ov005_023683c8[];
+void func_ov005_02355238(void);
+
+static TaskScriptCmd data_ov005_023683c8[36] = {
+#include "data/ov005/data_ov005_023683c8.inc.c"
+};
+TaskScriptCmd data_ov005_023684e8[64] = {
+#include "data/ov005/data_ov005_023684e8.inc.c"
+};
+TaskScriptCmd data_ov005_023686e8[100] = {
+#include "data/ov005/data_ov005_023686e8.inc.c"
+};
 
 /* Event script screen like Ov005_UpdateEventScriptScreen. It fades both screens
  * in (two fade tasks), waits 32 frames, then alpha-blends the sub screen over

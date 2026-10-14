@@ -2,10 +2,72 @@
 #include "game/menu_button.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov005_0236bbb0.h"
+#include "game/event_script.h"
+#include "game/task.h"
 
 int Ov005_GetShopItemsFromPage(Unk_ov005_0236bbb0* work);
 
-extern const MenuButtonTemplate data_ov005_0236b3dc;
+void Ov005_AllocShopWork(void);
+void Ov005_MoveShopCursorOnKeys(void);
+void Ov005_RequestShopLeave(void);
+void Ov005_RequestShopNextPage(void);
+void Ov005_RequestShopPrevPage(void);
+void Ov005_SetUpShopScreen(void);
+void Ov005_UpdateShopScreen(void);
+extern u8 data_ov005_0236b900[];
+void func_ov005_02365ec0(void);
+void Ov005_RequestShopBuy(void);
+extern u8 data_ov005_0236ba40[];
+void Ov005_SetShopCursorRow(void);
+extern u8 data_ov005_0236ba80[];
+extern u8 data_ov005_0236b6c0[];
+extern u8 data_ov005_0236b680[];
+extern u8 data_ov005_0236b640[];
+extern u8 data_ov005_0236b5c0[];
+extern u8 data_ov005_0236b740[];
+extern u8 data_ov005_0236b7c0[];
+extern u8 data_ov005_0236b940[];
+extern u8 data_ov005_0236bac0[];
+extern u8 data_ov005_0236b580[];
+extern u8 data_ov005_0236b600[];
+extern u8 data_ov005_0236b800[];
+extern u8 data_ov005_0236bb00[];
+extern u8 data_ov005_0236b700[];
+extern u8 data_ov005_0236bb40[];
+
+MenuButtonTemplate data_ov005_0236b42c = {
+#include "data/ov005/data_ov005_0236b42c.inc.c"
+};
+MenuButtonTemplate data_ov005_0236b404 = {
+#include "data/ov005/data_ov005_0236b404.inc.c"
+};
+static MenuButtonTemplate data_ov005_0236b3dc = {
+#include "data/ov005/data_ov005_0236b3dc.inc.c"
+};
+MenuButtonTemplate data_ov005_0236b3b4 = {
+#include "data/ov005/data_ov005_0236b3b4.inc.c"
+};
+TaskScriptCmd data_ov005_0236b38c[5] = {
+#include "data/ov005/data_ov005_0236b38c.inc.c"
+};
+const EventScriptCommand* data_ov005_0236b454[17] = {
+    (EventScriptCommand*)&data_ov005_0236b900,
+    (EventScriptCommand*)&data_ov005_0236ba40,
+    (EventScriptCommand*)&data_ov005_0236ba80,
+    (EventScriptCommand*)&data_ov005_0236b6c0,
+    (EventScriptCommand*)&data_ov005_0236b680,
+    (EventScriptCommand*)&data_ov005_0236b640,
+    (EventScriptCommand*)&data_ov005_0236b5c0,
+    (EventScriptCommand*)&data_ov005_0236b740,
+    (EventScriptCommand*)&data_ov005_0236b7c0,
+    (EventScriptCommand*)&data_ov005_0236b940,
+    (EventScriptCommand*)&data_ov005_0236bac0,
+    (EventScriptCommand*)&data_ov005_0236b580,
+    (EventScriptCommand*)&data_ov005_0236b600,
+    (EventScriptCommand*)&data_ov005_0236b800,
+    (EventScriptCommand*)&data_ov005_0236bb00,
+    (EventScriptCommand*)&data_ov005_0236b700,
+    (EventScriptCommand*)&data_ov005_0236bb40};
 
 /* Adds one menu button (ids 0x80 up) on the main screen for each item on
  * the current page, then selects work->cursorRow, clamped to the page. */

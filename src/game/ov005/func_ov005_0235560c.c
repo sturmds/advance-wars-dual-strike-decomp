@@ -24,8 +24,12 @@ extern char data_ov005_02369440[];
 extern char data_ov005_0236944c[];
 extern char data_ov005_02369450[];
 extern char data_ov005_02369454[];
-extern u32 data_ov005_02367f4c[];
-extern u32 data_ov005_02367f5c[];
+const u32 data_ov005_02367f4c[4] = {
+#include "data/ov005/data_ov005_02367f4c.inc.c"
+};
+const u32 data_ov005_02367f5c[4] = {
+#include "data/ov005/data_ov005_02367f5c.inc.c"
+};
 
 void func_ov005_0235560c(Ov005Task* task) {
   Unk_027c0280* saved0280;

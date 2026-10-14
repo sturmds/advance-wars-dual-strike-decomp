@@ -19,22 +19,71 @@ extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern char data_ov005_0236aa80[]; /* "/rikiishi" */
-extern char data_ov005_0236aaf8[]; /* "02a": tiles, picture 0 */
-extern char data_ov005_0236aafc[]; /* "02b": map */
-extern char data_ov005_0236ab00[]; /* "02c": palette */
-extern char data_ov005_0236ab04[]; /* "02d": tiles, picture 1 */
-extern char data_ov005_0236ab08[]; /* "02e": map */
-extern char data_ov005_0236ab0c[]; /* "02f": palette */
-extern char data_ov005_0236ab10[]; /* "030": tiles, picture 2 */
-extern char data_ov005_0236ab14[]; /* "031": map */
-extern char data_ov005_0236ab18[]; /* "032": palette */
-extern char data_ov005_0236ab1c[]; /* "033": tiles, picture 3 */
-extern char data_ov005_0236ab20[]; /* "034": map */
-extern char data_ov005_0236ab24[]; /* "035": palette */
-extern char data_ov005_0236ab28[]; /* "036": tiles, picture 4 */
-extern char data_ov005_0236ab2c[]; /* "037": map */
-extern char data_ov005_0236ab30[]; /* "038": palette */
-extern u32 data_ov005_02367fac[];  /* map bytes of a text BG by screen size */
+/* "037": map */
+static char data_ov005_0236ab2c[4] = {
+#include "data/ov005/data_ov005_0236ab2c.inc.c"
+};
+/* "036": tiles, picture 4 */
+static char data_ov005_0236ab28[4] = {
+#include "data/ov005/data_ov005_0236ab28.inc.c"
+};
+/* "035": palette */
+static char data_ov005_0236ab24[4] = {
+#include "data/ov005/data_ov005_0236ab24.inc.c"
+};
+/* "034": map */
+static char data_ov005_0236ab20[4] = {
+#include "data/ov005/data_ov005_0236ab20.inc.c"
+};
+/* "033": tiles, picture 3 */
+static char data_ov005_0236ab1c[4] = {
+#include "data/ov005/data_ov005_0236ab1c.inc.c"
+};
+/* "032": palette */
+static char data_ov005_0236ab18[4] = {
+#include "data/ov005/data_ov005_0236ab18.inc.c"
+};
+/* "031": map */
+static char data_ov005_0236ab14[4] = {
+#include "data/ov005/data_ov005_0236ab14.inc.c"
+};
+/* "030": tiles, picture 2 */
+static char data_ov005_0236ab10[4] = {
+#include "data/ov005/data_ov005_0236ab10.inc.c"
+};
+/* "02f": palette */
+static char data_ov005_0236ab0c[4] = {
+#include "data/ov005/data_ov005_0236ab0c.inc.c"
+};
+/* "02e": map */
+static char data_ov005_0236ab08[4] = {
+#include "data/ov005/data_ov005_0236ab08.inc.c"
+};
+/* "02d": tiles, picture 1 */
+static char data_ov005_0236ab04[4] = {
+#include "data/ov005/data_ov005_0236ab04.inc.c"
+};
+/* "02c": palette */
+static char data_ov005_0236ab00[4] = {
+#include "data/ov005/data_ov005_0236ab00.inc.c"
+};
+/* "02b": map */
+static char data_ov005_0236aafc[4] = {
+#include "data/ov005/data_ov005_0236aafc.inc.c"
+};
+/* "02a": tiles, picture 0 */
+static char data_ov005_0236aaf8[4] = {
+#include "data/ov005/data_ov005_0236aaf8.inc.c"
+};
+/* "054": map */
+char data_ov005_0236aaf4[4] = {
+#include "data/ov005/data_ov005_0236aaf4.inc.c"
+};
+/* "038": palette */
+static char data_ov005_0236ab30[4] = {
+#include "data/ov005/data_ov005_0236ab30.inc.c"
+};
+extern u32 data_ov005_02367fac[]; /* map bytes of a text BG by screen size */
 extern u32 data_ov005_02367fbc
     []; /* map bytes of a rotation/scaling BG by screen size */
 

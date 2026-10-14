@@ -32,9 +32,14 @@ extern char data_ov005_0236aaa0[]; /* "/ohashi/res_totalrank_wall1" */
 extern char data_ov005_0236aabc[]; /* "/ohashi/res_totalrank_wall2" */
 extern char data_ov005_0236aad8[]; /* "/ohashi/res_totalrank_wall3" */
 extern char data_ov005_0236aaf4[]; /* "054": map */
-extern u32 data_ov005_02367fac[];  /* map bytes of a text BG by screen size */
-extern u32 data_ov005_02367fbc
-    []; /* map bytes of a rotation/scaling BG by screen size */
+/* map bytes of a text BG by screen size */
+const u32 data_ov005_02367fac[4] = {
+#include "data/ov005/data_ov005_02367fac.inc.c"
+};
+/* map bytes of a rotation/scaling BG by screen size */
+const u32 data_ov005_02367fbc[4] = {
+#include "data/ov005/data_ov005_02367fbc.inc.c"
+};
 
 /* States 38-40 of the state table (data_ov005_0236a74c), arg 0-2 picks
  * /ohashi/res_totalrank_wall1-3. When the wall's game flag is set

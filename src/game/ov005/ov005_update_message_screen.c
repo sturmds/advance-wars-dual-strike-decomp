@@ -27,8 +27,85 @@ void Text_StopPrinting(void);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern const MenuButtonTemplate
-    gOv005MessageScreenButton; /* confirm: Ov005MessageScreen_OnButtonConfirm */
+void func_ov005_02358954(void);
+void Ov005MessageScreen_OnButtonConfirm(void);
+
+char gRikiishiFile02c[4] = {
+#include "data/ov005/gRikiishiFile02c.inc.c"
+};
+char gRikiishiFile02b[4] = {
+#include "data/ov005/gRikiishiFile02b.inc.c"
+};
+char gRikiishiFile02a[4] = {
+#include "data/ov005/gRikiishiFile02a.inc.c"
+};
+char gRikiishiFile015_2[4] = {
+#include "data/ov005/gRikiishiFile015_2.inc.c"
+};
+char gRikiishiFile014_2[4] = {
+#include "data/ov005/gRikiishiFile014_2.inc.c"
+};
+char gRikiishiFile013_2[4] = {
+#include "data/ov005/gRikiishiFile013_2.inc.c"
+};
+char gRikiishiFile01b_2[4] = {
+#include "data/ov005/gRikiishiFile01b_2.inc.c"
+};
+char gRikiishiFile019[4] = {
+#include "data/ov005/gRikiishiFile019.inc.c"
+};
+char gRikiishiFile01a[4] = {
+#include "data/ov005/gRikiishiFile01a.inc.c"
+};
+char gRikiishiFile016_2[4] = {
+#include "data/ov005/gRikiishiFile016_2.inc.c"
+};
+char data_ov005_02369478[4] = {
+#include "data/ov005/data_ov005_02369478.inc.c"
+};
+char data_ov005_02369474[4] = {
+#include "data/ov005/data_ov005_02369474.inc.c"
+};
+char data_ov005_02369470[4] = {
+#include "data/ov005/data_ov005_02369470.inc.c"
+};
+/* layer 2 palette */
+char gRikiishiFile038[4] = {
+#include "data/ov005/gRikiishiFile038.inc.c"
+};
+/* layer 2 map */
+char gRikiishiFile037[4] = {
+#include "data/ov005/gRikiishiFile037.inc.c"
+};
+/* layer 2 tiles */
+char gRikiishiFile036[4] = {
+#include "data/ov005/gRikiishiFile036.inc.c"
+};
+/* layer 2 palette */
+char data_ov005_02369460[4] = {
+#include "data/ov005/data_ov005_02369460.inc.c"
+};
+/* layer 2 map */
+char data_ov005_0236945c[4] = {
+#include "data/ov005/data_ov005_0236945c.inc.c"
+};
+/* layer 2 tiles */
+char data_ov005_02369458[4] = {
+#include "data/ov005/data_ov005_02369458.inc.c"
+};
+char data_ov005_02369454[4] = {
+#include "data/ov005/data_ov005_02369454.inc.c"
+};
+char data_ov005_02369450[4] = {
+#include "data/ov005/data_ov005_02369450.inc.c"
+};
+char data_ov005_0236944c[4] = {
+#include "data/ov005/data_ov005_0236944c.inc.c"
+};
+/* confirm: Ov005MessageScreen_OnButtonConfirm */
+static MenuButtonTemplate gOv005MessageScreenButton = {
+#include "data/ov005/gOv005MessageScreenButton.inc.c"
+};
 
 #define MESSAGE_BUTTON_ID 0xfd
 

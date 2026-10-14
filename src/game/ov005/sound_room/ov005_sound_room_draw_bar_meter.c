@@ -12,9 +12,14 @@ u32 SND_GetCurrentCommandTag(void);
 u32 SND_GetChannelStatus(void);
 
 extern Unk_ov005_0236bbac* data_ov005_0236bbac;
-extern u32 data_ov005_02367fec
-    []; /* map bytes of a rotation/scaling BG by screen size */
-extern u32 data_ov005_02367ffc[]; /* map bytes of a text BG by screen size */
+/* map bytes of a rotation/scaling BG by screen size */
+static const u32 data_ov005_02367fec[4] = {
+#include "data/ov005/data_ov005_02367fec.inc.c"
+};
+/* map bytes of a text BG by screen size */
+static const u32 data_ov005_02367ffc[4] = {
+#include "data/ov005/data_ov005_02367ffc.inc.c"
+};
 
 /* Two map entries side by side: one bar column is two tiles wide. */
 typedef struct TilePair {

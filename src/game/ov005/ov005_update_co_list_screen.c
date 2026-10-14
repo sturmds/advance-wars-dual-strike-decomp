@@ -34,7 +34,10 @@ void Ov005_RemoveScrollButtons(Ov005Task* task);
 u8 Ov005_SaveCoListEntry(int entry);
 int Ov005_ClearCoListTouchFlags(Ov005Task* task);
 
-extern u8 data_ov005_0236a48c[33]; /* CO id of each list entry */
+/* CO id of each list entry */
+u8 data_ov005_0236a48c[33] = {
+#include "data/ov005/data_ov005_0236a48c.inc.c"
+};
 extern u8 data_ov005_0236a5a0
     [33][4]; /* per entry: x and y in pixels, then grid column and row */
 extern u8

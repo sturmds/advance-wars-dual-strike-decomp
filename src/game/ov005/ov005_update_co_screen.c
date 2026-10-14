@@ -61,9 +61,14 @@ extern char data_ov005_0236ae64[]; /* "03c": grid layer 1 palette */
 extern char data_ov005_0236ae68[]; /* "03e": palette screen layer 1 tiles */
 extern char data_ov005_0236ae6c[]; /* "03f": palette screen layer 1 map */
 extern char data_ov005_0236ae70[]; /* "040": palette screen layer 1 palette */
-extern u32 data_ov005_02367fcc[];  /* map bytes of a text BG by screen size */
-extern u32 data_ov005_02367fdc
-    []; /* map bytes of a rotation/scaling BG by screen size */
+/* map bytes of a text BG by screen size */
+const u32 data_ov005_02367fcc[4] = {
+#include "data/ov005/data_ov005_02367fcc.inc.c"
+};
+/* map bytes of a rotation/scaling BG by screen size */
+const u32 data_ov005_02367fdc[4] = {
+#include "data/ov005/data_ov005_02367fdc.inc.c"
+};
 
 #define SE_CONFIRM 0x10006
 #define SE_CANCEL 0x10009

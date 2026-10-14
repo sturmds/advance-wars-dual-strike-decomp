@@ -22,7 +22,11 @@ void Screen_SetCurrentGfx(void* state);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern const TaskScriptCmd data_ov005_02368b60[];
+void func_ov005_02357844(void);
+
+static TaskScriptCmd data_ov005_02368b60[40] = {
+#include "data/ov005/data_ov005_02368b60.inc.c"
+};
 
 /* Per-frame update, like Ov005_UpdateEventScriptScreen with a longer ending:
  * fade in (64 frames), wait 32 frames, run event script data_ov005_02368b60

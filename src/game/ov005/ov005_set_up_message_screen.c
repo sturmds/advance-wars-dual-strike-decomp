@@ -38,9 +38,14 @@ extern char gOv005MessageFile015[];
 extern char gOv005MessageFile01c[];
 extern char gOv005MessageFile01d[];
 extern char gOv005MessageFile01e[];
-extern u32 data_ov005_02367f7c[]; /* map bytes of a text BG by screen size */
-extern u32 data_ov005_02367f6c
-    []; /* map bytes of a rotation/scaling BG by screen size */
+/* map bytes of a rotation/scaling BG by screen size */
+static const u32 data_ov005_02367f6c[4] = {
+#include "data/ov005/data_ov005_02367f6c.inc.c"
+};
+/* map bytes of a text BG by screen size */
+static const u32 data_ov005_02367f7c[4] = {
+#include "data/ov005/data_ov005_02367f7c.inc.c"
+};
 
 /* First step of the message screen (Ov005_UpdateMessageScreen runs next).
  * Sub screen: BG0 and BG2 on, BG0 alpha-blended over BG2 at eva 0 (the update
