@@ -11,6 +11,8 @@
   address, a module that has no symbol there, and a word of another form
   stay as written, so the link names them.
 - c_scalar: the pointer field's C uses the current name and declares it.
+- array_lengths: a struct field's array length written with #define names
+  from any header (ARMY_SLOT_COUNT, a sum of them) reads as its number.
 - enum_expressions: an enum constant written as `A | B` or `A + 1` gets its
   value (CO_CLONE_DRAKE = CO_CLONE | CO_DRAKE), and value 138 reads back as
   its name.
@@ -70,6 +72,19 @@ with tempfile.TemporaryDirectory() as tmp:
     values = maps.enum_values("game/co.h", "CoId")
     expect("enum_expressions", (values["CO_PICKS"], values["CO_CLONE_DRAKE"], values["CO_NEXT"]), (11, 138, 12))
     expect("enum_names", maps.enum_names("game/co.h", "CoId")[138], "CO_CLONE_DRAKE")
+
+with tempfile.TemporaryDirectory() as tmp:
+    root = Path(tmp)
+    (root / maps.INCLUDE / "game").mkdir(parents=True)
+    (root / maps.INCLUDE / "game/player.h").write_text(
+        "#define SLOTS 5 /* note */\n#define LAST (SLOTS - 1)\n#define COS 2\n")
+    (root / maps.INCLUDE / "game/map_header.h").write_text(
+        '#include "game/player.h"\ntypedef struct MapHeader {\n  u8 co[SLOTS]\n       [COS]; /* x */\n'
+        "  u8 team[LAST + 0x2];\n  u8 pad[4];\n} MapHeader;\n")
+    maps.ROOT = root
+    maps.c_defines.cache_clear()
+    maps.c_fields.cache_clear()
+    expect("array_lengths", [f[2] for f in maps.c_fields("MapHeader")], [[5, 2], [6], [4]])
 
 if failures:
     print(f"test_maps: {len(failures)} failed: {', '.join(failures)}")

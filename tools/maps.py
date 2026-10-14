@@ -203,6 +203,32 @@ def define(header: str, name: str) -> int:
     return int(m.group(1), 0)
 
 
+@functools.cache
+def c_defines() -> dict[str, str]:
+    """Object-like #defines of every header in include/, name -> text."""
+    out = {}
+    for path in sorted((ROOT / INCLUDE).rglob("*.h")):
+        text = re.sub(r"/\*.*?\*/", "", path.read_text().replace("\\\n", " "), flags=re.S)
+        for m in re.finditer(r"^#define (\w+)[ \t]+(.+)$", text, re.M):
+            out.setdefault(m.group(1), m.group(2).strip())
+    return out
+
+
+def array_size(expr: str) -> int:
+    """An array length from a header: a number, a sum or product, or #define
+    names (ARMY_SLOT_COUNT, PLAYER_SLOT_LAST) that come down to those."""
+    defines = c_defines()
+    for _ in range(16):
+        expanded = re.sub(r"\b[A-Za-z_]\w*\b", lambda m: f"({defines[m.group(0)]})"
+                          if m.group(0) in defines else m.group(0), expr)
+        if expanded == expr:
+            break
+        expr = expanded
+    if not re.fullmatch(r"[0-9a-fA-Fx +\-*/()uUlL]+", expr):
+        sys.exit(f"error: array length {expr!r} is not a number or a #define of one")
+    return int(eval(re.sub(r"(?<=[0-9a-fA-F])[uUlL]+\b", "", expr).replace("/", "//"), {}))
+
+
 def statements(body: str) -> list[str]:
     """The `;`-separated declarations of a struct body, nested braces kept whole."""
     out, depth, start = [], 0, 0
@@ -234,7 +260,7 @@ def c_fields(name: str) -> list[tuple[str, str, list[int]]]:
     fields = []
     for decl in decls:
         d = re.fullmatch(r"(.*?)(\w+)\s*((?:\[[^\]]*\]\s*)*)", decl, re.S)
-        sizes = [int(eval(s, {})) for s in re.findall(r"\[([0-9a-fA-Fx +\-*]+)\]", d.group(3))]
+        sizes = [array_size(s) for s in re.findall(r"\[([^\]]+)\]", d.group(3))]
         fields.append((d.group(2), " ".join(d.group(1).split()), sizes))
     return fields
 
