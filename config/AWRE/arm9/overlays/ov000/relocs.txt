@@ -894,13 +894,6 @@ from:0x022b3824 kind:load to:0x0215360c module:main
 from:0x022b3828 kind:load to:0x023500c0 module:overlay(0)
 from:0x022b382c kind:load to:0x02350168 module:overlay(0)
 from:0x022b3830 kind:load to:0x023501a8 module:overlay(0)
-from:0x022cafa4 kind:load to:0x02332221 module:overlay(0)
-from:0x022d3af0 kind:load to:0x0216ab11 module:main
-from:0x022d700c kind:load to:0x02332221 module:overlay(0)
-from:0x022d78dc kind:load to:0x0234a4ac module:overlay(0)
-from:0x022d7a18 kind:load to:0x0230035e module:overlay(0)
-from:0x022d7a4c kind:load to:0x023200a3 module:overlay(0)
-from:0x022da4a8 kind:load to:0x0233bb4d module:overlay(0)
 from:0x022db6b4 kind:load to:0x022ad7e0 module:overlay(0)
 from:0x022db6b8 kind:load to:0x022ad7dc module:overlay(0)
 from:0x022db6bc kind:load to:0x022ad6f4 module:overlay(0)
