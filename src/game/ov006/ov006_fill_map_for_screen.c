@@ -12,7 +12,7 @@ void Ov006_FindHqs(void);
 u8 Ov006_CountPropertyTiles(void);
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 extern Unk_ov006_0235f690* data_ov006_0236d640;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])

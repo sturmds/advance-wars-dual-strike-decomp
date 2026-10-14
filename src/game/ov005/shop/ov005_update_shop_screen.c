@@ -57,8 +57,8 @@ void Ov005_DrawShopPageNumber(
     Unk_ov005_0236bbb0* work); /* draws the page numbers */
 
 extern u16 gEventChoiceAnswer; /* answer of the yes/no question, 0: yes */
-extern u8 gEventTextMap[];
-extern u8 data_022978e0[];
+extern u16 gEventTextMap[];
+extern u16 data_022978e0[];
 void Ov005_UpdateShopTransition(void);
 void func_ov005_0236701c(void);
 void func_ov005_0236703c(void);

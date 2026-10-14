@@ -3,7 +3,7 @@
 #include "game/design_map_edit.h"
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 #pragma explicit_zero_data on
 static s16 Ov006_gDirStepX[] = {
 #include "data/ov006/Ov006_gDirStepX.inc.c"

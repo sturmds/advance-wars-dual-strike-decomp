@@ -5,7 +5,7 @@
 void Ov006_RefitJoinedCellsAround(int x, int y);
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 extern s16 Ov006_gCrossDx[]; /* offsets: centre, left, right, up, down */
 extern s16 Ov006_gCrossDy[];
 

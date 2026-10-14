@@ -6,7 +6,7 @@ BOOL Ov006_IsLandNeighbor(
     int y); /* guess: TRUE on water a river can run into (sea, shoal, reef, river mouth) */
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define CELL_AT(x, y) \

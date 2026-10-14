@@ -1,9 +1,9 @@
 #include "types.h"
 
-extern u8 data_ov000_022c9254[];
+extern const u32 data_ov000_022c9254[];
 extern u8 data_ov000_022ca1bc[];
 extern u8 data_ov000_022ca3d0[];
-extern u8 data_ov000_022ca7e4[];
+extern const u32 data_ov000_022ca7e4[];
 
 char data_ov000_022f656c[] = {
 #include "data/ov000/data_ov000_022f656c.inc.c"

@@ -5,7 +5,7 @@
 #include "game/BattleZoomTask.h"
 
 extern MenuState gMenuState;
-extern u8 data_ov002_023696ac;
+extern u32 data_ov002_023696ac[];
 extern s16 gSineTable[];
 
 s32 HwDiv32(s32 numer, s32 denom);

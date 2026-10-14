@@ -1,8 +1,8 @@
 #include "types.h"
 
 extern u8 data_ov000_022caf24[];
-extern u8 data_ov000_022cb4ac[];
-extern u8 data_ov000_022cb700[];
+extern const u32 data_ov000_022cb4ac[];
+extern const u32 data_ov000_022cb700[];
 
 void* data_ov000_022f65c0[] = {&data_ov000_022caf24, &data_ov000_022caf24,
                                &data_ov000_022caf24, &data_ov000_022caf24,

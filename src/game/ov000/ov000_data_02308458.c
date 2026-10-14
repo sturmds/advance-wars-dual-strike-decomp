@@ -1,34 +1,34 @@
 #include "types.h"
 
-extern u8 data_ov000_0230837c[];
-extern u8 data_ov000_0230839c[];
-extern u8 data_ov000_02308408[];
-extern u8 data_ov000_02308384[];
-extern u8 data_ov000_02308418[];
-extern u8 data_ov000_02308428[];
-extern u8 data_ov000_02308438[];
-extern u8 data_ov000_0230832c[];
-extern u8 data_ov000_0230838c[];
-extern u8 data_ov000_02308324[];
-extern u8 data_ov000_02308364[];
-extern u8 data_ov000_0230833c[];
-extern u8 data_ov000_02308394[];
-extern u8 data_ov000_0230834c[];
-extern u8 data_ov000_0230836c[];
-extern u8 data_ov000_02308448[];
-extern u8 data_ov000_0230835c[];
-extern u8 data_ov000_02308344[];
-extern u8 data_ov000_02308374[];
-extern u8 data_ov000_02308354[];
-extern u8 data_ov000_02308334[];
-extern u8 data_ov000_023083c0[];
-extern u8 data_ov000_023083d8[];
-extern u8 data_ov000_023083a8[];
-extern u8 data_ov000_023083e4[];
-extern u8 data_ov000_023083fc[];
-extern u8 data_ov000_023083cc[];
-extern u8 data_ov000_023083b4[];
-extern u8 data_ov000_023083f0[];
+extern u32 data_ov000_0230837c[];
+extern char data_ov000_0230839c[];
+extern char data_ov000_02308408[];
+extern u32 data_ov000_02308384[];
+extern char data_ov000_02308418[];
+extern char data_ov000_02308428[];
+extern char data_ov000_02308438[];
+extern u32 data_ov000_0230832c[];
+extern u32 data_ov000_0230838c[];
+extern u32 data_ov000_02308324[];
+extern u32 data_ov000_02308364[];
+extern char data_ov000_0230833c[];
+extern u32 data_ov000_02308394[];
+extern u32 data_ov000_0230834c[];
+extern u32 data_ov000_0230836c[];
+extern u32 data_ov000_02308448[];
+extern u32 data_ov000_0230835c[];
+extern u32 data_ov000_02308344[];
+extern u32 data_ov000_02308374[];
+extern u32 data_ov000_02308354[];
+extern u32 data_ov000_02308334[];
+extern u32 data_ov000_023083c0[];
+extern char data_ov000_023083d8[];
+extern char data_ov000_023083a8[];
+extern char data_ov000_023083e4[];
+extern char data_ov000_023083fc[];
+extern char data_ov000_023083cc[];
+extern char data_ov000_023083b4[];
+extern char data_ov000_023083f0[];
 
 char data_ov000_02308458[] = {
 #include "data/ov000/data_ov000_02308458.inc.c"

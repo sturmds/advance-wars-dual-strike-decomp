@@ -14,7 +14,7 @@ void GX_LoadTexPltt(const void* src, u32 offset,
                     u32 size); /* guess: copies to texture palette VRAM */
 void GX_EndLoadTexPltt(void);
 
-extern u8* data_ov004_022bf150;
+extern void* data_ov004_022bf150;
 static char gRikiishiDir[] = {
 #include "data/ov004/gRikiishiDir.inc.c"
 };

@@ -13,7 +13,7 @@ void Ov006_StoreMapCell(int x, int y,
                         int cell); /* guess: sets the cell code of tile x, y */
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 extern s16 Ov006_gNeighborDx[]; /* left, right, up, down */
 extern s16 Ov006_gNeighborDy[];
 

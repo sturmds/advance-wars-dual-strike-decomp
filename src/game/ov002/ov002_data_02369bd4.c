@@ -1,17 +1,17 @@
 #include "types.h"
 #include "game/BattleSideData.h"
 
-extern u8 data_ov002_02361534[];
-extern u8 data_ov002_02361558[];
-extern u8 data_ov002_02361594[];
-extern u8 data_ov002_023615c4[];
-extern u8 data_ov002_023615dc[];
-extern u8 data_ov002_023615e8[];
-extern u8 data_ov002_02361600[];
-extern u8 data_ov002_0236160c[];
-extern u8 data_ov002_02361618[];
-extern u8 data_ov002_023616f0[];
-extern u8 data_ov002_02361de0[];
+extern void* data_ov002_02361534[];
+extern void* data_ov002_02361558[];
+extern void* data_ov002_02361594[];
+extern void* data_ov002_023615c4[];
+extern void* data_ov002_023615dc[];
+extern void* data_ov002_023615e8[];
+extern void* data_ov002_02361600[];
+extern void* data_ov002_0236160c[];
+extern void* data_ov002_02361618[];
+extern void* data_ov002_023616f0[];
+extern void* data_ov002_02361de0[];
 
 u32 data_ov002_02369bd4[] = {
 #include "data/ov002/data_ov002_02369bd4.inc.c"

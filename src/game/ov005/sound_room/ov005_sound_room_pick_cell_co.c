@@ -20,14 +20,14 @@ void Ov005_SetUpSoundRoom(void);
 void Ov005_UpdateSoundRoom(void);
 extern u8 data_0217eb08[];
 extern u8 data_02180b08[];
-extern u8 data_ov005_0236ae9c[];
+extern u32 data_ov005_0236ae9c[];
 extern u8 data_0217fb08[];
-extern u8 data_ov005_0236ae94[];
+extern u32 data_ov005_0236ae94[];
 void func_ov005_023659b8(void);
-extern u8 data_ov005_0236ae84[];
-extern u8 data_ov005_0236ae8c[];
-extern u8 data_ov005_0236aea4[];
-extern u8 data_ov005_0236aeb0[];
+extern u32 data_ov005_0236ae84[];
+extern u32 data_ov005_0236ae8c[];
+extern u32 data_ov005_0236aea4[];
+extern u32 data_ov005_0236aeb0[];
 
 static u8* data_ov005_0236af24[] = {
     (u8*)&data_ov005_0236ae9c, (u8*)&data_ov005_0236ae94,

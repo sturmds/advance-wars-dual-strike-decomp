@@ -7,7 +7,7 @@ void* Sprite_CreateTask(int a, const void* b, int c, s16 x, s16 y, int e, int f,
                         int g);
 void func_02027aa8(void* sprite, void* a, void* b);
 void func_02027aa0(void* sprite, void* a);
-extern u8 data_ov003_023655e0[];
+extern void* data_ov003_023655e0[];
 
 void func_ov003_02364524(int x, int y) {
   Unk_027c0280* savedGfx;

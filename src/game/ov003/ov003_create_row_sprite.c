@@ -10,7 +10,7 @@ void func_02027aa0(void* sprite, void* a);
 void func_02027a98(Ov003Sprite* sprite, void (*callback)(Ov003Sprite* sprite));
 void Ov003_CreateAnchoredSprite(Ov003Sprite* sprite);
 
-extern u8 data_ov003_023654f4[];
+extern void* data_ov003_023654f4[];
 
 /* Creates a sprite on the first screen at (x, y) that remembers its position
  * and row, and sets Ov003_CreateAnchoredSprite as its callback. */

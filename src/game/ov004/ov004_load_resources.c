@@ -477,7 +477,7 @@ TaskScriptCmd data_ov004_022be9f8[] = {
 Ov004SlotInit data_ov004_022bea58[] = {
 #include "data/ov004/data_ov004_022bea58.inc.c"
 };
-extern u8* data_ov004_022bf150;
+extern void* data_ov004_022bf150;
 
 #define BUFFER_SIZE 0x80000
 #define VRAM_SIZE 0x20000

@@ -14,7 +14,7 @@ void func_02027aa8(void* sprite, void* a, void* b);
 void func_02027aa0(void* sprite, void* a);
 void func_02027a98(void* sprite, void (*callback)(void*));
 void Ov003_SpriteCallback(void* sprite);
-extern u8 data_ov003_023655e0[];
+extern void* data_ov003_023655e0[];
 
 /* Like Ov003_CreateSprite, but stores value at 0x60 of the sprite and sets
  * Ov003_SpriteCallback as its callback (which passes the value to

@@ -8,7 +8,7 @@ BOOL Ov006_IsRoadOrHorizontalBridge(
 BOOL Ov006_IsRoadOrBridgeTile(int x, int y); /* terrain road or bridge */
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 char data_ov006_0236c0d4[] = {
 #include "data/ov006/data_ov006_0236c0d4.inc.c"
 };

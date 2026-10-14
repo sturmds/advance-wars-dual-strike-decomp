@@ -1,18 +1,18 @@
 #include "types.h"
 
-extern u8 data_ov002_023644e8[];
-extern u8 data_ov002_02364548[];
-extern u8 data_ov002_02364568[];
-extern u8 data_ov002_023645a8[];
-extern u8 data_ov002_023645c8[];
-extern u8 data_ov002_02364608[];
-extern u8 data_ov002_02364628[];
-extern u8 data_ov002_02364668[];
-extern u8 data_ov002_02364688[];
-extern u8 data_ov002_023646e8[];
-extern u8 data_ov002_02364708[];
-extern u8 data_ov002_02364748[];
-extern u8 data_ov002_02364768[];
+extern u32 data_ov002_023644e8[];
+extern u32 data_ov002_02364548[];
+extern u32 data_ov002_02364568[];
+extern u32 data_ov002_023645a8[];
+extern u32 data_ov002_023645c8[];
+extern u32 data_ov002_02364608[];
+extern u32 data_ov002_02364628[];
+extern u32 data_ov002_02364668[];
+extern u32 data_ov002_02364688[];
+extern u32 data_ov002_023646e8[];
+extern u32 data_ov002_02364708[];
+extern u32 data_ov002_02364748[];
+extern u32 data_ov002_02364768[];
 
 void* data_ov002_0236825c[] = {&data_ov002_023644e8,
                                &data_ov002_02364548,

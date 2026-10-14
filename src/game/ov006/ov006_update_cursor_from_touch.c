@@ -7,7 +7,7 @@
 void Map3d_ScreenToTilePos(int x, int y, s32* out);
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern Unk_ov006_0235f690* data_ov006_0236d640;
 

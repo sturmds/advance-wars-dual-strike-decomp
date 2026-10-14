@@ -9,7 +9,7 @@ extern u32 data_ov000_02316ce4[];
 extern u32 data_ov000_023162f0[];
 extern u32 data_ov000_023169c4[];
 extern u32 data_ov000_02316b54[];
-extern u8 data_ov000_02350480[];
+extern char data_ov000_02350480[];
 
 u32 data_ov000_02315180[] = {
 #include "data/ov000/data_ov000_02315180.inc.c"

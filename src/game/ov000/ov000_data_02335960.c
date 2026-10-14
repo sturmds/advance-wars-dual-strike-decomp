@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern u8 data_ov000_02350484[];
+extern char data_ov000_02350484[];
 extern u32 data_ov000_023383c4[];
 extern u32 data_ov000_02338744[];
 

@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 
 int func_ov006_0235b46c(
     int x, int y); /* -1 when the sea tile stays sea, else a neighbour count */

@@ -3,7 +3,7 @@
 #include "game/tile_point.h"
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 
 int Map_GetDistance(s16 x1, s16 y1, s16 x2, s16 y2);
 s32 Rng_Range(s32 min, s32 max);

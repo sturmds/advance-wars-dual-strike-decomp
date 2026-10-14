@@ -12,7 +12,7 @@ void Ov006_PlaceRoad(int x, int y); /* places road */
 void Ov006_PlacePipe(int x, int y); /* places pipe */
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 extern u8 Ov006_gPresetMapTiles
     []; /* one tile byte (terrain and owner) per tile, by row */
 

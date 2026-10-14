@@ -4,7 +4,7 @@
 #include "game/keypad.h"
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern s16 data_02169454
     [][2]; /* per d-pad bit pattern (right, left, up, down): x step, y step */

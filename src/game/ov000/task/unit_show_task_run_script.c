@@ -6,7 +6,7 @@
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern int gLinkPlay;
+extern u32 gLinkPlay;
 
 void UnitShowTask_Destroy(UnitShowTask* task);
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);

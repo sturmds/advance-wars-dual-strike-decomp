@@ -1,7 +1,7 @@
 #include "types.h"
 
-extern u8 data_ov000_02350468[];
-extern u8 data_ov000_0235046c[];
+extern char data_ov000_02350468[];
+extern char data_ov000_0235046c[];
 
 char data_ov000_0230e7e8[] = {
 #include "data/ov000/data_ov000_0230e7e8.inc.c"

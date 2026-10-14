@@ -11,7 +11,7 @@ void Ov006_StoreMapCell(int x, int y, int cell);
 int Ov006_GetPipeLink(int x, int y, int dir);
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define LINK(dir) Ov006_GetPipeLink(x, y, DESIGN_DIR_##dir)

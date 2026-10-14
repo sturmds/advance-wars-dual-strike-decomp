@@ -3,7 +3,7 @@
 #include "game/terrain.h"
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 extern s16 Ov006_gWaterCellTable[];
 
 int Ov006_IsLandNeighbor(

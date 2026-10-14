@@ -5,7 +5,7 @@
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern int gLinkPlay;
+extern u32 gLinkPlay;
 
 void func_020f5888(int x, int y);
 void func_020b98e8(void);

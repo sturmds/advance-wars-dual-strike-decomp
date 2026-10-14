@@ -1,26 +1,26 @@
 #include "types.h"
 
-extern u8 data_ov000_02350430[];
-extern u8 data_ov000_02350450[];
-extern u8 data_ov000_02350420[];
-extern u8 data_ov000_0235041c[];
-extern u8 data_ov000_02350418[];
-extern u8 data_ov000_02350434[];
-extern u8 data_ov000_02350440[];
-extern u8 data_ov000_02350448[];
-extern u8 data_ov000_02350458[];
-extern u8 data_ov000_02350414[];
-extern u8 data_ov000_02350464[];
-extern u8 data_ov000_02350460[];
-extern u8 data_ov000_02350428[];
-extern u8 data_ov000_02350454[];
-extern u8 data_ov000_02350444[];
-extern u8 data_ov000_0235045c[];
-extern u8 data_ov000_02350424[];
-extern u8 data_ov000_0235044c[];
-extern u8 data_ov000_02350438[];
-extern u8 data_ov000_0235043c[];
-extern u8 data_ov000_0235042c[];
+extern char data_ov000_02350430[];
+extern char data_ov000_02350450[];
+extern char data_ov000_02350420[];
+extern char data_ov000_0235041c[];
+extern char data_ov000_02350418[];
+extern char data_ov000_02350434[];
+extern char data_ov000_02350440[];
+extern char data_ov000_02350448[];
+extern char data_ov000_02350458[];
+extern char data_ov000_02350414[];
+extern char data_ov000_02350464[];
+extern char data_ov000_02350460[];
+extern char data_ov000_02350428[];
+extern char data_ov000_02350454[];
+extern char data_ov000_02350444[];
+extern char data_ov000_0235045c[];
+extern char data_ov000_02350424[];
+extern char data_ov000_0235044c[];
+extern char data_ov000_02350438[];
+extern char data_ov000_0235043c[];
+extern char data_ov000_0235042c[];
 
 char data_ov000_02309514[] = {
 #include "data/ov000/data_ov000_02309514.inc.c"

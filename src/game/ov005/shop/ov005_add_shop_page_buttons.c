@@ -23,7 +23,7 @@ extern EventScriptCommand data_ov005_0236ba80[];
 extern EventScriptCommand data_ov005_0236b6c0[];
 extern EventScriptCommand data_ov005_0236b680[];
 extern EventScriptCommand data_ov005_0236b640[];
-extern u8 data_ov005_0236b5c0[];
+extern u32 data_ov005_0236b5c0[];
 extern EventScriptCommand data_ov005_0236b740[];
 extern EventScriptCommand data_ov005_0236b7c0[];
 extern EventScriptCommand data_ov005_0236b940[];

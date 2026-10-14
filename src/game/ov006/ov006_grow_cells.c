@@ -3,7 +3,7 @@
 #include "game/design_map_gen.h"
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 
 int Ov006_CountCellNeighbors(int x, int y, int cell);
 BOOL Ov006_RollCellChance(int count, int cell);

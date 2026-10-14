@@ -14,19 +14,19 @@ void UnitInfoPanel_DrawIconList(void);
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern void* data_ov000_0234f384[][15];
-extern u8 data_ov000_022f5be0[];
+extern u32 data_ov000_022f5be0[];
 extern u8 data_ov000_022f5c44[];
-extern u8 data_ov000_022f5be8[];
-extern u8 data_ov000_022f5bc4[];
-extern u8 data_ov000_022f5bf0[];
-extern u8 data_ov000_022f5c08[];
-extern u8 data_ov000_022f5bfc[];
-extern u8 data_ov000_022f5bd8[];
-extern u8 data_ov000_022f5bc8[];
-extern u8 data_ov000_022f5c14[];
-extern u8 data_ov000_022f5c20[];
-extern u8 data_ov000_022f5c38[];
-extern u8 data_ov000_022f5bd0[];
+extern u32 data_ov000_022f5be8[];
+extern u32 data_ov000_022f5bc4;
+extern u32 data_ov000_022f5bf0[];
+extern u32 data_ov000_022f5c08[];
+extern u32 data_ov000_022f5bfc[];
+extern u32 data_ov000_022f5bd8[];
+extern u32 data_ov000_022f5bc8[];
+extern u32 data_ov000_022f5c14[];
+extern u32 data_ov000_022f5c20[];
+extern u32 data_ov000_022f5c38[];
+extern u32 data_ov000_022f5bd0[];
 
 /* per player slot: slot << 5, the owner bits of MapTiles.tiles */
 u16 Ov000_gPlayerTileOwnerBits[] = {
@@ -93,7 +93,7 @@ u16 data_ov000_022f5d88[][27] = {
 ForceRankInfo Ov000_gForceRankTable[] = {
 #include "data/ov000/Ov000_gForceRankTable.inc.c"
 };
-extern void* data_ov000_0234eef0;
+extern u32 data_ov000_0234eef0;
 
 /* Draws the unit in the panel on the second screen: the frame sprite for the
  * owner's army style, the unit type's icon and two more icons, then fuel and

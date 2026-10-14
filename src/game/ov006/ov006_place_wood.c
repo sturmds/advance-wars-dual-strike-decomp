@@ -17,7 +17,7 @@ void Ov006_RefitCellsAround(int x, int y);
 void Ov006_RefreshNeighborRiverCells(int x, int y);
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 
 #define PROPERTY_NONE 0
 

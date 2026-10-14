@@ -3,7 +3,7 @@
 #include "game/design_map_edit.h"
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 
 /* data_027c027c->unk_48[data_027c0284], written so that the compiler loads
  * the index first, as the original does. */

@@ -4,7 +4,7 @@
 int Ov006_GetPropertyKind(int terrain);
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 

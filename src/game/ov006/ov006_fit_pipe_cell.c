@@ -3,7 +3,7 @@
 #include "game/Unk_02080440.h"
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 
 int Ov006_GetPipeSeamCell(int x,
                           int y); /* guess: the seam cell that fits tile x, y */

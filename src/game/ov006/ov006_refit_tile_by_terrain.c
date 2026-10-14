@@ -13,7 +13,7 @@ s16 Ov006_GetShoalGraphic(int x, int y);
 void Ov006_TurnToSea(int x, int y);
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 

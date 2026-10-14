@@ -7,7 +7,7 @@ void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);
 BOOL Screen_IsTextBg(int layer);
 BOOL Screen_IsAffineBg(int layer);
 
-extern u8* data_ov004_022bf150;
+extern void* data_ov004_022bf150;
 extern u32 data_ov004_022bdc94[]; /* map bytes of a text BG by screen size */
 extern u32 data_ov004_022bdc84
     []; /* map bytes of a rotation/scaling BG by screen size */

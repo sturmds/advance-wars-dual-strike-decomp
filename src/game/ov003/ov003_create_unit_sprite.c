@@ -11,7 +11,7 @@ void func_02027a98(Ov003UnitSprite* sprite,
                    int (*callback)(Ov003UnitSprite* sprite));
 int func_ov003_02364300(Ov003UnitSprite* sprite);
 
-extern u8 data_ov003_023654e0[];
+extern void* data_ov003_023654e0[];
 
 /* Creates a sprite on the first screen at (x, y) that points at a unit, and
  * sets func_ov003_02364300 as its callback. */

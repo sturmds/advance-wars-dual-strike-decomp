@@ -3,7 +3,7 @@
 #include "game/screen_other_map.h"
 
 extern Unk_ov004_022bf158* data_ov004_022bf158;
-extern u8* data_ov004_022bf150;
+extern void* data_ov004_022bf150;
 
 void Mem_Copy32(const void* src, void* dst, u32 size);
 void Gfx_RequestLayerCopy(int layer);

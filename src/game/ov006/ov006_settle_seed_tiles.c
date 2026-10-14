@@ -3,7 +3,7 @@
 #include "game/design_map_gen.h"
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 /* Per tile, 30 a row. The random map steps mark tiles here; Ov006_ScatterMountains
  * marks new mountain seeds with 2. */
 

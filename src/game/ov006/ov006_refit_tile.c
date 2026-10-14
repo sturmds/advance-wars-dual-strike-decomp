@@ -13,7 +13,7 @@ int Ov006_GetCellMatchedToLeft(int x, int y);
 void func_ov006_02363198(int x, int y);
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TERRAIN_AT(x, y) \

@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 extern u8 data_ov006_0236d568[][16];
 extern u8 data_ov006_0236d588[][16];
 extern u8 data_ov006_0236d5a8[][16];

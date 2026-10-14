@@ -3,7 +3,7 @@
 #include "game/tile_point.h"
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 
 u32 Rng_Next(void);
 u32 MainLoop_GetFrameCount(void);

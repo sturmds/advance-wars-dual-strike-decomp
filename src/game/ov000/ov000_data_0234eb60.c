@@ -2,7 +2,7 @@
 #include "game/task.h"
 
 void Ov000_ClearRightPanelBox(void);
-extern u8 data_ov000_023504d0[];
+extern char data_ov000_023504d0[];
 void PlayerPanels_Init(void);
 void SecondScreen_UpdatePlayerPanels(void);
 

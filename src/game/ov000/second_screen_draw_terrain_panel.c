@@ -7,7 +7,7 @@
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 int DoubleTerrainStars(int playerIndex, int unitType, int terrain);
 
-extern u8 data_027c0060;
+extern u8 data_027c0060[];
 extern int gTerrainStarOffsets[];
 
 /* Second screen: draws the terrain panel at x offset x. Draws nothing when terrain is 0.

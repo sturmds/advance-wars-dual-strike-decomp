@@ -23,7 +23,7 @@ void func_02027aa0(void* sprite, void* a);
 u32 data_ov003_02369c08;
 Ov003SpritePart
     data_ov003_02369c0c; /* a part list with no parts: only its end */
-extern u8 data_ov003_023654f4[];
+extern void* data_ov003_023654f4[];
 
 /* Creates the sprite for an object that has a position and a kind at 0x60 (the
  * object's purpose is unknown). Calls Ov003_DamageUnitsNear with them first, then

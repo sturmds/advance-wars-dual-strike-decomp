@@ -3,7 +3,7 @@
 #include "game/design_map_gen.h"
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 
 s32 Rng_Range(s32 min, s32 max);
 int Ov006_FindRandomCell(int* x, int* y, int cell);

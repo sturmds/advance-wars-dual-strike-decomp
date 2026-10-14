@@ -1,11 +1,12 @@
 #include "types.h"
 #include "game/quad_sprite_task.h"
+#include "game/ov003_sprite.h"
 
 extern void* data_ov003_02365680[];
 extern void* data_ov003_023657b4[];
 extern void* data_ov003_02365960[];
 extern QuadSpritePart data_ov003_023659d4[];
-extern u8 data_ov003_02369c0c[];
+extern Ov003SpritePart data_ov003_02369c0c;
 extern u32 data_ov003_023654e8[];
 extern u16 data_ov003_023656e8[];
 extern u32 data_ov003_0236572c[];

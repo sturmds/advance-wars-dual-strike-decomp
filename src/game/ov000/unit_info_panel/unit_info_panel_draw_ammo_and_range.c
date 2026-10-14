@@ -11,7 +11,7 @@ int GetUnitMaxRange(int player, int unitType);
 
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern void* data_ov000_0234eef0;
+extern u32 data_ov000_0234eef0;
 
 /* Draws ammo against the type's maximum ammo on the second screen, and for a unit
  * whose longest range is above 1 an icon with the minimum and maximum range.
