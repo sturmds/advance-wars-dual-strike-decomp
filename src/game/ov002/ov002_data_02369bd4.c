@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/BattleSideData.h"
 
 extern u8 data_ov002_02361534[];
 extern u8 data_ov002_02361558[];
@@ -75,43 +76,43 @@ u32 data_ov002_02369da4[] = {
 u32 data_ov002_02369d8c[] = {
 #include "data/ov002/data_ov002_02369d8c.inc.c"
 };
-u32 data_ov002_02369ec0[] = {
+BattleEffectParams data_ov002_02369ec0[] = {
 #include "data/ov002/data_ov002_02369ec0.inc.c"
 };
-u32 data_ov002_02369f28[] = {
+BattleEffectParams data_ov002_02369f28[] = {
 #include "data/ov002/data_ov002_02369f28.inc.c"
 };
-u32 data_ov002_02369f5c[] = {
+BattleEffectParams data_ov002_02369f5c[] = {
 #include "data/ov002/data_ov002_02369f5c.inc.c"
 };
-u32 data_ov002_02369fc4[] = {
+BattleEffectParams data_ov002_02369fc4[] = {
 #include "data/ov002/data_ov002_02369fc4.inc.c"
 };
-u32 data_ov002_02369ff8[] = {
+BattleEffectParams data_ov002_02369ff8[] = {
 #include "data/ov002/data_ov002_02369ff8.inc.c"
 };
-u32 data_ov002_02369dbc[] = {
+BattleEffectParams data_ov002_02369dbc[] = {
 #include "data/ov002/data_ov002_02369dbc.inc.c"
 };
-u32 data_ov002_02369df0[] = {
+BattleEffectParams data_ov002_02369df0[] = {
 #include "data/ov002/data_ov002_02369df0.inc.c"
 };
-u32 data_ov002_02369e24[] = {
+BattleEffectParams data_ov002_02369e24[] = {
 #include "data/ov002/data_ov002_02369e24.inc.c"
 };
-u32 data_ov002_02369e58[] = {
+BattleEffectParams data_ov002_02369e58[] = {
 #include "data/ov002/data_ov002_02369e58.inc.c"
 };
-u32 data_ov002_02369e8c[] = {
+BattleEffectParams data_ov002_02369e8c[] = {
 #include "data/ov002/data_ov002_02369e8c.inc.c"
 };
-u32 data_ov002_02369ef4[] = {
+BattleEffectParams data_ov002_02369ef4[] = {
 #include "data/ov002/data_ov002_02369ef4.inc.c"
 };
-u32 data_ov002_02369f90[] = {
+BattleEffectParams data_ov002_02369f90[] = {
 #include "data/ov002/data_ov002_02369f90.inc.c"
 };
-u32 data_ov002_0236a02c[] = {
+BattleEffectParams data_ov002_0236a02c[] = {
 #include "data/ov002/data_ov002_0236a02c.inc.c"
 };
 u32 data_ov002_0236a060[] = {

@@ -2163,8 +2163,7 @@ data_ov002_0236b0c0 kind:data(byte[44]) addr:0x0236b0c0
 data_ov002_0236b0ec kind:data(byte[44]) addr:0x0236b0ec
 data_ov002_0236b118 kind:data(byte[44]) addr:0x0236b118
 data_ov002_0236b144 kind:data(byte[44]) addr:0x0236b144
-data_ov002_0236b170 kind:data(byte[1120]) addr:0x0236b170
-data_ov002_0236b5d0 kind:data(byte[1520]) addr:0x0236b5d0
+data_ov002_0236b170 kind:data(byte[2640]) addr:0x0236b170
 data_ov002_0236bbc0 kind:bss(size=0x1c) addr:0x0236bbc0
 data_ov002_0236bbdc kind:bss(size=0x2) addr:0x0236bbdc
 data_ov002_0236bbe0 kind:bss(size=0xc) addr:0x0236bbe0

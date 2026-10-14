@@ -142,6 +142,8 @@ typedef struct Ov003Preset {
   u8 pad_13;
 } Ov003Preset;
 
+typedef char Ov003Preset_size_check[sizeof(Ov003Preset) == 0x14 ? 1 : -1];
+
 /* Overlay 3 state, through data_ov003_02364928. */
 typedef struct Ov003State {
   Ov003Row rows[5];

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_ov005_0236bb90.h"
 
 extern u8 data_ov005_023698d0[];
 extern u8 data_ov005_023698d8[];
@@ -157,117 +158,116 @@ char data_ov005_02369e30[] = {
 char data_ov005_02369e4c[] = {
 #include "data/ov005/data_ov005_02369e4c.inc.c"
 };
-u32 data_ov005_02369e9c[] = {
+Ov005Menu data_ov005_02369e9c = {
 #include "data/ov005/data_ov005_02369e9c.inc.c"
 };
-u32 data_ov005_02369ed0[] = {
+Ov005Menu data_ov005_02369ed0 = {
 #include "data/ov005/data_ov005_02369ed0.inc.c"
 };
-u32 data_ov005_02369f6c[] = {
+Ov005Menu data_ov005_02369f6c = {
 #include "data/ov005/data_ov005_02369f6c.inc.c"
 };
-u32 data_ov005_02369fa0[] = {
+Ov005Menu data_ov005_02369fa0 = {
 #include "data/ov005/data_ov005_02369fa0.inc.c"
 };
-u32 data_ov005_0236a008[] = {
+Ov005Menu data_ov005_0236a008 = {
 #include "data/ov005/data_ov005_0236a008.inc.c"
 };
-u32 data_ov005_0236a03c[] = {
+Ov005Menu data_ov005_0236a03c = {
 #include "data/ov005/data_ov005_0236a03c.inc.c"
 };
-u32 data_ov005_0236a10c[] = {
+Ov005Menu data_ov005_0236a10c = {
 #include "data/ov005/data_ov005_0236a10c.inc.c"
 };
-u32 data_ov005_0236a140[] = {
+Ov005Menu data_ov005_0236a140 = {
 #include "data/ov005/data_ov005_0236a140.inc.c"
 };
-u32 data_ov005_0236a1a8[] = {
+Ov005Menu data_ov005_0236a1a8 = {
 #include "data/ov005/data_ov005_0236a1a8.inc.c"
 };
-u32 data_ov005_0236a1dc[] = {
+Ov005Menu data_ov005_0236a1dc = {
 #include "data/ov005/data_ov005_0236a1dc.inc.c"
 };
-u32 data_ov005_0236a278[] = {
+Ov005Menu data_ov005_0236a278 = {
 #include "data/ov005/data_ov005_0236a278.inc.c"
 };
-u32 data_ov005_0236a2ac[] = {
+Ov005Menu data_ov005_0236a2ac = {
 #include "data/ov005/data_ov005_0236a2ac.inc.c"
 };
-u32 data_ov005_0236a314[] = {
+Ov005Menu data_ov005_0236a314 = {
 #include "data/ov005/data_ov005_0236a314.inc.c"
 };
-u32 data_ov005_0236a348[] = {
+Ov005Menu data_ov005_0236a348 = {
 #include "data/ov005/data_ov005_0236a348.inc.c"
 };
-u32 data_ov005_02369e68[] = {
+Ov005Menu data_ov005_02369e68 = {
 #include "data/ov005/data_ov005_02369e68.inc.c"
 };
-u32 data_ov005_02369f04[] = {
+Ov005Menu data_ov005_02369f04 = {
 #include "data/ov005/data_ov005_02369f04.inc.c"
 };
-u32 data_ov005_02369fd4[] = {
+Ov005Menu data_ov005_02369fd4 = {
 #include "data/ov005/data_ov005_02369fd4.inc.c"
 };
-u32 data_ov005_0236a070[] = {
+Ov005Menu data_ov005_0236a070 = {
 #include "data/ov005/data_ov005_0236a070.inc.c"
 };
-u32 data_ov005_0236a174[] = {
+Ov005Menu data_ov005_0236a174 = {
 #include "data/ov005/data_ov005_0236a174.inc.c"
 };
-u32 data_ov005_0236a210[] = {
+Ov005Menu data_ov005_0236a210 = {
 #include "data/ov005/data_ov005_0236a210.inc.c"
 };
-u32 data_ov005_0236a2e0[] = {
+Ov005Menu data_ov005_0236a2e0 = {
 #include "data/ov005/data_ov005_0236a2e0.inc.c"
 };
-u32 data_ov005_0236a37c[] = {
+Ov005Menu data_ov005_0236a37c = {
 #include "data/ov005/data_ov005_0236a37c.inc.c"
 };
-u32 data_ov005_02369f38[] = {
+Ov005Menu data_ov005_02369f38 = {
 #include "data/ov005/data_ov005_02369f38.inc.c"
 };
-u32 data_ov005_0236a0a4[] = {
+Ov005Menu data_ov005_0236a0a4 = {
 #include "data/ov005/data_ov005_0236a0a4.inc.c"
 };
-u32 data_ov005_0236a244[] = {
+Ov005Menu data_ov005_0236a244 = {
 #include "data/ov005/data_ov005_0236a244.inc.c"
 };
-u32 data_ov005_0236a3b0[] = {
+Ov005Menu data_ov005_0236a3b0 = {
 #include "data/ov005/data_ov005_0236a3b0.inc.c"
 };
-u32 data_ov005_0236a0d8[] = {
+Ov005Menu data_ov005_0236a0d8 = {
 #include "data/ov005/data_ov005_0236a0d8.inc.c"
 };
-u32 data_ov005_0236a3e4[] = {
+Ov005Menu data_ov005_0236a3e4 = {
 #include "data/ov005/data_ov005_0236a3e4.inc.c"
 };
-/* declared `Ov005Menu* data_ov005_0236a418[]` in ov005_load_credits_page.c: declared in src/game/ov005/ov005_load_credits_page.c, with a type no header defines */
-void* data_ov005_0236a418[] = {&data_ov005_02369f04,
-                               &data_ov005_02369f38,
-                               &data_ov005_02369fd4,
-                               &data_ov005_0236a008,
-                               &data_ov005_0236a070,
-                               &data_ov005_0236a0a4,
-                               &data_ov005_0236a0d8,
-                               &data_ov005_0236a140,
-                               &data_ov005_0236a1a8,
-                               &data_ov005_0236a210,
-                               &data_ov005_0236a278,
-                               &data_ov005_0236a2e0,
-                               &data_ov005_0236a314,
-                               &data_ov005_0236a3b0,
-                               &data_ov005_02369e68,
-                               &data_ov005_02369f6c,
-                               &data_ov005_0236a03c,
-                               &data_ov005_0236a174,
-                               &data_ov005_0236a244,
-                               &data_ov005_0236a348,
-                               &data_ov005_02369ed0,
-                               &data_ov005_0236a1dc,
-                               &data_ov005_02369e9c,
-                               &data_ov005_0236a10c,
-                               &data_ov005_0236a37c,
-                               &data_ov005_02369fa0,
-                               &data_ov005_0236a2ac,
-                               &data_ov005_0236a3e4,
-                               0};
+Ov005Menu* data_ov005_0236a418[] = {&data_ov005_02369f04,
+                                    &data_ov005_02369f38,
+                                    &data_ov005_02369fd4,
+                                    &data_ov005_0236a008,
+                                    &data_ov005_0236a070,
+                                    &data_ov005_0236a0a4,
+                                    &data_ov005_0236a0d8,
+                                    &data_ov005_0236a140,
+                                    &data_ov005_0236a1a8,
+                                    &data_ov005_0236a210,
+                                    &data_ov005_0236a278,
+                                    &data_ov005_0236a2e0,
+                                    &data_ov005_0236a314,
+                                    &data_ov005_0236a3b0,
+                                    &data_ov005_02369e68,
+                                    &data_ov005_02369f6c,
+                                    &data_ov005_0236a03c,
+                                    &data_ov005_0236a174,
+                                    &data_ov005_0236a244,
+                                    &data_ov005_0236a348,
+                                    &data_ov005_02369ed0,
+                                    &data_ov005_0236a1dc,
+                                    &data_ov005_02369e9c,
+                                    &data_ov005_0236a10c,
+                                    &data_ov005_0236a37c,
+                                    &data_ov005_02369fa0,
+                                    &data_ov005_0236a2ac,
+                                    &data_ov005_0236a3e4,
+                                    0};

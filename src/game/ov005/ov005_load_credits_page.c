@@ -3,18 +3,6 @@
 
 u32 strlen(const char* str);
 
-#define OV005_MENU_ITEMS 6
-
-typedef struct Ov005MenuItem {
-  u32 kind; /* 0: no line */
-  const char* text;
-} Ov005MenuItem;
-
-typedef struct Ov005Menu {
-  Ov005MenuItem items[OV005_MENU_ITEMS];
-  u32 unk_30;
-} Ov005Menu;
-
 extern Ov005Menu* data_ov005_0236a418[];
 
 Ov005Menu* Ov005_LoadCreditsPage(Unk_ov005_0236bb90* work, int menuIndex) {

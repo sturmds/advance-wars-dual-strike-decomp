@@ -482,7 +482,6 @@ data_ov006_0236b35c kind:data(byte[176]) addr:0x0236b35c
 data_ov006_0236b40c kind:data(byte[176]) addr:0x0236b40c
 data_ov006_0236b4bc kind:data(byte[176]) addr:0x0236b4bc
 data_ov006_0236b56c kind:data(byte[96]) addr:0x0236b56c
-data_ov006_0236b5d0 kind:data(byte[92]) addr:0x0236b5d0
 data_ov006_0236b62c kind:data(byte[8]) addr:0x0236b62c
 data_ov006_0236b634 kind:data(byte[40]) addr:0x0236b634
 data_ov006_0236b65c kind:data(byte[40]) addr:0x0236b65c
@@ -573,5 +572,5 @@ Ov006_gCrossDx kind:data(byte[10]) addr:0x0236d624
 data_ov006_0236d640 kind:bss(size=0x4) addr:0x0236d640
 data_ov006_0236d644 kind:bss(size=0x100) addr:0x0236d644
 Ov006_gGenMarks kind:bss(size=0x258) addr:0x0236d744
-data_ov006_0236b5cc kind:data(byte[4]) addr:0x0236b5cc
+data_ov006_0236b5cc kind:data(byte[96]) addr:0x0236b5cc
 data_ov006_0236d630 kind:data(byte[16]) addr:0x0236d630

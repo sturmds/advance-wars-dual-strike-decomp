@@ -190,9 +190,6 @@ extern u8 data_ov002_02369f90[];
 extern u8 data_ov002_02369fc4[];
 extern u8 data_ov002_02369ec0[];
 
-BattleSideWeapon data_ov002_0236a95c[] = {
-#include "data/ov002/data_ov002_0236a95c.inc.c"
-};
 BattleSideWeapon data_ov002_0236b144[] = {
 #include "data/ov002/data_ov002_0236b144.inc.c"
 };
@@ -331,10 +328,9 @@ BattleSideWeapon data_ov002_0236a9b4[] = {
 BattleSideWeapon data_ov002_0236a988[] = {
 #include "data/ov002/data_ov002_0236a988.inc.c"
 };
-/* declared `u8 data_ov002_0236b170[][0x50]` in battle_select_unit_records.c: relocation at data_ov002_0236b170+0x4c is not on a 4-byte field */
-u32 data_ov002_0236b170[] = {
-#include "data/ov002/data_ov002_0236b170.inc.c"
+BattleSideWeapon data_ov002_0236a95c[] = {
+#include "data/ov002/data_ov002_0236a95c.inc.c"
 };
-u32 data_ov002_0236b5d0[] = {
-#include "data/ov002/data_ov002_0236b5d0.inc.c"
+BattleSideData data_ov002_0236b170[] = {
+#include "data/ov002/data_ov002_0236b170.inc.c"
 };

@@ -49,4 +49,20 @@ typedef struct Unk_ov005_0236bb90 {
 
 void Ov005Work_CopyPaletteSet(Unk_ov005_0236bb90* work, int set, int column);
 
+/* One credits page, as data_ov005_0236a418 lists them: up to
+ * OV005_MENU_ITEMS lines (Ov005_LoadCreditsPage). */
+#define OV005_MENU_ITEMS 6
+
+typedef struct Ov005MenuItem {
+  u32 kind; /* 0: no line */
+  const char* text;
+} Ov005MenuItem;
+
+typedef struct Ov005Menu {
+  Ov005MenuItem items[OV005_MENU_ITEMS];
+  u32 unk_30;
+} Ov005Menu;
+
+typedef char Ov005Menu_size_check[sizeof(Ov005Menu) == 0x34 ? 1 : -1];
+
 #endif

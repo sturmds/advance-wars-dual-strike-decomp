@@ -16,7 +16,9 @@ typedef struct BattleSideData_18 {
  * Values are 8.8 fixed point; Battle_StartCellSprite and friends scale them by the
  * sprite's scale. */
 typedef struct BattleEffectParams {
-  u8 pad_00[0x18];
+  char files
+      [5][4]; /* Battle_LoadSideGraphics reads them as BattleGfxByStyle.files */
+  const void* table;        /* and this as BattleGfxByStyle.tables[0] */
   BattlePoint offset;       /* start offset, scaled */
   u16 delay;                /* frames before the sprite moves */
   BattlePoint velocity;     /* scaled */
@@ -26,6 +28,19 @@ typedef struct BattleEffectParams {
   BattlePoint
       unk_2e; /* signs: which way the sprite is heading, per axis; 0: no check */
 } BattleEffectParams;
+
+typedef char
+    BattleEffectParams_size_check[sizeof(BattleEffectParams) == 0x34 ? 1 : -1];
+
+/* An entry of BattleSideData.effects that only names a graphics file: the
+ * first 8 bytes of a BattleGfxFile, as Battle_LoadSideGraphics reads it. */
+typedef struct BattleEffectFile {
+  char file[4];
+  const void* table;
+} BattleEffectFile;
+
+typedef char
+    BattleEffectFile_size_check[sizeof(BattleEffectFile) == 8 ? 1 : -1];
 
 /* Layout of BattleSideData.cellPositions that the fighter tasks read: positions they step through, from byte 14 of the data. */
 typedef struct BattleAnimData {
@@ -76,5 +91,7 @@ typedef struct BattleSideData {
       [3]; /* indexed by byte 9 of the side's 12-byte record in the scene, or by BattleSide.usesSecondary */
   const BattleSounds* sounds;
 } BattleSideData;
+
+typedef char BattleSideData_size_check[sizeof(BattleSideData) == 0x50 ? 1 : -1];
 
 #endif

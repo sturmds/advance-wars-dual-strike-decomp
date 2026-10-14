@@ -1,10 +1,5 @@
 #include "types.h"
-
-/* One text bank: ids from firstId upward index into strings (the low 24 bits). */
-typedef struct TextBank {
-  u32 firstId;
-  const void** strings; /* 0 ends the list */
-} TextBank;
+#include "game/text_ref.h"
 
 extern TextBank gTextBanks[];
 

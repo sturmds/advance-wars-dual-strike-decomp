@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/BattleSideData.h"
 
 extern u8 data_ov002_02360d48[];
 extern u8 data_ov002_023615a0[];
@@ -9,28 +10,28 @@ extern u8 data_ov002_02361660[];
 extern u8 data_ov002_023616e4[];
 extern u8 data_ov002_02361714[];
 
-u32 data_ov002_023698cc[] = {
+BattleEffectFile data_ov002_023698cc[] = {
 #include "data/ov002/data_ov002_023698cc.inc.c"
 };
-u32 data_ov002_023698d4[] = {
+BattleEffectFile data_ov002_023698d4[] = {
 #include "data/ov002/data_ov002_023698d4.inc.c"
 };
-u32 data_ov002_023698bc[] = {
+BattleEffectFile data_ov002_023698bc[] = {
 #include "data/ov002/data_ov002_023698bc.inc.c"
 };
-u32 data_ov002_023698c4[] = {
+BattleEffectFile data_ov002_023698c4[] = {
 #include "data/ov002/data_ov002_023698c4.inc.c"
 };
-u32 data_ov002_023698f4[] = {
+BattleEffectFile data_ov002_023698f4[] = {
 #include "data/ov002/data_ov002_023698f4.inc.c"
 };
-u32 data_ov002_023698ec[] = {
+BattleEffectFile data_ov002_023698ec[] = {
 #include "data/ov002/data_ov002_023698ec.inc.c"
 };
-u32 data_ov002_023698e4[] = {
+BattleEffectFile data_ov002_023698e4[] = {
 #include "data/ov002/data_ov002_023698e4.inc.c"
 };
-u32 data_ov002_023698dc[] = {
+BattleEffectFile data_ov002_023698dc[] = {
 #include "data/ov002/data_ov002_023698dc.inc.c"
 };
 u8 gBattleDrainProfile1[] = {

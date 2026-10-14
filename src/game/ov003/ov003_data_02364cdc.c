@@ -21,7 +21,6 @@ u8 data_ov003_02364cfc[] = {
 Ov003TileInfo data_ov003_02364d88[] = {
 #include "data/ov003/data_ov003_02364d88.inc.c"
 };
-/* declared `Ov003Preset data_ov003_02364e50[]` in ov003_init_rows.c: Ov003Preset.rowCount is a bit field */
-u32 data_ov003_02364e50[] = {
+Ov003Preset data_ov003_02364e50[] = {
 #include "data/ov003/data_ov003_02364e50.inc.c"
 };

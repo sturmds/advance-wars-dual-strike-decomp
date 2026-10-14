@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/menu_item.h"
 #include "game/event_script.h"
 #include "game/popup_menu.h"
 
@@ -34,8 +35,7 @@ static MenuItem data_ov006_0236af9c[] = {
 EventScriptCommand data_ov006_0236b0bc[] = {
 #include "data/ov006/data_ov006_0236b0bc.inc.c"
 };
-/* declared `u8 data_ov006_0236b15c[]` in func_ov006_02353f7c.c: relocation at data_ov006_0236b15c+0x4 is not on a 4-byte field */
-u32 data_ov006_0236b15c[] = {
+MenuItem data_ov006_0236b15c[] = {
 #include "data/ov006/data_ov006_0236b15c.inc.c"
 };
 EventScriptCommand data_ov006_0236b01c[] = {

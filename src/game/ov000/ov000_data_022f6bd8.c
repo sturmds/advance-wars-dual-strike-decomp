@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/text_ref.h"
 #include "game/task.h"
 
 void Gfx_LoadCurrentArmyPalette(void);
@@ -55,7 +56,6 @@ extern u8 data_ov000_0234eb60[];
 TaskScriptCmd data_ov000_022f6bd8[] = {
 #include "data/ov000/data_ov000_022f6bd8.inc.c"
 };
-/* declared `TextBank gTextBanks[]` in text_get.c: declared in src/game/ov000/text/text_get.c, with a type no header defines */
-u32 gTextBanks[] = {
+TextBank gTextBanks[] = {
 #include "data/ov000/gTextBanks.inc.c"
 };
