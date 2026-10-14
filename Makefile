@@ -18,7 +18,7 @@ DSD      := .cache/tools/dsd/dsd
 LOCKED_NINJA := mkdir -p build && flock build/.ninja.lock $(NINJA)
 
 
-.PHONY: all configure fnindex dsindex progress setup tools assets release release-nocheck decomp-dev-report pnc-check check check-rom check-modules check-out hooks extract sound music test test-release clean shift emu-smoke format format-check
+.PHONY: all configure fnindex dsindex progress setup tools assets release release-nocheck decomp-dev-report pnc-check check check-rom check-modules check-out hooks extract sound music test test-release clean shift emu-smoke emu-check format format-check
 
 all: check-rom configure
 	@$(LOCKED_NINJA)
@@ -160,6 +160,16 @@ shift: all
 emu-smoke: shift
 	@$(PYTHON) tools/emu_smoke.py $(ROM) $(OUT) build/shift/AWRE.nds
 
+# Boots retail, our build and every shifted build from make shift in melonDS
+# (env MELONDS, a local build) with no window and no sound, opens the main
+# menu, and fails on an ARM9 exception, a hang, a heap that starts inside
+# overlay memory, or a screen retail reaches and the ROM does not (issue 0006,
+# tools/melonds_check.py). Not part of release.
+SHIFT_ROMS := build/shift/AWRE.nds build/shift-ov000/AWRE.nds build/shift-itcm/AWRE.nds \
+	build/shift-dtcm/AWRE.nds build/shift-main-ov000/AWRE.nds
+emu-check: shift
+	@$(PYTHON) tools/melonds_check.py $(ROM) $(OUT) $(SHIFT_ROMS)
+
 # Part of release, so a landing runs it too. A test that needs something
 # release does not (gcc, decomp-permuter, a ROM) prints "skipped" and passes.
 # Tests of the landing tools on throwaway repos, of propagate.py's C text
@@ -178,7 +188,8 @@ emu-smoke: shift
 # test_bss.py and test_data.py use the compiler from make setup; test_ds.py
 # checks more when extract/ exists, test_bss.py when build/fnindex.json and
 # build/dsindex.json exist, test_data.py when the ROM exists as well;
-# test_sound.py checks the round trip of the ROM's archive when extract/ exists).
+# test_sound.py checks the round trip of the ROM's archive when extract/ exists;
+# test_gdb_rsp.py boots retail in melonDS for 300 frames when melonDS and the ROM exist).
 # Git exports GIT_DIR, GIT_INDEX_FILE and others to hooks, so a test run from
 # pre-commit would send the git commands meant for a throwaway repo to the
 # repository being committed (issue 0076). TEST_ENV drops every GIT_ variable
@@ -211,7 +222,8 @@ TESTS := \
 	tools/tests/test_data.py \
 	tools/tests/test_sound.py \
 	tools/tests/test_shift.py \
-	tools/tests/test_scan_pointers.py
+	tools/tests/test_scan_pointers.py \
+	tools/tests/test_gdb_rsp.py
 
 test:
 	@for t in $(CACHED_TESTS) $(TESTS); do $(TEST_ENV) $(PYTHON) $$t || exit 1; done

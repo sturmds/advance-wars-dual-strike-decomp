@@ -128,6 +128,7 @@ Nobody fixes:
 
 - `make shift` (above). It is not part of `make release`: it needs `arm-none-eabi-readelf`, which the build does not, and it takes about 40 s. Putting it into release needs an ELF reader in Python (`fnindex.read_elf` is most of one) and sturmds's decision on the time.
 - Emulator: melonDS 1.1 (a local build at `~/repos/melonDS/build/melonDS`, with its GDB stub) replaces DeSmuME. Issue 0006 has the boot check; it must stop on the crash ROM above and pass the fixed one.
+  - 2026-10-14: `make emu-check` does: the old arena start fails on the heap check and a data abort in `Ov004_SetSlotTask`, the fixed one reaches the main menu. It also stops the dtcm shift on a prefetch abort at boot (the DTCM region in `init_cp15`).
 
 ## Plan, in order
 
