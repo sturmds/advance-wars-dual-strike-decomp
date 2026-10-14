@@ -8,6 +8,10 @@
                                                families first (heads for propagate.py)
     fn.py show NAME|ADDR                       location, callers, callees, data, other references
                                                (pointer tables, callbacks), disassembly
+    fn.py search ADDR [ADDR...] [--module M]   what owns an address: module (each overlay that
+                                               covers it), section, symbol+offset, delinks.txt
+                                               file, linked object; for code the original
+                                               instruction and the C line, for data its declaration
     fn.py add NAME src/PATH.c                  add a delinks.txt entry covering the function
     fn.py diff NAME [--color WHEN]             compile its file and compare with the original
     fn.py check FILE.c NAME                    fast yes/no: compile FILE.c alone and compare NAME
@@ -463,6 +467,16 @@ def cmd_show(args) -> int:
         print(f"  {name:<24} {describe(dest, addr)}  used by: {', '.join(users_of(dest, addr, f)) or 'only this'}")
     print("callers: " + (", ".join(callers_of(f)) or "none found"))
     print("refs:    " + ("; ".join(refs_to(f)) or "none"))
+    obj = original_object(f)
+    if obj is None:
+        sys.exit("error: no delinked object yet. Run `make` first.")
+    print("\n".join(objdump(obj, f.name, f.mode)))
+    return 0
+
+
+def original_object(f: Func) -> Path | None:
+    """The object dsd delinked from the ROM that holds f, or None before a build."""
+    fi = file_of(f)
     delinks = ROOT / ("build/arm7/delinks" if f.module == "arm7" else "build/delinks")
     if fi:
         obj = delinks / Path(fi[0]).with_suffix(".o")
@@ -472,10 +486,7 @@ def cmd_show(args) -> int:
         gaps = sorted(delinks.glob(f"_dsd_gap@{prefix}_*.o"))
         obj = next((g for g in gaps if re.search(rf" [Tt] {re.escape(f.name)}$", subprocess.run(
             ["arm-none-eabi-nm", "--defined-only", str(g)], capture_output=True, text=True).stdout, re.M)), None)
-    if obj is None or not obj.exists():
-        sys.exit("error: no delinked object yet. Run `make` first.")
-    print("\n".join(objdump(obj, f.name, f.mode)))
-    return 0
+    return obj if obj is not None and obj.exists() else None
 
 
 def arm7_index(addr: int) -> int:
@@ -787,21 +798,10 @@ def cmd_lines(args) -> int:
         if not fi:
             sys.exit(f"error: {f.name} is not inside any delinks.txt file. Run fn.py add first, or give FILE.c.")
         src = ROOT / fi[0]
-    import configure
-    cc, cflags = configure.compiler_for(src, f.module)
-    with tempfile.TemporaryDirectory() as d:
-        obj = Path(d) / "lines.o"
-        # -g adds the line table and leaves .text as it is.
-        r = subprocess.run([str(ROOT / cc), "-c", *cflags.split(), "-g", "-o", str(obj), str(src)],
-                           cwd=ROOT, capture_output=True, text=True)
-        if r.returncode:
-            sys.stdout.write(r.stdout + r.stderr)
-            return 1
-        # -z: a pool word is 0 until linked, and objdump would fold those into "...".
-        cmd = [OBJDUMP, "-dlrz", "-marmv5te", "--no-show-raw-insn", f"--disassemble={f.name}", str(obj)]
-        if f.mode == "thumb":
-            cmd.insert(1, "-Mforce-thumb")
-        out = subprocess.run(cmd, capture_output=True, text=True, check=True).stdout
+    ok, out = line_listing(f, src)
+    if not ok:
+        sys.stdout.write(out)
+        return 1
     sources: dict[Path, list[str]] = {}
     blocks = []  # [header, [asm lines]]
     for line in out.splitlines():
@@ -845,6 +845,25 @@ def cmd_lines(args) -> int:
                 asm[i] = a[:m.start()] + "=" + pool[int(m.group(1), 16)]
     print("\n\n".join(f"{head}\n---\n" + "\n".join(asm) for head, asm in blocks if asm))
     return 0
+
+
+def line_listing(f: Func, src: Path) -> tuple[bool, str]:
+    """Compile src with -g and disassemble f with its line table:
+    (True, objdump output), or (False, compiler output) when it fails."""
+    import configure
+    cc, cflags = configure.compiler_for(src, f.module)
+    with tempfile.TemporaryDirectory() as d:
+        obj = Path(d) / "lines.o"
+        # -g adds the line table and leaves .text as it is.
+        r = subprocess.run([str(ROOT / cc), "-c", *cflags.split(), "-g", "-o", str(obj), str(src)],
+                           cwd=ROOT, capture_output=True, text=True)
+        if r.returncode:
+            return False, r.stdout + r.stderr
+        # -z: a pool word is 0 until linked, and objdump would fold those into "...".
+        cmd = [OBJDUMP, "-dlrz", "-marmv5te", "--no-show-raw-insn", f"--disassemble={f.name}", str(obj)]
+        if f.mode == "thumb":
+            cmd.insert(1, "-Mforce-thumb")
+        return True, subprocess.run(cmd, capture_output=True, text=True, check=True).stdout
 
 
 def source_path(name: str) -> Path | None:
@@ -1131,6 +1150,11 @@ def main() -> int:
     p = sub.add_parser("show")
     p.add_argument("key")
     p.set_defaults(fn=cmd_show)
+    p = sub.add_parser("search")
+    p.add_argument("addrs", nargs="+", metavar="ADDR")
+    p.add_argument("--module", help="only this module (main, itcm, dtcm, ovNNN, arm7)")
+    p.add_argument("--no-lines", action="store_true", help="skip the C line (it compiles the file with -g)")
+    p.set_defaults(fn=lambda args: __import__("fn_search").cmd_search(args))
     p = sub.add_parser("add")
     p.add_argument("name")
     p.add_argument("path")

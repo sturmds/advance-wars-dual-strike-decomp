@@ -201,6 +201,7 @@ TESTS := \
 	tools/tests/test_fn_rename.py \
 	tools/tests/test_loop_state.py \
 	tools/tests/test_fnshow.py \
+	tools/tests/test_fn_search.py \
 	tools/tests/test_fnadd.py \
 	tools/tests/test_ds.py \
 	tools/tests/test_pragmas.py \

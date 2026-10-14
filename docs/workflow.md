@@ -364,6 +364,7 @@ A mod that changes code size moves every later address. The linker fixes an addr
 | Command | What it does |
 |---|---|
 | `python3 tools/fn.py show NAME\|ADDR` | Location, callers, table references and original disassembly |
+| `python3 tools/fn.py search ADDR [ADDR...] [--module M]` | What holds an address (`0x20D7164`, `020d7164`): for each module that covers it (several overlays share a range), the section, the symbol and offset, the delinks.txt file and the object as linked; for code the original instruction and, in a `complete` file, the C line (`--no-lines` skips the compile); for data its C definition and declarations. An address in no module gets the DS memory region, such as I/O registers |
 | `python3 tools/fn.py diff NAME` | Compile, diff, exit 0 on a full match |
 | `python3 tools/fn.py check FILE.c NAME` | Compile one file, compare one function with the index, exit 0 on a match |
 | `python3 tools/fn.py lines NAME [FILE.c]` | Our compiled code for one function, grouped under the C line each instruction comes from |
