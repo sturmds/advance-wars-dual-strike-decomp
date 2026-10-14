@@ -109,9 +109,9 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0079](0079-bios-callback-decompressor-prototypes.md) | The callback BIOS decompressors are declared with two arguments, not four | open | decomp | M2 |
 | [0080](0080-worktree-guard-refuses-agent-commands.md) | The worktree guard refuses commands the loop needs (results file, wt_setup.sh, compound git lines) | open | loop | M2 |
 | [0081](0081-migrate-to-github-issues.md) | Migrate to GitHub issues | open | docs | later |
-| [0082](0082-data-linking.md) | Link data from C (GitHub #1) | in progress | decomp | M2 |
+| [0082](0082-data-linking.md) | Link data from C (GitHub #1) | closed | decomp | M2 |
 | [0083](0083-aliases-hide-variables.md) | `.bss` aliases can hide separate variables | in progress | tools | M2 |
 | [0084](0084-landing-train.md) | Land several waiting branches with one release | open | loop | later |
 | [0085](0085-music-extraction.md) | Investigate how the music is stored and played, to extract it like the maps | closed | tools | later |
 | [0086](0086-shiftable-rom.md) | A shifted or modded build must still run | in progress | build | M3 |
-| [0087](0087-fully-shiftable-source.md) | Make the source fully shiftable: addresses, sizes and bounds from the C, counted in PROGRESS.md | open | decomp | M3 |
+| [0087](0087-fully-shiftable-source.md) | Make the source fully shiftable: addresses, sizes and bounds from the C, counted in PROGRESS.md (GitHub #2) | open | decomp | M3 |

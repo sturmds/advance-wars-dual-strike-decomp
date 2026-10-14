@@ -4,6 +4,7 @@
 - **Area:** decomp
 - **Opened:** 2026-10-14
 - **Milestone:** M3
+- **GitHub:** #2
 - **Related:** 0086 (shifted builds must run; the goal and hazard classes), 0012 (hard-coded addresses), 0054 (ARM7 words), 0064 (terrain stats framing), 0083 (aliases)
 
 ## Problem

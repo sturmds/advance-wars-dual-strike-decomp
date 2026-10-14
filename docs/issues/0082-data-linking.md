@@ -1,6 +1,6 @@
 # 0082: Link data from C
 
-- **Status:** in progress
+- **Status:** closed
 - **Area:** decomp
 - **Opened:** 2026-10-13
 - **Milestone:** M2
@@ -36,6 +36,8 @@ decomp.dev shows all code decompiled and linked, but 94% of the data bytes are s
 - Scope for now: `.bss` only. `.data` and `.rodata` are out of scope for the loop and the orchestrator until the `.bss` is done.
 - Strings, and every other kind of data that holds game bytes, go through `inc.c` files: `make setup` extracts them from the builder's ROM, and the C includes them (the `tools/data_inc.py` pattern, `docs/workflow.md`, "Data from the ROM"). Never as literals in git (tenet 9).
 - Data work stays a separate kind of job. Code agents keep `extern` for data, and nothing about data may get in the way of their work.
+
+- 2026-10-14: closed, with GitHub #1. Data linked is 100.0000% (3,136,124 of 3,136,124 bytes) and no unit's data scores below 100% matched. The types still missing from generated placeholders and `u32` tables move to issue 0087 (GitHub #2).
 
 ## Done when
 
