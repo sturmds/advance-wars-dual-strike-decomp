@@ -27,7 +27,7 @@ A row of data_inc.txt: module, symbol, address, size in bytes, element type.
   with an optional `[N]` that writes the values as rows of N in braces.
   For a struct or an array of structs, the field types in braces, no
   spaces, with `[N]` for an array field: `{u8,u8,u8[2],u32,u32,u16*,u8,u8[3]}`
-  writes one line of values per struct, with no braces around it, so the
+  writes one line of values per struct, with no braces in it, so the
   same file initializes one struct or an array of them (C fills the
   members in order). `pad[N]` stands for N bytes of padding, which must be
   zero and get no value. Fields must be aligned to their size.
@@ -250,8 +250,10 @@ def literal(row: Row, rom: Rom, addr: int, raw: bytes, cast: str = "") -> str:
 
 
 def render_struct(row: Row, rom: Rom, addr: int, data: bytes) -> str:
-    """One struct as `a, b, {c, d}, ...,`: no braces around it, so C fills
-    the members in order whether the object is one struct or an array."""
+    """One struct as `a, b, c, d, ...,`: no braces around it or around its
+    array members, so C fills the members in order whether the object is
+    one struct or an array. A brace at the start of a line would take the
+    whole element when the struct's first member is an array."""
     parts, offset = [], 0
     for cast, count in row.fields:
         if cast == PAD:
@@ -264,7 +266,7 @@ def render_struct(row: Row, rom: Rom, addr: int, data: bytes) -> str:
         for i in range(max(count, 1)):
             at = offset + i * width
             values.append(literal(row, rom, addr + at, data[at:at + width], cast))
-        parts.append("{" + ", ".join(values) + "}" if count else values[0])
+        parts += values
         offset += width * max(count, 1)
     return ", ".join(parts) + ","
 
