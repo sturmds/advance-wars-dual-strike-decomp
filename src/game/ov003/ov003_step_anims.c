@@ -1,5 +1,5 @@
 #include "types.h"
-#include "game/ov003_anim.h"
+#include "game/Ov003Fx.h"
 #include "game/ov003_unit.h"
 
 int Ov003_IsPhase0OrAbove6(void);
@@ -12,7 +12,7 @@ void Ov003_StepAnims(void) {
     return;
   }
 
-  data_ov003_02364a84->unk_08 = (data_ov003_02364928->frameCount >> 2) & 15;
+  data_ov003_02364a84->mode = (data_ov003_02364928->frameCount >> 2) & 15;
 
   if (HwMod32(data_ov003_02364928->frameCount, 20) == 0) {
     data_ov003_02364a84->unk_0b_0 = 1;

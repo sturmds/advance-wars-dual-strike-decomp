@@ -1,6 +1,6 @@
 #include "types.h"
 #include "game/ov003_unit.h"
-#include "game/Unk_ov003_02364a84.h"
+#include "game/Ov003Fx.h"
 
 /* Resets the scroll position (state 0x1d0 and 0x1d2, which Ov003_DrawIconAt
  * compares screen positions against) and clears the flag fields of
