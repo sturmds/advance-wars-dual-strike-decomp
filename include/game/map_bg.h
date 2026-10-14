@@ -11,9 +11,9 @@
 /* Tables used to draw map tiles into the BG tile maps of layers 3 and 2
  * (MapBg_DrawTileRow, MapBg_DrawTileColumn). Each map tile is 2x2 BG
  * tiles. */
-extern u16
+extern const u16
     gMapCellGroundTiles[]; /* 4 BG tile entries per map cell, for layer 3 */
-extern u16 gMapCellOverhangTiles
+extern const u16 gMapCellOverhangTiles
     []; /* same for layer 2: the part of a cell drawn into the row above */
 extern u16
     gMountainCellVariants[16]; /* mountain cells, picked by tile position */
