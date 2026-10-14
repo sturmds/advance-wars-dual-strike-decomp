@@ -94,7 +94,7 @@ How it works:
 - Lengths are fixed per kind: songs 2:30 with a 10-second fade, sound effects 12 seconds with a 2-second fade. Every sound effect that ends does so within 9.1 seconds; the 42 that loop (engines, unit moves, quakes) fade out. 4 sound effects render as silence (counter and setup cues). The files are what the sound engine plays: `export` does not look for loop points or trim silence.
 - Song titles come from the Sound Room list in ov005 (`data_ov005_0236b10c`, 67 cells) and the game text it points to (`gTextBanks` in ov000). Song 55 has no cell and keeps its SYMB name.
 - Rendering runs on half the CPUs, two per zxtune123 process; on 16 cores the 363 files take about 100 seconds and 234 MB. `extracted/AWRE/music/.stamp` holds a hash of the archive, the two overlays, zxtune's SHA-256 and the settings; while it matches, `export` does nothing. `--force` renders again.
-- `make assets` (part of `make setup` and `make release`) runs `export --auto`, which skips in a linked worktree and when ffmpeg is missing, so a first build needs neither. `make music` exports in any checkout.
+- `make assets` (part of `make setup` and `make release`) runs `export --auto`, which skips in a linked worktree and when ffmpeg is missing, and turns any other failure (no zxtune123, a render error) into one line of output. `make release` never depends on the music; `make music` reports the error. `make music` exports in any checkout.
 
 ## Keeping it out of git
 

@@ -685,13 +685,25 @@ def linked_worktree() -> bool:
 
 
 def cmd_export(args) -> int:
-    if args.auto and linked_worktree():
+    if not args.auto:
+        return export(args)
+    # make assets runs this on every make release; the music is not part of
+    # the build, so nothing here may stop the release.
+    if linked_worktree():
         print("export: skipped in a linked worktree; run make music to export here")
         return 0
     if not shutil.which("ffmpeg"):
-        if args.auto:
-            print("export: skipped, ffmpeg not found (sudo apt install ffmpeg; then make music)")
-            return 0
+        print("export: skipped, ffmpeg not found (sudo apt install ffmpeg; then make music)")
+        return 0
+    try:
+        return export(args)
+    except (SystemExit, OSError, subprocess.CalledProcessError) as e:
+        print(f"export: failed ({e}); make music shows the error. The build does not need the music.")
+        return 0
+
+
+def export(args) -> int:
+    if not shutil.which("ffmpeg"):
         sys.exit("error: ffmpeg not found; sudo apt install ffmpeg")
     if not (ROOT / ZXTUNE).exists():
         sys.exit(f"error: {ZXTUNE} not found; run make setup")
@@ -754,7 +766,7 @@ def main() -> int:
     p.add_argument("--jobs", type=int, help="songs rendered at once (default: half the CPUs)")
     p.add_argument("--force", action="store_true", help="export even when the files are up to date")
     p.add_argument("--auto", action="store_true",
-                   help="for make assets: skip in a linked worktree or without ffmpeg")
+                   help="for make assets: skip in a linked worktree or without ffmpeg; never fail")
     p.set_defaults(func=cmd_export)
     args = parser.parse_args()
     return args.func(args)
