@@ -320,6 +320,466 @@ src/game/ov000/ov000_rodata_022b3834.c:
     complete
     .rodata     start:0x022b3834 end:0x022b3850
 
+src/game/ov000/ov000_data_022f4498.c:
+    complete
+    .data       start:0x022f4498 end:0x022f4fb8
+
+src/game/ov000/ov000_data_022f5b1c.c:
+    complete
+    .data       start:0x022f5b1c end:0x022f5bc4
+
+src/game/ov000/ov000_data_022f5bc4.c:
+    complete
+    .data       start:0x022f5bc4 end:0x022f5c2c
+
+src/game/ov000/ov000_data_022f5c2c.c:
+    complete
+    .data       start:0x022f5c2c end:0x022f5c50
+
+src/game/ov000/ov000_data_022f64cc.c:
+    complete
+    .data       start:0x022f64cc end:0x022f655c
+
+src/game/ov000/ov000_data_022f655c.c:
+    complete
+    .data       start:0x022f655c end:0x022f65c0
+
+src/game/ov000/ov000_data_022f65c0.c:
+    complete
+    .data       start:0x022f65c0 end:0x022f65fc
+
+src/game/ov000/ov000_data_022f65fc.c:
+    complete
+    .data       start:0x022f65fc end:0x022f6bd8
+
+src/game/ov000/ov000_data_022f6bd8.c:
+    complete
+    .data       start:0x022f6bd8 end:0x022f6d78
+
+src/game/ov000/ov000_data_022f6d78.c:
+    complete
+    .data       start:0x022f6d78 end:0x022f7044
+
+src/game/ov000/ov000_data_022f7044.c:
+    complete
+    .data       start:0x022f7044 end:0x022f72e8
+
+src/game/ov000/ov000_data_022f72e8.c:
+    complete
+    .data       start:0x022f72e8 end:0x022f7308
+
+src/game/ov000/ov000_data_022f7308.c:
+    complete
+    .data       start:0x022f7308 end:0x022f73d8
+
+src/game/ov000/ov000_data_022f73d8.c:
+    complete
+    .data       start:0x022f73d8 end:0x022f7408
+
+src/game/ov000/ov000_data_022f7408.c:
+    complete
+    .data       start:0x022f7408 end:0x022f7468
+
+src/game/ov000/ov000_data_022f7468.c:
+    complete
+    .data       start:0x022f7468 end:0x022f75f0
+
+src/game/ov000/ov000_data_022f75f0.c:
+    complete
+    .data       start:0x022f75f0 end:0x022f7654
+
+src/game/ov000/ov000_data_022f7654.c:
+    complete
+    .data       start:0x022f7654 end:0x022f767c
+
+src/game/ov000/ov000_data_022f767c.c:
+    complete
+    .data       start:0x022f767c end:0x022f76b8
+
+src/game/ov000/ov000_data_022f76b8.c:
+    complete
+    .data       start:0x022f76b8 end:0x022f7708
+
+src/game/ov000/ov000_data_022f7708.c:
+    complete
+    .data       start:0x022f7708 end:0x022f77d4
+
+src/game/ov000/ov000_data_022f77d4.c:
+    complete
+    .data       start:0x022f77d4 end:0x022f7864
+
+src/game/ov000/ov000_data_022f7864.c:
+    complete
+    .data       start:0x022f7864 end:0x022f78c4
+
+src/game/ov000/ov000_data_022f78c4.c:
+    complete
+    .data       start:0x022f78c4 end:0x022f79cc
+
+src/game/ov000/ov000_data_022f79cc.c:
+    complete
+    .data       start:0x022f79cc end:0x022f7a2c
+
+src/game/ov000/ov000_data_022f7a2c.c:
+    complete
+    .data       start:0x022f7a2c end:0x022f7aa4
+
+src/game/ov000/ov000_data_022f7aa4.c:
+    complete
+    .data       start:0x022f7aa4 end:0x022f7b04
+
+src/game/ov000/ov000_data_022f7b04.c:
+    complete
+    .data       start:0x022f7b04 end:0x022f7b94
+
+src/game/ov000/ov000_data_022f7b94.c:
+    complete
+    .data       start:0x022f7b94 end:0x022f7bdc
+
+src/game/ov000/ov000_data_022f7bdc.c:
+    complete
+    .data       start:0x022f7bdc end:0x022f7dc8
+
+src/game/ov000/ov000_data_022f7dc8.c:
+    complete
+    .data       start:0x022f7dc8 end:0x022f7e1c
+
+src/game/ov000/ov000_data_022f7e1c.c:
+    complete
+    .data       start:0x022f7e1c end:0x022f7ee0
+
+src/game/ov000/ov000_data_022f7ee0.c:
+    complete
+    .data       start:0x022f7ee0 end:0x022f7f34
+
+src/game/ov000/ov000_data_022f7f34.c:
+    complete
+    .data       start:0x022f7f34 end:0x022f7f88
+
+src/game/ov000/ov000_data_022f7f88.c:
+    complete
+    .data       start:0x022f7f88 end:0x022f8068
+
+src/game/ov000/ov000_data_022f8068.c:
+    complete
+    .data       start:0x022f8068 end:0x022f80a0
+
+src/game/ov000/ov000_data_022f80a0.c:
+    complete
+    .data       start:0x022f80a0 end:0x022f8330
+
+src/game/ov000/ov000_data_022f8330.c:
+    complete
+    .data       start:0x022f8330 end:0x022f83f0
+
+src/game/ov000/ov000_data_022f83f0.c:
+    complete
+    .data       start:0x022f83f0 end:0x022f8470
+
+src/game/ov000/ov000_data_022f8470.c:
+    complete
+    .data       start:0x022f8470 end:0x022f84f0
+
+src/game/ov000/ov000_data_022f84f0.c:
+    complete
+    .data       start:0x022f84f0 end:0x022f8550
+
+src/game/ov000/ov000_data_022f8550.c:
+    complete
+    .data       start:0x022f8550 end:0x022f85d0
+
+src/game/ov000/ov000_data_022f85d0.c:
+    complete
+    .data       start:0x022f85d0 end:0x022f86b0
+
+src/game/ov000/ov000_data_022f86b0.c:
+    complete
+    .data       start:0x022f86b0 end:0x022f8710
+
+src/game/ov000/ov000_data_022f8710.c:
+    complete
+    .data       start:0x022f8710 end:0x022f89d4
+
+src/game/ov000/ov000_data_022f89d4.c:
+    complete
+    .data       start:0x022f89d4 end:0x022f8a88
+
+src/game/ov000/ov000_data_022f8a88.c:
+    complete
+    .data       start:0x022f8a88 end:0x022f8bcc
+
+src/game/ov000/ov000_data_022f8bcc.c:
+    complete
+    .data       start:0x022f8bcc end:0x022f8d10
+
+src/game/ov000/ov000_data_022f8d10.c:
+    complete
+    .data       start:0x022f8d10 end:0x022f8da0
+
+src/game/ov000/ov000_data_022f8da0.c:
+    complete
+    .data       start:0x022f8da0 end:0x022f8e54
+
+src/game/ov000/ov000_data_022f8e54.c:
+    complete
+    .data       start:0x022f8e54 end:0x022f8f2c
+
+src/game/ov000/ov000_data_022f8f2c.c:
+    complete
+    .data       start:0x022f8f2c end:0x022f8fbc
+
+src/game/ov000/ov000_data_022f8fbc.c:
+    complete
+    .data       start:0x022f8fbc end:0x022f9318
+
+src/game/ov000/ov000_data_022f9318.c:
+    complete
+    .data       start:0x022f9318 end:0x022f94d0
+
+src/game/ov000/ov000_data_022f94d0.c:
+    complete
+    .data       start:0x022f94d0 end:0x022f9598
+
+src/game/ov000/ov000_data_022f9598.c:
+    complete
+    .data       start:0x022f9598 end:0x022f9700
+
+src/game/ov000/ov000_data_022f9700.c:
+    complete
+    .data       start:0x022f9700 end:0x022f9818
+
+src/game/ov000/ov000_data_022f9818.c:
+    complete
+    .data       start:0x022f9818 end:0x022f9be4
+
+src/game/ov000/ov000_data_022f9be4.c:
+    complete
+    .data       start:0x022f9be4 end:0x022f9cc0
+
+src/game/ov000/ov000_data_022f9cc0.c:
+    complete
+    .data       start:0x022f9cc0 end:0x022f9d18
+
+src/game/ov000/ov000_data_022f9d18.c:
+    complete
+    .data       start:0x022f9d18 end:0x022f9d9c
+
+src/game/ov000/ov000_data_022f9d9c.c:
+    complete
+    .data       start:0x022f9d9c end:0x022f9e20
+
+src/game/ov000/ov000_data_022f9e20.c:
+    complete
+    .data       start:0x022f9e20 end:0x022f9ea4
+
+src/game/ov000/ov000_data_022f9ea4.c:
+    complete
+    .data       start:0x022f9ea4 end:0x022f9fd8
+
+src/game/ov000/ov000_data_022f9fd8.c:
+    complete
+    .data       start:0x022f9fd8 end:0x022fa088
+
+src/game/ov000/ov000_data_022fa088.c:
+    complete
+    .data       start:0x022fa088 end:0x022fa10c
+
+src/game/ov000/ov000_data_022fa10c.c:
+    complete
+    .data       start:0x022fa10c end:0x022fa164
+
+src/game/ov000/ov000_data_022fa164.c:
+    complete
+    .data       start:0x022fa164 end:0x022fa240
+
+src/game/ov000/ov000_data_022fa240.c:
+    complete
+    .data       start:0x022fa240 end:0x022fa3a0
+
+src/game/ov000/ov000_data_022fa3a0.c:
+    complete
+    .data       start:0x022fa3a0 end:0x022fa724
+
+src/game/ov000/ov000_data_022fa724.c:
+    complete
+    .data       start:0x022fa724 end:0x022fa784
+
+src/game/ov000/ov000_data_022fa784.c:
+    complete
+    .data       start:0x022fa784 end:0x022fa934
+
+src/game/ov000/ov000_data_022fa934.c:
+    complete
+    .data       start:0x022fa934 end:0x022faa84
+
+src/game/ov000/ov000_data_022faa84.c:
+    complete
+    .data       start:0x022faa84 end:0x022fab44
+
+src/game/ov000/ov000_data_022fab44.c:
+    complete
+    .data       start:0x022fab44 end:0x022fabd4
+
+src/game/ov000/ov000_data_022fabd4.c:
+    complete
+    .data       start:0x022fabd4 end:0x022faf18
+
+src/game/ov000/ov000_data_022faf18.c:
+    complete
+    .data       start:0x022faf18 end:0x022fb050
+
+src/game/ov000/ov000_data_022fb050.c:
+    complete
+    .data       start:0x022fb050 end:0x022fb5d8
+
+src/game/ov000/ov000_data_022fb5d8.c:
+    complete
+    .data       start:0x022fb5d8 end:0x022fb680
+
+src/game/ov000/ov000_data_022fb680.c:
+    complete
+    .data       start:0x022fb680 end:0x022ff7b0
+
+src/game/ov000/ov000_data_022ff7b0.c:
+    complete
+    .data       start:0x022ff7b0 end:0x022ff838
+
+src/game/ov000/ov000_data_022ff838.c:
+    complete
+    .data       start:0x022ff838 end:0x022ff880
+
+src/game/ov000/ov000_data_022ff880.c:
+    complete
+    .data       start:0x022ff880 end:0x022ff8b0
+
+src/game/ov000/ov000_data_022ff8b0.c:
+    complete
+    .data       start:0x022ff8b0 end:0x022ff8e8
+
+src/game/ov000/ov000_data_022ff8e8.c:
+    complete
+    .data       start:0x022ff8e8 end:0x022ff8f8
+
+src/game/ov000/ov000_data_022ff8f8.c:
+    complete
+    .data       start:0x022ff8f8 end:0x022ff908
+
+src/game/ov000/ov000_data_022ff908.c:
+    complete
+    .data       start:0x022ff908 end:0x022ff938
+
+src/game/ov000/ov000_data_022ff938.c:
+    complete
+    .data       start:0x022ff938 end:0x022ff950
+
+src/game/ov000/ov000_data_022ff950.c:
+    complete
+    .data       start:0x022ff950 end:0x022ff980
+
+src/game/ov000/ov000_data_022ff980.c:
+    complete
+    .data       start:0x022ff980 end:0x022ff990
+
+src/game/ov000/ov000_data_022ff990.c:
+    complete
+    .data       start:0x022ff990 end:0x022ff9b8
+
+src/game/ov000/ov000_data_022ff9b8.c:
+    complete
+    .data       start:0x022ff9b8 end:0x022ffb04
+
+src/game/ov000/ov000_data_022ffb04.c:
+    complete
+    .data       start:0x022ffb04 end:0x022ffb28
+
+src/game/ov000/ov000_data_022ffb28.c:
+    complete
+    .data       start:0x022ffb28 end:0x022ffb58
+
+src/game/ov000/ov000_data_022ffb58.c:
+    complete
+    .data       start:0x022ffb58 end:0x022ffb7c
+
+src/game/ov000/ov000_data_022ffb7c.c:
+    complete
+    .data       start:0x022ffb7c end:0x022ffbdc
+
+src/game/ov000/ov000_data_022ffbdc.c:
+    complete
+    .data       start:0x022ffbdc end:0x022ffbf4
+
+src/game/ov000/ov000_data_022ffbf4.c:
+    complete
+    .data       start:0x022ffbf4 end:0x022ffc24
+
+src/game/ov000/ov000_data_022ffc24.c:
+    complete
+    .data       start:0x022ffc24 end:0x022ffc78
+
+src/game/ov000/ov000_data_022ffc78.c:
+    complete
+    .data       start:0x022ffc78 end:0x022ffcfc
+
+src/game/ov000/ov000_data_022ffcfc.c:
+    complete
+    .data       start:0x022ffcfc end:0x022ffd2c
+
+src/game/ov000/ov000_data_022ffd2c.c:
+    complete
+    .data       start:0x022ffd2c end:0x022ffd8c
+
+src/game/ov000/ov000_data_022ffd8c.c:
+    complete
+    .data       start:0x022ffd8c end:0x022ffe04
+
+src/game/ov000/ov000_data_022ffe04.c:
+    complete
+    .data       start:0x022ffe04 end:0x022ffe58
+
+src/game/ov000/ov000_data_022ffe58.c:
+    complete
+    .data       start:0x022ffe58 end:0x022ffe94
+
+src/game/ov000/ov000_data_022ffe94.c:
+    complete
+    .data       start:0x022ffe94 end:0x022fff24
+
+src/game/ov000/ov000_data_022fff24.c:
+    complete
+    .data       start:0x022fff24 end:0x022fffc0
+
+src/game/ov000/ov000_data_022fffc0.c:
+    complete
+    .data       start:0x022fffc0 end:0x022fffd8
+
+src/game/ov000/ov000_data_022fffd8.c:
+    complete
+    .data       start:0x022fffd8 end:0x02300014
+
+src/game/ov000/ov000_data_02300014.c:
+    complete
+    .data       start:0x02300014 end:0x02300038
+
+src/game/ov000/ov000_data_02300038.c:
+    complete
+    .data       start:0x02300038 end:0x02300e08
+
+src/game/ov000/ov000_data_02300e08.c:
+    complete
+    .data       start:0x02300e08 end:0x02300efc
+
+src/game/ov000/ov000_data_02300efc.c:
+    complete
+    .data       start:0x02300efc end:0x023010a8
+
+src/game/ov000/ov000_data_023010a8.c:
+    complete
+    .data       start:0x023010a8 end:0x023010f0
+
+src/game/ov000/ov000_data_023010f0.c:
+    complete
+    .data       start:0x023010f0 end:0x02307564
+
 src/game/ov000/task/unit_path_count_steps.c:
     complete
     .text       start:0x022ad560 end:0x022ad5cc
@@ -733,6 +1193,7 @@ src/game/ov000/unit_info_panel/unit_info_panel_start_task.c:
 src/game/ov000/unit_info_panel/unit_info_panel_draw_page_marker.c:
     complete
     .text       start:0x022b228c end:0x022b239c
+    .data       start:0x022f4fb8 end:0x022f5b1c
 
 src/game/ov000/unit_info_panel/unit_info_panel_close.c:
     complete
@@ -761,6 +1222,7 @@ src/game/ov000/unit_info_panel/unit_info_panel_draw_picture_and_stats.c:
 src/game/ov000/unit_info_panel/unit_info_panel_draw_unit.c:
     complete
     .text       start:0x022b2838 end:0x022b2a3c
+    .data       start:0x022f5c50 end:0x022f64cc
 
 src/game/ov000/unit_info_panel/unit_info_panel_draw_ammo_and_range.c:
     complete

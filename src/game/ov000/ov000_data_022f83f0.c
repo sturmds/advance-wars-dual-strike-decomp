@@ -1,0 +1,14 @@
+#include "types.h"
+
+char data_ov000_022f8430[29] = {
+#include "data/ov000/data_ov000_022f8430.inc.c"
+};
+char data_ov000_022f8410[29] = {
+#include "data/ov000/data_ov000_022f8410.inc.c"
+};
+char data_ov000_022f83f0[29] = {
+#include "data/ov000/data_ov000_022f83f0.inc.c"
+};
+u32 data_ov000_022f8450[8] = {
+#include "data/ov000/data_ov000_022f8450.inc.c"
+};
