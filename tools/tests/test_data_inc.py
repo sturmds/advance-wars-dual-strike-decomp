@@ -106,6 +106,14 @@ expect("render: padding", body(data_inc.render(data_inc.Row("itcm gS 0x1000 8 {u
 rom = FakeRom(bytes([1, 9, 0, 0, 2, 0, 0, 0]), {}, {})
 stops("render: padding that is not zero",
       lambda: data_inc.render(data_inc.Row("itcm gS 0x1000 8 {u8,pad[3],u32}", "t"), rom))
+rom = FakeRom(bytes([0x21, 0x43, 0xf5, 0x07]), {}, {})
+expect("render: bit fields from the low end, signed ones too",
+       body(data_inc.render(data_inc.Row("itcm gS 0x1000 4 {u8:4,u8:4,u8:4,u8:4,s8:3,s8:5,u8}", "t"), rom)),
+       "0x1, 0x2, 0x3, 0x4, -3, -2, 0x07,\n")
+rom = FakeRom(bytes([0x0f, 0x2a]), {}, {})
+expect("render: a bit field that does not fit opens a new unit",
+       body(data_inc.render(data_inc.Row("itcm gS 0x1000 2 {u8:4,u8:6}", "t"), rom)), "0xf, 0x2a,\n")
+stops("row: bit field wider than its type", lambda: data_inc.Row("itcm gS 0x1000 1 {u8:9}", "t"))
 stops("row: struct field not aligned", lambda: data_inc.Row("itcm gS 0x1000 8 {u8,u32,u8[3]}", "t"))
 stops("row: size not whole structs", lambda: data_inc.Row("itcm gS 0x1000 6 {u32}", "t"))
 rom = FakeRom(words(0x1100), {}, {})

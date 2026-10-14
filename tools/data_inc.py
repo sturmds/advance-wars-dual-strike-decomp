@@ -34,6 +34,9 @@ A row of data_inc.txt: module, symbol, address, size in bytes, element type.
   field may name its values: `u8:EVENT_OP` writes a value as the
   `#define EVENT_OP_...` under include/ that has it, when exactly one
   does, and as a number otherwise; the C file includes that header.
+  `u8:4` is a bit field of 4 bits: as mwcc does, bit fields of one type
+  fill a unit of that type from the low end, and one that does not fit
+  starts the next unit.
 
 A word that the module's relocs.txt says points somewhere is written as the
 symbol at its target (`to` plus `add`), `(u32)&Name` or `(void*)&Name`, so a
@@ -63,7 +66,7 @@ CONFIG7 = Path("config/AWRE/arm7")
 SIZES = {"u8": 1, "s8": 1, "u16": 2, "s16": 2, "u32": 4, "s32": 4}
 PER_LINE = {1: 16, 2: 8, 4: 8}
 ROW = re.compile(r"(\S+)\s+(\w+)\s+(0x[0-9a-fA-F]+)\s+(0x[0-9a-fA-F]+|\d+)\s+(\w+\s*\**|\{[^\s{}]+\})(?:\[(\d+)\])?$")
-FIELD = re.compile(r"(\w+\**)(?::([A-Z][A-Z0-9_]*))?(?:\[(\d+)\])?$")
+FIELD = re.compile(r"(\w+\**)(?::([A-Z][A-Z0-9_]*)|:(\d+))?(?:\[(\d+)\])?$")
 PAD = "pad"  # a struct field of padding bytes
 
 
@@ -79,6 +82,7 @@ class Row:
         self.pointer = self.type.endswith("*")
         self.fields: list[tuple[str, int]] = []  # (type, count; 0 for a single value)
         self.names: list[str | None] = []  # per field: the #define prefix its values are named by
+        self.layout: list[tuple[int, int, int]] = []  # per field: (offset, first bit, bits; 0 if not a bit field)
         if self.type.startswith("{"):
             self._struct(where)
             return
@@ -93,19 +97,36 @@ class Row:
 
     def _struct(self, where: str) -> None:
         offset = 0
+        unit = None  # the open bit field unit: [type, offset, next free bit]
         for text in self.type[1:-1].split(","):
             m = FIELD.match(text)
             if not m or not (m.group(1).endswith("*") or m.group(1) in SIZES or m.group(1) == PAD):
                 sys.exit(f"error: {where}: bad struct field {text!r}")
             width = 4 if m.group(1).endswith("*") else 1 if m.group(1) == PAD else SIZES[m.group(1)]
-            if offset % width:
-                sys.exit(f"error: {where}: field {text!r} at offset {offset:#x} is not aligned")
             if m.group(2) and m.group(1) not in SIZES:
                 sys.exit(f"error: {where}: field {text!r}: only a number field takes constant names")
-            count = int(m.group(3)) if m.group(3) else 0
+            count = int(m.group(4)) if m.group(4) else 0
+            bits = int(m.group(3)) if m.group(3) else 0
+            if bits:
+                # mwcc fills a bit field unit from the low end and opens a
+                # new one when the next field of the same type does not fit
+                if m.group(1) not in SIZES or count or bits > 8 * width:
+                    sys.exit(f"error: {where}: bad bit field {text!r}")
+                if not unit or unit[0] != m.group(1) or unit[2] + bits > 8 * width:
+                    if offset % width:
+                        sys.exit(f"error: {where}: field {text!r} at offset {offset:#x} is not aligned")
+                    unit = [m.group(1), offset, 0]
+                    offset += width
+                self.layout.append((unit[1], unit[2], bits))
+                unit[2] += bits
+            else:
+                unit = None
+                if offset % width:
+                    sys.exit(f"error: {where}: field {text!r} at offset {offset:#x} is not aligned")
+                self.layout.append((offset, 0, 0))
+                offset += width * max(count, 1)
             self.fields.append((m.group(1), count))
             self.names.append(m.group(2))
-            offset += width * max(count, 1)
         self.width = offset
         if self.columns or self.size % self.width or self.addr % 4:
             sys.exit(f"error: {where}: {self.size:#x} bytes are not whole structs of {self.width:#x}")
@@ -302,12 +323,17 @@ def render_struct(row: Row, rom: Rom, addr: int, data: bytes) -> str:
     array members, so C fills the members in order whether the object is
     one struct or an array. A brace at the start of a line would take the
     whole element when the struct's first member is an array."""
-    parts, offset = [], 0
-    for (cast, count), prefix in zip(row.fields, row.names):
+    parts = []
+    for (cast, count), prefix, (offset, bit, bits) in zip(row.fields, row.names, row.layout):
+        if bits:
+            value = int.from_bytes(data[offset:offset + SIZES[cast]], "little") >> bit & ((1 << bits) - 1)
+            if cast.startswith("s") and value >> (bits - 1):
+                value -= 1 << bits
+            parts.append(str(value) if cast.startswith("s") else f"{value:#x}")
+            continue
         if cast == PAD:
             if any(data[offset:offset + count]):
                 sys.exit(f"error: {row.symbol} at {addr + offset:#x}: padding bytes are not zero")
-            offset += count
             continue
         width = 4 if cast.endswith("*") else SIZES[cast]
         values = []
@@ -317,7 +343,6 @@ def render_struct(row: Row, rom: Rom, addr: int, data: bytes) -> str:
             name = constants(prefix)[1].get(int.from_bytes(raw, "little", signed=cast.startswith("s"))) if prefix else None
             values.append(name or literal(row, rom, addr + at, raw, cast))
         parts += values
-        offset += width * max(count, 1)
     return ", ".join(parts) + ","
 
 
