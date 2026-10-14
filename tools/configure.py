@@ -128,10 +128,13 @@ MAP_SOURCES = [f"src/game/ov000/map/map_{n}.c" for n in ("headers", "tiles", "un
 
 
 def map_inputs() -> list[str]:
-    """The committed legend and glue files, the unpacked maps (`make setup`) and
-    the stamp unpack writes last, so a missing unpack fails the build by name."""
+    """The committed legend and glue files, the unpacked maps (`make setup`),
+    the ARM9 symbols.txt files and the stamp unpack writes last, so a missing
+    unpack fails the build by name."""
     files = sorted((ROOT / maps.ASSETS).glob("*.yaml")) + sorted((ROOT / maps.ASSETS).glob("*.txt"))
     files += sorted((ROOT / maps.EXTRACTED).rglob("*.yaml"))
+    # A map file may still name a symbol by its old dsd name (maps.SymbolNames).
+    files += sorted((ROOT / maps.CONFIG).rglob("symbols.txt"))
     return [p.relative_to(ROOT).as_posix() for p in files] + [(maps.EXTRACTED / ".unpacked").as_posix()]
 
 

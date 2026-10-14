@@ -22,7 +22,10 @@ details):
 TextRef from include/ (c_fields), checks every YAML key against them, and
 writes the initializers in declaration order: mwcc 2.0 has no designated
 initializers. A word in capitals (CO_ANDY, UNIT_TANK) is a constant from
-include/; any other word is a symbol, declared `extern char NAME[]`.
+include/; any other word is a symbol, declared `extern char NAME[]`. A
+symbol that was renamed after the map file was unpacked still packs if
+the file has dsd's name for it (data_ov001_02353ba8): pack takes the
+symbol at that address now (SymbolNames).
 `unpack` reads field offsets from build/dsindex.json (tools/dsindex.py),
 which the compiler fills from the same headers.
 
@@ -245,6 +248,47 @@ def layouts() -> dict[str, dict]:
 
 # ---------------------------------------------------------------- ROM side (unpack)
 
+def module_symbols() -> dict[str, dict[int, str]]:
+    """Module (main, itcm, ov001) -> address -> symbol, from every ARM9
+    symbols.txt. The first name at an address wins, for unpack and pack alike."""
+    symbols: dict[str, dict[int, str]] = {}
+    for path in sorted((ROOT / CONFIG).rglob("symbols.txt")):
+        module = "main" if path.parent == ROOT / CONFIG else path.parent.name
+        table = symbols.setdefault(module, {})
+        for line in path.read_text().splitlines():
+            m = re.match(r"(\S+) kind:\S+ addr:(0x[0-9a-f]+)", line)
+            if m:
+                table.setdefault(int(m.group(2), 16), m.group(1))
+    return symbols
+
+
+# The name dsd gives an unnamed data object: data_0215b9d4 in main,
+# data_ov001_02353ba8 in an overlay.
+DSD_DATA_NAME = re.compile(r"data_(?:(\w+)_)?([0-9a-f]{8})")
+
+
+class SymbolNames:
+    """Maps a symbol named in a map file to the one the build has. A name
+    that no symbols.txt holds but that has dsd's form (data_ov001_02353ba8)
+    was the symbol at that address when the map file was unpacked; it stands
+    for the symbol there now. Map files written before a rename keep packing,
+    and the next unpack writes the new names."""
+
+    def __init__(self) -> None:
+        self.by_addr = module_symbols()
+        self.known = {name for table in self.by_addr.values() for name in table.values()}
+
+    def current(self, name: str) -> str:
+        if name in self.known:
+            return name
+        m = DSD_DATA_NAME.fullmatch(name)
+        if m:
+            found = self.by_addr.get(m.group(1) or "main", {}).get(int(m.group(2), 16))
+            if found:
+                return found
+        return name
+
+
 class Rom:
     """ov000 bytes, symbols of every ARM9 module, and ov000's relocations."""
 
@@ -253,14 +297,7 @@ class Rom:
         ov0 = next(o for o in info["overlays"] if o["id"] == 0)
         self.base = ov0["base_address"]
         self.data = (ROOT / EXTRACT / "arm9_overlays" / ov0["file_name"]).read_bytes()
-        self.symbols: dict[str, dict[int, str]] = {}
-        for path in sorted((ROOT / CONFIG).rglob("symbols.txt")):
-            module = "main" if path.parent == ROOT / CONFIG else path.parent.name
-            table = self.symbols.setdefault(module, {})
-            for line in path.read_text().splitlines():
-                m = re.match(r"(\S+) kind:\S+ addr:(0x[0-9a-f]+)", line)
-                if m:
-                    table.setdefault(int(m.group(2), 16), m.group(1))
+        self.symbols = module_symbols()
         self.relocs: dict[int, tuple[int, str]] = {}
         for line in (ROOT / CONFIG / "overlays/ov000/relocs.txt").read_text().splitlines():
             m = re.match(r"from:(0x\w+) kind:\S+ to:(0x\w+) module:(\S+)", line)
@@ -591,11 +628,17 @@ def glue(path: Path) -> list[list[str]]:
     return lines
 
 
+@functools.cache
+def symbol_names() -> SymbolNames:
+    return SymbolNames()
+
+
 def c_scalar(v, type_name: str, where: str, externs: set[str]) -> str:
     if "*" in type_name:
         if v is None:
             return "NULL"
         if isinstance(v, str) and re.fullmatch(r"[A-Za-z_]\w*", v) and not v.isupper():
+            v = symbol_names().current(v)
             externs.add(v)
             return f"(void *){v}"
         sys.exit(f"error: {where}: {v!r} is not a symbol or null")

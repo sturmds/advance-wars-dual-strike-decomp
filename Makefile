@@ -223,7 +223,8 @@ TESTS := \
 	tools/tests/test_scan_pointers.py \
 	tools/tests/test_shift_gaps.py \
 	tools/tests/test_alias_check.py \
-	tools/tests/test_gdb_rsp.py
+	tools/tests/test_gdb_rsp.py \
+	tools/tests/test_maps.py
 
 test:
 	@for t in $(CACHED_TESTS) $(TESTS); do $(TEST_ENV) $(PYTHON) $$t || exit 1; done
