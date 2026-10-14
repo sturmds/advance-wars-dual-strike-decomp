@@ -1,0 +1,22 @@
+#include "types.h"
+
+#pragma explicit_zero_data on
+const u32 data_ov000_022ccf10[4] = {
+#include "data/ov000/data_ov000_022ccf10.inc.c"
+};
+const u32 data_ov000_022ccf20[8] = {
+#include "data/ov000/data_ov000_022ccf20.inc.c"
+};
+const u32 data_ov000_022ccf40[12] = {
+#include "data/ov000/data_ov000_022ccf40.inc.c"
+};
+const u32 data_ov000_022ccf70[16] = {
+#include "data/ov000/data_ov000_022ccf70.inc.c"
+};
+const u32 data_ov000_022ccfb0[16] = {
+#include "data/ov000/data_ov000_022ccfb0.inc.c"
+};
+const u32 data_ov000_022ccff0[16] = {
+#include "data/ov000/data_ov000_022ccff0.inc.c"
+};
+#pragma explicit_zero_data reset

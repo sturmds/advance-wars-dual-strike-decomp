@@ -1,7 +1,9 @@
 #include "types.h"
 #include "game/unit_info_panel.h"
 
-extern s8 data_ov000_022b3850[];
+const s8 data_ov000_022b3850[27] = {
+#include "data/ov000/data_ov000_022b3850.inc.c"
+};
 extern const void* data_ov000_0234fa28[][16];
 
 /* Page number 0-15 */

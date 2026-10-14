@@ -6,7 +6,15 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern void* data_027c0288;
-extern char data_ov000_022dbd1c[];
+char data_ov000_022dbd20[4] = {
+#include "data/ov000/data_ov000_022dbd20.inc.c"
+};
+static char data_ov000_022dbd1c[4] = {
+#include "data/ov000/data_ov000_022dbd1c.inc.c"
+};
+char data_ov000_022dbd24[4] = {
+#include "data/ov000/data_ov000_022dbd24.inc.c"
+};
 extern const TaskScriptCmd data_ov000_022db6cc[];
 extern u8 gArmyPalettes[][32];
 

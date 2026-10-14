@@ -16,6 +16,310 @@ src/game/ov000/map/map_units.c:
     complete
     .data       start:0x022e6548 end:0x022f4498
 
+src/game/ov000/ov000_bss_02350320.c:
+    complete
+    .bss        start:0x02350320 end:0x023503a0
+
+src/game/ov000/ov000_rodata_022c9254.c:
+    complete
+    .rodata     start:0x022c9254 end:0x022ca1bc
+
+src/game/ov000/ov000_rodata_022ca1bc.c:
+    complete
+    .rodata     start:0x022ca1bc end:0x022caf24
+
+src/game/ov000/ov000_rodata_022caf24.c:
+    complete
+    .rodata     start:0x022caf24 end:0x022cb4ac
+
+src/game/ov000/ov000_rodata_022cb4ac.c:
+    complete
+    .rodata     start:0x022cb4ac end:0x022cb630
+
+src/game/ov000/ov000_rodata_022cb630.c:
+    complete
+    .rodata     start:0x022cb630 end:0x022cb900
+
+src/game/ov000/ov000_rodata_022cb900.c:
+    complete
+    .rodata     start:0x022cb900 end:0x022cbf40
+
+src/game/ov000/ov000_rodata_022cbf40.c:
+    complete
+    .rodata     start:0x022cbf40 end:0x022cc040
+
+src/game/ov000/ov000_rodata_022cc040.c:
+    complete
+    .rodata     start:0x022cc040 end:0x022cc1a0
+
+src/game/ov000/ov000_rodata_022cc1a0.c:
+    complete
+    .rodata     start:0x022cc1a0 end:0x022cc230
+
+src/game/ov000/ov000_rodata_022cc230.c:
+    complete
+    .rodata     start:0x022cc230 end:0x022cc260
+
+src/game/ov000/ov000_rodata_022cc260.c:
+    complete
+    .rodata     start:0x022cc260 end:0x022cc290
+
+src/game/ov000/ov000_rodata_022cc290.c:
+    complete
+    .rodata     start:0x022cc290 end:0x022cc4b0
+
+src/game/ov000/ov000_rodata_022cc4b0.c:
+    complete
+    .rodata     start:0x022cc4b0 end:0x022cc5d0
+
+src/game/ov000/ov000_rodata_022cc5d0.c:
+    complete
+    .rodata     start:0x022cc5d0 end:0x022cc750
+
+src/game/ov000/ov000_rodata_022cc750.c:
+    complete
+    .rodata     start:0x022cc750 end:0x022cc830
+
+src/game/ov000/ov000_rodata_022cc830.c:
+    complete
+    .rodata     start:0x022cc830 end:0x022cca20
+
+src/game/ov000/ov000_rodata_022cca20.c:
+    complete
+    .rodata     start:0x022cca20 end:0x022ccab0
+
+src/game/ov000/ov000_rodata_022ccab0.c:
+    complete
+    .rodata     start:0x022ccab0 end:0x022ccb00
+
+src/game/ov000/ov000_rodata_022ccb00.c:
+    complete
+    .rodata     start:0x022ccb00 end:0x022ccb50
+
+src/game/ov000/ov000_rodata_022ccb50.c:
+    complete
+    .rodata     start:0x022ccb50 end:0x022ccb90
+
+src/game/ov000/ov000_rodata_022ccb90.c:
+    complete
+    .rodata     start:0x022ccb90 end:0x022ccc00
+
+src/game/ov000/ov000_rodata_022ccc00.c:
+    complete
+    .rodata     start:0x022ccc00 end:0x022ccc80
+
+src/game/ov000/ov000_rodata_022ccc80.c:
+    complete
+    .rodata     start:0x022ccc80 end:0x022cccd0
+
+src/game/ov000/ov000_rodata_022cccd0.c:
+    complete
+    .rodata     start:0x022cccd0 end:0x022ccd10
+
+src/game/ov000/ov000_rodata_022ccd10.c:
+    complete
+    .rodata     start:0x022ccd10 end:0x022ccea0
+
+src/game/ov000/ov000_rodata_022ccea0.c:
+    complete
+    .rodata     start:0x022ccea0 end:0x022ccef0
+
+src/game/ov000/ov000_rodata_022ccef0.c:
+    complete
+    .rodata     start:0x022ccef0 end:0x022ccf10
+
+src/game/ov000/ov000_rodata_022ccf10.c:
+    complete
+    .rodata     start:0x022ccf10 end:0x022cd030
+
+src/game/ov000/ov000_rodata_022cd030.c:
+    complete
+    .rodata     start:0x022cd030 end:0x022cd080
+
+src/game/ov000/ov000_rodata_022cd080.c:
+    complete
+    .rodata     start:0x022cd080 end:0x022cd3b0
+
+src/game/ov000/ov000_rodata_022cd3b0.c:
+    complete
+    .rodata     start:0x022cd3b0 end:0x022cd400
+
+src/game/ov000/ov000_rodata_022cd400.c:
+    complete
+    .rodata     start:0x022cd400 end:0x022cd760
+
+src/game/ov000/ov000_rodata_022cd760.c:
+    complete
+    .rodata     start:0x022cd760 end:0x022cd980
+
+src/game/ov000/ov000_rodata_022cd980.c:
+    complete
+    .rodata     start:0x022cd980 end:0x022cdd70
+
+src/game/ov000/ov000_rodata_022cdd70.c:
+    complete
+    .rodata     start:0x022cdd70 end:0x022cde90
+
+src/game/ov000/ov000_rodata_022cde90.c:
+    complete
+    .rodata     start:0x022cde90 end:0x022cdf90
+
+src/game/ov000/ov000_rodata_022cdf90.c:
+    complete
+    .rodata     start:0x022cdf90 end:0x022ce040
+
+src/game/ov000/ov000_rodata_022ce040.c:
+    complete
+    .rodata     start:0x022ce040 end:0x022ce130
+
+src/game/ov000/ov000_rodata_022ce130.c:
+    complete
+    .rodata     start:0x022ce130 end:0x022ce1d0
+
+src/game/ov000/ov000_rodata_022ce1d0.c:
+    complete
+    .rodata     start:0x022ce1d0 end:0x022ce2d0
+
+src/game/ov000/ov000_rodata_022ce2d0.c:
+    complete
+    .rodata     start:0x022ce2d0 end:0x022ce380
+
+src/game/ov000/ov000_rodata_022ce380.c:
+    complete
+    .rodata     start:0x022ce380 end:0x022ce4c0
+
+src/game/ov000/ov000_rodata_022ce4c0.c:
+    complete
+    .rodata     start:0x022ce4c0 end:0x022ce5c0
+
+src/game/ov000/ov000_rodata_022ce5c0.c:
+    complete
+    .rodata     start:0x022ce5c0 end:0x022ce670
+
+src/game/ov000/ov000_rodata_022ce670.c:
+    complete
+    .rodata     start:0x022ce670 end:0x022ce710
+
+src/game/ov000/ov000_rodata_022ce710.c:
+    complete
+    .rodata     start:0x022ce710 end:0x022ce7b0
+
+src/game/ov000/ov000_rodata_022ce7b0.c:
+    complete
+    .rodata     start:0x022ce7b0 end:0x022ce870
+
+src/game/ov000/ov000_rodata_022ce870.c:
+    complete
+    .rodata     start:0x022ce870 end:0x022ce910
+
+src/game/ov000/ov000_rodata_022ce910.c:
+    complete
+    .rodata     start:0x022ce910 end:0x022cf3b0
+
+src/game/ov000/ov000_rodata_022cf3b0.c:
+    complete
+    .rodata     start:0x022cf3b0 end:0x022cf9b0
+
+src/game/ov000/ov000_rodata_022cf9b0.c:
+    complete
+    .rodata     start:0x022cf9b0 end:0x022d17ec
+
+src/game/ov000/ov000_rodata_022d17ec.c:
+    complete
+    .rodata     start:0x022d17ec end:0x022d3118
+
+src/game/ov000/ov000_rodata_022d3118.c:
+    complete
+    .rodata     start:0x022d3118 end:0x022d36c0
+
+src/game/ov000/ov000_rodata_022d36c0.c:
+    complete
+    .rodata     start:0x022d36c0 end:0x022d3ab0
+
+src/game/ov000/ov000_rodata_022d3ab0.c:
+    complete
+    .rodata     start:0x022d3ab0 end:0x022d4028
+
+src/game/ov000/ov000_rodata_022d4028.c:
+    complete
+    .rodata     start:0x022d4028 end:0x022d45f0
+
+src/game/ov000/ov000_rodata_022d45f0.c:
+    complete
+    .rodata     start:0x022d45f0 end:0x022d4b18
+
+src/game/ov000/ov000_rodata_022d4b18.c:
+    complete
+    .rodata     start:0x022d4b18 end:0x022d4f6c
+
+src/game/ov000/ov000_rodata_022d4f6c.c:
+    complete
+    .rodata     start:0x022d4f6c end:0x022d54e8
+
+src/game/ov000/ov000_rodata_022d54e8.c:
+    complete
+    .rodata     start:0x022d54e8 end:0x022d59ec
+
+src/game/ov000/ov000_rodata_022d59ec.c:
+    complete
+    .rodata     start:0x022d59ec end:0x022d5fa8
+
+src/game/ov000/ov000_rodata_022d5fa8.c:
+    complete
+    .rodata     start:0x022d5fa8 end:0x022d64d8
+
+src/game/ov000/ov000_rodata_022d64d8.c:
+    complete
+    .rodata     start:0x022d64d8 end:0x022d6ad0
+
+src/game/ov000/ov000_rodata_022d6ad0.c:
+    complete
+    .rodata     start:0x022d6ad0 end:0x022d6f6c
+
+src/game/ov000/ov000_rodata_022d6f6c.c:
+    complete
+    .rodata     start:0x022d6f6c end:0x022d7514
+
+src/game/ov000/ov000_rodata_022d7514.c:
+    complete
+    .rodata     start:0x022d7514 end:0x022d7b4c
+
+src/game/ov000/ov000_rodata_022d7b4c.c:
+    complete
+    .rodata     start:0x022d7b4c end:0x022d814c
+
+src/game/ov000/ov000_rodata_022d814c.c:
+    complete
+    .rodata     start:0x022d814c end:0x022d878c
+
+src/game/ov000/ov000_rodata_022d878c.c:
+    complete
+    .rodata     start:0x022d878c end:0x022d8cf4
+
+src/game/ov000/ov000_rodata_022d8cf4.c:
+    complete
+    .rodata     start:0x022d8cf4 end:0x022d92d8
+
+src/game/ov000/ov000_rodata_022d92d8.c:
+    complete
+    .rodata     start:0x022d92d8 end:0x022d98f4
+
+src/game/ov000/ov000_rodata_022d98f4.c:
+    complete
+    .rodata     start:0x022d98f4 end:0x022d9f88
+
+src/game/ov000/ov000_rodata_022d9f88.c:
+    complete
+    .rodata     start:0x022d9f88 end:0x022da5d4
+
+src/game/ov000/ov000_rodata_022db3fc.c:
+    complete
+    .rodata     start:0x022db3fc end:0x022db55c
+
+src/game/ov000/ov000_rodata_022b3834.c:
+    complete
+    .rodata     start:0x022b3834 end:0x022b3850
+
 src/game/ov000/task/unit_path_count_steps.c:
     complete
     .text       start:0x022ad560 end:0x022ad5cc
@@ -119,6 +423,7 @@ src/game/ov000/task/unit_show_task_check_visible.c:
 src/game/ov000/task/unit_show_task_place_sprite.c:
     complete
     .text       start:0x022ae1c4 end:0x022ae2dc
+    .data       start:0x022db560 end:0x022db6e4
 
 src/game/ov000/map/map_view_scroll_to_pixel.c:
     complete
@@ -135,6 +440,7 @@ src/game/ov000/func_ov000_022ae488.c:
 src/game/ov000/task/unit_show_task_create_at_tile.c:
     complete
     .text       start:0x022ae4a8 end:0x022ae530
+    .data       start:0x022db6e4 end:0x022dbd1c
 
 src/game/ov000/task/unit_show_task_destroy.c:
     complete
@@ -163,6 +469,7 @@ src/game/ov000/task/unit_show_task_get_obj_base.c:
 src/game/ov000/task/unit_show_task_spawn.c:
     complete
     .text       start:0x022ae6e4 end:0x022ae964
+    .data       start:0x022dbd1c end:0x022dbd28
 
 src/game/ov000/task/unit_show_task_create.c:
     complete
@@ -360,6 +667,7 @@ src/game/ov000/func_ov000_022b17cc.c:
 src/game/ov000/unit_info_panel/unit_info_panel_next_page.c:
     complete
     .text       start:0x022b17f0 end:0x022b18bc
+    .rodata     start:0x022b3850 end:0x022b386c
 
 src/game/ov000/unit_info_panel/unit_info_panel_prev_page.c:
     complete
@@ -465,6 +773,7 @@ src/game/ov000/func_ov000_022b2c64.c:
 src/game/ov000/layer1_put_block.c:
     complete
     .text       start:0x022b2c74 end:0x022b2cb8
+    .rodata     start:0x022da5d4 end:0x022db3fc
 
 src/game/ov000/func_ov000_022b2cb8.c:
     complete
@@ -498,7 +807,3 @@ src/game/ov000/second_screen_draw_terrain_details.c:
 src/game/ov000/second_screen_draw_terrain_move_costs.c:
     complete
     .text       start:0x022b34a4 end:0x022b3834
-
-src/game/ov000/ov000_bss_02350320.c:
-    complete
-    .bss        start:0x02350320 end:0x023503a0
