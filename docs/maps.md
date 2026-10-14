@@ -9,7 +9,7 @@ The campaign, Versus, War Room and Survival maps are not files in the ROM's file
 | Header table, 0x10d entries of 0xa0 bytes, indexed by map id | ov000 `.data` 0x022dbd28-0x022e6548 | `Ov000_gMapHeaders`, `MapHeader` (`include/game/map_header.h`) |
 | Tiles: one LZ77 block per map, plus 4 hard-mode blocks | ov000 `.rodata` 0x022b386c-0x022c9254 | `MapHeader.mapData`, `hardMapData`; `Map_LoadData` unpacks them into `MapData` |
 | Pre-deployed units: 137 lists | ov000 `.data` 0x022e6548-0x022f4498 | `MapHeader.units`, `hardUnits`; `PredeployedUnit` (`include/game/predeployed_unit.h`) |
-| Event scripts, Terms and Hint scripts | ov001 `.data` 0x023522a0-0x0237a5a0 | `MapHeader.script` (`MapScript`, then `EventTrigger` lists), `termsScript`, `hintScript` (`EventScriptCommand`); not decoded: `src/game/ov001/ov001_data_*.c` define them from the ROM's words, one object per symbol |
+| Event scripts, Terms and Hint scripts | ov001 `.data` 0x023522a0-0x0237a5a0 | `MapHeader.script` (`MapScript`, then `EventTrigger` lists), `termsScript`, `hintScript` (`EventScriptCommand`); not in the map files yet: `src/game/ov001/ov001_data_*.c` define them as typed arrays (one record per line of the `inc.c` files), one object per symbol (issue 0066) |
 | CO lists | main | `MapHeader.coList`; referenced by symbol |
 | Map names | ov000 text banks (`Text_Get`) | `MapHeader.name` |
 
