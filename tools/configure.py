@@ -97,6 +97,9 @@ ARM9_LAYOUT_SYMBOLS = {
     "MAIN_ARENA_START": ("@SPACE", 0x0237A5A0),  # past main and every overlay
     "ITCM_ARENA_START": ("ITCM_BSS_END", 0x01FFDE80),
     "SDK_SECTION_ARENA_DTCM_START": ("DTCM_BSS_END", 0x027C12E0),
+    # The start of DTCM, where the stacks and the IRQ check flags live: not
+    # the first DTCM variable, which a padded DTCM moves (issue 0086).
+    "DTCM_BASE": ("ADDR(DTCM)", 0x027C0000),
 }
 
 # The same for ARM7 (build/arm7/arm7.lcf). Its SDK build has a 0x400-byte
@@ -392,7 +395,7 @@ def main() -> int:
         f"  cfg = {cfg}",
         "  lcf = build/arm9.lcf",
         "  absolute = " + " ".join([f"{k}={v:#x}" for k, v in ARM9_ABSOLUTE_SYMBOLS.items()]
-                                   + [f"{k}={v}" for k, (v, _) in ARM9_LAYOUT_SYMBOLS.items()]),
+                                   + [f"'{k}={v}'" for k, (v, _) in ARM9_LAYOUT_SYMBOLS.items()]),
         "",
         f"build {' '.join(MAP_OUTPUTS)}: maps {' '.join(map_inputs())} | tools/maps.py",
         "",

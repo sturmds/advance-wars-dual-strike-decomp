@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern u32 data_027c0000;   /* start of DTCM */
+extern char DTCM_BASE[]; /* start of DTCM (ARM9_LAYOUT_SYMBOLS) */
 
 #ifdef __MWERKS__
 /*
@@ -36,7 +36,7 @@ asm void init_cp15(void)
     mcr p15, 0, r0, c6, c2, 0
     ldr r0, =0x08000035
     mcr p15, 0, r0, c6, c3, 0
-    ldr r0, =data_027c0000
+    ldr r0, =DTCM_BASE
     orr r0, r0, #0x1a
     orr r0, r0, #1
     mcr p15, 0, r0, c6, c4, 0
@@ -48,7 +48,7 @@ asm void init_cp15(void)
     mcr p15, 0, r0, c6, c7, 0
     mov r0, #0x20
     mcr p15, 0, r0, c9, c1, 1
-    ldr r0, =data_027c0000
+    ldr r0, =DTCM_BASE
     orr r0, r0, #0xa
     mcr p15, 0, r0, c9, c1, 0
     mov r0, #0x42

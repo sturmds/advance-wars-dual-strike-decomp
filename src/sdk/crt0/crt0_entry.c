@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern u32 data_027c0000;   /* start of DTCM; the stacks live at its top */
+extern char DTCM_BASE[]; /* start of DTCM (ARM9_LAYOUT_SYMBOLS) */
 extern u32 BuildInfo[];     /* module parameters the linker fills in */
 void OS_IrqHandler(void);
 void main(void);
@@ -29,12 +29,12 @@ asm void Entry(void)
     bl init_cp15
     mov r0, #0x13
     msr CPSR_c, r0
-    ldr r0, =data_027c0000
+    ldr r0, =DTCM_BASE
     add r0, r0, #0x3fc0
     mov sp, r0
     mov r0, #0x12
     msr CPSR_c, r0
-    ldr r0, =data_027c0000
+    ldr r0, =DTCM_BASE
     add r0, r0, #0x3fc0
     sub r0, r0, #0x40
     mov sp, r0
@@ -44,7 +44,7 @@ asm void Entry(void)
     msr CPSR_fsxc, r0
     sub sp, r1, #4
     mov r0, #0
-    ldr r1, =data_027c0000
+    ldr r1, =DTCM_BASE
     mov r2, #0x4000
     bl func_02000900
     mov r0, #0
@@ -69,7 +69,7 @@ clear_bss:
     bcc clear_bss
     ldr r1, =0x027fff9c
     str r0, [r1]
-    ldr r1, =data_027c0000
+    ldr r1, =DTCM_BASE
     add r1, r1, #0x3fc0
     add r1, r1, #0x3c
     ldr r0, =OS_IrqHandler

@@ -12,8 +12,8 @@ extern char SDK_SYS_STACKSIZE[];
 extern char SDK_IRQ_STACKSIZE[];
 extern char SDK_SECTION_ARENA_DTCM_START[];
 
-extern u8 data_027c0000[]; /* DTCM base */
-#define HW_DTCM_IRQ_STACK_END ((u32)data_027c0000 + 0x3f80)
+extern char DTCM_BASE[]; /* start of DTCM (ARM9_LAYOUT_SYMBOLS) */
+#define HW_DTCM_IRQ_STACK_END ((u32)DTCM_BASE + 0x3f80)
 
 /* Default upper ends of the fixed arenas. */
 #define MAIN_ARENA_HI 0x023c0000
@@ -41,12 +41,12 @@ void* OS_GetInitArenaHi(OSArenaId id) {
     case OS_ARENA_DTCM:
       irqStackLo = HW_DTCM_IRQ_STACK_END - (u32)SDK_IRQ_STACKSIZE;
       if ((u32)SDK_SYS_STACKSIZE == 0) {
-        sysStackLo = (u32)data_027c0000;
+        sysStackLo = (u32)DTCM_BASE;
         if (sysStackLo < (u32)SDK_SECTION_ARENA_DTCM_START) {
           sysStackLo = (u32)SDK_SECTION_ARENA_DTCM_START;
         }
       } else if ((s32)SDK_SYS_STACKSIZE < 0) {
-        sysStackLo = (u32)data_027c0000 - (u32)SDK_SYS_STACKSIZE;
+        sysStackLo = (u32)DTCM_BASE - (u32)SDK_SYS_STACKSIZE;
       } else {
         sysStackLo = irqStackLo - (u32)SDK_SYS_STACKSIZE;
       }

@@ -5,11 +5,10 @@ IrqSlotEntry gOsIrqSlots[0x4]; /* size: up to the next symbol */
 static u16 gOsIrqBitBySlot[8] = {
 #include "data/main/gOsIrqBitBySlot.inc.c"
 };
-extern u8 data_027c0000[];
+extern char DTCM_BASE[]; /* start of DTCM (ARM9_LAYOUT_SYMBOLS) */
 
 /* DTCM flag word that the IRQ wait routines poll, 8 bytes below the end of DTCM. */
-#define DTCM_IRQ_SEEN_BITS \
-  (*(volatile u32*)((u32)data_027c0000 + 0x3000 + 0xff8))
+#define DTCM_IRQ_SEEN_BITS (*(volatile u32*)((u32)DTCM_BASE + 0x3000 + 0xff8))
 
 void IrqSlot_CallAndClear(int slot) {
   OSIrqMask mask;

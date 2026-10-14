@@ -305,6 +305,9 @@ def check_stale(base: dict, moved: dict, out: Path, pads: list[tuple[str, int]],
     before = module_bins(Path("build/arm9.elf"), Path("build/build"))
     after = module_bins(out / "arm9.elf", out / "build")
     numbers = stale_numbers()
+    # A value the linker script defines for the shifted build (DTCM_BASE at
+    # the start of DTCM, where a moved variable used to be) is meant.
+    script = {moved[n][0] for n in (*configure.ARM9_LAYOUT_SYMBOLS, *configure.ARM9_ABSOLUTE_SYMBOLS) if n in moved}
     hits, known = [], 0
     for reg, (start, data) in before.items():
         new_data = after[reg][1]
@@ -313,7 +316,7 @@ def check_stale(base: dict, moved: dict, out: Path, pads: list[tuple[str, int]],
         for off in range(0, len(data) - 3, 4):
             value = int.from_bytes(data[off:off + 4], "little")
             targets = [n for n, w in old.get(value, []) + old.get(value - 1, []) if visible(reg, w)]
-            if not targets:  # value - 1: a Thumb function's address is odd
+            if not targets or value in script:  # value - 1: a Thumb function's address is odd
                 continue
             addr = start + off
             new_off = off + sum(pad for m, at in pads if reg == region(m) and addr >= at)

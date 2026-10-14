@@ -23,8 +23,8 @@ extern char SDK_SYS_STACKSIZE[];
 extern char SDK_IRQ_STACKSIZE[];
 extern char SDK_SECTION_ARENA_DTCM_START[];
 
-extern u8 data_027c0000[]; /* DTCM base */
-#define HW_DTCM_SVC_STACK ((u32)data_027c0000 + 0x3fc0)
+extern char DTCM_BASE[]; /* start of DTCM (ARM9_LAYOUT_SYMBOLS) */
+#define HW_DTCM_SVC_STACK ((u32)DTCM_BASE + 0x3fc0)
 
 static BOOL OSi_IsThreadInitialized;
 ThreadSwapHook data_022a992c;

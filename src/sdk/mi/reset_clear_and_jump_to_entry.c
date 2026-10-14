@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern u32 data_027c0000;
+extern char DTCM_BASE[]; /* start of DTCM (ARM9_LAYOUT_SYMBOLS) */
 void Mem_RepeatWordAsm(u32 value, u32 *dest, u32 size);
 
 #ifdef __MWERKS__
@@ -15,7 +15,7 @@ asm void Reset_ClearAndJumpToEntry(void)
 {
     mov r12, #0x4000000
     str r12, [r12, #0x208]
-    ldr r1, =data_027c0000
+    ldr r1, =DTCM_BASE
     add r1, r1, #0x3fc0
     add r1, r1, #0x3c
     mov r0, #0

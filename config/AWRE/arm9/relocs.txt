@@ -7,12 +7,10 @@ from:0x02000888 kind:arm_call to:0x020009b8 module:main
 from:0x020008c4 kind:arm_call to:0x0212950c module:main
 from:0x020008c8 kind:arm_call to:0x02000afc module:main
 from:0x020008cc kind:arm_call to:0x02129710 module:main
-from:0x020008dc kind:load to:0x027c0000 module:dtcm
 from:0x020008ec kind:load to:0x02000b00 module:main
 from:0x020008f4 kind:load to:0x01ffd878 module:itcm
 from:0x020008f8 kind:load to:0x02000b24 module:main
 from:0x02000a0c kind:load to:0x02000b00 module:main
-from:0x02000ae0 kind:load to:0x027c0000 module:dtcm
 from:0x02000b00 kind:load to:0x02175180 module:main
 from:0x02000b04 kind:load to:0x02175198 module:main
 from:0x02000b08 kind:load to:0x0216e020 module:main
@@ -31660,7 +31658,6 @@ from:0x0210cc98 kind:arm_call to:0x0210ccf4 module:main
 from:0x0210cca8 kind:load to:0x022a98bc module:main
 from:0x0210ccac kind:load to:0x0216d95c module:main
 from:0x0210ccb0 kind:load to:0x022a98c4 module:main
-from:0x0210ccb4 kind:load to:0x027c0000 module:dtcm
 from:0x0210ccb8 kind:load to:0x022a98c0 module:main
 from:0x0210cdd0 kind:arm_call to:0x0210cd3c module:main
 from:0x0210cde8 kind:load to:0x022a98ec module:main
@@ -31762,7 +31759,6 @@ from:0x0210d8d8 kind:load to:0x022a9930 module:main
 from:0x0210d8dc kind:load to:0x022a9a18 module:main
 from:0x0210d8e4 kind:load to:0x022a9938 module:main
 from:0x0210d8e8 kind:load to:0x022a9924 module:main
-from:0x0210d8f0 kind:load to:0x027c0000 module:dtcm
 from:0x0210d904 kind:load to:0x022a9984 module:main
 from:0x0210d908 kind:load to:0x0210d30c module:main
 from:0x0210d90c kind:load to:0x022a9b74 module:main
@@ -31835,7 +31831,6 @@ from:0x0210e2d4 kind:arm_call to:0x0210dbec module:main
 from:0x0210e358 kind:load to:0x022a9b78 module:main
 from:0x0210e3bc kind:arm_call to:0x0210dbec module:main
 from:0x0210e478 kind:load to:0x022a9b78 module:main
-from:0x0210e47c kind:load to:0x027c0000 module:dtcm
 from:0x0210e4c8 kind:arm_call to:0x0210e36c module:main
 from:0x0210e4d4 kind:arm_call to:0x0210e270 module:main
 from:0x0210e4dc kind:arm_call to:0x0210e284 module:main

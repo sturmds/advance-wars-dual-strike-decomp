@@ -2,7 +2,7 @@
 #include "game/main_loop.h"
 
 extern MainLoop gMainLoop;
-extern u8 data_027c0000[];
+extern char DTCM_BASE[]; /* start of DTCM (ARM9_LAYOUT_SYMBOLS) */
 
 void func_01ff9ebc(void);
 void func_01ff9ed0(void);
@@ -26,6 +26,6 @@ void MainLoop_FinishVBlank(void) {
   func_01ff9ed0();
   func_01ff9f1c(0);
   /* needed to match: the address is built in an integer, so the compiler adds the 0x3000 at run time */
-  base = (u32)data_027c0000 + 0x3000;
+  base = (u32)DTCM_BASE + 0x3000;
   *(u32*)(base + (DTCM_IRQ_CHECK_FLAGS - 0x3000)) |= IRQ_CHECK_VBLANK;
 }
