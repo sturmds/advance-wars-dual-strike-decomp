@@ -48,6 +48,7 @@ typedef struct Unk_02160ac0 {
   u8 unk_84;
 } Unk_02160ac0;
 
+extern Unk_02160ac0 data_0229e0bc; /* what data_02160ac0 points to */
 extern Unk_02160ac0* data_02160ac0;
 
 #endif

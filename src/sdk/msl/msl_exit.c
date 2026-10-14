@@ -3,9 +3,6 @@
 #include "sdk/msl.h"
 #include "sdk/msl_file.h"
 
-extern OSMutex gMslExitMutex;
-extern int gMslExitFuncCount;
-extern AtExitFunction gMslExitFuncs[EXIT_TABLE_SIZE];
 static AtExitFunction gMslExitHook;
 
 BOOL OS_TryLockMutex(OSMutex* mutex);
@@ -15,13 +12,13 @@ void func_021295b4(void);
 
 void MSL_Exit(int status) {
   /* Branch order follows the original, including setting the owner when the try-lock fails. */
-  if (!OS_TryLockMutex(&gMslExitMutex)) {
+  if (!OS_TryLockMutex(&gMslLockMutexes[MSL_LOCK_EXIT])) {
     gMslLockOwners[MSL_LOCK_EXIT] = OSi_ThreadInfo.current->id;
     gMslLockCounts[MSL_LOCK_EXIT] = 1;
   } else if (gMslLockOwners[MSL_LOCK_EXIT] == OSi_ThreadInfo.current->id) {
     gMslLockCounts[MSL_LOCK_EXIT]++;
   } else {
-    OS_LockMutex(&gMslExitMutex);
+    OS_LockMutex(&gMslLockMutexes[MSL_LOCK_EXIT]);
     gMslLockOwners[MSL_LOCK_EXIT] = OSi_ThreadInfo.current->id;
     gMslLockCounts[MSL_LOCK_EXIT] = 1;
   }
@@ -31,7 +28,7 @@ void MSL_Exit(int status) {
   }
 
   if (--gMslLockCounts[MSL_LOCK_EXIT] == 0) {
-    OS_UnlockMutex(&gMslExitMutex);
+    OS_UnlockMutex(&gMslLockMutexes[MSL_LOCK_EXIT]);
   }
 
   if (gMslExitHook != NULL) {

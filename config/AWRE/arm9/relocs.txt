@@ -33639,7 +33639,7 @@ from:0x021243d8 kind:arm_call to:0x0210df08 module:main
 from:0x02124438 kind:arm_call to:0x0210e034 module:main
 from:0x02124490 kind:arm_call to:0x0210dfc4 module:main
 from:0x021244c8 kind:arm_call to:0x02121d04 module:main
-from:0x021244e4 kind:load to:0x022ad1fc module:main
+from:0x021244e4 kind:load to:0x022ad170 add:0x8c module:main
 from:0x021244e8 kind:load to:0x022a9930 module:main
 from:0x021244ec kind:load to:0x022ad128 module:main
 from:0x021244f0 kind:load to:0x022ad14c module:main

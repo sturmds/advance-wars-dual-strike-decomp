@@ -45,6 +45,9 @@ enum TerrainId {
   TERRAIN_BLOCKED = 31   /* centre of a 4x4 missile platform or fortress */
 };
 
+/* Entries in a table with one value per terrain id. */
+#define TERRAIN_ID_COUNT 32
+
 /* Fixed stats of one terrain id, 0x18 bytes, in ov000 at 0x022f4ccc.
  * The table holds terrain ids 0-30; Ov000_gUnitStats starts right
  * after. unk_10 and unk_14 are the name and description of the next

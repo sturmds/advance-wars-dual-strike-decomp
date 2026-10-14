@@ -2,9 +2,7 @@
 #include "game/battle_scene.h"
 #include "game/menu_state.h"
 
-extern u8 data_ov002_0236bbc0[];
-
-BattleScene* Ov002_gBattleScene = (BattleScene*)&data_ov002_0236bbc0;
+BattleScene* Ov002_gBattleScene = &data_ov002_0236bbc0;
 
 extern MenuState gMenuState;
 

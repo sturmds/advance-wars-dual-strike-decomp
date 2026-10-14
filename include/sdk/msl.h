@@ -3,6 +3,7 @@
 
 #include "stdarg.h"
 #include "types.h"
+#include "sdk/os_common.h"
 
 /* Functions atexit registers, run in reverse by exit. */
 #define EXIT_TABLE_SIZE 64
@@ -169,14 +170,29 @@ int vsnprintf(char* buf, u32 size, const char* format, va_list args);
 int snprintf(char* buf, u32 size, const char* format, ...);
 int sprintf(char* buf, const char* format, ...);
 
-/* MSL's recursive locks: the owning thread's id and the nesting count of
- * each lock. */
+/* MSL's recursive locks: the mutex, the owning thread's id and the
+ * nesting count of each lock. */
 #define MSL_LOCK_COUNT 9
 #define MSL_LOCK_EXIT 0
 #define MSL_LOCK_SIGNAL 7
 
+extern OSMutex gMslLockMutexes[MSL_LOCK_COUNT];
 extern u32 gMslLockOwners[MSL_LOCK_COUNT];
 extern int gMslLockCounts[MSL_LOCK_COUNT];
+
+/* Signals and their handlers (raise). */
+#define SIGNAL_COUNT 7
+#define SIGNAL_ABORT 1
+#define SIGNAL_HANDLER_DEFAULT ((SignalHandler)0)
+#define SIGNAL_HANDLER_IGNORE ((SignalHandler)1)
+
+typedef void (*SignalHandler)(int sig);
+
+extern SignalHandler gMslSignalHandlers[SIGNAL_COUNT];
+
+/* The atexit table (see EXIT_TABLE_SIZE above). */
+extern int gMslExitFuncCount;
+extern AtExitFunction gMslExitFuncs[EXIT_TABLE_SIZE];
 
 /* Character class bits for codes 0-127 (bit 3: decimal digit). */
 extern const u16 __ctype_map[];

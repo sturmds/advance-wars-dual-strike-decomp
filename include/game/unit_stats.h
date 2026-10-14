@@ -2,6 +2,7 @@
 #define GAME_UNIT_STATS_H
 
 #include "types.h"
+#include "game/terrain.h"
 #include "game/text_ref.h"
 
 /* Unit type ids: index into Ov000_gUnitStats. */
@@ -120,5 +121,10 @@ typedef char UnitStats_size_check[sizeof(UnitStats) == 0x6c ? 1 : -1];
 #define AI_CLASS_BLACK_BOMB 7
 
 extern UnitStats Ov000_gUnitStats[UNIT_TYPE_COUNT];
+
+/* Tables of Ov000_gUnitStats that are all zero, so in .bss. */
+extern s8 data_ov000_02350340[TERRAIN_ID_COUNT]; /* dailyFuel */
+extern s8 data_ov000_02350360[TERRAIN_ID_COUNT]; /* dailyFuel */
+extern s8 data_ov000_02350380[TERRAIN_ID_COUNT]; /* repairTerrain */
 
 #endif

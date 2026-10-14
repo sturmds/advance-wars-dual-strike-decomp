@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "game/map_unit.h"
+#include "game/terrain.h"
 #include "game/text_ref.h"
 
 /* CO ids, which are also indexes into the CO table. */
@@ -163,6 +164,11 @@ typedef struct CoPowerBlock {
   const u8* movementCost[4]; /* default, Prairie Dog, Pathfinder, both */
   const CoStatRow* statRows[UNIT_CLASS_COUNT];
 } CoPowerBlock;
+
+/* All zero, so in .bss: the terrainFirepower table of the blocks with no
+ * terrain bonus, and the statRows entry for no change (ov000 and main). */
+extern s8 Ov000_gNoBoost[TERRAIN_ID_COUNT];
+extern CoStatRow data_0216e03c;
 
 /* CoRecord.nation of the Black Hole COs. */
 #define NATION_BLACK_HOLE 5

@@ -1,29 +1,13 @@
 #include "types.h"
 #include "sdk/os.h"
 #include "sdk/msl.h"
+#include "sdk/msl_file.h"
 #include "sdk/os_common.h"
 
-#define SIGNAL_COUNT 7
-#define SIGNAL_ABORT 1
-#define SIGNAL_HANDLER_DEFAULT ((SignalHandler)0)
-#define SIGNAL_HANDLER_IGNORE ((SignalHandler)1)
-
-typedef void (*SignalHandler)(int sig);
-
-u8 data_022ad1ac[0x14];
-/* 0x78 bytes no code names, before gMslSignalMutex, cut in 6 to keep the sizes ascending */
-u8 data_022ad184[0x14];
-u8 data_022ad1c0[0x14];
-u8 data_022ad198[0x14];
-u8 data_022ad210[0x14]; /* 0x14 bytes no code names, before data_022ad224 */
-OSMutex gMslExitMutex;
-u8 data_022ad1d4[0x14];
-u8 data_022ad1e8[0x14];
-static OSMutex gMslSignalMutex;
-u8 data_022ad424[0x100]; /* size: up to the next symbol */
-u8 data_022ad324[0x100]; /* size: up to the next symbol */
-u8 data_022ad224[0x100]; /* size: up to the next symbol */
-extern SignalHandler gMslSignalHandlers[SIGNAL_COUNT];
+OSMutex gMslLockMutexes[MSL_LOCK_COUNT];
+u8 data_022ad424[FILE_BUFFER_SIZE];
+u8 data_022ad224[FILE_BUFFER_SIZE];
+u8 data_022ad324[FILE_BUFFER_SIZE];
 
 BOOL OS_TryLockMutex(OSMutex* mutex);
 void OS_LockMutex(OSMutex* mutex);
@@ -37,13 +21,13 @@ int raise(int sig) {
     return -1;
   }
 
-  if (!OS_TryLockMutex(&gMslSignalMutex)) {
+  if (!OS_TryLockMutex(&gMslLockMutexes[MSL_LOCK_SIGNAL])) {
     gMslLockOwners[MSL_LOCK_SIGNAL] = OSi_ThreadInfo.current->id;
     gMslLockCounts[MSL_LOCK_SIGNAL] = 1;
   } else if (gMslLockOwners[MSL_LOCK_SIGNAL] == OSi_ThreadInfo.current->id) {
     gMslLockCounts[MSL_LOCK_SIGNAL]++;
   } else {
-    OS_LockMutex(&gMslSignalMutex);
+    OS_LockMutex(&gMslLockMutexes[MSL_LOCK_SIGNAL]);
     gMslLockOwners[MSL_LOCK_SIGNAL] = OSi_ThreadInfo.current->id;
     gMslLockCounts[MSL_LOCK_SIGNAL] = 1;
   }
@@ -54,7 +38,7 @@ int raise(int sig) {
   }
 
   if (--gMslLockCounts[MSL_LOCK_SIGNAL] == 0) {
-    OS_UnlockMutex(&gMslSignalMutex);
+    OS_UnlockMutex(&gMslLockMutexes[MSL_LOCK_SIGNAL]);
   }
 
   if (handler == SIGNAL_HANDLER_IGNORE ||

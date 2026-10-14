@@ -3,10 +3,6 @@
     .data       start:0x0236a1e0 end:0x0236d640 kind:data align:32
     .bss        start:0x0236d640 end:0x0236d9a0 kind:bss align:32
 
-src/game/ov006/ov006_bss_0236d99c.c:
-    complete
-    .bss        start:0x0236d99c end:0x0236d9a0
-
 src/game/ov006/ov006_data_0236ab28.c:
     complete
     .data       start:0x0236ab28 end:0x0236ab34

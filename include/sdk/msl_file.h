@@ -55,6 +55,12 @@ typedef struct FILE {
 
 extern FILE gMslFiles[FILE_COUNT];
 
+/* Bytes in the buffer of each standard stream, and the buffers. */
+#define FILE_BUFFER_SIZE 0x100
+extern u8 data_022ad424[FILE_BUFFER_SIZE]; /* stdin */
+extern u8 data_022ad324[FILE_BUFFER_SIZE]; /* stdout */
+extern u8 data_022ad224[FILE_BUFFER_SIZE]; /* stderr */
+
 int fflush(FILE* file);
 int __flush_all(void);
 /* Writes the pending buffer through writeProc; returns the proc's error code, 0 on success. */

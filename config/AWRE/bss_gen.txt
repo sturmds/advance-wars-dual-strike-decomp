@@ -15,9 +15,6 @@ src/game/main/bss_022a7b80.c
 src/game/main/screen/screen_bss_02177b08.c
 src/game/main/screen/screen_bss_0217db08.c
 src/game/ov000/ov000_bss_02350320.c
-src/game/ov002/ov002_bss_0236bbc0.c
-src/game/ov002/ov002_bss_0236bbec.c
 src/game/ov003/ov003_bss_02369534.c
-src/game/ov006/ov006_bss_0236d99c.c
 src/sdk/msl/msl_bss_022ad524.c
 src/sdk/snd/snd_bss.c

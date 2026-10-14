@@ -16,6 +16,8 @@ typedef struct MovePath {
   s8 lastTile;   /* index of the last tile in x and y */
 } MovePath;
 
+extern MovePath data_022a6c30; /* what gMovePath points to */
+
 /* Directions between move path tiles (MovePath_DirToNext, MovePath_DirToPrev). */
 enum {
   MOVE_DIR_NONE,

@@ -2,6 +2,11 @@
 #define GAME_AI_UNIT_ACTION_H
 
 #include "types.h"
+#include "sdk/setjmp.h"
+
+/* AiTurn_RunQueue's setjmp buffer: a unit or player action that ends the
+ * queue run longjmps back to it. */
+extern jmp_buf data_0229ea0c;
 
 /* State of the AI turn, gAiTurnState->state. AiTurn_Update
  * switches on it. */

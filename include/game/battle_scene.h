@@ -38,6 +38,7 @@ typedef struct BattleAnimTask {
   s16 phase[2]; /* per side: picks a row of data_ov002_023604dc */
 } BattleAnimTask;
 
+extern BattleScene data_ov002_0236bbc0;
 extern BattleScene* Ov002_gBattleScene;
 
 /* Needed to match: the unit type of a side sits at scene offset 3 + 12 * side,

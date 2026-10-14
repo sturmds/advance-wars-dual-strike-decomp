@@ -14,12 +14,9 @@ extern u8 data_ov000_022f5b54[];
 extern u8 data_ov000_022f5b70[];
 extern u8 data_ov000_022f5b8c[];
 extern u8 data_ov000_022f5ba8[];
-extern u8 data_ov000_02350380[];
 extern u8 data_ov000_022f45f8[];
 extern u8 data_ov000_022f4638[];
 extern u8 data_ov000_022f4678[];
-extern u8 data_ov000_02350340[];
-extern u8 data_ov000_02350360[];
 
 UnitStats Ov000_gUnitStats[UNIT_TYPE_COUNT] = {
 #include "data/ov000/Ov000_gUnitStats.inc.c"

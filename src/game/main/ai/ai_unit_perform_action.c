@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ai_unit_action.h"
 #include "game/rng.h"
 #include "game/unit_action.h"
 #include "game/Unk_02080440.h"
@@ -8,7 +9,6 @@ extern u32 data_027c0284;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-extern u8 data_0229ea0c[];
 extern u32 gLinkPlay;
 
 void AiUnit_AdjustAction(int x, int y, u8* action, u8* target, u8* arg);

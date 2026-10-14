@@ -9,8 +9,6 @@ extern u32 data_027c0284;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-extern u8 data_0229ea0c[];
-
 int Rng_Next(void);
 s32 HwMod32(s32 numer, s32 denom);
 int Unit_GetUsableMovement(MapUnit* unit);

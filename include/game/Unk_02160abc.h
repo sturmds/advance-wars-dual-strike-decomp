@@ -14,6 +14,7 @@ typedef struct Unk_02160abc {
   u8 unk_0e; /* the same for the other row */
 } Unk_02160abc;
 
+extern Unk_02160abc data_0229e0ac; /* what data_02160abc points to */
 extern Unk_02160abc* data_02160abc;
 
 #endif
