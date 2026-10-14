@@ -208,13 +208,14 @@ main data_0216e060 = data_0216e05c+0x4 unsorted
 
 The group says what the alias is:
 
-- `real FIELD`: a real address inside the variable, which code takes on purpose. FIELD names the element or field it lies on (`real unk_5c[1]`).
+- `real FIELD`: a real address inside the variable, which code takes on purpose. FIELD names the element or field it lies on, as C after the base: elements and fields (`[64]`, `[0][1]`, `[0].pictures[2]`, `coRecords[0].setMode1`), then an optional byte count (`unk_348[0].value[1]+1`), or only a byte count (`+0x1000`) when the base's type does not describe the place: a compiler base, or a flat `u8[]`, `u32[]` or `void*[]` table standing for rows. Text after the first space is a note.
 - `hidden`: a separate variable that the variable before it swallows. Fix it as `gSoundStreamReady` was fixed: shrink the type, give the symbol its size in `symbols.txt` and a definition in C, and drop the line.
 - `unsorted`: not checked yet. The 200 aliases from before the list start this way; issue 0083 tracks the audit.
 
 The checks:
 
 - `bss.py plan` stops before writing anything when a new alias is not in the list, and when an alias lies on the last element of a `[1]` array that ends its variable's type (a variable-length tail, as in `SoundWaveArc`), unless the list gives it a `real` group. `scan` prints both as warnings and goes on.
+- `tools/alias_check.py` compiles the file that defines each base again with mwccarm, with `&(BASE FIELD)` added, and compares the offset the relocation gives with OFFSET. A FIELD that does not compile fails too. So inserting a field before an alias, or changing the size of the elements it sits on, stops `make release` (`decomp_dev_report.py` runs it) with the list of aliases to move. An alias whose FIELD is or ends in a byte count is checked only for its path part; `alias_check.py --list` prints those, and `tools/shift_gaps.py` counts them as the `alias` row.
 - `bss.py aliases` compares the list with the aliases that `symbols.txt` and `delinks.txt` give: each one listed once, with the same base and offset. `tools/decomp_dev_report.py`, the last step of `make release`, runs the same check and fails on a difference.
 
 To add an alias, check what it is, add its line with the group, then run `plan`. To remove one (a hidden variable made real), drop its line in the same commit as the `symbols.txt` change.

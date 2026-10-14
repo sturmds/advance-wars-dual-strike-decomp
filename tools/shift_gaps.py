@@ -31,8 +31,10 @@ code (src/game/, include/game/) and SDK/library code (everything else):
 
 Kinds from the config and the build:
 
-  alias     an alias in config/AWRE/aliases.txt: an address written as
-            BASE+number, not computed from the C type
+  alias     an alias in config/AWRE/aliases.txt whose offset the C type of
+            its base does not give: a FIELD that is a byte count (`+0x1000`,
+            a compiler base or a flat table) or ends in one
+            (tools/alias_check.py, which `make release` runs, checks the rest)
   mixed_u32 a u32 table whose ROM values (extracted/AWRE/data) hold both
             pointers and numbers: a struct written as words
   scan_*    words in data and literal pools that look like addresses and have
@@ -55,6 +57,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 TOOLS = ROOT / "tools"
+sys.path.insert(0, str(TOOLS))
+
+import alias_check  # noqa: E402
 
 NUM = r"(?:0x[0-9a-fA-F]+|\d+)[uUlL]*"
 LITERAL = re.compile(rf"^\(?\s*{NUM}(?:\s*[-+*/|<>]+\s*{NUM})*\s*\)?$")
@@ -77,7 +82,7 @@ AREAS = ("game", "SDK")
 
 # What PROGRESS.md prints for each kind: (group, label).
 LABELS = {
-    "alias": ("Addresses", "Aliases written as BASE+number (`aliases.txt`)"),
+    "alias": ("Addresses", "Aliases whose offset the C type does not give (`alias_check.py`)"),
     "scan_layout": ("Addresses", "Unrelocated words, layout level (`scan_pointers.py`)"),
     "scan_high": ("Addresses", "Unrelocated words, high level"),
     "scan_medium": ("Addresses", "Unrelocated words, medium level"),
@@ -172,13 +177,13 @@ def source_files() -> list[Path]:
     return sorted([*(ROOT / "src").rglob("*.c"), *(ROOT / "src").rglob("*.h"), *(ROOT / "include").rglob("*.h")])
 
 
-def alias_sites() -> list[tuple[str, str, int, str]]:
-    path = ROOT / "config/AWRE/aliases.txt"
-    out = []
-    for n, raw in enumerate(path.read_text().splitlines(), 1):
-        if raw.strip() and not raw.startswith("#"):
-            out.append(("alias", "config/AWRE/aliases.txt", n, raw.strip()))
-    return out
+def alias_sites(path: Path | None = None) -> list[tuple[str, str, int, str]]:
+    """The aliases whose FIELD is not a path the C type computes in full."""
+    path = path or alias_check.ALIAS_LIST
+    lines = path.read_text().splitlines()
+    aliases, _ = alias_check.read_aliases(path)
+    return [("alias", "config/AWRE/aliases.txt", a.line, lines[a.line - 1].strip())
+            for a in alias_check.not_from_c(aliases)]
 
 
 def mixed_u32_sites() -> list[tuple[str, str, int, str]] | None:

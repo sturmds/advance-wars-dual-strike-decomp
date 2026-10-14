@@ -60,7 +60,7 @@ sites. Not every count should reach 0: a hardware format stays a number.
 
 | Group | Gap | Game | SDK | Total |
 |---|---|---:|---:|---:|
-| Addresses | Aliases written as BASE+number (`aliases.txt`) | - | - | 331 |
+| Addresses | Aliases whose offset the C type does not give (`alias_check.py`) | - | - | 54 |
 | Addresses | Unrelocated words, layout level (`scan_pointers.py`) | 0 | 0 | 0 |
 | Addresses | Unrelocated words, high level | 0 | 0 | 0 |
 | Addresses | Unrelocated words, medium level | 0 | 0 | 0 |
@@ -76,4 +76,4 @@ sites. Not every count should reach 0: a hardware format stays a number.
 | Tables | Extern arrays with a literal length | 0 | 0 | 0 |
 | Tables | `u8 NAME[N]` placeholders for zeroed variables | 245 | 34 | 279 |
 
-Structs with a size assert: 27.
+Structs with a size assert: 29.

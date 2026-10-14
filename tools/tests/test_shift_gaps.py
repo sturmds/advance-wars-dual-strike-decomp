@@ -7,6 +7,7 @@ No build or ROM needed.
 """
 
 import sys
+import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -44,6 +45,15 @@ expect("placeholder", "u8 data_x[0x40];\n", ["placeholder"])
 expect("struct field is no placeholder", "typedef struct {\n  u8 name[0x40];\n} X;\n", [])
 expect("comment ignored", "/* Mem_Alloc(4) and for (i = 0; i < 3; i++) */\n", [])
 expect("size assert", "typedef char X_size_check[sizeof(X) == 4 ? 1 : -1];\n", ["size_assert"])
+
+with tempfile.TemporaryDirectory(prefix="test_shift_gaps") as d:
+    aliases = Path(d) / "aliases.txt"
+    aliases.write_text("main a = b+0x4 real [1]\nmain c = b+0x100 real +0x100\nmain e = b+0x6 real [1].x+0x2\n")
+    got = [n for _, _, n, _ in shift_gaps.alias_sites(aliases)]
+    if got != [2, 3]:
+        errors.append(f"alias: got lines {got}, want [2, 3] (a byte count, or a path that ends in one)")
+    else:
+        print("alias: ok")
 
 if shift_gaps.area("src/game/main/x.c") != "game" or shift_gaps.area("src/sdk/os/x.c") != "SDK":
     errors.append("area")

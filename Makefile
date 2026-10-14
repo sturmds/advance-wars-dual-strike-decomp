@@ -178,10 +178,11 @@ emu-check: shift
 # (test_bss.py), the release cache (test_release_cache.py) and the .data
 # planner (test_data.py), and the sound archive's unpack and pack
 # (test_sound.py), and the levels of scan_pointers.py (test_scan_pointers.py),
-# and the C text shift_gaps.py counts as a gap (test_shift_gaps.py);
+# and the C text shift_gaps.py counts as a gap (test_shift_gaps.py), and
+# the alias offsets alias_check.py compiles (test_alias_check.py);
 # no ROM or build needed
 # (test_ds.py, test_pragmas.py, test_absolute.py, test_data_order.py,
-# test_bss.py and test_data.py use the compiler from make setup; test_ds.py
+# test_bss.py, test_data.py and test_alias_check.py use the compiler from make setup; test_ds.py
 # checks more when extract/ exists, test_bss.py when build/fnindex.json and
 # build/dsindex.json exist, test_data.py when the ROM exists as well;
 # test_sound.py checks the round trip of the ROM's archive when extract/ exists;
@@ -221,6 +222,7 @@ TESTS := \
 	tools/tests/test_shift.py \
 	tools/tests/test_scan_pointers.py \
 	tools/tests/test_shift_gaps.py \
+	tools/tests/test_alias_check.py \
 	tools/tests/test_gdb_rsp.py
 
 test:
