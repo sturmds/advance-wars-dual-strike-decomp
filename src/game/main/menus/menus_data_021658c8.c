@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/event_script.h"
 #include "game/menu_button.h"
+#include "game/menu_help.h"
 #include "game/menu_item.h"
 #include "game/task.h"
 
@@ -147,19 +148,20 @@ void func_020c02f0(void);
 void BuildMenu_OnSelect(void);
 void func_020c0330(void);
 
-/* declared `MenuHelpPair gMusicMenuHelpFns` in menu_toggle_music.c: declared in src/game/main/menus/menu_toggle_music.c, with a type no header defines */
-void* gMusicMenuHelpFns[] = {&BattleMenu_DrawMusicOffHelp,
-                             &BattleMenu_DrawMusicOnHelp};
+MenuHelpPair gMusicMenuHelpFns = {{(MenuHelpFn)&BattleMenu_DrawMusicOffHelp,
+                                   (MenuHelpFn)&BattleMenu_DrawMusicOnHelp}};
 u16 data_021658c8[] = {
 #include "data/main/data_021658c8.inc.c"
 };
-/* declared `MenuHelpFour gAiBehaviourMenuHelpFns` in menu_cycle_ai_behaviour.c: declared in src/game/main/menus/menu_cycle_ai_behaviour.c, with a type no header defines */
-void* gAiBehaviourMenuHelpFns[] = {
-    &BattleMenu_DrawAiStrikeHelp, &BattleMenu_DrawAiAssaultHelp,
-    &BattleMenu_DrawAiGeneralHelp, &BattleMenu_DrawAiDefenseHelp};
-/* declared `MenuHelpFive gAnimationMenuHelpFns` in menu_cycle_animation_mode.c: declared in src/game/main/menus/menu_cycle_animation_mode.c, with a type no header defines */
-void* gAnimationMenuHelpFns[] = {&func_020bc960, &func_020bc9b0, &func_020bc99c,
-                                 &func_020bc988, &func_020bc974};
+MenuHelpFour gAiBehaviourMenuHelpFns = {
+    {(MenuHelpFn)&BattleMenu_DrawAiStrikeHelp,
+     (MenuHelpFn)&BattleMenu_DrawAiAssaultHelp,
+     (MenuHelpFn)&BattleMenu_DrawAiGeneralHelp,
+     (MenuHelpFn)&BattleMenu_DrawAiDefenseHelp}};
+MenuHelpFive gAnimationMenuHelpFns = {
+    {(MenuHelpFn)&func_020bc960, (MenuHelpFn)&func_020bc9b0,
+     (MenuHelpFn)&func_020bc99c, (MenuHelpFn)&func_020bc988,
+     (MenuHelpFn)&func_020bc974}};
 MenuButtonTemplate gBuildMenuRowButton = {
 #include "data/main/gBuildMenuRowButton.inc.c"
 };

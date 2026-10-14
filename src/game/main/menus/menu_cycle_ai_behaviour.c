@@ -1,16 +1,8 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/menu_help.h"
 #include "game/play_records.h"
-
-/* Same arguments as the menu handler; the help text functions it points to
- * (BattleMenu_DrawAiStrikeHelp, BattleMenu_DrawAiAssaultHelp, BattleMenu_DrawAiGeneralHelp, BattleMenu_DrawAiDefenseHelp) take none. */
-typedef void (*MenuHelpFn)(int a0, int a1, u32 flags);
-
-/* Copied to the stack as a whole: one help text function per behaviour. */
-typedef struct MenuHelpFour {
-  MenuHelpFn fn[4];
-} MenuHelpFour;
 
 void Screen_SetCurrent(void* state);
 void Screen_SetCurrentGfx(void* state);
@@ -22,7 +14,6 @@ extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern MenuHelpFour gAiBehaviourMenuHelpFns;
 extern PlayRecords gPlayRecords;
 extern u32 gLinkPlay;
 

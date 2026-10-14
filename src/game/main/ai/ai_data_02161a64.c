@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ai_unit_action.h"
 
 void AiAction_QueueOoziums(void);
 void AiAction_QueueCoPowerCheck(void);
@@ -26,8 +27,7 @@ void AiAction_QueueBlackBombsForEagle(void);
 void AiAction_QueueBlackBombs(void);
 void AiAction_EndUnitActions(void);
 
-/* declared `DomainBits data_02161a64` in ai_turn_find_unit_domains.c: declared in src/game/main/ai/ai_turn_find_unit_domains.c, with a type no header defines */
-u32 data_02161a64 = {
+DomainBits data_02161a64 = {
 #include "data/main/data_02161a64.inc.c"
 };
 void (*gAiUnitPhases[])(void) = {&AiAction_QueueOoziums,

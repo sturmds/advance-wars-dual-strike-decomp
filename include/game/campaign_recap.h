@@ -73,4 +73,17 @@ typedef struct CampaignRecapCameraTask {
   int frames;
 } CampaignRecapCameraTask;
 
+#define CAMPAIGN_RECAP_CAMERA_OFFSETS 5
+
+/* Offsets of the camera's start from its end, picked by mission index
+ * modulo CAMPAIGN_RECAP_CAMERA_OFFSETS (CampaignRecap_Update): data_0216a884
+ * for x, data_0216a870 for y. A struct so that the table is copied whole,
+ * as the code does. */
+typedef struct CampaignRecapCameraOffsets {
+  int v[CAMPAIGN_RECAP_CAMERA_OFFSETS];
+} CampaignRecapCameraOffsets;
+
+extern CampaignRecapCameraOffsets data_0216a870;
+extern CampaignRecapCameraOffsets data_0216a884;
+
 #endif

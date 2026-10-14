@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/shimmer_wave.h"
 #include "game/task.h"
 
 void CameraPan_InitFromScrollTile(void);
@@ -107,19 +108,15 @@ TaskScriptCmd data_0216a21c[] = {
 TaskScriptCmd data_0216a23c[] = {
 #include "data/main/data_0216a23c.inc.c"
 };
-/* declared `const ShimmerWave data_0216a2dc` in shimmer_levels_update.c: declared in src/game/main/graphics/shimmer_levels_update.c, with a type no header defines */
-u32 data_0216a2dc[] = {
+ShimmerWave data_0216a2dc = {
 #include "data/main/data_0216a2dc.inc.c"
 };
-/* declared `const ShimmerWave data_0216a25c` in shimmer_levels_update.c: declared in src/game/main/graphics/shimmer_levels_update.c, with a type no header defines */
-u32 data_0216a25c[] = {
+ShimmerWave data_0216a25c = {
 #include "data/main/data_0216a25c.inc.c"
 };
-/* declared `const ShimmerWave data_0216a35c` in shimmer_levels_update.c: declared in src/game/main/graphics/shimmer_levels_update.c, with a type no header defines */
-u32 data_0216a35c[] = {
+ShimmerWave data_0216a35c = {
 #include "data/main/data_0216a35c.inc.c"
 };
-/* declared `const ShimmerWave data_0216a3dc` in shimmer_levels_update.c: declared in src/game/main/graphics/shimmer_levels_update.c, with a type no header defines */
-u32 data_0216a3dc[] = {
+ShimmerWave data_0216a3dc = {
 #include "data/main/data_0216a3dc.inc.c"
 };

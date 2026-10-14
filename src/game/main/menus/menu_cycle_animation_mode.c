@@ -1,17 +1,9 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/menu_help.h"
 #include "game/play_records.h"
 #include "game/visual_mode.h"
-
-/* Same arguments as the menu handler; the help text functions it points to
- * (func_020bc960 and the next four) take none. */
-typedef void (*MenuHelpFn)(int a0, int a1, u32 flags);
-
-/* Copied to the stack as a whole: one help text function per setting. */
-typedef struct MenuHelpFive {
-  MenuHelpFn fn[5];
-} MenuHelpFive;
 
 void Screen_SetCurrent(void* state);
 void Screen_SetCurrentGfx(void* state);
@@ -21,7 +13,6 @@ extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern MenuHelpFive gAnimationMenuHelpFns;
 extern PlayRecords gPlayRecords;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])

@@ -1,13 +1,6 @@
 #include "types.h"
+#include "game/shimmer_wave.h"
 
-typedef struct ShimmerWave {
-  u8 level[128];
-} ShimmerWave;
-
-extern const ShimmerWave data_0216a25c;
-extern const ShimmerWave data_0216a2dc;
-extern const ShimmerWave data_0216a35c;
-extern const ShimmerWave data_0216a3dc;
 extern u16 data_022a7c64[];
 
 /* Sets the brightness (0 to 31) of the four quads that Gx_SendQuad draws.

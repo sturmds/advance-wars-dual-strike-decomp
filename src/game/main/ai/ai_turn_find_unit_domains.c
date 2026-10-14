@@ -7,12 +7,6 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
-typedef struct DomainBits {
-  u8 bits[4];
-} DomainBits;
-
-extern DomainBits
-    data_02161a64; /* AI_DOMAIN_* bit for each gTerrainFactoryKind value */
 extern u8 gTerrainFactoryKind
     []; /* per terrain id: 1 base, 2 airport, 3 port, else 0 */
 

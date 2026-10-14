@@ -33,13 +33,6 @@ extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern const TaskScriptCmd data_0216a898[];
 
-typedef struct Int5 {
-  int v[5];
-} Int5;
-
-extern Int5 data_0216a884;
-extern Int5 data_0216a870;
-
 /* Per-frame update of the data_0216a8b0 task. It goes through the campaign
  * missions in work->unk_7c: for each it draws the map name on the sub
  * screen, loads the map on the main screen, fades in three sub screen
@@ -51,8 +44,8 @@ void CampaignRecap_Update(CampaignRecapTask* task) {
   CampaignRecap* work = task->work;
   Unk_027c0280* savedGfx;
   Unk_02080440* savedScreen;
-  Int5 xs;
-  Int5 ys;
+  CampaignRecapCameraOffsets xs;
+  CampaignRecapCameraOffsets ys;
   int x;
   int y;
 
@@ -95,8 +88,8 @@ void CampaignRecap_Update(CampaignRecapTask* task) {
       if (task->frame > task->frames) {
         xs = data_0216a884;
         ys = data_0216a870;
-        x = xs.v[HwMod32(work->index, 5)];
-        y = ys.v[HwMod32(work->index, 5)];
+        x = xs.v[HwMod32(work->index, CAMPAIGN_RECAP_CAMERA_OFFSETS)];
+        y = ys.v[HwMod32(work->index, CAMPAIGN_RECAP_CAMERA_OFFSETS)];
         work->cameraStartX = x + (work->unk_44 * 50 - 800);
         work->cameraStartY = y + (-work->unk_48 * 50 + 600);
         work->cameraStartZ = -300;

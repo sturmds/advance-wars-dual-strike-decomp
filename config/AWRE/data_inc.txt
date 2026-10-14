@@ -1535,7 +1535,7 @@ main      gUnitSupplyKind             0x021619e8  0x1c   u8
 main      gTerrainIsProperty          0x02161a04  0x20   u8
 main      gTerrainFactoryKind         0x02161a24  0x20   u8
 main      gTerrainSupplyKind          0x02161a44  0x20   u8
-main      data_02161a64               0x02161a64  0x4    u32
+main      data_02161a64               0x02161a64  0x4    u8
 main      gAiTargetGroupType          0x02161b80  0xc    u8
 main      data_02161b8c               0x02161b8c  0x4c2  {u8,u8[28]}
 main      gAiProfileMods              0x02162050  0xa40  {u8[12],u8[52]}
@@ -2048,10 +2048,10 @@ main      data_0216a200               0x0216a200  0x4    u8
 main      data_0216a204               0x0216a204  0x18   {s16,s16,u32}
 main      data_0216a21c               0x0216a21c  0x20   {s16,s16,u32}
 main      data_0216a23c               0x0216a23c  0x20   {s16,s16,u32}
-main      data_0216a25c               0x0216a25c  0x80   u32
-main      data_0216a2dc               0x0216a2dc  0x80   u32
-main      data_0216a35c               0x0216a35c  0x80   u32
-main      data_0216a3dc               0x0216a3dc  0x80   u32
+main      data_0216a25c               0x0216a25c  0x80   u8
+main      data_0216a2dc               0x0216a2dc  0x80   u8
+main      data_0216a35c               0x0216a35c  0x80   u8
+main      data_0216a3dc               0x0216a3dc  0x80   u8
 main      data_0216a45c               0x0216a45c  0x6    u8
 main      data_0216a464               0x0216a464  0x4    u8
 main      data_0216a468               0x0216a468  0x4    u8
@@ -2093,8 +2093,8 @@ main      data_0216a7d0               0x0216a7d0  0x28   {s16,s16,u32}
 main      data_0216a7f8               0x0216a7f8  0x28   {s16,s16,u32}
 main      data_0216a820               0x0216a820  0x28   {s16,s16,u32}
 main      data_0216a848               0x0216a848  0x28   {s16,s16,u32}
-main      data_0216a870               0x0216a870  0x14   u32
-main      data_0216a884               0x0216a884  0x14   u32
+main      data_0216a870               0x0216a870  0x14   s32
+main      data_0216a884               0x0216a884  0x14   s32
 main      data_0216a898               0x0216a898  0x18   {s16,s16,u32}
 main      data_0216a8b0               0x0216a8b0  0x28   {s16,s16,u32}
 main      data_0216a8d8               0x0216a8d8  0x50   {u8,u8,u8[2],u32,u32,u16*,u8,u8[3]}
@@ -2397,7 +2397,7 @@ arm7      gWlRateBits                 0x027d67d4  0xf0   u16
 arm7      gWlTestPatterns             0x027d68c4  0x6    u16
 arm7      gWlBbSkipRegsRf5            0x027d68cc  0x34   u16
 arm7      gWlBbSkipRegs               0x027d6900  0x38   u16
-arm7      gWlTestRegs                 0x027d6938  0x6c   u32
+arm7      gWlTestRegs                 0x027d6938  0x6c   {u16,u16}
 arm7      gWlCommands100              0x027d69a4  0x28   {u16,u16,void*}
 arm7      gWlCommands2c0              0x027d69cc  0x30   {u16,u16,void*}
 arm7      gWlCommands240              0x027d69fc  0x30   {u16,u16,void*}

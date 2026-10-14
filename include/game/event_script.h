@@ -112,6 +112,13 @@ typedef char
 #define EVENT_OP_START_TEXT_MAP_TASK 92
 #define EVENT_OP_COUNT 93 /* entries of data_021585c0 */
 
+/* Runs one command for slot index; FALSE: stop for this frame. */
+typedef BOOL (*EventCmdFunc)(s16 index);
+
+/* The handler of each opcode (EventScript_StepSlot). Handlers written with
+ * another signature are cast. */
+extern EventCmdFunc data_021585c0[];
+
 /* The same 16 bytes as the data-moving commands read them: the word at +4 is
  * an address or a script instead of a handler. */
 typedef struct EventScriptDataCommand {

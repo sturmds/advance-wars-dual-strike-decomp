@@ -75,6 +75,15 @@ typedef struct AiTurnState {
 #define AI_DOMAIN_AIR 2
 #define AI_DOMAIN_SEA 4
 
+/* The AI_DOMAIN_* bit for each gTerrainFactoryKind value (0 none, 1 base,
+ * 2 airport, 3 port). A struct so that AiTurn_FindUnitDomains copies it
+ * whole, as the code does. */
+typedef struct DomainBits {
+  u8 bits[4];
+} DomainBits;
+
+extern DomainBits data_02161a64;
+
 /* AiTurnState.stepFlags bits. Names of bits without a decompiled setter
  * or reader describe what the known side does. */
 #define AI_STEP_UNIT_AT_TARGET \

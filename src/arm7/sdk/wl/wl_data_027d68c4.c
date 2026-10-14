@@ -1,4 +1,5 @@
 #include "types.h"
+#include "sdk/wl.h"
 
 u16 gWlTestPatterns[] = {
 #include "data/arm7/gWlTestPatterns.inc.c"
@@ -9,7 +10,6 @@ u16 gWlBbSkipRegsRf5[] = {
 u16 gWlBbSkipRegs[] = {
 #include "data/arm7/gWlBbSkipRegs.inc.c"
 };
-/* declared `const WlRegMask gWlTestRegs[WIFI_SELFTEST_MAC_TARGETS]` in wifi_self_test_mac_registers.c: declared in src/arm7/sdk/wl/wifi_self_test_mac_registers.c, with a type no header defines */
-u32 gWlTestRegs[] = {
+WlRegMask gWlTestRegs[] = {
 #include "data/arm7/gWlTestRegs.inc.c"
 };

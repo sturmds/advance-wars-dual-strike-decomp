@@ -3,9 +3,9 @@
 
 static u16 gPMInitialized;
 volatile int gPMSleepRequestAck;
-void* data_022ab8f8;
+PowerHookEntry* data_022ab8f8;
 u32 data_022ab8f4;
-void* data_022ab8f0;
+PowerHookEntry* data_022ab8f0;
 volatile int gPMSleepAck;
 PowerCommandState gPMWork;
 static OSMutex data_022ab90c;

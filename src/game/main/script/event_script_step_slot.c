@@ -6,11 +6,6 @@ extern Unk_0201d320 data_022977f4[];
 extern EventSlotHold data_022977f8[];
 extern EventSlotWait data_022977fc[];
 
-/* Runs one command for slot index; FALSE: stop for this frame. */
-typedef BOOL (*EventCmdFunc)(s16 index);
-
-extern EventCmdFunc data_021585c0[];
-
 /* Steps event script slot index: counts down its wait, and when the wait is
  * over and no hold callback is set, runs commands from data_021585c0 by
  * opcode until one returns FALSE. An opcode without a handler is skipped. */
