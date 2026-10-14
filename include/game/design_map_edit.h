@@ -40,6 +40,9 @@
 #define DESIGN_DIR_RIGHT 1
 #define DESIGN_DIR_UP 2
 #define DESIGN_DIR_DOWN 3
+#define DESIGN_DIR_COUNT 4
+/* The centre tile and its four neighbours (Ov006_gCrossDx, Ov006_gCrossDy). */
+#define DESIGN_CROSS_COUNT (1 + DESIGN_DIR_COUNT)
 
 /* What Ov006_GetPipeLink finds on the neighbour tile in one direction. */
 #define PIPE_LINK_NONE 0   /* off the map, or not a pipe */

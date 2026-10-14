@@ -17,7 +17,7 @@ int Ov006_CountPropertyTilesMatching(int tile) {
   Screen_SetCurrentGfx(data_027c0288.unk_00);
   saved027c = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_00);
-  for (i = 0; i < 92; i++) {
+  for (i = 0; i < MAP_SITE_COUNT; i++) {
     if (STATE->unk_608c[i].tile == 0xff) {
       break;
     }

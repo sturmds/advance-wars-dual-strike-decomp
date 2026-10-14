@@ -66,7 +66,7 @@ int Ov006_GetPipeNeighborHold(int x, int y, int dir) {
   if (link != PIPE_LINK_ACROSS && link != PIPE_LINK_OPEN) {
     return FIRM;
   }
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < DESIGN_DIR_COUNT; i++) {
     /* Skips the side that points back at x, y. The original tests the x
          * steps twice, so for up and down it skips both up and down. */
     if (data_ov006_0236d608[dir] + data_ov006_0236d608[i] != 0 ||

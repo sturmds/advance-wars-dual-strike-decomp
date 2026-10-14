@@ -17,7 +17,7 @@ int Ov006_FindArmyLayout(void) {
   int result = 0;
   int i;
 
-  for (i = 0; i < 16; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(data_ov006_0236d568[1]); i++) {
     if (data_ov006_0236d568[1][i] >> 1 == STATE->army[1] &&
         data_ov006_0236d588[1][i] >> 1 == STATE->army[2] &&
         data_ov006_0236d5a8[1][i] >> 1 == STATE->army[3] &&

@@ -295,7 +295,7 @@ void Ov006_QueueSlotSprites(void) {
   sprites = data_ov006_0236a790;
   slot = sprites.slot;
   y = 15;
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(sprites.slot); i++) {
     Sprite_Queue(0, 23, y + 1, data_ov006_0236a878[i], (slot++)->attr << 12, 0);
     y += 17;
   }

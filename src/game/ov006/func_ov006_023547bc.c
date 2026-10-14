@@ -17,8 +17,8 @@ void func_ov006_023547bc(void) {
   int x;
   Unk_ov006_0235f690* state = data_ov006_0236d640;
 
-  for (i = 32; i <= 39; i++) {
-    if (state->unk_80[i - 32].flags & 1) {
+  for (i = OV006_SLOT_BUTTON_FIRST; i <= OV006_SLOT_BUTTON_LAST; i++) {
+    if (state->unk_80[i - OV006_SLOT_BUTTON_FIRST].flags & 1) {
       count++;
     }
   }

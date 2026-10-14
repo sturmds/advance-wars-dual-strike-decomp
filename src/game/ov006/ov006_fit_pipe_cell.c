@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/design_map_edit.h"
 #include "game/Unk_02080440.h"
 
 extern Unk_02080440* data_027c027c;
@@ -58,7 +59,7 @@ int Ov006_FitPipeCell(int x, int y, int replaceSeam) {
   if (Ov006_IsJoinedPieceConnected(x, y)) {
     return CELL_AT(x, y);
   }
-  for (i = 0; i <= 3; i++) {
+  for (i = 0; i <= DESIGN_DIR_COUNT - 1; i++) {
     n[i] = Ov006_GetPipeLink(x, y, i);
     if (n[i] != 0) {
       count++;

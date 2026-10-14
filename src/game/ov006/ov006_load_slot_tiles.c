@@ -26,7 +26,7 @@ void Ov006_LoadSlotTiles(void) {
   ids[3] = data_ov006_0236a4cc[3];
   id = ids;
   tile = 0x25e;
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(ids); i++) {
     TransferQueue_Add(Palette_GetBlock(*id, 0) + 64,
                       data_027c0280->objVram + tile * 32, 192);
     TransferQueue_Add(data_ov006_0236d644,

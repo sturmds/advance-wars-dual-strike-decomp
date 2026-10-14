@@ -11,9 +11,9 @@ void Ov006_ToggleChosenButton(int chosenId) {
   MenuButton* button;
   int index;
 
-  for (id = 33; id <= 39; id++) {
+  for (id = OV006_SLOT_BUTTON_FIRST + 1; id <= OV006_SLOT_BUTTON_LAST; id++) {
     button = MenuButton_Find(id);
-    index = button->id - 32;
+    index = button->id - OV006_SLOT_BUTTON_FIRST;
     button->tile = 0x25e + index * 16;
     if (button->id == chosenId) {
       if (data_ov006_0236d640->chosenButton != chosenId) {

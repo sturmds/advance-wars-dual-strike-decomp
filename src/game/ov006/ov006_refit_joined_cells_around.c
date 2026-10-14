@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/design_map_edit.h"
 #include "game/Unk_02080440.h"
 
 int Ov006_GetPipeLink(
@@ -46,7 +47,7 @@ void Ov006_RefitJoinedCellsAround(int x, int y) {
   int i;
   int cell;
 
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < DESIGN_DIR_COUNT; i++) {
     if (NX < 0 || NX >= MAP->mapWidth || NY < 0 || NY >= MAP->mapHeight) {
       continue;
     }
@@ -62,7 +63,7 @@ void Ov006_RefitJoinedCellsAround(int x, int y) {
     Ov006_StoreMapCell(x, y, Ov006_FitPipeCell(x, y, 0));
   }
 
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < DESIGN_DIR_COUNT; i++) {
     if (NX < 0 || NX >= MAP->mapWidth || NY < 0 || NY >= MAP->mapHeight) {
       continue;
     }
@@ -78,7 +79,7 @@ void Ov006_RefitJoinedCellsAround(int x, int y) {
     Ov006_StoreMapCell(x, y, Ov006_GetPipeEndCell(x, y));
   }
 
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < DESIGN_DIR_COUNT; i++) {
     if (NX < 0 || NX >= MAP->mapWidth || NY < 0 || NY >= MAP->mapHeight) {
       continue;
     }

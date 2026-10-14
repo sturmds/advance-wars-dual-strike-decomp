@@ -19,10 +19,10 @@ void Ov006_AddSlotButtons(void) {
   Screen_SetCurrentGfx(data_027c0288.unk_00);
   saved027c = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_00);
-  for (id = 32; id <= 39; id++) {
+  for (id = OV006_SLOT_BUTTON_FIRST; id <= OV006_SLOT_BUTTON_LAST; id++) {
     button = MenuButton_Add(0, 0, &data_ov006_0236b684, id);
     button->tile = 0x25e + i * 16;
-    slot = &data_ov006_0236d640->slotButtons[id - 32];
+    slot = &data_ov006_0236d640->slotButtons[id - OV006_SLOT_BUTTON_FIRST];
     slot->unk_0a = 32;
     slot->state = 0;
     slot->flags = 0;

@@ -8,8 +8,8 @@ int Ov006_SlotsAreShown(void) {
   int i;
   int count = 0;
 
-  for (i = 32; i <= 39; i++) {
-    if (data_ov006_0236d640->unk_80[i - 32].state == 20) {
+  for (i = OV006_SLOT_BUTTON_FIRST; i <= OV006_SLOT_BUTTON_LAST; i++) {
+    if (data_ov006_0236d640->unk_80[i - OV006_SLOT_BUTTON_FIRST].state == 20) {
       count++;
     }
   }

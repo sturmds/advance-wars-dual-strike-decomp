@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/map_header.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov006_0235f690.h"
@@ -9,16 +10,19 @@ void Oam_PutSprite(int x, int y, void* shape, int tileAndPalette);
 void Oam_PutSmallNumber(u16 x, u16 y, int value);
 int Ov006_CountPropertyTilesMatching(int tile);
 
+/* Columns of the count table: the row icon, then five property tiles. */
+#define COUNT_COLUMNS 6
+
 typedef struct RowShapes {
-  void* shape[5];
+  void* shape[ARMY_SLOT_COUNT];
 } RowShapes;
 
 typedef struct ColumnShapes {
-  void* shape[6];
+  void* shape[COUNT_COLUMNS];
 } ColumnShapes;
 
 typedef struct TileGrid {
-  s16 tile[5 * 6];
+  s16 tile[ARMY_SLOT_COUNT * COUNT_COLUMNS];
 } TileGrid;
 
 extern Unk_02080440* data_027c027c;
@@ -74,9 +78,9 @@ void Ov006_DrawPropertyCounts(void) {
   Screen_SetCurrentGfx(data_027c0288.unk_04);
   saved027c = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_04);
-  for (row = 0; row < 5; row++) {
+  for (row = 0; row < ARMY_SLOT_COUNT; row++) {
     x = 136;
-    for (col = 0; col < 6; col++) {
+    for (col = 0; col < COUNT_COLUMNS; col++) {
       if (col == 0) {
         if (row > 0) {
           count = Ov006_CountPropertyTilesMatching(tiles.tile[i]);

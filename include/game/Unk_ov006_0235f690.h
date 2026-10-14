@@ -24,6 +24,13 @@ typedef struct Ov006SlotButton {
   u8 state;  /* see Ov006Slot.state */
 } Ov006SlotButton;
 
+/* The design map slot buttons: MenuButton ids from OV006_SLOT_BUTTON_FIRST,
+ * one per entry of slotButtons. */
+#define OV006_SLOT_BUTTON_FIRST 32
+#define OV006_SLOT_BUTTON_COUNT 8
+#define OV006_SLOT_BUTTON_LAST \
+  (OV006_SLOT_BUTTON_FIRST + OV006_SLOT_BUTTON_COUNT - 1)
+
 /* Ov006Slot.state and Ov006SlotButton.state */
 #define OV006_SLIDE_NONE 0
 #define OV006_SLIDE_IN_START 10
@@ -90,7 +97,7 @@ typedef struct Unk_ov006_0235f690 {
   void* unk_70; /* sprite set drawn by Ov006_UpdateSubScreen */
   void* unk_74; /* file /mapedit/00c, loaded when request 6 opens */
   union {
-    Ov006SlotButton slotButtons[8];
+    Ov006SlotButton slotButtons[OV006_SLOT_BUTTON_COUNT];
     struct {
       u8 pad_78[0x80 - 0x78];
       Ov006Slot unk_80[7]; /* an 8th slot starts at 0xd4 */
