@@ -8,7 +8,12 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_02134d68[];
+const u16 gObjRowPalette[16] = {
+#include "data/main/gObjRowPalette.inc.c"
+};
+static const u8 data_02134d68[260] = {
+#include "data/main/data_02134d68.inc.c"
+};
 
 void SpriteAnim3dTask_StartAlt(const void* file, const VecFx32* pos,
                                void* tileBase, void* palette, int animation,

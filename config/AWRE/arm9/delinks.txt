@@ -192,6 +192,102 @@ src/game/main/power_meter/power_meter_rodata.c:
     complete
     .rodata     start:0x02130100 end:0x02131fb8
 
+src/game/main/rodata_02131fb8.c:
+    complete
+    .rodata     start:0x02131fb8 end:0x02133ab8
+
+src/game/main/rodata_02133ab8.c:
+    complete
+    .rodata     start:0x02133ab8 end:0x02133c58
+
+src/game/main/rodata_02133c58.c:
+    complete
+    .rodata     start:0x02133c58 end:0x02133dec
+
+src/game/main/rodata_02133dec.c:
+    complete
+    .rodata     start:0x02133dec end:0x02133efc
+
+src/game/main/rodata_02133efc.c:
+    complete
+    .rodata     start:0x02133efc end:0x02134040
+
+src/game/main/rodata_02134040.c:
+    complete
+    .rodata     start:0x02134040 end:0x021340e4
+
+src/game/main/rodata_021340e4.c:
+    complete
+    .rodata     start:0x021340e4 end:0x0213423c
+
+src/game/main/rodata_0213423c.c:
+    complete
+    .rodata     start:0x0213423c end:0x021343a4
+
+src/game/main/rodata_021343a4.c:
+    complete
+    .rodata     start:0x021343a4 end:0x02134560
+
+src/game/main/rodata_02134560.c:
+    complete
+    .rodata     start:0x02134560 end:0x021345f8
+
+src/game/main/rodata_021345f8.c:
+    complete
+    .rodata     start:0x021345f8 end:0x021347bc
+
+src/game/main/rodata_021347bc.c:
+    complete
+    .rodata     start:0x021347bc end:0x02134910
+
+src/game/main/rodata_02134910.c:
+    complete
+    .rodata     start:0x02134910 end:0x021349c4
+
+src/game/main/rodata_021349c4.c:
+    complete
+    .rodata     start:0x021349c4 end:0x02134b14
+
+src/game/main/rodata_02134b14.c:
+    complete
+    .rodata     start:0x02134b14 end:0x02134bb8
+
+src/game/main/rodata_02134bb8.c:
+    complete
+    .rodata     start:0x02134bb8 end:0x02134cf4
+
+src/game/main/rodata_02134cf4.c:
+    complete
+    .rodata     start:0x02134cf4 end:0x02134d48
+
+src/game/main/screen/screen_rodata.c:
+    complete
+    .rodata     start:0x02137c88 end:0x021388f0
+
+src/game/main/rodata_021388f0.c:
+    complete
+    .rodata     start:0x021388f0 end:0x02138c68
+
+src/game/main/map/map_rodata.c:
+    complete
+    .rodata     start:0x02139208 end:0x02139308
+
+src/game/main/graphics/graphics_rodata.c:
+    complete
+    .rodata     start:0x02139308 end:0x02139348
+
+src/game/main/rodata_02139348.c:
+    complete
+    .rodata     start:0x02139348 end:0x0213936c
+
+src/game/main/weather/weather_rodata.c:
+    complete
+    .rodata     start:0x0213936c end:0x02139430
+
+src/game/main/rodata_021396f0.c:
+    complete
+    .rodata     start:0x021396f0 end:0x02139810
+
 src/sdk/svc/svc_is_debugger.c:
     complete
     .text       start:0x0200006c end:0x02000070
@@ -17372,6 +17468,7 @@ src/game/main/screen/screen_start_layer0_blend.c:
 src/game/main/copowers/ex_machina_bolt_play_anim.c:
     complete
     .text       start:0x020e48c0 end:0x020e49cc
+    .rodata     start:0x02134d48 end:0x02134e6c
 
 src/game/main/copowers/ex_machina_bolt_fade_in.c:
     complete
@@ -18744,6 +18841,7 @@ src/game/main/screen/screen_clear_layers01.c:
 src/game/main/screen/screen_init_with_player_frame.c:
     complete
     .text       start:0x020f425c end:0x020f437c
+    .rodata     start:0x02134e6c end:0x02137c88
 
 src/game/main/screen/scene_mode_advance.c:
     complete
@@ -19069,6 +19167,7 @@ src/game/main/graphics/func_020f8344.c:
 src/game/main/graphics/func_020f8394.c:
     complete
     .text       start:0x020f8394 end:0x020f83d8
+    .rodata     start:0x02138c68 end:0x02139208
 
 src/game/main/graphics/func_020f83d8.c:
     complete
@@ -19081,6 +19180,7 @@ src/game/main/graphics/func_020f84b0.c:
 src/game/main/graphics/func_020f8534.c:
     complete
     .text       start:0x020f8534 end:0x020f85b0
+    .rodata     start:0x02139430 end:0x021396f0
 
 src/game/main/graphics/func_020f85b0.c:
     complete
@@ -19189,6 +19289,7 @@ src/game/main/func_020f931c.c:
 src/game/main/graphics/bg0_anim_task_update.c:
     complete
     .text       start:0x020f934c end:0x020f9450
+    .rodata     start:0x02139810 end:0x02139d10
 
 src/game/main/map/map_view_draw_all_range_tiles.c:
     complete

@@ -26,7 +26,9 @@ typedef struct ZoomSpriteTask {
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern s16 gSineTable[]; /* sine table, index 64 = cosine of 0 */
+/* Sine by 1/256 of a turn, 4096 = 1.0. The last 64 entries repeat the first
+   64, so that gSineTable[i + 64] gives the cosine of i for i up to 255. */
+extern const s16 gSineTable[320];
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);

@@ -4,7 +4,7 @@
 
 extern const void*
     gNumberFontByLanguage[]; /* packed number font graphics per language */
-extern u8 data_02138c68[];   /* its palette */
+extern u8 data_02138c68[];   /* palette of the number font */
 
 void Data_Unpack(const void* src, void* dst);
 void Palette_Load(const void* src, u32 offset, u32 size);
