@@ -17,6 +17,10 @@
 /* DMA channel the VramStage_Copy* functions use (starts at 3); -1 copies with the CPU. */
 extern int data_0216d958;
 
+/* Sub BG extended palette bank saved by the Begin function and given back
+ * by GXS_EndLoadBGExtPltt. */
+extern int data_022a9894;
+
 /* State of the main BG extended palette load (set by GX_BeginLoadBGExtPltt, the Begin function):
  * the bank mapped for loading, its address in the LCDC
  * range, and the offset the load subtracts from the palette offset it is given. */

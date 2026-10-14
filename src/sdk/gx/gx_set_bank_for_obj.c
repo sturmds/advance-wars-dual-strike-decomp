@@ -3,7 +3,6 @@
 
 /* Bank assignment: index 0 holds the banks not given to any use, index 2 the
  * banks given to main engine OBJ data. */
-extern u16 gGxVramBankMasks[];
 
 /* obj is A, B or both, or any mix of E, F and G; the banks are mapped one
  * after another in OBJ VRAM, lowest bank first. */

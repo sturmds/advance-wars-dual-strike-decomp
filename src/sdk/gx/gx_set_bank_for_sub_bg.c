@@ -3,7 +3,6 @@
 
 /* Bank assignment: index 0 holds the banks not given to any use, index 9 the
  * banks given to sub engine BG data. */
-extern u16 gGxVramBankMasks[];
 
 /* VRAMCNT values for sub engine BG (GBATEK): bank C uses mode 4, H and I mode 1. */
 #define VRAMCNT_SUB_BG_C 0x84

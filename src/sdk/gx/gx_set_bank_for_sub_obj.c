@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/gx.h"
 
-extern u16 gGxVramBankMasks[13];
-
 void func_0210aaf8(int bank) {
   gGxVramBankMasks[0] = ~bank & (gGxVramBankMasks[0] | gGxVramBankMasks[10]);
   gGxVramBankMasks[10] = bank;

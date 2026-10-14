@@ -1,5 +1,6 @@
 #include "types.h"
+#include "sdk/gx.h"
 
-void gGxVramBankMasks(void);
+u32 Vram_SwitchOffAndUnlock(u16* banks);
 
 void func_0210a814(void) { Vram_SwitchOffAndUnlock(gGxVramBankMasks); }

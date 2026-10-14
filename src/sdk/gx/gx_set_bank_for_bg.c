@@ -3,7 +3,6 @@
 
 /* Bank assignment: index 0 holds the banks not given to any use, index 1 the
  * banks given to main engine BG data. */
-extern u16 gGxVramBankMasks[];
 
 /* bg is any mix of A-D, or any mix of E-G; the banks are mapped one after
  * another in BG VRAM, lowest bank first. */

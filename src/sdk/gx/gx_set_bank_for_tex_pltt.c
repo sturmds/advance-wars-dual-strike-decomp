@@ -3,7 +3,6 @@
 
 /* Bank assignment: index 0 holds the banks not given to any use, index 5 the
  * banks given to texture palettes. */
-extern u16 gGxVramBankMasks[];
 
 /* texPltt is a mask of banks E, F and G; each bank in it gets the next
  * texture palette slot, counting from the lowest bank. */

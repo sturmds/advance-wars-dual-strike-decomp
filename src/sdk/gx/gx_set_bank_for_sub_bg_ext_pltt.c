@@ -3,7 +3,6 @@
 
 /* Bank assignment: index 0 holds the banks not given to any use, index 11 the
  * bank given to sub engine BG extended palettes. */
-extern u16 gGxVramBankMasks[13];
 
 /* subBgExtPltt is H or none. With no bank, extended BG palettes are switched
  * off in the sub engine's DISPCNT. */

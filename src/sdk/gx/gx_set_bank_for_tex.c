@@ -3,7 +3,6 @@
 
 /* Bank assignment: index 0 holds the banks not given to any use, index 4 the
  * banks given to texture images. */
-extern u16 gGxVramBankMasks[];
 
 /* tex is a mask of banks A-D; each bank in it gets the next texture image
  * slot, counting from the lowest bank. With no banks, texturing is switched

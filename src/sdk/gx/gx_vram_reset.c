@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/gx.h"
 
-/* The 13 VRAM-bank masks start at gGxVramBankMasks; other functions still use it as a lone u16. */
-/* also declared in src/game/main/func_0210ac20.c and 10 more */
 u16 gGxVramBankMasks[13];
 
 /* Clears the bank masks and the control register of every VRAM bank. */

@@ -3,7 +3,6 @@
 
 /* Bank assignment: index 0 holds the banks not given to any use, index 12 the
  * banks given to sub engine OBJ extended palettes. */
-extern u16 gGxVramBankMasks[13];
 
 #define DB_DISPCNT_OBJ_EXT_PLTT \
   0x80000000 /* sub engine OBJ extended palettes on */
