@@ -2,11 +2,6 @@
 #include "game/ov003_effect.h"
 #include "game/ov003_unit.h"
 
-extern Ov003EffectGroup data_ov003_02369738[];
-extern u8 data_ov003_02364d8a[][20];
-extern u8 data_ov003_02364d8b[][20];
-extern u8 data_ov003_02364d8c[][20];
-extern u8 data_ov003_02364d8d[][20];
 extern Ov003Unit data_ov003_02369538[];
 
 u32 Math_Sqrt32(u32 value);
@@ -14,7 +9,7 @@ void Ov003_StepToward(int a0, int a1, int x, int y, int limit, int* outX,
                       int* outY);
 
 /* Starts an effect for the unit in the first free entry of its group, with the
- * given velocity. Kind 5 limits the speed to its table value (data_ov003_02364d8c).
+ * given velocity. Kind 5 limits the speed to its table value (Ov003TileInfo.reach).
  * A zero velocity on the other kinds becomes one unit step the way the unit
  * faces (facing: 1 up, 2 down, 3 left, 4 right). */
 void Ov003Unit_SpawnEffect(Ov003Unit* unit, int velX, int velY) {
@@ -27,8 +22,8 @@ void Ov003Unit_SpawnEffect(Ov003Unit* unit, int velX, int velY) {
   int count;
 
   unitIndex = unit - data_ov003_02369538;
-  effect = data_ov003_02369738[unitIndex].effects;
-  count = data_ov003_02364d8d[unit->kind][0];
+  effect = OV003_EFFECT_GROUP(unitIndex);
+  count = data_ov003_02364d88[unit->kind].burstLength;
   for (i = 0; i < count; i++, effect++) {
     if (effect->lifetime == 0) {
       break;
@@ -43,7 +38,7 @@ void Ov003Unit_SpawnEffect(Ov003Unit* unit, int velX, int velY) {
   effect->velX = velX;
   effect->velY = velY;
   if (effect->kind == 5) {
-    limit = (data_ov003_02364d8c[effect->kind][0] << 7) >> 3;
+    limit = (data_ov003_02364d88[effect->kind].reach << 7) >> 3;
     if (Math_Sqrt32(effect->velX * effect->velX + effect->velY * effect->velY) >
         limit) {
       Ov003_StepToward(0, 0, effect->velX, effect->velY, limit, &newX, &newY);
@@ -70,11 +65,11 @@ void Ov003Unit_SpawnEffect(Ov003Unit* unit, int velX, int velY) {
         break;
     }
   }
-  effect->lifetime = data_ov003_02364d8b[unit->kind][0];
+  effect->lifetime = data_ov003_02364d88[unit->kind].effectLifetime;
   effect->row = unit->row;
   effect->unk_08 = 0;
   effect->owner = unitIndex;
-  unit->unk_15 = data_ov003_02364d8a[unit->kind][0];
+  unit->unk_15 = data_ov003_02364d88[unit->kind].unk_02;
   unit->unk_17_0 = 0;
   unit->unk_11 = 30;
 }

@@ -55,12 +55,15 @@ typedef char Ov003Unit_size_check[sizeof(Ov003Unit) == 0x20 ? 1 : -1];
 /* 20-byte entry of data_ov003_02364d88, indexed by Ov003Unit.tile. */
 typedef struct Ov003TileInfo {
   u16 unk_00; /* divisor for Ov003Unit.unk_04 in Ov003_DrawUnitAnims */
-  u8 pad_02[2];
-  u8 reach;       /* in tiles; an Ov003Marker sees units within reach + 2 */
+  u8 unk_02; /* copied to Ov003Unit.unk_15 or Ov003Marker.unk_0a when it fires */
+  u8 effectLifetime; /* frames an effect it fires lasts (Ov003Effect.lifetime) */
+  u8 reach;          /* in tiles; an Ov003Marker sees units within reach + 2 */
   u8 burstLength; /* shots per burst (Ov003Unit.shotCount, Ov003Marker.burstCount) */
   u8 burstWait; /* frames between bursts (Ov003Unit.shotWait, Ov003Marker.cooldown) */
   u8 pad_07[0x14 - 0x07];
 } Ov003TileInfo;
+
+extern Ov003TileInfo data_ov003_02364d88[];
 
 /* 2-byte cell of a 31-cell row in data_ov003_02364928 (62 bytes per row). */
 typedef struct Ov003Cell {

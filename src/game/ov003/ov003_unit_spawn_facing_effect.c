@@ -2,11 +2,6 @@
 #include "game/ov003_effect.h"
 #include "game/ov003_unit.h"
 
-extern Ov003EffectGroup data_ov003_02369738[];
-extern u8 data_ov003_02364d8a[][20];
-extern u8 data_ov003_02364d8b[][20];
-extern u8 data_ov003_02364d8c[][20];
-extern u8 data_ov003_02364d8d[][20];
 extern Ov003Unit data_ov003_02369538[];
 
 void Sound_PlaySe(int se);
@@ -22,8 +17,8 @@ void Ov003Unit_SpawnFacingEffect(Ov003Unit* unit) {
   int speed;
 
   unitIndex = unit - data_ov003_02369538;
-  effect = data_ov003_02369738[unitIndex].effects;
-  count = data_ov003_02364d8d[unit->kind][0];
+  effect = OV003_EFFECT_GROUP(unitIndex);
+  count = data_ov003_02364d88[unit->kind].burstLength;
   for (i = 0; i < count; i++, effect++) {
     if (effect->lifetime == 0) {
       break;
@@ -35,7 +30,7 @@ void Ov003Unit_SpawnFacingEffect(Ov003Unit* unit) {
   effect->x = unit->x;
   effect->y = unit->y;
   effect->kind = unit->kind;
-  speed = (data_ov003_02364d8c[effect->kind][0] << 7) >> 3;
+  speed = (data_ov003_02364d88[effect->kind].reach << 7) >> 3;
   switch (unit->facing) {
     case 1:
       effect->velX = 0;
@@ -54,11 +49,11 @@ void Ov003Unit_SpawnFacingEffect(Ov003Unit* unit) {
       effect->velY = 0;
       break;
   }
-  effect->lifetime = data_ov003_02364d8b[unit->kind][0];
+  effect->lifetime = data_ov003_02364d88[unit->kind].effectLifetime;
   effect->row = unit->row;
   effect->unk_08 = 0;
   effect->owner = unitIndex;
-  unit->unk_15 = data_ov003_02364d8a[unit->kind][0];
+  unit->unk_15 = data_ov003_02364d88[unit->kind].unk_02;
   unit->unk_17_0 = 0;
   unit->unk_11 = 30;
   if (unitIndex != data_ov003_02364928->currentSlot) {
