@@ -641,13 +641,15 @@ class Probe:
     def __init__(self, rom: data_inc.Rom) -> None:
         self.rom = rom
         self.dir = Path(tempfile.mkdtemp(prefix="data_probe"))
-        self.written: dict[str, str] = {}
+        self.written: dict[str, str] = {}  # inc path -> element type written
 
     def add(self, rows: list[tuple[data_inc.Row, str]]) -> list[str]:
-        """Writes the rows' files; returns the errors data_inc stops with."""
+        """Writes the rows' files; returns the errors data_inc stops with.
+        A row with another element type than the file's last one (a retry
+        that writes the object from its bytes) writes the file again."""
         errors = []
-        for row, _ in rows:
-            if row.rel in self.written:
+        for row, row_type in rows:
+            if self.written.get(row.rel) == row_type:
                 continue
             try:
                 text = data_inc.render(row, self.rom)
@@ -657,7 +659,7 @@ class Probe:
             path = self.dir / "data" / row.rel
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(text)
-            self.written[row.rel] = text
+            self.written[row.rel] = row_type
         return errors
 
     def compile(self, src: str, text: str):

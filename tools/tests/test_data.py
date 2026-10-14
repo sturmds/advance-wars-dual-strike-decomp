@@ -215,6 +215,19 @@ def compile_block(what: str, path: str, section: str, written: list, names: list
         probe.close()
 
 
+def test_probe_retry() -> None:
+    """A retry that writes an object from its bytes rewrites its .inc.c."""
+    probe = data.Probe(FakeRom(bytes(range(8)), {}, {}))
+    try:
+        inc = probe.dir / "data" / "itcm" / "gT.inc.c"
+        probe.add([(data_inc.Row("itcm gT 0x1000 0x8 u8", "t"), "u8")])
+        probe.add([(data_inc.Row("itcm gT 0x1000 0x8 u32", "t"), "u32")])
+        text = inc.read_text()
+        check("probe: a retry with u32 rewrites the u8 file", "0x03020100" in text, text)
+    finally:
+        probe.close()
+
+
 def test_compile() -> None:
     if not pragmas.CC.exists():
         print("test_data: no compiler, run make setup (compile test skipped)")
@@ -260,6 +273,7 @@ def main() -> int:
     test_definition()
     test_edit_symbols()
     test_edit_data_inc()
+    test_probe_retry()
     test_compile()
     test_twice()
     return 1 if failures else 0
