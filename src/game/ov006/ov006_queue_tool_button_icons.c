@@ -7,11 +7,6 @@ void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 
 extern Unk_ov006_0235f690* data_ov006_0236d640;
 
-typedef struct ButtonPos {
-  u8 x;
-  u8 y;
-} ButtonPos;
-
 char data_ov006_0236b6bc[] = {
 #include "data/ov006/data_ov006_0236b6bc.inc.c"
 };

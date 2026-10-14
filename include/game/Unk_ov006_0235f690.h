@@ -125,6 +125,16 @@ typedef struct Unk_ov006_0235f690 {
   u8 pad_ec[0x10c - 0xec]; /* DesignRoom_Init allocates 0x10c bytes */
 } Unk_ov006_0235f690;
 
+/* Where a Design Room tool button sits, in tiles. */
+typedef struct ButtonPos {
+  u8 x;
+  u8 y;
+} ButtonPos;
+
+extern ButtonPos
+    data_ov006_0236b6e8[]; /* each tool button when unitMode is 0 */
+extern ButtonPos data_ov006_0236b6f4[]; /* the same when unitMode is 1 */
+
 extern Unk_ov006_0235f690* data_ov006_0236d640; /* the Design Room state */
 
 #endif

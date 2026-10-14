@@ -13,7 +13,7 @@ s8 data_ov006_0236a7b4[] = {
 #include "data/ov006/data_ov006_0236a7b4.inc.c"
 };
 /* (x, y) per entry when unitMode is 0 */
-u8 data_ov006_0236a7ec[] = {
+u8 data_ov006_0236a7ec[][2] = {
 #include "data/ov006/data_ov006_0236a7ec.inc.c"
 };
 

@@ -1,5 +1,8 @@
 #include "types.h"
+#include "game/main_loop.h"
 
-extern int gMainLoop;
+extern MainLoop gMainLoop;
 
-int func_01ff9bb4(int a0) { return (gMainLoop == a0) ? 1 : 0; }
+int func_01ff9bb4(void (*callback)(void)) {
+  return (gMainLoop.screenCallbacks[0] == callback) ? 1 : 0;
+}

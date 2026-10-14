@@ -5,9 +5,9 @@
 #include "game/unlocks.h"
 
 extern Unk_ov006_0235f690* data_ov006_0236d640;
-extern u8 data_ov006_0236a7ec[]; /* (x, y) per entry when unitMode is 0 */
-extern u8 data_ov006_0236a810[]; /* the same for unitMode 1, 25 entries */
-extern u8 data_ov006_0236a844[]; /* the same, 26 entries (game flag 0x2b) */
+extern u8 data_ov006_0236a7ec[][2]; /* (x, y) per entry when unitMode is 0 */
+extern u8 data_ov006_0236a810[][2]; /* the same for unitMode 1, 25 entries */
+extern u8 data_ov006_0236a844[][2]; /* the same, 26 entries (game flag 0x2b) */
 extern const MenuButtonTemplate data_ov006_0236b854;
 
 #define OV6 data_ov006_0236d640
@@ -28,17 +28,17 @@ void Ov006_AddEntryButtons(void) {
 
   if (OV6->unitMode == 1) {
     if (GameFlag_IsSet(0x2b) == 1) {
-      pos = data_ov006_0236a844;
+      pos = data_ov006_0236a844[0];
       count = 26;
     } else {
-      pos = data_ov006_0236a810;
+      pos = data_ov006_0236a810[0];
       count = 25;
     }
     dx = -4;
     dy = 0;
   }
   if (OV6->unitMode == 0) {
-    pos = data_ov006_0236a7ec;
+    pos = data_ov006_0236a7ec[0];
     count = 18;
     dx = -4;
     dy = 6;

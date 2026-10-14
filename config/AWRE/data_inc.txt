@@ -5722,7 +5722,7 @@ ov006     data_ov006_0236a790         0x0236a790  0x10   {u16,u16,u16,u16,u16,u1
 ov006     data_ov006_0236a7a0         0x0236a7a0  0x13   {s8[18],s8}
 ov006     data_ov006_0236a7b4         0x0236a7b4  0x1c   s8
 ov006     data_ov006_0236a7d0         0x0236a7d0  0x1c   s8
-ov006     data_ov006_0236a7ec         0x0236a7ec  0x24   u8
+ov006     data_ov006_0236a7ec         0x0236a7ec  0x24   u8[2]
 ov006     data_ov006_0236a810         0x0236a810  0x34   u8[2]
 ov006     data_ov006_0236a844         0x0236a844  0x34   u8[2]
 ov006     data_ov006_0236a9d8         0x0236a9d8  0x8    u8

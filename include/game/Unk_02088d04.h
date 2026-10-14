@@ -99,12 +99,17 @@ typedef struct Unk_027c0280 {
   SpriteEntry* spriteLists;
   SpriteEntry* spriteFree; /* next unused entry */
   u8 pad_2c[0x6a - 0x2c];
-  u16 : 3;
-  u16 vBlankIrq : 1; /* DISPSTAT bits 3-5 */
-  u16 hBlankIrq : 1;
-  u16 vCountIrq : 1;
-  u16 : 2;
-  u16 vCountMatch : 8; /* DISPSTAT bits 8-15 */
+  union {
+    u16 dispStat; /* the DISPSTAT bits below, as one halfword */
+    struct {
+      u16 : 3;
+      u16 vBlankIrq : 1; /* DISPSTAT bits 3-5 */
+      u16 hBlankIrq : 1;
+      u16 vCountIrq : 1;
+      u16 : 2;
+      u16 vCountMatch : 8; /* DISPSTAT bits 8-15 */
+    };
+  };
   u16 dispCnt; /* DISPCNT bits 0-15 (bit 8-12: BG0-3 and OBJ on); DispCntBits names the bits */
   BgControl bgCnt[4]; /* BG0CNT-BG3CNT */
   u16 bgMosaicH : 4;  /* MOSAIC */
