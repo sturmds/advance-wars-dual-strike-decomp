@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/link_data_sync_task.h"
-
-extern u8 gGameFlagsMid[];
+#include "game/save_progress.h"
 
 u16 Wireless_GetChildAids(void);
 u8* Wireless_GetSharedData(u16 slot);
@@ -13,7 +12,7 @@ void Task_ResumeScript(Task* task);
 
 /* needed to match: the original reaches gMapFlags (34 bytes, one bit per
  * map id) through gGameFlagsMid, which sits 10 bytes before it. */
-#define MAP_FLAGS (gGameFlagsMid + 10)
+#define MAP_FLAGS (gGameFlagsMid.value + 10)
 #define MAP_FLAGS_SIZE 34
 
 /* Each frame, sends the next 8 bytes of this player's map flags and ORs

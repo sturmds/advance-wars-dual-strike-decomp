@@ -32,6 +32,12 @@ typedef struct SaveGameFlagsMid {
   u8 value[86]; /* gGameFlagsMid */
 } SaveGameFlagsMid;
 
+/* Game progress flags 32-94 from byte 0 and the map flags (one bit per map
+ * id) from byte 10. The backup holds them during a link battle
+ * (GameFlagsMid_Backup). */
+extern SaveGameFlagsMid gGameFlagsMid;
+extern SaveGameFlagsMid gGameFlagsMidBackup;
+
 typedef struct SaveProfileBlock {
   u32 sets[96]; /* data_02290298[profile] */
 } SaveProfileBlock;

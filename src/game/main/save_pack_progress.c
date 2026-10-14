@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/save_progress.h"
 
-extern SaveGameFlagsMid gGameFlagsMid;
 extern SaveProfileBlock data_02290298[3];
 extern SaveBytes30 data_022900bc[3];
 extern Unk_022a7b80 data_022a7b80;
