@@ -75,11 +75,11 @@ void BattleSave_LoadMap(BattleSaveMap* save) {
       }
     }
   }
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(save->players); i++) {
     STATE->playerSlots[i + 1] = save->players[i];
   }
   STATE->playerSlots[0].armyColour = 0;
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(save->players); i++) {
     for (j = 0; j < BATTLE_SAVE_UNITS_PER_PLAYER; j++) {
       STATE_UNIT_SLOTS(STATE)
       [i * MAP_UNITS_PER_PLAYER + j] =

@@ -8,7 +8,7 @@ void Menu_Reset(void) {
   MenuButton* button;
 
   button = gMenuButtons;
-  for (i = 0; i < 80; i++, button++) {
+  for (i = 0; i < MENU_BUTTON_COUNT; i++, button++) {
     button->active = 0;
   }
   gMenuCursor->tile = 0x3b8;

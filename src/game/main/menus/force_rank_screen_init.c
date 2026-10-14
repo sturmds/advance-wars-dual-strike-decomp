@@ -107,7 +107,7 @@ void ForceRankScreen_Init(void) {
   Data_Unpack(lang, BG_CHAR_BASE(data_027c0280->layer1Bg) + 0x3000);
   Data_Unpack(res, data_027c0280->layer1Map);
   Palette_Load(res + 0x138, 32, 32);
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer1Map[i] += 0x1180;
   }
   Window_DrawOnLayer1(3, 0, 26, 4);
@@ -170,7 +170,8 @@ void ForceRankScreen_Init(void) {
   Screen_SetCurrent(savedScreenState);
   Screen_SetCurrentGfx(savedScreenGfx);
 
-  Mem_Copy32(res + 0x158, gForceRankScreen->cycleColors, 32);
+  Mem_Copy32(res + 0x158, gForceRankScreen->cycleColors,
+             sizeof(gForceRankScreen->cycleColors));
   Mem_Free(res);
   Mem_Free(lang);
   NumberFont_LoadLow();

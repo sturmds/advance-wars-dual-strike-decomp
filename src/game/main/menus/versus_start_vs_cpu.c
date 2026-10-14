@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/player.h"
 #include "game/screen_other_map.h"
 
 void Versus_Start(void);
@@ -8,7 +9,7 @@ void Versus_Start(void);
 void Versus_StartVsCpu(u8 playerCount) {
   u8 i;
 
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < ARMY_SLOT_COUNT; i++) {
     data_027c027c->unk_48[data_027c0284]->slotControllers[i] =
         PLAYER_CONTROLLER_NONE;
   }

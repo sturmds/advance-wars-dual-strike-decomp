@@ -51,10 +51,10 @@ void BattleSave_StoreMap(BattleSaveMap* save) {
     func_020c3e5c();
   }
   /* Needed to match: x doubles as the player and unit loop counter. */
-  for (x = 0; x < 4; x++) {
+  for (x = 0; x < (int)ARRAY_COUNT(save->players); x++) {
     save->players[x] = STATE->playerSlots[x + 1];
   }
-  for (x = 0; x < 4; x++) {
+  for (x = 0; x < (int)ARRAY_COUNT(save->players); x++) {
     for (i = 0; i < BATTLE_SAVE_UNITS_PER_PLAYER; i++) {
       save->units[x * BATTLE_SAVE_UNITS_PER_PLAYER + i] =
           STATE_UNIT_SLOTS(STATE)[x * MAP_UNITS_PER_PLAYER + i];

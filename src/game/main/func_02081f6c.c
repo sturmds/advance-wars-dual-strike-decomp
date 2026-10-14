@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/link_buffers.h"
 #include "game/task.h"
 #include "sdk/msl_string.h"
 
@@ -20,7 +21,7 @@ void func_02081f6c(Task* task) {
     return;
   }
   found = 0;
-  for (i = 0; i < 8; i++) {
+  for (i = 0; i < LINK_AID_COUNT; i++) {
     if ((Wireless_GetChildAids() | 1) & (1 << i)) {
       if (strcmp((const char*)Wireless_GetSharedData((u16)i), data_021606a4)) {
         found = 1;

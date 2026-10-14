@@ -10,8 +10,8 @@ void CombatSetup_ResetDefaults(void) {
   int i;
 
   rows = LINK_ROWS;
-  for (row = 0; row < 4; row++, rows++) {
-    for (i = 0; i < 20; i++) {
+  for (row = 0; row < COMBAT_ROW_COUNT; row++, rows++) {
+    for (i = 0; i < COMBAT_CELL_COUNT; i++) {
       rows->cells[i].tile = 0;
       rows->cells[i].state = 1;
     }

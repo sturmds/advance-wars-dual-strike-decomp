@@ -12,7 +12,7 @@ BOOL Player1Team_HasPlayerInGame(void) {
   u8 i;
   u8 count = 0;
 
-  for (i = 1; i <= 4; i++) {
+  for (i = 1; i <= PLAYER_SLOT_LAST; i++) {
     if (Player_IsInGame(i)) {
       if (data_027c027c->unk_48[data_027c0284]->players[1].team ==
           data_027c027c->unk_48[data_027c0284]->players[i].team) {

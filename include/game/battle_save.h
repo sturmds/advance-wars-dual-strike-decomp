@@ -52,10 +52,10 @@ typedef struct BattleSaveMap {
   u16 day;
   BattleSaveTilePos unk_04; /* Unk_02080440_48.unk_28 and unk_2a */
   BattleSaveSettings settings;
-  Unk_02080440_184 unk_6c; /* Unk_02080440_48.unk_184 */
-  Player players[4];       /* player slots 1-4 */
+  Unk_02080440_184 unk_6c;          /* Unk_02080440_48.unk_184 */
+  Player players[PLAYER_SLOT_LAST]; /* player slots 1-4 */
   MapUnit units
-      [4 *
+      [PLAYER_SLOT_LAST *
        BATTLE_SAVE_UNITS_PER_PLAYER]; /* the first 51 unit slots of each player */
   Unk_02080440_5c unk_e34;            /* *Unk_02080440.unk_5c[i] */
   u8 pad_e3d;
@@ -76,7 +76,7 @@ typedef char BattleSaveMap_size_check[sizeof(BattleSaveMap) == 0x10b0 ? 1 : -1];
 
 /* One skill set of 4 words, as in data_022a72c8. */
 typedef struct BattleSaveSkillSet {
-  u32 words[4];
+  u32 words[SKILL_SET_WORDS];
 } BattleSaveSkillSet;
 
 /* data_022a7b98, 0x40 bytes, copied whole. */
@@ -92,8 +92,10 @@ typedef struct BattleSaveRecord {
   u32 rngState;                         /* gRngState */
   u8 gameFlagsLow[GAME_FLAGS_LOW_SIZE]; /* gGameFlagsLow */
   Unk_022977a4 eventScript;             /* data_022977a4 */
-  BattleSaveSkillSet lentSkills[4][2];  /* data_022a72c8 of players 1-4 */
-  BattleSaveBlock40 unk_98;             /* data_022a7b98 */
+  BattleSaveSkillSet
+      lentSkills[PLAYER_SLOT_LAST]
+                [PLAYER_CO_COUNT]; /* data_022a72c8 of players 1-4 */
+  BattleSaveBlock40 unk_98;        /* data_022a7b98 */
   BattleSaveMap
       maps[2]; /* current screen, then the second map of a two-map battle */
 } BattleSaveRecord;

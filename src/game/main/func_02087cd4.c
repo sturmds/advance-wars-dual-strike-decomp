@@ -24,10 +24,10 @@ void func_02087cd4(void) {
   Wallpaper_DestroyTasks();
   Screen1_DestroyTextTasks();
   data_02160ac0->unk_7d = data_02160adc[data_02160ac0->unk_7e];
-  for (i = 0; i < 8; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(gMenuState.combat.players); i++) {
     data_02160ac0->unk_70[i] = gMenuState.combat.players[i].row;
   }
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < COMBAT_ROW_COUNT + 1; i++) {
     LINK_ROWS[i - 1].unk_19 =
         CombatCo_NumberFromId(data_02160ae0[LINK_ROWS[i - 1].unk_19]);
   }

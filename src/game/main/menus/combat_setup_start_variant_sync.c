@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02160ac0.h"
 #include "game/task.h"
 #include "game/menu_state.h"
 
@@ -13,7 +14,7 @@ void CombatSetup_StartVariantSync(Task* task) {
   u8 players[4];
   int i;
 
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < COMBAT_ROW_COUNT; i++) {
     if (gMenuState.combat.rows[i].memberCount == 0) {
       players[i] = 0xff;
     } else {

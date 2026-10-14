@@ -11,6 +11,7 @@
 #include "game/battle_hit_list.h"
 #include "game/co_exp.h"
 #include "game/design_map.h"
+#include "game/Unk_02160ac0.h"
 
 /* One list of map ids in the map select menu. */
 typedef struct MapList {
@@ -275,12 +276,13 @@ typedef struct CombatMenuState {
   u8 pad_020[0x600 - 0x20];
   u16 unk_600
       [0x300]; /* a second tile map from res_cmlink, palette numbers raised by 2 */
-  u16 savedMap[0x300];    /* copied to layer 1 of the main screen */
-  u16 rowPalettes[4][48]; /* per row, loaded at palette buffer offset 0x2c0 */
-  u16 rowObjPalettes[4]
+  u16 savedMap[0x300]; /* copied to layer 1 of the main screen */
+  u16 rowPalettes[COMBAT_ROW_COUNT]
+                 [48]; /* per row, loaded at palette buffer offset 0x2c0 */
+  u16 rowObjPalettes[COMBAT_ROW_COUNT]
                     [16]; /* per row, loaded at palette buffer offset 0x320 */
   u16 unk_1400[16];       /* a palette from res_linkcommon */
-  CombatRowEntry rows[4];
+  CombatRowEntry rows[COMBAT_ROW_COUNT];
   struct {
     u8 row;   /* 1-4, index + 1 into rows */
     u8 ready; /* 1 while the player has marked ready (CombatSetup_PlayerReady) */

@@ -38,9 +38,10 @@ void CombatSetup_InitCoPickScreen(void) {
   Screen_SetCurrentGfx(data_027c0288.unk_00);
   savedState = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_00);
-  Mem_Copy32(MENU->combat.unk_600, data_027c0280->layer2Map, 0x600);
+  Mem_Copy32(MENU->combat.unk_600, data_027c0280->layer2Map,
+             sizeof(MENU->combat.unk_600));
   Gfx_RequestLayerCopy(2);
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < COMBAT_ROW_COUNT; i++) {
     if (MENU->combat.rows[i].memberCount != 0) {
       Co_LoadArmyLargePicture(data_02160ae0[LINK_ROWS[i].unk_19],
                               data_027c0280->objVram + (0x400 + i * 36) * 32,
@@ -54,7 +55,7 @@ void CombatSetup_InitCoPickScreen(void) {
   Screen_SetCurrentGfx(data_027c0288.unk_04);
   subSavedState = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_04);
-  Mem_Copy32(&gMenuState, data_027c0280->layer2Map, 0x600);
+  Mem_Copy32(&gMenuState, data_027c0280->layer2Map, BG_VISIBLE_SIZE);
   Gfx_RequestLayerCopy(2);
   data_027c0280->bgScrollX[data_027c0280->layer2Bg] = -16;
   data_027c0280->bgScrollY[data_027c0280->layer2Bg] = -16;

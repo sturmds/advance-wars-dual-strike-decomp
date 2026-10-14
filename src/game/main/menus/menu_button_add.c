@@ -9,7 +9,7 @@ MenuButton* MenuButton_Add(int x, int y, const MenuButtonTemplate* template,
   int i;
   MenuButton* button = gMenuButtons;
 
-  for (i = 0; i < 79; i++, button++) {
+  for (i = 0; i < MENU_BUTTON_COUNT - 1; i++, button++) {
     if (!button->active) {
       return MenuButton_Init(x, y, &gMenuButtons[i], template, id);
     }

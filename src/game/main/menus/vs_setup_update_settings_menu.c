@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/link_buffers.h"
 #include "game/event_queue.h"
 #include "game/task.h"
 
@@ -49,7 +50,7 @@ void VsSetup_UpdateSettingsMenu(Task* task) {
   }
   if (func_0207bd94() == 1) {
     msg = Wireless_GetSharedData(0);
-    for (i = 0; i < 4; i++, msg += 2) {
+    for (i = 0; i < LINK_MESSAGE_COUNT; i++, msg += 2) {
       switch (msg[0]) {
         case EVENT_VS_SETTING_SELECT_ROW:
           VsSetup_SelectSettingRow(msg[1]);

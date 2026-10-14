@@ -1,4 +1,6 @@
 #include "types.h"
+#include "game/Unk_02160ac0.h"
+#include "game/link_buffers.h"
 #include "game/event_queue.h"
 #include "game/menu_state.h"
 #include "game/task.h"
@@ -47,10 +49,10 @@ void CombatSetup_UpdateLink(Task* task) {
   teams = 0;
 
   if (func_0207bd94() == 1) {
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < LINK_AID_COUNT; i++) {
       if (data_0229ff30.playerMask & (1 << i)) {
         msg = Wireless_GetSharedData((u16)i);
-        for (j = 0; j < 4; msg += 2, j++) {
+        for (j = 0; j < LINK_MESSAGE_COUNT; msg += 2, j++) {
           switch (msg[0]) {
             case 9:
               CombatSetup_SetPlayerReady(i);
@@ -89,7 +91,7 @@ void CombatSetup_UpdateLink(Task* task) {
     Task_ResumeScript(task);
     return;
   }
-  for (i = 0; i < 8; i++) {
+  for (i = 0; i < LINK_AID_COUNT; i++) {
     if (data_0229ff30.playerMask & (1 << i)) {
       if (MENU->combat.players[i].ready == 0) {
         allReady = 0;
@@ -99,7 +101,7 @@ void CombatSetup_UpdateLink(Task* task) {
     }
   }
   if (allReady == 1) {
-    for (i = 1; i < 5; i++) {
+    for (i = 1; i < COMBAT_ROW_COUNT + 1; i++) {
       if (rowMask & (1 << i)) {
         teams++;
       }

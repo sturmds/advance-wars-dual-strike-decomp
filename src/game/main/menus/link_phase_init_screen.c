@@ -152,7 +152,7 @@ void LinkPhase_InitScreen(void) {
   Palette_Load(file, 0x220, 0x20);
   Palette_Load(file, 0x240, 0x20);
   Palette_BlendWithColor(data_027c0280->paletteBuffer + 0x240, 0, 8, 8);
-  Mem_Copy32(file + 0x20, &gMenuState, 0x20);
+  Mem_Copy32(file + 0x20, gMenuState.colours, sizeof(gMenuState.colours));
   Mem_Free(file);
 
   if (GAME->twoMaps == 1) {

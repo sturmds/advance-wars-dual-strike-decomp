@@ -11,7 +11,7 @@ void func_02088478(CombatSetupTask* task) {
   int i;
 
   data_02160ac0->unk_7c = 1;
-  for (i = 1; i <= 4; i++) {
+  for (i = 1; i <= COMBAT_ROW_COUNT; i++) {
     row->unk_19 = i - 1;
     row++;
   }

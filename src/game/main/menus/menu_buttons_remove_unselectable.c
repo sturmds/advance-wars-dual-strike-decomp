@@ -9,7 +9,7 @@ void MenuButtons_RemoveUnselectable(void) {
   MenuButton* entry;
 
   entry = gMenuButtons;
-  for (i = 0; i < 80; i++, entry++) {
+  for (i = 0; i < MENU_BUTTON_COUNT; i++, entry++) {
     if (MenuButton_TestFlags(entry, MENU_BUTTON_SELECT_ON_TOUCH) !=
         MENU_BUTTON_SELECT_ON_TOUCH) {
       entry->active = 0;

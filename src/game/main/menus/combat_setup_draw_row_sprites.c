@@ -148,13 +148,13 @@ void CombatSetup_DrawRowSprites(void) {
   subSaved027c = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_04);
   CombatSetup_DrawRowPlayerIcons(48, 48);
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < COMBAT_ROW_COUNT; i++) {
     if (MENU->combat.rows[i].memberCount != 0) {
       Co_QueueSmallPictureSpriteAtTile(80, (64 + i * 32) & 0xff, (i + 4) << 12,
                                        300 + i * 12, 4);
     }
   }
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < LINK_SETTING_COUNT; i++) {
     LinkMenu_DrawSetting(16, 16 + i * 32, i, 0);
   }
   Screen_SetCurrent(subSaved027c);

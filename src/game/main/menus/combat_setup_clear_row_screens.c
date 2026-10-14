@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02160ac0.h"
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
 
@@ -42,7 +43,7 @@ void CombatSetup_ClearRowScreens(void) {
   Screen_SetCurrent(savedState);
   Screen_SetCurrentGfx(savedGfx);
 
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < COMBAT_ROW_COUNT + 1; i++) {
     gMenuState.combat.rows[i - 1].locked = 0;
   }
 }

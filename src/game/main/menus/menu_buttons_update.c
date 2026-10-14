@@ -3,7 +3,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
-MenuButton gMenuButtons[80];
+MenuButton gMenuButtons[MENU_BUTTON_COUNT];
 
 void Screen_SetCurrent(void* state);
 void Screen_SetCurrentGfx(void* state);
@@ -32,14 +32,14 @@ void MenuButtons_Update(void) {
   Menu_DispatchKeys();
 
   button = gMenuButtons;
-  for (i = 0; i < 80; i++, button++) {
+  for (i = 0; i < MENU_BUTTON_COUNT; i++, button++) {
     if (button->active && MenuButton_TouchSelect(button)) {
       break;
     }
   }
 
   button = gMenuButtons;
-  for (i = 0; i < 80; i++, button++) {
+  for (i = 0; i < MENU_BUTTON_COUNT; i++, button++) {
     if (button->active) {
       MenuButton_UpdateSlide(button);
       MenuButton_Draw(button);
@@ -48,7 +48,7 @@ void MenuButtons_Update(void) {
 
   done = FALSE;
   button = gMenuButtons;
-  for (i = 0; i < 80; i++, button++) {
+  for (i = 0; i < MENU_BUTTON_COUNT; i++, button++) {
     if (button->active) {
       if (button->slideState == MENU_BUTTON_SHOWN) {
         done = MenuButton_HandleTouch(button);
@@ -60,7 +60,7 @@ void MenuButtons_Update(void) {
   }
 
   button = gMenuButtons;
-  for (i = 0; i < 80; i++, button++) {
+  for (i = 0; i < MENU_BUTTON_COUNT; i++, button++) {
     if (button->active && button->onUpdate != NULL) {
       button->onUpdate(button);
     }

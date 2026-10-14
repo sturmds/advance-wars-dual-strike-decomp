@@ -19,12 +19,12 @@ void Player_SetUnk33(int player);
  * player whose teammate is in the game but no longer stands falls too
  * (Player_SetUnk33 marks it). */
 BOOL Players_IsOneTeamLeft(void) {
-  u8 standing[5];
+  u8 standing[ARMY_SLOT_COUNT];
   int i;
   int j;
   int opponents;
 
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < ARMY_SLOT_COUNT; i++) {
     standing[i] = FALSE;
     if (Player_IsInGame(i) && func_020cf17c(i) && func_020ceffc(i) &&
         func_020cf090(i) && func_020cf0e4(i)) {
@@ -32,9 +32,9 @@ BOOL Players_IsOneTeamLeft(void) {
     }
   }
   if (STATE->unk_1c4->unk_37 & 4) {
-    for (i = 1; i < 5; i++) {
+    for (i = 1; i < ARMY_SLOT_COUNT; i++) {
       if (standing[i]) {
-        for (j = 1; j < 5; j++) {
+        for (j = 1; j < ARMY_SLOT_COUNT; j++) {
           if (i != j && Player_IsInGame(j) &&
               STATE->players[i].team == STATE->players[j].team &&
               !standing[j]) {
@@ -45,10 +45,10 @@ BOOL Players_IsOneTeamLeft(void) {
       }
     }
   }
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < ARMY_SLOT_COUNT; i++) {
     if (standing[i]) {
       opponents = 0;
-      for (j = 1; j < 5; j++) {
+      for (j = 1; j < ARMY_SLOT_COUNT; j++) {
         if (i != j && standing[j] &&
             STATE->players[i].team != STATE->players[j].team) {
           opponents++;

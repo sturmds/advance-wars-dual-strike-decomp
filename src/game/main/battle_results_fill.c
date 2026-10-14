@@ -58,8 +58,8 @@ void BattleResults_Fill(void) {
 
   bonus = EXP_BONUS_X1;
 
-  for (player = 1; player < 5; player++) {
-    for (slot = 0; slot < 2; slot++) {
+  for (player = 1; player < (int)ARRAY_COUNT(ROWS); player++) {
+    for (slot = 0; slot < PLAYER_CO_COUNT; slot++) {
       co = func_02001730(player, slot);
       /* unk_00 and unk_02: front and back CO */
       (&ROWS[player].unk_00)[slot] = Player_GetCoByteFallback(player, slot);
@@ -122,7 +122,7 @@ void BattleResults_Fill(void) {
         ROWS[player].rankAfter[slot] = 0;
       }
     }
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < (int)ARRAY_COUNT(ROWS[player].propertyCounts); i++) {
       ROWS[player].propertyCounts[i] = 0;
     }
     ROWS[player].unitCount = 0;

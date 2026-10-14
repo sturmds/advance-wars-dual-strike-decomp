@@ -137,7 +137,7 @@ void HistoryScreen_Init(void) {
   Data_Unpack(lang + 0x34b4, BG_CHAR_BASE(data_027c0280->layer1Bg));
   Data_Unpack(res + 0x100, data_027c0280->layer1Map);
   Palette_Load(res + 0x3b4, 0x40, 0xa0);
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer1Map[i] += 0x2000;
   }
   Gfx_RequestLayerCopy(1);

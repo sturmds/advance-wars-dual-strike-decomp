@@ -14,7 +14,7 @@ int Players_FindPropertyGoalWinner(void) {
   if (STATE->propertyGoal == 0) {
     return 0;
   }
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (STATE->players[player].propertyCount >= STATE->propertyGoal) {
       return player;
     }

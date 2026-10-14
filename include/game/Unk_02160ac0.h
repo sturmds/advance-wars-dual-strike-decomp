@@ -3,6 +3,11 @@
 
 #include "types.h"
 
+/* Team rows of a Combat battle (LINK_ROWS, MenuState.combat.rows), and the
+ * unit cells a row can buy. */
+#define COMBAT_ROW_COUNT 4
+#define COMBAT_CELL_COUNT 20
+
 /* 28 bytes per row at the start of Unk_02160ac0 (4 rows): the cell bytes of
  * an Ov003Row and its spawn count at offset 0x18. */
 typedef struct Unk_02160ac0_Row {
@@ -21,7 +26,7 @@ typedef struct Unk_02160ac0_Row {
   u8 pad_1a[2];
 } Unk_02160ac0_Row;
 
-/* Row i (0-3) of data_02160ac0. */
+/* Row i (0 to COMBAT_ROW_COUNT - 1) of data_02160ac0. */
 #define LINK_ROWS ((Unk_02160ac0_Row*)data_02160ac0)
 
 /* Pointed to by data_02160ac0 (main data). func_0208bf40 fills bytes
@@ -30,9 +35,9 @@ typedef struct Unk_02160ac0 {
   struct {
     u8 tile : 6;
     u8 state : 2;
-  } cells[20];
+  } cells[COMBAT_CELL_COUNT];
   u32 funds; /* Combat mode funds: the four entries of CombatModeMenu_DrawFundsAndPrices cost 1000 to 6000 */
-  u8 cellCount; /* cells in use, at most 20 */
+  u8 cellCount; /* cells in use, at most COMBAT_CELL_COUNT */
   u8 co; /* CO slot (gCombatModeCos) in the menu; CombatModeMenu_Close turns it into a CombatCo number */
   u8 pad_1a[0x70 - 0x1a];
   u8 unk_70[8]; /* Ov003Slot.row per slot (overlay 3, link play) */

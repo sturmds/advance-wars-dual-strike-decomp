@@ -199,7 +199,7 @@ void NameEntry_Update(NameEntryTask* task) {
       break;
     case 103:
       if (func_020b983c() == 0) {
-        Mem_Copy32(gNameEntryStartText, gNameEntryText, 34);
+        Mem_Copy32(gNameEntryStartText, gNameEntryText, NAME_ENTRY_TEXT_SIZE);
       }
       Task_ResumeScript(task);
       return;

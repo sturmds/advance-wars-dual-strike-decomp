@@ -29,13 +29,13 @@ void Game_State1_CheckDayLimit(void) {
     return;
   }
   most = 0;
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (Player_IsInGame(player) &&
         most < STATE->players[player].propertyCount) {
       most = STATE->players[player].propertyCount;
     }
   }
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (Player_IsInGame(player) &&
         most > STATE->players[player].propertyCount) {
       LinkPlayer_MarkDefeated(player, 32);

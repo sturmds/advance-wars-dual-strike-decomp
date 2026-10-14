@@ -14,9 +14,9 @@ void Players_ClearTeammatesDefeated(void) {
   int i;
   int j;
 
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < ARMY_SLOT_COUNT; i++) {
     if (Player_IsInGame(i)) {
-      for (j = 1; j < 5; j++) {
+      for (j = 1; j < ARMY_SLOT_COUNT; j++) {
         if (j != i && STATE->players[j].controller != 0 &&
             STATE->players[j].team == STATE->players[i].team) {
           STATE->players[j].defeated = 0;

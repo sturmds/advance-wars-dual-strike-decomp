@@ -1,4 +1,6 @@
 #include "types.h"
+#include "game/Unk_02160ac0.h"
+#include "game/link_buffers.h"
 #include "game/event_queue.h"
 #include "game/icon.h"
 #include "game/menu_state.h"
@@ -95,7 +97,7 @@ void CombatSetup_Init(void) {
   Data_Unpack(file, data_027c0280->objVram + 0x1e00);
   Mem_Free(file);
   file = File_Load(gCombatLinkCommonResPath);
-  Mem_Copy32(file + 32, MENU->combat.unk_1400, 32);
+  Mem_Copy32(file + 32, MENU->combat.unk_1400, sizeof(MENU->combat.unk_1400));
   Mem_Free(file);
 
   file = File_Load(gCombatLinkResPath);
@@ -140,13 +142,13 @@ void CombatSetup_Init(void) {
      * palette number. */
   map = (u16*)&gMenuState;
   Data_Unpack(file + 0x3b8, map);
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     *map += 0x2000;
     map++;
   }
   map = MENU->combat.unk_600;
   Data_Unpack(file + 0x554, map);
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     *map += 0x2000;
     map++;
   }
@@ -158,8 +160,10 @@ void CombatSetup_Init(void) {
   Data_Unpack(file + 0x1cc, data_027c0280->objVram + 0xa280);
   Data_Unpack(file + 0x12cc, data_027c0280->objVram + 0xc480);
   SWITCH_BACK();
-  Mem_Copy32(file + 0x14f4, MENU->combat.rowPalettes, 0x180);
-  Mem_Copy32(file + 0x16d4, MENU->combat.rowObjPalettes, 0x80);
+  Mem_Copy32(file + 0x14f4, MENU->combat.rowPalettes,
+             sizeof(MENU->combat.rowPalettes));
+  Mem_Copy32(file + 0x16d4, MENU->combat.rowObjPalettes,
+             sizeof(MENU->combat.rowObjPalettes));
   Data_Unpack(file + 0xdc, MENU->combat.savedMap);
   Mem_Free(file);
 
@@ -171,18 +175,18 @@ void CombatSetup_Init(void) {
   data_0229fb30.unk_45b = 0;
   EventQueue_Reset();
 
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < COMBAT_ROW_COUNT + 1; i++) {
     MENU->combat.rows[i - 1].memberCount = 0;
     MENU->combat.rows[i - 1].locked = 0;
   }
-  for (i = 0; i < 8; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(MENU->combat.players); i++) {
     MENU->combat.players[i].row = 0;
     MENU->combat.players[i].ready = 0;
   }
   /* Deal the link players out to the four rows in turn. A row keeps
      * its players in members, memberCount of them. */
   team = 1;
-  for (i = 0; i < 8; i++) {
+  for (i = 0; i < LINK_AID_COUNT; i++) {
     if (data_0229ff30.playerMask & (1 << i)) {
       MENU->combat.rows[team - 1]
           .members[MENU->combat.rows[team - 1].memberCount] = i;

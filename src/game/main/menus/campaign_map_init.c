@@ -187,10 +187,11 @@ void CampaignMap_Init(Unk_0204f960* task) {
           0x4000);
   Data_Unpack(res + 0x36d4, data_027c0280->layer1Map);
   Palette_Load(res + 0x3ae8, 0x40, 0x20);
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer1Map[i] += 0x2200;
   }
-  Mem_Copy32(data_027c0280->layer1Map, data_027c0280->layer1Map + 0x400, 0x800);
+  Mem_Copy32(data_027c0280->layer1Map,
+             data_027c0280->layer1Map + BG_SCREEN_ENTRIES, BG_SCREEN_SIZE);
   Gfx_RequestLayerCopy(1);
   Palette_Load(res + 0x3b08, 0x60, 0x140);
   Data_Unpack(res + 0xed8, data_027c0280->objVram);
@@ -211,7 +212,7 @@ void CampaignMap_Init(Unk_0204f960* task) {
           (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
   Data_Unpack(res + 0x18c4, data_027c0280->layer2Map);
   Palette_Load(res + 0x1a70, 0x20, 0x40);
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer2Map[i] += 0x1000;
   }
   Gfx_RequestLayerCopy(2);
@@ -259,7 +260,7 @@ void CampaignMap_Init(Unk_0204f960* task) {
       res, data_027c0280->bgVram +
                (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
   Data_Unpack(res + 0x53bc, data_027c0280->layer2Map);
-  for (i = 0; i < 0x400; i++) {
+  for (i = 0; i < BG_SCREEN_ENTRIES; i++) {
     data_027c0280->layer2Map[i] += 0x3000;
   }
   Gfx_RequestLayerCopy(2);
@@ -273,7 +274,7 @@ void CampaignMap_Init(Unk_0204f960* task) {
       res, data_027c0280->bgVram +
                (data_027c0280->bgCnt[data_027c0280->layer3Bg].charBase << 14));
   Data_Unpack(res + 0x4c7c, data_027c0280->layer3Map + 0x400);
-  for (i = 0; i < 0x400; i++) {
+  for (i = 0; i < BG_SCREEN_ENTRIES; i++) {
     data_027c0280->layer3Map[i + 0x400] += 0x3000;
   }
   Gfx_RequestLayerCopy(3);

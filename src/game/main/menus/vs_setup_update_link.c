@@ -1,4 +1,6 @@
 #include "types.h"
+#include "game/link_buffers.h"
+#include "game/link_slots.h"
 #include "game/event_queue.h"
 #include "game/keypad.h"
 #include "game/menu_state.h"
@@ -45,10 +47,10 @@ void VsSetup_UpdateLink(Task* task) {
     return;
   }
   if (func_0207bd94() == 1) {
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < LINK_SLOT_COUNT; i++) {
       if ((Wireless_GetChildAids() | 1) & (1 << i)) {
         msg = Wireless_GetSharedData((u16)i);
-        for (j = 0; j < 4; j++, msg += 2) {
+        for (j = 0; j < LINK_MESSAGE_COUNT; j++, msg += 2) {
           switch (msg[0]) {
             case EVENT_VS_SETUP_CONTROLLER + 0:
             case EVENT_VS_SETUP_CONTROLLER + 1:
@@ -90,13 +92,13 @@ void VsSetup_UpdateLink(Task* task) {
     VsSetup_Cancel();
     func_0207b48c();
     EventQueue_Reset();
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < (int)ARRAY_COUNT(gMenuState.setup.ready); i++) {
       gMenuState.setup.ready[i] = 0;
     }
     Task_ResumeScript(task);
     return;
   }
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < LINK_SLOT_COUNT; i++) {
     if (Link_GetConnectedSlotMask() & (1 << i)) {
       if (gMenuState.setup.ready[i] == 0) {
         allReady = 0;
@@ -108,7 +110,7 @@ void VsSetup_UpdateLink(Task* task) {
     func_02067b0c();
     func_0207b48c();
     EventQueue_Reset();
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < (int)ARRAY_COUNT(gMenuState.setup.ready); i++) {
       gMenuState.setup.ready[i] = 0;
     }
     Task_ResumeScript(task);

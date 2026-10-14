@@ -224,6 +224,6 @@ void NameEntry_SetUpScreen(NameEntryTask* task) {
       }
     }
   }
-  Mem_Copy32(gNameEntryText, gNameEntryStartText, 34);
+  Mem_Copy32(gNameEntryText, gNameEntryStartText, NAME_ENTRY_TEXT_SIZE);
   task->step = 0;
 }

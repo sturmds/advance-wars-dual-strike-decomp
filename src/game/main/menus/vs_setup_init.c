@@ -178,7 +178,7 @@ void VsSetup_Init(void) {
     Mem_Free(res);
     res = File_Load(data_0215d2a8);
     Palette_Load(res, 0x3c0, 0x20);
-    Mem_Copy32(res + 0x20, MENU->colours, 0x20);
+    Mem_Copy32(res + 0x20, MENU->colours, sizeof(MENU->colours));
     Mem_Free(res);
   }
   ForceRank_LoadSets(STATE->gameMode);

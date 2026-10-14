@@ -51,10 +51,11 @@ void MapSelect_StartListSlide(int slideBack) {
   Mem_Copy32(BG_CHARS(Gfx_LayerBg(0)) + THUMB_TILE * 32,
              BG_CHARS(Gfx_LayerBg(0)) + (PAGE_MAPS * 16 + THUMB_TILE) * 32,
              PAGE_MAPS * 512);
-  Mem_Copy32(GFX->layer0Map, GFX->layer0Map + 0x400, 0x800);
-  for (i = 0; i < 0x300; i++) {
-    if ((GFX->layer0Map[0x400 + i] & 0x3ff) >= THUMB_TILE) {
-      GFX->layer0Map[0x400 + i] += PAGE_MAPS * 16;
+  Mem_Copy32(GFX->layer0Map, GFX->layer0Map + BG_SCREEN_ENTRIES,
+             BG_SCREEN_SIZE);
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
+    if ((GFX->layer0Map[BG_SCREEN_ENTRIES + i] & 0x3ff) >= THUMB_TILE) {
+      GFX->layer0Map[BG_SCREEN_ENTRIES + i] += PAGE_MAPS * 16;
     }
   }
   Gfx_RequestLayerCopy(0);
@@ -74,10 +75,11 @@ void MapSelect_StartListSlide(int slideBack) {
   Screen_SetCurrentGfx(data_027c0288.unk_04);
   Mem_Copy32(BG_CHARS(GFX->layer1Bg) + 0x2000, BG_CHARS(GFX->layer1Bg) + 0x2200,
              0x200);
-  Mem_Copy32(GFX->layer1Map, GFX->layer1Map + 0x400, 0x800);
-  for (j = 0; j < 0x300; j++) {
-    if (GFX->layer1Map[0x400 + j] & 0x3ff) {
-      GFX->layer1Map[0x400 + j] += 16;
+  Mem_Copy32(GFX->layer1Map, GFX->layer1Map + BG_SCREEN_ENTRIES,
+             BG_SCREEN_SIZE);
+  for (j = 0; j < BG_VISIBLE_ENTRIES; j++) {
+    if (GFX->layer1Map[BG_SCREEN_ENTRIES + j] & 0x3ff) {
+      GFX->layer1Map[BG_SCREEN_ENTRIES + j] += 16;
     }
   }
   Gfx_RequestLayerCopy(1);

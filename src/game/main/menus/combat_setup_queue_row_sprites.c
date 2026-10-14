@@ -1,4 +1,6 @@
 #include "types.h"
+#include "game/Unk_0229fb30.h"
+#include "game/Unk_02160ac0.h"
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
 
@@ -23,7 +25,7 @@ void CombatSetup_QueueRowSprites(void) {
   Screen_SetCurrentGfx(data_027c0288.unk_00);
   savedState = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_00);
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < COMBAT_ROW_COUNT; i++) {
     if (gMenuState.combat.rows[i].memberCount != 0) {
       Co_QueuePictureSpriteAtTile((32 + i * 64) & 0x1ff, (144 - i * 16) & 0xff,
                                   (i + 2) << 12, 0x400 + i * 36, 1);
@@ -37,7 +39,7 @@ void CombatSetup_QueueRowSprites(void) {
   subSavedState = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_04);
   CombatSetup_DrawRowPlayerIcons(48, 48);
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < LINK_SETTING_COUNT; i++) {
     LinkMenu_DrawSetting(16, 16 + i * 32, i, 0);
   }
   Screen_SetCurrent(subSavedState);

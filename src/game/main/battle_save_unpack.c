@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/player.h"
 #include "game/rng.h"
 #include "game/battle_save.h"
 #include "game/screen_other_map.h"
@@ -52,16 +53,16 @@ void BattleSave_Unpack(void) {
     STATE->unk_18 = 4;
   }
   gRngState = record->rngState;
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < GAME_FLAGS_LOW_SIZE; i++) {
     gGameFlagsLow[i] = record->gameFlagsLow[i];
   }
   data_022977a4 = record->eventScript;
   data_022a7b98 = record->unk_98;
   ForceRank_LoadSets(STATE->gameMode);
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     /* Needed to match: the original tests the player again. */
     if (player != 0) {
-      for (slot = 0; slot < 2; slot++) {
+      for (slot = 0; slot < PLAYER_CO_COUNT; slot++) {
         data_022a72c8[player][slot] = record->lentSkills[player - 1][slot];
       }
     }

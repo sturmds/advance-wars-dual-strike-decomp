@@ -111,7 +111,7 @@ void CombatModeMenu_Init(void) {
           (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
   Data_Unpack(file + 0x1774, data_027c0280->layer2Map);
   Palette_Load(file + 0x189c, 0x40, 0x20);
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer2Map[i] |= 0x2000;
   }
   Gfx_RequestLayerCopy(2);
@@ -124,7 +124,8 @@ void CombatModeMenu_Init(void) {
   }
   for (i = 0; i < 7; i++) {
     if (!CombatModeMenu_IsSlotAvailable(i)) {
-      Mem_Fill32(0, data_027c0280->paletteBuffer + (i + 16) * 32, 32);
+      Mem_Fill32(0, data_027c0280->paletteBuffer + (i + 16) * PALETTE_16_SIZE,
+                 PALETTE_16_SIZE);
     }
   }
   Data_Unpack(file + 0x1cc, data_027c0280->objVram + 0x8000);

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/link_buffers.h"
 #include "game/event_queue.h"
 #include "game/task.h"
 
@@ -21,7 +22,7 @@ void func_02087aa8(Task* task) {
 
   if (func_0207bd94() == 1) {
     msg = Wireless_GetSharedData(0);
-    for (i = 0; i < 4; msg += 2, i++) {
+    for (i = 0; i < LINK_MESSAGE_COUNT; msg += 2, i++) {
       switch (msg[0]) {
         case 1:
           confirm = 1;

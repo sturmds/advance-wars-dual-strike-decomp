@@ -151,7 +151,7 @@ void PlayerInfo_Init(Task* task) {
     Data_Unpack(file + 0x20, LAYER_CHARS(2));
     Data_Unpack(file + 0x638, data_027c0280->layer2Map);
     Palette_Load(file + 0x7e8, 0x20, 0x20);
-    for (i = 0; i < 0x300; i++) {
+    for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
       data_027c0280->layer2Map[i] += 0x1000;
     }
     Gfx_RequestLayerCopy(2);

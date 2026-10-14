@@ -32,7 +32,7 @@ void CombatSetup_ResetMainScreen(void) {
   Screen_SetCurrent(savedState);
   Screen_SetCurrentGfx(savedGfx);
 
-  for (i = 0; i < 8; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(gMenuState.combat.players); i++) {
     gMenuState.combat.players[i].ready = 0;
   }
 }

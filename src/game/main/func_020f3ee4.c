@@ -26,7 +26,7 @@ void func_020f3ee4(void) {
   Unk_027c0280* savedGfx;
   Unk_02080440* savedScreen;
   GameSettings settings;
-  u8 controllers[5];
+  u8 controllers[ARMY_SLOT_COUNT];
   int i;
   int j; /* needed to match: the second loop has its own counter */
 
@@ -42,12 +42,12 @@ void func_020f3ee4(void) {
   Screen_SetCurrentGfx(data_027c0288.unk_04);
   savedScreen = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_04);
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < ARMY_SLOT_COUNT; i++) {
     controllers[i] = GAME->slotControllers[i];
   }
   GAME_SETTINGS(GAME) = settings;
   if (GAME->gameMode == GAME_MODE_WAR_ROOM || GAME->gameMode == 2) {
-    for (j = 1; j < 5; j++) {
+    for (j = 1; j < ARMY_SLOT_COUNT; j++) {
       GAME->slotControllers[j] = controllers[j];
     }
     GAME->propertyGoal = 0;

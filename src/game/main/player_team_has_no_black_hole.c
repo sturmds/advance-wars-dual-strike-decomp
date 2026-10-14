@@ -15,7 +15,7 @@ BOOL Player_TeamHasNoBlackHole(void) {
   if (STATE->players[STATE->currentPlayer].armyColour == ARMY_BLACK_HOLE) {
     return FALSE;
   }
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (STATE->players[STATE->currentPlayer].team ==
             STATE->players[player].team &&
         STATE->players[player].armyColour == ARMY_BLACK_HOLE) {

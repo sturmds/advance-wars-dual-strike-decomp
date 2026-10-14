@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/player.h"
 #include "game/rng.h"
 #include "game/battle_save.h"
 #include "game/screen_other_map.h"
@@ -33,7 +34,7 @@ void BattleSave_Pack(u8 flag) {
     record->unk_00 = 0;
   }
   record->rngState = gRngState;
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < GAME_FLAGS_LOW_SIZE; i++) {
     record->gameFlagsLow[i] = gGameFlagsLow[i];
   }
   record->eventScript = data_022977a4;
@@ -59,10 +60,10 @@ void BattleSave_Pack(u8 flag) {
     Screen_SetCurrentGfx(savedGfx);
   }
 
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     /* Needed to match: the original tests the player again. */
     if (player != 0) {
-      for (slot = 0; slot < 2; slot++) {
+      for (slot = 0; slot < PLAYER_CO_COUNT; slot++) {
         record->lentSkills[player - 1][slot] = data_022a72c8[player][slot];
       }
     }

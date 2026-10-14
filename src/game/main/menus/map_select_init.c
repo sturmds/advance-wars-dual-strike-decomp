@@ -228,7 +228,7 @@ void MapSelect_Init(void) {
     Mem_Free(file);
     file = File_Load(gMapSelectLinkCommonResPath);
     Palette_Load(file, 0x260, 0x20);
-    Mem_Copy32(file + 0x20, MENU->setup.colours2, 0x20);
+    Mem_Copy32(file + 0x20, MENU->setup.colours2, sizeof(MENU->setup.colours2));
     Mem_Free(file);
   }
   if (STATE->gameMode == GAME_MODE_WAR_ROOM) {

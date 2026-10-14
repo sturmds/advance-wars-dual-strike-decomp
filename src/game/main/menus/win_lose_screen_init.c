@@ -233,12 +233,12 @@ void WinLoseScreen_Init(WinLoseTask* task) {
   Data_Unpack(file + 0xd10, &gMenuState);
   /* Move layer 2's tile map entries up two palettes (bits 12-15). */
   SWITCH_BOTH(MAIN_MAP);
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer2Map[i] += 0x2000;
   }
   Gfx_RequestLayerCopy(2);
   Screen_SetCurrentBoth(SECOND_MAP);
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer2Map[i] += 0x2000;
   }
   Gfx_RequestLayerCopy(2);

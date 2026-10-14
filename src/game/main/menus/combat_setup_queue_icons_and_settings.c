@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_0229fb30.h"
 #include "game/screen_other_map.h"
 
 void CombatSetup_DrawRowPlayerIcons(int x, int y);
@@ -29,7 +30,7 @@ void CombatSetup_QueueIconsAndSettings(void) {
   Screen_SetCurrentGfx(data_027c0288.unk_04);
   subSavedState = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_04);
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < LINK_SETTING_COUNT; i++) {
     LinkMenu_DrawSetting(data_02160af0[i * 2], data_02160af0[i * 2 + 1] + 8, i,
                          0);
   }

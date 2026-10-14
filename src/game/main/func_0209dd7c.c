@@ -14,7 +14,7 @@ BOOL Player_HasHq(int player); /* TRUE: bit 0x80 of Player.hqX is clear */
 BOOL func_0209dd7c(void) {
   int player;
 
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (Player_IsInGame(player) &&
         STATE->players[STATE->currentPlayer].team !=
             STATE->players[player].team &&

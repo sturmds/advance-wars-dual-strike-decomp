@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/link_slots.h"
 #include "game/task.h"
 #include "sdk/msl_string.h"
 
@@ -20,7 +21,7 @@ void func_020737a8(Task* task) {
     return;
   }
   found = 0;
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < LINK_SLOT_COUNT; i++) {
     if ((Wireless_GetChildAids() | 1) & (1 << i)) {
       if (strcmp((const char*)Wireless_GetSharedData((u16)i), data_0215f810)) {
         found = 1;

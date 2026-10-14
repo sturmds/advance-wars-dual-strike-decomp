@@ -45,11 +45,12 @@ void CombatSetup_InitScreen(void) {
   Screen_SetCurrentGfx(data_027c0288.unk_00);
   savedState = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_00);
-  Mem_Copy32(MENU->combat.savedMap, data_027c0280->layer1Map, 0x600);
+  Mem_Copy32(MENU->combat.savedMap, data_027c0280->layer1Map,
+             sizeof(MENU->combat.savedMap));
   Gfx_RequestLayerCopy(1);
   Palette_Load(MENU->combat.rowPalettes[row - 1], 0x2c0, 0x60);
   Palette_Load(MENU->combat.rowObjPalettes[row - 1], 0x320, 32);
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < COMBAT_ROW_COUNT; i++) {
     if (MENU->combat.rows[i].memberCount != 0) {
       func_0200208c(data_02160ae0[LINK_ROWS[i].unk_19],
                     data_027c0280->objVram + (0x490 + i * 12) * 32, i + 18,
@@ -63,7 +64,7 @@ void CombatSetup_InitScreen(void) {
   Screen_SetCurrentGfx(data_027c0288.unk_04);
   savedState = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_04);
-  Mem_Copy32(&gMenuState, data_027c0280->layer2Map, 0x600);
+  Mem_Copy32(&gMenuState, data_027c0280->layer2Map, BG_VISIBLE_SIZE);
   Gfx_RequestLayerCopy(2);
   data_027c0280->bgScrollX[data_027c0280->layer2Bg] = -16;
   data_027c0280->bgScrollY[data_027c0280->layer2Bg] = -16;
@@ -79,7 +80,7 @@ void CombatSetup_InitScreen(void) {
 
   MenuCursor_SetRect(0, -16, 256, -16);
   MenuButton_Select(22);
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < COMBAT_ROW_COUNT + 1; i++) {
     MENU->combat.rows[i - 1].buttonId = 22;
   }
   CombatSetup_DrawShop();

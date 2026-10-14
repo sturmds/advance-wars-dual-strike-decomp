@@ -16,7 +16,7 @@ u32 Team_GetSecondsUsed(int unused) {
   int slot;
 
   seconds = 0;
-  for (slot = 1; slot < 5; slot++) {
+  for (slot = 1; slot < ARMY_SLOT_COUNT; slot++) {
     if (STATE->players[1].team == STATE->players[slot].team) {
       seconds += HwDiv32(STATE->players[slot].playTimeFrames, 60);
     }

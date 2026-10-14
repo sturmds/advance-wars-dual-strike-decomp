@@ -41,7 +41,7 @@ void ReactionTextMenu_DrawScreen(void) {
   Palette_Load(file + 0x28c, 0x40, 0x20);
   Mem_Free(file);
   /* Layer 2 map entries use palette 2, where the file's palette went. */
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer2Map[i] += 0x2000;
   }
   for (i = 0; i < REACTION_TEXT_COUNT; i++) {

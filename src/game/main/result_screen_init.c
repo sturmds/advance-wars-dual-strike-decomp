@@ -164,7 +164,7 @@ void ResultScreen_Init(Task* task) {
   Data_Unpack(file + 0x2568, data_027c0280->layer1Map);
   Palette_Load(file + 0x27a4, 0x100, 0x40);
   /* both maps use BG palette 8 */
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer0Map[i] += 0x8000;
     data_027c0280->layer1Map[i] += 0x8000;
   }
@@ -189,7 +189,7 @@ void ResultScreen_Init(Task* task) {
   Data_Unpack(file + 0x4fb4, data_027c0280->layer1Map + 0x400);
   Palette_Load(file + 0x5170, 0x1c0, 0x20);
   /* second half of the layer 1 map: BG palette 14 */
-  for (i = 0x400; i < 0x700; i++) {
+  for (i = BG_SCREEN_ENTRIES; i < BG_SCREEN_ENTRIES + BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer1Map[i] += 0xe000;
   }
   Gfx_RequestLayerCopy(1);
@@ -202,11 +202,13 @@ void ResultScreen_Init(Task* task) {
   SWITCH_TO(SUB_MAP);
   if (CoExp_IsSpecialMission() == TRUE) {
     Mem_Copy32(MAIN_GFX->unk_120, CHAR_BASE(data_027c0280->layer3Bg), 0x4000);
-    Mem_Copy32(MAIN_GFX->layer3Map, data_027c0280->layer3Map, 0x1000);
+    Mem_Copy32(MAIN_GFX->layer3Map, data_027c0280->layer3Map,
+               GFX_LAYER_MAP_SIZE);
     Palette_Load(file + 0x46c0, 0, 0x100);
   } else {
     Mem_Copy32(MAIN_GFX->unk_120, CHAR_BASE(data_027c0280->layer3Bg), 0x4000);
-    Mem_Copy32(MAIN_GFX->layer3Map, data_027c0280->layer3Map, 0x1000);
+    Mem_Copy32(MAIN_GFX->layer3Map, data_027c0280->layer3Map,
+               GFX_LAYER_MAP_SIZE);
     Palette_Load(file + 0x24d4, 0, 0x100);
   }
   Gfx_RequestLayerCopy(3);

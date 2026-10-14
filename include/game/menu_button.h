@@ -3,8 +3,8 @@
 
 #include "types.h"
 
-/* One selectable entry of a menu screen, 0x3c bytes. The game keeps 80
- * of them in gMenuButtons; MenuButton_Find finds one by id, and
+/* One selectable entry of a menu screen, 0x3c bytes. The game keeps
+ * MENU_BUTTON_COUNT of them in gMenuButtons; MenuButton_Find finds one by id, and
  * MenuButton_Select makes it the selected one. While a button is
  * selected, Menu_DispatchKeys calls its onKeys when a key in
  * Keypad.repeat is down. */
@@ -78,6 +78,8 @@ enum {
   MENU_BUTTON_TOUCH_HELD     /* held; releasing no longer confirms */
 };
 
+/* Slots in gMenuButtons; MenuButton_Add leaves the last one free. */
+#define MENU_BUTTON_COUNT 80
 extern MenuButton gMenuButtons[];
 
 /* What a button is made from; copied into MenuButton from x on, with

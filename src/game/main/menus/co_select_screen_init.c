@@ -117,7 +117,7 @@ void CoSelectScreen_Init(void) {
     Data_Unpack(res + 0x3a0, data_027c0280->layer1Map);
   }
   Palette_Load(res + 0x51c, 0x40, 0x60);
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer1Map[i] += 0x2200;
   }
   frameOffset = data_0229c73c->rowCount == 2 ? 0x57c : 0x5f0;

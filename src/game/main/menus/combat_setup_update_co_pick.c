@@ -4,6 +4,8 @@
 #pragma opt_loop_invariants off
 
 #include "types.h"
+#include "game/Unk_02160ac0.h"
+#include "game/link_buffers.h"
 #include "game/event_queue.h"
 #include "game/menu_state.h"
 #include "game/task.h"
@@ -44,7 +46,7 @@ void CombatSetup_UpdateCoPick(Task* task) {
   allLocked = 1;
   leave = 0;
   if (func_0207bd94() == 1) {
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < LINK_AID_COUNT; i++) {
       if (!(data_0229ff30.playerMask & (1 << i))) {
         continue;
       }
@@ -52,7 +54,7 @@ void CombatSetup_UpdateCoPick(Task* task) {
         continue;
       }
       msg = Wireless_GetSharedData((u16)i);
-      for (j = 0; j < 4; j++, msg += 2) {
+      for (j = 0; j < LINK_MESSAGE_COUNT; j++, msg += 2) {
         switch (msg[0]) {
           case 16:
             CombatSetup_LockRow(i);
@@ -82,7 +84,7 @@ void CombatSetup_UpdateCoPick(Task* task) {
     Task_ResumeScript(task);
     return;
   }
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < COMBAT_ROW_COUNT + 1; i++) {
     if (MENU->combat.rows[i - 1].memberCount != 0 &&
         MENU->combat.rows[i - 1].locked == 0) {
       allLocked = 0;

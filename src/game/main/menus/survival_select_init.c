@@ -122,7 +122,8 @@ void SurvivalSelect_Init(void) {
   }
   IconBank_LoadPalette(1, 21);
   Screen_SetCurrentGfx(savedState);
-  Mem_Copy32(res + 0xf78, data_0229c744->colours, 32);
+  Mem_Copy32(res + 0xf78, data_0229c744->colours,
+             sizeof(data_0229c744->colours));
   Mem_Free(res);
 
   res = File_Load(File_LocalizePath(data_0215ae74));

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
 
@@ -74,7 +75,7 @@ void PlayerInfo_LoadCoPictures(void) {
       break;
   }
   Bg_PutTileBlock(data_027c0280->layer1Map, 4, 0, frame, 0);
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer1Map[i] =
         ((MENU_PLAYER_ARMY - 1) << 12) | (data_027c0280->layer1Map[i] & 0xfff);
   }

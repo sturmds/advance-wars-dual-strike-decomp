@@ -10,8 +10,8 @@ void func_02088404(void) {
   int i;
   int j;
 
-  for (i = 1; i <= 4; i++) {
-    for (j = 0; j < 20; j++) {
+  for (i = 1; i <= COMBAT_ROW_COUNT; i++) {
+    for (j = 0; j < COMBAT_CELL_COUNT; j++) {
       row->cells[j].tile = 0;
       row->cells[j].state = 1;
     }

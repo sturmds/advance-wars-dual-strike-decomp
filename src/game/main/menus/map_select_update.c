@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/link_buffers.h"
 #include "game/map_select.h"
 #include "game/event_queue.h"
 #include "game/keypad.h"
@@ -50,7 +51,7 @@ void MapSelect_Update(Task* task) {
   }
   if (func_0207bd94() == 1) {
     msg = Wireless_GetSharedData(0);
-    for (i = 0; i < 4; i++, msg += 2) {
+    for (i = 0; i < LINK_MESSAGE_COUNT; i++, msg += 2) {
       if (MENU->setup.slideFrames != 0 || confirm == TRUE || leave == TRUE) {
         break;
       }

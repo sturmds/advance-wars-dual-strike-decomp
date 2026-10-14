@@ -45,10 +45,10 @@ void Battle_ShowResult(int parentTask) {
       human = 0;
       rivalsLeft = 0;
       player = &GAME->players[1];
-      for (i = 1; i <= 4; player++, i++) {
+      for (i = 1; i <= PLAYER_SLOT_LAST; player++, i++) {
         if (player->controller != PLAYER_CONTROLLER_NONE) {
           if (GAME->players[i].defeated == 0) {
-            for (j = 1; j <= 4; j++) {
+            for (j = 1; j <= PLAYER_SLOT_LAST; j++) {
               if (i != j &&
                   GAME->players[j].controller != PLAYER_CONTROLLER_NONE &&
                   GAME->players[j].defeated == 0 &&
@@ -68,7 +68,7 @@ void Battle_ShowResult(int parentTask) {
         return;
       }
 
-      for (i = 1; i <= 4; i++) {
+      for (i = 1; i <= PLAYER_SLOT_LAST; i++) {
         switch (GAME->players[i].controller) {
           case PLAYER_CONTROLLER_NONE:
             break;

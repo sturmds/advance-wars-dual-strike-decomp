@@ -6,7 +6,7 @@ void MenuButtons_RemoveAll(void) {
   int i;
   MenuButton* button = gMenuButtons;
 
-  for (i = 0; i < 80; i++, button++) {
+  for (i = 0; i < MENU_BUTTON_COUNT; i++, button++) {
     button->active = 0;
   }
 }

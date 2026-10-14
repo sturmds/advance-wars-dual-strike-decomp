@@ -115,7 +115,7 @@ void TitleCall_SetUpScreens(Task* task) {
   Data_Unpack(file + 0x2cd0, CHAR_BASE(data_027c0280->layer2Bg));
   Data_Unpack(file + 0x4d58, data_027c0280->layer2Map + 0x400);
   /* both maps use BG palette 1 */
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer1Map[i] += 0x1000;
     data_027c0280->layer2Map[i + 0x400] += 0x1000;
   }
@@ -132,7 +132,7 @@ void TitleCall_SetUpScreens(Task* task) {
   Data_Unpack(file + 0x5b80, data_027c0280->layer1Map);
   Data_Unpack(file + 0x3e04, CHAR_BASE(data_027c0280->layer2Bg));
   Data_Unpack(file + 0x620c, data_027c0280->layer2Map + 0x400);
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer1Map[i] += 0x1000;
     data_027c0280->layer2Map[i + 0x400] += 0x1000;
   }
@@ -148,7 +148,7 @@ void TitleCall_SetUpScreens(Task* task) {
   Data_Unpack(file + 0x1818, CHAR_BASE(data_027c0280->layer0Bg));
   Data_Unpack(file + 0x3194, data_027c0280->layer0Map);
   /* BG palette 9 */
-  for (i = 0; i < 0x300; i++) {
+  for (i = 0; i < BG_VISIBLE_ENTRIES; i++) {
     data_027c0280->layer0Map[i] += 0x9000;
   }
   Palette_Load(file + 0x3578, 0x120, 0x60);
@@ -164,7 +164,7 @@ void TitleCall_SetUpScreens(Task* task) {
   saved0280 = data_027c0280;
   Screen_SetCurrentGfx(SUB_MAP);
   Mem_Copy32(MAIN_GFX->unk_120, CHAR_BASE(data_027c0280->layer3Bg), 0x4000);
-  Mem_Copy32(MAIN_GFX->layer3Map, data_027c0280->layer3Map, 0x1000);
+  Mem_Copy32(MAIN_GFX->layer3Map, data_027c0280->layer3Map, GFX_LAYER_MAP_SIZE);
   Palette_Load(file + 0x17f8, 0, 0x20);
   Gfx_RequestLayerCopy(3);
   Data_Unpack(file + 0x3a0, data_027c0280->objVram);

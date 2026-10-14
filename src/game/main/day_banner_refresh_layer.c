@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
 
@@ -16,7 +17,7 @@ void DayBanner_RefreshLayer(void) {
   int edge;
   int row;
 
-  Mem_Copy32(&gMenuState, data_027c0280->layer0Map, 0x800);
+  Mem_Copy32(&gMenuState, data_027c0280->layer0Map, BG_SCREEN_SIZE);
   edge = (s16)data_027c0280->bgScrollY[data_027c0280->layer0Bg];
   if (edge < 0) {
     edge = 0;

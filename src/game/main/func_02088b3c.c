@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/link_buffers.h"
 #include "game/Unk_0229ff30.h"
 #include "game/combat_setup_task.h"
 #include "game/task.h"
@@ -23,7 +24,7 @@ void func_02088b3c(CombatSetupTask* task) {
     return;
   }
   found = 0;
-  for (i = 0; i < 8; i++) {
+  for (i = 0; i < LINK_AID_COUNT; i++) {
     if (data_0229ff30.playerMask & (1 << i)) {
       if (strcmp((const char*)Wireless_GetSharedData((u16)i), data_02160ae8)) {
         found = 1;

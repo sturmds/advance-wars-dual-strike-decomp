@@ -30,7 +30,7 @@ BOOL HotSeat_HasSeveralHumanTeams(void) {
   }
   firstTeam = 0;
   humans = 0;
-  for (player = 1; player < 5; player++) {
+  for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (!Player_IsInGame(player)) {
       continue;
     }

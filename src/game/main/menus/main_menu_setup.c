@@ -121,7 +121,7 @@ void MainMenu_Setup(MainMenuTask* task) {
   for (i = 0; i < 9; i++) {
     WORK->unk_08[i] = *(u16*)(res + 0x1e4 + i * 32);
   }
-  Mem_Copy32(res + 0x41c, WORK->unk_1c, 32);
+  Mem_Copy32(res + 0x41c, WORK->unk_1c, sizeof(WORK->unk_1c));
 
   savedGfx = data_027c0280;
   Screen_SetCurrentGfx(data_027c0288.unk_00);

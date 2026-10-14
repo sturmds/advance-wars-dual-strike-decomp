@@ -8,7 +8,7 @@ void MenuButtons_EnableTouch(void) {
   int i;
   MenuButton* button = gMenuButtons;
 
-  for (i = 0; i < 80; i++, button++) {
+  for (i = 0; i < MENU_BUTTON_COUNT; i++, button++) {
     if (MenuButton_TestFlags(button, MENU_BUTTON_SELECT_ON_TOUCH) !=
         MENU_BUTTON_SELECT_ON_TOUCH) {
       button->flags &= ~MENU_BUTTON_NO_TOUCH_CONFIRM;

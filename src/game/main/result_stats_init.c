@@ -130,7 +130,7 @@ void ResultStats_Init(Task* task) {
                               0);
         }
       } else {
-        Mem_Copy32(gMenuState, data_027c0280->layer1Map, 0x600);
+        Mem_Copy32(gMenuState, data_027c0280->layer1Map, BG_VISIBLE_SIZE);
         Text_PrintStringImmediate(8, 3, data_027c0280->layer0Map, mapName, 0,
                                   0);
         Number_Draw(28, 3, data_027c0280->layer0Map, day, 0, 0);

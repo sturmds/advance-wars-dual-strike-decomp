@@ -134,7 +134,7 @@ void SurvivalProgress_Init(PageStripTask* task) {
   Gfx_RequestLayerCopy(0);
   Gfx_RequestLayerCopy(1);
   Screen_SetCurrentGfx(saved0280);
-  Mem_Copy32(res + 0xf78, gMenuState.colours, 32);
+  Mem_Copy32(res + 0xf78, gMenuState.colours, sizeof(gMenuState.colours));
   Mem_Free(res);
 
   res = File_Load(File_LocalizePath(data_0215af70));

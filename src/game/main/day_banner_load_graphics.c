@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
 
@@ -52,13 +53,13 @@ void DayBanner_LoadGraphics(void) {
     Data_Unpack(file + FILE_BG_MAP, data_027c0280->layer0Map);
   }
 
-  for (i = 0; i < 0x400; i++) {
+  for (i = 0; i < BG_SCREEN_ENTRIES; i++) {
     data_027c0280->layer0Map[i] += 1 << 12;
   }
 
   palette = file + FILE_PALETTES + (army - 1) * PALETTE_SIZE;
   Palette_Load(palette, BG_PALETTE(1), PALETTE_SIZE);
-  Mem_Copy32(data_027c0280->layer0Map, &gMenuState, 0x800);
+  Mem_Copy32(data_027c0280->layer0Map, &gMenuState, BG_SCREEN_SIZE);
   Data_Unpack(file + FILE_SPRITE_TILES,
               data_027c0280->objVram + BANNER_SPRITE_VRAM);
   Palette_Load(palette, OBJ_PALETTE(3), PALETTE_SIZE);
