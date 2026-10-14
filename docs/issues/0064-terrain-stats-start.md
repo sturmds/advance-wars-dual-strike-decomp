@@ -1,6 +1,6 @@
 # 0064: `Ov000_gTerrainStats` starts 8 bytes after the real table
 
-- **Status:** open
+- **Status:** closed
 - **Area:** decomp
 - **Opened:** 2026-10-11
 - **Milestone:** M2
@@ -19,3 +19,7 @@ The entries start at 0x022f4cc4: name (+0), description (+4), stars (+8), then t
 ## Done when
 
 `TerrainStats` starts at 0x022f4cc4 with the name first, the users read it by field, and `make release` passes.
+
+## Resolution
+
+2026-10-14 (shift-tables-2): the entries start at 0x022f4cb8, one more word back than this issue said, and the table holds exactly one entry per terrain id (32 of 0x18 bytes, all zero for terrain 0). `TerrainStats` is picture, palette, a word that is always 0, name, description, defense stars. `Ov000_gTerrainStats` now names the table at 0x022f4cb8, written from a struct row in `data_inc.txt`; the four symbols the code loads (0x022f4cbc, 0x022f4cc4, 0x022f4cc8 and the old `Ov000_gTerrainStats` at 0x022f4ccc, now `data_ov000_022f4ccc`) are aliases of `[0].palette`, `[0].name`, `[0].description` and `[0].defenseStars`, and the code reads the fields.

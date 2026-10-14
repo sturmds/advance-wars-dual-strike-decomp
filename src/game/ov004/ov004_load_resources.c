@@ -521,7 +521,7 @@ void Ov004_LoadResources(Unk_ov004_022bf158* state) {
     fromFile = TRUE;
     if (strcmp(dir, data_ov004_022bde38) == 0) {
       code = (u32)name & OV004_RESOURCE_KIND_MASK;
-      coId = (u32)name & 0xfff;
+      coId = (u32)name & ~OV004_RESOURCE_KIND_MASK;
       fromFile = FALSE;
       fileName = NULL;
       dir = NULL;

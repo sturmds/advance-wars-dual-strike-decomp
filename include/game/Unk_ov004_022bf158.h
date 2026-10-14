@@ -43,11 +43,14 @@ typedef struct Ov004Resource {
 } Ov004Resource;
 
 /* One row of the list Ov004_LoadResources reads (data_ov004_022becf8). In
- * the "/syogun" directory, name is a code instead: OV004_RESOURCE_CO_* plus
- * a CO id. */
+ * the "/syogun" directory the row names no file but holds a code:
+ * OV004_RESOURCE_CO_* plus a CO id. */
 typedef struct Ov004ResourceFile {
   const char* dir; /* NULL ends the list */
-  const char* name;
+  union {
+    u32 code; /* first, so the table's initializer can hold either */
+    const char* name;
+  };
 } Ov004ResourceFile;
 
 #define OV004_RESOURCE_KIND_MASK 0xfffff000

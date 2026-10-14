@@ -416,8 +416,8 @@ data_ov006_0236a778 kind:data(byte[8]) addr:0x0236a778
 data_ov006_0236a780 kind:data(byte[8]) addr:0x0236a780
 data_ov006_0236a788 kind:data(byte[8]) addr:0x0236a788
 data_ov006_0236a790 kind:data(byte[16]) addr:0x0236a790
-data_ov006_0236a7a0 kind:data(byte[12]) addr:0x0236a7a0
-data_ov006_0236a7ac kind:data(byte[8]) addr:0x0236a7ac
+data_ov006_0236a7a0 kind:data(byte[19]) addr:0x0236a7a0
+data_ov006_0236a7ac kind:data(byte[0]) addr:0x0236a7ac
 data_ov006_0236a7ad kind:data(byte[0]) addr:0x0236a7ad
 data_ov006_0236a7b4 kind:data(byte[28]) addr:0x0236a7b4
 data_ov006_0236a7d0 kind:data(byte[28]) addr:0x0236a7d0

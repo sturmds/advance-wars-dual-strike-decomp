@@ -7,7 +7,6 @@ void Ov006_LoadEntryTerrainGraphics(void);
 void func_ov006_02357734(void);
 
 extern Unk_ov006_0235f690* data_ov006_0236d640;
-extern s8 data_ov006_0236a7a0[];
 extern s8 data_ov006_0236a7b4[];
 extern s8 data_ov006_0236a7d0[];
 
@@ -41,7 +40,7 @@ void Ov006_UpdateEntryView(int index) {
     return;
   }
   shift = STATE->terrainPage;
-  a = data_ov006_0236a7a0[index];
+  a = data_ov006_0236a7a0.ids[index];
   if (shift == 0 && a == 8) {
     return;
   }

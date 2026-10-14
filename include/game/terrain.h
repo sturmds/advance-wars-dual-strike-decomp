@@ -45,29 +45,28 @@ enum TerrainId {
   TERRAIN_BLOCKED = 31   /* centre of a 4x4 missile platform or fortress */
 };
 
-/* Entries in a table with one value per terrain id. */
+/* Entries in a table with one value per terrain id: Ov000_gTerrainStats,
+ * a row of a movement cost chart (CoPowerBlock.movementCost,
+ * Ov000_gCost*Movement). */
 #define TERRAIN_ID_COUNT 32
 
-/* Fixed stats of one terrain id, 0x18 bytes, in ov000 at 0x022f4ccc.
- * The table holds terrain ids 0-30; Ov000_gUnitStats starts right
- * after. unk_10 and unk_14 are the name and description of the next
- * terrain id: the entries really start 8 bytes earlier (issue 0064). */
+/* Fixed stats of one terrain id, 0x18 bytes: Ov000_gTerrainStats holds one
+ * per terrain id, and Ov000_gUnitStats starts right after it. Terrain 0 is
+ * all zero. */
 typedef struct TerrainStats {
-  s32 defenseStars; /* plain 1, wood 2, city 3, mountain and HQ 4 */
-  void* unk_04;
-  void* unk_08;
-  u32 unk_0c;
-  TextRef unk_10; /* group 0xc000; likely the name */
-  TextRef unk_14; /* group 0xc000 */
+  /* packed tiles of the terrain panel's picture (Data_Unpack); NULL makes
+   * the panel take one from data_ov000_022f65c0 */
+  void* picture;
+  void* palette;       /* 16 colours for the picture */
+  u32 unk_08;          /* 0 in every entry */
+  TextRef name;        /* group 0xc000, the name the terrain panel shows */
+  TextRef description; /* group 0xc000 */
+  s32 defenseStars;    /* plain 1, wood 2, city 3, mountain and HQ 4 */
 } TerrainStats;
 
 typedef char TerrainStats_size_check[sizeof(TerrainStats) == 0x18 ? 1 : -1];
 
-extern TerrainStats Ov000_gTerrainStats[];
-
-/* Terrain ids run from 0 to 31: a row of a movement cost chart
- * (CoPowerBlock.movementCost, Ov000_gCost*Movement) has a cost for each. */
-#define TERRAIN_ID_COUNT 32
+extern TerrainStats Ov000_gTerrainStats[TERRAIN_ID_COUNT];
 
 /* One entry of data_02166758 per terrain id: Terrain_GetIconTiles reads
  * tiles, Terrain_GetPalette reads palette (through data_02166759). */

@@ -2,6 +2,7 @@
 #include "game/second_screen.h"
 #include "game/Unk_02088d04.h"
 #include "game/icon.h"
+#include "game/terrain.h"
 #include "game/unit_stats.h"
 #include "game/text_print.h"
 
@@ -15,10 +16,6 @@ int IncreaseFunds(int playerIndex, int terrain);
 void Gfx_RequestLayerCopy(int layer);
 
 extern Unk_027c0280* data_027c0280;
-/* Fields 0x10 and 0x14 of Ov000_gTerrainStats[terrain - 1] (rows of 6 words);
- * the symbols sit at the folded addresses. */
-extern u32 data_ov000_022f4cc4[][6];
-extern u32 data_ov000_022f4cc8[][6];
 /* first map entry of each type's 3x2 picture */
 static u32 data_ov000_023500a8[] = {
 #include "data/ov000/data_ov000_023500a8.inc.c"
@@ -29,12 +26,12 @@ static int data_ov000_023500b4[] = {
 };
 
 /* Second screen: draws the text part of the terrain panel at pixel x. The terrain name
- * (TerrainStats.unk_10) goes centered on row 1, text 0xc00000a6 on row 3. Text 0xc00000af
+ * (TerrainStats.name) goes centered on row 1, text 0xc00000a6 on row 3. Text 0xc00000af
  * goes on row 3 when data_ov000_02350548 is 0, and on row 5 when the terrain gives the
  * player in data_ov000_0235054c no funds (IncreaseFunds returns 0). For the first of the
  * three unit types that this terrain repairs, it draws a repair icon at row 7 and that
  * type's 3x2 picture beside it (that write adds x to a map index, unlike the rest).
- * TerrainStats.unk_14 goes on row 17. Which text ids say what is a guess. */
+ * TerrainStats.description goes on row 17. Which text ids say what is a guess. */
 void SecondScreen_DrawTerrainDetails(int x, int terrain) {
   int tile;
   u16* map;
@@ -43,7 +40,7 @@ void SecondScreen_DrawTerrainDetails(int x, int terrain) {
   int i;
 
   Font_SetDigitEndTile(98);
-  text = Text_Get(data_ov000_022f4cc4[terrain][0]);
+  text = Text_Get(Ov000_gTerrainStats[terrain].name.id);
   Text_PrintStringImmediate((x + 84 - Text_GetPrintWidth(text) / 2) / 8, 1,
                             data_027c0280->layer0Map, text, 0, 0);
   Font_SetDigitEndTile(142);
@@ -83,6 +80,6 @@ void SecondScreen_DrawTerrainDetails(int x, int terrain) {
     }
   }
   Text_PrintId((x + 8) / 8, 17, data_027c0280->layer0Map,
-               data_ov000_022f4cc8[terrain][0], 0, 164);
+               Ov000_gTerrainStats[terrain].description.id, 0, 164);
   Gfx_RequestLayerCopy(0);
 }

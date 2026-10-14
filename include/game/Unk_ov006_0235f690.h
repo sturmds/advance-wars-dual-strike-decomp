@@ -31,6 +31,21 @@ typedef struct Ov006SlotButton {
 #define OV006_SLOT_BUTTON_LAST \
   (OV006_SLOT_BUTTON_FIRST + OV006_SLOT_BUTTON_COUNT - 1)
 
+/* The terrain page of the design maps screen: the terrain id of each entry,
+ * 12 terrains and then the properties, HQ first, which terrainPage shows in
+ * the colours of one army (Ov006_LoadArmyTiles). */
+#define OV006_TERRAIN_ENTRY_COUNT 18
+#define OV006_PROPERTY_ENTRY_FIRST 12
+#define OV006_PROPERTY_ENTRY_COUNT \
+  (OV006_TERRAIN_ENTRY_COUNT - OV006_PROPERTY_ENTRY_FIRST)
+
+typedef struct Ov006TerrainEntries {
+  s8 ids[OV006_TERRAIN_ENTRY_COUNT]; /* TerrainId */
+  s8 end;                            /* -1; nothing reads it */
+} Ov006TerrainEntries;
+
+extern Ov006TerrainEntries data_ov006_0236a7a0;
+
 /* Ov006Slot.state and Ov006SlotButton.state */
 #define OV006_SLIDE_NONE 0
 #define OV006_SLIDE_IN_START 10

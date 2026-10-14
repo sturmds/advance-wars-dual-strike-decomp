@@ -5,13 +5,10 @@
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 BOOL func_ov006_023576c4(void);
 
-#define ENTRY_COUNT 18
-
 extern Unk_ov006_0235f690* data_ov006_0236d640;
-extern u8 data_ov006_0236a7ec[ENTRY_COUNT][2];
-extern s8 data_ov006_0236a7a0[];
-extern void* data_ov006_0236a878[ENTRY_COUNT];
-extern void* data_ov006_0236a8c0[ENTRY_COUNT];
+extern u8 data_ov006_0236a7ec[OV006_TERRAIN_ENTRY_COUNT][2];
+extern void* data_ov006_0236a878[OV006_TERRAIN_ENTRY_COUNT];
+extern void* data_ov006_0236a8c0[OV006_TERRAIN_ENTRY_COUNT];
 
 #define OV6 data_ov006_0236d640
 
@@ -19,7 +16,7 @@ extern void* data_ov006_0236a8c0[ENTRY_COUNT];
 #define OAM_AFFINE 0x100 /* rotation and scaling on (matrix 0 here) */
 #define OAM_SEMI_TRANSPARENT 0x400
 
-/* Queues the sprites of the 18 terrain entries in data_ov006_0236a7a0:
+/* Queues the sprites of the terrain entries in data_ov006_0236a7a0:
  * per entry one sprite at its position from data_ov006_0236a7ec and one
  * below it (palette 15). Property terrain uses palette 8, the rest 9 to
  * 14. The HQ is left out while the army (terrainPage) is 0, and when prevTerrainPage is
@@ -31,9 +28,9 @@ void Ov006_QueueTerrainEntrySprites(void) {
   int i;
 
   pos = data_ov006_0236a7ec[0];
-  terrain = data_ov006_0236a7a0;
+  terrain = data_ov006_0236a7a0.ids;
 
-  for (i = 0; i < ENTRY_COUNT; i++) {
+  for (i = 0; i < OV006_TERRAIN_ENTRY_COUNT; i++) {
     int palette = 9;
     BOOL topAffine = FALSE;
     BOOL hide;

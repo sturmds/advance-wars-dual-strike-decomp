@@ -4450,7 +4450,7 @@ ov004     data_ov004_022be958         0x022be958  0x50   {u8,u8,u8[2],u32,u32,vo
 ov004     data_ov004_022be9a8         0x022be9a8  0x50   {u8,u8,u8[2],u32,u32,u16*,u8,u8[3]}
 ov004     data_ov004_022be9f8         0x022be9f8  0x60   {s16,s16,u32}
 ov004     data_ov004_022bea58         0x022bea58  0x2a0  {s32,s32,s32,s32,s32,s32,s32}
-ov004     data_ov004_022becf8         0x022becf8  0x2c0  u32
+ov004     data_ov004_022becf8         0x022becf8  0x2c0  {char*,u32}
 ov004     data_ov004_022befb8         0x022befb8  0x4    u32
 ov004     data_ov004_022befbc         0x022befbc  0x18   {s16,s16,u32}
 ov004     data_ov004_022befd4         0x022befd4  0x20   {s16,s16,u32}
@@ -5724,8 +5724,7 @@ ov006     data_ov006_0236a778         0x0236a778  0x8    u32
 ov006     data_ov006_0236a780         0x0236a780  0x8    u32
 ov006     data_ov006_0236a788         0x0236a788  0x8    u32
 ov006     data_ov006_0236a790         0x0236a790  0x10   {u16,u16,u16,u16,u16,u16,u16,u16}
-ov006     data_ov006_0236a7a0         0x0236a7a0  0xc    s8
-ov006     data_ov006_0236a7ac         0x0236a7ac  0x8    s8
+ov006     data_ov006_0236a7a0         0x0236a7a0  0x13   {s8[18],s8}
 ov006     data_ov006_0236a7b4         0x0236a7b4  0x1c   s8
 ov006     data_ov006_0236a7d0         0x0236a7d0  0x1c   s8
 ov006     data_ov006_0236a7ec         0x0236a7ec  0x24   u8
@@ -6370,7 +6369,7 @@ ov000     Ov000_gCostPrairieDogMovement 0x022f4838  0x120  s8[32]
 ov000     Ov000_gCostPathfinderMovement 0x022f4958  0x120  s8[32]
 ov000     Ov000_gCostPrairiePathMovement 0x022f4a78  0x120  s8[32]
 ov000     Ov000_gCostFreeMovement     0x022f4b98  0x120  s8[32]
-ov000     data_ov000_022f4cb8         0x022f4cb8  0x300  u32
+ov000     Ov000_gTerrainStats         0x022f4cb8  0x300  {void*,void*,u32,u16,u16,u16,u16,s32}
 ov000     Ov000_gUnitStats            0x022f4fb8  0xb64  {u16,u16,u16,u16,u16,u16,u16,u16,u8,u8,u8,u8,u8,u8,u8,u8,void*,u8,u8,u8,u8,u8,u8,u8,u8[64],u8,void*,void*}
 ov000     data_ov000_022f5b1c         0x022f5b1c  0x1c   u32
 ov000     data_ov000_022f5b38         0x022f5b38  0x1c   u32

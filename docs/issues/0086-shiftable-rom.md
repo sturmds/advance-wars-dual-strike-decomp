@@ -107,7 +107,6 @@ Aliases are fragile by nature. An alias is `BASE + constant`, so it stays right 
 
 The lasting fix is to compute each offset from the C (`offsetof`, `&x[k].f`, compiled with mwccarm the way `header_merge.py` checks layouts). Also:
 
-- `Ov000_gTerrainStats` is framed 5 words into a flat `u32[192]` (issue 0064).
 - `maps.py lcf` writes `data_ov000_022df026` and `data_ov000_022e022d` inside `Ov000_gMapHeaders`. They have no user.
 
 ### 5. What the build fixes on its own, and what nobody fixes

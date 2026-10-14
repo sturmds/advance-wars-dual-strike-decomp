@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/owner_info.h"
 #include "game/second_screen.h"
+#include "game/terrain.h"
 #include "game/Unk_02088d04.h"
 #include "game/text_print.h"
 
@@ -14,11 +15,6 @@ void SecondScreen_DrawTerrainMoveCosts(int arg0, int arg1);
 
 extern Unk_027c0280* data_027c0280;
 extern void* data_ov000_022f65c0[];
-/* These three read fields 4, 8 and 0x14 of Ov000_gTerrainStats[mode - 1]
- * (rows of 6 words); the symbols sit at the folded addresses. */
-extern void* data_ov000_022f4cb8[][6];
-extern void* data_ov000_022f4cbc[][6];
-extern u32 data_ov000_022f4cc8[][6];
 extern void* data_ov000_023501e8[][6];
 extern void* data_ov000_023501ec[][6];
 extern void* data_ov000_02350278[][6];
@@ -49,11 +45,11 @@ void SecondScreen_RedrawPanel(void) {
       palette = data_ov000_0235027c[data_ov000_0235053c][0];
       break;
     default:
-      picture = data_ov000_022f4cb8[data_ov000_02350530][0];
+      picture = Ov000_gTerrainStats[data_ov000_02350530].picture;
       if (picture == NULL) {
         picture = data_ov000_022f65c0[data_ov000_023503a0];
       }
-      palette = data_ov000_022f4cbc[data_ov000_02350530][0];
+      palette = Ov000_gTerrainStats[data_ov000_02350530].palette;
       break;
   }
   Data_Unpack(picture, data_027c0280->objVram + 0x5280);
@@ -69,9 +65,9 @@ void SecondScreen_RedrawPanel(void) {
     case 0:
       SecondScreen_DrawTerrainDetails(data_ov000_02350540, data_ov000_02350530);
       Text_StopPrinting();
-      Text_PrintId((short)(data_ov000_02350540 / 8 + 1), 11,
-                   data_027c0280->layer0Map,
-                   data_ov000_022f4cc8[data_ov000_02350530][0], 0, 256);
+      Text_PrintId(
+          (short)(data_ov000_02350540 / 8 + 1), 11, data_027c0280->layer0Map,
+          Ov000_gTerrainStats[data_ov000_02350530].description.id, 0, 256);
       return;
   }
 }

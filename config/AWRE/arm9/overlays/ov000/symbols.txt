@@ -719,11 +719,11 @@ Ov000_gCostPrairieDogMovement kind:data(byte[288]) addr:0x022f4838
 Ov000_gCostPathfinderMovement kind:data(byte[288]) addr:0x022f4958
 Ov000_gCostPrairiePathMovement kind:data(byte[288]) addr:0x022f4a78
 Ov000_gCostFreeMovement kind:data(byte[288]) addr:0x022f4b98
-data_ov000_022f4cb8 kind:data(byte[768]) addr:0x022f4cb8
+Ov000_gTerrainStats kind:data(byte[768]) addr:0x022f4cb8
 data_ov000_022f4cbc kind:data(byte[0]) addr:0x022f4cbc
 data_ov000_022f4cc4 kind:data(byte[0]) addr:0x022f4cc4
 data_ov000_022f4cc8 kind:data(byte[0]) addr:0x022f4cc8
-Ov000_gTerrainStats kind:data(byte[0]) addr:0x022f4ccc
+data_ov000_022f4ccc kind:data(byte[0]) addr:0x022f4ccc
 Ov000_gUnitStats kind:data(byte[2916]) addr:0x022f4fb8
 data_ov000_022f4fbc kind:data(byte[0]) addr:0x022f4fbc
 data_ov000_022f4fc0 kind:data(byte[0]) addr:0x022f4fc0

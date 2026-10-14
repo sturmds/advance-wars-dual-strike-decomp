@@ -105,6 +105,6 @@ s8 Ov000_gCostPrairieDogMovement[][TERRAIN_ID_COUNT] = {
 s8 Ov000_gCostFreeMovement[][TERRAIN_ID_COUNT] = {
 #include "data/ov000/Ov000_gCostFreeMovement.inc.c"
 };
-u32 data_ov000_022f4cb8[] = {
-#include "data/ov000/data_ov000_022f4cb8.inc.c"
+TerrainStats Ov000_gTerrainStats[] = {
+#include "data/ov000/Ov000_gTerrainStats.inc.c"
 };
