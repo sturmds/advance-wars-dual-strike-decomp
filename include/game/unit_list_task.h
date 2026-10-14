@@ -27,5 +27,6 @@ typedef struct UnitListTask {
 /* unit list rows: slot of each unit, counted from the player's first slot; 0
  * ends the list */
 extern u8* gUnitListRows;
+#define UNIT_LIST_SIZE 64 /* bytes allocated for gUnitListRows */
 
 #endif

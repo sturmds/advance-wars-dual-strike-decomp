@@ -96,7 +96,7 @@ void CombatModeMenu_Init(void) {
   data_027c0280->blendBottomObj = 1;
   SWITCH_BACK();
 
-  data_0229e144 = Mem_Alloc(1);
+  data_0229e144 = Mem_Alloc(sizeof(*data_0229e144));
   *data_0229e144 = data_02160ac0->co;
   file = File_Load(gCombatMenuResPath);
   langFile = File_Load(File_LocalizePath(gCombatMenuLangResPath));

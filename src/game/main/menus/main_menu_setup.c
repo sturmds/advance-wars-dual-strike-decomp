@@ -98,8 +98,7 @@ void MainMenu_Setup(MainMenuTask* task) {
 
   Gfx3d_SetupPerspectiveAntialiased();
   *(MainMenuWork**)&data_0229c71c = Mem_Alloc(sizeof(MainMenuWork));
-  WORK->page = Mem_Alloc(
-      14); /* 2 header bytes and 6 entries; sizeof(MainMenuPage) counts 7 */
+  WORK->page = Mem_Alloc(sizeof(MainMenuPage));
   func_02028978();
 
   res = File_Load(File_LocalizePath(data_02159bec));

@@ -44,7 +44,7 @@ extern const u32 data_02167c9c[];
 void UnitList_Init(UnitListTask* task) {
   u16* map;
 
-  gUnitListRows = Mem_Alloc(64);
+  gUnitListRows = Mem_Alloc(UNIT_LIST_SIZE);
   task->unitCount = UnitList_ClearAndCount();
   task->sortMode = 0;
   task->reverse = 0;

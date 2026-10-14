@@ -368,6 +368,8 @@ typedef struct WMDataSet {
   u16 data[SHARE_SET_PAYLOAD_BYTES / 2];
 } WMDataSet;
 
+typedef char WMDataSet_size_check[sizeof(WMDataSet) == 0x200 ? 1 : -1];
+
 /* State of one data sharing session. */
 typedef struct WMDataSharingInfo {
   WMDataSet ds[SHARE_RING_SLOTS]; /* ring of sets */
@@ -385,6 +387,9 @@ typedef struct WMDataSharingInfo {
   u16 state;
   u16 reserved[1];
 } WMDataSharingInfo;
+
+typedef char
+    WMDataSharingInfo_size_check[sizeof(WMDataSharingInfo) == 0x820 ? 1 : -1];
 
 /* WMStatus.wepMode */
 #define WM_WEPMODE_NO 0

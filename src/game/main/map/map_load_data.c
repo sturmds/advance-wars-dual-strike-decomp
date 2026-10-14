@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/design_map.h"
 #include "game/map_header.h"
 
 extern void* data_0229eadc;
@@ -17,7 +18,7 @@ void Map_LoadData(u32 mapId) {
   const void* src;
 
   if (MAP_IS_CUSTOM(mapId)) {
-    Map_SetDataBuffer(Mem_Alloc(0x724));
+    Map_SetDataBuffer(Mem_Alloc(sizeof(DesignMapRecord)));
     Save_LoadRecord(10, data_0229eadc);
     return;
   }

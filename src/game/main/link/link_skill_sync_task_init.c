@@ -20,7 +20,7 @@ void LinkSkillSyncTask_Init(LinkSyncTask* task) {
   int player;
   int slot;
 
-  task->skills = Mem_Alloc(128);
+  task->skills = Mem_Alloc(sizeof(data_0229de6c));
   for (player = 1; player <= 4; player++) {
     for (slot = 0; slot < 2; slot++) {
       co = STATE->playerCos[player][slot] & 0x7f;

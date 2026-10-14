@@ -30,8 +30,8 @@ void MapPreview_DrawRecord(u8* dst, DesignMapRecord* record) {
   for (slot = 0; slot < ARMY_SLOT_COUNT; slot++) {
     gArmyColours[slot] = record->armyColours[slot];
   }
-  Map_SetDataBuffer(Mem_Alloc(0x724));
-  Mem_CopyUnits(record, data_0229eadc, 0x724, 8);
+  Map_SetDataBuffer(Mem_Alloc(sizeof(DesignMapRecord)));
+  Mem_CopyUnits(record, data_0229eadc, sizeof(DesignMapRecord), 8);
 
   originX = (data_0229eadc->width - 48) >> 1;
   originY = (data_0229eadc->height - 40) >> 1;

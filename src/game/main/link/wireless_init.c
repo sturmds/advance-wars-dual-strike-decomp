@@ -48,7 +48,7 @@ void Wireless_Init(void) {
   data_0215fe84->unk_30 = 0;
   data_0215fe84->unk_06 = -1;
   Wireless_InitParentParam();
-  gWirelessSystemBuf = Mem_Alloc(0x1700);
+  gWirelessSystemBuf = Mem_Alloc(WM_SYSTEM_BUF_SIZE);
   data_0229c8a0 = Mem_Alloc(0x40);
   data_0229c8b4 = Mem_Alloc(0x20);
   gWirelessScanBuffer = Mem_Alloc(sizeof(WMBssDesc));
@@ -56,8 +56,8 @@ void Wireless_Init(void) {
   for (i = 0; i < 4; i++) {
     gWirelessParents[i] = Mem_Alloc(sizeof(WMBssDesc));
   }
-  data_0229c8ac = Mem_Alloc(0x820);
-  data_0229c8b0 = Mem_Alloc(0x200);
+  data_0229c8ac = Mem_Alloc(sizeof(WMDataSharingInfo));
+  data_0229c8b0 = Mem_Alloc(sizeof(WMDataSet));
   data_0229c89c = 0x120;
   data_0229c884 = Mem_Alloc(0x120);
   data_0229c8a4 = 0x940;

@@ -13,9 +13,9 @@ void LinkExperienceSyncTask_Init(LinkSyncTask* task) {
   int i;
 
   for (i = 0; i < 4; i++) {
-    Mem_ZeroUnits(0, data_0229deec[i], 112, 8);
+    Mem_ZeroUnits(0, data_0229deec[i], sizeof(data_0229deec[i]), 8);
   }
-  task->experience = Mem_Alloc(112);
+  task->experience = Mem_Alloc(sizeof(data_0229deec[0]));
   for (i = 0; i < 28; i++) {
     task->experience[i].paletteVariant = Co_GetSavedPaletteVariant(i);
     task->experience[i].pictureVariant = Co_GetSavedPictureVariant(i);

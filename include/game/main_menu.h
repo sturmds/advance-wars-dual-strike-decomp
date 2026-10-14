@@ -18,7 +18,8 @@ typedef struct MainMenuPage {
   u8 title; /* title graphic */
   u8 palette : 5;
   u8 entryCount : 3;
-  MainMenuEntry entries[7]; /* count a guess: entryCount holds up to 7 */
+  /* MainMenu_Setup allocates room for 6; no page has more */
+  MainMenuEntry entries[6];
 } MainMenuPage;
 
 /* Main menu state, through data_021599d0. */

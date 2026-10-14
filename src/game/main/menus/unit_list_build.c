@@ -16,8 +16,6 @@ extern s8 data_ov000_022b3850
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-#define UNIT_LIST_SIZE 64
-
 enum UnitListSort {
   UNIT_LIST_SORT_TYPE,
   UNIT_LIST_SORT_HP,

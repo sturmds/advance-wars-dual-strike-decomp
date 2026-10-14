@@ -84,7 +84,8 @@ typedef struct Unk_ov005_0236bbac {
   u8 pad_1118[0x1220 - 0x1118];
   s16 barHeights[16]; /* 0 to 10 tiles */
   u8 pad_1240[0x1320 - 0x1240];
-  s16 shownBarHeights[16]; /* barHeights as last drawn */
+  s16 shownBarHeights[16];      /* barHeights as last drawn */
+  u8 pad_1340[0x1360 - 0x1340]; /* Ov005SoundRoom_AllocWork allocates 0x1360 */
 } Unk_ov005_0236bbac;
 
 #endif

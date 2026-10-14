@@ -12,6 +12,8 @@ typedef struct LinkCoRecord {
   u32 : 11;
 } LinkCoRecord;
 
+typedef char LinkCoRecord_size_check[sizeof(LinkCoRecord) == 4 ? 1 : -1];
+
 /* Each army's CO records as received in the experience sync. */
 extern LinkCoRecord data_0229deec[4][28];
 /* Equipped skills received in the skill sync: 16 bytes per link slot and
