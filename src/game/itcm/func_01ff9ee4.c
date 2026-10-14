@@ -1,15 +1,9 @@
 #include "types.h"
+#include "game/main_loop.h"
 
-typedef struct Unk_gMainLoop Unk_gMainLoop;
-
-struct Unk_gMainLoop {
-  u8 pad_00[0xc];
-  int unk_c;
-};
-
-extern Unk_gMainLoop gMainLoop;
+extern MainLoop gMainLoop;
 
 void* func_01ff9ee4(void) {
-  gMainLoop.unk_c = 0;
+  gMainLoop.unk_0c = 0;
   return &gMainLoop;
 }

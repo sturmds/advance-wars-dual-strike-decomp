@@ -5922,7 +5922,7 @@ dtcm      gSubScreenContext           0x027c03d4  0x144  u8
 dtcm      data_027c0518               0x027c0518  0x4    u32
 dtcm      data_027c051c               0x027c051c  0x4    s32
 dtcm      data_027c0520               0x027c0520  0x200  {void*,void*,u32,u8,u8[3]}
-dtcm      gMainLoop                   0x027c0720  0x2c   {void*[2],void*,u8[12],u32,u8[8],s32,u16,pad[2]}
+dtcm      gMainLoop                   0x027c0720  0x2c   {void*[2],void*,s32,s32,s32,u32,s32,s32,s32,u16,pad[2]}
 dtcm      data_027c074c               0x027c074c  0x1    s8
 dtcm      data_027c0750               0x027c0750  0x4    s32
 dtcm      data_027c0760               0x027c0760  0xb18  u32

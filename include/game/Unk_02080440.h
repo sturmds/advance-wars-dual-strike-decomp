@@ -146,7 +146,9 @@ typedef struct Unk_02080440_48 {
   u16 unk_04; /* compared with a map tile's owner bits (tile & 0xe0), unshifted */
   u16 currentUnitBase; /* (currentPlayer - 1) * MAP_UNITS_PER_PLAYER: first slot in units */
   s8 menuDepth; /* guess: menus open at once; +1 by MenuDepth_Push, -1 (not below 0) by MenuDepth_Pop */
-  u8 pad_09[0x0d - 0x09];
+  u8 pad_09;
+  u16 unk_0a; /* cleared by func_020b98bc */
+  u8 unk_0c;
   u8 unk_0d; /* set to 1 by func_020b9890, 0 by func_020b9864, read by func_020b983c */
   u8 pad_0e[0x10 - 0x0e];
   u32 unk_10; /* passed to PopupMenu_Create when the battle menu opens (BattleMenu_Open) */

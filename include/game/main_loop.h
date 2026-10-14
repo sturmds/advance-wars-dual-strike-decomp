@@ -9,9 +9,12 @@ typedef struct MainLoop {
   void (*screenCallbacks[2])(
       void); /* called once per frame on each screen when set */
   void (*vblankCallback)(void); /* called by MainLoop_FinishVBlank when set */
-  u8 pad_0c[0x18 - 0x0c];
-  u32 frameCount; /* MainLoop_RunFrame adds 1 every frame */
-  u8 pad_1c[0x24 - 0x1c];
+  int unk_0c;                   /* cleared by func_01ff9ee4 */
+  int unk_10;                   /* set to 1 by func_01ff9ed0 */
+  int unk_14;                   /* cleared by func_01ff9ba0 */
+  u32 frameCount;               /* MainLoop_RunFrame adds 1 every frame */
+  int unk_1c; /* func_01ff9f2c adds 1, func_01ff9f54 sets it */
+  int unk_20;
   int unk_24; /* 0, 1 or 2: set by func_01ff9610, func_01ff95fc and func_01ff94fc */
   u16 prevKeys; /* keys seen last frame, for the reset combo */
 } MainLoop;

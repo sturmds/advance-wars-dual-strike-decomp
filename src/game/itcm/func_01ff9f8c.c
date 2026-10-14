@@ -1,12 +1,6 @@
 #include "types.h"
+#include "game/main_loop.h"
 
-typedef struct Unk_gMainLoop Unk_gMainLoop;
+extern MainLoop gMainLoop;
 
-struct Unk_gMainLoop {
-  u8 pad_00[0x18];
-  int unk_18;
-};
-
-extern Unk_gMainLoop gMainLoop;
-
-void func_01ff9f8c(int a0) { gMainLoop.unk_18 = a0; }
+void func_01ff9f8c(int a0) { gMainLoop.frameCount = a0; }
