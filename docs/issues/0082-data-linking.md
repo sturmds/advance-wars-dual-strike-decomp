@@ -24,6 +24,7 @@ decomp.dev shows all code decompiled and linked, but 94% of the data bytes are s
 - `.bss` main 0x0229e160-0x022a9870: 127 variables, 46,856 bytes, in 46 files (37 existing, 9 new, 7 of them generated); linked data 2,128,520 bytes (67.9%).
 - `.bss` main 0x022a9870-0x022ad560: 141 variables, 15,452 bytes, in 56 files (53 existing, 3 new, 2 of them generated); linked data 2,144,120 bytes (68.4%).
 - False relocations in main `.rodata` and `.data` and ov002 `.data`: 43 deleted after checking the code that reads each table (`docs/data-tool.md`, "Relocations to check").
+- `.data` ov002 (all, 48,000 bytes, 1,989 objects, 13 existing files and 20 new) and ov001 (all, 164,608 bytes, 813 objects, 36 new files: MapScript tables, trigger lists and event scripts as words); all 1,431 ov001 relocations checked by walking the scripts from the map headers, two false ones in ov000 LZ77 streams deleted; linked data 2,356,900 bytes (75.2%).
 
 ## Decisions (sturmds, 2026-10-13)
 
