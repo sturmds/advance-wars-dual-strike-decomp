@@ -102,7 +102,7 @@ ARM9_LAYOUT_SYMBOLS = {
     "DTCM_BASE": ("ADDR(DTCM)", 0x027C0000),
     # The same for ITCM, whose first function a padded ITCM moves.
     "ITCM_BASE": ("ADDR(ITCM)", 0x01FF8000),
-    # crt0's autoload list (BuildInfo[0] and [1]): two entries of three words
+    # crt0's autoload list (BuildInfo.autoloadListStart and autoloadListEnd): two entries of three words
     # (destination, size, .bss size) after the ITCM and DTCM images, which
     # the load image holds from the start of main's .bss. Written as one
     # expression each: mwldarm takes no symbol before its definition.
@@ -110,7 +110,7 @@ ARM9_LAYOUT_SYMBOLS = {
                             " + (DTCM_BSS_START - DTCM_DATA_START)", 0x02175180),
     "AUTOLOAD_LIST_END": ("ARM9_BSS_START + (ITCM_BSS_START - ITCM_TEXT_START)"
                           " + (DTCM_BSS_START - DTCM_DATA_START) + 2 * 12", 0x02175198),
-    # The end of main's .bss (BuildInfo[4]), which dsd rom build would
+    # The end of main's .bss (BuildInfo.bssEnd), which dsd rom build would
     # otherwise have to write into a shifted ROM.
     "MAIN_BSS_END": ("ARM9_BSS_END", 0x022AD560),
 }

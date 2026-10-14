@@ -7,7 +7,7 @@
 # ADDRESS is the word's address in the normal (retail) build.
 
 0x01ffbd94  Map3d_DrawScrollingQuad pool, 0x02080080 written to REG_POLYGON_ATTR
-0x02000b18  BuildInfo[6], the SDK library version (build_info.c)
+0x02000b18  BuildInfo.sdkVersion, the SDK library version (build_info.c)
 0x021150a8  Power_PostCommandWithReply pool, PXI command word 0x02006300 | command
 0x02115160  Power_AskArm7ToSleep pool, PXI command word 0x02006100 | trigger
 0x0211fc30  Isd_VFormat pool, a constant the compiler built from the C (no address in the source)

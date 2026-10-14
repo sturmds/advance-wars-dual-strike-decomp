@@ -3,7 +3,7 @@
 # an initializer (docs/workflow.md, "Data from the ROM").
 #
 # module  symbol                      address     size   element type[row length]
-main      BuildInfo                   0x02000b00  0x24   u32
+main      BuildInfo                   0x02000b00  0x24   {void*,void*,void*,void*,void*,void*,u32,u32[2]}
 main      data_021298b8               0x021298b8  0x180  u16[16]
 main      data_02129a38               0x02129a38  0x180  u16[16]
 main      data_02129bb8               0x02129bb8  0x180  u16[16]
@@ -2336,7 +2336,7 @@ main      gMbRomArchiveName           0x0216d998  0x4    u8
 main      data_0216d9a0               0x0216d9a0  0x14   u32
 main      gIsdFormatActions           0x0216d9b4  0x90   u16[9]
 main      gIsdFormatCharClass         0x0216da44  0x200  u16
-main      gMslFiles                   0x0216dc44  0xe4   u32
+main      gMslFiles                   0x0216dc44  0xe4   {u32,u32:2,u32:3,u32:2,u32:3,u32:2,u32:1,u32:0,u32:3,u8,u8,u8[10],u32,u8*,u32,u8*,u32,u32,u32,u32,void*,void*,void*,void*,void*}
 main      data_0216dd28               0x0216dd28  0x4    u32
 main      data_0216dd2c               0x0216dd2c  0x4    u32
 main      data_0216dd30               0x0216dd30  0x6    u8
@@ -2344,9 +2344,9 @@ main      data_0216dd40               0x0216dd40  0x9    u8
 main      gMslLocale                  0x0216dd4c  0xc    {void*,void*,void*}
 main      data_0216dd58               0x0216dd58  0xc    u8
 main      data_0216dd64               0x0216dd64  0xf    u8
-main      data_0216dd74               0x0216dd74  0x10   u32
+main      data_0216dd74               0x0216dd74  0x10   {s32,s32,s32,u16*}
 main      data_0216dda4               0x0216dda4  0x55   u8
-main      data_0216ddfc               0x0216ddfc  0x74   u32
+main      data_0216ddfc               0x0216ddfc  0x74   u16
 main      data_0216de70               0x0216de70  0x86   u8
 main      data_0216def8               0x0216def8  0x4    u32
 main      data_0216defc               0x0216defc  0x4    u8

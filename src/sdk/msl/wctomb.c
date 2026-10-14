@@ -3,9 +3,9 @@
 
 extern void* data_0216dd84[];
 extern char data_0216dda4[];
-extern u32 data_0216ddfc[];
+extern u16 data_0216ddfc[];
 void func_02122348(void);
-extern u32 data_0216dd74[];
+extern MslCollate data_0216dd74;
 extern char data_0216de70[];
 
 #pragma explicit_zero_data on
@@ -31,7 +31,7 @@ MslLocale gMslLocale = {
 char data_0216dd64[] = {
 #include "data/main/data_0216dd64.inc.c"
 };
-u32 data_0216dd74[] = {
+MslCollate data_0216dd74 = {
 #include "data/main/data_0216dd74.inc.c"
 };
 void* data_0216dd84[] = {&data_0216dd30, &data_0216dd64, &data_0216dd58,
@@ -40,7 +40,7 @@ void* data_0216dd84[] = {&data_0216dd30, &data_0216dd64, &data_0216dd58,
 char data_0216dda4[] = {
 #include "data/main/data_0216dda4.inc.c"
 };
-u32 data_0216ddfc[] = {
+u16 data_0216ddfc[] = {
 #include "data/main/data_0216ddfc.inc.c"
 };
 char data_0216de70[] = {

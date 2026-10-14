@@ -1,14 +1,14 @@
 #include "types.h"
 
-extern u32 BuildInfo[];     /* module parameters the linker fills in */
+#include "sdk/module_params.h"
 void AutoloadCallback(int arg);
 
 #ifdef __MWERKS__
 /*
  * Copies the autoload blocks (ITCM, DTCM and the like) to where they run.
- * BuildInfo[0] and [1] bound a list of three-word entries: destination,
- * size to copy, size to clear after it. The data for all blocks follows one
- * another from BuildInfo[2]. Ends by jumping to AutoloadCallback.
+ * BuildInfo's autoloadListStart and autoloadListEnd bound a list of
+ * three-word entries: destination, size to copy, size to clear after it. The
+ * data for all blocks follows one another from autoloadStart. Ends by jumping to AutoloadCallback.
  */
 asm void do_autoload(void)
 {
@@ -49,9 +49,9 @@ done:
    The word loads and stores would round misaligned pointers down, so one
    stops the program. */
 void do_autoload(void) {
-  u32* entry = (u32*)(uintptr_t)BuildInfo[0];
-  u32* entries_end = (u32*)(uintptr_t)BuildInfo[1];
-  const u32* src = (const u32*)(uintptr_t)BuildInfo[2];
+  u32* entry = BuildInfo.autoloadListStart;
+  u32* entries_end = BuildInfo.autoloadListEnd;
+  const u32* src = BuildInfo.autoloadStart;
 
   while (entry != entries_end) {
     u32* dst = (u32*)(uintptr_t)entry[0];
@@ -75,6 +75,6 @@ void do_autoload(void) {
     }
   }
   /* r0 still holds BuildInfo's address when the assembly jumps. */
-  AutoloadCallback((int)(intptr_t)BuildInfo);
+  AutoloadCallback((int)(intptr_t)&BuildInfo);
 }
 #endif

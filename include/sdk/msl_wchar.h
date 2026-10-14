@@ -11,9 +11,18 @@ typedef struct MslCtype {
   int (*wctomb)(char* dest, wchar_t wc);
 } MslCtype;
 
+/* The locale's collation part: the sort weight of each character from
+ * charStart on, charCount of them ("A" to "z" in the C locale). */
+typedef struct MslCollate {
+  int charStart;
+  int charCount;
+  int specialAccents;
+  u16* weights;
+} MslCollate;
+
 typedef struct MslLocale {
   void* unk_00;
-  void* unk_04;
+  MslCollate* collate;
   MslCtype* ctype;
 } MslLocale;
 

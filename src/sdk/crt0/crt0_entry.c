@@ -1,7 +1,7 @@
 #include "types.h"
+#include "sdk/module_params.h"
 
 extern char DTCM_BASE[]; /* start of DTCM (ARM9_LAYOUT_SYMBOLS) */
-extern u32 BuildInfo[];     /* module parameters the linker fills in */
 void OS_IrqHandler(void);
 void main(void);
 void func_02000900(u32 data, void *dest, int size);
