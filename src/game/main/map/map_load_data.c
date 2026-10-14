@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/design_map.h"
+#include "game/map_data.h"
 #include "game/map_header.h"
-
-extern void* data_0229eadc;
 
 void* Mem_Alloc(u32 size);
 void Map_SetDataBuffer(void* buffer);
@@ -22,7 +21,7 @@ void Map_LoadData(u32 mapId) {
     Save_LoadRecord(10, data_0229eadc);
     return;
   }
-  Map_SetDataBuffer(Mem_Alloc(0xa14));
+  Map_SetDataBuffer(Mem_Alloc(sizeof(MapDataBuffer)));
   /* Campaign_IsHardMode picks mapData (0) or hardMapData (1). */
   src = (&Ov000_gMapHeaders[mapId].mapData)[Campaign_IsHardMode()];
   if (src == NULL) {

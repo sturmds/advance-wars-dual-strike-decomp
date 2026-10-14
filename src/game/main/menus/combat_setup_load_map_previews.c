@@ -28,7 +28,7 @@ void CombatSetup_LoadMapPreviews(void) {
   int i;
   char path[12];
 
-  map = Mem_Alloc(0xa12);
+  map = Mem_Alloc(sizeof(CombatMapBuffer));
   codeTerrain = Mem_Alloc(0x400);
   File_UnpackTo(codeTerrain, data_021612f8);
   FS_ChangeDir(data_02161310);

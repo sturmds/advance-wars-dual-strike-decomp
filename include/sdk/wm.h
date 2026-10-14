@@ -208,8 +208,9 @@ typedef struct WMStartScanCallback {
 typedef struct WMScanParam {
   WMBssDesc* scanBuf; /* where a found parent is written */
   u16 channel;
-  u16 maxChannelTime; /* milliseconds spent on the channel */
-  u8 bssid[6];        /* all 0xff scans for any parent */
+  u16 maxChannelTime;     /* milliseconds spent on the channel */
+  u8 bssid[6];            /* all 0xff scans for any parent */
+  u8 pad_0e[0x20 - 0x0e]; /* Wireless_Init allocates 0x20 bytes */
 } WMScanParam;
 
 typedef struct WMMeasureChannelCallback {
