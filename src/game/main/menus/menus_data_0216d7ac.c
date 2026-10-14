@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/game_mode_start.h"
 
 void Campaign_ContinueProfile2(void);
 void Campaign_StartNormal(void);
@@ -33,6 +34,6 @@ void func_02102bc4(void);
 void func_02102c34(void);
 void func_021032f8(void);
 
-u32 gGameModeStartTable[] = {
+GameModeStart gGameModeStartTable[] = {
 #include "data/main/gGameModeStartTable.inc.c"
 };

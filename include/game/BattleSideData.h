@@ -42,6 +42,19 @@ typedef struct BattleEffectFile {
 typedef char
     BattleEffectFile_size_check[sizeof(BattleEffectFile) == 8 ? 1 : -1];
 
+/* The shorter record some sides have as BattleSideData.effects[8]: the
+ * start sprite, of which Battle_MakeFighters reads offset and delay; the
+ * same layout as the start of BattleEffectParams. */
+typedef struct BattleStartSprite {
+  char files[5][4];
+  const void* table;
+  BattlePoint offset;
+  u16 delay;
+} BattleStartSprite;
+
+typedef char
+    BattleStartSprite_size_check[sizeof(BattleStartSprite) == 0x20 ? 1 : -1];
+
 /* Layout of BattleSideData.cellPositions that the fighter tasks read: positions they step through, from byte 14 of the data. */
 typedef struct BattleAnimData {
   u8 pad_00[14];

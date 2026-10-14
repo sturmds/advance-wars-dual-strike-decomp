@@ -17,8 +17,7 @@ void func_02099520(void);
 u8 gAiTargetGroupType[] = {
 #include "data/main/gAiTargetGroupType.inc.c"
 };
-/* sets of 29 bytes: a mods id, then a template id per CO id */
-u8 data_02161b8c[] = {
+AiProfileSet data_02161b8c[] = {
 #include "data/main/data_02161b8c.inc.c"
 };
 AiProfileMods gAiProfileMods[] = {

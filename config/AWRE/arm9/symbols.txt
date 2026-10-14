@@ -7564,7 +7564,7 @@ data_02161a64 kind:data(byte[4]) addr:0x02161a64
 gAiUnitPhases kind:data(byte[128]) addr:0x02161a68
 gAiUnitPhasesFog kind:data(byte[152]) addr:0x02161ae8
 gAiTargetGroupType kind:data(byte[12]) addr:0x02161b80
-data_02161b8c kind:data(byte[1220]) addr:0x02161b8c
+data_02161b8c kind:data(byte[1218]) addr:0x02161b8c
 data_02161b8d kind:data(byte[0]) addr:0x02161b8d
 data_02161baa kind:data(byte[0]) addr:0x02161baa
 gAiProfileMods kind:data(byte[2624]) addr:0x02162050

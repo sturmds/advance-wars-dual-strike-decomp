@@ -25,6 +25,19 @@ extern UnitInfoPanel* data_ov000_0234ec8c;
 extern MapUnit
     data_ov000_02350510; /* scratch unit for UnitInfoPanel_OpenForType */
 
+/* Where UnitInfoPanel_DrawPageMarker draws the marker of a panel page
+ * (data_ov000_0234f9e8, one per page): the arguments of
+ * Sprite_DrawPulsingCorners, x from the panel's left edge. */
+typedef struct UnitInfoPanelMarker {
+  u8 x;
+  u8 y;
+  u8 width; /* pages 4 and 11 use the width of a description text instead */
+  u8 height;
+} UnitInfoPanelMarker;
+
+typedef char
+    UnitInfoPanelMarker_size_check[sizeof(UnitInfoPanelMarker) == 4 ? 1 : -1];
+
 extern UnitInfoPanel
     data_ov000_02350520; /* what data_ov000_0234ec8c points to */
 

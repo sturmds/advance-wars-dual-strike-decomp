@@ -2,6 +2,7 @@
 #define GAME_AI_PROFILE_H
 
 #include "types.h"
+#include "game/co_data.h"
 
 /* How the AI rates one unit type, inside AiProfile. Field meanings unknown. */
 typedef struct AiUnitProfile {
@@ -61,6 +62,16 @@ extern AiProfileTemplate gAiProfileTemplates[];
 extern AiProfile* gAiProfile;
 extern AiUnitProfile*
     gAiActiveUnitProfile; /* entry of the active unit's type */
+
+/* One set of data_02161b8c, picked by MapHeader.unk_41 (set 1 when that
+ * is 0): the AiProfileMods id and the AiProfileTemplate id for each CO id
+ * (AiProfile_BuildForPlayer). */
+typedef struct AiProfileSet {
+  u8 modsId;
+  u8 templateIds[CO_COUNT];
+} AiProfileSet;
+
+typedef char AiProfileSet_size_check[sizeof(AiProfileSet) == 29 ? 1 : -1];
 
 extern AiProfile data_0229e2e4; /* what gAiProfile points to */
 

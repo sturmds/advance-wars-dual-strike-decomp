@@ -1542,7 +1542,7 @@ main      gTerrainFactoryKind         0x02161a24  0x20   u8
 main      gTerrainSupplyKind          0x02161a44  0x20   u8
 main      data_02161a64               0x02161a64  0x4    u32
 main      gAiTargetGroupType          0x02161b80  0xc    u8
-main      data_02161b8c               0x02161b8c  0x4c4  u8
+main      data_02161b8c               0x02161b8c  0x4c2  {u8,u8[28]}
 main      gAiProfileMods              0x02162050  0xa40  {u8[12],u8[52]}
 main      gAiProfileTemplates         0x02162a90  0x2e38 {u32,u8,u8,u8,u8,u8,u8,u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7],u8,u8,u8,u8,u8,u8,s8[7]}
 main      data_021658c8               0x021658c8  0x8    u16
@@ -1600,7 +1600,7 @@ main      data_02166678               0x02166678  0x38   {s16,s16,u32}
 main      data_021666b0               0x021666b0  0x38   {s16,s16,u32}
 main      data_021666e8               0x021666e8  0x38   {u32,u16,u16}
 main      data_02166720               0x02166720  0x38   u32
-main      data_02166758               0x02166758  0x40   u8
+main      data_02166758               0x02166758  0x40   {u8,u8}
 main      data_02166798               0x02166798  0x40   {u8:EVENT_OP,u8[3],void*,s16,s16,u32}
 main      data_021667d8               0x021667d8  0x50   {u8:EVENT_OP,u8[3],void*,s16,s16,u32}
 main      data_02166828               0x02166828  0x60   {s16,s16,u32}
@@ -1942,11 +1942,11 @@ main      data_021694f8               0x021694f8  0x9    u8
 main      data_02169504               0x02169504  0xa    u8
 main      data_02169510               0x02169510  0xa    u8
 main      data_0216951c               0x0216951c  0x10   u32
-main      data_0216952c               0x0216952c  0x10   u32
-main      data_0216953c               0x0216953c  0x10   u32
+main      data_0216952c               0x0216952c  0x10   {s16:TASK_CMD,s16,u32}
+main      data_0216953c               0x0216953c  0x10   {s16:TASK_CMD,s16,u32}
 main      gEffectSceneShakeOffsets    0x0216954c  0x10   u32
 main      data_0216955c               0x0216955c  0x10   u32
-main      data_0216956c               0x0216956c  0x10   u32
+main      data_0216956c               0x0216956c  0x10   {s16:TASK_CMD,s16,u32}
 main      data_0216957c               0x0216957c  0x14   u32
 main      data_02169590               0x02169590  0x14   u32
 main      data_021695b8               0x021695b8  0x18   {s16,s16,u32}
@@ -2315,7 +2315,7 @@ main      data_0216d6d4               0x0216d6d4  0x28   {s16,s16,u32}
 main      data_0216d6fc               0x0216d6fc  0x28   {s16,s16,u32}
 main      data_0216d724               0x0216d724  0x30   {s16,s16,u32}
 main      data_0216d754               0x0216d754  0x58   {s16:TASK_CMD,s16,u32}
-main      gGameModeStartTable         0x0216d7ac  0x100  u32
+main      gGameModeStartTable         0x0216d7ac  0x100  {void*,u32}
 main      data_0216d8ac               0x0216d8ac  0x40   {s16,s16,u32}
 main      data_0216d8ec               0x0216d8ec  0x40   {s16,s16,u32}
 main      data_0216d92c               0x0216d92c  0x4    u32
@@ -4033,7 +4033,7 @@ ov002     data_ov002_0236988c         0x0236988c  0x4    u8
 ov002     data_ov002_02369890         0x02369890  0x4    u8
 ov002     data_ov002_02369894         0x02369894  0x4    u8
 ov002     data_ov002_02369898         0x02369898  0x4    u8
-ov002     data_ov002_0236989c         0x0236989c  0x20   u32
+ov002     data_ov002_0236989c         0x0236989c  0x20   {u8[20],void*,s16,s16,u16,pad[2]}
 ov002     data_ov002_023698bc         0x023698bc  0x8    {u8[4],void*}
 ov002     data_ov002_023698c4         0x023698c4  0x8    {u8[4],void*}
 ov002     data_ov002_023698cc         0x023698cc  0x8    {u8[4],void*}
@@ -5858,7 +5858,7 @@ ov006     Ov006_gPortCells            0x0236d560  0x8    u16
 ov006     data_ov006_0236d568         0x0236d568  0x20   u8[16]
 ov006     data_ov006_0236d588         0x0236d588  0x20   u8[16]
 ov006     data_ov006_0236d5a8         0x0236d5a8  0x20   u8[16]
-ov006     data_ov006_0236d5c8         0x0236d5c8  0x20   u32
+ov006     data_ov006_0236d5c8         0x0236d5c8  0x20   u8[16]
 ov006     Ov006_gDirStepX             0x0236d5e8  0x8    s16
 ov006     Ov006_gNeighborDy           0x0236d5f0  0x8    s16
 ov006     data_ov006_0236d5f8         0x0236d5f8  0x8    s16
@@ -11656,7 +11656,7 @@ ov000     data_ov000_0234f30c         0x0234f30c  0x30   {u32,u16,u16:SCRIPT_CMD
 ov000     data_ov000_0234f33c         0x0234f33c  0x48   {s16:TASK_CMD,s16,u32}
 ov000     data_ov000_0234f9d8         0x0234f9d8  0x7    u8
 ov000     data_ov000_0234f9e0         0x0234f9e0  0x8    u8
-ov000     data_ov000_0234f9e8         0x0234f9e8  0x40   u32
+ov000     data_ov000_0234f9e8         0x0234f9e8  0x40   {u8,u8,u8,u8}
 ov000     data_ov000_0234fa28         0x0234fa28  0x680  u32
 ov000     data_ov000_023500a8         0x023500a8  0xc    u32
 ov000     data_ov000_023500b4         0x023500b4  0xc    s32

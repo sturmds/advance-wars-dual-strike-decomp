@@ -16,9 +16,12 @@ typedef struct MapTilesetFiles {
       objPaletteFile; /* one OBJ palette row; MapGfx_LoadTilesetObjPalette loads it outside the Design Room */
   const char*
       texImage2; /* texture image file; MapGfx_LoadTextures reads it from the record before the tileset's */
-  u8 pad_14[0x18 - 0x14];
+  const char* unk_14;    /* a file name; no reader found yet */
   const char* texImage1; /* texture image file, read the same way */
 } MapTilesetFiles;
+
+typedef char
+    MapTilesetFiles_size_check[sizeof(MapTilesetFiles) == 0x1c ? 1 : -1];
 
 extern MapTilesetFiles data_02167e30[];
 

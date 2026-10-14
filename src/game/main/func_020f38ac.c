@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/terrain.h"
 #include "game/event_script.h"
 #include "game/screen_other_map.h"
 #include "game/task.h"
@@ -198,8 +199,7 @@ ScriptCommand data_021666e8[] = {
 u32 data_02166720[] = {
 #include "data/main/data_02166720.inc.c"
 };
-/* per terrain, 2 bytes each: the icon number is the first byte */
-u8 data_02166758[] = {
+TerrainIcon data_02166758[] = {
 #include "data/main/data_02166758.inc.c"
 };
 EventScriptCommand data_02166798[] = {

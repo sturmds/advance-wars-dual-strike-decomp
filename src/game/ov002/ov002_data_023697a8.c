@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/BattleSideData.h"
 #include "game/battle_gfx.h"
 
 extern u8 data_ov002_023608d8[];
@@ -185,6 +186,6 @@ char data_ov002_023697ac[] = {
 char data_ov002_023697a8[] = {
 #include "data/ov002/data_ov002_023697a8.inc.c"
 };
-u32 data_ov002_0236989c[] = {
+BattleStartSprite data_ov002_0236989c[] = {
 #include "data/ov002/data_ov002_0236989c.inc.c"
 };

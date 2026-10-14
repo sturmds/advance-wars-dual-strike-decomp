@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_02168850Row.h"
 #include "game/task.h"
 
 void MenuDepth_Pop(void);
@@ -90,12 +91,10 @@ TaskScriptCmd data_021687e0[] = {
 TaskScriptCmd gCoNoPowerScript[] = {
 #include "data/main/gCoNoPowerScript.inc.c"
 };
-/* declared `Unk_02168850Row data_02168850[]` in func_020e3554.c: declared in src/game/main/func_020e3554.c, with a type no header defines */
-void* data_02168850[] = {
-    &data_0216875c, &data_02168784, &data_02168760, &data_0216875c,
-    &data_02168784, &data_02168760, &data_02168750, &data_021687a4,
-    &data_021687a0, &data_0216879c, &data_02168798, &data_02168794,
-    &data_02168790, &data_0216878c, &data_02168788, &data_02168754,
-    &data_02168758, &data_02168780, &data_02168778, &data_02168774,
-    &data_02168780, &data_02168770, &data_0216876c, &data_02168780,
-    &data_02168768, &data_02168764, &data_0216877c};
+Unk_02168850Row data_02168850[] = {
+    data_0216875c, data_02168784, data_02168760, data_0216875c, data_02168784,
+    data_02168760, data_02168750, data_021687a4, data_021687a0, data_0216879c,
+    data_02168798, data_02168794, data_02168790, data_0216878c, data_02168788,
+    data_02168754, data_02168758, data_02168780, data_02168778, data_02168774,
+    data_02168780, data_02168770, data_0216876c, data_02168780, data_02168768,
+    data_02168764, data_0216877c};

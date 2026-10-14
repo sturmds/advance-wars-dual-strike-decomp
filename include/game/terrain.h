@@ -65,4 +65,13 @@ typedef char TerrainStats_size_check[sizeof(TerrainStats) == 0x18 ? 1 : -1];
 
 extern TerrainStats Ov000_gTerrainStats[];
 
+/* One entry of data_02166758 per terrain id: Terrain_GetIconTiles reads
+ * tiles, Terrain_GetPalette reads palette (through data_02166759). */
+typedef struct TerrainIcon {
+  u8 tiles;   /* icon number: 256 bytes of tile data each */
+  u8 palette; /* 32 bytes of palette each */
+} TerrainIcon;
+
+typedef char TerrainIcon_size_check[sizeof(TerrainIcon) == 2 ? 1 : -1];
+
 #endif

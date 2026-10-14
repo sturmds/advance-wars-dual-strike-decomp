@@ -4,6 +4,7 @@
 #include "game/screen_contexts.h"
 #include "game/song.h"
 #include "game/task.h"
+#include "game/Unk_02169b20.h"
 
 void EffectScene_InitSprite(void);
 void EffectScene_ScrollEaseInit(void);
@@ -112,13 +113,13 @@ u32 data_0216955c[] = {
 u32 gEffectSceneShakeOffsets[] = {
 #include "data/main/gEffectSceneShakeOffsets.inc.c"
 };
-u32 data_0216956c[] = {
+TaskScriptCmd data_0216956c[] = {
 #include "data/main/data_0216956c.inc.c"
 };
-u32 data_0216953c[] = {
+TaskScriptCmd data_0216953c[] = {
 #include "data/main/data_0216953c.inc.c"
 };
-u32 data_0216952c[] = {
+TaskScriptCmd data_0216952c[] = {
 #include "data/main/data_0216952c.inc.c"
 };
 u32 data_0216957c[] = {
@@ -243,17 +244,18 @@ GfxLayer gBmap083Layers[] = {
 TaskScriptCmd data_02169ab0[] = {
 #include "data/main/data_02169ab0.inc.c"
 };
-/* declared `Unk_02169b20 data_02169b20[]` in func_020f379c.c: declared in src/game/main/func_020f379c.c, with a type no header defines */
-void* data_02169b20[] = {
-    &data_02169690, &data_021696a8, &data_021694d0, &data_02169690,
-    &data_021696a8, &data_021694f0, &data_021696d8, &data_021696f0,
-    &data_02169510, &data_02169720, &data_02169738, &data_021694d8,
-    &data_02169750, &data_02169768, &data_021694f8, &data_02169798,
-    &data_02169660, &data_021694c8, &data_02169618, &data_021695d0,
-    &data_021694e8, &data_02169600, &data_02169630, &data_02169504,
-    &data_02169838, &data_02169780, &data_021694e0, &data_0216952c,
-    &data_0216956c, &data_021694bc, &data_02169648, &data_0216953c,
-    &data_021694c4};
+Unk_02169b20 data_02169b20[] = {
+    data_02169690, data_021696a8, data_021694d0,
+    data_02169690, data_021696a8, data_021694f0,
+    data_021696d8, data_021696f0, data_02169510,
+    data_02169720, data_02169738, data_021694d8,
+    data_02169750, data_02169768, data_021694f8,
+    data_02169798, data_02169660, data_021694c8,
+    data_02169618, data_021695d0, data_021694e8,
+    data_02169600, data_02169630, data_02169504,
+    data_02169838, data_02169780, data_021694e0,
+    data_0216952c, data_0216956c, (const char*)&data_021694bc,
+    data_02169648, data_0216953c, data_021694c4};
 s32 data_02169ba4[][5] = {
 #include "data/main/data_02169ba4.inc.c"
 };
