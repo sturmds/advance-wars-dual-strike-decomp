@@ -2,7 +2,7 @@
 #include "sdk/os_arm7.h"
 
 /* module parameters the linker fills in */
-const u32 BuildInfo_Arm7[2] = {
+const u32 BuildInfo_Arm7[] = {
 #include "data/arm7/BuildInfo_Arm7.inc.c"
 };
 void do_autoload_Arm7(void);

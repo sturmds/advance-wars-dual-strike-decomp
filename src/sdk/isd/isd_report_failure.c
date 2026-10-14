@@ -4,10 +4,10 @@
 #include "sdk/isd.h"
 
 /* "0" */
-const char gIsdZeroString[4] = {
+const char gIsdZeroString[] = {
 #include "data/main/gIsdZeroString.inc.c"
 };
-static const char gIsdAssertionFormat[52] = {
+static const char gIsdAssertionFormat[] = {
 #include "data/main/gIsdAssertionFormat.inc.c"
 };
 extern char gIsdWarningFormat[];

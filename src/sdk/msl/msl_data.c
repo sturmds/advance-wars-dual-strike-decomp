@@ -8,6 +8,6 @@ extern u8 data_022ad424[];
 void func_021295f8(void);
 
 /* declared `FILE gMslFiles[FILE_COUNT]` in msl_file.h: FileModes.openMode is a bit field */
-u32 gMslFiles[57] = {
+u32 gMslFiles[] = {
 #include "data/main/gMslFiles.inc.c"
 };

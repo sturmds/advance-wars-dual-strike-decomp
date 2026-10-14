@@ -2,7 +2,7 @@
 
 IrqSlotEntry gOsIrqSlots[0x4]; /* size: up to the next symbol */
 
-static u16 gOsIrqBitBySlot[8] = {
+static u16 gOsIrqBitBySlot[] = {
 #include "data/main/gOsIrqBitBySlot.inc.c"
 };
 extern char DTCM_BASE[]; /* start of DTCM (ARM9_LAYOUT_SYMBOLS) */

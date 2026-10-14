@@ -3,7 +3,7 @@
 #include "types.h"
 #include "sdk/isd.h"
 
-static const char gIsdRemoveIndexCheck[38] = {
+static const char gIsdRemoveIndexCheck[] = {
 #include "data/main/gIsdRemoveIndexCheck.inc.c"
 };
 

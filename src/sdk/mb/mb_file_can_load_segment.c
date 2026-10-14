@@ -4,7 +4,7 @@
 const u32 gMbSegmentTypes[DLPLAY_PROGRAM_PART_COUNT] = {
 #include "data/main/gMbSegmentTypes.inc.c"
 };
-const u32 data_02151978[6] = {
+const u32 data_02151978[] = {
 #include "data/main/data_02151978.inc.c"
 };
 

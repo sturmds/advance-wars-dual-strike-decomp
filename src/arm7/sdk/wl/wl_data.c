@@ -25,7 +25,7 @@ void WifiTask_BeginShutdown(void);
 void WifiTask_Shutdown(void);
 
 /* declared `void (*const gWlTaskHandlers[WIFI_TASK_SLOTS])(void)` in wifi_task_clear_queues.c: cannot read the declaration `void (*const gWlTaskHandlers[WIFI_TASK_SLOTS])(void)` */
-void* gWlTaskHandlers[24] = {
+void* gWlTaskHandlers[] = {
     &WifiMlme_RunScan,           &func_arm7_027cc5ac,
     &WifiMlme_RunAuthentication, &WifiMlme_RunAssociation,
     &WifiMlme_RunReassociation,  &WifiMlme_RunChannelSurvey,

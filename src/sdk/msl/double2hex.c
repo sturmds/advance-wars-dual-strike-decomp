@@ -18,15 +18,15 @@ u32 data_0216def8 = {
 #include "data/main/data_0216def8.inc.c"
 };
 /* "" */
-char data_0216defc[4] = {
+char data_0216defc[] = {
 #include "data/main/data_0216defc.inc.c"
 };
 /* "-INF" */
-char data_0216df00[5] = {
+char data_0216df00[] = {
 #include "data/main/data_0216df00.inc.c"
 };
 /* "-inf" */
-char data_0216df08[5] = {
+char data_0216df08[] = {
 #include "data/main/data_0216df08.inc.c"
 };
 #pragma explicit_zero_data reset

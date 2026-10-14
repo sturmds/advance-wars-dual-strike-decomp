@@ -9,12 +9,12 @@
 
 /* First quarter of a sine period of 128 steps, plus the peak
  * (SndDrv_SineWave). */
-s8 gSndSineQuarterTable[33] = {
+s8 gSndSineQuarterTable[] = {
 #include "data/arm7/gSndSineQuarterTable.inc.c"
 };
 
 /* Attenuation in tenths of a decibel (-723 to 0) for each volume 0-127. */
-s16 gSndVolumeDecibels[128] = {
+s16 gSndVolumeDecibels[] = {
 #include "data/arm7/gSndVolumeDecibels.inc.c"
 };
 

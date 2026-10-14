@@ -82,24 +82,24 @@ void func_arm7_027cdfdc(void);
 void func_arm7_027ce024(void);
 void func_arm7_027ce03c(void);
 
-WlCommandEntry gWlCommands100[5] = {
+WlCommandEntry gWlCommands100[] = {
 #include "data/arm7/gWlCommands100.inc.c"
 };
-WlCommandEntry gWlCommands2c0[6] = {
+WlCommandEntry gWlCommands2c0[] = {
 #include "data/arm7/gWlCommands2c0.inc.c"
 };
-WlCommandEntry gWlCommands240[6] = {
+WlCommandEntry gWlCommands240[] = {
 #include "data/arm7/gWlCommands240.inc.c"
 };
-WlCommandEntry gWlCommands300[10] = {
+WlCommandEntry gWlCommands300[] = {
 #include "data/arm7/gWlCommands300.inc.c"
 };
-WlCommandEntry gWlCommands000[11] = {
+WlCommandEntry gWlCommands000[] = {
 #include "data/arm7/gWlCommands000.inc.c"
 };
-WlCommandEntry gWlCommands280[22] = {
+WlCommandEntry gWlCommands280[] = {
 #include "data/arm7/gWlCommands280.inc.c"
 };
-WlCommandEntry gWlCommands200[22] = {
+WlCommandEntry gWlCommands200[] = {
 #include "data/arm7/gWlCommands200.inc.c"
 };

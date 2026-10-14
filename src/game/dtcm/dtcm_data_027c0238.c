@@ -78,10 +78,10 @@ int data_027c0284 = {
 Unk_027c0288 data_027c0288 = {
 #include "data/dtcm/data_027c0288.inc.c"
 };
-u8 gMainScreenContext[324] = {
+u8 gMainScreenContext[] = {
 #include "data/dtcm/gMainScreenContext.inc.c"
 };
-u8 gSubScreenContext[324] = {
+u8 gSubScreenContext[] = {
 #include "data/dtcm/gSubScreenContext.inc.c"
 };
 #pragma explicit_zero_data reset

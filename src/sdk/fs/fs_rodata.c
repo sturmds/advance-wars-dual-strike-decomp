@@ -11,15 +11,15 @@ void FSi_OpenFileDirectCommand(void);
 void func_021111dc(void);
 
 /* declared `int (*const gArchiveFallbackCommands[])(FSFile* file)` in fs_translate_command.c: cannot read the declaration `int (*const gArchiveFallbackCommands[])(FSFile* file)` */
-void* const gArchiveFallbackCommands[9] = {&FSi_ReadFileCommand,
-                                           &FSi_WriteFileCommand,
-                                           &Archive_CmdSetDirPosition,
-                                           &Archive_CmdNextDirEntry,
-                                           &FSi_FindPathCommand,
-                                           &FSi_GetPathCommand,
-                                           &FSi_OpenFileFastCommand,
-                                           &FSi_OpenFileDirectCommand,
-                                           &func_021111dc};
-const u32 data_0215192c[16] = {
+void* const gArchiveFallbackCommands[] = {&FSi_ReadFileCommand,
+                                          &FSi_WriteFileCommand,
+                                          &Archive_CmdSetDirPosition,
+                                          &Archive_CmdNextDirEntry,
+                                          &FSi_FindPathCommand,
+                                          &FSi_GetPathCommand,
+                                          &FSi_OpenFileFastCommand,
+                                          &FSi_OpenFileDirectCommand,
+                                          &func_021111dc};
+const u32 data_0215192c[] = {
 #include "data/main/data_0215192c.inc.c"
 };

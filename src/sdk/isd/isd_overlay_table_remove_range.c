@@ -4,13 +4,13 @@
 #include "sdk/fs.h"
 #include "sdk/isd.h"
 
-const char gIsdOverlayFileName[13] = {
+const char gIsdOverlayFileName[] = {
 #include "data/main/gIsdOverlayFileName.inc.c"
 };
-const char gIsdEntryStartCheck[31] = {
+const char gIsdEntryStartCheck[] = {
 #include "data/main/gIsdEntryStartCheck.inc.c"
 };
-const char gIsdEntryEndCheck[61] = {
+const char gIsdEntryEndCheck[] = {
 #include "data/main/gIsdEntryEndCheck.inc.c"
 };
 

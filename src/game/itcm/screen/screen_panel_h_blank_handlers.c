@@ -9,7 +9,7 @@ void Screen_HBlankBottomPanel(void);
 
 /* H-blank handler of the panel on each screen, indexed by the screen
  * (EventScript_ShowPicture). */
-void* gScreenPanelHBlankHandlers[2] = {
+void* gScreenPanelHBlankHandlers[] = {
 #include "data/itcm/gScreenPanelHBlankHandlers.inc.c"
 };
 

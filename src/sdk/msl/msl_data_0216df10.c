@@ -1,18 +1,18 @@
 #include "types.h"
 
 /* "INF" */
-char data_0216df10[4] = {
+char data_0216df10[] = {
 #include "data/main/data_0216df10.inc.c"
 };
 /* "inf" */
-char data_0216df14[4] = {
+char data_0216df14[] = {
 #include "data/main/data_0216df14.inc.c"
 };
 /* "-NAN" */
-char data_0216df18[5] = {
+char data_0216df18[] = {
 #include "data/main/data_0216df18.inc.c"
 };
 /* "-nan" */
-char data_0216df20[5] = {
+char data_0216df20[] = {
 #include "data/main/data_0216df20.inc.c"
 };

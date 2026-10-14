@@ -4,10 +4,10 @@
 #include "sdk/fs.h"
 #include "sdk/isd.h"
 
-static const char gIsdSizePositiveCheck[32] = {
+static const char gIsdSizePositiveCheck[] = {
 #include "data/main/gIsdSizePositiveCheck.inc.c"
 };
-static const char gIsdSizeLimitCheck[41] = {
+static const char gIsdSizeLimitCheck[] = {
 #include "data/main/gIsdSizeLimitCheck.inc.c"
 };
 

@@ -9,7 +9,7 @@
 
 /* Right shift the hardware applies for each volume shift setting: 0, 1, 2,
  * 4 bits (SndExChannel_CompareVolume). */
-u8 gSndVolumeShiftBits[4] = {
+u8 gSndVolumeShiftBits[] = {
 #include "data/arm7/gSndVolumeShiftBits.inc.c"
 };
 
@@ -20,7 +20,7 @@ u8 gSndExChannelAllocOrder[AUDIO_CH_TOTAL] = {
 
 /* Attack multipliers for the settings 109-127, fastest first
  * (SndExChannel_SetAttack). */
-u8 gSndAttackTable[19] = {
+u8 gSndAttackTable[] = {
 #include "data/arm7/gSndAttackTable.inc.c"
 };
 

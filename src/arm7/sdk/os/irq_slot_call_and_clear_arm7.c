@@ -1,7 +1,7 @@
 #include "sdk/os_arm7.h"
 
 /* IE bit of each ARM7 IRQ slot */
-static const u16 data_arm7_0380773c[2] = {
+static const u16 data_arm7_0380773c[] = {
 #include "data/arm7/data_arm7_0380773c.inc.c"
 };
 

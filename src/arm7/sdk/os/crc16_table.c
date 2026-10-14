@@ -5,7 +5,7 @@
 #pragma section TEXT_DATA begin
 
 /* CRC-16 (polynomial 0xa001) of each nibble, for CalcCrc16. */
-u16 gCrc16NibbleTable[16] = {
+u16 gCrc16NibbleTable[] = {
 #include "data/arm7/gCrc16NibbleTable.inc.c"
 };
 

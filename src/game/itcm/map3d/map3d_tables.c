@@ -8,18 +8,18 @@
 
 /* 32 zero bytes that Map3d_LoadTextures copies over texture VRAM to clear
  * it. */
-u32 gMap3dClearBlock[8] = {
+u32 gMap3dClearBlock[] = {
 #include "data/itcm/gMap3dClearBlock.inc.c"
 };
 
 /* The 32 colours Map3d_InitScreen loads into the toon table. */
-u16 gMap3dToonTable[32] = {
+u16 gMap3dToonTable[] = {
 #include "data/itcm/gMap3dToonTable.inc.c"
 };
 
 /* Texture block of each unit type, one row of 27 per army style
  * (Unit3d_GetTextureOffset). */
-u32 gUnit3dTextureBlocks[6][27] = {
+u32 gUnit3dTextureBlocks[][27] = {
 #include "data/itcm/gUnit3dTextureBlocks.inc.c"
 };
 

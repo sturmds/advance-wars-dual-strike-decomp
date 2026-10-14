@@ -3,7 +3,7 @@
 static u32 gSndRandomSeed = {
 #include "data/arm7/gSndRandomSeed.inc.c"
 };
-char data_arm7_038077c0[36] = {
+char data_arm7_038077c0[] = {
 #include "data/arm7/data_arm7_038077c0.inc.c"
 };
 

@@ -15,7 +15,7 @@ extern u32 data_02175198[]; /* end of the autoload list */
  * bound main's .bss, [5] is the end of the compressed part (0: not
  * compressed; Entry passes it to MIi_UncompressBackward), [6] is the library
  * version, and [7] and [8] are the "nitrocode" words that end the block. */
-u32 BuildInfo[9] = {
+u32 BuildInfo[] = {
 #include "data/main/BuildInfo.inc.c"
 };
 

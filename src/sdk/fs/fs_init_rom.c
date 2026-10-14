@@ -12,7 +12,7 @@ RomRegion data_022ab844;
 RomRegion data_022ab84c;
 FSArchive gRomFileArchive;
 /* "rom" */
-static char data_0216d974[4] = {
+static char data_0216d974[] = {
 #include "data/main/data_0216d974.inc.c"
 };
 

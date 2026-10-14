@@ -34,7 +34,7 @@ u8 gCardSaveCmdWriteEnable = {
 
 /* Request handlers, indexed by CARDiArm7Common.command
  * (Card_ServiceThread_Arm7). */
-void (*gCardRequestHandlers[13])(CARDiArm7Common* common) = {
+void (*gCardRequestHandlers[])(CARDiArm7Common* common) = {
     func_arm7_038038b0, func_arm7_038038ac, func_arm7_038038a8,
     func_arm7_0380388c, func_arm7_0380386c, func_arm7_038038b4,
     func_arm7_03803850, func_arm7_03803818, func_arm7_03803834,

@@ -1,7 +1,7 @@
 #include "sdk/mi.h"
 #include "sdk/wl.h"
 
-u16 gWlBroadcastAddress[3] = {
+u16 gWlBroadcastAddress[] = {
 #include "data/arm7/gWlBroadcastAddress.inc.c"
 };
 

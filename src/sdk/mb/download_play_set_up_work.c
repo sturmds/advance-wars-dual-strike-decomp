@@ -6,13 +6,13 @@ extern u32 data_0216d9a0[];
 
 /* points to L"multiboot" */
 static const u16* data_0216d99c = (u16*)&data_0216d9a0;
-u32 data_0216d9a0[5] = {
+u32 data_0216d9a0[] = {
 #include "data/main/data_0216d9a0.inc.c"
 };
-u16 gIsdFormatActions[8][9] = {
+u16 gIsdFormatActions[][9] = {
 #include "data/main/gIsdFormatActions.inc.c"
 };
-u16 gIsdFormatCharClass[256] = {
+u16 gIsdFormatCharClass[] = {
 #include "data/main/gIsdFormatCharClass.inc.c"
 };
 

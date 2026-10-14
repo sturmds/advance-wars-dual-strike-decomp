@@ -2,7 +2,7 @@
 #include "sdk/msl.h"
 #include "sdk/msl_string.h"
 
-const u16 __ctype_map[128] = {
+const u16 __ctype_map[] = {
 #include "data/main/__ctype_map.inc.c"
 };
 

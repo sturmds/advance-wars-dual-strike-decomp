@@ -14,7 +14,7 @@ static u32 data_0216d96c = {
 #include "data/main/data_0216d96c.inc.c"
 };
 /* ":/" */
-char gArchiveNameColonSlash[4] = {
+char gArchiveNameColonSlash[] = {
 #include "data/main/gArchiveNameColonSlash.inc.c"
 };
 

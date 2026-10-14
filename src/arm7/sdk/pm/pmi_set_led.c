@@ -6,7 +6,7 @@ int gPowerLedLastState = {
 #include "data/arm7/gPowerLedLastState.inc.c"
 };
 /* declared `PowerLedBlinkScript gPowerLedBlinkTable[]` in power_led_step_pattern.c: PowerLedBlinkScript.bits has type u64 */
-u32 gPowerLedBlinkTable[36] = {
+u32 gPowerLedBlinkTable[] = {
 #include "data/arm7/gPowerLedBlinkTable.inc.c"
 };
 

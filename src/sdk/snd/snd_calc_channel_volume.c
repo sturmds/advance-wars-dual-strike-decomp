@@ -1,6 +1,6 @@
 #include "sdk/snd.h"
 
-static const u8 data_02151634[724] = {
+static const u8 data_02151634[] = {
 #include "data/main/data_02151634.inc.c"
 };
 

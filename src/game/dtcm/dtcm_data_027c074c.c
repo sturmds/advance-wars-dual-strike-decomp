@@ -13,7 +13,7 @@ int data_027c0750 = {
 #include "data/dtcm/data_027c0750.inc.c"
 };
 MoveSearchNode* data_027c075c = 0;
-u32 data_027c0760[710] = {
+u32 data_027c0760[] = {
 #include "data/dtcm/data_027c0760.inc.c"
 };
 #pragma explicit_zero_data reset

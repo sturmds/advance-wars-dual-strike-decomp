@@ -6,7 +6,7 @@
 
 /* {IE mask, handler index} pairs, highest priority first, that
  * IrqNest_DispatchByPriority walks to pick the interrupt to serve. */
-u32 gOsNestedIrqPriorities[22][2] = {
+u32 gOsNestedIrqPriorities[][2] = {
 #include "data/arm7/gOsNestedIrqPriorities.inc.c"
 };
 

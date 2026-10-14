@@ -1,6 +1,6 @@
 #include "types.h"
 
 /* "(null)" */
-const char gIsdNullString[7] = {
+const char gIsdNullString[] = {
 #include "data/main/gIsdNullString.inc.c"
 };

@@ -10,31 +10,31 @@ void func_arm7_027c90ec(u16* dest,
 void WifiRx_ScanElements(WlElements* elements);
 
 #pragma explicit_zero_data on
-u16 data_arm7_027d6698[3] = {
+u16 data_arm7_027d6698[] = {
 #include "data/arm7/data_arm7_027d6698.inc.c"
 };
-static u16 gWlZeroMacAddr[3] = {
+static u16 gWlZeroMacAddr[] = {
 #include "data/arm7/gWlZeroMacAddr.inc.c"
 };
-u16 gWlFirmwareRegOffsets[16] = {
+u16 gWlFirmwareRegOffsets[] = {
 #include "data/arm7/gWlFirmwareRegOffsets.inc.c"
 };
-u16 gWifiRateHalfMbps[16] = {
+u16 gWifiRateHalfMbps[] = {
 #include "data/arm7/gWifiRateHalfMbps.inc.c"
 };
-u16 gWlDefaultWords58[16] = {
+u16 gWlDefaultWords58[] = {
 #include "data/arm7/gWlDefaultWords58.inc.c"
 };
-u16 gWlCrc16Table[16] = {
+u16 gWlCrc16Table[] = {
 #include "data/arm7/gWlCrc16Table.inc.c"
 };
-u8 gWlDefaultWifiRamBlocks[80] = {
+u8 gWlDefaultWifiRamBlocks[] = {
 #include "data/arm7/gWlDefaultWifiRamBlocks.inc.c"
 };
-WlRegValue gWlRegDefaults[25] = {
+WlRegValue gWlRegDefaults[] = {
 #include "data/arm7/gWlRegDefaults.inc.c"
 };
-u16 gWlRateBits[120] = {
+u16 gWlRateBits[] = {
 #include "data/arm7/gWlRateBits.inc.c"
 };
 #pragma explicit_zero_data reset

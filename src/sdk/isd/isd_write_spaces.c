@@ -3,7 +3,7 @@
 #include "types.h"
 #include "sdk/isd.h"
 
-static const char gIsdSpaces[17] = {
+static const char gIsdSpaces[] = {
 #include "data/main/gIsdSpaces.inc.c"
 };
 

@@ -8,7 +8,7 @@ static u8 gMbLastFileInfoSent = {
 #include "data/main/gMbLastFileInfoSent.inc.c"
 };
 const RomRegion* gMbArm9CopyRegions = (RomRegion*)&data_02151978;
-char gMbRomArchiveName[4] = {
+char gMbRomArchiveName[] = {
 #include "data/main/gMbRomArchiveName.inc.c"
 };
 
