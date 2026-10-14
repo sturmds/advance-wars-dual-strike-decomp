@@ -1,7 +1,16 @@
 #include "types.h"
 #include "sdk/mb.h"
+#include "sdk/rom_header.h"
 
-extern u8 gMbLastFileInfoSent;
+extern u8 data_02151978[];
+
+static u8 gMbLastFileInfoSent = {
+#include "data/main/gMbLastFileInfoSent.inc.c"
+};
+const RomRegion* gMbArm9CopyRegions = (RomRegion*)&data_02151978;
+char gMbRomArchiveName[4] = {
+#include "data/main/gMbRomArchiveName.inc.c"
+};
 
 void MI_CpuFill8(void* dst, u8 value, u32 size);
 void Mem_CopyBytes(const void* src, void* dst, u32 size);

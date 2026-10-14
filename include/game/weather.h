@@ -19,11 +19,19 @@ typedef struct WeatherTaskWork {
   s16 weather; /* WEATHER_* the task shows */
 } WeatherTaskWork;
 
-/* One record of gWeatherInfo, per WEATHER_* value (0 to 3). */
+/* One record of gMapPaletteFiles, per WEATHER_* value (0 to 3). */
+typedef struct WeatherFiles {
+  const char* palettes[4]; /* map palette file per tileset & 0x7f */
+  u32 sound;               /* Sound_PlaySe id played when the weather starts */
+} WeatherFiles;
+
+extern WeatherFiles gMapPaletteFiles[4];
+
+/* One record of gWeatherInfo, per WEATHER_* value (0 to 3). gWeatherInfo
+ * is gMapPaletteFiles[0].sound, so files are the next weather's palettes. */
 typedef struct WeatherInfo {
   u32 sound; /* Sound_PlaySe id played when the weather starts */
-  const char* files
-      [4]; /* pointers to short name strings such as "006"; no reader found yet */
+  const char* files[4];
 } WeatherInfo;
 
 /* One rain drop, snow flake or grain of sand. Positions and speeds are in

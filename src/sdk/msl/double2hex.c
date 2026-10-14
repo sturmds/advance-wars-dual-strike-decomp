@@ -12,8 +12,24 @@
 #define DOUBLE_EXPONENT_BIAS 1023
 
 extern char data_0216df30[]; /* "0x0p0" */
-extern char data_0216df00[]; /* "-INF" */
-extern char data_0216df08[]; /* "-inf" */
+#pragma explicit_zero_data on
+/* declared `const wchar_t data_0216def8[]` in __pformatter.c: type const wchar_t is not one the tool can write */
+u32 data_0216def8 = {
+#include "data/main/data_0216def8.inc.c"
+};
+/* "" */
+char data_0216defc[4] = {
+#include "data/main/data_0216defc.inc.c"
+};
+/* "-INF" */
+char data_0216df00[5] = {
+#include "data/main/data_0216df00.inc.c"
+};
+/* "-inf" */
+char data_0216df08[5] = {
+#include "data/main/data_0216df08.inc.c"
+};
+#pragma explicit_zero_data reset
 extern char data_0216df10[]; /* "INF" */
 extern char data_0216df14[]; /* "inf" */
 extern char data_0216df18[]; /* "-NAN" */

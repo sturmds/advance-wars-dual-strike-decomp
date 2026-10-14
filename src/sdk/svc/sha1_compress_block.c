@@ -5,7 +5,9 @@ typedef struct Sha1RoundConstants {
   u32 k[4];
 } Sha1RoundConstants;
 
-extern const Sha1RoundConstants gSha1StageAdditives;
+static Sha1RoundConstants gSha1StageAdditives = {
+#include "data/main/gSha1StageAdditives.inc.c"
+};
 static BOOL data_022ab8a4;
 
 #define ROTL(bits, word) (((word) << (bits)) | ((word) >> (32 - (bits))))

@@ -1,7 +1,11 @@
 #include "sdk/fs.h"
 
-extern u8* gOverlayDigestKey;
-extern u32 gOverlayDigestKeySize;
+extern u8 data_0215192c[];
+
+static u8* gOverlayDigestKey = (u8*)&data_0215192c;
+static u32 gOverlayDigestKeySize = {
+#include "data/main/gOverlayDigestKeySize.inc.c"
+};
 
 void MI_CpuFill8(void* dest, u8 value, u32 size);
 void Mem_CopyBytes(const void* src, void* dest, u32 size);

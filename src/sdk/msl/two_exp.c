@@ -1,8 +1,23 @@
 #include "types.h"
 #include "sdk/msl.h"
 
+/* "NAN" */
+char data_0216df28[4] = {
+#include "data/main/data_0216df28.inc.c"
+};
+/* "nan" */
+char data_0216df2c[4] = {
+#include "data/main/data_0216df2c.inc.c"
+};
+/* "0x0p0" */
+char data_0216df30[6] = {
+#include "data/main/data_0216df30.inc.c"
+};
 /* Digits of exact powers of two. */
-extern const char data_0216df38[]; /* 2^-64 */
+/* 2^-64 */
+static char data_0216df38[46] = {
+#include "data/main/data_0216df38.inc.c"
+};
 extern const char data_0216df68[]; /* 2^-53 */
 extern const char data_0216df90[]; /* 2^-32 */
 extern const char data_0216dfa8[]; /* 2^-16 */

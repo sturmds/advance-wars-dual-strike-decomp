@@ -11,7 +11,7 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern UnitTargetEntry* data_022a6dcc;
-extern void* data_02167e98[4];
+extern void* data_02167e98[3];
 
 MapObject* Map_FindObjectCovering(int x, int y);
 void TileListTask_StartChild(int tileX, int tileY, void* list, Task* parent);

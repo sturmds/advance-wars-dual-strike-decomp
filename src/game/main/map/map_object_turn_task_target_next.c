@@ -7,7 +7,7 @@
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern TilePointU16* data_02167e98[4];
+extern TilePointU16* data_02167e98[3];
 
 void AiTargetList_Clear(void);
 void AiTargetList_Add(u16 x, u16 y, u16 unitSlot, u16 kind);

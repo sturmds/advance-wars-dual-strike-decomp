@@ -2,7 +2,27 @@
 #include "game/task.h"
 #include "game/screen_other_map.h"
 
-extern const TaskScriptCmd data_0216718c[];
+void Map_InitBattle(void);
+void Map_SetupPlayerCos(void);
+void Save_LoadProgress(void);
+void Save_LoadSurvivalState(void);
+void SetupMapRules(void);
+void Survival_EnterGameMode(void);
+void Survival_SavePlayerCos(void);
+void Survival_StartRun(void);
+extern u8 data_0216d6fc[];
+void func_0204184c(void);
+void func_02045890(void);
+void func_0205cd80(void);
+void func_020b983c(void);
+void func_020e8970(void);
+
+static TaskScriptCmd data_0216718c[13] = {
+#include "data/main/data_0216718c.inc.c"
+};
+TaskScriptCmd gSurvivalNewRunScript[20] = {
+#include "data/main/gSurvivalNewRunScript.inc.c"
+};
 
 void Screen_SetCurrentBoth(void* state);
 void ForceRank_LoadSets(int mode);

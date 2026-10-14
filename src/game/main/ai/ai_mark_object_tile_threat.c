@@ -11,7 +11,7 @@ typedef struct TilePos {
 
 /* Per object variant (bits 14-15 of the object's second halfword): its
  * tiles, ended by an x of 0xffff. */
-extern TilePos* data_02167e98[4];
+extern TilePos* data_02167e98[3];
 
 BOOL Ai_UnitUsesThreatMaps(int unitType);
 

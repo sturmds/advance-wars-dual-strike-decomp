@@ -3,7 +3,13 @@
 #include "game/Unk_02290118.h"
 #include "game/screen_other_map.h"
 
-extern const TaskScriptCmd data_021670a4[];
+void CampaignMap_StartMode1(void);
+extern u8 data_0216710c[];
+void func_020b983c(void);
+
+TaskScriptCmd data_021670a4[6] = {
+#include "data/main/data_021670a4.inc.c"
+};
 
 int BattleSave_GetRecordId(int mode, int campaignSlot);
 u8 func_020193bc(int recordId);

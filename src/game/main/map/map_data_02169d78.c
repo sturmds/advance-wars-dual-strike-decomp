@@ -1,0 +1,118 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/map_bg.h"
+#include "game/screen_contexts.h"
+#include "game/task.h"
+
+void MapScroll_BuildSpeedTable(void);
+void MapView_DrawAllBgRows(void);
+void MapView_DrawAllBgRowsGroundOnly(void);
+void RangeSpread_Destroy(void);
+void RangeSpread_Start(void);
+void RangeSpread_Update(void);
+extern u8 data_0217eb08[];
+extern u8 data_0217fb08[];
+void func_020f783c(void);
+void func_020f931c(void);
+void func_020f9540(void);
+void func_020fa448(void);
+void MapScroll_Step(void);
+void MapView_DrawAllRangeTiles(void);
+void MapView_DrawAllTiles(void);
+void MapView_DrawScrolledEdges(void);
+extern u8 data_02180b08[];
+void func_020f8534(void);
+void func_020f9558(void);
+void Bg0AnimTask_Update(void);
+void func_020f83d8(void);
+void func_020f954c(void);
+void func_020f9838(void);
+void func_020fa6e8(void);
+void MapView_ApplyBgScrollPanLayer0(void);
+void Screen_SetDarkenBlend(void);
+void func_020f8344(void);
+void func_020fa6d8(void);
+void func_020f85b0(void);
+void func_020f8b90(void);
+void func_020fa6c8(void);
+void func_020f8394(void);
+void func_020f8764(void);
+void func_020f8b3c(void);
+void func_020fa6b8(void);
+void MapGfx_LoadGreyscale(void);
+void MapView_ApplyBgScroll(void);
+void Screen_SetLayer0Translucent(void);
+void func_020f8b20(void);
+void MapGfx_Load(void);
+void func_020f84b0(void);
+void func_020f85e0(void);
+void func_020f8cb0(void);
+void Screen_SetLayer0BlendForTilesetStrong(void);
+void Weather_LoadGraphics(void);
+void Screen_SetLayer0BlendForTileset(void);
+void func_020f8ca8(void);
+void Screen_SetLayer0Additive(void);
+void Screen_SetLayer1Translucent(void);
+void func_020f9564(void);
+void func_020f8b74(void);
+void Screen_ShowBg0(void);
+void func_020f869c(void);
+void MapGfx_LoadTilesetAndWeather(void);
+
+char data_02169d78[4] = {
+#include "data/main/data_02169d78.inc.c"
+};
+u8 data_02169d8c[8] = {
+#include "data/main/data_02169d8c.inc.c"
+};
+u32 data_02169d7c[2] = {
+#include "data/main/data_02169d7c.inc.c"
+};
+u8 gCornerSpriteShape[8] = {
+#include "data/main/gCornerSpriteShape.inc.c"
+};
+u8 data_02169d94[8] = {
+#include "data/main/data_02169d94.inc.c"
+};
+u8 gCycleHookSteps[16] = {
+#include "data/main/gCycleHookSteps.inc.c"
+};
+/* declared `u8 data_02169dac[]` in func_020f77bc.c: relocation at data_02169dac+0x4 is not on a 4-byte field */
+u32 data_02169dac[4] = {
+#include "data/main/data_02169dac.inc.c"
+};
+u32 data_02169dbc[7] = {
+#include "data/main/data_02169dbc.inc.c"
+};
+/* declared `const EventScriptCommand gMapScrollScript[]` in ai_build_buy_at_site.c: relocation at gMapScrollScript+0x8 is not on a 4-byte field */
+u32 gMapScrollScript[8] = {
+#include "data/main/gMapScrollScript.inc.c"
+};
+/* mountain cells, picked by tile position */
+u16 gMountainCellVariants[16] = {
+#include "data/main/gMountainCellVariants.inc.c"
+};
+u32 data_02169dd8[8] = {
+#include "data/main/data_02169dd8.inc.c"
+};
+TaskScriptCmd data_02169df8[4] = {
+#include "data/main/data_02169df8.inc.c"
+};
+u32 data_02169e18[8] = {
+#include "data/main/data_02169e18.inc.c"
+};
+/* tile map offset of each map tile column: two 32x32 screen blocks */
+u16 data_02169eb8[32] = {
+#include "data/main/data_02169eb8.inc.c"
+};
+/* per terrain id; 0: keep the map's cell */
+u16 data_02169e78[32] = {
+#include "data/main/data_02169e78.inc.c"
+};
+/* declared `u8 data_02169ef8[]` in map_bg_load_graphics.c: relocation at data_02169ef8+0xc is not on a 4-byte field */
+u32 data_02169ef8[20] = {
+#include "data/main/data_02169ef8.inc.c"
+};
+Unk_02080440_50 data_02169f48[6] = {
+#include "data/main/data_02169f48.inc.c"
+};

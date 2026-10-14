@@ -3,7 +3,28 @@
 #include "game/Unk_02290118.h"
 #include "game/screen_other_map.h"
 
-extern const TaskScriptCmd data_021670d4[];
+void CampaignMap_StartMode0(void);
+void Map_InitBattle(void);
+void Map_SetupPlayerCos(void);
+void SetupMapRules(void);
+void Survival_LoadPlayerCos(void);
+void Survival_SetCurrentMap(void);
+extern u32 data_0216710c[];
+void func_02048238(void);
+void func_020b983c(void);
+void func_020fd85c(void);
+void func_020e8970(void);
+void func_02050664(void);
+
+TaskScriptCmd data_021670d4[7] = {
+#include "data/main/data_021670d4.inc.c"
+};
+u32 data_0216710c[16] = {
+#include "data/main/data_0216710c.inc.c"
+};
+TaskScriptCmd gSurvivalResumeScript[8] = {
+#include "data/main/gSurvivalResumeScript.inc.c"
+};
 
 int Campaign_FindFreeProfile(void);
 void Campaign_ResetProgress(void);

@@ -2,7 +2,19 @@
 #include "sdk/mb.h"
 #include "sdk/os.h"
 
-extern const u16* data_0216d99c; /* points to L"multiboot" */
+extern u32 data_0216d9a0[];
+
+/* points to L"multiboot" */
+static const u16* data_0216d99c = (u16*)&data_0216d9a0;
+u32 data_0216d9a0[5] = {
+#include "data/main/data_0216d9a0.inc.c"
+};
+u16 gIsdFormatActions[8][9] = {
+#include "data/main/gIsdFormatActions.inc.c"
+};
+u16 gIsdFormatCharClass[256] = {
+#include "data/main/gIsdFormatCharClass.inc.c"
+};
 
 void MIi_CpuClear16(u16 value, void* dst, u32 size);
 void MIi_CpuClear32(u32 value, void* dst, u32 size);

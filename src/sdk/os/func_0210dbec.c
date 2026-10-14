@@ -10,7 +10,13 @@
 #define FLAG_80000000 0x80000000
 #define SLOT2_MATCH 0x01000000
 
-extern u32 data_0216d96c;
+static u32 data_0216d96c = {
+#include "data/main/data_0216d96c.inc.c"
+};
+/* ":/" */
+char gArchiveNameColonSlash[4] = {
+#include "data/main/gArchiveNameColonSlash.inc.c"
+};
 
 u32 func_0210db18(void);
 BOOL func_0210dae4(void);

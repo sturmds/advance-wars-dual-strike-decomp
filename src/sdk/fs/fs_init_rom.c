@@ -11,7 +11,10 @@ u32 data_022ab83c;
 RomRegion data_022ab844;
 RomRegion data_022ab84c;
 FSArchive gRomFileArchive;
-extern const char data_0216d974[]; /* "rom" */
+/* "rom" */
+static char data_0216d974[4] = {
+#include "data/main/data_0216d974.inc.c"
+};
 
 void FS_InitArchive(FSArchive* arc);
 BOOL FS_RegisterArchiveName(FSArchive* arc, const char* name, int nameLength);

@@ -1,6 +1,10 @@
 #include "types.h"
 #include "sdk/gx.h"
 
+u16 gGxDispOn = {
+#include "data/main/gGxDispOn.inc.c"
+};
+
 void GX_SetGraphicsMode(int dispMode, int bgMode, int bg0As3d) {
   u32 dispcnt = *REG_DISPCNT;
   u16 on = gGxDispOn;
