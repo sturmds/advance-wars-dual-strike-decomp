@@ -100,6 +100,8 @@ ARM9_LAYOUT_SYMBOLS = {
     # The start of DTCM, where the stacks and the IRQ check flags live: not
     # the first DTCM variable, which a padded DTCM moves (issue 0086).
     "DTCM_BASE": ("ADDR(DTCM)", 0x027C0000),
+    # The same for ITCM, whose first function a padded ITCM moves.
+    "ITCM_BASE": ("ADDR(ITCM)", 0x01FF8000),
 }
 
 # The same for ARM7 (build/arm7/arm7.lcf). Its SDK build has a 0x400-byte

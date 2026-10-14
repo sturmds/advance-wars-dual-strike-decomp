@@ -32645,7 +32645,6 @@ from:0x021163fc kind:arm_call to:0x0210e154 module:main
 from:0x02116404 kind:arm_call to:0x0210eb20 module:main
 from:0x02116408 kind:arm_call to:0x021164a0 module:main
 from:0x02116418 kind:load to:0x022abb00 module:main
-from:0x0211641c kind:load to:0x01ff8000 module:itcm
 from:0x02116428 kind:load to:0x0211642c module:main
 from:0x0211643c kind:arm_call to:0x0210efb0 module:main
 from:0x02116470 kind:arm_call to:0x0210ccf4 module:main

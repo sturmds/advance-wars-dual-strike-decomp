@@ -3,8 +3,7 @@
 #include "sdk/card.h"
 #include "sdk/os.h"
 
-extern u8
-    Oam_GetShapeCells[]; /* start of ITCM: the first function placed there */
+extern char ITCM_BASE[]; /* start of ITCM (ARM9_LAYOUT_SYMBOLS) */
 
 u32 Cp15_DataTcmBase(void); /* start of DTCM */
 void IC_InvalidateRange(void* start, u32 size);
@@ -12,7 +11,7 @@ void DC_WaitWriteBufferEmpty(void);
 void CardRom_OnPageDmaDone(void);
 void CardRom_StartPageDma(void);
 
-#define ITCM_START ((u32)Oam_GetShapeCells)
+#define ITCM_START ((u32)ITCM_BASE)
 #define ITCM_END 0x02000000
 #define DTCM_SIZE 0x4000
 #define HEADER_COPY_ROM_CTRL_WORD \

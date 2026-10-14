@@ -145,7 +145,11 @@ dsd names a relocation after the symbol at its target. When the code means the s
 - **Found by melonDS:** a DTCM grown by 0x20 took a prefetch abort at boot. `init_cp15` built the DTCM protection region from `data_027c0000`, a sprite cell table, which had moved to 0x027c0020. Region 4 became 0x027c003b, 1 GiB over main RAM.
 - **Fixed (2026-10-14):** seven SDK sites now name `DTCM_BASE` (`ADDR(DTCM)`): crt0, `init_cp15`, the reset code, `OS_InitThread`, `OS_GetInitArenaHi`, `IrqSlot_CallAndClear` and `MainLoop_FinishVBlank`. Their relocations to the table are deleted. `make emu-check` now boots the dtcm shift to the main menu.
 - **Why `make shift` missed it:** the stale check cannot see this kind, because the word was relocated, just to the wrong thing. Only a run, or reading every relocation that targets a region start, finds it.
-- **Still to read:** relocations targeting a region start. 16 target 0x027c0000; the 9 left are sprite code using the table. 3 target 0x01ff8000, the ITCM start (two `bl`s and one load). 6 target 0x022ad560, the ov000/ov004 start. 5 target 0x02350560, the overlay start of issue 0055. Size: small.
+- **Read (2026-10-14):** every relocation that targets a region start.
+  - 0x027c0000: the 9 left are sprite code that uses the table.
+  - 0x01ff8000: two are `bl` calls to `Oam_GetShapeCells`. The load in `func_021162d8` (`cardi_start_rom_dma.c`, which starts a card ROM DMA) tests whether a card DMA's destination lies in ITCM, so it meant the region. It now names `ITCM_BASE` (`ADDR(ITCM)`), and its relocation to the function is deleted. Before the fix, the itcm shift would have let a DMA write into the first 0x20 bytes of ITCM, and no boot check would have shown it.
+  - 0x022ad560: all 6 are calls to the first function of ov000 or ov004.
+  - 0x02350560: the 5 are issue 0055's.
 
 ### 8. Sizes in the data written from the ROM
 
@@ -181,7 +185,7 @@ Counted over `src/` (2026-10-14). Each is a size written as a number, and most a
 10. **New C++ code:** place `.exceptix` and new `.ctor` sections in the script. Size: small, if a mod ever needs it.
 11. **The secure-area CRC** (issue 0056) and a ROM larger than 32 MiB (the capacity byte at 0x14). These are for hardware targets.
 12. **Byte-offset macros to fields, `ARRAY_COUNT` for loops over C tables.** Under the goal above, this is core work; take it file by file.
-13. **Relocations to region starts** (class 7): read the 25 left that target a region start and give each a layout symbol where the code means the region. Size: small.
+13. **Relocations to region starts** (class 7): done 2026-10-14 apart from issue 0055. Read the same way any new relocation to a region start.
 14. **Data tables as types** (class 8): give the ~890 `u32` tables that mix pointers and numbers their struct types; size tables from their initializer (`[]`) where mwcc gives the same bytes; have `bss.py gen` and `data.py` write a variable's declared type instead of `u8[size]`; add a compile-time size assert for fixed formats (save, link packets). Size: large, tool-driven; best done by extending `tools/data.py` and `tools/bss.py` so that the output stays generated.
 
 ## Done when
