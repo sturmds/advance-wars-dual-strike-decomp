@@ -14,7 +14,7 @@ Rect gEventChoiceButtons[4]; /* touch buttons of the four choices */
 EventScriptSlot data_022977f0[EVENT_SCRIPT_SLOTS];
 u8 data_02297a60[0x180]; /* 0x180 bytes no code names, before gEventTextMap */
 u16 data_022978e0[192];
-u16 gEventTextMap[0x180]; /* size: up to the next symbol */
+u16 gEventTextMap[EVENT_TEXT_MAP_ROWS][EVENT_TEXT_MAP_WIDTH];
 extern s16 data_02297780;
 
 void* func_0201dc48(void) {

@@ -57,7 +57,6 @@ void Ov005_DrawShopPageNumber(
     Unk_ov005_0236bbb0* work); /* draws the page numbers */
 
 extern u16 gEventChoiceAnswer; /* answer of the yes/no question, 0: yes */
-extern u16 gEventTextMap[];
 extern u16 data_022978e0[];
 void Ov005_UpdateShopTransition(void);
 void func_ov005_0236701c(void);
@@ -309,7 +308,7 @@ void Ov005_UpdateShopScreen(Ov005Task* task) {
       }
       if (!Ov005_IsShopScriptRunning() && work->points <= gPlayRecords.points) {
         SWITCH_TO(data_027c0288.unk_00);
-        Bg_FillRect(gEventTextMap, 6, 0, 26, 6, 0);
+        Bg_FillRect(gEventTextMap[0], 6, 0, 26, 6, 0);
         EventTextMap_QueueCopy();
         SWITCH_BACK();
         work->points = gPlayRecords.points;
@@ -392,7 +391,8 @@ void Ov005_UpdateShopScreen(Ov005Task* task) {
         break;
       }
       SWITCH_TO(data_027c0288.unk_00);
-      Mem_Copy32(gEventTextMap, data_027c0280->layer0Map + TEXT_BOX_MAP_OFFSET,
+      Mem_Copy32(gEventTextMap[0],
+                 data_027c0280->layer0Map + TEXT_BOX_MAP_OFFSET,
                  TEXT_BOX_MAP_SIZE);
       Gfx_RequestLayerCopy(0);
       Mem_Copy32(data_022978e0, data_027c0280->layer1Map + TEXT_BOX_MAP_OFFSET,

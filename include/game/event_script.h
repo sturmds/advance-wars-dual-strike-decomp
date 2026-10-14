@@ -147,6 +147,13 @@ typedef struct EventScriptSlot {
 
 extern EventScriptSlot data_022977f0[EVENT_SCRIPT_SLOTS];
 
+/* gEventTextMap: the tile map of the event text window, a BG map of
+ * EVENT_TEXT_MAP_WIDTH tiles per row. The window uses the first 6 rows;
+ * the buffer runs on to the next variable. */
+#define EVENT_TEXT_MAP_WIDTH 32
+#define EVENT_TEXT_MAP_ROWS 12
+extern u16 gEventTextMap[EVENT_TEXT_MAP_ROWS][EVENT_TEXT_MAP_WIDTH];
+
 /* Command at the pc of slot index, for the data-moving commands. */
 #define EVENT_SCRIPT_DATA_COMMAND(index) \
   ((const EventScriptDataCommand*)data_022977f0[index].pc)

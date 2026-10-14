@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/event_script.h"
 #include "game/Unk_0201d320.h"
 #include "game/Unk_022977a4.h"
 #include "game/Unk_02080440.h"
@@ -10,7 +11,6 @@ extern u8 gEventSkipState;
 extern Unk_0201d320 data_022977f4[];
 extern EventSlotHold data_022977f8[];
 extern u8* data_02297790;
-extern u16 gEventTextMap[];
 
 const u8* Text_Get(u32 textId);
 BOOL func_02015dbc(const u8* text);
@@ -43,7 +43,7 @@ s16 EventCmd_PrintWindowText(int index) {
       x = 7;
     }
     printer = TextPrinter_StartById(
-        x, 1, data_02297790, gEventTextMap, script->unk_00->arg,
+        x, 1, data_02297790, gEventTextMap[0], script->unk_00->arg,
         data_022977a4.unk_00 << 12, data_022977a4.unk_04);
     printer->copyCallback = (void*)EventTextMap_QueueCopy;
     printer->charSound = 1;

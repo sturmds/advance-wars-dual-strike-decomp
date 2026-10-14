@@ -4,7 +4,6 @@
 #include "game/task.h"
 #include "game/event_script.h"
 
-extern u16 gEventTextMap[][32];    /* tile map of the event text window */
 extern Rect gEventChoiceButtons[]; /* touch buttons of the four choices */
 
 s8 Text_PrintId(s16 x, s16 y, u16* map, u32 textId, u16 unk_30, u16 unk_32);

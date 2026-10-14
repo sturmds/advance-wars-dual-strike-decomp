@@ -1,10 +1,10 @@
 #include "types.h"
+#include "game/event_script.h"
 #include "game/Unk_0201a774.h"
 #include "game/rect.h"
 
 extern Rect data_02297794;
 extern Rect data_0229779c;
-extern u16 gEventTextMap[][32]; /* tile map of the event text window */
 
 void Text_PrintImmediate(s16 x, s16 y, u16* map, u32 textId, u16 unk_30,
                          int arg);

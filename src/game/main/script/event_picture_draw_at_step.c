@@ -1,7 +1,6 @@
 #include "types.h"
+#include "game/event_script.h"
 #include "game/event_picture.h"
-
-extern u16 gEventTextMap[];
 
 void EventTextMap_QueueCopy(void);
 
@@ -13,6 +12,7 @@ void EventPicture_DrawAtStep(int step) {
   u8 col;
   u16 tile;
 
+  /* needed to match: the map is indexed flat from row 0, not as [row][x] */
   for (row = 0; row < EVENT_PICTURE_SIZE; row++) {
     for (col = 0; col < EVENT_PICTURE_SIZE; col++) {
       if (col + step >= EVENT_PICTURE_SIZE) {
@@ -23,11 +23,11 @@ void EventPicture_DrawAtStep(int step) {
                (u32)EVENT_PICTURE_PALETTE;
       }
       if (EVENT_PICTURE_ON_RIGHT) {
-        gEventTextMap[row * EVENT_PICTURE_MAP_WIDTH +
-                      (EventPicture_GetX() - col)] = tile | BG_TILE_HFLIP;
+        gEventTextMap[0][row * EVENT_PICTURE_MAP_WIDTH +
+                         (EventPicture_GetX() - col)] = tile | BG_TILE_HFLIP;
       } else {
-        gEventTextMap[row * EVENT_PICTURE_MAP_WIDTH +
-                      (col + EventPicture_GetX())] = tile;
+        gEventTextMap[0][row * EVENT_PICTURE_MAP_WIDTH +
+                         (col + EventPicture_GetX())] = tile;
       }
     }
   }

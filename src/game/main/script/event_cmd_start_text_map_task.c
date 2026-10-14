@@ -16,8 +16,6 @@ TaskScriptCmd data_02158548[] = {
 EventScriptCommand data_02158570[] = {
 #include "data/main/data_02158570.inc.c"
 };
-extern u8 data_02297c2e[];
-extern u16 gEventTextMap[];
 
 void EventTextMap_QueueCopy(void);
 void EventHold_ReleaseOnTextMapTaskEnd(EventScriptSlot* slot);
@@ -30,8 +28,9 @@ BOOL EventCmd_StartTextMapTask(s16 index) {
   Task* task = Task_Create(data_02158548, TASK_LIST(3));
 
   /* a word over unk_34 and unk_36, which other task scripts use as halfwords */
-  *(void**)&task->unk_34 = data_02297c2e;
-  task->unk_38 = gEventTextMap;
+  *(void**)&task->unk_34 =
+      &gEventTextMap[1][7]; /* the text window origin tile */
+  task->unk_38 = gEventTextMap[0];
   task->unk_3c = EventTextMap_QueueCopy;
   task->unk_40 = data_022977a4.unk_00 << 12;
   task->waitFrames = data_02290118.unk_00;

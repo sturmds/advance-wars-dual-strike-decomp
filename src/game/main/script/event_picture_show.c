@@ -1,7 +1,6 @@
 #include "types.h"
+#include "game/event_script.h"
 #include "game/event_picture.h"
-
-extern u16 gEventTextMap[];
 
 void EventScript_LoadCoPicture(int coMood);
 void EventTextMap_QueueCopy(void);
@@ -12,16 +11,17 @@ void EventPicture_Show(int coMood) {
   u16 row;
   u16 col;
 
+  /* needed to match: the map is indexed flat from row 0, not as [row][x] */
   for (row = 0; row < EVENT_PICTURE_SIZE; row++) {
     for (col = 0; col < EVENT_PICTURE_SIZE; col++) {
       if (EVENT_PICTURE_ON_RIGHT) {
-        gEventTextMap[row * EVENT_PICTURE_MAP_WIDTH +
-                      (EventPicture_GetX() - col)] =
+        gEventTextMap[0][row * EVENT_PICTURE_MAP_WIDTH +
+                         (EventPicture_GetX() - col)] =
             (col + EVENT_PICTURE_TILE_BASE + row * EVENT_PICTURE_SIZE) |
             EVENT_PICTURE_PALETTE | BG_TILE_HFLIP;
       } else {
-        gEventTextMap[row * EVENT_PICTURE_MAP_WIDTH +
-                      (col + EventPicture_GetX())] =
+        gEventTextMap[0][row * EVENT_PICTURE_MAP_WIDTH +
+                         (col + EventPicture_GetX())] =
             (col + EVENT_PICTURE_TILE_BASE + row * EVENT_PICTURE_SIZE) |
             EVENT_PICTURE_PALETTE;
       }

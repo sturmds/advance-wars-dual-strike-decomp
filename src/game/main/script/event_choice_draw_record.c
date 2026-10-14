@@ -1,7 +1,7 @@
 #include "types.h"
+#include "game/event_script.h"
 #include "game/Unk_022977a4.h"
 
-extern u16 gEventTextMap[][32]; /* tile map of the event text window */
 /* Fields of the 16-byte records MainMenu_ShowRecordHelp also shows. */
 extern u8 data_02290a62[][16]; /* 1: draws an extra mark */
 extern u8 data_02290a64[][16]; /* a number; 0xff: none */
