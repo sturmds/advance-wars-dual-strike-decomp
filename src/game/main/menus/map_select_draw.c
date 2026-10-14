@@ -50,7 +50,7 @@ extern u8 data_027c0108;
 /* Six values in a 3 by 2 grid: an icon (grey when the value is 0), then
  * the value in up to two digits under it. */
 #define DRAW_NUMBER_GRID(values, y)                                            \
-  for (i = 0; i < 6; i++) {                                                    \
+  for (i = 0; i < (int)ARRAY_COUNT(values); i++) {                             \
     Sprite_QueueAt(1, (HwMod32(i, 3) * 21 + 4) & 0x1ff,                        \
                    (HwDiv32(i, 3) * 28 + (y)) & 0xff, &data_027c0000,          \
                    ((values)[i] != 0 ? 10 : 11) << 12, 124 + i * 8);           \

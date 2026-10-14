@@ -48,6 +48,7 @@ enum MapCase {
   MAP_CASE_DESIGN = 10,  /* Design Room slots, no map data */
   MAP_CASE_NONE = 0xffff /* map 0 */
 };
+#define MAP_CASE_COUNT (MAP_CASE_DESIGN + 1)
 
 /* Two flag bytes per player slot at MapHeader.slotFlags, ORed into
  * Player.unk_2f and unk_30 by Map_ApplySlotFlags. 0xff in unk_0: none. */

@@ -160,8 +160,8 @@ void PlayerInfo_Init(Task* task) {
     Icon_LoadTo(20, LAYER_CHARS(0), 708);
     Icon_LoadTo(66, LAYER_CHARS(0), 712);
     IconBank_LoadPalette(0, 2);
-    for (i = 0; i < 41; i++) {
-      Icon_LoadTo(i + 225, LAYER_CHARS(0), 716 + i * 3);
+    for (i = 0; i < ICON_STAT_GAUGE_COUNT; i++) {
+      Icon_LoadTo(ICON_STAT_GAUGE + i, LAYER_CHARS(0), 716 + i * 3);
     }
     Icon_LoadTo(174, LAYER_CHARS(0), 0x347);
     Icon_LoadTo(175, LAYER_CHARS(0), 0x349);
@@ -186,14 +186,14 @@ void PlayerInfo_Init(Task* task) {
     }
     Data_Unpack(langFile, data_027c0280->objVram + 0x8000);
     Palette_Load(file, 0x280, 32);
-    for (i = 0; i < 5; i++) {
-      Icon_LoadTo(i + 80, data_027c0280->objVram, 12 + i * 4);
+    for (i = 0; i < ARMY_BLACK_HOLE; i++) {
+      Icon_LoadTo(ICON_ARMY_EMBLEMS + i, data_027c0280->objVram, 12 + i * 4);
     }
     IconBank_LoadPalette(1, 17);
-    for (i = 0; i < 10; i++) {
-      Icon_LoadTo(i + 150, data_027c0280->objVram, 32 + i * 2);
+    for (i = 0; i < ICON_DIGIT_COUNT; i++) {
+      Icon_LoadTo(ICON_DIGITS_SMALL + i, data_027c0280->objVram, 32 + i * 2);
     }
-    Icon_LoadTo(162, data_027c0280->objVram, 52);
+    Icon_LoadTo(ICON_SMALL_SLASH, data_027c0280->objVram, 52);
     IconBank_LoadPalette(4, 19);
     Screen_SetCurrentGfx(saved0280);
   }
@@ -206,13 +206,13 @@ void PlayerInfo_Init(Task* task) {
     Gfx_RequestLayerCopy(1);
     Co_LoadArmyGraphicsAndPalette(MENU_SHOWN_CO, 108, 0, MENU.player);
     Palette_LoadObjRow(1);
-    Icon_LoadTo(139, data_027c0280->objVram, 48);
+    Icon_LoadTo(ICON_RANK_LABEL, data_027c0280->objVram, 48);
     for (i = 0; i < ICON_DIGIT_COUNT; i++) {
       Icon_LoadTo(ICON_DIGITS + i, data_027c0280->objVram, 56 + i * 2);
     }
     Icon_LoadTo(213, data_027c0280->objVram, 76);
-    for (i = 0; i < 10; i++) {
-      Icon_LoadTo(i + 150, data_027c0280->objVram, 80 + i * 2);
+    for (i = 0; i < ICON_DIGIT_COUNT; i++) {
+      Icon_LoadTo(ICON_DIGITS_SMALL + i, data_027c0280->objVram, 80 + i * 2);
     }
     Icon_LoadTo(160, data_027c0280->objVram, 100);
     Icon_LoadTo(161, data_027c0280->objVram, 102);

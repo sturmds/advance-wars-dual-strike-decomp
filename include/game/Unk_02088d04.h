@@ -206,6 +206,10 @@ typedef char GfxLayer_size_check[sizeof(GfxLayer) == 0x14 ? 1 : -1];
 /* Entries (u16) in GFX_LAYER_MAP_SIZE bytes of a layer map. */
 #define GFX_LAYER_MAP_ENTRIES (GFX_LAYER_MAP_SIZE / 2)
 
+/* One BG character base block: the step of the BGxCNT character base, so
+ * the most tile data one BG can use, 0x4000 bytes. */
+#define BG_CHAR_BLOCK_SIZE 0x4000
+
 /* One BG screen block: a map of 32 x 32 entries (u16), 0x800 bytes. The
  * display shows its first 24 rows. */
 #define BG_SCREEN_ENTRIES (32 * 32)

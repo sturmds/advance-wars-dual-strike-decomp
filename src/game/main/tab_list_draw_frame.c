@@ -22,6 +22,9 @@ void Palette_Load(const void* src, u16 offset, u32 size);
 #define MEDAL_COLOURS \
   ((u16*)((u8*)&gMenuState + (u32) & ((TabListView*)0)->unk_1000))
 
+/* Highest medal rank: all medals earned. */
+#define MEDAL_RANK_MAX 5
+
 /* Per-frame drawing of the tab list screen. On the screen of data_027c0288.unk_00:
  * the four tab sprites, the current one in another palette, then
  * TabList_DrawPage and the page number. On the other screen: earned and total
@@ -37,7 +40,7 @@ void TabList_DrawFrame(void) {
 
   TabList_CountMedals(&earned, &total);
   if (earned == total) {
-    level = 5;
+    level = MEDAL_RANK_MAX;
   } else if (earned >= 150) {
     level = 4;
   } else if (earned >= 100) {
@@ -81,7 +84,7 @@ void TabList_DrawFrame(void) {
   /* Needed to match: earned is reused as a black colour (a separate local
      * gets its own stack slot). */
   earned = 0;
-  for (i = 0; i < 5; i++) {
+  for (i = 0; i < MEDAL_RANK_MAX; i++) {
     if (i == level - 1) {
       Palette_Load(&MEDAL_COLOURS[(MainLoop_GetFrameCount() >> 2) & 15],
                    (i + 19) * 32 + 30, 2);

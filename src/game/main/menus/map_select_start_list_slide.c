@@ -2,6 +2,7 @@
 #include "game/map_select.h"
 #include "game/menu_button.h"
 #include "game/Unk_02088d04.h"
+#include "game/co_graphics.h"
 
 void Gfx_RequestLayerCopy(int layer);
 void Mem_Copy32(const void* src, void* dst, u32 size);
@@ -14,7 +15,8 @@ extern Unk_027c0288 data_027c0288;
 
 #define GFX data_027c0280
 /* BG tile data of a BG, 32 bytes per tile. */
-#define BG_CHARS(bg) (GFX->bgVram + GFX->bgCnt[bg].charBase * 0x4000)
+#define BG_CHARS(bg) \
+  (GFX->bgVram + GFX->bgCnt[bg].charBase * BG_CHAR_BLOCK_SIZE)
 /* Maps on one page of the list. */
 #define PAGE_MAPS (ROWS * COLS)
 /* First tile of the map thumbnails: they fill the last PAGE_MAPS * 32
@@ -60,8 +62,16 @@ void MapSelect_StartListSlide(int slideBack) {
   }
   Gfx_RequestLayerCopy(0);
   GFX->bgScrollX[GFX->layer0Bg] = 256;
-  Mem_Copy32(GFX->objVram + 0x3940, GFX->objVram + 0x4240, 0x900);
-  Mem_Copy32(GFX->paletteBuffer + 0x260, GFX->paletteBuffer + 0x320, 0xc0);
+  Mem_Copy32(GFX->objVram + RECORD_CO_TILE * TILE_4BPP_SIZE,
+             GFX->objVram + RECORD_CO_TILE * TILE_4BPP_SIZE +
+                 RECORD_CO_PICTURES * CO_SMALL_PICTURE_SIZE,
+             RECORD_CO_PICTURES * CO_SMALL_PICTURE_SIZE);
+  Mem_Copy32(GFX->paletteBuffer +
+                 (BG_PALETTE_COUNT + RECORD_CO_PALETTE) * PALETTE_16_SIZE,
+             GFX->paletteBuffer +
+                 (BG_PALETTE_COUNT + RECORD_CO_PALETTE + RECORD_CO_PICTURES) *
+                     PALETTE_16_SIZE,
+             RECORD_CO_PICTURES * PALETTE_16_SIZE);
   Palette_Flush();
 
   for (i = 0; i < (int)ARRAY_COUNT(MENU->setup.prevRecordDays); i++) {

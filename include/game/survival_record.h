@@ -6,6 +6,10 @@
 #define SURVIVAL_RECORD_COUNT \
   17 /* entries of data_02291584, by Survival_GetRecordIndex */
 
+/* Rows of the Survival mode menu, one per mode of a mode pair
+ * (SurvivalModeMenu_GetRowMode). */
+#define SURVIVAL_MENU_ROW_COUNT 2
+
 /* 12-byte entries from data_02291588, indexed by Survival_GetRecordIndex (probably
  * one per Survival map). Each mode pair (data_022a7b80.mode 0/3,
  * 1/4, 2/5) keeps the two COs of its record here, 5 bits each; 0: none. */

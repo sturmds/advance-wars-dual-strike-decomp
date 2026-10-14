@@ -126,17 +126,17 @@ void ForceRankScreen_Init(void) {
   func_0202b7e0(16);
   Co_UnpackPicture(gForceRankScreen->co, 0);
   Palette_LoadObjRow(1);
-  Icon_LoadTo(139, data_027c0280->objVram, 12);
+  Icon_LoadTo(ICON_RANK_LABEL, data_027c0280->objVram, 12);
   for (i = 0; i < ICON_DIGIT_COUNT; i++) {
     Icon_LoadTo(ICON_DIGITS + i, data_027c0280->objVram, 20 + i * 2);
   }
   Icon_LoadTo(213, data_027c0280->objVram, 40);
-  for (i = 0; i < 10; i++) {
-    Icon_LoadTo(108 + i, data_027c0280->objVram, 44 + i * 2);
+  for (i = 0; i < ICON_DIGIT_COUNT; i++) {
+    Icon_LoadTo(ICON_DIGITS_OUTLINED + i, data_027c0280->objVram, 44 + i * 2);
   }
   Icon_LoadTo(118, data_027c0280->objVram, 64);
-  for (i = 0; i < 10; i++) {
-    Icon_LoadTo(120 + i, data_027c0280->objVram, 66 + i * 2);
+  for (i = 0; i < ICON_DIGIT_COUNT; i++) {
+    Icon_LoadTo(ICON_DIGITS_GREY + i, data_027c0280->objVram, 66 + i * 2);
   }
   Icon_LoadTo(130, data_027c0280->objVram, 86);
   Icon_LoadTo(194, data_027c0280->objVram, 88);

@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/cursor_band_task.h"
 #include "game/menu_button.h"
+#include "game/Unk_02088d04.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
@@ -54,7 +55,7 @@ void CursorBandTask_Update(CursorBandTask* task) {
       }
       break;
   }
-  for (i = -1; i < 8; i++) {
+  for (i = -1; i < SCREEN_WIDTH / 32; i++) {
     Sprite_QueueAt(4, (task->scrollX + i * 32) & 0x1ff, (y - 16) & 0xff,
                    &data_027c0048, (frame * 16 + 10) | 0x1800, 0);
   }

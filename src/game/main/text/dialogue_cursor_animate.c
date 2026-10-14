@@ -1,10 +1,16 @@
 #include "types.h"
+#include "game/Unk_02088d04.h"
 
 int MainLoop_GetFrameCount(void);
 void Mem_CopyAuto(const void* src, void* dst, u32 size);
 
 extern u8 gDialogueCursorTiles[];
 extern u8* data_02297790;
+
+/* gDialogueCursorTiles holds the three sets as one tile each, then as two
+ * tiles each; the cursor shows at text layer tile CURSOR_TILE and the two
+ * tiles after it. */
+#define CURSOR_TILE 0x1b0
 
 /* Cycles the blinking dialogue cursor over 46 frames through tile sets 0, 1, 2,
  * 1 and copies the current one into the text layer's tile buffer. */
@@ -21,7 +27,9 @@ void DialogueCursor_Animate(void) {
   } else {
     step = 1;
   }
-  Mem_CopyAuto(&gDialogueCursorTiles[step * 32], data_02297790 + 0x3600, 32);
-  Mem_CopyAuto(&gDialogueCursorTiles[(step * 2 + 3) * 32],
-               data_02297790 + 0x3620, 64);
+  Mem_CopyAuto(&gDialogueCursorTiles[step * TILE_4BPP_SIZE],
+               data_02297790 + CURSOR_TILE * TILE_4BPP_SIZE, TILE_4BPP_SIZE);
+  Mem_CopyAuto(&gDialogueCursorTiles[(step * 2 + 3) * TILE_4BPP_SIZE],
+               data_02297790 + (CURSOR_TILE + 1) * TILE_4BPP_SIZE,
+               2 * TILE_4BPP_SIZE);
 }

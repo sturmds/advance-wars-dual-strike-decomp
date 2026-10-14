@@ -77,7 +77,7 @@ void MenuCursor_Update(void) {
   if (MenuButton_TestFlags(button, 0x800) != 0) {
     mode = 0x400;
   }
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < (int)ARRAY_COUNT(gMenuCursor->corners); i++) {
     if (MainLoop_GetFrameCount() & 0x30) {
       tile = gMenuCursor->tile + i * 2;
       Oam_PutSprite(gMenuCursor->corners[i][0] & 0x1ff,

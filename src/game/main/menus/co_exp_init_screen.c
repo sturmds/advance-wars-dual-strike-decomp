@@ -98,7 +98,7 @@ void CoExp_InitScreen(void) {
     if (i >= 3) {
       break;
     }
-    Icon_LoadTo(ROWS[data_022a7a88.sideA[i]].armyColour + 74,
+    Icon_LoadTo(ICON_ARMY_BANNERS - 1 + ROWS[data_022a7a88.sideA[i]].armyColour,
                 data_027c0280->objVram, 756 + i * 8);
     Co_LoadSmallPicture(ENTRY(data_022a7a88.sideA[i]).frontCo,
                         data_027c0280->objVram + ((548 + i * 24) << 5),
@@ -118,14 +118,14 @@ void CoExp_InitScreen(void) {
   Palette_LoadObjRow(4);
   IconBank_LoadPalette(1, 27);
   IconBank_LoadPalette(4, 28);
-  Icon_LoadTo(139, data_027c0280->objVram, 780);
+  Icon_LoadTo(ICON_RANK_LABEL, data_027c0280->objVram, 780);
   for (i = 0; i < ICON_DIGIT_COUNT; i++) {
     Icon_LoadTo(ICON_DIGITS + i, data_027c0280->objVram, 788 + i * 2);
   }
   Icon_LoadTo(213, data_027c0280->objVram, 808);
   Icon_LoadTo(182, data_027c0280->objVram, 812);
-  for (i = 0; i < 10; i++) {
-    Icon_LoadTo(150 + i, data_027c0280->objVram, 816 + i * 2);
+  for (i = 0; i < ICON_DIGIT_COUNT; i++) {
+    Icon_LoadTo(ICON_DIGITS_SMALL + i, data_027c0280->objVram, 816 + i * 2);
   }
   if (GAME->gameMode == GAME_MODE_WAR_ROOM) {
     if (GAME->unk_59 == 0) {

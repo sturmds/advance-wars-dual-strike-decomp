@@ -23,7 +23,7 @@ void UnitList_DrawRows(int scroll) {
     index = scroll >> 1;
     i = 0;
     y = -1;
-    for (; i < 7; i++) {
+    for (; i < UNIT_LIST_VISIBLE_ROWS + 1; i++) {
       UnitList_DrawRow(y, index);
       index++;
       y += 2;

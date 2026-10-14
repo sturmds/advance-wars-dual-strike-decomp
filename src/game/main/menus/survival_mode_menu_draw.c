@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
+#include "game/survival_record.h"
 
 void Screen_SetCurrentGfx(void* state);
 void Sprite_QueueAt(int a0, int x, int y, void* a3, int attr, int tile);
@@ -31,7 +32,7 @@ void SurvivalModeMenu_Draw(void) {
   if (SurvivalMode_HasSecondRow() == 1) {
     Sprite_QueueAt(0, 48, 102, &data_027c01c0, 0x4050, 0);
   }
-  for (row = 0; row < 2; row++) {
+  for (row = 0; row < SURVIVAL_MENU_ROW_COUNT; row++) {
     mode = SurvivalModeMenu_GetRowMode(row);
     if (SurvivalRecord_Exists(mode) != 0) {
       Co_QueueSmallPictureSprite(32, (88 + row * 64) & 0xff,

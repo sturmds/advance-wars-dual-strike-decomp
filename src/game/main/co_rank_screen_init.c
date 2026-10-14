@@ -189,15 +189,15 @@ void CoRankScreen_Init(CoRankTask* task) {
   Mem_Free(file);
 
   GFX_TO(MAIN_MAP);
-  Icon_LoadTo(139, data_027c0280->objVram, 192);
+  Icon_LoadTo(ICON_RANK_LABEL, data_027c0280->objVram, 192);
   for (i = 0; i < ICON_DIGIT_COUNT; i++) {
     Icon_LoadTo(ICON_DIGITS + i, data_027c0280->objVram, 200 + i * 2);
   }
-  Icon_LoadTo(201, data_027c0280->objVram, 224);
+  Icon_LoadTo(ICON_PTS_LABEL, data_027c0280->objVram, 224);
   Icon_LoadTo(213, data_027c0280->objVram, 220);
   Icon_LoadTo(182, data_027c0280->objVram, 228);
-  for (i = 0; i < 10; i++) {
-    Icon_LoadTo(i + 150, data_027c0280->objVram, 232 + i * 2);
+  for (i = 0; i < ICON_DIGIT_COUNT; i++) {
+    Icon_LoadTo(ICON_DIGITS_SMALL + i, data_027c0280->objVram, 232 + i * 2);
   }
   IconBank_LoadPalette(4, 20);
   task->hasBackCo = STATE->players[1].back.id != 0;

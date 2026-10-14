@@ -38,6 +38,7 @@ typedef struct SharedWirelessInfo {
 } SharedWirelessInfo;
 
 #define SHARED_USER_SETTINGS ((UserSettings*)0x027ffc80)
+#define SHARED_WIRELESS_INFO ((SharedWirelessInfo*)(SHARED_USER_SETTINGS + 1))
 
 /* Firmware flash offsets */
 #define FLASH_USER_SETTINGS_OFFSET 0x20 /* halfword: user settings offset / 8 */

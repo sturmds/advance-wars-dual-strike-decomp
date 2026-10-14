@@ -8,7 +8,8 @@ void MapSelect_BuildWarRoomLists(MapListSet* set) {
   int kind;
 
   set->count = 0;
-  for (kind = 9; kind < 13; kind++) {
+  for (kind = MAP_LIST_KIND_WAR_ROOM_FIRST; kind < MAP_LIST_KIND_COUNT;
+       kind++) {
     if (MapSelect_FillWarRoomList(&set->lists[set->count], kind) == 1) {
       set->count++;
     }

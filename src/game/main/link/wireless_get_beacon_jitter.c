@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/os_common.h"
 
-void func_0210ed9c(u8* mac);
+void OS_GetMacAddress(u8* mac);
 s32 HwMod32(s32 numerator, s32 denominator);
 
 #define VBLANK_COUNT (*(u32*)0x027ffc3c)
@@ -14,7 +14,7 @@ int Wireless_GetBeaconJitter(void) {
   int sum;
   int i;
 
-  func_0210ed9c(mac);
+  OS_GetMacAddress(mac);
   sum = i = 0;
   for (; i < MAC_ADDRESS_SIZE; i++) {
     sum += mac[i];

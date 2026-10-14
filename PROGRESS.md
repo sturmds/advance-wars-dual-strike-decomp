@@ -38,8 +38,8 @@ Gap units are code and data that dsd delinks with no source file.
 
 | Kind | Code decompiled | Code linked | Bytes decompiled | Bytes linked | Functions matched | Data linked | Data bytes linked |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| game | 100.0000% | 100.0000% | 1556364 / 1556364 | 1556364 / 1556364 | 6749 / 6749 | 100.0000% | 3093836 / 3093836 |
-| SDK/library | 100.0000% | 100.0000% | 288648 / 288648 | 288648 / 288648 | 1822 / 1822 | 100.0000% | 42276 / 42276 |
+| game | 100.0000% | 100.0000% | 1556336 / 1556336 | 1556336 / 1556336 | 6748 / 6748 | 100.0000% | 3093836 / 3093836 |
+| SDK/library | 100.0000% | 100.0000% | 288676 / 288676 | 288676 / 288676 | 1823 / 1823 | 100.0000% | 42276 / 42276 |
 | gap units | - | - | 0 / 0 | 0 / 0 | 0 / 0 | 0.0000% | 0 / 12 |
 
 ## Below 100%
@@ -67,9 +67,9 @@ sites. Not every count should reach 0: a hardware format stays a number.
 | Addresses | Unrelocated words, medium level | 0 | 0 | 0 |
 | Addresses | Unrelocated words, low level (mostly in `u32` tables) | 17 | 0 | 17 |
 | Sizes | `Mem_Alloc` with a literal size | 0 | 0 | 0 |
-| Sizes | Copy, fill and clear calls with a literal length | 35 | 0 | 35 |
+| Sizes | Copy, fill and clear calls with a literal length | 26 | 0 | 26 |
 | Sizes | Byte offsets into objects (`(u8 *)x + N`) | 0 | 0 | 0 |
-| Sizes | `for` loops with a literal bound | 53 | 4 | 57 |
+| Sizes | `for` loops with a literal bound | 12 | 4 | 16 |
 | Tables | Initialised `u32` arrays with a literal length | 0 | 0 | 0 |
 | Tables | Initialised `char` arrays with a literal length | 0 | 0 | 0 |
 | Tables | Other initialised arrays with a literal length | 0 | 0 | 0 |

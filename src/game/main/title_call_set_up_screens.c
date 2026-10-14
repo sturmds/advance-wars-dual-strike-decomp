@@ -163,7 +163,8 @@ void TitleCall_SetUpScreens(Task* task) {
 
   saved0280 = data_027c0280;
   Screen_SetCurrentGfx(SUB_MAP);
-  Mem_Copy32(MAIN_GFX->unk_120, CHAR_BASE(data_027c0280->layer3Bg), 0x4000);
+  Mem_Copy32(MAIN_GFX->unk_120, CHAR_BASE(data_027c0280->layer3Bg),
+             BG_CHAR_BLOCK_SIZE);
   Mem_Copy32(MAIN_GFX->layer3Map, data_027c0280->layer3Map, GFX_LAYER_MAP_SIZE);
   Palette_Load(file + 0x17f8, 0, 0x20);
   Gfx_RequestLayerCopy(3);

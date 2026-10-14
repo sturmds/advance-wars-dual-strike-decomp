@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/campaign_map.h"
+#include "game/icon.h"
 #include "game/menu_state.h"
 #include "game/task.h"
 #include "game/unlocks.h"
@@ -26,8 +27,6 @@ int Campaign_IsHardMode(void);
 int Score_ToRank(int score);
 int CampaignRecords_GetAverageScore(void);
 CampaignTopCo* Campaign_GetUnlockedCos(void);
-void Icon_LoadTo(int iconId, u8* vram, int tile);
-void IconBank_LoadPalette(int bank, int paletteSlot);
 void Co_LoadSmallPicture(int coId, void* dest, int paletteSlot);
 void Co_UnpackPicture(int coId, int firstTile);
 s8 Text_PrintId(s16 x, s16 y, u16* map, u32 textId, u16 unk_30, u16 unk_32);
@@ -220,8 +219,8 @@ void TotalRankScreen_Init(Task* task) {
   Gfx_RequestLayerCopy(0);
   File_UnpackTo(data_027c0280->objVram + 0x5c00,
                 File_LocalizePath(gTotalRankTpIconLangPath));
-  for (i = 0; i < 3; i++) {
-    Icon_LoadTo(188 + i, data_027c0280->objVram, i * 8);
+  for (i = 0; i < CAMPAIGN_TOP_CO_COUNT; i++) {
+    Icon_LoadTo(ICON_PLACES + i, data_027c0280->objVram, i * 8);
   }
   IconBank_LoadPalette(4, 16);
   i = 0;

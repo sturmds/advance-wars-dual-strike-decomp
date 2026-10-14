@@ -23,7 +23,7 @@ void HelpBand_Update(Task* task) {
   Screen_SetCurrentGfx(data_027c0288.unk_04);
   saved027c = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_04);
-  for (i = 0; i < 16; i++) {
+  for (i = 0; i < SCREEN_WIDTH / 16; i++) {
     Oam_PutCells((i * 16) & 0x1ff, 0x8b0, data_027c0060, 0, task->unk_52);
   }
   if (task->unk_64 != 0) {

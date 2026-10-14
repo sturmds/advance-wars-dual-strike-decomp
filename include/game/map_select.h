@@ -8,6 +8,8 @@
 #include "types.h"
 #include "game/menu_state.h"
 #include "game/Unk_02080440.h"
+#include "game/player.h"
+#include "game/war_room_records.h"
 
 int MapSelect_GetTab(void);
 
@@ -25,6 +27,14 @@ extern MapListTables data_0229c768;
 #define TAB() MapSelect_GetTab()
 #define LIST_OF_TAB(tab) (TABLES.listOfTab[tab])
 #define LIST(tab) (MENU->setup.lists[LIST_OF_TAB(tab)])
+
+/* The War Room records' CO pictures (MapSelect_DrawStatsPanel): front and
+ * back CO of each place, from OBJ tile RECORD_CO_TILE and OBJ palette
+ * RECORD_CO_PALETTE on, one palette each. The pictures of the previous list
+ * follow them during a slide. */
+#define RECORD_CO_PICTURES (WAR_ROOM_PLACE_COUNT * PLAYER_CO_COUNT)
+#define RECORD_CO_TILE 0x1ca
+#define RECORD_CO_PALETTE 3
 
 /* Map list layout: COLS by ROWS maps per page. */
 #define COLS \

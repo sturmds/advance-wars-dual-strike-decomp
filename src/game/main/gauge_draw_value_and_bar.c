@@ -8,6 +8,10 @@ void Gauge_QueueDigitPopIn(int x, int y, int digit, int frame, int matrixIndex);
 extern u8 data_027c0028;
 extern u8 data_027c00d8;
 
+#define BAR_CAP 5    /* points in the left cap */
+#define BAR_CELL 8   /* points in one cell */
+#define BAR_CELLS 15 /* cells between the caps */
+
 /* Queues the sprites of a value gauge at (x, y): a label whose palette steps up
  * at 60, 80 and 100, the value as three pop-in digits (each starting 4 frames
  * after the one before), and a bar to the right. The bar has a left cap that
@@ -53,13 +57,13 @@ void Gauge_DrawValueAndBar(int x, int y, int value, int frame) {
     Sprite_QueueAt(4, (x + 52) & 0x1ff, barY, &data_027c0028, 0x3000,
                    0x5b0 + value * 2);
   }
-  for (i = 0; i < 15; i++) {
-    if (value >= (i + 1) * 8 + 5) {
+  for (i = 0; i < BAR_CELLS; i++) {
+    if (value >= (i + 1) * BAR_CELL + BAR_CAP) {
       Sprite_QueueAt(4, (x + 60 + i * 8) & 0x1ff, barY, &data_027c0028, 0x3000,
                      0x5cc);
-    } else if (value >= i * 8 + 5) {
+    } else if (value >= i * BAR_CELL + BAR_CAP) {
       Sprite_QueueAt(4, (x + 60 + i * 8) & 0x1ff, barY, &data_027c0028, 0x3000,
-                     0x5bc + (value - (i * 8 + 5)) * 2);
+                     0x5bc + (value - (i * BAR_CELL + BAR_CAP)) * 2);
     } else {
       Sprite_QueueAt(4, (x + 60 + i * 8) & 0x1ff, barY, &data_027c0028, 0x3000,
                      0x5bc);

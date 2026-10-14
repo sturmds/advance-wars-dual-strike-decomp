@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/Unk_022a7fac.h"
 #include "game/save_progress.h"
 #include "game/screen_other_map.h"
 #include "game/play_records.h"
@@ -41,7 +42,7 @@ void MainMenu_Prepare(void) {
   MainMenu_SetUnk0f_4(gPlayRecords.unk_10);
   TileCodeTable_Load();
 
-  for (i = 0; i < 12; i++) {
+  for (i = 0; i < (int)sizeof(Unk_022a7fac); i++) {
     data_022a7fac[i] = 0;
   }
 

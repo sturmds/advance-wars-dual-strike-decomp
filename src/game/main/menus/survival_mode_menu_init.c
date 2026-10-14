@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/survival_record.h"
 
 void Bg_PutTileBlock(u16* map, int x, int y, const u8* block, u16 tileAdd);
 void Co_LoadSmallPicture(int co, void* dest, int palette);
@@ -77,7 +78,7 @@ void SurvivalModeMenu_Init(void) {
   SurvivalModeMenu_DrawRecords();
   Data_Unpack(res, data_027c0280->objVram + 0x600);
   Palette_Load(res + 0xe58, 0x280, 32);
-  for (row = 0; row < 2; row++) {
+  for (row = 0; row < SURVIVAL_MENU_ROW_COUNT; row++) {
     mode = SurvivalModeMenu_GetRowMode(row);
     if (SurvivalRecord_Exists(mode) != 0) {
       Co_LoadSmallPicture(SurvivalRecord_GetCo(mode, 0),

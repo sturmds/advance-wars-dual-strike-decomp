@@ -97,7 +97,9 @@ void ResultStats_Init(Task* task) {
     int screen; /* declared here to match its stack slot */
     Unk_02080440* saved027c = data_027c027c;
 
-    for (screen = 0; screen < 2; screen++) {
+    for (screen = 0;
+         screen < (int)(sizeof(data_027c0288) / sizeof(data_027c0288.unk_00));
+         screen++) {
       Screen_SetCurrentBoth(((void**)&data_027c0288)[screen]);
       Screen_SetLayerScreenSize(0, 1);
       Screen_SetLayerScreenSize(1, 1);

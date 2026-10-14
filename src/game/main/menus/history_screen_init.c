@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/icon.h"
 #include "game/player.h"
 #include "game/tab_list.h"
 #include "game/Unk_02080440.h"
@@ -11,8 +12,6 @@ void Font_LoadDigits(int a);
 void Gfx_LoadBmap09f(void* a, int b, int c);
 void Gfx_RequestLayerCopy(int bg);
 void HelpBand_Start(int tile, int a);
-void IconBank_LoadPalette(int a, int b);
-void Icon_LoadTo(int a, u8* objVram, int b);
 void Mem_Copy32(const void* src, void* dest, u32 size);
 void Mem_Free(void* res);
 void MenuButton_Select(int id);
@@ -125,10 +124,10 @@ void HistoryScreen_Init(void) {
   Data_Unpack(lang, data_027c0280->objVram);
   Data_Unpack(lang + 0x2f54, data_027c0280->objVram + 0x8000);
   Palette_Load(res + 0xe0, 0x260, 32);
-  for (i = 0; i < 10; i++) {
-    Icon_LoadTo(150 + i, data_027c0280->objVram, 128 + i * 2);
+  for (i = 0; i < ICON_DIGIT_COUNT; i++) {
+    Icon_LoadTo(ICON_DIGITS_SMALL + i, data_027c0280->objVram, 128 + i * 2);
   }
-  Icon_LoadTo(162, data_027c0280->objVram, 148);
+  Icon_LoadTo(ICON_SMALL_SLASH, data_027c0280->objVram, 148);
   IconBank_LoadPalette(4, 18);
   Screen_SetCurrentGfx(saved0280);
 

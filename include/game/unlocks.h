@@ -15,6 +15,10 @@ u8 Unlock_IsSet(u32 id);
  * not including, GAME_FLAG_CAMPAIGN_END. */
 #define GAME_FLAG_CAMPAIGN_FIRST 95
 #define GAME_FLAG_CAMPAIGN_END 159
+/* Game flags from here up to GAME_FLAG_CAMPAIGN_FIRST hold what the player
+ * earned (campaign clears 33-36, gallery walls 61-62, medals 63);
+ * Unlocks_ResetToNewGame clears them. Flags below it stay. */
+#define GAME_FLAG_EARNED_FIRST 32
 
 #define SHOP_ITEM_BOUGHT (-1)
 #define SHOP_ITEM_LOCKED 0

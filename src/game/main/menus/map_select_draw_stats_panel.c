@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
+#include "game/war_room_records.h"
 
 int MapSelect_GetTab(void);
 void Co_QueueSmallPictureSpriteAtTile(int x, int y, int attr, int tile, int a4);
@@ -38,7 +39,7 @@ void MapSelect_DrawStatsPanel(int x, int y, int mode) {
   }
   Sprite_QueueAt(0, (x + 64) & 0x1ff, y & 0xff, &data_027c0020, 0x1000, 0x196);
   Sprite_QueueAt(0, (x + 96) & 0x1ff, y & 0xff, &data_027c0020, 0x1000, 0x19a);
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < WAR_ROOM_PLACE_COUNT; i++) {
     Sprite_QueueAt(0, (x + 8) & 0x1ff, (y + 8 + i * 32) & 0xff, &data_027c0060,
                    0x1000, 0x19e + i * 8);
     if (mode == 0) {

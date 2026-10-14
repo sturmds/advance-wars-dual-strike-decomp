@@ -1,12 +1,11 @@
 #include "types.h"
+#include "game/icon.h"
 #include "game/player.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
 void Gfx_ClearLayerMap(int layer);
 u8 Map_GetLoadedPlayerCount(void);
-void Icon_LoadTo(int iconId, u8* vram, int tile);
-void IconBank_LoadPalette(int bank, int paletteSlot);
 void File_UnpackTo(void* dest, const char* fileName);
 void Font_LoadDigits(int baseTile);
 void StatusScreen_Draw(void);
@@ -20,10 +19,6 @@ extern char data_0215fba0[]; /* status screen background file */
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-/* Icon_LoadTo id for Player.armyColour 0; one icon per army colour follows
- * (likely the army emblems). */
-#define ICON_ARMY_EMBLEM 74
-
 /* Status screen setup: an army icon for each undefeated player (OBJ tiles
  * 404 on, 8 per row, where StatusScreen_QueueSprites shows them), the
  * background on layer 1, the table, then the back button. */
@@ -34,7 +29,7 @@ void StatusScreen_Init(void) {
   Gfx_ClearLayerMap(1);
   for (i = 0; i < Map_GetLoadedPlayerCount(); i++) {
     if (GAME->players[i + 1].defeated == 0) {
-      Icon_LoadTo(GAME->players[i + 1].armyColour + ICON_ARMY_EMBLEM,
+      Icon_LoadTo(ICON_ARMY_BANNERS - 1 + GAME->players[i + 1].armyColour,
                   data_027c0280->objVram, 404 + i * 8);
     }
   }

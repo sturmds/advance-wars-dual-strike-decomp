@@ -14,6 +14,6 @@ void func_0200208c(int coId, void* dest, int paletteSlot, int army) {
   }
   Mem_Copy32(
       data_02152b78[coId & CO_ID_MASK][Co_GetArmyPictureVariant(coId, army)],
-      dest, 0x180);
+      dest, CO_SMALL_PICTURE_SIZE);
   Co_LoadArmyPalette(coId, paletteSlot, army);
 }

@@ -354,6 +354,7 @@ OS_GetArenaLo
 OS_GetInitArenaHi
 OS_GetInitArenaLo
 OS_GetLockID
+OS_GetMacAddress
 OS_GetOwnerInfo
 OS_GetProcMode
 OS_GetThreadPriority

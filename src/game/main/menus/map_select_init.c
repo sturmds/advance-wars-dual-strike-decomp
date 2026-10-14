@@ -1,8 +1,10 @@
 #include "types.h"
+#include "game/icon.h"
 #include "game/map_select.h"
 #include "game/menu_state.h"
 #include "game/Unk_02088d04.h"
 #include "game/event_queue.h"
+#include "game/war_room_records.h"
 
 void Gfx_InitBothScreens(void);
 void Screen_SetCurrent(void* state);
@@ -24,8 +26,6 @@ void Palette_BlendWithColor(void* dst, int a, int b, int c);
 void Gfx_LoadBmap09f(void* target, int a, int b);
 void Font_LoadDigits(int a);
 void Gfx_RequestLayerCopy(int layer);
-void Icon_LoadTo(int iconId, u8* vram, int tile);
-void IconBank_LoadPalette(int bank, int paletteSlot);
 void Window_Draw(int x, int y, int width, int height, u16* map, int palette);
 int Link_IsActive(void);
 void MapSelect_BuildWarRoomLists(MapList* lists);
@@ -158,18 +158,19 @@ void MapSelect_Init(void) {
     Palette_Load(file, 0x200, 0x20);
   }
   Gfx_RequestLayerCopy(1);
-  for (i = 0; i < 10; i++) {
-    Icon_LoadTo(i + 150, data_027c0280->objVram, 0x180 + i * 2);
+  for (i = 0; i < ICON_DIGIT_COUNT; i++) {
+    Icon_LoadTo(ICON_DIGITS_SMALL + i, data_027c0280->objVram, 0x180 + i * 2);
   }
-  Icon_LoadTo(162, data_027c0280->objVram, 0x194);
+  Icon_LoadTo(ICON_SMALL_SLASH, data_027c0280->objVram, 0x194);
   IconBank_LoadPalette(4, 17);
-  Icon_LoadTo(200, data_027c0280->objVram, 0x196);
-  Icon_LoadTo(201, data_027c0280->objVram, 0x19a);
-  for (i = 0; i < 3; i++) {
-    Icon_LoadTo(i + 188, data_027c0280->objVram, 0x19e + i * 8);
+  Icon_LoadTo(ICON_DAY_LABEL, data_027c0280->objVram, 0x196);
+  Icon_LoadTo(ICON_PTS_LABEL, data_027c0280->objVram, 0x19a);
+  for (i = 0; i < WAR_ROOM_PLACE_COUNT; i++) {
+    Icon_LoadTo(ICON_PLACES + i, data_027c0280->objVram, 0x19e + i * 8);
   }
-  for (i = 0; i < 10; i++) {
-    Icon_LoadTo(i + 108, data_027c0280->objVram, 0x1b6 + i * 2);
+  for (i = 0; i < ICON_DIGIT_COUNT; i++) {
+    Icon_LoadTo(ICON_DIGITS_OUTLINED + i, data_027c0280->objVram,
+                0x1b6 + i * 2);
   }
   Icon_LoadTo(
       85,
@@ -203,8 +204,9 @@ void MapSelect_Init(void) {
   Window_Draw(11, 20, 10, 4, data_027c0280->layer2Map, 0);
   Gfx_RequestLayerCopy(2);
   Icon_LoadTo(203, data_027c0280->objVram, 0);
-  for (i = 0; i < 10; i++) {
-    Icon_LoadTo(i + 0x10a, data_027c0280->objVram, 0x68 + i * 2);
+  for (i = 0; i < ICON_DIGIT_COUNT; i++) {
+    Icon_LoadTo(ICON_DIGITS_SMALL_WHITE + i, data_027c0280->objVram,
+                0x68 + i * 2);
   }
   IconBank_LoadPalette(4, 19);
   Window_Draw(-1, 16, 10, 9, data_027c0280->layer0Map, 0);

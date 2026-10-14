@@ -2,6 +2,7 @@
 #include "game/menu_state.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/icon.h"
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 /* Needed to match: the cast keeps the field offsets out of the literal pool. */
@@ -20,8 +21,6 @@ void ForceRank_LoadSets(int mode);
 void Gfx_InitBothScreens(void);
 void Gfx_LoadBmap09f(void* a, int b, int c);
 void HelpBand_Start(int textId, int arg);
-void IconBank_LoadPalette(int bank, int paletteSlot);
-void Icon_LoadTo(int iconId, u8* vram, int tile);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 void Mem_Free(void* res);
 void ModeFont_Load(int x, int y);
@@ -117,41 +116,42 @@ void VsSetup_Init(void) {
 
   savedIcons = data_027c0280;
   Screen_SetCurrentGfx(data_027c0288.unk_00);
-  for (i = 0; i < 4; i++) {
-    Icon_LoadTo(i + 0xcc, data_027c0280->objVram, i * 4);
+  for (i = 0; i < ICON_PLAYER_LABEL_COUNT; i++) {
+    Icon_LoadTo(ICON_PLAYER_LABELS + i, data_027c0280->objVram, i * 4);
   }
-  Icon_LoadTo(0xd0, data_027c0280->objVram, 16);
-  for (i = 0; i < 4; i++) {
-    Icon_LoadTo(i + 0x147, data_027c0280->objVram, i * 4 + 20);
-    Icon_LoadTo(i + 0x14b, data_027c0280->objVram, i * 4 + 36);
+  Icon_LoadTo(ICON_CPU_LABEL, data_027c0280->objVram, 16);
+  for (i = 0; i < ICON_TEAM_COUNT; i++) {
+    Icon_LoadTo(ICON_TEAM_LETTERS + i, data_027c0280->objVram, i * 4 + 20);
+    Icon_LoadTo(ICON_TEAM_LETTERS_GREY + i, data_027c0280->objVram, i * 4 + 36);
   }
-  for (i = 0; i < 4; i++) {
-    Icon_LoadTo(i + 0x114, data_027c0280->objVram, i * 32 + 52);
+  for (i = 0; i < ICON_TEAM_COUNT; i++) {
+    Icon_LoadTo(ICON_TEAMS + i, data_027c0280->objVram, i * 32 + 52);
   }
-  for (i = 0; i < 9; i++) {
-    Icon_LoadTo(i + 0x118, data_027c0280->objVram, i * 8 + 180);
+  for (i = 0; i < ICON_SETTING_COUNT; i++) {
+    Icon_LoadTo(ICON_SETTING_LABELS + i, data_027c0280->objVram, i * 8 + 180);
   }
-  Icon_LoadTo(0x121, data_027c0280->objVram, 252);
-  Icon_LoadTo(0x122, data_027c0280->objVram, 260);
-  for (i = 0; i < 4; i++) {
-    Icon_LoadTo(i + 0x123, data_027c0280->objVram, i * 8 + 268);
+  Icon_LoadTo(ICON_ON, data_027c0280->objVram, 252);
+  Icon_LoadTo(ICON_OFF, data_027c0280->objVram, 260);
+  for (i = 0; i < ICON_VISUAL_TYPE_COUNT; i++) {
+    Icon_LoadTo(ICON_VISUAL_TYPES + i, data_027c0280->objVram, i * 8 + 268);
   }
-  for (i = 0; i < 9; i++) {
-    Icon_LoadTo(i + 0x127, data_027c0280->objVram, i * 16 + 300);
+  for (i = 0; i < ICON_SETTING_COUNT; i++) {
+    Icon_LoadTo(ICON_SETTING_CIRCLES + i, data_027c0280->objVram, i * 16 + 300);
   }
-  Icon_LoadTo(0x130, data_027c0280->objVram, 444);
-  Icon_LoadTo(0x131, data_027c0280->objVram, 448);
-  Icon_LoadTo(0x133, data_027c0280->objVram, 452);
-  Icon_LoadTo(0x132, data_027c0280->objVram, 456);
-  Icon_LoadTo(0x134, data_027c0280->objVram, 460);
-  for (i = 0; i < 4; i++) {
-    Icon_LoadTo(i + 0x135, data_027c0280->objVram, i * 4 + 464);
+  /* In the order of the weather setting, which differs from the icons'. */
+  Icon_LoadTo(ICON_WEATHERS + 0, data_027c0280->objVram, 444);
+  Icon_LoadTo(ICON_WEATHERS + 1, data_027c0280->objVram, 448);
+  Icon_LoadTo(ICON_WEATHERS + 3, data_027c0280->objVram, 452);
+  Icon_LoadTo(ICON_WEATHERS + 2, data_027c0280->objVram, 456);
+  Icon_LoadTo(ICON_WEATHERS + 4, data_027c0280->objVram, 460);
+  for (i = 0; i < ICON_TILESET_COUNT; i++) {
+    Icon_LoadTo(ICON_TILESETS + i, data_027c0280->objVram, i * 4 + 464);
   }
-  for (i = 0; i < 4; i++) {
-    Icon_LoadTo(i + 0x139, data_027c0280->objVram, i * 4 + 480);
+  for (i = 0; i < ICON_AI_KIND_COUNT; i++) {
+    Icon_LoadTo(ICON_AI_KINDS + i, data_027c0280->objVram, i * 4 + 480);
   }
-  for (i = 0; i < 10; i++) {
-    Icon_LoadTo(i + 0x13d, data_027c0280->objVram, i * 2 + 496);
+  for (i = 0; i < ICON_DIGIT_COUNT; i++) {
+    Icon_LoadTo(ICON_DIGITS_SETUP + i, data_027c0280->objVram, i * 2 + 496);
   }
   Icon_LoadTo(0x14f, data_027c0280->objVram, 516);
   IconBank_LoadPalette(4, 16);

@@ -15,6 +15,14 @@
 #include "game/Unk_0229fb30.h"
 #include "game/Unk_02088d04.h"
 
+/* Kinds of map list (MapList.unk_64): 1-8 the lists of the Versus tabs,
+ * by map case (MapSelect_ListKindToMapCase), 9-12 the War Room lists for 2,
+ * 3 and 4 players and for any count. */
+#define MAP_LIST_KIND_FIRST 1
+#define MAP_LIST_KIND_SURVIVAL 7 /* MAP_CASE_SURVIVAL; never listed */
+#define MAP_LIST_KIND_WAR_ROOM_FIRST 9
+#define MAP_LIST_KIND_COUNT 13
+
 /* One list of map ids in the map select menu. */
 typedef struct MapList {
   u16 mapIds[50]; /* length a guess */
