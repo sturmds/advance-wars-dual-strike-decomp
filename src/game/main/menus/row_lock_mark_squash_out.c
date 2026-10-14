@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/row_lock_mark_task.h"
 #include "game/screen_other_map.h"
+#include "game/oam_cells.h"
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
@@ -9,7 +10,6 @@ void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Task_ResumeScript(RowLockMarkTask* task);
 
 extern const s16 gSineTable[];
-extern u8 data_027c0060[];
 
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 

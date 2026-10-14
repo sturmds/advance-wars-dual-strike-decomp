@@ -1,17 +1,16 @@
 #include "types.h"
 #include "game/Unk_0229c734.h"
+#include "game/oam_cells.h"
 
 s32 HwDiv32(s32 numer, s32 denom);
 s32 HwMod32(s32 numerator, s32 denominator);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
-extern u8 data_027c0040[];
-
 #define SCORES data_0229c734
 
-#define QUEUE_DIGIT(x, y, digit, palette)                   \
-  Sprite_QueueAt(6, (x) & 0x1ff, (y) & 0xff, data_027c0040, \
-                 (SCORES->paletteSlot + (palette)) << 12,   \
+#define QUEUE_DIGIT(x, y, digit, palette)                    \
+  Sprite_QueueAt(6, (x) & 0x1ff, (y) & 0xff, &data_027c0040, \
+                 (SCORES->paletteSlot + (palette)) << 12,    \
                  SCORES->partTile[3] + 32 + (digit) * 4)
 
 /* Queues a number as result point digit sprites, 12 pixels apart, in

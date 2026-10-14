@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
+#include "game/oam_cells.h"
 
 extern MenuState gMenuState;
-extern u8 data_027c0030;
 
 void PlayerInfo_DrawCoIcons(void);
 void PlayerInfo_DrawPortraitScreenSprites(void);

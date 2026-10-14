@@ -3,6 +3,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_0229fb30.h"
 #include "game/link_buffers.h"
+#include "game/oam_cells.h"
 
 void Mem_Copy32(const void* src, void* dst, u32 size);
 void Gfx_RequestLayerCopy(int layer);
@@ -31,7 +32,6 @@ extern u16 data_0229f330[];
 extern char data_02167c88[];
 extern const s16 gSineTable
     []; /* needed to match: const lets the compiler move the loads out of the loop */
-extern u8 data_027c0040;
 
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 

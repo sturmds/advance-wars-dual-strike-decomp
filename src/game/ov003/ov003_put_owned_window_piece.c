@@ -1,9 +1,8 @@
 #include "types.h"
 #include "game/ov003_unit.h"
+#include "game/oam_cells.h"
 
 void Oam_PutCells(int attr1, int attr0, const void* cells, int attr2, int tile);
-
-extern u8 data_027c0030; /* cell list of a 64 by 64 sprite */
 
 #define MARK_OWNED 1 /* Ov003Map.marks bit, see Ov003_MarkRowTiles */
 

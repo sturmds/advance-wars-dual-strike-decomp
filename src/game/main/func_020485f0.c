@@ -1,10 +1,9 @@
 #include "types.h"
+#include "game/oam_cells.h"
 
 u32 HwDiv32(int num, int denom);
 u32 HwMod32(int num, int denom);
 void Sprite_QueueAt(int a0, int x, int y, void* a3, int attr, int tile);
-extern u8 data_027c0038[];
-extern u8 data_027c0060[];
 
 void func_020485f0(u32 pages) {
   u8 x = 220;

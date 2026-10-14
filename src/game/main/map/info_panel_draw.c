@@ -21,8 +21,6 @@ extern s8 Ov000_gUrbanTerrain[];
 extern u8 gArmyPalettes[][32];
 extern u8 data_ov000_022cb630[];
 extern TaskScriptCmd data_02166430[];
-extern u8 data_027c0038;
-extern u8 data_027c0028;
 
 void InfoPanel_StepAwayFromCursor(void);
 int InfoPanel_CountUnitBoxes(u8 x, u8 y);

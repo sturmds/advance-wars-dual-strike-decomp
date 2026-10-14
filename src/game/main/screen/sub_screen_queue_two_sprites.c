@@ -1,10 +1,8 @@
 #include "types.h"
 #include "game/screen_other_map.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
-
-extern u8 data_027c0148[];
-extern u8 data_027c0030;
 
 /* Queues two sprites on the sub screen at x offset +160 and +176 (wrapped to 9 bits)
  * and y 104 and 120; which sprites they are is not known yet. */

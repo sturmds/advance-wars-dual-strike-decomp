@@ -1,7 +1,7 @@
 #include "types.h"
+#include "game/oam_cells.h"
 
 extern u8 data_0215a434[];
-extern u8 data_027c0048[];
 
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 int func_02039f60(int ch);
@@ -25,7 +25,7 @@ int SpriteFont_QueueChar(int ch, u16 x, u16 y, int attr, u16 firstTile,
   if (*entry != 0) {
     do {
       if (*entry == ch) {
-        Sprite_Queue(list, x, y, data_027c0048, attr, firstTile + index * 16);
+        Sprite_Queue(list, x, y, &data_027c0048, attr, firstTile + index * 16);
         return func_02039f60(ch);
       }
       entry++;

@@ -1,12 +1,10 @@
 #include "types.h"
 #include "game/co_rank_task.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Task_ResumeScript(CoRankTask* task);
 void CoRankScreen_QueueNumber(int x, int y, int value);
-
-extern u8 data_027c0030;
-extern u8 data_027c0060[];
 
 /* One frame of an 8-frame shake: draws the number and the sprite beside
  * it at rest, and the data_027c0060 sprite up to 2 pixels off (212, 152)

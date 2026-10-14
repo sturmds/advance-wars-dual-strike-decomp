@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 #include "game/Unk_02160ac0.h"
-
-extern u8 data_027c0048[];
+#include "game/oam_cells.h"
 
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 

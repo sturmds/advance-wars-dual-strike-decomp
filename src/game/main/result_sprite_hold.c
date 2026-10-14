@@ -2,12 +2,11 @@
 #include "game/Unk_022a7a9c.h"
 #include "game/keypad.h"
 #include "game/menu_button.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void ResultScreen_Confirm(MenuButton* button);
 void ResultPath_DrawAll(int lead);
-
-extern u8 data_027c0060[];
 
 /* Script step: draws the path sprites and the data_027c0060 sprite at rest
  * and confirms the result screen on A or Start. */

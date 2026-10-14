@@ -2,11 +2,11 @@
 #include "sdk/fx.h"
 #include "game/move_path.h"
 #include "game/Unk_022a7c5c.h"
+#include "game/oam_cells.h"
 
 #define GXFIFO_POLYGON_ATTR (*(volatile u32*)0x040004a4)
 
 extern MovePath* gMovePath;
-extern u8 data_027c0040;
 
 int MovePath_DirToNext(int i);
 int MovePath_DirToPrev(int i);

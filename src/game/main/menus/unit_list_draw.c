@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/menu_state.h"
 #include "game/unit_list_task.h"
+#include "game/oam_cells.h"
 
 int MainLoop_GetFrameCount(void);
 void Palette_Load(const void* src, u32 offset, u32 size);
@@ -9,10 +10,6 @@ void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void UnitList_DrawRows(int scroll);
 
 extern MenuState gMenuState;
-extern u8 data_027c0028;
-extern u8 data_027c0040;
-extern u8 data_027c0058[];
-extern u8 data_027c0060[];
 
 /* Per-frame update of the unit list menu. Moves scroll one half row toward
  * topRow every other frame, redrawing the rows and playing a sound on odd

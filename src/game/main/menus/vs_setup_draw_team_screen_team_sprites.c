@@ -8,7 +8,6 @@ void Sprite_QueueAt(int list, int x, int y, const void* data, int unk08,
 int VsSetup_GetSlotTileX(int player);
 
 extern MenuState gMenuState;
-extern OamCellList1 data_027c0008;
 
 #define MENU ((MenuState*)&gMenuState)
 

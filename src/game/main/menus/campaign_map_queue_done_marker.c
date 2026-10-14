@@ -1,8 +1,7 @@
 #include "types.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
-
-extern u8 data_027c0040;
 
 /* Queues the world map marker sprite at screen position (x, y) with animation
  * frame 'frame' (tile frame * 4 + 16 of the sprites at data_027c0040), unless the

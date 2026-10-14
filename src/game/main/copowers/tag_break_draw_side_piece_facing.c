@@ -1,13 +1,12 @@
 #include "types.h"
 #include "game/screen_other_map.h"
+#include "game/oam_cells.h"
 
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 void func_02002598(int x, int y, int xBits, int yBits, int attr, int tile,
                    int list, int mirror);
 void func_02002510(int x, int y, int xBits, int yBits, int attr, int tile,
                    int list, int mirror);
-
-extern u8 data_027c00d8;
 
 #define OBJ_X_FLIP 0x1000 /* OAM attribute 1 */
 

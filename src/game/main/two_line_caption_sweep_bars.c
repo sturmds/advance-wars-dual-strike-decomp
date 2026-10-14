@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/caption_task.h"
 #include "game/screen_other_map.h"
-
-extern u8 data_027c0058[];
+#include "game/oam_cells.h"
 
 const u8* Text_Get(u32 textId);
 int strlen(const u8* str);
@@ -37,10 +36,12 @@ void TwoLineCaption_SweepBars(CaptionTask* task) {
   left = 128 - (func_02039f20(Text_Get(TWO_LINE_CAPTION_TEXT_A)) >> 1);
   right = 128 + (func_02039f20(Text_Get(TWO_LINE_CAPTION_TEXT_A)) >> 1);
   sweep = Math_Ease(0, left, right - 18, task->frame - 1, 15);
-  Sprite_QueueAt(6, sweep & 0x1ff, 76, data_027c0058, 0x1000, 0x332);
-  Sprite_QueueAt(6, sweep & 0x1ff, 78, data_027c0058, 0x1000, 0x332);
-  Sprite_QueueAt(6, (right - sweep) & 0x1ff, 105, data_027c0058, 0x1000, 0x332);
-  Sprite_QueueAt(6, (right - sweep) & 0x1ff, 107, data_027c0058, 0x1000, 0x332);
+  Sprite_QueueAt(6, sweep & 0x1ff, 76, &data_027c0058, 0x1000, 0x332);
+  Sprite_QueueAt(6, sweep & 0x1ff, 78, &data_027c0058, 0x1000, 0x332);
+  Sprite_QueueAt(6, (right - sweep) & 0x1ff, 105, &data_027c0058, 0x1000,
+                 0x332);
+  Sprite_QueueAt(6, (right - sweep) & 0x1ff, 107, &data_027c0058, 0x1000,
+                 0x332);
   x = 128 - (func_02039f20(Text_Get(TWO_LINE_CAPTION_TEXT_A)) >> 1);
   for (i = 0; i < strlen(Text_Get(TWO_LINE_CAPTION_TEXT_A)); i++) {
     x += SpriteFont_QueueChar(Text_Get(TWO_LINE_CAPTION_TEXT_A)[i], x & 0x1ff,

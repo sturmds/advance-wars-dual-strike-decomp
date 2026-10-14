@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/menu_state.h"
 #include "game/visual_mode.h"
+#include "game/oam_cells.h"
 
 int MainLoop_GetFrameCount(void);
 s32 HwDiv32(s32 numerator, s32 denominator);
@@ -13,10 +14,6 @@ void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 extern MenuState gMenuState;
 extern MenuStateFrom200 data_0229ed30;
 extern s16 gSineTable[]; /* sine table, index 64 = cosine of 0 */
-extern u8 data_027c0038[];
-extern u8 data_027c0040;
-extern u8 data_027c0048[];
-extern u8 data_027c0060[];
 
 /* Needed to match: the cast keeps the field offsets out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)

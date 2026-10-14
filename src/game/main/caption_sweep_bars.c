@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/caption_task.h"
 #include "game/screen_other_map.h"
-
-extern u8 data_027c0058[];
+#include "game/oam_cells.h"
 
 const u8* Text_Get(u32 textId);
 int strlen(const u8* str);
@@ -34,10 +33,10 @@ void Caption_SweepBars(CaptionTask* task) {
   left = 128 - (CaptionFont_TextWidth(Text_Get(CAPTION_TEXT)) >> 1);
   right = 128 + (CaptionFont_TextWidth(Text_Get(CAPTION_TEXT)) >> 1);
   sweep = Math_Ease(0, left, right - 18, task->frame - 1, 15);
-  Sprite_QueueAt(0, sweep & 0x1ff, 61, data_027c0058, 0x4000, 0xe8);
-  Sprite_QueueAt(0, sweep & 0x1ff, 63, data_027c0058, 0x4000, 0xe8);
-  Sprite_QueueAt(0, (right - sweep) & 0x1ff, 90, data_027c0058, 0x4000, 0xe8);
-  Sprite_QueueAt(0, (right - sweep) & 0x1ff, 92, data_027c0058, 0x4000, 0xe8);
+  Sprite_QueueAt(0, sweep & 0x1ff, 61, &data_027c0058, 0x4000, 0xe8);
+  Sprite_QueueAt(0, sweep & 0x1ff, 63, &data_027c0058, 0x4000, 0xe8);
+  Sprite_QueueAt(0, (right - sweep) & 0x1ff, 90, &data_027c0058, 0x4000, 0xe8);
+  Sprite_QueueAt(0, (right - sweep) & 0x1ff, 92, &data_027c0058, 0x4000, 0xe8);
   x = 128 - (CaptionFont_TextWidth(Text_Get(CAPTION_TEXT)) >> 1);
   for (i = 0; i < strlen(Text_Get(CAPTION_TEXT)); i++) {
     x +=

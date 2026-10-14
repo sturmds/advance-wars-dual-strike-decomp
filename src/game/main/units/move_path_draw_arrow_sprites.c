@@ -1,11 +1,11 @@
 #include "types.h"
 #include "game/move_path.h"
 #include "game/Unk_02080440.h"
+#include "game/oam_cells.h"
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern MovePath* gMovePath;
-extern u8 data_027c0040;
 
 int MovePath_DirToNext(int i);
 int MovePath_DirToPrev(int i);

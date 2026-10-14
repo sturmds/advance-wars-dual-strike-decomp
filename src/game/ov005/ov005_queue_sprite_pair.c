@@ -1,6 +1,5 @@
 #include "types.h"
-
-extern u8 data_027c01c0[];
+#include "game/oam_cells.h"
 
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 
@@ -17,6 +16,6 @@ void Ov005_QueueSpritePair(void* work, int x, int y, int tile, u16 flags) {
     y = 192;
   }
   attrY = (y & 0xff) | (flags << 10);
-  Sprite_Queue(0, x & 0x1ff, attrY, data_027c01c0, 0x400, tile);
-  Sprite_Queue(0, (x + 128) & 0x1ff, attrY, data_027c01c0, 0x400, tile + 32);
+  Sprite_Queue(0, x & 0x1ff, attrY, &data_027c01c0, 0x400, tile);
+  Sprite_Queue(0, (x + 128) & 0x1ff, attrY, &data_027c01c0, 0x400, tile + 32);
 }

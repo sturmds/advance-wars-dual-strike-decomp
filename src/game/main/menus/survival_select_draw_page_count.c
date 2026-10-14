@@ -1,11 +1,9 @@
 #include "types.h"
+#include "game/oam_cells.h"
 
 u32 HwDiv32(int num, int denom);
 u32 HwMod32(int num, int denom);
 void Sprite_QueueAt(int a0, int x, int y, void* a3, int attr, int tile);
-
-extern u8 data_027c0038[];
-extern u8 data_027c0060[];
 
 /* Draws the page count of a list with 2 or more pages at the right of the
  * top screen: a marker sprite at x = 220, then the digits of the count

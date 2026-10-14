@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/campaign_recap.h"
 #include "game/menu_state.h"
+#include "game/oam_cells.h"
 
 int TitleCall_GetDigitWidth(int digit);
 s32 HwDiv32(s32 numer, s32 denom);
@@ -8,9 +9,6 @@ s32 HwMod32(s32 numerator, s32 denominator);
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 
 extern MenuState gMenuState;
-extern u8 data_027c0040[];
-extern u8 data_027c0048[];
-extern u8 data_027c0148[];
 
 #define TITLE ((CampaignRecapTitle*)&gMenuState)
 
@@ -47,19 +45,19 @@ void CampaignRecap_DrawTitle(CampaignRecap* work) {
   y = work->slide[0] + 48;
   for (i = 0; i < TITLE->spriteCount; i++) {
     Sprite_Queue(2, (offset + TITLE->spriteX[i]) & 0x1ff,
-                 (y & 0xff) | (semiTransparent << 10), data_027c0048, 0x1000,
+                 (y & 0xff) | (semiTransparent << 10), &data_027c0048, 0x1000,
                  64 + i * 16);
   }
 
   x = offset + 75;
   lineY = ((y - 20) & 0xff) | (semiTransparent << 10);
-  Sprite_Queue(2, x & 0x1ff, lineY, data_027c0148, 0x400, 0);
+  Sprite_Queue(2, x & 0x1ff, lineY, &data_027c0148, 0x400, 0);
   x += LABEL_WIDTH;
   if (number >= 10) {
-    Sprite_Queue(2, x & 0x1ff, lineY, data_027c0040, 0x400,
+    Sprite_Queue(2, x & 0x1ff, lineY, &data_027c0040, 0x400,
                  HwDiv32(number, 10) * 4 + 24);
     x += tensWidth;
   }
-  Sprite_Queue(2, x & 0x1ff, lineY, data_027c0040, 0x400,
+  Sprite_Queue(2, x & 0x1ff, lineY, &data_027c0040, 0x400,
                HwMod32(number, 10) * 4 + 24);
 }

@@ -2,6 +2,7 @@
 #include "game/Unk_02031a14.h"
 #include "game/co_exp.h"
 #include "game/menu_state.h"
+#include "game/oam_cells.h"
 
 s32 HwDiv32(s32 numer, s32 denom);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
@@ -13,7 +14,6 @@ struct SpriteAnimTask* SpriteAnimTask_Start(const void* file, int x, int y,
                                             int layer);
 
 extern MenuState gMenuState;
-extern u8 data_027c0030;
 extern s16 gSineTable[];
 
 /* Divisor for one matrix entry: the eased scale, or 2 if it is 0. */

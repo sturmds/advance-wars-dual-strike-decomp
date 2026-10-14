@@ -2,14 +2,13 @@
 #include "game/Unk_022a7a9c.h"
 #include "game/result_sprite_task.h"
 #include "game/screen_other_map.h"
+#include "game/oam_cells.h"
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void ResultPoint_RestartScript(int value);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Task_ResumeScript(ResultSpriteTask* task);
 void ResultPath_DrawAllOffset(int lead, int dx, int dy);
-
-extern u8 data_027c0060[];
 
 #define SLIDE_FRAMES 16
 

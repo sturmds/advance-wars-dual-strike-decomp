@@ -3,6 +3,7 @@
 #include "game/menu_state.h"
 #include "game/war_room_records.h"
 #include "game/Unk_02088d04.h"
+#include "game/oam_cells.h"
 
 void Screen_SetCurrentGfx(void* state);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
@@ -20,9 +21,6 @@ extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
 extern CampaignMapState gCampaignMapState;
 extern CampaignMission gCampaignMissions[];
-extern u8 data_027c0040[];
-extern u8 data_027c0060[];
-extern u8 data_027c00b8[];
 
 #define CAMPAIGN_FIRST_MAP 224
 #define X_FLIP 0x1000 /* sprite x bit: flip the sprite horizontally */
@@ -42,9 +40,10 @@ void CampaignMap_DrawCoPanel(CampaignMapTask* task) {
   savedGfx = data_027c0280;
   Screen_SetCurrentGfx(data_027c0288.unk_04);
   for (i = 0; i < CAMPAIGN_TOP_CO_COUNT; i++) {
-    Sprite_QueueAt(0, 24, (u8)(i * 24 + 80), data_027c0060, 0x2000, i * 8 + 38);
+    Sprite_QueueAt(0, 24, (u8)(i * 24 + 80), &data_027c0060, 0x2000,
+                   i * 8 + 38);
     if (TOP_CO(i).co != 0) {
-      Sprite_QueueAt(0, 56, (u8)(i * 24 + 80), data_027c00b8, 26, 0);
+      Sprite_QueueAt(0, 56, (u8)(i * 24 + 80), &data_027c00b8, 26, 0);
       /* tiles 62 + 12 * i, palette 4 + i */
       Co_QueueSmallPictureSprite(80, (u8)(i * 24 + 96),
                                  (i * 12 + 62) | ((i + 4) << 12), 1);
@@ -53,23 +52,23 @@ void CampaignMap_DrawCoPanel(CampaignMapTask* task) {
     }
   }
   if (gMenuState.campaignMap.enemyCos[1] == 0) {
-    Sprite_QueueAt(0, 184 | X_FLIP, 168, data_027c00b8, 26, 0);
+    Sprite_QueueAt(0, 184 | X_FLIP, 168, &data_027c00b8, 26, 0);
     Co_QueueSmallPictureSprite(208 | X_FLIP, 184, 0x7086, 1);
   } else {
-    Sprite_QueueAt(0, 136, 168, data_027c00b8, 26, 0);
+    Sprite_QueueAt(0, 136, 168, &data_027c00b8, 26, 0);
     Co_QueueSmallPictureSprite(160 | X_FLIP, 184, 0x7086, 1);
-    Sprite_QueueAt(0, 184, 168, data_027c00b8, 26, 0);
+    Sprite_QueueAt(0, 184, 168, &data_027c00b8, 26, 0);
     Co_QueueSmallPictureSprite(208 | X_FLIP, 184, 0x8092, 1);
   }
   /* one colour of the 16 every 4 frames */
   Palette_Load(&gMenuState.colours[(MainLoop_GetFrameCount() >> 2) & 15], 600,
                2);
   if (func_0210391c()) {
-    Sprite_QueueAt(0, 216, 56, data_027c0040, 0x2000, 174);
+    Sprite_QueueAt(0, 216, 56, &data_027c0040, 0x2000, 174);
   }
   if (MISSION_RECORD.days != 0) {
     Sprite_QueueAt(
-        0, 232, 168, data_027c0040,
+        0, 232, 168, &data_027c0040,
         ((5 - Score_ToRank(MISSION_RECORD.score)) * 4 + 158) | 0x3000, 0);
   }
   Screen_SetCurrentGfx(savedGfx);

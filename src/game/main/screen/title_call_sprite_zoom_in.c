@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/task.h"
+#include "game/oam_cells.h"
 
 int HwDiv32(int num, int den);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
@@ -8,7 +9,6 @@ void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 void Task_ResumeScript(Task* task);
 
 extern const s16 gSineTable[];
-extern u8 data_027c0030[];
 
 #define FRAME(task) (*(s16*)&(task)->unk_4c)
 
@@ -44,7 +44,7 @@ void TitleCall_SpriteZoomIn(Task* task) {
                         HwDiv32(cosValue, d3));
   }
   Sprite_Queue(1, 64 | (ZOOM_AFFINE << 9), 32 | OAM_AFFINE_DOUBLE,
-               data_027c0030, 0, 80);
+               &data_027c0030, 0, 80);
   if (FRAME(task) != 32) {
     FRAME(task)++;
     return;

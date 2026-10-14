@@ -1,11 +1,9 @@
 #include "types.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 s32 HwDiv32(s32 numer, s32 denom);
 s32 HwMod32(s32 numer, s32 denom);
-
-extern u8 data_027c0028;
-extern u8 data_027c0038[];
 
 #define MARK_TILE 32
 #define DIGIT_TILE(digit) ((digit) * 10 + 34)

@@ -1,9 +1,8 @@
 #include "types.h"
 #include "game/force_rank_screen.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
-
-extern u8 data_027c0028;
 
 /* Queues a mark over the grid entry of each skill chosen in the open slots,
  * at the button positions of ForceRankScreen_AddButtons. */

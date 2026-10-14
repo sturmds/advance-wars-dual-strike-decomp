@@ -2,6 +2,7 @@
 #include "game/task.h"
 #include "game/link_marker_task.h"
 #include "game/screen_other_map.h"
+#include "game/oam_cells.h"
 
 s32 HwDiv32(s32 numer, s32 denom);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
@@ -11,7 +12,6 @@ void Task_ResumeScript(Task* task);
 
 /* Needed to match: const lets mwcc load the sine and cosine once. */
 extern const s16 gSineTable[];
-extern u8 data_027c0060[];
 
 /* Divisor for one matrix entry: the eased scale, or 2 if it is 0. */
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
@@ -46,7 +46,7 @@ void LinkMarkerTask_SquashOut(LinkMarkerTask* task) {
                           HwDiv32(gSineTable[64] * 16, heightDiv2));
     }
     Sprite_Queue(0, ((task->x - 16) & 0x1ff) | (task->affineIndex << 9),
-                 ((task->y - 8) & 0xff) | 0x300, data_027c0060, 0, 52);
+                 ((task->y - 8) & 0xff) | 0x300, &data_027c0060, 0, 52);
     task->frame++;
   }
   Screen_SetCurrent(savedState);

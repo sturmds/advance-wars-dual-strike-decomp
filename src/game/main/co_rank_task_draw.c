@@ -1,11 +1,9 @@
 #include "types.h"
 #include "game/co_rank_task.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void CoRankScreen_QueueNumber(int x, int y, int value);
-
-extern u8 data_027c0030;
-extern u8 data_027c0060[];
 
 /* Script step: draws the number and its two sprites at rest, as
  * CoRankTask_SlideDown leaves them. */

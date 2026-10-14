@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/menu_state.h"
 #include "game/Unk_02080440.h"
+#include "game/oam_cells.h"
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 int MapSelect_GetTab(void);
@@ -10,7 +11,6 @@ extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern MenuState gMenuState;
 extern MapListTables data_0229c768;
-extern u8 data_027c0028;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MENU ((MenuState*)&gMenuState)

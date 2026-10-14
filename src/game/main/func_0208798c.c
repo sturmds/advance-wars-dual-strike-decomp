@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/screen_other_map.h"
-
-extern u8 data_027c0048[];
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
@@ -15,7 +14,8 @@ void func_0208798c(void) {
   saved027c = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_00);
   for (i = 0; i < 4; i++) {
-    Sprite_QueueAt(2, (52 + i * 40) & 0x1ff, 80, data_027c0048, 0, 80 + i * 16);
+    Sprite_QueueAt(2, (52 + i * 40) & 0x1ff, 80, &data_027c0048, 0,
+                   80 + i * 16);
   }
   Screen_SetCurrent(saved027c);
   Screen_SetCurrentGfx(saved0280);

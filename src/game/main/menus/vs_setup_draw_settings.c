@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
+#include "game/oam_cells.h"
 
 int MainLoop_GetFrameCount(void);
 void Palette_Load(const void* src, int offset, int size);
@@ -13,8 +14,6 @@ void VsSetup_DrawSettingRow(int row, int x, int y);
 
 extern u8 gVsSetupSettingRowY[SETTING_ROWS];
 extern u8 gVsSetupSettingRowX[SETTING_ROWS];
-extern u8 data_027c0040;
-extern u8 data_027c0108[];
 extern MenuState gMenuState;
 
 /* Needed to match: the cast keeps the field offsets out of the literal pool. */

@@ -1,10 +1,10 @@
 #include "types.h"
 #include "game/menu_state.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
 extern MenuState gMenuState;
-extern u8 data_027c0040;
 
 /* Queues an icon at y 8 for each CO of each player that has coShown set:
  * 40 pixels per player, 16 per CO, tile picked by the player's army. */

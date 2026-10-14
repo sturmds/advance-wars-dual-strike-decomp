@@ -1,9 +1,9 @@
 #include "types.h"
+#include "game/oam_cells.h"
 
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 int Ov003_GetGlyphWidth(int ch);
 
-extern u8 data_027c0048[];
 extern u8 data_ov003_02364b4c[];
 
 /* Queues the glyph for character ch and returns its advance width, or 0 for
@@ -19,7 +19,7 @@ int Ov003_DrawLetter(int ch, u16 x, u16 y) {
   }
   for (; data_ov003_02364b4c[index] != 0; index++) {
     if (data_ov003_02364b4c[index] == ch) {
-      Sprite_Queue(1, x, y, data_027c0048, 0x2000, index * 16);
+      Sprite_Queue(1, x, y, &data_027c0048, 0x2000, index * 16);
       return Ov003_GetGlyphWidth(ch);
     }
   }

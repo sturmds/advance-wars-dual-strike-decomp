@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/Unk_02088d04.h"
+#include "game/oam_cells.h"
 
 int HwDiv32(int num, int den);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
@@ -13,7 +14,6 @@ void TitleCall_DrawNumber(int affineIndex);
 extern Unk_027c0280* data_027c0280;
 extern const s16 gSineTable[];
 extern const TaskScriptCmd data_0215bb88[];
-extern u8 data_027c0048[];
 
 /* Frame counters of this script's steps: this step's, then the next step's. */
 #define FRAME(task) (*(s16*)&(task)->unk_4c)
@@ -46,7 +46,7 @@ void TitleCall_NumberSlideIn(Task* task) {
   }
   slide = Math_Ease(4, 184, -184, FRAME(task), 64);
   data_027c0280->bgScrollX[data_027c0280->layer0Bg] = slide - 8;
-  Sprite_QueueAt(0, (slide + 112) & 0x1ff, 80, data_027c0048, 0, 64);
+  Sprite_QueueAt(0, (slide + 112) & 0x1ff, 80, &data_027c0048, 0, 64);
   if (FRAME(task) >= 4) {
     if (FRAME(task) < 20) {
       int pdDivisor;

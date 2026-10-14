@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
+#include "game/oam_cells.h"
 
 int MainLoop_GetFrameCount(void);
 s32 HwDiv32(s32 numer, s32 denom);
@@ -14,7 +15,6 @@ int LinkScreen_GetPlayerRow(int panel);
 
 extern MenuState gMenuState;
 extern const s16 gSineTable[];
-extern u8 data_027c0040;
 
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 

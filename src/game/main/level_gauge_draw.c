@@ -8,9 +8,6 @@ void RankSprite_QueueNumber(int x, int y, int value, int matrixIndex,
 void LevelGauge_QueuePoints(int x, int y, int value, int matrixIndex,
                             int frame);
 
-extern OamCellList1 data_027c0020;
-extern u8 data_027c0060[];
-
 /* Queues gauges[index] at (x, y) unless x is off screen: the level with its
  * pop-in (levelUpFrame - 1 as the frame; levelUpFrame counts up from 1 to 255
  * once set) and the points below it, whose digits pop in from `frame`

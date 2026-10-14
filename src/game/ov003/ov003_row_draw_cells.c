@@ -2,6 +2,7 @@
 #include "game/ov003_unit.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov003_02364a84.h"
+#include "game/oam_cells.h"
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 void Sprite_Queue(int a0, int x, int y, void* a3, int attr, int tile);
@@ -9,7 +10,6 @@ int Ov003_RowKindGroup(int value);
 
 extern Unk_027c0280* data_027c0280;
 extern Ov003Unit data_ov003_02369538[];
-extern u8 data_027c0028;
 
 #define STATE data_ov003_02364928
 #define ROW (STATE->rows[row - 1])

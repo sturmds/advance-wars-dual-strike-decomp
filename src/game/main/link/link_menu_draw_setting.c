@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/Unk_02160ac0.h"
+#include "game/oam_cells.h"
 
 int MainLoop_GetFrameCount(void);
 s32 HwDiv32(s32 numer, s32 denom);
@@ -9,10 +10,6 @@ void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 int Math_SinDegrees(int degrees);
 
 extern s16 gSineTable[];
-extern u8 data_027c0038[];
-extern u8 data_027c0040;
-extern u8 data_027c0048[];
-extern u8 data_027c0060[];
 
 /* Divisor for one matrix entry: the scale, or 2 if it is 0. */
 #define DIVISOR(scale) ((scale) ? (scale) : 2)

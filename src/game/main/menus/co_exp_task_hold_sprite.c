@@ -1,10 +1,9 @@
 #include "types.h"
 #include "game/Unk_02031a14.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Task_ResumeScript(Unk_02031a14* task);
-
-extern u8 data_027c0030;
 
 /* One frame of a 16-frame wait: draws a sprite 16 pixels above the
  * task's position and resumes the task's script on the last frame. */

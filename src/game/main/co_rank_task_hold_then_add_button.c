@@ -1,13 +1,11 @@
 #include "types.h"
 #include "game/co_rank_task.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Task_ResumeScript(CoRankTask* task);
 void CoRankScreen_QueueNumber(int x, int y, int value);
 void func_0204cc54(void);
-
-extern u8 data_027c0030;
-extern u8 data_027c0060[];
 
 /* Script step: holds the screen of CoRankTask_Draw for 16 frames, then adds
  * the button of func_0204cc54 and resumes the script. */

@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/day_banner_task.h"
 #include "game/screen_other_map.h"
+#include "game/oam_cells.h"
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
@@ -10,7 +11,6 @@ void Task_ResumeScript(DayBannerTask* task);
 void DayBanner_RefreshLayer(void);
 
 extern const s16 gSineTable[];
-extern u8 data_027c0048[];
 
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 
@@ -86,13 +86,13 @@ void DayBanner_OpenUpdate(DayBannerTask* task) {
     /* Affine double-size sprites (0x300): the 32-pixel box grows to 64, so x and y move back by 16. */
     if (i < WORD_SPRITES) {
       Sprite_Queue(0, ((task->wordX + i * 32 - 16) & 0x1ff) | ((i + 1) << 9),
-                   ((BANNER_Y - 16) & 0xff) | 0x300, data_027c0048,
+                   ((BANNER_Y - 16) & 0xff) | 0x300, &data_027c0048,
                    BANNER_PALETTE | (WORD_TILE + i * 16), 0);
     } else {
       Sprite_Queue(0,
                    ((task->digitsX + (i - WORD_SPRITES) * 28 - 16) & 0x1ff) |
                        ((i + 1) << 9),
-                   ((BANNER_Y - 16) & 0xff) | 0x300, data_027c0048,
+                   ((BANNER_Y - 16) & 0xff) | 0x300, &data_027c0048,
                    BANNER_PALETTE |
                        (((task->digits >> ((i - WORD_SPRITES) * 4)) & 15) * 16 +
                         DIGIT_TILE),

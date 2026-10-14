@@ -75,6 +75,7 @@ sites. Not every count should reach 0: a hardware format stays a number.
 | Tables | Other initialised arrays with a literal length | 0 | 0 | 0 |
 | Tables | `u32` tables holding pointers and numbers (structs written as words) | 0 | 0 | 0 |
 | Tables | Extern arrays with a literal length | 0 | 0 | 0 |
+| Tables | Externs whose type differs from the definition (`extern_types.py`) | 329 | 15 | 344 |
 | Tables | `u8 NAME[N]` placeholders for zeroed variables | 4 | 12 | 16 |
 
-Structs with a size assert: 62.
+Structs with a size assert: 65.

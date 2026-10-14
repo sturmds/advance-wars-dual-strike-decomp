@@ -3,12 +3,12 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_02160ac0.h"
 #include "game/ov003_unit.h"
+#include "game/oam_cells.h"
 
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern u8* data_02160abc;
-extern u8 data_027c0038;
 
 s32 HwDiv32(s32 numer, s32 denom);
 s32 HwMod32(s32 numerator, s32 denominator);

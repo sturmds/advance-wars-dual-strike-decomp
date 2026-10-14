@@ -2,6 +2,7 @@
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
 #include "game/vs_setup_slot_task.h"
+#include "game/oam_cells.h"
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
@@ -9,7 +10,6 @@ void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 
 extern MenuState gMenuState;
-extern u8 data_027c0060[];
 extern s16 gSineTable[]; /* index 64 = cosine of 0 */
 
 /* Divisor for one matrix entry: the scale, or 2 if it is 0. */

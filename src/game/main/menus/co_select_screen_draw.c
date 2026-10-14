@@ -2,13 +2,12 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/co_select_screen.h"
+#include "game/oam_cells.h"
 
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_027c0040[];
-extern u8 data_027c00b8[];
 
 int Campaign_IsHardMode(void);
 void Gfx3d_InitScene(void);
@@ -85,7 +84,7 @@ void CoSelectScreen_Draw(void) {
   }
   y = SLOT_Y(data_0229c73c->unk_37);
   x = SLOT_X(data_0229c73c->unk_37);
-  Sprite_QueueAt(3, x & 0x1ff, y & 0xff, data_027c00b8, 0, 0);
+  Sprite_QueueAt(3, x & 0x1ff, y & 0xff, &data_027c00b8, 0, 0);
 
   screen = data_0229c73c;
   if (screen->coListOpen == 1) {
@@ -124,12 +123,12 @@ void CoSelectScreen_Draw(void) {
               data_0229c73c->cursorColumn, data_0229c73c->cursorRow)) == 1) {
         y = SLOT_Y(co);
         x = SLOT_X(co) + 16;
-        Sprite_QueueAt(1, x & 0x1ff, y & 0xff, data_027c0040,
+        Sprite_QueueAt(1, x & 0x1ff, y & 0xff, &data_027c0040,
                        CELL(column, row) * 4 + 12, 0);
       } else {
         y = SLOT_Y(co);
         x = SLOT_X(co) + 32;
-        Sprite_QueueAt(1, x & 0x1ff, y & 0xff, data_027c0040,
+        Sprite_QueueAt(1, x & 0x1ff, y & 0xff, &data_027c0040,
                        CELL(column, row) * 4 + 12, 0);
       }
     }
@@ -143,12 +142,12 @@ void CoSelectScreen_Draw(void) {
     if (emptyCount == 4) {
       y = SLOT_Y(data_0229c73c->unk_37);
       x = SLOT_X(data_0229c73c->unk_37) + 32 - row * 12;
-      Sprite_QueueAt(1, x & 0x1ff, y & 0xff, data_027c0040,
+      Sprite_QueueAt(1, x & 0x1ff, y & 0xff, &data_027c0040,
                      emptyCells[emptyCount - row - 1] * 4 + 12, 0);
     } else {
       y = SLOT_Y(data_0229c73c->unk_37);
       x = SLOT_X(data_0229c73c->unk_37) + 32 - row * 16;
-      Sprite_QueueAt(1, x & 0x1ff, y & 0xff, data_027c0040,
+      Sprite_QueueAt(1, x & 0x1ff, y & 0xff, &data_027c0040,
                      emptyCells[emptyCount - row - 1] * 4 + 12, 0);
     }
   }

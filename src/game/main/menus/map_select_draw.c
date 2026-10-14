@@ -33,11 +33,6 @@ int Map_GetPlayerCount(int mapId);
 
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern OamCellList1 data_027c0000;
-extern u8 data_027c0028;
-extern u8 data_027c0040;
-extern u8 data_027c00b8[];
-extern u8 data_027c0108[];
 
 /* Writes value to the X scroll of the BG used by layer bg, then copies
  * it to the BG of layer copyBg. */

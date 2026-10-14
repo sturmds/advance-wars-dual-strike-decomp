@@ -2,10 +2,9 @@
 #include "game/cursor_band_task.h"
 #include "game/menu_button.h"
 #include "game/Unk_02088d04.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
-
-extern u8 data_027c0048[];
 
 /* Draws nine 32-pixel sprites across the screen at the menu cursor's
  * height, scrolled by scrollX, in one of four frames. The frames go 0, 1,

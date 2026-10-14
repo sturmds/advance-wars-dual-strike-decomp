@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/co_portrait_task.h"
+#include "game/oam_cells.h"
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Sprite_QueueDefault(int x, int y, int attr, int list);
@@ -8,7 +9,6 @@ void func_0200270c(int x, int y, int attr, int list, int hFlip);
 void Co_LoadGraphicsAndPalette(int coId, int tile, int paletteSlot);
 
 extern u8 gCombatModeCos[];
-extern u8 data_027c0040;
 
 #define HIDDEN_WAIT_FRAMES 4
 

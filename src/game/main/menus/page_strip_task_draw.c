@@ -3,6 +3,7 @@
 #include "game/menu_state.h"
 #include "game/page_strip.h"
 #include "game/Unk_02088d04.h"
+#include "game/oam_cells.h"
 
 u32 HwMod32(int num, int denom);
 int MainLoop_GetFrameCount(void);
@@ -17,10 +18,6 @@ void func_020485f0(u8 pages);
 extern MenuState gMenuState;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_027c0028;
-extern u8 data_027c0040;
-extern u8 data_027c0048[];
-extern u8 data_027c00b8[];
 
 /* Draws one frame of a page strip on the top screen, the same way as
  * SurvivalSelect_Draw but from the task's fields and with palettes 6 and 7:

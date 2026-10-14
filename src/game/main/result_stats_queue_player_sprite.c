@@ -1,9 +1,8 @@
 #include "types.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, u8 y, void* data, int attr, int tile);
 BOOL Sprite_IsOnScreenX(int x, int width);
-
-extern u8 data_027c0060[];
 
 /* Queues the sprite of player `index` (counted from 0) at (x, y), 8 tiles
  * per player; skipped when off screen. */

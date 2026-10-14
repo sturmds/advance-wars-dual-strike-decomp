@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/spark_burst_task.h"
+#include "game/oam_cells.h"
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
@@ -7,7 +8,6 @@ void Task_ResumeScript(SparkBurstTask* task);
 
 /* (dx, dy) pairs. Needed to match: indexed flat, not as [n][2]. */
 extern s8 gSparkBurstOffsets[SPARK_BURST_SPARKS * 2];
-extern u8 data_027c0028;
 
 /* One spark of a style: skipped once its flight is over, otherwise eased
  * out to its end point while its animation runs frames 0 to 5. */

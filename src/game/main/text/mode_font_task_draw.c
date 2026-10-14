@@ -5,9 +5,6 @@
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
-extern OamCellList1 data_027c0000; /* cell table of one 16x32 sprite */
-extern u8 data_027c0030;           /* cell table of one 64x64 sprite */
-
 /* Task step: draws the line of mode font letters with an end piece on each
  * side. The end pieces sit 16 pixels higher, in the next sprite list and
  * the next palette slot, from tiles tile + 224 (left) and tile + 288

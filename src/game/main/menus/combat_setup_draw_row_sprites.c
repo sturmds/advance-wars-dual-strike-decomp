@@ -3,6 +3,7 @@
 #include "game/screen_other_map.h"
 #include "game/Unk_0229fb30.h"
 #include "game/Unk_02160ac0.h"
+#include "game/oam_cells.h"
 
 int Co_GetNation(int co);
 s32 HwMod32(s32 numerator, s32 denominator);
@@ -25,8 +26,6 @@ extern u8 data_02161834[];
 extern u8 data_02161850[];
 extern u8 data_02161870[];
 extern u8 data_02161890[];
-extern u8 data_027c0028;
-extern u8 data_027c0040;
 
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/oam_cells.h"
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 int HwDiv32(int num, int den);
@@ -6,8 +7,6 @@ void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 
 extern const s16 gSineTable[];
-extern u8 data_027c00d8[];
-extern u8 data_027c0128[];
 
 /* Sine table, index 64 = cosine of 0. */
 #define SIN0 (gSineTable[0])
@@ -29,16 +28,16 @@ extern u8 data_027c0128[];
  * above the point, or below it, with the cells of the other tail, when y
  * is under 32. */
 void CampaignMap_DrawCallout(int x, int y, int side, int step) {
-  u8* cells;
+  OamCellList2* cells;
   int tile;
   int scale;
 
   if (side == 0) {
-    cells = data_027c0128;
+    cells = &data_027c0128;
     x -= 32;
     tile = 32;
   } else {
-    cells = data_027c00d8;
+    cells = &data_027c00d8;
     x -= 16;
     tile = 112;
   }

@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/tab_list.h"
+#include "game/oam_cells.h"
 
 extern TabListView gMenuState;
-extern u8 data_027c0028;
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 int TabList_GetPageCount(int tab);
 

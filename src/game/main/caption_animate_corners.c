@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/caption_task.h"
 #include "game/screen_other_map.h"
-
-extern u8 data_027c0000[];
+#include "game/oam_cells.h"
 
 const u8* Text_Get(u32 textId);
 int strlen(const u8* str);
@@ -47,9 +46,9 @@ void Caption_AnimateCorners(CaptionTask* task) {
   } else {
     cell = 4;
   }
-  Sprite_QueueAt(0, (right - 10) & 0x1ff, 51, data_027c0000, 0x4000,
+  Sprite_QueueAt(0, (right - 10) & 0x1ff, 51, &data_027c0000, 0x4000,
                  cell * 8 + 0xc0);
-  Sprite_QueueAt(0, (left - 7) & 0x1ff, 79, data_027c0000, 0x4000,
+  Sprite_QueueAt(0, (left - 7) & 0x1ff, 79, &data_027c0000, 0x4000,
                  cell * 8 + 0xc0);
   Screen_SetCurrent(savedState);
   Screen_SetCurrentGfx(savedGfx);

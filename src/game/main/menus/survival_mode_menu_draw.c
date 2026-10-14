@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
+#include "game/oam_cells.h"
 #include "game/survival_record.h"
 
 void Screen_SetCurrentGfx(void* state);
@@ -12,8 +13,6 @@ int SurvivalMode_HasSecondRow(void);
 
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_027c0040;
-extern u8 data_027c01c0[];
 
 /* Draws one frame of the Survival mode menu on the top screen: a label per
  * row (the second row only when SurvivalMode_HasSecondRow allows it) and, for each row

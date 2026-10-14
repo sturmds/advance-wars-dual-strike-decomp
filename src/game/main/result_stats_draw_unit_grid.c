@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/task.h"
+#include "game/oam_cells.h"
 
 /* y is u8 here: the original narrows it at the call, and an explicit
  * `y & 0xff` gets hoisted out of the column loop instead. */
@@ -15,7 +16,6 @@ void ResultStats_DrawCount(int x, int y, int value);
 #define UNIT_GRID_ROWS 7
 #define UNIT_GRID_COLUMNS 4
 extern const u8 data_0215a51c[];
-extern u8 data_027c0040;
 
 /* Draws the unit grid of a stats page for player task->unk_66, moved right
  * by `offset` pixels: each unit's icon and a count. task->unk_68 picks the

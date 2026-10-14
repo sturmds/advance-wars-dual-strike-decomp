@@ -3,11 +3,11 @@ data_027c0008 kind:data(byte[8]) addr:0x027c0008
 data_027c0010 kind:data(byte[8]) addr:0x027c0010
 data_027c0018 kind:data(byte[8]) addr:0x027c0018
 data_027c0020 kind:data(byte[8]) addr:0x027c0020
-data_027c0028 kind:data(byte[1]) addr:0x027c0028
-data_027c0030 kind:data(byte[1]) addr:0x027c0030
+data_027c0028 kind:data(byte[8]) addr:0x027c0028
+data_027c0030 kind:data(byte[8]) addr:0x027c0030
 data_027c0038 kind:data(byte[8]) addr:0x027c0038
-data_027c0040 kind:data(byte[1]) addr:0x027c0040
-data_027c0048 kind:data(byte[1]) addr:0x027c0048
+data_027c0040 kind:data(byte[8]) addr:0x027c0040
+data_027c0048 kind:data(byte[8]) addr:0x027c0048
 data_027c0050 kind:data(byte[8]) addr:0x027c0050
 data_027c0058 kind:data(byte[8]) addr:0x027c0058
 data_027c0060 kind:data(byte[8]) addr:0x027c0060
@@ -18,7 +18,7 @@ data_027c0098 kind:data(byte[16]) addr:0x027c0098
 data_027c00a8 kind:data(byte[16]) addr:0x027c00a8
 data_027c00b8 kind:data(byte[16]) addr:0x027c00b8
 data_027c00c8 kind:data(byte[16]) addr:0x027c00c8
-data_027c00d8 kind:data(byte[1]) addr:0x027c00d8
+data_027c00d8 kind:data(byte[16]) addr:0x027c00d8
 data_027c00e8 kind:data(byte[16]) addr:0x027c00e8
 data_027c00f8 kind:data(byte[16]) addr:0x027c00f8
 data_027c0108 kind:data(byte[16]) addr:0x027c0108
@@ -32,7 +32,7 @@ data_027c0184 kind:data(byte[20]) addr:0x027c0184
 data_027c0198 kind:data(byte[20]) addr:0x027c0198
 data_027c01ac kind:data(byte[20]) addr:0x027c01ac
 data_027c01c0 kind:data(byte[28]) addr:0x027c01c0
-data_027c01dc kind:data(byte[1]) addr:0x027c01dc
+data_027c01dc kind:data(byte[28]) addr:0x027c01dc
 gObjSizes kind:data(byte[64]) addr:0x027c01f8
 data_027c0238 kind:data(byte[1]) addr:0x027c0238
 data_027c023c kind:data(byte[2]) addr:0x027c023c
@@ -72,9 +72,3 @@ data_027c075c kind:data(byte[4]) addr:0x027c075c
 data_027c0760 kind:data(byte[2840]) addr:0x027c0760
 data_027c1278 kind:data(byte[2]) addr:0x027c1278
 OS_IRQTable kind:data(byte[100]) addr:0x027c127c
-data_dtcm_027c002c kind:data(byte[4]) addr:0x027c002c
-data_dtcm_027c0034 kind:data(byte[4]) addr:0x027c0034
-data_dtcm_027c0044 kind:data(byte[4]) addr:0x027c0044
-data_dtcm_027c004c kind:data(byte[4]) addr:0x027c004c
-data_dtcm_027c00dc kind:data(byte[12]) addr:0x027c00dc
-data_dtcm_027c01e0 kind:data(byte[24]) addr:0x027c01e0

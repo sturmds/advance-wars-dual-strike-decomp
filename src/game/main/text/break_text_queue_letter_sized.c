@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/break_text.h"
+#include "game/oam_cells.h"
 
-extern u8 data_027c0000[];
-extern u8 data_027c0048[];
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 
 /* Like BreakText_QueueLetter, for letter cells of either size: 32 x 32
@@ -18,7 +17,7 @@ void BreakText_QueueLetterSized(u8 index, u16 x, u16 y, int attr, u8 list) {
   }
   cellTiles = gBreakText->tagFont == 1 ? 4 : 2;
   Sprite_Queue(list, x, y,
-               gBreakText->tagFont == 1 ? data_027c0048 : data_027c0000,
+               gBreakText->tagFont == 1 ? &data_027c0048 : &data_027c0000,
                attr | gBreakText->palette << 12,
                index * (cellTiles << 2) + gBreakText->tile);
 }

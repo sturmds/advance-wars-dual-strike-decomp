@@ -5,8 +5,6 @@
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
-extern OamCellList1 data_027c0000; /* cell table of one 16x32 sprite */
-
 /* Task step: draws the line of mode font letters, without end pieces. */
 void ModeFontTask_DrawPlain(ModeFontTask* task) {
   int i;

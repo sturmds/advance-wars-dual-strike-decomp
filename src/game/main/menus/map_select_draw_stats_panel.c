@@ -9,8 +9,6 @@ void Sprite_QueueAt(int a0, int x, int y, void* a3, int attr, int tile);
 void MapSelect_DrawNumber(int x, int y, int value);
 
 extern MenuState gMenuState;
-extern OamCellList1 data_027c0020;
-extern u8 data_027c0060[];
 
 #define MENU ((MenuState*)&gMenuState)
 

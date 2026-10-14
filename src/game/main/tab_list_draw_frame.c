@@ -4,10 +4,6 @@
 #include "game/oam_cells.h"
 
 extern TabListView gMenuState;
-extern OamCellList1 data_027c0008;
-extern u8 data_027c0040;
-extern u32 data_027c0098[];
-extern u32 data_027c0184[];
 
 void TabList_CountMedals(u16* earnedOut, u16* totalOut);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);

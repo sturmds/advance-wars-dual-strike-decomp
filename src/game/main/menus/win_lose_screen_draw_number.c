@@ -1,14 +1,13 @@
 #include "types.h"
+#include "game/oam_cells.h"
 
 s32 HwDiv32(s32 numer, s32 denom);
 s32 HwMod32(s32 numer, s32 denom);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
-extern u8 data_027c0040[];
-
 /* One digit in the same sprites as WinLoseScreen_DrawPointsDigit, drawn plain. */
-#define DRAW_DIGIT(x, y, digit)                             \
-  Sprite_QueueAt(6, (x) & 0x1ff, (y) & 0xff, data_027c0040, \
+#define DRAW_DIGIT(x, y, digit)                              \
+  Sprite_QueueAt(6, (x) & 0x1ff, (y) & 0xff, &data_027c0040, \
                  ((digit) * 4 + 0xf8) | 0x6000, 0)
 
 /* Draws `value` right-aligned as five 12-pixel digit places from x, without

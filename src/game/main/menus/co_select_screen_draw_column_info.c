@@ -3,6 +3,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/co_select_screen.h"
+#include "game/oam_cells.h"
 
 void Screen_SetCurrentGfx(void* state);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
@@ -15,9 +16,6 @@ extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_027c0008[];
-extern u8 data_027c0040[];
-extern u8 data_027c0060[];
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -36,7 +34,7 @@ void CoSelectScreen_DrawColumnInfo(void) {
   u8 skill;
 
   Screen_SetCurrentGfx(data_027c0288.unk_04);
-  Sprite_QueueAt(0, 112, 136, data_027c0060, 0x2000,
+  Sprite_QueueAt(0, 112, 136, &data_027c0060, 0x2000,
                  (data_0229c73c->cursorColumn - 1) * 8 + 864);
   if (PICKED_CO(data_0229c73c->cursorColumn, 0) != 0) {
     CoSelectScreen_DrawRank(
@@ -47,11 +45,11 @@ void CoSelectScreen_DrawColumnInfo(void) {
     CoSelectScreen_DrawRank(
         168, 152, Co_GetRank(PICKED_CO(data_0229c73c->cursorColumn, 1)));
   }
-  Sprite_QueueAt(4, 96, 152, data_027c0008, 0x4000,
+  Sprite_QueueAt(4, 96, 152, &data_027c0008, 0x4000,
                  ((data_0229c73c->cursorColumn - 1) << 6) + 920);
   if ((MainLoop_GetFrameCount() & 32) &&
       STATE->gameMode == GAME_MODE_CAMPAIGN) {
-    Sprite_QueueAt(3, 96, 152, data_027c0008, 0x4000,
+    Sprite_QueueAt(3, 96, 152, &data_027c0008, 0x4000,
                    ((data_0229c73c->cursorColumn - 1) << 6) + 952);
   }
   if (!Skills_AreDisabled()) {
@@ -60,7 +58,7 @@ void CoSelectScreen_DrawColumnInfo(void) {
       if (skill == 0 || skill == 0xff) {
         break;
       }
-      Sprite_QueueAt(2, (32 + i * 16) & 0x1ff, 168, data_027c0040, 0x5000,
+      Sprite_QueueAt(2, (32 + i * 16) & 0x1ff, 168, &data_027c0040, 0x5000,
                      0x458 + (skill - 32) * 4);
     }
     for (i = 0; i < FORCE_RANK_SLOT_COUNT; i++) {
@@ -68,7 +66,7 @@ void CoSelectScreen_DrawColumnInfo(void) {
       if (skill == 0 || skill == 0xff) {
         break;
       }
-      Sprite_QueueAt(2, (160 + i * 16) & 0x1ff, 168, data_027c0040, 0x5000,
+      Sprite_QueueAt(2, (160 + i * 16) & 0x1ff, 168, &data_027c0040, 0x5000,
                      0x458 + (skill - 32) * 4);
     }
   }

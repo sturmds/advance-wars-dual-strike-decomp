@@ -1,10 +1,10 @@
 #include "types.h"
 #include "game/menu_state.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int a0, int x, int y, void* a3, int attr, int tile);
 
 extern MenuStateFrom400 data_0229ef30;
-extern u8 data_027c0060[];
 
 /* Draws the title strip for a two-map battle: two 32-wide sprites side by
  * side, with tiles chosen by setup.firstMapId. */

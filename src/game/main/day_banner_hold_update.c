@@ -1,10 +1,9 @@
 #include "types.h"
 #include "game/day_banner_task.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Task_ResumeScript(DayBannerTask* task);
-
-extern u8 data_027c0048[];
 
 #define WORD_SPRITES 3 /* sprites before the digits */
 #define SPRITE_COUNT(task) ((task)->digitCount + WORD_SPRITES)
@@ -27,12 +26,12 @@ void DayBanner_HoldUpdate(DayBannerTask* task) {
       continue;
     }
     if (i < WORD_SPRITES) {
-      Sprite_QueueAt(0, (task->wordX + i * 32) & 0x1ff, BANNER_Y, data_027c0048,
-                     BANNER_PALETTE | (WORD_TILE + i * 16), 0);
+      Sprite_QueueAt(0, (task->wordX + i * 32) & 0x1ff, BANNER_Y,
+                     &data_027c0048, BANNER_PALETTE | (WORD_TILE + i * 16), 0);
     } else {
       Sprite_QueueAt(
           0, (task->digitsX + (i - WORD_SPRITES) * 28) & 0x1ff, BANNER_Y,
-          data_027c0048,
+          &data_027c0048,
           BANNER_PALETTE |
               (((task->digits >> ((i - WORD_SPRITES) * 4)) & 15) * 16 +
                DIGIT_TILE),

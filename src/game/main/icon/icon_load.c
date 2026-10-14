@@ -9,30 +9,6 @@ extern const u32 data_02139248[];
 extern const u32 data_02139268[];
 extern const u32 data_02139288[];
 extern const u32 data_021392a8[];
-extern u8 data_027c0028;
-extern u8 data_027c0058[];
-extern u32 data_027c00a8[];
-extern u32 data_027c00c8[];
-extern u32 data_027c00e8[];
-extern u32 data_027c0198[];
-extern u32 data_027c0118[];
-extern u8 data_027c0038[];
-extern u8 data_027c0040;
-extern u32 data_027c0078[];
-extern u8 data_027c0060[];
-extern u32 data_027c00f8[];
-extern u8 data_027c00b8[];
-extern u32 data_027c015c[];
-extern u8 data_027c0108[];
-extern u8 data_027c01ac[];
-extern u32 data_027c0138[];
-extern u8 data_027c0048[];
-extern u32 data_027c0088[];
-extern u8 data_027c00d8;
-extern u32 data_027c0170[];
-extern u8 data_027c01dc;
-extern u8 data_027c0030;
-extern u32 data_027c0068[];
 
 char data_02158988[] = {
 #include "data/main/data_02158988.inc.c"

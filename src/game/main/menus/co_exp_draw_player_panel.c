@@ -1,10 +1,9 @@
 #include "types.h"
 #include "game/co_exp.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void CoExp_DrawCoCell(CoExp* exp, int x, int y, int coSlot, int frame);
-
-extern u8 data_027c0060[];
 
 /* Draws the results panel of one player: a banner sprite, then the cells
  * of the player's front and back CO (exp[player * 2] and the next entry),

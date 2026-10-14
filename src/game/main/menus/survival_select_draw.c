@@ -3,6 +3,7 @@
 #include "game/page_strip.h"
 #include "game/Unk_022a7b80.h"
 #include "game/Unk_02088d04.h"
+#include "game/oam_cells.h"
 
 u32 HwMod32(int num, int denom);
 int MainLoop_GetFrameCount(void);
@@ -22,12 +23,6 @@ int Survival_GetMapId(int mode, int index);
 extern Unk_022a7b80 data_022a7b80;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_027c0028;
-extern u8 data_027c0040;
-extern u8 data_027c0048[];
-extern u8 data_027c00b8[];
-extern u8 data_027c0108[];
-extern u8 data_027c01c0[];
 
 /* Draws one frame of the Survival map select. Top screen: one tab per entry of
  * the current list (the selected one 32 pixels wide, the others 16) with a

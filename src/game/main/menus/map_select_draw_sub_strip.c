@@ -1,12 +1,12 @@
 #include "types.h"
 #include "game/menu_state.h"
+#include "game/oam_cells.h"
 
 int MapSelect_GetTab(void);
 void Sprite_QueueAt(int a0, int x, int y, void* a3, int attr, int tile);
 
 extern MenuState gMenuState;
 extern MapListTables data_0229c768;
-extern u8 data_027c0060[];
 
 #define MENU ((MenuState*)&gMenuState)
 #define LIST() (MENU->setup.lists[data_0229c768.listOfTab[MapSelect_GetTab()]])

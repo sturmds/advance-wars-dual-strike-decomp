@@ -2,6 +2,7 @@
 #include "game/force_rank_screen.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/oam_cells.h"
 
 void Screen_SetCurrent(void* state);
 void Screen_SetCurrentGfx(void* state);
@@ -17,7 +18,6 @@ void ForceRankScreen_MarkChosenSkills(void);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_027c0040[];
 
 /* Queues the Force Rank screen's sprites each frame. Top screen: the rank
  * (ForceRankScreen_DrawRank), ForceRankScreen_DrawColumnHeads's sprites, the marks on chosen
@@ -39,7 +39,7 @@ void ForceRankScreen_Draw(void) {
   ForceRankScreen_DrawColumnHeads();
   ForceRankScreen_MarkChosenSkills();
   Sprite_QueueAt(2, (gForceRankScreen->selectedSlot * 16 + 160) & 0x1ff, 8,
-                 data_027c0040, 0x205a, 0);
+                 &data_027c0040, 0x205a, 0);
   Palette_Load(&gForceRankScreen
                     ->cycleColors[((MainLoop_GetFrameCount() >> 2) & 15) * 2],
                600, 2);
@@ -49,7 +49,7 @@ void ForceRankScreen_Draw(void) {
   }
   for (i = 0; i < slotCount; i++) {
     if (gForceRankScreen->chosenSkills[i] != 0) {
-      Sprite_QueueAt(1, (160 + i * 16) & 0x1ff, 8, data_027c0040, 0,
+      Sprite_QueueAt(1, (160 + i * 16) & 0x1ff, 8, &data_027c0040, 0,
                      (gForceRankScreen->chosenSkills[i] - 32) * 4 + 0x400);
     }
   }

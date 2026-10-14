@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/oam_cells.h"
 
 void Screen_SetCurrent(void* state);
 void Screen_SetCurrentGfx(void* state);
@@ -12,9 +13,6 @@ extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_027c0040[];
-extern u8 data_027c0060[];
-extern u8 data_027c0108[];
 
 /* Draws the points box of the win/lose screen on the main screen, like
  * PointsTally_Draw: in Survival only the total (at y 153), otherwise the
@@ -33,16 +31,16 @@ void WinLoseScreen_DrawPointsBox(s32 added, s32 total, int popFrame) {
   saved027c = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_00);
   if (data_027c027c->unk_48[data_027c0284]->gameMode == GAME_MODE_SURVIVAL) {
-    Sprite_QueueAt(6, 26, 153, data_027c0108, 0x60d8, 0);
+    Sprite_QueueAt(6, 26, 153, &data_027c0108, 0x60d8, 0);
     WinLoseScreen_DrawPoints(131, 153, total, popFrame);
-    Sprite_QueueAt(6, 194, 153, data_027c0060, 0x6120, 0);
+    Sprite_QueueAt(6, 194, 153, &data_027c0060, 0x6120, 0);
   } else {
-    Sprite_QueueAt(6, 65, 128, data_027c0040, 0x60f4, 0);
+    Sprite_QueueAt(6, 65, 128, &data_027c0040, 0x60f4, 0);
     WinLoseScreen_DrawNumber(111, 128, added);
-    Sprite_QueueAt(6, 178, 128, data_027c0060, 0x6120, 0);
-    Sprite_QueueAt(6, 42, 145, data_027c0108, 0x60d8, 0);
+    Sprite_QueueAt(6, 178, 128, &data_027c0060, 0x6120, 0);
+    Sprite_QueueAt(6, 42, 145, &data_027c0108, 0x60d8, 0);
     WinLoseScreen_DrawPoints(111, 145, total, popFrame);
-    Sprite_QueueAt(6, 178, 145, data_027c0060, 0x6120, 0);
+    Sprite_QueueAt(6, 178, 145, &data_027c0060, 0x6120, 0);
   }
   Screen_SetCurrent(saved027c);
   Screen_SetCurrentGfx(saved0280);

@@ -2,6 +2,7 @@
 #include "game/menu_state.h"
 #include "game/player.h"
 #include "game/screen_other_map.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, int y, const void* data, int unk08,
                     int unk0a);
@@ -10,8 +11,6 @@ int VsSetup_GetSlotTileX(int player);
 int VsSetup_GetPlayerOfSlot(int slot);
 
 extern MenuState gMenuState;
-extern u8 data_027c0040;
-extern u8 data_027c01dc;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 /* Needed to match: the cast keeps the field offset out of the literal pool. */

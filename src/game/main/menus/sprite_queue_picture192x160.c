@@ -3,9 +3,6 @@
 
 void Sprite_QueueAt(int list, int x, int y, void* shape, int attr, int tile);
 
-extern OamCellList1 data_027c0008;
-extern u8 data_027c0030;
-
 /* Queues one piece of the picture when any of it can show on the screen. */
 #define PIECE(px, py, minY, shape, tileOffset)                      \
   if ((px) > -64 && (px) < 256 && (py) > (minY) && (py) < 192) {    \

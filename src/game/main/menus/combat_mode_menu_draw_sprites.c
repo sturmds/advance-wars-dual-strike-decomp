@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/co_data.h"
 #include "game/Unk_02160ac0.h"
+#include "game/oam_cells.h"
 
 int Menu_GetSelectedId(void);
 int Co_GetNation(int co);
@@ -21,8 +22,6 @@ extern u8 data_02161834[];
 extern u8 data_02161850[];
 extern u8 data_02161870[];
 extern u8 data_02161890[];
-extern u8 data_027c0028;
-extern u8 data_027c0040;
 
 /* Draws the sprites of the Combat mode menu (entries 8 to 11): a sprite for
  * the CO that

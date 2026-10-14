@@ -12,7 +12,6 @@ void Task_ResumeScript(Task* task);
 /* Sine table, index 64 = cosine of 0. Needed to match: const lets mwcc
  * load the sine and cosine once. */
 extern const s16 gSineTable[];
-extern OamCellList1 data_027c0000; /* cell table of one 16x32 sprite */
 
 #define SIN0 (gSineTable[0])
 #define COS0 (gSineTable[64])

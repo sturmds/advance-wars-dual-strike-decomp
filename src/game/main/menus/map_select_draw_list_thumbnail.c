@@ -1,13 +1,13 @@
 #include "types.h"
 #include "game/menu_state.h"
 #include "game/Unk_02080440.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int a0, int x, int y, void* a3, int attr, int tile);
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern MenuState gMenuState;
-extern u8 data_027c0060[];
 
 #define MENU ((MenuState*)&gMenuState)
 #define DRAW_PIECE(px, tile)                                                  \

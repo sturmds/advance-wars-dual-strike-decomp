@@ -1,9 +1,8 @@
 #include "types.h"
 #include "game/splash_task.h"
+#include "game/oam_cells.h"
 
 void Oam_PutSprite(int x, int y, void* shape, int tileAndPalette);
-
-extern u8 data_027c0048[];
 
 /* SplashTask.letterState */
 #define LETTER_DROP 0 /* height halves each frame from 80 */
@@ -55,6 +54,6 @@ void SplashLetter_Update(SplashTask* task) {
       }
       break;
   }
-  Oam_PutSprite(task->x, (task->y - task->height) & 0xff, data_027c0048,
+  Oam_PutSprite(task->x, (task->y - task->height) & 0xff, &data_027c0048,
                 task->letterIndex * 16 + 0x3194);
 }

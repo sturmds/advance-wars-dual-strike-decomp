@@ -1,8 +1,8 @@
 #include "types.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
-extern u8 data_027c0030;
 extern s16 gResultPathPoints[];
 
 /* ResultPath_DrawSprite shifted by (dx, dy) pixels. */
