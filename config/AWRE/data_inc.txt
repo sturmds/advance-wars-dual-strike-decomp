@@ -194,9 +194,9 @@ main      data_02143f3c               0x02143f3c  0x4    u8
 main      gMapCellGroundTiles         0x02143f40  0x2000 u16
 main      gMapCellOverhangTiles       0x02145f40  0x2000 u16
 main      data_02147f40               0x02147f40  0x60   u8
-main      data_02147fa0               0x02147fa0  0x60   u32
-main      data_02148000               0x02148000  0x60   u32
-main      data_02148060               0x02148060  0x60   u32
+main      data_02147fa0               0x02147fa0  0x60   u8
+main      data_02148000               0x02148000  0x60   u8
+main      data_02148060               0x02148060  0x60   u8
 main      data_021480c0               0x021480c0  0x20   u8
 main      data_021480e0               0x021480e0  0x7e4  u8
 main      data_021488c4               0x021488c4  0x628  u8
@@ -11441,7 +11441,7 @@ ov000     data_ov000_0234ec18         0x0234ec18  0x10   u8
 ov000     data_ov000_0234ec28         0x0234ec28  0x10   u8
 ov000     data_ov000_0234ec38         0x0234ec38  0x14   u8
 ov000     data_ov000_0234ec4c         0x0234ec4c  0x20   u8
-ov000     data_ov000_0234ec6c         0x0234ec6c  0x4    u32
+ov000     data_ov000_0234ec6c         0x0234ec6c  0x4    u8
 ov000     data_ov000_0234ec70         0x0234ec70  0x4    u8
 ov000     data_ov000_0234ec74         0x0234ec74  0x4    u8
 ov000     data_ov000_0234ec78         0x0234ec78  0x4    u8

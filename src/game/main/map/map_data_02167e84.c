@@ -31,10 +31,10 @@ void TileStrikeTask_UpdateFall2d(void);
 void TileStrikeTask_UpdateFall3d(void);
 void TileStrikeTask_UpdateImpact2d(void);
 void TileStrikeTask_UpdateImpact3d(void);
-extern u8 data_02148000[];
-extern u8 data_02167cd4[];
-extern u8 data_02167ce8[];
-extern u8 data_02167cf0[];
+extern const u8 data_02148000[];
+extern char data_02167cd4[];
+extern char data_02167ce8[];
+extern char data_02167cf0[];
 extern TilePointU16 data_02167f50[];
 extern TaskScriptCmd data_021680e0[];
 void func_02021b34(void);
@@ -55,7 +55,7 @@ void* data_02167e90 = &data_02167ce8;
 TilePointU16 data_02167e94[] = {
 #include "data/main/data_02167e94.inc.c"
 };
-void* data_02167e8c = &data_02148000;
+const void* data_02167e8c = data_02148000;
 /* Per object variant: its tiles (see map_object.h) */
 TilePointU16* data_02167e98[] = {data_02167e94, data_02167f50, data_02167f84};
 int gBlackCannonShotOrigins[] = {

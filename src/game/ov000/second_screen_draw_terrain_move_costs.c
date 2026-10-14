@@ -13,25 +13,25 @@ void Gfx_RequestLayerCopy(int layer);
 
 void SecondScreen_RefreshIfChanged(void);
 extern u8 data_ov000_022d5a0c[];
-extern u8 data_ov000_022d87ac[];
+extern const u32 data_ov000_022d87ac[];
 void func_ov000_022b2cb8(void);
 void Layer0_ResetScroll(void);
-extern u8 data_ov000_022d5fa8[];
-extern u8 data_ov000_022d8cf4[];
-extern u8 data_ov000_022d5fc8[];
-extern u8 data_ov000_022d8d14[];
-extern u8 data_ov000_022d64d8[];
-extern u8 data_ov000_022d92d8[];
-extern u8 data_ov000_022d64f8[];
-extern u8 data_ov000_022d92f8[];
-extern u8 data_ov000_022d6ad0[];
-extern u8 data_ov000_022d98f4[];
+extern const u32 data_ov000_022d5fa8[];
+extern const u32 data_ov000_022d8cf4[];
+extern const u32 data_ov000_022d5fc8[];
+extern const u32 data_ov000_022d8d14[];
+extern const u32 data_ov000_022d64d8[];
+extern const u32 data_ov000_022d92d8[];
+extern const u32 data_ov000_022d64f8[];
+extern const u32 data_ov000_022d92f8[];
+extern const u32 data_ov000_022d6ad0[];
+extern const u32 data_ov000_022d98f4[];
 extern u8 data_ov000_022d6af0[];
 extern u8 data_ov000_022d9914[];
-extern u8 data_ov000_022d6f6c[];
-extern u8 data_ov000_022d9f88[];
+extern const u32 data_ov000_022d6f6c[];
+extern const u32 data_ov000_022d9f88[];
 extern u8 data_ov000_022d9fa8[];
-extern u8 data_ov000_022da5d4[];
+extern const u32 data_ov000_022da5d4[];
 
 /* first map entry of each row's 4x2 icon */
 static u16 Ov000_gTerrainPanelMoveTypeTiles[] = {
@@ -55,55 +55,55 @@ static int Ov000_gTerrainPanelCostPos[] = {
 int gTerrainStarOffsets[] = {
 #include "data/ov000/gTerrainStarOffsets.inc.c"
 };
-void* data_ov000_023501e8[][6] = {
+const void* data_ov000_023501e8[][6] = {
     &data_ov000_022d87ac, &data_ov000_022d8cf4, 0, 0, 0, 0,
     &data_ov000_022d87ac, &data_ov000_022d8cf4, 0, 0, 0, 0,
     &data_ov000_022d8d14, &data_ov000_022d92d8, 0, 0, 0, 0,
     &data_ov000_022d92f8, &data_ov000_022d98f4, 0, 0, 0, 0,
     &data_ov000_022d9914, &data_ov000_022d9f88, 0, 0, 0, 0,
     &data_ov000_022d9fa8, &data_ov000_022da5d4, 0, 0, 0, 0};
-void* data_ov000_02350278[][6] = {&data_ov000_022d5a0c,
-                                  &data_ov000_022d5fa8,
-                                  0,
-                                  0,
-                                  0,
-                                  0,
-                                  &data_ov000_022d5a0c,
-                                  &data_ov000_022d5fa8,
-                                  0,
-                                  0,
-                                  0,
-                                  0,
-                                  &data_ov000_022d5fc8,
-                                  &data_ov000_022d64d8,
-                                  0,
-                                  0,
-                                  0,
-                                  0,
-                                  &data_ov000_022d64f8,
-                                  &data_ov000_022d6ad0,
-                                  0,
-                                  0,
-                                  0,
-                                  0,
-                                  &data_ov000_022d6af0,
-                                  &data_ov000_022d6f6c,
-                                  0,
-                                  0,
-                                  0,
-                                  0,
-                                  &data_ov000_022d5a0c,
-                                  &data_ov000_022d5fa8,
-                                  0,
-                                  0,
-                                  0,
-                                  0,
-                                  0,
-                                  0,
-                                  0,
-                                  0,
-                                  0,
-                                  0};
+const void* data_ov000_02350278[][6] = {&data_ov000_022d5a0c,
+                                        &data_ov000_022d5fa8,
+                                        0,
+                                        0,
+                                        0,
+                                        0,
+                                        &data_ov000_022d5a0c,
+                                        &data_ov000_022d5fa8,
+                                        0,
+                                        0,
+                                        0,
+                                        0,
+                                        &data_ov000_022d5fc8,
+                                        &data_ov000_022d64d8,
+                                        0,
+                                        0,
+                                        0,
+                                        0,
+                                        &data_ov000_022d64f8,
+                                        &data_ov000_022d6ad0,
+                                        0,
+                                        0,
+                                        0,
+                                        0,
+                                        &data_ov000_022d6af0,
+                                        &data_ov000_022d6f6c,
+                                        0,
+                                        0,
+                                        0,
+                                        0,
+                                        &data_ov000_022d5a0c,
+                                        &data_ov000_022d5fa8,
+                                        0,
+                                        0,
+                                        0,
+                                        0,
+                                        0,
+                                        0,
+                                        0,
+                                        0,
+                                        0,
+                                        0};
 
 /* Needed to match: reads through a cast pointer make the compiler load the icon
  * position again after every map store, as the original does. */

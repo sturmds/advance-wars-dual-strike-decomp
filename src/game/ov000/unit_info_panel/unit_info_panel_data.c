@@ -134,7 +134,8 @@ char data_ov000_0234ec74[] = {
 char data_ov000_0234ec78[] = {
 #include "data/ov000/data_ov000_0234ec78.inc.c"
 };
-u32 data_ov000_0234ec6c = {
+/* "?" */
+char data_ov000_0234ec6c[] = {
 #include "data/ov000/data_ov000_0234ec6c.inc.c"
 };
 /* 0x4 bytes no code names, before data_ov000_0234eef8 */

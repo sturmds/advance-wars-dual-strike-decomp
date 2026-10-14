@@ -9,14 +9,14 @@ extern char data_02167cc4[];
 extern char data_02167d04[];
 extern char data_02167d00[];
 extern char data_02167ce4[];
-extern u8 data_02148060[];
+extern const u8 data_02148060[];
 extern char data_02167cec[];
 extern char data_02167cc8[];
 extern char data_02167ce0[];
 extern char data_02167cdc[];
 extern char data_02167cb4[];
 extern char data_02167cd4[];
-extern u8 data_02147fa0[];
+extern const u8 data_02147fa0[];
 extern char data_02167cf4[];
 
 void* data_02167e2c = &data_02167cfc;

@@ -15,10 +15,10 @@ void SecondScreen_DrawTerrainMoveCosts(int arg0, int arg1);
 
 extern Unk_027c0280* data_027c0280;
 extern void* data_ov000_022f65c0[];
-extern void* data_ov000_023501e8[][6];
-extern void* data_ov000_023501ec[][6];
-extern void* data_ov000_02350278[][6];
-extern void* data_ov000_0235027c[][6];
+extern const void* data_ov000_023501e8[][6];
+extern const void* data_ov000_023501ec[][6];
+extern const void* data_ov000_02350278[][6];
+extern const void* data_ov000_0235027c[][6];
 
 /* Second screen: clears the left block, then redraws the panel for the terrain in
  * data_ov000_02350530 (0: none, nothing is drawn). Terrain 8 and 6 take their picture
@@ -27,8 +27,8 @@ extern void* data_ov000_0235027c[][6];
  * to OBJ VRAM, then either the name text goes to layer 0 (data_ov000_02350548 is 0)
  * or SecondScreen_DrawTerrainMoveCosts draws the numbers. The names are guesses. */
 void SecondScreen_RedrawPanel(void) {
-  void* picture;
-  void* palette;
+  const void* picture;
+  const void* palette;
 
   Layers_ClearLeftBlock();
   if (data_ov000_02350530 == 0) {

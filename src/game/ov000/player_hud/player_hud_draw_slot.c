@@ -9,7 +9,7 @@ extern int data_027c0284;
 extern u8 data_ov000_0234ec00[];
 extern u8 data_ov000_0234ec08[];
 extern u8 data_ov000_0234ec10[];
-extern u8 data_ov000_0234ec6c[];
+extern char data_ov000_0234ec6c[];
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Oam_PutTextString(u16 x, u16 y, void* data);
