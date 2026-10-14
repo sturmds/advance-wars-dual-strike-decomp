@@ -6,6 +6,7 @@
 - moving_from follows `ORIGIN = AFTER(...)` in dsd's MEMORY block.
 - shift_of adds one pad per grown module whose growth moves the symbol.
 - write_lcf puts a pad before an object's line or after a `NAME = .;` line.
+- elf_pointers keeps the R_ARM_ABS32 words of each region, not the calls.
 """
 
 import os
@@ -64,5 +65,19 @@ with tempfile.TemporaryDirectory() as d:
                "        . = . + 0x20;\n        b.o(.text)\n    }\n")
     finally:
         os.chdir(old)
+
+READELF_R = """
+Relocation section '.relaARM9' at offset 0xf30e0 contains 2 entries:
+ Offset     Info    Type                Sym. Value  Symbol's Name + Addend
+0216831c  004bd302 R_ARM_ABS32            02350560   Battle_StartScreen + 0
+020dbcc4  00123401 R_ARM_PC24             020c0e60   TransferQueue_Add - 8
+
+Relocation section '.relaOV000' at offset 0x169f10 contains 1 entry:
+ Offset     Info    Type                Sym. Value  Symbol's Name + Addend
+022e5288  005d5902 R_ARM_ABS32            023612b4   data_ov001_023612b4 + 0
+"""
+shift_build.readelf = lambda path, flag: READELF_R
+expect("elf_pointers: data words by region, no calls", shift_build.elf_pointers(Path("x")),
+       {("ARM9", 0x0216831C), ("OV000", 0x022E5288)})
 
 sys.exit(1 if failures else 0)

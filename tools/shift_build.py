@@ -9,7 +9,7 @@ script takes the normal build's linker script and object list, inserts
 `--pad` zero bytes into one module, and links, configures and builds a ROM
 in build/shift/ (main) or build/shift-MODULE/ (any other module). It never
 changes build/AWRE.nds or anything `make release` checks. `make shift` runs
-it for main and for ov000 after a normal build.
+it for main, each overlay, itcm and dtcm after a normal build.
 
 Where the pad goes:
   main        in .text, before the first object that starts at or after
@@ -285,6 +285,21 @@ def check_budgets(base: dict, moved: dict) -> int:
     return failed
 
 
+def elf_pointers(path: Path) -> set[tuple[str, int]]:
+    """(region, address) of each word the link fills in from a symbol: an
+    R_ARM_ABS32 relocation in the linked ELF's `.relaREGION` sections."""
+    out, reg = set(), None
+    for line in readelf(path, "-r").splitlines():
+        m = re.match(r"Relocation section '\.rela(\w+)'", line)
+        if m:
+            reg = m.group(1)
+            continue
+        parts = line.split()
+        if reg and len(parts) > 2 and parts[2] == "R_ARM_ABS32":
+            out.add((reg, int(parts[0], 16)))
+    return out
+
+
 # Regions that load at the same addresses: a word in one never points into
 # another of the same group, so an old address there is not a stale pointer.
 OVERLAPPING = [{"OV000", "OV004"}, {"OV001", "OV002", "OV003", "OV005", "OV006"}]
@@ -297,7 +312,10 @@ def visible(reg: str, where: str) -> bool:
 
 def check_stale(base: dict, moved: dict, out: Path, pads: list[tuple[str, int]], pad: int) -> int:
     """Words that hold the old address of a symbol that moved, and that the
-    link left unchanged: a relocation would have moved them with it."""
+    link left unchanged: a relocation would have moved them with it. A word
+    with a relocation is left out even when its value is also the old address
+    of another symbol: overlays that load at one address share addresses, and
+    the relocation says which overlay's symbol the word holds (issue 0055)."""
     old: dict[int, list[tuple[str, str]]] = {}
     for name, (addr, where) in base.items():
         if name in moved and moved[name][0] != addr and addr >= 0x01000000:
@@ -308,6 +326,7 @@ def check_stale(base: dict, moved: dict, out: Path, pads: list[tuple[str, int]],
     # A value the linker script defines for the shifted build (DTCM_BASE at
     # the start of DTCM, where a moved variable used to be) is meant.
     script = {moved[n][0] for n in (*configure.ARM9_LAYOUT_SYMBOLS, *configure.ARM9_ABSOLUTE_SYMBOLS) if n in moved}
+    pointers = elf_pointers(Path("build/arm9.elf"))
     hits, known = [], 0
     for reg, (start, data) in before.items():
         new_data = after[reg][1]
@@ -319,6 +338,8 @@ def check_stale(base: dict, moved: dict, out: Path, pads: list[tuple[str, int]],
             if not targets or value in script:  # value - 1: a Thumb function's address is odd
                 continue
             addr = start + off
+            if (reg, addr) in pointers:
+                continue  # the link writes the address of the symbol its relocation names
             new_off = off + sum(pad for m, at in pads if reg == region(m) and addr >= at)
             if new_data[new_off:new_off + 4] != data[off:off + 4]:
                 continue  # relocated: the link moved it
