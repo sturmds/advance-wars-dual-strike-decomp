@@ -1,8 +1,9 @@
 #include "types.h"
+#include "game/script_slot.h"
 
 extern u8 gEventSkipState;
-extern u8 data_021584f8[];
-extern u8 data_02158520[];
+extern ScriptCommand data_021584f8[];
+extern ScriptCommand data_02158520[];
 
 void ScriptSlot_StopByScript(const void* script);
 

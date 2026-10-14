@@ -13,7 +13,7 @@ u8* UnitBadges_GetTiles(void);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
-extern u16 gArmyPalettes[][16];
+extern const u8 gArmyPalettes[][32];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 

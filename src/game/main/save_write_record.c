@@ -8,7 +8,7 @@
 extern u8* gSaveBuffer;
 extern int (*gSavePackFunc)(u8* dest);
 extern int data_02297f30;
-extern u32 gNextSaveCounter;
+extern int gNextSaveCounter;
 extern SaveSlotTable data_02297f3c;
 extern SaveBuffer data_02298050;
 extern u8 data_0229a050[];

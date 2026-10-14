@@ -10,7 +10,7 @@ void SetupMapRules(void);
 void Survival_EnterGameMode(void);
 void Survival_SavePlayerCos(void);
 void Survival_StartRun(void);
-extern u8 data_0216d6fc[];
+extern TaskScriptCmd data_0216d6fc[];
 void func_0204184c(void);
 void func_02045890(void);
 void func_0205cd80(void);

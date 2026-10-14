@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/map_preview.h"
 
-extern u8 data_02149280[];
+extern const u16 data_02149280[];
 u32 data_022a6b3c;
 /* picture of a tile outside the map; size: up to the next symbol */
 u16 data_022a6b40[0x20];

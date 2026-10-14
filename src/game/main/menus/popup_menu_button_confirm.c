@@ -1,11 +1,12 @@
 #include "types.h"
 #include "game/menu_button.h"
 #include "game/popup_menu.h"
+#include "game/task.h"
 
 #define SE_CONFIRM 0x1000a
 #define SE_CONFIRM_GREYED 0x10008
 
-extern u8 data_021587a8[];
+extern TaskScriptCmd data_021587a8[];
 
 PopupMenuTask* Task_FindByScript(void* script);
 int MapScript_RunList10(int id, void* unit);

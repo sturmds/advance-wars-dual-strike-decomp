@@ -10,7 +10,7 @@ void Task_ResumeScript(CoRankTask* task);
 void CoRankScreen_QueueNumber(int x, int y, int value);
 
 extern u8 data_027c0030;
-extern u8 data_027c0060;
+extern u8 data_027c0060[];
 extern s16 gSineTable[];
 
 /* Divisor for one matrix entry: the eased scale, or 2 if it is 0. */

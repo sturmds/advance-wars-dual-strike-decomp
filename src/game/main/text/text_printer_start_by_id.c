@@ -1,8 +1,9 @@
 #include "types.h"
 #include "game/text_printer.h"
+#include "game/script_slot.h"
 
 extern u8 gEventSkipState;
-extern u8 data_0215837c[];
+extern ScriptCommand data_0215837c[];
 
 TextPrinter* ScriptSlot_Start(const void* descriptor, int arg);
 void TextPrinter_InitById(TextPrinter* printer, int x, int y, u8* tiles,

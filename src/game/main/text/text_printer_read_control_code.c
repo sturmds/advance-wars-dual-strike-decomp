@@ -5,9 +5,9 @@
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u8 data_02158364[];
-extern u8 data_021584f8[];
-extern u8 data_02158520[];
+extern ScriptCommand data_02158364[];
+extern ScriptCommand data_021584f8[];
+extern ScriptCommand data_02158520[];
 
 s32 HwDiv32(s32 numer, s32 denom);
 ScriptSlot* ScriptSlot_Start(const void* descriptor, int arg);

@@ -3,7 +3,7 @@
 
 void Task_ResumeByScript(const void* script);
 void MenuButtons_CloseAll(void);
-extern u8 data_0215af10[];
+extern TaskScriptCmd data_0215af10[];
 extern const TaskScriptCmd data_0215aed0[];
 
 void Menu_Dismiss(void) {

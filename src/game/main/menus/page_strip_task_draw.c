@@ -19,8 +19,8 @@ extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern u8 data_027c0028;
 extern u8 data_027c0040;
-extern u8 data_027c0048;
-extern u8 data_027c00b8;
+extern u8 data_027c0048[];
+extern u8 data_027c00b8[];
 
 /* Draws one frame of a page strip on the top screen, the same way as
  * SurvivalSelect_Draw but from the task's fields and with palettes 6 and 7:

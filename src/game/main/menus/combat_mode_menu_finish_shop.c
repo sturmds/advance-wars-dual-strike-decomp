@@ -1,12 +1,13 @@
 #include "types.h"
 #include "game/menu_button.h"
 #include "game/Unk_02160ac0.h"
+#include "game/task.h"
 
 void Sound_PlaySe(u32 soundId);
 void func_0208ac7c(void);
 void func_020b9890(void);
 void Task_ResumeByScript(void* script);
-extern u8 data_02161570[];
+extern TaskScriptCmd data_02161570[];
 
 /* START in the Combat mode shop: leaves it like func_02089260 does, with
  * another sound and func_020b9890 (sets the byte at +13 of the current

@@ -37,9 +37,9 @@ extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
-extern const u8
+extern GfxLayer
     data_02159ee0[]; /* main screen layer config for Screen_InitLayers */
-extern const u8 data_02159f30[];   /* sub screen layer config */
+extern GfxLayer data_02159f30[];   /* sub screen layer config */
 extern const char data_0215a3bc[]; /* "/ohashi/res_result_lion" */
 extern const char data_0215a3d4[]; /* "/ohashi/res_result" */
 extern const char data_0215a3e8[]; /* "/ohashi/res_result_lang" */

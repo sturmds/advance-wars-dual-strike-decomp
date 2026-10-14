@@ -5,7 +5,7 @@
 
 extern Unk_027c0280* data_027c0280;
 extern u16 gEventScriptKeys;
-extern u16 gEventScriptOwnsInput;
+extern s16 gEventScriptOwnsInput;
 extern u8* data_02297790;
 
 void func_0210187c(void);

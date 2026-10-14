@@ -1,11 +1,12 @@
 #include "types.h"
 #include "game/task.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 BOOL Sprite_IsOnScreenX(int x, int width);
 void ResultStats_DrawCount(int x, int y, int value);
 
-extern u8 data_027c0000;
+extern OamCellList1 data_027c0000;
 extern u8 data_022a7ad8[][40];
 
 /* Draws one stat of player task->unk_66 at (x, y) of the sub screen: a

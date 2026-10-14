@@ -6,7 +6,7 @@
 
 void* Task_FindByScript(const void* script);
 
-extern const u32 data_0215cfe8[];
+extern TaskScriptCmd data_0215cfe8[];
 extern const TaskScriptCmd data_0215d150[];
 extern MenuState gMenuState;
 

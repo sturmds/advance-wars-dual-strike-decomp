@@ -9,7 +9,7 @@ void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Task_ResumeScript(RowLockMarkTask* task);
 
 extern const s16 gSineTable[];
-extern u8 data_027c0060;
+extern u8 data_027c0060[];
 
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 

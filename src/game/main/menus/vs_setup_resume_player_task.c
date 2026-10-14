@@ -1,12 +1,13 @@
 #include "types.h"
+#include "game/task.h"
 
 void Task_ResumeByScript(void* script);
 
 /* The task scripts of the four player slots; VsSetup_DestroyPlayerTasks ends them. */
-extern u32 gVsSetupSlot0TaskScript[];
-extern u32 gVsSetupSlot1TaskScript[];
-extern u32 gVsSetupSlot2TaskScript[];
-extern u32 gVsSetupSlot3TaskScript[];
+extern TaskScriptCmd gVsSetupSlot0TaskScript[];
+extern TaskScriptCmd gVsSetupSlot1TaskScript[];
+extern TaskScriptCmd gVsSetupSlot2TaskScript[];
+extern TaskScriptCmd gVsSetupSlot3TaskScript[];
 
 /* Resumes the task of the player's slot (0-3). */
 void VsSetup_ResumePlayerTask(int player) {

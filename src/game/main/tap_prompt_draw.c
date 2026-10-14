@@ -5,7 +5,7 @@ void TotalRankScreen_QueueTopCoSprites(int arg);
 void SubScreen_QueueTwoSprites(int arg);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
-extern u8 data_027c0060;
+extern u8 data_027c0060[];
 
 /* Draws the prompt: the sprite sits near the bottom right of the sub screen. */
 void TapPrompt_Draw(void) {

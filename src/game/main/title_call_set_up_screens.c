@@ -20,10 +20,10 @@ void Screen_SetBothNibbles(int value);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u32 data_027c0284;
-extern const u8
+extern int data_027c0284;
+extern GfxLayer
     data_0215bc40[]; /* main screen layer config for Screen_InitLayers */
-extern const u8 data_0215bc90[];   /* sub screen layer config */
+extern GfxLayer data_0215bc90[];   /* sub screen layer config */
 extern const char data_0215bee8[]; /* "/ohashi/res_titlecall_wall1" */
 extern const char data_0215bf04[]; /* "/ohashi/res_titlecall_wall2" */
 extern const char data_0215bf20[]; /* "/ohashi/res_titlecall" */

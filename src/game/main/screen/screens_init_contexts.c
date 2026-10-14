@@ -6,7 +6,7 @@
 
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
-extern u32 data_027c0284;
+extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 
 /* The two screen contexts in DTCM; data_027c0288 points to them. */

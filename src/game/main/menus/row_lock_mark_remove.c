@@ -1,10 +1,11 @@
 #include "types.h"
+#include "game/task.h"
 
 void Task_ResumeByScript(void* script);
-extern u32 gRowLockMarkRow1Script[];
-extern u32 gRowLockMarkRow2Script[];
-extern u32 gRowLockMarkRow3Script[];
-extern u32 gRowLockMarkRow4Script[];
+extern TaskScriptCmd gRowLockMarkRow1Script[];
+extern TaskScriptCmd gRowLockMarkRow2Script[];
+extern TaskScriptCmd gRowLockMarkRow3Script[];
+extern TaskScriptCmd gRowLockMarkRow4Script[];
 
 /* Resumes the task that runs the script of team row 1 to 4. */
 void RowLockMark_Remove(int row) {

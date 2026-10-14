@@ -19,7 +19,7 @@ void Save_EraseAll(void);
 void Save_SaveCurrentGame(void);
 void Sound_PlayPendingSong(void);
 void Wallpaper_DestroyTasks(void);
-extern u8 data_02158344[];
+extern TaskScriptCmd data_02158344[];
 extern EventScriptCommand data_02167940[];
 extern EventScriptCommand data_02167a40[];
 extern EventScriptCommand data_02167b50[];

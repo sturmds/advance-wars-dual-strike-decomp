@@ -3,9 +3,9 @@
 
 extern MenuState gMenuState;
 extern u8 data_027c0028;
-extern u8 data_027c0038;
+extern u8 data_027c0038[];
 extern u8 data_027c0040;
-extern u8 data_027c0060;
+extern u8 data_027c0060[];
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 int Co_GetRankFiltered(int coId, int army);

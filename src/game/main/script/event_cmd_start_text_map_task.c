@@ -17,7 +17,7 @@ EventScriptCommand data_02158570[] = {
 #include "data/main/data_02158570.inc.c"
 };
 extern u8 data_02297c2e[];
-extern u8 gEventTextMap[];
+extern u16 gEventTextMap[];
 
 void EventTextMap_QueueCopy(void);
 void EventHold_ReleaseOnTextMapTaskEnd(EventScriptSlot* slot);

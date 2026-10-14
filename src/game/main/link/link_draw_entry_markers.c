@@ -26,7 +26,7 @@ extern MenuState gMenuState;
 extern const s16 gSineTable
     []; /* needed to match: const lets the compiler move the loads out of the loop */
 extern u8 data_027c0040;
-extern u8 data_027c0108;
+extern u8 data_027c0108[];
 
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 

@@ -6,7 +6,7 @@ void func_02014c38(void* parentOrList);
 void EventScript_Start(const void* script);
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 extern CampaignMapState gCampaignMapState;
 extern CampaignMission gCampaignMissions[];
 

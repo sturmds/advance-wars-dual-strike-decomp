@@ -1,6 +1,6 @@
 #include "sdk/fs.h"
 
-extern u8 data_0215192c[];
+extern const u32 data_0215192c[];
 
 static u8* gOverlayDigestKey = (u8*)&data_0215192c;
 static u32 gOverlayDigestKeySize = {

@@ -5,6 +5,7 @@
 #include "game/song.h"
 #include "game/task.h"
 #include "game/Unk_02169b20.h"
+#include "game/battle_save.h"
 
 void EffectScene_InitSprite(void);
 void EffectScene_ScrollEaseInit(void);
@@ -31,7 +32,7 @@ extern TaskScriptCmd data_021697b8[];
 extern TaskScriptCmd data_02169818[];
 extern u8 data_0217eb08[];
 extern u8 data_02180b08[];
-extern u8 data_022a7b98[];
+extern BattleSaveBlock40 data_022a7b98;
 void func_020b97e8(void);
 void func_020b99d4(void);
 void func_020d3bf8(void);

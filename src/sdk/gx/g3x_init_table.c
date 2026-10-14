@@ -2,7 +2,7 @@
 #include "sdk/gx.h"
 
 /* DMA channel used for GX memory transfers; -1 means use the CPU. */
-extern int data_0216d958;
+extern u32 data_0216d958;
 
 /* SDK DMA fills (async, with callback; sync) and CPU 32-bit fill. */
 void MI_DmaFill32Async(int dmaNo, void* dest, u32 data, u32 size,

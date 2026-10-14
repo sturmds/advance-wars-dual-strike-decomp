@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/task.h"
 
 typedef struct Unk_02075fa4_0 Unk_02075fa4_0;
 
@@ -8,7 +9,7 @@ struct Unk_02075fa4_0 {
 };
 
 Unk_02075fa4_0* Task_FindByScript(void*);
-extern u8 data_0215fc0c[];
+extern TaskScriptCmd data_0215fc0c[];
 int func_02075e08(int);
 
 int func_02075fa4(void) {

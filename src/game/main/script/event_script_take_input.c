@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern u16 gEventScriptOwnsInput;
+extern s16 gEventScriptOwnsInput;
 
 /* While set, map touch handlers do nothing and EventScript_UpdateAll
  * replaces the gKeypad state with gEventScriptKeys. */

@@ -8,7 +8,7 @@ struct Unk_02079ee0_0 {
 };
 
 extern Unk_02079ee0_0* data_0215fe84;
-extern int data_0229c880;
+extern u32 data_0229c880;
 void func_02079180(void*, int, int);
 
 void func_02079ee0(void) {

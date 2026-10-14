@@ -4,11 +4,11 @@
 /* Cell tables in DTCM, one per OAM shape and size. */
 extern u8 data_027c0028;
 extern u8 data_027c0030;
-extern u8 data_027c0038;
+extern u8 data_027c0038[];
 extern u8 data_027c0040;
-extern u8 data_027c0048;
-extern u8 data_027c0058;
-extern u8 data_027c0060;
+extern u8 data_027c0048[];
+extern u8 data_027c0058[];
+extern u8 data_027c0060[];
 
 /* Returns the cell table for a sprite of the given pixel width and height,
  * or NULL when no OAM size has that shape. Oam_GetAttrCells picks from the

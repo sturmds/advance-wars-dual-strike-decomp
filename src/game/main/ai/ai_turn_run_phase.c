@@ -3,7 +3,7 @@
 #include "game/Unk_02080440.h"
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 
 /* The AI unit action steps, one per phase: without fog, and with fog. */
 extern void (*gAiUnitPhases[])(void);

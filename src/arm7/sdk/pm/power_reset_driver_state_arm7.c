@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/pm.h"
 
-extern BOOL
+extern u32
     data_arm7_03809ff8; /* set once PM is ready; the ARM7 VBlank handler checks it */
 
 /* Clears the power chip driver's state. Called from SPI_Init. */

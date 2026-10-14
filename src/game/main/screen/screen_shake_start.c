@@ -4,8 +4,8 @@
 extern TaskScriptCmd gScreenShakeScript[];
 extern u32 data_02157210[];
 extern u32 data_021571fc[];
-extern u8 data_021574c0[];
-extern u8 data_02157364[];
+extern u32 data_021574c0[];
+extern u32 data_02157364[];
 
 static s16* data_021571ec[] = {(s16*)&data_02157210, (s16*)&data_021571fc,
                                (s16*)&data_021574c0, (s16*)&data_02157364};

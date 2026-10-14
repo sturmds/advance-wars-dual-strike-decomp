@@ -2,7 +2,7 @@
 #include "game/design_map.h"
 
 extern DesignMapRecord data_02291774;
-extern u32 data_0229eae4;
+extern int data_0229eae4;
 
 u8 Map_GetLoadedPlayerCount(void);
 void DesignMap_BuildRecord(void* map, DesignMapRecord* record);

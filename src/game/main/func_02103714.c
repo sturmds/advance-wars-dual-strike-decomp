@@ -3,7 +3,7 @@
 
 void EventScript_Init(void);
 void MainMenu_Prepare(void);
-extern u8 data_0216d754[];
+extern TaskScriptCmd data_0216d754[];
 void func_0200a630(void);
 
 TaskScriptCmd data_0216d6fc[] = {

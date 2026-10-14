@@ -1,10 +1,11 @@
 #include "types.h"
 #include "game/menu_button.h"
 #include "game/popup_menu.h"
+#include "game/task.h"
 
 #define SE_MOVE 0x10002
 
-extern u8 data_021587a8[];
+extern TaskScriptCmd data_021587a8[];
 
 PopupMenuTask* Task_FindByScript(void* script);
 void Sound_PlaySe(u32 soundId);

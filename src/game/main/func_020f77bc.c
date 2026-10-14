@@ -1,7 +1,8 @@
 #include "types.h"
 #include "game/screen_other_map.h"
+#include "game/task.h"
 
-extern u8 data_02169dac[];
+extern TaskScriptCmd data_02169dac[];
 
 void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);

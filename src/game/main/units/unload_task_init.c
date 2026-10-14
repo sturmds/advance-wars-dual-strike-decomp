@@ -5,7 +5,7 @@
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern int gLinkPlay;
+extern u32 gLinkPlay;
 
 void RangeMap_ClearAdjacent(int x, int y, int dirs);
 s8 Unit_GetDropDirections(int x, int y, int slot);

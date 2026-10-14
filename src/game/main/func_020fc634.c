@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern u32 data_022a7e68;
+extern int data_022a7e68;
 extern void func_020fc670(void);
 
 BOOL func_020fc634(void) {

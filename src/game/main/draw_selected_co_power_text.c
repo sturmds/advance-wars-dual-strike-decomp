@@ -3,6 +3,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/co_portrait_task.h"
+#include "game/task.h"
 
 void Gfx_RequestLayerCopy(int a);
 void Screen_SetCurrent(void* state);
@@ -17,7 +18,7 @@ extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern u8
     gCombatModeCos[]; /* CO ids: Andy, Max, Sami, Flak, Lash, Adder, Hawke */
-extern u8 data_021613d8[];
+extern TaskScriptCmd data_021613d8[];
 
 /* Draws the CO Power name and a second text line for the CO selected in
  * the Combat mode menu (the CO portrait task's selectedSlot). */

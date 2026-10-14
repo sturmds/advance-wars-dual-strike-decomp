@@ -6,6 +6,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/keypad.h"
+#include "game/event_script.h"
 
 void func_02004984(u16 frames);
 void func_020049cc(u16 frames);
@@ -35,11 +36,11 @@ extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern u16 gEventChoiceAnswer;
-extern u8 data_0216ab54[];
-extern u8 data_0216ab84[];
-extern u8 data_0216abb4[];
-extern u8 data_0216abe4[];
-extern u8 data_0216ac44[];
+extern EventScriptCommand data_0216ab54[];
+extern EventScriptCommand data_0216ab84[];
+extern EventScriptCommand data_0216abb4[];
+extern EventScriptCommand data_0216abe4[];
+extern EventScriptCommand data_0216ac44[];
 extern u8 gNameEntryStartText[];
 extern u8 gNameEntryText[];
 

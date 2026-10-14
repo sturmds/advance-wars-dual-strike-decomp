@@ -1,12 +1,13 @@
 #include "types.h"
 #include "game/menu_button.h"
 #include "game/Unk_02160ac0.h"
+#include "game/task.h"
 
 void Sound_PlaySe(u32 soundId);
 void func_0208ac7c(void);
 void func_020b9890(void);
 void Task_ResumeByScript(void* script);
-extern u8 data_02161510[];
+extern TaskScriptCmd data_02161510[];
 
 #define SE_CONFIRM 0x10006
 

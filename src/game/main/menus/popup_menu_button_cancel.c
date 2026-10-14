@@ -1,11 +1,13 @@
 #include "types.h"
 #include "game/menu_button.h"
 #include "game/popup_menu.h"
+#include "game/script_slot.h"
+#include "game/task.h"
 
 #define SE_CANCEL 0x10009
 
-extern u8 data_021587a8[];
-extern u8 data_021583b4[];
+extern TaskScriptCmd data_021587a8[];
+extern ScriptCommand data_021583b4[];
 
 PopupMenuTask* Task_FindByScript(void* script);
 s8 ScriptSlot_StopByScript(const void* script);

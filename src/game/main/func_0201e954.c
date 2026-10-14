@@ -1,4 +1,6 @@
 #include "types.h"
+#include "game/script_slot.h"
+#include "game/task.h"
 
 s8 ScriptSlot_StopByScript(
     const void*
@@ -7,8 +9,8 @@ void Task_DestroyByScript(
     const void*
         descriptor); /* calls Task_DestroyVisitor on each of 80 tasks running descriptor */
 
-extern u8 data_021583b4[];
-extern u8 data_021587a8[];
+extern ScriptCommand data_021583b4[];
+extern TaskScriptCmd data_021587a8[];
 
 /* Runs before a hint or terms script starts: passes two descriptors to
  * the two task slot systems, probably to stop the tasks using them. */

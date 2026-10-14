@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/campaign_map.h"
 #include "game/Unk_02088d04.h"
+#include "game/task.h"
 
 int CampaignMap_CenterScrollX(int x);
 int func_0204ec34(int y);
@@ -9,7 +10,7 @@ void Task_ResumeByScript(const void* script);
 extern CampaignMapState gCampaignMapState;
 extern CampaignMission gCampaignMissions[];
 extern Unk_027c0280* data_027c0280;
-extern u8 data_0215b420[];
+extern TaskScriptCmd data_0215b420[];
 
 /* Script step: sets the scroll of the two map layers (the BGs of layers 3 and
  * 2) so the current mission is centred, then resumes the script by

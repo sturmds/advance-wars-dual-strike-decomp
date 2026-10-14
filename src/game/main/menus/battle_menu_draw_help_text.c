@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
+#include "game/script_slot.h"
 
 void MenuBox_Draw(int a, int b, int c, int d);
 void ScriptSlot_StopByScript(const void* descriptor);
@@ -7,7 +8,7 @@ void Bg_FillRect(u16* map, int x, int y, int width, int height, int tile);
 void Gfx_RequestLayerCopy(int layer);
 void Text_PrintById(int x, int y, u16* target, u32 text, int a, int b);
 
-extern u8 data_021583b4[];
+extern ScriptCommand data_021583b4[];
 extern Unk_027c0280* data_027c0280;
 
 /* Clears a 13x6 box on layer 0 and prints the help text textId in it. The

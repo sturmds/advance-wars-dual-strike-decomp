@@ -1,8 +1,9 @@
 #include "types.h"
+#include "game/task.h"
 
 s8 Task_DestroyByScript(const void* descriptor);
 void MainLoop_SetFrameCallback(const void* descriptor);
-extern u8 data_02168318[];
+extern TaskScriptCmd data_02168318[];
 extern u8 MainLoop_MapFrame[];
 
 void func_020dc71c(void) {

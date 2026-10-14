@@ -1,5 +1,7 @@
 #include "types.h"
 #include "game/task.h"
+#include "game/script_slot.h"
+#include "game/unit_target_entry.h"
 
 void Battle_StartScreen(void);
 void Combat_ApplyResult(void);
@@ -8,8 +10,8 @@ void MenuDepth_Pop(void);
 void MenuDepth_Push(void);
 void ObjectAttackTask_Finish(void);
 void ObjectAttack_ShowHit(void);
-extern u8 data_02168f48[];
-extern u8 data_022a6dd8[];
+extern TaskScriptCmd data_02168f48[];
+extern UnitTargetEntry data_022a6dd8[];
 void func_02001540(void);
 void func_0201d7a8(void);
 void func_0201d7bc(void);
@@ -20,7 +22,7 @@ void func_020dc698(void);
 void func_020dc704(void);
 void func_020dd138(void);
 void func_020fb9ec(void);
-extern u8 gMapScrollScript[];
+extern ScriptCommand gMapScrollScript[];
 void AttackTask_SetUpScreen(void);
 void UnitAttackTask_Finish(void);
 void func_02001564(void);

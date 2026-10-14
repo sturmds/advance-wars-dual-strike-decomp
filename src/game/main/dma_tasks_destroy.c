@@ -2,13 +2,14 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/dma_task.h"
+#include "game/task.h"
 
 void Task_DestroyByScript(const void* descriptor);
 
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_021571ac[]; /* script of the first DMA task */
-extern u8 data_021571cc[]; /* script of the second DMA task */
+extern TaskScriptCmd data_021571ac[]; /* script of the first DMA task */
+extern TaskScriptCmd data_021571cc[]; /* script of the second DMA task */
 
 /* Destroys the tasks of the DMA pair that DmaTasks_Start
  * started: both when gDmaTaskState.pair is set, else the one that belongs to

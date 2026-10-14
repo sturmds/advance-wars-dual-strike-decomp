@@ -9,7 +9,7 @@ void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Task_ResumeScript(ResultSpriteTask* task);
 void ResultPath_DrawAllOffset(int lead, int dx, int dy);
 
-extern u8 data_027c0060;
+extern u8 data_027c0060[];
 
 #define SLIDE_FRAMES 16
 

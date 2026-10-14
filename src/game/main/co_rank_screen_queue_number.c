@@ -1,13 +1,14 @@
 #include "types.h"
 #include "game/Unk_022a7b80.h"
+#include "game/oam_cells.h"
 
 s32 HwDiv32(s32 numer, s32 denom);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
 extern Unk_022a7b80 data_022a7b80;
-extern u8 data_027c0148;
-extern u8 data_027c0038;
-extern u8 data_027c0020;
+extern u8 data_027c0148[];
+extern u8 data_027c0038[];
+extern OamCellList1 data_027c0020;
 
 /* Queues a label sprite at (x + 8, y), picked by the mode in
  * data_022a7b80.mode (0-2 or 3-5), then `value` as up to four digits

@@ -3,7 +3,7 @@
 #include "game/Unk_02080440.h"
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 
 int Rng_Next(void);
 void Rng_SetState(u32 state);

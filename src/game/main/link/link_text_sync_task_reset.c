@@ -3,7 +3,7 @@
 #include "game/link_slots.h"
 
 void Mem_ZeroUnits(u32 ignored, void* dst, u32 size, u32 unitBits);
-extern u8 data_0229db54[];
+extern u8 data_0229db54[][6][33];
 
 /* Clears the progress counters. The loop zeroes the same 8 bytes four times; the
  * original does this, as far as the object code shows. */

@@ -1,10 +1,10 @@
 #include "types.h"
 #include "game/weather.h"
 
-extern u8 data_02167cc0[];
-extern u8 data_02167ccc[];
-extern u8 data_02167cb8[];
-extern u8 data_02167cbc[];
+extern char data_02167cc0[];
+extern char data_02167ccc[];
+extern char data_02167cb8[];
+extern char data_02167cbc[];
 
 u8 data_02167d30[][2] = {
 #include "data/main/data_02167d30.inc.c"

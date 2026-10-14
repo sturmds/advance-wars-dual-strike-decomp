@@ -2,7 +2,7 @@
 #include "sdk/mb.h"
 #include "sdk/rom_header.h"
 
-extern u8 data_02151978[];
+extern const u32 data_02151978[];
 
 static u8 gMbLastFileInfoSent = {
 #include "data/main/gMbLastFileInfoSent.inc.c"

@@ -1,13 +1,14 @@
 #include "types.h"
 #include "game/event_script.h"
 #include "game/script_slot.h"
+#include "game/task.h"
 
 void* Task_FindByScript(void* script);
 s16 EventScript_FindSlot(const EventScriptCommand* script);
 int func_01ff9bb4(int arg);
 
-extern u8 data_02158354[];
-extern u8 data_02158344[];
+extern TaskScriptCmd data_02158354[];
+extern TaskScriptCmd data_02158344[];
 extern EventScriptCommand data_02166a88[];
 extern EventScriptCommand data_02166b08[];
 extern EventScriptCommand data_02167880[];

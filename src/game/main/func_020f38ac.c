@@ -41,8 +41,8 @@ void ZoomSpriteTask_Init(void);
 void ZoomSpriteTask_InitWithSound(void);
 void ZoomSpriteTask_Update(void);
 extern u32 data_02166720[];
-extern u8 data_02168328[];
-extern u8 data_02168400[];
+extern TaskScriptCmd data_02168328[];
+extern TaskScriptCmd data_02168400[];
 void func_02019bec(void);
 void func_02021b34(void);
 void func_020b9914(void);
@@ -56,7 +56,7 @@ void func_020cdcb0(void);
 void func_020ce17c(void);
 void func_020cfe70(void);
 void func_020d0148(void);
-extern u8 gMapScrollScript[];
+extern ScriptCommand gMapScrollScript[];
 void MapOverview_Close(void);
 void MapOverview_Open(void);
 void MapOverview_RestoreCursor(void);
@@ -64,11 +64,11 @@ void ScreenWipe_PhaseDownInit(void);
 void ScreenWipe_PhaseUpInit(void);
 void TargetListPicker_Update(void);
 void ZoomSpriteTask_UpdateThenResume(void);
-extern u8 data_021669b0[];
+extern u32 data_021669b0[];
 void MapOverview_DimStep(void);
 void ScreenWipe_PhaseDownStep(void);
 void ScreenWipe_PhaseUpStep(void);
-extern u8 data_02166c08[];
+extern u32 data_02166c08[];
 
 /* "002" */
 char gTileCodeFileMap248First[] = {

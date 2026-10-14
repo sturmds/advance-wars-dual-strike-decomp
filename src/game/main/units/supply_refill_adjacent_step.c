@@ -6,7 +6,7 @@
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern const ScriptCommand data_021666e8[];
-extern u32 data_022a6dd4;
+extern int data_022a6dd4;
 extern s16 data_021663dc
     []; /* 3 per side of the unit: bit for data_022a6dd4, tile x offset, tile y offset */
 extern u32 gLinkPlay;

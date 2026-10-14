@@ -10,8 +10,8 @@ void Screen_SetLayerDefaults(void);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_0215948c[];
-extern u8 data_021594dc[];
+extern GfxLayer data_0215948c[];
+extern GfxLayer data_021594dc[];
 
 void func_02028a30(void) {
   Unk_027c0280* saved0280;

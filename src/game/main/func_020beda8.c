@@ -3,7 +3,7 @@
 #include "game/unit_stats.h"
 
 extern Unk_02080440* data_027c027c;
-extern u32 data_027c0284;
+extern int data_027c0284;
 
 int UnitMenu_EmergeHidden(void);
 

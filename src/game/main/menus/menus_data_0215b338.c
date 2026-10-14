@@ -24,7 +24,7 @@ void Save_LoadProfiles(void);
 void Save_LoadProgress(void);
 void Screen1_DestroyTextTasks(void);
 void Wallpaper_DestroyTasks(void);
-extern u8 data_021674c8[];
+extern TaskScriptCmd data_021674c8[];
 extern u8 data_02178b08[];
 extern u8 data_0217ab08[];
 extern u8 data_0217eb08[];

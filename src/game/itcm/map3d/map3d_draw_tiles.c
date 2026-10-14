@@ -14,7 +14,7 @@ extern int gCameraPresetIndex;
 extern u16 data_02157bc4
     []; /* per map cell code: tile model, with flags 0x4000 and 0x8000 */
 extern u16 data_02157f84[]; /* the same for map 248 */
-extern int data_022a7c58;   /* tile brightness when no range is shown, 0-31 */
+extern u32 data_022a7c58;   /* tile brightness when no range is shown, 0-31 */
 extern int
     data_022a7c60; /* 0: no range shown; else tiles out of range are this much darker (up to 8) */
 

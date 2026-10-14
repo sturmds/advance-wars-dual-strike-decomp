@@ -19,7 +19,7 @@ extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern MenuState gMenuState;
 extern MapListTables data_0229c768;
-extern u8 data_02167c90;
+extern u8 data_02167c90[];
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define COLS \

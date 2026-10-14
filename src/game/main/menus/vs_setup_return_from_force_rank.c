@@ -9,7 +9,7 @@ void VsSetup_Init(int unused);
 void* Task_FindByScript(const void* script);
 int Task_JumpToLabel(ForceRankTask* task, int label);
 
-extern const u32 data_0215cfe8[];
+extern TaskScriptCmd data_0215cfe8[];
 extern const TaskScriptCmd data_0215cae8[];
 extern MenuState gMenuState;
 

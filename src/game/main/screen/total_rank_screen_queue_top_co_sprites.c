@@ -8,7 +8,7 @@ void Sprite_QueueCoSlotFrame(int a0, u16 x, u16 y, int a3);
 void Co_QueueSmallPictureSprite(int x, int y, int attr, int list);
 void Sprite_QueueDefault(int x, int y, int attr, int list);
 
-extern u8 data_027c0060;
+extern u8 data_027c0060[];
 
 #define TOP_CO_COUNT 3 /* entries of Campaign_GetUnlockedCos's list */
 

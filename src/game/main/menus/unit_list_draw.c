@@ -11,8 +11,8 @@ void UnitList_DrawRows(int scroll);
 extern MenuState gMenuState;
 extern u8 data_027c0028;
 extern u8 data_027c0040;
-extern u8 data_027c0058;
-extern u8 data_027c0060;
+extern u8 data_027c0058[];
+extern u8 data_027c0060[];
 
 /* Per-frame update of the unit list menu. Moves scroll one half row toward
  * topRow every other frame, redrawing the rows and playing a sound on odd

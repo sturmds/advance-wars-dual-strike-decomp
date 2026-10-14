@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 
-extern u8 data_0216d724[];
+extern TaskScriptCmd data_0216d724[];
 void func_020fd934(void);
 
 TaskScriptCmd data_02151c80[] = {

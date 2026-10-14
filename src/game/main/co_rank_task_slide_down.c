@@ -9,7 +9,7 @@ void CoRankScreen_QueueNumber(int x, int y, int value);
 
 extern Unk_027c0280* data_027c0280;
 extern u8 data_027c0030;
-extern u8 data_027c0060;
+extern u8 data_027c0060[];
 
 /* One frame of a 16-frame slide: layers 0 and 1 and the sprites on them
  * move down by an eased 0 to 64 pixels. The number from CoRankScreen_QueueNumber

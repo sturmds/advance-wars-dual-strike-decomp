@@ -5,7 +5,7 @@ void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void CoRankScreen_QueueNumber(int x, int y, int value);
 
 extern u8 data_027c0030;
-extern u8 data_027c0060;
+extern u8 data_027c0060[];
 
 /* Script step: draws the number and its two sprites at rest, as
  * CoRankTask_SlideDown leaves them. */

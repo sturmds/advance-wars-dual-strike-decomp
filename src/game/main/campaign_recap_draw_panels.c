@@ -2,8 +2,8 @@
 #include "game/campaign_recap.h"
 
 extern u8 data_027c0030;
-extern u8 data_027c0060;
-extern u8 data_027c01ac;
+extern u8 data_027c0060[];
+extern u8 data_027c01ac[];
 
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 int Score_ToRank_020e5428(int score);

@@ -1,7 +1,8 @@
 #include "types.h"
 #include "game/screen_other_map.h"
+#include "game/task.h"
 
-extern u8 data_02169a10[];
+extern TaskScriptCmd data_02169a10[];
 
 BOOL func_020f4a18(void);
 void func_020f37d0(void);

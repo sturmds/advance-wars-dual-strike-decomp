@@ -1,11 +1,12 @@
 #include "types.h"
 #include "game/Unk_0229c734.h"
+#include "game/task.h"
 
 typedef struct Unk_020381b8_Task {
   u8 pad_00[0x3a];
   s16 unk_3a;
 } Unk_020381b8_Task;
-extern u32 data_0215a44c[];
+extern TaskScriptCmd data_0215a44c[];
 Unk_020381b8_Task* Task_FindByScript(void* script);
 void Task_ResumeScript(Unk_020381b8_Task* task);
 

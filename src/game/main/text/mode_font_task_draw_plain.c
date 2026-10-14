@@ -1,10 +1,11 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/mode_font_task.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
-extern u8 data_027c0000; /* cell table of one 16x32 sprite */
+extern OamCellList1 data_027c0000; /* cell table of one 16x32 sprite */
 
 /* Task step: draws the line of mode font letters, without end pieces. */
 void ModeFontTask_DrawPlain(ModeFontTask* task) {

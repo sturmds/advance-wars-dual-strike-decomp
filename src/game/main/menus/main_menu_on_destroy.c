@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/main_menu.h"
+#include "game/task.h"
 
 void HelpBand_Stop(void);
 void Wallpaper_DestroyTasks(void);
@@ -8,7 +9,7 @@ int func_0202d874(void);
 int Task_DestroyByScript(const void* script);
 void Mem_Free(void* block);
 
-extern u8 data_02159a5c[];
+extern TaskScriptCmd data_02159a5c[];
 
 /* Cleans up the main menu: stops the help band, the wallpaper and the
  * text tasks, then frees the page and the work block. */

@@ -24,10 +24,10 @@ extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern u8 data_027c0028;
 extern u8 data_027c0040;
-extern u8 data_027c0048;
-extern u8 data_027c00b8;
-extern u8 data_027c0108;
-extern u8 data_027c01c0;
+extern u8 data_027c0048[];
+extern u8 data_027c00b8[];
+extern u8 data_027c0108[];
+extern u8 data_027c01c0[];
 
 /* Draws one frame of the Survival map select. Top screen: one tab per entry of
  * the current list (the selected one 32 pixels wide, the others 16) with a

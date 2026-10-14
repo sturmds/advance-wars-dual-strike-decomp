@@ -10,7 +10,7 @@ void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 void Task_ResumeScript(void* task);
 
 extern MenuState gMenuState;
-extern u8 data_027c0060;
+extern u8 data_027c0060[];
 extern s16 gSineTable[]; /* index 64 = cosine of 0 */
 
 /* Divisor for one matrix entry: the scale, or 2 if it is 0. */

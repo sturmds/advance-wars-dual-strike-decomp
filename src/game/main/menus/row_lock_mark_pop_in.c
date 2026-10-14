@@ -8,7 +8,7 @@ void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 
 extern const s16 gSineTable[];
-extern u8 data_027c0060;
+extern u8 data_027c0060[];
 
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 

@@ -1,7 +1,8 @@
 #include "types.h"
+#include "game/task.h"
 
-extern u8 data_0215af94[];
-extern u8 data_0215b004[];
+extern TaskScriptCmd data_0215af94[];
+extern TaskScriptCmd data_0215b004[];
 void* Task_FindByScript(void* script);
 int func_02021b34(void);
 

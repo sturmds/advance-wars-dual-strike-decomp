@@ -10,7 +10,7 @@ void Task_ResumeScript(Task* task);
 void SubScreen_QueueTwoSprites(int x);
 void TotalRankScreen_QueueTopCoSprites(int x);
 
-extern u8 data_027c0060;
+extern u8 data_027c0060[];
 extern s16 gSineTable[];
 
 /* The frame counter shares its slot with Task.unk_4c. */

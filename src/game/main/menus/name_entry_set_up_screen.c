@@ -29,7 +29,7 @@ void NameEntry_LoadButtonSprites(NameEntry* entry);
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_0216ac74[];
+extern GfxLayer data_0216ac74[];
 extern char data_0216b338[];
 extern char data_0216b344[];
 extern u8 gNameEntryText[];

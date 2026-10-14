@@ -12,7 +12,7 @@ void TabList_CountMedals(u16* earned, u16* total);
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern u8 data_027c0040;
-extern u8 data_027c0098;
+extern u32 data_027c0098[];
 extern char data_02167c88[]; /* "/" */
 
 /* Task update that shows the medal count on the second screen

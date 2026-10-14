@@ -5,7 +5,7 @@ u8 Map_GetLoadedPlayerCount(void);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
 extern u8 data_027c0040;
-extern u8 data_027c0060;
+extern u8 data_027c0060[];
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 

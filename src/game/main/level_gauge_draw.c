@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/level_gauge.h"
+#include "game/oam_cells.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void RankSprite_QueueNumber(int x, int y, int value, int matrixIndex,
@@ -7,8 +8,8 @@ void RankSprite_QueueNumber(int x, int y, int value, int matrixIndex,
 void LevelGauge_QueuePoints(int x, int y, int value, int matrixIndex,
                             int frame);
 
-extern u8 data_027c0020;
-extern u8 data_027c0060;
+extern OamCellList1 data_027c0020;
+extern u8 data_027c0060[];
 
 /* Queues gauges[index] at (x, y) unless x is off screen: the level with its
  * pop-in (levelUpFrame - 1 as the frame; levelUpFrame counts up from 1 to 255

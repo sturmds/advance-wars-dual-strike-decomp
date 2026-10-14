@@ -2,7 +2,7 @@
 #include "game/Unk_02031a14.h"
 #include "game/task.h"
 
-extern u8 data_02159d78[];
+extern TaskScriptCmd data_02159d78[];
 
 void func_02031a14(u32 x, u32 y, int matrix) {
   Unk_02031a14* task = (Unk_02031a14*)Task_Create(

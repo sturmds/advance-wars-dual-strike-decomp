@@ -2,8 +2,8 @@
 #include "game/task.h"
 
 Task* Task_FindByScript(void* script);
-extern u8 data_02166ed4[];
-extern u8 data_02166efc[];
+extern TaskScriptCmd data_02166ed4[];
+extern TaskScriptCmd data_02166efc[];
 
 BOOL func_020d5b0c(void) {
   if (Task_FindByScript(data_02166ed4) != NULL) {

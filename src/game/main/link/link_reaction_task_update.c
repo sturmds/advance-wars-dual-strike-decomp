@@ -7,7 +7,7 @@ void Task_ResumeScript(void* task);
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern u8 data_027c0038;
+extern u8 data_027c0038[];
 extern u8 data_021605b8[];
 
 /* Draws the glyphs at the task's position and scrolls them left; resumes the

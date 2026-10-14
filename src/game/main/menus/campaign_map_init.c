@@ -43,8 +43,8 @@ extern CampaignMapState gCampaignMapState;
 extern MenuState gMenuState;
 extern CampaignMission gCampaignMissions[];
 
-extern u8 data_0215b548[];
-extern u8 data_0215b598[];
+extern GfxLayer data_0215b548[];
+extern GfxLayer data_0215b598[];
 extern char data_0215b990[]; /* "/ohashi/res_gmap" */
 extern char data_0215b9a4[]; /* "/ohashi/res_gmap_lang" */
 extern char data_0215b9bc[]; /* "/ohashi/res_icon_blink" */

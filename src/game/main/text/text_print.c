@@ -1,10 +1,11 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 #include "game/text_print.h"
+#include "game/script_slot.h"
 
 extern Unk_027c0280* data_027c0280;
 extern u8 gEventSkipState;
-extern u8 data_02158394[];
+extern ScriptCommand data_02158394[];
 
 /* sets up printer to print text at tile (x, y) into map, with tile data at tiles */
 void TextPrinter_Init(void* printer, int x, int y, u8* tiles, u16* map,

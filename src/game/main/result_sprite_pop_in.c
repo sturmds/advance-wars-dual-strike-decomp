@@ -9,7 +9,7 @@ void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Task_ResumeScript(ResultSpriteTask* task);
 void ResultPath_DrawAll(int step);
 
-extern u8 data_027c0060;
+extern u8 data_027c0060[];
 extern s16 gSineTable[];
 
 /* Divisor for one matrix entry: the eased scale, or 2 if it is 0. */

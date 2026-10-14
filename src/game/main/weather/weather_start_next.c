@@ -1,13 +1,14 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/weather.h"
+#include "game/script_slot.h"
 
 void Weather_SetDaysIfChanged(int weather);
 WeatherTaskWork* ScriptSlot_Start(const void* descriptor, int arg);
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern const u32 data_02166d18[];
+extern ScriptCommand data_02166d18[];
 
 #define VIEW (data_027c027c->unk_48[data_027c0284]->unk_1c4)
 

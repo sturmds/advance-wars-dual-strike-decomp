@@ -8,7 +8,7 @@ void MapSelect_ResetTables(void);
 
 extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern int gLinkPlay;
+extern u32 gLinkPlay;
 
 /* First step of the data_021673dc task script, which Versus_Start starts
  * after it sets gameMode 2 (Versus, going by the other mode readers).

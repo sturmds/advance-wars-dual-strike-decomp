@@ -7,7 +7,7 @@ void CoRankScreen_QueueNumber(int x, int y, int value);
 void func_0204cc54(void);
 
 extern u8 data_027c0030;
-extern u8 data_027c0060;
+extern u8 data_027c0060[];
 
 /* Script step: holds the screen of CoRankTask_Draw for 16 frames, then adds
  * the button of func_0204cc54 and resumes the script. */

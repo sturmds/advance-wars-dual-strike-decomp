@@ -12,12 +12,12 @@ extern u32 data_027c0264; /* BG1OFS */
 extern u32 data_027c0274; /* BG2OFS */
 extern u16 data_027c0254; /* BG1CNT */
 extern u16 data_027c0258; /* BG2CNT */
-extern s16 data_027c025c; /* BG2PA */
-extern s16 data_027c0260; /* BG2PB */
-extern s16 data_027c023c; /* BG2PC */
-extern s16 data_027c0248; /* BG2PD */
-extern s16 data_027c0250; /* BG2X */
-extern s16 data_027c0244; /* BG2Y */
+extern u16 data_027c025c; /* BG2PA */
+extern u16 data_027c0260; /* BG2PB */
+extern u16 data_027c023c; /* BG2PC */
+extern u16 data_027c0248; /* BG2PD */
+extern u16 data_027c0250; /* BG2X */
+extern u16 data_027c0244; /* BG2Y */
 extern u32 data_027c0268; /* BLDCNT */
 extern u8 data_027c0238;
 

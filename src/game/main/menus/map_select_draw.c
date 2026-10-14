@@ -5,6 +5,7 @@
 #include "game/menu_state.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/oam_cells.h"
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 s32 HwMod32(s32 numerator, s32 denominator); /* remainder, hardware divider */
@@ -32,11 +33,11 @@ int Map_GetPlayerCount(int mapId);
 
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_027c0000;
+extern OamCellList1 data_027c0000;
 extern u8 data_027c0028;
 extern u8 data_027c0040;
-extern u8 data_027c00b8;
-extern u8 data_027c0108;
+extern u8 data_027c00b8[];
+extern u8 data_027c0108[];
 
 /* Writes value to the X scroll of the BG used by layer bg, then copies
  * it to the BG of layer copyBg. */

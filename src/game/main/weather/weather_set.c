@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/weather.h"
+#include "game/script_slot.h"
 
 void Weather_SetDays(int weather);
 int Weather_ResolvePowerSnow(int weather);
@@ -7,7 +8,7 @@ WeatherTaskWork* ScriptSlot_Start(
     const void* descriptor,
     int arg); /* starts a task from descriptor, returns its work block */
 
-extern const u32 data_02166d18[];
+extern ScriptCommand data_02166d18[];
 
 /* Starts the weather task for a weather value and sets how long it lasts. */
 void Weather_Set(int weather) {

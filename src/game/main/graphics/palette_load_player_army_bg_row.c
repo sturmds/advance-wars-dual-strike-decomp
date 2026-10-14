@@ -6,7 +6,7 @@ extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-extern u16 gArmyPalettes[][16];
+extern const u8 gArmyPalettes[][32];
 void Palette_Load(const void* src, u32 offset, u32 size);
 
 /* Loads a player's army palette into background palette slot 11 (offset

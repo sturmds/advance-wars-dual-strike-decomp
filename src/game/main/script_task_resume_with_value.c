@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/Unk_0229c734.h"
+#include "game/task.h"
 
 /* The script task as ScriptTask_ResumeWithValue sees it: a halfword at 0x3a. */
 typedef struct Unk_020381b8_Task {
@@ -7,7 +8,7 @@ typedef struct Unk_020381b8_Task {
   s16 unk_3a;
 } Unk_020381b8_Task;
 
-extern u32 data_0215a44c[];
+extern TaskScriptCmd data_0215a44c[];
 
 Unk_020381b8_Task* Task_FindByScript(void* script);
 void Task_ResumeScript(Unk_020381b8_Task* task);

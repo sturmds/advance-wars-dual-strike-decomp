@@ -5,8 +5,8 @@
 void DailyRepair_Step(void);
 void MenuDepth_Pop(void);
 void MenuDepth_Push(void);
-extern u8 data_02166798[];
-extern u8 data_021667d8[];
+extern EventScriptCommand data_02166798[];
+extern EventScriptCommand data_021667d8[];
 void func_020c4018(void);
 void func_020cce5c(void);
 void DailySupply_Step(void);
@@ -14,7 +14,7 @@ void ServiceCostPopup_SetShown(void);
 void func_020199a4(void);
 void CurrentPlayer_ShowSavedCursor(void);
 void func_020cce70(void);
-extern u8 gMapScrollScript[];
+extern ScriptCommand gMapScrollScript[];
 
 /* 0x8 bytes no code names, before data_021669b0 */
 u32 data_021669a8[] = {

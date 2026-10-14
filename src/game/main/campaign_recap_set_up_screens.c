@@ -27,7 +27,7 @@ Task* Sound_StartSongSwitch(
 extern Unk_02080440* data_027c027c;
 extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_0216a8d8[];         /* layer config for Screen_InitLayers */
+extern GfxLayer data_0216a8d8[];   /* layer config for Screen_InitLayers */
 extern const char data_0216a928[]; /* "/rikiishi" */
 extern const char data_0216a934[]; /* "013": layer 2 tiles */
 extern const char data_0216a938[]; /* "014": layer 2 map */

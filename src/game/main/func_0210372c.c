@@ -7,7 +7,7 @@ void Link_ClearPlay(void);
 void MainMenu_ClearCursors(void);
 void MainMenu_Prepare(void);
 void MapSelect_ResetTables(void);
-extern u8 data_02151c80[];
+extern TaskScriptCmd data_02151c80[];
 extern TaskScriptCmd data_0216d754[];
 void func_0200a630(void);
 void func_0202d6a8(void);

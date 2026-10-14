@@ -1,7 +1,8 @@
 #include "types.h"
+#include "game/task.h"
 
 int Task_FindByScript(void*);
-extern u8 data_0215adec[];
+extern TaskScriptCmd data_0215adec[];
 int Task_JumpToLabel(int, int);
 
 int func_02046fa0(void) {

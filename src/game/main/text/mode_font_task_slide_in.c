@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/mode_font_task.h"
+#include "game/oam_cells.h"
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 int HwDiv32(int num, int den);
@@ -11,7 +12,7 @@ void Task_ResumeScript(Task* task);
 /* Sine table, index 64 = cosine of 0. Needed to match: const lets mwcc
  * load the sine and cosine once. */
 extern const s16 gSineTable[];
-extern u8 data_027c0000; /* cell table of one 16x32 sprite */
+extern OamCellList1 data_027c0000; /* cell table of one 16x32 sprite */
 
 #define SIN0 (gSineTable[0])
 #define COS0 (gSineTable[64])

@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_022a7c5c.h"
 
-extern u16 gArmyPalettes[][16];
+extern const u8 gArmyPalettes[][32];
 extern char data_0216a45c[]; /* "/bmap" */
 extern char data_0216a464[]; /* "01d" */
 extern char data_0216a468[]; /* "01e" */

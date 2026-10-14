@@ -2,8 +2,9 @@
 #include "game/Unk_0215fe84.h"
 #include "game/Unk_0229c910.h"
 #include "game/Unk_0229c960.h"
+#include "game/link_player_name.h"
 
-extern u8 gLinkPlayerNames[];
+extern LinkPlayerName gLinkPlayerNames[];
 
 void OwnerInfo_CopyNickname(void* buffer);
 
