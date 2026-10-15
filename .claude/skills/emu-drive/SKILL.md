@@ -60,6 +60,7 @@ Exit 0: every step passed. 1: a step failed. 2: the script or a name in it is wr
 
 - `<tag>.log`: each step with the frame it ended at, and on a failure the step, the value read and where the ARM9 was (pc, lr).
 - `<tag>-NAME.png` for each `shot`, and `<tag>-fail.png` at a failure. Look at them with the Read tool.
+- With `--shots N`, `<tag>-fNNNNN.png` every N frames. Use it to see where a script goes wrong, or what a recording does.
 
 The tag comes from the ROM's path (`build-AWRE`, `orig-AWRE`), so runs on two ROMs keep their own files. Screenshots need PIL (`python3-pil`). The War Room scenario takes 15 to 20 s.
 
@@ -84,7 +85,32 @@ Ask the user to record when the steps are hard to write by hand: a long menu pat
 python3 tools/emu.py record tools/scenarios/NAME.inp [ROM[=ELF]]
 ```
 
-It opens a window with the user's key bindings and writes a `VBLANK KEYS` line at every key change, plus `# @ FUNCTION (frame N)` comments when a known screen function runs. `emu.py run` replays it, but only on the ROM and save it was made on: a ROM change that moves load timing breaks it. To make it last, turn it into anchored steps:
+It opens a window with the user's key bindings and writes a `VBLANK KEYS` line at every key change, plus a `# @ FUNCTION (frame N): WHAT` comment when a screen opens or an action happens (`RECORD_MARKERS` in `emu.py`), for example:
+
+```
+700 a
+# @ DesignRoom_Enter (frame 717): Design Room
+# @ DesignRoom_Init (frame 719): Design Room set up
+```
+
+`emu.py run` replays it, but only on the ROM and save it was made on: a ROM change that moves load timing breaks it.
+
+To see what a recording does, run it with screenshots and read the comments beside them:
+
+```sh
+python3 tools/emu.py run --shots 300 RECORDING.inp ROM          # build/emu/<stem>/<tag>-fNNNNN.png
+```
+
+To start other scenarios where the recording ends (a saved map, a battle save, unlocked COs), turn it into a save:
+
+```sh
+python3 tools/emu.py run --save-out build/emu/NAME.sav RECORDING.inp ROM
+python3 tools/emu.py run --save build/emu/NAME.sav SCRIPT ROM
+```
+
+A save keeps menu cursors and tutorial flags, so a script made for an empty save can need other presses with it. Saves never go in git; keep them under `build/` or your scratch directory.
+
+To make a recording last, turn it into anchored steps:
 
 1. Split the key lines at each `# @` comment.
 2. Replace each comment with `@ FUNCTION`, and each press after it with `+N press KEYS until CONFIRM`, where N is its frame minus the comment's frame and CONFIRM is the function or memory change that shows the press worked (`reference.md`, section 2).
@@ -98,7 +124,7 @@ It opens a window with the user's key bindings and writes a `VBLANK KEYS` line a
 - **Functions that run twice.** `Map_InitBattle`, `CurrentPlayer_StartTurn`, `Battle_InitMapState` and a few others run once for the Setup phase and again after Deploy. Anchor on `func_020e88ac` (Setup ends) instead.
 - **`*_HandleKeys` runs only while a key is down** (and the selected button has slid in). It shows a press reached the screen, not that the screen is ready.
 - **State handlers stop while a menu is open.** `Game_State15_*` and the other `Game_StateN_*` handlers do not run while the unit, battle or setup menu is up, so a wait on them after opening a menu never ends.
-- **Overlays share addresses.** ov000 and ov004 load at one address; ov001, ov002, ov003, ov005 and ov006 at another. A breakpoint on an overlay function also stops in whichever overlay is loaded there. `emu.py` prints a note for each one; anchor on main functions where you can.
+- **Overlays share addresses.** ov000 and ov004 load at one address; ov001, ov002, ov003, ov005 and ov006 at another. A breakpoint on an overlay function also stops in whichever overlay is loaded there. `emu.py` compares the code at each such stop with the function's bytes in the ROM and ignores a stop in other code, so an overlay anchor is safe; it prints a note for a function it cannot tell apart that way. Main functions still cost fewer stops.
 - **Retail's empty save.** Only Jake can be picked in the War Room, and Rachel's tutorial plays on the first visit to CO select. Retries with A clear it (`tries 40` in the War Room scenario). A ROM that unlocks every CO has no tutorial.
 - **Recordings are exact only for their ROM and save.** Keep anchored scripts for anything that must outlive one build.
 - **Pop-up menus wrap only on a new press.** A held key stops at the last entry.

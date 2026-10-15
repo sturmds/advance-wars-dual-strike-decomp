@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Drive the game in melonDS: replay a scenario script, record one, or play.
 
-    emu.py run [--frames 30000] [--save FILE] [--tag TAG] SCRIPT [ROM[=ELF]]
+    emu.py run [--frames 30000] [--save FILE] [--save-out FILE] [--shots N] [--tag TAG]
+               SCRIPT [ROM[=ELF]]
     emu.py record [--save FILE] OUT [ROM[=ELF]]
     emu.py play [--save FILE] [ROM[=ELF]]
 
@@ -20,20 +21,31 @@ script holds. Output goes to build/emu/<script stem>/: <tag>.log (the trace
 printed), <tag>-NAME.png for each shot, <tag>-fail.png when a step fails.
 TAG is the ROM's path in the checkout (orig-AWRE, build-AWRE), or for a ROM
 elsewhere its stem and a hash of its path, so runs of different ROMs never
-overwrite each other. melonDS runs on Qt's VNC platform (a 640x640 virtual
-screen on a free port, listening on all interfaces like the GDB stub) and
-the screens are grabbed over RFB; that needs PIL. Without PIL a script with
-no shot lines runs offscreen, with no screenshot on failure. Exit 0 when
-every step passes, 1 when one fails, 2 when the script or the names in it
-are wrong or melonDS could not be run.
+overwrite each other. A run first deletes the PNGs of the tag's earlier
+runs, but not those of a longer tag that starts with `<tag>-`. melonDS runs
+on Qt's VNC platform (a 640x640 virtual screen on a free port, listening on
+all interfaces like the GDB stub) and the screens are grabbed over RFB; that
+needs PIL. Without PIL a script with no shot lines runs offscreen, with no
+screenshot on failure. Exit 0 when every step passes, 1 when one fails, 2
+when the script or the names in it are wrong, melonDS could not be run or
+--save-out found no save.
+
+    --shots N        also save both screens every N frames as <tag>-fNNNNN.png,
+                     at the first stop at or after each multiple of N (frame
+                     NNNNN; the picture can be a few frames older)
+    --save-out FILE  at the end, ask melonDS to quit, which makes it write the
+                     save, and copy the save to FILE. A recording run this way
+                     leaves a save that starts other runs with --save.
 
 record: opens a melonDS window with the frame limiter on, your key and
 joystick bindings (only the [Instance0.Keyboard] and [Instance0.Joystick]
 tables and Instance0.JoystickID of $XDG_CONFIG_HOME/melonDS/melonDS.toml,
 read-only) and the same fixed settings as run, and writes OUT while you
 play: a `VBLANK KEYS` line each time the keys held change, and a
-`# @ FUNCTION (frame N)` comment the first time one of RECORD_MARKERS runs
-after a change, to help turn the recording into anchored steps. It stops
+`# @ FUNCTION (frame N): WHAT` comment when one of RECORD_MARKERS runs (a
+screen opens or an action happens), to help turn the recording into
+anchored steps. A marker that runs every frame while its screen is up is
+written only when another such marker was written last. It stops
 when the window closes and ends the file with `VBLANK end`. Touch input is
 not recorded. A recording replays exactly only on the ROM it was made on,
 from the same save. Exit 2 when melonDS could not be run.
@@ -84,8 +96,10 @@ one stops the run. A failed step prints where the ARM9 is (pc and lr,
 sampled once the game runs on) and writes <tag>-fail.png. ov000 and ov004
 load at the same address, and so do ov001, ov002, ov003, ov005 and ov006:
 a breakpoint on an overlay function also stops in another overlay's code
-when that one is loaded. The run prints a note for each such FUNCTION;
-anchor on main or ITCM functions where you can.
+when that one is loaded. run and record compare the first 32 bytes of
+memory at such a stop with the function's bytes in the ROM, and count the
+stop only when they match. A FUNCTION whose bytes another overlay also has
+there gets a note from run, and record leaves out such a marker.
 """
 
 import argparse
@@ -93,6 +107,7 @@ import hashlib
 import operator
 import os
 import re
+import shutil
 import signal
 import socket
 import struct
@@ -104,8 +119,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from gdb_rsp import GdbClient, ProtocolError  # noqa: E402
 from melonds import (MELONDS, ROOT, SIGILL, VBLANK_COUNT, VECTORS, Symbols, config,  # noqa: E402
-                     describe_exception, format_keys, free_ports, launch, overlay_ranges, parse_keys,
-                     parse_rom_arg, prepare, stop_melonds, user_bindings)
+                     describe_exception, format_keys, free_ports, launch, overlay_checks, parse_keys,
+                     parse_rom_arg, prepare, quit_melonds, stop_melonds, user_bindings)
 
 OUT = ROOT / "build/emu"
 DEFAULT_ROM = "build/AWRE.nds=build/arm9.elf"
@@ -119,11 +134,75 @@ TRIES = 10
 SHOT_DELAY = 6  # frames run after a shot step before the grab; melonDS repaints every few frames
 HANG_FRAMES = 600  # VBlanks without a key poll that count as a hang
 POLL = 0.25  # seconds to wait for a stop before interrupting
+# Stops in another overlay's code at a breakpoint before it is turned off until the next key
+# poll. Not 1: an overlay can load in frames without a key poll, and its function run there.
+FOREIGN_STOPS = 8
 VNC_SIZE = 640
+
+
+@dataclass(frozen=True)
+class Marker:
+    """A function whose run `record` notes as `# @ NAME (frame N): WHAT`."""
+    name: str
+    what: str
+    every_frame: bool = False  # runs every frame while its screen is up
+
+
+# Functions that run once when a screen opens or an action happens, and a few that run every
+# frame while their screen is up (written only when a different one of those ran last). The
+# screens and actions are those of .claude/skills/emu-drive/reference.md.
 RECORD_MARKERS = (
-    "Ov004Task_RunPressStartScreen", "MainMenu_Setup", "MainMenu_BuildPage2", "MapSelect_Init",
-    "MapSelect_ConfirmMap", "CoSelectScreen_Create", "CoSelectScreen_BeginExit", "ChoicePrompt_Update",
-    "func_020e88ac", "Game_State15_RunStep")
+    Marker("Ov004Task_RunPressStartScreen", "title screen, waiting for Start", every_frame=True),
+    Marker("MainMenu_Setup", "main menu"),
+    Marker("MainMenu_BuildPage0", "main menu, first side"),
+    Marker("MainMenu_BuildPage1", "main menu, Campaign page"),
+    Marker("MainMenu_BuildPage2", "main menu, War Room page"),
+    Marker("MainMenu_BuildPage3", "main menu, Versus page"),
+    Marker("MainMenu_BuildPage4", "main menu, Survival page"),
+    Marker("MainMenu_BuildPage5", "main menu, Combat page"),
+    Marker("MainMenu_BuildPage6", "main menu, second side"),
+    Marker("MainMenu_BuildPage8", "main menu, Design page"),
+    Marker("MainMenu_ConfirmEntry", "main menu entry chosen"),
+    Marker("CampaignMap_Init", "Campaign map"),
+    Marker("func_0210322c", "new War Room battle"),
+    Marker("MainMenu_StartWarRoom", "War Room battle continued"),
+    Marker("Versus_Start", "Versus"),
+    Marker("Survival_StartRun", "Survival"),
+    Marker("CombatManual_Init", "Combat manual"),
+    Marker("MapSelect_Init", "map select"),
+    Marker("MapSelect_ConfirmMap", "map chosen"),
+    Marker("CoSelectScreen_Create", "CO select"),
+    Marker("CoSelectScreen_BeginExit", "CO select closes"),
+    Marker("func_020e88ac", "Setup phase ends (Deploy)"),
+    Marker("DesignRoom_Enter", "Design Room"),
+    Marker("DesignRoom_Init", "Design Room set up"),
+    Marker("Ov006_OpenPopupMenu", "Design Room, File menu"),
+    Marker("Ov006_OpenScreen", "Design Room, screen"),
+    Marker("Ov006_PickToolAtCursor", "Design Room, tool palette (B)"),
+    Marker("Ov006_NewMap", "Design Room, new map"),
+    Marker("Ov006_PaintTerrainAtCursor", "Design Room, terrain painted (A)"),
+    Marker("Ov006_PlaceUnitAtCursor", "Design Room, unit placed (A)"),
+    Marker("Ov006_OpenSaveMenu", "Design Room, save menu"),
+    Marker("Ov006_OpenLoadMenu", "Design Room, load menu"),
+    Marker("DesignMap_SaveToSlot", "design map saved"),
+    Marker("DesignRoom_Exit", "Design Room closes"),
+    Marker("Ov005_SetUpShopScreen", "Battle Maps shop"),
+    Marker("Ov005_SetUpSoundRoom", "Sound Room"),
+    Marker("HistoryScreen_Init", "History"),
+    Marker("CurrentPlayer_StartTurn", "turn starts"),
+    Marker("Game_State15_RunStep", "human turn", every_frame=True),
+    Marker("AiTurn_Start", "AI turn starts"),
+    Marker("AiTurn_Update", "AI turn", every_frame=True),
+    Marker("Turn_IncrementDay", "new day"),
+    Marker("MapCursor_SelectTile", "unit selected"),
+    Marker("UnitMenu_Open", "unit menu"),
+    Marker("BuildMenu_Open", "build menu"),
+    Marker("ActingUnit_StartAttack", "attack starts"),
+    Marker("Battle_ShowResult", "battle won or lost"),
+    Marker("ResultScreen_Init", "results screen"),
+    Marker("ChoicePrompt_Init", "Yes/No prompt"),
+    Marker("BattleSave_Save", "battle saved"),
+)
 
 TYPES = {"u8": "<B", "u16": "<H", "u32": "<I", "s8": "<b", "s16": "<h", "s32": "<i"}
 OPS = {"==": operator.eq, "!=": operator.ne, "<": operator.lt, "<=": operator.le, ">": operator.gt,
@@ -314,20 +393,36 @@ def check_names(steps: list[Step], symbols: Symbols) -> list[str]:
     return errors
 
 
-def overlay_notes(steps: list[Step], symbols: Symbols, overlays: dict[str, tuple[int, int]]) -> list[str]:
-    """A note for each FUNCTION in an overlay whose address other overlays also cover: its
-    breakpoint also stops in their code, when one of them is loaded."""
+def overlay_notes(steps: list[Step], symbols: Symbols, unclear: dict[str, list[str]]) -> list[str]:
+    """A note for each FUNCTION whose hits cannot be told apart from other overlays' code at
+    its address (overlay_checks)."""
     notes = []
     for step in steps:
-        module = symbols.modules.get(step.function or "")
-        if module not in overlays:
-            continue
-        addr = symbols.functions[step.function]
-        others = [o for o, (start, end) in overlays.items() if o != module and start <= addr < end]
-        if others:
-            notes.append(f"note: line {step.line}: {step.function} is in {module}; {', '.join(others)} "
-                         f"also load at {addr:08x}, so a hit may be their code")
+        if step.function in unclear:
+            notes.append(f"note: line {step.line}: {step.function} is in {symbols.modules[step.function]}; "
+                         f"{', '.join(unclear[step.function])} also load at "
+                         f"{symbols.functions[step.function]:08x}, so a hit may be their code")
     return notes
+
+
+def loaded(gdb: GdbClient, addr: int, checks: dict[int, bytes]) -> bool:
+    """Whether a breakpoint at addr stopped in the code of its function: always for
+    main and ITCM, for an overlay function when memory holds its overlay's bytes."""
+    return addr not in checks or gdb.read(addr, len(checks[addr])) == checks[addr]
+
+
+def old_pngs(directory: Path, tag: str) -> list[Path]:
+    """The PNGs of tag's earlier runs: `<tag>-*.png`, but not those of a longer tag that
+    starts with `<tag>-`, known by its log or melonDS directory."""
+    others = {p.stem for p in directory.glob(f"{tag}-*.log")} | {
+        p.stem for p in directory.glob(f"{tag}-*.melonds")}
+    return sorted(p for p in directory.glob(f"{tag}-*.png")
+                  if not any(p.name.startswith(other + "-") for other in others))
+
+
+def shot_name(frame: int) -> str:
+    """The name of a --shots screenshot."""
+    return f"f{frame:05d}"
 
 
 # Running a script
@@ -604,20 +699,24 @@ def rom_tag(rom: Path) -> str:
 
 
 class Runner:
-    def __init__(self, script: Path, rom: Path, symbols: Symbols, tag: str | None):
+    def __init__(self, script: Path, rom: Path, symbols: Symbols, tag: str | None, shots: int = 0):
         self.script = script
         self.rom = rom
         self.symbols = symbols
         self.tag = tag or rom_tag(rom)
         self.dir = OUT / script.stem
+        self.shots = shots  # a screenshot every this many frames; 0 for none
+        self.taken = 0
         self.lines: list[str] = []
         self.armed: set[int] = set()  # function breakpoints set besides the vectors and the hook
+        self.checks: dict[int, bytes] = {}  # overlay functions' code, by address (loaded())
+        self.foreign: dict[int, int] = {}  # stops in other code since the key poll, by breakpoint
 
     def say(self, text: str) -> None:
         print(text, flush=True)
         self.lines.append(text)
 
-    def run(self, steps: list[Step], frames: int, save: Path | None) -> int:
+    def run(self, steps: list[Step], frames: int, save: Path | None, save_out: Path | None = None) -> int:
         hook = self.symbols.functions[HOOK[0]] + HOOK[1]
         engine = Engine(steps, self.symbols.functions, self.symbols.data)
         # A screen to grab for the shots, and for a failure.
@@ -625,12 +724,12 @@ class Runner:
             import PIL  # noqa: F401
             screen = True
         except ImportError:
-            if any(s.kind == "shot" for s in steps):
-                print("error: shot needs PIL (python3-pil)", file=sys.stderr)
+            if self.shots or any(s.kind == "shot" for s in steps):
+                print("error: screenshots need PIL (python3-pil)", file=sys.stderr)
                 return 2
             screen = False
         self.dir.mkdir(parents=True, exist_ok=True)
-        for old in self.dir.glob(f"{self.tag}-*.png"):
+        for old in old_pngs(self.dir, self.tag):
             old.unlink()
         work = self.dir / f"{self.tag}.melonds"
         prepare(self.rom, work, save)
@@ -639,7 +738,10 @@ class Runner:
         limit = int(frames / 60 + 120)
         start = time.monotonic()
         self.say(f"{self.script.name} on {self.rom} (symbols: {self.symbols.source}; tag {self.tag})")
-        for note in overlay_notes(steps, self.symbols, overlay_ranges(self.rom)):
+        names = {s.function for s in steps if s.function is not None}
+        checks, unclear = overlay_checks(self.rom, self.symbols, names)
+        self.checks = {self.symbols.functions[n]: code for n, code in checks.items()}
+        for note in overlay_notes(steps, self.symbols, unclear):
             self.say("  " + note)
         proc = launch(self.rom, work, config(work / "save", arm9, arm7), platform=platform, limit=limit,
                       log=work / "melonds.log")
@@ -664,11 +766,25 @@ class Runner:
         finally:
             if gdb is not None:
                 gdb.kill()
-            stop_melonds(proc)
+            if save_out is None:
+                stop_melonds(proc)
+            elif not quit_melonds(proc):
+                diagnosis.append("melonDS did not quit in time; the save may lack its last writes")
         for line in engine.log:
             self.say("  " + line)
         for line in diagnosis:
             self.say("  " + line)
+        if self.shots:
+            self.say(f"  {self.taken} screenshots, one every {self.shots} frames: {self.tag}-fNNNNN.png")
+        if save_out is not None:
+            written = work / "save" / (self.rom.resolve().stem + ".sav")
+            if written.exists():
+                shutil.copyfile(written, save_out)
+                self.say(f"  save: {save_out}")
+            else:
+                self.say("  save: none; the game wrote no save")
+                status = 2
+                engine.failure = engine.failure or "no save"
         ok = engine.failure is None
         self.say(f"run: {'ok' if ok else 'FAIL'}, {frame} frames in {time.monotonic() - start:.1f} s")
         (self.dir / f"{self.tag}.log").write_text("\n".join(self.lines) + "\n")
@@ -680,10 +796,11 @@ class Runner:
             gdb.set_breakpoint(vector)
         gdb.set_breakpoint(hook)
         frame, last_poll = 0, 0
+        next_shot = self.shots
         last_frame, last_change = 0, time.monotonic()
         checked_hook = False
         while True:
-            want = engine.watched()
+            want = engine.watched() - {a for a, n in self.foreign.items() if n >= FOREIGN_STOPS}
             for addr in want - self.armed:
                 gdb.set_breakpoint(addr)
             for addr in self.armed - want:
@@ -701,9 +818,17 @@ class Runner:
                 engine.fail(f"{kind} at {where:08x} ({self.symbols.name(where)}), frame {frame}")
                 return frame
             if pc in self.armed:
-                engine.hit(pc, frame)
+                if loaded(gdb, pc, self.checks):
+                    engine.hit(pc, frame)
+                else:
+                    self.foreign[pc] = self.foreign.get(pc, 0) + 1
             engine.advance(frame, target, polled=pc == hook)
+            if self.shots and frame >= next_shot:
+                target.shot(shot_name(frame))
+                self.taken += 1
+                next_shot = frame - frame % self.shots + self.shots
             if pc == hook:
+                self.foreign = {}
                 if not checked_hook:
                     if error := hook_error(gdb, hook):
                         engine.fail(error)
@@ -756,42 +881,75 @@ class Runner:
 # Recording
 
 class Recorder:
-    """Writes a recording: a line per change of the keys held, marker comments in between."""
+    """Writes a recording: a line per change of the keys held, marker comments in between.
 
-    def __init__(self, out, markers: dict[int, str]):
+    A marker is armed until it runs, and armed again when the keys change or a marker that
+    is not every_frame is written, so a function that runs every frame stops the emulator
+    only once after each of those. A hit at an overlay function's address that is other
+    code (`loaded` False) is not written; after FOREIGN_STOPS of them its breakpoint is off
+    until the next key poll."""
+
+    def __init__(self, out, markers: dict[int, Marker]):
         self.out = out
         self.markers = markers
         self.keys = 0
         self.frame = 0
-        self.seen: set[int] = set()  # markers written since the last key change
-        self.last: int | None = None  # the marker written last
+        self.ran: set[int] = set()  # markers that ran since they were last armed
+        self.foreign: dict[int, int] = {}  # stops in other code since the key poll, by marker
+        self.last_every_frame: int | None = None  # the every_frame marker written last
 
     def write(self, text: str) -> None:
         self.out.write(text + "\n")
         self.out.flush()
 
     def armed(self) -> set[int]:
-        return set(self.markers) - self.seen
+        return set(self.markers) - self.ran - {a for a, n in self.foreign.items() if n >= FOREIGN_STOPS}
 
     def poll(self, frame: int, keys: int) -> None:
         self.frame = frame
+        self.foreign = {}
         keys &= KEY_MASK
         if keys != self.keys:
             self.keys = keys
-            self.seen = set()
+            self.ran = set()
             self.write(f"{frame} {format_keys(keys)}")
 
-    def marker(self, frame: int, addr: int) -> None:
-        """Writes a marker's first hit after a key change, unless it was also the last one
-        written: functions that run every frame would otherwise follow every key line."""
-        if addr in self.markers and addr not in self.seen:
-            self.seen.add(addr)
-            if addr != self.last:
-                self.last = addr
-                self.write(f"# @ {self.markers[addr]} (frame {frame})")
+    def marker(self, frame: int, addr: int, is_loaded: bool = True) -> None:
+        """Writes a marker's hit. An every_frame marker is written only when another
+        every_frame marker was written last, or it would follow every key line."""
+        marker = self.markers.get(addr)
+        if marker is None:
+            return
+        if not is_loaded:
+            self.foreign[addr] = self.foreign.get(addr, 0) + 1
+            return
+        if marker.every_frame:
+            self.ran.add(addr)
+            if addr == self.last_every_frame:
+                return
+            self.last_every_frame = addr
+        else:
+            self.ran = {addr}
+        self.write(f"# @ {marker.name} (frame {frame}): {marker.what}")
 
     def finish(self) -> None:
         self.write(f"{self.frame} end")
+
+
+def record_markers(rom: Path, symbols: Symbols) -> tuple[dict[int, Marker], dict[int, bytes]]:
+    """RECORD_MARKERS by address, and the code checks of those in overlays (loaded()). A marker
+    missing from the symbols, or one whose hits cannot be told apart from another overlay's
+    code, is left out with a note: a comment must not name the wrong function."""
+    known = [m for m in RECORD_MARKERS if m.name in symbols.functions]
+    missing = [m.name for m in RECORD_MARKERS if m.name not in symbols.functions]
+    if missing:
+        print(f"note: no {', '.join(missing)} in {symbols.source}; not marked", file=sys.stderr)
+    checks, unclear = overlay_checks(rom, symbols, [m.name for m in known])
+    for name, others in unclear.items():
+        print(f"note: {name} cannot be told apart from {', '.join(others)} at its address; not marked",
+              file=sys.stderr)
+    markers = {symbols.functions[m.name]: m for m in known if m.name not in unclear}
+    return markers, {symbols.functions[n]: code for n, code in checks.items()}
 
 
 def visible_config(work: Path, arm9: int, arm7: int, gdb: bool) -> str:
@@ -800,10 +958,7 @@ def visible_config(work: Path, arm9: int, arm7: int, gdb: bool) -> str:
 
 def record(out: Path, rom: Path, symbols: Symbols, save: Path | None) -> int:
     hook = symbols.functions[HOOK[0]] + HOOK[1]
-    markers = {symbols.functions[m]: m for m in RECORD_MARKERS if m in symbols.functions}
-    missing = [m for m in RECORD_MARKERS if m not in symbols.functions]
-    if missing:
-        print(f"note: no {', '.join(missing)} in {symbols.source}; not marked", file=sys.stderr)
+    markers, checks = record_markers(rom, symbols)
     work = OUT / "record"
     prepare(rom, work, save)
     arm9, arm7 = free_ports(2)
@@ -842,7 +997,7 @@ def record(out: Path, rom: Path, symbols: Symbols, save: Path | None) -> int:
                 if regs["pc"] == hook:
                     rec.poll(frame, regs["r1"])
                 else:
-                    rec.marker(frame, regs["pc"])
+                    rec.marker(frame, regs["pc"], loaded(gdb, regs["pc"], checks))
         except (ProtocolError, OSError, TimeoutError, KeyboardInterrupt):
             pass  # the window closed, or Ctrl-C
         finally:
@@ -873,6 +1028,8 @@ def main() -> int:
     p = sub.add_parser("run", help="replay a script and check its expect lines")
     p.add_argument("--frames", type=int, default=30000, help="VBlanks before the run fails (60 per second)")
     p.add_argument("--tag", help="name of this ROM's output files (default: from the ROM's path)")
+    p.add_argument("--shots", type=int, default=0, metavar="N", help="a screenshot every N frames")
+    p.add_argument("--save-out", type=Path, metavar="FILE", help="copy the save to FILE once melonDS quits")
     p.add_argument("script", type=Path)
     p = sub.add_parser("record", help="play in a window and write what you press to OUT")
     p.add_argument("out", type=Path)
@@ -913,11 +1070,15 @@ def main() -> int:
     except ScriptError as e:
         print(f"{args.script}: {e}", file=sys.stderr)
         return 2
+    if args.shots < 0:
+        print("error: --shots must not be negative", file=sys.stderr)
+        return 2
     if errors := check_names(steps, symbols):
         print(f"{args.script}:\n  " + "\n  ".join(errors), file=sys.stderr)
         return 2
     try:
-        return Runner(args.script, rom, symbols, args.tag).run(steps, args.frames, args.save)
+        return Runner(args.script, rom, symbols, args.tag, args.shots).run(steps, args.frames, args.save,
+                                                                           args.save_out)
     except KeyboardInterrupt:
         return 130
 

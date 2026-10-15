@@ -3,15 +3,19 @@
 
     python3 tools/tests/test_emu.py
 
-Script parsing and its errors, the names check and the overlay notes, the
-step engine and the run loop against a fake game behind a fake GDB client
-(fresh hits, retries, relative and absolute timing, frames without a key
-poll, memory conditions, failures), the recording writer, and the key
-bindings read from a sample melonDS.toml.
+Script parsing and its errors, the names check, the overlay code checks
+on a small fake ROM and their notes, the step engine and the run loop
+against a fake game behind a fake GDB client (fresh hits, retries, relative
+and absolute timing, frames without a key poll, memory conditions,
+failures, hits in another overlay's code, --shots), the cleanup of old
+PNGs, the recording writer and its markers, and the key bindings read from
+a sample melonDS.toml.
 """
 
+import contextlib
 import io
 import struct
+import subprocess
 import sys
 import tempfile
 import tomllib
@@ -107,10 +111,55 @@ expect("names", emu.check_names(emu.parse_script(
     "@ Title_Run\n@ Nope\nexpect mem Menu_Open u8 == 0\nexpect mem gNope u8 == 0\nexpect mem gState u8 == 0"),
     symbols), ["line 2: no function Nope in test", "line 3: data symbol Menu_Open: a function, not data",
                "line 4: data symbol gNope: not in test"])
-overlays = {"ov000": (0x022AD560, 0x022B0000), "ov004": (0x022AD560, 0x02350600),
-            "ov001": (0x02350560, 0x02360000)}
-expect("overlay notes", emu.overlay_notes(emu.parse_script("@ Title_Run\n@ Menu_Open"), symbols, overlays),
+expect("overlay notes", emu.overlay_notes(emu.parse_script("@ Title_Run\n@ Menu_Open"), symbols,
+                                          {"Title_Run": ["ov000"]}),
        ["note: line 1: Title_Run is in ov004; ov000 also load at 022ad600, so a hit may be their code"])
+
+
+# Overlay code checks, on a ROM with only a header, an overlay table and a FAT: ov000 and ov004
+# share 0x02300000 (with the same bytes at +0x40), ov001 and ov002 share 0x02500000 and ov002 is
+# stored compressed.
+
+def fake_rom(path: Path) -> None:
+    files = {0: bytes(range(64)) * 2, 4: bytes(range(64, 128)) + bytes(range(64)), 1: b"\x11" * 64,
+             2: b"\x22" * 64}
+    table = [(0, 0x02300000, 0), (4, 0x02300000, 4), (1, 0x02500000, 1), (2, 0x02500000, 2)]
+    data = bytearray(0x200)
+    struct.pack_into("<II", data, 0x48, 0x100, 8 * len(files))
+    struct.pack_into("<II", data, 0x50, 0x140, 32 * len(table))
+    for i, (id_, ram, file_id) in enumerate(table):
+        struct.pack_into("<8I", data, 0x140 + 32 * i, id_, ram, len(files[file_id]), 0, 0, 0, file_id,
+                         0x01000000 if id_ == 2 else 0)
+    for file_id in sorted(files):
+        struct.pack_into("<II", data, 0x100 + 8 * file_id, len(data), len(data) + len(files[file_id]))
+        data += files[file_id]
+    path.write_bytes(bytes(data))
+
+
+with tempfile.TemporaryDirectory() as tmp:
+    rom = Path(tmp) / "t.nds"
+    fake_rom(rom)
+    syms = melonds.Symbols(
+        {"Own": 0x02300000, "Same": 0x02300040, "Next": 0x02500000, "Packed": 0x02500010, "Main": 0x02000000},
+        {}, "test", {"Own": "ov004", "Same": "ov004", "Next": "ov001", "Packed": "ov002", "Main": "arm9"})
+    checks, unclear = melonds.overlay_checks(rom, syms, ["Own", "Same", "Next", "Packed", "Main"])
+    expect("overlay checks", checks, {"Own": bytes(range(64, 96))})
+    expect("overlay checks unclear", unclear, {"Same": ["ov000"], "Next": ["ov002"], "Packed": ["ov001"]})
+
+
+class FakeMemory:
+    def __init__(self, mem):
+        self.mem = mem
+
+    def read(self, addr, length):
+        return self.mem.get(addr, bytes(length))[:length]
+
+
+expect("loaded: main", emu.loaded(FakeMemory({}), 0x02000000, {}), True)
+expect("loaded: its overlay", emu.loaded(FakeMemory({0x02300000: b"abcd"}), 0x02300000, {0x02300000: b"abcd"}),
+       True)
+expect("loaded: another overlay", emu.loaded(FakeMemory({0x02300000: b"abce"}), 0x02300000,
+                                             {0x02300000: b"abcd"}), False)
 
 
 # A fake game behind a fake GDB client
@@ -126,7 +175,10 @@ class FakeGame:
     held, from frame 40 on (earlier presses are dropped). State runs every frame from 100.
     Each new press of right adds 1 to the u16 at CURSOR."""
 
-    def __init__(self, frames: int = 400):
+    def __init__(self, frames: int = 400, code_from: int = 0, title_calls: int = 1):
+        self.code_from = code_from  # Title's overlay is loaded from this frame on
+        self.title_calls = title_calls  # calls of Title's address a frame
+        self.title_stops = 0
         self.breakpoints: set[int] = set()
         self.keys: dict[int, int] = {}
         self.cursor = 0
@@ -142,7 +194,7 @@ class FakeGame:
             self.frame = frame
             calls = []
             if 10 <= frame < 100:
-                calls.append(TITLE)
+                calls += [TITLE] * self.title_calls
             if frame == menu_at:
                 calls.append(MENU)
             if frame >= 100:
@@ -172,6 +224,7 @@ class FakeGame:
     def resume(self):
         self.resumes += 1
         self.pc = next(self.stops)
+        self.title_stops += self.pc == TITLE
 
     def wait_stop(self, timeout):
         return 5
@@ -191,6 +244,8 @@ class FakeGame:
             return struct.pack("<H", self.cursor)[:length]
         if addr == HOOK:
             return struct.pack("<I", emu.HOOK_INSN)
+        if addr == TITLE and self.frame >= self.code_from:
+            return b"T" * length
         return bytes(length)
 
     def read_u32(self, addr):
@@ -212,11 +267,12 @@ class Shots:
         return f"{name}.png"
 
 
-def drive(script: str, frames: int = 400):
-    game = FakeGame(frames + 10)
+def drive(script: str, frames: int = 400, code_from: int = 0, shots: int = 0, title_calls: int = 1):
+    game = FakeGame(frames + 10, code_from, title_calls)
     syms = melonds.Symbols({"Keypad_Poll": HOOK - 0x30, "Title_Run": TITLE, "Menu_Open": MENU,
                             "State_Run": STATE}, {"gCursor": CURSOR}, "test")
-    runner = emu.Runner(Path("t.inp"), Path("t.nds"), syms, "t")
+    runner = emu.Runner(Path("t.inp"), Path("t.nds"), syms, "t", shots)
+    runner.checks = {TITLE: b"TTTT"}
     steps = emu.parse_script(script)
     assert not emu.check_names(steps, syms), emu.check_names(steps, syms)
     engine = emu.Engine(steps, syms.functions, syms.data)
@@ -289,33 +345,108 @@ expect("frame limit", engine.failure, "line 1: @ Menu_Open: not done by frame 15
 engine, game, *_ = drive("@ State_Run\npress right until mem gCursor u16 == 0\nend")
 expect("met before a press", (held(game, 0x10), engine.log[1].endswith("(the condition held before a press)")),
        ([], True))
+# Title's breakpoint stops in another overlay's code until frame 20: those hits do not count.
+engine, game, *_ = drive("@ Title_Run\nend", code_from=20)
+expect("hit in its own code", (engine.log[0], game.title_stops), ("    20  @ Title_Run  (after 19 frames)", 11))
+# Called 20 times a frame there, it stops FOREIGN_STOPS times a frame.
+engine, game, *_ = drive("@ Title_Run\nend", code_from=20, title_calls=20)
+expect("stops in other code", (engine.log[0], game.title_stops),
+       ("    20  @ Title_Run  (after 19 frames)", 10 * emu.FOREIGN_STOPS + 1))
+# --shots: at the first stop at or after each multiple of N; 60 to 64 have no stop.
+engine, game, shots, _ = drive("@ State_Run\nend", shots=31)
+expect("shots", shots.taken, [("f00031", 31), ("f00065", 65), ("f00093", 93)])
+expect("shot names", (emu.shot_name(7), emu.shot_name(123456)), ("f00007", "f123456"))
 # A wait does not count hits from before it started: Title ran in frame 30 before the
 # key poll where the wait started.
 engine, *_ = drive("@ Title_Run\n+20 hold -\n@ Title_Run\nend")
 expect("fresh hit after the previous step", engine.log[2], "    31  @ Title_Run  (after 1 frames)")
 
 
+# Old screenshots: those of the tag, not those of a longer tag that starts with it.
+
+with tempfile.TemporaryDirectory() as tmp:
+    d = Path(tmp)
+    for name in ("build-AWRE.log", "build-AWRE-turn1.png", "build-AWRE-fail.png", "build-AWRE-x.melonds",
+                 "build-AWRE-x-turn1.png", "build-AWRE-x.log", "build-AWRE-xy-turn1.png", "orig-AWRE-turn1.png"):
+        (d / name).touch()
+    expect("old PNGs", [p.name for p in emu.old_pngs(d, "build-AWRE")],
+           ["build-AWRE-fail.png", "build-AWRE-turn1.png", "build-AWRE-xy-turn1.png"])
+    expect("old PNGs of the longer tag", [p.name for p in emu.old_pngs(d, "build-AWRE-x")],
+           ["build-AWRE-x-turn1.png"])
+
+
 # Recording
 
+expect("markers are in config/AWRE/arm9",
+       [m.name for m in emu.RECORD_MARKERS if m.name not in melonds.config_symbol_table()[0][melonds.STT_FUNC]], [])
 out = io.StringIO()
-rec = emu.Recorder(out, {MENU: "Menu_Open", STATE: "State_Run"})
+rec = emu.Recorder(out, {MENU: emu.Marker("Menu_Open", "menu"), STATE: emu.Marker("State_Run", "state", True),
+                         TITLE: emu.Marker("Title_Run", "title", True)})
 rec.poll(10, 0)
 rec.marker(11, STATE)
-rec.marker(12, STATE)  # once per key change
+expect("a marker that ran is off", rec.armed(), {MENU, TITLE})
+for _ in range(emu.FOREIGN_STOPS - 1):
+    rec.marker(12, MENU, is_loaded=False)  # another overlay's code: not written
+expect("on after a few stops in other code", rec.armed(), {MENU, TITLE})
+rec.marker(12, MENU, is_loaded=False)
+expect("then off until the key poll", rec.armed(), {TITLE})
+rec.poll(13, 0)
+rec.marker(14, MENU)
+expect("a marker that runs once turns the others on again", rec.armed(), {STATE, TITLE})
+rec.marker(15, STATE)  # every frame, and the last such written: not written again
 rec.poll(20, 0x2008)  # the debug bit is dropped
-rec.marker(21, STATE)  # the last marker written: dropped
-rec.marker(22, MENU)
+rec.marker(21, TITLE)
+rec.marker(22, STATE)  # every frame, but another one was written since
 rec.poll(23, 0x8)
 rec.poll(24, 0)
-rec.marker(25, STATE)
+rec.marker(25, MENU)
 rec.finish()
 expect("recording", out.getvalue().splitlines(),
-       ["# @ State_Run (frame 11)", "20 start", "# @ Menu_Open (frame 22)", "24 -", "# @ State_Run (frame 25)",
-        "24 end"])
-expect("recording armed markers", rec.armed(), {MENU})
+       ["# @ State_Run (frame 11): state", "# @ Menu_Open (frame 14): menu", "20 start",
+        "# @ Title_Run (frame 21): title", "# @ State_Run (frame 22): state", "24 -",
+        "# @ Menu_Open (frame 25): menu", "24 end"])
 replay = emu.parse_script(out.getvalue())
 expect("a recording parses", [(s.at, s.kind, s.keys) for s in replay],
        [(20, "hold", 8), (24, "hold", 0), (24, "end", 0)])
+
+# Markers of a ROM: one missing from the symbols and one whose hits cannot be told apart are
+# left out, with a note.
+with tempfile.TemporaryDirectory() as tmp:
+    rom = Path(tmp) / "t.nds"
+    fake_rom(rom)
+    syms = melonds.Symbols({"Own": 0x02300000, "Same": 0x02300040, "Main": 0x02000000}, {}, "test",
+                           {"Own": "ov004", "Same": "ov004", "Main": "arm9"})
+    saved, emu.RECORD_MARKERS = emu.RECORD_MARKERS, tuple(emu.Marker(n, n) for n in ("Own", "Same", "Main", "Gone"))
+    notes = io.StringIO()
+    with contextlib.redirect_stderr(notes):
+        markers, code = emu.record_markers(rom, syms)
+    emu.RECORD_MARKERS = saved
+    expect("record markers", ({m.name for m in markers.values()}, code), ({"Own", "Main"},
+                                                                         {0x02300000: bytes(range(64, 96))}))
+    expect("record marker notes", notes.getvalue().splitlines(),
+           ["note: no Gone in test; not marked", "note: Same cannot be told apart from ov000 at its address; "
+            "not marked"])
+
+
+# quit_melonds: under `timeout`, as launch starts it, the program gets one SIGTERM and has time
+# to finish; a second one would kill melonDS before it writes the save.
+CHILD = """
+import signal, sys, time
+got = []
+signal.signal(signal.SIGTERM, lambda *_: got.append(1))
+print("up", flush=True)
+while not got:
+    time.sleep(0.01)
+time.sleep(0.3)
+open(sys.argv[1], "w").write(str(len(got)))
+"""
+with tempfile.TemporaryDirectory() as tmp:
+    done = Path(tmp) / "done"
+    proc = subprocess.Popen(["timeout", "-k", "5", "30", sys.executable, "-c", CHILD, str(done)],
+                            stdout=subprocess.PIPE, start_new_session=True)
+    proc.stdout.readline()
+    expect("quit_melonds", (melonds.quit_melonds(proc), done.exists() and done.read_text()), (True, "1"))
+    proc.stdout.close()
 
 
 # Key bindings and the config

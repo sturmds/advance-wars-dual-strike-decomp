@@ -4,7 +4,9 @@ Functions to anchor on, functions that confirm a press, and memory to assert on,
 
 Paths: `src/game/main/menus/` is shortened to `menus/`, `src/game/main/map/` to `map/`. Task scripts live in `extracted/AWRE/data/` (written by `make setup`). In a task script, opcode 2 (`TASK_CMD_CALL`) calls a function once and opcode 3 (`TASK_CMD_SET_UPDATE`) calls it every frame until the step ends (`include/game/task.h`). In the tables, **once** means once each time the screen opens, **frame** every frame while it is up.
 
-ov000 and ov004 load at 0x022ad560; ov001, ov002, ov003, ov005 and ov006 at 0x02350560. A breakpoint on a function in one of them also stops in the others' code. Prefer anchors in main.
+ov000 and ov004 load at 0x022ad560; ov001, ov002, ov003, ov005 and ov006 at 0x02350560 (retail addresses). A breakpoint on a function in one of them also stops in the others' code; `emu.py` compares the code at such a stop with the ROM's and ignores stops in another overlay's code. In a Design Room run, one stop at `Ov005_SetUpSoundRoom`'s address was ov006 code. Main anchors cost fewer stops.
+
+`emu.py record` writes a comment for each function in `RECORD_MARKERS` (`tools/emu.py`), most of them from the tables below.
 
 ## 1. Screen anchors
 
@@ -14,14 +16,14 @@ ov000 and ov004 load at 0x022ad560; ov001, ov002, ov003, ov005 and ov006 at 0x02
 | Title, before the press screen | `Ov004Task_InitBlendedScene` (ov004) | once |
 | Main menu built | `MainMenu_Setup` **(run)** | once, before the 56-frame opening; presses made then are lost |
 | Main menu page usable | `MainMenu_AddEntryButtons` | once per page shown, after the opening and after each page flip |
-| Main menu page N built | `MainMenu_BuildPageN` (`MainMenu_BuildPage2` **(run)**) | once at setup and once at a flip's midpoint; the page is not usable yet |
+| Main menu page N built | `MainMenu_BuildPageN` (`MainMenu_BuildPage2` **(run)**) | once at setup (page 0, 10 frames after `MainMenu_Setup` **(run)**) and once at a flip's midpoint; the page is not usable yet |
 | Map select (War Room, Versus, Survival) | `MapSelect_Init` **(run)**, then `MapSelect_Update` | once, then frame |
 | War Room started from the menu | `func_0210322c` **(run)** | once; sets gameMode 1 |
 | Versus | `Versus_Start` | once |
 | Survival | `Survival_StartRun` | once |
 | Campaign world map | `CampaignMap_Init` | once |
 | Combat manual | `CombatManual_Init` | once |
-| Design Room (map editor) | `DesignRoom_Enter` (main), then `DesignRoom_Init` (ov006) | once each |
+| Design Room (map editor) | `DesignRoom_Enter` (main), then `DesignRoom_Init` (ov006) **(run)** | once each; section 6 |
 | Battle Maps shop | `Ov005_SetUpShopScreen` (ov005) | once |
 | Sound Room | `Ov005_SetUpSoundRoom` (ov005) | once |
 | History | `HistoryScreen_Init` | once |
@@ -29,14 +31,14 @@ ov000 and ov004 load at 0x022ad560; ov001, ov002, ov003, ov005 and ov006 at 0x02
 | CO select ready | `CoSelectScreen_RestoreButtons` | once after the slide-in; again on return from Force Rank |
 | Setup phase (War Room, before Deploy) | `@ mem data_02183b08+0xba u8 == 1` **(run)**; no function marks it | |
 | Setup ends (Deploy accepted) | `func_020e88ac` **(run)** | once |
-| Turn start, any player | `CurrentPlayer_StartTurn` | once per turn, but twice at battle start |
+| Turn start, any player | `CurrentPlayer_StartTurn` **(run)** | once per turn, but twice at battle start; also once in `DesignRoom_Init` |
 | Human turn | `Game_State14_PickTurnState` once, then `Game_State15_RunStep` **(run)** | 14 once, 15 frame |
 | Free map cursor | `Game_State15_FreeCursor` | frame, in sub-state 0 |
-| AI turn | `AiTurn_Start` once, then `AiTurn_Update` | once, then frame |
+| AI turn | `AiTurn_Start` once, then `AiTurn_Update` **(run)** | once, then frame |
 | Turn ends (human or AI) | `func_020ddb38` | once per turn |
 | Next player chosen | `Turn_AdvanceToNextPlayer` | once per turn |
-| New day | `Turn_IncrementDay` | once per day |
-| Unit picked to move | `MapCursor_SelectTile` | once per A on a unit |
+| New day | `Turn_IncrementDay` **(run)** | once per day |
+| Unit picked to move | `MapCursor_SelectTile` **(run)** | once per A on a unit |
 | Unit action menu | `UnitMenu_Open` | once per opening |
 | Build menu (factory) | `BuildMenu_Open` | once |
 | Battle menu (A on an empty tile, or Select) | `func_020bc56c` | once |
@@ -47,7 +49,7 @@ ov000 and ov004 load at 0x022ad560; ov001, ov002, ov003, ov005 and ov006 at 0x02
 | Damage applied | `Combat_ApplyResult` | once per attack, after the animation if one plays |
 | Victory or defeat | `Battle_ShowResult`, then `func_020d69e4` (win) or `func_020d69c0` (loss) | once |
 | Results screen | `ResultScreen_Init` | once |
-| Yes/No prompt ("Are you ready?") | `ChoicePrompt_Init`, then `ChoicePrompt_Update` **(run)** | once, then frame |
+| Yes/No prompt ("Are you ready?", Design Room save) | `ChoicePrompt_Init` **(run)**, then `ChoicePrompt_Update` **(run)** | once, then frame |
 
 Run twice at battle start (once for Setup, once after Deploy): `Map_InitBattle`, `CurrentPlayer_StartTurn`, `Battle_InitMapState`, and a few more.
 
@@ -162,10 +164,10 @@ No field counts all units on the map; `Player.unitCount` counts one army's. To f
 | 3 Versus | 0 New (`Versus_StartVsCpuOneMap` or `Versus_StartVsCpuTwoMaps`), [1 Continue] | page 0 entry 2 |
 | 4 Survival | 0 New (funds, days or time), [1 Continue] | page 0 entry 3 |
 | 5 Combat | 0 Start, [1], 2 Manual (`CombatManual_Init`) | page 0 entry 4 |
-| 6 | 0 Battle Maps shop, 1 History, 2 Wireless, [3 Sound Room], [4], 5 Design | second side |
-| 8 Design | 0 `Ov005_InitCoScreen`, 1 `DesignRoom_Enter` (map editor), 2 `Ov005_SetUpCoListScreen` | page 6 entry 5 |
+| 6 | 0 Battle Maps shop, 1 History, 2 Wireless, [3 Sound Room], [4 Gallery], 5 Design Room **(run)** | second side |
+| 8 Design | 0 `Ov005_InitCoScreen` (Color Edit **(run)**), 1 `DesignRoom_Enter` (map editor) **(run)**, 2 `Ov005_SetUpCoListScreen` | page 6 entry 5 |
 
-Page labels come from the functions each entry starts, not from on-screen text.
+Page labels come from the functions each entry starts; those marked **(run)** were also read on screen. A save keeps each page's cursor **(run)**: after the Design Room session below, page 6 opens on Design Room, and up from there goes to Wireless.
 
 **Pop-up menus** (setup, battle and unit menus, `menus/popup_menu_handle_keys.c`): up and down move on `repeat` and wrap only on a new press, so a held key stops at the end. A confirms only on a frame with no move.
 
@@ -190,6 +192,20 @@ No function runs only when the cursor moves, so drive it by memory:
 press right until mem data_02183b08+0x28 s16 == 5
 press down until mem data_02183b08+0x2a s16 == 3
 press a until MapCursor_SelectTile             # sub-state becomes 1
+```
+
+## 6. Design Room
+
+Checked in a replay of a recorded session (**(run)** throughout):
+
+- `DesignRoom_Enter` (main), then two frames later `DesignRoom_Init` (ov006) and `Ov006_NewMap`. A "Welcome to the map editor!" box opens on every entry; A closes it. An empty save also plays instructions on the first entry.
+- Select opens a menu of File, Help, Fill and Exit. A on File runs `Ov006_OpenPopupMenu`: Load, Save, NameEntry. Load runs `Ov006_OpenLoadMenu`, Save `Ov006_OpenSaveMenu`; both list the three map slots, "No data exists." for an empty one.
+- In the save menu, A on a slot and A again bring a Yes/No prompt (`ChoicePrompt_Init`); left and A on Yes run `DesignMap_SaveToSlot` (main), which writes the map as save record 7 + slot.
+- `Ov006_UpdateMapEditor` runs every frame. While A is down it calls `Ov006_PaintTerrainAtCursor` (terrain and buildings) or `Ov006_PlaceUnitAtCursor` (units) every frame. B calls `Ov006_PickToolAtCursor` (the tool palette).
+
+```
+press a until Ov006_OpenPopupMenu              # after select, on File
+press a until Ov006_OpenLoadMenu               # Load
 ```
 
 Not checked: the order of unit menu items (built per unit), and the on-screen labels of menu entries.

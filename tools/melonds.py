@@ -140,6 +140,60 @@ def overlay_ranges(rom: Path) -> dict[str, tuple[int, int]]:
     return out
 
 
+CODE_CHECK = 32  # bytes compared to tell which overlay's code is at an address
+
+
+def overlay_images(rom: Path) -> dict[str, tuple[int, bytes]]:
+    """The RAM address and the bytes of each ARM9 overlay that the ROM stores uncompressed (all
+    of AWRE's), by module name. The ROM holds them linked, so RAM holds the same bytes while
+    the overlay is loaded."""
+    data = rom.read_bytes()
+    offset, size = struct.unpack_from("<II", data, 0x50)
+    fat, = struct.unpack_from("<I", data, 0x48)
+    out = {}
+    for entry in range(offset, offset + size, 32):
+        id_, ram, ram_size, _bss, _start, _end, file_id, flags = struct.unpack_from("<8I", data, entry)
+        if flags & 0x01000000:  # compressed
+            continue
+        start, end = struct.unpack_from("<II", data, fat + file_id * 8)
+        out[f"ov{id_:03d}"] = (ram, data[start:min(end, start + ram_size)])
+    return out
+
+
+def overlay_checks(rom: Path, symbols: "Symbols", names) -> tuple[dict[str, bytes], dict[str, list[str]]]:
+    """How to tell that a hit at an overlay function's address is that function's code.
+
+    For each function of `names` in an overlay whose RAM other overlays also cover: the first
+    CODE_CHECK bytes of its code, which memory holds there only while its overlay is loaded.
+    Second, the functions this cannot tell apart from the code of the other overlays named
+    (one holds the same bytes there, or an overlay is stored compressed). Functions in main
+    and ITCM are in neither."""
+    ranges = overlay_ranges(rom)
+    images = overlay_images(rom)
+    checks: dict[str, bytes] = {}
+    unclear: dict[str, list[str]] = {}
+    for name in names:
+        module = symbols.modules.get(name)
+        if module not in ranges:
+            continue
+        addr = symbols.functions[name]
+        others = [o for o, (start, end) in ranges.items() if o != module and start <= addr < end]
+        if not others:
+            continue
+        if module not in images:
+            unclear[name] = others
+            continue
+        ram, image = images[module]
+        code = image[addr - ram:addr - ram + CODE_CHECK]
+        same = [o for o in others if o not in images
+                or images[o][1][addr - images[o][0]:addr - images[o][0] + len(code)] == code]
+        if same or not code:
+            unclear[name] = same or others
+        else:
+            checks[name] = code
+    return checks, unclear
+
+
 class Symbols:
     """Function and data addresses of one ROM, from its ELF or, for retail, from config/."""
 
@@ -350,6 +404,43 @@ def stop_melonds(proc: subprocess.Popen) -> None:
             return
         except subprocess.TimeoutExpired:
             pass
+
+
+def child_pid(pid: int) -> int | None:
+    """The first child process of pid, from /proc."""
+    try:
+        children = Path(f"/proc/{pid}/task/{pid}/children").read_text().split()
+        if children:
+            return int(children[0])
+    except OSError:
+        pass
+    for stat in Path("/proc").glob("[0-9]*/stat"):
+        try:
+            fields = stat.read_text().rsplit(")", 1)[1].split()
+        except OSError:
+            continue
+        if int(fields[1]) == pid:
+            return int(stat.parent.name)
+    return None
+
+
+def quit_melonds(proc: subprocess.Popen, wait: float = 15) -> bool:
+    """Asks melonDS to quit, as Ctrl-C does, and waits for the process group `launch` started
+    to end. melonDS writes its save file two seconds after the game's last write, and on quit
+    whatever is still pending. Only melonDS gets the SIGTERM: `timeout` passes one on to its
+    whole group, and melonDS dies at a second SIGTERM before it writes. True when it quit in
+    time; stop_melonds stops it either way."""
+    pid = child_pid(proc.pid) if Path(proc.args[0]).name == "timeout" else proc.pid
+    ok = False
+    if pid is not None:
+        try:
+            os.kill(pid, signal.SIGTERM)
+            proc.wait(wait)
+            ok = True
+        except (ProcessLookupError, subprocess.TimeoutExpired):
+            pass
+    stop_melonds(proc)
+    return ok
 
 
 def describe_exception(pc: int, regs: dict[str, int], signal_: int) -> tuple[str, int]:
