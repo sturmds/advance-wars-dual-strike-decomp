@@ -58,8 +58,8 @@ main      data_0212e3b8               0x0212e3b8  0x180  u16[16]
 main      data_0212e538               0x0212e538  0x180  u16[16]
 main      data_0212e6b8               0x0212e6b8  0x180  u16[16]
 main      data_0212e838               0x0212e838  0x180  u16[16]
-main      data_0212e9b8               0x0212e9b8  0x1b00 u8
-main      data_021304b8               0x021304b8  0x1b00 u8
+main      gCoPanelFaces               0x0212e9b8  0x1b00 u8
+main      gCoPanelFacesAlt            0x021304b8  0x1b00 u8
 main      data_02131fb8               0x02131fb8  0x100  u32
 main      data_021320b8               0x021320b8  0x100  u32
 main      data_021321b8               0x021321b8  0x100  u32
@@ -852,7 +852,9 @@ main      data_02152ae8               0x02152ae8  0x14   {u16,u16,u16,u16,u16,u1
 main      data_02152afc               0x02152afc  0x14   {u16,u16,u16,u16,u16,u16,u16,u16,u16,u16}
 main      data_02152b10               0x02152b10  0x14   {u16,u16,u16,u16,u16,u16,u16,u16,u16,u16}
 main      data_02152b24               0x02152b24  0x14   {u16,u16,u16,u16,u16,u16,u16,u16,u16,u16}
-main      gCoGraphics                 0x02152b38  0xad4  {void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*}
+main      gCoGraphics                 0x02152b38  0x930  {void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*}
+# gCoGraphics from CO_SOLDIER_ORANGE_STAR on: not a symbol, a file of its own so rows for new COs can go before it
+main      gCoGraphics_soldiers        0x02153468  0x1a4  {void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*,void*}
 main      gCoTable                    0x0215360c  0x3b80 {u16,u16,u16,u16,u16,u16,u16,u16,u16,u16,u16,u8[6],u32,u32,u8,u8,u8,u8,u16,u16,u16,u16,u16,u16,u16,u16,u16,u16,u16,u16,u16,u16,u16,u16,u16,u16,u16,u16,u16,u16,u32,void*[5],u16,u16,void*,u16,u16,void*,u16,u16,void*,u8[28],u16,u16,void*,u8,u8,u8,u8,u32[3],s16,s16,s16,s16,s16,s16,s16,s16,s16,s16,void*,u8,u8,u8[2],void*,void*,void*,u16[2],void*[4],void*[11],u16,u16,void*,u8,u8,u8,u8,u32[3],s16,s16,s16,s16,s16,s16,s16,s16,s16,s16,void*,u8,u8,u8[2],void*,void*,void*,u16[2],void*[4],void*[11],u16,u16,void*,u8,u8,u8,u8,u32[3],s16,s16,s16,s16,s16,s16,s16,s16,s16,s16,void*,u8,u8,u8[2],void*,void*,void*,u16[2],void*[4],void*[11]}
 main      data_021571ac               0x021571ac  0x20   {s16,s16,u32}
 main      data_021571cc               0x021571cc  0x20   {s16,s16,u32}

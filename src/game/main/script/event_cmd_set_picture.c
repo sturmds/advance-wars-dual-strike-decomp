@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/co_graphics.h"
 #include "game/Unk_0201d320.h"
 #include "game/Unk_022977a4.h"
 
@@ -12,7 +13,8 @@ void EventScript_LoadCoPicture(int coMood);
  * nothing when gEventSkipState is 1. */
 BOOL EventCmd_SetPicture(s16 index) {
   if (gEventSkipState != 1) {
-    data_022977a4.unk_02 = data_022977f4[index].unk_00->unk_08;
+    data_022977a4.unk_02 =
+        EVENT_PICTURE_TO_CO_MOOD(data_022977f4[index].unk_00->unk_08);
     EventScript_LoadCoPicture(data_022977a4.unk_02);
   }
   data_022977f4[index].unk_00++;

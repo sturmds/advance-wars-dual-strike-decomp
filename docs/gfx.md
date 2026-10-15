@@ -34,7 +34,7 @@ A layout lists the sprite pieces (OBJ shapes) a picture is drawn with. The tiles
 
 ## CO pictures
 
-`gCoGraphics` (main, 33 rows of 21 words) holds them, by CO id. Rows 28 to 32 are not COs but one soldier of each army (Orange Star, Blue Moon, Green Earth, Yellow Comet, Black Hole) for dialogue: they have only a face (`0bd` to `0c1`, the same file for each mood) and use the blank pictures of row 0. Picture variant 0 or 1 (`Co_GetPictureVariant`) picks the CO's normal or alternate outfit; the palette variant (0-7, or `CO_CLONE_PALETTE` for a clone) picks one of 8 palettes.
+`gCoGraphics` (main, 33 rows of 21 words) holds them, by CO id. Rows 28 to 32 are not COs but one soldier of each army (Orange Star, Blue Moon, Green Earth, Yellow Comet, Black Hole) for dialogue: they have only a face (`0bd` to `0c1`, the same file for each mood) and use the blank pictures of row 0. `enum CoSoldier` (`include/game/co_graphics.h`) numbers them from `CO_COUNT`, and the data_inc row `gCoGraphics_soldiers` writes them to a file of their own, so rows for new COs go between. Event scripts keep the retail numbers 28 to 32 (`EVENT_SOLDIER_FIRST`); the three picture commands turn them into rows with `EVENT_PICTURE_TO_CO_MOOD`. Picture variant 0 or 1 (`Co_GetPictureVariant`) picks the CO's normal or alternate outfit; the palette variant (0-7, or `CO_CLONE_PALETTE` for a clone) picks one of 8 palettes.
 
 | Words | What | Where | Loaders |
 |---|---|---|---|
@@ -46,7 +46,7 @@ A layout lists the sprite pieces (OBJ shapes) a picture is drawn with. The tiles
 | 18, 19 | Medium picture | `/syogun/113`-`148` | `Co_QueueArmyMediumPicture` (Versus slots) |
 | 20 | 8 palettes | main `data_02131fb8`, 0x100 bytes per CO | `Co_CopyPalette` |
 
-Outside the table: the map panel face (`CoPanel_Draw`, `PowerPanel_*Draw`) at main `data_0212e9b8` and `data_021304b8` (variants 0 and 1), 0x100 bytes per CO from CO 1; and 12 compressed tiles in each `gCoTable` row (`Co_UnpackPicture`: results, CO rank, Combat mode menus), 5 pointers that all name the same stream. Those tiles look like the CO's name in letters, not a picture; the layout is not known yet.
+Outside the table: the map panel face (`CoPanel_Draw`, `PowerPanel_*Draw`) at main `gCoPanelFaces` and `gCoPanelFacesAlt` (variants 0 and 1), 0x100 bytes per CO from CO 1 (`CO_PANEL_FACE_ROW`); and 12 compressed tiles in each `gCoTable` row (`Co_UnpackPicture`: results, CO rank, Combat mode menus), 5 pointers that all name the same stream. Those tiles look like the CO's name in letters, not a picture; the layout is not known yet.
 
 The files are numbered by kind, then by CO id, so a new CO cannot take the next number in each run without renumbering the files after it; adding files at the end of `/syogun` and pointing a new `gCoGraphics` row at them avoids that.
 

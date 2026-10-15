@@ -1937,8 +1937,9 @@ CoTagRecord data_02152b24 = {
 CoTagRecord data_021528cc = {
 #include "data/main/data_021528cc.inc.c"
 };
-CoGraphics gCoGraphics[] = {
+CoGraphics gCoGraphics[CO_GRAPHICS_ROWS] = {
 #include "data/main/gCoGraphics.inc.c"
+#include "data/main/gCoGraphics_soldiers.inc.c"
 };
 CoRecord gCoTable[CO_COUNT] = {
 #include "data/main/gCoTable.inc.c"

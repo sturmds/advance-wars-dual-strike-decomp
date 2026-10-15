@@ -170,11 +170,9 @@ const u16 data_02129a38[][CO_PALETTE_COLOURS] = {
 const u16 data_021298b8[][CO_PALETTE_COLOURS] = {
 #include "data/main/data_021298b8.inc.c"
 };
-/* CO icon tiles: 256 bytes for each CO id from 1 */
-const u8 data_0212e9b8[] = {
-#include "data/main/data_0212e9b8.inc.c"
+const u8 gCoPanelFaces[CO_COUNT - 1][CO_PANEL_FACE_SIZE] = {
+#include "data/main/gCoPanelFaces.inc.c"
 };
-extern u8 data_021304b8[];
 
 #define PANEL_CO_ID (&MAP_STATE->players[player].front)[coSlot].id
 
@@ -199,13 +197,11 @@ void PowerPanelRight_Draw(int x, int y, int player, int coSlot, int tile,
   Sprite_QueueAt(0, x + 32, y, data_02168670, tile | (palette << 12), 0);
   Co_LoadArmyPalette(PANEL_CO_ID, palette + 16, player);
   if (Co_GetArmyPictureVariant(PANEL_CO_ID, player) == 0) {
-    TransferQueue_Add(
-        data_0212e9b8 + ((PANEL_CO_ID & PLAYER_CO_ID_MASK) - 1) * 256,
-        data_027c0280->objVram + tile * 32, 256);
+    TransferQueue_Add(gCoPanelFaces[CO_PANEL_FACE_ROW(PANEL_CO_ID)],
+                      data_027c0280->objVram + tile * 32, CO_PANEL_FACE_SIZE);
   } else {
-    TransferQueue_Add(
-        data_021304b8 + ((PANEL_CO_ID & PLAYER_CO_ID_MASK) - 1) * 256,
-        data_027c0280->objVram + tile * 32, 256);
+    TransferQueue_Add(gCoPanelFacesAlt[CO_PANEL_FACE_ROW(PANEL_CO_ID)],
+                      data_027c0280->objVram + tile * 32, CO_PANEL_FACE_SIZE);
   }
   if (!PowerMeter_IsShown(MAP_STATE == &data_02183b08 ? MAP_STATE_FIRST
                                                       : MAP_STATE_SECOND)) {

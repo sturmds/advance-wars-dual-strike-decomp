@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/co_graphics.h"
 #include "game/Unk_0201d320.h"
 #include "game/Unk_022977a4.h"
 #include "game/Unk_02080440.h"
@@ -48,7 +49,7 @@ void EventScript_ShowPicture(s16 index) {
           (MAP_STATE->players[(s16)slot].front.id & PLAYER_CO_ID_MASK) |
           (mood << 8);
     } else {
-      data_022977a4.unk_02 = picture;
+      data_022977a4.unk_02 = EVENT_PICTURE_TO_CO_MOOD(picture);
     }
   }
   func_0201dc38(gScreenPanelHBlankHandlers[gEventTextWindowPos]);

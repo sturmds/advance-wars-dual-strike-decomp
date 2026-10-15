@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/co_graphics.h"
 #include "game/Unk_0201d320.h"
 #include "game/Unk_022977a4.h"
 #include "game/event_script.h"
@@ -19,7 +20,7 @@ s16 EventCmd_ChangePicture(s16 index) {
   int result;
 
   if (gEventSkipState != 1) {
-    s16 coMood = data_022977f4[index].unk_00->unk_08;
+    s16 coMood = EVENT_PICTURE_TO_CO_MOOD(data_022977f4[index].unk_00->unk_08);
 
     if ((data_022977a4.unk_02 & 0xff) == (coMood & 0xff)) {
       data_022977a4.unk_02 = coMood;

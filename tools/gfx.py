@@ -433,7 +433,7 @@ ROW_MEDIUM = (18, 19)          # file names (Co_QueueArmyMediumPicture)
 ROW_PALETTES = 20              # pointer to 8 palettes of 16 colours
 
 # Map panel faces (CoPanel_Draw): 0x100 bytes per CO from CO 1, per variant.
-HUD_FACES = ("data_0212e9b8", "data_021304b8")
+HUD_FACES = ("gCoPanelFaces", "gCoPanelFacesAlt")
 
 
 class Main:

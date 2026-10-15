@@ -5998,8 +5998,8 @@ data_0212e3b8 kind:data(byte[384]) addr:0x0212e3b8
 data_0212e538 kind:data(byte[384]) addr:0x0212e538
 data_0212e6b8 kind:data(byte[384]) addr:0x0212e6b8
 data_0212e838 kind:data(byte[384]) addr:0x0212e838
-data_0212e9b8 kind:data(byte[6912]) addr:0x0212e9b8
-data_021304b8 kind:data(byte[6912]) addr:0x021304b8
+gCoPanelFaces kind:data(byte[6912]) addr:0x0212e9b8
+gCoPanelFacesAlt kind:data(byte[6912]) addr:0x021304b8
 data_02131fb8 kind:data(byte[256]) addr:0x02131fb8
 data_021320b8 kind:data(byte[256]) addr:0x021320b8
 data_021321b8 kind:data(byte[256]) addr:0x021321b8

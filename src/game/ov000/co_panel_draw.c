@@ -1,10 +1,9 @@
 #include "types.h"
+#include "game/co_graphics.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
 extern u8 data_ov000_0234ebf0[];
-extern u8 data_0212e9b8[];
-extern u8 data_021304b8[];
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Co_LoadArmyPalette(int coId, int paletteSlot, int army);
@@ -36,11 +35,11 @@ void CoPanel_Draw(int x, int y, int player, int coSlot, int coId, int altMeter,
                  tile | (portraitPalette << 12), 0);
   Co_LoadArmyPalette(coId, portraitPalette + 16, player);
   if (Co_GetArmyPictureVariant(coId, player) == 0) {
-    TransferQueue_Add(data_0212e9b8 + ((coId & 127) - 1) * 256,
-                      data_027c0280->objVram + tile * 32, 256);
+    TransferQueue_Add(gCoPanelFaces[CO_PANEL_FACE_ROW(coId)],
+                      data_027c0280->objVram + tile * 32, CO_PANEL_FACE_SIZE);
   } else {
-    TransferQueue_Add(data_021304b8 + ((coId & 127) - 1) * 256,
-                      data_027c0280->objVram + tile * 32, 256);
+    TransferQueue_Add(gCoPanelFacesAlt[CO_PANEL_FACE_ROW(coId)],
+                      data_027c0280->objVram + tile * 32, CO_PANEL_FACE_SIZE);
   }
   if (!PowerMeter_IsShown(screen)) {
     return;
