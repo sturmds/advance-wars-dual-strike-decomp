@@ -189,7 +189,7 @@ RECORD_MARKERS = (
     Marker("Ov005_SetUpShopScreen", "Battle Maps shop"),
     Marker("Ov005_SetUpSoundRoom", "Sound Room"),
     Marker("HistoryScreen_Init", "History"),
-    Marker("CurrentPlayer_StartTurn", "turn starts"),
+    Marker("Game_State14_PickTurnState", "turn starts"),  # not CurrentPlayer_StartTurn: DesignRoom_Init calls it too
     Marker("Game_State15_RunStep", "human turn", every_frame=True),
     Marker("AiTurn_Start", "AI turn starts"),
     Marker("AiTurn_Update", "AI turn", every_frame=True),

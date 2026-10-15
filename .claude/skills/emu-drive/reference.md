@@ -31,8 +31,8 @@ ov000 and ov004 load at 0x022ad560; ov001, ov002, ov003, ov005 and ov006 at 0x02
 | CO select ready | `CoSelectScreen_RestoreButtons` | once after the slide-in; again on return from Force Rank |
 | Setup phase (War Room, before Deploy) | `@ mem data_02183b08+0xba u8 == 1` **(run)**; no function marks it | |
 | Setup ends (Deploy accepted) | `func_020e88ac` **(run)** | once |
-| Turn start, any player | `CurrentPlayer_StartTurn` **(run)** | once per turn, but twice at battle start; also once in `DesignRoom_Init` |
-| Human turn | `Game_State14_PickTurnState` once, then `Game_State15_RunStep` **(run)** | 14 once, 15 frame |
+| Turn start, any player | `Game_State14_PickTurnState` **(run)** | once per turn, the Setup phase included; it sets state 15 (human) or 16 (AI). `CurrentPlayer_StartTurn` also runs once per turn, but twice at battle start and once in `DesignRoom_Init` |
+| Human turn | `Game_State15_RunStep` **(run)** | frame, after `Game_State14_PickTurnState` |
 | Free map cursor | `Game_State15_FreeCursor` | frame, in sub-state 0 |
 | AI turn | `AiTurn_Start` once, then `AiTurn_Update` **(run)** | once, then frame |
 | Turn ends (human or AI) | `func_020ddb38` | once per turn |
