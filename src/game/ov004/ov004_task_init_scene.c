@@ -4,6 +4,7 @@
 #include "game/Unk_ov004_022bf158.h"
 #include "game/song.h"
 #include "game/screen.h"
+#include "gfx/wallpaper_offsets.h"
 
 #define REG_DISPCNT (*(volatile u32*)0x04000000)
 
@@ -20,14 +21,14 @@ void Ov004_ResetClock(Unk_ov004_022bf158* state);
 
 extern GfxLayer data_ov004_022be868[];
 extern GfxLayer data_ov004_022be9a8[];
-extern char data_ov004_022bde54[];
-extern char data_ov004_022bde64[];
-extern char data_ov004_022bde74[];
-extern char data_ov004_022bde84[];
-extern char data_ov004_022bde94[];
-extern char data_ov004_022bdea4[];
-extern char data_ov004_022bdeb4[];
-extern char data_ov004_022bdec4[];
+extern char data_ov004_022bde54[]; /* "res_wall_john" */
+extern char data_ov004_022bde64[]; /* "res_wall_zipo" */
+extern char data_ov004_022bde74[]; /* "res_wall_sasha" */
+extern char data_ov004_022bde84[]; /* "res_wall_rachel" */
+extern char data_ov004_022bde94[]; /* "res_wall_kouzou" */
+extern char data_ov004_022bdea4[]; /* "res_wall_chakka" */
+extern char data_ov004_022bdeb4[]; /* "res_wall_candle" */
+extern char data_ov004_022bdec4[]; /* "res_wall_bittmann" */
 
 /* Shows BG0 to BG3 and OBJ on the current screen. */
 #define SHOW_ALL_LAYERS()              \
@@ -71,14 +72,18 @@ void Ov004Task_InitScene(Ov004Task* task) {
   Ov004_LoadResources(state);
   Ov004_LoadRikiishiTextures(state);
   Ov004_SetupPerspective3d();
-  Ov004_LoadResourcePalette(data_ov004_022bde84, 0x9d90, 0);
-  Ov004_LoadResourcePalette(data_ov004_022bde54, 0xadac, 0x200);
-  Ov004_LoadResourcePalette(data_ov004_022bde74, 0x5020, 0x400);
-  Ov004_LoadResourcePalette(data_ov004_022bdec4, 0x5bf8, 0x600);
-  Ov004_LoadResourcePalette(data_ov004_022bde94, 0x6060, 0x800);
-  Ov004_LoadResourcePalette(data_ov004_022bde64, 0x4c1c, 0xa00);
-  Ov004_LoadResourcePalette(data_ov004_022bdea4, 0x3ffc, 0xc00);
-  Ov004_LoadResourcePalette(data_ov004_022bdeb4, 0x4330, 0xe00);
+  Ov004_LoadResourcePalette(data_ov004_022bde84, RES_WALL_RACHEL_PALETTE, 0);
+  Ov004_LoadResourcePalette(data_ov004_022bde54, RES_WALL_JOHN_PALETTE, 0x200);
+  Ov004_LoadResourcePalette(data_ov004_022bde74, RES_WALL_SASHA_PALETTE, 0x400);
+  Ov004_LoadResourcePalette(data_ov004_022bdec4, RES_WALL_BITTMANN_PALETTE,
+                            0x600);
+  Ov004_LoadResourcePalette(data_ov004_022bde94, RES_WALL_KOUZOU_PALETTE,
+                            0x800);
+  Ov004_LoadResourcePalette(data_ov004_022bde64, RES_WALL_ZIPO_PALETTE, 0xa00);
+  Ov004_LoadResourcePalette(data_ov004_022bdea4, RES_WALL_CHAKKA_PALETTE,
+                            0xc00);
+  Ov004_LoadResourcePalette(data_ov004_022bdeb4, RES_WALL_CANDLE_PALETTE,
+                            0xe00);
   func_ov004_022bb38c(state);
   Ov004_ResetClock(state);
 }

@@ -1018,10 +1018,6 @@ main      data_02159354               0x02159354  0x12   u8
 main      data_02159368               0x02159368  0x13   u8
 main      data_0215937c               0x0215937c  0x20   {s16,s16,u32}
 main      gWallpaperTaskScript        0x0215939c  0x20   {s16:TASK_CMD,s16,u32}
-main      data_021593bc               0x021593bc  0x38   u16    # wallpapers 0 to 27
-main      data_021593bc_extra         0x021593f4  0x6    u16    # the extra wallpapers
-main      data_021593fc               0x021593fc  0x38   u16    # wallpapers 0 to 27
-main      data_021593fc_extra         0x02159434  0x6    u16    # the extra wallpapers
 main      data_0215943c               0x0215943c  0x50   {u8,u8,u8[2],u32,u32,u16*,u8,u8[3]}
 main      data_0215948c               0x0215948c  0x50   {u8,u8,u8[2],u32,u32,u16*,u8,u8[3]}
 main      data_021594dc               0x021594dc  0x50   {u8,u8,u8[2],u32,u32,u16*,u8,u8[3]}

@@ -5,6 +5,7 @@
     gfx.py unpack FILE [--out DIR] [--layout NAME] [--palette SRC]   one tile file -> NAME.png + NAME.yaml
     gfx.py pack YAML [--out FILE] [--palette-out FILE]   the PNG beside YAML -> the file's bytes (compressed as before)
     gfx.py check [--dir extract/files/syogun]    unpack and pack every file of a directory; compare bytes
+    gfx.py wallpapers OUT FILE...                the header of where each wallpaper's map and palette start (the build)
     gfx.py co CO [--out DIR] [--palette N]       every picture of one CO (name or id), from gCoGraphics
     gfx.py layouts                               the layouts unpack knows
 
@@ -22,7 +23,8 @@ PNG. Colour 0 of each palette is transparent; the PNG marks it so.
 The PNG and YAML files hold game data from the builder's ROM: they belong in
 extracted/ or build/ and never enter git (tenet 9). `make setup` runs
 `unpack` with no file, which writes every picture file of the ROM (LZ77 tile
-data, not the res_* containers) under its ROM path:
+data, and of the res_* containers the wallpapers, ohashi/res_wall_*) under
+its ROM path:
 
   extracted/AWRE/assets/gfx/files/syogun/076.png  .yaml
 
@@ -405,14 +407,338 @@ def pack_file(yaml_path: Path) -> bytes:
     tile bytes before compression: width x height x bpp / 8."""
     meta = yaml.safe_load(yaml_path.read_text())
     png = png_of(yaml_path)
-    rows, _ = read_png(png)
+    rows, palette = read_png(png)
     if (len(rows[0]), len(rows)) != (meta["width"], meta["height"]):
         raise ValueError(f"{png}: {len(rows[0])}x{len(rows)}, "
-                         f"layout {meta['layout']} needs {meta['width']}x{meta['height']}")
+                         f"{meta.get('layout', 'the file')} needs {meta['width']}x{meta['height']}")
+    if meta.get("format") == "res":
+        return pack_res(meta, rows, palette, res_original(meta))
     size = meta.get("size", meta["width"] * meta["height"] * meta["bpp"] // 8)
     pieces = layout_pieces(meta["layout"], size, meta["bpp"])
     raw = pixels_to_tiles(rows, pieces, meta["bpp"])
     return lz77_pack(raw) if meta["compression"] == "lz77" else raw
+
+
+# ---------------------------------------------------------------------------
+# res_* containers
+#
+# A res_* file has no header: it is its parts one after the other, each an
+# LZ77 stream (padded to 4 bytes) or raw bytes, and the code that loads it
+# knows where each part starts. For the wallpapers of the wallpaper list and
+# the Super cut-in (Wallpaper_LoadOnLayer3 and the other loaders), the
+# starts of the map and the palette are in main's tables data_021593fc and
+# data_021593bc, which the build writes from the packed files (`wallpapers`
+# below); res_wall_base and res_wall_single have their starts written in the
+# code, so pack keeps every part where it was.
+#
+# A picture is a background layer: a part of tiles (8x8, 4 or 8 bits per
+# pixel), a part of map entries (16 bits: tile number in bits 0-9,
+# horizontal and vertical flip in bits 10 and 11, palette in 12-15) and a
+# palette. The map is in screen blocks of 32x32 entries: a 64x32 map is
+# its left block, then its right one.
+
+MAP_FLIP_H = 0x400
+MAP_FLIP_V = 0x800
+MAP_TILE = 0x3FF
+MAP_PALETTE = 0xF000
+SCREEN_BLOCK = 32  # map entries per side of a screen block
+
+# The wallpapers that data_021595cc names: 8-bit tiles, a 64x32 map
+# (512x256 pixels, of which the screen shows 320x192 as it scrolls) and a
+# palette of 256 colours, which the loaders put in extended palette slot 3.
+RES_WALLPAPER = {
+    "bpp": 8,
+    "parts": ["lz77", "lz77", "none"],
+    "pictures": [{"tiles": 0, "map": 1, "x": 0, "y": 0, "width": 512, "height": 256}],
+    "palette": 2,
+}
+# Files whose part starts are written in the code. Each picture has its
+# place in the one PNG.
+RES_FIXED = {
+    # Wallpaper_LoadSelected: tiles 0 and map 0x984 on the second screen,
+    # tiles 0xd70 and map 0x169c on the first, palette 0x1a90 in bank 15 of both.
+    "ohashi/res_wall_base": {
+        "bpp": 4,
+        "parts": ["lz77", "lz77", "lz77", "lz77", "none"],
+        "pictures": [{"tiles": 0, "map": 1, "x": 0, "y": 0, "width": 512, "height": 256},
+                     {"tiles": 2, "map": 3, "x": 0, "y": 256, "width": 512, "height": 256}],
+        "palette": 4,
+        "offsets": [0, 0x984, 0xD70, 0x169C, 0x1A90],
+    },
+    # Wallpaper_LoadSingle, Wallpaper_LoadBoth: tiles 0, map 0x2eac, palette
+    # 0x36ec in bank 15. The map is 32x64; the task scrolls it down.
+    "ohashi/res_wall_single": {
+        "bpp": 4,
+        "parts": ["lz77", "lz77", "none"],
+        "pictures": [{"tiles": 0, "map": 1, "x": 0, "y": 0, "width": 256, "height": 512}],
+        "palette": 2,
+        "offsets": [0, 0x2EAC, 0x36EC],
+    },
+}
+WALLPAPER_DIR = "ohashi"
+WALLPAPER_PREFIX = f"{WALLPAPER_DIR}/res_wall_"
+
+
+def res_spec(path: str) -> dict | None:
+    """How to read the res_* file at path (relative to files/), or None for
+    one gfx.py does not read yet."""
+    if path in RES_FIXED:
+        return RES_FIXED[path]
+    if path.startswith(WALLPAPER_PREFIX):
+        return RES_WALLPAPER
+    return None
+
+
+def split_res(data: bytes, kinds: list[str], offsets: list[int] | None = None) -> list[tuple[int, bytes]]:
+    """(offset, unpacked bytes) of each part. Every part but the last is an
+    LZ77 stream; a last part of kind `none` takes the rest of the file. With
+    offsets, part k starts at offsets[k], after zeros if the part before
+    ends sooner."""
+    parts, pos = [], 0
+    for k, kind in enumerate(kinds):
+        if offsets:
+            if pos > offsets[k]:
+                raise ValueError(f"part {k - 1} runs past {offsets[k]:#x}, where part {k} starts")
+            pos = offsets[k]
+        if kind == "none":
+            if k != len(kinds) - 1:
+                raise ValueError("only the last part can be raw")
+            parts.append((pos, data[pos:]))
+            pos = len(data)
+            break
+        if data[pos:pos + 1] != bytes([LZ77]):
+            raise ValueError(f"part {k} at {pos:#x} is not an LZ77 stream")
+        raw, length = lz77_unpack(data[pos:])
+        parts.append((pos, raw))
+        pos += length
+    if pos != len(data):
+        raise ValueError(f"{len(data) - pos} bytes after the last part")
+    return parts
+
+
+def tile_pixels(raw: bytes, bpp: int) -> list[bytes]:
+    """The tiles of a part, each as 64 bytes of colour indices, row by row."""
+    size = 8 * bpp
+    if bpp == 8:
+        return [raw[k:k + size] for k in range(0, len(raw), size)]
+    return [bytes(v for b in raw[k:k + size] for v in (b & 0xF, b >> 4)) for k in range(0, len(raw), size)]
+
+
+def tile_bytes(tile: bytes, bpp: int) -> bytes:
+    return tile if bpp == 8 else bytes(tile[k] | tile[k + 1] << 4 for k in range(0, 64, 2))
+
+
+def flip_tile(tile: bytes, flips: int) -> bytes:
+    rows = [tile[y * 8:y * 8 + 8] for y in range(8)]
+    if flips & MAP_FLIP_V:
+        rows.reverse()
+    if flips & MAP_FLIP_H:
+        rows = [r[::-1] for r in rows]
+    return b"".join(rows)
+
+
+def map_cells(width: int, height: int):
+    """(map entry index, x, y) of each 8x8 cell of a map width x height
+    pixels, in map order: screen block by screen block, left to right, then
+    down, each block row by row."""
+    cols = width // TILE
+    blocks_across = max(cols // SCREEN_BLOCK, 1)
+    block_cols = min(cols, SCREEN_BLOCK)
+    for cy in range(height // TILE):
+        for cx in range(cols):
+            block = cy // SCREEN_BLOCK * blocks_across + cx // block_cols
+            yield (block * SCREEN_BLOCK * block_cols + cy % SCREEN_BLOCK * block_cols + cx % block_cols,
+                   cx * TILE, cy * TILE)
+
+
+def picture_cells(rows: list[bytearray], pic: dict) -> list[bytes]:
+    """The 8x8 blocks of one picture of the PNG, in map order."""
+    cells = sorted(map_cells(pic["width"], pic["height"]))
+    out = []
+    for _, x, y in cells:
+        x0, y0 = pic["x"] + x, pic["y"] + y
+        out.append(b"".join(bytes(rows[y0 + r][x0:x0 + TILE]) for r in range(TILE)))
+    return out
+
+
+def res_size(meta: dict) -> tuple[int, int]:
+    return (max(p["x"] + p["width"] for p in meta["pictures"]),
+            max(p["y"] + p["height"] for p in meta["pictures"]))
+
+
+def unpack_res(data: bytes, png: Path, *, source: str, spec: dict) -> dict:
+    parts = split_res(data, spec["parts"], spec.get("offsets"))
+    bpp = spec["bpp"]
+    meta = {"source": source, "format": "res", "bpp": bpp}
+    meta["width"], meta["height"] = res_size(spec)
+    rows = [bytearray(meta["width"]) for _ in range(meta["height"])]
+    for pic in spec["pictures"]:
+        tiles = tile_pixels(parts[pic["tiles"]][1], bpp)
+        entries = struct.unpack(f"<{len(parts[pic['map']][1]) // 2}H", parts[pic["map"]][1])
+        cells = list(map_cells(pic["width"], pic["height"]))
+        if len(cells) != len(entries):
+            raise ValueError(f"{source}: the map has {len(entries)} entries, a {pic['width']}x{pic['height']} picture {len(cells)}")
+        for index, x, y in cells:
+            e = entries[index]
+            if bpp == 4 and e & MAP_PALETTE:
+                raise ValueError(f"{source}: map entry {index} picks palette {e >> 12}; one palette is all gfx.py reads")
+            tile = flip_tile(tiles[e & MAP_TILE], e)
+            for r in range(TILE):
+                rows[pic["y"] + y + r][pic["x"] + x:pic["x"] + x + TILE] = tile[r * TILE:r * TILE + TILE]
+    write_png(png, rows, bgr555_to_rgb(parts[spec["palette"]][1]))
+    meta["parts"] = [{"compression": kind, "size": len(raw)} for kind, (_, raw) in zip(spec["parts"], parts)]
+    meta["pictures"] = spec["pictures"]
+    meta["palette"] = spec["palette"]
+    if "offsets" in spec:  # the code holds these starts
+        meta["offsets"] = spec["offsets"]
+    meta["sha1"] = hashlib.sha1(data).hexdigest()
+    write_if_changed(yaml_of(png), yaml.safe_dump(meta, sort_keys=False).encode())
+    return meta
+
+
+def res_original(meta: dict) -> bytes | None:
+    """The ROM's file the YAML file came from, when extract/ has it unchanged:
+    pack starts from its tiles and map, so an unchanged PNG gives its bytes."""
+    source = meta.get("source")
+    if not source or not meta.get("sha1"):
+        return None
+    path = ROOT / "extract" / source
+    if not path.is_file():
+        return None
+    data = path.read_bytes()
+    return data if hashlib.sha1(data).hexdigest() == meta["sha1"] else None
+
+
+def build_tiles(cells: list[bytes], capacity: int, base: tuple[list[bytes], list[int]] | None):
+    """Tiles and map entries that draw cells. From base (the original tiles
+    and map), a cell that still looks the same keeps its entry, and a changed
+    one takes an equal tile (flips included) or a new one after the tiles the
+    original map uses. Without base, or when the new tiles do not fit, every
+    cell is matched from scratch in map order."""
+
+    def add(lookup: dict, tile: bytes, index: int) -> None:
+        for flips in (0, MAP_FLIP_H, MAP_FLIP_V, MAP_FLIP_H | MAP_FLIP_V):
+            lookup.setdefault(flip_tile(tile, flips), index | flips)
+
+    if base:
+        tiles, entries = list(base[0]), list(base[1])
+        used = max(e & MAP_TILE for e in entries) + 1
+        lookup: dict[bytes, int] = {}
+        for i in range(used):
+            add(lookup, tiles[i], i)
+        fits = True
+        for c, cell in enumerate(cells):
+            e = entries[c]
+            if flip_tile(tiles[e & MAP_TILE], e) == cell:
+                continue
+            if cell not in lookup:
+                if used >= capacity:
+                    fits = False
+                    break
+                tiles[used] = cell
+                add(lookup, cell, used)
+                used += 1
+            entries[c] = e & MAP_PALETTE | lookup[cell]
+        if fits:
+            return tiles, entries
+
+    tiles, entries, lookup = [], [], {}
+    for cell in cells:
+        if cell not in lookup:
+            if len(tiles) >= capacity:
+                raise ValueError(f"the picture needs more than the {capacity} different tiles the file holds")
+            add(lookup, cell, len(tiles))
+            tiles.append(cell)
+        entries.append(lookup[cell])
+    return tiles + [bytes(64)] * (capacity - len(tiles)), entries
+
+
+def pack_res(meta: dict, rows: list[bytearray], png_palette: list, original: bytes | None) -> bytes:
+    bpp = meta["bpp"]
+    kinds = [p["compression"] for p in meta["parts"]]
+    base = split_res(original, kinds, meta.get("offsets")) if original else None
+    raws: list[bytes | None] = [None] * len(kinds)
+    for pic in meta["pictures"]:
+        size = meta["parts"][pic["tiles"]]["size"]
+        capacity = min(size // (8 * bpp), MAP_TILE + 1)
+        old = None
+        if base:
+            old_map = base[pic["map"]][1]
+            old = (tile_pixels(base[pic["tiles"]][1], bpp), list(struct.unpack(f"<{len(old_map) // 2}H", old_map)))
+        tiles, entries = build_tiles(picture_cells(rows, pic), capacity, old)
+        raw = b"".join(tile_bytes(t, bpp) for t in tiles)
+        raws[pic["tiles"]] = raw + bytes(size - len(raw))
+        raws[pic["map"]] = struct.pack(f"<{len(entries)}H", *entries)
+
+    count = meta["parts"][meta["palette"]]["size"] // 2
+    top = max(max(r) for r in rows)
+    if top >= count:
+        raise ValueError(f"colour index {top}: the palette holds {count} colours")
+    colours = list(png_palette[:count])
+    if len(colours) < count:  # an editor may save fewer; the rest as before, or black
+        rest = bgr555_to_rgb(base[meta["palette"]][1]) if base else []
+        colours += (rest + [(0, 0, 0)] * count)[len(colours):count]
+    raws[meta["palette"]] = rgb_to_bgr555(colours)
+
+    out = bytearray()
+    offsets = meta.get("offsets")
+    for k, (kind, raw) in enumerate(zip(kinds, raws)):
+        if raw is None:
+            raise ValueError(f"part {k} is no picture's tiles, map or palette")
+        if offsets:
+            if len(out) > offsets[k]:
+                raise ValueError(f"part {k} would start at {len(out):#x}, past {offsets[k]:#x} where the code reads it; "
+                                 "use fewer different tiles")
+            out += bytes(offsets[k] - len(out))
+        out += lz77_pack(raw) if kind == "lz77" else raw
+    return bytes(out)
+
+
+def res_round_trip(data: bytes, spec: dict, tmp: Path) -> bool:
+    """Whether a res_* file comes back the same from the PNG and YAML file
+    unpack writes, and whether a pack from scratch (no original to start
+    from) draws the same picture."""
+    png = tmp / "res.png"
+    meta = unpack_res(data, png, source="", spec=spec)
+    rows, palette = read_png(png)
+    if pack_res(meta, rows, palette, data) != data:
+        return False
+    again = tmp / "res_scratch.png"
+    unpack_res(pack_res(meta, rows, palette, None), again, source="", spec=spec)
+    return read_png(again) == (rows, palette)
+
+
+def wallpaper_offsets(data: bytes) -> tuple[int, int]:
+    """Where a wallpaper file's map and palette start."""
+    parts = split_res(data, RES_WALLPAPER["parts"])
+    return parts[RES_WALLPAPER["pictures"][0]["map"]][0], parts[RES_WALLPAPER["palette"]][0]
+
+
+def wallpaper_macro(name: str) -> str:
+    return re.sub(r"[^A-Z0-9]", "_", name.upper())
+
+
+def write_wallpaper_header(out: Path, files: list[Path]) -> None:
+    lines = ["/* Where the map and the palette start in each wallpaper file of /ohashi, for",
+             " * data_021593fc and data_021593bc. Written by tools/gfx.py wallpapers from",
+             " * the files the ROM build takes; do not edit. */",
+             "#ifndef GFX_WALLPAPER_OFFSETS_H",
+             "#define GFX_WALLPAPER_OFFSETS_H",
+             ""]
+    for f in sorted(files, key=lambda p: p.name):
+        tile_map, palette = wallpaper_offsets(f.read_bytes())
+        lines.append(f"#define {wallpaper_macro(f.name)}_MAP {tile_map:#x}")
+        lines.append(f"#define {wallpaper_macro(f.name)}_PALETTE {palette:#x}")
+    lines += ["", "#endif", ""]
+    write_if_changed(out, "\n".join(lines).encode())
+
+
+def wallpaper_inputs(packed: dict[str, str]) -> list[str]:
+    """The files `wallpapers` reads, one per wallpaper of /ohashi: the file a
+    pack step writes (packed: ROM path -> output), else the ROM's."""
+    paths = {f"{WALLPAPER_DIR}/{p.name}" for p in (ROOT / FILES / WALLPAPER_DIR).glob("res_wall_*")}
+    paths |= {p for p in packed if p.startswith(WALLPAPER_PREFIX)}
+    return [packed.get(path, (FILES / path).as_posix()) for path in sorted(paths - set(RES_FIXED))]
 
 
 # ---------------------------------------------------------------------------
@@ -566,6 +892,12 @@ def cmd_unpack(args) -> int:
     except ValueError:
         source = str(src)
     layout = args.layout
+    path = source[len("files/"):] if source.startswith("files/") else None
+    if path and res_spec(path):
+        out = Path(args.out) / (src.name + ".png") if args.out else ROOT / PICTURES / (path + ".png")
+        meta = unpack_res(data, out, source=source, spec=res_spec(path))
+        print(f"{out}: {meta['width']}x{meta['height']}, res_* file of {len(meta['parts'])} parts")
+        return 0
     if args.out:
         out = Path(args.out) / (src.name + ".png")
     elif source.startswith("files/"):  # under its ROM path, where the build takes it from
@@ -640,10 +972,20 @@ def unpack_rom(out: Path) -> int:
             palette, palette_from = bgr555_to_rgb(main.bytes(palettes[path], 32)), f"main:{palettes[path]:#010x}"
         unpack_bytes(data, out / (path + ".png"), source=f"files/{path}",
                      layout=picture_layout(path, len(describe(data)[0])), palette=palette, palette_from=palette_from)
+    containers = rom_res_pictures()
+    for path in containers:
+        unpack_res((ROOT / FILES / path).read_bytes(), out / (path + ".png"), source=f"files/{path}",
+                   spec=res_spec(path))
     (out / UNPACKED).write_text("")
     shown = out.relative_to(ROOT) if out.is_relative_to(ROOT) else out
-    print(f"unpack: {len(paths)} picture files in {shown}")
+    print(f"unpack: {len(paths)} picture files and {len(containers)} res_* files in {shown}")
     return 0
+
+
+def rom_res_pictures() -> list[str]:
+    """Paths under extract/files/ of the res_* files gfx.py reads (res_spec)."""
+    return sorted(f.relative_to(ROOT / FILES).as_posix() for f in (ROOT / FILES).rglob("res_*")
+                  if f.is_file() and res_spec(f.relative_to(ROOT / FILES).as_posix()))
 
 
 def build_pictures(directory: Path = PICTURES) -> dict[str, str]:
@@ -678,11 +1020,17 @@ def cmd_check(args) -> int:
     files = sorted(p for p in directory.iterdir() if p.is_file())
     if not files:
         sys.exit(f"error: no files in {args.dir}; run make extract")
-    counts = {"lz77": 0, "none": 0, "skipped": 0}
+    counts = {"lz77": 0, "none": 0, "res": 0, "skipped": 0}
     bad = []
     with tempfile.TemporaryDirectory() as tmp:
         for f in files:
             data = f.read_bytes()
+            spec = res_spec(f"{f.parent.name}/{f.name}")
+            if spec:
+                if not res_round_trip(data, spec, Path(tmp)):
+                    bad.append(f.name)
+                counts["res"] += 1
+                continue
             raw, compression = describe(data)
             if len(raw) % 32 or (compression == "none" and not args.raw):
                 counts["skipped"] += 1  # not tile data, or not compressed (raw files only with --raw)
@@ -692,11 +1040,17 @@ def cmd_check(args) -> int:
             if pack_file(yaml_of(png)) != data:
                 bad.append(f.name)
             counts[compression] += 1
-    print(f"{args.dir}: {counts['lz77']} LZ77 files and {counts['none']} raw files come back the same, "
+    print(f"{args.dir}: {counts['lz77']} LZ77 files, {counts['none']} raw files and {counts['res']} res_* files "
+          "come back the same, "
           f"{counts['skipped']} skipped, {len(bad)} differ")
     for name in bad:
         print(f"  differs: {name}")
     return 1 if bad else 0
+
+
+def cmd_wallpapers(args) -> int:
+    write_wallpaper_header(Path(args.out), [Path(f) for f in args.files])
+    return 0
 
 
 def cmd_layouts(args) -> int:
@@ -735,6 +1089,10 @@ def main() -> int:
     p.add_argument("--out", default=str(EXTRACTED))
     p.add_argument("--palette", type=int, default=0, choices=range(8), help="palette variant (default 0)")
     p.set_defaults(func=cmd_co)
+    p = sub.add_parser("wallpapers", help="the C header of where each wallpaper's map and palette start (the build)")
+    p.add_argument("out")
+    p.add_argument("files", nargs="+", help="the wallpaper files of /ohashi as the ROM build takes them")
+    p.set_defaults(func=cmd_wallpapers)
     p = sub.add_parser("layouts", help="list the layouts")
     p.set_defaults(func=cmd_layouts)
     args = parser.parse_args()

@@ -3,6 +3,7 @@
 #include "game/task.h"
 #include "game/Unk_ov004_022bf158.h"
 #include "game/screen.h"
+#include "gfx/wallpaper_offsets.h"
 
 #define REG_MTX_PUSH ((volatile u32*)0x04000444)
 #define REG_MTX_POP ((volatile u32*)0x04000448)
@@ -32,14 +33,14 @@ extern char data_ov004_022bde14[];
 extern char data_ov004_022bde18[];
 extern char data_ov004_022bde1c[];
 extern char data_ov004_022bde20[];
-extern char data_ov004_022bde54[];
-extern char data_ov004_022bde64[];
-extern char data_ov004_022bde74[];
-extern char data_ov004_022bde84[];
-extern char data_ov004_022bde94[];
-extern char data_ov004_022bdea4[];
-extern char data_ov004_022bdeb4[];
-extern char data_ov004_022bdec4[];
+extern char data_ov004_022bde54[]; /* "res_wall_john" */
+extern char data_ov004_022bde64[]; /* "res_wall_zipo" */
+extern char data_ov004_022bde74[]; /* "res_wall_sasha" */
+extern char data_ov004_022bde84[]; /* "res_wall_rachel" */
+extern char data_ov004_022bde94[]; /* "res_wall_kouzou" */
+extern char data_ov004_022bdea4[]; /* "res_wall_chakka" */
+extern char data_ov004_022bdeb4[]; /* "res_wall_candle" */
+extern char data_ov004_022bdec4[]; /* "res_wall_bittmann" */
 
 extern TaskScriptCmd data_ov004_022be018[];
 extern TaskScriptCmd data_ov004_022be078[];
@@ -182,7 +183,7 @@ void Ov004Task_RunSceneTimeline(Ov004Task* task) {
     data_027c0280->bgScrollX[data_027c0280->layer2Bg] = 0;
   }
   if (Ov004_CheckTimedEvent(state, 1, 107)) {
-    Ov004_LoadBg3FromResource(data_ov004_022bde84, 0, 0x94d8, 0);
+    Ov004_LoadBg3FromResource(data_ov004_022bde84, 0, RES_WALL_RACHEL_MAP, 0);
   }
   if (Ov004_CheckTimedEvent(state, 2, 110)) {
     data_027c0280->bgScrollX[data_027c0280->layer3Bg] = 0;
@@ -190,7 +191,7 @@ void Ov004Task_RunSceneTimeline(Ov004Task* task) {
     START_SLOT_TASK(data_ov004_022be0d8);
   }
   if (Ov004_CheckTimedEvent(state, 3, 127)) {
-    Ov004_LoadBg3FromResource(data_ov004_022bde54, 0, 0xa4a0, 1);
+    Ov004_LoadBg3FromResource(data_ov004_022bde54, 0, RES_WALL_JOHN_MAP, 1);
   }
   if (Ov004_CheckTimedEvent(state, 4, 130)) {
     data_027c0280->bgScrollX[data_027c0280->layer3Bg] = 64;
@@ -202,7 +203,7 @@ void Ov004Task_RunSceneTimeline(Ov004Task* task) {
     state->bgCharBase = 0;
   }
   if (Ov004_CheckTimedEvent(state, 6, 157)) {
-    Ov004_LoadBg3FromResource(data_ov004_022bde74, 0, 0x4990, 2);
+    Ov004_LoadBg3FromResource(data_ov004_022bde74, 0, RES_WALL_SASHA_MAP, 2);
   }
   /* Event 0 already fired at frame 0, so this never runs. */
   if (Ov004_CheckTimedEvent(state, 0, 160)) {
@@ -211,7 +212,7 @@ void Ov004Task_RunSceneTimeline(Ov004Task* task) {
     START_SLOT_TASK(data_ov004_022be298);
   }
   if (Ov004_CheckTimedEvent(state, 7, 167)) {
-    Ov004_LoadBg3FromResource(data_ov004_022bdec4, 0, 0x5590, 3);
+    Ov004_LoadBg3FromResource(data_ov004_022bdec4, 0, RES_WALL_BITTMANN_MAP, 3);
   }
   if (Ov004_CheckTimedEvent(state, 8, 170)) {
     data_027c0280->bgScrollX[data_027c0280->layer3Bg] = 64;
@@ -219,7 +220,7 @@ void Ov004Task_RunSceneTimeline(Ov004Task* task) {
     START_SLOT_TASK(data_ov004_022be358);
   }
   if (Ov004_CheckTimedEvent(state, 9, 177)) {
-    Ov004_LoadBg3FromResource(data_ov004_022bde94, 0, 0x59e0, 4);
+    Ov004_LoadBg3FromResource(data_ov004_022bde94, 0, RES_WALL_KOUZOU_MAP, 4);
   }
   if (Ov004_CheckTimedEvent(state, 10, 180)) {
     data_027c0280->bgScrollX[data_027c0280->layer3Bg] = 0;
@@ -231,7 +232,7 @@ void Ov004Task_RunSceneTimeline(Ov004Task* task) {
     state->bgCharBase = 0;
   }
   if (Ov004_CheckTimedEvent(state, 12, 192)) {
-    Ov004_LoadBg3FromResource(data_ov004_022bde64, 0, 0x4718, 5);
+    Ov004_LoadBg3FromResource(data_ov004_022bde64, 0, RES_WALL_ZIPO_MAP, 5);
   }
   if (Ov004_CheckTimedEvent(state, 13, 195)) {
     data_027c0280->bgScrollX[data_027c0280->layer3Bg] = 0;
@@ -242,7 +243,7 @@ void Ov004Task_RunSceneTimeline(Ov004Task* task) {
     state->bgCharBase = 0;
   }
   if (Ov004_CheckTimedEvent(state, 15, 202)) {
-    Ov004_LoadBg3FromResource(data_ov004_022bdea4, 0, 0x3b64, 6);
+    Ov004_LoadBg3FromResource(data_ov004_022bdea4, 0, RES_WALL_CHAKKA_MAP, 6);
   }
   if (Ov004_CheckTimedEvent(state, 16, 205)) {
     data_027c0280->bgScrollX[data_027c0280->layer3Bg] = 64;
@@ -253,7 +254,7 @@ void Ov004Task_RunSceneTimeline(Ov004Task* task) {
     state->bgCharBase = 0;
   }
   if (Ov004_CheckTimedEvent(state, 18, 212)) {
-    Ov004_LoadBg3FromResource(data_ov004_022bdeb4, 0, 0x3e84, 7);
+    Ov004_LoadBg3FromResource(data_ov004_022bdeb4, 0, RES_WALL_CANDLE_MAP, 7);
   }
   if (Ov004_CheckTimedEvent(state, 19, 215)) {
     data_027c0280->bgScrollX[data_027c0280->layer3Bg] = 0;

@@ -119,5 +119,5 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0089](0089-function-files-and-headers.md) | One file per function, and prototypes copied into each caller | in progress | decomp | M3 |
 | [0090](0090-build-text-from-bank-files.md) | The build does not take the text from the bank files | closed | tools | later |
 | [0091](0091-text-codes-0x14-0x17.md) | Text codes 0x14 to 0x17 have no names | open | decomp | later |
-| [0092](0092-files-still-copied.md) | 596 files of the ROM's file system are still copied as they are | open | build | later |
+| [0092](0092-files-still-copied.md) | 563 files of the ROM's file system are still copied as they are | open | build | later |
 | [0093](0093-sound-heap-room.md) | The room an added sound entry takes in the sound heap is not known | open | emulation | later |

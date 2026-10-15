@@ -20,6 +20,8 @@ Pipeline:
   extract/files/ --rom_files.py tree--> build/rom/files/ (links), build/rom/path_order.txt
   extracted/AWRE/assets/gfx/files/**.png + .yaml --tools/gfx.py pack--> build/rom/files/** (one step per picture)
   extracted/AWRE/assets/sound/ --tools/sound.py pack--> build/rom/files/data/sound_data.sdat
+  build/rom/files/ohashi/res_wall_* (or extract/'s) --tools/gfx.py wallpapers--> build/gen/gfx/wallpaper_offsets.h
+                             (map and palette starts, included by the wallpaper tables in main)
   ELF --dsd rom config, rom_files.py romconfig--> build/build/rom_config.yaml (files from build/rom/files/)
   --dsd rom build--> build/AWRE.raw.nds --fix_header.py--> build/AWRE.nds
 
@@ -218,6 +220,24 @@ def write_built_list(paths: list[str]) -> None:
         out.write_text(listing)
 
 
+# Where the map and palette start in each wallpaper file (tools/gfx.py
+# wallpapers, docs/gfx.md, "res_* files"): a header written from the files
+# the ROM build takes, so a repacked wallpaper moves main's tables with it.
+WALLPAPER_HEADER = "build/gen/gfx/wallpaper_offsets.h"
+WALLPAPER_INCLUDE = re.compile(r'^#include "gfx/wallpaper_offsets\.h"', re.M)
+
+
+def res_original_input(out: str) -> str:
+    """ ' extract/files/PATH' for the pack step of a res_* file the ROM has."""
+    path = out[len(rom_files.FILES.as_posix()) + 1:]
+    original = gfx.FILES / path
+    return f" {original.as_posix()}" if gfx.res_spec(path) and (ROOT / original).is_file() else ""
+
+
+def wallpaper_users(sources: list[str]) -> list[str]:
+    return [src for src in sources if WALLPAPER_INCLUDE.search((ROOT / src).read_text(errors="replace"))]
+
+
 # Data from the ROM (tools/data_inc.py, docs/workflow.md): the .inc.c files
 # `data_inc.py write` makes, and the C files that include each one.
 DATA_INC_INCLUDE = re.compile(r'^#include "(data/[^"]+\.inc\.c)"', re.M)
@@ -372,6 +392,10 @@ def main() -> int:
     bss_gen = bss_gen_outputs()
     for src, out in bss_gen.items():
         data_inc_deps.setdefault(src, []).append(out)
+    for src in wallpaper_users(sources):
+        data_inc_deps.setdefault(src, []).append(WALLPAPER_HEADER)
+    files_dir = rom_files.FILES.as_posix() + "/"
+    wallpaper_files = gfx.wallpaper_inputs({out[len(files_dir):]: out for out in pictures.values()})
     config7 = " ".join(f"{CONFIG7.as_posix()}/{n}.txt" for n in ("delinks", "symbols", "relocs"))
     lines = [
         "ninja_required_version = 1.10",
@@ -424,6 +448,11 @@ def main() -> int:
         "rule sound_pack",
         "  command = $python tools/sound.py pack --out $out --quiet",
         "  description = SOUND $out",
+        "  restat = 1",
+        "",
+        "rule gfx_wallpapers",
+        "  command = $python tools/gfx.py wallpapers $out $in",
+        "  description = GFX WALLPAPERS",
         "  restat = 1",
         "",
         "rule rom_files",
@@ -563,10 +592,14 @@ def main() -> int:
         f" | extract/config.yaml {rom_files.EXTRACT_ORDER.as_posix()} tools/rom_files.py",
         "",
         # Order-only on the tree: it removes the link a pack step replaces.
-        *(f"build {out}: gfx_pack {meta} | {gfx.png_of(Path(meta)).as_posix()} tools/gfx.py tools/rom_files.py || {rom_files.STAMP.as_posix()}\n"
+        # A res_* file packs from the ROM's file when extract/ has it.
+        *(f"build {out}: gfx_pack {meta} | {gfx.png_of(Path(meta)).as_posix()} tools/gfx.py tools/rom_files.py"
+          f"{res_original_input(out)} || {rom_files.STAMP.as_posix()}\n"
           for meta, out in pictures.items()),
         *([f"build {sound_out}: sound_pack {' '.join(sound_deps)} | tools/sound.py tools/rom_files.py"
            f" || {rom_files.STAMP.as_posix()}\n"] if sound_deps else []),
+        f"build {WALLPAPER_HEADER}: gfx_wallpapers {' '.join(wallpaper_files)} | tools/gfx.py",
+        "",
         f"build build/AWRE.raw.nds: rombuild build/build/rom_config.yaml | $dsd {rom_files.STAMP.as_posix()}"
         f" {rom_files.PATH_ORDER.as_posix()} {' '.join(built_outputs)}",
         "",
