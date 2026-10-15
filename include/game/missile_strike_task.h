@@ -18,4 +18,6 @@ typedef struct MissileStrikeTask {
   int damage; /* MissileStrike_Start's fourth argument; 80 from func_020f1f38 */
 } MissileStrikeTask;
 
+void MissileStrike_Start(int tileX, int tileY, int fallHeight, int damage);
+
 #endif

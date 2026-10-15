@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 #include "game/strike_target.h"
-
-void MissileStrike_Start(int x, int y, int a, int b);
+#include "game/missile_strike_task.h"
 
 /* Looks for a missile strike site for player 4 on the first screen. If one is
  * found, calls MissileStrike_Start with its position, also on the first screen. */
