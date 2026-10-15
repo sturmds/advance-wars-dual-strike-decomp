@@ -33,6 +33,13 @@ relocation in relocs.txt from inside a function of symbols.txt). A base
 whose code is rewritten so the compiler no longer makes it fails the
 second check, and the line goes.
 
+A mod that grows a struct (a CO added to every per-CO array) moves the
+fields after the growth. aliases.txt and symbols.txt keep the retail
+offsets, which relocs.txt and dsd need; `bss.py lcf` places each `real`
+alias at its field instead (bss.follow_fields). decomp_dev_report passes
+those offsets, and an alias that the link script places where the C type
+puts its FIELD passes.
+
 Results are kept in build/alias_check.json, keyed by this tool, include/,
 build/gen/, the defining file, its object in build/ and the probe lines, so
 a run after an unchanged build compiles nothing. Needs a build (`make`).
@@ -315,8 +322,13 @@ def compute(aliases: list[Alias], use_cache: bool = True) -> dict[str, dict]:
     return out
 
 
-def check(aliases: list[Alias], results: dict[str, dict]) -> list[str]:
-    """One line per alias whose FIELD does not compile or gives another offset."""
+def check(aliases: list[Alias], results: dict[str, dict],
+          linked: dict[tuple[str, str], tuple[str, int]] | None = None) -> list[str]:
+    """One line per alias whose FIELD does not compile or gives another
+    offset. With `linked` (bss.linked_aliases), an alias that the link
+    script already places at the C type's offset passes: a mod that grows a
+    struct moves it there with its field."""
+    linked = linked or {}
     errors = []
     for a in aliases:
         r = results.get(a.name)
@@ -331,7 +343,8 @@ def check(aliases: list[Alias], results: dict[str, dict]) -> list[str]:
                 errors.append(f"{where}: not inside {a.base} ({r.get('size', 0):#x} bytes)")
             if not r.get("loads"):
                 errors.append(f"{where}: no function loads it (relocs.txt), so the compiler does not make it")
-        elif r["offset"] + a.extra != a.offset:
+        elif r["offset"] + a.extra != a.offset and \
+                linked.get((a.module, a.name)) != (a.base, r["offset"] + a.extra):
             errors.append(f"{where}: the C type puts it at {a.base}+{r['offset'] + a.extra:#x}")
     return errors
 
@@ -348,7 +361,9 @@ def main() -> int:
     ap.add_argument("--no-cache", action="store_true")
     args = ap.parse_args()
     aliases, errors = read_aliases()
-    errors += check(aliases, compute(aliases, use_cache=not args.no_cache))
+    import bss  # here: bss imports configure, which the check itself does not need
+
+    errors += check(aliases, compute(aliases, use_cache=not args.no_cache), bss.linked_aliases())
     if args.list:
         for a in not_from_c(aliases):
             print(f"aliases.txt:{a.line}: {a.name} = {a.base}+{a.offset:#x} {a.field or 'not real'}")

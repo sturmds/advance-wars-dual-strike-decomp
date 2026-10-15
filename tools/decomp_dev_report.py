@@ -290,7 +290,7 @@ def main() -> int:
     if alias_errors:
         sys.exit(f"decomp_dev_report: {bss.ALIAS_LIST}:\n  " + "\n  ".join(alias_errors))
     aliases, alias_errors = alias_check.read_aliases()
-    alias_errors += alias_check.check(aliases, alias_check.compute(aliases))
+    alias_errors += alias_check.check(aliases, alias_check.compute(aliases), bss.linked_aliases())
     if alias_errors:
         sys.exit("decomp_dev_report: aliases whose FIELD and C type disagree (tools/alias_check.py):\n  "
                  + "\n  ".join(alias_errors))

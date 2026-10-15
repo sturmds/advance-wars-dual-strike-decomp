@@ -1,0 +1,6 @@
+# Variables whose type a mod grows on purpose (one entry more in a per-CO
+# array, for example), so the built object is larger than the retail size
+# in symbols.txt. bss.gen_size_errors, which decomp_dev_report runs, lets
+# these be larger; symbols.txt keeps the retail size, which dsd needs. A
+# retail build lists none. One per line:
+#   MODULE SYMBOL  reason

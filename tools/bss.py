@@ -1738,11 +1738,33 @@ def gen_files(out_dir: Path, only: list[str] | None = None) -> list[Path]:
     return list(wanted)
 
 
+GROWN_LIST = Path("config/AWRE/grown.txt")
+
+
+def read_grown(path: Path | None = None) -> set[tuple[str, str]]:
+    """{(module, symbol)} from grown.txt: variables whose type a mod grows on
+    purpose, so their built size may exceed the retail size in symbols.txt."""
+    path = path or ROOT / GROWN_LIST
+    if not path.exists():
+        return set()
+    out = set()
+    for n, line in enumerate(path.read_text().splitlines(), 1):
+        line = line.split("#", 1)[0].strip()
+        if line:
+            words = line.split()
+            if len(words) < 3:
+                fail(f"{GROWN_LIST}:{n}: want `MODULE SYMBOL reason`")
+            out.add((words[0], words[1]))
+    return out
+
+
 def gen_size_errors() -> list[str]:
     """Variables of the listed files whose size in the built object differs
     from the size in symbols.txt: a declared type of the wrong size. The
     ROM check misses one at the end of main, which the linker script rounds
-    up to 32. Files not built yet are skipped."""
+    up to 32. Files not built yet are skipped. A variable in grown.txt may
+    be larger."""
+    grown = read_grown()
     errors = []
     symbols_of: dict[str, list[Symbol]] = {}
     for path in gen_list():
@@ -1755,6 +1777,8 @@ def gen_size_errors() -> list[str]:
         _, variables = config_variables(module, entry, symbols_of[module])
         built = {s["name"]: s["size"] for s in elf_read(obj)[1] if s["type"] == 1}
         for v in variables:
+            if v.name in built and built[v.name] > v.sort and (module, v.name) in grown:
+                continue
             if v.name in built and built[v.name] != v.sort:
                 errors.append(f"{path}: {v.name} is {built[v.name]:#x} bytes, symbols.txt says {v.sort:#x}")
     return errors
@@ -2210,6 +2234,19 @@ def read_alias_list(path: Path | None = None) -> dict[tuple[str, str], Listed]:
         if (m[1], m[2]) in out:
             fail(f"{ALIAS_LIST}:{n}: {m[2]} is listed twice")
         out[(m[1], m[2])] = Listed(m[3], int(m[4], 16), m[5])
+    return out
+
+
+def linked_aliases() -> dict[tuple[str, str], tuple[str, int]]:
+    """config_aliases with each offset as `lcf` writes it into the link
+    script (follow_fields)."""
+    out = {}
+    by_module: dict[str, dict[str, tuple[str, int]]] = defaultdict(dict)
+    for (module, name), owner in config_aliases().items():
+        by_module[module][name] = owner
+    for module, aliases in by_module.items():
+        for name, owner in follow_fields(module, aliases).items():
+            out[(module, name)] = owner
     return out
 
 
