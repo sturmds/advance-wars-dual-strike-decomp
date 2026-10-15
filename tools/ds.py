@@ -258,6 +258,7 @@ def name_of(value: int) -> str | None:
 
 
 DEFINE = re.compile(r"^\s*#\s*define\s+(\w+)\s+\(?\s*(0x[0-9a-fA-F]+|\d+)\s*\)?\s*(?:/[*/].*)?$", re.M)
+DEFINE_EXPR = re.compile(r"^\s*#\s*define\s+([A-Z]\w*)\s+(\(\s*\w+(?:\s*[-+*]\s*\w+)*\s*\))\s*(?:/[*/].*)?$", re.M)
 
 
 @cache
@@ -272,6 +273,18 @@ def constants() -> dict[str, int]:
             for name, v in s.get("values", []):
                 if v is not None:
                     out.setdefault(name, v)
+    # Then #defines that add, subtract or multiply those, such as
+    # SAVE_VERSION (29 + CO_COUNT - 28).
+    for h in (ROOT / "include").rglob("*.h"):
+        for name, expr in DEFINE_EXPR.findall(h.read_text(errors="replace")):
+            if name not in out:
+                words = re.findall(r"(?<!\w)[A-Za-z_]\w*", expr)
+                if all(w in out for w in words):
+                    try:
+                        out[name] = eval(re.sub(r"(?<!\w)[A-Za-z_]\w*", lambda m: str(out[m[0]]), expr),
+                                         {"__builtins__": {}})
+                    except SyntaxError:
+                        pass
     return out
 
 

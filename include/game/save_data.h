@@ -2,6 +2,7 @@
 #define GAME_SAVE_DATA_H
 
 #include "types.h"
+#include "game/co_data.h"
 
 #define SAVE_SLOT_COUNT 21
 
@@ -27,7 +28,11 @@ extern u32 data_02297fa8[2 * SAVE_SLOT_COUNT];
 #define SAVE_SLOT_WRITES(slot) ((&data_02297fa8[slot])[SAVE_SLOT_COUNT])
 
 #define SAVE_MAGIC 0x6a777364 /* "dswj" */
-#define SAVE_VERSION 29 /* Save_CheckBuffer fails a slot with another value */
+/* Save_CheckBuffer fails a slot with another value. Retail writes 29. Each
+ * CO id past retail's 28 grows save record 0 (PlayRecords, the profile
+ * blocks), so a build with more COs writes a higher version: a save of
+ * another layout reads as no save, never as wrong records. */
+#define SAVE_VERSION (29 + CO_COUNT - 28)
 
 #define SAVE_SLOT_MARK 0x10
 #define SAVE_SLOT_KEEP 0x08 /* set by Save_Format on the slots it keeps */

@@ -4,13 +4,13 @@
 
 ## Layout
 
-The game splits the chip into `SAVE_SLOT_COUNT` (21) slots of `sizeof(SaveBuffer)` (0x3000) bytes; slot *i* starts at `i * 0x3000` (`Save_ReadFromBackup`). Each slot is one `SaveBuffer` (`include/game/save_data.h`): magic `"dswj"`, `version` 29, a byte sum and its inverse, a save counter, the record id, the part number, and up to 0x2f99 bytes of record data with its offset in the record. `Save_CheckBuffer` fails a slot whose magic, version, end mark or sum is wrong.
+The game splits the chip into `SAVE_SLOT_COUNT` (21) slots of `sizeof(SaveBuffer)` (0x3000) bytes; slot *i* starts at `i * 0x3000` (`Save_ReadFromBackup`). Each slot is one `SaveBuffer` (`include/game/save_data.h`): magic `"dswj"`, `version` (`SAVE_VERSION`: 29 in retail, one more per CO id a mod adds), a byte sum and its inverse, a save counter, the record id, the part number, and up to 0x2f99 bytes of record data with its offset in the record. `Save_CheckBuffer` fails a slot whose magic, version, end mark or sum is wrong. A mod with more COs grows save record 0 (each CO adds a `CoSaveRecord` to `PlayRecords` and a Force Rank set and a score byte to each profile block), so it writes another version: its game takes a retail save as no save and starts a new one, and retail takes the mod's save the same way. Nothing converts a save from one layout to the other.
 
 A record holds what one call of `Save_WriteRecord` writes, split over one or more slots. Writes go to free slots, so a slot that held an older copy is still valid on the chip after the record moves. The first part of the newest record 0 lists in `slotIds` which record each slot holds now; `Save_LoadRecord` and `savedit.py` go by that list.
 
 | Record | Struct | What |
 |---|---|---|
-| 0 | `SaveProgressBlocks` (0x1684 bytes) | Progress: game flags, `PlayRecords` (CO experience and unlocks, War Room and campaign records, counters), the three campaign profiles, Survival and link data. `Save_PackProgress` copies the live data into it unchanged. |
+| 0 | `SaveProgressBlocks` (0x1684 bytes in retail) | Progress: game flags, `PlayRecords` (CO experience and unlocks, War Room and campaign records, counters), the three campaign profiles, Survival and link data. `Save_PackProgress` copies the live data into it unchanged. |
 | others | `BattleSaveRecord`, `DesignMapRecord` | Battle saves and Design Room maps. Their record ids are not mapped yet; pass `--record N --type STRUCT`. |
 
 ## The tool
