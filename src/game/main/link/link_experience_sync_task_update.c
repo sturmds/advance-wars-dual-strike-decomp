@@ -70,7 +70,7 @@ void LinkExperienceSyncTask_Update(LinkSyncTask* task) {
     for (i = 0; i < LINK_SYNC_CHUNK; i++) {
       *out = text[task->sentBytes];
       task->sentBytes++;
-      if (task->sentBytes == 112) {
+      if (task->sentBytes == sizeof(data_0229deec[0])) {
         task->sendDone = 1;
         i++;
         break;

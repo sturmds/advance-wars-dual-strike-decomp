@@ -33,7 +33,6 @@ typedef struct Unk_02290118 {
   ForceRankSet
       forceRankSets[CO_COUNT]; /* mode 0, by CO id (ForceRank_GetSavedSet) */
   CoPicks coPicksMode0;        /* gCoPicksMode0 */
-  u8 pad_08a[0x8c - 0x8a];
   union {
     u32 unk_8c; /* bits 8-19 are cleared when a campaign starts (Campaign_ResetProgress) */
     MapRecord records[28];
@@ -42,10 +41,12 @@ typedef struct Unk_02290118 {
   u8 coScore[CO_COUNT]; /* per CO id; the world map shows the three highest */
   u8 flagsHigh[8];      /* gGameFlagsHigh: game flag ids 95-158 */
   u8 unk_13e[0x40];     /* data_02290256: Save_ResetProgress clears it */
-  u8 pad_17e[0x180 - 0x17e];
 } Unk_02290118;
 
-typedef char Unk_02290118_size_check[sizeof(Unk_02290118) == 0x180 ? 1 : -1];
+/* 0x180 bytes with retail's 28 COs. Each CO adds a Force Rank set and a
+ * score byte; the struct ends on a word. */
+typedef char Unk_02290118_size_check
+    [sizeof(Unk_02290118) == ((0x17e + (CO_COUNT - 28) * 5 + 3) & ~3) ? 1 : -1];
 
 extern Unk_02290118 data_02290118;
 

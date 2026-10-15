@@ -66,7 +66,7 @@ typedef struct PlayRecords {
   u32 indirectAttacks; /* same for units with a longer minRange */
   u32 capturesStarted; /* captures begun by human players, capped at 999999 (UnitAction_Capture); name from the code */
   u32 capturesCompleted; /* captures finished by human players, capped at 999999 */
-  u32 coRankTotal; /* sum of Co_GetRank over CO ids 1-27 (PlayRecords_UpdateCoRankTotal) */
+  u32 coRankTotal; /* sum of Co_GetRank over CO ids 1 to CO_COUNT - 1 (PlayRecords_UpdateCoRankTotal) */
   u32 humanFundsSpent; /* funds spent by human players, capped at 999999999 (Player_SpendFunds) */
   u32 humanDamageTaken; /* funds value of hp lost by units of human players, capped at 999999999 (Unit_AddDamageTaken) */
   u32 silosLaunched; /* silo launches by human players, capped at 999999 (Silo_StartLaunch) */
@@ -115,7 +115,12 @@ typedef struct PlayRecords {
   u8 pad_105a[0x105c - 0x105a];
 } PlayRecords;
 
-typedef char PlayRecords_size_check[sizeof(PlayRecords) == 0x105c ? 1 : -1];
+/* 0x105c bytes with retail's 28 COs; each CO adds a CoSaveRecord. */
+typedef char PlayRecords_size_check[sizeof(PlayRecords) ==
+                                            0x105c + (CO_COUNT - 28) *
+                                                         sizeof(CoSaveRecord)
+                                        ? 1
+                                        : -1];
 
 extern PlayRecords gPlayRecords;
 

@@ -8,7 +8,7 @@ int Co_GetSavedPictureVariant(int coId);
 int Co_GetExperience(int coId);
 
 /* Clears the received rows and fills the block to send with this player's
- * palette and picture choice and experience for each of the 28 COs. */
+ * palette and picture choice and experience for each CO. */
 void LinkExperienceSyncTask_Init(LinkSyncTask* task) {
   int i;
 
@@ -16,7 +16,7 @@ void LinkExperienceSyncTask_Init(LinkSyncTask* task) {
     Mem_ZeroUnits(0, data_0229deec[i], sizeof(data_0229deec[i]), 8);
   }
   task->experience = Mem_Alloc(sizeof(data_0229deec[0]));
-  for (i = 0; i < LINK_SYNC_CO_COUNT; i++) {
+  for (i = 0; i < CO_COUNT; i++) {
     task->experience[i].paletteVariant = Co_GetSavedPaletteVariant(i);
     task->experience[i].pictureVariant = Co_GetSavedPictureVariant(i);
     task->experience[i].experience = Co_GetExperience(i);

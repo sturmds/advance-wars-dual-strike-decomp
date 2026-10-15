@@ -2,7 +2,7 @@
 #include "game/link_sync_task.h"
 #include "game/link_slots.h"
 
-LinkCoRecord data_0229deec[LINK_SYNC_ARMY_COUNT][LINK_SYNC_CO_COUNT];
+LinkCoRecord data_0229deec[LINK_SYNC_ARMY_COUNT][CO_COUNT];
 
 u16 Wireless_GetChildAids(void);
 int Link_FindSlotOfPlayer(int player);

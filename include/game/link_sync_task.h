@@ -2,9 +2,10 @@
 #define GAME_LINK_SYNC_TASK_H
 
 #include "types.h"
+#include "game/co_data.h"
 
-/* One CO's entry in the experience block sent over the link (28 COs), and
- * in each player's row of data_0229deec. */
+/* One CO's entry in the experience block sent over the link (one per CO
+ * id), and in each player's row of data_0229deec. */
 typedef struct LinkCoRecord {
   u32 paletteVariant : 3; /* Co_GetSavedPaletteVariant */
   u32 pictureVariant : 1; /* Co_GetSavedPictureVariant */
@@ -15,10 +16,9 @@ typedef struct LinkCoRecord {
 typedef char LinkCoRecord_size_check[sizeof(LinkCoRecord) == 4 ? 1 : -1];
 
 #define LINK_SYNC_ARMY_COUNT 4 /* rows of data_0229deec and data_0229de6c */
-#define LINK_SYNC_CO_COUNT 28  /* LinkCoRecords in one row of data_0229deec */
 
 /* Each army's CO records as received in the experience sync. */
-extern LinkCoRecord data_0229deec[LINK_SYNC_ARMY_COUNT][LINK_SYNC_CO_COUNT];
+extern LinkCoRecord data_0229deec[LINK_SYNC_ARMY_COUNT][CO_COUNT];
 /* Equipped skills received in the skill sync: 16 bytes per link slot and
  * CO (LinkSkills_GetPlayerSet). */
 extern u8 data_0229de6c[LINK_SYNC_ARMY_COUNT][2][16];
@@ -30,7 +30,7 @@ extern u8 data_0229de6c[LINK_SYNC_ARMY_COUNT][2][16];
 typedef struct LinkSyncTask {
   u8 pad_00[0x2c];
   LinkCoRecord*
-      experience; /* 28 entries (112 bytes) to send, allocated by LinkExperienceSyncTask_Init */
+      experience; /* one row of data_0229deec to send, allocated by LinkExperienceSyncTask_Init */
   u8* skills; /* 128 bytes to send: 4 players x 2 COs x 16, filled by LinkSkillSyncTask_Init */
   u16 sentBytes;
   u16 receivedBytes;

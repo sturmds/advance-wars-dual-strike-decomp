@@ -3,10 +3,6 @@
 #include "game/play_records.h"
 #include "game/save_progress.h"
 
-/* Where the three profile blocks start in the save record. This is 16 bytes
- * before SaveProgress.profileSets. */
-#define SAVE_PROFILE_BLOCKS_OFFSET 0x10b4
-
 int Save_LoadRecord(
     int recordId,
     void*
@@ -16,17 +12,15 @@ void Save_LoadProfile(int profile);
 /* Loads save record 0 into data_02291774 and copies the data of its three
  * profiles to the live copies, then runs Save_LoadProfile for the current profile. */
 void Save_LoadProfiles(void) {
-  SaveProgress* progress = &data_02291774.progress;
+  SaveProgressBlocks* progress = &data_02291774.blocks;
   int i;
 
   if (Save_LoadRecord(0, progress)) {
     return;
   }
   for (i = 0; i < SAVE_PROFILE_COUNT; i++) {
-    data_02290298[i] =
-        *(SaveProfileBlock*)((u8*)&((SaveProfileBlock*)progress)[i] +
-                             SAVE_PROFILE_BLOCKS_OFFSET);
-    gPlayRecords.unk_348[i] = progress->unk_3a0[i];
+    data_02290298[i] = progress->profileBlocks[i];
+    gPlayRecords.unk_348[i] = progress->playRecords.unk_348[i];
     data_022900bc[i] = progress->unk_1534[i];
   }
   Save_LoadProfile(data_02290118.unk_00);

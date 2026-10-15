@@ -10,25 +10,7 @@
 #include "game/reaction_text_menu_task.h"
 #include "game/Unk_022a7b80.h"
 #include "game/Unk_0229e148.h"
-
-/* data_02291774 (main bss): the buffer that Save_LoadRecord(0, ...) fills.
- * Save_LoadProgress copies its CO records and Force Rank sets into the live
- * progress data. */
-typedef struct SaveProgress {
-  u8 pad_00[0x58];
-  u32 unk_58; /* Save_LoadProgress passes it to PlayRecords_CapPoints */
-  u32 unk_5c; /* passed to func_02017c88 */
-  u8 pad_60[0x90 - 0x60];
-  CoSaveRecord coRecords[CO_COUNT]; /* by CO id */
-  SaveHalfwords16 unk_3a0
-      [3]; /* one per profile; Save_LoadProfiles copies them to gPlayRecords */
-  u8 pad_3d0[0x10c4 - 0x3d0];
-  ForceRankSet profileSets
-      [1][96]; /* [Unk_02290118.unk_00][CO id]; more profiles may follow */
-  u8 pad_1244[0x1534 - 0x1244];
-  SaveBytes30 unk_1534
-      [3]; /* one per profile; Save_LoadProfiles copies them to data_022900bc */
-} SaveProgress;
+#include "game/Unk_02290118.h"
 
 /* Blocks of save record 0, each copied as one unit. */
 typedef struct SaveGameFlagsMid {
@@ -41,8 +23,9 @@ typedef struct SaveGameFlagsMid {
 extern SaveGameFlagsMid gGameFlagsMid;
 extern SaveGameFlagsMid gGameFlagsMidBackup;
 
+/* A copy of data_02290118 for one profile (data_02290298[profile]). */
 typedef struct SaveProfileBlock {
-  u32 sets[96]; /* data_02290298[profile] */
+  Unk_02290118 progress;
 } SaveProfileBlock;
 
 /* Profiles the save keeps, and their live copies. */
@@ -50,13 +33,15 @@ typedef struct SaveProfileBlock {
 extern SaveProfileBlock data_02290298[SAVE_PROFILE_COUNT];
 extern SaveBytes30 data_022900bc[SAVE_PROFILE_COUNT];
 
-/* Save record 0 as Save_PackProgress and Save_UnpackProgress see it: the
- * live data that the record keeps, in order. 0x1684 bytes. */
+/* Save record 0: the live data that the record keeps, in order. Save_PackProgress
+ * and Save_UnpackProgress copy it whole; Save_LoadRecord(0, ...) reads it into
+ * data_02291774, from which Save_LoadProgress, Save_LoadProfiles and
+ * Save_LoadProfile copy parts. 0x1684 bytes with retail's 28 COs. */
 typedef struct SaveProgressBlocks {
   SaveGameFlagsMid gameFlagsMid;
   u8 pad_56[0x58 - 0x56];
   PlayRecords playRecords;
-  SaveProfileBlock profileBlocks[3];
+  SaveProfileBlock profileBlocks[SAVE_PROFILE_COUNT];
   SaveBytes30 unk_1534[3]; /* data_022900bc */
   u8 pad_158e[0x1590 - 0x158e];
   Unk_022a7b80 unk_1590; /* data_022a7b80 */
@@ -65,18 +50,21 @@ typedef struct SaveProgressBlocks {
   u8 pad_1682[0x1684 - 0x1682];
 } SaveProgressBlocks;
 
-typedef char SaveProgressBlocks_size_check[sizeof(SaveProgressBlocks) == 0x1684
-                                               ? 1
-                                               : -1];
+/* Each CO adds a CoSaveRecord to playRecords, and to each profile block the
+ * growth of Unk_02290118. */
+typedef char SaveProgressBlocks_size_check
+    [sizeof(SaveProgressBlocks) ==
+             0x1684 + (CO_COUNT - 28) * sizeof(CoSaveRecord) +
+                 SAVE_PROFILE_COUNT * (sizeof(Unk_02290118) - 0x180)
+         ? 1
+         : -1];
 
 /* The buffer Save_Init hands to the save code (gSaveBuffer). Each record is
  * loaded into it and packed in it before it is written: record 0 as
- * SaveProgress and SaveProgressBlocks (0x1684 bytes), the battle saves as
- * BattleSaveRecord (0x2238), the design maps as DesignMapRecord. Those run
- * past SaveProgress's 0x1590 bytes. bytes covers the 0x6000 bytes up to the
+ * SaveProgressBlocks, the battle saves as BattleSaveRecord (0x2238), the
+ * design maps as DesignMapRecord. bytes covers the 0x6000 bytes up to the
  * next variable; no code names the part past 0x2238. */
 typedef union SaveRecordBuffer {
-  SaveProgress progress;
   SaveProgressBlocks blocks;
   BattleSaveRecord battle;
   DesignMapRecord designMaps[2]; /* data_02291e98 names the second */

@@ -27,36 +27,37 @@ void Save_LoadProgress(void) {
   int co;
   u8* saved;
   u8* src;
-  SaveProgress* progress = &data_02291774.progress;
+  SaveProgressBlocks* progress = &data_02291774.blocks;
 
   if (Save_LoadRecord(0, progress)) {
     return;
   }
-  PlayRecords_CapPoints(progress->unk_58);
-  func_02017c88(progress->unk_5c);
+  PlayRecords_CapPoints(progress->playRecords.points);
+  func_02017c88(progress->playRecords.unk_04);
   for (co = 0; co < CO_COUNT; co++) {
-    Co_SetExperience(co, progress->coRecords[co].experience);
+    Co_SetExperience(co, progress->playRecords.coRecords[co].experience);
     switch (data_027c027c->unk_48[data_027c0284]->gameMode) {
       case 0:
-        src = progress->profileSets[data_02290118.unk_00][co];
+        src = progress->profileBlocks[data_02290118.unk_00]
+                  .progress.forceRankSets[co];
         saved = ForceRank_GetSavedSet(0, co, 0);
         *(SkillSet*)saved = *(SkillSet*)src;
         break;
       case 1:
         saved = ForceRank_GetSavedSet(1, co, 0);
-        src = progress->coRecords[co].setMode1;
+        src = progress->playRecords.coRecords[co].setMode1;
         *(SkillSet*)saved = *(SkillSet*)src;
         break;
       case 2:
         for (set = 0; set < FORCE_RANK_SET_COUNT; set++) {
           saved = ForceRank_GetSavedSet(1, co, set);
-          src = progress->coRecords[co].setsMode2[set];
+          src = progress->playRecords.coRecords[co].setsMode2[set];
           *(SkillSet*)saved = *(SkillSet*)src;
         }
         break;
       case 3:
         saved = ForceRank_GetSavedSet(3, co, 0);
-        src = progress->coRecords[co].setMode3;
+        src = progress->playRecords.coRecords[co].setMode3;
         *(SkillSet*)saved = *(SkillSet*)src;
         break;
     }
