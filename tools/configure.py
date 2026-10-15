@@ -195,6 +195,14 @@ def bss_gen_inputs(listed: list[str]) -> list[str]:
     return inputs
 
 
+def alias_layout_inputs() -> list[str]:
+    """What `bss.py lcf` reads besides delinks.txt and symbols.txt to place
+    an alias at its field (bss.follow_fields): aliases.txt and the headers
+    that build/dsindex.json lays out."""
+    return ["config/AWRE/aliases.txt", "tools/dsindex.py"] + sorted(
+        p.relative_to(ROOT).as_posix() for p in (ROOT / "include").rglob("*.h"))
+
+
 def config_inputs() -> list[str]:
     files = sorted((ROOT / CONFIG).rglob("*.txt")) + [ROOT / CONFIG / "config.yaml"]
     return [p.relative_to(ROOT).as_posix() for p in files]
@@ -409,7 +417,8 @@ def main() -> int:
         f"build build/delink.stamp: delink {' '.join(config_inputs())} | extract/config.yaml $dsd",
         f"  cfg = {cfg}",
         "",
-        "build build/arm9.lcf build/objects.txt: lcf build/delink.stamp | $dsd tools/lcf_absolute.py tools/lcf_align2.py tools/maps.py tools/bss.py",
+        "build build/arm9.lcf build/objects.txt: lcf build/delink.stamp | $dsd tools/lcf_absolute.py tools/lcf_align2.py tools/maps.py tools/bss.py "
+        + " ".join(alias_layout_inputs()),
         f"  cfg = {cfg}",
         "  lcf = build/arm9.lcf",
         "  absolute = " + " ".join([f"{k}={v:#x}" for k, v in ARM9_ABSOLUTE_SYMBOLS.items()]
@@ -432,7 +441,8 @@ def main() -> int:
         "build build/arm7/delink.stamp: arm7_delink build/arm7/prepare.stamp | $dsd",
         "",
         "build build/arm7/arm7.lcf build/arm7/objects.txt: arm7_lcf build/arm7/delink.stamp"
-        " | $dsd tools/arm7.py tools/lcf_align2.py tools/lcf_absolute.py tools/bss.py",
+        " | $dsd tools/arm7.py tools/lcf_align2.py tools/lcf_absolute.py tools/bss.py "
+        + " ".join(alias_layout_inputs()),
         "  absolute = " + " ".join(f"{k}={v:#x}" for k, v in ARM7_ABSOLUTE_SYMBOLS.items()),
         "",
         "build build/arm7/arm7.elf: arm7_link build/arm7/arm7.lcf build/arm7/objects.txt"

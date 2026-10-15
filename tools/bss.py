@@ -28,7 +28,8 @@ compiler; the same inputs give the same output. The rules:
   elements as fit, at least one.
 - Aliases: every other symbol, an address inside a variable. symbols.txt
   gives them size 0, and the linker script defines them as
-  `VARIABLE + OFFSET` (`bss.py lcf`). `plan` stops, before writing
+  `VARIABLE + OFFSET` (`bss.py lcf`), OFFSET taken from the field that
+  aliases.txt names when the headers describe it (follow_fields). `plan` stops, before writing
   anything, when an alias lies at or past its variable's declared size
   (objdiff would give it bytes our object does not have), when it is not
   in config/AWRE/aliases.txt, and when it lies on a `[1]` array at the
@@ -2054,6 +2055,89 @@ def lcf_alias_lines(aliases: dict[str, tuple[str, int]]) -> list[str]:
     return [f"{name} = {base} + {offset:#x};" for name, (base, offset) in sorted(aliases.items())]
 
 
+ALIAS_PATH = re.compile(r"\.?([A-Za-z_]\w*)|\[(0x[0-9a-fA-F]+|\d+)\]")
+SCALAR_SIZES = {"u8": 1, "s8": 1, "char": 1, "u16": 2, "s16": 2, "u32": 4, "s32": 4, "u64": 8, "s64": 8}
+
+
+def field_offset(index: dict, variable: str, path: str) -> int | None:
+    """The offset of `path` (an aliases.txt `real` field such as
+    `coRecords[0].setMode1`, `[1]` or `unk_348[0].value[1]+1`) in `variable`, from the struct
+    layouts in build/dsindex.json and the variable's `extern` type. None
+    when the path cannot be followed: no extern, an unknown type or field,
+    an index past an array."""
+    decls = index["externs"].get(variable)
+    if not decls:
+        return None
+    typ = re.sub(r"\b(const|volatile)\b", "", decls[0]["type"]).strip()
+    structs = {}
+    for rec in index["headers"].values():
+        for s in rec["structs"]:
+            structs.setdefault(s["name"], s)
+
+    def size_of(name: str) -> int | None:
+        name = name.replace("struct ", "").replace("union ", "").strip()
+        if name.endswith("*"):
+            return 4
+        return SCALAR_SIZES.get(name) or structs.get(name, {}).get("size")
+
+    # The object reached so far: its element type, the array dimensions
+    # not yet indexed (an extern array's first one is unknown) and the size
+    # of one element.
+    if typ.endswith("*"):
+        return None
+    current, elem = typ, size_of(typ)
+    shape: list[int | None] = [None] if decls[0]["count"] is not None else []
+    path, plus, count = path.partition("+")
+    if plus and not re.fullmatch(r"0x[0-9a-fA-F]+|\d+", count):
+        return None
+    offset, at = int(count, 0) if plus else 0, 0
+    for m in ALIAS_PATH.finditer(path):
+        if m.start() != at:
+            return None
+        at = m.end()
+        if m[2] is not None:
+            if not shape or elem is None:
+                return None
+            i, n = int(m[2], 0), shape.pop(0)
+            if n is not None and i >= n:
+                return None
+            offset += i * math.prod(shape) * elem
+            continue
+        if shape or current not in structs:
+            return None
+        f = next((f for f in structs[current]["fields"] if f["name"] == m[1]), None)
+        if f is None:
+            return None
+        offset += f["offset"]
+        shape = [int(n) for n in re.findall(r"\[(\d+)\]", f["type"])]
+        current = f["type"].split("[")[0].strip()
+        elem = f["size"] // math.prod(shape) if shape else f["size"]
+    return offset if at == len(path) else None
+
+
+def follow_fields(module: str, aliases: dict[str, tuple[str, int]]) -> dict[str, tuple[str, int]]:
+    """The aliases, each one that aliases.txt calls `real FIELD` placed at
+    that field's offset in its variable's type, so that it moves with the
+    field when a struct before it grows (a mod build; for retail the
+    offsets come out the same). An alias whose field cannot be followed
+    keeps the offset from symbols.txt."""
+    listed = read_alias_list()
+    index = None
+    out = dict(aliases)
+    for name, (base, _) in aliases.items():
+        entry = listed.get((module, name))
+        if not entry or not entry.group.startswith("real "):
+            continue
+        if index is None:
+            import dsindex  # here: only a link script with aliases needs the struct layouts
+
+            index = dsindex.load()
+        found = field_offset(index, base, entry.group.split()[1])
+        if found is not None:
+            out[name] = (base, found)
+    return out
+
+
 def entry_aliases(entry: Entry, section: str, symbols: list[Symbol]) -> tuple[list[Var], dict[str, tuple[str, int]]]:
     """The variables of a file's .bss or .sbss range (`section`), and its
     aliases {name: (variable, offset)}: the symbols of size 0 in it. In a
@@ -2081,12 +2165,16 @@ def entry_aliases(entry: Entry, section: str, symbols: list[Symbol]) -> tuple[li
     return variables, aliases
 
 
-def lcf_object_lines(entry: Entry, section: str, symbols: list[Symbol]) -> tuple[str, list[str]]:
+def lcf_object_lines(entry: Entry, section: str, symbols: list[Symbol],
+                     module: str | None = None) -> tuple[str, list[str]]:
     """What a file with a .bss or .sbss range (`section`) needs in the
     linker script: its runs past the first, after that section, then its
-    aliases."""
+    aliases. With `module`, each alias goes where its field is now
+    (follow_fields)."""
     stem = Path(entry.name).stem
     variables, aliases = entry_aliases(entry, section, symbols)
+    if module:
+        aliases = follow_fields(module, aliases)
     if not variables or section in DATA_SECTIONS:
         return f"{stem}.o({section})", lcf_alias_lines(aliases) if variables else []
     runs = split_runs(variables)
@@ -2193,7 +2281,7 @@ def cmd_lcf(args) -> int:
                 if section not in entry.sections:
                     continue
                 symbols = symbols if symbols is not None else read_symbols(cfg / "symbols.txt")
-                anchor, lines = lcf_object_lines(entry, section, symbols)
+                anchor, lines = lcf_object_lines(entry, section, symbols, module)
                 if lines:
                     text = lcf_insert_after(text, anchor, lines, str(path))
     path.write_text(text)

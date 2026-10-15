@@ -133,6 +133,33 @@ def test_lcf() -> None:
           (anchor, lines))
 
 
+def test_field_offset() -> None:
+    """An alias at a `real` field follows the field when a struct before
+    it grows (bss.follow_fields)."""
+    def index(count: int) -> dict:
+        rec = {"name": "Rec", "size": 8, "fields": [
+            {"name": "a", "offset": 0, "size": 4, "type": "u32"},
+            {"name": "b", "offset": 4, "size": 4, "type": "u16[2]", "count": 2, "elem_size": 2}]}
+        top = {"name": "Top", "size": 4 + 8 * count + 4, "fields": [
+            {"name": "head", "offset": 0, "size": 4, "type": "u32"},
+            {"name": "recs", "offset": 4, "size": 8 * count, "type": f"Rec[{count}]", "count": count,
+             "elem_size": 8, "struct": "Rec"},
+            {"name": "tail", "offset": 4 + 8 * count, "size": 4, "type": "u8[2][2]"}]}
+        return {"headers": {"include/t.h": {"structs": [rec, top]}},
+                "externs": {"gTop": [{"type": "Top", "count": None}], "gRecs": [{"type": "Rec", "count": ""}]}}
+    small, big = index(2), index(3)
+    check("field_offset: field after an array", bss.field_offset(small, "gTop", "tail") == 0x14)
+    check("field_offset: the array grew", bss.field_offset(big, "gTop", "tail") == 0x1c)
+    check("field_offset: element and member", bss.field_offset(small, "gTop", "recs[1].b[1]") == 0x12)
+    check("field_offset: inner array", bss.field_offset(small, "gTop", "tail[1][0x1]") == 0x17)
+    check("field_offset: extern array", bss.field_offset(small, "gRecs", "[2].b") == 0x14)
+    check("field_offset: byte count", bss.field_offset(small, "gTop", "recs[1]+0x3") == 0x0f)
+    check("field_offset: only a byte count", bss.field_offset(small, "gTop", "+8") == 8)
+    check("field_offset: past the array", bss.field_offset(small, "gTop", "recs[2]") is None)
+    check("field_offset: no such field", bss.field_offset(small, "gTop", "nope") is None)
+    check("field_offset: no extern", bss.field_offset(small, "gOther", "a") is None)
+
+
 def test_sections() -> None:
     check("run_section", [bss.run_section(".bss", 0), bss.run_section(".bss", 2), bss.run_section(".sbss", 0),
                           bss.run_section(".sbss", 1)] == [".bss", ".bss.run2", ".sbss", ".sbss.run1"])
@@ -541,6 +568,7 @@ def main() -> int:
     test_runs()
     test_link_order()
     test_lcf()
+    test_field_offset()
     test_sections()
     test_segments()
     test_compile()
