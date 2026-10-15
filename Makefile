@@ -182,13 +182,15 @@ emu-check: shift
 # the alias offsets alias_check.py compiles (test_alias_check.py), and
 # the file merges of merge_files.py (test_merge_files.py), and the
 # declaration moves of decls.py (test_decls.py), and emu.py's scripts,
-# steps, recordings and key bindings (test_emu.py);
+# steps, recordings and key bindings (test_emu.py), and the LZ77, tile and
+# PNG code of gfx.py (test_gfx.py);
 # no ROM or build needed
 # (test_ds.py, test_pragmas.py, test_absolute.py, test_data_order.py,
 # test_bss.py, test_data.py and test_alias_check.py use the compiler from make setup; test_ds.py
 # checks more when extract/ exists, test_bss.py when build/fnindex.json and
 # build/dsindex.json exist, test_data.py when the ROM exists as well;
-# test_sound.py checks the round trip of the ROM's archive when extract/ exists;
+# test_sound.py checks the round trip of the ROM's archive when extract/ exists,
+# test_gfx.py that of the /syogun pictures;
 # test_gdb_rsp.py and test_emu.py never start melonDS).
 # Git exports GIT_DIR, GIT_INDEX_FILE and others to hooks, so a test run from
 # pre-commit would send the git commands meant for a throwaway repo to the
@@ -232,7 +234,8 @@ TESTS := \
 	tools/tests/test_gdb_rsp.py \
 	tools/tests/test_emu.py \
 	tools/tests/test_maps.py \
-	tools/tests/test_savedit.py
+	tools/tests/test_savedit.py \
+	tools/tests/test_gfx.py
 
 test:
 	@for t in $(CACHED_TESTS) $(TESTS); do $(TEST_ENV) $(PYTHON) $$t || exit 1; done
