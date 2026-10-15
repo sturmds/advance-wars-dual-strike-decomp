@@ -2,7 +2,7 @@
 """Drive the game in melonDS: replay a scenario script, record one, or play.
 
     emu.py run [--frames 30000] [--save FILE] [--save-out FILE] [--shots N] [--tag TAG]
-               SCRIPT [ROM[=ELF]]
+               [--audio-out FILE.wav] SCRIPT [ROM[=ELF]]
     emu.py record [--save FILE] OUT [ROM[=ELF]]
     emu.py play [--save FILE] [ROM[=ELF]]
 
@@ -36,6 +36,15 @@ when the script or the names in it are wrong, melonDS could not be run or
     --save-out FILE  at the end, ask melonDS to quit, which makes it write the
                      save, and copy the save to FILE. A recording run this way
                      leaves a save that starts other runs with --save.
+    --audio-out FILE.wav
+                     run with the sound on and write it to FILE.wav (48 kHz
+                     stereo). melonDS gets SDL's disk driver, which writes to
+                     a file and opens no sound device, so nothing is heard.
+                     The driver takes 512 samples every 10 ms, a little faster
+                     than real time, so the frame limiter stays off and
+                     melonDS's audio sync paces the emulator by the driver:
+                     the run goes about 7 % faster than a DS and the file
+                     keeps the game's timing. Without it a run has no sound.
 
 record: opens a melonDS window with the frame limiter on, your key and
 joystick bindings (only the [Instance0.Keyboard] and [Instance0.Joystick]
@@ -113,12 +122,13 @@ import socket
 import struct
 import sys
 import time
+import wave
 from dataclasses import dataclass, field
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from gdb_rsp import GdbClient, ProtocolError  # noqa: E402
-from melonds import (MELONDS, ROOT, SIGILL, VBLANK_COUNT, VECTORS, Symbols, config,  # noqa: E402
+from melonds import (AUDIO_RATE, MELONDS, ROOT, SIGILL, VBLANK_COUNT, VECTORS, Symbols, config,  # noqa: E402
                      describe_exception, format_keys, free_ports, launch, overlay_checks, parse_keys,
                      parse_rom_arg, prepare, quit_melonds, stop_melonds, user_bindings)
 
@@ -698,14 +708,28 @@ def rom_tag(rom: Path) -> str:
     return f"{rom.stem}-{hashlib.sha1(str(rom.resolve()).encode()).hexdigest()[:6]}"
 
 
+def write_audio(raw: Path, out: Path) -> str:
+    """The sound SDL's disk driver wrote, as a WAV file."""
+    data = raw.read_bytes() if raw.exists() else b""
+    out.parent.mkdir(parents=True, exist_ok=True)
+    with wave.open(str(out), "wb") as w:
+        w.setnchannels(2)
+        w.setsampwidth(2)
+        w.setframerate(AUDIO_RATE)
+        w.writeframes(data[:len(data) // 4 * 4])
+    return f"audio: {out}, {len(data) / 4 / AUDIO_RATE:.1f} s"
+
+
 class Runner:
-    def __init__(self, script: Path, rom: Path, symbols: Symbols, tag: str | None, shots: int = 0):
+    def __init__(self, script: Path, rom: Path, symbols: Symbols, tag: str | None, shots: int = 0,
+                 audio_out: Path | None = None):
         self.script = script
         self.rom = rom
         self.symbols = symbols
         self.tag = tag or rom_tag(rom)
         self.dir = OUT / script.stem
         self.shots = shots  # a screenshot every this many frames; 0 for none
+        self.audio_out = audio_out  # WAV file of the run's sound; None: no sound, full speed
         self.taken = 0
         self.lines: list[str] = []
         self.armed: set[int] = set()  # function breakpoints set besides the vectors and the hook
@@ -743,8 +767,10 @@ class Runner:
         self.checks = {self.symbols.functions[n]: code for n, code in checks.items()}
         for note in overlay_notes(steps, self.symbols, unclear):
             self.say("  " + note)
-        proc = launch(self.rom, work, config(work / "save", arm9, arm7), platform=platform, limit=limit,
-                      log=work / "melonds.log")
+        raw = work / "audio.raw" if self.audio_out else None
+        sound = self.audio_out is not None
+        proc = launch(self.rom, work, config(work / "save", arm9, arm7, sound=sound, audio_sync=sound),
+                      platform=platform, limit=limit, log=work / "melonds.log", audio_file=raw)
         gdb = None
         frame = 0
         status = 1
@@ -776,6 +802,8 @@ class Runner:
             self.say("  " + line)
         if self.shots:
             self.say(f"  {self.taken} screenshots, one every {self.shots} frames: {self.tag}-fNNNNN.png")
+        if raw is not None:
+            self.say("  " + write_audio(raw, self.audio_out))
         if save_out is not None:
             written = work / "save" / (self.rom.resolve().stem + ".sav")
             if written.exists():
@@ -1030,6 +1058,8 @@ def main() -> int:
     p.add_argument("--tag", help="name of this ROM's output files (default: from the ROM's path)")
     p.add_argument("--shots", type=int, default=0, metavar="N", help="a screenshot every N frames")
     p.add_argument("--save-out", type=Path, metavar="FILE", help="copy the save to FILE once melonDS quits")
+    p.add_argument("--audio-out", type=Path, metavar="FILE.wav",
+                   help="run at normal speed and write the game's sound to FILE.wav (never played aloud)")
     p.add_argument("script", type=Path)
     p = sub.add_parser("record", help="play in a window and write what you press to OUT")
     p.add_argument("out", type=Path)
@@ -1077,7 +1107,7 @@ def main() -> int:
         print(f"{args.script}:\n  " + "\n  ".join(errors), file=sys.stderr)
         return 2
     try:
-        return Runner(args.script, rom, symbols, args.tag, args.shots).run(steps, args.frames, args.save,
+        return Runner(args.script, rom, symbols, args.tag, args.shots, args.audio_out).run(steps, args.frames, args.save,
                                                                            args.save_out)
     except KeyboardInterrupt:
         return 130

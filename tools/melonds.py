@@ -236,7 +236,7 @@ def parse_rom_arg(arg: str) -> tuple[Path, Path | None]:
 
 CONFIG = """\
 LimitFPS = {limit_fps}
-AudioSync = false
+AudioSync = {audio_sync}
 MuteFastForward = true
 
 [Emu]
@@ -279,9 +279,10 @@ BreakOnStartup = false
 
 
 def config(save: Path, arm9: int = 0, arm7: int = 0, *, limit_fps: bool = False, gdb: bool = True,
-           sound: bool = False, bindings: dict | None = None) -> str:
+           sound: bool = False, audio_sync: bool = False, bindings: dict | None = None) -> str:
     """melonDS.toml text. The defaults are melonds_check.py's: no frame limit, no sound, GDB on.
-    bindings is what user_bindings returns."""
+    audio_sync makes the emulator wait for the sound output, so a recording
+    keeps the game's timing. bindings is what user_bindings returns."""
     instance, tables = "", ""
     if bindings:
         if "JoystickID" in bindings:
@@ -290,7 +291,8 @@ def config(save: Path, arm9: int = 0, arm7: int = 0, *, limit_fps: bool = False,
             if table in bindings:
                 tables += f"\n[Instance0.{table}]\n" + "".join(
                     f"{k} = {v}\n" for k, v in bindings[table].items())
-    return CONFIG.format(limit_fps=str(limit_fps).lower(), save=save, instance=instance,
+    return CONFIG.format(limit_fps=str(limit_fps).lower(), audio_sync=str(audio_sync).lower(),
+                         save=save, instance=instance,
                          volume=256 if sound else 0, gdb=str(gdb).lower(), arm9=arm9, arm7=arm7,
                          tables=tables)
 
@@ -354,14 +356,23 @@ def prepare(rom: Path, work: Path, save: Path | None) -> None:
         shutil.copyfile(save, work / "save" / (rom.resolve().stem + ".sav"))
 
 
+# melonDS's sound as SDL's disk driver writes it: 48 kHz (melonDS asks for
+# it), signed 16-bit little-endian, two channels, no header.
+AUDIO_RATE = 48000
+
+
 def launch(rom: Path, work: Path, config_text: str, *, platform: str | None = "offscreen",
-           limit: int | None = None, log: Path | None = None) -> subprocess.Popen:
+           limit: int | None = None, log: Path | None = None,
+           audio_file: Path | None = None) -> subprocess.Popen:
     """Starts melonDS on `rom` with `config_text` in `work` (made by `prepare`).
 
     platform is QT_QPA_PLATFORM (offscreen, vnc:...), or None for a window on the
     user's display. limit stops melonDS after that many seconds, in case the caller
-    dies. log takes melonDS's output (None: /dev/null). melonDS runs in a session of
-    its own so that stop_melonds can stop it and `timeout` together.
+    dies. log takes melonDS's output (None: /dev/null). audio_file, with a
+    platform, takes melonDS's sound through SDL's disk driver (raw, AUDIO_RATE)
+    in place of the dummy driver: no sound device is opened, so nothing is
+    heard. melonDS runs in a session of its own so that stop_melonds can stop
+    it and `timeout` together.
     """
     (work / "config/melonDS/melonDS.toml").write_text(config_text)
     env = {
@@ -376,6 +387,9 @@ def launch(rom: Path, work: Path, config_text: str, *, platform: str | None = "o
     else:
         env["QT_QPA_PLATFORM"] = platform
         env["SDL_AUDIODRIVER"] = "dummy"
+        if audio_file is not None:
+            env["SDL_AUDIODRIVER"] = "disk"
+            env["SDL_DISKAUDIOFILE"] = str(audio_file.resolve())
     command = [MELONDS, str(rom.resolve())]
     if limit is not None:
         command = ["timeout", "-k", "5", str(limit)] + command
