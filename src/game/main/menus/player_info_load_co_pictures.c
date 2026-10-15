@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/co_data.h"
 #include "game/Unk_02088d04.h"
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
@@ -18,9 +19,6 @@ void Gfx_RequestLayerCopy(int layer);
   (((u8*)&gMenuState + (MENU.player - 1) * 2 + MENU.slot)[MENU_OFFSET(coShown)])
 #define MENU_PLAYER_ARMY \
   (((u8*)&gMenuState + (MENU.player - 1))[MENU_OFFSET(playerArmy)])
-
-/* Number of CO ids the tag partner search goes through. */
-#define CO_COUNT 28
 
 /* Player info screen: queues the shown CO's small picture to the main
  * screen's OBJ tiles. On the sub screen it unpacks the CO's picture at tile

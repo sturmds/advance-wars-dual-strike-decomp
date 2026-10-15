@@ -74,7 +74,8 @@ typedef struct AiProfileSet {
   u8 templateIds[CO_COUNT];
 } AiProfileSet;
 
-typedef char AiProfileSet_size_check[sizeof(AiProfileSet) == 29 ? 1 : -1];
+typedef char
+    AiProfileSet_size_check[sizeof(AiProfileSet) == CO_COUNT + 1 ? 1 : -1];
 
 extern AiProfile data_0229e2e4; /* what gAiProfile points to */
 

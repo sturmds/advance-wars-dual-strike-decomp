@@ -100,7 +100,7 @@ typedef struct MapHeader {
       hardUnits; /* read with units as a two-entry array, indexed by Campaign_IsHardMode */
   u8 co
       [ARMY_SLOT_COUNT]
-      [PLAYER_CO_COUNT]; /* front and back CO per slot, row 0 unused; 0x1c: player picks */
+      [PLAYER_CO_COUNT]; /* front and back CO per slot, row 0 unused; CO_PLAYER_PICKS: the player picks */
   u8 unk_5e[0x60 - 0x5e];
   const u8* skills
       [ARMY_SLOT_COUNT]

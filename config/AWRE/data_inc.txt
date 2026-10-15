@@ -1716,7 +1716,7 @@ main      data_02167d30               0x02167d30  0xa    u8[2]
 main      data_02167d3c               0x02167d3c  0xc    u32
 main      data_02167d48               0x02167d48  0x10   u32
 main      gArmyNameTextIds            0x02167d58  0x18   u32
-main      gDefaultCoList              0x02167d70  0x1c   u8
+main      gDefaultCoList              0x02167d70  0x1b   u8
 main      gOwnerCellCodes             0x02167d8c  0x48   u16
 main      gMapPaletteFiles            0x02167dd4  0x50   {void*[4],u32}
 main      data_02167e94               0x02167e94  0x4    {u16,u16}
@@ -1819,7 +1819,7 @@ main      data_0216879c               0x0216879c  0x4    u8
 main      data_021687a0               0x021687a0  0x4    u8
 main      data_021687a4               0x021687a4  0x4    u8
 main      gCoPickOrder                0x021687a8  0x1b   u8
-main      data_021687c4               0x021687c4  0x1c   u8
+main      data_021687c4               0x021687c4  0x1b   u8
 main      data_021687e0               0x021687e0  0x30   {s16,s16,u32}
 main      gCoNoPowerScript            0x02168810  0x40   {s16,s16,u32}
 main      gPowerEffectTaskDesc        0x021688bc  0x20   {s16:TASK_CMD,s16,u32}

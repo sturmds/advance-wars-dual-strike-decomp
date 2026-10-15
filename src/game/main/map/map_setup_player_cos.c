@@ -1,10 +1,10 @@
 #include "types.h"
+#include "game/co_data.h"
 #include "game/Unk_02080440.h"
 #include "game/map_header.h"
 #include "game/unlocks.h"
 
-#define MAP_CO_NONE 0      /* MapHeader.co: no CO in this slot */
-#define MAP_CO_PICKED 0x1c /* MapHeader.co: the player picks */
+#define MAP_CO_NONE 0 /* MapHeader.co: no CO in this slot */
 
 extern u8 data_02167d30[][2];
 extern u32 gLinkPlay;
@@ -53,7 +53,7 @@ void Map_SetupPlayerCos(void) {
         case 3:
           co = Ov000_gMapHeaders[MAP_STATE->unk_1c4->mapId].co[player][slot];
           if (co != MAP_CO_NONE) {
-            if (co != MAP_CO_PICKED) {
+            if (co != CO_PLAYER_PICKS) {
               MAP_STATE->playerCos[player][slot] = co;
             } else {
               MAP_STATE->playerCos[player][slot] =

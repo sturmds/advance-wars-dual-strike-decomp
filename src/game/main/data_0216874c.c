@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/co_data.h"
 #include "game/Unk_02168850Row.h"
 #include "game/task.h"
 
@@ -82,8 +83,11 @@ char data_0216875c[] = {
 u8 gCoPickOrder[] = {
 #include "data/main/gCoPickOrder.inc.c"
 };
+/* COs in world map order, ended by CO_NONE. The end is written here, not
+ * read from the ROM, so that COs can be added before it. */
 u8 data_021687c4[] = {
 #include "data/main/data_021687c4.inc.c"
+    CO_NONE,
 };
 TaskScriptCmd data_021687e0[] = {
 #include "data/main/data_021687e0.inc.c"

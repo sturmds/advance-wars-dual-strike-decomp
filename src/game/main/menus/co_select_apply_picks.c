@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/co_data.h"
 #include "game/Unk_02080440.h"
 #include "game/co_select_screen.h"
 #include "game/map_header.h"
@@ -8,7 +9,6 @@
  * Needed to match: coGrid read as rows of 2. */
 #define PICKED_CO(column, row) \
   (((u8(*)[2])data_0229c73c->coGrid)[(column) - 1][row])
-#define MAP_CO_PICKED 0x1c /* MapHeader.co: the player picks */
 
 int Campaign_IsHardMode(void);
 void MovementCost(void);
@@ -36,7 +36,7 @@ void CoSelect_ApplyPicks(void) {
     for (column = 1; column < data_0229c73c->columnCount + 1; column++) {
       for (row = 0; row < data_0229c73c->rowCount; row++) {
         co = Ov000_gMapHeaders[MAP_STATE->unk_1c4->mapId].co[column][row];
-        if (co == MAP_CO_PICKED) {
+        if (co == CO_PLAYER_PICKS) {
           MAP_STATE->playerCos[column][row] = PICKED_CO(column, row);
           Player_SetCo(column, row, PICKED_CO(column, row));
         } else {

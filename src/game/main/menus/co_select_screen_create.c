@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/co_data.h"
 #include "game/Unk_02080440.h"
 #include "game/co_select_screen.h"
 #include "game/map_header.h"
@@ -10,7 +11,6 @@
 #define CELL_FLAGS(column, row) \
   (((u8(*)[2])data_0229c73c->coGrid)[(column) - 1] + (row))[6]
 #define CELL_LOCKED 1
-#define MAP_CO_PICKED 0x1c /* MapHeader.co: the player picks */
 
 extern u8 data_0215abcc[]; /* coList table on a normal-mode campaign map */
 extern u8 data_0215abe4[]; /* coList table everywhere else */
@@ -56,7 +56,7 @@ void CoSelectScreen_Create(void) {
              lockColumn++) {
           for (lockRow = 0; lockRow < data_0229c73c->rowCount; lockRow++) {
             if (Ov000_gMapHeaders[MAP_STATE->unk_1c4->mapId]
-                    .co[lockColumn][lockRow] != MAP_CO_PICKED) {
+                    .co[lockColumn][lockRow] != CO_PLAYER_PICKS) {
               CELL_FLAGS(lockColumn, lockRow) |= CELL_LOCKED;
             }
           }

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/co_data.h"
 #include "game/weather.h"
 
 extern char data_02167cc0[];
@@ -22,8 +23,11 @@ u32 data_02167d48[] = {
 u32 gArmyNameTextIds[] = {
 #include "data/main/gArmyNameTextIds.inc.c"
 };
+/* Every CO, ended by CO_NONE. The end is written here, not read from the
+ * ROM, so that COs can be added before it. */
 u8 gDefaultCoList[] = {
 #include "data/main/gDefaultCoList.inc.c"
+    CO_NONE,
 };
 u16 gOwnerCellCodes[] = {
 #include "data/main/gOwnerCellCodes.inc.c"

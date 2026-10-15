@@ -202,6 +202,14 @@ extern CoRecord gCoTable[CO_COUNT];
 
 /* Fails to compile if a field change breaks the sizes the ROM uses. */
 typedef char CoPowerBlock_size_check[sizeof(CoPowerBlock) == 0x80 ? 1 : -1];
-typedef char CoRecord_size_check[sizeof(CoRecord) == 0x220 ? 1 : -1];
+/* tagFirepower has one byte per CO id (retail: 28, a record of 0x220
+ * bytes); the power blocks follow it, word aligned. */
+typedef char
+    CoRecord_tag_check[offsetof(CoRecord, tagFirepower) == 0x84 ? 1 : -1];
+typedef char
+    CoRecord_size_check[sizeof(CoRecord) == ((0x84 + CO_COUNT + 3) & ~3) +
+                                                POWER_STATE_COUNT * 0x80
+                            ? 1
+                            : -1];
 
 #endif
