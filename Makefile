@@ -188,7 +188,8 @@ emu-check: shift
 # steps, recordings and key bindings (test_emu.py), and the LZ77, tile and
 # PNG code of gfx.py (test_gfx.py), and the encoding and layout of
 # text.py (test_text.py), and the file system tree of rom_files.py
-# (test_rom_files.py);
+# (test_rom_files.py), and m4a.py's conversion of a made-up GBA song
+# (test_m4a.py; M4A_TEST_ROM names a GBA ROM to convert as well);
 # no ROM or build needed
 # (test_ds.py, test_pragmas.py, test_absolute.py, test_data_order.py,
 # test_bss.py, test_data.py and test_alias_check.py use the compiler from make setup; test_ds.py
@@ -244,7 +245,8 @@ TESTS := \
 	tools/tests/test_savedit.py \
 	tools/tests/test_gfx.py \
 	tools/tests/test_text.py \
-	tools/tests/test_rom_files.py
+	tools/tests/test_rom_files.py \
+	tools/tests/test_m4a.py
 
 test:
 	@for t in $(CACHED_TESTS) $(TESTS); do $(TEST_ENV) $(PYTHON) $$t || exit 1; done

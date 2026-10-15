@@ -118,6 +118,8 @@ To add a song:
 
 `make setup` rewrites `sound.yaml` from the ROM and drops the added lines; the sequence file stays. Keep a mod's sound changes in the mod build (issue 0023).
 
+`tools/m4a.py import` does steps 1 to 3 for a song from a GBA game's MusicPlayer2000 music: it converts the song into a sequence, bank and wave archive and adds their lines (`docs/m4a.md`).
+
 Tested by hand: a copy of a CO theme added as sequence 249 with a new file id packs into an archive that `sound.py unpack` reads back with the entry and the same bytes. With the press-start screen's `Sound_StartSong(66)` changed to 249 in a scratch build, melonDS (`tools/emu.py`) shows `gCurrentSong` 249 and the music player started on sequence 249 four seconds later (`SoundSeqPlayer.sourceNo` 249, `started` 1); with 250, an id the archive does not have, the music handle stays empty.
 
 ## Export

@@ -121,3 +121,5 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0091](0091-text-codes-0x14-0x17.md) | Text codes 0x14 to 0x17 have no names | open | decomp | later |
 | [0092](0092-files-still-copied.md) | 563 files of the ROM's file system are still copied as they are | open | build | later |
 | [0093](0093-sound-heap-room.md) | The room an added sound entry takes in the sound heap is not known | open | emulation | later |
+| [0094](0094-m4a-conversion-limits.md) | Parts of a GBA song that tools/m4a.py converts loosely | open | tools | later |
+| [0095](0095-wt-setup-copies-modded-assets.md) | wt_setup.sh copies the main checkout's unpacked assets, edits included | open | tools | later |
