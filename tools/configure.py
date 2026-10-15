@@ -17,7 +17,9 @@ Pipeline:
                              --lcf_align2.py lcf--> ALIGNALL(2) around objects at 2 mod 4
                              --lcf_align2.py objects--> build/objects.link.txt, build/align2/**.o
   compiled objects, plus delinked ones for everything else --mwldarm--> build/arm9.elf, build/build/*.bin (one per module)
-  ELF --dsd rom config--> build/build/rom_config.yaml (files from extract/)
+  extract/files/ --rom_files.py tree--> build/rom/files/ (links), build/rom/path_order.txt
+  extracted/AWRE/assets/gfx/files/**.png + .yaml --tools/gfx.py pack--> build/rom/files/** (one step per picture)
+  ELF --dsd rom config, rom_files.py romconfig--> build/build/rom_config.yaml (files from build/rom/files/)
   --dsd rom build--> build/AWRE.raw.nds --fix_header.py--> build/AWRE.nds
 
 ARM7 (tools/arm7.py says why it takes extra steps):
@@ -37,7 +39,9 @@ import tomllib
 from pathlib import Path
 
 import data_inc
+import gfx
 import maps
+import rom_files
 import text
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -170,6 +174,26 @@ def text_inputs() -> list[str]:
     files = sorted((ROOT / text.EXTRACTED).glob("*.yaml"))
     return [p.relative_to(ROOT).as_posix() for p in files] + [
         text.SYMBOLS.as_posix(), (text.EXTRACTED / text.UNPACKED).as_posix()]
+
+
+# The ROM's file system (tools/rom_files.py) and the pictures packed into it
+# (tools/gfx.py, docs/gfx.md, "Build"). The list of packed paths is written
+# only when it changes, since rom_files.py tree reruns on it.
+PICTURE_LIST = rom_files.OUT / "pictures.txt"
+
+
+def picture_outputs() -> dict[str, str]:
+    """The file each picture's pack step writes, by its YAML file."""
+    pictures = gfx.build_pictures()
+    for path in pictures:
+        if re.search(r"[\s$:]", path):  # ninja and the shell would need them escaped
+            sys.exit(f"configure: {gfx.PICTURES / path}.yaml: a ROM file name takes no space, $ or :")
+    out = ROOT / PICTURE_LIST
+    listing = "".join(f"{path}\n" for path in pictures)
+    if not out.exists() or out.read_text() != listing:
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(listing)
+    return {meta: (rom_files.FILES / path).as_posix() for path, meta in pictures.items()}
 
 
 # Data from the ROM (tools/data_inc.py, docs/workflow.md): the .inc.c files
@@ -317,6 +341,7 @@ def main() -> int:
     data_inc_outputs = [(data_inc.OUT / r.rel).as_posix() for r in data_inc_rows]
     data_inc_deps = data_inc_users(sources + sources7)
     text_deps = text_outputs()
+    pictures = picture_outputs()
     bss_gen = bss_gen_outputs()
     for src, out in bss_gen.items():
         data_inc_deps.setdefault(src, []).append(out)
@@ -362,6 +387,16 @@ def main() -> int:
         "rule text",
         "  command = $python tools/text.py pack --c",
         "  description = TEXT",
+        "  restat = 1",
+        "",
+        "rule gfx_pack",
+        "  command = $python tools/gfx.py pack $in --out $out --quiet",
+        "  description = GFX $out",
+        "  restat = 1",
+        "",
+        "rule rom_files",
+        "  command = $python tools/rom_files.py tree $in",
+        "  description = ROM FILES",
         "  restat = 1",
         "",
         "rule data_inc",
@@ -430,11 +465,15 @@ def main() -> int:
         "  description = OBJDIFF JSON (ARM7)",
         "",
         "rule romconfig",
-        "  command = $dsd rom config -e $in -c $cfg > /dev/null && $python tools/arm7.py romconfig",
+        "  command = $dsd rom config -e $in -c $cfg > /dev/null && $python tools/arm7.py romconfig"
+        " && $python tools/rom_files.py romconfig",
         "  description = ROM CONFIG",
         "",
+        # rom_files.py tree again: it repairs a tree changed by hand since its
+        # own step ran (0.1 s), and stops if a file a GFX step writes is missing.
         "rule rombuild",
-        "  command = $dsd rom build -c $in -o $out > /dev/null",
+        f"  command = $python tools/rom_files.py tree {PICTURE_LIST.as_posix()} --complete"
+        " && $dsd rom build -c $in -o $out > /dev/null",
         "  description = ROM BUILD $out",
         "",
         "rule fixheader",
@@ -484,10 +523,18 @@ def main() -> int:
         "",
         "build build/arm7/objdiff.json: arm7_objdiff_json build/arm7/delink.stamp",
         "",
-        "build build/build/rom_config.yaml: romconfig build/arm9.elf | $dsd build/build/arm7.bin tools/arm7.py",
+        "build build/build/rom_config.yaml: romconfig build/arm9.elf | $dsd build/build/arm7.bin tools/arm7.py"
+        " tools/rom_files.py",
         f"  cfg = {cfg}",
         "",
-        "build build/AWRE.raw.nds: rombuild build/build/rom_config.yaml | $dsd",
+        f"build {rom_files.STAMP.as_posix()} {rom_files.PATH_ORDER.as_posix()}: rom_files {PICTURE_LIST.as_posix()}"
+        f" | extract/config.yaml {rom_files.EXTRACT_ORDER.as_posix()} tools/rom_files.py",
+        "",
+        # Order-only on the tree: it removes the link a pack step replaces.
+        *(f"build {out}: gfx_pack {meta} | {gfx.png_of(Path(meta)).as_posix()} tools/gfx.py || {rom_files.STAMP.as_posix()}\n"
+          for meta, out in pictures.items()),
+        f"build build/AWRE.raw.nds: rombuild build/build/rom_config.yaml | $dsd {rom_files.STAMP.as_posix()}"
+        f" {rom_files.PATH_ORDER.as_posix()} {' '.join(pictures.values())}",
         "",
         "build build/AWRE.nds: fixheader build/AWRE.raw.nds | orig/AWRE.nds tools/fix_header.py",
         "",

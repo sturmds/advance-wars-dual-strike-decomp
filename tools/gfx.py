@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Graphics: unpack tile data from the ROM to indexed PNG files, pack them back.
 
+    gfx.py unpack                                every picture file of the ROM -> extracted/AWRE/assets/gfx/files/
     gfx.py unpack FILE [--out DIR] [--layout NAME] [--palette SRC]   one tile file -> NAME.png + NAME.yaml
     gfx.py pack YAML [--out FILE] [--palette-out FILE]   the PNG beside YAML -> the file's bytes (compressed as before)
     gfx.py check [--dir extract/files/syogun]    unpack and pack every file of a directory; compare bytes
@@ -19,8 +20,18 @@ from the YAML file, so it writes the same bytes as the ROM for an unchanged
 PNG. Colour 0 of each palette is transparent; the PNG marks it so.
 
 The PNG and YAML files hold game data from the builder's ROM: they belong in
-extracted/ or build/ and never enter git (tenet 9). No ROM file is rebuilt
-from them yet; `pack` writes the bytes for a later build step to use.
+extracted/ or build/ and never enter git (tenet 9). `make setup` runs
+`unpack` with no file, which writes every picture file of the ROM (LZ77 tile
+data, not the res_* containers) under its ROM path:
+
+  extracted/AWRE/assets/gfx/files/syogun/076.png  .yaml
+
+The build packs each of those into build/rom/files/ (one ninja step per file,
+`pack --out`), and tools/rom_files.py makes that directory the ROM's file
+system: an edited PNG changes build/AWRE.nds, and a new PNG and YAML file adds
+a file to the ROM. See docs/gfx.md, "Build".
+
+`co` writes a view by CO, for looking at; the build does not read it:
 
   extracted/AWRE/assets/gfx/co/NN_NAME/
       full_v0.png              CO picture, top and bottom pieces joined (144x320)
@@ -52,6 +63,8 @@ ARM9_BASE = 0x02000000
 SYMBOLS = Path("config/AWRE/arm9/symbols.txt")
 CO_HEADER = Path("include/game/co_data.h")
 EXTRACTED = Path("extracted/AWRE/assets/gfx")  # gitignored
+PICTURES = EXTRACTED / "files"  # by ROM path: the files the build packs
+UNPACKED = ".unpacked"  # written last by `unpack` with no file; tools/wt_setup.sh copies only a whole unpack
 
 TILE = 8
 LZ77 = 0x10
@@ -278,6 +291,19 @@ def png_chunk(kind: bytes, body: bytes) -> bytes:
     return struct.pack(">I", len(body)) + kind + body + struct.pack(">I", zlib.crc32(kind + body))
 
 
+def write_if_changed(path: Path, data: bytes) -> bool:
+    """Write only a changed file, so ninja (restat) repacks and rebuilds only
+    what changed. A symbolic link at path is replaced, not written through:
+    build/rom/files/ links to extract/files/ (tools/rom_files.py)."""
+    if path.exists() and not path.is_symlink() and path.read_bytes() == data:
+        return False
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if path.is_symlink():
+        path.unlink()
+    path.write_bytes(data)
+    return True
+
+
 def write_png(path: Path, rows: list[bytes], palette: list[tuple[int, int, int]], transparent0: bool = True):
     width, height = len(rows[0]), len(rows)
     raw = b"".join(b"\0" + bytes(r) for r in rows)
@@ -288,8 +314,7 @@ def write_png(path: Path, rows: list[bytes], palette: list[tuple[int, int, int]]
         png += png_chunk(b"tRNS", b"\0")
     png += png_chunk(b"IDAT", zlib.compress(raw, 9))
     png += png_chunk(b"IEND", b"")
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_bytes(png)
+    write_if_changed(path, png)
 
 
 def read_png(path: Path) -> tuple[list[bytearray], list[tuple[int, int, int]]]:
@@ -372,17 +397,31 @@ def unpack_bytes(data: bytes, png: Path, *, source: str, layout: str | None = No
     if palette_from:
         meta["palette"] = palette_from
     meta.update(extra or {})
-    png.with_suffix(".yaml").write_text(yaml.safe_dump(meta, sort_keys=False))
+    write_if_changed(yaml_of(png), yaml.safe_dump(meta, sort_keys=False).encode())
     return meta
 
 
-def pack_file(meta_path: Path) -> bytes:
-    meta = yaml.safe_load(meta_path.read_text())
-    rows, _ = read_png(meta_path.with_suffix(".png"))
+def yaml_of(png: Path) -> Path:
+    """NAME.yaml beside NAME.png. Not with_suffix: a ROM file name may hold a dot."""
+    return png.with_name(png.name[:-len(".png")] + ".yaml")
+
+
+def png_of(meta: Path) -> Path:
+    return meta.with_name(meta.name[:-len(".yaml")] + ".png")
+
+
+def pack_file(yaml_path: Path) -> bytes:
+    """The bytes of the file a YAML file and the PNG beside it describe. A
+    YAML file written by hand for a new file may leave out `size`, the
+    tile bytes before compression: width x height x bpp / 8."""
+    meta = yaml.safe_load(yaml_path.read_text())
+    png = png_of(yaml_path)
+    rows, _ = read_png(png)
     if (len(rows[0]), len(rows)) != (meta["width"], meta["height"]):
-        raise ValueError(f"{meta_path.with_suffix('.png')}: {len(rows[0])}x{len(rows)}, "
+        raise ValueError(f"{png}: {len(rows[0])}x{len(rows)}, "
                          f"layout {meta['layout']} needs {meta['width']}x{meta['height']}")
-    pieces = layout_pieces(meta["layout"], meta["size"], meta["bpp"])
+    size = meta.get("size", meta["width"] * meta["height"] * meta["bpp"] // 8)
+    pieces = layout_pieces(meta["layout"], size, meta["bpp"])
     raw = pixels_to_tiles(rows, pieces, meta["bpp"])
     return lz77_pack(raw) if meta["compression"] == "lz77" else raw
 
@@ -528,31 +567,117 @@ def parse_palette(spec: str | None) -> tuple[list | None, str | None]:
 
 
 def cmd_unpack(args) -> int:
+    if args.file is None:
+        return unpack_rom(ROOT / args.out if args.out else ROOT / PICTURES)
     src = Path(args.file)
     data = src.read_bytes()
     palette, palette_from = parse_palette(args.palette)
-    out = Path(args.out) / (src.name + ".png")
     try:
-        source = str(src.resolve().relative_to((ROOT / "extract").resolve()))
+        source = src.resolve().relative_to((ROOT / "extract").resolve()).as_posix()
     except ValueError:
         source = str(src)
-    meta = unpack_bytes(data, out, source=source, layout=args.layout, bpp=args.bpp, palette=palette,
+    layout = args.layout
+    if args.out:
+        out = Path(args.out) / (src.name + ".png")
+    elif source.startswith("files/"):  # under its ROM path, where the build takes it from
+        path = source[len("files/"):]
+        out = ROOT / PICTURES / (path + ".png")
+        layout = layout or picture_layout(path, len(describe(data)[0]))
+        if palette is None:  # as `unpack` with no file writes it
+            main = Main()
+            addr = co_palettes(main).get(path)
+            if addr:
+                palette, palette_from = bgr555_to_rgb(main.bytes(addr, 32)), f"main:{addr:#010x}"
+    else:  # not into PICTURES: the build would add it to the ROM
+        out = ROOT / EXTRACTED / (src.name + ".png")
+    meta = unpack_bytes(data, out, source=source, layout=layout, bpp=args.bpp, palette=palette,
                         palette_from=palette_from)
     print(f"{out}: {meta['width']}x{meta['height']}, {meta['layout']}, {meta['compression']}")
     return 0
 
 
+# ---------------------------------------------------------------------------
+# Every picture file of the ROM, and the build
+
+
+def rom_pictures() -> list[str]:
+    """Paths under extract/files/ of the files `unpack` writes with no file
+    named: LZ77 streams of whole 4-bit tiles. Left out: the res_* containers
+    (several parts in one stream) and files that are not compressed (palettes
+    and other data next to the tiles)."""
+    out = []
+    for f in sorted((ROOT / FILES).rglob("*")):
+        if not f.is_file() or f.name.startswith("res_"):
+            continue
+        raw, compression = describe(f.read_bytes())
+        if compression == "lz77" and len(raw) % 32 == 0:
+            out.append(f.relative_to(ROOT / FILES).as_posix())
+    return out
+
+
+def picture_layout(path: str, size: int) -> str:
+    """The CO layouts for /syogun, where the sizes say which picture a file
+    holds; a grid elsewhere, where a size can mean anything."""
+    if path.startswith("syogun/"):
+        return default_layout(size)
+    tiles = size // 32
+    return f"grid:{next(w for w in (16, 8, 4, 2, 1) if tiles % w == 0)}"
+
+
+def co_palettes(main: "Main") -> dict[str, int]:
+    """Address of palette 0 of the gCoGraphics row that names each /syogun
+    file, so the PNG shows the CO's colours. Only the colour indices go back
+    into the file."""
+    table, table_size = symbol("gCoGraphics")
+    out = {}
+    for co in range(table_size // (ROW_WORDS * 4)):
+        row = [main.word(table + (co * ROW_WORDS + k) * 4) for k in range(ROW_WORDS)]
+        words = [*ROW_FULL_TOP, *ROW_FULL_BOTTOM, *ROW_MEDIUM,
+                 *(w + m for w in ROW_FACE + ROW_BATTLE for m in range(3))]
+        for k in words:
+            if row[k]:
+                out.setdefault(f"syogun/{main.string(row[k])}", row[ROW_PALETTES])
+    return out
+
+
+def unpack_rom(out: Path) -> int:
+    main = Main()
+    palettes = co_palettes(main)
+    paths = rom_pictures()
+    for path in paths:
+        data = (ROOT / FILES / path).read_bytes()
+        palette, palette_from = None, None
+        if path in palettes:
+            palette, palette_from = bgr555_to_rgb(main.bytes(palettes[path], 32)), f"main:{palettes[path]:#010x}"
+        unpack_bytes(data, out / (path + ".png"), source=f"files/{path}",
+                     layout=picture_layout(path, len(describe(data)[0])), palette=palette, palette_from=palette_from)
+    (out / UNPACKED).write_text("")
+    shown = out.relative_to(ROOT) if out.is_relative_to(ROOT) else out
+    print(f"unpack: {len(paths)} picture files in {shown}")
+    return 0
+
+
+def build_pictures(directory: Path = PICTURES) -> dict[str, str]:
+    """The files the build packs, by ROM path under files/: every YAML file
+    under extracted/AWRE/assets/gfx/files/ with a ROM path from its place.
+    The PNG beside each must exist; configure.py lists both as inputs."""
+    root = ROOT / directory
+    return {p.relative_to(root).as_posix()[:-len(".yaml")]:
+            (p.relative_to(ROOT) if p.is_relative_to(ROOT) else p).as_posix()
+            for p in sorted(root.rglob("*.yaml"))}
+
+
 def cmd_pack(args) -> int:
-    meta_path = Path(args.yaml)
-    data = pack_file(meta_path)
-    out = Path(args.out) if args.out else meta_path.with_suffix(".bin")
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_bytes(data)
-    meta = yaml.safe_load(meta_path.read_text())
+    yaml_path = Path(args.yaml)
+    data = pack_file(yaml_path)
+    out = Path(args.out) if args.out else yaml_path.with_name(yaml_path.name[:-len(".yaml")] + ".bin")
+    write_if_changed(out, data)
+    meta = yaml.safe_load(yaml_path.read_text())
     same = hashlib.sha1(data).hexdigest() == meta.get("sha1")
-    print(f"{out}: {len(data)} bytes{', same as the ROM' if same else ', changed'}")
+    if not args.quiet:
+        print(f"{out}: {len(data)} bytes{', same as the ROM' if same else ', changed'}")
     if args.palette_out:
-        _, palette = read_png(meta_path.with_suffix(".png"))
+        _, palette = read_png(png_of(yaml_path))
         colours = (palette + [(0, 0, 0)] * 16)[:1 << meta["bpp"]]
         Path(args.palette_out).write_bytes(rgb_to_bgr555(colours))
         print(f"{args.palette_out}: {len(colours)} colours, BGR555")
@@ -575,7 +700,7 @@ def cmd_check(args) -> int:
                 continue
             png = Path(tmp) / (f.name + ".png")
             unpack_bytes(data, png, source=str(f))
-            if pack_file(png.with_suffix(".yaml")) != data:
+            if pack_file(yaml_of(png)) != data:
                 bad.append(f.name)
             counts[compression] += 1
     print(f"{args.dir}: {counts['lz77']} LZ77 files and {counts['none']} raw files come back the same, "
@@ -599,9 +724,9 @@ def cmd_layouts(args) -> int:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     sub = parser.add_subparsers(required=True)
-    p = sub.add_parser("unpack", help="one tile file to an indexed PNG and a YAML file")
-    p.add_argument("file")
-    p.add_argument("--out", default=str(ROOT / EXTRACTED / "files"))
+    p = sub.add_parser("unpack", help="one tile file, or every picture file of the ROM, to indexed PNG and YAML files")
+    p.add_argument("file", nargs="?", help="default: every picture file of the ROM, under its ROM path")
+    p.add_argument("--out", help=f"default: {PICTURES} under the ROM path for a file of extract/files/, else {EXTRACTED}")
     p.add_argument("--layout", help="a name from `gfx.py layouts` or grid:N (default: by size)")
     p.add_argument("--bpp", type=int, choices=(4, 8), default=4)
     p.add_argument("--palette", help="main:ADDR[:COUNT] or FILE[:OFFSET] (default: greys)")
@@ -610,6 +735,7 @@ def main() -> int:
     p.add_argument("yaml")
     p.add_argument("--out", help="default: the YAML path with .bin")
     p.add_argument("--palette-out", help="also write the PNG's palette as BGR555 (32 bytes for 4 bits)")
+    p.add_argument("--quiet", action="store_true", help="print nothing (the build's GFX step)")
     p.set_defaults(func=cmd_pack)
     p = sub.add_parser("check", help="unpack and pack every tile file of a directory; compare bytes")
     p.add_argument("--dir", default=str(FILES / "syogun"))

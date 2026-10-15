@@ -11,12 +11,19 @@
   4-bit pack.
 - PNG: write_png and read_png give back the rows and the palette, and
   read_png reads a 4-bit PNG with every filter type.
-- With extract/ present: unpack and pack every file of /syogun and compare
-  bytes (`gfx.py check`). Skipped with a message when there is no extract/.
+- Files: write_if_changed replaces a symbolic link instead of writing
+  through it (build/rom/files/ links to extract/files/); a YAML file
+  without `size` packs as one with it; a ROM name with a dot keeps it in
+  its PNG and YAML names; build_pictures maps each YAML file to its ROM
+  path; picture_layout uses the CO layouts only for /syogun.
+- With extract/ present: every file `unpack` writes for the build (every
+  picture file of the ROM, all of /syogun's LZ77 files among them) comes
+  back from its PNG and YAML file as the same bytes. Skipped with a message
+  when there is no extract/.
 """
 
-import contextlib
-import io
+import concurrent.futures
+import multiprocessing
 import random
 import struct
 import sys
@@ -112,15 +119,51 @@ with tempfile.TemporaryDirectory() as tmp:
     want = [bytearray(v for b in line for v in (b >> 4, b & 0xF)) for line in plain]
     expect("png 4-bit, filters 0-4", gfx.read_png(png)[0], want)
 
+with tempfile.TemporaryDirectory() as tmp:
+    tmp = Path(tmp)
+    target = tmp / "original"
+    target.write_bytes(b"rom")
+    link = tmp / "built"
+    link.symlink_to(target)
+    gfx.write_if_changed(link, b"rom")
+    expect("write_if_changed replaces a link, even with the same bytes",
+           (link.is_symlink(), link.read_bytes(), target.read_bytes()), (False, b"rom", b"rom"))
+    expect("write_if_changed leaves an unchanged file", gfx.write_if_changed(link, b"rom"), False)
+
+    rows = [bytearray((x * 3 + y) % 16 for x in range(16)) for y in range(16)]
+    gfx.write_png(tmp / "pics/syogun/a.b.png", rows, gfx.grey_palette(16))
+    meta = {"compression": "lz77", "bpp": 4, "layout": "grid:2", "width": 16, "height": 16}
+    (tmp / "pics/syogun/a.b.yaml").write_text(gfx.yaml.safe_dump(meta))
+    want = gfx.lz77_pack(gfx.pixels_to_tiles(rows, gfx.grid(2, 4), 4))
+    expect("pack without size", gfx.pack_file(tmp / "pics/syogun/a.b.yaml"), want)
+    expect("png and yaml names keep a dot", (gfx.yaml_of(Path("x/a.b.png")), gfx.png_of(Path("x/a.b.yaml"))),
+           (Path("x/a.b.yaml"), Path("x/a.b.png")))
+    (tmp / "pics/sys").mkdir()
+    (tmp / "pics/sys/c.yaml").write_text("")
+    expect("build_pictures", gfx.build_pictures(tmp / "pics"),
+           {"syogun/a.b": (tmp / "pics/syogun/a.b.yaml").as_posix(), "sys/c": (tmp / "pics/sys/c.yaml").as_posix()})
+expect("picture_layout", [gfx.picture_layout("syogun/076", 0x480), gfx.picture_layout("battle/000", 0x480)],
+       ["co_face", "grid:4"])
+
+def round_trip(path: str, tmp: str) -> bool:
+    """A ROM file through the PNG and YAML files `unpack` writes, and back."""
+    data = (ROOT / gfx.FILES / path).read_bytes()
+    png = Path(tmp) / (path + ".png")
+    gfx.unpack_bytes(data, png, source=path, layout=gfx.picture_layout(path, len(gfx.describe(data)[0])))
+    return gfx.pack_file(gfx.yaml_of(png)) == data
+
+
 if (ROOT / gfx.FILES / "syogun").is_dir():
-    class Args:
-        dir = str(gfx.FILES / "syogun")
-        raw = False
-    with contextlib.redirect_stdout(io.StringIO()) as out:
-        status = gfx.cmd_check(Args())
-    expect("gfx.py check on /syogun", (status, out.getvalue().split(", ")[-1].strip()), (0, "0 differ"))
+    paths = gfx.rom_pictures()
+    syogun = [p for p in paths if p.startswith("syogun/")]
+    with tempfile.TemporaryDirectory() as tmp, concurrent.futures.ProcessPoolExecutor(
+            mp_context=multiprocessing.get_context("fork")) as pool:  # fork: the workers do not run this file again
+        same = pool.map(round_trip, paths, [tmp] * len(paths), chunksize=16)
+        bad = [path for path, ok in zip(paths, same) if not ok]
+    expect("every /syogun LZ77 file is a picture file", len(syogun), 508)
+    expect(f"{len(paths)} picture files come back the same", bad, [])
 else:
-    print("gfx.py check on /syogun: skipped, no extract/ (run make extract)")
+    print("picture files of the ROM: skipped, no extract/ (run make extract)")
 
 if failures:
     sys.exit(f"test_gfx: {len(failures)} failed")

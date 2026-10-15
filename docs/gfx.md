@@ -2,17 +2,18 @@
 
 The game's pictures are 4-bit tiles: 8x8 pixels, 32 bytes, two pixels a byte with the left pixel in the low nibble. Most files under `extract/files/` hold them LZ77-compressed (type 0x10, the format the BIOS unpacks). Palettes are 16 BGR555 colours (`0bbbbbgggggrrrrr`, colour 0 transparent), and the ones for CO pictures are in main's data, not in files. The ROM has no Nitro graphics files (NCGR, NCLR, NCER, NANR, NSCR) and no NARC archives: every file is raw tiles, an LZ77 stream, or a `res_*` container (below).
 
-`tools/gfx.py` turns tile data into indexed PNG files and back. Like the maps and the sound archive, the PNG files are game data from your ROM and never enter git (tenet 9); write them under `extracted/AWRE/assets/gfx/` (the default) or `build/`. No ROM file is built from them yet.
+`tools/gfx.py` turns tile data into indexed PNG files and back. Like the maps and the sound archive, the PNG files are game data from your ROM and never enter git (tenet 9): `make setup` unpacks every picture file of the ROM into `extracted/AWRE/assets/gfx/files/`, and `make` packs them back into the ROM's file system (below, "Build").
 
 ```
-tools/gfx.py co VON_BOLT                         # every picture of one CO, with palette 0
+tools/gfx.py unpack                              # every picture file -> extracted/AWRE/assets/gfx/files/
+tools/gfx.py co VON_BOLT                         # every picture of one CO, with palette 0 (a view; the build does not read it)
 tools/gfx.py unpack extract/files/syogun/076 --palette main:0x021329b8
 tools/gfx.py pack extracted/AWRE/assets/gfx/co/11_VON_BOLT/face_v0_m0.yaml --out build/076
 tools/gfx.py check                               # every /syogun file: unpack, pack, compare bytes
 tools/gfx.py layouts
 ```
 
-`unpack` writes `NAME.png` and `NAME.yaml`. The YAML file names the source, the compression, the bits per pixel, the layout, the size, the palette used for the PNG and the SHA-1 of the original bytes. `pack` reads the PNG beside it (any indexed PNG: 1, 2, 4 or 8 bits, any filter, not interlaced) and writes the bytes, compressed again when the source was; it says whether they match the ROM. `--palette-out FILE` also writes the PNG's palette as BGR555.
+`unpack FILE` writes `NAME.png` and `NAME.yaml`; a file of `extract/files/` goes under its ROM path in `extracted/AWRE/assets/gfx/files/`, the files the build packs. The YAML file names the source, the compression, the bits per pixel, the layout, the size, the palette used for the PNG and the SHA-1 of the original bytes. `pack` reads the PNG beside it (any indexed PNG: 1, 2, 4 or 8 bits, any filter, not interlaced) and writes the bytes, compressed again when the source was; it says whether they match the ROM. `--palette-out FILE` also writes the PNG's palette as BGR555.
 
 ## LZ77
 
@@ -48,10 +49,36 @@ A layout lists the sprite pieces (OBJ shapes) a picture is drawn with. The tiles
 
 Outside the table: the map panel face (`CoPanel_Draw`, `PowerPanel_*Draw`) at main `gCoPanelFaces` and `gCoPanelFacesAlt` (variants 0 and 1), 0x100 bytes per CO from CO 1 (`CO_PANEL_FACE_ROW`); and 12 compressed tiles in each `gCoTable` row (`Co_UnpackPicture`: results, CO rank, Combat mode menus), 5 pointers that all name the same stream. Those tiles look like the CO's name in letters, not a picture; the layout is not known yet.
 
-The files are numbered by kind, then by CO id, so a new CO cannot take the next number in each run without renumbering the files after it; adding files at the end of `/syogun` and pointing a new `gCoGraphics` row at them avoids that.
+The files are numbered by kind, then by CO id, so a new CO cannot take the next number in each run without renumbering the files after it; adding files at the end of `/syogun` and pointing a new `gCoGraphics` row at them avoids that (below, "Adding a file").
+
+## Build
+
+1. `make setup` runs `gfx.py unpack` with no file. It writes every picture file of the ROM under its ROM path: `extract/files/syogun/076` becomes `extracted/AWRE/assets/gfx/files/syogun/076.png` and `076.yaml`. Picture files are the LZ77 streams of whole 4-bit tiles outside the `res_*` containers: 1,202 files in `syogun` (all 508 LZ77 files), `battle`, `bmap`, `rikiishi`, `xinfo`, `mapedit`, `national`, `info` and `sys`. `/syogun` files get the CO layouts and the CO's palette 0 from the `gCoGraphics` row that names them; the rest a grid and greys. Unpack writes only files that change and `.unpacked` last. As for the maps and text, `make setup` overwrites edits to the ROM's pictures; a file the ROM does not have stays.
+2. `configure.py` gives each YAML file under `extracted/AWRE/assets/gfx/files/` a `GFX` step, `gfx.py pack YAML --out build/rom/files/PATH`, with the PNG beside it as an input. The step writes only a changed file (ninja `restat`), so an edited PNG repacks that file alone and a PNG saved with no change stops there.
+3. `tools/rom_files.py tree` (the `ROM FILES` step) fills the rest of `build/rom/files/` with links to `extract/files/`, and removes what neither `extract/files/` nor a `GFX` step has. `rom_files.py romconfig` points `files_dir` of `build/build/rom_config.yaml` at that directory, so `dsd rom build` takes the file system from there. The `ROM BUILD` step runs `tree` again first, which puts back a link removed by hand, and stops when a file a `GFX` step writes is missing, which happens once when a YAML file comes back with an old date (`mv`, `cp -p`): run `make` again.
+4. An unchanged PNG gives back the ROM's bytes (`test_gfx.py` checks all 1,202 files), so `make release` still matches retail. A YAML file that is removed sends its path back to the ROM's file.
+
+Without the unpacked files (a worktree whose main checkout has not unpacked them, for example) the build takes the ROM's files as they are. `tools/wt_setup.sh` copies the main checkout's `extracted/AWRE/assets/gfx/files/` when it holds a whole unpack.
+
+A picture that packs to a different size moves the files after it in the ROM; the FAT gives their new places, and nothing in the code holds them. The pictures in main's data (small pictures, map panel faces) and the palettes are not files and are not rebuilt yet.
+
+To replace a picture: edit the PNG in an editor that keeps the indexed palette (GIMP, Aseprite), using the 16 colours of the PNG's palette, and run `make`. Only the colour indices go into the file; the colours on screen come from a palette elsewhere (for the CO pictures, in main's data). The size must stay the same: `pack` stops on a PNG of other dimensions than the YAML file gives.
+
+## Adding a file
+
+The game opens these files by path: `Co_LoadLargePicture` calls `FS_ChangeDir("/syogun")`, then `File_UnpackTo(dest, name)` with the file name from `gCoGraphics`, and `FS_OpenFile` finds the name in the File Name Table at run time. No game code holds a file id. The functions that open files by id (`FS_OpenFileFast`, `FS_OpenFileDirect`) are called by the overlay loader, whose ids 0 to 6 come before every file, the sound archive, which gets its id from `FS_ConvertPathToFileID` at run time, and the SDK's archive set-up and Download Play code. So a new file costs no code change beyond what names it.
+
+To add `/syogun/200`: write `extracted/AWRE/assets/gfx/files/syogun/200.png` and `200.yaml`, for example by copying the files of a picture of the same kind and leaving out `sha1` and `source`, and run `make`. The YAML file needs `compression` (`lz77` or `none`), `bpp`, `layout`, `width` and `height`; `size` defaults to width x height x bpp / 8. `configure.py` finds the new pair, and the file lands in the ROM's `/syogun`. A new directory works the same way (`files/mod/face.png` becomes `/mod/face`). The game reaches the file once something names it, such as a new `gCoGraphics` row with the string `"200"`.
+
+What moves when a file is added:
+
+- File ids. `dsd rom build` numbers the files in File Name Table order: each directory's files by name (case ignored), then its subdirectories by name, depth first, from 7 (after the overlays). A file added to `/syogun` takes the id after the last `/syogun` file it sorts behind, and every file after it, in `/syogun`, `/sys` and `/xinfo`, moves up by one. Nothing in the game depends on those ids (above).
+- Places in the ROM. `dsd rom build` writes the files' data in the order of `path_order.txt`, which `dsd rom extract` takes from the ROM, and leaves out a file that no line covers: its FAT entry would stay 0-0. `rom_files.py` writes `build/rom/path_order.txt` with a last line `/`, which places every file not placed yet at the end. A file in a directory the list names (such as `/syogun`) is placed with that directory; a new directory goes at the end.
+
+Tested by hand: a recoloured Jake picture (`/syogun/126` and the others of his row) shows on the CO select screen in melonDS, and a ROM with `/syogun/200` and `/zmod/face` added boots to the main menu with the ids of `/sys` and `/xinfo` moved up by one.
 
 ## Not covered yet
 
 - The `res_*` files (`ohashi/`, `sys/`, `combat/` and others): one LZ77 stream holding several parts of a screen (tiles, maps, palettes, cells). `check` leaves them out.
-- Packed bytes do not go into the ROM: the build still copies `extract/files/`.
-- Palettes and the pictures in main's data are read, not written back.
+- Palettes, the pictures in main's data and the files that are not compressed are read, not written back.
+- A file that is not a picture (palettes, the `res_*` containers, the sound archive) can only be replaced by hand in `extract/files/`, which `make extract` overwrites (issue 0050).

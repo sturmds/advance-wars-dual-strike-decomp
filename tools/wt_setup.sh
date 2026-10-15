@@ -1,7 +1,7 @@
 #!/bin/sh
 # Prepare a git worktree of this repo for building: link the ROM and the
-# tool cache from the main checkout and copy the unpacked maps and text, so
-# nothing is downloaded.
+# tool cache from the main checkout and copy the unpacked maps, text and
+# pictures, so nothing is downloaded.
 # Run from the worktree root. Safe to run twice.
 set -eu
 
@@ -32,4 +32,14 @@ mkdir -p "$here/extracted/AWRE/assets"
 for d in maps text; do
     [ -e "$here/extracted/AWRE/assets/$d" ] || cp -R "$main/extracted/AWRE/assets/$d" "$here/extracted/AWRE/assets/$d"
 done
+# The pictures (about 11 MB on disk) only from a whole unpack. The build
+# does not need them: without them it takes the ROM's files as they are.
+pictures=extracted/AWRE/assets/gfx/files
+if [ ! -e "$here/$pictures" ] && [ -e "$main/$pictures/.unpacked" ]; then
+    mkdir -p "$here/extracted/AWRE/assets/gfx"
+    cp -R "$main/$pictures" "$here/$pictures"
+    echo "wt_setup: copied $pictures from $main"
+elif [ ! -e "$here/$pictures" ]; then
+    echo "wt_setup: $main has no unpacked pictures; the build uses the ROM's files (tools/gfx.py unpack after make extract writes them here)"
+fi
 echo "wt_setup: linked orig/AWRE.nds and .cache, copied extracted/AWRE/assets/maps and text from $main"

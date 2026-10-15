@@ -5,7 +5,7 @@ The ROM split into its parts by `dsd rom extract`, as the build's input. `make e
 | Path | What |
 |---|---|
 | `arm9/`, `arm7/`, `arm9_overlays/` | The code modules as binaries: main, ITCM, DTCM, the overlays, ARM7. `dsd delink` cuts the original objects from these. |
-| `files/` | The ROM's file system (graphics, text, `data/sound_data.sdat`, ...). The build copies it into the new ROM unchanged (issue 0050). |
+| `files/` | The ROM's file system (graphics, `data/sound_data.sdat`, ...). The build links it into `build/rom/files/` (`tools/rom_files.py`), where the pictures packed from `extracted/AWRE/assets/gfx/files/` replace their files (`docs/gfx.md`, "Build"); every other file goes into the new ROM unchanged (issue 0050). |
 | `config.yaml`, `header.yaml`, `banner/`, `header_logo.png`, `path_order.txt` | dsd's description of the ROM, which `dsd rom build` uses to put a ROM back together. |
 
 `make extract` replaces everything in this directory except `README.md` and `.gitkeep`.

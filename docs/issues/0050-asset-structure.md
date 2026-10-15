@@ -16,6 +16,7 @@ The file system (1,799 files, 30 MB in `extract/files/`) is copied into the buil
 - D5 (changed 2026-10-11): game data that we have reversed into a text form we edit enters git, the same as our C; raw asset files still do not. What git can hold: the formats we work out, the tools that unpack and repack them, the text forms, and a map from each file to the functions that load it.
 - The campaign, Versus, War Room and Survival maps are not files: their headers, tiles and units are in ov000. They are unpacked into `extracted/AWRE/assets/maps/` by `make setup` now (`docs/maps.md`, `tools/maps.py`). Combat mode's four maps are files, `/combat/%03x` (`CombatSetup_LoadMapPreviews`): LZ77 `MapData` with their own tile code table (`/combat/res_combat_pnl`). They are still copied.
 - A repacked file must match the original byte for byte, the same as the code.
+- 2026-10-15: the build takes the file system from `build/rom/files/` (`tools/rom_files.py`): links to `extract/files/`, except the files a build step writes there. The 1,202 picture files are the first such files (`tools/gfx.py`, `docs/gfx.md`, "Build"); a new file under `extracted/AWRE/assets/gfx/files/` adds a file to the ROM. Another file type joins by writing its files into `build/rom/files/` and listing them for `rom_files.py tree`, as `configure.py` does for the pictures. Still copied as they are: the sound archive, the `res_*` containers, palettes and the other files that are not compressed.
 
 ## Done when
 
