@@ -128,7 +128,7 @@ int Save_WriteRecord(int recordId, u8* unused, int size) {
           data_02298050.unk_04 = 0xaa;
           data_02298050.endMark = 0x55;
         }
-        data_02298050.unk_05 = 29;
+        data_02298050.version = SAVE_VERSION;
         data_02298050.checksumInv = 0xff;
         data_02298050.checksum = 0;
         data_02298050.recordId = recordId;

@@ -27,6 +27,7 @@ extern u32 data_02297fa8[2 * SAVE_SLOT_COUNT];
 #define SAVE_SLOT_WRITES(slot) ((&data_02297fa8[slot])[SAVE_SLOT_COUNT])
 
 #define SAVE_MAGIC 0x6a777364 /* "dswj" */
+#define SAVE_VERSION 29 /* Save_CheckBuffer fails a slot with another value */
 
 #define SAVE_SLOT_MARK 0x10
 #define SAVE_SLOT_KEEP 0x08 /* set by Save_Format on the slots it keeps */
@@ -40,9 +41,9 @@ extern u32 data_02297fa8[2 * SAVE_SLOT_COUNT];
 /* data_02298050: the 0x3000-byte save buffer. Only the fields that
  * Save_LoadRecord reads are known. It ends with the slot ids and the end mark. */
 typedef struct SaveBuffer {
-  u32 magic;   /* SAVE_MAGIC */
-  u8 unk_04;   /* 0x55 or 0xaa, the opposite of endMark */
-  u8 unk_05;   /* 29 on every write */
+  u32 magic;  /* SAVE_MAGIC */
+  u8 unk_04;  /* 0x55 or 0xaa, the opposite of endMark */
+  u8 version; /* SAVE_VERSION */
   u8 checksum; /* byte sum of the 0x3000 bytes with these two set to 0xff and 0 */
   u8 checksumInv; /* ~checksum */
   u32 counter;    /* save counter of this slot */

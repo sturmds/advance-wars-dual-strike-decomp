@@ -4,8 +4,8 @@
 extern SaveBuffer data_02298050;
 
 /* Checks the save buffer: the magic, the marker byte against the buffer's last byte (0x55 and
- * 0xaa, one each way round), the byte sum and its inverse, and the version byte 29. Returns 0
- * when the buffer is good, 1 when not. */
+ * 0xaa, one each way round), the byte sum and its inverse, and the version byte (SAVE_VERSION).
+ * Returns 0 when the buffer is good, 1 when not. */
 int Save_CheckBuffer(void) {
   u8 sum;
   int i;
@@ -37,7 +37,7 @@ int Save_CheckBuffer(void) {
   } else {
     return 1;
   }
-  if (data_02298050.unk_05 == 29) {
+  if (data_02298050.version == SAVE_VERSION) {
     return 0;
   }
   return 1;

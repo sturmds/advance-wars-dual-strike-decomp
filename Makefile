@@ -231,7 +231,8 @@ TESTS := \
 	tools/tests/test_alias_check.py \
 	tools/tests/test_gdb_rsp.py \
 	tools/tests/test_emu.py \
-	tools/tests/test_maps.py
+	tools/tests/test_maps.py \
+	tools/tests/test_savedit.py
 
 test:
 	@for t in $(CACHED_TESTS) $(TESTS); do $(TEST_ENV) $(PYTHON) $$t || exit 1; done
