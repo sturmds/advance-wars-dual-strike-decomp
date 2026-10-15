@@ -75,7 +75,7 @@ with tempfile.TemporaryDirectory() as tmp:
 
 tree = ROOT / rom_files.FILES
 if (ROOT / rom_files.STAMP).exists() and (ROOT / rom_files.EXTRACT_FILES).is_dir():
-    built = set((ROOT / rom_files.OUT / "pictures.txt").read_text().split())
+    built = set((ROOT / rom_files.BUILT_LIST).read_text().split())
     bad = []
     for p in sorted((ROOT / rom_files.EXTRACT_FILES).rglob("*")):
         rel = p.relative_to(ROOT / rom_files.EXTRACT_FILES).as_posix()

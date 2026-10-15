@@ -56,6 +56,8 @@ from pathlib import Path
 
 import yaml
 
+from rom_files import write_if_changed
+
 ROOT = Path(__file__).resolve().parent.parent
 FILES = Path("extract/files")
 ARM9 = Path("extract/arm9/arm9.bin")
@@ -289,19 +291,6 @@ def grey_palette(count: int) -> list[tuple[int, int, int]]:
 
 def png_chunk(kind: bytes, body: bytes) -> bytes:
     return struct.pack(">I", len(body)) + kind + body + struct.pack(">I", zlib.crc32(kind + body))
-
-
-def write_if_changed(path: Path, data: bytes) -> bool:
-    """Write only a changed file, so ninja (restat) repacks and rebuilds only
-    what changed. A symbolic link at path is replaced, not written through:
-    build/rom/files/ links to extract/files/ (tools/rom_files.py)."""
-    if path.exists() and not path.is_symlink() and path.read_bytes() == data:
-        return False
-    path.parent.mkdir(parents=True, exist_ok=True)
-    if path.is_symlink():
-        path.unlink()
-    path.write_bytes(data)
-    return True
 
 
 def write_png(path: Path, rows: list[bytes], palette: list[tuple[int, int, int]], transparent0: bool = True):

@@ -1,6 +1,6 @@
 # Map data
 
-The campaign, Versus, War Room and Survival maps are not files in the ROM's file system. Their headers, tiles and pre-deployed units are data in overlay 0 (ov000), the overlay loaded during menus and battles. The map content is game data, so it never enters git (tenet 9). `make setup` unpacks it from your own ROM into one YAML file per map under `extracted/AWRE/assets/maps/` (gitignored), and `make` builds ov000's map tables from those files. Git holds only what says how to read and order them: the legend and the three glue files in `assets/maps/`. Combat mode's four maps are separate files (`/combat/%03x`) and are not covered here (issue 0050).
+The campaign, Versus, War Room and Survival maps are not files in the ROM's file system. Their headers, tiles and pre-deployed units are data in overlay 0 (ov000), the overlay loaded during menus and battles. The map content is game data, so it never enters git (tenet 9). `make setup` unpacks it from your own ROM into one YAML file per map under `extracted/AWRE/assets/maps/` (gitignored), and `make` builds ov000's map tables from those files. Git holds only what says how to read and order them: the legend and the three glue files in `assets/maps/`. Combat mode's four maps are separate files (`/combat/%03x`) and are not covered here (issue 0092).
 
 ## Where the game reads them
 

@@ -19,6 +19,7 @@ Pipeline:
   compiled objects, plus delinked ones for everything else --mwldarm--> build/arm9.elf, build/build/*.bin (one per module)
   extract/files/ --rom_files.py tree--> build/rom/files/ (links), build/rom/path_order.txt
   extracted/AWRE/assets/gfx/files/**.png + .yaml --tools/gfx.py pack--> build/rom/files/** (one step per picture)
+  extracted/AWRE/assets/sound/ --tools/sound.py pack--> build/rom/files/data/sound_data.sdat
   ELF --dsd rom config, rom_files.py romconfig--> build/build/rom_config.yaml (files from build/rom/files/)
   --dsd rom build--> build/AWRE.raw.nds --fix_header.py--> build/AWRE.nds
 
@@ -42,6 +43,7 @@ import data_inc
 import gfx
 import maps
 import rom_files
+import sound
 import text
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -176,24 +178,44 @@ def text_inputs() -> list[str]:
         text.SYMBOLS.as_posix(), (text.EXTRACTED / text.UNPACKED).as_posix()]
 
 
-# The ROM's file system (tools/rom_files.py) and the pictures packed into it
-# (tools/gfx.py, docs/gfx.md, "Build"). The list of packed paths is written
-# only when it changes, since rom_files.py tree reruns on it.
-PICTURE_LIST = rom_files.OUT / "pictures.txt"
+# The ROM's file system (tools/rom_files.py) and the files build steps write
+# into it: the pictures (tools/gfx.py, docs/gfx.md, "Build") and the sound
+# archive (tools/sound.py, docs/sound.md, "Build").
+SOUND_FILE = "data/sound_data.sdat"
+NINJA_UNSAFE = re.compile(r"[\s$:]")  # ninja and the shell would need them escaped
 
 
 def picture_outputs() -> dict[str, str]:
     """The file each picture's pack step writes, by its YAML file."""
     pictures = gfx.build_pictures()
     for path in pictures:
-        if re.search(r"[\s$:]", path):  # ninja and the shell would need them escaped
+        if NINJA_UNSAFE.search(path):
             sys.exit(f"configure: {gfx.PICTURES / path}.yaml: a ROM file name takes no space, $ or :")
-    out = ROOT / PICTURE_LIST
-    listing = "".join(f"{path}\n" for path in pictures)
+    return {meta: (rom_files.FILES / path).as_posix() for path, meta in pictures.items()}
+
+
+def sound_inputs() -> list[str]:
+    """sound.yaml and every file beside it, which `sound.py pack` may read;
+    empty without an unpack, and the ROM's archive goes in as it is."""
+    src = ROOT / sound.EXTRACTED
+    if not (src / sound.MANIFEST).exists():
+        return []
+    files = [p.relative_to(ROOT).as_posix() for p in sorted(src.rglob("*"))
+             if p.is_file() and not p.name.startswith(".")]
+    for path in files:
+        if NINJA_UNSAFE.search(path):
+            sys.exit(f"configure: {path}: a file of the sound archive takes no space, $ or : in its name")
+    return files
+
+
+def write_built_list(paths: list[str]) -> None:
+    """The paths under build/rom/files/ that build steps write, for
+    rom_files.py tree. Written only when it changes, since tree reruns on it."""
+    out = ROOT / rom_files.BUILT_LIST
+    listing = "".join(f"{path}\n" for path in paths)
     if not out.exists() or out.read_text() != listing:
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(listing)
-    return {meta: (rom_files.FILES / path).as_posix() for path, meta in pictures.items()}
 
 
 # Data from the ROM (tools/data_inc.py, docs/workflow.md): the .inc.c files
@@ -342,6 +364,11 @@ def main() -> int:
     data_inc_deps = data_inc_users(sources + sources7)
     text_deps = text_outputs()
     pictures = picture_outputs()
+    sound_deps = sound_inputs()
+    sound_out = (rom_files.FILES / SOUND_FILE).as_posix()
+    built = [Path(out).relative_to(rom_files.FILES).as_posix() for out in pictures.values()]
+    write_built_list(built + ([SOUND_FILE] if sound_deps else []))
+    built_outputs = [*pictures.values(), *([sound_out] if sound_deps else [])]
     bss_gen = bss_gen_outputs()
     for src, out in bss_gen.items():
         data_inc_deps.setdefault(src, []).append(out)
@@ -392,6 +419,11 @@ def main() -> int:
         "rule gfx_pack",
         "  command = $python tools/gfx.py pack $in --out $out --quiet",
         "  description = GFX $out",
+        "  restat = 1",
+        "",
+        "rule sound_pack",
+        "  command = $python tools/sound.py pack --out $out --quiet",
+        "  description = SOUND $out",
         "  restat = 1",
         "",
         "rule rom_files",
@@ -470,9 +502,9 @@ def main() -> int:
         "  description = ROM CONFIG",
         "",
         # rom_files.py tree again: it repairs a tree changed by hand since its
-        # own step ran (0.1 s), and stops if a file a GFX step writes is missing.
+        # own step ran (0.1 s), and stops if a file a build step writes is missing.
         "rule rombuild",
-        f"  command = $python tools/rom_files.py tree {PICTURE_LIST.as_posix()} --complete"
+        f"  command = $python tools/rom_files.py tree {rom_files.BUILT_LIST.as_posix()} --complete"
         " && $dsd rom build -c $in -o $out > /dev/null",
         "  description = ROM BUILD $out",
         "",
@@ -527,14 +559,16 @@ def main() -> int:
         " tools/rom_files.py",
         f"  cfg = {cfg}",
         "",
-        f"build {rom_files.STAMP.as_posix()} {rom_files.PATH_ORDER.as_posix()}: rom_files {PICTURE_LIST.as_posix()}"
+        f"build {rom_files.STAMP.as_posix()} {rom_files.PATH_ORDER.as_posix()}: rom_files {rom_files.BUILT_LIST.as_posix()}"
         f" | extract/config.yaml {rom_files.EXTRACT_ORDER.as_posix()} tools/rom_files.py",
         "",
         # Order-only on the tree: it removes the link a pack step replaces.
-        *(f"build {out}: gfx_pack {meta} | {gfx.png_of(Path(meta)).as_posix()} tools/gfx.py || {rom_files.STAMP.as_posix()}\n"
+        *(f"build {out}: gfx_pack {meta} | {gfx.png_of(Path(meta)).as_posix()} tools/gfx.py tools/rom_files.py || {rom_files.STAMP.as_posix()}\n"
           for meta, out in pictures.items()),
+        *([f"build {sound_out}: sound_pack {' '.join(sound_deps)} | tools/sound.py tools/rom_files.py"
+           f" || {rom_files.STAMP.as_posix()}\n"] if sound_deps else []),
         f"build build/AWRE.raw.nds: rombuild build/build/rom_config.yaml | $dsd {rom_files.STAMP.as_posix()}"
-        f" {rom_files.PATH_ORDER.as_posix()} {' '.join(pictures.values())}",
+        f" {rom_files.PATH_ORDER.as_posix()} {' '.join(built_outputs)}",
         "",
         "build build/AWRE.nds: fixheader build/AWRE.raw.nds | orig/AWRE.nds tools/fix_header.py",
         "",

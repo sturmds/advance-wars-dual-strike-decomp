@@ -9,6 +9,12 @@
   shared file written once.
 - pack stops when two entries give one file id different files, and on a
   field the entry does not have.
+- An added sequence (a new id with a new file id after the last file, as
+  docs/sound.md, "Adding a song", says) packs and reads back with its name,
+  fields and bytes, its file last in the FAT.
+- pack writes only a changed archive and replaces a symbolic link at --out
+  instead of writing through it (build/rom/files/ links to extract/files/).
+  unpack leaves unchanged files and files the archive does not have alone.
 - With extract/ present: unpack and pack the ROM's sound_data.sdat in a
   temporary directory and compare the SHA-1 (`sound.py check`). Skipped with a
   message when there is no extract/.
@@ -17,6 +23,7 @@
 import argparse
 import contextlib
 import io
+import os
 import sys
 import tempfile
 from pathlib import Path
@@ -89,6 +96,40 @@ with tempfile.TemporaryDirectory() as tmp:
         expect("made-up: an unknown field stops pack", "returned", "stopped")
     except SystemExit as e:
         expect("made-up: an unknown field stops pack", str(e.code).startswith("error:"), True)
+
+    # Adding a song: a copy of SEQ_A's file under a new id and file id.
+    manifest.write_text(manifest.read_text().replace("slot: 0", "slotNo: 0"))
+    expect("made-up: pack works again", sound.load(tmp / "out") == made_up, True)
+    (tmp / "out/seq/002_SEQ_NEW.sseq").write_bytes(files[0])
+    manifest.write_text(manifest.read_text().replace(
+        "seqarc:", "- {id: 2, name: SEQ_NEW, file: seq/002_SEQ_NEW.sseq, fileId: 7, bankNo: 0, volume: 80,"
+        " channelPrio: 64, playerPrio: 32, playerNo: 0}\nseqarc:", 1))
+    arc = sound.Archive(sound.load(tmp / "out"))
+    expect("added song: name and fields", (arc.names["seq"][2], arc.entries["seq"][2]),
+           ("SEQ_NEW", dict(seq, fileId=7, volume=80)))
+    expect("added song: its file last, the others unchanged", arc.files, files + [files[0]])
+    expect("added song: the other names stay", arc.names["seqarc"], names["seqarc"])
+
+    # pack writes only a changed file, and not through a link.
+    rom_copy, out = tmp / "rom.sdat", tmp / "files/sound_data.sdat"
+    rom_copy.write_bytes(made_up)
+    out.parent.mkdir()
+    out.symlink_to(rom_copy)
+    pack = argparse.Namespace(input=str(tmp / "out"), out=str(out), quiet=True)
+    sound.cmd_pack(pack)
+    expect("pack: a link at --out is replaced", (out.is_symlink(), rom_copy.read_bytes() == made_up), (False, True))
+    expect("pack: the archive holds the added song", out.read_bytes() == sound.load(tmp / "out"), True)
+    os.utime(out, (0, 0))
+    sound.cmd_pack(pack)
+    expect("pack: an unchanged archive is not written", out.stat().st_mtime, 0)
+
+    # unpack again: files it writes keep their dates; the added file stays.
+    first = tmp / "out/seq/000_SEQ_A.sseq"
+    os.utime(first, (0, 0))
+    quiet(sound.cmd_unpack, argparse.Namespace(sdat=str(tmp / "a.sdat"), out=str(tmp / "out")))
+    expect("unpack: an unchanged file is not written", first.stat().st_mtime, 0)
+    expect("unpack: a file the archive does not have stays", (tmp / "out/seq/002_SEQ_NEW.sseq").exists(), True)
+    expect("unpack: sound.yaml is the archive's again", sound.load(tmp / "out") == made_up, True)
 
 # Export: a sequence archive whose second sequence starts 4 bytes into the
 # shared events comes out as an SSEQ holding the events from there on; one

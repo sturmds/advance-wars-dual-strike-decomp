@@ -77,7 +77,7 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0047](0047-review-stamp-without-review.md) | A tenets review stamp did not show that a review ran | closed | loop | M1 |
 | [0048](0048-lost-attempt-tokens-not-counted.md) | Token totals leave out the attempts lost in a session crash | open | loop | M1 |
 | [0049](0049-download-play-child.md) | The DS Download Play child program has no C and is not built | open | decomp | later |
-| [0050](0050-asset-structure.md) | Game assets have no structure beyond the extracted file tree | open | build | M2 |
+| [0050](0050-asset-structure.md) | Game assets have no structure beyond the extracted file tree | closed | build | M2 |
 | [0051](0051-fn-add-includes-trailing-data.md) | `fn.py add` includes data after a function in its delinks.txt range | closed | tools | M1 |
 | [0052](0052-partials-strategy.md) | The game partials need a better tool than permute.py and agent retries | open | tools | M2 |
 | [0053](0053-duplicate-data-symbol-name.md) | Two data symbols with the same name break the arm9 checksum during a replay | open | loop | M1 |
@@ -119,3 +119,5 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0089](0089-function-files-and-headers.md) | One file per function, and prototypes copied into each caller | in progress | decomp | M3 |
 | [0090](0090-build-text-from-bank-files.md) | The build does not take the text from the bank files | closed | tools | later |
 | [0091](0091-text-codes-0x14-0x17.md) | Text codes 0x14 to 0x17 have no names | open | decomp | later |
+| [0092](0092-files-still-copied.md) | 596 files of the ROM's file system are still copied as they are | open | build | later |
+| [0093](0093-sound-heap-room.md) | The room an added sound entry takes in the sound heap is not known | open | emulation | later |

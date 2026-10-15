@@ -2,7 +2,7 @@
 """Sound archive: unpack files/data/sound_data.sdat into extracted/, pack it back.
 
     sound.py unpack [--sdat SDAT] [--out extracted/AWRE/assets/sound]   archive -> one file per FAT entry + sound.yaml
-    sound.py pack [--in extracted/AWRE/assets/sound] [--out build/sound/sound_data.sdat]
+    sound.py pack [--in extracted/AWRE/assets/sound] [--out build/sound/sound_data.sdat] [--quiet]
     sound.py check [--sdat SDAT]                 unpack to a temporary directory, pack, compare the SHA-1
     sound.py list [--sdat SDAT] [--kind seq] [--grep NAME]   id, name, bank, wave archives and size of each entry
     sound.py export [--out extracted/AWRE/music] [--format mp3] [--force] [--auto]
@@ -10,8 +10,9 @@
 
 The archive is a NitroSystem SDAT (docs/sound.md). Everything in it is game
 data from the builder's ROM: the files, the names and the manifest stay in
-extracted/ or build/ and never enter git (tenet 9). The ROM build still
-copies sound_data.sdat from extract/ (issue 0050); `pack` is not part of it.
+extracted/ or build/ and never enter git (tenet 9). The ROM build runs
+`pack --out build/rom/files/data/sound_data.sdat` (tools/configure.py), so an
+edited or added file or entry reaches build/AWRE.nds (docs/sound.md, "Build").
 
   extracted/AWRE/assets/sound/
       sound.yaml                 every INFO entry with its SYMB name, fields and file
@@ -23,9 +24,11 @@ copies sound_data.sdat from extract/ (issue 0050); `pack` is not part of it.
 
 Each FAT entry is written once, named after the first INFO entry that uses it
 (INFO order: seq, seqarc, bank, wavearc, strm); the other entries name the
-same file in sound.yaml. `pack` rebuilds the layout the ROM has: SYMB records
-then strings in record order, INFO records each followed by its entries,
-files in FAT order on 32-byte boundaries (docs/sound.md).
+same file in sound.yaml. `unpack` writes only files that change and leaves
+files the ROM does not have. `pack` rebuilds the layout the ROM has: SYMB
+records then strings in record order, INFO records each followed by its
+entries, files in FAT order on 32-byte boundaries (docs/sound.md). It writes
+only a changed archive, for ninja's restat.
 
 `export` renders audio with zxtune123 (tools.lock), which plays the archive
 through an emulation of the DS sound engine, and encodes it with ffmpeg (a
@@ -51,6 +54,8 @@ import zlib
 from pathlib import Path
 
 import yaml
+
+from rom_files import write_if_changed
 
 ROOT = Path(__file__).resolve().parent.parent
 SDAT = Path("extract/files/data/sound_data.sdat")
@@ -324,10 +329,9 @@ def cmd_unpack(args) -> int:
     data = src.read_bytes()
     arc = Archive(data)
     out = ROOT / args.out
-    # Only what unpack writes is removed, so a file under an old name does not stay behind.
-    for kind in FILE_KINDS:
-        shutil.rmtree(out / kind, ignore_errors=True)
-    shutil.rmtree(out / "other", ignore_errors=True)
+    # Files are written only when they change, so the build's pack step
+    # (restat) stops at an unchanged archive. Other files stay: a mod's added
+    # sequence keeps its file, though not its sound.yaml entry.
     out.mkdir(parents=True, exist_ok=True)
     paths: dict[int, str] = {}                 # file id -> file written
     lines = [f"# {args.sdat}: every INFO entry, in id order, with its SYMB name (docs/sound.md).",
@@ -347,9 +351,7 @@ def cmd_unpack(args) -> int:
                 fid = e["fileId"]
                 if fid not in paths:
                     paths[fid] = file_name(kind, i, arc.name(kind, i))
-                    path = out / paths[fid]
-                    path.parent.mkdir(parents=True, exist_ok=True)
-                    path.write_bytes(arc.files[fid])
+                    write_if_changed(out / paths[fid], arc.files[fid])
                 row["file"] = paths[fid]
             lines.append(f"- {flow(row | e | subs)}")
     # Names without an INFO entry (none in our ROM) and files no entry uses.
@@ -359,11 +361,10 @@ def cmd_unpack(args) -> int:
     unused = [i for i in range(len(arc.files)) if i not in paths]
     for fid in unused:
         paths[fid] = f"other/{fid:03d}.bin"
-        (out / "other").mkdir(exist_ok=True)
-        (out / paths[fid]).write_bytes(arc.files[fid])
+        write_if_changed(out / paths[fid], arc.files[fid])
     lines.append("unusedFiles:" + (" []" if not unused else ""))
     lines += [f"- {{fileId: {fid}, file: {paths[fid]}}}" for fid in unused]
-    (out / MANIFEST).write_text("\n".join(lines) + "\n")
+    write_if_changed(out / MANIFEST, "\n".join(lines) + "\n")
     counts = ", ".join(f"{len(arc.entries[k])} {k}" for k in KINDS if arc.entries[k])
     print(f"unpack: {counts}; {len(arc.files)} files in {args.out}")
     return 0
@@ -424,10 +425,10 @@ def load(src: Path) -> bytes:
 
 def cmd_pack(args) -> int:
     data = load(ROOT / args.input)
-    out = ROOT / args.out
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_bytes(data)
-    print(f"pack: {args.out}, {len(data)} bytes, sha1 {hashlib.sha1(data).hexdigest()}")
+    changed = write_if_changed(ROOT / args.out, data)
+    if not args.quiet:
+        print(f"pack: {args.out}, {len(data)} bytes, sha1 {hashlib.sha1(data).hexdigest()}"
+              f"{'' if changed else ', unchanged'}")
     return 0
 
 
@@ -750,6 +751,7 @@ def main() -> int:
     p = sub.add_parser("pack", help="rebuild the archive from the unpacked files")
     p.add_argument("--in", dest="input", default=str(EXTRACTED))
     p.add_argument("--out", default=str(PACKED))
+    p.add_argument("--quiet", action="store_true", help="print nothing (the build step)")
     p.set_defaults(func=cmd_pack)
     p = sub.add_parser("check", help="unpack and pack again; compare with the ROM's archive")
     p.add_argument("--sdat", default=str(SDAT))

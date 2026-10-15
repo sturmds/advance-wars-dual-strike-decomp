@@ -107,7 +107,7 @@ A day of work brought the counts of `tools/shift_gaps.py` from about 20,000 site
 - ARM7 module parameters, `BuildInfo_Arm7` and the ARM7 crt0 words: nothing rewrites them when ARM7 grows (repo issue 0054).
 - The secure-area CRC stays the retail value in a shifted ROM (issue 0056), and a ROM larger than 32 MiB needs the capacity byte.
 - `.exceptix` and `.ctor` placement for new C++ code in the linker script.
-- The Download Play child `mb_combat_sgn.srl` is copied unchanged (issue 0050).
+- The Download Play child `mb_combat_sgn.srl` is copied unchanged (issues 0049, 0092).
 - The landing replay's moved-name rule does not recognise ARM7 address names (`func_arm7_...`).
 - Local function declarations that disagree with the definitions (`tools/protocheck.py` lists them, e.g. the `PowerHook_*` callers).
 - `gEventTextMap` is declared 12 rows of 32 while the window uses 6.

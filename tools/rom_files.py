@@ -13,7 +13,8 @@ build took extract/files/ as it is (issue 0050).
 `tree` makes build/rom/files/ a copy of extract/files/ made of symbolic
 links, except the paths in LIST (one per line, relative to files/), which
 other build steps write there: tools/gfx.py packs each picture from its PNG
-(docs/gfx.md, "Build"). A path of LIST that the ROM does not have is a new
+(docs/gfx.md, "Build") and tools/sound.py the sound archive from its files
+(docs/sound.md, "Build"). A path of LIST that the ROM does not have is a new
 file. A link or file that is in neither is removed, and so is a directory
 left empty that extract/files/ does not have, since dsd would put an empty
 directory into the ROM.
@@ -38,6 +39,7 @@ OUT = Path("build/rom")
 FILES = OUT / "files"
 PATH_ORDER = OUT / "path_order.txt"
 STAMP = OUT / "files.stamp"
+BUILT_LIST = OUT / "built.txt"  # the paths build steps write; tools/configure.py writes it
 ROM_CONFIG = Path("build/build/rom_config.yaml")
 
 
@@ -68,9 +70,20 @@ def link_files(src_root: Path, out_root: Path, built: set[str]) -> tuple[int, in
     return len(wanted), removed
 
 
-def write_if_changed(path: Path, text: str) -> None:
-    if not path.exists() or path.read_text() != text:
-        path.write_text(text)
+def write_if_changed(path: Path, data: str | bytes) -> bool:
+    """Write only a changed file, so ninja (restat) reruns only what changed.
+    A symbolic link at path is replaced, not written through: build/rom/files/
+    links to extract/files/. Used by the steps that write files there
+    (tools/gfx.py, tools/sound.py)."""
+    if isinstance(data, str):
+        data = data.encode()
+    if path.is_file() and not path.is_symlink() and path.read_bytes() == data:
+        return False
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if path.is_symlink():
+        path.unlink()
+    path.write_bytes(data)
+    return True
 
 
 def cmd_tree(args: list[str]) -> int:

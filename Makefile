@@ -48,8 +48,8 @@ assets: tools extract
 	@$(PYTHON) tools/text.py unpack
 	@$(PYTHON) tools/gfx.py unpack
 
-# The sound archive's files and sound.yaml in extracted/AWRE/assets/sound/.
-# The ROM build still copies sound_data.sdat from extract/ (issue 0050).
+# The sound archive's files and sound.yaml in extracted/AWRE/assets/sound/,
+# which the build packs into the ROM (docs/sound.md, "Build").
 sound: extract
 	@$(PYTHON) tools/sound.py unpack
 

@@ -1,9 +1,10 @@
 # 0050: Game assets have no structure beyond the extracted file tree
 
-- **Status:** open
+- **Status:** closed
 - **Area:** build
 - **Opened:** 2026-10-11
 - **Milestone:** M2
+- **Closed:** 2026-10-15. The build takes the ROM's file system from `build/rom/files/` (`tools/rom_files.py`) and packs the pictures and the sound archive into it from `extracted/`; the maps and the text are built into ov000. The 596 files still copied as they are moved to issue 0092, split by file type as "Done when" asks.
 
 ## Problem
 
@@ -17,6 +18,7 @@ The file system (1,799 files, 30 MB in `extract/files/`) is copied into the buil
 - The campaign, Versus, War Room and Survival maps are not files: their headers, tiles and units are in ov000. They are unpacked into `extracted/AWRE/assets/maps/` by `make setup` now (`docs/maps.md`, `tools/maps.py`). Combat mode's four maps are files, `/combat/%03x` (`CombatSetup_LoadMapPreviews`): LZ77 `MapData` with their own tile code table (`/combat/res_combat_pnl`). They are still copied.
 - A repacked file must match the original byte for byte, the same as the code.
 - 2026-10-15: the build takes the file system from `build/rom/files/` (`tools/rom_files.py`): links to `extract/files/`, except the files a build step writes there. The 1,202 picture files are the first such files (`tools/gfx.py`, `docs/gfx.md`, "Build"); a new file under `extracted/AWRE/assets/gfx/files/` adds a file to the ROM. Another file type joins by writing its files into `build/rom/files/` and listing them for `rom_files.py tree`, as `configure.py` does for the pictures. Still copied as they are: the sound archive, the `res_*` containers, palettes and the other files that are not compressed.
+- 2026-10-15: the sound archive joins the tree. A `SOUND` step runs `tools/sound.py pack` into `build/rom/files/data/sound_data.sdat` from `extracted/AWRE/assets/sound/`, so an edited or added sequence, bank or wave archive changes `build/AWRE.nds` (`docs/sound.md`, "Build" and "Adding a song"). What is left goes to issue 0092.
 
 ## Done when
 

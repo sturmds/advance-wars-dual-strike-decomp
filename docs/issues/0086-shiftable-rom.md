@@ -128,7 +128,7 @@ Nobody fixes:
 - ARM7's module parameters (above);
 - `.exceptix` and `.ctor` for new C++ code: the link drops our objects' `.exceptix`, and `dsd lcf` places no new `.ctor` section;
 - `__CODE_HI` and `__ITCM_HI`, which have wrong values (unused);
-- the Download Play child `mb_combat_sgn.srl`, which is copied unchanged (issue 0050).
+- the Download Play child `mb_combat_sgn.srl`, which is copied unchanged (issues 0049, 0092).
 
 ### 6. Tests
 

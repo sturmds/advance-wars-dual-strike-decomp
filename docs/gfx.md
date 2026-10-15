@@ -81,4 +81,4 @@ Tested by hand: a recoloured Jake picture (`/syogun/126` and the others of his r
 
 - The `res_*` files (`ohashi/`, `sys/`, `combat/` and others): one LZ77 stream holding several parts of a screen (tiles, maps, palettes, cells). `check` leaves them out.
 - Palettes, the pictures in main's data and the files that are not compressed are read, not written back.
-- A file that is not a picture (palettes, the `res_*` containers, the sound archive) can only be replaced by hand in `extract/files/`, which `make extract` overwrites (issue 0050).
+- A file that is neither a picture nor the sound archive (`docs/sound.md`, "Build"), such as a palette or a `res_*` container, can only be replaced by hand in `extract/files/`, which `make extract` overwrites (issue 0092).

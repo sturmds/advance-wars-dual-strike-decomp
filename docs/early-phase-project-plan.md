@@ -108,7 +108,7 @@ Mostly sprinting on decomp and keeping the repo in working order along the way.
 - Revisit the deferred items when they start to matter:
   - ~~ARM7 built from objects instead of copied (D1)~~: done 2026-10-11 (issue 0013). dsd cannot delink ARM7 alone, so `tools/arm7.py` runs it on a stand-in ROM. Decompiling ARM7 to C follows the plan in issue 0042.
   - The DS Download Play child in the file system, a second program with its own ARM9 and ARM7 (issue 0049).
-  - Asset extraction into editable forms (D5, issue 0050). Maps done: unpacked into `extracted/` by `make setup`, `docs/maps.md`.
+  - Asset extraction into editable forms (D5, issue 0050). Maps done: unpacked into `extracted/` by `make setup`, `docs/maps.md`. 2026-10-15: the maps, the text, the pictures and the sound archive are built from `extracted/`; issue 0050 closed, the files still copied are issue 0092.
   - Proper CI with a self-hosted runner that holds the ROM (D4).
 
 ## Milestone 3: Automated QA through emulation
