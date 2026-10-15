@@ -39,6 +39,9 @@ A row of data_inc.txt: module, symbol, address, size in bytes, element type.
   fill a unit of that type from the low end, and one that does not fit
   starts the next unit. `u32:0` ends the unit and takes no value, as in C;
   it stands where one struct of bit fields ends and the next begins.
+  `u8[28+1=100]` is an array field that the C struct has grown: 28 values
+  come from the ROM and one more of value 100 follows, for a table indexed
+  by an id that a mod adds. `u8[28+1=@11]` repeats element 11 instead.
 
 A word that the module's relocs.txt says points somewhere is written as the
 symbol at its target (`to` plus `add`), `(u32)&Name` or `(void*)&Name`, so a
@@ -69,7 +72,7 @@ SIZES = {"u8": 1, "s8": 1, "u16": 2, "s16": 2, "u32": 4, "s32": 4, "u64": 8}
 ALIGN_MAX = 4  # mwccarm aligns a u64 like a word
 PER_LINE = {1: 16, 2: 8, 4: 8, 8: 4}
 ROW = re.compile(r"(\S+)\s+(\w+)\s+(0x[0-9a-fA-F]+)\s+(0x[0-9a-fA-F]+|\d+)\s+(\w+\s*\**|\{[^\s{}]+\})(?:\[(\d+)\])?$")
-FIELD = re.compile(r"(\w+\**)(?::([A-Z][A-Z0-9_]*)|:(\d+))?(?:\[(\d+)\])?$")
+FIELD = re.compile(r"(\w+\**)(?::([A-Z][A-Z0-9_]*)|:(\d+))?(?:\[(\d+)(?:\+(\d+)=(@?\d+))?\])?$")
 PAD = "pad"  # a struct field of padding bytes
 
 
@@ -86,6 +89,7 @@ class Row:
         self.fields: list[tuple[str, int]] = []  # (type, count; 0 for a single value)
         self.names: list[str | None] = []  # per field: the #define prefix its values are named by
         self.layout: list[tuple[int, int, int]] = []  # per field: (offset, first bit, bits; 0 if not a bit field)
+        self.grow: list[tuple[int, str] | None] = []  # per array field: (values added, `V` or `@I`)
         if self.type.startswith("{"):
             self._struct(where)
             return
@@ -110,6 +114,10 @@ class Row:
                 sys.exit(f"error: {where}: field {text!r}: only a number field takes constant names")
             count = int(m.group(4)) if m.group(4) else 0
             bits = int(m.group(3)) if m.group(3) else 0
+            grow = (int(m.group(5)), m.group(6)) if m.group(5) else None
+            if grow and (m.group(1) not in SIZES or bits or m.group(2)
+                         or grow[1].startswith("@") and int(grow[1][1:]) >= count):
+                sys.exit(f"error: {where}: bad grown array field {text!r}")
             if m.group(3) == "0":
                 if m.group(1) not in SIZES or count:
                     sys.exit(f"error: {where}: bad bit field {text!r}")
@@ -135,6 +143,7 @@ class Row:
                 offset += width * max(count, 1)
             self.fields.append((m.group(1), count))
             self.names.append(m.group(2))
+            self.grow.append(grow)
         self.width = offset
         if self.columns or self.size % self.width or self.addr % 4:
             sys.exit(f"error: {where}: {self.size:#x} bytes are not whole structs of {self.width:#x}")
@@ -332,7 +341,7 @@ def render_struct(row: Row, rom: Rom, addr: int, data: bytes) -> str:
     one struct or an array. A brace at the start of a line would take the
     whole element when the struct's first member is an array."""
     parts = []
-    for (cast, count), prefix, (offset, bit, bits) in zip(row.fields, row.names, row.layout):
+    for (cast, count), prefix, (offset, bit, bits), grow in zip(row.fields, row.names, row.layout, row.grow):
         if bits:
             value = int.from_bytes(data[offset:offset + SIZES[cast]], "little") >> bit & ((1 << bits) - 1)
             if cast.startswith("s") and value >> (bits - 1):
@@ -350,6 +359,13 @@ def render_struct(row: Row, rom: Rom, addr: int, data: bytes) -> str:
             raw = data[at:at + width]
             name = constants(prefix)[1].get(int.from_bytes(raw, "little", signed=cast.startswith("s"))) if prefix else None
             values.append(name or literal(row, rom, addr + at, raw, cast))
+        if grow:
+            added, fill = grow
+            if fill.startswith("@"):
+                value = values[int(fill[1:])]
+            else:
+                value = fill if cast.startswith("s") else f"{int(fill):#0{2 + 2 * width}x}"
+            values += [value] * added
         parts += values
     return ", ".join(parts) + ","
 

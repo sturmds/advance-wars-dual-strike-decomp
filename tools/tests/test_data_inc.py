@@ -121,6 +121,15 @@ rom = FakeRom(words(0, 0xaa000000, 0x00010008), {}, {})
 expect("render: a u64 field, word aligned, with ULL",
        body(data_inc.render(data_inc.Row("itcm gS 0x1000 12 {u64,u16,u16}", "t"), rom)),
        "0xaa00000000000000ULL, 0x0008, 0x0001,\n")
+rom = FakeRom(bytes([1, 2, 3, 0]), {}, {})
+expect("render: a grown array field, with a value",
+       body(data_inc.render(data_inc.Row("itcm gS 0x1000 4 {u8,u8[3+2=100]}", "t"), rom)),
+       "0x01, 0x02, 0x03, 0x00, 0x64, 0x64,\n")
+expect("render: a grown array field, with an element repeated",
+       body(data_inc.render(data_inc.Row("itcm gS 0x1000 4 {u8,u8[3+1=@1]}", "t"), rom)),
+       "0x01, 0x02, 0x03, 0x00, 0x03,\n")
+stops("row: a grown array repeats an element it does not have",
+      lambda: data_inc.Row("itcm gS 0x1000 4 {u8,u8[3+1=@3]}", "t"))
 stops("row: a :0 field with a count", lambda: data_inc.Row("itcm gS 0x1000 4 {u32:0[2],u32}", "t"))
 stops("row: bit field wider than its type", lambda: data_inc.Row("itcm gS 0x1000 1 {u8:9}", "t"))
 stops("row: struct field not aligned", lambda: data_inc.Row("itcm gS 0x1000 8 {u8,u32,u8[3]}", "t"))
