@@ -1946,11 +1946,10 @@ CoRecord gCoTable[CO_COUNT] = {
 
 void Data_Unpack(const void* src, void* dst);
 
-extern const void* const gCoPictureData[][136];
-
 /* Unpacks the compressed picture of a CO into OBJ VRAM, starting at tile
  * firstTile. The picture is picked by a byte in overlay 0 data. */
 void Co_UnpackPicture(int coId, int firstTile) {
-  Data_Unpack(gCoPictureData[coId & CO_ID_MASK][data_ov000_023503a0],
+  Data_Unpack(((const void**)CO_TABLE_FIELD(coId & CO_ID_MASK,
+                                            nameGraphics))[data_ov000_023503a0],
               data_027c0280->objVram + firstTile * 32);
 }

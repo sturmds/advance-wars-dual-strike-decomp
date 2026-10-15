@@ -4,16 +4,6 @@
 #include "game/screen_other_map.h"
 #include "game/text_print.h"
 
-/* CoRecord.profiles[0] and [1] of every CO, one CoRecord apart. The original
- * names them as their own symbols, so they are declared here that way. */
-typedef struct CoProfileText {
-  TextRef text;
-  u8 pad_04[sizeof(CoRecord) - sizeof(TextRef)];
-} CoProfileText;
-
-extern CoProfileText data_02153610[];
-extern CoProfileText data_02153614[];
-
 void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 
@@ -30,8 +20,10 @@ void Gfx_RequestLayerCopy(int layer);
 void PlayerInfo_DrawCoProfile(void) {
   Gfx_ClearLayerMap(0);
   Text_PrintId(1, 5, data_027c0280->layer0Map,
-               data_02153610[SHOWN_CO & 0x7f].text.id, 0, 192);
+               ((TextRef*)CO_TABLE_FIELD(SHOWN_CO & 0x7f, profiles[0]))->id, 0,
+               192);
   Text_PrintId(1, 16, data_027c0280->layer0Map,
-               data_02153614[SHOWN_CO & 0x7f].text.id, 0, 448);
+               ((TextRef*)CO_TABLE_FIELD(SHOWN_CO & 0x7f, profiles[1]))->id, 0,
+               448);
   Gfx_RequestLayerCopy(0);
 }

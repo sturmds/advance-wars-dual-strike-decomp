@@ -200,6 +200,13 @@ typedef struct CoRecord {
 
 extern CoRecord gCoTable[CO_COUNT];
 
+/* Address of gCoTable[co].field, written so that the compiler folds the
+ * field's offset into gCoTable's address and adds co * sizeof(CoRecord) to
+ * that, as the original code does (needed to match). The ROM has a symbol
+ * for each such field of gCoTable[0] (config/AWRE/aliases.txt); those hold
+ * retail offsets, so code reads the fields through this macro instead. */
+#define CO_TABLE_FIELD(co, field) ((void*)&((CoRecord*)&gCoTable[0].field)[co])
+
 /* Fails to compile if a field change breaks the sizes the ROM uses. */
 typedef char CoPowerBlock_size_check[sizeof(CoPowerBlock) == 0x80 ? 1 : -1];
 /* tagFirepower has one byte per CO id (retail: 28, a record of 0x220

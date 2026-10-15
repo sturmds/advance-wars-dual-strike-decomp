@@ -4,18 +4,7 @@
 #include "game/screen_other_map.h"
 #include "game/text_print.h"
 
-/* Text ids inside every CoRecord, one CoRecord apart. The original names
- * them as their own symbols, so they are declared here that way. */
-typedef struct CoRecordText {
-  TextRef text;
-  u8 pad_04[sizeof(CoRecord) - sizeof(TextRef)];
-} CoRecordText;
-
-extern CoRecordText data_02153618[]; /* CoRecord.profiles[2], CO Power text */
-extern CoRecordText
-    data_0215361c[]; /* CoRecord.profiles[3], Super CO Power text */
-extern CoRecordText data_0215372c[]; /* CoRecord.blocks[POWER_CO].name */
-extern CoRecordText data_021537ac[]; /* CoRecord.blocks[POWER_SUPER].name */
+#define CO_TEXT(field) (((TextRef*)CO_TABLE_FIELD(SHOWN_CO & 0x7f, field))->id)
 
 void Bg_PutTileQuad(int x, int y, int firstTile, int palette);
 void Gfx_ClearLayerMap(int layer);
@@ -41,20 +30,17 @@ void PlayerInfo_DrawPowers(void) {
   if ((SHOWN_CO & 0x7f) != CO_VON_BOLT) {
     Bg_PutTileQuad(10, 5, TILE_CO_POWER_ICON, 2);
     Text_PrintId(12, 5, data_027c0280->layer0Map,
-                 data_0215372c[SHOWN_CO & 0x7f].text.id, 0, 128);
-    Text_PrintId(1, 7, data_027c0280->layer0Map,
-                 data_02153618[SHOWN_CO & 0x7f].text.id, 0, 192);
+                 CO_TEXT(blocks[POWER_CO].name), 0, 128);
+    Text_PrintId(1, 7, data_027c0280->layer0Map, CO_TEXT(profiles[2]), 0, 192);
     Bg_PutTileQuad(10, 14, TILE_SUPER_POWER_ICON, 2);
     Text_PrintId(12, 14, data_027c0280->layer0Map,
-                 data_021537ac[SHOWN_CO & 0x7f].text.id, 0, 160);
-    Text_PrintId(1, 16, data_027c0280->layer0Map,
-                 data_0215361c[SHOWN_CO & 0x7f].text.id, 0, 448);
+                 CO_TEXT(blocks[POWER_SUPER].name), 0, 160);
+    Text_PrintId(1, 16, data_027c0280->layer0Map, CO_TEXT(profiles[3]), 0, 448);
   } else {
     Bg_PutTileQuad(10, 5, TILE_SUPER_POWER_ICON, 2);
     Text_PrintId(12, 5, data_027c0280->layer0Map,
-                 data_021537ac[SHOWN_CO & 0x7f].text.id, 0, 128);
-    Text_PrintId(1, 7, data_027c0280->layer0Map,
-                 data_0215361c[SHOWN_CO & 0x7f].text.id, 0, 192);
+                 CO_TEXT(blocks[POWER_SUPER].name), 0, 128);
+    Text_PrintId(1, 7, data_027c0280->layer0Map, CO_TEXT(profiles[3]), 0, 192);
   }
   Gfx_RequestLayerCopy(0);
 }

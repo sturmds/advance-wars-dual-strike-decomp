@@ -134,14 +134,10 @@ void SuperBreak_SetUpScreen(Task* task) {
   Wallpaper_LoadOnLayer3((u8)(PLAYER->front.id & PLAYER_CO_ID_MASK));
   Co_LoadArmyGraphicsAndPalette(PLAYER->front.id, 16, 0,
                                 MAP_STATE->currentPlayer);
-  /* needed to match: indexing from &gCoTable[0].blocks[POWER_SUPER] keeps
-     * the 0x1a0 offset in the relocation (data_021537ac) */
   task->unk_58 = BreakText_Load(
-      Text_Get(
-          *(u32*)&(
-               (CoRecord*)&gCoTable[0]
-                   .blocks[POWER_SUPER])[PLAYER->front.id & PLAYER_CO_ID_MASK]
-               .name),
+      Text_Get(((TextRef*)CO_TABLE_FIELD(PLAYER->front.id & PLAYER_CO_ID_MASK,
+                                         blocks[POWER_SUPER].name))
+                   ->id),
       0x1c0, 1, 0);
   if (data_027c027c != data_027c0288.unk_00 && Link_IsActive() == 1) {
     SpriteTask_Create(232, 8, 0, 15);
