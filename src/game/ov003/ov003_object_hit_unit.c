@@ -2,11 +2,11 @@
 #include "game/ov003_object.h"
 #include "game/ov003_unit.h"
 #include "game/Unk_02160abc.h"
+#include "game/math.h"
 
 extern u8 data_ov003_02364d99[][20];
 extern u8 data_ov003_02364d9a[][20];
 
-s32 HwDiv32(s32 numerator, s32 denominator);
 int Ov003_RandNext(void);
 int Ov003_RollValue(int a, int b, int c, int d);
 int func_ov003_0235d468(int row);

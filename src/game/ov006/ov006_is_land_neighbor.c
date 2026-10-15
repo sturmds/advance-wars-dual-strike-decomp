@@ -5,9 +5,6 @@
 int Ov006_IsSpecialCell(int x, int y);
 int Ov006_IsBridgeTile(int x, int y);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 #define TERRAIN_BIT(t) (1 << ((t) - TERRAIN_SEA))
 #define SEA_MASK                                           \
   (TERRAIN_BIT(TERRAIN_SEA) | TERRAIN_BIT(TERRAIN_SHOAL) | \

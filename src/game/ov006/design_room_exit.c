@@ -8,7 +8,6 @@ void Camera_ResetToPreset0(void* camera);
 void Task_Destroy(Task* task);
 void Mem_Free(void* block);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern Camera data_022a7d5c;
 
 /* Undoes DesignRoom_Init: resets the camera, stops the second overlay task

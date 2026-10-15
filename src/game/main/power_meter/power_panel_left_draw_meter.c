@@ -2,9 +2,6 @@
 #include "game/player.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int MainLoop_GetFrameCount(void);
 int CoPowerCost(int player, int slot);
 int SuperPowerCost(int player, int slot);

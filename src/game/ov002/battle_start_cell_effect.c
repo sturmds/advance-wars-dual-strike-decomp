@@ -5,8 +5,6 @@
 #include "game/battle_scene.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 #define MENU ((MenuState*)&gMenuState)
 /* Needed to match: the effect is looked up again for every field, not kept in a local. */
 #define SIDE_EFFECT(side)     \

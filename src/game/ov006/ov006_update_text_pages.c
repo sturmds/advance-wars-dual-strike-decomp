@@ -2,8 +2,8 @@
 #include "game/keypad.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov006_0235f690.h"
+#include "sdk/fs.h"
 
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void* File_Load(const char* path);
 void ScriptSlot_ClearCallback(int slot);
@@ -23,7 +23,6 @@ void Ov006_DrawTextPage2(void);
 void Ov006_DrawTextPage1(void);
 void Ov006_QueuePage2Icons(void);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern const char data_ov006_0236c0c8[];
 extern const char data_ov006_0236c0d4[];
 extern const char data_ov006_0236c0d8[];

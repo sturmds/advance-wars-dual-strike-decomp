@@ -7,8 +7,6 @@ void Bg_PutTileBlock(u16* map, int x, int y, const u8* block, u16 tileAdd);
 void Gfx_RequestLayerCopy(int layer);
 int VsSetup_GetSlotTileX(int slot);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

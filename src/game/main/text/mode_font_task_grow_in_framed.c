@@ -2,17 +2,15 @@
 #include "game/task.h"
 #include "game/mode_font_task.h"
 #include "game/oam_cells.h"
+#include "game/oam_buffer.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-int HwDiv32(int num, int den);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Task_ResumeScript(Task* task);
 
 /* Sine table, index 64 = cosine of 0. Needed to match: const lets mwcc
  * load the sine and cosine once. */
-extern const s16 gSineTable[];
 
 #define SIN0 (gSineTable[0])
 #define COS0 (gSineTable[64])

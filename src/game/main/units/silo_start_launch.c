@@ -4,8 +4,6 @@
 #include "game/play_records.h"
 #include "game/player.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern const TaskScriptCmd data_02169344[];
 
 /* Work area of the silo launch task (script data_02169344). */
@@ -20,8 +18,6 @@ typedef struct SiloLaunchTask {
   u16 siloY;
 } SiloLaunchTask;
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
-
 /* Starts the launch of the silo at (siloX, siloY) at the target tile
  * (targetX, targetY). parentOrList below 8 is a task list level, otherwise
  * the parent task. */
@@ -29,7 +25,7 @@ void Silo_StartLaunch(int siloX, int siloY, int targetX, int targetY,
                       void* parentOrList) {
   SiloLaunchTask* task;
 
-  if (GAME->players[GAME->currentPlayer].controller ==
+  if (MAP_STATE->players[MAP_STATE->currentPlayer].controller ==
       PLAYER_CONTROLLER_HUMAN) {
     if (gPlayRecords.silosLaunched < 999999) {
       gPlayRecords.silosLaunched++;

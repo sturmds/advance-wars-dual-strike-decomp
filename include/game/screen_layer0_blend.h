@@ -4,8 +4,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Alpha-blends layer 0 over layers 1 to 3 and the sprites, EVA 0 and
  * EVB 16: layer 0 starts fully transparent. Screen_StartLayer0Blend writes
  * the same registers in the same order. */

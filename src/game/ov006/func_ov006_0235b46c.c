@@ -3,12 +3,8 @@
 
 int func_ov006_0235b784(int x, int y);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define CELL_AT(x, y) \
-  (STATE->mapTiles->mapCells[(x) + STATE->mapTiles->rowStart[y]])
+  (MAP_STATE->mapTiles->mapCells[(x) + MAP_STATE->mapTiles->rowStart[y]])
 
 /* Map generator test on tile (x, y). func_ov006_0235b784 returns 1 for a
  * neighbour off the map or of cell code 0, 19, 42 (sea) or 360. Unless such

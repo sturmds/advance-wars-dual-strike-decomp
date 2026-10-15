@@ -4,8 +4,6 @@
 #include "game/ov003_marker.h"
 #include "game/terrain.h"
 
-extern u8
-    data_ov003_02365d10[]; /* per tile code: bits 5-7 row, bits 0-4 terrain */
 /* Bytes 0x11 and 0x12 of the 20-byte Ov003TileInfo entries in
  * data_ov003_02364d88: index with type * 20. */
 extern u8 data_ov003_02364d99[];

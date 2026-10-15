@@ -4,10 +4,6 @@
 #include "game/info_panel.h"
 #include "game/map_unit.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0280* data_027c0280;
-
 extern void* data_021663b4[]; /* [owner - 1]: unit sprite shape with a badge */
 extern void* data_021663c8[]; /* [owner - 1]: unit sprite shape without one */
 
@@ -19,7 +15,6 @@ int Player_GetUnitIconTile(int player, int unitType);
 void TransferQueue_Add(const void* src, void* dst, u32 size);
 void Oam_PutSprite(int x, int y, void* shape, int tileAndPalette);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define GFX data_027c0280
 
 /* Object tiles of slot 0's sprite; each slot takes 4 tiles. */
@@ -53,7 +48,7 @@ void InfoPanel_DrawUnit(s16 x, s16 y, int type, int owner, u8 carrying,
     carrying = TRUE;
   }
   badges = 0;
-  if (UnitType_HidesCargo((u8)type, STATE->currentPlayer, (u16)owner)) {
+  if (UnitType_HidesCargo((u8)type, MAP_STATE->currentPlayer, (u16)owner)) {
     QUEUE_BADGE(BADGE_HIDDEN, slot, owner);
     badges++;
   } else {

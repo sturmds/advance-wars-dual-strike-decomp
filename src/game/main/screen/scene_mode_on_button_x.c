@@ -1,8 +1,7 @@
 #include "types.h"
+#include "game/screen.h"
 
 void Sound_PlaySe(int id);
-int SceneMode_IsChanging(void);
-int SceneMode_RequestNext(void);
 
 /* Map X button: unless a mode change is already running, requests the next
  * mode and plays sound effect 155. Returns TRUE if it requested one. */

@@ -10,9 +10,6 @@ typedef struct Vec3 {
   int z;
 } Vec3;
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 void UnitShowTask_OnDestroy(void);
 void func_ov000_022ad7e0(int arg);
 void UnitShowTask_Update(void);
@@ -277,8 +274,6 @@ void SpriteAnim_Draw(void* sprite, int x, int y);
 void func_020224d4(void);
 void SpriteAnim_Draw3d(void* sprite, Vec3* pos, Vec3* rot);
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
-
 /* Puts the task's sprite on its tile. The first screen draws it in 3D (the
  * x and y use different scales); the other screen draws
  * a 2D sprite relative to the map scroll. */
@@ -296,7 +291,7 @@ void UnitShowTask_PlaceSprite(UnitShowTask* task) {
     SpriteAnim_Draw3d(task->sprite, &pos, &rot);
     *(volatile int*)0x04000448 = 1;
   } else {
-    SpriteAnim_Draw(task->sprite, task->x - GAME->unk_1c4->scrollX + 8,
-                    task->y - GAME->unk_1c4->scrollY + 8);
+    SpriteAnim_Draw(task->sprite, task->x - MAP_STATE->unk_1c4->scrollX + 8,
+                    task->y - MAP_STATE->unk_1c4->scrollY + 8);
   }
 }

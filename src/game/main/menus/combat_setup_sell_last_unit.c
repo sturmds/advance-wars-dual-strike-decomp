@@ -2,12 +2,10 @@
 #include "game/menu_state.h"
 #include "game/Unk_0229fb30.h"
 #include "game/Unk_02160ac0.h"
+#include "game/menu_button.h"
 
 void Sound_PlaySe(u32 soundId);
-void MenuButton_Close(int id);
 void CombatSetup_DrawShop(void);
-
-extern MenuState gMenuState;
 
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)

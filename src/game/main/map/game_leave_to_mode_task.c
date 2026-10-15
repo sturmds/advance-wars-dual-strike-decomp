@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/task.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 void func_020d331c(void);
 BOOL Map_IsCoSelectPhase(void);
 void func_020e888c(void);

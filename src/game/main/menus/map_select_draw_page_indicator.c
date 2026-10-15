@@ -2,17 +2,11 @@
 #include "game/menu_state.h"
 #include "game/Unk_02080440.h"
 #include "game/oam_cells.h"
+#include "game/math.h"
+#include "game/map_select.h"
 
-s32 HwDiv32(s32 numerator, s32 denominator);
-int MapSelect_GetTab(void);
 void Sprite_QueueAt(int a0, int x, int y, void* a3, int attr, int tile);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern MenuState gMenuState;
-extern MapListTables data_0229c768;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define MENU ((MenuState*)&gMenuState)
 
 /* Draws the page indicator of a map list: the digit of the current page
@@ -34,9 +28,10 @@ void MapSelect_DrawPageIndicator(int x, int y, int list) {
                   1) * 2 +
                      0x180);
   Sprite_QueueAt(0, (x + 8) & 0x1ff, y & 0xff, &data_027c0028, 0x1000, 0x194);
-  columns =
-      STATE->gameMode == GAME_MODE_WAR_ROOM ? 7 : (STATE->twoMaps == 0 ? 9 : 8);
-  rows = STATE->gameMode == GAME_MODE_WAR_ROOM ? 1 : 3;
+  columns = MAP_STATE->gameMode == GAME_MODE_WAR_ROOM
+                ? 7
+                : (MAP_STATE->twoMaps == 0 ? 9 : 8);
+  rows = MAP_STATE->gameMode == GAME_MODE_WAR_ROOM ? 1 : 3;
   pages = HwDiv32(MENU->setup.lists[data_0229c768.listOfTab[MapSelect_GetTab()]]
                           .mapCount -
                       1,

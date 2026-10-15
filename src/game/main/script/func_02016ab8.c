@@ -2,7 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
 void func_02004b44(u16 arg);
 
 BOOL func_02016ab8(int slot) {

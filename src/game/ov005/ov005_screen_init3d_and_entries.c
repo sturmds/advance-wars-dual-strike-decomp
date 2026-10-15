@@ -3,18 +3,15 @@
 #include "game/screen_other_map.h"
 #include "game/Unk_ov005_0236bb90.h"
 #include "sdk/os.h"
+#include "sdk/gx_load.h"
+#include "sdk/fs.h"
 
 void G3i_PerspectiveW_(int fovSin, int fovCos, int aspect, int nearZ, int farZ,
                        int scale, BOOL load,
                        void* mtx); /* SDK perspective projection */
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void* File_Load(const char* path);
 void Mem_Free(void* ptr);
-void GX_BeginLoadTexPltt(void);
-void GX_LoadTexPltt(const void* src, u32 offset,
-                    u32 size); /* guess: copies to texture palette VRAM */
-void GX_EndLoadTexPltt(void);
 
 extern char data_ov005_0236988c[];
 /* layer 2 map */

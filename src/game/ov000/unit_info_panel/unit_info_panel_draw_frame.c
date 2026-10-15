@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
 extern u8 data_ov000_022da898[];
 
 void Bg_PutTileBlock(u16* map, int x, int y, const u8* block, u16 tileAdd);

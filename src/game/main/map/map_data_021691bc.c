@@ -3,10 +3,10 @@
 #include "game/event_script.h"
 #include "game/song.h"
 #include "game/task.h"
+#include "game/screen.h"
 
 void MenuDepth_Pop(void);
 void MenuDepth_Push(void);
-void SceneMode_IsChanging(void);
 void SiloLaunch_PickTargetStep(void);
 void TileEffectTask_StartMissileFall(void);
 void TileEffectTask_StartMissileFallNoEffect(void);

@@ -5,10 +5,6 @@
 #include "game/Unk_02290118.h"
 #include "game/save_progress.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_02290118 data_02290118;
-
 /* Needed to match: the original copies each 4-skill set as one 4-byte unit. */
 typedef struct SkillSet {
   u8 id[4];

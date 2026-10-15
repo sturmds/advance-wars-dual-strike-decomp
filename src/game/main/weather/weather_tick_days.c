@@ -3,10 +3,6 @@
 
 BOOL Player_IsInGame(u8 player);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define WEATHER (data_027c027c->unk_5c[data_027c0284])
 
 /* Counts down the current player's weather days. TRUE when they reach 0 and
@@ -15,15 +11,15 @@ BOOL Weather_TickDays(void) {
   int player;
   int days;
 
-  if (WEATHER->weatherDays[STATE->currentPlayer] != 0) {
-    WEATHER->weatherDays[STATE->currentPlayer]--;
+  if (WEATHER->weatherDays[MAP_STATE->currentPlayer] != 0) {
+    WEATHER->weatherDays[MAP_STATE->currentPlayer]--;
   }
-  days = WEATHER->weatherDays[STATE->currentPlayer];
+  days = WEATHER->weatherDays[MAP_STATE->currentPlayer];
   if (days > 0) {
     return FALSE;
   }
   for (player = 1; player <= PLAYER_SLOT_LAST; player++) {
-    if (player == STATE->currentPlayer || !Player_IsInGame(player)) {
+    if (player == MAP_STATE->currentPlayer || !Player_IsInGame(player)) {
       continue;
     }
     if (days != WEATHER->weatherDays[player]) {

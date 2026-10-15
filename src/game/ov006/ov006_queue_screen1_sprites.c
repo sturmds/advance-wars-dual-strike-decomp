@@ -11,11 +11,6 @@ void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 BOOL SpriteFile_Queue(void* set, int index, int arg, int x, int y, int attr,
                       int tile, int list);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-extern u8 data_0217eb08[];
-extern u8 data_02180b08[];
-extern u8 data_0217fb08[];
-
 u8 data_ov006_0236a9e8[] = {
 #include "data/ov006/data_ov006_0236a9e8.inc.c"
 };

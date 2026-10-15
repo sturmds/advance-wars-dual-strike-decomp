@@ -5,8 +5,6 @@
 void Sound_PlaySe(u32 soundId);
 void CombatSetup_DrawShopHelp(void);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

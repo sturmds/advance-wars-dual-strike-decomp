@@ -1,7 +1,6 @@
 #include "types.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numer, s32 denom);
-s32 HwMod32(s32 numerator, s32 denominator);
 void func_020344dc(int x, int y, int matrixIndex, int frame);
 void func_02034654(int x, int y, int digit, int matrixIndex, int frame);
 

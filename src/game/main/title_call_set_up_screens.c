@@ -2,25 +2,16 @@
 #include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
+#include "game/screen.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-void Screen_SetBgMode(int mode);
-void Screen_InitLayers(const void* config);
 u8* File_Load(const char* path);
 void Data_Unpack(const void* src, void* dest);
 void Palette_Load(const void* src, u32 offset, u32 size);
 void Gfx_RequestLayerCopy(int layer);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 void Mem_Free(void* block);
-void SpriteStrip_LoadMapName(int mapId, int arg);
-void TitleCall_SetBg3Zoom(int scale, int angle);
-void Screen_SetBothNibbles(int value);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-extern int data_027c0284;
 extern GfxLayer
     data_0215bc40[]; /* main screen layer config for Screen_InitLayers */
 extern GfxLayer data_0215bc90[];   /* sub screen layer config */

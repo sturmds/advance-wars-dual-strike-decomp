@@ -4,9 +4,9 @@
 #include "game/screen_other_map.h"
 #include "game/Unk_ov005_0236bb80.h"
 #include "game/ov005_ripple.h"
+#include "game/math.h"
 
 void* Mem_Alloc(s32 size);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void DmaTasks_StartPair(s16* src1, s16* src2, volatile u16* dest1,
                         volatile u16* dest2, void (*onFrame1)(void),
                         void (*onFrame2)(void));

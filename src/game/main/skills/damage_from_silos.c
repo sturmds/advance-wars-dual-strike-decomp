@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/skills.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Reduction of the damage a player's units take from missile silos, from
  * the skills of one CO (coSlot 0 front, 1 back): 10 with Missile Guard. */
 int DamageFromSilos(int playerIndex, int coSlot) {

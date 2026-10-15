@@ -1,11 +1,10 @@
 #include "types.h"
+#include "game/math.h"
 
 extern u8 data_02168660[];
 extern u8 data_02168678[];
 extern u8 data_0216870c[];
 
-int HwDiv32(int num, int den);
-int HwMod32(int num, int den);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
 /* Main-module copy of PowerMeter_QueueStars (ov000) for the power panel on

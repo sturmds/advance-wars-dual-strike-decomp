@@ -3,8 +3,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/weather.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
 extern char gWeatherSnowFileName[]; /* "0b0" */
 /* 16 rows of three: vx, vy and sprite frame (see WeatherFx_InitSand). */
 extern u16 gWeatherParticleSpeeds[];

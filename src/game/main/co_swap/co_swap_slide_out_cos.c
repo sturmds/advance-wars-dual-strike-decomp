@@ -2,10 +2,9 @@
 #include "game/co_swap.h"
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
+#include "game/math.h"
+#include "game/win_quote.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list,
-                            BOOL flip);
 s16 BreakText_GetScreenX(u8 slot);
 void BreakText_QueueLetter(u8 slot, u16 x, int y, int attr, int arg);
 void Mem_Copy32(const void* src, void* dst, u32 size);
@@ -15,8 +14,6 @@ void Palette_BlendWithColor(u16* palette, u16 color, u8 palWeight,
                             u8 colorWeight);
 void Palette_Flush(void);
 void Task_ResumeScript(Task* task);
-
-extern MenuState gMenuState;
 
 /* Script step of the CO swap cut-in (UnitAction_SwapCo). The front and back
  * CO pictures move apart by up to 128 pixels over 26 frames, and the

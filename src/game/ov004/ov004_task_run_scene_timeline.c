@@ -2,6 +2,7 @@
 #include "game/screen_other_map.h"
 #include "game/task.h"
 #include "game/Unk_ov004_022bf158.h"
+#include "game/screen.h"
 
 #define REG_MTX_PUSH ((volatile u32*)0x04000444)
 #define REG_MTX_POP ((volatile u32*)0x04000448)
@@ -82,7 +83,6 @@ void Ov004_LoadBg3FromResource(const char* name, int tilesOffset, int mapOffset,
 void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);
 void Gfx_ClearLayerMap(int layer);
 BOOL Screen_IsTextBg(int layer);
-BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
 

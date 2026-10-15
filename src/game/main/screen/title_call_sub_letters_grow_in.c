@@ -2,19 +2,15 @@
 #include "game/oam_cells.h"
 #include "game/task.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen.h"
+#include "game/oam_buffer.h"
+#include "game/screen_other_map.h"
+#include "game/math.h"
 
-int HwDiv32(int num, int den);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
-void Screen_SetCurrentGfx(void* state);
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 Task* Task_FindByScript(const void* script);
 void Task_ResumeScript(Task* task);
-void TitleCall_StartNumberTask(void* parentOrList);
 
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-extern const s16 gSineTable[];
 extern const u8 data_0215bb60[];
 extern const TaskScriptCmd data_0215bc10[];
 

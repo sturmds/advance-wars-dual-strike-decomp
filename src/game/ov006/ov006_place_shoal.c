@@ -10,11 +10,6 @@ void Ov006_StoreMapCell(int x, int y, int value);
 int Ov006_TileMatches(int x, int y, int terrain);
 void Ov006_RefreshNeighborShoals(int x, int y);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* Tries to put shoal at (x, y). 0: refused (Ov006_CountMatchingNeighbors or
  * Ov006_GetShoalGraphic is negative, and the old tile is put back in the second
  * case); 1: placed. */
@@ -26,7 +21,7 @@ int Ov006_PlaceShoal(int x, int y) {
     return 0;
   }
   Ov006_TurnToSea(x, y);
-  oldTile = STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]];
+  oldTile = MAP_STATE->mapTiles->tiles[x + MAP_STATE->mapTiles->rowStart[y]];
   Ov006_SetTerrain(x, y, TERRAIN_SHOAL);
   result = Ov006_GetShoalGraphic(x, y);
   if (result < 0) {

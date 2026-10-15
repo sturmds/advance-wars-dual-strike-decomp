@@ -10,7 +10,6 @@ void func_ov003_0235ca24(void);
 void Ov003_DestroyTasks(void);
 void func_ov003_02353bac(void);
 
-extern Unk_027c0280* data_027c0280;
 extern u8* data_ov003_02365b10;
 
 /* Undoes Ov003_Init: tears down the overlay's tasks and frees its two buffers. */

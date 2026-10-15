@@ -2,8 +2,6 @@
 #include "game/design_map.h"
 #include "game/save_progress.h"
 
-extern SaveRecordBuffer data_02291774;
-
 void Mem_CopyUnits(const void* src, void* dst, u32 size, u32 unitBits);
 void Save_WriteRecord(int recordId, DesignMapRecord* record, int size);
 void DesignMap_RefreshAllRows(void);

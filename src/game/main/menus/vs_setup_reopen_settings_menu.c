@@ -10,8 +10,6 @@ void VsSetup_DrawSubSlotPanels(void);
 void VsSetup_AddSettingButtonsAndArrows(void);
 void VsSetup_ShowSettingHelp(void);
 
-extern MenuState gMenuState;
-
 #define MENU ((MenuState*)&gMenuState)
 
 /* Settings menu without the CO pictures: runs Gfx_ClearLayerMap and a layer copy on layers 0 to 2 of

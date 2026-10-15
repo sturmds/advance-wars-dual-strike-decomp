@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/zoom_sprite_task.h"
+#include "game/math.h"
 
 const u8 data_021388f0[] = {
 #include "data/main/data_021388f0.inc.c"

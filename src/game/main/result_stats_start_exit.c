@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/menu_button.h"
-
-void Screen_SetBothNibbles(int value);
+#include "game/screen.h"
 
 extern const TaskScriptCmd data_0215a628[];
 

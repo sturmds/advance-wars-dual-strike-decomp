@@ -1,14 +1,11 @@
 #include "types.h"
 #include "game/menu_state.h"
 #include "game/oam_cells.h"
-
-extern MenuState gMenuState;
+#include "game/math.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 int Co_GetRankFiltered(int coId, int army);
 int Co_GetExperienceFiltered(int coId, int army);
-s32 HwDiv32(s32 numerator, s32 denominator);
-s32 HwMod32(s32 numerator, s32 denominator);
 
 #define MENU (gMenuState.unk_0206d67c)
 

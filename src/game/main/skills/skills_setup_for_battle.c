@@ -6,15 +6,11 @@
 #include "game/map_header.h"
 #include "game/battle_save.h"
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
 /* The same state, reached through the screen table instead of data_027c027c. */
 #define SCREEN_STATE                                       \
   (((Unk_02080440*)(&data_027c0288.unk_00)[data_027c0284]) \
        ->unk_48[data_027c0284])
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern u32 gLinkPlay;
 static u32 data_022a72b8[SKILL_SET_WORDS];
 /* skills a tag partner lends, per player and CO slot */
@@ -59,14 +55,14 @@ void Skills_SetupForBattle(int mode, int mapId, int frontSet, int backSet) {
       Skills_Copy(data_022a72b8, PLAYER_SKILLS[player][sets[i]]);
     }
   }
-  if (STATE->gameMode == GAME_MODE_DESIGN_ROOM) {
+  if (MAP_STATE->gameMode == GAME_MODE_DESIGN_ROOM) {
     return;
   }
   if (gLinkPlay != 0) {
     for (linkPlayer = 1; linkPlayer < ARMY_SLOT_COUNT; linkPlayer++) {
-      if (STATE->players[linkPlayer].controller != PLAYER_CONTROLLER_NONE) {
+      if (MAP_STATE->players[linkPlayer].controller != PLAYER_CONTROLLER_NONE) {
         for (linkI = 0; linkI < PLAYER_CO_COUNT; linkI++) {
-          if ((&STATE->players[linkPlayer].front)[linkI].id &
+          if ((&MAP_STATE->players[linkPlayer].front)[linkI].id &
               PLAYER_CO_ID_MASK) {
             Skills_Copy(LinkSkills_GetPlayerSet(linkPlayer, sets[linkI]),
                         PLAYER_SKILLS[linkPlayer][sets[linkI]]);
@@ -77,12 +73,12 @@ void Skills_SetupForBattle(int mode, int mapId, int frontSet, int backSet) {
     return;
   }
   for (humanPlayer = 1; humanPlayer < ARMY_SLOT_COUNT; humanPlayer++) {
-    if (STATE->players[humanPlayer].controller != PLAYER_CONTROLLER_NONE &&
+    if (MAP_STATE->players[humanPlayer].controller != PLAYER_CONTROLLER_NONE &&
         SCREEN_STATE->players[humanPlayer].controller ==
             PLAYER_CONTROLLER_HUMAN) {
       for (humanI = 0; humanI < PLAYER_CO_COUNT; humanI++) {
-        humanCo =
-            (&STATE->players[humanPlayer].front)[humanI].id & PLAYER_CO_ID_MASK;
+        humanCo = (&MAP_STATE->players[humanPlayer].front)[humanI].id &
+                  PLAYER_CO_ID_MASK;
         if (humanCo != 0) {
           Skills_Copy(gCoEquippedSkills[humanCo][mode == GAME_MODE_VERSUS
                                                      ? Co_GetForceRankSetIndex(
@@ -94,7 +90,7 @@ void Skills_SetupForBattle(int mode, int mapId, int frontSet, int backSet) {
     }
   }
   for (player = 1; player < ARMY_SLOT_COUNT; player++) {
-    if (STATE->players[player].controller != PLAYER_CONTROLLER_NONE &&
+    if (MAP_STATE->players[player].controller != PLAYER_CONTROLLER_NONE &&
         SCREEN_STATE->players[player].controller != PLAYER_CONTROLLER_HUMAN) {
       switch (mode) {
         case GAME_MODE_CAMPAIGN:
@@ -115,8 +111,8 @@ void Skills_SetupForBattle(int mode, int mapId, int frontSet, int backSet) {
           break;
         case GAME_MODE_VERSUS:
           for (versusI = 0; versusI < PLAYER_CO_COUNT; versusI++) {
-            versusCo =
-                (&STATE->players[player].front)[versusI].id & PLAYER_CO_ID_MASK;
+            versusCo = (&MAP_STATE->players[player].front)[versusI].id &
+                       PLAYER_CO_ID_MASK;
             if (versusCo != 0) {
               Skills_Copy(gCoEquippedSkills[versusCo][Co_GetForceRankSetIndex(
                               versusCo, player)],

@@ -1,22 +1,17 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 void Save_LoadProfiles(void);
 void Save_LoadProgress(void);
 void Save_LoadSurvivalState(void);
 void func_0210322c(void);
 void func_0210372c(void);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* Loads the saved profiles and progress the game mode needs, then starts
  * its task. The war room starts func_0210322c when coSelectPhase is set and
  * func_0210372c otherwise. player is not used. */
 void Game_LoadSavesAndStartModeTask(int player, int coSelectPhase) {
-  switch (STATE->gameMode) {
+  switch (MAP_STATE->gameMode) {
     case GAME_MODE_CAMPAIGN:
       Save_LoadProfiles();
       Save_LoadProgress();

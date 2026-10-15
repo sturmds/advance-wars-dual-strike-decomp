@@ -1,13 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/unit_stats.h"
-
-s32 HwDiv32(s32 numerator, s32 denominator);
-
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
+#include "game/math.h"
 
 /* TRUE when tile (x, y) holds another unit of the current player, other than
  * the acting unit and never Oozium, that is below 10 shown hp or short of
@@ -17,19 +11,19 @@ BOOL Tile_HasUnitToRepair(s16 x, s16 y) {
   u8 slot;
   u32 shownHp; /* needed to match: unsigned compare */
 
-  if (x < 0 || x >= STATE->unk_1c4->mapWidth || y < 0 ||
-      y >= STATE->unk_1c4->mapHeight) {
+  if (x < 0 || x >= MAP_STATE->unk_1c4->mapWidth || y < 0 ||
+      y >= MAP_STATE->unk_1c4->mapHeight) {
     return FALSE;
   }
-  slot = STATE->mapTiles->unk_508[x + STATE->mapTiles->rowStart[y]];
+  slot = MAP_STATE->mapTiles->unk_508[x + MAP_STATE->mapTiles->rowStart[y]];
   if (slot == 0) {
     return FALSE;
   }
-  if ((slot & 0xc0) != STATE->currentUnitBase) {
+  if ((slot & 0xc0) != MAP_STATE->currentUnitBase) {
     return FALSE;
   }
-  unit = &STATE->units[slot];
-  if (unit == STATE->actingUnit) {
+  unit = &MAP_STATE->units[slot];
+  if (unit == MAP_STATE->actingUnit) {
     return FALSE;
   }
   if (unit->type == UNIT_OOZIUM) {

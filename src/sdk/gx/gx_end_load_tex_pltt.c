@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/gx_load.h"
-
-void GX_SetBankForTexPltt(int bank);
+#include "sdk/gx.h"
 
 void GX_EndLoadTexPltt(void) {
   if (data_0216d958 != -1) {

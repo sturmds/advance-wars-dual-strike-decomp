@@ -1,9 +1,6 @@
 #include "sdk/os.h"
 #include "sdk/snd.h"
 
-extern SndCommand* data_022a9c68;
-extern u32 data_022a9c6c;
-extern SndCommand* data_022a9c78;
 int data_022a9c7c; /* also declared in src/sdk/snd/snd_command_init.c */
 u32 data_022a9c88; /* tag of the newest flushed batch */
 int data_022a9c80; /* next slot in data_022a9c8c */

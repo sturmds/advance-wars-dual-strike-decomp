@@ -1,10 +1,11 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
+#include "game/text_print.h"
+#include "game/menu_button.h"
 
 void Gfx_InitBothScreens(void);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void* File_Load(const char* path);
 void Mem_Free(void* file);
 void Data_Unpack(const void* src, void* dst);
@@ -13,21 +14,14 @@ void Gfx_LoadBmap09f(void* target, int a, int b);
 void Font_LoadDigits(int a);
 void Gfx_RequestLayerCopy(int layer);
 void func_0201e6e8(int x, int y, int width, int height);
-s8 Text_PrintId(s16 x, s16 y, u16* map, u32 textId, u16 unk_30, u16 unk_32);
 void Bg_PutTileQuad(int x, int y, int firstTile, int palette);
 void Wallpaper_LoadBoth(void);
 void ModeFont_Load(int tile, int paletteSlot);
 const void* Text_Get(u32 textId);
 void ModeFont_ShowTextOnScreen(const void* text, int tile, int paletteSlot,
                                int unk_56, u8 unk_5c, int unk_58);
-void Menu_Reset(void);
-void MenuCursor_SetRect(s16 left, s16 top, s16 right, s16 bottom);
 void func_0208b9a0(void);
-void MenuButtons_DisableTouch(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern const char gCombatManualResPath[]; /* "/combat_st/res_cmmanual" */
 
 #define MAIN_MAP (data_027c0288.unk_00)

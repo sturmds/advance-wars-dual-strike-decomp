@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int Ov006_IsPlainRiver(int x, int y);
 int Ov006_GetRiverPiece(
     int x, int y); /* variant for tile x, y from its 3x3 block, -1 if none */

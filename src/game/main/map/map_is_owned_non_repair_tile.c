@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Per terrain id: which units the tile repairs. 1 ground (city, HQ, base),
  * 2 air (airport), 3 sea (port), 0 none. */
 extern u8 gTerrainSupplyKind[];

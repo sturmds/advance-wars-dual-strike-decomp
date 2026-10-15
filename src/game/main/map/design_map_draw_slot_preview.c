@@ -3,8 +3,6 @@
 #include "game/screen_other_map.h"
 #include "game/save_progress.h"
 
-extern SaveRecordBuffer data_02291774;
-
 int func_0201fe28(u8 recordId);
 int Save_LoadRecord(u8 recordId, void* buffer);
 void Map_SetDataBuffer(void* buffer);

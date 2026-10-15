@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/map_select.h"
+#include "game/math.h"
 
-int HwMod32(int a, int b);
 int MapSelect_GetPageMapCount(void);
 
 /* Like MapSelect_PosRight, one column to the left. */

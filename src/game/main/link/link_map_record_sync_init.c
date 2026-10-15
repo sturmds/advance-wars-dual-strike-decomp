@@ -4,18 +4,12 @@
 #include "game/save_progress.h"
 #include "game/Unk_02080440.h"
 #include "game/link_map_record_sync_task.h"
+#include "game/math.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-s32 HwDiv32(s32 numer, s32 denom);
-s32 HwMod32(s32 numer, s32 denom);
 void* Mem_Alloc(u32 size);
 void Task_Destroy(Task* task);
 u8 Link_GetOwnPlayer(void);
 void DesignMap_LoadFromSlot(int slot, DesignMapRecord* dest);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Design maps: ids MAP_CUSTOM_FIRST + 3 * player + slot, one of the three
  * map slots of each link player. */
@@ -56,11 +50,11 @@ void LinkMapRecordSync_Init(LinkMapRecordSyncTask* task) {
   task->receiveStarted = 0;
   task->senders[0] = -1;
   task->senders[1] = -1;
-  if (IsDesignMap(STATE->unk_1c4->mapId) == TRUE) {
-    task->senders[0] = HwDiv32(STATE->unk_1c4->mapId - MAP_CUSTOM_FIRST, 3);
+  if (IsDesignMap(MAP_STATE->unk_1c4->mapId) == TRUE) {
+    task->senders[0] = HwDiv32(MAP_STATE->unk_1c4->mapId - MAP_CUSTOM_FIRST, 3);
   }
-  if (IsDesignMap(STATE->secondMapId) == TRUE) {
-    task->senders[1] = HwDiv32(STATE->secondMapId - MAP_CUSTOM_FIRST, 3);
+  if (IsDesignMap(MAP_STATE->secondMapId) == TRUE) {
+    task->senders[1] = HwDiv32(MAP_STATE->secondMapId - MAP_CUSTOM_FIRST, 3);
   }
   if (task->senders[0] == -1 && task->senders[1] == -1) {
     Task_Destroy((Task*)task);
@@ -76,12 +70,13 @@ void LinkMapRecordSync_Init(LinkMapRecordSyncTask* task) {
   }
   task->sendBuffer = Mem_Alloc(2 * sizeof(DesignMapRecord));
   if (task->senders[0] == Link_GetOwnPlayer()) {
-    DesignMap_LoadFromSlot(HwMod32(STATE->unk_1c4->mapId - MAP_CUSTOM_FIRST, 3),
-                           (DesignMapRecord*)task->sendBuffer);
+    DesignMap_LoadFromSlot(
+        HwMod32(MAP_STATE->unk_1c4->mapId - MAP_CUSTOM_FIRST, 3),
+        (DesignMapRecord*)task->sendBuffer);
   }
   if (task->senders[1] == Link_GetOwnPlayer()) {
     DesignMap_LoadFromSlot(
-        HwMod32(STATE->secondMapId - MAP_CUSTOM_FIRST, 3),
+        HwMod32(MAP_STATE->secondMapId - MAP_CUSTOM_FIRST, 3),
         (DesignMapRecord*)(task->sendBuffer + sizeof(DesignMapRecord)));
   }
 }

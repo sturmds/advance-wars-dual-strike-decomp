@@ -3,11 +3,6 @@
 #include "game/player.h"
 #include "game/play_records.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 #define RECORD_MAX 999999
 
 /* Defeat codes (see func_020cef2c): 1 and 16 no units left, 2 failed the
@@ -20,16 +15,16 @@ extern int data_027c0284;
  * human player beaten outside Survival, and a defeat of another player on a
  * human player's turn. */
 void LinkPlayer_MarkDefeated(int player, int code) {
-  STATE->players[player].defeated = STATE->day;
-  STATE->players[player].defeatCode = code;
-  if (STATE->gameMode != GAME_MODE_SURVIVAL &&
-      STATE->players[player].controller == PLAYER_CONTROLLER_HUMAN) {
+  MAP_STATE->players[player].defeated = MAP_STATE->day;
+  MAP_STATE->players[player].defeatCode = code;
+  if (MAP_STATE->gameMode != GAME_MODE_SURVIVAL &&
+      MAP_STATE->players[player].controller == PLAYER_CONTROLLER_HUMAN) {
     if (gPlayRecords.unk_410 < RECORD_MAX) {
       gPlayRecords.unk_410++;
     }
   }
-  if (player == STATE->currentPlayer ||
-      STATE->players[STATE->currentPlayer].controller !=
+  if (player == MAP_STATE->currentPlayer ||
+      MAP_STATE->players[MAP_STATE->currentPlayer].controller !=
           PLAYER_CONTROLLER_HUMAN) {
     return;
   }

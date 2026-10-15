@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 #include "game/oam_cells.h"
+#include "game/math.h"
 
 extern u16 data_ov003_02364cdc[][2];
 static u8 data_ov003_02364b14[] = {
@@ -10,8 +11,6 @@ static u8 data_ov003_02364b24[] = {
 #include "data/ov003/data_ov003_02364b24.inc.c"
 };
 
-s32 HwDiv32(s32 numerator, s32 denominator);
-s32 HwMod32(s32 numerator, s32 denominator);
 int MainLoop_GetFrameCount(void);
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 int Ov003_IsRowPowerActive(int rowNumber);

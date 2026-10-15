@@ -11,7 +11,6 @@ void Co_LoadArmyLargePicture(int coMood, void* dest, int paletteSlot, int army);
 void HelpText_Show(u32 textId, int tile);
 void func_02088528(int a0);
 
-extern MenuState gMenuState;
 extern u8 data_02160ae0[];
 extern const MenuButtonTemplate data_02160e80;
 extern const MenuButtonTemplate data_02160d90;

@@ -7,8 +7,6 @@ void Gfx_RequestLayerCopy(int layer);
 void UnitList_DrawRow(int y, int index);
 void UnitList_DrawHeadings(void);
 
-extern Unk_027c0280* data_027c0280;
-
 /* Redraws the list area of layer 0 for a scroll position in half rows.
  * At a half row the list is shifted up by one tile row, so one more row
  * is drawn and the rows cut off at the top and bottom are blanked

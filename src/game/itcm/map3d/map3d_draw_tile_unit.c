@@ -5,17 +5,13 @@
 #include "game/map_unit_marks.h"
 #include "game/skills.h"
 #include "game/unit_stats.h"
+#include "game/math.h"
 
-extern int data_027c0284;
-extern Unk_02080440* data_027c027c;
-
-s32 HwDiv32(s32 numerator, s32 denominator);
 BOOL UnitSlot_IsVisible(u16 slot);
 BOOL UnitType_HidesCargo(int type, int viewer, int owner);
 void Map3d_DrawUnit(VecFx32* pos, int type, int ownerBits, int shownHp,
                     u32 marks, int highlight, int stateIs8);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
 /* needed to match: the first read loads the index before the base. */
 #define STATE_INDEX_FIRST                                                 \
   (*(Unk_02080440_48**)((u8*)(data_027c0284 * sizeof(Unk_02080440_48*)) + \
@@ -55,8 +51,8 @@ void Map3d_DrawTileUnit(VecFx32* pos, u16 x, u16 y, int highlight,
   if (!UnitSlot_IsVisible(slot)) {
     return;
   }
-  unit = &STATE->units[slot];
-  if (STATE->units[slot].flags & MAP_UNIT_LOCKED) {
+  unit = &MAP_STATE->units[slot];
+  if (MAP_STATE->units[slot].flags & MAP_UNIT_LOCKED) {
     return;
   }
   marks = 0;
@@ -83,8 +79,8 @@ void Map3d_DrawTileUnit(VecFx32* pos, u16 x, u16 y, int highlight,
   if (unit->flags & MAP_UNIT_DIVED) {
     marks |= UNIT_MARK_DIVED;
   }
-  if (!(STATE->players[SLOT_OWNER(ownerBits)].visionGrids & 2)) {
-    if (CheckSkillsEquipped(STATE->players[SLOT_OWNER(slot)].skills[0],
+  if (!(MAP_STATE->players[SLOT_OWNER(ownerBits)].visionGrids & 2)) {
+    if (CheckSkillsEquipped(MAP_STATE->players[SLOT_OWNER(slot)].skills[0],
                             SKILL_HIDDEN_HP)) {
       marks |= UNIT_MARK_HIDDEN_HP;
     }
@@ -95,11 +91,11 @@ void Map3d_DrawTileUnit(VecFx32* pos, u16 x, u16 y, int highlight,
   if (unit->cargo[0]) {
     marks |= UNIT_MARK_CARRYING;
   }
-  if (UnitType_HidesCargo(unit->type, STATE->currentPlayer,
+  if (UnitType_HidesCargo(unit->type, MAP_STATE->currentPlayer,
                           (u16)SLOT_OWNER(ownerBits))) {
     marks |= UNIT_MARK_HIDDEN_CARGO;
   }
-  if (STATE->units[slot].flags & MAP_UNIT_WAITED) {
+  if (MAP_STATE->units[slot].flags & MAP_UNIT_WAITED) {
     marks |= UNIT_MARK_WAITED;
   }
   /* hp 1-100 shows as 1-10 */

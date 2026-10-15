@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
-
-void Screen_ResetWindows(void);
-
-extern Unk_027c0280* data_027c0280;
+#include "game/screen.h"
 
 #define GFX data_027c0280
 

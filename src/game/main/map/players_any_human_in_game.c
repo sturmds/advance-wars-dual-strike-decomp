@@ -2,16 +2,8 @@
 #include "game/player.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 #define CURRENT_MAP ((&data_027c0288.unk_00)[data_027c0284])
 #define OTHER_MAP ((&data_027c0288.unk_00)[1 - data_027c0284])
 
@@ -48,20 +40,20 @@ BOOL Players_AnyHumanInGame(void) {
     if (!Player_IsInGame(i)) {
       continue;
     }
-    if (GAME->players[i].controller == PLAYER_CONTROLLER_HUMAN) {
+    if (MAP_STATE->players[i].controller == PLAYER_CONTROLLER_HUMAN) {
       anyHuman = TRUE;
     }
-    if (GAME->secondMapId == 0) {
+    if (MAP_STATE->secondMapId == 0) {
       continue;
     }
     SWITCH_TO(OTHER_MAP, probeGfx, probeGame);
-    otherUnk30 = GAME->unk_1c4->unk_30;
+    otherUnk30 = MAP_STATE->unk_1c4->unk_30;
     SWITCH_BACK(probeGfx, probeGame);
     if (otherUnk30 != 0) {
       continue;
     }
     SWITCH_TO(OTHER_MAP, savedGfx, savedGame);
-    if (GAME->players[i].controller == PLAYER_CONTROLLER_HUMAN) {
+    if (MAP_STATE->players[i].controller == PLAYER_CONTROLLER_HUMAN) {
       anyHuman = TRUE;
     }
     SWITCH_BACK(savedGfx, savedGame);

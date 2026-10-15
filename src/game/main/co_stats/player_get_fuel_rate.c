@@ -3,9 +3,6 @@
 #include "game/player.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Fuel burned per movement point: 2 in snow, 1 otherwise. With CO effects
  * on, a player whose front CO is Olaf always gets 1. */
 int Player_GetFuelRate(int playerIndex) {

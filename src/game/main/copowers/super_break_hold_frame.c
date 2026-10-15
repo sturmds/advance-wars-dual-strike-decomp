@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/task.h"
+#include "game/win_quote.h"
 
-void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list,
-                            BOOL flip);
 void Task_ResumeScript(Task* task);
 
 /* The frame counter shares its slot with Task.unk_4c. */

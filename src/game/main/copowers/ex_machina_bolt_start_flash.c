@@ -3,8 +3,7 @@
 #include "game/screen_flash.h"
 #include "game/screen_layer0_blend.h"
 #include "game/ex_machina_bolt_task.h"
-
-void ScreenShake_Start(int tableIndex, int steps, Task* parent);
+#include "game/screen.h"
 
 /* Script step of gExMachinaBoltScript: flashes the screen white and shakes it for
  * 90 frames as the bolt hits, and sets layer 0 (the bolt graphics) up to

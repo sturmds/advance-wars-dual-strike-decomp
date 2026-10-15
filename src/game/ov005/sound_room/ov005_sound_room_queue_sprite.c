@@ -1,14 +1,9 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void func_0200270c(int x, int y, int attr, int list, int hFlip);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* Queues one sprite (attribute 0xa580, list 5) at x, y on the second screen.
  * `state` is not used. */

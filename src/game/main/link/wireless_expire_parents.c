@@ -4,7 +4,6 @@
 #include "game/wireless.h"
 
 extern u16 gWirelessParentTimers[];
-extern u8 gWirelessParentLinkLevels[];
 
 void Mem_CopyBytes(const void* src, void* dst, u32 size);
 

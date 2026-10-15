@@ -39,7 +39,7 @@ src/game/pack_nibbles.c:
     .text       start:0x020803fc end:0x02080440
 ```
 
-`end` is the end of the function by its size in `symbols.txt`, or the next symbol of any kind if that comes first; padding up to a 4-byte boundary stays inside the file when the next symbol starts there. If unnamed bytes follow the function, `add` prints them and leaves them out: when they are the function's literal pool or code (issue 0060), extend the symbol size and `end` by hand. A file can hold several neighbouring functions; start with one, and merge files as evidence appears (shared static data, functions that always sit together).
+`end` is the end of the function by its size in `symbols.txt`, or the next symbol of any kind if that comes first; padding up to a 4-byte boundary stays inside the file when the next symbol starts there. If unnamed bytes follow the function, `add` prints them and leaves them out: when they are the function's literal pool or code (issue 0060), extend the symbol size and `end` by hand. A file can hold several neighbouring functions; start with one, and merge files as evidence appears (shared static data, functions that always sit together). A file with several functions holds them in reverse address order: mwccarm 2.0-72 emits a file's functions last to first ("Merging files" below).
 
 Rename the function in `symbols.txt` once you know what it does (TENETS 4). Rename data symbols it uses the same way. C code refers to symbols by these names.
 
@@ -330,6 +330,15 @@ python3 tools/bss.py move data_ov002_0236bc00 src/game/ov002/battle_set_side_pro
 - Symbols inside a variable stay in `symbols.txt` with `kind:bss(size=0x0)`, and `bss.py lcf` defines them as `VARIABLE + OFFSET`. With a size, objdiff counts the whole unit's .bss as unmatched.
 - Rename a variable with `fn.py rename OLD NEW`, as for any symbol.
 - To move a variable of a generated file into a code file, `bss.py move NAME FILE` (FILE must end or start next to it, or have no `.bss` yet; a variable in the middle cuts the generated file in two). To move one out of any other file, move its definition and the `.bss` range with it by hand: a file's .bss must stay one range in `delinks.txt`, and within it the sizes must go up. The compiler's sort depends on the definition order: `definition_order` in `tools/mwcc_order.py` gives it for a list of sizes.
+
+## Merging files
+
+`python3 tools/merge_files.py OUT.c FILE.c... [--dry-run]` merges neighbouring `complete` files of one module into OUT.c and writes `include/game/<directory>/<OUT stem>.h` with a prototype for each function, in address order (issue 0089). The merged file holds the includes and file-scope declarations of every FILE once, then the functions last to first, because mwccarm 2.0-72 emits them in that order and has no `-ipa file`. Every other C file in `src/` loses its prototypes of these functions and includes the header.
+
+- The files must cover one run of addresses with no gap, in each section they have. Variable definitions are written in the order `tools/mwcc_order.py` gives for their addresses; when no order does, the files come from more than one original file, and the tool stops.
+- It stops on a `#pragma`, a `static`, a type definition, a macro with two values, or a name declared two ways, except that a variable's definition replaces its `extern`, and a callee's prototype that matches its definition replaces another one (`merged:` lines). Fix the C by hand: a caller that needs a narrower argument than the definition takes writes the cast in the call (`func_020f5888((s16)x, (s16)y)`).
+- `differs:` lines name callers whose removed prototype was not the definition's. Their code may change.
+- Then `make` and `make check`. A failing hash with no function changed is the order of the data; compare each object's disassembly with the build before to find a function whose code changed.
 
 ## ARM7
 

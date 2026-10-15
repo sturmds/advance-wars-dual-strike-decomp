@@ -1,11 +1,8 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_022a7b80.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 num, s32 den);
-
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern Unk_022a7b80 data_022a7b80;
 
 /* Frames left of the time budget (data_022a7b80.budgetLeft) after the seconds

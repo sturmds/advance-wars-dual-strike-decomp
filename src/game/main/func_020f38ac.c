@@ -7,6 +7,7 @@
 #include "game/info_panel.h"
 #include "game/neighbor_dir.h"
 #include "game/script_slot.h"
+#include "game/screen.h"
 
 void AttackTargetSelect_Finish(void);
 void CurrentPlayer_SetUnk33AndSendAction21(void);
@@ -27,7 +28,6 @@ void MenuDepth_PushOnOtherScreen(void);
 void RepairPick_Finish(void);
 void RepairPick_Update(void);
 void RepairTask_Init(void);
-void SceneMode_IsChanging(void);
 void ServiceCostPopup_Begin(void);
 void ServiceCostPopup_CountDown(void);
 void ServiceCostPopup_StartZoom(void);
@@ -217,9 +217,6 @@ static TaskScriptCmd data_021668e8[] = {
 ScriptCommand gMapOverviewScript[] = {
 #include "data/main/gMapOverviewScript.inc.c"
 };
-
-void Scene_SetKind(int value);
-int SceneMode_Request(int value);
 
 /* Sets scene fields 0x00 to 0 and 0x0c to 5 (through Scene_SetKind and
  * SceneMode_Request). On the first screen it also starts the data_021668e8 child

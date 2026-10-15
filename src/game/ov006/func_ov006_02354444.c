@@ -2,6 +2,7 @@
 #include "game/event_script.h"
 #include "game/task.h"
 #include "game/Unk_ov006_0235f690.h"
+#include "sdk/msl_string.h"
 
 void func_0201e954(void);
 void Gfx_ClearLayerMap(int arg);
@@ -10,9 +11,7 @@ void func_020c4018(void);
 int Ov006_HasNonSpace(u8* text);
 u8* func_021016e4(void);
 void NameEntry_ClearBuffer(void);
-char* strcpy(char* dest, const char* src);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 void MenuDepth_Pop(void);
 void MenuDepth_Push(void);
 void Ov006_OpenPopupMenu(void);

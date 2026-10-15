@@ -2,10 +2,9 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov005_0236bbac.h"
+#include "game/screen_other_map.h"
+#include "sdk/fs.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           int paletteOffset, int size);
@@ -14,9 +13,6 @@ extern char data_ov005_0236b324[];
 extern char data_ov005_0236b334[];
 extern char data_ov005_0236b338[];
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern Unk_ov005_0236bbac* data_ov005_0236bbac;
 
 /* Unpacks a tile file into the second screen's layer 1 character data, 0x6000

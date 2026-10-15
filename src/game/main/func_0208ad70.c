@@ -1,5 +1,4 @@
 #include "types.h"
-
-void Menu_CancelSelected(void);
+#include "game/menu_button.h"
 
 void func_0208ad70(void) { Menu_CancelSelected(); }

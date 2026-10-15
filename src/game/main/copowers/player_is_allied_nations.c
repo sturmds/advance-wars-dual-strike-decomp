@@ -4,17 +4,9 @@
 #include "game/Unk_02088d04.h"
 #include "game/map_header.h"
 #include "game/co_data.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 int Co_GetNation(int co);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* The game state of the current map, one of the two in data_027c0288. */
 #define CURRENT_MAP ((&data_027c0288.unk_00)[data_027c0284])
@@ -40,9 +32,9 @@ BOOL Player_IsAlliedNations(int player) {
   u16 mapId;
   BOOL human;
 
-  if (GAME->gameMode == GAME_MODE_CAMPAIGN) {
+  if (MAP_STATE->gameMode == GAME_MODE_CAMPAIGN) {
     SWITCH_TO(CURRENT_MAP);
-    mapId = GAME->unk_1c4->mapId;
+    mapId = MAP_STATE->unk_1c4->mapId;
     SWITCH_BACK();
     if (mapId == MAP_JAKES_TRIAL || mapId == MAP_LIGHTNING_STRIKES ||
         mapId == MAP_VERDANT_HILLS) {
@@ -50,10 +42,10 @@ BOOL Player_IsAlliedNations(int player) {
     }
 
     SWITCH_TO(CURRENT_MAP);
-    human = GAME->players[player].controller == PLAYER_CONTROLLER_HUMAN;
+    human = MAP_STATE->players[player].controller == PLAYER_CONTROLLER_HUMAN;
     SWITCH_BACK();
     return human == TRUE;
   }
-  return Co_GetNation(GAME->players[player].front.id & PLAYER_CO_ID_MASK) !=
-         NATION_BLACK_HOLE;
+  return Co_GetNation(MAP_STATE->players[player].front.id &
+                      PLAYER_CO_ID_MASK) != NATION_BLACK_HOLE;
 }

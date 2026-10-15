@@ -13,8 +13,6 @@ void MapPreview_DrawBlock(void* dst, s16 x, s16 y, int width, int height);
 void func_020c3e5c(void);
 
 extern const char data_02159964[];
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 
 #define PREVIEW_BLOCK_SIZE 0x800
 

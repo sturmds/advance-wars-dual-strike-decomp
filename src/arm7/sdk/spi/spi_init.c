@@ -4,8 +4,8 @@
 #include "sdk/spi_thread.h"
 #include "sdk/os_arm7.h"
 #include "sdk/mi.h"
+#include "sdk/tp.h"
 
-void Touch_ResetDriver_Arm7(void);
 void NVRAM_Init(void);                  /* NVRAM init */
 void func_arm7_0380607c(void);          /* microphone init */
 void Power_ResetDriverState_Arm7(void); /* power chip init */

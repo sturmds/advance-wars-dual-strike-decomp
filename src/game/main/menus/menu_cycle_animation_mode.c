@@ -4,18 +4,9 @@
 #include "game/menu_help.h"
 #include "game/play_records.h"
 #include "game/visual_mode.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void PopupMenu_Refresh(void);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-extern PlayRecords gPlayRecords;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 #define CURRENT_MAP ((&data_027c0288.unk_00)[data_027c0284])
 #define OTHER_MAP ((&data_027c0288.unk_00)[1 - data_027c0284])
@@ -43,23 +34,23 @@ void Menu_CycleAnimationMode(int a0, int a1, u32 flags) {
   u32 otherUnk30;
 
   SWITCH_TO(CURRENT_MAP, savedGfx, savedGame);
-  GAME->visualMode++;
-  if (GAME->visualMode > VISUAL_D) {
-    GAME->visualMode = VISUAL_NONE;
+  MAP_STATE->visualMode++;
+  if (MAP_STATE->visualMode > VISUAL_D) {
+    MAP_STATE->visualMode = VISUAL_NONE;
   }
-  mode = GAME->visualMode;
+  mode = MAP_STATE->visualMode;
   SWITCH_BACK(savedGfx, savedGame);
-  if (GAME->secondMapId != 0) {
+  if (MAP_STATE->secondMapId != 0) {
     SWITCH_TO(OTHER_MAP, savedGfx, savedGame);
-    otherUnk30 = GAME->unk_1c4->unk_30;
+    otherUnk30 = MAP_STATE->unk_1c4->unk_30;
     SWITCH_BACK(savedGfx, savedGame);
     if (otherUnk30 == 0) {
       SWITCH_TO(OTHER_MAP, savedGfx, savedGame);
-      GAME->visualMode = mode;
+      MAP_STATE->visualMode = mode;
       SWITCH_BACK(savedGfx, savedGame);
     }
   }
-  help.fn[GAME->visualMode](a0, a1, flags);
+  help.fn[MAP_STATE->visualMode](a0, a1, flags);
   PopupMenu_Refresh();
-  gPlayRecords.visualMode = GAME->visualMode;
+  gPlayRecords.visualMode = MAP_STATE->visualMode;
 }

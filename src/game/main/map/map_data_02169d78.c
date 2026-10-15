@@ -5,6 +5,7 @@
 #include "game/map_bg.h"
 #include "game/screen_contexts.h"
 #include "game/task.h"
+#include "game/screen.h"
 
 void MapScroll_BuildSpeedTable(void);
 void MapView_DrawAllBgRows(void);
@@ -12,8 +13,6 @@ void MapView_DrawAllBgRowsGroundOnly(void);
 void RangeSpread_Destroy(void);
 void RangeSpread_Start(void);
 void RangeSpread_Update(void);
-extern u8 data_0217eb08[];
-extern u8 data_0217fb08[];
 void func_020f783c(void);
 void func_020f931c(void);
 void func_020f9540(void);
@@ -22,7 +21,6 @@ void MapScroll_Step(void);
 void MapView_DrawAllRangeTiles(void);
 void MapView_DrawAllTiles(void);
 void MapView_DrawScrolledEdges(void);
-extern u8 data_02180b08[];
 void func_020f8534(void);
 void func_020f9558(void);
 void Bg0AnimTask_Update(void);
@@ -43,21 +41,15 @@ void func_020f8b3c(void);
 void func_020fa6b8(void);
 void MapGfx_LoadGreyscale(void);
 void MapView_ApplyBgScroll(void);
-void Screen_SetLayer0Translucent(void);
 void func_020f8b20(void);
 void MapGfx_Load(void);
 void func_020f84b0(void);
 void func_020f85e0(void);
 void func_020f8cb0(void);
-void Screen_SetLayer0BlendForTilesetStrong(void);
 void Weather_LoadGraphics(void);
-void Screen_SetLayer0BlendForTileset(void);
 void func_020f8ca8(void);
-void Screen_SetLayer0Additive(void);
-void Screen_SetLayer1Translucent(void);
 void func_020f9564(void);
 void func_020f8b74(void);
-void Screen_ShowBg0(void);
 void func_020f869c(void);
 void MapGfx_LoadTilesetAndWeather(void);
 

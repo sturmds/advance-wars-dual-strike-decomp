@@ -2,15 +2,10 @@
 #include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/oam_buffer.h"
+#include "game/screen_other_map.h"
+#include "game/math.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-extern const s16 gSineTable[]; /* sine table, 256 steps per turn */
-
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 const u8* Text_Get(u32 textId);
 int Text_GetStringWidth(const u8* str);
 int func_02039f20(const u8* str);
@@ -19,8 +14,6 @@ int SpriteFont_QueueChar(int ch, u16 x, u16 y, int attr, u16 firstTile,
                          u8 list);
 int CaptionLetter_GetAdvance(int ch, u16 x, u16 y, int attr, u16 firstTile,
                              u8 list);
-int HwDiv32(int num, int den);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void func_02032b14(void);
 void Task_ResumeScript(Task* task);
 

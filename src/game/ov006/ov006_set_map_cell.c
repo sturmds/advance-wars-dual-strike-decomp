@@ -2,18 +2,14 @@
 #include "game/Unk_02080440.h"
 #include "game/terrain.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE_AT(x, y) \
-  (STATE->mapTiles->tiles[STATE->mapTiles->rowStart[y] + (x)])
+  (MAP_STATE->mapTiles->tiles[MAP_STATE->mapTiles->rowStart[y] + (x)])
 
 /* Writes map cell code cell at tile x, y, and for the codes listed here also
  * the tile's terrain and owner (players 1 and 2 only). Other codes leave the
  * tile byte as it was. */
 void Ov006_SetMapCell(int x, int y, int cell) {
-  STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[y] + x] = cell;
+  MAP_STATE->mapTiles->mapCells[MAP_STATE->mapTiles->rowStart[y] + x] = cell;
   switch (cell) {
     case 1:
       TILE_AT(x, y) = TERRAIN_PLAIN;

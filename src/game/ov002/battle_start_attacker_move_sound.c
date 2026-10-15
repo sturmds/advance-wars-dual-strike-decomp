@@ -3,8 +3,6 @@
 #include "game/menu_state.h"
 #include "game/battle_fighter_sprites.h"
 
-extern MenuState gMenuState;
-
 void Sound_PlaySubSe(u32 soundId);
 BOOL Battle_IsSideFootUnit(int side);
 void BattleFootstepTask_Start(int side);

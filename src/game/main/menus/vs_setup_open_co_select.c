@@ -3,7 +3,6 @@
 #include "game/menu_button.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
 extern const TaskScriptCmd data_0215ce68[];
 
 /* Puts the setup cursor (ids 8-15 are COs) on setup.selectedSlot's front CO and

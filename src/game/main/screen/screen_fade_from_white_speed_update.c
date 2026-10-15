@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/screen_other_map.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task* task);
 
 /* Task update: adds the speed (unk_64) to the progress (unk_54) and eases the

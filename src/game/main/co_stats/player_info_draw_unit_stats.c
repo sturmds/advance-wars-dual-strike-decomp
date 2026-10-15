@@ -15,7 +15,6 @@ void Bg_PutOneTile(int x, int y, int tile, int palette);
 void Bg_PutTwoTiles(int x, int y, int firstTile, int palette);
 void Gfx_RequestLayerCopy(int layer);
 
-extern MenuState gMenuState;
 extern u8 gUnitRowTypes[];
 
 #define MENU (gMenuState.unk_0206d67c)

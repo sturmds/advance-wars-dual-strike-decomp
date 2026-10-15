@@ -1,12 +1,10 @@
 #include "types.h"
 #include "sdk/fx.h"
 #include "game/Unk_02080440.h"
+#include "game/screen.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u8 data_ov000_022c9750[];
 
-BOOL Screen0_AllowsMode(int mode);
 int MapCursor_GetAnimation(int* x, int* y, int style);
 void Sprite3d_DrawAnimation(const VecFx32* pos, int animation);
 int MainLoop_GetFrameCount(void);

@@ -6,6 +6,7 @@
 #include "game/screen_contexts.h"
 #include "game/song.h"
 #include "game/task.h"
+#include "game/screen.h"
 
 void BothScreens_FadeToWhiteUpdate(void);
 void CoExp_AddCellsCentered(void);
@@ -34,10 +35,8 @@ void ResultSprite_StartPointScript(void);
 void ResultSprite_WaitForA(void);
 void ResultSprite_WaitPointScript(void);
 void ResultSprite_WaitPointSlide(void);
-void Screens_ZoomFadeUpdate(void);
 void SpriteShower_Init(void);
 void SpriteShower_Update(void);
-void TitleTextTask_AnimateIn(void);
 void TwoLineCaption_AnimateCorners(void);
 void TwoLineCaption_Draw(void);
 void TwoLineCaption_GrowInLetters(void);
@@ -48,10 +47,6 @@ void WinQuote_SlideIn(void);
 void WinQuote_WaitKeys(void);
 void WinQuote_WaitText(void);
 extern TaskScriptCmd data_02159f80[];
-extern u8 data_02178b08[];
-extern u8 data_0217ab08[];
-extern u8 data_0217eb08[];
-extern u8 data_02180b08[];
 void func_020317f4(void);
 void func_02031894(void);
 void func_02031a48(void);
@@ -68,8 +63,6 @@ void func_0203570c(void);
 void func_020369e4(void);
 void func_020369f0(void);
 void func_020d331c(void);
-extern u8 data_02179b08[];
-extern u8 data_0217fb08[];
 void func_02031dc0(void);
 void func_02032298(void);
 void CoExpTask_HoldSprite(void);

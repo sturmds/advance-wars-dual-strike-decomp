@@ -5,12 +5,12 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_022a7a9c.h"
+#include "game/screen_other_map.h"
+#include "game/menu_button.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Screen_SetCurrentBoth(void* state);
 void Screen_SetBgMode(int mode);
-void Screen_InitLayers(const void* config);
+void Screen_InitLayers(const GfxLayer* config);
 u8* File_Load(const char* path);
 const char* File_LocalizePath(const char* path);
 void Data_Unpack(const void* src, void* dest);
@@ -31,12 +31,7 @@ void NumberFont_LoadHigh(void);
 int Player_GetCurrentOrFirstInGame(void);
 void Wallpaper_LoadBothOnLayer2(u32 index);
 void Wallpaper_LoadOnLayer2(u32 index);
-void Menu_Reset(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
 extern GfxLayer
     data_02159ee0[]; /* main screen layer config for Screen_InitLayers */
 extern GfxLayer data_02159f30[];   /* sub screen layer config */

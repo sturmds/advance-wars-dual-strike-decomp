@@ -14,11 +14,6 @@ void Task_ResumeScript(void* task);
 void CoExp_DrawScreen(CoExp* exp, int a, int b, int c);
 int CoExp_IsSingleColumn(void);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern MenuState gMenuState;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define EXP gMenuState.coExp.exp
 
 /* Task step of the results screen: takes up to 2 points off the pool
@@ -47,16 +42,16 @@ void CoExp_TallyStep(WinLoseTask* task) {
     }
     /* needed to match: (step << 1) and gain <<= 1 rather than step * 2
          * where the original computes the x2 share apart */
-    if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
+    if (MAP_STATE->gameMode == GAME_MODE_WAR_ROOM) {
       if (CoExp_IsSingleColumn() == 1) {
         EXP[i * 2].points +=
-            STATE->unk_59 == 0 ? (step << 1) + (step >> 1) : step * 2;
+            MAP_STATE->unk_59 == 0 ? (step << 1) + (step >> 1) : step * 2;
       } else {
-        if (STATE->unk_59 == 0) {
+        if (MAP_STATE->unk_59 == 0) {
           gain = (step << 1) + (step >> 1);
-        } else if (STATE->unk_59 == 1) {
+        } else if (MAP_STATE->unk_59 == 1) {
           gain = step * 2;
-        } else if (STATE->unk_59 == 2) {
+        } else if (MAP_STATE->unk_59 == 2) {
           gain = step + (step >> 1);
         } else {
           gain = step;
@@ -66,7 +61,8 @@ void CoExp_TallyStep(WinLoseTask* task) {
       }
     } else {
       gain = step;
-      if (STATE->gameMode == GAME_MODE_CAMPAIGN && Campaign_IsHardMode() == 1) {
+      if (MAP_STATE->gameMode == GAME_MODE_CAMPAIGN &&
+          Campaign_IsHardMode() == 1) {
         gain <<= 1;
       }
       EXP[i * 2].points += gain;
@@ -115,23 +111,24 @@ void CoExp_TallyStep(WinLoseTask* task) {
       break;
     }
     step = ResultPoint_GetTally();
-    if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
+    if (MAP_STATE->gameMode == GAME_MODE_WAR_ROOM) {
       if (CoExp_IsSingleColumn() == 1) {
         EXP[i * 2].points +=
-            STATE->unk_59 == 0 ? (step << 1) + (step >> 1) : step * 2;
+            MAP_STATE->unk_59 == 0 ? (step << 1) + (step >> 1) : step * 2;
       } else {
-        if (STATE->unk_59 == 0) {
+        if (MAP_STATE->unk_59 == 0) {
           step = (step << 1) + (step >> 1);
-        } else if (STATE->unk_59 == 1) {
+        } else if (MAP_STATE->unk_59 == 1) {
           step = step * 2;
-        } else if (STATE->unk_59 == 2) {
+        } else if (MAP_STATE->unk_59 == 2) {
           step = step + (step >> 1);
         }
         EXP[i * 2].points += step;
         EXP[i * 2 + 1].points += step;
       }
     } else {
-      if (STATE->gameMode == GAME_MODE_CAMPAIGN && Campaign_IsHardMode() == 1) {
+      if (MAP_STATE->gameMode == GAME_MODE_CAMPAIGN &&
+          Campaign_IsHardMode() == 1) {
         step = step * 2;
       }
       EXP[i * 2].points += step;

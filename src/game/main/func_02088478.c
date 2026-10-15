@@ -2,8 +2,6 @@
 #include "game/Unk_02160ac0.h"
 #include "game/combat_setup_task.h"
 
-extern Unk_02160ac0* data_02160ac0;
-
 /* Start of the Combat setup: each row gets its own CO index (unk_19 = row number). Unless
  * the task's unk_4e is set, the settings (map button 0, funds 20000, ...) go back to defaults. */
 void func_02088478(CombatSetupTask* task) {

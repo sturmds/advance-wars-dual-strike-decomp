@@ -110,8 +110,7 @@ const void* data_ov000_02350278[][6] = {&data_ov000_022d5a0c,
 #define ICON_X(n) ((int*)Ov000_gTerrainPanelIconPos)[(n) * 2]
 #define ICON_Y(n) ((int*)Ov000_gTerrainPanelIconPos)[(n) * 2 + 1]
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define PLAYER (STATE->players[STATE->currentPlayer])
+#define PLAYER (MAP_STATE->players[MAP_STATE->currentPlayer])
 
 /* Second screen, terrain panel at pixel x: draws the funds the terrain gives the player
  * in data_ov000_0235054c (IncreaseFunds) when not 0, then for each of nine movement
@@ -139,7 +138,7 @@ void SecondScreen_DrawTerrainMoveCosts(u8 x, u8 terrain) {
       costs[i] = -1;
       continue;
     }
-    if (STATE->coEffectsOn == 0) {
+    if (MAP_STATE->coEffectsOn == 0) {
       co = 0;
     } else {
       co = PLAYER.front.id & PLAYER_CO_ID_MASK;

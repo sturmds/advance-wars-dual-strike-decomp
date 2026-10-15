@@ -4,8 +4,6 @@
 #include "game/map_header.h"
 #include "game/screen_other_map.h"
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* Needed to match: coGrid read as rows of 2, flags 6 bytes on. */
 #define CELL_CO(column, row) \
   (((u8(*)[2])data_0229c73c->coGrid)[(column) - 1][row])
@@ -38,7 +36,7 @@ void CoSelectScreen_Create(void) {
   int copyRow;
 
   data_0229c73c = Mem_Alloc(sizeof(CoSelectScreen));
-  data_0229c73c->columnCount = func_020c3d08(STATE->unk_1c4->mapId);
+  data_0229c73c->columnCount = func_020c3d08(MAP_STATE->unk_1c4->mapId);
   data_0229c73c->rowCount = 2;
   for (column = 1; column < data_0229c73c->columnCount + 1; column++) {
     for (row = 0; row < data_0229c73c->rowCount; row++) {
@@ -46,18 +44,18 @@ void CoSelectScreen_Create(void) {
     }
   }
 
-  if (STATE->gameMode == GAME_MODE_CAMPAIGN) {
+  if (MAP_STATE->gameMode == GAME_MODE_CAMPAIGN) {
     if (Campaign_IsHardMode() == 1) {
       data_0229c73c->coList = data_0215abe4;
     } else {
       data_0229c73c->coList = data_0215abcc;
-      if (Ov000_gMapHeaders[STATE->unk_1c4->mapId].co[1][1] == 0) {
+      if (Ov000_gMapHeaders[MAP_STATE->unk_1c4->mapId].co[1][1] == 0) {
         data_0229c73c->rowCount = 1;
       } else {
         for (lockColumn = 1; lockColumn < data_0229c73c->columnCount + 1;
              lockColumn++) {
           for (lockRow = 0; lockRow < data_0229c73c->rowCount; lockRow++) {
-            if (Ov000_gMapHeaders[STATE->unk_1c4->mapId]
+            if (Ov000_gMapHeaders[MAP_STATE->unk_1c4->mapId]
                     .co[lockColumn][lockRow] != MAP_CO_PICKED) {
               CELL_FLAGS(lockColumn, lockRow) |= CELL_LOCKED;
             }
@@ -76,7 +74,7 @@ void CoSelectScreen_Create(void) {
        copyColumn++) {
     for (copyRow = 0; copyRow < data_0229c73c->rowCount; copyRow++) {
       CELL_CO(copyColumn, copyRow) =
-          STATE->playerCos[copyColumn][copyRow] & 0x7f;
+          MAP_STATE->playerCos[copyColumn][copyRow] & 0x7f;
     }
   }
 

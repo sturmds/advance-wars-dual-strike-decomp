@@ -1,11 +1,9 @@
 #include "types.h"
 #include "game/ov003_effect.h"
 #include "game/ov003_unit.h"
-
-extern Ov003Unit data_ov003_02369538[];
+#include "game/math.h"
 
 void Sound_PlaySe(int se);
-u32 Math_Sqrt32(u32 value);
 void Ov003_GetScrollToCentreUnit(Ov003Unit* unit, s16* x, s16* y);
 void Ov003_StepToward(int a0, int a1, int x, int y, int limit, int* outX,
                       int* outY);

@@ -4,7 +4,6 @@
 #include "game/BattleSideData.h"
 #include "game/unit_stats.h"
 
-extern MenuState gMenuState;
 /* Tables of 20 bytes: five halfwords, then ten bytes counting up in fives. How
  * the HP drain uses them is not known yet. */
 extern const u8 gBattleDrainProfile0[];

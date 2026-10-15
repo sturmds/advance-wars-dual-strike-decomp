@@ -1,5 +1,4 @@
 #include "types.h"
-
-void Menu_ConfirmSelected(void);
+#include "game/menu_button.h"
 
 void func_02088c2c(void) { Menu_ConfirmSelected(); }

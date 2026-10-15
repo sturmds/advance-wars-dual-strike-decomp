@@ -3,8 +3,8 @@
 #include "game/Unk_022a7c5c.h"
 #include "game/map_tileset_files.h"
 #include "game/player.h"
+#include "sdk/fs.h"
 
-void FS_ChangeDir(const char* dir);
 u32 File_UnpackTo(void* dest, const char* path);
 void Gfx_LoadTexImageFile(const char* fileName, u32 offset);
 void Gfx_LoadTexPaletteFile(const char* fileName, u32 offset, u32 size);
@@ -12,8 +12,6 @@ const char* MapGfx_GetPaletteFile(int weather, int tileset);
 const char* MapGfx_GetWeatherPaletteFile(int weather, int tileset);
 u8 Player_GetArmyStyle(int playerIndex);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern Unk_02080440_48 data_02183b08;
 extern char data_0216a1a0[]; /* "/bmap" */
 extern char data_0216a1a8[]; /* "020" */
@@ -29,7 +27,7 @@ extern char data_0216a1cc[]; /* "019" */
 extern char data_0216a1d0[]; /* "01a" */
 extern char data_0216a1d4[]; /* "01b" */
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Loads the map's 3D textures: two tileset images, the four frames of the
  * animated tiles, an image in each playing army's style,
@@ -57,7 +55,7 @@ void MapGfx_LoadTextures(int weather, int tileset) {
   anim2 = data_0216a1b0;
   palette = MapGfx_GetPaletteFile(weather, tileset);
   MapGfx_GetWeatherPaletteFile(weather, tileset); /* result unused */
-  if (GAME == &data_02183b08 && GAME->unk_1c4->mapId == 0xf8) {
+  if (MAP_STATE == &data_02183b08 && MAP_STATE->unk_1c4->mapId == 0xf8) {
     anim0 = data_0216a1b8;
     anim1 = data_0216a1bc;
     anim2 = data_0216a1c0;
@@ -69,7 +67,7 @@ void MapGfx_LoadTextures(int weather, int tileset) {
   Gfx_LoadTexImageFile(anim0, (u32)gfx->animDst);
 
   for (slot = 1; slot < ARMY_SLOT_COUNT; slot++) {
-    if (GAME->players[slot].controller != PLAYER_CONTROLLER_NONE) {
+    if (MAP_STATE->players[slot].controller != PLAYER_CONTROLLER_NONE) {
       switch (Player_GetArmyStyle(slot)) {
         default:
           armyFile = data_0216a1c4;

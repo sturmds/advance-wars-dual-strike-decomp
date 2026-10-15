@@ -5,11 +5,7 @@
 #include "game/Unk_02080440.h"
 #include "game/co_select_screen.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 u8 data_022a7a68[CO_LIST_SIZE];
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Returns co if it is in data_022a7a68 and no human player (slotControllers)
  * has it, either as a pick or from the map header. Otherwise returns the
@@ -30,12 +26,12 @@ u8 PickFreeCo(int co) {
 
   for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     for (slot = 0; slot < PLAYER_CO_COUNT; slot++) {
-      if (STATE->slotControllers[player] == PLAYER_CONTROLLER_HUMAN) {
-        taken = STATE->playerCos[player][slot] & PLAYER_CO_ID_MASK;
+      if (MAP_STATE->slotControllers[player] == PLAYER_CONTROLLER_HUMAN) {
+        taken = MAP_STATE->playerCos[player][slot] & PLAYER_CO_ID_MASK;
         if (taken > CO_NONE && taken < CO_COUNT) {
           isFree[taken] = 0;
         }
-        taken = Ov000_gMapHeaders[STATE->unk_1c4->mapId].co[player][slot] &
+        taken = Ov000_gMapHeaders[MAP_STATE->unk_1c4->mapId].co[player][slot] &
                 PLAYER_CO_ID_MASK;
         if (taken > CO_NONE && taken < CO_COUNT) {
           isFree[taken] = 0;

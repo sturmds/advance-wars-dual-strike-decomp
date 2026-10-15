@@ -3,8 +3,6 @@
 #include "game/unit_action.h"
 #include "game/player.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern UnitAction data_0229d8c8;
 
 void Link_SendPacket(void* payload);

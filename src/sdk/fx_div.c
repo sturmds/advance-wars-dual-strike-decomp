@@ -1,7 +1,5 @@
 #include "types.h"
-
-void FX_DivAsync(fx32 numer, fx32 denom);
-fx32 FX_GetDivResult(void);
+#include "sdk/fx.h"
 
 /* numer / denom in fx32 on the hardware divider (DIVCNT at 0x04000280). */
 fx32 FX_Div(fx32 numer, fx32 denom) {

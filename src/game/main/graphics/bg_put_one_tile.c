@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Writes tile map entry tile with palette slot palette at (x, y) of the
  * layer 0 tile map buffer (32 entries per row). */
 void Bg_PutOneTile(int x, int y, int tile, int palette) {

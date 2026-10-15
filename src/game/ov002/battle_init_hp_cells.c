@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
 int Battle_CompareHpToCellStep(int side, int shownHp, int index);
 
 /* Sets the five HP cells of a side from its shown HP (1 to 10) before and after the fight. */

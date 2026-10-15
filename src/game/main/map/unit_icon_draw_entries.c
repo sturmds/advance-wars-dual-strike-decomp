@@ -3,8 +3,6 @@
 #include "game/map_bg.h"
 #include "game/player.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u16 gUnitIconTileBase
     []; /* palette and first tile: [0] grey (waited), then players 1-4 */
 extern s16 gUnitIconHpDigit
@@ -12,8 +10,6 @@ extern s16 gUnitIconHpDigit
 
 int Player_GetUnitIconTile(int player, int unitType);
 BOOL UnitType_HidesCargo(int type, int viewer, int owner);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Tiles of the badge in the icon's bottom-left corner and the HP digit in
  * its bottom-right one, from gUnitIconTileBase. */
@@ -42,7 +38,7 @@ void UnitIcon_DrawEntries(u16* entry, int type, int look, int carrying,
 
   if (look == 0x100) {
     base = gUnitIconTileBase[0];
-    look = STATE->currentUnitBase;
+    look = MAP_STATE->currentUnitBase;
   } else {
     base = gUnitIconTileBase[(look >> 6) + 1];
   }
@@ -51,7 +47,7 @@ void UnitIcon_DrawEntries(u16* entry, int type, int look, int carrying,
     carrying = TRUE;
   }
   tile = Player_GetUnitIconTile(player, type);
-  if (UnitType_HidesCargo(type, STATE->currentPlayer, (u16)player)) {
+  if (UnitType_HidesCargo(type, MAP_STATE->currentPlayer, (u16)player)) {
     badge = BADGE_HIDDEN_CARGO;
   } else if (carrying) {
     badge = BADGE_CARGO;
@@ -87,7 +83,7 @@ void UnitIcon_DrawEntries(u16* entry, int type, int look, int carrying,
     } else {
       entry[32] = tile + (BG_TILE_HFLIP + 3) + base;
     }
-    if ((STATE->players[player].visionGrids & 2) == 0 && hpHidden) {
+    if ((MAP_STATE->players[player].visionGrids & 2) == 0 && hpHidden) {
       entry[33] = base + BADGE_HIDDEN_HP;
       return;
     }
@@ -104,7 +100,7 @@ void UnitIcon_DrawEntries(u16* entry, int type, int look, int carrying,
     } else {
       entry[32] = tile + 2 + base;
     }
-    if ((STATE->players[player].visionGrids & 2) == 0 && hpHidden) {
+    if ((MAP_STATE->players[player].visionGrids & 2) == 0 && hpHidden) {
       entry[33] = base + BADGE_HIDDEN_HP;
       return;
     }

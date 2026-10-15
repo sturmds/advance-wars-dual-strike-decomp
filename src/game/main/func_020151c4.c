@@ -2,7 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/script_slot.h"
 
-extern Unk_027c0280* data_027c0280;
 extern u8 gEventSkipState;
 extern ScriptCommand data_021583b4[];
 void TextPrinter_Init(void* printer, int x, int y, u8* tiles, u16* map,

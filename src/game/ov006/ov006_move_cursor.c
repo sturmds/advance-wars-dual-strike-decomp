@@ -3,14 +3,11 @@
 #include "game/Unk_ov006_0235f690.h"
 #include "game/keypad.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern s16 data_02169454
     [][2]; /* per d-pad bit pattern (right, left, up, down): x step, y step */
 extern s16 data_02169456[][2]; /* the same table from its y steps */
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 #define OV (data_ov006_0236d640)
 
 #define MAP_LAST_X 29 /* Design Room maps are 30x20 tiles */
@@ -25,7 +22,7 @@ void Ov006_MoveCursor(void) {
   int pos;
   s16 cur;
 
-  if (STATE->unk_1c4->scrollFlags & 15) {
+  if (MAP_STATE->unk_1c4->scrollFlags & 15) {
     return;
   }
   dir = (gKeypad->repeat >> 4) & 15;

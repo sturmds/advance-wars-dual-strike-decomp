@@ -11,7 +11,6 @@ typedef struct LinkInput {
 
 extern Keypad data_0216e4e4[];
 extern Ov003Unit* data_ov003_02369534;
-extern Ov003Unit data_ov003_02369538[];
 extern Ov003Input data_ov003_02365b04;
 
 u16 Wireless_GetChildAids(void);

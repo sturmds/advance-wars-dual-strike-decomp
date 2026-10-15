@@ -2,8 +2,6 @@
 #include "game/battle_scene.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 int Battle_GetAirGroundMatchup(int side);
 
 /* Needed to match: every case reads the entry again. */

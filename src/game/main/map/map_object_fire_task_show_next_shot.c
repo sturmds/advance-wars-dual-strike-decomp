@@ -9,8 +9,6 @@
 #include "game/unit_target_entry.h"
 #include "game/tile_point.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern UnitTargetEntry* data_022a6dcc;
 extern TilePointU16* data_02167e98[];
 
@@ -19,8 +17,6 @@ void TileListTask_StartChild(int tileX, int tileY, void* list, Task* parent);
 void CannonShotTask_Start(int cannonX, int cannonY, int targetX, int targetY,
                           int kind, int facing, MapObjectFireTask* parent);
 int Task_JumpToLabel(MapObjectFireTask* task, int label);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Step of the map object fire script. The AI target list starts with object
  * entries (unit slot 0, value the object kind, x and y its tile),
@@ -40,7 +36,7 @@ void MapObjectFireTask_ShowNextShot(MapObjectFireTask* task) {
   while (list[i].unitSlot == 0) {
     i++;
   }
-  unit = &STATE->units[list[i].unitSlot];
+  unit = &MAP_STATE->units[list[i].unitSlot];
   if (list[task->nextEntry].unitSlot != 0) {
     return;
   }
@@ -56,7 +52,7 @@ void MapObjectFireTask_ShowNextShot(MapObjectFireTask* task) {
       CannonShotTask_Start(list[task->nextEntry].x, list[task->nextEntry].y,
                            unit->x, unit->y, MAP_OBJECT_BLACK_CANNON,
                            object->variant, task);
-      if (STATE->players[MAP_UNIT_OWNER(STATE, unit)].controller ==
+      if (MAP_STATE->players[MAP_UNIT_OWNER(MAP_STATE, unit)].controller ==
           PLAYER_CONTROLLER_HUMAN) {
         if (gPlayRecords.cannonHitsTaken < 999999) {
           gPlayRecords.cannonHitsTaken++;
@@ -68,7 +64,7 @@ void MapObjectFireTask_ShowNextShot(MapObjectFireTask* task) {
       CannonShotTask_Start(list[task->nextEntry].x, list[task->nextEntry].y,
                            unit->x, unit->y, MAP_OBJECT_MINICANNON,
                            object->variant, task);
-      if (STATE->players[MAP_UNIT_OWNER(STATE, unit)].controller ==
+      if (MAP_STATE->players[MAP_UNIT_OWNER(MAP_STATE, unit)].controller ==
           PLAYER_CONTROLLER_HUMAN) {
         if (gPlayRecords.cannonHitsTaken < 999999) {
           gPlayRecords.cannonHitsTaken++;

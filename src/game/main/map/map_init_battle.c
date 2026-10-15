@@ -3,28 +3,19 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/map_header.h"
+#include "game/screen.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void EventScript_Init(void);
 void func_02080734(void);
 void Map_StartBattleTask(void);
 void Map_SaveCoPicks(void);
 BOOL Map_IsCoSelectPhase(void);
-int Scene_GetKind(void);
-void Scene_SetKind(int a);
 void func_020f368c(void);
 void func_020f3ee4(void);
 void func_020f4098(void);
 void Screens_SelectConfigs(void);
 void Map_LoadHeaderSetup(int mapId);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* data_027c0288 holds two game states, one per map. A battle with a second
  * map (header variantMapIds[0] nonzero) uses both; data_027c0284 picks the current one.
@@ -56,7 +47,7 @@ void Map_InitBattle(void) {
 
   EventScript_Init();
 
-  switch (GAME->gameMode) {
+  switch (MAP_STATE->gameMode) {
     case 2:
       Map_SaveCoPicks();
       break;
@@ -70,29 +61,29 @@ void Map_InitBattle(void) {
   }
 
   SWITCH_TO(MAIN_MAP);
-  GAME->unk_1c4->unk_30 = 0;
+  MAP_STATE->unk_1c4->unk_30 = 0;
   SWITCH_BACK();
 
   SWITCH_TO(SECOND_MAP);
-  GAME->unk_1c4->unk_30 = 0;
+  MAP_STATE->unk_1c4->unk_30 = 0;
   SWITCH_BACK();
 
   Scene_SetKind(0);
 
-  game = GAME;
+  game = MAP_STATE;
   switch (game->gameMode) {
     case 0:
       func_020f4098();
-      GAME->secondMapId =
-          Ov000_gMapHeaders[GAME->unk_1c4->mapId].variantMapIds[0];
+      MAP_STATE->secondMapId =
+          Ov000_gMapHeaders[MAP_STATE->unk_1c4->mapId].variantMapIds[0];
       break;
     case 1:
     case 3:
       game->secondMapId =
           Ov000_gMapHeaders[game->unk_1c4->mapId].variantMapIds[0];
-      if (GAME->secondMapId != 0) {
+      if (MAP_STATE->secondMapId != 0) {
         SWITCH_TO(OTHER_MAP);
-        otherUnk30 = GAME->unk_1c4->unk_30;
+        otherUnk30 = MAP_STATE->unk_1c4->unk_30;
         SWITCH_BACK();
         if (otherUnk30 == 0) {
           Scene_SetKind(4);
@@ -102,7 +93,7 @@ void Map_InitBattle(void) {
     case 2:
       if (game->secondMapId != 0) {
         SWITCH_TO(OTHER_MAP);
-        otherUnk30 = GAME->unk_1c4->unk_30;
+        otherUnk30 = MAP_STATE->unk_1c4->unk_30;
         SWITCH_BACK();
         if (otherUnk30 == 0) {
           Scene_SetKind(4);
@@ -112,19 +103,19 @@ void Map_InitBattle(void) {
   }
 
   if (Scene_GetKind() == 3) {
-    GAME->unk_86 = 1;
+    MAP_STATE->unk_86 = 1;
   }
   func_020f3ee4();
 
   SWITCH_TO(MAIN_MAP);
-  Map_LoadHeaderSetup(GAME->unk_1c4->mapId);
+  Map_LoadHeaderSetup(MAP_STATE->unk_1c4->mapId);
   SWITCH_BACK();
 
-  if (GAME->secondMapId != 0) {
+  if (MAP_STATE->secondMapId != 0) {
     SWITCH_TO(SECOND_MAP);
     /* reads secondMapId of the second state, not the one set above */
-    GAME->unk_1c4->mapId = GAME->secondMapId;
-    Map_LoadHeaderSetup(GAME->unk_1c4->mapId);
+    MAP_STATE->unk_1c4->mapId = MAP_STATE->secondMapId;
+    Map_LoadHeaderSetup(MAP_STATE->unk_1c4->mapId);
     SWITCH_BACK();
   }
 
@@ -133,21 +124,21 @@ void Map_InitBattle(void) {
   /* On the Auto CO missions the second map's slots keep their players'
      * controllers, so the player can play that front. On other two-map
      * missions the AI plays every used slot of the second map. */
-  game = GAME;
+  game = MAP_STATE;
   if (game->gameMode == GAME_MODE_CAMPAIGN && game->secondMapId != 0) {
     if (!Map_IsCoSelectPhase() &&
-        (GAME->unk_1c4->mapId == MAP_LIGHTNING_STRIKES ||
-         GAME->unk_1c4->mapId == MAP_RING_OF_FIRE)) {
+        (MAP_STATE->unk_1c4->mapId == MAP_LIGHTNING_STRIKES ||
+         MAP_STATE->unk_1c4->mapId == MAP_RING_OF_FIRE)) {
       SWITCH_TO(SECOND_MAP);
       for (i = 1; i < ARMY_SLOT_COUNT; i++) {
-        GAME->slotControllers[i] = GAME->players[i].controller;
+        MAP_STATE->slotControllers[i] = MAP_STATE->players[i].controller;
       }
       SWITCH_BACK();
     } else {
       SWITCH_TO(SECOND_MAP);
       for (i = 1; i < ARMY_SLOT_COUNT; i++) {
-        if (GAME->slotControllers[i] != PLAYER_CONTROLLER_NONE) {
-          GAME->slotControllers[i] = PLAYER_CONTROLLER_AI;
+        if (MAP_STATE->slotControllers[i] != PLAYER_CONTROLLER_NONE) {
+          MAP_STATE->slotControllers[i] = PLAYER_CONTROLLER_AI;
         }
       }
       SWITCH_BACK();

@@ -5,6 +5,7 @@
 #include "game/tab_list.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
 void Data_Unpack(const void* src, void* dest);
 const char* File_LocalizePath(const char* path);
@@ -24,9 +25,7 @@ void ModeFont_ShowText(const void* text, int tile, int paletteSlot, int a,
                        int b);
 void Palette_BlendWithColor(void* dst, int a, int b, int c);
 void Palette_Load(const void* src, int offset, u32 size);
-void Screen_SetCurrent(void* state);
 void Screen_SetCurrentBoth(void* state);
-void Screen_SetCurrentGfx(void* state);
 const void* Text_Get(u32 textId);
 void TpIcon3_LoadTo(u8* dest);
 void TransferQueue_Add(const void* src, void* dst, u32 size);
@@ -39,9 +38,6 @@ u8* UnitIcons_GetTiles(void);
 void TabList_AddNavButtons(void);
 void TabList_UpdateHelpText(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern const u16 gArmyPalettes[][16];
 extern char data_0215f7c4[]; /* "/ohashi/res_history_medal" */
 extern char data_0215f7e0[]; /* "/ohashi/res_history" */

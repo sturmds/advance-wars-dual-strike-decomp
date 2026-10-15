@@ -2,15 +2,10 @@
 #include "game/map_unit.h"
 #include "game/player.h"
 #include "game/Unk_02080440.h"
+#include "game/math.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-s32 HwDiv32(s32 numerator, s32 denominator);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 void Player_SpendFunds(int playerIndex, int amount);
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* HP as shown on the map: 1-10, rounded up. */
 #define SHOWN_HP(unit) ((unit)->hp != 0 ? HwDiv32((unit)->hp - 1, 10) + 1 : 0)
@@ -24,7 +19,7 @@ int Unit_Repair(MapUnit* unit, s16 steps, BOOL payCost) {
   int total;
 
   total = 0;
-  costPerHp = Unit_GetValuePerHp(GAME->currentPlayer, unit->type);
+  costPerHp = Unit_GetValuePerHp(MAP_STATE->currentPlayer, unit->type);
 
   for (; steps != 0; steps--) {
     if (SHOWN_HP(unit) == 10) {
@@ -32,10 +27,10 @@ int Unit_Repair(MapUnit* unit, s16 steps, BOOL payCost) {
     }
     if (payCost) {
       /* needed to match: the original compares unsigned */
-      if ((u32)GAME->players[GAME->currentPlayer].funds < costPerHp) {
+      if ((u32)MAP_STATE->players[MAP_STATE->currentPlayer].funds < costPerHp) {
         break;
       }
-      Player_SpendFunds(GAME->currentPlayer, costPerHp);
+      Player_SpendFunds(MAP_STATE->currentPlayer, costPerHp);
     }
     total += costPerHp;
     unit->hp += 10;

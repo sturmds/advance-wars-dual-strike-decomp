@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ov002_empty_cell_lists.h"
 
 extern void* data_ov002_02360594;
 extern u32 data_ov002_023605bc;
@@ -89,13 +90,6 @@ extern u32 data_ov002_02367738[];
 extern void* data_ov002_02367ce4[];
 extern void* data_ov002_02367f8c[];
 extern void* data_ov002_023680cc[];
-extern s16 data_ov002_0236bbfc;
-extern s16 data_ov002_0236bc0c;
-extern s16 data_ov002_0236bc30;
-extern s16 data_ov002_0236bc60;
-extern s16 data_ov002_0236bc6c;
-extern s16 data_ov002_0236bc70;
-extern s16 data_ov002_0236bc84;
 extern u32 data_ov002_0236059c;
 extern u32 data_ov002_023605a4;
 extern u32 data_ov002_023605ac;
@@ -323,8 +317,6 @@ extern u32 data_ov002_02365a48[];
 extern u32 data_ov002_02365ee8[];
 extern u32 data_ov002_0236706c[];
 extern u32 data_ov002_02367ef4[];
-extern s16 data_ov002_0236bc1c;
-extern s16 data_ov002_0236bc7c;
 extern u32 data_ov002_02360644;
 extern u32 data_ov002_023608e0[];
 extern u32 data_ov002_02360958[];
@@ -339,7 +331,6 @@ extern u32 data_ov002_023611b8[];
 extern u32 data_ov002_02361258[];
 extern u32 data_ov002_02361270[];
 extern u16 data_ov002_0236743c[];
-extern s16 data_ov002_0236bc34;
 extern u32 data_ov002_02360930[];
 extern u32 data_ov002_02360af0[];
 extern u32 data_ov002_02360b30[];
@@ -347,7 +338,6 @@ extern u32 data_ov002_02360cc8[];
 extern u32 data_ov002_02361190[];
 extern u32 data_ov002_02362708[];
 extern u32 data_ov002_02362778[];
-extern s16 data_ov002_0236bc58;
 
 u32 data_ov002_023612b0 = {
 #include "data/ov002/data_ov002_023612b0.inc.c"

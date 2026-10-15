@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/pad.h"
-
-void func_arm7_037fe3e0(int mode);
+#include "sdk/rtc.h"
 
 /* Alarm callback: puts the port in general-purpose mode, then copies the X,
  * Y and debug buttons and the lid state from EXTKEYIN to the halfword the

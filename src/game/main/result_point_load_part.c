@@ -2,15 +2,10 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_0229c734.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Data_Unpack(const void* src, void* dest);
 void ResultPoint_LoadArmyPart(void);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 #define PART_DEST (data_027c0280->objVram + data_0229c734->nextTile * 32)
 

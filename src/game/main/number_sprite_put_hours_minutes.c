@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/screen_other_map.h"
+#include "game/math.h"
 
-int HwDiv32(int numerator, int denominator);
-int HwMod32(int numerator, int denominator);
 void NumberSprite_PutGlyph(int x, int y, int glyph, int firstTile, int palette);
 void NumberSprite_PutTwoDigits(int x, int y, int value, int firstTile,
                                int palette);

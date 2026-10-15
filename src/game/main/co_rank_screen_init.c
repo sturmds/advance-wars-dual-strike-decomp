@@ -6,11 +6,11 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_022a7b80.h"
+#include "game/screen_other_map.h"
+#include "game/menu_button.h"
 
 u32 Survival_GetExperienceBonus(void);
 void Gfx_InitBothScreens(void);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Screen_SetCurrentBoth(void* state);
 void Screen_SetLayerScreenSize(int layer, int screenSize);
 void Gfx_ClearLayerMap(int layer);
@@ -30,12 +30,7 @@ void Font_LoadDigits(int a);
 void Co_LoadGraphicsAndPalette(int coId, int tile, int paletteSlot);
 int Survival_GetRunGrade(void);
 void NumberFont_LoadLow(void);
-void Menu_Reset(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern Unk_022a7b80 data_022a7b80;
 extern const char gCoRankPointObjPath[]; /* "/ohashi/res_result_point_obj" */
 extern const char gCoRankSurvivalPath[]; /* "/ohashi/res_survival" */
@@ -43,7 +38,7 @@ extern const char gCoRankLangPath[];     /* "/ohashi/res_result_lang" */
 extern const char gCoRankObjPath[];      /* "/ohashi/res_result_obj" */
 extern const char gCoRankCtcLangPath[];  /* "/ohashi/res_result_ctc_lang" */
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 
 #define MAIN_MAP (data_027c0288.unk_00)
 #define SECOND_MAP (data_027c0288.unk_04)
@@ -200,11 +195,11 @@ void CoRankScreen_Init(CoRankTask* task) {
     Icon_LoadTo(ICON_DIGITS_SMALL + i, data_027c0280->objVram, 232 + i * 2);
   }
   IconBank_LoadPalette(4, 20);
-  task->hasBackCo = STATE->players[1].back.id != 0;
-  Co_LoadGraphicsAndPalette(STATE->players[1].front.id & PLAYER_CO_ID_MASK,
+  task->hasBackCo = MAP_STATE->players[1].back.id != 0;
+  Co_LoadGraphicsAndPalette(MAP_STATE->players[1].front.id & PLAYER_CO_ID_MASK,
                             0x400, 6);
   if (task->hasBackCo) {
-    Co_LoadGraphicsAndPalette(STATE->players[1].back.id & PLAYER_CO_ID_MASK,
+    Co_LoadGraphicsAndPalette(MAP_STATE->players[1].back.id & PLAYER_CO_ID_MASK,
                               0x5b0, 7);
   }
   GFX_BACK();

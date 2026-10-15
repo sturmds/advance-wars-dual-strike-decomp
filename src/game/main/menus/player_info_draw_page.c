@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 void PlayerInfo_DrawCoProfile(void);
 void CoStatsScreen_DrawSkills(void);
 void PlayerInfo_DrawPowers(void);

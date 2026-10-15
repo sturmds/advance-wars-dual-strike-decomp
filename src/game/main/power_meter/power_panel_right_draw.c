@@ -5,9 +5,6 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
 extern Unk_02080440_48 data_02183b08;
 extern u8 data_021686f0[];
 extern u8 data_02168670[];
@@ -179,8 +176,7 @@ const u8 data_0212e9b8[] = {
 };
 extern u8 data_021304b8[];
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define PANEL_CO_ID (&STATE->players[player].front)[coSlot].id
+#define PANEL_CO_ID (&MAP_STATE->players[player].front)[coSlot].id
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Co_LoadArmyPalette(int coId, int paletteSlot, int army);
@@ -211,12 +207,12 @@ void PowerPanelRight_Draw(int x, int y, int player, int coSlot, int tile,
         data_021304b8 + ((PANEL_CO_ID & PLAYER_CO_ID_MASK) - 1) * 256,
         data_027c0280->objVram + tile * 32, 256);
   }
-  if (!PowerMeter_IsShown(STATE == &data_02183b08 ? MAP_STATE_FIRST
-                                                  : MAP_STATE_SECOND)) {
+  if (!PowerMeter_IsShown(MAP_STATE == &data_02183b08 ? MAP_STATE_FIRST
+                                                      : MAP_STATE_SECOND)) {
     return;
   }
   if (coSlot == 0) {
-    if (STATE->players[player].front.powerState != POWER_NONE) {
+    if (MAP_STATE->players[player].front.powerState != POWER_NONE) {
       PowerPanelRight_QueuePowerIcon(x, y, player);
       return;
     }
@@ -224,8 +220,8 @@ void PowerPanelRight_Draw(int x, int y, int player, int coSlot, int tile,
     return;
   }
   backPowerOn = FALSE;
-  if (STATE->players[player].back.id != 0) {
-    if (STATE->players[player].tagPowerHalf == TAG_POWER_BACK) {
+  if (MAP_STATE->players[player].back.id != 0) {
+    if (MAP_STATE->players[player].tagPowerHalf == TAG_POWER_BACK) {
       backPowerOn = TRUE;
     }
   }

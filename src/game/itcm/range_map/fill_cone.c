@@ -2,11 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/range_map.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* Writes value into a cone of range map tiles: length lines from (x, y) in
  * direction dir (a ConeDirection), 1 tile wide at the tip and 2 wider on
  * each line after, cut at the map edges. The cannon map objects use it for
@@ -35,17 +30,17 @@ void RangeMap_FillCone(int x, int y, int dir, int length, s8 value) {
           col = 0;
         }
         colEnd = col + count;
-        if (colEnd > STATE->unk_1c4->mapWidth) {
-          colEnd = STATE->unk_1c4->mapWidth;
+        if (colEnd > MAP_STATE->unk_1c4->mapWidth) {
+          colEnd = MAP_STATE->unk_1c4->mapWidth;
         }
         for (; col < colEnd; col++) {
-          STATE->rangeMap[t][col] = value;
+          MAP_STATE->rangeMap[t][col] = value;
         }
       }
       break;
     case CONE_DOWN:
       for (t = y; t < y + length; t++, step++) {
-        if (t >= STATE->unk_1c4->mapHeight) {
+        if (t >= MAP_STATE->unk_1c4->mapHeight) {
           return;
         }
         col = x - (step - 1);
@@ -55,11 +50,11 @@ void RangeMap_FillCone(int x, int y, int dir, int length, s8 value) {
           col = 0;
         }
         colEnd = col + count;
-        if (colEnd > STATE->unk_1c4->mapWidth) {
-          colEnd = STATE->unk_1c4->mapWidth;
+        if (colEnd > MAP_STATE->unk_1c4->mapWidth) {
+          colEnd = MAP_STATE->unk_1c4->mapWidth;
         }
         for (; col < colEnd; col++) {
-          STATE->rangeMap[t][col] = value;
+          MAP_STATE->rangeMap[t][col] = value;
         }
       }
       break;
@@ -75,17 +70,17 @@ void RangeMap_FillCone(int x, int y, int dir, int length, s8 value) {
           row = 0;
         }
         rowEnd = row + count;
-        if (rowEnd > STATE->unk_1c4->mapHeight) {
-          rowEnd = STATE->unk_1c4->mapHeight;
+        if (rowEnd > MAP_STATE->unk_1c4->mapHeight) {
+          rowEnd = MAP_STATE->unk_1c4->mapHeight;
         }
         for (; row < rowEnd; row++) {
-          STATE->rangeMap[row][t] = value;
+          MAP_STATE->rangeMap[row][t] = value;
         }
       }
       break;
     case CONE_RIGHT:
       for (t = x; t < x + length; t++, step++) {
-        if (t >= STATE->unk_1c4->mapWidth) {
+        if (t >= MAP_STATE->unk_1c4->mapWidth) {
           return;
         }
         row = y - (step - 1);
@@ -95,11 +90,11 @@ void RangeMap_FillCone(int x, int y, int dir, int length, s8 value) {
           row = 0;
         }
         rowEnd = row + count;
-        if (rowEnd > STATE->unk_1c4->mapHeight) {
-          rowEnd = STATE->unk_1c4->mapHeight;
+        if (rowEnd > MAP_STATE->unk_1c4->mapHeight) {
+          rowEnd = MAP_STATE->unk_1c4->mapHeight;
         }
         for (; row < rowEnd; row++) {
-          STATE->rangeMap[row][t] = value;
+          MAP_STATE->rangeMap[row][t] = value;
         }
       }
       break;

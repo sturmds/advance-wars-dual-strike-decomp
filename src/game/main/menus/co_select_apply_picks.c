@@ -4,8 +4,6 @@
 #include "game/map_header.h"
 #include "game/screen_other_map.h"
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* The CO the player picked for player slot column (1-4), front or back row.
  * Needed to match: coGrid read as rows of 2. */
 #define PICKED_CO(column, row) \
@@ -27,37 +25,37 @@ void CoSelect_ApplyPicks(void) {
   int row;
   int co;
 
-  if (STATE->gameMode != GAME_MODE_CAMPAIGN || Campaign_IsHardMode() == 1) {
+  if (MAP_STATE->gameMode != GAME_MODE_CAMPAIGN || Campaign_IsHardMode() == 1) {
     for (column = 1; column < data_0229c73c->columnCount + 1; column++) {
       for (row = 0; row < data_0229c73c->rowCount; row++) {
-        STATE->playerCos[column][row] = PICKED_CO(column, row);
+        MAP_STATE->playerCos[column][row] = PICKED_CO(column, row);
         Player_SetCo(column, row, PICKED_CO(column, row));
       }
     }
   } else {
     for (column = 1; column < data_0229c73c->columnCount + 1; column++) {
       for (row = 0; row < data_0229c73c->rowCount; row++) {
-        co = Ov000_gMapHeaders[STATE->unk_1c4->mapId].co[column][row];
+        co = Ov000_gMapHeaders[MAP_STATE->unk_1c4->mapId].co[column][row];
         if (co == MAP_CO_PICKED) {
-          STATE->playerCos[column][row] = PICKED_CO(column, row);
+          MAP_STATE->playerCos[column][row] = PICKED_CO(column, row);
           Player_SetCo(column, row, PICKED_CO(column, row));
         } else {
-          STATE->playerCos[column][row] = co;
+          MAP_STATE->playerCos[column][row] = co;
           Player_SetCo(
               column, row,
-              Ov000_gMapHeaders[STATE->unk_1c4->mapId].co[column][row]);
+              Ov000_gMapHeaders[MAP_STATE->unk_1c4->mapId].co[column][row]);
         }
       }
     }
   }
 
-  if (STATE->gameMode == 3) {
+  if (MAP_STATE->gameMode == 3) {
     return;
   }
-  Skills_SetupForBothMaps(STATE->gameMode, STATE->unk_1c4->mapId);
+  Skills_SetupForBothMaps(MAP_STATE->gameMode, MAP_STATE->unk_1c4->mapId);
   MovementCost();
 
-  if (STATE->secondMapId == 0) {
+  if (MAP_STATE->secondMapId == 0) {
     return;
   }
   if (OtherMap_GetUnk30() != 0) {

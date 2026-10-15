@@ -4,23 +4,15 @@
 #include "game/task.h"
 #include "game/Unk_ov004_022bf158.h"
 #include "sdk/os.h"
+#include "sdk/gx_load.h"
+#include "game/screen.h"
+#include "sdk/fs.h"
 
 #define REG_DISPCNT (*(volatile u32*)0x04000000)
 
-void Screen_SetBgMode(int mode);
-void Screen_InitLayers(const void* config);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void File_ReadTo(void* dest, const char* fileName);
 void Mem_Fill32(u32 value, void* dst, u32 size);
-void GX_BeginLoadTex(void);
-void GX_LoadTex(const void* src, u32 offset,
-                u32 size); /* guess: copies to texture VRAM */
-void GX_EndLoadTex(void);
-void GX_BeginLoadTexPltt(void);
-void GX_LoadTexPltt(const void* src, u32 offset,
-                    u32 size); /* guess: copies to texture palette VRAM */
-void GX_EndLoadTexPltt(void);
 void Ov004_SetupPerspective3d(void);
 void Ov004_LoadBottomSpriteGraphics(Unk_ov004_022bf158* state);
 void Ov004_InitVramBanksInOrder(void);

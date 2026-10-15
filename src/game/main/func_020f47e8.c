@@ -2,16 +2,12 @@
 #include "game/Unk_021694c0.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
+#include "game/screen.h"
 
 BOOL func_020f4a18(void);
-void SceneMode_Request(int a);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 
 extern Unk_021694c0* data_021694c0;
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 void func_020f47e8(void) {
   Unk_027c0280* savedGfx;

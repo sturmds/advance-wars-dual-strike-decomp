@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/palette_fade.h"
 #include "game/screen_other_map.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 void Mem_Free(void* block);
 void Palette_Flush(void);

@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
-
 /* Script command: when the flag at unk_40 is set, clears it and continues at
  * the command the argument points to; otherwise moves on to the next
  * command. Runs the next command this frame either way. */

@@ -7,7 +7,6 @@
 void Sound_PlaySe(u32 soundId);
 void RowLockMark_Remove(int row);
 
-extern MenuState gMenuState;
 extern MenuButtonTemplate data_02160db8;
 extern MenuButtonTemplate data_02160e58;
 extern MenuButtonTemplate data_02160bd8;

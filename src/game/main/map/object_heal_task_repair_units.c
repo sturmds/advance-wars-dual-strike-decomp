@@ -5,16 +5,11 @@
 #include "game/player.h"
 #include "game/unit_stats.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 BOOL Map_AddTileOffset(int* x, int* y, int list, int index);
 int Unit_Rearm(MapUnit* unit, BOOL payCost);
 int Unit_Refuel(MapUnit* unit, BOOL payCost);
 int Unit_Repair(MapUnit* unit, s16 steps, BOOL payCost);
 void func_020c4018(void);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Step of the object heal script: every Black Hole unit on a tile in reach
  * of the object gets healSteps shown HP, ammo and fuel for free. Oozium
@@ -30,16 +25,17 @@ void ObjectHealTask_RepairUnits(ObjectHealTask* task) {
     if (!Map_AddTileOffset(&x, &y, task->offsetList, task->offsetIndex++)) {
       break;
     }
-    if (x < 0 || x >= STATE->unk_1c4->mapWidth || y < 0 ||
-        y >= STATE->unk_1c4->mapHeight) {
+    if (x < 0 || x >= MAP_STATE->unk_1c4->mapWidth || y < 0 ||
+        y >= MAP_STATE->unk_1c4->mapHeight) {
       continue;
     }
-    unit = &STATE->units[STATE->mapTiles
-                             ->unk_508[x + STATE->mapTiles->rowStart[y]]];
+    unit =
+        &MAP_STATE->units[MAP_STATE->mapTiles
+                              ->unk_508[x + MAP_STATE->mapTiles->rowStart[y]]];
     if (unit == NULL) {
       continue;
     }
-    if (STATE->players[MAP_UNIT_OWNER(STATE, unit)].armyColour !=
+    if (MAP_STATE->players[MAP_UNIT_OWNER(MAP_STATE, unit)].armyColour !=
         ARMY_BLACK_HOLE) {
       continue;
     }

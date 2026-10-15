@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/skills.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Writes the ids of the Force Ranks (skill ids from SKILL_RANK_BRUISER up)
  * that a player's front (slot 0) or back (slot 1) CO has equipped to `out`,
  * ended by 0xff. */

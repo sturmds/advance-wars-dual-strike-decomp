@@ -5,8 +5,6 @@
 #include "game/menu_state.h"
 #include "game/BattleSideData.h"
 
-extern MenuState gMenuState;
-
 #define BATTLE_OFFSET(field) ((u32) & ((MenuState*)0)->battle.field)
 
 /* The side's data (BattleSideData) as the ov002 motion steps read it. Needed to

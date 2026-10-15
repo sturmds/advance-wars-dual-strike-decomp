@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/map_unit.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int Player_GetFirepowerBonus(int playerIndex, int slot, int powerState,
                              int unitType); /* CO firepower, percent */
 int DamageChart_GetColumn(int targetType,

@@ -41,7 +41,7 @@ void VsSetup_AddArrowButtons(void) {
       MenuButton_Add(152, 152, &data_0215cb48, 250);
     }
     player = Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1;
-    if (STATE->twoMaps == 1) {
+    if (MAP_STATE->twoMaps == 1) {
       MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 8, &data_0215cdf0,
                      player * 4 + 18);
       MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 40, &data_0215cb70,
@@ -78,7 +78,7 @@ void VsSetup_AddArrowButtons(void) {
       MenuButton_Add(152, 152, &data_0215cb48, 250);
     }
     for (player = 0; player < MENU->setup.unk_2e3; player++) {
-      if (STATE->twoMaps == 0) {
+      if (MAP_STATE->twoMaps == 0) {
         MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 16, 8,
                        &data_0215cdf0, player * 4 + 16);
         MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 16, 40,

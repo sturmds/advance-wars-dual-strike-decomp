@@ -1,12 +1,9 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrentGfx(void* state);
 void Bg_FillRect(u16* map, int x, int y, int width, int height, int tile);
 void Gfx_RequestLayerCopy(int layer);
-
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* Clears the 18x24 tile box at (14, 0) on layers 0 and 1 of the
  * Unk_027c0288.unk_04 graphics state, then restores the current one. */

@@ -3,9 +3,6 @@
 #include "game/script_slot.h"
 #include "game/unit_info_panel.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 extern ScriptCommand data_ov000_0234f30c[];
 
 s8 ScriptSlot_Find(const ScriptCommand* script);

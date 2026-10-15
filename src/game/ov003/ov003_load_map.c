@@ -2,14 +2,12 @@
 #include "game/Unk_02160ac0.h"
 #include "game/ov003_unit.h"
 #include "game/ov003_marker.h"
+#include "sdk/fs.h"
 
-extern u8
-    data_ov003_02365d10[]; /* per tile code: bits 5-7 row, bits 0-4 terrain */
 static char data_ov003_0236492c[] = {
 #include "data/ov003/data_ov003_0236492c.inc.c"
 };
 
-void FS_ChangeDir(const char* dir);
 u32 File_UnpackTo(void* dest, const void* path);
 void Ov003_ReplaceRowSpecialTiles(int row);
 

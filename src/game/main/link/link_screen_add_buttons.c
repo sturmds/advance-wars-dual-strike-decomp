@@ -2,7 +2,6 @@
 #include "game/menu_button.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
 extern const MenuButtonTemplate data_0215f884;
 extern const MenuButtonTemplate data_0215f834;
 extern const MenuButtonTemplate data_0215f85c;

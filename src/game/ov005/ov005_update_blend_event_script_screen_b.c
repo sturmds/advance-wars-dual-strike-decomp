@@ -5,10 +5,9 @@
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_023559dc.h"
 #include "game/brightness_fade.h"
+#include "game/math.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 BOOL func_020fd624(Task* task);
 void func_020fd618(Task* task);
 void* EventScript_Start(const void* script);
@@ -16,9 +15,6 @@ void Task_ResumeScript(Ov005Task* task);
 int func_ov005_02357830(void);
 void func_ov005_0235785c(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 void func_ov005_02357844(void);
 
 static TaskScriptCmd data_ov005_02369180[] = {

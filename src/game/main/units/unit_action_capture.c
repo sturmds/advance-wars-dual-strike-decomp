@@ -6,13 +6,11 @@
 #include "game/Unk_02080440.h"
 #include "game/play_records.h"
 #include "game/visual_mode.h"
+#include "game/math.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u32 gLinkPlay;
 extern const TaskScriptCmd data_02168d88[];
 
-s32 HwDiv32(s32 numerator, s32 denominator);
 int Player_GetCaptureRate(int playerIndex);
 int CaptureIncrease(int player, int slot);
 void ActingUnit_ResetCaptureIfMoved(void);
@@ -23,16 +21,12 @@ void Capture_StartDisplay(int x, int y, int oldProgress, int newProgress,
                           int owner);
 void Tile_SetOwner(int x, int y);
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
-
 /* HP as shown on the map: 1-10, rounded up. */
 #define SHOWN_HP(unit) ((unit)->hp != 0 ? HwDiv32((unit)->hp - 1, 10) + 1 : 0)
 
-/* Index into a per-tile array of MapTiles. */
-#define TILE_INDEX(x, y) ((x) + GAME->mapTiles->rowStart[y])
-
 /* MAP_UNIT_OWNER, written as the original masks the slot before shifting. */
-#define ACTING_UNIT_OWNER ((((GAME->actingUnit - GAME->units) & 0xc0) >> 6) + 1)
+#define ACTING_UNIT_OWNER \
+  ((((MAP_STATE->actingUnit - MAP_STATE->units) & 0xc0) >> 6) + 1)
 
 /* Unit action 3: the acting unit captures the tile it ends its move on.
  * Capture points added are the shown HP times the player's capture rate
@@ -47,22 +41,22 @@ void UnitAction_Capture(void) {
   u8 tile;
   int oldProgress;
 
-  shownHp = SHOWN_HP(GAME->actingUnit);
+  shownHp = SHOWN_HP(MAP_STATE->actingUnit);
   progress =
-      HwDiv32(shownHp * Player_GetCaptureRate(GAME->currentPlayer), 100) +
-      CaptureIncrease(GAME->currentPlayer, 0);
-  tile = GAME->mapTiles
-             ->tiles[TILE_INDEX(GAME->actingUnitDestX, GAME->actingUnitDestY)];
+      HwDiv32(shownHp * Player_GetCaptureRate(MAP_STATE->currentPlayer), 100) +
+      CaptureIncrease(MAP_STATE->currentPlayer, 0);
+  tile = MAP_STATE->mapTiles->tiles[MAP_TILE_INDEX(MAP_STATE->actingUnitDestX,
+                                                   MAP_STATE->actingUnitDestY)];
   ActingUnit_ResetCaptureIfMoved();
   ActingUnit_StartAtDest();
 
-  oldProgress = GAME->actingUnit->captureProgress;
-  progress += GAME->actingUnit->captureProgress;
+  oldProgress = MAP_STATE->actingUnit->captureProgress;
+  progress += MAP_STATE->actingUnit->captureProgress;
   if (progress >= MAP_UNIT_CAPTURE_POINTS) {
     progress = MAP_UNIT_CAPTURE_POINTS;
   }
 
-  if (GAME->players[GAME->currentPlayer].controller ==
+  if (MAP_STATE->players[MAP_STATE->currentPlayer].controller ==
       PLAYER_CONTROLLER_HUMAN) {
     if (oldProgress == 0) {
       if (gPlayRecords.capturesStarted < 999999) {
@@ -76,35 +70,38 @@ void UnitAction_Capture(void) {
     }
   }
 
-  if ((GAME->unk_1c4->fog == 0 && GAME->unk_1c4->weather != WEATHER_RAIN) ||
-      (GAME->players[GAME->currentPlayer].visionGrids & 2) ||
-      GAME->mapTiles->unk_2338[TILE_INDEX(GAME->actingUnitDestX,
-                                          GAME->actingUnitDestY)] != 0) {
-    if (GAME->visualMode == VISUAL_A || GAME->visualMode == VISUAL_B ||
+  if ((MAP_STATE->unk_1c4->fog == 0 &&
+       MAP_STATE->unk_1c4->weather != WEATHER_RAIN) ||
+      (MAP_STATE->players[MAP_STATE->currentPlayer].visionGrids & 2) ||
+      MAP_STATE->mapTiles->unk_2338[MAP_TILE_INDEX(
+          MAP_STATE->actingUnitDestX, MAP_STATE->actingUnitDestY)] != 0) {
+    if (MAP_STATE->visualMode == VISUAL_A ||
+        MAP_STATE->visualMode == VISUAL_B ||
         MAP_TILE_TERRAIN(tile) == TERRAIN_HQ ||
         MAP_TILE_TERRAIN(tile) == TERRAIN_LAB) {
-      Capture_StartDisplay(GAME->actingUnitDestX, GAME->actingUnitDestY,
-                           GAME->actingUnit->captureProgress, progress,
-                           ACTING_UNIT_OWNER);
+      Capture_StartDisplay(
+          MAP_STATE->actingUnitDestX, MAP_STATE->actingUnitDestY,
+          MAP_STATE->actingUnit->captureProgress, progress, ACTING_UNIT_OWNER);
     } else if (progress >= MAP_UNIT_CAPTURE_POINTS) {
       Capture_PlayCompleteSound(ACTING_UNIT_OWNER, MAP_TILE_TERRAIN(tile));
     }
   } else if (gLinkPlay != 0 &&
-             (GAME->visualMode == VISUAL_A || GAME->visualMode == VISUAL_B) &&
-             GAME->players[GAME->currentPlayer].controller ==
+             (MAP_STATE->visualMode == VISUAL_A ||
+              MAP_STATE->visualMode == VISUAL_B) &&
+             MAP_STATE->players[MAP_STATE->currentPlayer].controller ==
                  PLAYER_CONTROLLER_AI) {
     /* the tile is out of sight: no capture scene, but link play still needs the task */
     Task_Create(data_02168d88, TASK_LIST(3));
   }
 
-  GAME->actingUnit->captureProgress = progress;
-  if (GAME->actingUnit->captureProgress >= MAP_UNIT_CAPTURE_POINTS) {
-    GAME->actingUnit->captureProgress = 0;
+  MAP_STATE->actingUnit->captureProgress = progress;
+  if (MAP_STATE->actingUnit->captureProgress >= MAP_UNIT_CAPTURE_POINTS) {
+    MAP_STATE->actingUnit->captureProgress = 0;
     if (MAP_TILE_TERRAIN(tile) == TERRAIN_HQ ||
         MAP_TILE_TERRAIN(tile) == TERRAIN_LAB) {
-      GAME->players[MAP_TILE_OWNER(tile)].unk_34 = 1;
+      MAP_STATE->players[MAP_TILE_OWNER(tile)].unk_34 = 1;
     }
-    Tile_SetOwner(GAME->actingUnitDestX, GAME->actingUnitDestY);
+    Tile_SetOwner(MAP_STATE->actingUnitDestX, MAP_STATE->actingUnitDestY);
   }
   Game_EnterState18();
 }

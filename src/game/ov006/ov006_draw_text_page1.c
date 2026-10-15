@@ -6,8 +6,6 @@ void Text_PrintImmediate(int x, int y, u16* map, u32 textId, u16 unk_30,
                          int arg);
 void Gfx_RequestLayerCopy(int layer);
 
-extern Unk_027c0280* data_027c0280;
-
 /* First page of Ov006_UpdateTextPages: clears layer 0 and prints its text.
  * Rows 15 and 21 hold short texts 6 columns apart, from column 4. */
 void Ov006_DrawTextPage1(void) {

@@ -3,8 +3,8 @@
 #include "game/result_sprite_task.h"
 #include "game/screen_other_map.h"
 #include "game/oam_cells.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void ResultPoint_RestartScript(int value);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Task_ResumeScript(ResultSpriteTask* task);

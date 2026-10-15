@@ -1,6 +1,6 @@
 #include "types.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numerator, s32 denominator);
 u32 UnitType_GetCostDiv10(int unitType);
 int func_020df900(int playerIndex, int unitType);
 

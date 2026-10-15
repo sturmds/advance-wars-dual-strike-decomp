@@ -2,14 +2,8 @@
 #include "game/menu_state.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
-
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Screen_SetCurrentBoth(void* state);
 int MainLoop_GetFrameCount(void);
 void Palette_Load(const void* src, u32 offset, u32 size);

@@ -4,9 +4,6 @@
 #include "game/skills.h"
 #include "game/unit_stats.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Front CO skill words of a player. */
 #define FRONT_SKILLS(player) \
   (data_027c027c->unk_48[data_027c0284]->players[player].skills[0])

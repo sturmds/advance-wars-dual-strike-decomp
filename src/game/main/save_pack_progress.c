@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/save_progress.h"
 
-extern SaveProfileBlock data_02290298[];
-extern SaveBytes30 data_022900bc[];
 extern Unk_022a7b80 data_022a7b80;
 extern Unk_0229e148 data_0229e148;
 

@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/tile_point.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int Ov006_Abs(int value);
 int Ov006_RandomMapCoord(
     int min, int max,
@@ -12,11 +9,11 @@ int Ov006_RandomMapCoord(
 int Map_GetDistance(int x1, int y1, s16 x2, s16 y2);
 s32 Rng_Range(s32 min, s32 max);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
 /* Map cell code 42 is sea (Ov006_FillMapForScreen). */
 #define CELL_SEA 42
-#define CELL_AT(p) \
-  (STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[(p)->y] + (p)->x])
+#define CELL_AT(p)     \
+  (MAP_STATE->mapTiles \
+       ->mapCells[MAP_STATE->mapTiles->rowStart[(p)->y] + (p)->x])
 
 /* Picks a tile near each of two points, (x1, y1) and (x2, y2), for the
  * caller to join: each tile lies within range of its own point, on the side

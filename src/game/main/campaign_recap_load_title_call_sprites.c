@@ -2,7 +2,6 @@
 #include "game/campaign_recap.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
 extern const char data_0216a980[];
 
 u8* File_Load(const char* path);

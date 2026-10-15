@@ -2,17 +2,11 @@
 #include "sdk/gx.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen.h"
+#include "sdk/svc.h"
+#include "game/screen_other_map.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-
-void SVC_WaitVBlankIntr(void);
 void GXS_SetGraphicsMode(int bgMode);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-void Screen_SetBgMode(int mode);
-void Screen_SetBg0Mode(int mode);
 
 /* DISPCNT bit 16: display mode 1, BG and OBJ graphics. */
 #define DISPCNT_MODE_GRAPHICS 0x10000

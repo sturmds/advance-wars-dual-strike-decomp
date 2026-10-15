@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 BOOL HasTwoOrMoreTeams(void) {
   int teamUsed[4];
   int i;

@@ -1,21 +1,16 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen.h"
+#include "sdk/fs.h"
 
 void MainLoop_SetFrameCallback(const void* descriptor);
 void MainLoop_TaskFrame(void);
-void Screen_SetBgMode(int mode);
-void Screen_InitLayers(const void* config);
-void Screen_ResetWindows(void);
-void Screen_ResetBlend(void);
-void Screen_ResetLayerScroll(void);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           int paletteOffset, int size);
 void BgExtPalette_LoadFromFile(const char* fileName, int a, int b, int c);
 void Gfx_RequestLayerCopy(int layer);
 
-extern Unk_027c0280* data_027c0280;
 extern GfxLayer gBmap085Layers[]; /* layer config for Screen_InitLayers */
 extern char data_02169c44[];      /* "/bmap" */
 extern char gBmapFile085[];       /* "085" */

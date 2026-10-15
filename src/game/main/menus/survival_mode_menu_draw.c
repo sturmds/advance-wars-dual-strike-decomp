@@ -2,17 +2,14 @@
 #include "game/Unk_02088d04.h"
 #include "game/oam_cells.h"
 #include "game/survival_record.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrentGfx(void* state);
 void Sprite_QueueAt(int a0, int x, int y, void* a3, int attr, int tile);
 void Co_QueueSmallPictureSprite(int x, int y, int attr, int a3);
 int SurvivalModeMenu_GetRowMode(int row);
 int SurvivalRecord_GetCo(int mode, int a1);
 int SurvivalRecord_Exists(int mode);
 int SurvivalMode_HasSecondRow(void);
-
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* Draws one frame of the Survival mode menu on the top screen: a label per
  * row (the second row only when SurvivalMode_HasSecondRow allows it) and, for each row

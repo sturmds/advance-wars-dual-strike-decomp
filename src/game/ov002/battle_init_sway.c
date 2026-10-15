@@ -2,7 +2,6 @@
 #include "game/battle_scene.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
 extern s16 data_ov002_023604dc[][3];
 
 int MainLoop_GetFrameCount(void);

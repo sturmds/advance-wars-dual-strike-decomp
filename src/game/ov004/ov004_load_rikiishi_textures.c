@@ -1,18 +1,10 @@
 #include "types.h"
 #include "sdk/os.h"
+#include "sdk/gx_load.h"
+#include "sdk/fs.h"
 
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void File_ReadTo(void* dest, const char* fileName);
-void GX_BeginLoadTex(void);
-void GX_LoadTex(
-    const void* src, u32 offset,
-    u32 size); /* guess: copies to texture VRAM, between begin and end calls */
-void GX_EndLoadTex(void);
-void GX_BeginLoadTexPltt(void);
-void GX_LoadTexPltt(const void* src, u32 offset,
-                    u32 size); /* guess: copies to texture palette VRAM */
-void GX_EndLoadTexPltt(void);
 
 extern void* data_ov004_022bf150;
 static char gRikiishiDir[] = {

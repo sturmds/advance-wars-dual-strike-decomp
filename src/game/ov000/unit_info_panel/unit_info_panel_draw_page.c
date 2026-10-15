@@ -2,8 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/unit_info_panel.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Per unit type: 1-based row of data_ov000_0234fa28. */
 extern s8 data_ov000_022b3850[];
 

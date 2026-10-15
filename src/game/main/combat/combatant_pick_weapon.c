@@ -3,9 +3,6 @@
 #include "game/combatant.h"
 #include "game/unit_stats.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int GetUnitMaxRange(int player, int unitType);
 int UnitType_GetChartDamage(int unitType, int column, int weapon);
 int Unit_GetChartDamage(MapUnit* unit, int targetType, int weapon,

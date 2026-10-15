@@ -3,6 +3,7 @@
 #include "game/screen_other_map.h"
 #include "game/number_sprite_task.h"
 #include "game/task.h"
+#include "sdk/fs.h"
 
 extern const char* data_ov000_022f669c[];
 extern char data_02169c88[];
@@ -10,7 +11,6 @@ extern char data_02169c44[]; /* "/bmap" */
 extern u8 data_02138c68[];
 extern const TaskScriptCmd gNumberSpriteTaskScript[];
 
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_Load(const void* src, u32 offset, u32 size);
 

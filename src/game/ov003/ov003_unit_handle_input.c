@@ -13,8 +13,6 @@ void Ov003Unit_SpawnEffectTowardPoint(Ov003Unit* unit, int x, int y);
 void Ov003Unit_SpawnEffectToward(Ov003Unit* unit, u8 dirX, u8 dirY);
 void Ov003Unit_SpawnFacingEffect(Ov003Unit* unit);
 
-extern u8 data_ov003_02365d10[];
-
 #define MAP data_ov003_02364a88
 #define TERRAIN_AT(unit)                                          \
   (data_ov003_02365d10[MAP->cells[((unit)->y >> 7) * MAP->width + \

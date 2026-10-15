@@ -2,14 +2,12 @@
 #include "game/Unk_02160ac0.h"
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
+#include "game/menu_button.h"
 
 void RowLockMark_DestroyAll(void);
 void func_02088514(void);
-void MenuButtons_RemoveAll(void);
 void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
-
-extern MenuState gMenuState;
 
 /* Like CombatSetup_ClearScreens, but clears only layer 2 of the main screen:
  * removes the tasks and menu buttons, clears layer 2 of both screens (and the

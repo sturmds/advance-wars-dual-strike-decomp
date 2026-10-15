@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/sound_stream.h"
-
-int OS_DisableInterrupts(void);
-void OS_RestoreInterrupts(int irqState);
+#include "sdk/os.h"
 
 /* Takes a refill request off the unused list, or returns NULL when none is
  * left. Interrupts are off while the list changes. */

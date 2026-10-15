@@ -1,13 +1,12 @@
 #include "types.h"
 #include "game/campaign_map.h"
 #include "game/Unk_02088d04.h"
+#include "game/campaign_map_music.h"
 
 void CampaignMap_QueueDoneMarker(int x, int y, int frame);
 void CampaignMap_QueueCurrentMarker(int x, int y, int frame);
 
-extern CampaignMapState gCampaignMapState;
 extern CampaignMission gCampaignMissions[];
-extern Unk_027c0280* data_027c0280;
 
 /* Update function: queues a done marker on each mission with the done bit set
  * and the current marker on the current mission if it is not done. The marker

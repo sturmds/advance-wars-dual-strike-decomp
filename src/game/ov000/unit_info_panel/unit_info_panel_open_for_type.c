@@ -2,13 +2,10 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 #include "game/unit_info_panel.h"
-
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
+#include "game/screen.h"
 
 extern ScriptCommand data_ov000_0234f30c[];
 
-int SceneMode_IsCurrent(int a0);
 s8 ScriptSlot_Find(const ScriptCommand* script);
 u8 Player_GetArmyStyle(int playerIndex);
 void Unit_Init(MapUnit* unit, int type);

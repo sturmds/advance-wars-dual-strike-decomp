@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/Unk_ov003_0235dd38.h"
+#include "game/win_quote.h"
 
-void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list,
-                            BOOL flip);
 void BreakText_QueueLetterSized(u8 letter, u16 x, int y, int arg3, int list);
 s16 BreakText_GetLetterX(u8 letter);
 void Task_ResumeScript(Unk_ov003_0235dd38* task);

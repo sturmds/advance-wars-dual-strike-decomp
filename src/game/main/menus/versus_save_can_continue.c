@@ -10,8 +10,6 @@ int Save_LoadRecord(
         buffer); /* the definition takes only recordId; this call also passes r1 */
 int func_0201fe28(int recordId);
 
-extern SaveRecordBuffer data_02291774;
-
 #define VERSUS_SAVE_RECORD 6
 
 /* Whether the main menu can offer to continue a saved battle of gameMode.

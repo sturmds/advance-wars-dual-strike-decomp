@@ -35,8 +35,6 @@ void func_ov003_02362334(void);
 void Screen_SetCurrentBoth(void* state);
 void Oam_PutCells(int attr1, int attr0, const void* cells, int attr2, int tile);
 
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern Ov003Input data_ov003_02365b04;
 
 /* Runs one frame of overlay 3, then the pause menu: START pauses and darkens

@@ -1,11 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
-#define TILE(x, y) (GAME->rangeMap[y][x])
+#define TILE(x, y) (MAP_STATE->rangeMap[y][x])
 
 /* Writes value into every tile of the row and the column through (x, y),
  * except (x, y) itself. MapObject_MarkFireRange calls it for
@@ -13,12 +9,12 @@ extern int data_027c0284;
 void RangeMap_FillRowAndColumn(int x, int y, s8 value) {
   int i;
 
-  for (i = 0; i < GAME->unk_1c4->mapWidth; i++) {
+  for (i = 0; i < MAP_STATE->unk_1c4->mapWidth; i++) {
     if (i != x) {
       TILE(i, y) = value;
     }
   }
-  for (i = 0; i < GAME->unk_1c4->mapHeight; i++) {
+  for (i = 0; i < MAP_STATE->unk_1c4->mapHeight; i++) {
     if (i != y) {
       TILE(x, i) = value;
     }

@@ -3,8 +3,6 @@
 
 void CombatSetup_MovePlayerToRow(int player, u8 row);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

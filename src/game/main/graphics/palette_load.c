@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 void Mem_Copy16(const void* src, void* dst,
                 u32 size); /* copies in 16-bit units */
 void Palette_Flush(void);  /* sends the palette buffer to palette RAM */

@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/terrain.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 BOOL DeployCity(u8 tile);
 
 /* TRUE when the acting player can deploy ground units on the tile: DeployCity

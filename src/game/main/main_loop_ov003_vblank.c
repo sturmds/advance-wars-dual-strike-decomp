@@ -2,17 +2,12 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/task.h"
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
+#include "game/screen_other_map.h"
 
 int func_01ff9f0c(void);
 void func_01ff9f1c(int value);
 void Ov003_WriteFxColors(void);
 void Screen_SetCurrentBoth(void* state);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Task_RunList(Task* task);
 void CallbackSlots_RunAll(void);
 void OamBuffer_FlushHead(void);

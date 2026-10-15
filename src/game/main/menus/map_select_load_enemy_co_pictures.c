@@ -4,15 +4,12 @@
 #include "game/map_select.h"
 #include "game/menu_state.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
 void Co_QueueSmallPicture(int coId, void* dest, int paletteSlot);
 u8 Map_GetPlayerCount(u16 mapId);
 u8 Map_IsFlagSet(u32 mapId);
 void Mem_Zero32(u32 value, void* dst, u32 size);
-void Screen_SetCurrentGfx(void* state);
-
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* War Room map select: on the screen of data_027c0288.unk_04, loads the
  * small pictures of the front and back COs of map slots 2 and up into OBJ
@@ -27,7 +24,7 @@ void MapSelect_LoadEnemyCoPictures(void) {
   int j;
   int co;
 
-  if (STATE->gameMode != GAME_MODE_WAR_ROOM) {
+  if (MAP_STATE->gameMode != GAME_MODE_WAR_ROOM) {
     return;
   }
   savedState = data_027c0280;

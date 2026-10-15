@@ -1,8 +1,5 @@
 #include "types.h"
-
-void GX_BeginLoadTex(void);
-void GX_LoadTex(const void* src, u32 offset, u32 size);
-void GX_EndLoadTex(void);
+#include "sdk/gx_load.h"
 
 /* Copies size bytes of texture image to offset in texture VRAM, wrapping the
  * copy in the begin and end calls of the SDK texture loader. */

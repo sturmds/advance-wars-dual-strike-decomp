@@ -8,7 +8,7 @@
 
 void Screen_SetCurrentBoth(void* state);
 void Screen_SetBgMode(int mode);
-void Screen_InitLayers(const void* config);
+void Screen_InitLayers(const GfxLayer* config);
 u8* File_Load(const char* path);
 void Mem_Free(void* res);
 void Data_Unpack(const void* src, void* dest);
@@ -28,10 +28,6 @@ void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 const void* Text_Get(u32 textId);
 u8 BreakText_Load(const s8* text, u16 tile, u8 palette, u32 tagFont);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern GfxLayer
     data_0215c3a4[]; /* layer config while the main screen is current */
 extern GfxLayer data_0215c3f4[]; /* layer config otherwise */
@@ -44,8 +40,7 @@ extern char data_0215c68c[];     /* "/ohashi/res_tagchange" */
 extern u8 data_0229fb70[];
 extern u8 gTagChangePalette[];
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
-#define PLAYER (&GAME->players[GAME->currentPlayer])
+#define PLAYER (&MAP_STATE->players[MAP_STATE->currentPlayer])
 /* Player.front for i = 0, Player.back for i = 1. */
 #define PLAYER_CO(i) ((&PLAYER->front)[i].id)
 #define MAIN_GFX ((Unk_027c0280*)data_027c0288.unk_00)
@@ -141,7 +136,7 @@ void TagBreak_SetUpScreens(Task* task) {
 
   /* needed to match: the original keeps one copy of the black and union
      * loads, so the campaign test jumps into them */
-  if (GAME->gameMode == GAME_MODE_CAMPAIGN) {
+  if (MAP_STATE->gameMode == GAME_MODE_CAMPAIGN) {
     if (PLAYER->armyColour == ARMY_BLACK_HOLE) {
       goto blackHole;
     }
@@ -195,12 +190,12 @@ loaded:
 
   savedGfx = data_027c0280;
   Screen_SetCurrentGfx(data_027c0288.unk_00);
-  Co_LoadArmyGraphics(PLAYER->front.id, 0x10, GAME->currentPlayer);
-  Co_LoadObjPicture(PLAYER->front.id, 0x1c0, GAME->currentPlayer);
-  Co_LoadArmyPalette(PLAYER->front.id, 16, GAME->currentPlayer);
-  Co_LoadArmyGraphics(PLAYER->back.id, 0x2e0, GAME->currentPlayer);
-  Co_LoadObjPicture(PLAYER->back.id, 0x490, GAME->currentPlayer);
-  Co_LoadArmyPalette(PLAYER->back.id, 17, GAME->currentPlayer);
+  Co_LoadArmyGraphics(PLAYER->front.id, 0x10, MAP_STATE->currentPlayer);
+  Co_LoadObjPicture(PLAYER->front.id, 0x1c0, MAP_STATE->currentPlayer);
+  Co_LoadArmyPalette(PLAYER->front.id, 16, MAP_STATE->currentPlayer);
+  Co_LoadArmyGraphics(PLAYER->back.id, 0x2e0, MAP_STATE->currentPlayer);
+  Co_LoadObjPicture(PLAYER->back.id, 0x490, MAP_STATE->currentPlayer);
+  Co_LoadArmyPalette(PLAYER->back.id, 17, MAP_STATE->currentPlayer);
   Screen_SetCurrentGfx(savedGfx);
 
   savedGfx2 = data_027c0280;
@@ -208,20 +203,20 @@ loaded:
   Mem_Copy32(MAIN_GFX->objVram + TAG_BREAK_OBJ_TILES_START,
              data_027c0280->objVram + TAG_BREAK_OBJ_TILES_START,
              TAG_BREAK_OBJ_TILES_SIZE);
-  Co_LoadArmyPalette(PLAYER->front.id, 16, GAME->currentPlayer);
-  Co_LoadArmyPalette(PLAYER->back.id, 17, GAME->currentPlayer);
+  Co_LoadArmyPalette(PLAYER->front.id, 16, MAP_STATE->currentPlayer);
+  Co_LoadArmyPalette(PLAYER->back.id, 17, MAP_STATE->currentPlayer);
   res = File_Load(data_0215c670);
   for (i = 0, tile = 0x5b0; i <= 1; i++, tile += 24) {
     if ((PLAYER_CO(i) & PLAYER_CO_ID_MASK) == CO_GRIT &&
-        Co_GetArmyPictureVariant(PLAYER_CO(i), GAME->currentPlayer) == 0) {
+        Co_GetArmyPictureVariant(PLAYER_CO(i), MAP_STATE->currentPlayer) == 0) {
       Data_Unpack(res, data_027c0280->objVram + ((u32)tile << 5));
     } else if ((PLAYER_CO(i) & PLAYER_CO_ID_MASK) == CO_KINDLE &&
-               Co_GetArmyPictureVariant(PLAYER_CO(i), GAME->currentPlayer) ==
-                   0) {
+               Co_GetArmyPictureVariant(PLAYER_CO(i),
+                                        MAP_STATE->currentPlayer) == 0) {
       Data_Unpack(res + 0x90, data_027c0280->objVram + ((u32)tile << 5));
     } else if ((PLAYER_CO(i) & PLAYER_CO_ID_MASK) == CO_KINDLE &&
-               Co_GetArmyPictureVariant(PLAYER_CO(i), GAME->currentPlayer) ==
-                   1) {
+               Co_GetArmyPictureVariant(PLAYER_CO(i),
+                                        MAP_STATE->currentPlayer) == 1) {
       Data_Unpack(res + 0x1a4, data_027c0280->objVram + ((u32)tile << 5));
     } else {
       Mem_Zero32(0, data_027c0280->objVram + ((u32)tile << 5), 0x300);

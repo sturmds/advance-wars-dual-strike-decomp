@@ -1,9 +1,8 @@
 #include "types.h"
 #include "game/oam_cells.h"
+#include "game/math.h"
 
 int CampaignRecords_GetNextNumber(void);
-int HwDiv32(int num, int den);
-int HwMod32(int num, int den);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
 /* Draws a tag with the two-digit number of the next campaign record

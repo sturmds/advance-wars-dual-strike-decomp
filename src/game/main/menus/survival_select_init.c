@@ -3,6 +3,9 @@
 #include "game/Unk_022a7b80.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/icon.h"
+#include "game/menu_button.h"
+#include "game/screen_other_map.h"
 
 void Bg_PutTileBlock(u16* map, int x, int y, const u8* block, u16 tileAdd);
 void Co_LoadSmallPicture(int co, void* dest, int palette);
@@ -12,19 +15,12 @@ u8* File_Load(const char* path);
 void Font_LoadDigits(int a);
 void Gfx_LoadBmap09f(void* a, int b, int c);
 void Gfx_RequestLayerCopy(int bg);
-void IconBank_LoadPalette(int a, int b);
-void Icon_LoadTo(int a, u8* objVram, int b);
 void MapPreview_Draw(void* dst, int mapId);
 void Mem_Copy32(const void* src, void* dest, u32 size);
 void Mem_Free(void* res);
-void MenuButtons_DisableTouch(void);
-void MenuCursor_SetRect(s16 left, s16 top, s16 right, s16 bottom);
-void Menu_Reset(void);
 void PaletteCycle_Start(int a);
 void Palette_Load(const void* src, int offset, u32 size);
-void Screen_SetCurrent(void* state);
 void Screen_SetCurrentBoth(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Gfx_ClearLayerMap(int layer);
 void func_0201e6e8(int x, int y, int width, int height);
 void func_020458c0(void);
@@ -38,9 +34,6 @@ int SurvivalRecord_Exists(int mode);
 int Survival_GetMapId(int mode, int index);
 
 extern Unk_022a7b80 data_022a7b80;
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern char data_0215ae5c[]; /* "/ohashi/res_survival" */
 extern char data_0215ae74[]; /* "/ohashi/res_survival_lang" */
 

@@ -4,8 +4,6 @@
 #include "game/play_records.h"
 #include "game/player.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern const TaskScriptCmd data_021693bc[];
 
 /* Work area of the task of script data_021693bc. */
@@ -15,8 +13,6 @@ typedef struct SiloTask {
   u16 siloY;
 } SiloTask;
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
-
 /* Counts a silo launch for a human current player and starts the task of
  * script data_021693bc for the silo at (siloX, siloY). Like Silo_StartLaunch,
  * parentOrList below TASK_LEVELS means a top-level task; it then goes in
@@ -24,7 +20,7 @@ typedef struct SiloTask {
 void func_020dda8c(int siloX, int siloY, int parentOrList) {
   SiloTask* task;
 
-  if (GAME->players[GAME->currentPlayer].controller ==
+  if (MAP_STATE->players[MAP_STATE->currentPlayer].controller ==
       PLAYER_CONTROLLER_HUMAN) {
     if (gPlayRecords.silosLaunched < 999999) {
       gPlayRecords.silosLaunched++;

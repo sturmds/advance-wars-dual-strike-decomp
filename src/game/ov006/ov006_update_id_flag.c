@@ -3,8 +3,6 @@
 
 int DesignMap_CopyName(int id, u8* buf);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
 /* Sets (when DesignMap_CopyName returns 1 for the id) or clears flag bit 9, 10 or 11
  * for id 0, 1 or 2. Always returns 0. */
 int Ov006_UpdateIdFlag(int id) {

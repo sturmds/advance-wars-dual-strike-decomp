@@ -2,8 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/icon.h"
 
-extern Unk_027c0280* data_027c0280;
-
 void IconBanks_ClearSlots(void);
 
 /* Loads the icons the second screen draws: first into the tile data, then

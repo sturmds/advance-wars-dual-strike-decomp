@@ -3,19 +3,13 @@
 #include "game/player.h"
 #include "game/unit_stats.h"
 #include "game/Unk_02080440.h"
+#include "game/vision.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-void Map_RebuildVision(void);
 BOOL UnitSlot_IsVisible(
     u16 unitSlot); /* guess: the unit is not hidden from the current player */
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 #define HOOKS (data_027c027c->unk_50[data_027c0284])
-
-/* Index into a per-tile array of MapTiles. */
-#define TILE_INDEX(x, y) ((x) + GAME->mapTiles->rowStart[y])
 
 /* Rebuilds the per-tile unit slots after units changed: derives the
  * unk_1c4 size values (the 1e and 20 fields are signed here), runs the
@@ -29,42 +23,42 @@ void Map_RebuildUnitTiles(void) {
   int x;
   int y;
 
-  GAME->unk_1c4->unk_26 = (s16)GAME->unk_1c4->scrollX / 16;
-  GAME->unk_1c4->unk_28 = (s16)GAME->unk_1c4->scrollY / 16;
-  GAME->unk_1c4->unk_22 = *(s16*)&GAME->unk_1c4->scrollX;
-  GAME->unk_1c4->unk_24 = *(s16*)&GAME->unk_1c4->scrollY;
+  MAP_STATE->unk_1c4->unk_26 = (s16)MAP_STATE->unk_1c4->scrollX / 16;
+  MAP_STATE->unk_1c4->unk_28 = (s16)MAP_STATE->unk_1c4->scrollY / 16;
+  MAP_STATE->unk_1c4->unk_22 = *(s16*)&MAP_STATE->unk_1c4->scrollX;
+  MAP_STATE->unk_1c4->unk_24 = *(s16*)&MAP_STATE->unk_1c4->scrollY;
   if (HOOKS->callback != NULL) {
     HOOKS->callback();
   }
   Map_RebuildVision();
 
-  for (y = 0; y < GAME->unk_1c4->mapHeight; y++) {
-    for (x = 0; x < GAME->unk_1c4->mapWidth; x++) {
-      GAME->mapTiles->unitAt[TILE_INDEX(x, y)] = 0;
-      GAME->mapTiles->unk_508[TILE_INDEX(x, y)] = 0;
+  for (y = 0; y < MAP_STATE->unk_1c4->mapHeight; y++) {
+    for (x = 0; x < MAP_STATE->unk_1c4->mapWidth; x++) {
+      MAP_STATE->mapTiles->unitAt[MAP_TILE_INDEX(x, y)] = 0;
+      MAP_STATE->mapTiles->unk_508[MAP_TILE_INDEX(x, y)] = 0;
     }
   }
 
   for (i = 1; i < MAP_UNIT_COUNT; i++) {
-    if (GAME->units[i].type != UNIT_NONE &&
-        (!(GAME->units[i].flags & MAP_UNIT_SELECTED) ||
-         (GAME->units[i].flags & MAP_UNIT_LOCKED))) {
-      if (GAME->mapTiles
-                  ->unk_508[TILE_INDEX(GAME->units[i].x, GAME->units[i].y)] ==
-              0 ||
-          (GAME->units[GAME->mapTiles->unk_508[TILE_INDEX(GAME->units[i].x,
-                                                          GAME->units[i].y)]]
+    if (MAP_STATE->units[i].type != UNIT_NONE &&
+        (!(MAP_STATE->units[i].flags & MAP_UNIT_SELECTED) ||
+         (MAP_STATE->units[i].flags & MAP_UNIT_LOCKED))) {
+      if (MAP_STATE->mapTiles->unk_508[MAP_TILE_INDEX(
+              MAP_STATE->units[i].x, MAP_STATE->units[i].y)] == 0 ||
+          (MAP_STATE
+               ->units[MAP_STATE->mapTiles->unk_508[MAP_TILE_INDEX(
+                   MAP_STATE->units[i].x, MAP_STATE->units[i].y)]]
                .flags &
            MAP_UNIT_LOCKED)) {
-        GAME->mapTiles
-            ->unk_508[TILE_INDEX(GAME->units[i].x, GAME->units[i].y)] = i;
-        if (!(GAME->units[i].flags & MAP_UNIT_SELECTED)) {
-          if (GAME->players[GAME->currentPlayer].controller ==
+        MAP_STATE->mapTiles->unk_508[MAP_TILE_INDEX(MAP_STATE->units[i].x,
+                                                    MAP_STATE->units[i].y)] = i;
+        if (!(MAP_STATE->units[i].flags & MAP_UNIT_SELECTED)) {
+          if (MAP_STATE->players[MAP_STATE->currentPlayer].controller ==
                   PLAYER_CONTROLLER_AI ||
-              GAME->mapTiles->inSight[TILE_INDEX(GAME->units[i].x,
-                                                 GAME->units[i].y)] != 0) {
-            GAME->mapTiles
-                ->unitAt[TILE_INDEX(GAME->units[i].x, GAME->units[i].y)] = i;
+              MAP_STATE->mapTiles->inSight[MAP_TILE_INDEX(
+                  MAP_STATE->units[i].x, MAP_STATE->units[i].y)] != 0) {
+            MAP_STATE->mapTiles->unitAt[MAP_TILE_INDEX(
+                MAP_STATE->units[i].x, MAP_STATE->units[i].y)] = i;
           }
         }
       }
@@ -72,15 +66,15 @@ void Map_RebuildUnitTiles(void) {
   }
 
   for (i = 1; i < MAP_UNIT_COUNT; i++) {
-    if (GAME->units[i].type != UNIT_NONE &&
-        !(GAME->units[i].flags & MAP_UNIT_SELECTED) &&
-        GAME->players[GAME->currentPlayer].controller != PLAYER_CONTROLLER_AI) {
+    if (MAP_STATE->units[i].type != UNIT_NONE &&
+        !(MAP_STATE->units[i].flags & MAP_UNIT_SELECTED) &&
+        MAP_STATE->players[MAP_STATE->currentPlayer].controller !=
+            PLAYER_CONTROLLER_AI) {
       if (!UnitSlot_IsVisible(i) ||
-          GAME->mapTiles
-                  ->inSight[TILE_INDEX(GAME->units[i].x, GAME->units[i].y)] ==
-              0) {
-        GAME->mapTiles->unitAt[TILE_INDEX(GAME->units[i].x, GAME->units[i].y)] =
-            0;
+          MAP_STATE->mapTiles->inSight[MAP_TILE_INDEX(
+              MAP_STATE->units[i].x, MAP_STATE->units[i].y)] == 0) {
+        MAP_STATE->mapTiles->unitAt[MAP_TILE_INDEX(MAP_STATE->units[i].x,
+                                                   MAP_STATE->units[i].y)] = 0;
       }
     }
   }

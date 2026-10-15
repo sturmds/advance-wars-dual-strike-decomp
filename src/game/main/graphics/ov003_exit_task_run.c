@@ -3,8 +3,6 @@
 #include "game/Unk_02160ac0.h"
 #include "game/Unk_02160abc.h"
 
-extern Unk_027c0288 data_027c0288;
-
 void func_020014f8(void);
 void Screen_SetCurrentBoth(void* state);
 void Screen_SetBothNibbles(int value);

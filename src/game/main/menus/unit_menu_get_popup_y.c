@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Popup row for the cursor: its screen row in 8-pixel tiles (map tiles are
  * two high), one less from row 6 and again from row 19, and at least 2. */
 int UnitMenu_GetPopupY(void) {

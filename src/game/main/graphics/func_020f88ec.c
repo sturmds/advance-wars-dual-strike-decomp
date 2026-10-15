@@ -10,11 +10,8 @@ void ObjGfx_LoadLanguageTiles(void);
 BOOL Map_IsCoSelectPhase(void);
 void PowerPanel_LoadGfx(int player, BOOL coSelectPhase);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u16 data_021396f0[];
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
 #define STATE_50 (data_027c027c->unk_50[data_027c0284])
 
 void func_020f88ec(void) {
@@ -24,8 +21,8 @@ void func_020f88ec(void) {
   func_01ff9ac4();
   func_020d2190();
   if (STATE_50->unk_58 != NULL) {
-    STATE_50->unk_58(GAME->unk_1c4->weather, GAME->unk_1c4->tileset);
+    STATE_50->unk_58(MAP_STATE->unk_1c4->weather, MAP_STATE->unk_1c4->tileset);
   }
   ObjGfx_LoadLanguageTiles();
-  PowerPanel_LoadGfx(GAME->currentPlayer, Map_IsCoSelectPhase());
+  PowerPanel_LoadGfx(MAP_STATE->currentPlayer, Map_IsCoSelectPhase());
 }

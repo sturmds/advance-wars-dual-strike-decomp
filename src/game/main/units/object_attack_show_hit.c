@@ -6,10 +6,6 @@
 #include "game/player.h"
 #include "game/task.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 /* needed to match: the original loads data_027c0284 before data_027c027c
  * here (the header's STATE_IDX_FIRST loads the base first). */
 #define STATE_INDEX_LOADED_FIRST                                          \
@@ -36,11 +32,11 @@ void PipeSeamHitTask_Start(int x, int y, Task* parent);
   }
 
 /* Adds 1 (below 1000000) to a play record when the attacker is human. */
-#define COUNT_RECORD(player, field)                                   \
-  if (STATE->players[player].controller == PLAYER_CONTROLLER_HUMAN) { \
-    if (gPlayRecords.field < 999999) {                                \
-      gPlayRecords.field++;                                           \
-    }                                                                 \
+#define COUNT_RECORD(player, field)                                       \
+  if (MAP_STATE->players[player].controller == PLAYER_CONTROLLER_HUMAN) { \
+    if (gPlayRecords.field < 999999) {                                    \
+      gPlayRecords.field++;                                               \
+    }                                                                     \
   }
 
 /* Starts the hit display for the object or pipe seam the attack task hit.
@@ -53,14 +49,16 @@ void ObjectAttack_ShowHit(ObjectAttackTask* task) {
   int hp;
 
   object = task->object;
-  player = MAP_UNIT_OWNER(STATE, STATE->combatants[0].unit);
+  player = MAP_UNIT_OWNER(MAP_STATE, MAP_STATE->combatants[0].unit);
   if (object != NULL) {
     MapObjectHitTask_Start(object, (Task*)task);
     hp = object->hp;
   } else {
     PipeSeamHitTask_Start(task->tileX, task->tileY, (Task*)task);
-    hp = STATE->tileHp[task->tileX + STATE->mapTiles->rowStart[task->tileY]] &
-         TILE_HP_MASK;
+    hp =
+        MAP_STATE
+            ->tileHp[task->tileX + MAP_STATE->mapTiles->rowStart[task->tileY]] &
+        TILE_HP_MASK;
   }
   if (hp != 0) {
     return;

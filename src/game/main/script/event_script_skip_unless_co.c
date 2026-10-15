@@ -3,8 +3,6 @@
 #include "game/Unk_02080440.h"
 #include "game/player.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 int Player_GetCoId(int player, int slot);
 
 /* Script command: skips the next arg commands unless CO slot (unk_08 & 1) of

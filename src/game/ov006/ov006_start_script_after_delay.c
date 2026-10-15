@@ -5,7 +5,6 @@
 void* EventScript_Start(const void* script);
 int func_ov006_023580c0(void);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern const TaskScriptCmd data_ov006_0236a258[];
 extern const TaskScriptCmd data_ov006_0236a308[];
 

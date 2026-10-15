@@ -10,8 +10,6 @@ void VsSetup_CloseSettingsMenu(void);
 void VsSetup_IncreaseSetting(void);
 void VsSetup_DecreaseSetting(void);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offsets out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

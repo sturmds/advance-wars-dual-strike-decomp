@@ -1,11 +1,11 @@
 #include "sdk/wl.h"
+#include "sdk/mi.h"
 
 void func_arm7_027cb364(u16 station, u32 set);
 u32 WifiStation_IndexOfMac(const u16* macAddress);
 WlTxFrame* WifiFrame_NewDeauthentication(const u16* dest, u32 reason);
 void WifiTx_EnqueueMgmt(void* frame);
 void WL_WriteByte(void* addr, u32 value);
-void Mem_CopyHalfwords_Arm7(const void* src, void* dest, u32 size);
 
 /*
  * Handles a received MP reply (frame control 0x118: data + CF-Ack to the

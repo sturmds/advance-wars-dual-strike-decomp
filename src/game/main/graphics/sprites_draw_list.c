@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 void Oam_PutFlippedCells(int x, int y, const void* data, int unk08, int unk0a);
 void Oam_PutFlippedSprite(int x, int y, const void* data, int unk08);
 void Oam_PutCells(int attr1, int attr0, const void* cells, int attr2, int tile);

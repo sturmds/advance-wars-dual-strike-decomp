@@ -15,7 +15,6 @@ int Survival_GetMapId(int mode, int index);
 int Survival_GetRecordIndex(int mode, int index);
 
 extern Unk_022a7b80 data_022a7b80;
-extern Unk_027c0280* data_027c0280;
 
 /* Record COs of the map at the strip cursor, for the current mode. */
 #define RECORD(cursor) \

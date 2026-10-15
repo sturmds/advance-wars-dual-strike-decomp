@@ -3,7 +3,6 @@
 #include "game/Unk_02080440.h"
 #include "game/menu_button.h"
 
-extern Unk_02080440* data_027c027c;
 extern const TaskScriptCmd data_0215fad0[];
 
 Task* Task_FindByScript(const void* script);

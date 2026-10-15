@@ -1,10 +1,8 @@
 #include "types.h"
 #include "sdk/gx.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen.h"
 
-extern Unk_027c0280* data_027c0280;
-
-void Screen_SetGraphicsMode(int dispMode, int bgMode, int bg0Is3d);
 void func_0210a948(void);
 void func_0210a980(void);
 void func_0210a994(void);

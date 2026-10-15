@@ -3,11 +3,10 @@
 #include "game/menu_button.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov004_022bf158.h"
+#include "game/screen.h"
 
-void Screen_InitLayers(const void* config);
 void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);
 BOOL Screen_IsTextBg(int layer);
-BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
 void Mem_Copy32(const void* src, void* dst, u32 size);

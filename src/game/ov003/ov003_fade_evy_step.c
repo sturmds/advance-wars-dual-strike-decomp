@@ -2,9 +2,8 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov003_0235dd38.h"
 #include "game/ov003_unit.h"
+#include "game/math.h"
 
-extern Unk_027c0280* data_027c0280;
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(void* task);
 
 /* Task step: while Ov003State.unk_1d7 is 0, counts 8 frames and eases the

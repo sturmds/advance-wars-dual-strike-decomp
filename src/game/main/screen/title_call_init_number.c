@@ -2,7 +2,6 @@
 #include "game/title_call_task.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
 void Gfx_RequestLayerCopy(int layer);
 
 /* First step of the title call script (data_0215bbc8): resets the frame

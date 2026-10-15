@@ -1,7 +1,6 @@
 #include "types.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numerator, s32 denominator);
-s32 HwMod32(s32 numerator, s32 denominator);
 void WinLoseScreen_DrawPointsDigit(int x, int y, int digit, int order,
                                    int frame);
 

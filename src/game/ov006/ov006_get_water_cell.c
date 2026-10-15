@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/terrain.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern s16 Ov006_gWaterCellTable[];
 
 int Ov006_IsLandNeighbor(
@@ -12,8 +10,7 @@ int Ov006_IsLandNeighbor(
 s16 Ov006_GetShoalGraphic(int x, int y);
 BOOL Ov006_IsBridgeTile(int x, int y);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define MAP (STATE->unk_1c4)
+#define MAP (MAP_STATE->unk_1c4)
 
 /* Picks the cell that tile x, y gets from the water around it: each of the
  * nine tiles of the 3x3 block that Ov006_IsLandNeighbor counts sets one bit
@@ -51,7 +48,7 @@ s16 Ov006_GetWaterCell(int x, int y) {
     }
   }
 
-  terrain = STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]];
+  terrain = MAP_STATE->mapTiles->tiles[x + MAP_STATE->mapTiles->rowStart[y]];
   if (terrain == TERRAIN_SHOAL) {
     cell = Ov006_GetShoalGraphic(x, y);
   } else if (terrain == TERRAIN_RIVER) {

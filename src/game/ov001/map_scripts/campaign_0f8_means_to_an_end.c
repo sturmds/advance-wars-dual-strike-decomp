@@ -2,6 +2,7 @@
 #include "game/task.h"
 #include "game/event_script.h"
 #include "game/map_script.h"
+#include "game/screen.h"
 
 void MenuDepth_Pop(void);
 void MenuDepth_Push(void);
@@ -13,7 +14,6 @@ void Ov001_StartUnitTaskAt15_10(void);
 void Ov001_StartUnitTaskAt3_10(void);
 void Ov001_StartUnitTaskAt9_12(void);
 void Player1Team_HasPlayerInGame(void);
-void ScreenShake_Stop(void);
 extern TaskScriptCmd data_02157480[];
 extern EventScriptCommand Ov001_gDefeatOtherTeams2Script[];
 extern EventScriptCommand data_ov001_0236e90c[];

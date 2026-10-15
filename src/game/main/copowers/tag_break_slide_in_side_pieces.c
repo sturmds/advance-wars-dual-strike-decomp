@@ -1,12 +1,12 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/screen_other_map.h"
+#include "game/math.h"
+#include "game/tag_break_task.h"
 
 #define SLIDE_FRAMES 128
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Screen_SetCurrentBoth(void* state);
 void Task_ResumeScript(Task* task);
-void TagBreak_DrawSidePieceFacing(int x, int y, int index);
 #define FRAME(task) (*(s16*)&(task)->unk_4c)
 
 /* Script task step, 128 frames: scrolls BG3 of both screens down by 32 lines

@@ -1,12 +1,9 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 #include "game/ov003_marker.h"
-
-extern Ov003Unit data_ov003_02369538[];
-extern Ov003TileInfo data_ov003_02364d88[];
+#include "game/math.h"
 
 int func_ov003_023622b8(void);
-int Math_Distance(int x1, int y1, int x2, int y2);
 
 /* Returns the live unit nearest to the marker's tile centre, or NULL if none
  * is within the marker's reach (Ov003TileInfo.reach + 2 tiles). For

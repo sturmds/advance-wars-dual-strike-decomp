@@ -5,15 +5,14 @@
 #include "game/text_printer.h"
 #include "game/task.h"
 #include "game/Unk_ov005_0236bb80.h"
+#include "game/screen_other_map.h"
+#include "sdk/fs.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Screen_SetCurrentBoth(void* state);
 void Screen_SetBgMode(int mode);
-void Screen_InitLayers(const void* config);
+void Screen_InitLayers(const GfxLayer* config);
 void Font_LoadDigits(int baseTile);
 void Palette_Load(const void* src, u32 offset, u32 size);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           int paletteOffset, int size);
@@ -23,9 +22,6 @@ TextPrinter* Text_PrintByIdOnLayer0(int x, int y, u16* map, u32 textId,
 Task* Sound_StartSongSwitch(
     int song, int arg); /* task: fade out the song, then start `song` */
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern GfxLayer data_ov005_023680f0[];     /* main screen layer config */
 extern GfxLayer gOv005DarkenedSubLayers[]; /* sub screen layer config */
 extern u8 data_021388f0[];

@@ -3,15 +3,12 @@
 #include "game/menu_button.h"
 #include "game/Unk_02088d04.h"
 #include "game/co_graphics.h"
+#include "game/screen_other_map.h"
 
 void Gfx_RequestLayerCopy(int layer);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 void Palette_Flush(void);
-void Screen_SetCurrentGfx(void* state);
 void MapSelect_LoadEnemyCoPictures(void);
-
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 #define GFX data_027c0280
 /* BG tile data of a BG, 32 bytes per tile. */

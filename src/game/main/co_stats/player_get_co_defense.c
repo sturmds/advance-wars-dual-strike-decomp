@@ -8,9 +8,6 @@ int GetUnitCombatClass(int unitType);
 /* Com Tower defense: the CO's towerDefense times the towers owned. */
 int Player_GetComTowerDefense(int playerIndex, int slot, int powerState);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Defense bonus in percent of one CO of a player (slot 0 front, 1 back)
  * in a power state, for a unit type: the player's defenseBonus (10 while a
  * power is on), the front CO's skills, Com Towers and the CO's stat rows. 0 when

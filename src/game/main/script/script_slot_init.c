@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
-
 #define SLOT_VARS(slot) (((ScriptSlotVars*)data_027c027c->scriptSlots)[slot])
 
 /* Sets up a slot to run script from its first command with the given

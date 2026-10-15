@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_0229c734.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void ResultPoint_DrawPanel(int x, int y, int arg);
 void ResultPoint_DrawPanelTally(int x, int y, ResultPointTask* task);
 void Sound_PlaySe(u32 soundId);

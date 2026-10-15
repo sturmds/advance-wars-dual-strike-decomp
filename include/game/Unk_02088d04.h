@@ -272,4 +272,7 @@ typedef struct Unk_02023724 {
   u8 unk_32; /* selected entry of a list */
 } Unk_02023724;
 
+extern Unk_027c0280* data_027c0280;
+extern Unk_027c0288 data_027c0288;
+
 #endif

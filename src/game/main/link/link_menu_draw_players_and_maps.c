@@ -3,8 +3,6 @@
 #include "game/text_print.h"
 #include "game/Unk_02088d04.h"
 
-extern MenuState gMenuState;
-extern Unk_027c0280* data_027c0280;
 extern char data_02167c88[];
 
 void Gfx_RequestLayerCopy(int layer);

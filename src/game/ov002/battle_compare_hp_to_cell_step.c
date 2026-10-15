@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 /* Compares the shown HP (1 to 10, 0 when destroyed) with one of the side's
  * five 3-bit steps, which are kept as a halfword at gMenuState + 0x294 + 2 * side.
  * Returns 2 when the step lies below, 1 when it sits on, 0 when above. */

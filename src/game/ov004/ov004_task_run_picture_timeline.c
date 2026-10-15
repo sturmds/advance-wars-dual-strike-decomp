@@ -3,6 +3,7 @@
 #include "game/task.h"
 #include "game/Unk_ov004_022bf158.h"
 #include "game/brightness_fade.h"
+#include "game/screen.h"
 
 extern Unk_ov004_022bf158* data_ov004_022bf158;
 extern u32 data_ov004_022bdc94[]; /* map bytes of a text BG by screen size */
@@ -33,7 +34,6 @@ void Ov004_UnpackResource(const char* name, void* dst);
 void Ov004_CopyResource(const char* name, void* dst);
 void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);
 BOOL Screen_IsTextBg(int layer);
-BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
 void* PaletteFade_StartFromBlack(int a, void* b, int c, int d, int e);

@@ -1,12 +1,11 @@
 #include "types.h"
 #include "game/battle_scene.h"
 #include "game/terrain.h"
+#include "sdk/gx_load.h"
 
 void File_ReadTo(void* dest, const char* path);
 u8 Player_GetArmyStyle(int playerIndex);
 BOOL Battle_IsSideSea(int side); /* TRUE: the side's unit is a naval unit */
-void GX_BeginLoadTexPltt(void);  /* guess: maps VRAM bank F to the CPU (LCDC) */
-void GX_EndLoadTexPltt(void);    /* guess: undoes GX_BeginLoadTexPltt */
 
 static char data_ov002_02360384[] = {
 #include "data/ov002/data_ov002_02360384.inc.c"

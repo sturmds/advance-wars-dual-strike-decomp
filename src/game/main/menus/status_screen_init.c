@@ -12,12 +12,9 @@ void StatusScreen_Draw(void);
 void Gfx_RequestLayerCopy(int layer);
 void StatusScreen_AddButton(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
 extern char data_0215fba0[]; /* status screen background file */
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Status screen setup: an army icon for each undefeated player (OBJ tiles
  * 404 on, 8 per row, where StatusScreen_QueueSprites shows them), the
@@ -28,8 +25,8 @@ void StatusScreen_Init(void) {
   Gfx_ClearLayerMap(0);
   Gfx_ClearLayerMap(1);
   for (i = 0; i < Map_GetLoadedPlayerCount(); i++) {
-    if (GAME->players[i + 1].defeated == 0) {
-      Icon_LoadTo(ICON_ARMY_BANNERS - 1 + GAME->players[i + 1].armyColour,
+    if (MAP_STATE->players[i + 1].defeated == 0) {
+      Icon_LoadTo(ICON_ARMY_BANNERS - 1 + MAP_STATE->players[i + 1].armyColour,
                   data_027c0280->objVram, 404 + i * 8);
     }
   }

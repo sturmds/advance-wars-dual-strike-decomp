@@ -1,7 +1,7 @@
 #include "sdk/snd_seq.h"
+#include "sdk/runtime.h"
 
 /* The compiler's signed 64-bit divide (ARM7 copy of _ll_sdiv). The original calls it by this name. */
-s64 _ll_sdiv_Arm7(s64 dividend, s64 divisor);
 
 /*
  * Returns the channel's sweep pitch offset: sweepPitch at the start, falling

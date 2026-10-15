@@ -6,7 +6,6 @@ void Ov006_LoadToolUnitPreview(void);
 void Ov006_LoadEntryTerrainGraphics(void);
 void func_ov006_02357734(void);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern s8 data_ov006_0236a7b4[];
 extern s8 data_ov006_0236a7d0[];
 

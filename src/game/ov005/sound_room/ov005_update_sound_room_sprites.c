@@ -2,12 +2,10 @@
 #include "game/screen_other_map.h"
 #include "game/sprite_anim.h"
 #include "game/Unk_ov005_0236bbac.h"
+#include "game/oam_buffer.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numer, s32 denom);
 int MainLoop_GetFrameCount(void);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
-
-extern s16 gSineTable[];
 
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 

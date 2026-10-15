@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/menu_item.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 extern MenuItem data_02165d2c[];
 
 void ScreenConfig_RunActionHook(void);

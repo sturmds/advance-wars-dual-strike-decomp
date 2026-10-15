@@ -3,7 +3,6 @@
 
 void Mem_CopyUnits(const void* src, void* dst, u32 size, u32 unitBits);
 
-extern Unk_027c0280* data_027c0280;
 extern const u16 gWhitePalette[];
 
 /* Sets the 16 colours of palette slot slot (0-31, BG then OBJ) in the palette

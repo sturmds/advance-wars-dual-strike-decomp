@@ -9,8 +9,6 @@
 void Bg_PutTileQuad(int x, int y, int firstTile, int palette);
 void Number_Draw(s16 x, s16 y, u16* map, int value, u16 a, u16 b);
 
-extern Unk_027c0280* data_027c0280;
-
 /* Draws one table entry on layer 0 at (x, y): a tile quad, the entry's text
  * at x + 2 and its number at x + 20. */
 void func_020719e0(int x, int y, int row, int col) {

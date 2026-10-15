@@ -1,6 +1,5 @@
 #include "types.h"
-
-s32 HwMod32(s32 numer, s32 denom);
+#include "game/math.h"
 
 /* Needed to match: the original reads the duration again at the top of each
  * loop pass; a plain read reuses the value from the loop test. */

@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/campaign_map.h"
 #include "game/unlocks.h"
-
-extern CampaignMapState gCampaignMapState;
+#include "game/campaign_map_music.h"
 
 /* Sets the mission that follows the one just played (unk_00): usually the
  * next one. After missions 9, 11 and 13 the side missions 25, 26 and 27

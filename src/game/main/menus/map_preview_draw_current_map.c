@@ -3,14 +3,8 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-
 void func_02020848(void* dst);
 void func_02020854(void* dst);
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Copies the map being played (size and the cell code of every tile) into
  * data_0229eadc, draws its preview into dst in both halves, and scrolls
@@ -20,12 +14,13 @@ void MapPreview_DrawCurrentMap(void* dst) {
   int col;
   int row;
 
-  data_0229eadc->width = GAME->unk_1c4->mapWidth;
-  data_0229eadc->height = GAME->unk_1c4->mapHeight;
-  for (row = 0; row < GAME->unk_1c4->mapHeight; row++) {
-    for (col = 0; col < GAME->unk_1c4->mapWidth; col++) {
-      data_0229eadc->tileCodes[col + GAME->mapTiles->rowStart[row]] =
-          GAME->mapTiles->mapCells[col + GAME->mapTiles->rowStart[row]];
+  data_0229eadc->width = MAP_STATE->unk_1c4->mapWidth;
+  data_0229eadc->height = MAP_STATE->unk_1c4->mapHeight;
+  for (row = 0; row < MAP_STATE->unk_1c4->mapHeight; row++) {
+    for (col = 0; col < MAP_STATE->unk_1c4->mapWidth; col++) {
+      data_0229eadc->tileCodes[col + MAP_STATE->mapTiles->rowStart[row]] =
+          MAP_STATE->mapTiles
+              ->mapCells[col + MAP_STATE->mapTiles->rowStart[row]];
     }
   }
   func_02020854(dst);

@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Zeroes the first tile (32 bytes, or 64 in 256-colour mode) at the layer's
  * character base, so map entries that use tile 0 show nothing. The base is
  * a VRAM address by the time this runs. */

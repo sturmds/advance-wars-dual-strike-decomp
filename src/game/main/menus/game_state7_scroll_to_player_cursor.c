@@ -4,12 +4,8 @@
 #include "game/player.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u32 gLinkPlay;
 extern ScriptCommand gMapScrollScript[];
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 BOOL EventScript_IsRunning(void);
 s16 ScriptSlot_Find(const ScriptCommand* script);
@@ -34,18 +30,19 @@ void Game_State7_ScrollToPlayerCursor(void) {
     return;
   }
   Font_LoadDigits(0);
-  if (gLinkPlay == 0 || STATE->players[STATE->currentPlayer].controller ==
-                            PLAYER_CONTROLLER_HUMAN) {
-    func_020f5888(STATE->players[STATE->currentPlayer].savedCursorX,
-                  STATE->players[STATE->currentPlayer].savedCursorY);
+  if (gLinkPlay == 0 ||
+      MAP_STATE->players[MAP_STATE->currentPlayer].controller ==
+          PLAYER_CONTROLLER_HUMAN) {
+    func_020f5888(MAP_STATE->players[MAP_STATE->currentPlayer].savedCursorX,
+                  MAP_STATE->players[MAP_STATE->currentPlayer].savedCursorY);
   }
   if (ScriptSlot_Find(gMapScrollScript) != -1) {
     return;
   }
-  Player_PlayTheme((u8)STATE->currentPlayer);
+  Player_PlayTheme((u8)MAP_STATE->currentPlayer);
   Panels_PlaceForCursor();
   Weather_StartNext();
   Units_WaitParalysed();
   func_020c4018();
-  STATE->unk_18 = 8;
+  MAP_STATE->unk_18 = 8;
 }

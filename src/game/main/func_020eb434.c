@@ -1,10 +1,10 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/screen_other_map.h"
+#include "game/screen.h"
+#include "game/math.h"
 
 #define FADE_FRAMES 80
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Screen_SetLayerScreenSize(int layer, int screenSize);
 void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Task_ResumeScript(Task* task);

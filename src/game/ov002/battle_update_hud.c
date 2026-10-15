@@ -5,8 +5,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_0229fb30.h"
 
-extern MenuState gMenuState;
-extern Unk_027c0280* data_027c0280;
 extern const TaskScriptCmd data_ov002_02369664[];
 
 BOOL Battle_IsSideAir(int side);

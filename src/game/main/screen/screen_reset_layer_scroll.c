@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Sets the scroll position of the BG each of the four layers uses to 0, 0. */
 void Screen_ResetLayerScroll(void) {
   data_027c0280->bgScrollX[GFX_LAYER(data_027c0280, 0)->bg] = 0;

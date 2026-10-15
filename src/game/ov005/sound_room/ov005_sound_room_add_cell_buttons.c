@@ -3,15 +3,9 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov005_0236bbac.h"
-
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
+#include "game/screen_other_map.h"
 
 extern MenuButtonTemplate data_ov005_0236b004;
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 void Ov005_SoundRoom_AddCellButtons(Unk_ov005_0236bbac* state) {
   Ov005CoButton* button;

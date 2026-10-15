@@ -3,8 +3,6 @@
 #include "game/menu_state.h"
 #include "game/BattleSpriteTask.h"
 
-extern MenuState gMenuState;
-
 #define MENU ((MenuState*)&gMenuState)
 
 BattleSpriteTask* func_ov002_02356604(int table, int index, int x, int y,

@@ -1,15 +1,10 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
 void Gfx_RequestLayerCopy(int a);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Text_PrintImmediate(int x, int y, void* target, u32 text, int a, int b);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* Prints four lines of text (ids 0x4400000e to 0x44000011) at tile column 7
  * of layer 0 on the screen data_027c0288.unk_00 holds. */

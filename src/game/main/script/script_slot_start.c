@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
-
 s8 ScriptSlot_Find(const ScriptCommand* script);
 void ScriptSlot_StartInSlot(const ScriptCommand* script, u8 slot, int arg);
 

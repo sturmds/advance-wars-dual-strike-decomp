@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 void Battle_ResetTurnState(void);
 void BattleSave_Restore(int recordId);
 void func_020c1c14(void);
@@ -16,7 +13,6 @@ void SetupCoSelection(void);
 void func_020e88f8(void);
 void Player_PlayTheme(int playerIndex);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define HOOKS (data_027c027c->unk_50[data_027c0284])
 
 /* Callback of the battle resume script data_02158468: restores the battle
@@ -26,7 +22,7 @@ void Battle_ResumeFromSave(BattleResumeSlot* slot) {
   Battle_ResetTurnState();
   BattleSave_Restore(slot->recordId);
   func_020c1c14();
-  MapSelect_PointAtMap(STATE->unk_1c4->mapId);
+  MapSelect_PointAtMap(MAP_STATE->unk_1c4->mapId);
   Screens_SelectConfigs();
   if (HOOKS->unk_54 != NULL) {
     HOOKS->unk_54(1);
@@ -37,6 +33,6 @@ void Battle_ResumeFromSave(BattleResumeSlot* slot) {
   }
   func_020e88f8();
   Player_PlayTheme(
-      (u8)STATE
+      (u8)MAP_STATE
           ->currentPlayer); /* needed to match: the cast emits the and 0xff */
 }

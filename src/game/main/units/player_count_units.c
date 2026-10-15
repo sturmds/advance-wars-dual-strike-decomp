@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/map_unit.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Counts the used unit slots of a player (1-4). Only slots 1 to 50 of its
  * block of 64 are looked at. */
 int Player_CountUnits(int player) {

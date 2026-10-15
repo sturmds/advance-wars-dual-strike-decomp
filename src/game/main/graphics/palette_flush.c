@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 void Mem_CopyAuto(const void* src, void* dst, u32 size);
 void TransferQueue_Add(const void* src, void* dst, u32 size); /* queued copy */
 

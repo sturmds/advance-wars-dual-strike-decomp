@@ -2,7 +2,6 @@
 #include "game/design_map.h"
 #include "game/save_progress.h"
 
-extern SaveRecordBuffer data_02291774;
 extern int data_0229eae4;
 
 u8 Map_GetLoadedPlayerCount(void);

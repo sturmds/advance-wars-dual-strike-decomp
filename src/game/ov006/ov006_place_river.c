@@ -2,11 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/terrain.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 int Ov006_GetNeighborTile(int x, int y);
 void Ov006_RefreshNeighborRiverCells(int x, int y);
 int Ov006_GetRiverPiece(int x, int y);
@@ -85,12 +80,12 @@ int Ov006_PlaceRiver(int x, int y) {
   if (y > 0 && Ov006_TileMatches(x, y - 1, 1) != 0) {
     Ov006_StoreMapCell(x, y - 1, 1);
     func_ov006_0235dd24(x, y - 1);
-    if (STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]] ==
+    if (MAP_STATE->mapTiles->tiles[x + MAP_STATE->mapTiles->rowStart[y]] ==
         TERRAIN_MOUNTAIN) {
       Ov006_PlaceMountain(x, y);
     }
   }
-  if (y < STATE->unk_1c4->mapHeight - 1 &&
+  if (y < MAP_STATE->unk_1c4->mapHeight - 1 &&
       Ov006_TileMatches(x, y + 1, 1) != 0) {
     func_ov006_0235da70(x, y + 1, 1);
   }

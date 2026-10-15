@@ -6,9 +6,6 @@
 
 BOOL Player_IsInGame(u8 player);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 #define PLAYERS (data_027c027c->unk_48[data_027c0284]->players)
 
 /* Terrain defense, in percent (10 per star), a unit of the player would get

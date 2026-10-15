@@ -1,12 +1,10 @@
 #include "types.h"
 #include "game/map_unit.h"
 #include "game/screen_other_map.h"
+#include "game/ai/ai_turn_state.h"
 
 MapUnit* Unit_FindFreeSlot(int player);
 void Player_CountArrivingUnit(int player);
-void MapUnit_ResetAiState(MapUnit* unit);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Two-map battles: copies unit, and the units it carries, into free slots of
  * the current player on the other map at tile (x, y). Returns the copy's slot
@@ -19,7 +17,7 @@ int Unit_CopyToOtherMap(MapUnit* unit, int x, int y) {
   int i;
   int slot;
 
-  player = STATE->currentPlayer;
+  player = MAP_STATE->currentPlayer;
   savedGfx = data_027c0280;
   Screen_SetCurrentGfx((&data_027c0288.unk_00)[1 - data_027c0284]);
   savedState = data_027c027c;
@@ -34,14 +32,15 @@ int Unit_CopyToOtherMap(MapUnit* unit, int x, int y) {
   MapUnit_ResetAiState(copy);
   for (i = 0; i < MAP_UNIT_CARGO_COUNT; i++) {
     if (unit->cargo[i] != 0) {
-      copy->cargo[i] = Unit_CopyToOtherMap(&STATE->units[unit->cargo[i]], x, y);
+      copy->cargo[i] =
+          Unit_CopyToOtherMap(&MAP_STATE->units[unit->cargo[i]], x, y);
     }
   }
   savedGfx = data_027c0280;
   Screen_SetCurrentGfx((&data_027c0288.unk_00)[1 - data_027c0284]);
   savedState = data_027c027c;
   Screen_SetCurrent((&data_027c0288.unk_00)[1 - data_027c0284]);
-  slot = copy - STATE->units;
+  slot = copy - MAP_STATE->units;
   Screen_SetCurrent(savedState);
   Screen_SetCurrentGfx(savedGfx);
   return slot;

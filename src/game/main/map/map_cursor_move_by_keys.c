@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/keypad.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 /* needed to match: with a length, mwcc reads the steps again after each store */
 extern s16 data_02169454
     [DPAD_PATTERN_COUNT]
@@ -13,13 +11,11 @@ extern s16 data_02169456[DPAD_PATTERN_COUNT]
 
 void Sound_PlaySe(int se);
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
-
 /* Moves the map cursor (cursorX, cursorY) one tile in the direction of the
  * d-pad keys in gKeypad->repeat, kept on the map, with sound 0x10000 when it
  * moves. */
 void MapCursor_MoveByKeys(void) {
-  Unk_02080440_48* game = GAME;
+  Unk_02080440_48* game = MAP_STATE;
   int dir = (gKeypad->repeat >> 4) & 15;
   int newX = game->cursorX + data_02169454[dir][0];
   s16 nx = newX;
@@ -41,15 +37,15 @@ void MapCursor_MoveByKeys(void) {
       }
     }
   }
-  if (newX >= 0 && newX < GAME->unk_1c4->mapWidth) {
-    GAME->cursorX = newX;
+  if (newX >= 0 && newX < MAP_STATE->unk_1c4->mapWidth) {
+    MAP_STATE->cursorX = newX;
     if (data_02169454[dir][0] != 0) {
       se = 0x10000;
     }
   }
-  newY = GAME->cursorY + data_02169456[dir][0];
-  if (newY >= 0 && newY < GAME->unk_1c4->mapHeight) {
-    GAME->cursorY = newY;
+  newY = MAP_STATE->cursorY + data_02169456[dir][0];
+  if (newY >= 0 && newY < MAP_STATE->unk_1c4->mapHeight) {
+    MAP_STATE->cursorY = newY;
     if (data_02169456[dir][0] != 0) {
       se = 0x10000;
     }

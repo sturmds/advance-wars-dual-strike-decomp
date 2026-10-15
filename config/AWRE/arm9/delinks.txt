@@ -12271,650 +12271,86 @@ src/game/main/func_0208c1f4.c:
     complete
     .text       start:0x0208c1f4 end:0x0208c208
 
-src/game/main/ai/ai_turn_set_state.c:
+src/game/main/ai/ai_turn_state.c:
     complete
-    .text       start:0x0208c208 end:0x0208c21c
-
-src/game/main/ai/ai_turn_get_state.c:
-    complete
-    .text       start:0x0208c21c end:0x0208c230
-
-src/game/main/ai/ai_turn_restart.c:
-    complete
-    .text       start:0x0208c230 end:0x0208c2a4
-
-src/game/main/ai/ai_turn_update.c:
-    complete
-    .text       start:0x0208c2a4 end:0x0208c368
-
-src/game/main/ai/player_reset_units_ai_state.c:
-    complete
-    .text       start:0x0208c368 end:0x0208c400
-
-src/game/main/ai/map_unit_reset_ai_state.c:
-    complete
-    .text       start:0x0208c400 end:0x0208c46c
+    .text       start:0x0208c208 end:0x0208c46c
 
 src/game/main/map/tile_map_fill.c:
     complete
     .text       start:0x0208c46c end:0x0208c560
 
-src/game/main/ai/ai_turn_build_capture_map.c:
+src/game/main/ai/ai_turn_setup.c:
     complete
-    .text       start:0x0208c560 end:0x0208c860
-
-src/game/main/ai/ai_profile_rerandomise_for_player.c:
-    complete
-    .text       start:0x0208c860 end:0x0208c948
-
-src/game/main/ai/ai_profile_reroll_threat_limits.c:
-    complete
-    .text       start:0x0208c948 end:0x0208c9f8
-
-src/game/main/ai/ai_profile_build_for_player.c:
-    complete
-    .text       start:0x0208c9f8 end:0x0208cba8
-
-src/game/main/ai/ai_profile_build.c:
-    complete
-    .text       start:0x0208cba8 end:0x0208cdb8
-
-src/game/main/ai/ai_profile_randomise.c:
-    complete
-    .text       start:0x0208cdb8 end:0x0208cdf8
-
-src/game/main/ai/ai_turn_find_unit_domains.c:
-    complete
-    .text       start:0x0208cdf8 end:0x0208d2f0
-
-src/game/main/ai/ai_turn_update_unit_modes.c:
-    complete
-    .text       start:0x0208d2f0 end:0x0208d3fc
+    .text       start:0x0208c560 end:0x0208d3fc
     .bss        start:0x0229e160 end:0x0229e164
 
 src/game/main/func_0208d3fc.c:
     complete
     .text       start:0x0208d3fc end:0x0208d41c
 
-src/game/main/ai/ai_unit_clear_supply_wanted.c:
+src/game/main/ai/ai_turn_marks.c:
     complete
-    .text       start:0x0208d41c end:0x0208d478
-
-src/game/main/ai/ai_unit_choose_service_wanted.c:
-    complete
-    .text       start:0x0208d478 end:0x0208d548
-
-src/game/main/ai/ai_clear_transports_sent_to_unit.c:
-    complete
-    .text       start:0x0208d548 end:0x0208d56c
-
-src/game/main/ai/ai_turn_clear_unit_marks.c:
-    complete
-    .text       start:0x0208d56c end:0x0208d62c
-
-src/game/main/ai/ai_turn_count_capture_targets.c:
-    complete
-    .text       start:0x0208d62c end:0x0208d6f4
-
-src/game/main/ai/ai_turn_mark_reachable_tiles.c:
-    complete
-    .text       start:0x0208d6f4 end:0x0208d8b4
+    .text       start:0x0208d41c end:0x0208d8b4
 
 src/game/main/player_count_properties_plus_one.c:
     complete
     .text       start:0x0208d8b4 end:0x0208d914
 
-src/game/main/ai/ai_turn_clear_capture_marks.c:
+src/game/main/ai/ai_turn_run.c:
     complete
-    .text       start:0x0208d914 end:0x0208d964
+    .text       start:0x0208d914 end:0x0208db78
 
-src/game/main/ai/func_0208d964.c:
+src/game/main/ai/ai_action_queue.c:
     complete
-    .text       start:0x0208d964 end:0x0208d984
+    .text       start:0x0208db78 end:0x0208faf4
 
-src/game/main/ai/ai_turn_start.c:
+src/game/main/ai/ai_perform_action.c:
     complete
-    .text       start:0x0208d984 end:0x0208dad4
+    .text       start:0x0208faf4 end:0x020901f0
 
-src/game/main/ai/ai_turn_run_phase.c:
+src/game/main/ai/ai_build_transport.c:
     complete
-    .text       start:0x0208dad4 end:0x0208db78
+    .text       start:0x020901f0 end:0x020913e8
 
-src/game/main/ai/ai_action_end_unit_actions.c:
+src/game/main/ai/ai_build_units.c:
     complete
-    .text       start:0x0208db78 end:0x0208db90
+    .text       start:0x020913e8 end:0x02091e40
 
-src/game/main/ai/ai_action_queue_ooziums.c:
+src/game/main/ai/ai_sites.c:
     complete
-    .text       start:0x0208db90 end:0x0208dcac
+    .text       start:0x02091e40 end:0x02092ef4
 
-src/game/main/ai/ai_action_queue_black_bombs_for_eagle.c:
+src/game/main/ai/ai_build_buy.c:
     complete
-    .text       start:0x0208dcac end:0x0208de18
-
-src/game/main/ai/ai_action_queue_black_bombs.c:
-    complete
-    .text       start:0x0208de18 end:0x0208df34
-
-src/game/main/ai/ai_action_queue_black_bomb_explosions.c:
-    complete
-    .text       start:0x0208df34 end:0x0208e050
-
-src/game/main/ai/ai_action_queue_black_boats.c:
-    complete
-    .text       start:0x0208e050 end:0x0208e170
-
-src/game/main/ai/ai_action_queue_class3_units.c:
-    complete
-    .text       start:0x0208e170 end:0x0208e2a0
-
-src/game/main/ai/ai_action_queue_sea_transports.c:
-    complete
-    .text       start:0x0208e2a0 end:0x0208e3d4
-
-src/game/main/ai/ai_action_queue_loaded_transports.c:
-    complete
-    .text       start:0x0208e3d4 end:0x0208e50c
-
-src/game/main/ai/ai_action_queue_transport_unloads.c:
-    complete
-    .text       start:0x0208e50c end:0x0208e644
-
-src/game/main/ai/ai_action_queue_empty_transports.c:
-    complete
-    .text       start:0x0208e644 end:0x0208e77c
-
-src/game/main/ai/func_0208e77c.c:
-    complete
-    .text       start:0x0208e77c end:0x0208e7dc
-
-src/game/main/ai/func_0208e7dc.c:
-    complete
-    .text       start:0x0208e7dc end:0x0208e83c
-
-src/game/main/ai/ai_action_queue_co_power_check.c:
-    complete
-    .text       start:0x0208e83c end:0x0208e89c
-
-src/game/main/ai/func_0208e89c.c:
-    complete
-    .text       start:0x0208e89c end:0x0208e8fc
-
-src/game/main/ai/func_0208e8fc.c:
-    complete
-    .text       start:0x0208e8fc end:0x0208e95c
-
-src/game/main/ai/ai_action_queue_indirect_moves.c:
-    complete
-    .text       start:0x0208e95c end:0x0208ea94
-
-src/game/main/ai/ai_action_queue_indirect_units.c:
-    complete
-    .text       start:0x0208ea94 end:0x0208ebc8
-
-src/game/main/ai/ai_action_queue_direct_units_order4.c:
-    complete
-    .text       start:0x0208ebc8 end:0x0208ed48
-
-src/game/main/ai/ai_action_queue_direct_units.c:
-    complete
-    .text       start:0x0208ed48 end:0x0208eeec
-
-src/game/main/ai/ai_action_queue_all_direct_units.c:
-    complete
-    .text       start:0x0208eeec end:0x0208f060
-
-src/game/main/ai/ai_action_queue_all_direct_units_fog.c:
-    complete
-    .text       start:0x0208f060 end:0x0208f1d4
-
-src/game/main/ai/ai_action_queue_foot_units2.c:
-    complete
-    .text       start:0x0208f1d4 end:0x0208f308
-
-src/game/main/ai/ai_action_queue_foot_units.c:
-    complete
-    .text       start:0x0208f308 end:0x0208f43c
-
-src/game/main/ai/ai_action_queue_capturing_units.c:
-    complete
-    .text       start:0x0208f43c end:0x0208f574
-
-src/game/main/ai/ai_queue_sort_sea_transports.c:
-    complete
-    .text       start:0x0208f574 end:0x0208f688
-
-src/game/main/ai/ai_queue_sort_black_boats.c:
-    complete
-    .text       start:0x0208f688 end:0x0208f724
-
-src/game/main/ai/ai_queue_sort_by_vision.c:
-    complete
-    .text       start:0x0208f724 end:0x0208f7c4
-
-src/game/main/ai/ai_queue_sort_by_max_range.c:
-    complete
-    .text       start:0x0208f7c4 end:0x0208f850
-
-src/game/main/ai/ai_queue_sort_by_movement.c:
-    complete
-    .text       start:0x0208f850 end:0x0208f920
-
-src/game/main/ai/ai_queue_sort_by_hp.c:
-    complete
-    .text       start:0x0208f920 end:0x0208f9c4
-
-src/game/main/ai/ai_queue_sort_ascending.c:
-    complete
-    .text       start:0x0208f9c4 end:0x0208fa5c
-
-src/game/main/ai/ai_queue_sort_descending.c:
-    complete
-    .text       start:0x0208fa5c end:0x0208faf4
-
-src/game/main/ai/ai_player_perform_action.c:
-    complete
-    .text       start:0x0208faf4 end:0x0208fbb0
-
-src/game/main/ai/ai_unit_perform_action.c:
-    complete
-    .text       start:0x0208fbb0 end:0x0208fda8
-
-src/game/main/ai/func_0208fda8.c:
-    complete
-    .text       start:0x0208fda8 end:0x0208fe44
-
-src/game/main/ai/ai_turn_run_queue.c:
-    complete
-    .text       start:0x0208fe44 end:0x02090154
-
-src/game/main/ai/func_02090154.c:
-    complete
-    .text       start:0x02090154 end:0x020901f0
-
-src/game/main/ai/ai_turn_try_build_lander.c:
-    complete
-    .text       start:0x020901f0 end:0x02090360
-
-src/game/main/ai/ai_turn_try_build_lander_near_site.c:
-    complete
-    .text       start:0x02090360 end:0x020907b8
-
-src/game/main/ai/ai_turn_try_build_black_boat.c:
-    complete
-    .text       start:0x020907b8 end:0x020908bc
-
-src/game/main/ai/ai_turn_try_build_black_boat_transport.c:
-    complete
-    .text       start:0x020908bc end:0x02090a38
-
-src/game/main/ai/ai_turn_try_build_black_boat_near_site.c:
-    complete
-    .text       start:0x02090a38 end:0x02090ed4
-
-src/game/main/ai/ai_count_armed_ships.c:
-    complete
-    .text       start:0x02090ed4 end:0x02090fa8
-
-src/game/main/ai/ai_count_vehicles_wanting_transport.c:
-    complete
-    .text       start:0x02090fa8 end:0x02091068
-
-src/game/main/ai/ai_count_foot_wanting_transport.c:
-    complete
-    .text       start:0x02091068 end:0x02091128
-
-src/game/main/ai/ai_count_empty_transports.c:
-    complete
-    .text       start:0x02091128 end:0x020911d4
-
-src/game/main/ai/range_map_spread_over_sea.c:
-    complete
-    .text       start:0x020911d4 end:0x020913b4
-
-src/game/main/ai/lander_can_enter_tile.c:
-    complete
-    .text       start:0x020913b4 end:0x020913e8
-
-src/game/main/ai/ai_turn_try_build_apc.c:
-    complete
-    .text       start:0x020913e8 end:0x02091538
-
-src/game/main/ai/ai_turn_try_build_t_copter.c:
-    complete
-    .text       start:0x02091538 end:0x020916a4
-
-src/game/main/ai/ai_turn_try_build_t_copter_for_foot.c:
-    complete
-    .text       start:0x020916a4 end:0x02091904
-
-src/game/main/ai/func_02091904.c:
-    complete
-    .text       start:0x02091904 end:0x02091944
-
-src/game/main/ai/ai_turn_try_build_foot_unit.c:
-    complete
-    .text       start:0x02091944 end:0x02091b24
-
-src/game/main/ai/ai_turn_get_mech_build_percent.c:
-    complete
-    .text       start:0x02091b24 end:0x02091b74
-
-src/game/main/ai/ai_turn_try_build_cruiser.c:
-    complete
-    .text       start:0x02091b74 end:0x02091c54
-
-src/game/main/ai/func_02091c54.c:
-    complete
-    .text       start:0x02091c54 end:0x02091d34
-
-src/game/main/ai/ai_turn_try_build_fighter.c:
-    complete
-    .text       start:0x02091d34 end:0x02091e40
-
-src/game/main/ai/ai_turn_try_site_action.c:
-    complete
-    .text       start:0x02091e40 end:0x02091eb0
-
-src/game/main/ai/func_02091eb0.c:
-    complete
-    .text       start:0x02091eb0 end:0x02091fbc
-
-src/game/main/ai/ai_sites_collect.c:
-    complete
-    .text       start:0x02091fbc end:0x02092134
-
-src/game/main/ai/func_02092134.c:
-    complete
-    .text       start:0x02092134 end:0x02092350
-
-src/game/main/ai/ai_site_group_rate_surroundings.c:
-    complete
-    .text       start:0x02092350 end:0x02092980
-
-src/game/main/ai/ai_site_unit_can_reach.c:
-    complete
-    .text       start:0x02092980 end:0x02092a6c
-
-src/game/main/ai/ai_sites_build_groups.c:
-    complete
-    .text       start:0x02092a6c end:0x02092ef4
-
-src/game/main/ai/ai_unit_get_repair_value.c:
-    complete
-    .text       start:0x02092ef4 end:0x02092f84
-
-src/game/main/ai/unit_get_value_per_hp_no_power.c:
-    complete
-    .text       start:0x02092f84 end:0x02092fd4
-
-src/game/main/ai/ai_end_actions_start.c:
-    complete
-    .text       start:0x02092fd4 end:0x0209316c
-
-src/game/main/ai/ai_turn_queue_build_at_site.c:
-    complete
-    .text       start:0x0209316c end:0x020931e4
-
-src/game/main/ai/ai_build_roll_order.c:
-    complete
-    .text       start:0x020931e4 end:0x02093370
-
-src/game/main/ai/ai_count_foot_units_by_unk0c4.c:
-    complete
-    .text       start:0x02093370 end:0x02093434
-
-src/game/main/ai/ai_build_buy_at_site.c:
-    complete
-    .text       start:0x02093434 end:0x02093720
+    .text       start:0x02092ef4 end:0x02093720
 
 src/game/main/func_02093720.c:
     complete
     .text       start:0x02093720 end:0x0209373c
 
-src/game/main/ai/ai_sites_clear_rejected_marks.c:
+src/game/main/ai/ai_end_actions.c:
     complete
-    .text       start:0x0209373c end:0x0209378c
+    .text       start:0x0209373c end:0x02093b50
 
-src/game/main/ai/ai_sites_clear_all_marks.c:
+src/game/main/ai/ai_build_pick.c:
     complete
-    .text       start:0x0209378c end:0x020937dc
+    .text       start:0x02093b50 end:0x02095bc0
 
-src/game/main/ai/func_020937dc.c:
+src/game/main/ai/ai_site_pick.c:
     complete
-    .text       start:0x020937dc end:0x02093824
+    .text       start:0x02095bc0 end:0x02096c60
 
-src/game/main/ai/ai_turn_run_end_actions.c:
+src/game/main/ai/ai_build_checks.c:
     complete
-    .text       start:0x02093824 end:0x02093b50
-
-src/game/main/ai/ai_has_healthy_fighter.c:
-    complete
-    .text       start:0x02093b50 end:0x02093bfc
-
-src/game/main/ai/ai_enemy_has_air_unit.c:
-    complete
-    .text       start:0x02093bfc end:0x02093ce8
-
-src/game/main/ai/ai_has_own_base_near_hq.c:
-    complete
-    .text       start:0x02093ce8 end:0x02093ef4
-
-src/game/main/ai/ai_site_choose_unit_to_build.c:
-    complete
-    .text       start:0x02093ef4 end:0x020940f4
-
-src/game/main/ai/ai_turn_pick_unit_to_build.c:
-    complete
-    .text       start:0x020940f4 end:0x0209462c
-
-src/game/main/ai/ai_site_score_piperunner_need.c:
-    complete
-    .text       start:0x0209462c end:0x020949fc
-
-src/game/main/ai/ai_build_can_afford_piperunner_instead.c:
-    complete
-    .text       start:0x020949fc end:0x02094a7c
-
-src/game/main/ai/ai_build_wants_piperunner_instead.c:
-    complete
-    .text       start:0x02094a7c end:0x02094adc
-
-src/game/main/ai/ai_wants_black_bomb.c:
-    complete
-    .text       start:0x02094adc end:0x02094b5c
-
-src/game/main/ai/ai_build_wants_black_bomb_instead.c:
-    complete
-    .text       start:0x02094b5c end:0x02094bfc
-
-src/game/main/ai/ai_build_sum_unit_hp.c:
-    complete
-    .text       start:0x02094bfc end:0x02094d94
-
-src/game/main/ai/ai_site_sum_nearby_unit_hp.c:
-    complete
-    .text       start:0x02094d94 end:0x02095014
-
-src/game/main/ai/ai_build_weigh_unit_types.c:
-    complete
-    .text       start:0x02095014 end:0x02095508
-
-src/game/main/ai/ai_build_pick_anti_air.c:
-    complete
-    .text       start:0x02095508 end:0x0209581c
-
-src/game/main/ai/ai_profile_allows_build.c:
-    complete
-    .text       start:0x0209581c end:0x02095888
-
-src/game/main/ai/ai_build_rate_attacker_vs_target.c:
-    complete
-    .text       start:0x02095888 end:0x02095a7c
-
-src/game/main/ai/ai_build_scale_by_reach.c:
-    complete
-    .text       start:0x02095a7c end:0x02095af8
-
-src/game/main/ai/ai_build_get_target_group.c:
-    complete
-    .text       start:0x02095af8 end:0x02095bc0
-
-src/game/main/ai/ai_sites_has_type.c:
-    complete
-    .text       start:0x02095bc0 end:0x02095c1c
-
-src/game/main/ai/ai_site_pick_port_for_cruiser.c:
-    complete
-    .text       start:0x02095c1c end:0x02095d14
-
-src/game/main/ai/ai_site_pick_port_against_subs.c:
-    complete
-    .text       start:0x02095d14 end:0x02095e0c
-
-src/game/main/ai/ai_site_pick_airport.c:
-    complete
-    .text       start:0x02095e0c end:0x02095f28
-
-src/game/main/ai/ai_site_pick_piperunner_site.c:
-    complete
-    .text       start:0x02095f28 end:0x02095fb8
-
-src/game/main/ai/ai_site_pick_black_bomb_airport.c:
-    complete
-    .text       start:0x02095fb8 end:0x02095fe8
-
-src/game/main/ai/ai_site_pick_black_bomb_airport_nearest_enemy.c:
-    complete
-    .text       start:0x02095fe8 end:0x020960cc
-
-src/game/main/ai/ai_site_pick_black_bomb_airport_most_enemies.c:
-    complete
-    .text       start:0x020960cc end:0x020961ac
-
-src/game/main/ai/ai_site_pick_for_build.c:
-    complete
-    .text       start:0x020961ac end:0x0209622c
-
-src/game/main/ai/ai_build_slot_pick_safe_site.c:
-    complete
-    .text       start:0x0209622c end:0x02096378
-
-src/game/main/ai/ai_site_pick_for_foot_unit.c:
-    complete
-    .text       start:0x02096378 end:0x02096430
-
-src/game/main/ai/ai_site_pick_nearest_to_property.c:
-    complete
-    .text       start:0x02096430 end:0x020964e0
-
-src/game/main/ai/ai_site_pick_in_most_threatened_group.c:
-    complete
-    .text       start:0x020964e0 end:0x0209658c
-
-src/game/main/ai/ai_site_pick_best_balance.c:
-    complete
-    .text       start:0x0209658c end:0x02096610
-
-src/game/main/ai/ai_site_pick_most_enemies.c:
-    complete
-    .text       start:0x02096610 end:0x020966bc
-
-src/game/main/ai/ai_site_pick_nearest_enemy.c:
-    complete
-    .text       start:0x020966bc end:0x0209676c
-
-src/game/main/ai/ai_site_pick_nearest_enemy_penalized.c:
-    complete
-    .text       start:0x0209676c end:0x02096838
-
-src/game/main/ai/ai_site_pick_for_lander.c:
-    complete
-    .text       start:0x02096838 end:0x02096914
-
-src/game/main/ai/ai_site_pick_nearest_foot_with_property.c:
-    complete
-    .text       start:0x02096914 end:0x020969d0
-
-src/game/main/ai/ai_site_pick_nearest_foot.c:
-    complete
-    .text       start:0x020969d0 end:0x02096a78
-
-src/game/main/ai/ai_site_pick_nearest_to_property_any_group.c:
-    complete
-    .text       start:0x02096a78 end:0x02096b20
-
-src/game/main/ai/ai_site_pick_most_enemies_any_group.c:
-    complete
-    .text       start:0x02096b20 end:0x02096bc4
-
-src/game/main/ai/ai_site_pick_first.c:
-    complete
-    .text       start:0x02096bc4 end:0x02096c60
-
-src/game/main/ai/ai_site_near_unguarded_oozium.c:
-    complete
-    .text       start:0x02096c60 end:0x02096d98
-
-src/game/main/ai/ai_tile_has_adjacent_own_team_unit.c:
-    complete
-    .text       start:0x02096d98 end:0x02096e28
-
-src/game/main/ai/ai_tile_has_own_team_unit.c:
-    complete
-    .text       start:0x02096e28 end:0x02096ea8
-
-src/game/main/ai/ai_tile_has_enemy_oozium.c:
-    complete
-    .text       start:0x02096ea8 end:0x02096f44
-
-src/game/main/ai/ai_build_enemy_sub_reach_map.c:
-    complete
-    .text       start:0x02096f44 end:0x02097050
-
-src/game/main/ai/ai_mark_enemy_sub_reach.c:
-    complete
-    .text       start:0x02097050 end:0x020972f0
-
-src/game/main/ai/ai_count_enemy_sub_reach.c:
-    complete
-    .text       start:0x020972f0 end:0x020973fc
-
-src/game/main/ai/ai_add_sub_reach.c:
-    complete
-    .text       start:0x020973fc end:0x0209770c
-
-src/game/main/ai/ai_build_rate_site_danger.c:
-    complete
-    .text       start:0x0209770c end:0x02097dd4
-
-src/game/main/ai/ai_site_rate_base_landmass.c:
-    complete
-    .text       start:0x02097dd4 end:0x02097e2c
-
-src/game/main/ai/ai_site_rate_landmass.c:
-    complete
-    .text       start:0x02097e2c end:0x02098238
+    .text       start:0x02096c60 end:0x02098238
 
 src/game/main/ai/ai_build_should_save_funds.c:
     complete
     .text       start:0x02098238 end:0x02098310
 
-src/game/main/ai/ai_build_has_enough_ground_indirects.c:
+src/game/main/ai/ai_build_limits.c:
     complete
-    .text       start:0x02098310 end:0x02098468
-
-src/game/main/ai/ai_build_has_enough_indirects_for_artillery.c:
-    complete
-    .text       start:0x02098468 end:0x02098590
-
-src/game/main/ai/ai_profile_wants_sea_transport.c:
-    complete
-    .text       start:0x02098590 end:0x020985b0
-
-src/game/main/ai/ai_profile_has_build_flag.c:
-    complete
-    .text       start:0x020985b0 end:0x020985d0
+    .text       start:0x02098310 end:0x020985d0
 
 src/game/main/copowers/strike_find_best_site.c:
     complete
@@ -12952,149 +12388,29 @@ src/game/main/ai/func_02098e7c.c:
     complete
     .text       start:0x02098e7c end:0x02098ef0
 
-src/game/main/ai/ai_power_check_enemies_on_properties.c:
+src/game/main/ai/ai_power_check.c:
     complete
-    .text       start:0x02098ef0 end:0x020990c4
-
-src/game/main/ai/func_020990c4.c:
-    complete
-    .text       start:0x020990c4 end:0x020991b0
-
-src/game/main/ai/func_020991b0.c:
-    complete
-    .text       start:0x020991b0 end:0x020991f4
-
-src/game/main/ai/func_020991f4.c:
-    complete
-    .text       start:0x020991f4 end:0x020992c8
-
-src/game/main/ai/func_020992c8.c:
-    complete
-    .text       start:0x020992c8 end:0x02099338
-
-src/game/main/ai/func_02099338.c:
-    complete
-    .text       start:0x02099338 end:0x0209937c
-
-src/game/main/ai/ai_power_check_has_factory_or_free_city.c:
-    complete
-    .text       start:0x0209937c end:0x020994b8
-
-src/game/main/ai/func_020994b8.c:
-    complete
-    .text       start:0x020994b8 end:0x02099520
+    .text       start:0x02098ef0 end:0x02099520
 
 src/game/main/func_02099520.c:
     complete
     .text       start:0x02099520 end:0x02099528
 
-src/game/main/ai/func_02099528.c:
+src/game/main/ai/ai_power.c:
     complete
-    .text       start:0x02099528 end:0x020995a4
+    .text       start:0x02099528 end:0x0209a064
 
-src/game/main/ai/ai_turn_is_phase3.c:
+src/game/main/ai/ai_threat_maps.c:
     complete
-    .text       start:0x020995a4 end:0x020995c4
-
-src/game/main/ai/ai_player_try_use_power.c:
-    complete
-    .text       start:0x020995c4 end:0x02099a64
-
-src/game/main/ai/ai_player_front_co_nearer_to_super.c:
-    complete
-    .text       start:0x02099a64 end:0x02099ba0
-
-src/game/main/ai/ai_co_front_closer_to_super.c:
-    complete
-    .text       start:0x02099ba0 end:0x02099dac
-
-src/game/main/ai/ai_co_tag_rank.c:
-    complete
-    .text       start:0x02099dac end:0x02099f88
-
-src/game/main/ai/ai_turn_run_power_step.c:
-    complete
-    .text       start:0x02099f88 end:0x0209a064
-
-src/game/main/ai/ai_end_actions_build_threat_maps.c:
-    complete
-    .text       start:0x0209a064 end:0x0209a134
-
-src/game/main/ai/ai_end_actions_add_enemy_threat.c:
-    complete
-    .text       start:0x0209a134 end:0x0209a91c
-
-src/game/main/ai/ai_build_fighter_threat_maps.c:
-    complete
-    .text       start:0x0209a91c end:0x0209a9ec
-
-src/game/main/ai/ai_add_enemy_threat_to_fighter.c:
-    complete
-    .text       start:0x0209a9ec end:0x0209b1b0
-
-src/game/main/ai/ai_oozium_build_threat_maps.c:
-    complete
-    .text       start:0x0209b1b0 end:0x0209b2b0
-
-src/game/main/ai/func_0209b2b0.c:
-    complete
-    .text       start:0x0209b2b0 end:0x0209b458
-
-src/game/main/ai/ai_clear_threat_in_anti_air_cover.c:
-    complete
-    .text       start:0x0209b458 end:0x0209b918
-
-src/game/main/ai/ai_black_bomb_add_enemy_threat.c:
-    complete
-    .text       start:0x0209b918 end:0x0209c1f8
+    .text       start:0x0209a064 end:0x0209c1f8
 
 src/game/main/func_0209c1f8.c:
     complete
     .text       start:0x0209c1f8 end:0x0209c2c8
 
-src/game/main/ai/ai_add_indirect_enemy_threat.c:
+src/game/main/ai/ai_threat.c:
     complete
-    .text       start:0x0209c2c8 end:0x0209c948
-
-src/game/main/ai/ai_build_threat_maps.c:
-    complete
-    .text       start:0x0209c948 end:0x0209ca48
-
-src/game/main/ai/ai_clear_threat_maps.c:
-    complete
-    .text       start:0x0209ca48 end:0x0209cacc
-
-src/game/main/ai/ai_add_enemy_threat.c:
-    complete
-    .text       start:0x0209cacc end:0x0209d4e0
-
-src/game/main/ai/ai_add_object_threat.c:
-    complete
-    .text       start:0x0209d4e0 end:0x0209d610
-
-src/game/main/ai/ai_mark_object_tile_threat.c:
-    complete
-    .text       start:0x0209d610 end:0x0209d738
-
-src/game/main/ai/ai_add_oozium_threat.c:
-    complete
-    .text       start:0x0209d738 end:0x0209d924
-
-src/game/main/ai/ai_enemy_within_reach.c:
-    complete
-    .text       start:0x0209d924 end:0x0209da94
-
-src/game/main/ai/ai_rated_base_damage.c:
-    complete
-    .text       start:0x0209da94 end:0x0209dae4
-
-src/game/main/ai/ai_unit_uses_threat_maps.c:
-    complete
-    .text       start:0x0209dae4 end:0x0209dc54
-
-src/game/main/ai/ai_count_reachable_adjacent_tiles.c:
-    complete
-    .text       start:0x0209dc54 end:0x0209dd7c
+    .text       start:0x0209c2c8 end:0x0209dd7c
 
 src/game/main/func_0209dd7c.c:
     complete
@@ -13152,25 +12468,9 @@ src/game/main/combat/unit_best_damage_to_target_kind.c:
     complete
     .text       start:0x0209e424 end:0x0209e4b0
 
-src/game/main/ai/ai_co_pair_best_damage_vs_dived.c:
-    complete
-    .text       start:0x0209e4b0 end:0x0209e60c
-
-src/game/main/ai/ai_co_pair_best_damage.c:
-    complete
-    .text       start:0x0209e60c end:0x0209e768
-
-src/game/main/ai/ai_best_damage_vs_dived.c:
-    complete
-    .text       start:0x0209e768 end:0x0209e814
-
 src/game/main/ai/ai_best_damage.c:
     complete
-    .text       start:0x0209e814 end:0x0209e8bc
-
-src/game/main/ai/player_can_see_unit_at.c:
-    complete
-    .text       start:0x0209e8bc end:0x0209eb38
+    .text       start:0x0209e4b0 end:0x0209eb38
 
 src/game/main/map/map_is_tile_visible.c:
     complete
@@ -13220,17 +12520,9 @@ src/game/main/units/unit_is_current_players.c:
     complete
     .text       start:0x0209f08c end:0x0209f0c4
 
-src/game/main/ai/ai_has_own_base_within.c:
+src/game/main/ai/ai_enemy_within.c:
     complete
-    .text       start:0x0209f0c4 end:0x0209f20c
-
-src/game/main/ai/ai_has_visible_enemy_within.c:
-    complete
-    .text       start:0x0209f20c end:0x0209f3ec
-
-src/game/main/ai/ai_has_enemy_within.c:
-    complete
-    .text       start:0x0209f3ec end:0x0209f560
+    .text       start:0x0209f0c4 end:0x0209f560
 
 src/game/main/units/unit_capture_turns_left.c:
     complete
@@ -13264,249 +12556,21 @@ src/game/main/units/unit_get_usable_movement.c:
     complete
     .text       start:0x0209f8d0 end:0x0209f980
 
-src/game/main/ai/ai_count_units_of_ai_class.c:
+src/game/main/ai/ai_count_units.c:
     complete
-    .text       start:0x0209f980 end:0x0209fa3c
+    .text       start:0x0209f980 end:0x0209fadc
 
-src/game/main/ai/ai_count_units_of_type.c:
+src/game/main/ai/ai_unit_act.c:
     complete
-    .text       start:0x0209fa3c end:0x0209fadc
+    .text       start:0x0209fadc end:0x020a0c1c
 
-src/game/main/ai/ai_oozium_act.c:
+src/game/main/ai/ai_unit_target.c:
     complete
-    .text       start:0x0209fadc end:0x0209faf8
+    .text       start:0x020a0c1c end:0x020a30c4
 
-src/game/main/ai/ai_black_bomb_act.c:
+src/game/main/ai/ai_unit_claims.c:
     complete
-    .text       start:0x0209faf8 end:0x0209fb18
-
-src/game/main/ai/ai_black_bomb_explode.c:
-    complete
-    .text       start:0x0209fb18 end:0x0209fb24
-
-src/game/main/ai/ai_black_boat_act.c:
-    complete
-    .text       start:0x0209fb24 end:0x0209fb40
-
-src/game/main/ai/ai_class3_act.c:
-    complete
-    .text       start:0x0209fb40 end:0x0209fb5c
-
-src/game/main/ai/ai_sea_transport_act.c:
-    complete
-    .text       start:0x0209fb5c end:0x0209fbc8
-
-src/game/main/ai/ai_loaded_transport_act.c:
-    complete
-    .text       start:0x0209fbc8 end:0x0209fc10
-
-src/game/main/ai/ai_transport_unload.c:
-    complete
-    .text       start:0x0209fc10 end:0x0209fc2c
-
-src/game/main/ai/ai_empty_transport_act.c:
-    complete
-    .text       start:0x0209fc2c end:0x0209fc58
-
-src/game/main/ai/ai_indirect_move_by_order.c:
-    complete
-    .text       start:0x0209fc58 end:0x0209fdb4
-
-src/game/main/ai/ai_unit_act_by_order_group.c:
-    complete
-    .text       start:0x0209fdb4 end:0x0209fe88
-
-src/game/main/ai/ai_unit_act_by_order.c:
-    complete
-    .text       start:0x0209fe88 end:0x0209ffe4
-
-src/game/main/ai/ai_unit_act_by_order_fog.c:
-    complete
-    .text       start:0x0209ffe4 end:0x020a00c8
-
-src/game/main/ai/ai_foot_move_and_attack.c:
-    complete
-    .text       start:0x020a00c8 end:0x020a022c
-
-src/game/main/ai/ai_foot_move_and_capture.c:
-    complete
-    .text       start:0x020a022c end:0x020a0330
-
-src/game/main/ai/ai_foot_continue_capture.c:
-    complete
-    .text       start:0x020a0330 end:0x020a03bc
-
-src/game/main/ai/ai_indirect_move_order10.c:
-    complete
-    .text       start:0x020a03bc end:0x020a0428
-
-src/game/main/ai/ai_indirect_move_order9.c:
-    complete
-    .text       start:0x020a0428 end:0x020a0498
-
-src/game/main/ai/ai_indirect_move_order8.c:
-    complete
-    .text       start:0x020a0498 end:0x020a0508
-
-src/game/main/ai/ai_indirect_move_order7.c:
-    complete
-    .text       start:0x020a0508 end:0x020a0590
-
-src/game/main/ai/ai_indirect_move_order6.c:
-    complete
-    .text       start:0x020a0590 end:0x020a0604
-
-src/game/main/ai/ai_indirect_move_order5.c:
-    complete
-    .text       start:0x020a0604 end:0x020a0680
-
-src/game/main/ai/ai_indirect_move_order4.c:
-    complete
-    .text       start:0x020a0680 end:0x020a06fc
-
-src/game/main/ai/ai_indirect_move_order3.c:
-    complete
-    .text       start:0x020a06fc end:0x020a0778
-
-src/game/main/ai/ai_indirect_move_order2.c:
-    complete
-    .text       start:0x020a0778 end:0x020a07f4
-
-src/game/main/ai/ai_indirect_move_order1.c:
-    complete
-    .text       start:0x020a07f4 end:0x020a086c
-
-src/game/main/ai/ai_indirect_move_order0.c:
-    complete
-    .text       start:0x020a086c end:0x020a08e8
-
-src/game/main/ai/ai_indirect_act_orders1_7_10.c:
-    complete
-    .text       start:0x020a08e8 end:0x020a0904
-
-src/game/main/ai/ai_indirect_act_other_orders.c:
-    complete
-    .text       start:0x020a0904 end:0x020a0924
-
-src/game/main/ai/ai_unit_act_order10.c:
-    complete
-    .text       start:0x020a0924 end:0x020a0954
-
-src/game/main/ai/ai_unit_act_order9.c:
-    complete
-    .text       start:0x020a0954 end:0x020a0988
-
-src/game/main/ai/ai_unit_act_order8.c:
-    complete
-    .text       start:0x020a0988 end:0x020a09bc
-
-src/game/main/ai/ai_unit_act_order7.c:
-    complete
-    .text       start:0x020a09bc end:0x020a0a0c
-
-src/game/main/ai/ai_unit_act_order6.c:
-    complete
-    .text       start:0x020a0a0c end:0x020a0a44
-
-src/game/main/ai/ai_unit_act_order5.c:
-    complete
-    .text       start:0x020a0a44 end:0x020a0a84
-
-src/game/main/ai/ai_unit_act_order4.c:
-    complete
-    .text       start:0x020a0a84 end:0x020a0ac4
-
-src/game/main/ai/ai_unit_act_order3.c:
-    complete
-    .text       start:0x020a0ac4 end:0x020a0b04
-
-src/game/main/ai/ai_unit_act_order2.c:
-    complete
-    .text       start:0x020a0b04 end:0x020a0b44
-
-src/game/main/ai/ai_unit_act_order1.c:
-    complete
-    .text       start:0x020a0b44 end:0x020a0b80
-
-src/game/main/ai/ai_unit_act_order0.c:
-    complete
-    .text       start:0x020a0b80 end:0x020a0bc0
-
-src/game/main/ai/ai_fog_direct_act_order7.c:
-    complete
-    .text       start:0x020a0bc0 end:0x020a0bdc
-
-src/game/main/ai/ai_fog_direct_act_orders1_10.c:
-    complete
-    .text       start:0x020a0bdc end:0x020a0bfc
-
-src/game/main/ai/ai_fog_direct_act_other_orders.c:
-    complete
-    .text       start:0x020a0bfc end:0x020a0c1c
-
-src/game/main/ai/ai_unit_handle_unit_at_target.c:
-    complete
-    .text       start:0x020a0c1c end:0x020a0dec
-
-src/game/main/ai/ai_unit_attack_from_place_then_move.c:
-    complete
-    .text       start:0x020a0dec end:0x020a12cc
-
-src/game/main/ai/ai_unit_pick_direct_attack_in_reach_of.c:
-    complete
-    .text       start:0x020a12cc end:0x020a189c
-
-src/game/main/ai/ai_switch_acting_unit.c:
-    complete
-    .text       start:0x020a189c end:0x020a1a08
-
-src/game/main/ai/ai_unit_wait_to_attack.c:
-    complete
-    .text       start:0x020a1a08 end:0x020a1b1c
-
-src/game/main/ai/ai_unit_pick_indirect_target.c:
-    complete
-    .text       start:0x020a1b1c end:0x020a1e78
-
-src/game/main/ai/ai_unit_find_best_adjacent_target.c:
-    complete
-    .text       start:0x020a1e78 end:0x020a2044
-
-src/game/main/ai/ai_unit_upgrade_wait_action.c:
-    complete
-    .text       start:0x020a2044 end:0x020a2f98
-
-src/game/main/ai/ai_unit_adjust_action.c:
-    complete
-    .text       start:0x020a2f98 end:0x020a30c4
-
-src/game/main/ai/ai_cruiser_can_reach_sub.c:
-    complete
-    .text       start:0x020a30c4 end:0x020a3294
-
-src/game/main/ai/ai_unit_claim_landmass.c:
-    complete
-    .text       start:0x020a3294 end:0x020a363c
-
-src/game/main/ai/ai_release_capture_claims.c:
-    complete
-    .text       start:0x020a363c end:0x020a37dc
-
-src/game/main/ai/ai_claim_capture_targets.c:
-    complete
-    .text       start:0x020a37dc end:0x020a3ab4
-
-src/game/main/ai/ai_unit_mark_finishing_capture.c:
-    complete
-    .text       start:0x020a3ab4 end:0x020a3b54
-
-src/game/main/ai/ai_tile_has_strong_ally_in_reach.c:
-    complete
-    .text       start:0x020a3b54 end:0x020a3dfc
-
-src/game/main/ai/func_020a3dfc.c:
-    complete
-    .text       start:0x020a3dfc end:0x020a3f2c
+    .text       start:0x020a30c4 end:0x020a3f2c
 
 src/game/main/combat/ai_attack_count_team_units_in_reach.c:
     complete
@@ -13520,413 +12584,49 @@ src/game/main/combat/unit_can_be_attacked_by.c:
     complete
     .text       start:0x020a4880 end:0x020a491c
 
-src/game/main/ai/ai_clear_acting_unit_target.c:
+src/game/main/ai/ai_capture_site.c:
     complete
-    .text       start:0x020a491c end:0x020a4984
+    .text       start:0x020a491c end:0x020a5164
 
-src/game/main/ai/ai_unit_can_reach_capture_site.c:
+src/game/main/ai/ai_move_search.c:
     complete
-    .text       start:0x020a4984 end:0x020a4a70
+    .text       start:0x020a5164 end:0x020a6d30
 
-src/game/main/ai/ai_find_capture_site_near.c:
+src/game/main/ai/ai_tile_search.c:
     complete
-    .text       start:0x020a4a70 end:0x020a4d3c
-
-src/game/main/ai/ai_is_capture_site_taken.c:
-    complete
-    .text       start:0x020a4d3c end:0x020a5048
-
-src/game/main/ai/tile_get_direction.c:
-    complete
-    .text       start:0x020a5048 end:0x020a507c
-
-src/game/main/ai/func_020a507c.c:
-    complete
-    .text       start:0x020a507c end:0x020a50d4
-
-src/game/main/ai/func_020a50d4.c:
-    complete
-    .text       start:0x020a50d4 end:0x020a5100
-
-src/game/main/ai/ai_has_enemy_within_moves.c:
-    complete
-    .text       start:0x020a5100 end:0x020a5164
-
-src/game/main/ai/move_search_find_tile_by_mech_steps.c:
-    complete
-    .text       start:0x020a5164 end:0x020a54e4
-
-src/game/main/ai/move_search_try_mech_step.c:
-    complete
-    .text       start:0x020a54e4 end:0x020a5724
-
-src/game/main/ai/move_search_find_tile.c:
-    complete
-    .text       start:0x020a5724 end:0x020a5aa8
-
-src/game/main/ai/move_search_try_step.c:
-    complete
-    .text       start:0x020a5aa8 end:0x020a5cc8
-
-src/game/main/ai/func_020a5cc8.c:
-    complete
-    .text       start:0x020a5cc8 end:0x020a604c
-
-src/game/main/ai/move_search_try_step_in_cost.c:
-    complete
-    .text       start:0x020a604c end:0x020a6260
-
-src/game/main/ai/ai_is_free_capture_site_tile.c:
-    complete
-    .text       start:0x020a6260 end:0x020a633c
-
-src/game/main/ai/ai_can_damage_enemy_at_tile.c:
-    complete
-    .text       start:0x020a633c end:0x020a63d0
-
-src/game/main/ai/tile_has_enemy_unit.c:
-    complete
-    .text       start:0x020a63d0 end:0x020a6450
-
-src/game/main/ai/ai_tile_get_lowest_adjacent_reach.c:
-    complete
-    .text       start:0x020a6450 end:0x020a6554
-
-src/game/main/ai/ai_unit_has_fuel_for_tile.c:
-    complete
-    .text       start:0x020a6554 end:0x020a6764
-
-src/game/main/ai/range_map_fill_moves_over_turns.c:
-    complete
-    .text       start:0x020a6764 end:0x020a6ac4
-
-src/game/main/ai/move_search_try_step_over_turns.c:
-    complete
-    .text       start:0x020a6ac4 end:0x020a6d30
-
-src/game/main/ai/ai_unit_teammate_outdamages.c:
-    complete
-    .text       start:0x020a6d30 end:0x020a7034
-
-src/game/main/ai/ai_unit_find_firing_tile.c:
-    complete
-    .text       start:0x020a7034 end:0x020a73e4
-
-src/game/main/ai/ai_mark_attack_range.c:
-    complete
-    .text       start:0x020a73e4 end:0x020a74f8
-
-src/game/main/ai/ai_unit_get_unload_movement.c:
-    complete
-    .text       start:0x020a74f8 end:0x020a756c
-
-src/game/main/ai/ai_acting_unit_get_search_movement.c:
-    complete
-    .text       start:0x020a756c end:0x020a7640
-
-src/game/main/ai/ai_unit_get_search_movement.c:
-    complete
-    .text       start:0x020a7640 end:0x020a770c
-
-src/game/main/ai/ai_can_end_move_at.c:
-    complete
-    .text       start:0x020a770c end:0x020a7fe0
-
-src/game/main/ai/ai_is_tile_needed_by_ally.c:
-    complete
-    .text       start:0x020a7fe0 end:0x020a870c
-
-src/game/main/ai/ai_find_nearest_enemy_hq_tile.c:
-    complete
-    .text       start:0x020a870c end:0x020a8804
-
-src/game/main/ai/ai_unit_find_stand_tile_next_to.c:
-    complete
-    .text       start:0x020a8804 end:0x020a89ac
-
-src/game/main/ai/find_attack_tile.c:
-    complete
-    .text       start:0x020a89ac end:0x020a8b20
-
-src/game/main/ai/ai_tile_score_attack_from.c:
-    complete
-    .text       start:0x020a8b20 end:0x020a8d80
+    .text       start:0x020a6d30 end:0x020a8d80
 
 src/game/main/combat/ai_attack_score.c:
     complete
     .text       start:0x020a8d80 end:0x020a9854
 
-src/game/main/ai/ai_unit_move_to_other_map.c:
+src/game/main/ai/ai_find_target.c:
     complete
-    .text       start:0x020a9854 end:0x020a9ac0
+    .text       start:0x020a9854 end:0x020aacc0
 
-src/game/main/ai/ai_unit_move_to_enemy_property.c:
+src/game/main/ai/ai_transport_act.c:
     complete
-    .text       start:0x020a9ac0 end:0x020a9c78
-
-src/game/main/ai/ai_unit_pick_order_site.c:
-    complete
-    .text       start:0x020a9c78 end:0x020a9e44
-
-src/game/main/ai/func_020a9e44.c:
-    complete
-    .text       start:0x020a9e44 end:0x020a9e7c
-
-src/game/main/ai/ai_find_reachable_ai_target.c:
-    complete
-    .text       start:0x020a9e7c end:0x020a9f64
-
-src/game/main/ai/func_020a9f64.c:
-    complete
-    .text       start:0x020a9f64 end:0x020a9f9c
-
-src/game/main/ai/func_020a9f9c.c:
-    complete
-    .text       start:0x020a9f9c end:0x020aa068
-
-src/game/main/ai/func_020aa068.c:
-    complete
-    .text       start:0x020aa068 end:0x020aa0a0
-
-src/game/main/ai/ai_find_own_hq_tile.c:
-    complete
-    .text       start:0x020aa0a0 end:0x020aa1ec
-
-src/game/main/ai/func_020aa1ec.c:
-    complete
-    .text       start:0x020aa1ec end:0x020aa224
-
-src/game/main/ai/ai_find_nearest_own_property_tile.c:
-    complete
-    .text       start:0x020aa224 end:0x020aa4a4
-
-src/game/main/ai/func_020aa4a4.c:
-    complete
-    .text       start:0x020aa4a4 end:0x020aa4dc
-
-src/game/main/ai/ai_transport_pick_foot_unit.c:
-    complete
-    .text       start:0x020aa4dc end:0x020aa9c4
-
-src/game/main/ai/func_020aa9c4.c:
-    complete
-    .text       start:0x020aa9c4 end:0x020aa9fc
-
-src/game/main/ai/ai_find_capture_site_tile.c:
-    complete
-    .text       start:0x020aa9fc end:0x020aac28
-
-src/game/main/ai/func_020aac28.c:
-    complete
-    .text       start:0x020aac28 end:0x020aac60
-
-src/game/main/ai/func_020aac60.c:
-    complete
-    .text       start:0x020aac60 end:0x020aacc0
-
-src/game/main/ai/ai_unit_move_to_enemy_target.c:
-    complete
-    .text       start:0x020aacc0 end:0x020aacf8
-
-src/game/main/ai/ai_unit_find_enemy_target.c:
-    complete
-    .text       start:0x020aacf8 end:0x020ab014
-
-src/game/main/ai/ai_unit_seek_sea_transport.c:
-    complete
-    .text       start:0x020ab014 end:0x020ab70c
-
-src/game/main/ai/ai_unit_board_sea_transport.c:
-    complete
-    .text       start:0x020ab70c end:0x020aba28
-
-src/game/main/ai/ai_loaded_transport_head_for_site.c:
-    complete
-    .text       start:0x020aba28 end:0x020abe3c
-
-src/game/main/ai/ai_transport_unload_for_capture.c:
-    complete
-    .text       start:0x020abe3c end:0x020ac648
-
-src/game/main/ai/ai_empty_transport_wait_near_base.c:
-    complete
-    .text       start:0x020ac648 end:0x020ac9e8
+    .text       start:0x020aacc0 end:0x020ac9e8
 
 src/game/main/ai/ai_empty_transport_go_to_foot_unit.c:
     complete
     .text       start:0x020ac9e8 end:0x020ad0d4
 
-src/game/main/ai/ai_foot_pick_attack_target.c:
+src/game/main/ai/ai_foot.c:
     complete
-    .text       start:0x020ad0d4 end:0x020ad704
+    .text       start:0x020ad0d4 end:0x020af18c
 
-src/game/main/ai/ai_foot_join_capturing_unit_loose.c:
+src/game/main/ai/ai_service.c:
     complete
-    .text       start:0x020ad704 end:0x020ad8f8
+    .text       start:0x020af18c end:0x020b0e1c
 
-src/game/main/ai/ai_foot_join_capturing_unit.c:
+src/game/main/ai/ai_unit_move.c:
     complete
-    .text       start:0x020ad8f8 end:0x020adbac
+    .text       start:0x020b0e1c end:0x020b320c
 
-src/game/main/ai/ai_foot_board_transport.c:
+src/game/main/ai/ai_sea_units.c:
     complete
-    .text       start:0x020adbac end:0x020adf6c
-
-src/game/main/ai/ai_foot_board_transport_for_site.c:
-    complete
-    .text       start:0x020adf6c end:0x020ae37c
-
-src/game/main/ai/ai_foot_head_for_capture_site.c:
-    complete
-    .text       start:0x020ae37c end:0x020ae9c0
-
-src/game/main/ai/ai_foot_pick_capture_target.c:
-    complete
-    .text       start:0x020ae9c0 end:0x020aedec
-
-src/game/main/ai/ai_foot_keep_capturing.c:
-    complete
-    .text       start:0x020aedec end:0x020aeefc
-
-src/game/main/ai/ai_foot_attack_capturing_unit.c:
-    complete
-    .text       start:0x020aeefc end:0x020af18c
-
-src/game/main/ai/ai_black_boat_repair_unit.c:
-    complete
-    .text       start:0x020af18c end:0x020af374
-
-src/game/main/ai/ai_class3_supply_unit.c:
-    complete
-    .text       start:0x020af374 end:0x020af540
-
-src/game/main/ai/ai_unit_seek_supply.c:
-    complete
-    .text       start:0x020af540 end:0x020af5f8
-
-src/game/main/ai/func_020af5f8.c:
-    complete
-    .text       start:0x020af5f8 end:0x020af700
-
-src/game/main/ai/ai_unit_go_to_supply.c:
-    complete
-    .text       start:0x020af700 end:0x020afb58
-
-src/game/main/ai/ai_unit_head_for_repair_tile.c:
-    complete
-    .text       start:0x020afb58 end:0x020aff0c
-
-src/game/main/ai/ai_unit_join_damaged_unit.c:
-    complete
-    .text       start:0x020aff0c end:0x020b0138
-
-src/game/main/ai/ai_unit_try_attack_before_repair.c:
-    complete
-    .text       start:0x020b0138 end:0x020b0604
-
-src/game/main/ai/ai_unit_launch_silo.c:
-    complete
-    .text       start:0x020b0604 end:0x020b0794
-
-src/game/main/ai/ai_unit_retreat_to_repair.c:
-    complete
-    .text       start:0x020b0794 end:0x020b0a70
-
-src/game/main/ai/ai_unit_retreat_toward_site.c:
-    complete
-    .text       start:0x020b0a70 end:0x020b0d94
-
-src/game/main/ai/ai_unit_needs_service.c:
-    complete
-    .text       start:0x020b0d94 end:0x020b0e1c
-
-src/game/main/ai/ai_unit_move_to_safest_tile.c:
-    complete
-    .text       start:0x020b0e1c end:0x020b1148
-
-src/game/main/ai/ai_unit_attack_adjacent.c:
-    complete
-    .text       start:0x020b1148 end:0x020b162c
-
-src/game/main/ai/ai_unit_plan_attack.c:
-    complete
-    .text       start:0x020b162c end:0x020b169c
-
-src/game/main/ai/ai_plan_indirect_attack.c:
-    complete
-    .text       start:0x020b169c end:0x020b1fbc
-
-src/game/main/ai/ai_unit_pick_direct_attack.c:
-    complete
-    .text       start:0x020b1fbc end:0x020b2904
-
-src/game/main/ai/ai_unit_wait_in_place.c:
-    complete
-    .text       start:0x020b2904 end:0x020b297c
-
-src/game/main/ai/ai_unit_head_for_object_target.c:
-    complete
-    .text       start:0x020b297c end:0x020b2b70
-
-src/game/main/ai/ai_unit_move_toward_tile.c:
-    complete
-    .text       start:0x020b2b70 end:0x020b3004
-
-src/game/main/ai/ai_tile_is_safe_stop.c:
-    complete
-    .text       start:0x020b3004 end:0x020b320c
-
-src/game/main/ai/ai_sea_transport_move.c:
-    complete
-    .text       start:0x020b320c end:0x020b3264
-
-src/game/main/ai/ai_black_boat_go_to_unit_in_need.c:
-    complete
-    .text       start:0x020b3264 end:0x020b3570
-
-src/game/main/ai/ai_black_boat_repair_damaged_unit.c:
-    complete
-    .text       start:0x020b3570 end:0x020b377c
-
-src/game/main/ai/ai_black_boat_is_better_repair_target.c:
-    complete
-    .text       start:0x020b377c end:0x020b382c
-
-src/game/main/ai/ai_black_boat_get_repair_priority.c:
-    complete
-    .text       start:0x020b382c end:0x020b38c4
-
-src/game/main/ai/ai_sea_transport_wait_near_port.c:
-    complete
-    .text       start:0x020b38c4 end:0x020b3c84
-
-src/game/main/ai/ai_sea_transport_go_to_foot_unit.c:
-    complete
-    .text       start:0x020b3c84 end:0x020b4138
-
-src/game/main/ai/ai_sea_transport_pick_boarding_tile.c:
-    complete
-    .text       start:0x020b4138 end:0x020b445c
-
-src/game/main/ai/ai_sea_transport_find_pickup_tile.c:
-    complete
-    .text       start:0x020b445c end:0x020b46c4
-
-src/game/main/ai/ai_sea_transport_move_loaded.c:
-    complete
-    .text       start:0x020b46c4 end:0x020b4948
-
-src/game/main/ai/ai_transport_second_cargo_has_task_at.c:
-    complete
-    .text       start:0x020b4948 end:0x020b4bd0
-
-src/game/main/ai/ai_transport_second_cargo_reaches_target_at.c:
-    complete
-    .text       start:0x020b4bd0 end:0x020b4ca4
-
-src/game/main/ai/func_020b4ca4.c:
-    complete
-    .text       start:0x020b4ca4 end:0x020b4d04
+    .text       start:0x020b320c end:0x020b4d04
     .bss        start:0x0229e164 end:0x0229ea0c
 
 src/game/main/func_020b4d04.c:
@@ -14025,109 +12725,21 @@ src/game/main/func_020b5604.c:
     complete
     .text       start:0x020b5604 end:0x020b5668
 
-src/game/main/ai/ai_sea_transport_score_foot_units_vs_properties.c:
+src/game/main/ai/ai_unload.c:
     complete
-    .text       start:0x020b5668 end:0x020b56ac
-
-src/game/main/ai/ai_sea_transport_few_foot_units_no_target.c:
-    complete
-    .text       start:0x020b56ac end:0x020b5750
-
-src/game/main/ai/ai_sea_transport_score_unload_tiles.c:
-    complete
-    .text       start:0x020b5750 end:0x020b5aa8
-
-src/game/main/ai/ai_sea_transport_find_shore_tile.c:
-    complete
-    .text       start:0x020b5aa8 end:0x020b5b94
-
-src/game/main/ai/ai_unit_has_reachable_target.c:
-    complete
-    .text       start:0x020b5b94 end:0x020b5bf4
-
-src/game/main/ai/func_020b5bf4.c:
-    complete
-    .text       start:0x020b5bf4 end:0x020b5c30
-
-src/game/main/ai/ai_transport_head_for_unload_tile.c:
-    complete
-    .text       start:0x020b5c30 end:0x020b5e54
-
-src/game/main/ai/ai_transport_head_for_flagged_unload_tile.c:
-    complete
-    .text       start:0x020b5e54 end:0x020b60e0
-
-src/game/main/ai/ai_transport_unload_in_reach.c:
-    complete
-    .text       start:0x020b60e0 end:0x020b62e4
-
-src/game/main/ai/ai_transport_unload_at.c:
-    complete
-    .text       start:0x020b62e4 end:0x020b6454
-
-src/game/main/ai/ai_transport_find_drop_tiles.c:
-    complete
-    .text       start:0x020b6454 end:0x020b67d4
-
-src/game/main/ai/ai_transport_score_drop_tile.c:
-    complete
-    .text       start:0x020b67d4 end:0x020b6984
-
-src/game/main/ai/ai_transport_count_unload_tiles.c:
-    complete
-    .text       start:0x020b6984 end:0x020b6c84
+    .text       start:0x020b5668 end:0x020b6c84
 
 src/game/main/ai/ai_tile_is_free_for_unit_type.c:
     complete
     .text       start:0x020b6c84 end:0x020b6d14
 
-src/game/main/ai/ai_team_foot_or_enemy_vehicle_in_range.c:
+src/game/main/ai/ai_units_in_range.c:
     complete
-    .text       start:0x020b6d14 end:0x020b6e4c
+    .text       start:0x020b6d14 end:0x020b7460
 
-src/game/main/ai/ai_count_enemy_ground_units_in_range.c:
+src/game/main/ai/ai_special_units.c:
     complete
-    .text       start:0x020b6e4c end:0x020b6f6c
-
-src/game/main/ai/ai_count_team_armed_ground_units_in_range.c:
-    complete
-    .text       start:0x020b6f6c end:0x020b70a0
-
-src/game/main/ai/ai_count_team_foot_units_in_range.c:
-    complete
-    .text       start:0x020b70a0 end:0x020b71a4
-
-src/game/main/ai/ai_score_reachable_unclaimed_enemy_properties.c:
-    complete
-    .text       start:0x020b71a4 end:0x020b731c
-
-src/game/main/ai/ai_score_reachable_enemy_properties.c:
-    complete
-    .text       start:0x020b731c end:0x020b7460
-
-src/game/main/ai/ai_oozium_move_to_target.c:
-    complete
-    .text       start:0x020b7460 end:0x020b7a80
-
-src/game/main/ai/ai_black_bomb_move_toward_enemy.c:
-    complete
-    .text       start:0x020b7a80 end:0x020b7d30
-
-src/game/main/ai/ai_black_bomb_choose_explosion_tile.c:
-    complete
-    .text       start:0x020b7d30 end:0x020b7e90
-
-src/game/main/ai/ai_black_bomb_score_explosion_at.c:
-    complete
-    .text       start:0x020b7e90 end:0x020b8044
-
-src/game/main/ai/ai_black_bomb_get_start_score.c:
-    complete
-    .text       start:0x020b8044 end:0x020b80d0
-
-src/game/main/ai/ai_black_bomb_score_unit.c:
-    complete
-    .text       start:0x020b80d0 end:0x020b81a4
+    .text       start:0x020b7460 end:0x020b81a4
 
 src/game/main/func_020b81a4.c:
     complete
@@ -14161,103 +12773,10 @@ src/game/main/func_020b81c0.c:
     complete
     .text       start:0x020b81c0 end:0x020b81c4
 
-src/game/main/ai/ai_show_action_black_bomb_explode.c:
+src/game/main/ai/ai_show_action.c:
     complete
-    .text       start:0x020b81c4 end:0x020b8230
-
-src/game/main/ai/func_020b8230.c:
-    complete
-    .text       start:0x020b8230 end:0x020b82a0
-
-src/game/main/ai/ai_show_action_emerge.c:
-    complete
-    .text       start:0x020b82a0 end:0x020b8308
-
-src/game/main/ai/ai_show_action_dive.c:
-    complete
-    .text       start:0x020b8308 end:0x020b8370
-
-src/game/main/ai/ai_show_action_show_cargo_unit.c:
-    complete
-    .text       start:0x020b8370 end:0x020b8544
-    .bss        start:0x0229eabc end:0x0229eac8
-
-src/game/main/ai/ai_show_action_step11.c:
-    complete
-    .text       start:0x020b8544 end:0x020b8568
-
-src/game/main/ai/ai_show_action_step10.c:
-    complete
-    .text       start:0x020b8568 end:0x020b85e0
-
-src/game/main/ai/ai_show_action_step6.c:
-    complete
-    .text       start:0x020b85e0 end:0x020b8604
-
-src/game/main/ai/ai_show_action_step5.c:
-    complete
-    .text       start:0x020b8604 end:0x020b8654
-
-src/game/main/ai/ai_show_action_step4.c:
-    complete
-    .text       start:0x020b8654 end:0x020b869c
-
-src/game/main/ai/ai_show_action_step3.c:
-    complete
-    .text       start:0x020b869c end:0x020b86e0
-
-src/game/main/ai/ai_show_action_step9.c:
-    complete
-    .text       start:0x020b86e0 end:0x020b8798
-    .bss        start:0x0229eac8 end:0x0229ead4
-
-src/game/main/ai/ai_show_action_step8.c:
-    complete
-    .text       start:0x020b8798 end:0x020b8850
-
-src/game/main/ai/ai_show_action_step7.c:
-    complete
-    .text       start:0x020b8850 end:0x020b8964
-
-src/game/main/ai/ai_show_action_action22.c:
-    complete
-    .text       start:0x020b8964 end:0x020b8a24
-
-src/game/main/ai/ai_show_action_attack_object.c:
-    complete
-    .text       start:0x020b8a24 end:0x020b8ad4
-
-src/game/main/ai/ai_show_action_attack_unit.c:
-    complete
-    .text       start:0x020b8ad4 end:0x020b8b80
-
-src/game/main/ai/ai_show_action_start_turn.c:
-    complete
-    .text       start:0x020b8b80 end:0x020b8c70
-
-src/game/main/ai/ai_show_action_build_unit_alt.c:
-    complete
-    .text       start:0x020b8c70 end:0x020b8cb0
-
-src/game/main/ai/ai_show_action_build_unit.c:
-    complete
-    .text       start:0x020b8cb0 end:0x020b8cf0
-
-src/game/main/ai/ai_show_action_step2.c:
-    complete
-    .text       start:0x020b8cf0 end:0x020b9114
-
-src/game/main/ai/ai_show_action_step1.c:
-    complete
-    .text       start:0x020b9114 end:0x020b91b0
-
-src/game/main/ai/ai_show_action_step0.c:
-    complete
-    .text       start:0x020b91b0 end:0x020b9540
-
-src/game/main/ai/ai_turn_show_action.c:
-    complete
-    .text       start:0x020b9540 end:0x020b9664
+    .text       start:0x020b81c4 end:0x020b9664
+    .bss        start:0x0229eabc end:0x0229ead4
 
 src/game/main/func_020b9664.c:
     complete

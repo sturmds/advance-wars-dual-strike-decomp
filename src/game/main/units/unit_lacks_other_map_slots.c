@@ -4,8 +4,6 @@
 #include "game/screen_other_map.h"
 #include "game/unit_stats.h"
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 #define OTHER_MAP_SLOTS 50
 
 /* TRUE when the current player has fewer free unit slots on the other map
@@ -23,10 +21,10 @@ BOOL Unit_LacksOtherMapSlots(MapUnit* unit) {
   int end;
 
   freeSlots = 0;
-  firstSlot = Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer];
+  firstSlot = Ov000_gPlayerFirstUnitSlot[MAP_STATE->currentPlayer];
   needed = 1;
   if (unit->cargo[0] != 0) {
-    cargo = &STATE->units[unit->cargo[0]];
+    cargo = &MAP_STATE->units[unit->cargo[0]];
     needed++;
     if (cargo->cargo[0] != 0) {
       needed++;
@@ -36,7 +34,7 @@ BOOL Unit_LacksOtherMapSlots(MapUnit* unit) {
     }
   }
   if (unit->cargo[1] != 0) {
-    cargo = &STATE->units[unit->cargo[1]];
+    cargo = &MAP_STATE->units[unit->cargo[1]];
     needed++;
     if (cargo->cargo[0] != 0) {
       needed++;
@@ -52,7 +50,7 @@ BOOL Unit_LacksOtherMapSlots(MapUnit* unit) {
   Screen_SetCurrent((&data_027c0288.unk_00)[1 - data_027c0284]);
   for (slot = firstSlot + 1, end = firstSlot + 1 + OTHER_MAP_SLOTS; slot < end;
        slot++) {
-    if (STATE->units[slot].type == UNIT_NONE) {
+    if (MAP_STATE->units[slot].type == UNIT_NONE) {
       freeSlots++;
     }
   }

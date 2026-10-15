@@ -8,7 +8,6 @@ int DesignMap_CopyName(int id, u8* buf);
 void Ov006_DrawMenuLineFixedText(int unused, int row);
 void Ov006_DrawMenuLineWithIcon(int unused, int row, const char* text);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern const MenuItem data_ov006_0236ba60[];
 
 /* Opens the menu of the three design map slots with the cursor on the last

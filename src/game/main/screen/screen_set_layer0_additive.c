@@ -1,10 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
-
-extern Unk_027c0280* data_027c0280;
-
-void Screen_SetLayer1Front(void);
-void Screen_ResetWindows(void);
+#include "game/screen.h"
 
 /* Puts layer 1 in front, then layers 0, 2 and 3, and adds layer 0 onto
  * layers 2 and 3 and the backdrop (EVA 16, EVB 16; sprites are not a

@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/Unk_021694c0.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Unk_021694c0Task* task);
 void Bg_SetScroll(int layer, int scrollX, int scrollY);
 

@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/keypad.h"
 
-extern Unk_02080440* data_027c027c;
-
 void func_020c4024(void);
 void func_020c40d0(void);
 void MapView_ScrollStep(int directions);

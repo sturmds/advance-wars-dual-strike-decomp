@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/battle_scene.h"
+#include "game/math.h"
 
-int HwDiv32(int num, int den);
 void Bg_PutTileRect(u16* map, u16 x, u16 y, int width, u16 height,
                     int firstTile, u16 palette);
 

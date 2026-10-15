@@ -4,8 +4,8 @@
 #include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen.h"
 
-void Screen_SetLayerScreenSize(int layer, int screenSize);
 void Gfx_ClearLayerMap(int layer);
 const char* File_LocalizePath(const char* path);
 u8* File_Load(const char* path);
@@ -17,14 +17,11 @@ void Gfx_RequestLayerCopy(int layer);
 BOOL Player_IsAlliedNations(int player);
 void Sound_PlaySe(u32 soundId);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
 extern char data_0215c268[]; /* "/ohashi/res_syogunbreak" */
 extern char data_0215c280[]; /* "/ohashi/res_syogunbreak_lang" */
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
-#define PLAYER (&GAME->players[GAME->currentPlayer])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
+#define PLAYER (&MAP_STATE->players[MAP_STATE->currentPlayer])
 #define LAYER_TILES(layerBg) \
   (data_027c0280->bgVram + (data_027c0280->bgCnt[layerBg].charBase << 14))
 
@@ -67,7 +64,7 @@ void SuperBreak_LoadBanner(Task* task) {
   data_027c0280->bgScrollX[data_027c0280->layer0Bg] = 0;
   data_027c0280->bgScrollY[data_027c0280->layer0Bg] = 204;
   FRAME(task) = 0;
-  if (Player_IsAlliedNations(GAME->currentPlayer) == TRUE) {
+  if (Player_IsAlliedNations(MAP_STATE->currentPlayer) == TRUE) {
     Sound_PlaySe(SE_SUPER_BREAK_ALLIED);
   } else {
     Sound_PlaySe(SE_SUPER_BREAK_BLACK_HOLE);

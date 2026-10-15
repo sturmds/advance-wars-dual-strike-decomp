@@ -4,8 +4,6 @@
 
 BattleScene* Ov002_gBattleScene = &data_ov002_0236bbc0;
 
-extern MenuState gMenuState;
-
 void Sound_LoadBattleUnitData(int unitType1, int unitType2);
 void Battle_PickSideVariants(void);
 void Battle_SelectUnitRecords(int unitType1, int unitType2);

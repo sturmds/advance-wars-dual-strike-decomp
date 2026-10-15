@@ -2,11 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/map_object.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 MapObject* Map_FindObjectCovering(int x, int y);
 BOOL MapObject_GetTargetTile(MapObject* object, s16* pos);
 
@@ -21,6 +16,7 @@ BOOL Map_IsObjectTargetInRange(int x, int y) {
   if (!MapObject_GetTargetTile(object, pos)) {
     return FALSE;
   }
-  return STATE->mapTiles
-             ->rangeMapTiles[pos[0] + STATE->mapTiles->rowStart[pos[1]]] >= 0;
+  return MAP_STATE->mapTiles
+             ->rangeMapTiles[pos[0] + MAP_STATE->mapTiles->rowStart[pos[1]]] >=
+         0;
 }

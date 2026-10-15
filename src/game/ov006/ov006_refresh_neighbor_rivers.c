@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/terrain.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int Ov006_IsPlainRiver(int x, int y);  /* guess: tile x, y is a river tile */
 int func_ov006_023624b4(int x, int y); /* river variant for tile x, y */
 int Ov006_IsSpecialCell(int x,

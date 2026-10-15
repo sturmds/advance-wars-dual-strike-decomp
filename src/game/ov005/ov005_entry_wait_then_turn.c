@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/ov005_entry_task.h"
-
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
+#include "game/math.h"
 
 /* Waits firstFrames, eases the entry's angle from 0xb000 up to a full turn
  * (0x10000, which wraps to 0) over 24 frames, then sets its id to 2. */

@@ -1,6 +1,6 @@
 #include "types.h"
+#include "game/Unk_02080440.h"
 
-extern int data_027c0284;
 void func_020c4018(int, void*);
 
 void func_0200a5e0(int a0) {

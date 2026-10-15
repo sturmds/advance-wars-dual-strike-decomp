@@ -3,12 +3,7 @@
 #include "game/player.h"
 #include "game/vision.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int Player_GetSlotRelation(u16 player, u16 other);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Gives each ally of player the vision grid bits gridMask (Player.visionGrids). */
 void Player_SetAlliesVisionGrids(int player, int gridMask) {
@@ -26,7 +21,7 @@ void Player_SetAlliesVisionGrids(int player, int gridMask) {
       ally -= PLAYER_SLOT_LAST;
     }
     if (Player_GetSlotRelation(self, ally) == SLOT_RELATION_ALLY) {
-      STATE->players[ally].visionGrids = mask;
+      MAP_STATE->players[ally].visionGrids = mask;
     }
   }
 }

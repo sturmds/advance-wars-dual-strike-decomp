@@ -4,25 +4,19 @@
 #include "game/ov005_task.h"
 #include "game/text_printer.h"
 #include "game/Unk_ov005_0236bb80.h"
+#include "game/screen_other_map.h"
+#include "game/screen.h"
+#include "sdk/fs.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-void Screen_SetBgMode(int mode);
-void Screen_InitLayers(const void* config);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           int paletteOffset, int size);
 void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);
 BOOL Screen_IsTextBg(int layer);
-BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 TextPrinter* Text_PrintByIdOnLayer0(int x, int y, u16* map, u32 textId,
                                     u16 unk_30, u16 unk_38);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern GfxLayer data_ov005_023680f0[];  /* main screen layer config */
 extern GfxLayer gOv005BlendSubLayers[]; /* sub screen layer config */
 extern char data_ov005_02368288[];      /* "/rikiishi" */

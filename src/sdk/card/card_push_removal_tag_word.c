@@ -1,7 +1,6 @@
 #include "sdk/card.h"
 #include "sdk/ctrdg.h"
-
-int PXI_SendWordByFifo(int tag, u32 word, int err);
+#include "sdk/pxi.h"
 
 /* Sends a word under the card removal tag, waiting between tries until the FIFO takes it. */
 void Card_PushRemovalTagWord(u32 word, u32 waitCount) {

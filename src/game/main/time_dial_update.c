@@ -2,24 +2,19 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/time_dial.h"
+#include "game/math.h"
+#include "game/screen_other_map.h"
 
 int MainLoop_GetFrameCount(void);
-s32 HwDiv32(s32 numerator, s32 denominator);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Bg_SetScroll(int layer, int scrollX, int scrollY);
 BOOL NumberSpriteTask_IsRunning(void);
 BOOL TimeLimit_GetTotal(int* value);
 BOOL TimeLimit_GetRemaining(int* value);
 void TimeDial_QueueSprite(int index, int x, int y);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern s16 data_0214d4c4[]; /* a sine and cosine pair per 16 angle units */
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Per-frame update of a screen with a dial for the time left: scrolls BG
  * layer 2 one pixel every 4 frames, and while NumberSpriteTask_IsRunning finds its task
@@ -51,7 +46,7 @@ void TimeDial_Update(TimeDial* dial) {
   Screen_SetCurrentGfx(data_027c0288.unk_00);
   saved = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_00);
-  keepAngle = STATE->unk_1c4->unk_30;
+  keepAngle = MAP_STATE->unk_1c4->unk_30;
   Screen_SetCurrent(saved);
   Screen_SetCurrentGfx(savedGfx);
   if (keepAngle == 0) {

@@ -5,12 +5,12 @@
 #include "game/menu_button.h"
 #include "game/screen_contexts.h"
 #include "game/task.h"
+#include "sdk/msl_string.h"
+#include "sdk/fs.h"
 
-void FS_ChangeDir(const char* dir);
 u32 Ov004_GetFileSize(const char* path);
 void File_ReadTo(void* dest, const char* fileName);
 void Mem_Copy32(const void* src, void* dst, u32 size);
-int strcmp(const char* a, const char* b); /* strcmp */
 void Co_LoadGraphicsToBuffer(
     int coId, void* dest); /* guess: unpacks the CO's picture to dest */
 void Co_LoadPalette(int coId, int paletteSlot);
@@ -69,11 +69,6 @@ void Ov004_ScrollLayer3Up(void);
 void Ov004_SlideLayers1And2X(void);
 void Ov004_SlideLayers1And2Y(void);
 void Ov004_SlideLayers1And3Y(void);
-extern u8 data_02178b08[];
-extern u8 data_02179b08[];
-extern u8 data_0217ab08[];
-extern u8 data_0217eb08[];
-extern u8 data_02180b08[];
 void func_ov004_022ade28(void);
 void func_ov004_022ade44(void);
 void func_ov004_022b0000(void);
@@ -186,7 +181,6 @@ void func_ov004_022b9b2c(void);
 void func_ov004_022b9b38(void);
 void func_ov004_022baa9c(void);
 void func_ov004_022baccc(void);
-extern u8 data_0217fb08[];
 
 char data_ov004_022bde40[] = {
 #include "data/ov004/data_ov004_022bde40.inc.c"

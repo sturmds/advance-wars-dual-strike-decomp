@@ -3,8 +3,6 @@
 #include "game/menu_state.h"
 #include "game/battle_fighter_sprites.h"
 
-extern MenuState gMenuState;
-
 void Sound_PlaySe(u32 soundId);
 
 /* Plays the fighter's sound unk_10 when the other side's fighter has state 2

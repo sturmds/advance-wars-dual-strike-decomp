@@ -6,8 +6,6 @@ void Bg_FillRect(u16* map, int x, int y, int width, int height, int tile);
 void Gfx_RequestLayerCopy(int layer);
 void func_020c4018(void);
 
-extern Unk_027c0280* data_027c0280;
-
 /* Clears the 12x10 tile box at (2, 2) on layer 1. */
 void Ov006_ClearLayer1MenuBox(void) {
   func_0201e954();

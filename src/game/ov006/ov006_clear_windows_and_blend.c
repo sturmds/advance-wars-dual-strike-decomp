@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Turns off the three windows and clears the blend targets (all four layers
  * and OBJ), the blend mode and the blend coefficients. */
 void Ov006_ClearWindowsAndBlend(void) {

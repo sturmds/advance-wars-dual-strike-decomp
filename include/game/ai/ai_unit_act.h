@@ -1,0 +1,50 @@
+#ifndef GAME_AI_AI_UNIT_ACT_H
+#define GAME_AI_AI_UNIT_ACT_H
+
+#include "types.h"
+
+void AiOozium_Act(void);
+void AiBlackBomb_Act(void);
+void AiBlackBomb_Explode(void);
+void AiBlackBoat_Act(void);
+void AiClass3_Act(void);
+void AiSeaTransport_Act(void);
+void AiLoadedTransport_Act(void);
+void AiTransport_Unload(void);
+void AiEmptyTransport_Act(void);
+void AiIndirect_MoveByOrder(void);
+void AiUnit_ActByOrderGroup(void);
+void AiUnit_ActByOrder(void);
+void AiUnit_ActByOrderFog(void);
+void AiFoot_MoveAndAttack(void);
+void AiFoot_MoveAndCapture(void);
+void AiFoot_ContinueCapture(void);
+void AiIndirect_MoveOrder10(void);
+void AiIndirect_MoveOrder9(void);
+void AiIndirect_MoveOrder8(void);
+void AiIndirect_MoveOrder7(void);
+void AiIndirect_MoveOrder6(void);
+void AiIndirect_MoveOrder5(void);
+void AiIndirect_MoveOrder4(void);
+void AiIndirect_MoveOrder3(void);
+void AiIndirect_MoveOrder2(void);
+void AiIndirect_MoveOrder1(void);
+void AiIndirect_MoveOrder0(void);
+void AiIndirect_ActOrders1_7_10(void);
+void AiIndirect_ActOtherOrders(void);
+void AiUnit_ActOrder10(void);
+void AiUnit_ActOrder9(void);
+void AiUnit_ActOrder8(void);
+void AiUnit_ActOrder7(void);
+void AiUnit_ActOrder6(void);
+void AiUnit_ActOrder5(void);
+void AiUnit_ActOrder4(void);
+void AiUnit_ActOrder3(void);
+void AiUnit_ActOrder2(void);
+void AiUnit_ActOrder1(void);
+void AiUnit_ActOrder0(void);
+void AiFogDirect_ActOrder7(void);
+void AiFogDirect_ActOrders1_10(void);
+void AiFogDirect_ActOtherOrders(void);
+
+#endif

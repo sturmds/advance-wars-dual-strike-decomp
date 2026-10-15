@@ -1,13 +1,13 @@
 #include "types.h"
 #include "game/co_exp.h"
 #include "game/oam_cells.h"
+#include "game/win_quote.h"
 
 void DigitSprite_QueueNumberPopIn(int x, int y, int value, int matrixIndex,
                                   int frame);
 void DigitSprite_QueueSmallNumber(int x, int y, int value, int matrixIndex,
                                   int frame);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
-void Sprite_QueueDefaultTile(int x, int y, int attr, int tile, int list);
 void Co_QueueSmallPictureSpriteAtTile(int x, int y, int attr, int tile,
                                       int list);
 

@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/map_header.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 u8 Map_GetPlayerCount(u16 mapId);
 int Map_Exists(u16 mapId);
 u8 Map_IsFlagSet(u32 mapId);

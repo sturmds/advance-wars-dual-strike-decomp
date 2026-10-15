@@ -3,6 +3,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/war_room_records.h"
+#include "game/map_select.h"
 
 void Gfx_RequestLayerCopy(int a);
 const void* Map_GetName(u32 mapId);
@@ -14,22 +15,20 @@ void Text_PrintWithTile(s16 x, s16 y, u16* map, const void* text, int a4,
 void Bg_PutTileQuad(int x, int y, int tile, int size);
 int MapSelect_GetRecordMarker(int a, int mapId);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern MenuState gMenuState;
-extern MapListTables data_0229c768;
 extern u8 data_02167c90[];
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define COLS \
-  (STATE->gameMode == GAME_MODE_WAR_ROOM ? 7 : (STATE->twoMaps == 0 ? 9 : 8))
-#define ROWS (STATE->gameMode == GAME_MODE_WAR_ROOM ? 1 : 3)
+#define COLS                                 \
+  (MAP_STATE->gameMode == GAME_MODE_WAR_ROOM \
+       ? 7                                   \
+       : (MAP_STATE->twoMaps == 0 ? 9 : 8))
+#define ROWS (MAP_STATE->gameMode == GAME_MODE_WAR_ROOM ? 1 : 3)
 /* Needed to match: listBase is gMenuState moved on by `list` MapLists, so the
  * field offsets stay in the load instructions. */
 #define MAP_ID (listBase->setup.lists[0].mapIds[index])
-#define START_Y \
-  (STATE->gameMode == GAME_MODE_WAR_ROOM ? 9 : (STATE->twoMaps == 0 ? 5 : 7))
+#define START_Y                              \
+  (MAP_STATE->gameMode == GAME_MODE_WAR_ROOM \
+       ? 9                                   \
+       : (MAP_STATE->twoMaps == 0 ? 5 : 7))
 
 /* Prints the names of the maps on one page of map list `list` into the layer 0
  * tile map, in columns that count down from the top. A map that is locked
@@ -46,7 +45,7 @@ void MapSelect_DrawMapNames(int list, int page) {
   u16* map;
   int tile;
 
-  x = STATE->gameMode == GAME_MODE_WAR_ROOM ? 17 : 1;
+  x = MAP_STATE->gameMode == GAME_MODE_WAR_ROOM ? 17 : 1;
   y = START_Y;
   Mem_Zero32(0, data_027c0280->layer0Map, 0x800);
   listBase = (MenuState*)((u8*)&gMenuState + list * sizeof(MapList));
@@ -64,7 +63,7 @@ void MapSelect_DrawMapNames(int list, int page) {
       map = data_027c0280->layer0Map;
       Text_PrintWithTile(x, y, map, Map_GetName(MAP_ID), 0, palette, tile);
     }
-    if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
+    if (MAP_STATE->gameMode == GAME_MODE_WAR_ROOM) {
       if (gWarRoomRecords[data_0229c768.subStrip][MAP_ID - WAR_ROOM_FIRST_MAP]
                          [0]
                              .days != 0) {
@@ -78,7 +77,7 @@ void MapSelect_DrawMapNames(int list, int page) {
     }
     y += 2;
     if (y == START_Y + COLS * 2) {
-      x += STATE->gameMode == GAME_MODE_WAR_ROOM ? 0 : 9;
+      x += MAP_STATE->gameMode == GAME_MODE_WAR_ROOM ? 0 : 9;
       y = START_Y;
     }
   }

@@ -5,11 +5,6 @@
 #include "sdk/gx.h"
 #include "game/main_loop.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-
 void Map3d_BeginFrame(void);
 void EventScript_UpdateAll(void);
 void Game_RunStateFrame(void);

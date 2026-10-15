@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/event_script.h"
 #include "game/Unk_022977a4.h"
+#include "game/text_print.h"
 
 /* Fields of the 16-byte records MainMenu_ShowRecordHelp also shows. */
 extern u8 data_02290a62[][16]; /* 1: draws an extra mark */
@@ -9,7 +10,6 @@ extern u16 data_02290a66[][8]; /* a second number; 0: not shown */
 
 void EventText_ClearLines(u16* tile, int value);
 BOOL Profile_IsInUse(int index);
-s8 Text_PrintId(s16 x, s16 y, u16* map, u32 textId, u16 unk_30, u16 unk_32);
 void Number_Draw(s16 x, s16 y, u16* map, int value, u16 a, u16 b);
 
 /* Clears the choice line at tile (x, y) of the event text window with

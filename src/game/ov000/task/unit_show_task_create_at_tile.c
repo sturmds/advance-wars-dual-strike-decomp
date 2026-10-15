@@ -4,7 +4,6 @@
 #include "game/unit_show_task.h"
 #include "game/unit_show_entry.h"
 
-extern Unk_02080440* data_027c027c;
 extern char data_ov000_022db564[];
 extern char data_ov000_022db574[];
 extern char data_ov000_022db57c[];

@@ -2,6 +2,7 @@
 #include "game/menu_state.h"
 #include "game/battle_scene.h"
 #include "game/unit_stats.h"
+#include "sdk/gx.h"
 
 #define REG_POLYGON_ATTR ((volatile u32*)0x040004a4)
 #define REG_TEXIMAGE_PARAM ((volatile u32*)0x040004a8)
@@ -10,7 +11,6 @@
 #define REG_MTX_POP ((volatile u32*)0x04000448)
 #define REG_MTX_TRANS ((volatile u32*)0x04000470)
 
-extern MenuState gMenuState;
 extern s16 data_0214d4c4[];
 
 /* Needed to match: the side's offset into gMenuState is added at run time. SIDE_SWAY is the
@@ -22,7 +22,6 @@ extern s16 data_0214d4c4[];
 #define SIDE_SCROLL(side) \
   (((MenuState*)((u8*)&gMenuState + (side) * 2))->battle.bgScroll[0])
 
-void G3_RotX(int sin, int cos);
 BOOL Battle_IsSideDrawnInAir(int side);
 BOOL Battle_IsSideSea(int side);
 int MainLoop_GetFrameCount(void);

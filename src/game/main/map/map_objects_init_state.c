@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/map_object.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* For the Laser, volcano, cannons and Deathray whose state is still 0, copies
  * in the 4-bit value stored with the object (startState). */
 void MapObjects_InitState(void) {

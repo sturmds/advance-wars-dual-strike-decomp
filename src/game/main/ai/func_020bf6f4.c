@@ -1,15 +1,10 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
-
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
+#include "game/range_map.h"
+#include "game/ai.h"
 
 BOOL UnitMenu_JoinHidden(void);
 BOOL UnitMenu_BoardHidden(void);
-void RangeMap_Fill(int value);
-int AiFoot_ListReachableSilos(void);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* After the two checks of UnitMenu_JoinHidden and UnitMenu_BoardHidden pass, clears the
  * range map, marks the acting unit's destination tile as reachable (0) and
@@ -23,6 +18,7 @@ s8 func_020bf6f4(void) {
     return 1;
   }
   RangeMap_Fill(-1);
-  STATE->rangeMap[STATE->actingUnitDestY][STATE->actingUnitDestX] = 0;
+  MAP_STATE->rangeMap[MAP_STATE->actingUnitDestY][MAP_STATE->actingUnitDestX] =
+      0;
   return AiFoot_ListReachableSilos() == 0;
 }

@@ -5,9 +5,6 @@
 int CoPowerCost(int player, int slot);
 BOOL Player_IsPowerActive(int player);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Like CanUseCoPower, but a CO whose CO Power costs nothing (Super CO Power
  * only) gets FALSE instead of the Super test. */
 BOOL CanUseCoPowerStrict(int player, int slot) {

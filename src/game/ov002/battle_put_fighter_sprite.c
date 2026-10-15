@@ -3,8 +3,6 @@
 #include "game/BattleSpriteTask.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 int Battle_GetMatchupValue(int side);
 void func_ov002_0235643c(void* a, int b, int c, int d, int e, int f, int g,
                          int h, int i, int j, int k, int l, int m, int n);

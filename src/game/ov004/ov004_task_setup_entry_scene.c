@@ -1,9 +1,8 @@
 #include "types.h"
 #include "game/Unk_ov004_022bf158.h"
 #include "game/screen_other_map.h"
+#include "game/screen.h"
 
-void Screen_InitLayers(const GfxLayer* config);
-void Screen_SetBgMode(int bgMode);
 void Ov004_ClearSlots(Unk_ov004_022bf158* state);
 
 extern Unk_ov004_022bf158* data_ov004_022bf158;

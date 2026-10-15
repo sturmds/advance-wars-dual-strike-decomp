@@ -1,13 +1,13 @@
 #include "types.h"
 #include "game/menu_state.h"
 #include "game/BattleSideData.h"
+#include "sdk/gx.h"
 
 #define REG_POLYGON_ATTR ((volatile u32*)0x040004a4)
 #define REG_MTX_PUSH ((volatile u32*)0x04000444)
 #define REG_MTX_POP ((volatile u32*)0x04000448)
 #define REG_MTX_TRANS ((volatile u32*)0x04000470)
 
-extern MenuState gMenuState;
 extern s16 data_0214d4c4[];
 
 /* Needed to match: the side's offset into gMenuState is added at run time. SIDE_DATA_AGAIN
@@ -19,7 +19,6 @@ extern s16 data_0214d4c4[];
 #define SIDE_DATA_AGAIN(side) \
   (((BattleSideData**)&gMenuState + (side))[0x27c / 4])
 
-void G3_RotX(int sin, int cos);
 BOOL Battle_IsSideAir(int side);
 int Battle_GetTexHeight(u32 index);
 int Battle_GetTexWidth(u32 index);

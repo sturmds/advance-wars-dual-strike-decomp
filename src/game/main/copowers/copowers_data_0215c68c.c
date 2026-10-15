@@ -10,10 +10,6 @@ void CoSwap_SlideOutCos(void);
 void CoSwap_StartBlend(void);
 void MenuDepth_Pop(void);
 void MenuDepth_Push(void);
-extern u8 data_02178b08[];
-extern u8 data_0217ab08[];
-extern u8 data_0217eb08[];
-extern u8 data_02180b08[];
 void func_0205c02c(void);
 void func_0205c09c(void);
 void func_0205c82c(void);
@@ -21,8 +17,6 @@ void func_0205cd00(void);
 void func_0205cd74(void);
 void func_020b97e8(void);
 void func_020d3310(void);
-extern u8 data_02179b08[];
-extern u8 data_0217fb08[];
 
 /* "/ohashi/res_tagchange" */
 char data_0215c68c[] = {

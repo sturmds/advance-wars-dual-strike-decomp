@@ -21,8 +21,6 @@ void LinkScreen_MovePlayerToPanel(u8 player, int panel);
 void LinkScreen_MovePlayerDown(u8 player);
 void Task_ResumeScript(Task* task);
 
-extern MenuState gMenuState;
-
 /* Task step of the link phase screen. Reads four 2-byte messages (type,
  * argument) from each connected player: 1 sets ready, 2 clears ready (or,
  * from player 0 while not ready, backs out of the screen), 3 moves the

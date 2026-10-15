@@ -197,8 +197,6 @@ const char* File_LocalizePath(const char* path);
 void File_ReadAt(void* dest, const char* path, u32 offset,
                  u32 size); /* reads size bytes at offset of a file */
 
-extern Unk_027c0280* data_027c0280;
-
 /* Loads icon iconId into the next free slot of its bank's VRAM area. */
 void Icon_Load(int iconId) {
   int bankId;

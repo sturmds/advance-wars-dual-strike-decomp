@@ -7,8 +7,6 @@
 #include "game/unit_target_entry.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern ScriptCommand gMapScrollScript[];
 extern int data_022a6dd4;
 
@@ -18,8 +16,6 @@ void UnitMenu_Open(void);
 UnitTargetEntry* func_020dc524(int index);
 void func_020dea40(int defenderSlot);
 void func_020de9f0(int x, int y);
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Task step, likely run when the attack target choice ends; does nothing
  * while gMapScrollScript is running. A negative data_022a6dd4 means the player backed out: the menu
@@ -47,11 +43,11 @@ void AttackTargetSelect_Finish(Task* task) {
     func_020de9f0(target->x, target->y);
   }
   Task_ResumeScript(task);
-  if (GAME->players[GAME->currentPlayer].controller !=
+  if (MAP_STATE->players[MAP_STATE->currentPlayer].controller !=
       PLAYER_CONTROLLER_HUMAN) {
     return;
   }
-  switch (Ov000_gUnitStats[GAME->actingUnit->type].minRange) {
+  switch (Ov000_gUnitStats[MAP_STATE->actingUnit->type].minRange) {
     case ATTACK_NONE:
       return;
     case ATTACK_DIRECT:

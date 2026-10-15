@@ -3,8 +3,6 @@
 #include "game/Unk_02080440.h"
 #include "game/main_loop.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u16 data_0229d8c4;
 u8 data_022a6b30;
 u32 gMapGameRunning;
@@ -19,30 +17,28 @@ void Units_ClearAll(void);
 void MapObjects_Clear(void);
 BOOL Map_IsCoSelectPhase(void);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* Clears the map state's view and menu fields before a battle starts and sets
  * day 1, player 0. On a map where a player picks a CO first, the day starts at
  * 0. The name is a guess from the callers (battle setup hooks). */
 void Battle_ResetTurnState(void) {
-  STATE->cursorX = 0;
-  STATE->cursorY = 0;
-  STATE->cursorPixelX = 0;
-  STATE->cursorPixelY = 0;
+  MAP_STATE->cursorX = 0;
+  MAP_STATE->cursorY = 0;
+  MAP_STATE->cursorPixelX = 0;
+  MAP_STATE->cursorPixelY = 0;
   Panels_PlaceForCursor();
-  STATE->unk_10 = 0;
-  STATE->unk_14 = 0;
+  MAP_STATE->unk_10 = 0;
+  MAP_STATE->unk_14 = 0;
   func_020b9c3c();
   func_020b98bc();
   data_0229d8c4 = 0;
   gMapGameRunning = 1;
-  STATE->unk_18 = 4;
-  STATE->unk_1c = 0;
-  STATE->currentPlayer = 0;
-  STATE->day = 1;
+  MAP_STATE->unk_18 = 4;
+  MAP_STATE->unk_1c = 0;
+  MAP_STATE->currentPlayer = 0;
+  MAP_STATE->day = 1;
   Units_ClearAll();
   MapObjects_Clear();
   if (Map_IsCoSelectPhase()) {
-    STATE->day = 0;
+    MAP_STATE->day = 0;
   }
 }

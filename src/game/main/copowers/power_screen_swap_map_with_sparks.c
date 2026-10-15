@@ -3,8 +3,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_0229fb30.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* The tile map and palette this step loads sit in main's bss at gMenuState
  * and data_0229fb30 (shared buffers). */
 

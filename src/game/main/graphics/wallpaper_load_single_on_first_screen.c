@@ -2,18 +2,14 @@
 #include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
 void Gfx_RequestLayerCopy(int bg);
 void Palette_Load(const void* src, int offset, u32 size);
 void Data_Unpack(const void* src, void* dest);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 u8* File_Load(const char* path);
 void Mem_Free(void* res);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern char data_02159650[]; /* "/ohashi/res_wall_single" */
 extern const TaskScriptCmd data_0215937c[];
 

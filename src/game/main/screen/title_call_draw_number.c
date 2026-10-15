@@ -1,11 +1,9 @@
 #include "types.h"
 #include "game/oam_cells.h"
+#include "game/screen.h"
+#include "game/math.h"
 
 int CampaignRecords_GetNextNumber(void);
-int TitleCall_GetDigitWidth(
-    int digit); /* pixel width of a digit: 1 is 6, 4 is 14, others 12 */
-int HwDiv32(int num, int den);
-int HwMod32(int num, int den);
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 
 /* Width in pixels of the label sprite before the digits. */

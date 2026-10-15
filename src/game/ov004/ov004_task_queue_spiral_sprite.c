@@ -1,11 +1,10 @@
 #include "types.h"
 #include "game/Unk_ov004_022bf158.h"
 #include "game/oam_cells.h"
+#include "game/math.h"
 
 extern Unk_ov004_022bf158* data_ov004_022bf158;
-extern s16 gSineTable[];
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 void Task_ResumeScript(Ov004Task* task);
 

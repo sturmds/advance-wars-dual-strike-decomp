@@ -1,6 +1,6 @@
 #include "types.h"
+#include "game/math.h"
 
-int HwDiv32(int numerator, int denominator);
 int func_020f225c(void);
 int func_020f21fc(void);
 int func_020f21d4(void);

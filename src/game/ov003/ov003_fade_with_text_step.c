@@ -3,9 +3,9 @@
 #include "game/Unk_02160abc.h"
 #include "game/Unk_ov003_0235dd38.h"
 #include "game/ov003_unit.h"
+#include "game/math.h"
 
 const void* Text_Get(u32 textId);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(void* task);
 int strlen(const char* str);
 int Ov003_GetTextWidth(const u8* str);

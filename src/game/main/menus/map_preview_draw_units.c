@@ -2,8 +2,6 @@
 #include "game/map_header.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u8 gSavedArmyColours[];
 extern u16 gMapPreviewColumnOffsets[];
 extern u16 gMapPreviewRowOffsets[];
@@ -12,8 +10,6 @@ extern u16 data_02139d90[];
 /* One u16 (four 4bpp pixels) per row of a 4x4 preview cell: 0xf00f, 0, 0,
  * 0xf00f, so a unit dot keeps the cell's corners. */
 extern u16 gMapPreviewUnitMask[];
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Draws a dot in the owner's army colour on every map preview cell that has
  * a unit (MapPreviewTask_Update runs it after the terrain steps). The dot
@@ -33,7 +29,7 @@ void MapPreview_DrawUnits(u16* dst) {
   /* Needed to match: an early return and a do-while, so the masks load once
      * between the height check and the first row. */
   row = 0;
-  if (row >= GAME->unk_1c4->mapHeight) {
+  if (row >= MAP_STATE->unk_1c4->mapHeight) {
     return;
   }
   mask0 = gMapPreviewUnitMask[0];
@@ -41,8 +37,9 @@ void MapPreview_DrawUnits(u16* dst) {
   mask2 = gMapPreviewUnitMask[2];
   mask3 = gMapPreviewUnitMask[3];
   do {
-    for (col = 0; col < GAME->unk_1c4->mapWidth; col++) {
-      slot = GAME->mapTiles->unitAt[GAME->mapTiles->rowStart[row] + col];
+    for (col = 0; col < MAP_STATE->unk_1c4->mapWidth; col++) {
+      slot =
+          MAP_STATE->mapTiles->unitAt[MAP_STATE->mapTiles->rowStart[row] + col];
       if (slot != 0) {
         /* unit slot / 64 + 1: the owner's player slot */
         dot = data_02139d90 +
@@ -59,5 +56,5 @@ void MapPreview_DrawUnits(u16* dst) {
       }
     }
     row++;
-  } while (row < GAME->unk_1c4->mapHeight);
+  } while (row < MAP_STATE->unk_1c4->mapHeight);
 }

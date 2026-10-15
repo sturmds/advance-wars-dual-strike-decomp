@@ -4,17 +4,12 @@
 #include "game/task.h"
 #include "game/map_bg.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
 extern u8 data_021398d0[];
 
 void Gfx_ClearLayerMap(int layer);
 void MapView_DrawRangeTile(s16 x, s16 y);
 void Gfx_RequestLayerCopy(int layer);
 s16 TransferQueue_Add(const void* src, void* dst, u32 size);
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Task step: clears layer 0 and draws the range highlight for the 16 by 12
  * tiles of the view (13 rows when the map goes on below), then queues 0x80
@@ -27,7 +22,7 @@ void MapView_DrawAllRangeTiles(Task* task) {
   int left;
   int top;
   int y;
-  map = GAME->unk_1c4;
+  map = MAP_STATE->unk_1c4;
   left = map->scrollX >> 4;
   top = map->scrollY >> 4;
 

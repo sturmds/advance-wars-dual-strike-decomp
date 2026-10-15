@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/mode_font_task.h"
-
-u32 strlen(const char* str);
+#include "sdk/msl.h"
 
 extern const TaskScriptCmd data_02159830[];
 

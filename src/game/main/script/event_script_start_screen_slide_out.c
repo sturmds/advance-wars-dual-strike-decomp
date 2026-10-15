@@ -11,7 +11,6 @@ extern u16 data_022978e0[];
 extern s16 data_02297780;
 extern EventSlotHold data_022977f8[];
 extern EventSlotCounter data_022977fe[];
-extern Unk_027c0280* data_027c0280;
 
 void* File_Load(const char* path);
 void Mem_Free(void* res);

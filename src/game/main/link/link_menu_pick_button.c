@@ -3,8 +3,6 @@
 #include "game/menu_button.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 void Sound_PlaySe(u32 soundId);
 int func_0207a260(void);
 void LinkMenu_CreateMarker(u8 kind, u16 x, u16 y);

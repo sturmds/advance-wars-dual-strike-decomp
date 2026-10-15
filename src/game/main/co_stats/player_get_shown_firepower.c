@@ -9,10 +9,6 @@ int Player_GetFirepowerBonus(int playerIndex, int slot, int powerState,
 int Player_GetSlotFirepower(int playerIndex, int slot, int powerState,
                             int unitType, int unk);
 
-extern MenuState gMenuState;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
-
 /* Firepower bonus of a player's CO slot (0 front, 1 back) for a unit type,
  * as the unit info drawn by PlayerInfo_DrawUnitStats shows it. Slot 0 uses
  * Player_GetFirepowerBonus with the front CO's power state; other slots use
@@ -20,7 +16,7 @@ extern MenuState gMenuState;
  * back slot instead reads the front CO of the same player on the second map
  * (data_027c0288.unk_04). */
 int Player_GetShownFirepower(int playerIndex, int slot, int unitType) {
-  Unk_02080440_48* game = GAME;
+  Unk_02080440_48* game = MAP_STATE;
   Unk_027c0280* saved0280;
   Unk_02080440* saved027c;
   int firepower;
@@ -37,7 +33,8 @@ int Player_GetShownFirepower(int playerIndex, int slot, int unitType) {
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
     firepower = Player_GetFirepowerBonus(
-        playerIndex, 0, GAME->players[playerIndex].front.powerState, unitType);
+        playerIndex, 0, MAP_STATE->players[playerIndex].front.powerState,
+        unitType);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
   } else {

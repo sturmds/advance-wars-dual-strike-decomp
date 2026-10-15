@@ -9,8 +9,6 @@ void Co_QueueArmySmallPicture(int coId, void* dest, int paletteSlot, int army);
 void Co_UnpackPicture(int coId, int firstTile);
 void Gfx_RequestLayerCopy(int layer);
 
-extern MenuState gMenuState;
-
 #define MENU (gMenuState.unk_0206d67c)
 
 /* Needed to match: the original adds the field offset to gMenuState's

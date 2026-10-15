@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
-
 /* Script command: stores the function in the argument as the slot's
  * callback and advances. While the callback is set the slot does not run
  * the next command. */

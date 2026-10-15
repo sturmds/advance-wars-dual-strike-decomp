@@ -1,25 +1,10 @@
 #include "types.h"
 #include "sdk/gx.h"
 #include "game/Unk_02088d04.h"
-
-extern Unk_027c0280* data_027c0280;
+#include "game/screen_hblank.h"
 
 /* Main engine register values that the H-blank handlers
  * (Screen_HBlankTopPanel, Screen_HBlankBottomPanel) write during the frame. */
-extern u32 data_027c0270; /* DISPCNT BG/OBJ layer bits */
-extern u32 data_027c026c; /* DISPCNT window bits */
-extern u32 data_027c0264; /* BG1OFS */
-extern u32 data_027c0274; /* BG2OFS */
-extern u16 data_027c0254; /* BG1CNT */
-extern u16 data_027c0258; /* BG2CNT */
-extern u16 data_027c025c; /* BG2PA */
-extern u16 data_027c0260; /* BG2PB */
-extern u16 data_027c023c; /* BG2PC */
-extern u16 data_027c0248; /* BG2PD */
-extern u16 data_027c0250; /* BG2X */
-extern u16 data_027c0244; /* BG2Y */
-extern u32 data_027c0268; /* BLDCNT */
-extern u8 data_027c0238;
 
 BOOL Screen_IsTextBg(int bg);
 void G2x_SetBlendAlpha(u32* bldcnt, int plane1, int plane2, int ev1, int ev2);

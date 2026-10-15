@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/map_header.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* For each player slot 1-4, ORs the current map header's two flag bytes for
  * that slot into the player, unless the first is 0xff. */
 void Map_ApplySlotFlags(void) {

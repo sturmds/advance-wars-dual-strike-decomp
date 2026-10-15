@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
-
 void ScriptSlot_Stop(int slot);
 
 /* Stops the given slot (a pointer into the slot array) and returns its index, or -1

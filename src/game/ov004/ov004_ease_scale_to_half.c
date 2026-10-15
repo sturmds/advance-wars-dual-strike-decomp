@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/Unk_ov004_022bf158.h"
 #include "game/screen_other_map.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(void* task);
 
 extern Unk_ov004_022bf158* data_ov004_022bf158;

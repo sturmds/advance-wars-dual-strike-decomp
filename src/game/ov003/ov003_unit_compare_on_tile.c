@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-extern Ov003Unit data_ov003_02369538[];
-
 /* Looks at the other live units (unk_17_6 clear) on the tile of unit. Returns
  * 2 as soon as one has a different row; otherwise 1 if unit->unk_04
  * is below that of any of them, else 0. Needed to match: the declarations are

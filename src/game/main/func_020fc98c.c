@@ -1,6 +1,7 @@
 #include "types.h"
 #include "sdk/mb.h"
 #include "game/wireless_host.h"
+#include "game/song.h"
 
 extern int data_022a7e68;
 extern void* data_022a7e6c;
@@ -10,7 +11,6 @@ WirelessHostGame data_022a7e88;
 
 #define VBLANK_COUNT_ADDR 0x027ffc3c
 
-void Sound_StopSong(void);
 void Sound_Shutdown(void);
 void* Mem_Alloc(u32 size);
 void WirelessHost_FillInfo(void);

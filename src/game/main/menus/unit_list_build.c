@@ -3,18 +3,16 @@
 #include "game/unit_stats.h"
 #include "game/Unk_02080440.h"
 #include "game/unit_list_task.h"
+#include "game/math.h"
 
 void* Mem_Alloc(u32 size);
 void Mem_Free(void* block);
 void Mem_CopyUnits(const void* src, void* dst, u32 size, u32 unitBits);
-s32 HwDiv32(s32 a, s32 b);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern s8 data_ov000_022b3850
     []; /* indexed by unit type; here walked from 1 to give the list's type order */
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 
 enum UnitListSort {
   UNIT_LIST_SORT_TYPE,
@@ -51,11 +49,12 @@ void UnitList_Build(int sortMode, int reverse) {
   sorted = Mem_Alloc(UNIT_LIST_SIZE);
   count = 0;
   for (order = 1; order < UNIT_TYPE_COUNT; order++) {
-    for (slot = Ov000_gPlayerFirstUnitSlot[GAME->currentPlayer] + 1;
-         slot < Ov000_gPlayerFirstUnitSlot[GAME->currentPlayer] + 51; slot++) {
-      value = GAME->units[slot].type;
+    for (slot = Ov000_gPlayerFirstUnitSlot[MAP_STATE->currentPlayer] + 1;
+         slot < Ov000_gPlayerFirstUnitSlot[MAP_STATE->currentPlayer] + 51;
+         slot++) {
+      value = MAP_STATE->units[slot].type;
       if (value != UNIT_NONE && value == data_ov000_022b3850[order]) {
-        gUnitListRows[count++] = slot - GAME->currentUnitBase;
+        gUnitListRows[count++] = slot - MAP_STATE->currentUnitBase;
       }
     }
   }
@@ -69,7 +68,8 @@ void UnitList_Build(int sortMode, int reverse) {
     case UNIT_LIST_SORT_HP:
       for (level = 10; level > 0; level--) {
         for (i = 0; i < count; i++) {
-          cargoUnit = &GAME->units[GAME->currentUnitBase + gUnitListRows[i]];
+          cargoUnit =
+              &MAP_STATE->units[MAP_STATE->currentUnitBase + gUnitListRows[i]];
           if (cargoUnit->hp != 0) {
             value = HwDiv32(cargoUnit->hp - 1, 10) + 1;
           } else {
@@ -84,7 +84,9 @@ void UnitList_Build(int sortMode, int reverse) {
     case UNIT_LIST_SORT_FUEL:
       for (step = 99; step >= 0; step--) {
         for (i = 0; i < count; i++) {
-          value = GAME->units[GAME->currentUnitBase + gUnitListRows[i]].fuel;
+          value =
+              MAP_STATE->units[MAP_STATE->currentUnitBase + gUnitListRows[i]]
+                  .fuel;
           if (value == step) {
             sorted[n++] = gUnitListRows[i];
           }
@@ -94,7 +96,8 @@ void UnitList_Build(int sortMode, int reverse) {
     case UNIT_LIST_SORT_AMMO:
       for (level = 10; level >= -1; level--) {
         for (i = 0; i < count; i++) {
-          unit = &GAME->units[GAME->currentUnitBase + gUnitListRows[i]];
+          unit =
+              &MAP_STATE->units[MAP_STATE->currentUnitBase + gUnitListRows[i]];
           stats = &Ov000_gUnitStats[unit->type];
           /* a type without ammo sorts first if unk_17 is set, else last */
           if (stats->ammo == 0) {
@@ -123,7 +126,7 @@ void UnitList_Build(int sortMode, int reverse) {
     if (sorted[i] == 0) {
       continue;
     }
-    unit = &GAME->units[GAME->currentUnitBase + sorted[i]];
+    unit = &MAP_STATE->units[MAP_STATE->currentUnitBase + sorted[i]];
     if (unit->flags & MAP_UNIT_CARRIED) {
       continue;
     }
@@ -136,10 +139,10 @@ void UnitList_Build(int sortMode, int reverse) {
       if (unit->cargo[step] == 0) {
         continue;
       }
-      value = unit->cargo[step] - GAME->currentUnitBase;
+      value = unit->cargo[step] - MAP_STATE->currentUnitBase;
       for (j = 0; j < count; j++) {
         if (value == sorted[j]) {
-          cargoUnit = &GAME->units[value + GAME->currentUnitBase];
+          cargoUnit = &MAP_STATE->units[value + MAP_STATE->currentUnitBase];
           gUnitListRows[n++] = sorted[j];
           sorted[j] = 0;
           if (cargoUnit->flags & MAP_UNIT_CARRYING) {
@@ -147,7 +150,7 @@ void UnitList_Build(int sortMode, int reverse) {
               if (cargoUnit->cargo[k] == 0) {
                 continue;
               }
-              innerSlot = cargoUnit->cargo[k] - GAME->currentUnitBase;
+              innerSlot = cargoUnit->cargo[k] - MAP_STATE->currentUnitBase;
               for (m = 0; m < count; m++) {
                 if (innerSlot == sorted[m]) {
                   gUnitListRows[n++] = sorted[m];

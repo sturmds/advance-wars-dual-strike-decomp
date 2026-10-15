@@ -4,6 +4,7 @@
 #include "game/popup_menu.h"
 #include "game/Unk_ov006_0235f690.h"
 #include "game/menu_item.h"
+#include "game/screen.h"
 
 PopupMenuTask* PopupMenu_Create(const MenuItem* items, int x, int y, int style,
                                 int selected, int center);
@@ -11,11 +12,9 @@ int DesignMap_CopyName(int id, u8* buf);
 void Ov006_DrawMenuLineFixedText(int unused, int row);
 void Ov006_DrawMenuLineWithIcon(int unused, int row, const char* text);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 void MenuDepth_Pop(void);
 void MenuDepth_Push(void);
 void PopupMenu_PopState(void);
-void ScreenTransition_IsRunning(void);
 extern EventScriptCommand data_ov006_0236be00[];
 extern EventScriptCommand data_ov006_0236bf20[];
 void func_01ff95fc(void);

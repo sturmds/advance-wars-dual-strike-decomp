@@ -4,7 +4,6 @@
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
 
-extern MenuState gMenuState;
 extern const MenuButtonTemplate data_02160150;
 
 int func_0207a260(void);

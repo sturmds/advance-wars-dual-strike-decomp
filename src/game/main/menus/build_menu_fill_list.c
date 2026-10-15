@@ -3,11 +3,7 @@
 #include "game/unit_stats.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern s8 data_ov000_022b3834[];
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 BOOL BuildMenu_CanBuildUnit(int player, int unitType);
@@ -26,8 +22,8 @@ void BuildMenu_FillList(int moveGroups) {
   for (i = 0; data_ov000_022b3834[i] != -1; i++) {
     type = data_ov000_022b3834[i];
     if ((moveGroups & Ov000_gUnitStats[type].moveGroup) &&
-        BuildMenu_CanBuildUnit(GAME->currentPlayer, type)) {
-      state = GAME;
+        BuildMenu_CanBuildUnit(MAP_STATE->currentPlayer, type)) {
+      state = MAP_STATE;
       /* needed to match: the original compares unsigned */
       if ((u32)state->players[state->currentPlayer].funds <
           Unit_GetValuePerHp(state->currentPlayer, type) * 10) {

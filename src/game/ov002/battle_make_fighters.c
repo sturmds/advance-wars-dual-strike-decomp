@@ -2,8 +2,6 @@
 #include "game/menu_state.h"
 #include "game/BattleSpriteTask.h"
 
-extern MenuState gMenuState;
-
 /* Needed to match: the entries of a side are reached from gMenuState by side index
  * (0x78 bytes each) and entry index (0x18 bytes each) first, then by their offset 0x310. */
 typedef struct BattleRow {

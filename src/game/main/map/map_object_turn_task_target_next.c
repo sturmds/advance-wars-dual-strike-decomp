@@ -4,18 +4,11 @@
 #include "game/map_object_turn_task.h"
 #include "game/player.h"
 #include "game/tile_point.h"
+#include "game/ai.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern TilePointU16* data_02167e98[];
 
-void AiTargetList_Clear(void);
-void AiTargetList_Add(u16 x, u16 y, u16 unitSlot, u16 kind);
-void AiTargetList_AddUnitsOnTiles(TilePointU16* points, int damage);
-void Cannon_AddBestTarget(int x, int y, int damage, int kind, int variant);
 int Task_JumpToLabel(MapObjectTurnTask* task, int label);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Step of the map object turn script. Empties the AI target list, then
  * finds the next object that acts this turn and fills the list for it: the
@@ -36,7 +29,7 @@ void MapObjectTurnTask_TargetNext(MapObjectTurnTask* task) {
       case MAP_OBJECT_VOLCANO:
         if (object->variant != 0 && object->state == 0) {
           AiTargetList_Add(object->x, object->y, 0, kind);
-          if (STATE->day != 0) {
+          if (MAP_STATE->day != 0) {
             AiTargetList_AddUnitsOnTiles(
                 data_02167e98[task->nextObject->variant],
                 (s8)task->nextObject->unk_07);
@@ -47,7 +40,7 @@ void MapObjectTurnTask_TargetNext(MapObjectTurnTask* task) {
         break;
       case MAP_OBJECT_BLACK_CANNON:
       case MAP_OBJECT_MINICANNON:
-        if (STATE->players[STATE->currentPlayer].armyColour ==
+        if (MAP_STATE->players[MAP_STATE->currentPlayer].armyColour ==
                 ARMY_BLACK_HOLE &&
             object->hp != 0 && object->state == 0) {
           AiTargetList_Add(object->x, object->y, 0, kind);

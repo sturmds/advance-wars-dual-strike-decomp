@@ -1,5 +1,4 @@
 #include "types.h"
-
-void MenuButtons_CloseAll(void);
+#include "game/menu_button.h"
 
 void func_0201dc64(void) { MenuButtons_CloseAll(); }

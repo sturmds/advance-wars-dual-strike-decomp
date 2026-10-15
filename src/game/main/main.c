@@ -4,19 +4,17 @@
 #include "game/Unk_02088d04.h"
 #include "sdk/gx.h"
 #include "game/save_progress.h"
+#include "game/screen.h"
+#include "game/menu_button.h"
+#include "sdk/svc.h"
+#include "game/screen_other_map.h"
+#include "sdk/fs.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-extern SaveRecordBuffer data_02291774;
 extern u8 data_02166dc8[];
 
 void MainLoop_Init(void);
 void Boot_EnableDisplay(void);
-void FS_Init(int a);
 void Mem_InitHeaps(void);
-void Screens_InitContexts(void);
-void Screens_InitDisplay(void);
 void Sound_InitSystem(void);
 void Sound_Init(void);
 void Sound_LoadResidentData(void);
@@ -29,18 +27,11 @@ void Save_PackProgress(void);
 void Save_ResetProgress(void);
 void Save_Init(void (*a)(void), void (*b)(void), void* c);
 void Touch_Init(void);
-void Menu_Reset(void);
 void GfxQueue_Init(void);
 void Save_LoadAndUnpackProgress(void);
 void DesignMap_RefreshAllRows(void);
 void Rng_SetState(u32 state);
-void SVC_WaitVBlankIntr(void);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void func_020097a4(void);
-void Screen_ApplyAll(void);
-void Screen_InitSystems(void);
-void Screens_SetUp2dLayers(const void* unused);
 void NumberFont_LoadLow(void);
 void func_01ff9c28(void (*callback)(void));
 void MainLoop_SetFrameCallback(void (*callback)(void));

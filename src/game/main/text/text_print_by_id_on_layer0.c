@@ -2,8 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/text_printer.h"
 
-extern Unk_027c0280* data_027c0280;
-
 TextPrinter* TextPrinter_StartById(int x, int y, u8* tiles, u16* map,
                                    u32 textId, u16 unk_30, u16 unk_38);
 

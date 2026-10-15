@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 void Bg_PutTileBlock(u16* map, int x, int y, const u8* block, u16 tileAdd);
 
 /* Draws the frame of one player column (1-4) on BG layer 1 at tile (x, y):

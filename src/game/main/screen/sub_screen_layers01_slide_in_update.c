@@ -1,11 +1,10 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/screen_other_map.h"
+#include "game/screen.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task* task);
-void SubScreen_QueueTwoSprites(int x);
-void TotalRankScreen_QueueTopCoSprites(int x);
 void CampaignRecords_GetAverageScore(void);
 void Score_ToRank(void);
 void ResultRank_PlaySe(void);

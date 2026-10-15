@@ -8,10 +8,10 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_0229fb30.h"
 #include "game/Unk_0229ff30.h"
+#include "game/screen_other_map.h"
+#include "game/menu_button.h"
 
 void Gfx_InitBothScreens(void);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Mem_Free(void* file);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 void* File_Load(const char* path);
@@ -29,8 +29,6 @@ void TpIcon2_LoadTo(u8* dest);
 u16 Wireless_GetChildAids(void);
 int func_0207a260(void);
 void SpriteTask_Create(int a, int b, int c, int d);
-void Menu_Reset(void);
-void MenuCursor_SetRect(s16 left, s16 top, s16 right, s16 bottom);
 void Wallpaper_LoadBoth(void);
 void ModeFont_Load(int tile, int paletteSlot);
 const char* Text_Get(u32 textId);
@@ -38,10 +36,6 @@ void ModeFont_ShowText(const char* text, int tile, int paletteSlot, int a,
                        int b);
 void HelpBand_Start(int tile, int a);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
 extern u8 data_02160ae0[]; /* the seven CO ids of the Combat setup screens */
 extern const char gCombatLinkCommonLangResPath[];
 extern const char gCombatLinkCommonResPath[];

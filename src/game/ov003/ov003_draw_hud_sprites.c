@@ -1,10 +1,9 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 #include "game/Unk_02160ac0.h"
+#include "game/win_quote.h"
 
 void Co_QueuePictureSpriteAtTile(int x, int y, int attr, int tile, int list);
-void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list,
-                            BOOL flip);
 void Ov003_StepFrameCycles(void);
 void Ov003_UpdateRowsAndPalette(void);
 void Ov003_DrawRows(void);

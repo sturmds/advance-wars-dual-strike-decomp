@@ -13,13 +13,7 @@ int Ov006_CanPlaceBridge(int x, int y);
 int Ov006_CannotPlacePipeSeam(int x, int y);
 void Map_ScrollViewToTile(int arg);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define OV6 data_ov006_0236d640
-#define TILE(x, y) (STATE->mapTiles->tiles[(x) + STATE->mapTiles->rowStart[y]])
 #define CHART \
   ((const s8(*)[32])gCoTable[0].blocks[0].movementCost[MOVE_CHART_DEFAULT])
 
@@ -57,7 +51,7 @@ int Ov006_CheckToolAtCursor(void) {
         result = 6;
       }
     } else if (tool == TERRAIN_ROAD) {
-      if (TILE(ov6->cursorX, ov6->cursorY) == TERRAIN_RIVER &&
+      if (MAP_TILE_AT(ov6->cursorX, ov6->cursorY) == TERRAIN_RIVER &&
           Ov006_CanPlaceBridge(ov6->cursorX, ov6->cursorY) == 0) {
         result = 6;
       }
@@ -71,7 +65,8 @@ int Ov006_CheckToolAtCursor(void) {
   } else if (ov6->unk_00 & 0x40) {
     result = 5;
   } else if (CHART[Ov000_gUnitStats[ov6->toolUnit & 63].moveType]
-                  [MAP_TILE_TERRAIN(TILE(ov6->cursorX, ov6->cursorY))] != -1) {
+                  [MAP_TILE_TERRAIN(MAP_TILE_AT(ov6->cursorX, ov6->cursorY))] !=
+             -1) {
     result = 1;
   } else {
     result = 6;

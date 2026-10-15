@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/screen_other_map.h"
+#include "game/math.h"
 
 void Screen_SetCurrentBoth(void* state);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task* task);
 
 #define FRAME(task) (*(s16*)&(task)->unk_4c)

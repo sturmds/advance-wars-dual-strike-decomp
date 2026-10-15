@@ -3,8 +3,6 @@
 
 void Ov006_SetUpDarkenWindow(int left, int top, int right, int bottom);
 
-extern Unk_027c0280* data_027c0280;
-
 /* Called after a design map's preview is drawn (func_ov006_023582f0).
  * Ov006_SetUpDarkenWindow turns on window 0 with colour effects inside it only;
  * this moves window 0 to the box (127, 39)-(249, 121) and darkens layers 1-3

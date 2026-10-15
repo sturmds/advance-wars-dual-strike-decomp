@@ -2,18 +2,13 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/win_lose.h"
+#include "game/math.h"
+#include "game/screen_other_map.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Screen_SetCurrentBoth(void* state);
 void Task_ResumeScript(WinLoseTask* task);
 void Gfx_RequestLayerCopy(int layer);
 void Gfx_ClearLayerMap(int layer); /* likely clears the layer's tile map */
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* Blend weights for the frames left in task->frame: from about 9/9 down
  * to 0/16, so layer 2 (blended over layer 3 since WinLoseScreen_Init)

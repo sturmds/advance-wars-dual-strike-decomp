@@ -1,11 +1,8 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define MAP_TILE_COUNT() (STATE->unk_1c4->mapWidth * STATE->unk_1c4->mapHeight)
+#define MAP_TILE_COUNT() \
+  (MAP_STATE->unk_1c4->mapWidth * MAP_STATE->unk_1c4->mapHeight)
 
 /* Packs the hp of every tile that units can attack into out, for battle
  * saves. Each byte is either a tile's hp (bits 0-6) with bit 7 set, or a
@@ -16,7 +13,7 @@ void TileHp_Pack(u8* out) {
   u8 zeros;
   u8* hp;
 
-  hp = STATE->tileHp;
+  hp = MAP_STATE->tileHp;
   zeros = 0;
 
   for (i = 0; i < MAP_TILE_COUNT(); i++) {

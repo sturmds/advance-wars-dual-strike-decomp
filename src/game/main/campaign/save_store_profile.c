@@ -4,10 +4,7 @@
 #include "game/save_progress.h"
 #include "game/Unk_02290118.h"
 #include "game/screen_other_map.h"
-
-extern CampaignMapState gCampaignMapState;
-extern SaveProfileBlock data_02290298[];
-extern SaveBytes30 data_022900bc[];
+#include "game/campaign_map_music.h"
 
 int CampaignRecords_GetNextNumber(void);
 

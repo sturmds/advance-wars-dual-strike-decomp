@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* draws a window frame of width x height tiles at (x, y) into a 32-tile-wide map */
 void Window_Draw(int x, int y, int width, int height, u16* map, int palette);
 

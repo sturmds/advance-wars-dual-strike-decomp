@@ -2,8 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_0216e2b0.h"
 
-extern Unk_027c0280* data_027c0280;
-
 void Screen_EnableEmptyWindows(void) {
   GFX_DISPCNT(data_027c0280)->win0 = 1;
   data_027c0280->win0In.bg[GFX_LAYER(data_027c0280, 0)->bg] = 0;

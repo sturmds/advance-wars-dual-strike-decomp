@@ -1,14 +1,11 @@
 #include "types.h"
 #include "game/Unk_ov003_0235dd38.h"
+#include "game/math.h"
+#include "game/oam_buffer.h"
+#include "game/win_quote.h"
 
 /* Needed to match: const, so the sine reads move out of the loop. */
-extern const s16 gSineTable[];
 
-s32 HwDiv32(s32 numerator, s32 denominator);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list,
-                            BOOL flip);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void BreakText_QueueLetterSized(u8 letter, u16 x, int y, int arg3, int list);
 s16 BreakText_GetLetterX(u8 letter);
 void Task_ResumeScript(Unk_ov003_0235dd38* task);

@@ -2,8 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/oam_buffer.h"
 
-extern Unk_027c0280* data_027c0280;
-
 void Oam_HideEntries(
     void* entries,
     int count); /* moves OAM entries off screen (y = 192), 16 at a time */

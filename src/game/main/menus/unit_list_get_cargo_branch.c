@@ -3,15 +3,10 @@
 #include "game/unit_stats.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
-
 /* The unit list looks for transports in the first 50 slots after the
  * current player's first slot. */
-#define FIRST_SLOT (Ov000_gPlayerFirstUnitSlot[GAME->currentPlayer] + 1)
-#define END_SLOT (Ov000_gPlayerFirstUnitSlot[GAME->currentPlayer] + 51)
+#define FIRST_SLOT (Ov000_gPlayerFirstUnitSlot[MAP_STATE->currentPlayer] + 1)
+#define END_SLOT (Ov000_gPlayerFirstUnitSlot[MAP_STATE->currentPlayer] + 51)
 
 /* Which cargo tree piece UnitList_DrawRow puts before the unit in slot
  * (counted from the current player's first slot):
@@ -31,8 +26,8 @@ int UnitList_GetCargoBranch(int slot) {
   MapUnit* carrier;
   u16 base;
 
-  units = GAME->units;
-  if (!(units[slot + GAME->currentUnitBase].flags & MAP_UNIT_CARRIED)) {
+  units = MAP_STATE->units;
+  if (!(units[slot + MAP_STATE->currentUnitBase].flags & MAP_UNIT_CARRIED)) {
     return 0;
   }
   for (i = FIRST_SLOT; i < END_SLOT; i++) {
@@ -40,7 +35,7 @@ int UnitList_GetCargoBranch(int slot) {
     if (transport->type == UNIT_NONE) {
       continue;
     }
-    base = GAME->currentUnitBase;
+    base = MAP_STATE->currentUnitBase;
     if (slot == transport->cargo[0] - base) {
       if (transport->cargo[1] != 0) {
         if (!(transport->flags & MAP_UNIT_CARRIED)) {
@@ -50,7 +45,7 @@ int UnitList_GetCargoBranch(int slot) {
                  * the scan goes on looking for that slot instead. */
         slot = i - base;
         for (j = FIRST_SLOT; j < END_SLOT; j++) {
-          outer = &GAME->units[j];
+          outer = &MAP_STATE->units[j];
           if (outer->type == UNIT_NONE) {
             continue;
           }
@@ -71,7 +66,7 @@ int UnitList_GetCargoBranch(int slot) {
     }
     slot = i - base;
     for (k = FIRST_SLOT; k < END_SLOT; k++) {
-      carrier = &GAME->units[k];
+      carrier = &MAP_STATE->units[k];
       if (carrier->type == UNIT_NONE) {
         continue;
       }

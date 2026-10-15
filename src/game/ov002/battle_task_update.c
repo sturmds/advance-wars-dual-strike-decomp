@@ -6,8 +6,6 @@
 #include "game/touch.h"
 #include "game/Unk_0229fb30.h"
 
-extern MenuState gMenuState;
-
 BOOL Link_IsActive(void);
 void Battle_EnsureTask(void);
 void Battle_ReleaseSideTasks(void);

@@ -6,8 +6,6 @@
 
 void Task_DestroyByScript(const void* descriptor);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0288 data_027c0288;
 extern TaskScriptCmd data_021571ac[]; /* script of the first DMA task */
 extern TaskScriptCmd data_021571cc[]; /* script of the second DMA task */
 

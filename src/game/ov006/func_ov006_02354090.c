@@ -8,7 +8,6 @@ void Gfx_RequestLayerCopy(int layer);
 void func_020c4018(void);
 void Ov006_PostRequest(int request);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern EventScriptCommand data_ov006_0236b01c[];
 extern EventScriptCommand data_ov006_0236b0bc[];
 

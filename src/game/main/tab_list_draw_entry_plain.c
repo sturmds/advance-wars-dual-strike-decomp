@@ -4,7 +4,6 @@
 #include "game/text_print.h"
 
 void Number_Draw(s16 x, s16 y, u16* map, int value, u16 a, u16 b);
-extern Unk_027c0280* data_027c0280;
 
 /* Draws entry (row, col) at tile (x, y) of layer 0: its text at x and its number at x + 20, with no tile quad behind. */
 void TabList_DrawEntryPlain(int x, int y, int row, int col) {

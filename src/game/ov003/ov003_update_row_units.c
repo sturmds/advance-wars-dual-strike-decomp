@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-extern Ov003Unit data_ov003_02369538[];
-
 int Ov003_IsPowerReady(int row);
 void func_ov003_0235ca50(int row);
 int func_ov003_02362098(int row);

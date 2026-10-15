@@ -5,7 +5,6 @@
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 BOOL func_ov006_023576c4(void);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern u8 data_ov006_0236a7ec[OV006_TERRAIN_ENTRY_COUNT][2];
 extern void* data_ov006_0236a878[OV006_TERRAIN_ENTRY_COUNT];
 extern void* data_ov006_0236a8c0[OV006_TERRAIN_ENTRY_COUNT];

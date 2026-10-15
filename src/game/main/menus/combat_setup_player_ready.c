@@ -5,7 +5,6 @@
 
 void Sound_PlaySe(u32 soundId);
 
-extern MenuState gMenuState;
 extern const MenuButtonTemplate data_02160de0;
 
 /* Needed to match: the cast keeps the field offset out of the literal pool. */

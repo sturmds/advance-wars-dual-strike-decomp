@@ -10,7 +10,6 @@ void func_020c4018(void);
 void* ScriptSlot_Start(const void* descriptor, int arg);
 void Ov006_PostRequest(int request);
 
-extern Unk_027c0280* data_027c0280;
 extern ScriptCommand data_ov006_0236c088[];
 
 /* Opens the request 6 screen: clears a 12x10 box at (2, 2) on layer 1, starts the

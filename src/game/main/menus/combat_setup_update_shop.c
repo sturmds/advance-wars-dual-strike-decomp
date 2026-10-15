@@ -23,8 +23,6 @@ void CombatSetup_SellLastUnit(u8 player);
 void CombatSetup_CancelReady(u8 player);
 void Task_ResumeScript(Task* task);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

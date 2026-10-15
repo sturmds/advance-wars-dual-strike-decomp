@@ -1,7 +1,6 @@
 #include "types.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numerator, s32 denominator);
-s32 HwMod32(s32 numerator, s32 denominator);
 void PointsTally_DrawDigit(int x, int y, int digit, int palette, int matrix,
                            int popFrame);
 

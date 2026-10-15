@@ -7,9 +7,6 @@ void Bg_PutTileBlock(u16* map, int x, int y, const u8* block, u16 tileAdd);
 void Gfx_RequestLayerCopy(int layer);
 int VsSetup_GetPanelTileX(int player);
 
-extern MenuState gMenuState;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 
@@ -33,7 +30,7 @@ void VsSetup_DrawSlotPanels(void) {
 
   Screen_SetCurrentGfx(data_027c0288.unk_00);
   for (player = 0; player < MENU->setup.unk_2e3; player++) {
-    if (STATE->twoMaps == 0) {
+    if (MAP_STATE->twoMaps == 0) {
       Bg_PutTileBlock(Gfx_GetLayer2Map(), VsSetup_GetPanelTileX(player), 2,
                       PANEL_ONE_MAP,
                       (MENU->setup.armyColours[player] + 2) << 12);

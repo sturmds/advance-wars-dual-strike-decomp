@@ -1,7 +1,6 @@
 #include "types.h"
-
-char* strcpy(char* dest, const char* src);
-u32 strlen(const char* str); /* strlen */
+#include "sdk/msl_string.h"
+#include "sdk/msl.h"
 
 extern const char* gLanguageSuffix; /* "_E" in this ROM */
 static char gLocalizedPath[0x40];

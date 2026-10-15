@@ -5,8 +5,6 @@ void Ov006_QueueTerrainEntrySprites(void);
 void Ov006_QueueEntrySprites(void);
 void Ov006_QueueToolButtonIcons(void);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
 /* With flag 0x10 set, runs Ov006_QueueEntrySprites (flag 1 clear) or
  * Ov006_QueueTerrainEntrySprites (flag 1 set), then
  * Ov006_QueueToolButtonIcons. The repeated flag 1 test and the two tails are

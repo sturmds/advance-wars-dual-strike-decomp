@@ -4,9 +4,6 @@
 void Map_RebuildUnitTiles(void);
 void func_020f79a4(void);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 #define HOOKS (data_027c027c->unk_50[data_027c0284])
 
 /* Runs Map_RebuildUnitTiles (it derives view values from the map data), then the

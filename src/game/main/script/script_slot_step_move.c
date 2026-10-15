@@ -2,7 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
 void func_02017518(int slot, int x, int y);
 
 /* One frame of a move command: adds the speed to the position and the

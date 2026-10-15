@@ -1,5 +1,4 @@
 #include "types.h"
-
-void MenuButtons_EnableTouch(void);
+#include "game/menu_button.h"
 
 void func_02064910(void) { MenuButtons_EnableTouch(); }

@@ -10,13 +10,9 @@ int Ov006_FitPipeCell(int x, int y, int arg);
 void Ov006_StoreMapCell(int x, int y, int cell);
 int Ov006_GetPipeLink(int x, int y, int dir);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define LINK(dir) Ov006_GetPipeLink(x, y, DESIGN_DIR_##dir)
 #define CELL_AT(x, y) \
-  (STATE->mapTiles->mapCells[(x) + STATE->mapTiles->rowStart[y]])
+  (MAP_STATE->mapTiles->mapCells[(x) + MAP_STATE->mapTiles->rowStart[y]])
 
 /* For the pipe at x, y: if it is open toward exactly one neighbour, returns
  * the end piece that opens that way; otherwise -1. A seam is first turned

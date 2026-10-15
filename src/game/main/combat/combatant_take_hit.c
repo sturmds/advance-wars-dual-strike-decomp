@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/combatant.h"
-
-s32 HwDiv32(s32 numerator, s32 denominator);
+#include "game/math.h"
 
 /* Applies attacker's hit to target. Both damage values scale by
  * (200 - target defense) percent; damageNoLuck, the number shown before

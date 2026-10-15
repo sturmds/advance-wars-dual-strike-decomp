@@ -2,15 +2,13 @@
 #include "game/co_rank_task.h"
 #include "game/Unk_02088d04.h"
 #include "game/oam_cells.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Task_ResumeScript(CoRankTask* task);
 void CoRankScreen_QueueNumber(int x, int y, int value);
 int Survival_GetRunGrade(void);
 void ResultRank_PlaySe(int grade);
-
-extern Unk_027c0280* data_027c0280;
 
 /* One frame of a 24-frame slide back up, the reverse of CoRankTask_SlideDown:
  * layers 0 and 1, the number and the sprite move from 64 pixels down to 0.

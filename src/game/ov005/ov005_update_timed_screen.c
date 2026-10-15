@@ -5,17 +5,12 @@
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bb90.h"
 #include "game/brightness_fade.h"
+#include "game/screen_other_map.h"
 
 BOOL func_020fd624(Task* task);
 void func_020fd618(Task* task);
 void Screens_BlackOut(void);
 void Task_ResumeScript(Ov005Task* task);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* Per-frame update of the large-work screen (task script data_ov005_02369634):
  * fade both screens in (64 frames), show the screen for about 300 frames, fade

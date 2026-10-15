@@ -4,8 +4,6 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 int LinkScreen_FindPanelOfPlayer(int player);
 void LinkScreen_MovePlayerToPanel(int player, int panel);
 

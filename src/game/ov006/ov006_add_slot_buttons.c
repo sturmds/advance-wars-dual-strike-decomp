@@ -4,7 +4,6 @@
 #include "game/Unk_ov006_0235f690.h"
 
 extern const MenuButtonTemplate data_ov006_0236b684;
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 
 /* On screen 0, adds the eight slot buttons (ids 32 to 39, tiles 16 apart) and
  * resets their slots: off screen at x = -32, no speed, state 0. */

@@ -2,12 +2,12 @@
 #include "game/task.h"
 #include "game/screen_flash.h"
 #include "game/Unk_021694c0.h"
+#include "game/screen.h"
 
 extern Unk_021694c0* data_021694c0;
 extern u8 data_0213b8f0[];
 
 void Sound_PlaySe(u32 soundId);
-void ScreenShake_Start(int script, int frames, Task* parent);
 void Task_ResumeScript(Unk_021694c0Task* task);
 void SpriteAnim_Draw(struct ShowSprite* sprite, int x, int y);
 void SpriteAnim_Free(struct ShowSprite* sprite);

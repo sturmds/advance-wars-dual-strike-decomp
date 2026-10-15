@@ -2,8 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/oam_buffer.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Splits the 128 OAM entries into a head of headCount entries and a tail of
  * the rest. */
 void OamBuffer_Split(int headCount) {

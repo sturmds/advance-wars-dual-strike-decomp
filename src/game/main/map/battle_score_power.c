@@ -1,16 +1,11 @@
 #include "types.h"
 #include "game/player.h"
 #include "game/Unk_02080440.h"
+#include "game/math.h"
 
 BOOL Player1Team_HasPlayerInGame(void);
 BOOL Player_IsInGame(u8 player);
 int Player_CountUnitsBuilt(int player);
-s32 HwDiv32(s32 numerator, s32 denominator);
-
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Power score (0-100) of a player at the end of a battle: Player.mostTurnKills
  * (most kills in one turn, per doc 890) times 1000, divided by the units
@@ -29,15 +24,15 @@ int BattleScore_Power(int player) {
   }
   enemyBuilt = 0;
   for (i = 1; i < ARMY_SLOT_COUNT; i++) {
-    if (STATE->players[i].controller != PLAYER_CONTROLLER_NONE &&
-        STATE->players[player].team != STATE->players[i].team) {
+    if (MAP_STATE->players[i].controller != PLAYER_CONTROLLER_NONE &&
+        MAP_STATE->players[player].team != MAP_STATE->players[i].team) {
       enemyBuilt += Player_CountUnitsBuilt(i);
     }
   }
   if (enemyBuilt == 0) {
     return 0;
   }
-  score = HwDiv32(STATE->players[player].mostTurnKills * 1000, enemyBuilt);
+  score = HwDiv32(MAP_STATE->players[player].mostTurnKills * 1000, enemyBuilt);
   if (score > 100) {
     score = 100;
   }

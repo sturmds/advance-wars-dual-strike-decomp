@@ -5,8 +5,6 @@
 #include "game/oam_cells.h"
 #include "game/obj_size.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Puts the cells of a sprite at (x, y) into the OAM buffer, starting at tile
  * tile with attr2's priority and palette. x and y carry the attribute 1 and
  * 0 flag bits too. With the horizontal flip bit set in x, each cell is

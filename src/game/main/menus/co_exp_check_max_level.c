@@ -5,7 +5,6 @@
 #include "game/unlocks.h"
 #include "game/win_lose.h"
 
-extern MenuState gMenuState;
 extern EventScriptCommand data_02159ea0[];
 
 /* On the results screen, starts an event script once any CO of side A

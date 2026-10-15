@@ -2,18 +2,12 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/script_slot.h"
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
+#include "game/screen.h"
 
 void func_020c4018(void);
 void Player_SaveArmyColours(void);
 void MapPreview_Start(u8* charBase, u16* screen, int firstTile, int palette);
 void Gfx_RequestLayerCopy(int layer);
-void Screen_ResetWindows(void);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* First step of script gMapOverviewScript, which MapCursor_HandleButtons starts
  * through Script_StartWithHook. Saves the view scroll, draws the map preview
@@ -22,8 +16,8 @@ void Screen_ResetWindows(void);
  * player sees. */
 void MapOverview_Open(MapOverviewSlot* slot) {
   func_020c4018();
-  slot->savedScrollX = STATE->unk_1c4->scrollX;
-  slot->savedScrollY = STATE->unk_1c4->scrollY;
+  slot->savedScrollX = MAP_STATE->unk_1c4->scrollX;
+  slot->savedScrollY = MAP_STATE->unk_1c4->scrollY;
   Player_SaveArmyColours();
   MapPreview_Start(
       data_027c0280->bgVram +

@@ -1,6 +1,5 @@
 #include "types.h"
-
-s32 HwDiv32(s32 numerator, s32 denominator);
+#include "game/math.h"
 
 /* CO rank for `exp` experience points: one rank per 1000, from 0 to 100. */
 int ExperienceToRank(int exp) {

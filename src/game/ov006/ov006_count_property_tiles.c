@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* Counts the nonzero tiles in the property list (Unk_02080440_48.unk_608c) of
  * the screen in data_027c0288.unk_00, up to the 0xff entry. The declaration
  * order is needed to match. */
@@ -19,10 +17,10 @@ int Ov006_CountPropertyTiles(void) {
   saved027c = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_00);
   for (i = 0; i < MAP_SITE_COUNT; i++) {
-    if (STATE->unk_608c[i].tile == 0xff) {
+    if (MAP_STATE->unk_608c[i].tile == 0xff) {
       break;
     }
-    if (STATE->unk_608c[i].tile != 0) {
+    if (MAP_STATE->unk_608c[i].tile != 0) {
       count++;
     }
   }

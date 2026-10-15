@@ -12,15 +12,12 @@ int Ov006_GetPipeEndCell(int x,
 void Ov006_StoreMapCell(int x, int y,
                         int cell); /* guess: sets the cell code of tile x, y */
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern s16 Ov006_gNeighborDx[]; /* left, right, up, down */
 extern s16 Ov006_gNeighborDy[];
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define MAP (STATE->unk_1c4)
+#define MAP (MAP_STATE->unk_1c4)
 #define CELL_AT(x, y) \
-  (STATE->mapTiles->mapCells[(x) + STATE->mapTiles->rowStart[y]])
+  (MAP_STATE->mapTiles->mapCells[(x) + MAP_STATE->mapTiles->rowStart[y]])
 
 #define NX (x + Ov006_gNeighborDx[i])
 #define NY (y + Ov006_gNeighborDy[i])

@@ -6,23 +6,19 @@
 #include "game/cannon_shot_task.h"
 #include "game/screen_flash.h"
 #include "game/sprite_anim.h"
-
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
+#include "game/screen.h"
 
 SpriteAnim3dTask* SpriteAnim3dTask_StartAlt(const void* file,
                                             const VecFx32* pos, u32 tileBase,
                                             u32 unk28, int animation,
                                             int layer);
 void Sound_PlaySe(u32 soundId);
-void ScreenShake_Start(int script, int frames, Task* parent);
 u8* CannonShot_GetAnimFile(
     int kind); /* shot animation file of the cannon kind */
 int CannonShot_GetFacingAnim(
     u32 facing); /* first animation for the cannon's facing */
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Step of the cannon shot script: plays the impact animation on the target
  * tile (3D or sprite, as the screen needs), with sound 169, a screen shake
@@ -41,8 +37,8 @@ void CannonShotTask_PlayImpact(CannonShotTask* task) {
                               (u32)data_022a7c5c->unk_6c,
                               CannonShot_GetFacingAnim(task->facing) + 2, 1);
   } else {
-    x = task->targetX * 16 + 8 - STATE->unk_1c4->scrollX;
-    y = task->targetY * 16 + 16 - STATE->unk_1c4->scrollY;
+    x = task->targetX * 16 + 8 - MAP_STATE->unk_1c4->scrollX;
+    y = task->targetY * 16 + 16 - MAP_STATE->unk_1c4->scrollY;
     SpriteAnimTask_Start(CannonShot_GetAnimFile(task->cannonKind), x, y, 0x3194,
                          CannonShot_GetFacingAnim(task->facing) + 2, 1);
   }

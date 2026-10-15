@@ -2,8 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/ov003_unit.h"
 
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern Ov003Unit* data_ov003_02369534;
 
 void Screen_SetCurrentBoth(void* state);

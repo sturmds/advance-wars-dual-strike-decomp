@@ -3,9 +3,8 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/oam_cells.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Sprite_QueueDefault(int x, int y, int attr, int list);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void func_0200270c(int x, int y, int attr, int list, int hFlip);
@@ -14,10 +13,6 @@ void Palette_Load(const void* src, u32 offset, u32 size);
 void ForceRankScreen_DrawRank(int x, int y, u8 rank);
 void ForceRankScreen_DrawColumnHeads(void);
 void ForceRankScreen_MarkChosenSkills(void);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* Queues the Force Rank screen's sprites each frame. Top screen: the rank
  * (ForceRankScreen_DrawRank), ForceRankScreen_DrawColumnHeads's sprites, the marks on chosen

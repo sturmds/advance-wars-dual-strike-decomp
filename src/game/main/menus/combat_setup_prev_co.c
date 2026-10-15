@@ -6,7 +6,6 @@
 void Sound_PlaySe(u32 soundId);
 void Co_QueueLargePictureCopy(int coId, void* dest, int paletteSlot, int army);
 
-extern MenuState gMenuState;
 extern u8 data_02160ae0[];
 
 /* Needed to match: the cast keeps the field offset out of the literal pool. */

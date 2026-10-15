@@ -16,9 +16,6 @@ void Gfx_ClearLayerMap(int layer);
 void Bg_PutTileQuad(int x, int y, int firstTile, int palette);
 void Gfx_RequestLayerCopy(int layer);
 
-extern MenuState gMenuState;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 #define MENU (gMenuState.unk_0206d67c)
 
 /* Needed to match: the original adds these field offsets to gMenuState's
@@ -45,17 +42,17 @@ void CoStatsScreen_DrawSkills(void) {
 
   count = 0;
   if (MENU.player != 1 || Skills_AreDisabled() != TRUE) {
-    ForceRank_LoadSets(GAME->gameMode);
+    ForceRank_LoadSets(MAP_STATE->gameMode);
     for (i = 0; i < SKILL_LIST_LENGTH; i++) {
       MENU.skills[i] = 0;
     }
     MENU.skills[SKILL_LIST_LENGTH] = 0xff;
-    if (MENU.unk_0a8 == 1 && GAME->gameMode == 3) {
+    if (MENU.unk_0a8 == 1 && MAP_STATE->gameMode == 3) {
       Co_ListDefaultSkills(MENU_SKILLS, MENU_SHOWN_CO);
     } else {
       saved027c = data_027c027c;
       saved0280 = data_027c0280;
-      if (GAME->secondMapId != 0 && OtherMap_GetUnk30() == 0 &&
+      if (MAP_STATE->secondMapId != 0 && OtherMap_GetUnk30() == 0 &&
           MENU.slot == 1) {
         Screen_SetCurrentBoth(data_027c0288.unk_04);
         slot = 0;

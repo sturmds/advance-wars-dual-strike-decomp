@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Clears the 32 by 32 entries of the layer 0 tile map buffer. */
 void Layer0_ClearMap(void) {
   int i;

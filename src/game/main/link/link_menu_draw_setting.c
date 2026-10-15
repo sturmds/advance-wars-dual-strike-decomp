@@ -1,15 +1,11 @@
 #include "types.h"
 #include "game/Unk_02160ac0.h"
 #include "game/oam_cells.h"
+#include "game/oam_buffer.h"
+#include "game/math.h"
 
 int MainLoop_GetFrameCount(void);
-s32 HwDiv32(s32 numer, s32 denom);
-s32 HwMod32(s32 numer, s32 denom);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
-int Math_SinDegrees(int degrees);
-
-extern s16 gSineTable[];
 
 /* Divisor for one matrix entry: the scale, or 2 if it is 0. */
 #define DIVISOR(scale) ((scale) ? (scale) : 2)

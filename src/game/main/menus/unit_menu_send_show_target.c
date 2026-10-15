@@ -1,14 +1,12 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 #include "game/tile_point.h"
+#include "game/screen.h"
 
 BOOL func_020f5848(void);
-int SceneMode_IsCurrent(int a0);
 void func_020f5888(int x, int y);
 BOOL Unit_FindOtherMapTile(MapUnit* unit, TilePoint* pos);
 void MapCursor_DrawAt(int x, int y, int style);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Per-frame callback of both Send entries of the unit menu (tables at
  * 0x021661d0 and 0x021661f0). Unless flags bit 1 is set or the other screen
@@ -34,9 +32,9 @@ void UnitMenu_SendShowTarget(int a0, int a1, u32 flags) {
   if (scrolling) {
     return;
   }
-  tile.x = STATE->actingUnitDestX;
-  tile.y = STATE->actingUnitDestY;
-  Unit_FindOtherMapTile(STATE->actingUnit, &tile);
+  tile.x = MAP_STATE->actingUnitDestX;
+  tile.y = MAP_STATE->actingUnitDestY;
+  Unit_FindOtherMapTile(MAP_STATE->actingUnit, &tile);
   if (!SceneMode_IsCurrent(4)) {
     return;
   }

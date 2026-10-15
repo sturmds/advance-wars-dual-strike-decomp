@@ -3,9 +3,8 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_0229c734.h"
 #include "game/Unk_02160abc.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Data_Unpack(const void* src, void* dest);
 void Palette_Load(const void* src, u32 offset, u32 size);
 u8* File_Load(const char* path);
@@ -13,9 +12,6 @@ void Mem_Free(void* block);
 int Co_GetNation(int co);
 int CombatCo_IdFromNumber(int value);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern const char data_0215a4cc[];
 
 /* Part 4 of the result points screen: 20 tiles from /combat_st/res_cmmenu,

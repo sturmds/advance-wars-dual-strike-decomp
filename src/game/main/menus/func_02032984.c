@@ -1,6 +1,7 @@
 #include "types.h"
+#include "game/campaign_map_music.h"
+#include "game/song.h"
 
-void Sound_StartSong(u32 songId);
 BOOL CoExp_IsSpecialMission(void);
 
 void func_02032984(void) {

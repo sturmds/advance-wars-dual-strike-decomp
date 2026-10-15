@@ -4,10 +4,6 @@
 #include "game/info_panel.h"
 #include "game/terrain.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0280* data_027c0280;
-
 extern s16 data_0216635c[INFO_PANEL_SIDES][3]; /* terrain box x */
 extern u8 data_02166348[]; /* sprite shape of the terrain icon */
 extern u8 data_02166330[]; /* sprite shape of the terrain picture */
@@ -22,7 +18,6 @@ void TransferQueue_Add(const void* src, void* dst, u32 size);
 void Palette_Load(const void* src, u32 offset, u32 size);
 void Oam_PutSprite(int x, int y, void* shape, int tileAndPalette);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define GFX data_027c0280
 
 /* Object tiles the two sprites use; palettes 1 and 6 (Palette_Load at 0x2c0). */
@@ -49,8 +44,8 @@ void InfoPanel_DrawTerrainPicture(int tileX, int tileY, int panelX, int panelY,
   Oam_PutSprite((data_021663f4.unk_12[1].x + (panelX + *boxX)) & 0x1ff,
                 (panelY + data_021663f4.unk_12[1].y) | 0x400, data_02166348,
                 (1 << 12) | ICON_TILE);
-  if (STATE->mapTiles->unk_2338[STATE->mapTiles->rowStart[tileY] + tileX] ==
-          0 &&
+  if (MAP_STATE->mapTiles
+              ->unk_2338[MAP_STATE->mapTiles->rowStart[tileY] + tileX] == 0 &&
       terrain != TERRAIN_HQ) {
     colour = 0;
   }

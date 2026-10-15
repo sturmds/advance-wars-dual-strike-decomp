@@ -3,8 +3,10 @@
 #include "game/Unk_02088d04.h"
 #include "game/sprite_anim.h"
 #include "game/capture_picture_task.h"
+#include "game/oam_buffer.h"
+#include "game/math.h"
+#include "sdk/fs.h"
 
-extern Unk_027c0280* data_027c0280;
 extern const char* data_ov000_022f66c4
     []; /* per language: capture text graphics in /national */
 extern char data_021691b0[]; /* "/national" */
@@ -13,18 +15,14 @@ extern char data_021691bc[]; /* "0ba", the text's palette */
 extern u8 data_0214a568[];   /* sprite animation data */
 extern u8 data_0214a618[];
 extern u8 data_0214a670[];
-extern s16 gSineTable[];
 
 void PropertyPicture_Load(int tile, int gfxTile, int palette);
 void CaptureArmyGfx_Load(int owner, int gfxTile, int palette);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           int paletteOffset, int size);
 SpriteAnim* SpriteAnim_Create(void* data, int a, int b);
 void SpriteAnim_SetAnimation(SpriteAnim* sprite, int animation);
-s32 HwDiv32(s32 numer, s32 denom);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 
 /* Attribute 2 of a sprite: OBJ palette and first tile. */
 #define SPRITE_ATTR2(palette, tile) (((palette) << 12) | (tile))

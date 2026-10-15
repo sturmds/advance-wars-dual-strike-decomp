@@ -13,7 +13,6 @@ void Text_PrintStringImmediate(s16 x, s16 y, u16* map, const char* text, u16 a,
                                u16 b);
 void Gfx_RequestLayerCopy(int layer);
 
-extern Unk_027c0280* data_027c0280;
 extern char data_0215fcd4[]; /* reaction text menu graphics file */
 
 /* Draws the reaction text menu screen: layers 1 and 2 from one file, the

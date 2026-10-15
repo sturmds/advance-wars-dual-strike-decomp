@@ -1,14 +1,11 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/oam_cells.h"
+#include "game/oam_buffer.h"
+#include "game/math.h"
 
-int HwDiv32(int num, int den);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 void Task_ResumeScript(Task* task);
-
-extern const s16 gSineTable[];
 
 #define FRAME(task) (*(s16*)&(task)->unk_4c)
 

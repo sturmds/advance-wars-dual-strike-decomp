@@ -1,12 +1,8 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_02080440.h"
+#include "sdk/gx.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-
-void GX_SetGraphicsMode(int displayMode, int bgMode, int bg0Is3d);
 void GXS_SetGraphicsMode(int bgMode);
 
 /* Sets the BG mode of the current screen and applies it to the main or sub

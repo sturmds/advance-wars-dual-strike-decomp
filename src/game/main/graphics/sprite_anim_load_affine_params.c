@@ -1,10 +1,7 @@
 #include "types.h"
 #include "game/sprite_anim.h"
-
-extern s16 gSineTable[]; /* sine table, index 64 = cosine of 0 */
-
-s32 HwDiv32(s32 numerator, s32 denominator);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
+#include "game/oam_buffer.h"
+#include "game/math.h"
 
 #define AFFINE_COUNT_MASK 0x7fff
 #define SIN(angle) gSineTable[(angle) & 0xff]

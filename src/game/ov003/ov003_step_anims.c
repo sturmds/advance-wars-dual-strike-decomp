@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/Ov003Fx.h"
 #include "game/ov003_unit.h"
+#include "game/math.h"
 
 int Ov003_IsPhase0OrAbove6(void);
-s32 HwMod32(s32 numerator, s32 denominator);
 
 /* Steps the overlay's animation counters from the frame counter
  * Ov003State.frameCount, on frames where Ov003_IsPhase0OrAbove6 lets it run. */

@@ -7,8 +7,6 @@ ShowSprite* SpriteAnim_Create(void* file, int a, int b);
 void SpriteAnim_SetAnimation(ShowSprite* sprite, int frame);
 s32 Rng_Range(s32 min, s32 max);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the original adds the field offset to the address of
  * gMenuState at run time instead of folding it into the relocation. */
 #define WORK_FIELD(field) \

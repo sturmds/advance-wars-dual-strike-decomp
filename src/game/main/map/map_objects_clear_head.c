@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/map_object.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 #define HEAD_OBJECT_COUNT 16
 
 /* Zeroes the first HEAD_OBJECT_COUNT object entries except the variant. The chained assignments are needed to match. */

@@ -6,23 +6,18 @@
 
 int Player_GetCurrentOrFirstInGame(void);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* After a campaign or War Room battle whose current player is human, adds
  * 1 to the play record of the battle's score rank (data_022a7a9c.rank,
  * 2-5). */
 void PlayRecords_CountBattleRank(void) {
   BOOL human;
 
-  if (STATE->gameMode != GAME_MODE_CAMPAIGN &&
-      STATE->gameMode != GAME_MODE_WAR_ROOM) {
+  if (MAP_STATE->gameMode != GAME_MODE_CAMPAIGN &&
+      MAP_STATE->gameMode != GAME_MODE_WAR_ROOM) {
     return;
   }
   /* needed to match: the original turns the test into a BOOL first */
-  human = STATE->players[Player_GetCurrentOrFirstInGame()].controller ==
+  human = MAP_STATE->players[Player_GetCurrentOrFirstInGame()].controller ==
                   PLAYER_CONTROLLER_HUMAN
               ? TRUE
               : FALSE;

@@ -31,11 +31,11 @@ void MapSelect_HandleKeys(MenuButton* button) {
     pos = MapSelect_PosRight(pos);
   }
   if ((gKeypad->repeat & PAD_KEY_LEFT) &&
-      STATE->gameMode != GAME_MODE_WAR_ROOM) {
+      MAP_STATE->gameMode != GAME_MODE_WAR_ROOM) {
     pos = MapSelect_PosUp(pos);
   }
   if ((gKeypad->repeat & PAD_KEY_RIGHT) &&
-      STATE->gameMode != GAME_MODE_WAR_ROOM) {
+      MAP_STATE->gameMode != GAME_MODE_WAR_ROOM) {
     pos = MapSelect_PosDown(pos);
   }
   if (pos != button->id) {

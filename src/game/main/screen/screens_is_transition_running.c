@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/screen_other_map.h"
+#include "game/screen.h"
 
-int ScreenTransition_IsRunning(void);
 int Dma_ChannelRunning(int channel);
 
 /* TRUE while a screen transition runs on `screen`. A macro because the

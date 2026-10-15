@@ -2,15 +2,10 @@
 #include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void ResultStats_QueuePlayerSprite(int x, int y, int index);
 void ResultStats_DrawUnitGrid(int offset, Task* task);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* Draws the main screen sprites of the stats page of player task->unk_66:
  * the player sprite and the unit grid. */

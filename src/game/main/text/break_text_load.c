@@ -7,7 +7,6 @@ void Data_Unpack(const void* src, void* dest);
 u8* File_Load(const char* path);
 void Mem_Free(void* res);
 
-extern Unk_027c0280* data_027c0280;
 extern s8 data_02159684[];   /* letters of the font, in glyph order */
 extern char data_021597e0[]; /* "/ohashi/res_tagbreakfont" */
 extern char data_021597fc[]; /* "/ohashi/res_breakfont" */

@@ -10,8 +10,6 @@ void VsSetup_DrawSubSlotPanels(void);
 void VsSetup_AddSettingButtons(void);
 void VsSetup_ShowSettingHelp2(void);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offsets out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

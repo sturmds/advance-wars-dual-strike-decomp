@@ -11,7 +11,6 @@ void Co_LoadSmallPicture(int co, void* dest, int palette);
 void Mem_Zero32(u32 value, void* dest, u32 size);
 
 extern Unk_022a7b80 data_022a7b80;
-extern Unk_027c0280* data_027c0280;
 
 /* Loads the small pictures of the front and back COs of every computer
  * side (map slots 2 and up) on the current Survival map: 12 tiles each into

@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Returns the entry at (x, y) of the 32-tile-wide tile map of layer 0-3,
  * or NULL for another layer. */
 u16* Bg_GetMapEntry(int layer, int x, int y) {

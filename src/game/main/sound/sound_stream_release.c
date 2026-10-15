@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/sound_stream.h"
+#include "sdk/os.h"
 
-int OS_DisableInterrupts(void);
-void OS_RestoreInterrupts(int irqState);
 void SoundStream_UnlockChannels(SoundStream* stream);
 void SoundStream_Detach(SoundStream* stream);
 void SoundStreamRequest_Free(SoundStreamRequest* request);

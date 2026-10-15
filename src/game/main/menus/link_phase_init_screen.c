@@ -8,13 +8,12 @@
 #include "game/event_queue.h"
 #include "game/text_print.h"
 #include "game/link_slots.h"
+#include "game/screen_other_map.h"
 
 void Gfx_RequestLayerCopy(int a);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 void Palette_Load(const void* src, u32 offset, u32 size);
 void Data_Unpack(const void* src, void* dst);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void* File_Load(const char* path);
 void Mem_Free(void* file);
 void Gfx_LoadBmap09f(void* target, int a, int b);
@@ -37,18 +36,11 @@ u8 Map_GetPlayerCount(u32 mapId);
 const void* Map_GetName(u32 mapId);
 const void* Text_Get(u32 textId);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
 extern DesignMap data_022a6c84[];
 extern u16 gLinkPhaseArmyGfxOffsets[];
 extern const char gLinkPhaseResPath[];
 extern const char gLinkCommonLangResPath[];
 extern const char gLinkCommonResPath[];
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* data_027c0288 holds two game states; Screen_SetCurrentGfx and Screen_SetCurrent load
  * one into data_027c0280 and data_027c027c. */
@@ -67,7 +59,7 @@ extern const char gLinkCommonResPath[];
 
 #define LINK_STATE ((MenuState*)&gMenuState)
 
-/* Message ids; which one shows depends on GAME->twoMaps. */
+/* Message ids; which one shows depends on MAP_STATE->twoMaps. */
 #define TEXT_LINK_ONE_MAP 0x7d000017
 #define TEXT_LINK_TWO_MAPS 0x7d000018
 
@@ -75,7 +67,7 @@ extern const char gLinkCommonResPath[];
  * /ohashi/res_linkphase and /commo/res_linkcommon). Copies each player's
  * army colour from the current map into gMenuState, draws one army icon
  * per player, and writes the map name on the second game state's screen.
- * When GAME->twoMaps is 1 it writes the second map's name there, and the
+ * When MAP_STATE->twoMaps is 1 it writes the second map's name there, and the
  * main state's screen also gets the first map's name. */
 void LinkPhase_InitScreen(void) {
   int i;
@@ -87,21 +79,21 @@ void LinkPhase_InitScreen(void) {
   void*
       target; /* needed to match: read before the call in the same argument list */
 
-  gMenuState.link.playerCount = Map_GetPlayerCount(GAME->unk_1c4->mapId);
+  gMenuState.link.playerCount = Map_GetPlayerCount(MAP_STATE->unk_1c4->mapId);
   /* Needed to match: the flag is kept in a register, and the stores go
      * through a cast pointer so the compiler reloads data_027c027c and
      * data_027c0284 on every pass. */
-  customMap = MAP_IS_CUSTOM(GAME->unk_1c4->mapId);
+  customMap = MAP_IS_CUSTOM(MAP_STATE->unk_1c4->mapId);
   if (customMap) {
     for (i = 0; i < gMenuState.link.playerCount; i++) {
       LINK_STATE->link.armyColours[i] =
-          data_022a6c84[GAME->unk_1c4->mapId - MAP_CUSTOM_FIRST]
+          data_022a6c84[MAP_STATE->unk_1c4->mapId - MAP_CUSTOM_FIRST]
               .armyColours[i + 1];
     }
   } else {
     for (i = 0; i < gMenuState.link.playerCount; i++) {
       LINK_STATE->link.armyColours[i] =
-          Ov000_gMapHeaders[GAME->unk_1c4->mapId].army[i + 1];
+          Ov000_gMapHeaders[MAP_STATE->unk_1c4->mapId].army[i + 1];
     }
   }
   for (i = 0; i < (int)ARRAY_COUNT(gMenuState.link.panelPlayers); i++) {
@@ -155,10 +147,10 @@ void LinkPhase_InitScreen(void) {
   Mem_Copy32(file + 0x20, gMenuState.colours, sizeof(gMenuState.colours));
   Mem_Free(file);
 
-  if (GAME->twoMaps == 1) {
-    mapId = GAME->secondMapId;
+  if (MAP_STATE->twoMaps == 1) {
+    mapId = MAP_STATE->secondMapId;
   } else {
-    mapId = GAME->unk_1c4->mapId;
+    mapId = MAP_STATE->unk_1c4->mapId;
   }
   SWITCH_TO(SECOND_MAP);
   Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
@@ -172,8 +164,8 @@ void LinkPhase_InitScreen(void) {
   Gfx_RequestLayerCopy(1);
   SWITCH_BACK();
 
-  if (GAME->twoMaps == 1) {
-    mapId = GAME->unk_1c4->mapId;
+  if (MAP_STATE->twoMaps == 1) {
+    mapId = MAP_STATE->unk_1c4->mapId;
     SWITCH_TO(MAIN_MAP);
     data_027c0280->bgCnt[data_027c0280->layer0Bg].priority = 1;
     data_027c0280->bgCnt[data_027c0280->layer1Bg].priority = 2;
@@ -192,7 +184,7 @@ void LinkPhase_InitScreen(void) {
   }
 
   ModeFont_Load(0, 0);
-  if (GAME->twoMaps == 0) {
+  if (MAP_STATE->twoMaps == 0) {
     ModeFont_ShowText(Text_Get(TEXT_LINK_ONE_MAP), 0, 0, 1, 0);
   } else {
     ModeFont_ShowText(Text_Get(TEXT_LINK_TWO_MAPS), 0, 0, 1, 0);

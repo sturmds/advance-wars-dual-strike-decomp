@@ -2,8 +2,6 @@
 #include "game/event_queue.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 int func_0207a260(void);
 
 /* Queues event 4 (back in stage 2 and 3). The address test is never true; the original compares

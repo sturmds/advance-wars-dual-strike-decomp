@@ -1,20 +1,15 @@
 #include "types.h"
 #include "game/menu_state.h"
 #include "game/oam_cells.h"
+#include "game/oam_buffer.h"
+#include "game/math.h"
 
 int MainLoop_GetFrameCount(void);
-s32 HwDiv32(s32 numer, s32 denom);
-s32 HwMod32(s32 numer, s32 denom);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
-int Math_SinDegrees(int degrees);
 u16 Wireless_GetChildAids(void);
 int Link_GetOwnPlayer(void);
 int LinkScreen_FindPanelOfPlayer(u8 player);
 int LinkScreen_GetPlayerRow(int panel);
-
-extern MenuState gMenuState;
-extern const s16 gSineTable[];
 
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 

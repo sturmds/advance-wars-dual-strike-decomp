@@ -4,18 +4,13 @@
 #include "game/icon.h"
 #include "game/Unk_ov005_0236bbb0.h"
 #include "game/text_print.h"
+#include "game/screen_other_map.h"
+#include "game/menu_button.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Bg_FillRect(u16* map, int x, int y, int width, int height, int tile);
 void Number_Draw(s16 x, s16 y, u16* map, int value, u16 a, u16 b);
-void MenuCursor_DrawAt(int x, int y, int width, int height);
 int Ov005_GetShopItemsFromPage(
     Unk_ov005_0236bbb0* work); /* itemCount - page * 6 */
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* needed to match: each block keeps its own saved pointers */
 #define SWITCH_TO(state)       \

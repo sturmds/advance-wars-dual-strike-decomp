@@ -1,11 +1,10 @@
 #include "types.h"
+#include "game/math.h"
 
 extern u8 data_ov000_0234ebe8[];
 extern u8 data_ov000_0234ebf8[];
 extern u8 data_ov000_0234ec4c[];
 
-int HwDiv32(int num, int den);
-int HwMod32(int num, int den);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
 /* Queues the stars of one stretch of the power meter, right to left.

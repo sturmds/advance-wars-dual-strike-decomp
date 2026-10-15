@@ -3,13 +3,9 @@
 
 void MapCursor_SetTile(int x, int y, s16* tile, u16* pixel);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern int gCameraPresetIndex;
 extern u8 data_021576fa[][20];
 extern u8 data_021576fb[][20];
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Works out where the map view should scroll so that tile (*x, *y) shows, and
  * stores the new top-left tile back in *x and *y. The tile is also saved as the
@@ -32,9 +28,10 @@ BOOL MapView_FindScroll(int* x, int* y, BOOL centre) {
   screenLayout = gCameraPresetIndex;
   viewW = data_021576fa[screenLayout][0];
   viewH = data_021576fb[screenLayout][0];
-  MapCursor_SetTile((s16)*x, (s16)*y, &GAME->cursorX, &GAME->cursorPixelX);
-  scrollX = (s16)GAME->unk_1c4->scrollX / 16;
-  scrollY = (s16)GAME->unk_1c4->scrollY / 16;
+  MapCursor_SetTile((s16)*x, (s16)*y, &MAP_STATE->cursorX,
+                    &MAP_STATE->cursorPixelX);
+  scrollX = (s16)MAP_STATE->unk_1c4->scrollX / 16;
+  scrollY = (s16)MAP_STATE->unk_1c4->scrollY / 16;
   dx = 0;
   dy = 0;
   if (centre) {
@@ -46,11 +43,11 @@ BOOL MapView_FindScroll(int* x, int* y, BOOL centre) {
     if (*y < 0) {
       *y = 0;
     }
-    if (*x + viewW > GAME->unk_1c4->mapWidth) {
-      *x = GAME->unk_1c4->mapWidth - viewW;
+    if (*x + viewW > MAP_STATE->unk_1c4->mapWidth) {
+      *x = MAP_STATE->unk_1c4->mapWidth - viewW;
     }
-    if (*y + viewH > GAME->unk_1c4->mapHeight) {
-      *y = GAME->unk_1c4->mapHeight - viewH;
+    if (*y + viewH > MAP_STATE->unk_1c4->mapHeight) {
+      *y = MAP_STATE->unk_1c4->mapHeight - viewH;
     }
     if (scrollX == *x && scrollY == *y) {
       return 0;
@@ -62,7 +59,7 @@ BOOL MapView_FindScroll(int* x, int* y, BOOL centre) {
       }
     }
     if (*x > scrollX + viewW - 3) {
-      if (scrollX + viewW < GAME->unk_1c4->mapWidth) {
+      if (scrollX + viewW < MAP_STATE->unk_1c4->mapWidth) {
         dx = -(viewW - 3);
       }
     }
@@ -72,7 +69,7 @@ BOOL MapView_FindScroll(int* x, int* y, BOOL centre) {
       }
     }
     if (*y > scrollY + viewH - 3) {
-      if (scrollY + viewH < GAME->unk_1c4->mapHeight) {
+      if (scrollY + viewH < MAP_STATE->unk_1c4->mapHeight) {
         dy = -(viewH - 3);
       }
     }
@@ -92,11 +89,11 @@ BOOL MapView_FindScroll(int* x, int* y, BOOL centre) {
     if (*y < 0) {
       *y = 0;
     }
-    if (*x + viewW > GAME->unk_1c4->mapWidth) {
-      *x = GAME->unk_1c4->mapWidth - viewW;
+    if (*x + viewW > MAP_STATE->unk_1c4->mapWidth) {
+      *x = MAP_STATE->unk_1c4->mapWidth - viewW;
     }
-    if (*y + viewH > GAME->unk_1c4->mapHeight) {
-      *y = GAME->unk_1c4->mapHeight - viewH;
+    if (*y + viewH > MAP_STATE->unk_1c4->mapHeight) {
+      *y = MAP_STATE->unk_1c4->mapHeight - viewH;
     }
     if (*x < 0) {
       *x = 0;

@@ -2,12 +2,11 @@
 #include "game/co_graphics.h"
 #include "game/Unk_02088d04.h"
 #include "game/co_data.h"
+#include "sdk/fs.h"
 
-void FS_ChangeDir(const char* dir);
 int Co_GetPictureVariant(int coId);
 void File_UnpackTo(void* dest, const char* fileName);
 extern char data_02151e44[];
-extern Unk_027c0280* data_027c0280;
 extern CoGraphics data_02152b3c[];
 
 void func_02002804(int coId, int firstTile) {

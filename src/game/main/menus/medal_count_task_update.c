@@ -3,15 +3,13 @@
 #include "game/Unk_02088d04.h"
 #include "game/text_print.h"
 #include "game/oam_cells.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrentGfx(void* state);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Number_Draw(s16 x, s16 y, u16* map, int value, u16 a, u16 b);
 void Gfx_RequestLayerCopy(int layer);
 void TabList_CountMedals(u16* earned, u16* total);
 
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern char data_02167c88[]; /* "/" */
 
 /* Task update that shows the medal count on the second screen

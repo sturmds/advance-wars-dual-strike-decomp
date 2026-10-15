@@ -3,6 +3,7 @@
 #include "game/force_rank_screen.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
 void Bg_PutSkillSlot(u16 x, u16 y, u16* map, int a);
 int Co_GetRank(u32 co);
@@ -25,9 +26,7 @@ void ModeFont_ShowTextOnScreen(const char* text, int tile, int paletteSlot,
                                int unk_56, u8 unk_5c, int unk_58);
 void Palette_Load(const void* src, int offset, u32 size);
 void Palette_LoadObjRow(int row);
-void Screen_SetCurrent(void* state);
 void Screen_SetCurrentBoth(void* state);
-void Screen_SetCurrentGfx(void* state);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 const void* Text_Get(u32 textId);
 void Wallpaper_LoadSelected(void);
@@ -44,9 +43,6 @@ void ForceRankScreen_LoadChosen(void);
 void ForceRankScreen_AddSlotButtons(void);
 int Link_IsActive(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern char data_0215a8cc[]; /* "/ohashi/res_skilledit" */
 extern char data_0215a8e4[]; /* "/ohashi/res_skilledit_lang" */
 

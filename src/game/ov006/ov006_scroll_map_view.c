@@ -3,15 +3,11 @@
 #include "game/Unk_ov006_0235f690.h"
 #include "game/keypad.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern int gCameraPresetIndex;
 extern u8 data_021576fa[][20];
 extern u8 data_021576fb[][20];
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
-#define VIEW (GAME->unk_1c4)
+#define VIEW (MAP_STATE->unk_1c4)
 /* needed to match: some reads load the index before the state array. */
 #define GAME_IDX_FIRST                                                    \
   (*(Unk_02080440_48**)((u8*)(data_027c0284 * sizeof(Unk_02080440_48*)) + \
@@ -36,8 +32,8 @@ void Ov006_ScrollMapView(int step) {
   viewW = data_021576fa[layout][0];
   viewH = data_021576fb[layout][0];
   if (gKeypad->held & PAD_BUTTON_X) {
-    cursorX = GAME->cursorX;
-    cursorY = GAME->cursorY;
+    cursorX = MAP_STATE->cursorX;
+    cursorY = MAP_STATE->cursorY;
     data_ov006_0236d640->viewX = cursorX;
     data_ov006_0236d640->viewY = cursorY;
   } else {
@@ -45,8 +41,8 @@ void Ov006_ScrollMapView(int step) {
     cursorY = data_ov006_0236d640->viewY;
     if (gKeypad->held &
         (PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN)) {
-      GAME->cursorX = cursorX;
-      GAME->cursorY = cursorY;
+      MAP_STATE->cursorX = cursorX;
+      MAP_STATE->cursorY = cursorY;
     }
   }
 

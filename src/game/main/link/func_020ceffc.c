@@ -4,7 +4,6 @@
 
 int Player_HasUnitsLeft(int player);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define SCREEN_STATE(i) ((Unk_02080440*)(&data_027c0288.unk_00)[i])
 
 /* One of four per-player checks run by LinkPlayers_RecordFirstFailure (this one
@@ -18,7 +17,7 @@ int func_020ceffc(int player) {
           .controller != PLAYER_CONTROLLER_HUMAN) {
     return 1;
   }
-  if (!(STATE->unk_1c4->unk_37 & 16)) {
+  if (!(MAP_STATE->unk_1c4->unk_37 & 16)) {
     return 1;
   }
   return Player_HasUnitsLeft(player);

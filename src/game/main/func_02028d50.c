@@ -1,5 +1,4 @@
 #include "types.h"
-
-void Screen_SetBgMode(int mode);
+#include "game/screen.h"
 
 void func_02028d50(void) { Screen_SetBgMode(0); }

@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0235a30c.h"
+#include "game/unlocks.h"
 
-BOOL GameFlag_IsSet(u32 flag);
 BOOL Touch_IsPressed(void);
 BOOL Keypad_ConfirmPressed(void);
 

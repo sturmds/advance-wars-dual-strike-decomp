@@ -3,8 +3,6 @@
 #include "game/screen_other_map.h"
 #include "game/Unk_ov006_0235f690.h"
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
 void func_ov006_02355bd4(void) {
   int buttonId = 64;
   Unk_027c0280* saved0280 = data_027c0280;

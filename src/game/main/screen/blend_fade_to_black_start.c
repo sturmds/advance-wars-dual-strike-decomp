@@ -2,8 +2,7 @@
 #include "game/task.h"
 #include "game/screen_other_map.h"
 #include "game/screen_effect.h"
-
-void Screen_ResetBlendAllTop(void);
+#include "game/screen.h"
 
 /* Task step: turns on the darken blend at level 0 on the screens
  * ScreenEffect_BeginHide picks and sets up BlendFadeToBlack_Update to darken them by

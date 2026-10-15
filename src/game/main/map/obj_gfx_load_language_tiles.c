@@ -5,7 +5,6 @@
 void Data_Unpack(const void* src, void* dest);
 void Palette_Load(const void* src, u32 offset, u32 size);
 
-extern Unk_027c0280* data_027c0280;
 extern u8* data_ov000_022f6570[]; /* per language: packed OBJ tiles */
 extern u8*
     data_ov000_022f65d4[]; /* per language: a second set of packed OBJ tiles */

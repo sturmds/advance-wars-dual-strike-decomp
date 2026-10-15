@@ -4,18 +4,17 @@
 #include "game/Unk_0229fb30.h"
 #include "game/Unk_02160ac0.h"
 #include "game/oam_cells.h"
+#include "game/math.h"
+#include "game/win_quote.h"
 
 int Co_GetNation(int co);
-s32 HwMod32(s32 numerator, s32 denominator);
 void Sprite_QueueAt(int list, int x, int y, const void* data, int unk08,
                     int unk0a);
 void Co_QueueSmallPictureSpriteAtTile(int x, int y, int attr, int tile,
                                       int list);
-void Sprite_QueueDefaultTile(int x, int y, int attr, int tile, int list);
 void CombatSetup_DrawRowPlayerIcons(int x, int y);
 void LinkMenu_DrawSetting(int a0, int a1, int a2, int a3);
 
-extern MenuState gMenuState;
 extern u8 data_02160ae0[];
 extern UnitCountTable data_02160afc;
 extern u8 data_021617ec[];

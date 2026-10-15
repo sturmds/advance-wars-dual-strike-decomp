@@ -3,9 +3,6 @@
 
 void Weather_Set(int weather);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Makes `weather` the map's current and default weather and starts it. randomWeather
  * (the menu "weather setting 0" flag) is cleared. */
 void Weather_Change(int weather) {

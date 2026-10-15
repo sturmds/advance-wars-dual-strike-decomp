@@ -2,8 +2,6 @@
 #include "game/design_map.h"
 #include "game/save_progress.h"
 
-extern SaveRecordBuffer data_02291774;
-
 int func_0201fe28(u8 recordId);
 int Save_LoadRecord(u8 recordId, void* buffer);
 void Mem_CopyUnits(const void* src, void* dst, u32 size, u32 unitBits);

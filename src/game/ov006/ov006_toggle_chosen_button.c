@@ -2,8 +2,6 @@
 #include "game/menu_button.h"
 #include "game/Unk_ov006_0235f690.h"
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
 /* Gives slot buttons 33 to 39 their normal tile, then toggles chosenId. The
  * chosen button gets the highlighted tile, which lies 7 button tiles on. */
 void Ov006_ToggleChosenButton(int chosenId) {

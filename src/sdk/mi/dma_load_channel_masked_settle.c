@@ -1,7 +1,5 @@
 #include "sdk/mi.h"
-
-int OS_DisableInterrupts(void);
-void OS_RestoreInterrupts(int irqState);
+#include "sdk/os.h"
 
 void Dma_LoadChannelMaskedSettle(u32 channel, u32 src, u32 dest, u32 control) {
   int irqState = OS_DisableInterrupts();

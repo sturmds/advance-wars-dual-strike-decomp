@@ -5,9 +5,9 @@
 #include "game/ov005_task.h"
 #include "game/unit_show_task.h"
 #include "game/Unk_ov005_0236bba4.h"
+#include "game/screen_other_map.h"
+#include "sdk/fs.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void func_02028a30(void);
 void Ov005_InitStateWork(Unk_ov005_0236bba4* work);
 void Ov005_RunState(Unk_ov005_0236bba4* work);
@@ -20,7 +20,6 @@ const void* Text_Get(u32 textId);
  * does not read. */
 void ModeFont_StartTextTask(const void* text, int tile, int paletteSlot,
                             int unk_56, u8 unk_5c, int unk_58, int unused);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           int paletteOffset, int size);
@@ -28,9 +27,6 @@ void* File_Load(const char* path);
 ShowSprite* SpriteAnim_Create(void* file, int a, int b);
 void func_ov005_0235ec40(Unk_ov005_0236bba4* work);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern const MenuButtonTemplate data_ov005_0236a634;
 extern const MenuButtonTemplate data_ov005_0236a684;
 extern const MenuButtonTemplate data_ov005_0236a6ac;

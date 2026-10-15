@@ -1,16 +1,12 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
-
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
+#include "game/unlocks.h"
 
 extern s8 data_ov006_0236a7b4[];
 extern s8 data_ov006_0236a7d0[];
 extern const u16 gArmyPalettes[][16];
 
-int GameFlag_IsSet(int flag);
 void Palette_Load(const void* src, u32 offset, u32 size);
 void TransferQueue_Add(const void* src, void* dst, u32 size);
 u8* UnitIcons_GetTiles(void);

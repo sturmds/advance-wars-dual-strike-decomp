@@ -22,8 +22,6 @@ void CombatSetup_MovePlayerToRow(u8 player, u8 arg);
 void CombatSetup_HandleRowKeys(void);
 void Task_ResumeScript(Task* task);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

@@ -5,8 +5,6 @@
 
 u8* LinkReaction_GetText(int slot, int button);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern TaskScriptCmd data_0216050c[];
 extern u8 data_0216056c
     []; /* the drawable characters: A-Z, a-z, ". ", 0-9, "!?,:/&-'" */

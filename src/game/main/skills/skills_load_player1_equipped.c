@@ -4,8 +4,6 @@
 #include "game/skills.h"
 #include "game/player.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u32 gBattleSkillSets[][PLAYER_CO_COUNT][SKILL_SET_WORDS];
 
 void Skills_Copy(const u32* src, u32* dst);

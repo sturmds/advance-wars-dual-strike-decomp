@@ -11,7 +11,6 @@ void MenuDepth_Push(void);
 void ObjectAttackTask_Finish(void);
 void ObjectAttack_ShowHit(void);
 extern TaskScriptCmd data_02168f48[];
-extern UnitTargetEntry data_022a6dd8[];
 void func_02001540(void);
 void func_0201d7a8(void);
 void func_0201d7bc(void);

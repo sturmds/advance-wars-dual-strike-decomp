@@ -2,9 +2,7 @@
 #include "game/task.h"
 #include "game/screen_other_map.h"
 #include "game/screen_wipe.h"
-
-void Screen_EnableEmptyWindows(void);
-void Screen_ResetWindowRects(void);
+#include "game/screen.h"
 
 /* Task step before ScreenWipe_ShrinkCornersUpdate: on the wipe's screens,
  * turns on both windows with nothing inside and sets window 0 to cover the

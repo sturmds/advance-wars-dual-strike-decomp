@@ -1,11 +1,7 @@
 #include "types.h"
 #include "game/player.h"
 #include "game/Unk_02080440.h"
-
-s32 HwDiv32(s32 numerator, s32 denominator);
-
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
+#include "game/math.h"
 
 /* Power meter charge in one star for the CO in a player's slot (0 front,
  * 1 back): 50, plus 10 for each power used (140 after 9 uses). At 10 uses

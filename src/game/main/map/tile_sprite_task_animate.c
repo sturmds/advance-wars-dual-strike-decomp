@@ -11,12 +11,7 @@ void Oam_PutSprite(int x, int y, void* shape, int tileAndPalette);
 void SpriteCells_Draw3d(void* data, VecFx32* pos, void* chars, void* palette,
                         int a4, int a5);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern u8 data_02166eb4[];
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Draws the task's sprite at its tile and steps its animation: 16 sprite
  * tiles on at frames 3, 6, 9, 12, 14, 16, 18 and 20. At frame 20 the
@@ -49,10 +44,11 @@ void TileSpriteTask_Animate(TileSpriteTask* task) {
         data_02166eb4, &pos,
         (u8*)data_022a7c5c->unk_68 + ((task->tile & 0x3ff) - 0x194) * 32,
         data_022a7c5c->unk_6c, 0, 1);
-  } else if (Sprite_IsOnScreen(task->x * 16 - GAME->unk_1c4->scrollX,
-                               task->y * 16 - GAME->unk_1c4->scrollY, 64)) {
-    Oam_PutSprite((task->x * 16 - GAME->unk_1c4->scrollX + 8) & 0x1ff,
-                  (task->y * 16 - GAME->unk_1c4->scrollY + 8) & 0xff,
+  } else if (Sprite_IsOnScreen(task->x * 16 - MAP_STATE->unk_1c4->scrollX,
+                               task->y * 16 - MAP_STATE->unk_1c4->scrollY,
+                               64)) {
+    Oam_PutSprite((task->x * 16 - MAP_STATE->unk_1c4->scrollX + 8) & 0x1ff,
+                  (task->y * 16 - MAP_STATE->unk_1c4->scrollY + 8) & 0xff,
                   data_02166eb4, task->tile);
   }
   task->timer++;

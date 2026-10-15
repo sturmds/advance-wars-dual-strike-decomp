@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/terrain.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 extern u8 Ov006_gSlotArmyColours[]; /* 1, 2, 3, 4 */
 /* Map cell code of each property kind, by owner 1-4. */
 extern u16 Ov006_gComTowerCells[];
@@ -27,9 +24,9 @@ extern u8 data_ov006_0236d5d8[];
 int Ov006_CountArmyFactories(
     int tile); /* guess: finds a tile with this byte; below 0 when there is none */
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 
-#define TILE_INDEX(x, y) (STATE->mapTiles->rowStart[y] + (x))
+#define TILE_INDEX(x, y) (MAP_STATE->mapTiles->rowStart[y] + (x))
 
 /* Gives tile x, y the owner *owner / 2 and, for a property, the matching
  * cell code. */
@@ -37,7 +34,7 @@ static inline void SetTileOwner(int x, int y, int tile, const u8* owner) {
   int gfx;
 
   tile = (tile & 31) | (*owner << 4);
-  STATE->mapTiles->tiles[TILE_INDEX(x, y)] = tile;
+  MAP_STATE->mapTiles->tiles[TILE_INDEX(x, y)] = tile;
   switch (tile & 31) {
     case TERRAIN_HQ:
       gfx = Ov006_gHqCells[(*owner - 2) >> 1];
@@ -62,7 +59,7 @@ static inline void SetTileOwner(int x, int y, int tile, const u8* owner) {
       break;
   }
   if (gfx >= 0) {
-    STATE->mapTiles->mapCells[TILE_INDEX(x, y)] = gfx;
+    MAP_STATE->mapTiles->mapCells[TILE_INDEX(x, y)] = gfx;
   }
 }
 
@@ -85,23 +82,23 @@ int Ov006_PackArmySlots(int restore, int hqMask) {
     hqMask |= (Ov006_CountArmyFactories(0x48) >= 0) << 2;
     hqMask |= (Ov006_CountArmyFactories(0x68) >= 0) << 1;
     hqMask |= (Ov006_CountArmyFactories(0x88) >= 0);
-    STATE->army[1] =
+    MAP_STATE->army[1] =
         Ov006_gSlotArmyColours[(data_ov006_0236d578[hqMask] >> 1) - 1];
-    STATE->army[2] =
+    MAP_STATE->army[2] =
         Ov006_gSlotArmyColours[(data_ov006_0236d598[hqMask] >> 1) - 1];
-    STATE->army[3] =
+    MAP_STATE->army[3] =
         Ov006_gSlotArmyColours[(data_ov006_0236d5b8[hqMask] >> 1) - 1];
-    STATE->army[4] =
+    MAP_STATE->army[4] =
         Ov006_gSlotArmyColours[(data_ov006_0236d5d8[hqMask] >> 1) - 1];
   } else {
-    STATE->players[1].armyColour = 1;
-    STATE->players[2].armyColour = 2;
-    STATE->players[3].armyColour = 3;
-    STATE->players[4].armyColour = 4;
+    MAP_STATE->players[1].armyColour = 1;
+    MAP_STATE->players[2].armyColour = 2;
+    MAP_STATE->players[3].armyColour = 3;
+    MAP_STATE->players[4].armyColour = 4;
   }
-  for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-    for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
-      tile = STATE->mapTiles->tiles[TILE_INDEX(x, y)];
+  for (y = 0; y < MAP_STATE->unk_1c4->mapHeight; y++) {
+    for (x = 0; x < MAP_STATE->unk_1c4->mapWidth; x++) {
+      tile = MAP_STATE->mapTiles->tiles[TILE_INDEX(x, y)];
       switch (tile & 0xe0) {
         case 0x20:
           SetTileOwner(x, y, tile, &data_ov006_0236d568[restore][hqMask]);

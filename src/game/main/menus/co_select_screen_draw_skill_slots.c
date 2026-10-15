@@ -2,16 +2,13 @@
 #include "game/force_rank_screen.h"
 #include "game/Unk_02088d04.h"
 #include "game/co_select_screen.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrentGfx(void* state);
 BOOL Skills_AreDisabled(void);
 int Co_GetRank(u32 co);
 void Bg_PutSkillSlot(u16 x, u16 y, u16* map, int palette);
 void Bg_PutTile5Quad(u16 x, u16 y, u16* map, int palette);
 void Gfx_RequestLayerCopy(int layer);
-
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* CO in row `row` of the cursor column. Needed to match: coGrid read as rows of 2. */
 #define COLUMN_CO(row) \

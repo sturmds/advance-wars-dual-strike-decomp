@@ -3,11 +3,6 @@
 #include "game/co_data.h"
 #include "game/unit_stats.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* Halves the fuel of the unit on tile (x, y), rounding down. Same filters as
  * Unit_DamageAtTile: nothing off the map, on an empty tile, for a carried
  * unit or for Oozium. PowerDamage_HitNextEnemy calls it for Drake's powers. */
@@ -16,15 +11,15 @@ void Unit_HalveFuelAtTile(int x, int y) {
   int slot;
   int tile;
 
-  if (x < 0 || x >= STATE->unk_1c4->mapWidth) {
+  if (x < 0 || x >= MAP_STATE->unk_1c4->mapWidth) {
     return;
   }
-  if (y < 0 || y >= STATE->unk_1c4->mapHeight) {
+  if (y < 0 || y >= MAP_STATE->unk_1c4->mapHeight) {
     return;
   }
-  tile = x + STATE->mapTiles->rowStart[y];
-  slot = STATE->mapTiles->unk_508[tile];
-  unit = &STATE->units[slot];
+  tile = x + MAP_STATE->mapTiles->rowStart[y];
+  slot = MAP_STATE->mapTiles->unk_508[tile];
+  unit = &MAP_STATE->units[slot];
   if (unit->type == UNIT_NONE) {
     return;
   }

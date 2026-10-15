@@ -1,15 +1,14 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov005_0236bbac.h"
+#include "game/screen.h"
+#include "sdk/snd.h"
 
 void Gfx_RequestLayerCopy(int layer);
-BOOL Screen_IsAffineBg(int layer);
 void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);
 void Gfx_ClearLayerMap(int layer);
 BOOL Screen_IsTextBg(int layer);
-BOOL SND_IsFinishedCommandTag(u32 tick);
 u32 SND_GetCurrentCommandTag(void);
-u32 SND_GetChannelStatus(void);
 
 extern Unk_ov005_0236bbac* data_ov005_0236bbac;
 /* map bytes of a rotation/scaling BG by screen size */

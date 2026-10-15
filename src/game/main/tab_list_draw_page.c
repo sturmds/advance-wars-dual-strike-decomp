@@ -3,8 +3,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/tab_list.h"
 
-extern Unk_027c0280* data_027c0280;
-
 void Gfx_ClearLayerMap(int layer);
 void Bg_PutSkillSlot(u16 x, u16 y, u16* map, int palette);
 void Bg_PutTile5Quad(u16 x, u16 y, u16* map, int palette);

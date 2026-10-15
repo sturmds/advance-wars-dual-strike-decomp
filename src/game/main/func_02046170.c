@@ -1,6 +1,6 @@
 #include "types.h"
+#include "game/menu_button.h"
 
-void MenuButtons_EnableTouch(void);
 void PageStrip_AddButtons(void);
 
 void func_02046170(void) {

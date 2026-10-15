@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/Unk_ov004_022bf158.h"
-
-int strcmp(const char* a, const char* b); /* strcmp */
+#include "sdk/msl_string.h"
 
 /* Finds a resource by name. A key at or above 0x10000 is a string pointer and
  * is also compared as text; a smaller key is a plain id compared by value. */

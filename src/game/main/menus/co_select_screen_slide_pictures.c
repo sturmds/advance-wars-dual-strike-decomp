@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/co_select_screen.h"
 #include "game/Unk_02088d04.h"
-
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
+#include "game/math.h"
+#include "game/screen_other_map.h"
+#include "game/win_quote.h"
 
 #define PICTURE_OUT 144 /* slide offset with the picture off screen */
 #define SLIDE_FRAMES 8
@@ -14,10 +14,6 @@ extern Unk_027c0288 data_027c0288;
 #define GRID_CO(column, row) \
   (((u8(*)[2])data_0229c73c->coGrid)[(column) - 1][row])
 
-void Screen_SetCurrentGfx(void* state);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list,
-                            BOOL flip);
 void Mem_Zero32(u32 value, void* dest, u32 size);
 void Co_LoadGraphicsAndPalette(int co, int tile, int row);
 

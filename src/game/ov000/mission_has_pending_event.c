@@ -6,8 +6,6 @@
 extern Unk_02080440_48 data_02183b08;
 MapObject* Map_FindObjectOfKindCovering(int x, int y, int kind);
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
-
 /* Looks up the map region at (x, y) with the given kind (Map_FindObjectOfKindCovering) on the other screen. */
 static inline MapObject* OtherScreen_FindRegion(int x, int y, int kind) {
   Unk_027c0280* saved0280 = data_027c0280;
@@ -26,13 +24,13 @@ static inline MapObject* OtherScreen_FindRegion(int x, int y, int kind) {
 int Mission_HasPendingEvent(int event) {
   int result = 0;
 
-  if (GAME->gameMode != GAME_MODE_CAMPAIGN) {
+  if (MAP_STATE->gameMode != GAME_MODE_CAMPAIGN) {
     return 0;
   }
-  if (GAME != &data_02183b08) {
+  if (MAP_STATE != &data_02183b08) {
     return 0;
   }
-  switch (GAME->unk_1c4->mapId) {
+  switch (MAP_STATE->unk_1c4->mapId) {
     case 238:
       if (!GameFlag_IsSet(4) && event == 4) {
         result = 1;

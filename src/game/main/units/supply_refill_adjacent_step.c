@@ -3,8 +3,6 @@
 #include "game/map_unit.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern const ScriptCommand data_021666e8[];
 extern int data_022a6dd4;
 extern s16 data_021663dc
@@ -22,9 +20,6 @@ int Supply_ResupplyUnit(MapUnit* unit);
 void ServiceCostPopup_Start(s16* pos, int player, int cost, u32 arg3, int arg4,
                             int arg5);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define TILE_INDEX(x, y) ((x) + STATE->mapTiles->rowStart[y])
-
 /* Script callback of the supply command. For each side of the acting unit
  * that Supply_FlagAdjacentTargets flagged, refills the unit there for free.
  * A unit that is on screen on a shown tile and got something starts the
@@ -41,23 +36,24 @@ void Supply_RefillAdjacentStep(SupplySlot* slot) {
   for (;;) {
     if (slot->side >= 4) {
       if (slot->unk_20 == 0) {
-        STATE->cursorX = STATE->actingUnitDestX;
-        STATE->cursorY = STATE->actingUnitDestY;
+        MAP_STATE->cursorX = MAP_STATE->actingUnitDestX;
+        MAP_STATE->cursorY = MAP_STATE->actingUnitDestY;
       }
       ScriptSlot_Stop(*data_027c027c->scriptSlotCurrent);
       ActingUnit_FinishAction();
       if (slot->unk_20 == 0 && gLinkPlay != 0) {
-        UnitAction_Send(6, STATE->actingUnitIndex, 0, 0);
+        UnitAction_Send(6, MAP_STATE->actingUnitIndex, 0, 0);
       }
       func_020b9d48();
       MenuDepth_Pop();
       return;
     }
     if (data_022a6dd4 & data_021663dc[slot->side * 3]) {
-      unit = &STATE->units[STATE->mapTiles->unk_508[TILE_INDEX(
-          STATE->actingUnitDestX + data_021663dc[slot->side * 3 + 1],
-          STATE->actingUnitDestY + data_021663dc[slot->side * 3 + 2])]];
-      if (STATE->mapTiles->unk_2338[TILE_INDEX(unit->x, unit->y)] == 0 ||
+      unit = &MAP_STATE->units[MAP_STATE->mapTiles->unk_508[MAP_TILE_INDEX(
+          MAP_STATE->actingUnitDestX + data_021663dc[slot->side * 3 + 1],
+          MAP_STATE->actingUnitDestY + data_021663dc[slot->side * 3 + 2])]];
+      if (MAP_STATE->mapTiles->unk_2338[MAP_TILE_INDEX(unit->x, unit->y)] ==
+              0 ||
           !Tile_IsOnScreen(unit->x, unit->y)) {
         Supply_ResupplyUnit(unit);
       } else {
@@ -66,9 +62,10 @@ void Supply_RefillAdjacentStep(SupplySlot* slot) {
           slot->side++;
           continue;
         }
-        pos[0] = STATE->actingUnitDestX + data_021663dc[slot->side * 3 + 1];
-        pos[1] = STATE->actingUnitDestY + data_021663dc[slot->side * 3 + 2];
-        ServiceCostPopup_Start(pos, (u8)STATE->currentPlayer, cost, 0, 0, 1);
+        pos[0] = MAP_STATE->actingUnitDestX + data_021663dc[slot->side * 3 + 1];
+        pos[1] = MAP_STATE->actingUnitDestY + data_021663dc[slot->side * 3 + 2];
+        ServiceCostPopup_Start(pos, (u8)MAP_STATE->currentPlayer, cost, 0, 0,
+                               1);
         slot->side++;
         return;
       }

@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/terrain.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 #define TERRAIN_BIT(t) (1 << ((t) - TERRAIN_RIVER))
 #define WATER_MASK                                         \
   (TERRAIN_BIT(TERRAIN_RIVER) | TERRAIN_BIT(TERRAIN_SEA) | \

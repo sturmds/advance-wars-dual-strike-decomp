@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int Ov006_IsLandNeighbor(
     int x,
     int y); /* guess: nonzero when the tile at x, y counts as a neighbour */

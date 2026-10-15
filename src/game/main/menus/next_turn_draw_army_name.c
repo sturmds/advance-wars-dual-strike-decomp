@@ -1,12 +1,12 @@
 #include "types.h"
 #include "game/icon.h"
+#include "sdk/msl.h"
 
 extern u32 gArmyNameTextIds[]; /* text id of each army's name */
 
 const char* Text_Get(u32 textId);
 int Text_GetCenteredX(const char* text);
 void Text_DrawCentered(int y, const char* text);
-int strlen(const char* s);
 
 /* Draws the army's name centered at row y, with the army emblem on both
  * sides of it. */

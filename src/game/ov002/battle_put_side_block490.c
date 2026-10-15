@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 #define BATTLE_FIELD(field) \
   ((u8*)&gMenuState + (u32) & ((MenuState*)0)->battle.field)
 

@@ -2,10 +2,10 @@
 #include "game/screen_other_map.h"
 #include "game/Unk_ov005_0236bbac.h"
 #include "game/text_print.h"
+#include "sdk/msl.h"
 
 const void* Text_Get(u32 textId);
 void Bg_FillRect(u16* map, int x, int y, int width, int height, int tile);
-int snprintf(char* buf, int size, const char* format, ...); /* snprintf */
 
 extern const char data_ov005_0236b358[]; /* "%s" */
 

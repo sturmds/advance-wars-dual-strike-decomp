@@ -3,6 +3,8 @@
 #include "game/task.h"
 #include "game/Unk_ov004_022bf158.h"
 #include "game/brightness_fade.h"
+#include "sdk/gx.h"
+#include "game/screen.h"
 
 #define GXFIFO_MTX_PUSH ((volatile u32*)0x04000444)
 #define GXFIFO_MTX_POP ((volatile u32*)0x04000448)
@@ -26,12 +28,10 @@ void Ov004_BlitBlockMirrored(Unk_ov004_022bf158* state, int col, int row,
                              const char* name);
 void Ov004_FillBlock(Unk_ov004_022bf158* state, int col, int row, int fill);
 void Ov004_InitTileMap(Unk_ov004_022bf158* state, int cols, int rows);
-void G3_RotY(int sin, int cos);
 void func_0200270c(int x, int y, int attr, int list, int hFlip);
 void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);
 void Bg_FillRect(u16* map, int x, int y, int width, int height, int tile);
 BOOL Screen_IsTextBg(int layer);
-BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
 void Task_ResumeScript(void* task);

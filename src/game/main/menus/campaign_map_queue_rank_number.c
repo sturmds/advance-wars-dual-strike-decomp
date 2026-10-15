@@ -1,9 +1,8 @@
 #include "types.h"
 #include "game/oam_cells.h"
+#include "game/math.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
-int HwDiv32(int num, int den);
-int HwMod32(int num, int den);
 
 /* Queues the rank (Co_GetRank) of one top CO on the world map panel: a
  * frame sprite at x, then one sprite at x + 25 for rank 100, otherwise

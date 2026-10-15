@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
 extern int gNextGameMode; /* next game mode, set by MainMenu_ConfirmEntry */
 
 int func_02102378(void);

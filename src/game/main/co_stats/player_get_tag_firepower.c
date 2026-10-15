@@ -4,9 +4,6 @@
 
 u8 Co_GetTagFirepower(int co, int partner);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Firepower bonus in percent that the front CO gets from its tag partner;
  * 0 when tagPower is clear. */
 int Player_GetTagFirepower(int playerIndex, BOOL tagPower) {

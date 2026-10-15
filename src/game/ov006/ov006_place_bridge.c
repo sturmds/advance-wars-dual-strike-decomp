@@ -3,9 +3,6 @@
 #include "game/terrain.h"
 #include "game/design_map_edit.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int Ov006_GetNeighborMask(int x, int y);
 int func_ov006_02360308(int x, int y);
 int Ov006_GetAdjacentBridgeCell(int x, int y);
@@ -15,9 +12,6 @@ void Ov006_TurnToSea(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain);
 void Ov006_StoreMapCell(int x, int y, int cell);
 void Ov006_RefitCellsAround(int x, int y);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define TILE(x, y) (STATE->mapTiles->tiles[(x) + STATE->mapTiles->rowStart[y]])
 
 #define PUT_SEA_BRIDGE(cell)              \
   Ov006_RemoveProperty(x, y);             \
@@ -36,7 +30,7 @@ void Ov006_RefitCellsAround(int x, int y);
  * Ov006_GetAdjacentBridgeCell picks. River tiles: the piece runs across the river's
  * flow. */
 void Ov006_PlaceBridge(int x, int y) {
-  int terrain = TILE(x, y);
+  int terrain = MAP_TILE_AT(x, y);
   int cell;
 
   if (terrain == TERRAIN_SEA || terrain == TERRAIN_SHOAL ||
@@ -104,9 +98,9 @@ void Ov006_PlaceBridge(int x, int y) {
     case DESIGN_NB_UP | DESIGN_NB_DOWN:
       if (Ov006_GetNeighborMask(x, y) & (DESIGN_NB_LEFT | DESIGN_NB_RIGHT)) {
         cell = MAP_CELL_BRIDGE_HORIZONTAL;
-      } else if ((x > 0 && TILE(x - 1, y) == TERRAIN_BRIDGE) ||
-                 (x < STATE->unk_1c4->mapWidth - 1 &&
-                  TILE(x + 1, y) == TERRAIN_BRIDGE)) {
+      } else if ((x > 0 && MAP_TILE_AT(x - 1, y) == TERRAIN_BRIDGE) ||
+                 (x < MAP_STATE->unk_1c4->mapWidth - 1 &&
+                  MAP_TILE_AT(x + 1, y) == TERRAIN_BRIDGE)) {
         cell = MAP_CELL_BRIDGE_HORIZONTAL;
       }
       break;
@@ -115,9 +109,9 @@ void Ov006_PlaceBridge(int x, int y) {
     case DESIGN_NB_LEFT | DESIGN_NB_RIGHT:
       if (Ov006_GetNeighborMask(x, y) & (DESIGN_NB_UP | DESIGN_NB_DOWN)) {
         cell = MAP_CELL_BRIDGE_VERTICAL;
-      } else if ((y > 0 && TILE(x, y - 1) == TERRAIN_BRIDGE) ||
-                 (y < STATE->unk_1c4->mapHeight - 1 &&
-                  TILE(x, y + 1) == TERRAIN_BRIDGE)) {
+      } else if ((y > 0 && MAP_TILE_AT(x, y - 1) == TERRAIN_BRIDGE) ||
+                 (y < MAP_STATE->unk_1c4->mapHeight - 1 &&
+                  MAP_TILE_AT(x, y + 1) == TERRAIN_BRIDGE)) {
         cell = MAP_CELL_BRIDGE_VERTICAL;
       }
       break;

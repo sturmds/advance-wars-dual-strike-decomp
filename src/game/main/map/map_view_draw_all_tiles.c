@@ -5,8 +5,7 @@
 /* Draws map tile (mapX, mapY) into the BG tile maps. */
 void MapView_DrawUnitTile(int mapX, int mapY);
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
-#define VIEW (GAME->unk_1c4)
+#define VIEW (MAP_STATE->unk_1c4)
 
 /* Redraws the 17 by 13 map tiles of the view, then runs the screen
  * config's unk_08 hook. */

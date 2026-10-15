@@ -13,12 +13,8 @@
 
 int MapSelect_GetTab(void);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern MenuState gMenuState;
 extern MapListTables data_0229c768;
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
 /* Needed to match: through the cast the compiler keeps field offsets out of
  * the literal pool, as the original does. */
 #define MENU ((MenuState*)&gMenuState)
@@ -37,9 +33,11 @@ extern MapListTables data_0229c768;
 #define RECORD_CO_PALETTE 3
 
 /* Map list layout: COLS by ROWS maps per page. */
-#define COLS \
-  (STATE->gameMode == GAME_MODE_WAR_ROOM ? 7 : (STATE->twoMaps == 0 ? 9 : 8))
-#define ROWS (STATE->gameMode == GAME_MODE_WAR_ROOM ? 1 : 3)
+#define COLS                                 \
+  (MAP_STATE->gameMode == GAME_MODE_WAR_ROOM \
+       ? 7                                   \
+       : (MAP_STATE->twoMaps == 0 ? 9 : 8))
+#define ROWS (MAP_STATE->gameMode == GAME_MODE_WAR_ROOM ? 1 : 3)
 /* Page of the selected entry; the map's index is page * ROWS * COLS plus its
  * position on the page. */
 #define PAGE() (TABLES.unk_0d0[TAB()][LIST(TAB()).unk_64])

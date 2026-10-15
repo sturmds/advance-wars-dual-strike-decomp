@@ -12,12 +12,8 @@ int Ov006_GetRoadCell(int x, int y);
 int Ov006_GetCellMatchedToLeft(int x, int y);
 void func_ov006_02363198(int x, int y);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define TERRAIN_AT(x, y) \
-  (STATE->mapTiles->tiles[(x) + STATE->mapTiles->rowStart[y]])
+  (MAP_STATE->mapTiles->tiles[(x) + MAP_STATE->mapTiles->rowStart[y]])
 
 #define CELL_SEA 42 /* the cell Ov006_FillMapForScreen uses for sea */
 

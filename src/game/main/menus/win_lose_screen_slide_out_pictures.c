@@ -3,16 +3,11 @@
 #include "game/Unk_02088d04.h"
 #include "game/oam_cells.h"
 #include "game/win_lose.h"
+#include "game/math.h"
+#include "game/screen_other_map.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Task_ResumeScript(WinLoseTask* task);
 void Co_QueuePictureSprite(int x, int y, int attr, int list);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 #define MAIN_MAP (data_027c0288.unk_00)
 #define SECOND_MAP (data_027c0288.unk_04)

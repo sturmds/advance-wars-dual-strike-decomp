@@ -1,16 +1,11 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(Unk_02080440* state);
-void Screen_SetCurrentGfx(Unk_027c0280* state);
 /* loads the /ohashi/res_modefont tiles to OBJ tiles tile and tile + 0xe0,
  * and its two palettes to OBJ palettes paletteSlot and paletteSlot + 1 */
 void ModeFont_LoadHere(int tile, int paletteSlot);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* Loads the mode font on the screen in data_027c0288.unk_04, then
  * restores the current screen. */

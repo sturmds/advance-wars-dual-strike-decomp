@@ -5,8 +5,6 @@
 #include "game/link_slots.h"
 #include "game/link_buffers.h"
 
-extern MenuState gMenuState;
-
 u8* Wireless_GetSharedData(u16 player);
 u16 Wireless_GetChildAids(void);
 void func_0207b48c(void);

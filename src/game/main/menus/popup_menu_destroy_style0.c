@@ -2,8 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/task.h"
 
-extern Unk_027c0280* data_027c0280;
-
 void PopupMenu_DestroyCommon(Task* task);
 void Bg_FillRect(u16* map, int x, int y, int width, int height, int tile);
 void Gfx_RequestLayerCopy(int layer);

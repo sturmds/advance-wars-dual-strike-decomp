@@ -5,13 +5,10 @@
 
 void String_Copy(char* dest, const char* src);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern s8 Ov000_gUrbanTerrain
     []; /* nonzero for urban terrain, indexed by terrain id */
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
-#define TILE_INDEX(x, y) ((x) + GAME->mapTiles->rowStart[y])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Writes the loaded map into a design map record: size, name, the cell code
  * and unit of each tile, urban tile counts and the army colours. With
@@ -32,8 +29,8 @@ void DesignMap_BuildRecord(const char* name, DesignMapRecord* record,
 
   String_Copy(record->name, name);
   record->unk_4c2 = 0;
-  record->width = GAME->unk_1c4->mapWidth;
-  record->height = GAME->unk_1c4->mapHeight;
+  record->width = MAP_STATE->unk_1c4->mapWidth;
+  record->height = MAP_STATE->unk_1c4->mapHeight;
   for (i = 0; i < ARMY_SLOT_COUNT; i++) {
     record->armyColours[i] = 0;
   }
@@ -41,14 +38,14 @@ void DesignMap_BuildRecord(const char* name, DesignMapRecord* record,
     urbanCounts[i] = 0;
   }
   for (i = 0; i < ARMY_SLOT_COUNT; i++) {
-    ownerCodes[GAME->army[i]] = (i - 1) << 6;
+    ownerCodes[MAP_STATE->army[i]] = (i - 1) << 6;
   }
 
   tile = 0;
   hqs = 0;
-  for (y = 0; y < GAME->unk_1c4->mapHeight; y++) {
-    state = GAME;
-    for (x = 0; x < GAME->unk_1c4->mapWidth; x++) {
+  for (y = 0; y < MAP_STATE->unk_1c4->mapHeight; y++) {
+    state = MAP_STATE;
+    for (x = 0; x < MAP_STATE->unk_1c4->mapWidth; x++) {
       unitAt = state->mapTiles->unitAt[x + state->mapTiles->rowStart[y]];
       if (unitAt != 0) {
         record->units[tile] =
@@ -56,8 +53,9 @@ void DesignMap_BuildRecord(const char* name, DesignMapRecord* record,
       } else {
         record->units[tile] = 0;
       }
-      record->tileCodes[tile++] = GAME->mapTiles->mapCells[TILE_INDEX(x, y)];
-      state = GAME;
+      record->tileCodes[tile++] =
+          MAP_STATE->mapTiles->mapCells[MAP_TILE_INDEX(x, y)];
+      state = MAP_STATE;
       terrainTile = state->mapTiles->tiles[x + state->mapTiles->rowStart[y]];
       terrain = MAP_TILE_TERRAIN(terrainTile);
       if (Ov000_gUrbanTerrain[terrain] != 0) {
@@ -83,6 +81,6 @@ void DesignMap_BuildRecord(const char* name, DesignMapRecord* record,
     record->playerCount = 0;
   }
   for (i = 0; i < ARMY_SLOT_COUNT; i++) {
-    record->armyColours[i] = GAME->army[i];
+    record->armyColours[i] = MAP_STATE->army[i];
   }
 }

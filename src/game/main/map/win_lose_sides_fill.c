@@ -3,9 +3,6 @@
 #include "game/Unk_022a7a9c.h"
 #include "game/win_lose.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 BOOL Player_IsInGame(u8 player);
 
 /* Sorts the players with a controller into the win/lose screen's sides:

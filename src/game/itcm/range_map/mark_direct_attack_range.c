@@ -1,12 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define TILE(x, y) (STATE->rangeMap[y][x])
-#define TILE_INDEX(x, y) ((x) + STATE->mapTiles->rowStart[y])
+#define TILE(x, y) (MAP_STATE->rangeMap[y][x])
 
 #define MARK 0x40
 
@@ -25,30 +20,31 @@ void RangeMap_MarkDirectAttackRange(int unused) {
   u8 x;
   u8 y;
 
-  for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-    for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
+  for (y = 0; y < MAP_STATE->unk_1c4->mapHeight; y++) {
+    for (x = 0; x < MAP_STATE->unk_1c4->mapWidth; x++) {
       if (TILE(x, y) < 0 || TILE(x, y) == MARK) {
         continue;
       }
-      if (TILE(x, y) != 0 && STATE->mapTiles->unitAt[TILE_INDEX(x, y)] != 0) {
+      if (TILE(x, y) != 0 &&
+          MAP_STATE->mapTiles->unitAt[MAP_TILE_INDEX(x, y)] != 0) {
         continue;
       }
       if (x != 0) {
         MARK_NEIGHBOUR(x - 1, y);
       }
-      if (x != STATE->unk_1c4->mapWidth - 1) {
+      if (x != MAP_STATE->unk_1c4->mapWidth - 1) {
         MARK_NEIGHBOUR(x + 1, y);
       }
       if (y != 0) {
         MARK_NEIGHBOUR(x, y - 1);
       }
-      if (y != STATE->unk_1c4->mapHeight - 1) {
+      if (y != MAP_STATE->unk_1c4->mapHeight - 1) {
         MARK_NEIGHBOUR(x, y + 1);
       }
     }
   }
-  for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-    for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
+  for (y = 0; y < MAP_STATE->unk_1c4->mapHeight; y++) {
+    for (x = 0; x < MAP_STATE->unk_1c4->mapWidth; x++) {
       if ((TILE(x, y) & MARK) == 0) {
         TILE(x, y) = -1;
       }

@@ -4,9 +4,6 @@
 
 int RepairIncrease(int player, int slot);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Extra repair of one CO of a player (slot 0 front, 1 back) in a power state:
  * the CO's repairBonus (0 with coEffectsOn clear) plus the Force Rank bonus. */
 int Player_GetCoRepairBonus(int playerIndex, int slot, int powerState) {

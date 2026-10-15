@@ -4,16 +4,12 @@
 #include "game/player.h"
 #include "game/range_map.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern int data_027c0750;
 extern MoveSearchNode* data_027c0754;
 extern MoveSearch* data_027c0758;
 extern MoveSearchNode* data_027c075c;
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
-/* STATE, read index first. Needed to match: a volatile read of the index
+/* MAP_STATE, read index first. Needed to match: a volatile read of the index
  * keeps the original's load order (as in MoveSearch_TryStep). */
 #define READ_STATE(dst)                          \
   {                                              \
@@ -67,5 +63,5 @@ void RangeMap_QueueStep(int direction, u8 x, u8 y) {
   data_027c075c->from = direction;
   data_027c075c->cost = cost;
   data_027c075c++;
-  STATE->rangeMap[y][x] = cost;
+  MAP_STATE->rangeMap[y][x] = cost;
 }

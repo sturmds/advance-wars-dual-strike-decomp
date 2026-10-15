@@ -3,8 +3,6 @@
 #include "game/Unk_02080440.h"
 #include "game/power_damage.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern TaskScriptCmd gPowerEffectTaskDesc[];
 extern char data_02168998[];
 extern char data_0216899c[];

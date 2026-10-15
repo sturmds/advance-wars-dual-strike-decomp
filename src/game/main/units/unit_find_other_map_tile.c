@@ -6,15 +6,13 @@
 BOOL Player_HasHq(int player);
 BOOL Map_FindNearestTileForUnitType(int unitType, TilePoint* pos);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* Looks for a tile on the other map of a dual-front battle where the unit
  * could go: the free tile nearest to its owner's HQ there, or, when the
  * state's unk_86 is set, nearest to the tile already in pos. Writes the
  * tile to pos. FALSE when the owner has no HQ on the other map (unk_86
  * clear) or no tile fits. */
 BOOL Unit_FindOtherMapTile(MapUnit* unit, TilePoint* pos) {
-  int owner = MAP_UNIT_OWNER(STATE, unit);
+  int owner = MAP_UNIT_OWNER(MAP_STATE, unit);
   Unk_027c0280* saved0280;
   Unk_02080440* saved027c;
   BOOL found;
@@ -23,7 +21,7 @@ BOOL Unit_FindOtherMapTile(MapUnit* unit, TilePoint* pos) {
   Screen_SetCurrentGfx((&data_027c0288.unk_00)[1 - data_027c0284]);
   saved027c = data_027c027c;
   Screen_SetCurrent((&data_027c0288.unk_00)[1 - data_027c0284]);
-  if (STATE->unk_86 == 0) {
+  if (MAP_STATE->unk_86 == 0) {
     if (!Player_HasHq(owner)) {
       found = FALSE;
     } else {
@@ -32,8 +30,8 @@ BOOL Unit_FindOtherMapTile(MapUnit* unit, TilePoint* pos) {
     if (!found) {
       goto restore;
     }
-    pos->x = STATE->players[owner].hqX & 0x7f;
-    pos->y = STATE->players[owner].hqY & 0x7f;
+    pos->x = MAP_STATE->players[owner].hqX & 0x7f;
+    pos->y = MAP_STATE->players[owner].hqY & 0x7f;
   }
   found = Map_FindNearestTileForUnitType(unit->type, pos) != 0;
 restore:

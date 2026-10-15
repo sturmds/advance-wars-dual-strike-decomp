@@ -4,11 +4,7 @@
 #include "game/unit_stats.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern TaskScriptCmd data_0216594c[];
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 void BuildMenu_FillList(int moveGroups);
 void MenuDepth_Push(void);
@@ -21,7 +17,7 @@ void BuildMenu_Open(int x, int y) {
   int moveGroups = 0;
 
   switch (MAP_TILE_TERRAIN(
-      GAME->mapTiles->tiles[x + GAME->mapTiles->rowStart[y]])) {
+      MAP_STATE->mapTiles->tiles[x + MAP_STATE->mapTiles->rowStart[y]])) {
     case TERRAIN_CITY:
     case TERRAIN_HQ:
     case TERRAIN_BASE:

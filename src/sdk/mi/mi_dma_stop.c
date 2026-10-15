@@ -1,7 +1,5 @@
 #include "sdk/mi.h"
-
-int OS_DisableInterrupts(void);
-void OS_RestoreInterrupts(int irqState);
+#include "sdk/os.h"
 
 /* Stops a channel and clears its start timing and repeat bits. */
 void MI_StopDma(u32 dmaNo) {

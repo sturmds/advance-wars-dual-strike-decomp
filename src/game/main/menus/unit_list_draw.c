@@ -9,8 +9,6 @@ void Sound_PlaySe(u32 soundId);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void UnitList_DrawRows(int scroll);
 
-extern MenuState gMenuState;
-
 /* Per-frame update of the unit list menu. Moves scroll one half row toward
  * topRow every other frame, redrawing the rows and playing a sound on odd
  * steps. Then draws two header sprites, a bar under the column heading

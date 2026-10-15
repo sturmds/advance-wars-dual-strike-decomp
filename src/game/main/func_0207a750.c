@@ -4,8 +4,6 @@
 #include "game/Unk_0229c960.h"
 #include "game/link_player_name.h"
 
-extern LinkPlayerName gLinkPlayerNames[];
-
 void OwnerInfo_CopyNickname(void* buffer);
 
 void func_0207a750(void) {

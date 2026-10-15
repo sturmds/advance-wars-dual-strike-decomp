@@ -2,12 +2,12 @@
 #include "game/link_sync_task.h"
 #include "game/link_data_sync_task.h"
 #include "game/link_slots.h"
+#include "game/math.h"
 
 int func_0207bd94(void);
 u8* Wireless_GetSharedData(int player);
 u16 Wireless_GetChildAids(void);
 int Link_GetPlayerOfSlot(int slot);
-s32 HwDiv32(s32 numer, s32 denom);
 void func_0207b48c(void);
 void func_0207b4b0(u8* chunk);
 void Task_ResumeScript(void* task);

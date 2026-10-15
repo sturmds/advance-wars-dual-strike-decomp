@@ -10,14 +10,10 @@ void Ov006_SetTerrain(int x, int y, int terrain);
 void Ov006_StoreMapCell(int x, int y, int cell);
 void Ov006_PlaceShoal(int x, int y);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define CELL_AT(x, y) \
-  (STATE->mapTiles->mapCells[(x) + STATE->mapTiles->rowStart[y]])
+  (MAP_STATE->mapTiles->mapCells[(x) + MAP_STATE->mapTiles->rowStart[y]])
 #define TILE_AT(x, y) \
-  (STATE->mapTiles->tiles[(x) + STATE->mapTiles->rowStart[y]])
+  (MAP_STATE->mapTiles->tiles[(x) + MAP_STATE->mapTiles->rowStart[y]])
 
 /* Map cell codes. The river cell names are guesses from which neighbours
  * each one checks; each mouth cell names the side of the river it sits on. */
@@ -46,7 +42,7 @@ void Ov006_AddRiverMouths(int x, int y) {
         Ov006_PlaceShoal(x - 1, y - 1);
       }
     }
-    if (x < STATE->unk_1c4->mapWidth - 1 && !Ov006_IsNotSeaTile(x + 1, y) &&
+    if (x < MAP_STATE->unk_1c4->mapWidth - 1 && !Ov006_IsNotSeaTile(x + 1, y) &&
         CELL_AT(x, y) == CELL_RIVER_HORIZONTAL &&
         !Ov006_CountNeighborsOnSide(x + 1, y, 1)) {
       Ov006_SetTerrain(x + 1, y, TERRAIN_RIVER);
@@ -68,7 +64,7 @@ void Ov006_AddRiverMouths(int x, int y) {
       Ov006_PlaceShoal(x - 1, y - 1);
     }
   }
-  if (y < STATE->unk_1c4->mapHeight - 1 && !Ov006_IsNotSeaTile(x, y + 1) &&
+  if (y < MAP_STATE->unk_1c4->mapHeight - 1 && !Ov006_IsNotSeaTile(x, y + 1) &&
       CELL_AT(x, y) == CELL_RIVER_VERTICAL &&
       !Ov006_CountNeighborsOnSide(x, y + 1, 4)) {
     Ov006_SetTerrain(x, y + 1, TERRAIN_RIVER);

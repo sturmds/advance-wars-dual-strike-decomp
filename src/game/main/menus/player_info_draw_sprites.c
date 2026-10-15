@@ -3,8 +3,6 @@
 #include "game/screen_other_map.h"
 #include "game/oam_cells.h"
 
-extern MenuState gMenuState;
-
 void PlayerInfo_DrawCoIcons(void);
 void PlayerInfo_DrawPortraitScreenSprites(void);
 void Co_QueueSmallPictureSpriteAtTile(int x, int y, int attr, int tile,

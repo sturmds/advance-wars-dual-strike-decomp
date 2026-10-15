@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 void MapView_DrawBottomRow(u16 bufX, u16 bufY, s16 mapX, s16 mapY);
 void MapView_DrawTopRow(u16 bufX, u16 bufY, s16 mapX, s16 mapY);
 void MapView_DrawRightColumn(u16 bufX, u16 bufY, s16 mapX, s16 mapY);

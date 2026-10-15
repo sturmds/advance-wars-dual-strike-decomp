@@ -4,12 +4,8 @@
 #include "game/map_object.h"
 #include "game/terrain.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u16 data_ov000_022dbd50[];
 extern u16 data_ov000_022dbd52[];
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* The map header's u16 at +0x28 and +0x2a for a map id; the header fields are
  * u8 unk_28[8] for now. */
@@ -29,20 +25,20 @@ void Map_AddGrandBoltWeakPointObject(int x, int y, int owner);
 void Map_AddBlackCrystalObject(int x, int y);
 
 void Map_DrawSpecialTerrain(void) {
-  int mapA = HEADER_U16(data_ov000_022dbd50, STATE->unk_1c4->mapId);
-  int mapB = HEADER_U16(data_ov000_022dbd52, STATE->unk_1c4->mapId);
+  int mapA = HEADER_U16(data_ov000_022dbd50, MAP_STATE->unk_1c4->mapId);
+  int mapB = HEADER_U16(data_ov000_022dbd52, MAP_STATE->unk_1c4->mapId);
   int x;
   int y;
 
   MapObjects_ClearHead();
-  for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-    for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
+  for (y = 0; y < MAP_STATE->unk_1c4->mapHeight; y++) {
+    for (x = 0; x < MAP_STATE->unk_1c4->mapWidth; x++) {
       u8 tile;
 
       if (Map_FindObjectCovering(x, y) != NULL) {
         continue;
       }
-      tile = STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]];
+      tile = MAP_STATE->mapTiles->tiles[x + MAP_STATE->mapTiles->rowStart[y]];
       switch (MAP_TILE_TERRAIN(tile)) {
         case TERRAIN_BLACK_CRYSTAL:
           Map_AddBlackCrystalObject(x, y);

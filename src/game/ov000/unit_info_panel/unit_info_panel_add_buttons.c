@@ -2,7 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/menu_button.h"
 
-extern Unk_027c0280* data_027c0280;
 extern MenuButtonTemplate data_02158f54;
 extern MenuButtonTemplate data_ov000_0234f28c;
 extern MenuButtonTemplate data_ov000_0234f2b4;

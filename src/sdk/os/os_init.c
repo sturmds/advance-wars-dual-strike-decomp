@@ -1,13 +1,13 @@
 #include "types.h"
 #include "sdk/os.h"
 #include "sdk/pxi.h"
+#include "sdk/ctrdg.h"
 
 void OS_InitArena(void);
 void func_0210d21c(void);
 void func_0210ced0(void);
 void func_0210fa9c(void);
 void OS_InitThread(void);
-void CTRDG_Init(void);
 void CARD_Init(void);
 void PM_Init(void);
 void func_0210e4bc(void);

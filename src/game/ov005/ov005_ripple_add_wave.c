@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/ov005_ripple.h"
-
-extern s16 gSineTable[]; /* looks like a 256-entry sine table */
+#include "game/math.h"
 
 /* Adds a sine wave to the line offsets: line i reads the table at
  * (phase + i * step) >> 12, scaled by amplitude. `phase` is a float because

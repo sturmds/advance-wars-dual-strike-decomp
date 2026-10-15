@@ -5,8 +5,6 @@
 #include "game/menu_state.h"
 #include "game/battle_fighter_sprites.h"
 
-extern MenuState gMenuState;
-
 /* Case 4 of BattleCellTask_RunStep: starts the cell flashing (BattleCellTask_Flash),
  * 12 times when the other side's BattleSideData.unk_49 for its weapon is 2, else once. */
 void BattleCellTask_StartFlash(BattleCellTask* task) {

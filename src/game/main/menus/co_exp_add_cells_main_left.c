@@ -1,16 +1,11 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void CoExp_AddCellSprite(int x, int y);
 void func_02032264(u32 x, u32 y, int matrix);
 BOOL CoExp_IsSpecialMission(void);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* Starts CO cell sprites on both screens, at the left of the main screen
  * (64, 152) and the right of the sub screen (192, 40). The second task is

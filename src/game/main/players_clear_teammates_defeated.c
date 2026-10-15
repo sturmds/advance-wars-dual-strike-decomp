@@ -1,11 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 BOOL Player_IsInGame(u8 player);
 
 /* For each player still in the battle, clears the defeated flag of every
@@ -17,9 +12,9 @@ void Players_ClearTeammatesDefeated(void) {
   for (i = 1; i < ARMY_SLOT_COUNT; i++) {
     if (Player_IsInGame(i)) {
       for (j = 1; j < ARMY_SLOT_COUNT; j++) {
-        if (j != i && STATE->players[j].controller != 0 &&
-            STATE->players[j].team == STATE->players[i].team) {
-          STATE->players[j].defeated = 0;
+        if (j != i && MAP_STATE->players[j].controller != 0 &&
+            MAP_STATE->players[j].team == MAP_STATE->players[i].team) {
+          MAP_STATE->players[j].defeated = 0;
         }
       }
     }

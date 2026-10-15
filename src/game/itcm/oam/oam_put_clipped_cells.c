@@ -4,8 +4,6 @@
 #include "game/oam_buffer.h"
 #include "game/oam_cells.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Puts the cells of a sprite at (x, y) into the OAM buffer like
  * Oam_PutCells, but takes the attribute 0 and 1 flag bits apart from the
  * position and skips cells whose top-left corner is off screen (x outside

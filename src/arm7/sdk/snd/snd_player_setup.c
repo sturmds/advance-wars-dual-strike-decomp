@@ -1,8 +1,6 @@
 #include "sdk/snd.h"
 #include "sdk/snd_seq.h"
 
-extern SndSharedWork* data_arm7_0380808c;
-
 void SndPlayer_Setup(SndPlayer* player, SoundBank* bank) {
   int i;
 

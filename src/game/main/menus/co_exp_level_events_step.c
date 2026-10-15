@@ -12,8 +12,6 @@ void Task_ResumeScript(Task* task);
 void func_02032a9c(void);
 void CoExp_DrawScreen(CoExp* exp, int a, int b, int c);
 
-extern MenuState gMenuState;
-
 /* Task step: redraws the CO cells, then plays the level-up event scripts
  * one at a time (first level-up, level 10, max level), waiting for each to
  * end. When none is left, func_02032a9c adds its menu button and the

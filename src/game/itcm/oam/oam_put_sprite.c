@@ -4,8 +4,6 @@
 #include "game/oam_buffer.h"
 #include "game/oam_cells.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Oam_PutCells without the separate tile argument: attr2 holds the first
  * tile, priority and palette, and is added to each cell's attribute 2.
  * Unk_027c0280.unk_dd shifts the tile number right (OBJ tile steps larger

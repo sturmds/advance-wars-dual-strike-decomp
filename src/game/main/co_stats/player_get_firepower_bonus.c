@@ -9,9 +9,6 @@ int Player_GetCoFirepower(int playerIndex, int slot, int powerState,
 int Player_GetTagFirepower(
     int playerIndex, BOOL tagPower); /* tag partner firepower bonus, percent */
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 #define PLAYER(i) (data_027c027c->unk_48[data_027c0284]->players[i])
 
 /* Firepower bonus in percent of a player's unit: the CO's bonus, the tag

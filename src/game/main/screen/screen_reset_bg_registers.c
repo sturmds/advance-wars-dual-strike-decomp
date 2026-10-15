@@ -1,10 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
-
-extern Unk_027c0280* data_027c0280;
-
-void Screen_ResetLayerScroll(
-    void); /* clears the BG scroll values of the four layers */
+#include "game/screen.h"
 
 /* The register values as plain halfwords: bgCnt[4] is the MOSAIC word that follows BG3CNT. */
 #define BG_CNT_RAW(gfx, bg) (*(u16*)&(gfx)->bgCnt[bg])

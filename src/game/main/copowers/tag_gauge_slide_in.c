@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/tag_gauge_task.h"
+#include "game/math.h"
 
 extern u16 data_0229fb70[]; /* 16 colors the gauge cycles through */
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Gauge_DrawValueAndBar(int x, int y, int value, int frame);
 int MainLoop_GetFrameCount(void);
 void Palette_Load(const void* src, u32 offset, u32 size);

@@ -3,9 +3,6 @@
 #include "game/map_header.h"
 #include "game/song.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Title call script step: starts the song of the loaded campaign map: song
  * 43 for missions 0 to 8, 50 for 19 to 24, 49 for the others. */
 void TitleCall_StartSong(void) {

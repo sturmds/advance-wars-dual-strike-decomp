@@ -6,9 +6,10 @@
 #include "game/screen_other_map.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bba0.h"
+#include "game/math.h"
+#include "game/palette_fade.h"
 
 void Sound_PlaySe(u32 soundId);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 void Screen_SetCurrentBoth(void* state);
 void Screen1_DestroyTextTasks(void);
@@ -20,10 +21,6 @@ void func_0200493c(u16 frames);
 void HelpBand_Stop(void);
 void Wallpaper_LoadBothOnLayer3(int index);
 void EventSequenceTask_Start(Ov005Task* task);
-Task* PaletteFade_StartToBlackScreen1(Ov005Task* parent, int frames, int a,
-                                      int b);
-Task* PaletteFade_StartFromBlackScreen1(Ov005Task* parent, const void* palettes,
-                                        int frames, int a, int b);
 void Screens_BlackOut(void);
 void func_020fd618(Task* task);
 void Ov005_AddCoListButtons(Ov005Task* task);

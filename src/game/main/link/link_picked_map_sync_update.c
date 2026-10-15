@@ -7,9 +7,6 @@
 #include "game/link_data_sync_task.h"
 #include "game/save_progress.h"
 
-extern MenuState gMenuState;
-extern SaveRecordBuffer data_02291774;
-
 int func_0207a260(void);
 u8* Wireless_GetSharedData(u16 slot);
 int func_0207bd94(void);

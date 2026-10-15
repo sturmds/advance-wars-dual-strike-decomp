@@ -1,3 +1,4 @@
+#include "game/screen_wipe.h"
 #ifndef GAME_WINDOW_WIPE_H
 #define GAME_WINDOW_WIPE_H
 
@@ -11,7 +12,5 @@
 
 extern u16
     gWipeWin0hTable[WIPE_LINES]; /* WIN0H per scanline: left << 8 | right */
-extern s16 data_0216e29c;        /* wipe progress in pixels */
-extern s16 data_0216e2a8;
 
 #endif

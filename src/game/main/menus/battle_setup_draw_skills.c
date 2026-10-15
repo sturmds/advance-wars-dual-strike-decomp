@@ -14,9 +14,6 @@ void CoSet_ListEquippedSkills(
     u8* out, int co, int set); /* equipped skill ids of a set, ended by 0xff */
 int Co_GetRank(u32 co);
 
-extern Unk_027c0280* data_027c0280;
-extern MenuState gMenuState;
-
 /* Draws the skill window at (x, y) for the CO under the battle setup cursor:
  * one empty slot per rank, at most 4, then the icons of the Force Ranks
  * equipped in set `set`. */

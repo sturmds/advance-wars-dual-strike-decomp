@@ -3,26 +3,17 @@
 #include "game/Unk_02088d04.h"
 #include "sdk/os.h"
 #include "game/wallpaper_task.h"
+#include "game/screen_other_map.h"
+#include "sdk/gx_load.h"
+#include "sdk/fs.h"
 
 void Gfx_RequestLayerCopy(int bg);
 void Data_Unpack(const void* src, void* dest);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 u8* File_Load(const char* path);
 void Mem_Free(void* res);
 void Mem_Copy32(const void* src, void* dst, u32 size);
-void FS_ChangeDir(const char* dir);
-void GX_BeginLoadBGExtPltt(
-    void); /* guess: begins a background extended palette load */
-void GX_LoadBGExtPltt(const void* src, u32 offset, u32 size);
-void GX_EndLoadBGExtPltt(void); /* guess: ends the load */
-int func_0210c610(void);        /* same three for the sub screen */
-void GXS_LoadBGExtPltt(const void* src, u32 offset, u32 size);
-void GXS_EndLoadBGExtPltt(void);
+int func_0210c610(void); /* same three for the sub screen */
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern char data_02159648[]; /* "/ohashi" */
 extern const char*
     data_021595cc[];        /* "res_wall_default", "res_wall_cathy", ... */

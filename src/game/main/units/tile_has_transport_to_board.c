@@ -3,14 +3,11 @@
 #include "game/unit_stats.h"
 #include "game/co_data.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 BOOL Transport_HasRoomFor(
     MapUnit* transport,
     int unitType); /* TRUE when transport has room for a unit of unitType */
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 /* Needed to match: the tile reads index the state array first. */
 #define TILE_STATE STATE_IDX_FIRST
 #define TILE_INDEX(x, y) ((x) + TILE_STATE->mapTiles->rowStart[y])
@@ -26,15 +23,15 @@ BOOL Tile_HasTransportToBoard(int x, int y) {
   MapUnit* transport;
 
   slot = TILE_STATE->mapTiles->unitAt[TILE_INDEX(x, y)];
-  transport = &STATE->units[slot];
+  transport = &MAP_STATE->units[slot];
   if (slot == 0) {
     return FALSE;
   }
   /* slot & 0xc0 is the player's block of 64 unit slots */
-  if ((slot & 0xc0) != (STATE->actingUnitIndex & 0xc0)) {
+  if ((slot & 0xc0) != (MAP_STATE->actingUnitIndex & 0xc0)) {
     return FALSE;
   }
-  if (!Transport_HasRoomFor(transport, STATE->actingUnit->type)) {
+  if (!Transport_HasRoomFor(transport, MAP_STATE->actingUnit->type)) {
     return FALSE;
   }
   /* needed to match: x is reused for the terrain id */
@@ -42,5 +39,5 @@ BOOL Tile_HasTransportToBoard(int x, int y) {
   if (CHART[Ov000_gUnitStats[transport->type].moveType][x] == -1) {
     return FALSE;
   }
-  return CHART[Ov000_gUnitStats[STATE->actingUnit->type].moveType][x] != -1;
+  return CHART[Ov000_gUnitStats[MAP_STATE->actingUnit->type].moveType][x] != -1;
 }

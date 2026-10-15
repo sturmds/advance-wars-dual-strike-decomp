@@ -1,6 +1,6 @@
 #include "types.h"
+#include "sdk/fs.h"
 
-void FS_ChangeDir(const char* dir);
 void Palette_LoadFromFile(const char* path, int filePos, u16 paletteOffset,
                           int size);
 

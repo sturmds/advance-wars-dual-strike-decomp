@@ -11,8 +11,6 @@ void Number_Draw(int x, int y, u16* map, u32 value, u16 entryBits,
 void Text_PrintImmediate(int x, int y, u16* map, u32 textId, u16 unk_30,
                          int arg);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

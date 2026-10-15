@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/task.h"
 
-extern Unk_02080440* data_027c027c;
-
 void EventScript_UpdateAll(void);
 void ScriptSlot_RunAll(void);
 void Task_RunList(Task* task);

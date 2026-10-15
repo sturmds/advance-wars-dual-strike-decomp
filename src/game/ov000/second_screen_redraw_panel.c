@@ -13,7 +13,6 @@ void Text_StopPrinting(void);
 void SecondScreen_DrawTerrainDetails(int arg0, int arg1);
 void SecondScreen_DrawTerrainMoveCosts(int arg0, int arg1);
 
-extern Unk_027c0280* data_027c0280;
 extern void* data_ov000_022f65c0[];
 extern const void* data_ov000_023501e8[][6];
 extern const void* data_ov000_023501ec[][6];

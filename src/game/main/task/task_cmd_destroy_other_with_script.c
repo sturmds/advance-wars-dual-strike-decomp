@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/task.h"
 
-extern Unk_02080440* data_027c027c;
-
 void Task_Destroy(Task* task);
 
 /* Script command: destroys the first other task that runs the same script,

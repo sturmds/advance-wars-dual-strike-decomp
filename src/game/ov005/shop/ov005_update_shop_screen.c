@@ -7,6 +7,8 @@
 #include "game/screen_other_map.h"
 #include "game/task.h"
 #include "game/Unk_ov005_0236bbb0.h"
+#include "game/screen.h"
+#include "game/math.h"
 
 /* The text box rows of a layer map: rows 18 to 23 of 32 entries. */
 #define TEXT_BOX_MAP_OFFSET (18 * 32)
@@ -14,7 +16,6 @@
 
 void func_020048f4(u16 frames);
 void func_0200493c(u16 frames);
-BOOL Screens_IsTransitionRunning(void);
 void func_0200270c(int x, int y, int attr, int list, int hFlip);
 void Bg_FillRect(void* map, int x, int y, int width, int height, int tile);
 void EventTextMap_QueueCopy(void);
@@ -33,7 +34,6 @@ void Sound_PlaySubSe(u32 soundId);
 void Sound_StopSubSe(int fadeFrames);
 void Gfx_RequestLayerCopy(int layer);
 void Mem_Copy32(const void* src, void* dst, u32 size);
-s32 HwDiv32(s32 numerator, s32 denominator);
 void Wallpaper_DestroyTasks(void);
 void Screen1_DestroyTextTasks(void);
 void Task_ResumeScript(Ov005Task* task);

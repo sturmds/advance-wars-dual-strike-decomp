@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* TRUE when the BG numbered like this layer (0-3) is a text (tiled) BG in the
  * current BG mode: the BGs below the first rotation/scaling one. */
 BOOL Screen_IsTextBg(u32 layer) {

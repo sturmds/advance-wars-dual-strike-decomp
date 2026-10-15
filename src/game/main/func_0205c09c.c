@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/screen_other_map.h"
+#include "game/math.h"
 
 #define FADE_FRAMES 32
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 s16 BreakText_GetScreenX(u8 slot);
 void BreakText_QueueLetter(u8 slot, u16 x, int y, int attr, int arg);
 void Task_ResumeScript(Task* task);

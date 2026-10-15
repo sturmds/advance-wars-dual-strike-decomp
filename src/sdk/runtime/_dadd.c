@@ -1,4 +1,5 @@
 #include "types.h"
+#include "sdk/fp_status.h"
 
 /*
  * Metrowerks runtime, hand-written ARM assembly: IEEE double addition for
@@ -16,7 +17,6 @@
  * exception code.
  */
 
-u32 *__fp_status(void);
 double __fp_trap_d(double a, u32 op);
 double __fp_trap_dd(double a, double b, u32 op);
 #ifdef __MWERKS__

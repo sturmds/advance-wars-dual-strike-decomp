@@ -3,8 +3,7 @@
 #include "game/task.h"
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
-
-extern MenuState gMenuState;
+#include "sdk/gx.h"
 
 #define REG_MTX_PUSH ((volatile u32*)0x04000444)
 #define REG_MTX_POP ((volatile u32*)0x04000448)
@@ -18,9 +17,7 @@ extern u8 data_ov002_023604b8[];
 static VecFx32 data_ov002_0236bbe0;
 extern s16 data_0214d4c4[];
 
-void G3X_Reset(void);
 void G3i_LookAt_(void* cam, void* up, void* target, int load, void* mtx);
-void G3_RotX(int sin, int cos);
 void Battle_StepSideShake(int side);
 void Battle_DrawSideGround(int side);
 void func_ov002_02354124(void);

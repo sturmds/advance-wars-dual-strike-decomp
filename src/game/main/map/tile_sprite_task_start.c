@@ -21,10 +21,8 @@ extern CoSoundRow data_021536ec[];
 int data_022a6c78;
 u8 gSavedArmyColours[ARMY_SLOT_COUNT];
 DesignMap data_022a6c84[0xc]; /* size: up to the next symbol */
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 
 /* No direct callers. Starts a TileSpriteTask from data_02166efc when
  * kind is 2, else from data_02166ed4, and plays a sound effect of the current
@@ -41,9 +39,10 @@ void TileSpriteTask_Start(u8 x, u8 y, u16 tile, int kind) {
   } else {
     task = (TileSpriteTask*)Task_Create(data_02166ed4, TASK_LIST(3));
   }
-  Sound_PlaySe(data_021536ec[GAME->players[GAME->currentPlayer].front.id &
-                             PLAYER_CO_ID_MASK]
-                   .byKind[kind][data_022a6c78]);
+  Sound_PlaySe(
+      data_021536ec[MAP_STATE->players[MAP_STATE->currentPlayer].front.id &
+                    PLAYER_CO_ID_MASK]
+          .byKind[kind][data_022a6c78]);
   task->x = x;
   task->y = y;
   task->tile = tile;

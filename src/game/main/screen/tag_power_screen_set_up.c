@@ -4,10 +4,11 @@
 #include "game/co_data.h"
 #include "game/task.h"
 #include "game/tag_break_task.h"
+#include "game/song.h"
 
 void Screen_SetCurrentBoth(void* state);
 void Screen_SetBgMode(int mode);
-void Screen_InitLayers(const void* config);
+void Screen_InitLayers(const GfxLayer* config);
 void* File_Load(const char* path);
 void Data_Unpack(const void* src, void* dst);
 void Palette_Load(const void* src, u32 offset, u32 size);
@@ -24,13 +25,8 @@ int Link_IsActive(void);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 const void* Text_Get(u32 textId);
 u8 BreakText_LoadChangeFont(const s8* text, u16 tile, u8 palette);
-void Sound_LowerSongVolume(int volume);
 void Sound_PlaySe(u32 soundId);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern GfxLayer
     data_0215c3a4[]; /* layer config when the main screen is current */
 extern GfxLayer data_0215c3f4[]; /* layer config otherwise */
@@ -46,8 +42,7 @@ extern u8 gTagChangePalette[];   /* copy of the res_tagchange palette */
 #define FRAME(task) (*(s16*)&(task)->unk_4c)
 
 #define MAIN_GFX ((Unk_027c0280*)data_027c0288.unk_00)
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define PLAYER (&STATE->players[STATE->currentPlayer])
+#define PLAYER (&MAP_STATE->players[MAP_STATE->currentPlayer])
 
 /* Tile data of BG `bg` on the current screen. */
 #define BG_CHARS(bg) \
@@ -166,7 +161,7 @@ void TagPowerScreen_SetUp(Task* task) {
   /* Background: res_tagbreak_black when both COs are Black Hole (in the
      * campaign: when the army is), _mix when one is, _union otherwise.
      * Needed to match: the campaign test jumps into the other branches. */
-  if (STATE->gameMode == GAME_MODE_CAMPAIGN) {
+  if (MAP_STATE->gameMode == GAME_MODE_CAMPAIGN) {
     if (PLAYER->armyColour == ARMY_BLACK_HOLE) {
       goto all_black_hole;
     }
@@ -274,35 +269,35 @@ void TagPowerScreen_SetUp(Task* task) {
   /* CO pictures in the colours of the current player's slot. */
   saved0280 = data_027c0280;
   Screen_SetCurrentGfx(data_027c0288.unk_00);
-  Co_LoadArmyGraphics(PLAYER->front.id, 16, STATE->currentPlayer);
-  Co_LoadObjPicture(PLAYER->front.id, 0x1c0, STATE->currentPlayer);
-  Co_LoadArmyPalette(PLAYER->front.id, 16, STATE->currentPlayer);
-  Co_LoadArmyGraphics(PLAYER->back.id, 0x2e0, STATE->currentPlayer);
-  Co_LoadObjPicture(PLAYER->back.id, 0x490, STATE->currentPlayer);
-  Co_LoadArmyPalette(PLAYER->back.id, 17, STATE->currentPlayer);
+  Co_LoadArmyGraphics(PLAYER->front.id, 16, MAP_STATE->currentPlayer);
+  Co_LoadObjPicture(PLAYER->front.id, 0x1c0, MAP_STATE->currentPlayer);
+  Co_LoadArmyPalette(PLAYER->front.id, 16, MAP_STATE->currentPlayer);
+  Co_LoadArmyGraphics(PLAYER->back.id, 0x2e0, MAP_STATE->currentPlayer);
+  Co_LoadObjPicture(PLAYER->back.id, 0x490, MAP_STATE->currentPlayer);
+  Co_LoadArmyPalette(PLAYER->back.id, 17, MAP_STATE->currentPlayer);
   Screen_SetCurrentGfx(saved0280);
   saved0280 = data_027c0280;
   Screen_SetCurrentGfx(data_027c0288.unk_04);
   Mem_Copy32(MAIN_GFX->objVram + TAG_BREAK_OBJ_TILES_START,
              data_027c0280->objVram + TAG_BREAK_OBJ_TILES_START,
              TAG_BREAK_OBJ_TILES_SIZE);
-  Co_LoadArmyPalette(PLAYER->front.id, 16, STATE->currentPlayer);
-  Co_LoadArmyPalette(PLAYER->back.id, 17, STATE->currentPlayer);
+  Co_LoadArmyPalette(PLAYER->front.id, 16, MAP_STATE->currentPlayer);
+  Co_LoadArmyPalette(PLAYER->back.id, 17, MAP_STATE->currentPlayer);
   /* Extra head tiles from res_tagbreak_head for Grit (variant 0) and
      * Kindle (variants 0 and 1); blank tiles for other COs. */
   file = File_Load(data_0215c670);
   for (i = 0; i <= PLAYER_CO_COUNT - 1; i++) {
     if (((&PLAYER->front)[i].id & PLAYER_CO_ID_MASK) == CO_GRIT &&
         Co_GetArmyPictureVariant((&PLAYER->front)[i].id,
-                                 STATE->currentPlayer) == 0) {
+                                 MAP_STATE->currentPlayer) == 0) {
       Data_Unpack(file, data_027c0280->objVram + HEAD_TILE(i) * 32);
     } else if (((&PLAYER->front)[i].id & PLAYER_CO_ID_MASK) == CO_KINDLE &&
                Co_GetArmyPictureVariant((&PLAYER->front)[i].id,
-                                        STATE->currentPlayer) == 0) {
+                                        MAP_STATE->currentPlayer) == 0) {
       Data_Unpack(file + 0x90, data_027c0280->objVram + HEAD_TILE(i) * 32);
     } else if (((&PLAYER->front)[i].id & PLAYER_CO_ID_MASK) == CO_KINDLE &&
                Co_GetArmyPictureVariant((&PLAYER->front)[i].id,
-                                        STATE->currentPlayer) == 1) {
+                                        MAP_STATE->currentPlayer) == 1) {
       Data_Unpack(file + 0x1a4, data_027c0280->objVram + HEAD_TILE(i) * 32);
     } else {
       Mem_Zero32(0, data_027c0280->objVram + HEAD_TILE(i) * 32, 0x300);

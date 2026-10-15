@@ -6,9 +6,6 @@
 int UnitType_GetMaxRange(int unitType);
 int GetUnitCombatClass(int unitType);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Change to a unit type's firing range from one CO of a player (coSlot 0:
  * front, 1: back) in the given power state. Foot units take only their
  * class row; other units add the class row and the combat row. Sandstorm

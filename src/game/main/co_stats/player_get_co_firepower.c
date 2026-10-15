@@ -9,9 +9,6 @@ int GetUnitCombatClass(int unitType);
  * plus the skill bonus) times the towers owned. */
 int Player_GetComTowerFirepower(int playerIndex, int slot, int powerState);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Firepower bonus in percent of one CO of a player (slot 0 front, 1 back)
  * in a power state, for a unit type: skills, Com Towers and the CO's stat
  * rows. Foot units get their class row only; other units also get the row

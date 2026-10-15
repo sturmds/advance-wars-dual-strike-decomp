@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/screen_other_map.h"
-
-void Screen_ResetBlendAllTop(void);
-void Screen_ApplyAll(void);
+#include "game/screen.h"
 
 /* Turns the current screen fully black: darken blend at level 16 / 16. */
 void Screen_FillBlack(void) {

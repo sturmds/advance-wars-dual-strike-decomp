@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
-
 void ScriptSlot_Run(int slot);
 
 /* Runs the slot if bit 0 of unk_12 is set (see ScriptSlot_AnyPending), clearing the bit.

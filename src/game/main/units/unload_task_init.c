@@ -3,8 +3,6 @@
 #include "game/range_map.h"
 #include "game/task.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u32 gLinkPlay;
 
 void RangeMap_ClearAdjacent(int x, int y, int dirs);
@@ -13,19 +11,19 @@ int NeighborDir_Next(int direction, int mask);
 void func_020f78b8(int arg);
 void func_020802e8(void);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* Start of the unload command's tile pick: unk_68 holds the cargo slot. Marks
  * the free drop tiles in the range map, stores the free-direction mask in
  * unk_64 and the first free direction in unk_66. */
 void UnloadTask_Init(Task* task) {
   int dirs;
 
-  dirs = Unit_GetDropDirections(STATE->actingUnitDestX, STATE->actingUnitDestY,
-                                STATE->actingUnit->cargo[task->unk_68]);
-  RangeMap_SetBuffer(STATE->mapTiles->rangeMapTiles);
+  dirs = Unit_GetDropDirections(MAP_STATE->actingUnitDestX,
+                                MAP_STATE->actingUnitDestY,
+                                MAP_STATE->actingUnit->cargo[task->unk_68]);
+  RangeMap_SetBuffer(MAP_STATE->mapTiles->rangeMapTiles);
   RangeMap_Fill(-1);
-  RangeMap_ClearAdjacent(STATE->actingUnitDestX, STATE->actingUnitDestY, dirs);
+  RangeMap_ClearAdjacent(MAP_STATE->actingUnitDestX, MAP_STATE->actingUnitDestY,
+                         dirs);
   func_020f78b8(0);
   task->unk_64 = dirs;
   task->unk_66 = 3;

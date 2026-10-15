@@ -5,15 +5,12 @@
 #include "game/task.h"
 #include "game/unit_action.h"
 #include "game/visual_mode.h"
+#include "game/math.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern UnitAction data_0229d8c8;
 extern const TaskScriptCmd data_02168328[];
 extern const TaskScriptCmd data_02168400[];
 
-s32 HwDiv32(s32 numerator, s32 denominator);
 void Combat_SimulateChecked(int attackerIndex, int defenderIndex, s16* pos);
 void func_020b9d48(void);
 int Unit_GetChargeForHpLost(int player, int hpLost, int unitType);
@@ -22,7 +19,7 @@ void ActingUnit_FinishAction(void);
 void Player_AddPowerCharge(int player, int slot,
                            int amount); /* slot 0: front CO, 1: back CO */
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 
 /* HP as shown on the map: 1-10, rounded up. */
 #define SHOWN_HP(hp) ((hp) != 0 ? HwDiv32((hp) - 1, 10) + 1 : 0)
@@ -34,9 +31,9 @@ void Player_AddPowerCharge(int player, int slot,
  * (their own loss plus half of the other's; the back CO gets half of
  * that), and starts the battle task, which gets flag and the defender. */
 void ActingUnit_StartAttack(int defenderSlot, int flag) {
-  MapUnit* defender = &STATE->units[defenderSlot];
-  u8 attackerOwner = MAP_UNIT_OWNER(STATE, STATE->actingUnit);
-  u8 defenderOwner = MAP_UNIT_OWNER(STATE, defender);
+  MapUnit* defender = &MAP_STATE->units[defenderSlot];
+  u8 attackerOwner = MAP_UNIT_OWNER(MAP_STATE, MAP_STATE->actingUnit);
+  u8 defenderOwner = MAP_UNIT_OWNER(MAP_STATE, defender);
   int attackerLoss;
   int defenderLoss;
   int attackerCharge;
@@ -45,41 +42,43 @@ void ActingUnit_StartAttack(int defenderSlot, int flag) {
   Task* task;
 
   if (defenderSlot == 0) {
-    STATE->actingUnit->ammo--;
+    MAP_STATE->actingUnit->ammo--;
     func_020b9d48();
     ActingUnit_FinishAction();
     return;
   }
 
   data_0229d8c8.rngState = gRngState;
-  Combat_SimulateChecked(STATE->actingUnitIndex, defenderSlot,
-                         &STATE->actingUnitDestX);
+  Combat_SimulateChecked(MAP_STATE->actingUnitIndex, defenderSlot,
+                         &MAP_STATE->actingUnitDestX);
 
-  attackerLoss = Unit_GetChargeForHpLost(
-      attackerOwner,
-      SHOWN_HP(STATE->actingUnit->hp) - SHOWN_HP(STATE->combatants[0].hp),
-      STATE->actingUnit->type);
+  attackerLoss =
+      Unit_GetChargeForHpLost(attackerOwner,
+                              SHOWN_HP(MAP_STATE->actingUnit->hp) -
+                                  SHOWN_HP(MAP_STATE->combatants[0].hp),
+                              MAP_STATE->actingUnit->type);
   defenderLoss = Unit_GetChargeForHpLost(
-      defenderOwner, SHOWN_HP(defender->hp) - SHOWN_HP(STATE->combatants[1].hp),
+      defenderOwner,
+      SHOWN_HP(defender->hp) - SHOWN_HP(MAP_STATE->combatants[1].hp),
       defender->type);
 
   attackerCharge = attackerLoss + (defenderLoss >> 1);
   Player_AddPowerCharge(attackerOwner, 0, attackerCharge);
   defenderCharge = defenderLoss + (attackerLoss >> 1);
   Player_AddPowerCharge(defenderOwner, 0, defenderCharge);
-  if (STATE->players[attackerOwner].back.id != 0) {
+  if (MAP_STATE->players[attackerOwner].back.id != 0) {
     Player_AddPowerCharge(attackerOwner, 1, attackerCharge >> 1);
   }
-  if (STATE->players[defenderOwner].back.id != 0) {
+  if (MAP_STATE->players[defenderOwner].back.id != 0) {
     Player_AddPowerCharge(defenderOwner, 1, defenderCharge >> 1);
   }
 
   /* VISUAL_NONE starts the data_02168328 task, any other mode data_02168400.
    * VISUAL_D becomes VISUAL_C for a human current player and VISUAL_NONE
    * otherwise; the state at data_027c0288.unk_04 always uses VISUAL_NONE. */
-  mode = STATE->visualMode;
+  mode = MAP_STATE->visualMode;
   if (mode == VISUAL_D) {
-    mode = STATE->players[STATE->currentPlayer].controller ==
+    mode = MAP_STATE->players[MAP_STATE->currentPlayer].controller ==
                    PLAYER_CONTROLLER_HUMAN
                ? VISUAL_C
                : VISUAL_NONE;

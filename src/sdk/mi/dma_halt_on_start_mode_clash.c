@@ -1,6 +1,5 @@
 #include "sdk/mi.h"
-
-void OS_Terminate(void);
+#include "sdk/os.h"
 
 /* The channels checked: 0 to 2, not channel 3. */
 #define CLASH_CHECKED_CHANNELS 3

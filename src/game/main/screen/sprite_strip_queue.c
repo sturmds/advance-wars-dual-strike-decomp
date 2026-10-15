@@ -5,8 +5,6 @@
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
-extern MenuState gMenuState;
-
 /* Queues one sprite per x position in MenuState.colours (low 9 bits), with tiles 16 apart from
  * tile 0x90, on sprite list 2. With affineIndex 0 the sprites are plain; with
  * 1-31 they are rotation/scaling sprites that use that OBJ affine matrix

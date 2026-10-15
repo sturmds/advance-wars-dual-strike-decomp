@@ -1,11 +1,9 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/screen_other_map.h"
+#include "game/screen.h"
 
 void func_020cab68(void);
-int SceneMode_IsCurrent(int a0);
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Runs func_020cab68 with the screen state `screen` current, then puts the
  * current state back. A macro because the original reads `screen` again at
@@ -30,7 +28,7 @@ void Script_StartOnBothScreens(void) {
   Unk_02080440* saved027c;
 
   func_020cab68();
-  if (GAME->secondMapId == 0) {
+  if (MAP_STATE->secondMapId == 0) {
     return;
   }
   if (OtherMap_GetUnk30() != 0) {

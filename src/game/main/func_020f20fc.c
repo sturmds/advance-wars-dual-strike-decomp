@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/Unk_021694c0.h"
+#include "game/screen.h"
 
 extern Unk_021694c0* data_021694c0;
 
-int SceneMode_Request(int value);
 void EffectScene_SetMode(int value);
 
 void func_020f20fc(void) {

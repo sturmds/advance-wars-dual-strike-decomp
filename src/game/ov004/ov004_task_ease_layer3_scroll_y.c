@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov004_022bf158.h"
+#include "game/math.h"
 
 void Task_ResumeScript(Ov004Task* task);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 
 void Ov004Task_EaseLayer3ScrollY(Ov004Task* task) {
   Unk_027c0280* savedGfx;

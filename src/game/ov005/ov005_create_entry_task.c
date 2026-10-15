@@ -13,13 +13,7 @@ void Ov005_SetUpMainScreenLayer2(void);
 void Ov005_SetUpStaffCreditsScreen(void);
 void Ov005_UpdateStaffCreditsScreen(void);
 void Ov005_UpdateTimedScreen(void);
-extern u8 data_02178b08[];
-extern u8 data_0217ab08[];
-extern u8 data_0217eb08[];
-extern u8 data_02180b08[];
 void func_ov005_0235a81c(void);
-extern u8 data_02179b08[];
-extern u8 data_0217fb08[];
 
 char gOv005MessageFile01c[] = {
 #include "data/ov005/gOv005MessageFile01c.inc.c"

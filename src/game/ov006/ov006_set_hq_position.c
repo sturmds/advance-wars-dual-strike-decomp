@@ -3,8 +3,6 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_ov006_0235f690.h"
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
 /* Records x, y as the HQ position of the army that owns hqTile (an HQ tile
  * with owner 1 to 4). Any other tile changes nothing. */
 void Ov006_SetHqPosition(int hqTile, int x, int y) {

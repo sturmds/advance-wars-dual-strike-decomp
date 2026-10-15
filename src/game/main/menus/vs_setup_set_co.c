@@ -10,8 +10,6 @@ void Co_QueueArmyMediumPicture(int co, void* dest, int paletteSlot, int player);
 void VsSetup_RedrawSkills(void);
 void VsSetup_RedrawAllSkills(void);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

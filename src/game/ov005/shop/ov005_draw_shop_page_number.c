@@ -2,8 +2,7 @@
 #include "game/icon.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov005_0236bbb0.h"
-
-s32 HwDiv32(s32 numerator, s32 denominator);
+#include "game/math.h"
 
 #define ICON_DIGIT_0 150
 #define ICON_SLASH 162

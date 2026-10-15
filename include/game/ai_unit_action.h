@@ -1,3 +1,4 @@
+#include "game/ai/ai_unload.h"
 #ifndef GAME_AI_UNIT_ACTION_H
 #define GAME_AI_UNIT_ACTION_H
 
@@ -118,7 +119,6 @@ extern u8 gAiQueueSortKeys[]; /* sort key of each gAiQueue entry, same index */
  * AiSeaTransport_ScoreUnloadTiles uses on the tiles it reaches. */
 extern BOOL (*gAiUnloadTest)(void);
 extern int (*gAiUnloadScore)(void);
-void AiSeaTransport_ScoreUnloadTiles(void);
 
 /* AiTurn_ShowAction counters: cargo units unloaded so far, and frames
  * waited in the current step. */

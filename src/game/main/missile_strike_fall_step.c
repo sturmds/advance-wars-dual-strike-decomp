@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/missile_strike_task.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 void Task_ResumeScript(MissileStrikeTask* task);
 void Bg_SetScroll(int layer, int scrollX, int scrollY);
 

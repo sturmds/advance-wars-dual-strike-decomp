@@ -3,8 +3,6 @@
 #include "game/map_unit.h"
 #include "game/unit_stats.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 /* Ov000_gUnitStats[i].carryTypes through its own symbol. */
 extern struct {
   const u8* carryTypes;
@@ -13,8 +11,6 @@ extern struct {
 
 int Unit_Rearm(MapUnit* unit, BOOL payCost);
 int Unit_Refuel(MapUnit* unit, BOOL payCost);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Refills ammo and fuel of every unit aboard a transport without charging
  * anyone. Returns the shown-HP points Unit_Rearm and Unit_Refuel report,
@@ -29,8 +25,8 @@ int Unit_ResupplyCargo(MapUnit* transport) {
   if (i < data_ov000_022f4fd0[transport->type].carryTypes[0]) {
     do {
       if (transport->cargo[i] != 0) {
-        total += Unit_Rearm(&STATE->units[transport->cargo[i]], FALSE);
-        total += Unit_Refuel(&STATE->units[transport->cargo[i]], FALSE);
+        total += Unit_Rearm(&MAP_STATE->units[transport->cargo[i]], FALSE);
+        total += Unit_Refuel(&MAP_STATE->units[transport->cargo[i]], FALSE);
       }
       i++;
     } while (i < Ov000_gUnitStats[transport->type].carryTypes[0]);

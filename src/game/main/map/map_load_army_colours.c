@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/map_header.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Copies the current map's army colour per slot into gArmyColours. */
 void Map_LoadArmyColours(void) {
   Unk_02080440* game = data_027c027c;

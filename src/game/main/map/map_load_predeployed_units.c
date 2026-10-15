@@ -3,9 +3,6 @@
 #include "game/map_header.h"
 #include "game/predeployed_unit.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 BOOL Campaign_IsHardMode(void);
 void Map_PlacePredeployedUnits(const PredeployedUnit* row);
 

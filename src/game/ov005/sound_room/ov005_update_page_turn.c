@@ -3,14 +3,9 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov005_0236bbac.h"
+#include "game/math.h"
+#include "game/screen_other_map.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern Unk_ov005_0236bbac* data_ov005_0236bbac;
 
 /* Page turn on layer 0 of the second screen. Steps 1-2 ease the layer's

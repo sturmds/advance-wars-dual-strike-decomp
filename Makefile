@@ -179,7 +179,9 @@ emu-check: shift
 # planner (test_data.py), and the sound archive's unpack and pack
 # (test_sound.py), and the levels of scan_pointers.py (test_scan_pointers.py),
 # and the C text shift_gaps.py counts as a gap (test_shift_gaps.py), and
-# the alias offsets alias_check.py compiles (test_alias_check.py);
+# the alias offsets alias_check.py compiles (test_alias_check.py), and
+# the file merges of merge_files.py (test_merge_files.py), and the
+# declaration moves of decls.py (test_decls.py);
 # no ROM or build needed
 # (test_ds.py, test_pragmas.py, test_absolute.py, test_data_order.py,
 # test_bss.py, test_data.py and test_alias_check.py use the compiler from make setup; test_ds.py
@@ -223,6 +225,8 @@ TESTS := \
 	tools/tests/test_shift.py \
 	tools/tests/test_scan_pointers.py \
 	tools/tests/test_shift_gaps.py \
+	tools/tests/test_merge_files.py \
+	tools/tests/test_decls.py \
 	tools/tests/test_alias_check.py \
 	tools/tests/test_gdb_rsp.py \
 	tools/tests/test_maps.py

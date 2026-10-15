@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/task.h"
 
-extern Unk_02080440* data_027c027c;
-
 /* Removes task from its parent's child list or from its top-level list. */
 void Task_Unlink(Task* task) {
   Task* parent;

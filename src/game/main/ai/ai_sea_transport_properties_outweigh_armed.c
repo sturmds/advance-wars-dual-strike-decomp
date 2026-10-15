@@ -1,8 +1,5 @@
 #include "types.h"
-
-int Ai_CountEnemyGroundUnitsInRange(void);
-int Ai_ScoreReachableEnemyProperties(void);
-int Ai_CountTeamArmedGroundUnitsInRange(void);
+#include "game/ai/ai_units_in_range.h"
 
 /* After Ai_CountEnemyGroundUnitsInRange passes (AiSeaTransport_FewArmedUnitsNoTarget and others
  * also call it): TRUE when the value of the enemy properties the range map

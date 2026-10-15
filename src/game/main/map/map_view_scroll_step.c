@@ -1,14 +1,11 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern int gCameraPresetIndex;
 extern u8 data_021576fa[][20];
 extern u8 data_021576fb[][20];
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
-#define VIEW (GAME->unk_1c4)
+#define VIEW (MAP_STATE->unk_1c4)
 /* needed to match: after a scroll store the original reloads the index first. */
 #define GAME_IDX_FIRST                                                    \
   (*(Unk_02080440_48**)((u8*)(data_027c0284 * sizeof(Unk_02080440_48*)) + \
@@ -34,7 +31,7 @@ void MapView_ScrollStep(int step) {
   viewH = data_021576fb[layout][0];
 
   if ((VIEW->scrollFlags & 3) == 0) {
-    dist = GAME->cursorX - (VIEW->scrollX >> 4);
+    dist = MAP_STATE->cursorX - (VIEW->scrollX >> 4);
     if (dist < 2) {
       VIEW->scrollFlags |= 2;
     }
@@ -43,7 +40,7 @@ void MapView_ScrollStep(int step) {
     }
   }
   if ((VIEW->scrollFlags & 12) == 0) {
-    dist = GAME->cursorY - (VIEW->scrollY >> 4);
+    dist = MAP_STATE->cursorY - (VIEW->scrollY >> 4);
     if (dist < 2) {
       VIEW->scrollFlags |= 4;
     }

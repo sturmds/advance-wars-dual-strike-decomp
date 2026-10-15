@@ -2,14 +2,12 @@
 #include "game/menu_state.h"
 #include "game/task.h"
 #include "game/Unk_02088d04.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 struct SpriteAnimTask* SpriteAnimTask_Start(const void* file, int x, int y,
                                             u32 tileBase, int animation,
                                             int layer);
 void Task_ResumeScript(Task* task);
-
-extern Unk_027c0280* data_027c0280;
 
 /* The frame counter shares its slot with Task.unk_4c. */
 #define FRAME(task) (*(s16*)&(task)->unk_4c)

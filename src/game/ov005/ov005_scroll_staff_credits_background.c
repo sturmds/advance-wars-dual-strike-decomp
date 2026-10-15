@@ -2,6 +2,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov005_0236bb90.h"
+#include "game/screen.h"
 
 /* Needed to match: the original keeps col * 2 and the row sums in the loops. */
 #pragma opt_strength_reduction off
@@ -9,7 +10,6 @@
 
 void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);
 BOOL Screen_IsTextBg(int layer);
-BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 
 extern u32 data_ov005_02367f8c[];

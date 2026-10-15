@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/terrain.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int Ov006_IsBareShoal(int x, int y); /* tile x, y is shoal */
 int Ov006_GetShoalGraphic(
     int x, int y); /* shoal cell code for tile x, y, -1 if none fits */

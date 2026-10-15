@@ -3,9 +3,6 @@
 
 int Ov003_GetMoveSpeed(int player, int kind, int terrain);
 
-extern Ov003Unit data_ov003_02369538[];
-extern u8 data_ov003_02365d10[];
-
 #define MAP data_ov003_02364a88
 #define TERRAIN(tx, ty) \
   (data_ov003_02365d10[MAP->cells[(ty) * MAP->width + (tx)]] & 31)

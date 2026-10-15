@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-
 #define UNIT_SHOW_SLOT_COUNT 2
 
 /* Returns the first slot no unit show task has taken, or -1. */

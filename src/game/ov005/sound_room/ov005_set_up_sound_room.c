@@ -4,9 +4,9 @@
 #include "game/screen_other_map.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bbac.h"
+#include "game/screen.h"
+#include "sdk/fs.h"
 
-void Screen_InitLayers(const void* config);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Gfx_RequestLayerCopy(int layer);
 void Gfx_LoadBmap09f(void* target, int a, int b);

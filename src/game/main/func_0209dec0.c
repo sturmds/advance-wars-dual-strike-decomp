@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/map_header.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 MapHeader* MapHeader_Get(int mapId);
 
 /* TRUE in game mode 2, otherwise TRUE unless the current map header has bit

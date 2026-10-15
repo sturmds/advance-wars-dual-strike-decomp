@@ -3,7 +3,6 @@
 #include "game/screen_other_map.h"
 #include "game/save_progress.h"
 
-extern SaveRecordBuffer data_02291774;
 extern u8 data_021674c4[];
 
 void DesignMap_BuildRecord(void* template, DesignMapRecord* record, int flag);

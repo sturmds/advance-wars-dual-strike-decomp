@@ -5,10 +5,8 @@
 #include "game/black_bomb_blast_task.h"
 #include "game/map_unit.h"
 #include "game/task.h"
+#include "sdk/fs.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern const TaskScriptCmd data_02168f10[];
 extern char data_02169180[]; /* "/bmap" */
 extern char data_0216919c[]; /* "05e" */
@@ -16,7 +14,6 @@ extern char data_021691a0[]; /* "060" */
 extern char data_021691a4[]; /* "05f" */
 
 int MapScript_RunList10(int id, MapUnit* unit);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           u16 paletteOffset, int size);

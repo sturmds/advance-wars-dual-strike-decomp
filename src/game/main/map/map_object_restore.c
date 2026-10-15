@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/map_object.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 void Mem_CopyUnits(const void* src, void* dst, u32 size, u32 unitBits);
 
 /* Copies a saved object into slot `index` of the map's object list. */

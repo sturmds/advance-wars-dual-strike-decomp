@@ -2,7 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_0201a774.h"
 
-extern Unk_02080440* data_027c027c;
 extern u16 gEventChoiceAnswer;
 
 /* Choice bits from ChoicePrompt_GetKeys (keys) and ChoicePrompt_PollTouch (touch), as in

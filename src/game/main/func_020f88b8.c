@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
 void Mem_CopyAuto(void*, void*, int, void*);
 extern u8 data_02139810[];
 

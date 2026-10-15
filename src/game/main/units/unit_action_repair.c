@@ -5,12 +5,8 @@
 #include "game/player.h"
 #include "game/repair_task.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern s16 data_021684d8[]; /* dx, dy per direction */
 extern const TaskScriptCmd data_02168538[];
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Unit action 24: the acting unit repairs the unit on the adjacent tile in
  * the given direction (0-3). */
@@ -22,13 +18,14 @@ void UnitAction_Repair(int direction) {
   RepairTask* task;
   i = direction * 2;
 
-  x = GAME->actingUnitDestX + data_021684d8[i];
-  y = GAME->actingUnitDestY + data_021684d8[i + 1];
-  unit = &GAME->units[GAME->mapTiles->unk_508[x + GAME->mapTiles->rowStart[y]]];
+  x = MAP_STATE->actingUnitDestX + data_021684d8[i];
+  y = MAP_STATE->actingUnitDestY + data_021684d8[i + 1];
+  unit = &MAP_STATE->units[MAP_STATE->mapTiles
+                               ->unk_508[x + MAP_STATE->mapTiles->rowStart[y]]];
   if (unit == NULL) {
     return;
   }
-  if (GAME->players[GAME->currentPlayer].controller ==
+  if (MAP_STATE->players[MAP_STATE->currentPlayer].controller ==
       PLAYER_CONTROLLER_HUMAN) {
     if (gPlayRecords.suppliesAndRepairs < 999999) {
       gPlayRecords.suppliesAndRepairs++;

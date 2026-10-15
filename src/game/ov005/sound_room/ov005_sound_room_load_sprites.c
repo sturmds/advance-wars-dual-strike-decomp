@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov005_0236bbac.h"
+#include "sdk/fs.h"
 
 void* File_Load(const char* path);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           int paletteOffset, int size);

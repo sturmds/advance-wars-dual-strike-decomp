@@ -4,8 +4,6 @@
 #include "game/Unk_02080440.h"
 #include "game/map_unit.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u16 Ov000_gPlayerTileOwnerBits
     []; /* per player slot: slot << 5, the owner bits of MapTiles.tiles */
 extern s8 Ov000_gUrbanTerrain
@@ -17,10 +15,8 @@ void func_020c4018(void);
 void func_020c4448(void);
 void Map_CountPlayerProperties(void);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define HQ (STATE->players[task->unk_64])
-#define SITE (STATE->unk_608c[i])
-#define TILE(x, y) (STATE->mapTiles->tiles[(x) + STATE->mapTiles->rowStart[y]])
+#define HQ (MAP_STATE->players[task->unk_64])
+#define SITE (MAP_STATE->unk_608c[i])
 
 /* Step of the task LinkPlayerDefeatTask_Create starts: hands the defeated
  * player's (unk_64) urban properties to a new owner. For reason code 2
@@ -38,8 +34,8 @@ void LinkPlayerDefeatTask_TransferProperties(Task* task) {
   u16 ownerBits;
 
   if (task->unk_66 == 2) {
-    old = TILE(HQ.hqX & 0x7f, HQ.hqY & 0x7f);
-    TILE(HQ.hqX & 0x7f, HQ.hqY & 0x7f) =
+    old = MAP_TILE_AT(HQ.hqX & 0x7f, HQ.hqY & 0x7f);
+    MAP_TILE_AT(HQ.hqX & 0x7f, HQ.hqY & 0x7f) =
         Ov000_gPlayerTileOwnerBits[task->unk_64] | TERRAIN_HQ;
     newOwner = MAP_TILE_OWNER(old);
     MapCell_SetOwner((s16)(HQ.hqX & 0x7f), (s16)(HQ.hqY & 0x7f),
@@ -61,23 +57,23 @@ void LinkPlayerDefeatTask_TransferProperties(Task* task) {
       continue;
     }
     if (newOwner != 0) {
-      unitSlot =
-          STATE->mapTiles->unitAt[SITE.x + STATE->mapTiles->rowStart[SITE.y]];
-      if (unitSlot != 0 && STATE->players[(unitSlot >> 6) + 1].team ==
-                               STATE->players[newOwner].team) {
-        STATE->units[unitSlot].captureProgress = 0;
+      unitSlot = MAP_STATE->mapTiles
+                     ->unitAt[SITE.x + MAP_STATE->mapTiles->rowStart[SITE.y]];
+      if (unitSlot != 0 && MAP_STATE->players[(unitSlot >> 6) + 1].team ==
+                               MAP_STATE->players[newOwner].team) {
+        MAP_STATE->units[unitSlot].captureProgress = 0;
       }
     }
     terrain = MAP_TILE_TERRAIN(SITE.tile);
     if (terrain == TERRAIN_HQ) {
-      TILE(SITE.x, SITE.y) =
+      MAP_TILE_AT(SITE.x, SITE.y) =
           Ov000_gPlayerTileOwnerBits[newOwner] | TERRAIN_CITY;
       func_020f6488(SITE.x, SITE.y, cellTile);
       MapCell_SetOwner(SITE.x, SITE.y,
                        Ov000_gPlayerTileOwnerBits[newOwner] & 0xff);
     } else {
       ownerBits = Ov000_gPlayerTileOwnerBits[newOwner];
-      TILE(SITE.x, SITE.y) = ownerBits | terrain;
+      MAP_TILE_AT(SITE.x, SITE.y) = ownerBits | terrain;
       MapCell_SetOwner(SITE.x, SITE.y, ownerBits & 0xff);
     }
   }

@@ -15,14 +15,8 @@ void func_020c3e5c(void);
 void TileCodeTable_Load(void);
 void MapObject_Restore(
     MapObject* object,
-    int index); /* copies object into STATE->objects[index] */
+    int index); /* copies object into MAP_STATE->objects[index] */
 void TileHp_Unpack(u8* data);
-
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Loads one map of a saved battle into the current game state: turn, rules
  * block, players 1-4, the first 51 units of each player and the map
@@ -36,52 +30,55 @@ void BattleSave_LoadMap(BattleSaveMap* save) {
   BOOL customMap;
 
   if (data_027c027c == data_027c0288.unk_00) {
-    STATE->unk_18 = 14;
+    MAP_STATE->unk_18 = 14;
   } else {
-    STATE->unk_18 = 4;
+    MAP_STATE->unk_18 = 4;
   }
-  *(BattleSaveTilePos*)&STATE->cursorX = save->unk_04;
-  STATE->day = save->day;
-  STATE->currentPlayer = save->currentPlayer;
-  STATE->unk_04 = STATE->currentPlayer << 5;
-  STATE->currentUnitBase = (STATE->currentPlayer - 1) * MAP_UNITS_PER_PLAYER;
-  STATE->unk_1e = STATE->currentPlayer;
-  STATE->unk_184 = save->unk_6c;
-  *(BattleSaveSettings*)&STATE->gameMode = save->settings;
+  *(BattleSaveTilePos*)&MAP_STATE->cursorX = save->unk_04;
+  MAP_STATE->day = save->day;
+  MAP_STATE->currentPlayer = save->currentPlayer;
+  MAP_STATE->unk_04 = MAP_STATE->currentPlayer << 5;
+  MAP_STATE->currentUnitBase =
+      (MAP_STATE->currentPlayer - 1) * MAP_UNITS_PER_PLAYER;
+  MAP_STATE->unk_1e = MAP_STATE->currentPlayer;
+  MAP_STATE->unk_184 = save->unk_6c;
+  *(BattleSaveSettings*)&MAP_STATE->gameMode = save->settings;
   *data_027c027c->unk_5c[data_027c0284] = save->unk_e34;
-  gPlayRecords.visualMode = STATE->visualMode;
-  gPlayRecords.unk_0e = STATE->musicReady;
+  gPlayRecords.visualMode = MAP_STATE->visualMode;
+  gPlayRecords.unk_0e = MAP_STATE->musicReady;
   TileCodeTable_Load();
-  customMap = MAP_IS_CUSTOM(STATE->unk_1c4->mapId);
+  customMap = MAP_IS_CUSTOM(MAP_STATE->unk_1c4->mapId);
   if (!customMap) {
-    STATE->unk_1c4->playerCount = Map_GetPlayerCount(STATE->unk_1c4->mapId);
-    String_Copy(STATE->unk_1c4, Map_GetName(STATE->unk_1c4->mapId));
-    Map_LoadData(STATE->unk_1c4->mapId);
+    MAP_STATE->unk_1c4->playerCount =
+        Map_GetPlayerCount(MAP_STATE->unk_1c4->mapId);
+    String_Copy(MAP_STATE->unk_1c4, Map_GetName(MAP_STATE->unk_1c4->mapId));
+    Map_LoadData(MAP_STATE->unk_1c4->mapId);
     Map_BuildRowStarts();
-    for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
-      for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-        STATE->mapTiles->mapCells[x + STATE->mapTiles->rowStart[y]] =
-            data_0229eadc->tileCodes[x + STATE->mapTiles->rowStart[y]];
+    for (x = 0; x < MAP_STATE->unk_1c4->mapWidth; x++) {
+      for (y = 0; y < MAP_STATE->unk_1c4->mapHeight; y++) {
+        MAP_STATE->mapTiles->mapCells[x + MAP_STATE->mapTiles->rowStart[y]] =
+            data_0229eadc->tileCodes[x + MAP_STATE->mapTiles->rowStart[y]];
       }
     }
     func_020c3e5c();
     /* Needed to match: the original checks again. */
-    customMap = MAP_IS_CUSTOM(STATE->unk_1c4->mapId);
+    customMap = MAP_IS_CUSTOM(MAP_STATE->unk_1c4->mapId);
     if (!customMap) {
       for (i = 0; save->tiles[i].cell != BATTLE_SAVE_TILES_END; i++) {
-        STATE->mapTiles->mapCells[save->tiles[i].x +
-                                  STATE->mapTiles->rowStart[save->tiles[i].y]] =
+        MAP_STATE->mapTiles
+            ->mapCells[save->tiles[i].x +
+                       MAP_STATE->mapTiles->rowStart[save->tiles[i].y]] =
             save->tiles[i].cell;
       }
     }
   }
   for (i = 0; i < (int)ARRAY_COUNT(save->players); i++) {
-    STATE->playerSlots[i + 1] = save->players[i];
+    MAP_STATE->playerSlots[i + 1] = save->players[i];
   }
-  STATE->playerSlots[0].armyColour = 0;
+  MAP_STATE->playerSlots[0].armyColour = 0;
   for (i = 0; i < (int)ARRAY_COUNT(save->players); i++) {
     for (j = 0; j < BATTLE_SAVE_UNITS_PER_PLAYER; j++) {
-      STATE_UNIT_SLOTS(STATE)
+      STATE_UNIT_SLOTS(MAP_STATE)
       [i * MAP_UNITS_PER_PLAYER + j] =
           save->units[i * BATTLE_SAVE_UNITS_PER_PLAYER + j];
     }

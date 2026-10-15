@@ -6,9 +6,6 @@
 /* Song id, from romhacking.net doc 890 (RadioTails). */
 #define SONG_CO_SELECT 0x21
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 BOOL Map_IsCoSelectPhase(void);
 void Sound_PlaySong(int song);
 int Player_GetCoThemeSong(int player);

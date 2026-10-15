@@ -1,7 +1,7 @@
 #include "sdk/snd_hw.h"
 #include "sdk/os_arm7.h"
+#include "sdk/pm.h"
 
-void PMi_SetControl(int);
 void func_arm7_037fe58c(int);
 int func_arm7_037fe654(void);
 

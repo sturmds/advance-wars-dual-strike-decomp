@@ -4,9 +4,6 @@
 #include "game/menu_button.h"
 #include "game/song.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 extern EventScriptCommand data_02168fd8[];
 void Menu_CancelCallback(void);
 void SongFadeOut_End(void);

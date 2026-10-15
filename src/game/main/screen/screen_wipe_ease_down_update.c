@@ -2,8 +2,8 @@
 #include "game/task.h"
 #include "game/screen_other_map.h"
 #include "game/screen_wipe.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task* task);
 void Screen_SetCurrentBoth(void* state);
 void ScreenWipe_EaseDownSetWindow1Rows(void);

@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/gx.h"
-
-void Screen_ResetAndShowMessage(void);
+#include "game/screen.h"
 
 void func_0201fb3c(void) {
   *REG_POWCNT1 &= ~POWCNT1_DISPLAY_SWAP;

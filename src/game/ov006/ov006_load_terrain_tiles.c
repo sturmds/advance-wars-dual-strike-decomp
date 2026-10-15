@@ -4,8 +4,6 @@
 
 void Palette_QueueBlockCopy(int id, int army, void* dest, int copy);
 
-extern Unk_027c0280* data_027c0280;
-
 /* Loads the tiles of each terrain entry of data_ov006_0236a7a0 for the
  * given army into the object VRAM, 8 tiles apart from tile 0x25e. */
 void Ov006_LoadTerrainTiles(int army) {

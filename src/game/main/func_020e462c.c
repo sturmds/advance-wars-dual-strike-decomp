@@ -8,9 +8,6 @@ void Unit_ParalyseAtTile(int x, int y, int player);
 void func_020c4018(void);
 void Power_ResetScrollAndRefresh(void);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Runs Unit_DamageAtTile and Unit_ParalyseAtTile for every tile of offset list 2 around (x, y). */
 void func_020e462c(int x, int y) {
   int pos[2];

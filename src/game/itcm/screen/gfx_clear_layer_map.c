@@ -1,13 +1,12 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen.h"
 
-extern Unk_027c0280* data_027c0280;
 /* Map size in bytes by screen size (BGxCNT bits 14-15). */
 extern u32 gBgTextMapBytes[];
 extern u32 gBgAffineMapBytes[];
 
 BOOL Screen_IsTextBg(int layer);
-BOOL Screen_IsAffineBg(int layer);
 
 /* Zeroes the layer's tile map buffer. Affine maps use one byte per entry;
  * the other modes use two, so their size is double the affine table's. */

@@ -2,16 +2,11 @@
 #include "game/Unk_02080440.h"
 #include "game/unit_stats.h"
 #include "game/skills.h"
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
-extern int data_027c0284;
-extern Unk_02080440* data_027c027c;
+#include "game/math.h"
 
 void MapView_ClearUnitTile(u16 x, u16 y);
 BOOL UnitSlot_IsVisible(int slot);
 u16* Bg_GetMapEntry(int layer, int x, int y);
-s32 HwDiv32(s32 numerator, s32 denominator);
 void UnitIcon_DrawEntries(u16* entry, int type, int look, u8 carrying,
                           u8 capture, u16 shownHp, u16 dived, u8 hpHidden,
                           BOOL lowFuel, BOOL lowAmmo, BOOL paralysed);
@@ -36,8 +31,8 @@ void MapView_DrawUnitTile(int x, int y) {
   int bgY;
   BOOL hpHidden;
 
-  if (x < 0 || x >= STATE->unk_1c4->mapWidth || y < 0 ||
-      y >= STATE->unk_1c4->mapHeight) {
+  if (x < 0 || x >= MAP_STATE->unk_1c4->mapWidth || y < 0 ||
+      y >= MAP_STATE->unk_1c4->mapHeight) {
     MapView_ClearUnitTile(x, y);
     return;
   }
@@ -45,22 +40,22 @@ void MapView_DrawUnitTile(int x, int y) {
   idx = x + tiles->rowStart[y];
   slot = tiles->unk_508[idx];
   if (slot == 0 || tiles->unk_2338[idx] == 0 || !UnitSlot_IsVisible(slot) ||
-      (STATE->units[slot].flags & MAP_UNIT_LOCKED)) {
+      (MAP_STATE->units[slot].flags & MAP_UNIT_LOCKED)) {
     MapView_ClearUnitTile(x, y);
     return;
   }
-  if (STATE->units[slot].flags & MAP_UNIT_WAITED) {
+  if (MAP_STATE->units[slot].flags & MAP_UNIT_WAITED) {
     look = 0x100;
   } else {
     look = (u16)(slot & 0xc0);
   }
   lowFuel = FALSE;
 
-  bgX = (s16)(((x - STATE->unk_1c4->unk_26) & 15) * 2);
-  bgY = (s16)(((y - STATE->unk_1c4->unk_28) & 15) * 2);
+  bgX = (s16)(((x - MAP_STATE->unk_1c4->unk_26) & 15) * 2);
+  bgY = (s16)(((y - MAP_STATE->unk_1c4->unk_28) & 15) * 2);
   lowAmmo = lowFuel;
   paralysed = lowFuel;
-  unit = &STATE->units[slot];
+  unit = &MAP_STATE->units[slot];
 
   flag = FALSE;
   if (Ov000_gUnitStats[unit->type].fuel != 0 &&
@@ -81,16 +76,16 @@ void MapView_DrawUnitTile(int x, int y) {
   if (unit->flags & MAP_UNIT_PARALYSED) {
     paralysed = TRUE;
   }
-  half = ((x - STATE->unk_1c4->unk_26) & 16) ? 0x400 : 0;
+  half = ((x - MAP_STATE->unk_1c4->unk_26) & 16) ? 0x400 : 0;
   entry = Bg_GetMapEntry(1, bgX, bgY) + half;
   if (unit->hp == 0) {
     shownHp = 0;
   } else {
     shownHp = HwDiv32(unit->hp - 1, 10) + 1;
   }
-  hpHidden = CheckSkillsEquipped(STATE->players[(slot >> 6) + 1].skills[0],
+  hpHidden = CheckSkillsEquipped(MAP_STATE->players[(slot >> 6) + 1].skills[0],
                                  SKILL_HIDDEN_HP);
-  UnitIcon_DrawEntries(entry, STATE->units[slot].type, look,
+  UnitIcon_DrawEntries(entry, MAP_STATE->units[slot].type, look,
                        unit->cargo[0] | unit->cargo[1], unit->captureProgress,
                        shownHp, unit->flags & MAP_UNIT_DIVED, hpHidden, lowFuel,
                        lowAmmo, paralysed);

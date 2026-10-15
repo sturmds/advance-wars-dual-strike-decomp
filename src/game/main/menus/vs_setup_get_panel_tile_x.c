@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 /* Tile column of a slot's panel on the Vs setup screen: 7 tiles per slot,
  * starting at column 1, 5 or 9 for four, three or two slots (setup.unk_2e3). */
 int VsSetup_GetPanelTileX(int slot) {

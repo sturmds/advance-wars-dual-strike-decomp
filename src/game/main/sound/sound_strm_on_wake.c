@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/sound_strm.h"
+#include "sdk/os.h"
 
-int OS_DisableInterrupts(void);
-void OS_RestoreInterrupts(int irqState);
 void SND_StartTimer(u32 channelMask, int arg1, u32 alarmMask, int arg3);
 void SoundStrm_Refill(SoundStrm* strm, int status);
 

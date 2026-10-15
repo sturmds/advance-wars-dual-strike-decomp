@@ -2,25 +2,21 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov005_0235a30c.h"
+#include "game/screen_other_map.h"
+#include "sdk/gx.h"
 
 #define GXFIFO_MTX_PUSH ((volatile u32*)0x04000444)
 #define GXFIFO_MTX_POP ((volatile u32*)0x04000448)
 #define GXFIFO_MTX_TRANS ((volatile u32*)0x04000470)
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void func_ov005_0235b2f0(Unk_ov005_0235a30c* work);
 void func_ov005_0235b2cc(Unk_ov005_0235a30c* work);
-void G3_RotY(int sin, int cos);
 int Ov005_CharToGlyphIndex(u32 ch);
 void Ov005_QueueSpritePair(void* work, int x, int y, int tile, u16 flags);
 void Ov005_SendTexturedQuad(void* work, int x, int y, int z, int sizeS,
                             int sizeT, int width, int height, int texS,
                             int texT, u32 texAddr, u32 palAddr);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern s16 data_0214d4c4[];
 
 /* Needed to match: the original walks the table with three counters (a moving pointer, a byte

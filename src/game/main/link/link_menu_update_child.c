@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/task.h"
+#include "game/menu_button.h"
 
 #define LINK_UNFLAGGED_ACK 0x8f
 
@@ -11,7 +12,6 @@ void Link_SendUnflaggedPacket(void* data);
 void Wireless_SetChildAids(int childAids);
 void func_0207bb48(int start);
 void func_020b9890(void);
-void MenuButtons_CloseAll(void);
 int Task_JumpToLabel(Task* task, int label);
 void MI_CpuFill8(void* dest, int value, int size);
 

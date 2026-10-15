@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 const void* Oam_GetAttrCells(const u16* attr);
 
 #define OBJ_X_FLIP 0x1000

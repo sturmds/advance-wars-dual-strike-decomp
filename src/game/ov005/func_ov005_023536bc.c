@@ -10,14 +10,8 @@ void Ov005_SetupMainScreenLayers2And3(void);
 void Ov005_UpdateBlendEventScriptScreen(void);
 void Ov005_UpdateScrollingEventScriptScreen(void);
 void Ov005_UpdateSongEventScriptScreen(void);
-extern u8 data_02178b08[];
-extern u8 data_0217ab08[];
-extern u8 data_0217eb08[];
-extern u8 data_02180b08[];
 void func_ov005_023536d4(void);
 void func_ov005_023551f8(void);
-extern u8 data_02179b08[];
-extern u8 data_0217fb08[];
 
 char gRikiishiFile00d[] = {
 #include "data/ov005/gRikiishiFile00d.inc.c"

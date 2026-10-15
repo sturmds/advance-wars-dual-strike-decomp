@@ -1,6 +1,6 @@
 #include "types.h"
+#include "sdk/fs.h"
 
-void FS_ChangeDir(const char* dir);
 u32 File_UnpackTo(void* dest, const char* path);
 
 extern char data_021587d0[]; /* "/bmap" */

@@ -4,8 +4,6 @@
 
 void Sound_PlaySe(u32 soundId);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* Plays the sound for a finished capture by `owner` of a tile (tile byte as
  * in MapTiles). Reads bit 1 of the owner's visionGrids through the first screen's
  * state. With the bit set it plays sound 241, and sound 153 first for an
@@ -21,7 +19,7 @@ int Capture_PlayCompleteSound(int owner, int tile) {
   Screen_SetCurrentGfx(data_027c0288.unk_00);
   saved027c = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_00);
-  flag = STATE->players[owner].visionGrids & 2;
+  flag = MAP_STATE->players[owner].visionGrids & 2;
   Screen_SetCurrent(saved027c);
   Screen_SetCurrentGfx(saved0280);
   if (flag) {

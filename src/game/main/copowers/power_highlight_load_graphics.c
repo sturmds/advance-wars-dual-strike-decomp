@@ -2,10 +2,10 @@
 #include "game/screen_other_map.h"
 #include "game/Unk_022a7c5c.h"
 #include "game/tile_sprite_task.h"
+#include "sdk/fs.h"
 
 extern char gPowerHighlightDir[];
 
-void FS_ChangeDir(const char* dir);
 u32 func_020e3554(int index);
 u32 func_020e353c(int index);
 u32 func_020e3524(int index);

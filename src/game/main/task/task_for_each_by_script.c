@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/task.h"
 
-extern Unk_02080440* data_027c027c;
-
 /* Calls visit on every task in the pool that was started with script. */
 void Task_ForEachByScript(void* script, void (*visit)(Task* task)) {
   Task* task;

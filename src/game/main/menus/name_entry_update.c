@@ -1,3 +1,6 @@
+#include "game/menu_button.h"
+#include "game/screen_other_map.h"
+#include "game/screen.h"
 /* Built without optimization, like the rest of the name entry screen. */
 #pragma optimization_level 0
 
@@ -10,7 +13,6 @@
 
 void func_02004984(u16 frames);
 void func_020049cc(u16 frames);
-int ScreenTransition_IsRunning(void);
 void NameEntry_StartScript(const void* script);
 int NameEntry_IsScriptRunning(void);
 int func_020b983c(void);
@@ -18,11 +20,8 @@ void func_020b9864(void);
 void func_020b9890(void);
 void Sound_PlaySe(int seId);
 void Task_ResumeScript(NameEntryTask* task);
-void MenuButtons_RemoveSelectable(void);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 void Gfx_RequestLayerCopy(int layer);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 int NameEntry_GetControlKey(NameEntry* entry);
 BOOL NameEntry_AppendChar(NameEntry* entry);
 void NameEntry_AddKeyButtons(NameEntry* entry);
@@ -32,9 +31,6 @@ void NameEntry_DrawText(NameEntry* entry);
 void NameEntry_PlaceButtonSprites(NameEntry* entry);
 void NameEntry_PlaceCaret(NameEntry* entry);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern u16 gEventChoiceAnswer;
 extern EventScriptCommand data_0216ab54[];
 extern EventScriptCommand data_0216ab84[];

@@ -7,11 +7,6 @@ s16 Ov006_gCellsOpen[][49] = {
 #include "data/ov006/Ov006_gCellsOpen.inc.c"
 };
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* Returns the form of map cell `cell` that fits tile (x, y), going by the
  * tile to its left; -1 when `cell` is in neither list. Guess: the second
  * form draws the shadow that tall tiles cast to their right. */
@@ -31,7 +26,8 @@ int Ov006_MatchCellToLeftTile(int x, int y, int cell) {
     return -1;
   }
 
-  switch (STATE->mapTiles->tiles[x - 1 + STATE->mapTiles->rowStart[y]]) {
+  switch (
+      MAP_STATE->mapTiles->tiles[x - 1 + MAP_STATE->mapTiles->rowStart[y]]) {
     case TERRAIN_MOUNTAIN:
     case TERRAIN_WOOD:
     case TERRAIN_CITY:

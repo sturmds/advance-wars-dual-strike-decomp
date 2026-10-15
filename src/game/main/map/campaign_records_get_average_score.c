@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/Unk_02290118.h"
-
-s32 HwDiv32(s32 numerator, s32 denominator);
+#include "game/math.h"
 
 /* Average score over the stored campaign map records. */
 int CampaignRecords_GetAverageScore(void) {

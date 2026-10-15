@@ -5,17 +5,11 @@
 
 #define FUNDS_STAT_MAX 999999999
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern PlayRecords gPlayRecords;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* Takes amount from a player's funds and adds it to the player's money
  * spent. Spending by a human current player also counts in humanFundsSpent.
  * Both totals stop at 999999999. */
 void Player_SpendFunds(int playerIndex, int amount) {
-  if (STATE->players[STATE->currentPlayer].controller ==
+  if (MAP_STATE->players[MAP_STATE->currentPlayer].controller ==
       PLAYER_CONTROLLER_HUMAN) {
     u32 total = gPlayRecords.humanFundsSpent + amount;
 
@@ -25,9 +19,9 @@ void Player_SpendFunds(int playerIndex, int amount) {
       gPlayRecords.humanFundsSpent = FUNDS_STAT_MAX;
     }
   }
-  STATE->players[playerIndex].funds -= amount;
-  STATE->players[playerIndex].unk_04 += amount;
-  if (STATE->players[playerIndex].unk_04 > FUNDS_STAT_MAX) {
-    STATE->players[playerIndex].unk_04 = FUNDS_STAT_MAX;
+  MAP_STATE->players[playerIndex].funds -= amount;
+  MAP_STATE->players[playerIndex].unk_04 += amount;
+  if (MAP_STATE->players[playerIndex].unk_04 > FUNDS_STAT_MAX) {
+    MAP_STATE->players[playerIndex].unk_04 = FUNDS_STAT_MAX;
   }
 }

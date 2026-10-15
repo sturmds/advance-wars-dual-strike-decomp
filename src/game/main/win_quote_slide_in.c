@@ -3,12 +3,10 @@
 #include "game/win_quote.h"
 #include "game/Unk_02088d04.h"
 #include "game/co_data.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task* task);
 void WinQuote_Print(int record);
-
-extern Unk_027c0280* data_027c0280;
 
 #define SLIDE_FRAMES 16
 

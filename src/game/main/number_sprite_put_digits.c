@@ -1,9 +1,8 @@
 #include "types.h"
 #include "game/oam_cells.h"
+#include "game/math.h"
 
 void Oam_PutSprite(int x, int y, void* shape, int tileAndPalette);
-u32 HwDiv32(u32 num, u32 den);
-u32 HwMod32(u32 num, u32 den);
 
 /* Draws value (at most 999) as digit sprites, ones digit first, each digit 8
  * pixels left of the last, starting at x - 8. Digit tiles sit 2 apart from

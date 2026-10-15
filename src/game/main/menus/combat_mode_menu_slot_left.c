@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/combat_mode_menu.h"
+#include "game/math.h"
 
-int HwDiv32(int a, int b);
-int HwMod32(int a, int b);
 BOOL CombatModeMenu_IsSlotAvailable(u8 slot);
 
 /* Moves left in the 3-wide slot grid, wrapping at the first column. Looks

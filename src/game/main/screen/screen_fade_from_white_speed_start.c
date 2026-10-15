@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/task.h"
+#include "game/screen.h"
 
-int Screen_GetNibble(void);
-void Screen_SetNibble(int value);
 int func_02007710(int screens);
 void Task_Destroy(Task* task);
 

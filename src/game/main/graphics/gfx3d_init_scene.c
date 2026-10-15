@@ -1,5 +1,6 @@
 #include "types.h"
 #include "sdk/fx.h"
+#include "sdk/gx.h"
 
 #define GXFIFO_MTX_PUSH (*(volatile u32*)0x04000444)
 #define GXFIFO_MTX_MODE (*(volatile u32*)0x04000440)
@@ -15,7 +16,6 @@ extern u8 data_0215915c[];
 /* The look-at target; never written, so the origin. */
 static VecFx32 data_0229c678;
 
-void G3X_Reset(void);
 void G3i_LookAt_(void* a, void* b, void* c, int d, int e);
 void Gfx3d_SetDefaultLight(void);
 

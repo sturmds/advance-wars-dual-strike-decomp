@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/Unk_0229c734.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void ResultPoint_DrawRows(int x, int y, int arg);
 void ResultPoint_DrawPanel(int x, int y, int arg);
 void ResultPoint_DrawBar(int x, int y);

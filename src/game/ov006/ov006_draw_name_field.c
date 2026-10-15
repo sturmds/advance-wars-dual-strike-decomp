@@ -5,8 +5,6 @@
 
 void Bg_FillRect(u16* map, int x, int y, int width, int height, int tile);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
 /* Clears the 8x2 box at (3, 29) on layer 0 of the second screen and prints the map name (unk_d8) there. */
 void Ov006_DrawNameField(void) {
   Unk_027c0280* saved0280 = data_027c0280;

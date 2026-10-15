@@ -2,8 +2,6 @@
 #include "game/play_records.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 void Text_PrintImmediate(s16 x, s16 y, u16* map, u32 textId, u16 unk_30,
                          int arg);
 void Layer0_PutNumber(int x, int y, u32 value);

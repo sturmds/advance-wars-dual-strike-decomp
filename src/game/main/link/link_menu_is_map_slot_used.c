@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 int DesignMap_IsUsed(DesignMap* row);
 
 /* Whether the map slot (0-2) of a link player holds a map. */

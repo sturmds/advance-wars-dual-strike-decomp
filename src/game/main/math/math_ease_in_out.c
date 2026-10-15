@@ -1,6 +1,5 @@
 #include "types.h"
-
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
+#include "game/math.h"
 
 /* Moves from from to to over duration: the first half eases in (curve 1),
  * the second half eases out (curve 4). The midpoint is computed in each

@@ -1,11 +1,9 @@
 #include "types.h"
 #include "game/sprite_anim.h"
 #include "game/capture_picture_task.h"
+#include "game/oam_buffer.h"
+#include "game/math.h"
 
-extern s16 gSineTable[];
-
-s32 HwDiv32(s32 numer, s32 denom);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Oam_PutSmallNumber(u16 x, u16 y, int value);
 
 /* Frame step of the capture picture task: places the three sprites at

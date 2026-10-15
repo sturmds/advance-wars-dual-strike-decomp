@@ -2,8 +2,6 @@
 #include "game/ov003_effect.h"
 #include "game/ov003_unit.h"
 
-extern Ov003Unit data_ov003_02369538[];
-
 void Sound_PlaySe(int se);
 
 /* Starts an effect for the unit in the first free entry of its group, moving

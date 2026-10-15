@@ -1,15 +1,11 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/map_sprite_task.h"
-
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
+#include "game/screen.h"
 
 u16 func_02021b20(SpriteAnim* sprite);
 void Sound_PlaySe(u32 soundId);
 /* Both start a child task of parent with the given arguments. */
-void ScreenShake_Start(int scriptIndex, int arg, Task* parent);
-void ScreenFlash_Start(int a, int b, int c, Task* parent);
 
 /* The usual case body: the sound, then both effect tasks with their small
  * arguments; in game mode 4 only the first one. Ends the function. */

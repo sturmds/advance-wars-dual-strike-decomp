@@ -4,8 +4,6 @@
 void func_020b9864(void);
 void func_02069b14(void);
 
-extern MenuState gMenuState;
-
 /* Script step of the Vs setup tasks: when VsSetup_Cancel has set state 4
  * (setup.unk_2ea), runs the cancel task. */
 void VsSetup_RunPendingCancel(void) {

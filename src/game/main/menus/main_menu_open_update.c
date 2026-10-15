@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/main_menu.h"
+#include "game/math.h"
 
 #define GXFIFO_MTX_TRANS ((volatile u32*)0x04000470)
 
@@ -7,7 +8,6 @@ const void* Text_Get(u32 textId);
 void ModeFont_ShowText(const void* text, int tile, int paletteSlot, int a,
                        int b);
 void Gfx3d_InitScene(void);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void MainMenu_DrawPicture192x144(void);
 void func_02028644(void);
 void Sound_PlaySe(int id);

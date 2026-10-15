@@ -1,10 +1,7 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 #include "game/popup_menu.h"
-
-extern Unk_027c0280* data_027c0280;
-
-void IconBank_Init(int bank, u8* vram, int firstTile, int paletteSlot);
+#include "game/icon.h"
 
 /* Starts the pop-up menu's icon slot at its first item and empties icon
  * bank 0 for the menu's icons. */

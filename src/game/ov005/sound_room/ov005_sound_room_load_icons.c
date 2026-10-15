@@ -2,13 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/icon.h"
-
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
+#include "game/screen_other_map.h"
 
 /* Sets up icon bank 4 on the first screen (tile 576, palette slot 23) and loads
  * icons 150 to 159 and 162 into it. 162 is loaded twice. */

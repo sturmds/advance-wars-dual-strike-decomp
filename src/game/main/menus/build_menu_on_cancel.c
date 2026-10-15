@@ -3,8 +3,6 @@
 #include "game/task.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern TaskScriptCmd data_0216594c[];
 
 void Sound_PlaySe(int id);

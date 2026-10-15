@@ -2,8 +2,6 @@
 #include "game/map_header.h"
 #include "game/map_select.h"
 
-extern MenuState gMenuState;
-
 void Sound_PlaySe(int id);
 void func_020b9890(void);
 /* Stores the battle's map and second map in the game state. */
@@ -20,10 +18,10 @@ void func_0205f538(void);
 void MapSelect_ConfirmMap(void) {
   Sound_PlaySe(0x10006);
   func_020b9890();
-  if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
+  if (MAP_STATE->gameMode == GAME_MODE_WAR_ROOM) {
     State_SetMapIds(SELECTED_MAP_ID(), SECOND_MAP_ID());
-    STATE->unk_59 = TABLES.subStrip;
-  } else if (STATE->twoMaps == 0) {
+    MAP_STATE->unk_59 = TABLES.subStrip;
+  } else if (MAP_STATE->twoMaps == 0) {
     State_SetMapIds(SELECTED_MAP_ID(), 0);
   } else {
     State_SetMapIds(gMenuState.setup.firstMapId, SELECTED_MAP_ID());

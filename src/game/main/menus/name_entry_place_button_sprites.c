@@ -1,3 +1,4 @@
+#include "game/screen_other_map.h"
 /* The original was built without optimization: no value is reused from a
  * register, every global is read again. */
 #pragma optimization_level 0
@@ -7,13 +8,6 @@
 #include "game/sprite_anim.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
-
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 void NameEntry_PlaceButtonSprites(NameEntry* entry) {
   Unk_027c0280* saved0280 = data_027c0280;

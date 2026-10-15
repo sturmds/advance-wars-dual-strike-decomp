@@ -7,7 +7,6 @@ int VsSetup_GetPanelTileX(int player);
 void VsSetup_StartPlayerTask(int slot, u16 x, int y);
 int Link_GetOwnPlayer(void);
 void VsSetup_CloseLinkButtons(int slot);
-extern MenuState gMenuState;
 
 /* Marks player slot `slot` ready on the Vs setup screen once, with a sound,
  * and starts its panel task. For this machine's own slot it also closes the

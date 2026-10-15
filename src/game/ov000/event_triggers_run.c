@@ -1,4 +1,4 @@
-/* The original was built without optimization: every GAME read reloads both
+/* The original was built without optimization: every MAP_STATE read reloads both
  * globals, and the arguments are stored on the stack on entry. */
 #pragma optimization_level 0
 
@@ -8,16 +8,12 @@
 #include "game/map_unit.h"
 #include "game/unlocks.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern Unk_02080440_48 data_02183b08;
 extern Unk_02080440_48 data_02189cd8;
 
 int Campaign_IsHardMode(void);
 void EventScript_StartOrQueue(const EventScriptCommand* script);
 const EventTrigger* EventTriggers_SkipBlock(const EventTrigger* trigger);
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Skips the rest of the block when a condition fails. */
 #define FAIL_IF(cond)                           \
@@ -28,10 +24,10 @@ const EventTrigger* EventTriggers_SkipBlock(const EventTrigger* trigger);
 
 /* Kind base applies only on data_02183b08, base + EVENT_KIND_SECOND_MAP
  * only on the other state. */
-#define FAIL_IF_WRONG_STATE(base)                            \
-  FAIL_IF(trigger->kind == (base) && GAME == &data_02189cd8) \
-  FAIL_IF(trigger->kind == (base) + EVENT_KIND_SECOND_MAP && \
-          GAME == &data_02183b08)
+#define FAIL_IF_WRONG_STATE(base)                                 \
+  FAIL_IF(trigger->kind == (base) && MAP_STATE == &data_02189cd8) \
+  FAIL_IF(trigger->kind == (base) + EVENT_KIND_SECOND_MAP &&      \
+          MAP_STATE == &data_02183b08)
 
 /* Walks a map's trigger list (EventTrigger). For each block whose
  * conditions all hold: with run, starts its script and sets its done flag;
@@ -51,8 +47,10 @@ BOOL EventTriggers_Run(const EventTrigger* trigger, MapUnit* unit, int id,
         FAIL_IF_WRONG_STATE(EVENT_TRIGGER_DAY)
         matched = FALSE;
         if ((trigger->day == EVENT_TRIGGER_NO_DAY ||
-             (trigger->day == 0 && !GAME->day) || trigger->day == GAME->day) &&
-            (trigger->param == 0 || trigger->param == GAME->currentPlayer)) {
+             (trigger->day == 0 && !MAP_STATE->day) ||
+             trigger->day == MAP_STATE->day) &&
+            (trigger->param == 0 ||
+             trigger->param == MAP_STATE->currentPlayer)) {
           matched = TRUE;
         }
         FAIL_IF(!matched)

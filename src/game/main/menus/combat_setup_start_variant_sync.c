@@ -3,8 +3,6 @@
 #include "game/task.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 void LinkCoVariantSyncTask_Create(Task* parent, int slot0, int slot1, int slot2,
                                   u8 slot3);
 

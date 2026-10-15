@@ -3,9 +3,6 @@
 #include "game/Unk_02080440.h"
 #include "game/terrain.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Firepower bonus in percent the front CO of a player gives on a terrain,
  * for its current power state. With coEffectsOn clear it uses Andy's
  * day-to-day value for plains, whatever the CO and terrain. */

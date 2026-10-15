@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_ov006_0235f690.h"
-
-void MenuButton_Remove(int id);
-
-extern Unk_ov006_0235f690* data_ov006_0236d640;
+#include "game/menu_button.h"
 
 void func_ov006_02355610(void) {
   MenuButton_Remove(96);

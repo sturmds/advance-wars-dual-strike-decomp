@@ -1,14 +1,13 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
+#include "sdk/fs.h"
 
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 BOOL func_020fa6f8(void);
 u8* Palette_GetArmyBlock(int player);
 void Map_LoadExtraObjTiles(int a, int b);
 
-extern Unk_027c0280* data_027c0280;
 extern char data_021682f8[];
 extern char data_0216830c[];
 extern char data_02168310[];

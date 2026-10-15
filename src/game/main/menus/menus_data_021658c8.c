@@ -4,6 +4,7 @@
 #include "game/menu_help.h"
 #include "game/menu_item.h"
 #include "game/task.h"
+#include "game/ai.h"
 
 void BattleMenu_AutoCoOffHidden(void);
 void BattleMenu_AutoCoOnHidden(void);
@@ -55,7 +56,6 @@ void func_020beed8(void);
 void func_020bef30(void);
 void func_020bf1f0(void);
 void func_020bf260(void);
-void func_020bf6f4(void);
 void func_020bfbe0(void);
 void func_020bfc44(void);
 void func_020bfed4(void);

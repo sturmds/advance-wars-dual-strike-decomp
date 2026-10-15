@@ -1,8 +1,7 @@
 #include "types.h"
+#include "game/math.h"
 
 extern s16 data_0214d4c4[]; /* a sine and cosine pair per 16 angle units */
-
-s32 HwDiv32(s32 numerator, s32 denominator);
 
 #define FX_MUL(a, b) ((fx32)(((long long)(a) * (b) + 0x800) >> 12))
 

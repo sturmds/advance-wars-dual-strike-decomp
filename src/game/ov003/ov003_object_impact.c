@@ -3,10 +3,6 @@
 #include "game/ov003_unit.h"
 #include "game/ov003_marker.h"
 
-extern Ov003Unit data_ov003_02369538[];
-extern u8
-    data_ov003_02365d10[]; /* per tile code: bits 5-7 owner, bits 0-4 terrain */
-
 u32 Math_Distance(int x1, int y1, int x2, int y2);
 void Ov003Object_HitUnit(Ov003Object* object, Ov003Unit* unit);
 void Ov003Object_HitTile(Ov003Object* object, int tileX, int tileY);

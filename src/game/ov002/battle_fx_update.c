@@ -4,8 +4,6 @@
 #include "game/BattleSpriteTask.h"
 #include "game/task.h"
 
-extern MenuState gMenuState;
-
 #define MENU ((MenuState*)&gMenuState)
 #define FX (MENU->battle.motions[side][cell])
 #define EFFECT                \

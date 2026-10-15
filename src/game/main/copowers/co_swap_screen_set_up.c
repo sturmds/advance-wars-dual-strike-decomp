@@ -4,9 +4,9 @@
 #include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/song.h"
+#include "game/screen.h"
 
-void Screen_SetBgMode(int mode);
-void Screen_InitLayers(const void* config);
 u8* File_Load(const char* path);
 void Mem_Free(void* res);
 void Data_Unpack(const void* src, void* dest);
@@ -21,21 +21,15 @@ int Link_IsActive(void);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 const void* Text_Get(u32 textId);
 u8 BreakText_LoadChangeFont(const s8* text, u16 tile, u8 palette);
-void Sound_LowerSongVolume(int volume);
 void Sound_PlaySe(u32 soundId);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
 extern GfxLayer
     data_0215c6c4[]; /* layer config while the main screen is current */
 extern GfxLayer data_0215c714[]; /* layer config otherwise */
 extern char data_0215c7f4[];     /* "/ohashi/res_syogunchange" */
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
-#define PLAYER (&GAME->players[GAME->currentPlayer])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
+#define PLAYER (&MAP_STATE->players[MAP_STATE->currentPlayer])
 #define LAYER_TILES(layerBg) \
   (data_027c0280->bgVram + (data_027c0280->bgCnt[layerBg].charBase << 14))
 
@@ -110,8 +104,10 @@ void CoSwapScreen_SetUp(Task* task) {
   Gfx_RequestLayerCopy(2);
   Mem_Free(res);
 
-  Co_LoadArmyGraphicsAndPalette(PLAYER->front.id, 16, 0, GAME->currentPlayer);
-  Co_LoadArmyGraphicsAndPalette(PLAYER->back.id, 0x1c0, 1, GAME->currentPlayer);
+  Co_LoadArmyGraphicsAndPalette(PLAYER->front.id, 16, 0,
+                                MAP_STATE->currentPlayer);
+  Co_LoadArmyGraphicsAndPalette(PLAYER->back.id, 0x1c0, 1,
+                                MAP_STATE->currentPlayer);
   task->unk_58 = BreakText_LoadChangeFont(Text_Get(0x7d00001d), 0x370, 2);
   if (data_027c027c != data_027c0288.unk_00 && Link_IsActive() == 1) {
     SpriteTask_Create(232, 8, 0, 15);

@@ -3,9 +3,6 @@
 #include "game/terrain.h"
 #include "game/design_map_edit.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int Ov006_IsSpecialCell(int x, int y);
 int Ov006_GetLandPieceIfNotSea(int x, int y);
 int Ov006_CountRiverNeighbors(int x, int y);
@@ -13,8 +10,6 @@ int Ov006_MouthHasNoOutlet(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain);
 void Ov006_StoreMapCell(int x, int y, int cell);
 void Ov006_RefreshNeighborRivers(int x, int y);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 #define FIX_NEIGHBOR(nx, ny, scoreTooLow)                 \
   if (Ov006_IsSpecialCell(nx, ny)) {                      \
@@ -38,23 +33,23 @@ void Ov006_ResetNeighborsToSea(int x, int y) {
     if (x > 0) {
       FIX_NEIGHBOR(x - 1, y - 1, <= 0);
     }
-    if (x < STATE->unk_1c4->mapWidth - 1) {
+    if (x < MAP_STATE->unk_1c4->mapWidth - 1) {
       FIX_NEIGHBOR(x + 1, y - 1, <= 0);
     }
   }
-  if (y < STATE->unk_1c4->mapHeight - 1) {
+  if (y < MAP_STATE->unk_1c4->mapHeight - 1) {
     FIX_NEIGHBOR(x, y + 1, < 0);
     if (x > 0) {
       FIX_NEIGHBOR(x - 1, y + 1, <= 0);
     }
-    if (x < STATE->unk_1c4->mapWidth - 1) {
+    if (x < MAP_STATE->unk_1c4->mapWidth - 1) {
       FIX_NEIGHBOR(x + 1, y + 1, <= 0);
     }
   }
   if (x > 0) {
     FIX_NEIGHBOR(x - 1, y, < 0);
   }
-  if (x < STATE->unk_1c4->mapWidth - 1) {
+  if (x < MAP_STATE->unk_1c4->mapWidth - 1) {
     FIX_NEIGHBOR(x + 1, y, < 0);
   }
 }

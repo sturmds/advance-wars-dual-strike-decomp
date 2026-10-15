@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/task.h"
-
-void Sound_FadeOutSongOver(int arg);
+#include "game/song.h"
 
 BOOL func_0202326c(Task* task) {
   Sound_FadeOutSongOver(task->pc->arg);

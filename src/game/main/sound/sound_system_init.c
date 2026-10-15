@@ -1,4 +1,5 @@
 #include "types.h"
+#include "sdk/snd.h"
 
 /* Entry in one of the system's callback lists. next is filled in when the
  * entry is added. */
@@ -16,7 +17,6 @@ static CallbackNode data_022a802c;
 
 void func_02104de8(void);
 void func_02104ddc(void);
-void SND_Init(void);
 void func_021148ec(CallbackNode* node);
 void func_021148d4(CallbackNode* node);
 void* func_02104f00(void);

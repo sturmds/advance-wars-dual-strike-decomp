@@ -4,11 +4,7 @@
 
 u8 Co_GetTagFirepower(int co, int partner);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
-#define PLAYER (&GAME->players[GAME->currentPlayer])
+#define PLAYER (&MAP_STATE->players[MAP_STATE->currentPlayer])
 
 /* First step of the tag firepower gauge script: clears the counters and sets
  * the target to the tag firepower of the current player's two COs. */

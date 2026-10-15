@@ -3,6 +3,7 @@
 #include "game/Ov003Fx.h"
 #include "game/ov003_gfx.h"
 #include "game/ov003_unit.h"
+#include "sdk/gx.h"
 
 #define GXFIFO_MTX_PUSH (*(volatile u32*)0x04000444)
 #define GXFIFO_MTX_MODE (*(volatile u32*)0x04000440)
@@ -24,7 +25,6 @@ u8 data_ov003_02365d10[OV003_TILE_CODE_COUNT];
 u16 data_ov003_02367110[OV003_METATILE_COUNT][4];
 u16 data_ov003_02366110[OV003_METATILE_COUNT][4];
 Ov003Map data_ov003_02368110;
-void G3X_Reset(void);
 void G3i_LookAt_(void* a, void* b, void* c, int d, int e);
 void func_ov003_02353b34(void);
 

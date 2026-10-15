@@ -7,7 +7,6 @@
 #include "game/Unk_02160ac0.h"
 #include "game/menu_button.h"
 
-extern MenuState gMenuState;
 extern MenuButtonTemplate data_02160bd8;
 extern MenuButtonTemplate data_02160db8;
 extern MenuButtonTemplate data_02160e58;

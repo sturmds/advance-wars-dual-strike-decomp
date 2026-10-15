@@ -22,8 +22,6 @@ void* VsSetup_ConfirmTeams(void);
 void* func_0206664c(void);
 void Task_ResumeScript(Task* task);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

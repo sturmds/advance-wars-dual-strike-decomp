@@ -5,8 +5,6 @@ int BattleSetup_IsCursorOnCo(void);
 void Sound_PlaySe(int id);
 void VsSetup_RedrawSkills(void);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 #define SELECTED_SLOT() ((MENU->setup.cursorButton - 8) >> 1)

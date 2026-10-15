@@ -1,11 +1,11 @@
 #include "types.h"
 #include "game/screen_other_map.h"
+#include "game/screen.h"
 
 void* Ov004_GetResourceData(const char* name);
 void Data_Unpack(const void* src, void* dst);
 void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);
 BOOL Screen_IsTextBg(int layer);
-BOOL Screen_IsAffineBg(int layer);
 
 extern void* data_ov004_022bf150;
 extern u32 data_ov004_022bdc94[]; /* map bytes of a text BG by screen size */

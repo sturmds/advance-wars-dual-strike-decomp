@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/task.h"
+#include "game/math.h"
 
 #define FRAME(task) (*(s16*)&(task)->unk_4c)
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task* task);
 void HistoryBanner_Draw(int x, int y);
 

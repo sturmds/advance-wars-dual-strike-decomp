@@ -3,9 +3,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_022a7c5c.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0288 data_027c0288;
-
 int MainLoop_GetFrameCount(void);
 void GfxQueue_AddKind1(const void* src, void* dst, u32 size);
 

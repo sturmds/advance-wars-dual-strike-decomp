@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 void Sound_PlaySe(u32 soundId);
 int LinkScreen_FindPanelOfPlayer(int player);
 

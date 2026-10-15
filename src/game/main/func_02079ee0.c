@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/Unk_0215fe84.h"
 
-extern Unk_0215fe84* data_0215fe84;
 extern u32 data_0229c880;
 void func_02079180(void*, int, int);
 

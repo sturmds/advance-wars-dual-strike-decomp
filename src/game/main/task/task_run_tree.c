@@ -2,7 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/task.h"
 
-extern Unk_02080440* data_027c027c;
 extern u32 gTaskSystemReady;
 
 void Task_RunScript(Task* task);

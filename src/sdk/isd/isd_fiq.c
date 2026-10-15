@@ -1,7 +1,7 @@
 #include "types.h"
+#include "sdk/isd.h"
 
 #ifdef __MWERKS__
-extern asm BOOL Isd_RestoreFiq(BOOL enable);
 
 /*
  * Masks FIQ (CPSR bit 6). Returns whether FIQ was enabled before.

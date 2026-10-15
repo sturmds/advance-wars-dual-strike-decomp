@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/menu_button.h"
+#include "game/math.h"
 
 int MenuButton_TestFlags(MenuButton* entry, int mask);
-s16 Math_Ease(int curve, int from, int to, int elapsed, int duration);
 
 /* Moves a button that slides onto or off the screen, once per frame.
  * Sliding in starts past an edge of the 256x192 screen and ends at

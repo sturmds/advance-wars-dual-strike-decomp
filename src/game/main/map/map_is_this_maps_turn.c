@@ -6,7 +6,6 @@
 extern Unk_02080440_48 data_02183b08;
 extern Unk_02080440_48 data_02189cd8;
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
 #define OWN_MAP ((&data_027c0288.unk_00)[data_027c0284])
 #define OTHER_MAP ((&data_027c0288.unk_00)[1 - data_027c0284])
 
@@ -33,29 +32,29 @@ BOOL Map_IsThisMapsTurn(void) {
   int otherDay;
   BOOL ownNotLater;
 
-  if (GAME->secondMapId != 0) {
+  if (MAP_STATE->secondMapId != 0) {
     SWITCH_TO(OTHER_MAP);
-    otherUnk30 = GAME->unk_1c4->unk_30;
+    otherUnk30 = MAP_STATE->unk_1c4->unk_30;
     SWITCH_BACK();
     if (otherUnk30 == 0) {
       goto compare;
     }
   }
-  if (GAME == &data_02183b08) {
+  if (MAP_STATE == &data_02183b08) {
     return TRUE;
   }
-  if (GAME == &data_02189cd8) {
+  if (MAP_STATE == &data_02189cd8) {
     return FALSE;
   }
 compare:
   SWITCH_TO(OWN_MAP);
-  ownDay = GAME->day;
+  ownDay = MAP_STATE->day;
   SWITCH_BACK();
   SWITCH_TO(OTHER_MAP);
-  otherDay = GAME->day;
+  otherDay = MAP_STATE->day;
   SWITCH_BACK();
   ownNotLater = ownDay <= otherDay ? TRUE : FALSE;
-  if (GAME == &data_02183b08) {
+  if (MAP_STATE == &data_02183b08) {
     return ownNotLater;
   }
   return ownNotLater == FALSE;

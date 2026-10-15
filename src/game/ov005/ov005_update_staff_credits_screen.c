@@ -6,10 +6,9 @@
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0235a30c.h"
 #include "game/brightness_fade.h"
+#include "game/math.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 BOOL func_020fd624(Task* task);
 void func_020fd618(Task* task);
 void Screens_BlackOut(void);
@@ -34,9 +33,6 @@ void Ov005_QueueEntrySprites(Unk_ov005_0235a30c* work);
 void Ov005_ScrollStaffCreditsBackground(Unk_ov005_0235a30c* work);
 void func_ov005_0235bab4(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern const u16 data_ov005_0236970c[];
 
 /* Per-frame update of the staff credits. Fades both screens in, moves the

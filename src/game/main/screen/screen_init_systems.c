@@ -1,11 +1,9 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/screen.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern int data_0229eae4;
 
-void Screen_FillBlack(void);
 void MainLoop_SetFrameCallback(void (*callback)(void));
 void func_01ff9c28(void (*callback)(void));
 void func_01ff9f1c(int value);
@@ -23,10 +21,8 @@ void EventScript_Init(void);
 void ScriptSlot_ClearAll(void);
 void Task_InitSystem(void);
 void UnitShowTask_ClearSlots(void);
-void Screens_InitEffectState(void);
 void Keypad_Init(void);
 void func_020044a8(void);
-void Screen_ApplyAll(void);
 void Sound_ResetSongs(void);
 void func_02026540(void);
 void MainMenu_Init(void);

@@ -23,13 +23,8 @@ void Ov006_RefitCellsAround(int x, int y);
 void Ov006_RefreshNeighborRiverCells(int x, int y);
 void func_020c4448(void);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE_AT(x, y) \
-  (STATE->mapTiles->tiles[(x) + STATE->mapTiles->rowStart[y]])
+  (MAP_STATE->mapTiles->tiles[(x) + MAP_STATE->mapTiles->rowStart[y]])
 
 #define PROPERTY_NONE 0
 #define PROPERTY_HQ 2

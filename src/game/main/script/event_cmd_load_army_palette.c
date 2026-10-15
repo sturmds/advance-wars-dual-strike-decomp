@@ -3,11 +3,7 @@
 #include "game/Unk_0201d320.h"
 #include "game/player.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern Unk_0201d320 data_022977f4[];
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 extern u8 gEventSkipState;
 void EventScript_SetArmyPalette(int army);
@@ -22,13 +18,13 @@ BOOL EventCmd_LoadArmyPalette(s16 index) {
   int army;
 
   if (player == 5) {
-    player = STATE->currentPlayer;
+    player = MAP_STATE->currentPlayer;
   }
   if (gEventSkipState != 1) {
     if (player == 0) {
       army = ARMY_BLACK_HOLE;
     } else {
-      army = STATE->players[player].armyColour;
+      army = MAP_STATE->players[player].armyColour;
       /* needed to match: no effect on the value */
       if (army == ARMY_BLACK_HOLE) {
         army = ARMY_BLACK_HOLE;

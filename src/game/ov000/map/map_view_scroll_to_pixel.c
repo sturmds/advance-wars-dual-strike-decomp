@@ -1,13 +1,10 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern int gCameraPresetIndex;
 extern u8 data_021576fa[][20];
 extern u8 data_021576fb[][20];
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
 #define STATE_50 (data_027c027c->unk_50[data_027c0284])
 #define NO_SCROLL 10000
 
@@ -29,7 +26,7 @@ void MapView_ScrollToPixel(int x, int y) {
   viewH = data_021576fb[gCameraPresetIndex][0];
 
   newX = NO_SCROLL;
-  view = GAME->unk_1c4;
+  view = MAP_STATE->unk_1c4;
   newY = NO_SCROLL;
   scrollX = view->scrollX;
   if (x - scrollX < 32) {
@@ -63,7 +60,7 @@ void MapView_ScrollToPixel(int x, int y) {
     newY = (view->mapHeight - viewH) * 16;
   }
   view->scrollX = newX;
-  GAME->unk_1c4->scrollY = newY;
+  MAP_STATE->unk_1c4->scrollY = newY;
   if (STATE_50->callback == NULL) {
     return;
   }

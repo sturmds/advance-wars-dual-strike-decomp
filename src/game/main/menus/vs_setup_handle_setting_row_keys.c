@@ -5,8 +5,6 @@
 int func_02064acc(void);
 int func_02064af0(int row);
 
-extern MenuState gMenuState;
-
 #define SETTING_ROWS 9
 
 /* Keys of the Vs setup help view: left and right pick the setting row

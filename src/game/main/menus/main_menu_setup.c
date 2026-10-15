@@ -6,6 +6,8 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "sdk/os.h"
+#include "game/screen_other_map.h"
+#include "sdk/gx_load.h"
 
 void Data_Unpack(const void* src, void* dest);
 const char* File_LocalizePath(const char* path);
@@ -22,8 +24,6 @@ void ModeFont_Load(int tile, int a);
 void ModeFont_ShowText(const void* text, int tile, int paletteSlot, int a,
                        int b);
 void Palette_Load(const void* src, int offset, u32 size);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Task_JumpToLabel(void* task, int label);
 const void* Text_Get(u32 textId);
 void Wallpaper_LoadSelected(void);
@@ -58,15 +58,7 @@ s8 func_021023b4(void);
 int func_021023c4(void);
 s8 func_021023d4(void);
 s8 func_021023e4(void);
-void GX_EndLoadTexPltt(void);
-void GX_LoadTexPltt(const void* src, u32 offset, u32 size);
-void GX_BeginLoadTexPltt(void);
-void GX_EndLoadTex(void);
-void GX_BeginLoadTex(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern char data_02159bec[]; /* "/ohashi/res_modemenu_lang" */
 extern char data_02159c08[]; /* "/ohashi/res_modemenu" */
 extern char data_02159c20[]; /* "/icon/res_icon_cl" */

@@ -4,7 +4,6 @@
 
 int FrameHeap_FreeByState(void* frameHeap, int level);
 int FrameHeap_SaveState(void* frameHeap, int level);
-int SoundHeap_AddLevel(SoundHeap* heap);
 
 /* NitroSystem NNS_SndHeapSaveState: starts a new save point and returns its
  * level, or -1 when there is no room for it. */

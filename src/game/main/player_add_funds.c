@@ -5,8 +5,6 @@
 
 #define FUNDS_MAX 999999
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern Unk_022a7b80 data_022a7b80;
 
 /* Adds amount to a player's funds and caps them at 999999. */

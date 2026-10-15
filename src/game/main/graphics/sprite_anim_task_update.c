@@ -2,7 +2,6 @@
 #include "game/task.h"
 #include "game/sprite_anim.h"
 
-int SpriteAnim_Draw(SpriteAnim* sprite, int x, int y);
 void Task_Destroy(Task* task);
 
 /* Draws the task's sprite each frame. The task ends when the sprite has

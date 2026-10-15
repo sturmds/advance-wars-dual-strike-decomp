@@ -3,9 +3,6 @@
 #include "game/Unk_02031a14.h"
 #include "game/win_lose.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int CoExp_IsSingleColumn(void);
 
 /* Starts the func_02031a14 task for one of six cells in a 2-column,

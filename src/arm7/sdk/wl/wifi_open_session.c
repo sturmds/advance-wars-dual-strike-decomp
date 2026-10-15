@@ -10,7 +10,6 @@ void WifiStation_ForgetPeers(void);
 void WifiScan_ForgetNetworks(void);
 void WifiTx_LayOutSlots(void);
 void WifiRx_SetUpRing(void);
-u64 _ll_udiv_Arm7(u64 dividend, u64 divisor);
 
 /* Interrupts every session type enables. */
 #define W_IRQ_BASIC                                                  \

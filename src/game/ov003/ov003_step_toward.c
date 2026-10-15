@@ -1,7 +1,5 @@
 #include "types.h"
-
-int Math_Sqrt32(int squared);
-int HwDiv32(int numerator, int denominator);
+#include "game/math.h"
 
 /* Sets *outX and *outY to the move of the given length from (x1, y1) toward (x2, y2). Both are 0 when the points match. */
 void Ov003_StepToward(int x1, int y1, int x2, int y2, int length, int* outX,

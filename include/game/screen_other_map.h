@@ -8,11 +8,6 @@
 void Screen_SetCurrent(void* state);
 void Screen_SetCurrentGfx(void* state);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-
 /* unk_30 of the other screen's map state (the screens are indexed 0 and 1,
  * data_027c0284 is the current one). */
 static inline u32 OtherMap_GetUnk30(void) {

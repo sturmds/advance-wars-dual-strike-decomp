@@ -4,6 +4,10 @@
 #include "game/Unk_022a7b80.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/math.h"
+#include "game/icon.h"
+#include "game/menu_button.h"
+#include "game/screen_other_map.h"
 
 void Data_Unpack(const void* src, void* dest);
 u8* File_Load(const char* path);
@@ -12,10 +16,6 @@ void Font_LoadDigits(int a);
 void Gfx_InitBothScreens(void);
 void Gfx_LoadBmap09f(void* a, int b, int c);
 void Gfx_RequestLayerCopy(int layer);
-s32 HwDiv32(s32 numerator, s32 denominator);
-s32 HwMod32(s32 numerator, s32 denominator);
-void IconBank_LoadPalette(int bank, int paletteSlot);
-void Icon_LoadTo(int iconId, u8* vram, int tile);
 void Layer0_PutNumber(int x, int y, u32 value);
 void Layer0_PutNumberThenText4(int x, int y, u32 value);
 void Layer0_PutRatio(int x, int y, u32 first, u32 second);
@@ -23,15 +23,12 @@ void MapPreview_Draw(void* dst, int mapId);
 const void* Map_GetName(u32 mapId);
 void Mem_Copy32(const void* src, void* dest, u32 size);
 void Mem_Free(void* res);
-void Menu_Reset(void);
 void ModeFont_Load(int a, int b);
 void ModeFont_ShowText(const void* text, int tile, int paletteSlot, int a,
                        int b);
 void PaletteCycle_Start(int a);
 void Palette_Load(const void* src, int offset, u32 size);
-void Screen_SetCurrent(void* state);
 void Screen_SetCurrentBoth(void* state);
-void Screen_SetCurrentGfx(void* state);
 const void* Text_Get(u32 textId);
 void Text_PrintImmediate(int x, int y, u16* map, u32 textId, u16 unk_30,
                          int arg);
@@ -48,10 +45,6 @@ int Survival_GetMapCount(int mode);
 int Survival_GetMapId(int mode, int index);
 
 extern Unk_022a7b80 data_022a7b80;
-extern MenuState gMenuState;
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern char data_0215af58[]; /* "/ohashi/res_survival" */
 extern char data_0215af70[]; /* "/ohashi/res_survival_lang" */
 

@@ -1,12 +1,12 @@
 #include "types.h"
 #include "game/unit_action.h"
+#include "game/ai/ai_turn_state.h"
 
 extern u16 data_0229d8c4;
 
 void func_020800c0(void);
 int LinkActionQueue_Pop(UnitAction* action);
 int UnitAction_IsValid(UnitAction* action);
-void AiTurn_SetState(int state);
 void func_0208c1f4(int a0);
 
 /* State 0 of LinkAction_Update. Takes the next queued action into gUnitAction; when it is a valid

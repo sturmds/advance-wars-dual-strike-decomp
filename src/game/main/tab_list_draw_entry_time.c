@@ -2,13 +2,9 @@
 #include "game/tab_list.h"
 #include "game/Unk_02088d04.h"
 #include "game/text_print.h"
+#include "game/math.h"
 
-u32 HwDivU32(u32 numerator, u32 denominator);
-s32 HwDiv32(s32 numerator, s32 denominator);
-s32 HwMod32(s32 numerator, s32 denominator);
-u32 HwModU32(u32 numerator, u32 denominator);
 void Layer0_PutTime(int x, int y, u32 hours, u32 minutes, u32 seconds);
-extern Unk_027c0280* data_027c0280;
 
 /* TabListEntry.draw of the entries whose number is a time: the text at x,
  * then the value (frames, 60 to the second) as hours, minutes and seconds

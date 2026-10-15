@@ -4,6 +4,8 @@
 #include "game/Unk_0229fb30.h"
 #include "game/link_buffers.h"
 #include "game/oam_cells.h"
+#include "game/oam_buffer.h"
+#include "game/math.h"
 
 void Mem_Copy32(const void* src, void* dst, u32 size);
 void Gfx_RequestLayerCopy(int layer);
@@ -13,11 +15,7 @@ void Text_PrintStringImmediate(s16 x, s16 y, u16* map, const char* text, u16 a,
                                u16 b);
 void Palette_Load(const void* src, u32 offset, u32 size);
 int MainLoop_GetFrameCount(void);
-s32 HwDiv32(s32 numer, s32 denom);
-s32 HwMod32(s32 numer, s32 denom);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
-int Math_SinDegrees(int degrees);
 u16 Wireless_GetChildAids(void);
 int func_0207a1f0(void);
 int func_0207a260(void);
@@ -27,11 +25,8 @@ void func_0207c380(void);
 void LinkMenu_ResetBackButton(void);
 void LargeFont_DrawName(void* data, int a, u16 b, int c);
 
-extern Unk_027c0280* data_027c0280;
 extern u16 data_0229f330[];
 extern char data_02167c88[];
-extern const s16 gSineTable
-    []; /* needed to match: const lets the compiler move the loads out of the loop */
 
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 

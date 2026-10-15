@@ -3,8 +3,6 @@
 #include "game/Unk_02080440.h"
 #include "game/player.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern Unk_0201d320 data_022977f4[];
 
 /* Event script command: sets the front CO of player unk_08 (low byte) to the CO

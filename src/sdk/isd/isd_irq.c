@@ -1,7 +1,7 @@
 #include "types.h"
+#include "sdk/isd.h"
 
 #ifdef __MWERKS__
-extern asm BOOL Isd_RestoreIrq(BOOL enable);
 
 /*
  * Masks IRQ (CPSR bit 7). Returns whether IRQ was enabled before.

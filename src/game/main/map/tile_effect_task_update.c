@@ -10,16 +10,10 @@ typedef struct Vec3 {
   int z;
 } Vec3;
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-
 void Task_ResumeScript(TileEffectTask* task);
 void MapSpriteTask_PlayKindEffects(TileEffectTask* task);
 int SpriteAnim_Draw(void* sprite, int x, int y);
 int SpriteAnim_Draw3d(void* sprite, Vec3* pos, Vec3* rot);
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Each frame: steps the effect (MapSpriteTask_PlayKindEffects), then draws its sprite on
  * the tile, in 3D on the first screen and as a 2D sprite against the map
@@ -44,8 +38,8 @@ void TileEffectTask_Update(TileEffectTask* task) {
     *REG_MTX_POP = 1;
   } else {
     if (!SpriteAnim_Draw(task->sprite,
-                         task->x * 16 + 8 - GAME->unk_1c4->scrollX,
-                         task->y * 16 + 16 - GAME->unk_1c4->scrollY)) {
+                         task->x * 16 + 8 - MAP_STATE->unk_1c4->scrollX,
+                         task->y * 16 + 16 - MAP_STATE->unk_1c4->scrollY)) {
       Task_ResumeScript(task);
     }
   }

@@ -3,17 +3,11 @@
 #include "game/menu_state.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 void Gfx_RequestLayerCopy(int layer);
 void HelpText_Show(u32 textId, int tile);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
 
 /* Main screen: copies the map kept at the start of gMenuState back to
  * layer 2, then sets alpha blending with no first target and every BG and

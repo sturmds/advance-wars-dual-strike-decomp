@@ -7,8 +7,6 @@ void Mem_Copy32(const void* src, void* dst, u32 size);
 void Bg_ClearRect(void* target, int x, int y, int w, int h);
 void Gfx_RequestLayerCopy(int layer);
 
-extern MenuState gMenuState;
-
 /* Called by the DayBanner functions after they set the scroll: copies the saved banner map from gMenuState back to
  * layer 0, then clears the tile rows above the scroll position and the rows below
  * the 192-pixel screen height, so only the visible part of the banner is left.

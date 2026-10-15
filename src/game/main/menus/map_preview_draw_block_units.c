@@ -2,8 +2,6 @@
 #include "game/map_header.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u8 gSavedArmyColours[];
 extern u16 gMapPreviewColumnOffsets[];
 extern u16 gMapPreviewRowOffsets[];
@@ -11,8 +9,6 @@ extern u16 data_021587e0[];
 extern u16 data_02139d90[];
 /* One u16 (four 4bpp pixels) per row of a 4x4 cell: the pixels a unit dot keeps. */
 extern u16 gMapPreviewBlockUnitMask[];
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Unit layer of one block of the map preview, drawn beside the terrain
  * block of MapPreview_DrawBlock: clears the cell of each of width by height
@@ -51,7 +47,8 @@ void MapPreview_DrawBlockUnits(u16* dst, int x, int y, int width, u16 height) {
       rowOff = rowTable[y - startY];
       cell = column + rowOff;
       column[rowOff] = cell[2] = cell[4] = cell[6] = 0;
-      slot = GAME->mapTiles->unitAt[GAME->mapTiles->rowStart[y] + col];
+      slot =
+          MAP_STATE->mapTiles->unitAt[MAP_STATE->mapTiles->rowStart[y] + col];
       if (slot != 0) {
         /* unit slot / 64 + 1: the owner's player slot */
         dot = data_02139d90 +

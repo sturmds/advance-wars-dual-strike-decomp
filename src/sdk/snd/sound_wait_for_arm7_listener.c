@@ -5,7 +5,7 @@ typedef void (*PxiCallback)(int tag, u32 data, int err);
 
 /* PXI_SetFifoRecvCallback, PXI_IsCallbackReady (guessed names). */
 void PXI_SetFifoRecvCallback(int tag, PxiCallback callback);
-int PXI_IsCallbackReady(int tag, int peer);
+BOOL PXI_IsCallbackReady(u32 tag, u32 proc);
 int func_0210dc64(void);
 
 void Sound_WaitForArm7Listener(void) {

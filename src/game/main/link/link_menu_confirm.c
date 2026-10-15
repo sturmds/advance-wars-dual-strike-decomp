@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/link_menu_state.h"
+#include "game/menu_button.h"
 
 #define LINK_UNFLAGGED_ACK 0x8f
 #define SE_CONFIRM 0x10006
@@ -16,8 +17,6 @@ void func_0207bbf8(void);
 void func_0207bc14(void);
 void LinkBanner_Create(int id);
 void Link_SendUnflaggedPacket(void* data);
-void MenuButtons_CloseAll(void);
-void MenuButtons_RemoveSelectable(void);
 Task* LinkMenu_FindTask(void);
 void Task_ResumeScript(Task* task);
 void MI_CpuFill8(void* dest, int value, int size);

@@ -4,12 +4,9 @@
 #include "game/co_data.h"
 #include "game/range_map.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern MoveSearch* data_027c0758;
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define PLAYER (STATE->players[STATE->unk_1e])
+#define PLAYER (MAP_STATE->players[MAP_STATE->unk_1e])
 
 /* A movement cost chart: one row of 32 terrain costs per move type, -1 where
  * the move type cannot enter. */
@@ -25,7 +22,7 @@ void MoveSearch_LoadMoveCosts(int unitType) {
   int coId;
 
   for (terrain = 0; terrain < TERRAIN_ID_COUNT; terrain++) {
-    if (STATE->coEffectsOn == 0) {
+    if (MAP_STATE->coEffectsOn == 0) {
       coId = 0;
     } else {
       coId = PLAYER.front.id & PLAYER_CO_ID_MASK;

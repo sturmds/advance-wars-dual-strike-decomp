@@ -1,5 +1,4 @@
 #include "types.h"
-
-void Sound_DimSong(void);
+#include "game/song.h"
 
 void func_0204ec28(void) { Sound_DimSong(); }

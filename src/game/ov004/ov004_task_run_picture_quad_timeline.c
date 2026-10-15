@@ -3,6 +3,7 @@
 #include "game/task.h"
 #include "game/Unk_ov004_022bf158.h"
 #include "game/brightness_fade.h"
+#include "game/screen.h"
 
 void Ov004_UpdateElapsedFrames(Unk_ov004_022bf158* state);
 int Ov004_CheckTimedEvent(Unk_ov004_022bf158* state, int event, int frame);
@@ -17,7 +18,6 @@ void Ov004_UnpackResource(const char* name, void* dest);
 void Ov004_CopyResource(const char* name, void* dest);
 void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);
 BOOL Screen_IsTextBg(int layer);
-BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
 void Task_ResumeScript(void* task);

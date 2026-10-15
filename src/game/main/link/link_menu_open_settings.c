@@ -3,17 +3,13 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_0229fb30.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void func_02082a8c(int palette);
 void func_02088528(int a0);
 void MenuButton_DisableTouch(int id);
 void LinkMenu_DrawHelpText(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern u8 data_02160af0
     []; /* x, y of each of the 5 entries; needed to match: not const, read again for each button */
 extern const MenuButtonTemplate data_02160c00;

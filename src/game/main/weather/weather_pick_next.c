@@ -5,9 +5,6 @@
 int Rng_RollTier(u32 limit1, u32 limit2, u32 limit3);
 BOOL Weather_TickDays(void);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 #define VIEW (data_027c027c->unk_48[data_027c0284]->unk_1c4)
 #define WEATHER (data_027c027c->unk_5c[data_027c0284])
 

@@ -1,6 +1,5 @@
 #include "sdk/pm.h"
 
-extern PowerChipReadSlot gPMRegisterReads[POWER_CHIP_READ_SLOTS];
 extern volatile int gPMSleepAck;
 extern volatile int gPMSleepRequestAck;
 

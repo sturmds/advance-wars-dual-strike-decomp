@@ -2,8 +2,6 @@
 #include "game/menu_state.h"
 #include "game/oam_cells.h"
 
-extern MenuState gMenuState;
-
 void Sprite_QueueAt(int a0, int x, int y, void* a3, int attr, int tile);
 
 /* Draws the title strip for a two-map battle: two 32-wide sprites side by

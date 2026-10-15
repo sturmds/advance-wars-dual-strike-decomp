@@ -2,13 +2,13 @@
 #include "game/Unk_02080440.h"
 #include "game/screen_other_map.h"
 #include "game/tile_point.h"
+#include "sdk/os.h"
+#include "game/screen.h"
 
 BOOL Unit_FindOtherMapTile(MapUnit* unit, TilePoint* pos);
-void OS_Terminate(void);
 void Unit_TransferToOtherMap(MapUnit* unit, int x, int y);
 void func_020c8888(void);
 void Map_RebuildUnitTiles(void);
-BOOL SceneMode_IsCurrent(int mode);
 
 /* Moves a unit to the other map of a dual-front battle: finds its tile
  * there (stops the game if there is none), has Unit_TransferToOtherMap put the unit

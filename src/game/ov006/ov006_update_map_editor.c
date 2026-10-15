@@ -25,11 +25,6 @@ int Ov006_ReadEditInput(void);
 int Ov006_PlaceUnitAtCursor(void);
 void func_ov006_0235f690(void);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define STATE_50 (data_027c027c->unk_50[data_027c0284])
 #define OV6 data_ov006_0236d640
 
@@ -54,8 +49,8 @@ void Ov006_UpdateMapEditor(void) {
   if (OV6->unk_00 & 0x8000) {
     OV6->unk_00 &= ~0x8000;
     OV6->screenState = 0;
-    OV6->cursorX = STATE->cursorX;
-    OV6->cursorY = STATE->cursorY;
+    OV6->cursorX = MAP_STATE->cursorX;
+    OV6->cursorY = MAP_STATE->cursorY;
     Ov006_InitSlotButtons();
     Ov006_StartSlotsSlideIn();
     OV6->unk_00 |= 0x10;
@@ -80,7 +75,8 @@ void Ov006_UpdateMapEditor(void) {
   OV6->pendingSe = 0;
   if (gKeypad->held & PAD_BUTTON_X) {
     MapCursor_UpdateFree();
-    if (OV6->cursorX != STATE->cursorX || OV6->cursorY != STATE->cursorY) {
+    if (OV6->cursorX != MAP_STATE->cursorX ||
+        OV6->cursorY != MAP_STATE->cursorY) {
       result = 1;
     }
   } else {
@@ -88,9 +84,10 @@ void Ov006_UpdateMapEditor(void) {
     Ov006_UpdateCursorFromTouch();
   }
   Ov006_ScrollMapView(4);
-  if (OV6->cursorX != STATE->cursorX || OV6->cursorY != STATE->cursorY) {
-    OV6->cursorX = STATE->cursorX;
-    OV6->cursorY = STATE->cursorY;
+  if (OV6->cursorX != MAP_STATE->cursorX ||
+      OV6->cursorY != MAP_STATE->cursorY) {
+    OV6->cursorX = MAP_STATE->cursorX;
+    OV6->cursorY = MAP_STATE->cursorY;
   }
   Ov006_CheckToolAtCursor();
   if (OV6->cursorX == OV6->prevCursorX && OV6->cursorY == OV6->prevCursorY) {

@@ -3,6 +3,7 @@
 #include "game/menu_state.h"
 #include "game/Unk_02088d04.h"
 #include "game/task.h"
+#include "game/campaign_map_music.h"
 
 struct SpriteAnimTask* SpriteAnimTask_Start(const void* file, int x, int y,
                                             u32 tileBase, int animation,
@@ -12,9 +13,6 @@ int Sound_PlaySe(int id);
 void Task_ResumeByScript(const void* script);
 void Task_ResumeScript(CampaignMapTask* task);
 
-extern CampaignMapState gCampaignMapState;
-extern Unk_027c0280* data_027c0280;
-extern MenuState gMenuState;
 extern CampaignMission gCampaignMissions[];
 extern TaskScriptCmd data_0215b420[];
 

@@ -7,7 +7,6 @@ void Palette_Load(const void* src, u32 offset, u32 size);
 void Mem_Free(void* file);
 
 extern const char data_021598b0[];
-extern Unk_027c0280* data_027c0280;
 
 #define MODE_FONT_TILES_OFFSET 0x954
 #define MODE_FONT_PALETTE0_OFFSET 0xff4

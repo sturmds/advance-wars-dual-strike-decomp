@@ -1,6 +1,6 @@
 #include "types.h"
+#include "game/math.h"
 
-int HwMod32(int numerator, int denominator);
 void NumberSprite_PutGlyph(int x, int y, int glyph, int firstTile, int palette);
 
 /* Draws value in decimal, last digit at x and each earlier digit 15 pixels

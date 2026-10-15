@@ -2,9 +2,6 @@
 #include "game/co_data.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int TowerFirepower(int playerIndex, int coSlot);
 
 /* Com Tower firepower in percent of one CO of a player (slot 0 front,

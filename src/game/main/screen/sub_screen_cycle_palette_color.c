@@ -5,8 +5,6 @@
 int MainLoop_GetFrameCount(void);
 void Palette_Load(const void* src, u32 offset, u32 size);
 
-extern MenuState gMenuState;
-
 /* On the sub screen, copies one of 16 colours stored at the start of
  * gMenuState to palette offset 0x218, stepping every 4 frames. */
 void SubScreen_CyclePaletteColor(void) {

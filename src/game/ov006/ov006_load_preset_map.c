@@ -11,16 +11,14 @@ void Ov006_PlaceWood(int x, int y); /* places wood */
 void Ov006_PlaceRoad(int x, int y); /* places road */
 void Ov006_PlacePipe(int x, int y); /* places pipe */
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u8 Ov006_gPresetMapTiles
     []; /* one tile byte (terrain and owner) per tile, by row */
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 #define CELL_AT(x, y) \
-  (STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[y] + (x)])
+  (MAP_STATE->mapTiles->mapCells[MAP_STATE->mapTiles->rowStart[y] + (x)])
 #define TILE_AT(x, y) \
-  (STATE->mapTiles->tiles[STATE->mapTiles->rowStart[y] + (x)])
+  (MAP_STATE->mapTiles->tiles[MAP_STATE->mapTiles->rowStart[y] + (x)])
 
 /* Fills the Design Room map with a built-in map, which
  * Ov006_NewMap loads instead of its usual one when L and R are both
@@ -32,16 +30,16 @@ void Ov006_LoadPresetMap(void) {
   int y;
   u8* src;
 
-  for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-    for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
+  for (y = 0; y < MAP_STATE->unk_1c4->mapHeight; y++) {
+    for (x = 0; x < MAP_STATE->unk_1c4->mapWidth; x++) {
       CELL_AT(x, y) = MAP_CELL_SEA;
       TILE_AT(x, y) = TERRAIN_SEA;
     }
   }
 
   src = Ov006_gPresetMapTiles;
-  for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-    for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
+  for (y = 0; y < MAP_STATE->unk_1c4->mapHeight; y++) {
+    for (x = 0; x < MAP_STATE->unk_1c4->mapWidth; x++) {
       switch (*src++) {
         case TERRAIN_PLAIN:
           CELL_AT(x, y) = 1;
@@ -102,8 +100,8 @@ void Ov006_LoadPresetMap(void) {
   }
 
   src = Ov006_gPresetMapTiles;
-  for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-    for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
+  for (y = 0; y < MAP_STATE->unk_1c4->mapHeight; y++) {
+    for (x = 0; x < MAP_STATE->unk_1c4->mapWidth; x++) {
       if (MAP_TILE_TERRAIN(*src++) == TERRAIN_SHOAL) {
         CELL_AT(x, y) = 0;
         Ov006_PlaceShoal(x, y);

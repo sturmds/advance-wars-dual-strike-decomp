@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/map_unit.h"
-
-s32 HwDiv32(s32 numerator, s32 denominator);
-u8 Unit_CapturePoints(MapUnit* unit);
+#include "game/math.h"
+#include "game/ai.h"
 
 /* Capture value at which a property falls. */
 #define CAPTURE_GOAL 20

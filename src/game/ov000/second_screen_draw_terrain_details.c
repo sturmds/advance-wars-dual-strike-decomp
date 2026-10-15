@@ -15,7 +15,6 @@ void Bg_PutTile(int layer, int x, int y, u16 entry);
 int IncreaseFunds(int playerIndex, int terrain);
 void Gfx_RequestLayerCopy(int layer);
 
-extern Unk_027c0280* data_027c0280;
 /* first map entry of each type's 3x2 picture */
 static u32 data_ov000_023500a8[] = {
 #include "data/ov000/data_ov000_023500a8.inc.c"

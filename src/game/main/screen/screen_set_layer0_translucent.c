@@ -1,10 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
-
-extern Unk_027c0280* data_027c0280;
-
-void Screen_ResetBlend(void);
-void Screen_ResetWindows(void);
+#include "game/screen.h"
 
 /* Puts layer 1 in front, then layer 3, then layers 0 and 2, and
  * alpha-blends layer 0 over layers 2 and 3, the sprites and the backdrop

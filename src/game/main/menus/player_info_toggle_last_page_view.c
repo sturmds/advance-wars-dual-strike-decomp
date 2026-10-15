@@ -2,8 +2,6 @@
 #include "game/menu_button.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 void Sound_PlaySe(u32 soundId);
 
 /* Needed to match: the cast puts the state address in r1 and the value in r0. */

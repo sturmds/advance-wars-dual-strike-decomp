@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 BOOL Map_IsDeployTile(u8 tile);
 
 /* TRUE when no unit stands on tile (x, y) and Map_IsDeployTile accepts its terrain

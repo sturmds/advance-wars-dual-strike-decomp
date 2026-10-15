@@ -10,8 +10,6 @@ void func_02085d88(void);
 void func_02085d9c(void);
 void func_02085db0(void);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

@@ -2,20 +2,14 @@
 #include "game/BgControl.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_02080440.h"
+#include "game/screen.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern u8* data_02297790;
 
 void BgControl_SetCharBase(BgControl* bg, u32 charOffset);
 void BgControl_SetScreenBase(BgControl* bg, u32 offset);
 void BgControl_SetScreenSize(BgControl* bg, int screenSize);
-void Screen_ResetBgRegisters(void); /* resets the screen's graphics state */
-void Screen_SetBg0Mode(
-    int bg0Is3d); /* sets Unk_027c0280.bg0Mode and applies the graphics mode */
 BOOL Screen_IsTextBg(int layer);
-BOOL Screen_IsAffineBg(int layer);
 void Gfx_ClearLayerMap(int layer);
 void Gfx_ClearLayerBlankTile(int layer);
 void Gfx_CopyLayerMapToVram(int layer);

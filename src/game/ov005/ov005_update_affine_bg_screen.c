@@ -7,21 +7,17 @@
 #include "game/unit_show_task.h"
 #include "game/Unk_ov005_0236bb80.h"
 #include "game/screen_contexts.h"
+#include "game/math.h"
+#include "game/screen_other_map.h"
+#include "game/palette_fade.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void* Mem_Alloc(u32 size);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 void Palette_Flush(void);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 u32* SpriteAnim_Create(void* file, int a, int b);
 void SpriteAnim_SetAnimation(u32* sprite, int frame);
 void SpriteAnim_Draw(u32* sprite, int x, int y);
-void Palette_Darken(u8* palettes, int first, int count, int level);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 void Ov005Screen_WaitTaskThenResume(void);
 void Ov005_ClearHasTaskB(void);
 void Ov005_SetHasTaskB(void);
@@ -31,16 +27,10 @@ void Ov005_SetupScreensWithBlend(void);
 void Ov005_UpdateScrollingTextPromptScreen(void);
 void Ov005_UpdateSlideInTextScreen(void);
 void Ov005_UpdateTextPromptScreen(void);
-extern u8 data_02178b08[];
-extern u8 data_0217ab08[];
-extern u8 data_0217eb08[];
-extern u8 data_02180b08[];
 void func_ov005_02350578(void);
 void func_ov005_02352790(void);
 void func_ov005_02353204(void);
 void func_ov005_02353214(void);
-extern u8 data_02179b08[];
-extern u8 data_0217fb08[];
 
 static TaskScriptCmd data_ov005_02368098[] = {
 #include "data/ov005/data_ov005_02368098.inc.c"

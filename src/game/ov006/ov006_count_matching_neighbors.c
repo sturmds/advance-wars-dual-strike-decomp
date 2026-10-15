@@ -2,11 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/terrain.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 int Ov006_IsSpecialCell(int x, int y);
 int Ov006_IsLandNeighbor(
     int x,
@@ -18,7 +13,7 @@ int Ov006_IsLandNeighbor(
 int Ov006_CountMatchingNeighbors(int x, int y) {
   int count;
 
-  if (STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]] ==
+  if (MAP_STATE->mapTiles->tiles[x + MAP_STATE->mapTiles->rowStart[y]] ==
           TERRAIN_REEF ||
       Ov006_IsSpecialCell(x, y) != 0) {
     return -1;
@@ -28,13 +23,13 @@ int Ov006_CountMatchingNeighbors(int x, int y) {
   if (y > 1) {
     count += Ov006_IsLandNeighbor(x, y - 1);
   }
-  if (y < STATE->unk_1c4->mapHeight - 1) {
+  if (y < MAP_STATE->unk_1c4->mapHeight - 1) {
     count += Ov006_IsLandNeighbor(x, y + 1);
   }
   if (x > 0) {
     count += Ov006_IsLandNeighbor(x - 1, y);
   }
-  if (x < STATE->unk_1c4->mapWidth - 1) {
+  if (x < MAP_STATE->unk_1c4->mapWidth - 1) {
     count += Ov006_IsLandNeighbor(x + 1, y);
   }
   if (count == 4) {

@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Name of the current map: the map state record starts with a copy of it
  * (BattleSave_LoadMap copies Map_GetName there). */
 const char* Map_GetCurrentName(void) {

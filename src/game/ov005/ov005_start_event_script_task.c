@@ -2,7 +2,6 @@
 #include "game/event_script.h"
 
 void func_02014c38(void* parentOrList);
-EventScriptSlot* EventScript_Start(const EventScriptCommand* script);
 
 extern int data_ov005_0236bbb4;
 

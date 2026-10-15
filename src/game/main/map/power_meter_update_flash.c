@@ -6,10 +6,6 @@ BOOL Player_IsPowerActive(int player);
 BOOL CanUseCoPower(int player, int slot);
 BOOL CanUseTagPower(int player);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 #define STATE_50 (data_027c027c->unk_50[data_027c0284])
 
 #define POWER_FLASH_OFF 0
@@ -26,7 +22,7 @@ void PowerMeter_UpdateFlash(int frameCount) {
 
   frame = (frameCount >> 2) & 15;
   for (player = 1; player <= PLAYER_SLOT_LAST; player++) {
-    if (GAME->players[player].controller == PLAYER_CONTROLLER_NONE) {
+    if (MAP_STATE->players[player].controller == PLAYER_CONTROLLER_NONE) {
       continue;
     }
     /* needed to match: frame is never negative, but the original tests it */

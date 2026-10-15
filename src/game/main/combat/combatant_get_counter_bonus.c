@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/combatant.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int Player_GetCounterBonus(
     int playerIndex); /* front CO's CoPowerBlock.counterBonus */
 

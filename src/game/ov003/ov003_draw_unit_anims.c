@@ -1,10 +1,8 @@
 #include "types.h"
 #include "game/ov003_unit.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numerator, s32 denominator);
 void Ov003_DrawFrameAt(int x, int y, int frame);
-extern Ov003Unit data_ov003_02369538[];
-extern Ov003TileInfo data_ov003_02364d88[];
 
 /* For each live unit whose unk_04 is over 30, picks an animation frame (0 to 19)
  * from how far unk_04 is past 30 compared to its tile's unk_00, and draws it at

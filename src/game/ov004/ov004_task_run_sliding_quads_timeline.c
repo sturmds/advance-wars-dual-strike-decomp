@@ -2,6 +2,7 @@
 #include "game/screen_other_map.h"
 #include "game/task.h"
 #include "game/Unk_ov004_022bf158.h"
+#include "game/screen.h"
 
 extern Unk_ov004_022bf158* data_ov004_022bf158;
 extern u32 data_ov004_022bdc94[]; /* map bytes of a text BG by screen size */
@@ -35,7 +36,6 @@ void Ov004_CopyResource(const char* name, void* dst);
 void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);
 void Gfx_ClearLayerMap(int layer);
 BOOL Screen_IsTextBg(int layer);
-BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
 

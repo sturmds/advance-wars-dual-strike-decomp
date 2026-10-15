@@ -1,10 +1,8 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0280* data_027c0280;
 extern GfxLayer data_02169970[];
 const u32 gBgAffineMapBytes[] = {
 #include "data/main/gBgAffineMapBytes.inc.c"
@@ -20,10 +18,6 @@ extern u8 data_02137c88[];
 
 void MainLoop_SetFrameCallback(void (*callback)(void));
 void MainLoop_TaskFrame(void);
-void Screen_SetBgMode(int mode);
-void Screen_InitLayers(const void* config);
-void Screen_ResetBlend(void);
-void Screen_ResetLayerScroll(void);
 void Gfx_LoadPlayerWindowFrame(int player);
 void Data_Unpack(const void* src, void* dst);
 void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);

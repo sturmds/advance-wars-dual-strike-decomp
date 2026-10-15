@@ -1,10 +1,6 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-extern Ov003Unit data_ov003_02369538[];
-extern u8
-    data_ov003_02365d10[]; /* per tile code: bits 5-7 row, bits 0-4 terrain */
-
 int Ov003_GetMoveSpeed(int player, int kind, int terrain);
 
 /* Returns 1 when a unit of the given tile code can be placed on map tile

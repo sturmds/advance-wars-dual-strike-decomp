@@ -5,7 +5,6 @@
 int Link_GetOwnPlayer(void);
 u32 Link_GetConnectedSlotMask(void);
 
-extern MenuState gMenuState;
 extern MenuButtonTemplate data_0215ccd8;
 
 static inline BOOL IsFirstLinkPlayer(void) { return Link_GetOwnPlayer() == 0; }

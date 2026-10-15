@@ -2,8 +2,6 @@
 #include "game/menu_button.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 int Link_GetOwnPlayer(void);
 void LinkScreen_PushReady(void);
 

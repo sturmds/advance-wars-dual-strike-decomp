@@ -2,6 +2,7 @@
 #include "game/caption_task.h"
 #include "game/screen_other_map.h"
 #include "game/oam_cells.h"
+#include "game/math.h"
 
 const u8* Text_Get(u32 textId);
 int strlen(const u8* str);
@@ -11,7 +12,6 @@ int SpriteFont_QueueChar(int ch, u16 x, u16 y, int attr, u16 firstTile,
                          u8 list);
 int CaptionLetter_GetAdvance(int ch, u16 x, u16 y, int attr, u16 firstTile,
                              u8 list);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Task_ResumeScript(CaptionTask* task);
 

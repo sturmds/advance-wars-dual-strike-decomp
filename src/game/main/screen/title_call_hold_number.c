@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/title_call_task.h"
+#include "game/screen.h"
 
-void SpriteStrip_Queue(int affineIndex);
-void TitleCall_DrawNumber(int affineIndex);
 void func_020517d8(void);
 
 /* Title call script step: draws the sprite strip and the campaign record

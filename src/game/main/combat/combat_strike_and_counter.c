@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/combatant.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numerator, s32 denominator);
 void Combatant_TakeHit(Combatant* target, Combatant* attacker);
 
 /* first hits second, then second hits back with the hp it has left. Each

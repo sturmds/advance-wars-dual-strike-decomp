@@ -4,9 +4,8 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_022a7a9c.h"
 #include "game/co_data.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Screen_SetCurrentBoth(void* state);
 void Gfx_LoadBmap09f(void* dst, int unused, int paletteSlot);
 void Font_LoadDigits(int baseTile);
@@ -16,10 +15,6 @@ void Co_LoadArmyGraphicsAndPalette(int coId, int firstTile, int paletteSlot,
 void func_0201e6e8(int x, int y, int width, int height);
 void Co_UnpackPicture(int coId, int firstTile);
 void Palette_LoadObjRow(int row);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 #define RECORD_INDEX(task) ((task)->unk_64)
 

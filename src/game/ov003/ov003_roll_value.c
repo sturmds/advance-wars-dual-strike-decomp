@@ -1,10 +1,9 @@
 #include "types.h"
 #include "game/ov003_unit.h"
+#include "game/math.h"
 
 extern u8 data_ov003_02364d8f[][20];
 
-s32 HwDiv32(s32 numerator, s32 denominator);
-s32 HwMod32(s32 numerator, s32 denominator);
 u32 Ov003_RandNext(void);
 int Ov003_IsRowPowerActive(int row);
 

@@ -5,7 +5,6 @@
 /* Adds one sprite to draw list `list`; attr holds the tile and palette. */
 void Sprite_Queue(int list, int x, int y, void* shape, int attr, int arg5);
 
-extern Unk_027c0280* data_027c0280;
 extern void*
     gObjShapeBySize[][17]; /* OBJ shape for a sprite of [height][width] tiles */
 

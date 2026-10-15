@@ -4,17 +4,12 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_022a7a9c.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void ResultStats_DrawStat(int x, int y, int stat, Task* task);
 void func_0203bdf0(int x, int y, int coSlot);
 void func_0203be58(int x, int y, int coSlot);
 void ResultStats_QueuePlayerSprite(int x, int y, int index);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* Draws the sub screen sprites of the stats page of player task->unk_66,
  * moved right by `offset` pixels: the CO (and tag partner if any) and five

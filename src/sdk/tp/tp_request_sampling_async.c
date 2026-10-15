@@ -1,9 +1,6 @@
 #include "sdk/tp.h"
 #include "sdk/os.h"
-
-int PXI_SendWordByFifo(
-    u32 tag, u32 data,
-    int err); /* likely PXI_SendWordByFifo: negative when the FIFO is full */
+#include "sdk/pxi.h"
 
 static inline BOOL Touch_PostSampleRequest(void) {
   if (PXI_SendWordByFifo(FIFO_TAG_TOUCH, TOUCH_ASK_ONE_SAMPLE, 0) < 0) {

@@ -2,17 +2,13 @@
 #include "game/task.h"
 #include "game/Unk_02088d04.h"
 #include "game/oam_cells.h"
+#include "game/screen.h"
+#include "game/oam_buffer.h"
+#include "game/math.h"
 
-int HwDiv32(int num, int den);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
-void SpriteStrip_Queue(int affineIndex);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Task_ResumeScript(Task* task);
-void TitleCall_DrawNumber(int affineIndex);
 
-extern Unk_027c0280* data_027c0280;
-extern const s16 gSineTable[];
 extern const TaskScriptCmd data_0215bb88[];
 
 /* Frame counters of this script's steps: this step's, then the next step's. */

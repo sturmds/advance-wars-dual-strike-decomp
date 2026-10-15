@@ -5,12 +5,9 @@
 #include "game/map_unit.h"
 #include "game/unit_stats.h"
 #include "game/terrain.h"
+#include "game/math.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-s32 HwDiv32(s32 numerator, s32 denominator);
-int UnitType_GetAttackKind(int unitType);
+int UnitType_GetAttackKind(u8 unitType);
 void Combat_SimulateChecked(
     int attackerIndex, int defenderIndex,
     s16* pos); /* Combat_SimulateBattle; halts when defenderIndex is 0 */
@@ -18,20 +15,19 @@ int UnitType_BestBaseDamage(
     int unitType,
     int targetType); /* best base damage of unitType against targetType, over both weapons */
 int Unit_CanRepairAt(MapUnit* unit, int x, int y);
-int Unit_IsEnemyTile(
-    int unitIndex, int x,
-    int y); /* 1: tile (x, y) is owned by a team other than the unit's */
+BOOL Unit_IsEnemyTile(
+    int unitIndex, s16 x,
+    s16 y); /* 1: tile (x, y) is owned by a team other than the unit's */
 int Unit_CaptureEndsNextTurn(
     MapUnit* unit); /* 1: the unit's capture finishes next turn */
 int AiAttack_CountTeamUnitsInReach(MapUnit* unit);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define TILE_INDEX(x, y) (STATE->mapTiles->rowStart[y] + (x))
-#define ATTACKER (STATE->combatants[0])
-#define DEFENDER (STATE->combatants[1])
-#define CURRENT_PLAYER (STATE->players[STATE->currentPlayer])
+#define TILE_INDEX(x, y) (MAP_STATE->mapTiles->rowStart[y] + (x))
+#define ATTACKER (MAP_STATE->combatants[0])
+#define DEFENDER (MAP_STATE->combatants[1])
+#define CURRENT_PLAYER (MAP_STATE->players[MAP_STATE->currentPlayer])
 
-/* Scores an attack by the unit in slot STATE->actingUnitIndex on the unit in the
+/* Scores an attack by the unit in slot MAP_STATE->actingUnitIndex on the unit in the
  * flags' low 16 bits, from pos. The battle is simulated with luck, then
  * the score is (damage * mult - loss * 2) / 8, clamped to 1-0xffff, where
  * damage and loss are the funds / 10 each side loses. Returns 0 when the
@@ -47,7 +43,7 @@ int AiAttack_Score(u32 flags, s16* pos) {
   u32 score;
 
   mult = 1;
-  Combat_SimulateChecked(STATE->actingUnitIndex,
+  Combat_SimulateChecked(MAP_STATE->actingUnitIndex,
                          flags & AI_ATTACK_DEFENDER_MASK, pos);
   if (ATTACKER.weapon == COMBAT_WEAPON_NONE) {
     /* no weapon can hit */
@@ -82,10 +78,10 @@ int AiAttack_Score(u32 flags, s16* pos) {
   /* An enemy about to finish capturing an HQ skips every check below. */
   if (defender->captureProgress != 0 &&
       MAP_TILE_TERRAIN(
-          STATE->mapTiles->tiles[TILE_INDEX(defender->x, defender->y)]) ==
+          MAP_STATE->mapTiles->tiles[TILE_INDEX(defender->x, defender->y)]) ==
           TERRAIN_HQ &&
       Unit_IsEnemyTile(
-          STATE->mapTiles->unk_508[TILE_INDEX(attacker->x, attacker->y)],
+          MAP_STATE->mapTiles->unk_508[TILE_INDEX(attacker->x, attacker->y)],
           defender->x, defender->y) == 0 &&
       Unit_CaptureEndsNextTurn(defender) == 1) {
     goto bonuses;
@@ -191,10 +187,10 @@ bonuses:
     }
     if (defender->captureProgress != 0 &&
         Unit_IsEnemyTile(
-            STATE->mapTiles->unk_508[TILE_INDEX(attacker->x, attacker->y)],
+            MAP_STATE->mapTiles->unk_508[TILE_INDEX(attacker->x, attacker->y)],
             defender->x, defender->y) != 1) {
       terrain = MAP_TILE_TERRAIN(
-          STATE->mapTiles->tiles[TILE_INDEX(defender->x, defender->y)]);
+          MAP_STATE->mapTiles->tiles[TILE_INDEX(defender->x, defender->y)]);
       if (terrain == TERRAIN_HQ) {
         mult <<= 3;
       } else if (terrain == TERRAIN_BASE) {
@@ -208,9 +204,8 @@ bonuses:
           damage = HwDiv32(damage * 50, defender->hp);
         }
         mult <<= 1;
-        if (MAP_TILE_TERRAIN(
-                STATE->mapTiles->tiles[TILE_INDEX(defender->x, defender->y)]) ==
-            TERRAIN_HQ) {
+        if (MAP_TILE_TERRAIN(MAP_STATE->mapTiles->tiles[TILE_INDEX(
+                defender->x, defender->y)]) == TERRAIN_HQ) {
           mult <<= 1;
         }
       }
@@ -249,8 +244,8 @@ bonuses:
     }
   }
   damage += (damage * AiAttack_CountTeamUnitsInReach(defender)) >> 5;
-  if (STATE->mapTiles->threatMax[TILE_INDEX(pos[0], pos[1])] <= 50 &&
-      STATE->mapTiles->threatSum[TILE_INDEX(pos[0], pos[1])] == 0 &&
+  if (MAP_STATE->mapTiles->threatMax[TILE_INDEX(pos[0], pos[1])] <= 50 &&
+      MAP_STATE->mapTiles->threatSum[TILE_INDEX(pos[0], pos[1])] == 0 &&
       !(attacker->flags & MAP_UNIT_DIVED)) {
     cost = Ov000_gUnitStats[defender->type].costDiv10;
     if (cost < 800) {

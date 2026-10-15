@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern u8 func_020d1be0[];
 extern u8 WeatherFx_UpdateFirstScreen[];
 extern u8 MainLoop_MapFrame[];

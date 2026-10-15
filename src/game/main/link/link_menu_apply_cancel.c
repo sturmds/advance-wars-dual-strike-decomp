@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/Unk_0229fb30.h"
+#include "game/menu_button.h"
 
 void Sound_PlaySe(u32 soundId);
-void MenuButton_Close(int id);
 void MenuButton_DisableTouch(int id);
 void func_020b9864(void);
 

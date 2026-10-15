@@ -1,12 +1,12 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 #include "game/link_banner_task.h"
+#include "game/text_print.h"
 
 void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Bg_ClearRect(u16* map, int x, int y, int width, u16 height);
 const void* Text_Get(u32 textId);
-int Text_GetPrintWidth(const void* text);
 
 /* Clears layer 0 (all rows but the help text) and layer 1 of the lower screen,
  * then sets the banner width in tiles from its text: the text width in

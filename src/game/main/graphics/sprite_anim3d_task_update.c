@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/sprite_anim.h"
+#include "game/zoom_sprite_task.h"
 
-int SpriteAnim_Draw3d(SpriteAnim* sprite, const VecFx32* pos, int arg);
 void Task_Destroy(Task* task);
 
 /* Draws the task's sprite at its position each frame, as SpriteAnimTask_Update

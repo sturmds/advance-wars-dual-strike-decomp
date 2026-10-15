@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 void BattleMenu_DrawHelpText(u32 textId);
 
 /* Menu help callback: three texts, one for the campaign, one for survival

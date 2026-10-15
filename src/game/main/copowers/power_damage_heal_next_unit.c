@@ -7,8 +7,6 @@
 #include "game/script_slot.h"
 #include "game/screen_other_map.h"
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 void Task_ResumeScript(Task* task);
 s16 ScriptSlot_Find(const ScriptCommand* script);
 void PowerHitEffect_Start(int x, int y, int player);
@@ -41,7 +39,7 @@ void PowerDamage_HealNextUnit(PowerDamageTask* task) {
   }
 
   for (i = task->unitIndex; i < POWER_DAMAGE_UNIT_END; i++) {
-    unit = &STATE->units[i + Ov000_gPlayerFirstUnitSlot[task->player]];
+    unit = &MAP_STATE->units[i + Ov000_gPlayerFirstUnitSlot[task->player]];
     if (unit->type == UNIT_NONE)
       continue;
     if (unit->flags & MAP_UNIT_CARRIED)

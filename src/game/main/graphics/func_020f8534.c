@@ -4,8 +4,6 @@
 
 void GfxQueue_AddKind2(const void* src, void* dst, u32 size);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 /* map bytes of a rotation/scaling BG by screen size */
 const u32 gAffineMapBytes[] = {
 #include "data/main/gAffineMapBytes.inc.c"

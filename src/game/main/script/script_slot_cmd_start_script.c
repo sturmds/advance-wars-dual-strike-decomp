@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
-
 s8 ScriptSlot_StartGetIndex(const ScriptCommand* script, int arg);
 
 /* Script command: starts the script in the argument in a free slot, passing

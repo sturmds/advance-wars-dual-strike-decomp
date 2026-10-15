@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Turns colour effects off on the current screen and sets the targets the
  * blend fades use: all four layers, the sprites and the backdrop as first
  * target, nothing as second target, all levels at 0. */

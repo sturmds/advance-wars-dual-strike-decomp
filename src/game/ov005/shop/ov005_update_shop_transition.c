@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bbb0.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Ov005Task* task);
 void EventPicture_DrawAtStep(u32 level);
 

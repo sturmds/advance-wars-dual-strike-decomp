@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 #include "game/points_tally_task.h"
+#include "game/math.h"
 
-int Math_EaseInOut(int from, int to, int step, int steps);
 void PointsTally_Draw(int x, int y, int added, int total, int popFrame);
 int func_0204cd00(void);
 void Task_ResumeScript(PointsTallyTask* task);

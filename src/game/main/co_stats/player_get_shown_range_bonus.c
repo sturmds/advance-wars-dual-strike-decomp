@@ -6,8 +6,6 @@
 
 int GetCoRangeBonus(int player, int coSlot, int powerState, int unitType);
 void Screen_SetCurrentBoth(void* state);
-extern MenuState gMenuState;
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Range bonus of a player's CO for a unit type, as PlayerInfo_DrawUnitStats
  * shows it. Same slot and two-map handling as Player_GetShownMoveBonus. */
@@ -17,12 +15,12 @@ int Player_GetShownRangeBonus(int player, int slot, int unitType) {
   int powerState;
   int bonus;
 
-  if (gMenuState.unk_0206d67c.unk_0a8 == 1 && GAME->gameMode == 3) {
+  if (gMenuState.unk_0206d67c.unk_0a8 == 1 && MAP_STATE->gameMode == 3) {
     bonus = GetCoRangeBonus(player, slot, 0, unitType);
   } else {
     saved027c = data_027c027c;
     saved0280 = data_027c0280;
-    if (GAME->secondMapId != 0 && OtherMap_GetUnk30() == 0 &&
+    if (MAP_STATE->secondMapId != 0 && OtherMap_GetUnk30() == 0 &&
         gMenuState.unk_0206d67c.slot == 1) {
       Screen_SetCurrentBoth(data_027c0288.unk_04);
       slot = 0;
@@ -32,7 +30,7 @@ int Player_GetShownRangeBonus(int player, int slot, int unitType) {
     if (slot == 1) {
       powerState = 0;
     } else {
-      powerState = GAME->players[player].front.powerState;
+      powerState = MAP_STATE->players[player].front.powerState;
     }
     bonus = GetCoRangeBonus(player, slot, powerState, unitType);
     Screen_SetCurrent(saved027c);

@@ -2,9 +2,9 @@
 #include "game/script_slot.h"
 #include "game/play_records.h"
 #include "game/song.h"
+#include "game/screen.h"
 
 void Battle_ResumeFromSave(void);
-void ScreenTransition_IsRunning(void);
 void MenuDepth_Push(void);
 void func_02017d1c(void);
 void MenuDepth_Pop(void);

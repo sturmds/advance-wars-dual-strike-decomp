@@ -2,8 +2,6 @@
 #include "game/event_queue.h"
 #include "game/map_select.h"
 
-extern MenuState gMenuState;
-
 u8 Map_IsFlagSet(u32 mapId);
 u32 Link_IsActive(void);
 void MapSelect_PickFirstMap(void);
@@ -21,7 +19,7 @@ void MapSelect_PickMap(void) {
   if (SELECTED_MAP_ID() < 0x101 && !Map_IsFlagSet(SELECTED_MAP_ID())) {
     return;
   }
-  if (STATE->gameMode != GAME_MODE_WAR_ROOM && STATE->twoMaps == 1 &&
+  if (MAP_STATE->gameMode != GAME_MODE_WAR_ROOM && MAP_STATE->twoMaps == 1 &&
       gMenuState.setup.firstMapId == 0) {
     if (Link_IsActive() == 1) {
       EventQueue_Push(7, PAGE_POS());

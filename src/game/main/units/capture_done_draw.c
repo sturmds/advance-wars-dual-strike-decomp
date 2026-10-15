@@ -1,12 +1,8 @@
 #include "types.h"
 #include "game/sprite_anim.h"
 #include "game/capture_picture_task.h"
-
-extern s16 gSineTable[];
-
-s32 HwDiv32(s32 numer, s32 denom);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
+#include "game/oam_buffer.h"
+#include "game/math.h"
 
 /* Divisor for one matrix entry: the eased scale, or 2 if it is 0. */
 #define DIVISOR(scale) ((scale) ? (scale) : 2)

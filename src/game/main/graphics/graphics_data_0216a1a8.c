@@ -1,11 +1,11 @@
 #include "types.h"
 #include "game/shimmer_wave.h"
 #include "game/task.h"
+#include "game/screen.h"
 
 void CameraPan_InitFromScrollTile(void);
 void CameraPan_UpdateCurve4Reverse(void);
 void CameraPan_UpdateCurve5(void);
-void EaseTask_Update(void);
 void func_020fabfc(void);
 void func_020fb938(void);
 

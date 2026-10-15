@@ -5,14 +5,11 @@
 #include "game/move_path.h"
 
 extern MovePath* gMovePath;
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Owner of the acting unit: slot 0 is neutral, so unit slots 0-63
  * belong to player 1. */
-#define ACTING_PLAYER (GAME->players[(GAME->actingUnitIndex >> 6) + 1])
+#define ACTING_PLAYER \
+  (MAP_STATE->players[(MAP_STATE->actingUnitIndex >> 6) + 1])
 
 /* Appends tile (x, y) to the move path and stores the move points left
  * there: the previous tile's minus the cost of the tile's terrain for the
@@ -24,7 +21,7 @@ void MovePath_AddTile(s8 x, s8 y) {
   gMovePath->x[gMovePath->lastTile] = x;
   gMovePath->y[gMovePath->lastTile] = y;
 
-  if (GAME->coEffectsOn == 0) {
+  if (MAP_STATE->coEffectsOn == 0) {
     co = 0;
   } else {
     co = ACTING_PLAYER.front.id & PLAYER_CO_ID_MASK;
@@ -35,6 +32,7 @@ void MovePath_AddTile(s8 x, s8 y) {
       ((const s8(*)[32])gCoTable[co]
            .blocks[ACTING_PLAYER.front.powerState]
            .movementCost[ACTING_PLAYER.moveChart])
-          [Ov000_gUnitStats[GAME->actingUnit->type].moveType][MAP_TILE_TERRAIN(
-              GAME->mapTiles->tiles[x + GAME->mapTiles->rowStart[y]])];
+          [Ov000_gUnitStats[MAP_STATE->actingUnit->type].moveType]
+          [MAP_TILE_TERRAIN(MAP_STATE->mapTiles
+                                ->tiles[x + MAP_STATE->mapTiles->rowStart[y]])];
 }

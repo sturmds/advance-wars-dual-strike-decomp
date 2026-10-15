@@ -1,20 +1,18 @@
 #include "types.h"
 #include "game/caption_task.h"
 #include "game/screen_other_map.h"
+#include "game/oam_buffer.h"
+#include "game/math.h"
 
 const u8* Text_Get(u32 textId);
 int strlen(const u8* str);
 int CaptionFont_TextWidth(const u8* str);
 int CaptionFont_DrawChar(int ch, u16 x, u16 y, int attr, u16 firstTile,
                          u8 list);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-int HwDiv32(int num, int den);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Task_ResumeScript(void* task);
 
 /* Sine table, index 64 = cosine of 0. Needed to match: const lets mwcc
  * load the sine and cosine once, before the loop. */
-extern const s16 gSineTable[];
 
 #define SIN0 (gSineTable[0])
 #define COS0 (gSineTable[64])

@@ -1,6 +1,5 @@
 #include "types.h"
-
-s32 HwDiv32(s32 numer, s32 denom);
+#include "game/math.h"
 
 /* Value between from and to after elapsed of duration steps. Curves:
  * 0 linear; 1, 2, 3 start slowly (elapsed squared, cubed, to the fourth);

@@ -1,11 +1,11 @@
 #include "types.h"
 #include "game/Unk_022a7c5c.h"
 #include "game/sprite_anim.h"
+#include "sdk/fs.h"
 
 extern char data_02169180[]; /* "/bmap" */
 
 SpriteAnim* SpriteAnim_Create(const void* file, int a, int b);
-void FS_ChangeDir(const char* dir);
 
 /* Creates a sprite from a /bmap file whose tiles and palette were loaded to
  * the buffers in data_022a7c5c (the 3D screen path of BlackBombBlast_Start).

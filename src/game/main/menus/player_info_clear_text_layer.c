@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 

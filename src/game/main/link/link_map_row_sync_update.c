@@ -5,7 +5,6 @@
 #include "game/link_text_sync_task.h"
 #include "game/link_data_sync_task.h"
 
-extern MenuState gMenuState;
 extern DesignMap data_022a6c84[];
 
 u16 Wireless_GetChildAids(void);

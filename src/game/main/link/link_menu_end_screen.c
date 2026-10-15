@@ -1,11 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
-
 void SpriteTask_DestroyAllFirstScreen(void);
 void func_020828c0(void);
 void Wallpaper_DestroyTasks(void);
@@ -30,7 +25,7 @@ void LinkMenu_EndScreen(void) {
   Screen1_DestroyTextTasks();
   func_0207bd58(func_0207a260());
   if (func_020b983c() == 1) {
-    switch (GAME->unk_8b) {
+    switch (MAP_STATE->unk_8b) {
       case 3:
         func_0207bda8(3);
         CombatSetup_StartLink();

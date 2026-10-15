@@ -3,11 +3,6 @@
 #include "game/Unk_022977a4.h"
 #include "game/task.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 BOOL EventScript_IsRunning(void);
 void Palette_LoadPlayerArmyBgRow(int player);
 void Task_ResumeScript(Task* task);
@@ -19,6 +14,6 @@ void ScriptTask_ReloadArmyBgPalette(Task* task) {
     return;
   }
   data_022977a4.unk_00 = 0;
-  Palette_LoadPlayerArmyBgRow(STATE->currentPlayer);
+  Palette_LoadPlayerArmyBgRow(MAP_STATE->currentPlayer);
   Task_ResumeScript(task);
 }

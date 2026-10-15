@@ -8,8 +8,6 @@ u8* File_Load(const char* path);
 void Data_Unpack(const void* src, void* dest);
 void Mem_Free(void* block);
 
-extern Unk_027c0280* data_027c0280;
-extern MenuState gMenuState;
 extern const BigFontGlyph data_0215bce0[];
 extern const char data_0215bf38[];
 

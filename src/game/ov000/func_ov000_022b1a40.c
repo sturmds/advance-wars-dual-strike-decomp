@@ -1,11 +1,9 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrentGfx(void* state);
 void Bg_FillRect(u16* map, int x, int y, int width, int height, int tile);
 void Gfx_RequestLayerCopy(int layer);
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 void func_ov000_022b1a40(void) {
   Unk_027c0280* savedGfx;

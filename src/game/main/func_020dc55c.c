@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 void MapScript_RunList0c(MapUnit*, void*);
 
 void func_020dc55c(void) {

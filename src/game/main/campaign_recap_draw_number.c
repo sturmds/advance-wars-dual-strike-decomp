@@ -1,9 +1,8 @@
 #include "types.h"
 #include "game/campaign_recap.h"
 #include "game/oam_cells.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numer, s32 denom);
-s32 HwMod32(s32 numerator, s32 denominator);
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 
 #define NO_DIGIT (-1)

@@ -5,11 +5,7 @@
 void TouchMarker_Resume(void);
 void TouchMarker_Destroy(void);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern s16 gEventScriptOwnsInput;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Returned on a confirm, the same bit func_020ef1bc returns for the A button. */
 #define INPUT_CONFIRM 0x10
@@ -33,13 +29,14 @@ u32 MapTouch_ReadTileTap(void) {
     case TOUCH_HELD:
       if (IsTouchInPhase(TOUCH_HELD)) {
         TouchMarker_Destroy();
-        GAME->unk_30 = 0xff;
-        GAME->unk_32 = 0xff;
+        MAP_STATE->unk_30 = 0xff;
+        MAP_STATE->unk_32 = 0xff;
       }
       break;
     case TOUCH_RELEASED:
       if (IsTouchInPhase(TOUCH_RELEASED)) {
-        if (GAME->cursorX == GAME->unk_30 && GAME->cursorY == GAME->unk_32) {
+        if (MAP_STATE->cursorX == MAP_STATE->unk_30 &&
+            MAP_STATE->cursorY == MAP_STATE->unk_32) {
           TouchMarker_Resume();
           return INPUT_CONFIRM;
         }

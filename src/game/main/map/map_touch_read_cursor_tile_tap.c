@@ -9,12 +9,7 @@ void TouchMarker_Destroy(void);
 void TouchMarker_Create(int tileX, int tileY);
 void Map3d_ScreenToTilePos(int x, int y, s32* out);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern s16 gEventScriptOwnsInput;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Bits returned, the same as func_020ef1bc returns for the A and B buttons. */
 #define INPUT_CONFIRM 0x10
@@ -47,8 +42,8 @@ u32 MapTouch_ReadCursorTileTap(void) {
     return INPUT_CANCEL;
   }
   if (data_027c027c != data_027c0288.unk_00) {
-    tileX = (touchX + GAME->unk_1c4->scrollX) >> 4;
-    tileY = (touchY + GAME->unk_1c4->scrollY) >> 4;
+    tileX = (touchX + MAP_STATE->unk_1c4->scrollX) >> 4;
+    tileY = (touchY + MAP_STATE->unk_1c4->scrollY) >> 4;
   } else {
     Map3d_ScreenToTilePos(touchX, touchY, pos);
     pos[1] = -pos[1];
@@ -57,13 +52,13 @@ u32 MapTouch_ReadCursorTileTap(void) {
     tileY = pos[1] >> 9;
   }
   if (IsTouchInPhase(TOUCH_PRESSED)) {
-    if (tileX == GAME->cursorX && tileY == GAME->cursorY) {
-      GAME->unk_30 = tileX;
-      GAME->unk_32 = tileY;
-      TouchMarker_Create(GAME->unk_30, GAME->unk_32);
+    if (tileX == MAP_STATE->cursorX && tileY == MAP_STATE->cursorY) {
+      MAP_STATE->unk_30 = tileX;
+      MAP_STATE->unk_32 = tileY;
+      TouchMarker_Create(MAP_STATE->unk_30, MAP_STATE->unk_32);
     } else {
-      GAME->unk_30 = 0xff;
-      GAME->unk_32 = 0xff;
+      MAP_STATE->unk_30 = 0xff;
+      MAP_STATE->unk_32 = 0xff;
     }
   }
   switch (gTouch.phase) {
@@ -72,13 +67,14 @@ u32 MapTouch_ReadCursorTileTap(void) {
     case TOUCH_HELD:
       if (IsTouchInPhase(TOUCH_HELD)) {
         TouchMarker_Destroy();
-        GAME->unk_30 = 0xff;
-        GAME->unk_32 = 0xff;
+        MAP_STATE->unk_30 = 0xff;
+        MAP_STATE->unk_32 = 0xff;
       }
       break;
     case TOUCH_RELEASED:
       if (IsTouchInPhase(TOUCH_RELEASED)) {
-        if (GAME->cursorX == GAME->unk_30 && GAME->cursorY == GAME->unk_32) {
+        if (MAP_STATE->cursorX == MAP_STATE->unk_30 &&
+            MAP_STATE->cursorY == MAP_STATE->unk_32) {
           TouchMarker_Resume();
           return INPUT_CONFIRM;
         }

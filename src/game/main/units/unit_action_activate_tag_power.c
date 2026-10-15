@@ -4,9 +4,6 @@
 #include "game/play_records.h"
 #include "game/player.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 void ActivatePower(int player, int power);
 void func_020c4018(void);
 

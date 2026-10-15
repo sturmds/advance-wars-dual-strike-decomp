@@ -2,7 +2,6 @@
 #include "game/menu_button.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
 extern MenuButtonTemplate data_0215d358;
 
 void Sound_PlaySe(u32 soundId);

@@ -2,11 +2,8 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/script_slot.h"
+#include "game/screen.h"
 
-extern Unk_027c0280* data_027c0280;
-extern Unk_02080440* data_027c027c;
-
-void Screen_ResetBlend(void);
 void ScriptSlot_ClearCallback(int slot);
 
 /* Script callback of the Start-button map overview: blend mode 3 darkens by

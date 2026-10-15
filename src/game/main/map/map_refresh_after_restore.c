@@ -1,15 +1,11 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 void func_020c4f20(void);
 void Players_AssignVisionGrids(void);
 void func_020c4018(void);
 void Gfx_LoadPlayerBmap0a0Palette(int player);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define HOOKS (data_027c027c->unk_50[data_027c0284])
 
 /* Run after a battle save is restored: converts every map cell code back to
@@ -20,11 +16,11 @@ void Map_RefreshAfterRestore(void) {
   int x;
   int y;
 
-  for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-    for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
-      int tile = x + STATE->mapTiles->rowStart[y];
-      STATE->mapTiles->tiles[tile] =
-          STATE->tileCodeTerrain[STATE->mapTiles->mapCells[tile]];
+  for (y = 0; y < MAP_STATE->unk_1c4->mapHeight; y++) {
+    for (x = 0; x < MAP_STATE->unk_1c4->mapWidth; x++) {
+      int tile = x + MAP_STATE->mapTiles->rowStart[y];
+      MAP_STATE->mapTiles->tiles[tile] =
+          MAP_STATE->tileCodeTerrain[MAP_STATE->mapTiles->mapCells[tile]];
     }
   }
   func_020c4f20();
@@ -33,5 +29,5 @@ void Map_RefreshAfterRestore(void) {
   }
   Players_AssignVisionGrids();
   func_020c4018();
-  Gfx_LoadPlayerBmap0a0Palette(STATE->currentPlayer);
+  Gfx_LoadPlayerBmap0a0Palette(MAP_STATE->currentPlayer);
 }

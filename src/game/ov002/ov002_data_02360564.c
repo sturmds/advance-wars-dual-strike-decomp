@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ov002_empty_cell_lists.h"
 
 extern u32 data_ov002_023609a8[];
 extern u32 data_ov002_02360ae8[];
@@ -80,7 +81,6 @@ extern u32 data_ov002_02367238[];
 extern u32 data_ov002_023675e8[];
 extern u32 data_ov002_02367658[];
 extern u32 data_ov002_023676c8[];
-extern s16 data_ov002_0236bc14;
 
 void* data_ov002_023606bc = &data_ov002_02367094;
 u32 data_ov002_023606c0 = {

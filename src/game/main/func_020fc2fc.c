@@ -1,11 +1,11 @@
 #include "types.h"
+#include "game/menu_button.h"
+#include "game/screen.h"
 
 extern int data_022a7e68;
 void Task_ResumeScript(void* task);
 void HelpBand_Start(int textId, int arg);
 void HelpText_Show(u32 textId, int arg);
-void MenuButtons_DisableTouch(void);
-int ScreenTransition_IsRunning(void);
 void LinkBanner_CreateWithText(void* task, u32 textId);
 void func_020fc178(void);
 void func_020fc234(void);

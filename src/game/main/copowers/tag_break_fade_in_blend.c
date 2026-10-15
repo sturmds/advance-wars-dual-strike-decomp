@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/tag_break_task.h"
+#include "game/math.h"
 
 void Screen_SetCurrentBoth(void* state);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task* task);
 
 /* Frame 0 sets eva to 1; frames 1-32 ease eva from 2 to 14 and evb from 16

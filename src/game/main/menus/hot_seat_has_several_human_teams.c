@@ -2,13 +2,11 @@
 #include "game/Unk_02080440.h"
 #include "game/player.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u32 gLinkPlay;
 extern u8 gSlotControllers
     []; /* per player: PLAYER_CONTROLLER_*, filled by Players_RecordControllers */
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 #define CONTROLLER(player) (gSlotControllers[player])
 
 void Players_RecordControllers(void);
@@ -24,8 +22,9 @@ BOOL HotSeat_HasSeveralHumanTeams(void) {
 
   Players_RecordControllers();
   if (gLinkPlay != 0 ||
-      (STATE->unk_1c4->fog == 0 && STATE->unk_1c4->weather != WEATHER_RAIN) ||
-      STATE->gameMode != GAME_MODE_VERSUS) {
+      (MAP_STATE->unk_1c4->fog == 0 &&
+       MAP_STATE->unk_1c4->weather != WEATHER_RAIN) ||
+      MAP_STATE->gameMode != GAME_MODE_VERSUS) {
     return FALSE;
   }
   firstTeam = 0;
@@ -37,10 +36,10 @@ BOOL HotSeat_HasSeveralHumanTeams(void) {
     if (humans == 0) {
       if (CONTROLLER(player) == PLAYER_CONTROLLER_HUMAN) {
         humans++;
-        firstTeam = STATE->players[player].team;
+        firstTeam = MAP_STATE->players[player].team;
       }
     } else if (CONTROLLER(player) == PLAYER_CONTROLLER_HUMAN &&
-               firstTeam != STATE->players[player].team) {
+               firstTeam != MAP_STATE->players[player].team) {
       return TRUE;
     }
   }

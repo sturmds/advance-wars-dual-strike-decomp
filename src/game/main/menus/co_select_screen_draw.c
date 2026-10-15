@@ -3,22 +3,16 @@
 #include "game/Unk_02088d04.h"
 #include "game/co_select_screen.h"
 #include "game/oam_cells.h"
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
+#include "game/menu_button.h"
+#include "game/screen_other_map.h"
+#include "game/math.h"
 
 int Campaign_IsHardMode(void);
 void Gfx3d_InitScene(void);
 void Gx_DrawTexturedQuadFormat(int x, int y, int z, int sizeS, int sizeT,
                                int texFmt, u32 texAddr, u32 palAddr, int flipX,
                                int flipY);
-int HwDiv32(int a, int b);
-int HwMod32(int a, int b);
 int MainLoop_GetFrameCount(void);
-void MenuCursor_DrawAt(int x, int y, int width, int height);
-void Screen_SetCurrentGfx(void* state);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Sprite_QueueDefault(int x, int y, int attr, int list);
 int func_02028644(void);
@@ -28,15 +22,13 @@ int CoSelectScreen_ColumnTileX(u8 column);
 BOOL CoSelectScreen_IsCoInOtherCell(u8 listCo);
 int CoSelectScreen_ListSlotOfCo(u8 listCo);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* A campaign map on normal mode lists only the map's own COs, in 5 rows
  * of 24 pixels; otherwise the list has 7 rows of 16 pixels. Needed to
  * match: the column count tests the mode though both sides are 4, and the
  * row count turns the test into 0 or 1 first. SLOT_X is unsigned so the
  * offsets added to it stay separate adds. */
 #define MAP_CO_LIST \
-  (STATE->gameMode == GAME_MODE_CAMPAIGN && !Campaign_IsHardMode())
+  (MAP_STATE->gameMode == GAME_MODE_CAMPAIGN && !Campaign_IsHardMode())
 #define LIST_COLUMNS (MAP_CO_LIST ? 4 : 4)
 #define LIST_ROWS ((MAP_CO_LIST ? 1 : 0) ? 5 : 7)
 #define SLOT_Y(i) \

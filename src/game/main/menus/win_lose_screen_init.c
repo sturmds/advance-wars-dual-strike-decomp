@@ -6,10 +6,10 @@
 #include "game/menu_state.h"
 #include "game/task.h"
 #include "game/win_lose.h"
+#include "game/screen_other_map.h"
+#include "game/menu_button.h"
 
 void Gfx_InitBothScreens(void);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Screen_SetCurrentBoth(void* state);
 void* File_Load(const char* path);
 void Mem_Free(void* file);
@@ -23,21 +23,15 @@ void Co_LoadArmyLargePicture(int coMood, void* dest, int paletteSlot, int army);
 void NumberFont_LoadLow(void);
 void TpIcon_Load(void);
 void TpIcon2_LoadTo(u8* dest);
-void Menu_Reset(void);
 void Wallpaper_LoadBoth(void);
 void Task_JumpToLabel(Task* task, int label);
 int WinLose_GetScoreWidth(int points);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
 extern Unk_022a7b80 data_022a7b80;
 extern const char gResultPointObjPath[]; /* "/ohashi/res_result_point_obj" */
 extern const char gWinLosePath[];        /* "/ohashi/res_winlose" */
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 
 #define MAIN_MAP (data_027c0288.unk_00)
 #define SECOND_MAP (data_027c0288.unk_04)
@@ -272,7 +266,7 @@ void WinLoseScreen_Init(WinLoseTask* task) {
     } else {
       task->portraitsMax = task->portraitsB;
     }
-    if (GAME->gameMode == 3) { /* likely Survival */
+    if (MAP_STATE->gameMode == 3) { /* likely Survival */
       task->pointsTotal = data_022a7b80.points;
     } else {
       task->pointsAdded = data_022a7a88.unk_0c;
@@ -287,7 +281,7 @@ void WinLoseScreen_Init(WinLoseTask* task) {
     task->portraitsA = 0;
     for (i = 0; i < data_022a7a88.countA; i++) {
       /* Needed to match: the TRUE/FALSE test keeps the movne/moveq pair. */
-      if ((GAME->players[data_022a7a88.sideA[i]].back.id ? TRUE : FALSE) !=
+      if ((MAP_STATE->players[data_022a7a88.sideA[i]].back.id ? TRUE : FALSE) !=
           FALSE) {
         task->portraitsA |= 1 << i;
       }

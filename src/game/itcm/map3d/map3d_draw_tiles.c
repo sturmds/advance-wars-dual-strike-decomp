@@ -6,8 +6,6 @@
 #include "game/camera_preset.h"
 #include "game/terrain.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern Unk_02080440_48 data_02183b08;
 extern Camera data_022a7d5c;
 extern int gCameraPresetIndex;
@@ -29,8 +27,6 @@ void Map3d_DrawMapTile(VecFx32* pos, u16 x, u16 y, int model, int tile, int fog,
                        int highlight, int flag4000, int flag8000);
 void Map3d_DrawTileUnit(VecFx32* pos, u16 x, u16 y, int highlight,
                         int stateIs8);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* needed to match: the original computes all three values before the first
  * register write. */
@@ -78,12 +74,12 @@ void Map3d_DrawTiles(VecFx32* origin, int border) {
     touch = 0;
   }
   /* passed on to the unit draw; the meaning of state 8 is unknown */
-  if (STATE->unk_1c == 8) {
+  if (MAP_STATE->unk_1c == 8) {
     stateIs8 = 1;
   } else {
     stateIs8 = 0;
   }
-  if (STATE == &data_02183b08 && STATE->unk_1c4->mapId == 248) {
+  if (MAP_STATE == &data_02183b08 && MAP_STATE->unk_1c4->mapId == 248) {
     models = data_02157f84;
   } else {
     models = data_02157bc4;
@@ -94,8 +90,8 @@ void Map3d_DrawTiles(VecFx32* origin, int border) {
       flag8000 = 0;
       highlight = 0;
       brightness = data_022a7c58;
-      if (x < 0 || x >= STATE->unk_1c4->mapWidth || y < 0 ||
-          y >= STATE->unk_1c4->mapHeight) {
+      if (x < 0 || x >= MAP_STATE->unk_1c4->mapWidth || y < 0 ||
+          y >= MAP_STATE->unk_1c4->mapHeight) {
         switch (border) {
           case 0:
           default:
@@ -110,11 +106,11 @@ void Map3d_DrawTiles(VecFx32* origin, int border) {
             break;
         }
       } else {
-        index = x + STATE->mapTiles->rowStart[y];
-        model = models[STATE->mapTiles->mapCells[index]];
+        index = x + MAP_STATE->mapTiles->rowStart[y];
+        model = models[MAP_STATE->mapTiles->mapCells[index]];
         /* model 2 animates through 2-5 every 16 frames; fog shows model 1 */
         if (model == 2) {
-          if (STATE->mapTiles->unk_2338[index] == 0) {
+          if (MAP_STATE->mapTiles->unk_2338[index] == 0) {
             model = 1;
           } else {
             model += (MainLoop_GetFrameCount() >> 4) & 3;
@@ -126,9 +122,9 @@ void Map3d_DrawTiles(VecFx32* origin, int border) {
         if (model & 0x4000) {
           flag4000 = 1;
         }
-        index = x + STATE->mapTiles->rowStart[y];
-        tile = STATE->mapTiles->tiles[index];
-        if (STATE->mapTiles->unk_2338[index] != 0) {
+        index = x + MAP_STATE->mapTiles->rowStart[y];
+        tile = MAP_STATE->mapTiles->tiles[index];
+        if (MAP_STATE->mapTiles->unk_2338[index] != 0) {
           fog = 0;
         } else {
           fog = 1;
@@ -148,13 +144,13 @@ void Map3d_DrawTiles(VecFx32* origin, int border) {
               brightness = 31 - data_022a7c60;
             }
           } else {
-            range = STATE->mapTiles->rangeMapTiles[index];
+            range = MAP_STATE->mapTiles->rangeMapTiles[index];
             highlight = range >= 0 ? 1 : 0;
             brightness = range >= 0 ? 31 : 31 - data_022a7c60;
           }
         }
         if (touch) {
-          if (x == STATE->cursorX && y == STATE->cursorY) {
+          if (x == MAP_STATE->cursorX && y == MAP_STATE->cursorY) {
             highlight = 1;
           }
         }
@@ -165,8 +161,8 @@ void Map3d_DrawTiles(VecFx32* origin, int border) {
       pos.z = origin->z;
       /* 32 world units per map pixel; y grows downwards on the map */
       G3_Translate((pos.x << 13) / 256, (-pos.y * 0x6000) / 768, pos.z);
-      if (x >= 0 && x < STATE->unk_1c4->mapWidth && y >= 0 &&
-          y < STATE->unk_1c4->mapHeight && fog == 0) {
+      if (x >= 0 && x < MAP_STATE->unk_1c4->mapWidth && y >= 0 &&
+          y < MAP_STATE->unk_1c4->mapHeight && fog == 0) {
         Map3d_DrawTileUnit(&pos, x, y, highlight, stateIs8);
       }
       Gx_SetGreyEmission(brightness);

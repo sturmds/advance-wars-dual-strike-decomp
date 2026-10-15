@@ -5,8 +5,6 @@
 
 BOOL Unit_IsOnUrbanTerrain(const void* unit);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern TaskScriptCmd gPowerEffectTaskDesc[];
 extern char data_02168990[];
 extern char data_02168994[];

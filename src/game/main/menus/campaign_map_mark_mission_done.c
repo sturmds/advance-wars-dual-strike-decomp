@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/campaign_map.h"
+#include "game/campaign_map_music.h"
 
 void CampaignMap_PickNextMission(void);
 
-extern CampaignMapState gCampaignMapState;
 extern u8 data_0229c74a[];
 
 /* Sets bit 0 of the flags of the mission just played (unk_00), then picks

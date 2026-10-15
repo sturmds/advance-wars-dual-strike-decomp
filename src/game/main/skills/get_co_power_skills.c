@@ -2,9 +2,6 @@
 #include "game/co_data.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Skills used when CO effects are off; it lies inside gCoTable. */
 extern u32 data_02153af4[];
 

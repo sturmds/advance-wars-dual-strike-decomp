@@ -4,8 +4,9 @@
 #include "game/war_room_records.h"
 #include "game/Unk_02088d04.h"
 #include "game/oam_cells.h"
+#include "game/screen_other_map.h"
+#include "game/campaign_map_music.h"
 
-void Screen_SetCurrentGfx(void* state);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Sprite_QueueDefault(int x, int y, int attr, int list);
 void Co_QueueSmallPictureSprite(int x, int y, int attr, int list);
@@ -16,10 +17,6 @@ int func_0210391c(void);
 int Campaign_IsHardMode(void);
 int Score_ToRank(int score); /* 2 below 200, 3 below 250, 4 below 280, else 5 */
 
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
-extern CampaignMapState gCampaignMapState;
 extern CampaignMission gCampaignMissions[];
 
 #define CAMPAIGN_FIRST_MAP 224

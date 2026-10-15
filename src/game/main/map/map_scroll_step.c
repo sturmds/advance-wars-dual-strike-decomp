@@ -6,15 +6,11 @@ int abs(int a0);
 void MenuDepth_Pop(void);
 s8 ScriptSlot_StopSlot(ScriptSlot* target);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 u8 gMapScrollSpeeds[MAP_SCROLL_STEP_COUNT];
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* unk_1c4 points at unk_184 (Screens_InitContexts); this code writes the
  * view through unk_184 itself. */
-#define VIEW ((Unk_02080440_1c4*)&GAME->unk_184)
+#define VIEW ((Unk_02080440_1c4*)&MAP_STATE->unk_184)
 
 /* One frame of the map scroll script. Moves gMapScrollSpeeds[step] further
  * along the longer axis, the other axis in proportion (16.16 fixed point), and

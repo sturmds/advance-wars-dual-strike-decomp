@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/sound_stream.h"
-
-int OS_DisableInterrupts(void);
-void OS_RestoreInterrupts(int irqState);
+#include "sdk/os.h"
 
 /* Takes the oldest waiting refill request, or returns NULL when none is
  * queued. The request's stream has one request fewer pending. Interrupts

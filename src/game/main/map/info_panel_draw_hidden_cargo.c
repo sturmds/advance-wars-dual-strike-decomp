@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
 extern void* data_021663c8[];
 extern u8 gInfoPanelHiddenCargoMark[];
 

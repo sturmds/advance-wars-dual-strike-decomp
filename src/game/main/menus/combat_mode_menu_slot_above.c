@@ -1,7 +1,6 @@
 #include "types.h"
+#include "game/math.h"
 
-int HwDiv32(int a, int b);
-int HwMod32(int a, int b);
 BOOL CombatModeMenu_IsSlotAvailable(u8 slot);
 
 /* Moves up one row of the 3-wide slot grid, wrapping from the first row to

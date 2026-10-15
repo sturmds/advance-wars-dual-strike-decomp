@@ -2,15 +2,12 @@
 #include "game/co_data.h"
 #include "game/player.h"
 #include "game/Unk_02080440.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numerator, s32 denominator);
 void Sound_PlaySe(int id);
 BOOL Player_IsInGame(u8 player);
 void func_020e2670(int priority);
 int SuperPowerCost(int player, int slot);
-
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 
 /* Sasha's CO Power: each CO (front and back) of every enemy still in the
  * game loses meter charge equal to percent of its Super cost, where

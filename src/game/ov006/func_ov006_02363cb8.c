@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 int Ov006_IsBareShoal(int x, int y);
 
 int func_ov006_02363cb8(int x, int y) {

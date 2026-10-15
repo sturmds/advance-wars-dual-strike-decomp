@@ -5,14 +5,14 @@
 #include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
+#include "game/menu_button.h"
 
 u8 Map_GetLoadedPlayerCount(void);
 int Player_GetCoByte(int player, int slot);
 #define FRAME_SIZE sizeof(PLAYER_INFO_FRAMES->frames[0].tiles)
 
 void Gfx_InitBothScreens(void);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 u8* File_Load(const char* path);
 const char* File_LocalizePath(const char* path);
 void Mem_Free(void* file);
@@ -34,19 +34,11 @@ void PlayerInfo_LoadCoPictures(void);
 void NumberFont_LoadLow(void);
 void TpIcon_Load(void);
 void TpIcon2_LoadTo(u8* dest);
-void Menu_Reset(void);
-void MenuCursor_SetRect(s16 left, s16 top, s16 right, s16 bottom);
-void MenuButtons_DisableTouch(void);
 void Wallpaper_LoadBoth(void);
 void PlayerInfo_StartRedrawTask(void);
 int Link_IsActive(void);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
 extern const char gPlayerInfoPath[];     /* "/ohashi/res_syoguninfo" */
 extern const char gPlayerInfoLangPath[]; /* "/ohashi/res_syoguninfo_lang" */
 

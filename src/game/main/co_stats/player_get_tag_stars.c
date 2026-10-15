@@ -2,9 +2,6 @@
 #include "game/player.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int Co_GetTagStars(int co, int partner);
 
 /* Tag stars (0-3) of a player's front and back CO pair; 0 without a back

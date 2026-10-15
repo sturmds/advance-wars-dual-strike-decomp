@@ -2,10 +2,10 @@
 #include "game/campaign_map.h"
 #include "game/menu_state.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
+#include "game/text_print.h"
+#include "game/campaign_map_music.h"
 
-void Screen_SetCurrentGfx(void* state);
-s8 Text_PrintId(s16 x, s16 y, u16* map, u32 textId, u16 unk_30, u16 unk_32);
-s8 Text_Print(s16 x, s16 y, u16* map, const void* text, u16 unk_30, u16 unk_32);
 void Text_PrintImmediate(s16 x, s16 y, u16* map, u32 textId, u16 unk_30,
                          int arg);
 void Number_Draw(s16 x, s16 y, u16* map, u32 value, u16 entryBits,
@@ -16,10 +16,6 @@ const void* Map_GetName(u16 mapId);
 int CampaignRecords_GetNextNumber(void);
 void Gfx_RequestLayerCopy(int layer);
 
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
-extern CampaignMapState gCampaignMapState;
 extern CampaignMission gCampaignMissions[];
 
 #define PANEL_TITLE_TEXT 0x41000000

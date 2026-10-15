@@ -2,8 +2,6 @@
 #include "game/menu_state.h"
 #include "game/oam_cells.h"
 
-extern MenuState gMenuState;
-
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
 /* Queues three sprites in a row at y 32 (x 208, 216, 224) of the player info screen. The

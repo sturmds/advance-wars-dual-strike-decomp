@@ -2,7 +2,6 @@
 #include "sdk/os_arm7.h"
 
 extern AlarmList gOsiAlarmQueue_Arm7;
-u64 _ll_udiv_Arm7(u64 dividend, u64 divisor);
 
 /*
  * Puts an alarm into the queue, sorted by fire time. A periodic alarm

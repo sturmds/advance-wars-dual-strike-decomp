@@ -10,18 +10,13 @@ void CoExp_DrawPlayerPanel(CoExp* exp, int x, int y, int player, int frame);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void CoExp_DrawCoCell(CoExp* exp, int x, int y, int coSlot, int frame);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
-
 /* Queues the sprites of the CO experience page, offset by (x, y) so the
  * page can slide. Uses the layout CoExp_InitScreen drew: in the War Room
  * one centered CO cell (CoExp_IsSingleColumn) or player 0's panel, plus
  * the experience multiplier icon (tile 836); a single centered cell on
  * normal campaign maps up to 231; else one panel per side A player. */
 void CoExp_DrawScreen(CoExp* exp, int x, int y, int frame) {
-  if (GAME->gameMode == GAME_MODE_WAR_ROOM) {
+  if (MAP_STATE->gameMode == GAME_MODE_WAR_ROOM) {
     if (CoExp_IsSingleColumn() == 1) {
       int bannerX = (x + 112) & 0x1ff;
 
@@ -35,8 +30,8 @@ void CoExp_DrawScreen(CoExp* exp, int x, int y, int frame) {
       Sprite_QueueAt(6, (x + 112) & 0x1ff, (y + 104) & 0xff, &data_027c0048,
                      0xc000, 0x344);
     }
-  } else if (GAME->gameMode == GAME_MODE_CAMPAIGN && !Campaign_IsHardMode() &&
-             GAME->unk_1c4->mapId <= 231) {
+  } else if (MAP_STATE->gameMode == GAME_MODE_CAMPAIGN &&
+             !Campaign_IsHardMode() && MAP_STATE->unk_1c4->mapId <= 231) {
     Sprite_QueueAt(7, (x + 112) & 0x1ff, (y + 58) & 0xff, &data_027c0060,
                    0xb000, 0x2f4);
     CoExp_DrawCoCell(exp, x + 80, y + 72, 0, frame);

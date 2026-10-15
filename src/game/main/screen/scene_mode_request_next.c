@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_021694c0.h"
-
-int Scene_GetKind(void);
-int SceneMode_Request(int mode);
+#include "game/screen.h"
 
 extern Unk_021694c0* data_021694c0;
 extern int* data_021695a4[];

@@ -7,9 +7,6 @@ BOOL Player_IsPowerActive(int player); /* the front CO has a power on */
 BOOL CanUseSuperPower(int player,
                       int slot); /* the same test for the Super CO Power */
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* TRUE when the CO in `slot` (0 front, 1 back) has enough charge for its
  * CO Power and no power is on yet. A CO whose CO Power costs nothing has
  * only a Super CO Power, so the Super test decides. */

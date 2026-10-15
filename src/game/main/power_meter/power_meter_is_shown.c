@@ -3,8 +3,6 @@
 
 BOOL func_020fa6f8(void);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* Whether the power meters are drawn for a map state: Unk_02080440_48.unk_5c
  * must be set, and for the second state the other screen's state callback
  * (func_020fa6f8) must not answer TRUE. */
@@ -13,7 +11,7 @@ BOOL PowerMeter_IsShown(int mapState) {
   Unk_027c0280* savedGfx;
   Unk_02080440* savedGame;
 
-  if (STATE->unk_5c == 0) {
+  if (MAP_STATE->unk_5c == 0) {
     show = FALSE;
   }
   if (mapState == MAP_STATE_SECOND) {

@@ -2,8 +2,6 @@
 #include "game/map_select.h"
 #include "game/screen_other_map.h"
 
-extern MenuState gMenuState;
-
 void Sound_PlaySe(int id);
 void MapSelect_BuildLists(
     MapList* lists,

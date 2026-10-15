@@ -4,7 +4,6 @@
 
 extern Unk_022a7b80 data_022a7b80;
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
 #define CURRENT_MAP ((&data_027c0288.unk_00)[data_027c0284])
 
 #define SWITCH_TO(state, savedGfx, savedGame) \
@@ -29,13 +28,13 @@ int Game_GetDayLimit(void) {
   Unk_02080440* savedGame;
   u8 limit;
 
-  if (GAME->gameMode == GAME_MODE_SURVIVAL &&
+  if (MAP_STATE->gameMode == GAME_MODE_SURVIVAL &&
       (data_022a7b80.mode == SURVIVAL_MODE_A ||
        data_022a7b80.mode == SURVIVAL_MODE_B)) {
     return data_022a7b80.budgetLeft;
   }
   SWITCH_TO(CURRENT_MAP, savedGfx, savedGame);
-  limit = GAME->dayLimit;
+  limit = MAP_STATE->dayLimit;
   SWITCH_BACK(savedGfx, savedGame);
   return limit;
 }

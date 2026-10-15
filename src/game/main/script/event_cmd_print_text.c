@@ -5,9 +5,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/text_printer.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
 extern u8 gEventSkipState;
 extern Unk_0201d320 data_022977f4[];
 extern EventSlotHold data_022977f8[];

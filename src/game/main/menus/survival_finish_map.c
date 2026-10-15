@@ -2,9 +2,9 @@
 #include "game/task.h"
 #include "game/play_records.h"
 #include "game/Unk_022a7b80.h"
+#include "game/unlocks.h"
 
 BOOL Player1Team_HasPlayerInGame(void);
-void GameFlag_Set(int id, int value);
 int Survival_GetMapCount(int mode);
 void Survival_SaveRecord(void);
 

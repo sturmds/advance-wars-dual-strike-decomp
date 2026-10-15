@@ -2,17 +2,12 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_02160ac0.h"
+#include "game/screen_other_map.h"
 
 void Gfx_RequestLayerCopy(int layer);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Text_PrintImmediate(s16 x, s16 y, u16* map, u32 textId, u16 a, u16 b);
 void Bg_ClearRect(void* target, int x, int y, int w, int h);
 void Number_Draw(s16 x, s16 y, u16* map, int value, u16 a, u16 b);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* One priced entry; greyed out when 20 cells are in use or the funds are
  * below the cost. */

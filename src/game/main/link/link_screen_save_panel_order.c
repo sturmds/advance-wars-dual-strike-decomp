@@ -1,3 +1,4 @@
+#include "game/screen_other_map.h"
 /* Built with opt_loop_invariants off (the pragma sweep found it): the original
  * reads playerCount again on every pass of the loop. */
 #pragma opt_loop_invariants off
@@ -7,14 +8,8 @@
 #include "game/menu_state.h"
 #include "game/link_slots.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void PaletteCycle_Stop(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
 u8 gLinkSlotPlayers[LINK_SLOT_COUNT];
 
 /* Step of the link screen's closing task script: stops the palette cycle on

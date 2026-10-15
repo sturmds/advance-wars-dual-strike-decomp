@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/main_menu.h"
+#include "game/menu_button.h"
 
-int Menu_GetSelectedId(void);
 int MainMenu_IsFirstSidePage(int page);
 void MainMenu_StartPageFlip(int page, int slide);
 

@@ -6,10 +6,8 @@
 #include "game/Unk_02168140.h"
 #include "game/Unk_022a7c5c.h"
 #include "game/sprite_anim.h"
+#include "sdk/fs.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern char data_021681d8[];
 extern char data_021681fc[];
 extern char data_02168204[];
@@ -17,7 +15,6 @@ extern char data_02168208[];
 extern u8 data_021480e0[];
 extern u8 data_021488c4[];
 
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_LoadFromFile(const char* fileName, int a, int b, int c);
 void Gfx_QueueUnpackedFileCopy(const char* fileName, void* dest);
@@ -28,8 +25,6 @@ SpriteAnim3dTask* SpriteAnim3dTask_StartAlt(const void* file,
                                             int layer);
 /* Defined returning void, but leaves the new task in r0, and this caller uses it. */
 void Sound_PlaySe(u32 soundId);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Step of the data_02168140 script: loads an animation's graphics and plays
  * it 2 tiles right of the task's tile, with sound 160. On the screen that
@@ -55,8 +50,9 @@ void TileListTask_PlayEffect(Unk_02168140Task* task) {
     Palette_LoadFromFile(data_021681fc, 0, 672, 32);
     spriteTask = SpriteAnimTask_Start(
         data_021480e0,
-        (task->unk_2c * 16 - STATE->unk_1c4->scrollX + 32) & 0x1ff,
-        (task->unk_30 * 16 - STATE->unk_1c4->scrollY + 8) & 0xff, 0x5194, 0, 1);
+        (task->unk_2c * 16 - MAP_STATE->unk_1c4->scrollX + 32) & 0x1ff,
+        (task->unk_30 * 16 - MAP_STATE->unk_1c4->scrollY + 8) & 0xff, 0x5194, 0,
+        1);
     spriteTask->sprite->tileSource = gMenuState.bytes;
   }
   Sound_PlaySe(160);

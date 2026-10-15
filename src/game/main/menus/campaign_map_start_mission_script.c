@@ -1,13 +1,11 @@
 #include "types.h"
 #include "game/campaign_map.h"
 #include "game/Unk_02080440.h"
+#include "game/campaign_map_music.h"
 
 void func_02014c38(void* parentOrList);
 void EventScript_Start(const void* script);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern CampaignMapState gCampaignMapState;
 extern CampaignMission gCampaignMissions[];
 
 /* Starts the event script of the task's mission (CampaignMission.script),

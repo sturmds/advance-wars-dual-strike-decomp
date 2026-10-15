@@ -6,18 +6,13 @@
 #include "game/task.h"
 #include "game/unit_action.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern UnitAction data_0229d8c8;
 extern const TaskScriptCmd data_02168380[];
 
 void Combat_CalcDamageToTarget(int unitIndex, int target, s16* pos);
 void ScreenConfig_RunActionHook(void);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
-#define TILE_INDEX(x, y) ((x) + STATE->mapTiles->rowStart[y])
-#define DAMAGE (STATE->combatants[0].damageNoLuck)
+#define DAMAGE (MAP_STATE->combatants[0].damageNoLuck)
 
 #define TILE_HP_MASK 0x7f
 #define TILE_HP_FLAG 0x80 /* kept as it is; meaning unknown */
@@ -31,20 +26,20 @@ void ActingUnit_AttackTile(int x, int y, int flag) {
   ObjectAttackTask* task;
 
   data_0229d8c8.rngState = gRngState;
-  Combat_CalcDamageToTarget(STATE->actingUnitIndex, MAP_OBJECT_TILE,
-                            &STATE->actingUnitDestX);
-  if ((STATE->tileHp[TILE_INDEX(x, y)] & TILE_HP_MASK) < DAMAGE) {
+  Combat_CalcDamageToTarget(MAP_STATE->actingUnitIndex, MAP_OBJECT_TILE,
+                            &MAP_STATE->actingUnitDestX);
+  if ((MAP_STATE->tileHp[MAP_TILE_INDEX(x, y)] & TILE_HP_MASK) < DAMAGE) {
     hp = 0;
   } else {
-    hp = (STATE->tileHp[TILE_INDEX(x, y)] & TILE_HP_MASK) - DAMAGE;
+    hp = (MAP_STATE->tileHp[MAP_TILE_INDEX(x, y)] & TILE_HP_MASK) - DAMAGE;
   }
-  STATE->tileHp[TILE_INDEX(x, y)] =
-      hp | (STATE->tileHp[TILE_INDEX(x, y)] & TILE_HP_FLAG);
+  MAP_STATE->tileHp[MAP_TILE_INDEX(x, y)] =
+      hp | (MAP_STATE->tileHp[MAP_TILE_INDEX(x, y)] & TILE_HP_FLAG);
   ScreenConfig_RunActionHook();
   task = (ObjectAttackTask*)Task_Create(data_02168380, TASK_LIST(3));
   task->tileX = x;
   task->tileY = y;
-  task->attacker = STATE->actingUnit;
+  task->attacker = MAP_STATE->actingUnit;
   task->object = NULL;
   task->flag = flag;
 }

@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/ov003_marker.h"
-
-u32 Math_Distance(int x1, int y1, int x2, int y2);
+#include "game/math.h"
 
 /* x and y are in pixels. Kind 6 reaches 8 pixels, kind 7 reaches 24. */
 int Ov003_IsNearMarker(Ov003Marker* marker, int x, int y) {

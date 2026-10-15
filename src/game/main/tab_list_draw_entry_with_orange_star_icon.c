@@ -5,7 +5,6 @@
 
 void TabList_PutIconQuad(int x, int y, int index, int player, int palette);
 void Number_Draw(s16 x, s16 y, u16* map, int value, u16 a, u16 b);
-extern Unk_027c0280* data_027c0280;
 
 /* TabListEntry.draw of the entries with an Orange Star icon: like
  * TabList_DrawEntryWithBlackHoleIcon, but icon unk_04 comes from army style 1 (Orange

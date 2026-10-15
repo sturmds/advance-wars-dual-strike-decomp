@@ -1,40 +1,58 @@
 #include "types.h"
-#include "game/ai_unit_action.h"
 #include "game/Unk_02080440.h"
-#include "game/map_unit.h"
 #include "game/unit_stats.h"
+#include "game/ai/ai_tile_search.h"
+#include "game/ai_unit_action.h"
+#include "game/map_unit.h"
+#include "game/terrain.h"
 #include "game/range_map.h"
+#include "game/ai/ai_build_checks.h"
+#include "game/ai/ai_count_units.h"
+#include "game/ai/ai_unit_claims.h"
+#include "game/ai/ai_capture_site.h"
+#include "game/ai/ai_transport_act.h"
+#include "game/ai/ai_unit_move.h"
+#include "game/ai/ai_perform_action.h"
+#include "game/ai.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern u8 gTerrainFactoryKind
-    []; /* per terrain id: 1 base, 2 airport, 3 port, else 0 */
-extern u8 gAiTransportsSentToUnit
-    []; /* per unit slot & 63: empty transports already sent to that foot unit this turn */
+/* RangeMap_FillMoves movement; guess: high enough to act as no limit. */
+#define ANY_DISTANCE 110
 
-/* movement is int here (s16 in fill_unit_moves.c): needed to match, the
- * caller passes footMove without narrowing it. */
-void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
-int Player_GetUnitMoveRange(int player, int unitType);
-int Unit_GetUsableMovement(
-    MapUnit* unit); /* move points this turn, capped by fuel */
-int func_020a507c(int x, int y, int range);
-int func_020a50d4(int x, int y, int unitType, int movement);
-BOOL Ai_IsTransportStopTile(int unitType, int x, int y);
-BOOL Map_IsSiloOrCapturableTile(int x, int y);
-int Unit_IsTileOwnedByTeam(int unitIndex,
-                           int tile); /* 1: tile owned by the unit's team */
-void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
-void AiUnit_MoveTowardTile(int x, int y);
+/* MapTiles.rangeScratch here: lowest move cost of an own transport to the
+ * tile; NO_TRANSPORT where none can get there. */
+#define NO_TRANSPORT 127
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define MAP (STATE->mapTiles)
-#define TILE_INDEX(x, y) ((x) + MAP->rowStart[y])
-#define FIRST_UNIT (Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 1)
-
-/* Movement given to range fills that should cover the whole map. */
 #define UNLIMITED_MOVE 110
+
 #define NO_TILE 0x7fff
+
+/* MapTiles.rangeScratch2 bits read here, for each foot unit type; set by
+ * AiTurn_BuildCaptureMap. */
+#define TILE_FLAG_INFANTRY 0x80
+
+#define TILE_FLAG_MECH 0x40
+
+#define FIRST_UNIT (Ov000_gPlayerFirstUnitSlot[MAP_STATE->currentPlayer] + 1)
+
+extern u8 gTerrainFactoryKind[];
+
+/* per terrain id: 1 base, 2 airport, 3 port, else 0 */
+extern u8 gAiTransportsSentToUnit[];
+
+/* Needed to match: this file passes the movement as an int, with no s16
+ * narrowing, so it declares RangeMap_FillMoves with an int. */
+void RangeMap_FillMoves(int x, int y, int unitType, int movement,
+                        int moveRange);
+
+BOOL Map_IsSiloOrCapturableTile(int x, int y);
+
+int Player_GetUnitMoveRange(int player, int unitType);
+
+int Unit_GetUsableMovement(MapUnit* unit);
+
+/* move points this turn, capped by fuel */
+
+int Unit_IsTileOwnedByTeam(int unitIndex, int tile);
 
 /* Run by AiEmptyTransport_Act for an empty APC or T-Copter (the acting
  * unit). Picks one of the current player's Infantry or Mechs that no other
@@ -49,7 +67,6 @@ void AiUnit_MoveTowardTile(int x, int y);
  * MapTiles.rangeMapTiles: foot unit's move cost (where rangeMap points).
  * MapTiles.rangeScratch2: second fill from the transport, used to break ties
  * when the foot unit has an AI target. */
-
 void AiEmptyTransport_GoToFootUnit(void) {
   int meetX = -1;
   int meetY = -1;
@@ -71,16 +88,16 @@ void AiEmptyTransport_GoToFootUnit(void) {
   int tileAlt;
   int footMove;
 
-  if (STATE->actingUnit->cargo[0] != 0) {
+  if (MAP_STATE->actingUnit->cargo[0] != 0) {
     return;
   }
-  RangeMap_SetBuffer(MAP->rangeScratch);
-  RangeMap_FillMoves(STATE->actingUnit->x, STATE->actingUnit->y,
-                     STATE->actingUnit->type, UNLIMITED_MOVE, 1);
-  RangeMap_SetBuffer(MAP->rangeMapTiles);
-  transportReach = Unit_GetUsableMovement(STATE->actingUnit) + 1;
+  RangeMap_SetBuffer(MAP_TILES->rangeScratch);
+  RangeMap_FillMoves(MAP_STATE->actingUnit->x, MAP_STATE->actingUnit->y,
+                     MAP_STATE->actingUnit->type, UNLIMITED_MOVE, 1);
+  RangeMap_SetBuffer(MAP_TILES->rangeMapTiles);
+  transportReach = Unit_GetUsableMovement(MAP_STATE->actingUnit) + 1;
   for (i = FIRST_UNIT; i < FIRST_UNIT + 50; i++) {
-    unit = &STATE->units[i];
+    unit = &MAP_STATE->units[i];
     if (unit->type == UNIT_NONE || unit->type > UNIT_MECH) {
       continue;
     }
@@ -91,7 +108,7 @@ void AiEmptyTransport_GoToFootUnit(void) {
       continue;
     }
     /* APCs only go for foot units marked 1, T-Copters for 1 to 3 */
-    switch (STATE->actingUnit->type) {
+    switch (MAP_STATE->actingUnit->type) {
       case UNIT_APC:
         if (unit->transportWanted != 1) {
           continue;
@@ -103,8 +120,8 @@ void AiEmptyTransport_GoToFootUnit(void) {
         }
         break;
     }
-    footMove = Player_GetUnitMoveRange(STATE->currentPlayer, unit->type);
-    dist = MAP->rangeScratch[TILE_INDEX(unit->x, unit->y)];
+    footMove = Player_GetUnitMoveRange(MAP_STATE->currentPlayer, unit->type);
+    dist = MAP_TILES->rangeScratch[MAP_TILE_INDEX(unit->x, unit->y)];
     nearTarget = 0;
     meetRange = transportReach + footMove;
     /* Meaning of these two checks unknown; when one holds, the unit is
@@ -123,41 +140,42 @@ void AiEmptyTransport_GoToFootUnit(void) {
     unitTileDist = NO_TILE;
     unitTileAlt = unitTileDist;
     if (unit->aiTargetX != MAP_UNIT_NO_TARGET) {
-      RangeMap_SetBuffer(MAP->rangeScratch2);
-      RangeMap_FillMoves(STATE->actingUnit->x, STATE->actingUnit->y,
-                         STATE->actingUnit->type, UNLIMITED_MOVE, 0);
-      RangeMap_SetBuffer(MAP->rangeMapTiles);
-      if (MAP->rangeScratch2[TILE_INDEX(STATE->actingUnit->x,
-                                        STATE->actingUnit->y)] < 0) {
+      RangeMap_SetBuffer(MAP_TILES->rangeScratch2);
+      RangeMap_FillMoves(MAP_STATE->actingUnit->x, MAP_STATE->actingUnit->y,
+                         MAP_STATE->actingUnit->type, UNLIMITED_MOVE, 0);
+      RangeMap_SetBuffer(MAP_TILES->rangeMapTiles);
+      if (MAP_TILES->rangeScratch2[MAP_TILE_INDEX(
+              MAP_STATE->actingUnit->x, MAP_STATE->actingUnit->y)] < 0) {
         continue;
       }
     }
-    for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-      for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
-        if (STATE->rangeMap[y][x] < 0) {
+    for (y = 0; y < MAP_STATE->unk_1c4->mapHeight; y++) {
+      for (x = 0; x < MAP_STATE->unk_1c4->mapWidth; x++) {
+        if (MAP_STATE->rangeMap[y][x] < 0) {
           continue;
         }
-        if (MAP->rangeScratch[TILE_INDEX(x, y)] < 0) {
+        if (MAP_TILES->rangeScratch[MAP_TILE_INDEX(x, y)] < 0) {
           continue;
         }
-        if (MAP->unitAt[TILE_INDEX(x, y)] != 0) {
+        if (MAP_TILES->unitAt[MAP_TILE_INDEX(x, y)] != 0) {
           continue;
         }
-        if (!Ai_IsTransportStopTile(STATE->actingUnit->type, x, y)) {
+        if (!Ai_IsTransportStopTile(MAP_STATE->actingUnit->type, x, y)) {
           continue;
         }
         if (Map_IsSiloOrCapturableTile(x, y) == 1) {
           continue;
         }
-        if (Unit_IsTileOwnedByTeam(STATE->actingUnitIndex,
-                                   MAP->tiles[TILE_INDEX(x, y)]) == 1 &&
+        if (Unit_IsTileOwnedByTeam(MAP_STATE->actingUnitIndex,
+                                   MAP_TILES->tiles[MAP_TILE_INDEX(x, y)]) ==
+                1 &&
             gTerrainFactoryKind[MAP_TILE_TERRAIN(
-                MAP->tiles[TILE_INDEX(x, y)])] != 0) {
+                MAP_TILES->tiles[MAP_TILE_INDEX(x, y)])] != 0) {
           continue;
         }
-        tileDist = MAP->rangeScratch[TILE_INDEX(x, y)];
+        tileDist = MAP_TILES->rangeScratch[MAP_TILE_INDEX(x, y)];
         if (unit->aiTargetX != MAP_UNIT_NO_TARGET) {
-          tileAlt = MAP->rangeScratch2[TILE_INDEX(x, y)];
+          tileAlt = MAP_TILES->rangeScratch2[MAP_TILE_INDEX(x, y)];
           if (tileAlt < 0) {
             tileAlt = NO_TILE;
           }
@@ -191,7 +209,7 @@ void AiEmptyTransport_GoToFootUnit(void) {
         meetDist = transportReach;
       }
     } else {
-      meetDist = MAP->rangeScratch[TILE_INDEX(unitTileX, unitTileY)];
+      meetDist = MAP_TILES->rangeScratch[MAP_TILE_INDEX(unitTileX, unitTileY)];
     }
   }
   if (meetX == -1) {

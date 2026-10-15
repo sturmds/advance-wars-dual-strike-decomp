@@ -6,20 +6,16 @@
 #include "game/Unk_02088d04.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bb80.h"
+#include "game/screen.h"
+#include "game/math.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-BOOL Screens_IsTransitionRunning(void);
 void func_02004d3c(int a);
 void func_02004d64(int a);
 BOOL Text_IsPrinting(void);
 void Text_StopPrinting(void);
 void Task_ResumeScript(Ov005Task* task);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern MenuButtonTemplate data_ov005_02368070;
 
 /* Like Ov005_UpdateTextPromptScreen, but the sub screen's BG layers 1 and 2

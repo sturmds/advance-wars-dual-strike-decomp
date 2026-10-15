@@ -3,8 +3,6 @@
 #include "game/menu_button.h"
 #include "game/task.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u32 gLinkPlay;
 
 BOOL EventScript_IsRunning(void);
@@ -28,8 +26,6 @@ void MapCursor_DrawTwoStyles(int a, int b);
 #define INPUT_CONFIRM 0x10
 #define INPUT_CANCEL 0x20
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
-
 /* Task step while the player aims a silo (the acting unit stands on it) at
  * the cursor tile (cursorX, cursorY). Confirm launches it there and, when
  * gLinkPlay is set, sends action 22 for it; cancel puts the cursor back
@@ -47,21 +43,21 @@ void SiloLaunch_PickTargetStep(Task* task) {
     input = buttons | MapTouch_ReadTileTapOrBack();
     if (input & INPUT_CONFIRM) {
       func_020eef58(task);
-      Silo_StartLaunch(GAME->actingUnitDestX, GAME->actingUnitDestY,
-                       GAME->cursorX, GAME->cursorY, task);
+      Silo_StartLaunch(MAP_STATE->actingUnitDestX, MAP_STATE->actingUnitDestY,
+                       MAP_STATE->cursorX, MAP_STATE->cursorY, task);
       MenuButtons_CloseAll();
       if (gLinkPlay != 0) {
-        UnitAction_Send(22, GAME->actingUnitIndex, GAME->cursorX,
-                        GAME->cursorY);
+        UnitAction_Send(22, MAP_STATE->actingUnitIndex, MAP_STATE->cursorX,
+                        MAP_STATE->cursorY);
       }
       Task_ResumeScript(task);
       return;
     }
     if (input & INPUT_CANCEL) {
       MenuButtons_CloseAll();
-      GAME->cursorX = GAME->actingUnitDestX;
-      GAME->cursorY = GAME->actingUnitDestY;
-      func_020f5888(GAME->cursorX, GAME->cursorY);
+      MAP_STATE->cursorX = MAP_STATE->actingUnitDestX;
+      MAP_STATE->cursorY = MAP_STATE->actingUnitDestY;
+      func_020f5888(MAP_STATE->cursorX, MAP_STATE->cursorY);
       Task_JumpToLabel(task, 0);
       Task_ResumeScript(task);
       return;

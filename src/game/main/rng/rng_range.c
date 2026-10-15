@@ -1,6 +1,6 @@
 #include "types.h"
+#include "game/math.h"
 
-s32 HwMod32(s32 numer, s32 denom);
 u32 Rng_NextMixed(void);
 
 /* Returns a random number from min to max, both included. */

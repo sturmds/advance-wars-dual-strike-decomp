@@ -15,8 +15,6 @@ extern char gNextTurnTextGerman[];
 extern char gNextTurnTextSpanish[];
 extern char gNextTurnTextItalian[];
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* Id of the screen-wide button added for touch input. */
 #define NEXT_TURN_BUTTON_ID 0xf0
 
@@ -71,7 +69,7 @@ void Game_State3_NextTurnScreen(void) {
       Unk_027c0280* saved0280 = data_027c0280;
       Screen_SetCurrentGfx(data_027c0288.unk_00);
       NextTurn_DrawArmyName(
-          86, STATE->players[Player_GetNextInGame(STATE->currentPlayer)]
+          86, MAP_STATE->players[Player_GetNextInGame(MAP_STATE->currentPlayer)]
                   .armyColour);
       switch (data_ov000_023503a0) {
         case 0:
@@ -100,7 +98,7 @@ void Game_State3_NextTurnScreen(void) {
   Turn_AdvanceToNextPlayer();
   CurrentPlayer_SyncState();
   CurrentPlayer_StartTurn();
-  Player_EndPower(STATE->currentPlayer);
+  Player_EndPower(MAP_STATE->currentPlayer);
   MovementCost();
   func_020c4018();
   if (data_027c027c == data_027c0288.unk_00) {
@@ -111,5 +109,5 @@ void Game_State3_NextTurnScreen(void) {
   }
   func_020ba750();
   Sound_FadeOutSong();
-  STATE->unk_18 = 4;
+  MAP_STATE->unk_18 = 4;
 }

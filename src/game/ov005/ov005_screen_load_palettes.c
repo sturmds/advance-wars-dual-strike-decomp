@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov005_0236bb90.h"
+#include "sdk/fs.h"
 
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void File_ReadTo(void* dest, const char* fileName);
 void Mem_Zero32(u32 value, void* dst, u32 size);

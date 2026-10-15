@@ -4,8 +4,6 @@
 
 void HelpText_Show(u32 textId, int tile);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offsets out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

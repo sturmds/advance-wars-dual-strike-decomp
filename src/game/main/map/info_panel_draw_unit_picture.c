@@ -2,7 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/info_panel.h"
 
-extern Unk_027c0280* data_027c0280;
 extern s16 data_0216635e[INFO_PANEL_SIDES][3]; /* unit box x */
 extern u8 gInfoPanelUnitPictureShape[];        /* sprite shape of the picture */
 

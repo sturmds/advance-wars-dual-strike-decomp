@@ -1,15 +1,11 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int func_ov006_0235b46c(
     int x, int y); /* -1 when the sea tile stays sea, else a neighbour count */
 BOOL Ov006_RollCellChance(int count, int cell);
 void Ov006_SetMapCell(int x, int y, int cell);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define CELL_SHOAL 0
 #define CELL_SEA 42
 
@@ -20,9 +16,9 @@ void Ov006_AddShoals(void) {
   int x;
   int y;
 
-  for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-    for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
-      if (STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[y] + x] ==
+  for (y = 0; y < MAP_STATE->unk_1c4->mapHeight; y++) {
+    for (x = 0; x < MAP_STATE->unk_1c4->mapWidth; x++) {
+      if (MAP_STATE->mapTiles->mapCells[MAP_STATE->mapTiles->rowStart[y] + x] ==
           CELL_SEA) {
         int count = func_ov006_0235b46c(x, y);
         if (count != -1 && Ov006_RollCellChance(count, CELL_SHOAL)) {
@@ -31,9 +27,9 @@ void Ov006_AddShoals(void) {
       }
     }
   }
-  for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-    for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
-      if (STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[y] + x] ==
+  for (y = 0; y < MAP_STATE->unk_1c4->mapHeight; y++) {
+    for (x = 0; x < MAP_STATE->unk_1c4->mapWidth; x++) {
+      if (MAP_STATE->mapTiles->mapCells[MAP_STATE->mapTiles->rowStart[y] + x] ==
               CELL_SEA &&
           func_ov006_0235b46c(x, y) == 2) {
         Ov006_SetMapCell(x, y, CELL_SHOAL);

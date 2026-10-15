@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/unit_info_panel.h"
+#include "game/screen.h"
 
 void Bg_SetScroll(int layer, int scrollX, int scrollY);
 void func_0201e6e8(int x, int y, int width, int height);
-void Screen_ResetWindows(void);
 
 /* Sets the panel's position, scrolls layers 0 and 1 to the origin, draws a
  * 16 by 10 tile frame on layer 1 at that position and resets the windows. */

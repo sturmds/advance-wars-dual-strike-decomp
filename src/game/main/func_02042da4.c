@@ -3,7 +3,6 @@
 
 void CoSelect_ApplyPicks(void);
 int Mem_Free(void* block); /* returns nothing; the caller passes r0 on */
-extern CoSelectScreen* data_0229c73c;
 
 int func_02042da4(void) {
   CoSelect_ApplyPicks();

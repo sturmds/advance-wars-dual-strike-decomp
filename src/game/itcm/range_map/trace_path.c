@@ -2,14 +2,10 @@
 #include "game/Unk_02080440.h"
 #include "game/move_path.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 u32 Rng_Next(void);
 void UnitPath_ReverseSteps(s8* start, s8* end);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define TILE(x, y) (STATE->rangeMap[y][x])
+#define TILE(x, y) (MAP_STATE->rangeMap[y][x])
 
 /* Writes to steps the path a unit takes to (x, y), from the costs that
  * RangeMap_FillMoves left in the range map: walks back from (x, y) to the
@@ -25,10 +21,10 @@ void RangeMap_TracePath(int x, int y, u8* steps) {
   int i;
   s16 dir;
 
-  STATE->unk_46 = TILE(x, y);
+  MAP_STATE->unk_46 = TILE(x, y);
   dir = 0;
   while (TILE(x, y) != 0) {
-    if (x + 1 == STATE->unk_1c4->mapWidth) {
+    if (x + 1 == MAP_STATE->unk_1c4->mapWidth) {
       near[PATH_STEP_LEFT] = 0xff;
     } else {
       near[PATH_STEP_LEFT] = TILE(x + 1, y) & 0xff;
@@ -38,7 +34,7 @@ void RangeMap_TracePath(int x, int y, u8* steps) {
     } else {
       near[PATH_STEP_RIGHT] = TILE(x - 1, y) & 0xff;
     }
-    if (y + 1 == STATE->unk_1c4->mapHeight) {
+    if (y + 1 == MAP_STATE->unk_1c4->mapHeight) {
       near[PATH_STEP_UP] = 0xff;
     } else {
       near[PATH_STEP_UP] = TILE(x, y + 1) & 0xff;

@@ -3,9 +3,6 @@
 #include "game/terrain.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 u8 Player_GetArmyStyle(int player);
 
 /* Returns the army style, the sprite set (1 Orange Star ... 5 Black Hole,

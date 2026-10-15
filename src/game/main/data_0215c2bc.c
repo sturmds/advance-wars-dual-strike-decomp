@@ -3,14 +3,13 @@
 #include "game/screen_contexts.h"
 #include "game/song.h"
 #include "game/task.h"
+#include "game/screen.h"
 
 void Battle_SetScreensWhite(void);
 void MenuDepth_Pop(void);
 void MenuDepth_Push(void);
 void PowerScreen_EaseOutBlend(void);
 void PowerScreen_SwapMapWithSparks(void);
-void ScreensFadeBothInFromWhite_Update(void);
-void ScreensFadeBothToWhite_Update(void);
 void SparkBurst_Init(void);
 void SparkBurst_Update(void);
 void SparkBurst_Wait(void);
@@ -32,12 +31,7 @@ void TagGauge_SlideIn(void);
 void TagPowerScreen_FadeInFromBlack(void);
 void TagPowerScreen_FadeToWhite(void);
 void TagPowerScreen_HoldName(void);
-void TagPowerScreen_SetUp(void);
 void TagPowerScreen_StretchInName(void);
-extern u8 data_02178b08[];
-extern u8 data_0217ab08[];
-extern u8 data_0217eb08[];
-extern u8 data_02180b08[];
 void func_02055e40(void);
 void func_02055f84(void);
 void func_02057eec(void);
@@ -47,8 +41,6 @@ void func_020593c8(void);
 void func_020d340c(void);
 void TagBreak_SlideInSidePieces(void);
 void TagPowerScreen_ScrollBackground(void);
-extern u8 data_02179b08[];
-extern u8 data_0217fb08[];
 void TagBreak_FadeInBlend(void);
 void TagBreak_ScrollFrame(void);
 

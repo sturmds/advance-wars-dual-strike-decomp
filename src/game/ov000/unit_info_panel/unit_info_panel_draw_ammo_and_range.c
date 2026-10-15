@@ -3,14 +3,12 @@
 #include "game/icon.h"
 #include "game/unit_info_panel.h"
 #include "game/unit_stats.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrentGfx(void* state);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Sprite_QueueSmallNumber(int list, u16 x, int y, u32 value);
 int GetUnitMaxRange(int player, int unitType);
 
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern u32 data_ov000_0234eef0;
 
 /* Draws ammo against the type's maximum ammo on the second screen, and for a unit

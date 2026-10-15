@@ -13,7 +13,6 @@ int WifiParam_ChangeListenPeriod(u16 interval);
 int WifiParam_ChangeBeaconPeriod(u16 interval);
 void func_arm7_027c90ec(u16* dest,
                         const u16* src); /* copies a 6-byte MAC address */
-u64 _ll_udiv_Arm7(u64 dividend, u64 divisor);
 void WifiTx_FirePsPoll(void);
 int func_arm7_027c94c0(int value);
 void WifiScan_RememberNetwork(u16 value, WlRxFrame* frame,

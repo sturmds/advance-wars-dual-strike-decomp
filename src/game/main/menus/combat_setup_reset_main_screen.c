@@ -1,13 +1,11 @@
 #include "types.h"
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
+#include "game/menu_button.h"
 
 void func_02088514(void);
-void MenuButtons_RemoveAll(void);
 void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
-
-extern MenuState gMenuState;
 
 /* Removes the menu buttons, clears layer 2 of the main screen, turns its
  * blending off and clears players[].ready of all eight link players. */

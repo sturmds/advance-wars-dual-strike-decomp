@@ -1,9 +1,5 @@
 #include "types.h"
-
-void GX_BeginLoadTexPltt(void);
-void GX_LoadTexPltt(const void* src, u32 offset,
-                    u32 size); /* guess: copies to texture palette VRAM */
-void GX_EndLoadTexPltt(void);
+#include "sdk/gx_load.h"
 
 /* Copies size bytes of texture palette data to offset in texture palette
  * VRAM. GX_BeginLoadTexPltt and GX_EndLoadTexPltt wrap the copy (guess: they open and

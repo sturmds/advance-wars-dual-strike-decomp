@@ -28,14 +28,14 @@ void MapSelect_AddTouchButtons(void) {
   MenuButton_Add(0, 0, &data_0215c8c8, 0xfe);
   MenuButton_Add(0, 0, &data_0215c940, 0xfc);
   MenuButton_Add(0, 0, &data_0215c878, 0xfd);
-  if (STATE->gameMode == GAME_MODE_WAR_ROOM || STATE->twoMaps == 0) {
+  if (MAP_STATE->gameMode == GAME_MODE_WAR_ROOM || MAP_STATE->twoMaps == 0) {
     MenuButton_Add(0, 0, &data_0215c918, 0xfb);
     MenuButton_Add(0, 0, &data_0215c850, 0xfa);
   } else {
     MenuButton_Add(0, 16, &data_0215c918, 0xfb);
     MenuButton_Add(0, 16, &data_0215c850, 0xfa);
   }
-  if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
+  if (MAP_STATE->gameMode == GAME_MODE_WAR_ROOM) {
     MenuButton_Add(0, 0, &data_0215c828, 0xf9);
     MenuButton_Add(0, 0, &data_0215c8f0, 0xf8);
   }

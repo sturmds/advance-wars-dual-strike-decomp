@@ -3,10 +3,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/script_slot.h"
 
-extern Unk_027c0280* data_027c0280;
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 void ScriptSlot_ClearCallback(int slot);
 
 #define HOOKS (data_027c027c->unk_50[data_027c0284])

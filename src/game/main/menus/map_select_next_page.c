@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/map_select.h"
 #include "game/event_queue.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numerator, s32 denominator);
 int Link_IsActive(void);
 void MapSelect_TurnToPage(u32 page);
 

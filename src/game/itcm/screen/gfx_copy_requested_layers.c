@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 void Gfx_CopyLayerMapToVram(int layer);
 
 /* Copies the tile maps of the layers marked by Gfx_RequestLayerCopy to VRAM,

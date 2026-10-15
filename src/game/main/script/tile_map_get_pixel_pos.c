@@ -1,6 +1,5 @@
 #include "types.h"
-
-s32 HwDiv32(s32 numerator, s32 denominator);
+#include "game/math.h"
 
 /* Pixel position (x, y) of a tile in a 32-tile-wide tile map of 8x8-pixel
  * tiles. */

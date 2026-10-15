@@ -1,10 +1,9 @@
 #include "types.h"
 #include "game/gfx_queue.h"
+#include "sdk/gx_load.h"
 
 void Gfx_LoadTexImage(const void* src, u32 offset, u32 size);
 void Gfx_LoadTexPalette(const void* src, u32 offset, u32 size);
-void GX_BeginLoadTexPltt(void);
-void GX_EndLoadTexPltt(void);
 void GfxQueue_ClearAfterFlush(void);
 
 /* Texture palette VRAM while bank F is mapped to the LCD controller. */

@@ -9,7 +9,6 @@ void Gfx_RequestLayerCopy(int layer);
 void Text_PrintById(int x, int y, u16* target, u32 text, int a, int b);
 
 extern ScriptCommand data_021583b4[];
-extern Unk_027c0280* data_027c0280;
 
 /* Clears a 13x6 box on layer 0 and prints the help text textId in it. The
  * callers pass the text of the battle menu item they stand for. */

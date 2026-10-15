@@ -6,7 +6,6 @@ void Data_Unpack(const void* src, void* dst);
 void Palette_Load(const void* src, u32 offset, u32 size);
 
 extern char data_0215a4b4[]; /* "/ohashi/res_result_obj" */
-extern Unk_027c0280* data_027c0280;
 
 /* Loads the result screen's sprite file, unpacks its tiles to OBJ VRAM at
  * firstTile and its palette to OBJ palette slot `palette`. Returns the file,

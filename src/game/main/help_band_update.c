@@ -3,14 +3,9 @@
 #include "game/Unk_02088d04.h"
 #include "game/task.h"
 #include "game/oam_cells.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Oam_PutCells(int attr1, int attr0, const void* cells, int attr2, int tile);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* Task update of HelpBand_Start. Each frame it draws 16 sprite cells 16 pixels
  * apart across the lower screen, using the tile in unk_52, and scrolls layer 0

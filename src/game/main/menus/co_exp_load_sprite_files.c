@@ -8,7 +8,6 @@ void Mem_Free(void* block);
 
 extern const char data_0215a400[];
 extern const char data_0215a41c[];
-extern MenuState gMenuState;
 
 /* Copies two sprite files into the CO experience screen's work area:
  * the first (localized path) into MenuState.coExp.unk_1364, the second

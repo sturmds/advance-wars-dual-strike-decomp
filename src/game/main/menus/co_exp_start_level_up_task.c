@@ -4,7 +4,6 @@
 #include "game/task.h"
 #include "game/win_lose.h"
 
-extern MenuState gMenuState;
 extern TaskScriptCmd data_02159ce0[];
 
 /* On the results screen, starts the level-up task if any CO of side A

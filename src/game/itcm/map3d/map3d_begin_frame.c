@@ -5,8 +5,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0288 data_027c0288;
 extern Camera data_022a7d5c;
 extern MtxFx44 data_022a7cac;
 

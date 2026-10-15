@@ -3,8 +3,6 @@
 #include "game/ov003_marker.h"
 #include "game/Unk_02160ac0.h"
 
-extern Ov003Unit data_ov003_02369538[];
-
 u16 Wireless_GetChildAids(void);
 void Ov003_CreateSprite(int x, int y);
 void Ov003Row_StopPower(int team);

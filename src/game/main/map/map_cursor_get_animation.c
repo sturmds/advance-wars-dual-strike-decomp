@@ -1,7 +1,7 @@
 #include "types.h"
+#include "game/screen.h"
 
 BOOL Map_IsFreeDeployCity(int tileX, int tileY);
-int Screen_AddCornerIndex(int x, int y, int base);
 
 /* Returns the animation for map cursor style `style` at map pixel position
  * (*xp, *yp) and moves the position to where the sprite is drawn: most

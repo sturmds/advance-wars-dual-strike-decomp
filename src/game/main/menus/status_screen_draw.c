@@ -14,13 +14,10 @@ const char* Map_GetCurrentName(void);
 int Player_CountUnitsBuilt(int player); /* sum of Player.unitsBuilt */
 int Player_CountUnitsLost(int player);  /* sum of Player.unitsLost */
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
 extern char data_02167c70[]; /* "?" */
 extern char data_02167c8c[]; /* shown for a defeated player */
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Status screen table on layer 0: map name and day on row 4, column headers
  * on row 8, then one row per player from row 10: units built, units lost,
@@ -36,10 +33,10 @@ void StatusScreen_Draw(void) {
 
   map = data_027c0280->layer0Map;
   Text_PrintStringImmediate(3, 4, map, Map_GetCurrentName(), 0, 0);
-  Number_Draw(30, 4, data_027c0280->layer0Map, GAME->day, 0, 0);
-  if (GAME->day >= 100) {
+  Number_Draw(30, 4, data_027c0280->layer0Map, MAP_STATE->day, 0, 0);
+  if (MAP_STATE->day >= 100) {
     Text_PrintImmediate(25, 4, data_027c0280->layer0Map, 0xc00000ad, 0, 0);
-  } else if (GAME->day >= 10) {
+  } else if (MAP_STATE->day >= 10) {
     Text_PrintImmediate(26, 4, data_027c0280->layer0Map, 0xc00000ad, 0, 0);
   } else {
     Text_PrintImmediate(27, 4, data_027c0280->layer0Map, 0xc00000ad, 0, 0);
@@ -54,14 +51,14 @@ void StatusScreen_Draw(void) {
   for (i = 0; i < Map_GetLoadedPlayerCount(); i++) {
     y = 10 + i * 2;
     /* The original tests player 1's controller on every row. */
-    if (GAME->players[1].controller == PLAYER_CONTROLLER_NONE) {
+    if (MAP_STATE->players[1].controller == PLAYER_CONTROLLER_NONE) {
       continue;
     }
     map = data_027c0280->layer0Map;
     Number_Draw(8, y, map, Player_CountUnitsBuilt(i + 1), 0, 0);
     map = data_027c0280->layer0Map;
     Number_Draw(12, y, map, Player_CountUnitsLost(i + 1), 0, 0);
-    game = GAME;
+    game = MAP_STATE;
     player = &game->players[i + 1];
     if (player->defeated) {
       Text_PrintImmediate(2, y, data_027c0280->layer0Map, 0xc00000a4, 0, 0);
@@ -77,16 +74,16 @@ void StatusScreen_Draw(void) {
         || player->team ==
                (*(Player* volatile*)&game->players)[game->currentPlayer].team) {
       Number_Draw(16, y, data_027c0280->layer0Map, player->propertyCount, 0, 0);
-      Number_Draw(23, y, data_027c0280->layer0Map, GAME->players[i + 1].unk_08,
-                  0, 0);
-      Number_Draw(30, y, data_027c0280->layer0Map, GAME->players[i + 1].funds,
-                  0, 0);
+      Number_Draw(23, y, data_027c0280->layer0Map,
+                  MAP_STATE->players[i + 1].unk_08, 0, 0);
+      Number_Draw(30, y, data_027c0280->layer0Map,
+                  MAP_STATE->players[i + 1].funds, 0, 0);
     } else {
       if (game->propertyGoal) {
         Number_Draw(16, y, data_027c0280->layer0Map, player->propertyCount, 0,
                     0);
         Number_Draw(23, y, data_027c0280->layer0Map,
-                    GAME->players[i + 1].unk_08, 0, 0);
+                    MAP_STATE->players[i + 1].unk_08, 0, 0);
       } else {
         Text_PrintStringImmediate(16, y, data_027c0280->layer0Map,
                                   data_02167c70, 0, 0);
@@ -98,7 +95,7 @@ void StatusScreen_Draw(void) {
     }
   }
 
-  game = GAME;
+  game = MAP_STATE;
   if ((game->unk_1c4->fog == 0 && game->unk_1c4->weather != WEATHER_RAIN) ||
       game->propertyGoal) {
     Number_Draw(16, 18, data_027c0280->layer0Map,

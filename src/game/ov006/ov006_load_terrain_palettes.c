@@ -2,15 +2,10 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/terrain.h"
+#include "game/screen_other_map.h"
 
 const void* Terrain_GetPalette(int id, int army);
 void Palette_Load(const void* src, u32 offset, u32 size);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-
-extern Unk_027c0288 data_027c0288;
-extern Unk_027c0280* data_027c0280;
-extern Unk_02080440* data_027c027c;
 
 /* Loads seven terrain palettes of 32 bytes into the main screen's palette
  * buffer: neutral plain, mountain, sea, road, pipe and missile silo from

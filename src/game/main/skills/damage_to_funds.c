@@ -2,15 +2,12 @@
 #include "game/Unk_02080440.h"
 #include "game/map_unit.h"
 #include "game/skills.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numerator, s32 denominator);
 int Unit_GetValuePerHp(
     int playerIndex,
     int unitType); /* unit cost / 10, probably after the CO's cost change */
 void Player_AddFunds(int playerIndex, int amount);
-
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 
 /* Skill words of a player's front CO. */
 #define FRONT_CO_SKILLS(player) \

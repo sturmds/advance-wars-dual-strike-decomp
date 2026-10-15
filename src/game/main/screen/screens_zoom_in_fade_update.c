@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/screen_other_map.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Screen_SetCurrentBoth(void* state);
 void* Task_FindByScript(const void* script);
 void Task_ResumeScript(Task* task);

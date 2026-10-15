@@ -4,9 +4,8 @@
 #include "game/ov003_gfx.h"
 #include "game/ov003_unit.h"
 #include "game/Unk_02088d04.h"
+#include "sdk/gx_load.h"
 
-extern Unk_027c0280* data_027c0280;
-extern u8 data_ov003_02365d10[];
 char data_ov003_023649f4[] = {
 #include "data/ov003/data_ov003_023649f4.inc.c"
 };
@@ -16,10 +15,6 @@ void Mem_Copy32(const void* src, void* dst, u32 size);
 void Mem_CopyUnits(const void* src, void* dst, u32 size, u32 unitBits);
 void Palette_Load(const void* src, u32 offset, u32 size);
 void File_UnpackTo(void* dest, const char* fileName);
-void GX_EndLoadTexPltt(void);
-void GX_BeginLoadTexPltt(void);
-void GX_EndLoadTex(void);
-void GX_BeginLoadTex(void);
 
 #define STATE data_ov003_02364928
 #define GFX data_027c0280

@@ -5,10 +5,6 @@
 void func_020edb84(MapUnit* unit);
 void func_ov006_0235f690(void);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
 /* data_027c027c->unk_48[data_027c0284], written so that the compiler loads
  * the index first, as the original does. */
 #define STATE                                                             \

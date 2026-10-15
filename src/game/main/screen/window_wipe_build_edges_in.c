@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/Unk_0216e2b0.h"
 #include "game/window_wipe.h"
+#include "game/screen_wipe.h"
 
 /* Same as WindowWipe_BuildCenterOut, but the top and bottom rows start 48
  * pixels ahead of the middle rows. unk_02 and unk_03 end up as the last full

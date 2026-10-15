@@ -3,11 +3,6 @@
 
 BOOL MapView_FindScroll(int* x, int* y);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
-
 #define STATE_50 (data_027c027c->unk_50[data_027c0284])
 
 /* Takes a position through MapView_FindScroll (which reads x and y by address, as a
@@ -17,8 +12,8 @@ void func_020f53e8(int x, int y, ...) {
   if (!MapView_FindScroll(&x, &y)) {
     return;
   }
-  GAME->unk_1c4->scrollX = x << 4;
-  GAME->unk_1c4->scrollY = y << 4;
+  MAP_STATE->unk_1c4->scrollX = x << 4;
+  MAP_STATE->unk_1c4->scrollY = y << 4;
   if (STATE_50->callback == NULL) {
     return;
   }

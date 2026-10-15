@@ -3,10 +3,10 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_02160ac0.h"
 #include "game/combat_mode_menu.h"
+#include "game/screen_other_map.h"
+#include "game/icon.h"
 
 void Gfx_InitBothScreens(void);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void* Mem_Alloc(u32 size);
 void Mem_Free(void* file);
 void Mem_Fill32(u32 value, void* dst, u32 size);
@@ -18,8 +18,6 @@ void Palette_LoadObjRow(int row);
 void Gfx_LoadBmap09f(void* target, int a, int b);
 void Font_LoadDigits(int a);
 void Gfx_RequestLayerCopy(int layer);
-void Icon_LoadTo(int iconId, u8* vram, int tile);
-void Icon_LoadPalette(int iconId, int paletteSlot);
 void Co_LoadSmallPicture(int coId, void* dest, int paletteSlot);
 BOOL CombatModeMenu_IsSlotAvailable(
     u8 slot); /* slots 0-2 always TRUE, 3-6 by game flag */
@@ -34,9 +32,6 @@ void Wallpaper_LoadBoth(void);
 void CombatModeCoPortrait_Start(void);
 void HelpBand_Start(int tile, int a);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern u8
     gCombatModeCos[]; /* CO ids: Andy, Max, Sami, Flak, Lash, Adder, Hawke */
 extern const char gCombatMenuResPath[]; /* "/combat_st/res_cmmenu" */

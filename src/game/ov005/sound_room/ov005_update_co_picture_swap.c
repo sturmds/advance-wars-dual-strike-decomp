@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bbac.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Ov005_LoadCoPicture(Unk_ov005_0236bbac* state);
 void Ov005SoundRoom_QueueSprite(Unk_ov005_0236bbac* state, int x, int y);
 

@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Writes the 2x2 tiles of a skill's icon at tile (x, y) of layer 0 (a 32 tile
  * wide map, palette 2). The icons start at tile 0x200, four tiles each, for
  * skill id 32 and up. The inline expressions are needed to match. */

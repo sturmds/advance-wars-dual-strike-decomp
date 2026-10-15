@@ -1,13 +1,10 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
+#include "game/icon.h"
 
-void Icon_LoadTo(int iconId, u8* vram, int tile);
-void IconBank_LoadPalette(int bank, int paletteSlot);
 void Bg_PutTileRect(u16* map, int x, int y, int width, int height,
                     int firstTile, int palette);
 void Ov006_DrawMenuLine(int unused, int row, const char* text, int indent);
-
-extern Unk_027c0280* data_027c0280;
 
 /* Loads icon 3 (palette slot 11) into the layer 0 character data, puts its 2x2
  * tiles at column 3 of menu row `row`, then prints text one column further right. */

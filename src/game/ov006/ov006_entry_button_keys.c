@@ -12,8 +12,6 @@ void func_ov006_02357734(void);
 void func_ov006_02358fec(void);
 void Ov006_UpdateEntryView(int index);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
 #define STATE data_ov006_0236d640
 
 /* Key handler of the entry grid buttons (ids 0x40 and up) in the Design

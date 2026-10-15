@@ -5,7 +5,6 @@
 
 void Bg_PutTileQuad(int x, int y, int firstTile, int palette);
 void Number_Draw(s16 x, s16 y, u16* map, int value, u16 a, u16 b);
-extern Unk_027c0280* data_027c0280;
 
 void func_02071da0(int x, int y, int row, int col) {
   u16* map;

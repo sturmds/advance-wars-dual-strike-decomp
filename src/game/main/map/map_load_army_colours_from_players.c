@@ -3,9 +3,6 @@
 #include "game/map_header.h"
 #include "game/player.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Copies each player slot's army colour (Player.armyColour) into
  * gArmyColours. Map_LoadArmyColours reads the map header instead. */
 void Map_LoadArmyColoursFromPlayers(void) {

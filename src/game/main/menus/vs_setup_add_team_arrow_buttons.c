@@ -8,7 +8,6 @@ int Link_FindSlotOfPlayer(int player);
 int VsSetup_GetSlotTileX(int player);
 u32 Link_GetConnectedSlotMask(void);
 
-extern MenuState gMenuState;
 extern MenuButtonTemplate data_0215cbe8;
 extern MenuButtonTemplate data_0215cc10;
 extern MenuButtonTemplate data_0215cc60;

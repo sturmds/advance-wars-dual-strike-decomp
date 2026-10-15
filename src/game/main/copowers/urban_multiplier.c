@@ -3,8 +3,6 @@
 
 void PowerDefaultBonus(void);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern s8 Ov000_gUrbanTerrain
     []; /* nonzero for urban terrain, indexed by terrain id */
 

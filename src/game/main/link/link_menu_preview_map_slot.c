@@ -3,8 +3,6 @@
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
 
-extern MenuState gMenuState;
-
 void Sound_PlaySe(u32 soundId);
 void MapPreview_DrawRecord(u8* dst, DesignMapRecord* record);
 

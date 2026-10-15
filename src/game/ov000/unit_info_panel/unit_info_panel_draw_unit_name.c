@@ -4,8 +4,6 @@
 #include "game/unit_stats.h"
 #include "game/text_print.h"
 
-extern Unk_027c0280* data_027c0280;
-
 const void* Text_Get(u32 textId);
 void Font_SetDigitEndTile(int tile);
 void Text_PrintImmediate(s16 x, int y, void* target, u32 text, int a, int b);

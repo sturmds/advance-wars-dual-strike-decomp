@@ -2,8 +2,7 @@
 #include "game/icon.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov005_0236bbac.h"
-
-s32 HwDiv32(s32 numerator, s32 denominator);
+#include "game/math.h"
 
 #define PAGE_COUNT \
   ((OV005_CO_CELL_COUNT + OV005_CELLS_PER_PAGE - 1) / OV005_CELLS_PER_PAGE)

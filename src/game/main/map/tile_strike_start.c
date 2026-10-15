@@ -4,8 +4,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/tile_strike_task.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0288 data_027c0288;
 extern const TaskScriptCmd data_02167ef0[];
 extern const TaskScriptCmd data_02167f20[];
 

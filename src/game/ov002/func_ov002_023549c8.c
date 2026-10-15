@@ -3,8 +3,6 @@
 #include "game/menu_state.h"
 #include "game/BattleSideData.h"
 
-extern MenuState gMenuState;
-
 void Battle_SortHitList(BattleHitList* list);
 
 #define BATTLE (gMenuState.battle)

@@ -1,11 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* Cell codes of the two pipe seam pieces the Design Room tells apart (the
  * 0x142 and 0x143 pipe cells turn into them), and the seam cell used for
  * every other cell. */
@@ -17,7 +12,8 @@ extern int data_027c0284;
 
 /* The cell code a pipe seam gets on tile x, y, from the cell there now. */
 int Ov006_GetPipeSeamCell(int x, int y) {
-  u16 cell = STATE->mapTiles->mapCells[x + STATE->mapTiles->rowStart[y]];
+  u16 cell =
+      MAP_STATE->mapTiles->mapCells[x + MAP_STATE->mapTiles->rowStart[y]];
 
   if (cell == CELL_PIPE_PIECE_A || cell == CELL_SEAM_A) {
     return CELL_SEAM_A;

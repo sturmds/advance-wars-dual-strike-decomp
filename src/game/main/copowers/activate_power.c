@@ -6,9 +6,6 @@ void CountPowerUse(int player);
 void SpendPowerCharge(int player, int power);
 void Power_StartTasks(int player, int power, BOOL startSecond);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Starts a power (enum CoPowerState) for the player's front CO: counts
  * the use, takes the meter charge, clears the ready bits and starts the
  * power's tasks. */

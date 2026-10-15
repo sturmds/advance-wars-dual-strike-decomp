@@ -1,13 +1,11 @@
 #include "types.h"
 #include "game/level_gauge.h"
 #include "game/Unk_02088d04.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(LevelGaugeTask* task);
 void LevelGauge_Draw(LevelGauge* gauges, int x, int y, int index, int frame);
 void CoRankScreen_QueueNumber(int x, int y, int value);
-
-extern Unk_027c0280* data_027c0280;
 
 /* One frame of a 16-frame slide in from the right: layer 1 and the gauges
  * move left by an eased 256 to 0 pixels. Resumes the task's script on the

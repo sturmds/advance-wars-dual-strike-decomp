@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 /* Forgets the counter tasks of both sides (both lists, five per side). */
 void Battle_ClearCounterTasks(void) {
   int i;

@@ -1,3 +1,6 @@
+#include "game/screen_other_map.h"
+#include "game/screen.h"
+#include "sdk/fs.h"
 /* Built without optimization, like the rest of the name entry screen. */
 #pragma optimization_level 0
 
@@ -6,14 +9,9 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-void Screen_SetBgMode(int mode);
-void Screen_InitLayers(const void* config);
 void Gfx_ClearLayerMap(int layer);
 void Wallpaper_LoadSingleOnFirstScreen(void);
 void Font_LoadDigits(int a);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 void Bg_FillRect(u16* map, int x, int y, int width, int height, int tile);
@@ -26,9 +24,6 @@ void NameEntry_LoadCaretSprite(NameEntry* entry);
 void NameEntry_DrawKeyLabels(NameEntry* entry);
 void NameEntry_LoadButtonSprites(NameEntry* entry);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern GfxLayer data_0216ac74[];
 extern char data_0216b338[];
 extern char data_0216b344[];

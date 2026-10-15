@@ -5,7 +5,6 @@
 
 void TabList_PutIconQuad(int x, int y, int index, int player, int palette);
 void Number_Draw(s16 x, s16 y, u16* map, int value, u16 a, u16 b);
-extern Unk_027c0280* data_027c0280;
 
 /* TabListEntry.draw of the entries with an icon: icon unk_04 of set 5 as a
  * tile quad at tile (x, y), then the entry text at x + 2 and its number at

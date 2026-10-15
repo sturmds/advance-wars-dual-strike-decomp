@@ -3,6 +3,8 @@
 #include "game/event_script.h"
 #include "game/screen_other_map.h"
 #include "game/script_slot.h"
+#include "game/ai/ai_turn_state.h"
+#include "game/screen.h"
 
 extern int gCameraPresetIndex;
 extern u8 data_021576fa[][20];
@@ -10,12 +12,9 @@ extern u8 data_021576fb[][20];
 extern u32 gLinkPlay;
 extern ScriptCommand gMapScrollScript[];
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
-
 void Game_TickPlayerTimer(void);
 void WeatherFx_UpdateClouds(void);
 void MapScreen_UpdateAnimations(void);
-int SceneMode_IsChanging(void);
 int Map_IsThisMapsTurn(void);
 s8 MenuDepth_Get(void);
 s16 func_020b9914(void);
@@ -23,7 +22,6 @@ s16 ScriptSlot_Find(const ScriptCommand* script);
 void SidePanel_Place(int mode);
 int Link_GetOwnPlayer(void);
 void MapView_ScrollStep(int step);
-void AiTurn_Update(void);
 void LinkAction_Update(void);
 void func_ov000_022b0500(void);
 void Game_State1_CheckDayLimit(void);
@@ -48,30 +46,30 @@ void Game_State22_ReopenPopup(void);
 /* Copies the view scroll of map screen `from` to map screen `to` through the
  * caller's scrollX and scrollY, and puts the cursor tile (cursorX, cursorY) of
  * `to` at the middle of its view (halfW, halfH tiles in). */
-#define COPY_VIEW_SCROLL(from, to)                         \
-  {                                                        \
-    Unk_027c0280* saved0280 = data_027c0280;               \
-    Unk_02080440* saved027c;                               \
-    Screen_SetCurrentGfx(from);                            \
-    saved027c = data_027c027c;                             \
-    Screen_SetCurrent(from);                               \
-    scrollX = GAME->unk_1c4->scrollX;                      \
-    scrollY = GAME->unk_1c4->scrollY;                      \
-    Screen_SetCurrent(saved027c);                          \
-    Screen_SetCurrentGfx(saved0280);                       \
-  }                                                        \
-  {                                                        \
-    Unk_027c0280* saved0280 = data_027c0280;               \
-    Unk_02080440* saved027c;                               \
-    Screen_SetCurrentGfx(to);                              \
-    saved027c = data_027c027c;                             \
-    Screen_SetCurrent(to);                                 \
-    GAME->unk_1c4->scrollX = scrollX;                      \
-    GAME->unk_1c4->scrollY = scrollY;                      \
-    GAME->cursorX = halfW + (GAME->unk_1c4->scrollX >> 4); \
-    GAME->cursorY = halfH + (GAME->unk_1c4->scrollY >> 4); \
-    Screen_SetCurrent(saved027c);                          \
-    Screen_SetCurrentGfx(saved0280);                       \
+#define COPY_VIEW_SCROLL(from, to)                                   \
+  {                                                                  \
+    Unk_027c0280* saved0280 = data_027c0280;                         \
+    Unk_02080440* saved027c;                                         \
+    Screen_SetCurrentGfx(from);                                      \
+    saved027c = data_027c027c;                                       \
+    Screen_SetCurrent(from);                                         \
+    scrollX = MAP_STATE->unk_1c4->scrollX;                           \
+    scrollY = MAP_STATE->unk_1c4->scrollY;                           \
+    Screen_SetCurrent(saved027c);                                    \
+    Screen_SetCurrentGfx(saved0280);                                 \
+  }                                                                  \
+  {                                                                  \
+    Unk_027c0280* saved0280 = data_027c0280;                         \
+    Unk_02080440* saved027c;                                         \
+    Screen_SetCurrentGfx(to);                                        \
+    saved027c = data_027c027c;                                       \
+    Screen_SetCurrent(to);                                           \
+    MAP_STATE->unk_1c4->scrollX = scrollX;                           \
+    MAP_STATE->unk_1c4->scrollY = scrollY;                           \
+    MAP_STATE->cursorX = halfW + (MAP_STATE->unk_1c4->scrollX >> 4); \
+    MAP_STATE->cursorY = halfH + (MAP_STATE->unk_1c4->scrollY >> 4); \
+    Screen_SetCurrent(saved027c);                                    \
+    Screen_SetCurrentGfx(saved0280);                                 \
   }
 
 /* One frame of the map game. When the scene is not changing, it either runs
@@ -93,7 +91,7 @@ void Game_RunStateFrame(void) {
 
   if (!SceneMode_IsChanging()) {
     if (!Map_IsThisMapsTurn()) {
-      if (GAME->unk_86 != 0) {
+      if (MAP_STATE->unk_86 != 0) {
         halfW = data_021576fa[gCameraPresetIndex][0] >> 1;
         halfH = data_021576fb[gCameraPresetIndex][0] >> 1;
         if (data_027c027c == data_027c0288.unk_00) {
@@ -104,7 +102,7 @@ void Game_RunStateFrame(void) {
         MapView_ScrollStep(4);
       }
     } else if (MenuDepth_Get() == 0 && func_020b9914() == 0) {
-      switch (GAME->unk_18) {
+      switch (MAP_STATE->unk_18) {
         case 1:
           Game_State1_CheckDayLimit();
           break;
@@ -175,7 +173,7 @@ void Game_RunStateFrame(void) {
     }
   }
 
-  if (GAME->unk_18 == 16 || GAME->unk_1a == 16) {
+  if (MAP_STATE->unk_18 == 16 || MAP_STATE->unk_1a == 16) {
     if (ScriptSlot_Find(gMapScrollScript) != -1 || MenuDepth_Get() == 0) {
       SidePanel_Place(SIDE_PANEL_SNAP_AWAY);
     }

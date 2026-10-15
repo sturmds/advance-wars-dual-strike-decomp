@@ -5,12 +5,13 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_0229fb30.h"
+#include "game/screen_other_map.h"
+#include "game/menu_button.h"
+#include "game/event_queue.h"
 
 void DesignMap_LoadFromSlot(int slot, DesignMapRecord* dest);
 void Gfx_InitBothScreens(void);
 void Wallpaper_LoadBoth(void);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Screen_SetCurrentBoth(void* state);
 void Gfx_LoadBmap09f(void* target, int a, int b);
 void Font_LoadDigits(int a);
@@ -32,15 +33,8 @@ const void* Text_Get(u32 textId);
 void func_0202a7ec(const void* text, int tile, int paletteSlot, u8 unk_5c,
                    int unk_58);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
-void Menu_Reset(void);
-void MenuCursor_SetRect(s16 left, s16 top, s16 right, s16 bottom);
-void EventQueue_Reset(void);
 void PaletteCycle_Start(int a);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
 extern const char gLinkTwoPlayerLoginResPath[]; /* "/commo/res_linklogin" */
 extern const char
     gLinkTwoPlayerCommonLangResPath[]; /* "/commo/res_linkcommon_lang" */

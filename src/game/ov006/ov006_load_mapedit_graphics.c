@@ -2,11 +2,10 @@
 #include "game/Unk_02088d04.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov006_0235f690.h"
+#include "game/screen.h"
+#include "sdk/fs.h"
 
 void Gfx_ClearLayerMap(int layer);
-void Screen_SetBgMode(int mode);
-void Screen_InitLayers(const void* config);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void* File_Load(const char* path);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
@@ -19,7 +18,6 @@ void Screen_SetLayer0Scroll(int x, int y);
 void Ov006_ResetScreen1Effects(void);
 void Ov006_LoadPropertyCountGraphics(void);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern GfxLayer data_ov006_0236aad8[]; /* layer config for Screen_InitLayers */
 extern char gMapeditDir[];             /* "/mapedit" */
 extern char gMapeditFile006[];         /* layer 3 tiles */

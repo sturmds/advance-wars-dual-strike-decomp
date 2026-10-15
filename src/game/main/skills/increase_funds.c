@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/skills.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern s8 Ov000_gIncomeTerrain
     []; /* nonzero for terrain that pays income, indexed by terrain id */
 

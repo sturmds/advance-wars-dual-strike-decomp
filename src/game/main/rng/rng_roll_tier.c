@@ -1,6 +1,6 @@
 #include "types.h"
+#include "game/math.h"
 
-s32 HwMod32(s32 numer, s32 denom);
 u32 Rng_Next(void);
 
 /* Rolls 0 to 99 and returns 1, 2 or 3 for the first of the three cumulative

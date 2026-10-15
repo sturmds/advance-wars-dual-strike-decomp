@@ -3,9 +3,6 @@
 #include "game/ov003_unit.h"
 #include "game/ov003_marker.h"
 
-extern u8
-    data_ov003_02365d10[]; /* per tile code: bits 5-7 owner, bits 0-4 terrain */
-
 Ov003Marker* Ov003_FindMarkerAtTile(int x, int y);
 int Ov003_IsNearMarker(Ov003Marker* entry, int x, int y);
 

@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 void Screen_ResetBlend(void) {
   data_027c0280->blendMode = 0;
   data_027c0280->blendEva = 0;

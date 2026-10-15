@@ -7,8 +7,6 @@ int Co_GetRank(u32 co);
 void Sound_PlaySe(int id);
 void VsSetup_StartForceRank(int cursor);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

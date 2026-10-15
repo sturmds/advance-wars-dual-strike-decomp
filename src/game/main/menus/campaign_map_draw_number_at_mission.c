@@ -4,8 +4,6 @@
 
 void CampaignMap_DrawNumberTag(int x, int y, int side);
 
-extern Unk_027c0280* data_027c0280;
-
 /* Draws the number tag (CampaignMap_DrawNumberTag) at the task's mission
  * position, minus the map scroll. */
 void CampaignMap_DrawNumberAtMission(CampaignMapTask* task) {

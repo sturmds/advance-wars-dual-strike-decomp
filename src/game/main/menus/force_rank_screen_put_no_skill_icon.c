@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Writes the 2x2 tiles of the "no skill" icon at tile (x, y) of layer 0
  * (a 32 tile wide map, palette 2). */
 void ForceRankScreen_PutNoSkillIcon(int x, int y) {

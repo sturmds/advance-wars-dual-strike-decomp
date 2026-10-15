@@ -3,11 +3,11 @@
 #include "game/Unk_02088d04.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bba0.h"
+#include "game/screen_other_map.h"
+#include "game/icon.h"
+#include "sdk/fs.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void func_02028a30(void);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Gfx_RequestLayerCopy(int layer);
 void Font_LoadDigits(int baseTile);
@@ -27,12 +27,7 @@ void ModeFont_ShowText(const void* text, int tile, int paletteSlot, int a,
 void HelpBand_Start(int tile, int a);
 void HelpText_Show(u32 textId, int tile);
 void IconBanks_ClearSlots(void);
-void IconBank_Init(int bank, u8* vram, int firstTile, int paletteSlot);
-void Icon_Load(int iconId);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern char data_ov005_0236a624[]; /* "/rikiishi" */
 extern char data_ov005_0236a630[]; /* "039" */
 extern u8 data_ov005_0236a48c[];   /* CO id of each list entry */

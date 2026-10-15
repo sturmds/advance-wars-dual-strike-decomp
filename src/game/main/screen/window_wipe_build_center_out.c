@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/Unk_0216e2b0.h"
 #include "game/window_wipe.h"
+#include "game/screen_wipe.h"
 
 /* Fills the WIN0H table from the wipe progress. Each line's window grows
  * from the left edge on even lines and from the right edge on odd ones; the

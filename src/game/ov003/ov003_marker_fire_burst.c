@@ -1,12 +1,10 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 #include "game/ov003_marker.h"
-
-extern Ov003TileInfo data_ov003_02364d88[];
+#include "game/math.h"
 
 Ov003Unit* Ov003Marker_FindNearestUnit(Ov003Marker* marker);
 void Ov003Marker_SpawnEffect(Ov003Marker* marker, int velX, int velY);
-int Math_Distance(int x1, int y1, int x2, int y2);
 void Ov003_StepToward(int x1, int y1, int x2, int y2, int length, int* outX,
                       int* outY);
 

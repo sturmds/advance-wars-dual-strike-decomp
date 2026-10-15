@@ -14,7 +14,6 @@ void VsSetup_DrawSettingRow(int row, int x, int y);
 
 extern u8 gVsSetupSettingRowY[SETTING_ROWS];
 extern u8 gVsSetupSettingRowX[SETTING_ROWS];
-extern MenuState gMenuState;
 
 /* Needed to match: the cast keeps the field offsets out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)

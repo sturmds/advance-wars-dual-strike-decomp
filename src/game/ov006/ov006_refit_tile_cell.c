@@ -10,12 +10,8 @@ void Ov006_TurnToSea(int x, int y);
 int Ov006_GetWaterCell(int x, int y);
 int Ov006_GetCellMatchedToLeft(int x, int y);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define CELL_AT(x, y) \
-  (STATE->mapTiles->mapCells[(x) + STATE->mapTiles->rowStart[y]])
+  (MAP_STATE->mapTiles->mapCells[(x) + MAP_STATE->mapTiles->rowStart[y]])
 
 #define CELL_PLAIN 1
 /* Plain cells that the code turns back into CELL_PLAIN once the tile below is

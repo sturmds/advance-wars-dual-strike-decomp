@@ -2,7 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
 void func_020174fc(int slot, u16 arg);
 
 /* Script command: calls a function with the slot and the command's 16-bit argument,

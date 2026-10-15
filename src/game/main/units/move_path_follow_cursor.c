@@ -16,10 +16,7 @@ BOOL MovePath_HasNoRepeatedTile(void);
 void RangeMap_TracePath(int x, int y, u8* steps);
 
 extern MovePath* gMovePath;
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
 #define PATH gMovePath
 /* Owner of the acting unit: slot 0 is neutral, so unit slots 0-63
  * belong to player 1. */
@@ -42,7 +39,7 @@ void MovePath_FollowCursor(void) {
   s8 lastX;
   int lastY;
 
-  state = GAME;
+  state = MAP_STATE;
   y = state->cursorY;
   x = state->cursorX;
   range = state->rangeMap[y][x];
@@ -54,37 +51,38 @@ void MovePath_FollowCursor(void) {
     return;
   }
 
-  i = MovePath_FindTile(GAME->cursorX, GAME->cursorY);
+  i = MovePath_FindTile(MAP_STATE->cursorX, MAP_STATE->cursorY);
   if (i != -1) {
     MovePath_Truncate((s8)(i + 1));
-    GAME->unk_46 = PATH->startMoves - PATH->movesLeft[PATH->lastTile];
+    MAP_STATE->unk_46 = PATH->startMoves - PATH->movesLeft[PATH->lastTile];
     return;
   }
 
-  if (GAME->coEffectsOn == 0) {
+  if (MAP_STATE->coEffectsOn == 0) {
     co = 0;
   } else {
-    co = ACTING_PLAYER(GAME).front.id & PLAYER_CO_ID_MASK;
+    co = ACTING_PLAYER(MAP_STATE).front.id & PLAYER_CO_ID_MASK;
   }
-  x = GAME->cursorX;
+  x = MAP_STATE->cursorX;
   i = PATH->lastTile;
   if (PATH->movesLeft[i] >=
       ((const s8(*)[32])gCoTable[co]
-           .blocks[ACTING_PLAYER(GAME).front.powerState]
-           .movementCost[ACTING_PLAYER(GAME).moveChart])
-          [Ov000_gUnitStats[GAME->actingUnit->type].moveType][MAP_TILE_TERRAIN(
-              GAME->mapTiles
-                  ->tiles[x + GAME->mapTiles->rowStart[GAME->cursorY]])]) {
+           .blocks[ACTING_PLAYER(MAP_STATE).front.powerState]
+           .movementCost[ACTING_PLAYER(MAP_STATE).moveChart])
+          [Ov000_gUnitStats[MAP_STATE->actingUnit->type].moveType]
+          [MAP_TILE_TERRAIN(
+              MAP_STATE->mapTiles->tiles
+                  [x + MAP_STATE->mapTiles->rowStart[MAP_STATE->cursorY]])]) {
     lastX = PATH->x[i];
     /* Needed to match: y set here, not with x, gives the original's
      * registers. */
-    y = GAME->cursorY;
+    y = MAP_STATE->cursorY;
     /* Needed to match: through lastY, mwcc compares the path tile first
      * (cmp tile, y); the plain field read puts y first. */
     if ((ABS(lastX - x) == 1 && (lastY = PATH->y[i], lastY == y)) ||
         (ABS(PATH->y[i] - y) == 1 && lastX == x)) {
       MovePath_AddTile(x, y);
-      GAME->unk_46 = PATH->startMoves - PATH->movesLeft[PATH->lastTile];
+      MAP_STATE->unk_46 = PATH->startMoves - PATH->movesLeft[PATH->lastTile];
       return;
     }
   }
@@ -93,16 +91,17 @@ void MovePath_FollowCursor(void) {
     MovePath_Truncate(1);
   }
 
-  RangeMap_SetBuffer(GAME->mapTiles->rangeScratch);
+  RangeMap_SetBuffer(MAP_STATE->mapTiles->rangeScratch);
   MovePath_FillRangeFromEnd();
-  if (GAME->rangeMap[GAME->cursorY][GAME->cursorX] == -1) {
+  if (MAP_STATE->rangeMap[MAP_STATE->cursorY][MAP_STATE->cursorX] == -1) {
     MovePath_RebuildToTarget();
   } else {
-    RangeMap_TracePath(GAME->cursorX, GAME->cursorY, GAME->pathSteps);
+    RangeMap_TracePath(MAP_STATE->cursorX, MAP_STATE->cursorY,
+                       MAP_STATE->pathSteps);
     MovePath_AppendSteps();
     if (!MovePath_HasNoRepeatedTile()) {
       MovePath_RebuildToTarget();
     }
   }
-  RangeMap_SetBuffer(GAME->mapTiles->rangeMapTiles);
+  RangeMap_SetBuffer(MAP_STATE->mapTiles->rangeMapTiles);
 }

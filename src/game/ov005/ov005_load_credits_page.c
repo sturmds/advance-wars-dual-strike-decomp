@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/Unk_ov005_0236bb90.h"
-
-u32 strlen(const char* str);
+#include "sdk/msl.h"
 
 extern Ov005Menu* data_ov005_0236a418[];
 

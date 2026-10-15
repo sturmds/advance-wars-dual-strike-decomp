@@ -4,21 +4,19 @@
 #include "game/Unk_02088d04.h"
 #include "game/campaign_recap.h"
 #include "game/brightness_fade.h"
+#include "game/screen.h"
+#include "game/math.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void MapScreen_UpdateAnimations(void);
 u32 func_020ffa50(CampaignRecap* work, int index);
 u32 func_020ffa3c(CampaignRecap* work, int index);
 u32 func_020ffa28(CampaignRecap* work, int index);
 BOOL CampaignRecap_IsEnd(CampaignRecap* work, int index);
-void SpriteStrip_LoadMapName(int mapId, int arg);
 void CampaignRecap_LoadResultSprites(CampaignRecap* work);
 void func_020fed58(CampaignRecap* work, int mapOffset);
-s32 HwMod32(s32 numerator, s32 denominator);
 BOOL func_020fd624(Task* task);
 void func_020fd618(Task* task);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Screens_BlackOut(void);
 void func_020ff07c(CampaignRecap* work);
 Task* func_020fcb08(int arg);
@@ -28,9 +26,6 @@ void Task_ResumeScript(CampaignRecapTask* task);
 void CampaignRecap_DrawTitle(CampaignRecap* work);
 void CampaignRecap_DrawPanels(CampaignRecap* work);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern const TaskScriptCmd data_0216a898[];
 
 /* Per-frame update of the data_0216a8b0 task. It goes through the campaign

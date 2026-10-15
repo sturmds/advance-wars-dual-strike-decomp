@@ -7,8 +7,6 @@ void Bg_ClearRect(u16* map, int x, int y, int w, int h);
 void Text_PrintById(int x, int y, void* target, u32 text, int a, int b);
 void Gfx_RequestLayerCopy(int layer);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

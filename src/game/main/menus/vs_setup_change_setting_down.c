@@ -8,8 +8,6 @@ void VsSetup_SetCo(u8 a, u8 b);
 void VsSetup_SetController(u8 a, u8 b);
 int VsSetup_NextCo(int index);
 
-extern MenuState gMenuState;
-
 #define MENU ((MenuState*)&gMenuState)
 
 /* A controller entry: asks for the other of human and AI. */

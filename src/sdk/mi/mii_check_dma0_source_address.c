@@ -1,6 +1,5 @@
 #include "sdk/mi.h"
-
-void OS_Terminate(void);
+#include "sdk/os.h"
 
 /* Halts if a channel 0 transfer would read the I/O registers or cartridge space. */
 void MIi_CheckDma0SourceAddress(u32 dmaNo, u32 src, u32 size, u32 srcControl) {

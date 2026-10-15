@@ -1,12 +1,10 @@
 #include "types.h"
 #include "game/campaign_map.h"
 #include "game/Unk_02088d04.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void CampaignMap_DrawNumberTag(int x, int y, int side);
 void Task_ResumeScript(CampaignMapTask* task);
-
-extern Unk_027c0280* data_027c0280;
 
 /* Script step: like CampaignMap_DrawNumberAtMission, with the sprites sliding
  * in over 16 frames from 256 pixels to the right (side 0) or left; then

@@ -17,11 +17,6 @@ int ProfileHeaders_UpdateBest(int profile, int value);
 void WinLoseSides_Fill(void);
 void BattleResults_Fill(void);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* End-of-battle score into data_022a7a9c: speed, power and technique of
  * the current player (player), their sum (score)
  * and its rank; Survival halves all but the rank. Then the
@@ -43,7 +38,7 @@ void BattleScore_Compute(void) {
   data_022a7a9c.technique = BattleScore_Technique(data_022a7a9c.player);
   data_022a7a9c.score = BattleScore_Total(data_022a7a9c.player);
   data_022a7a9c.rank = Score_ToRank_020e5428(data_022a7a9c.score);
-  if (STATE->gameMode == GAME_MODE_SURVIVAL) {
+  if (MAP_STATE->gameMode == GAME_MODE_SURVIVAL) {
     data_022a7a9c.speed >>= 1;
     data_022a7a9c.power >>= 1;
     data_022a7a9c.technique >>= 1;
@@ -57,14 +52,15 @@ void BattleScore_Compute(void) {
   data_022a7a9c.unk_0c = 0;
   data_022a7a9c.unk_0d = 0;
   for (i = 1; i < ARMY_SLOT_COUNT; i++) {
-    if (STATE->players[i].controller == PLAYER_CONTROLLER_HUMAN) {
-      data_022a7a9c.unk_08 += STATE->players[i].destroyedCounts[0];
-      data_022a7a9c.unk_09 += STATE->players[i].destroyedCounts[1];
-      data_022a7a9c.unk_0a += STATE->players[i].destroyedCounts[4];
-      data_022a7a9c.unk_0b += STATE->players[i].destroyedCounts[2];
+    if (MAP_STATE->players[i].controller == PLAYER_CONTROLLER_HUMAN) {
+      data_022a7a9c.unk_08 += MAP_STATE->players[i].destroyedCounts[0];
+      data_022a7a9c.unk_09 += MAP_STATE->players[i].destroyedCounts[1];
+      data_022a7a9c.unk_0a += MAP_STATE->players[i].destroyedCounts[4];
+      data_022a7a9c.unk_0b += MAP_STATE->players[i].destroyedCounts[2];
       data_022a7a9c.unk_0c +=
-          STATE->players[i].destroyedCounts[PLAYER_DESTROYED_OOZIUM];
-      if (STATE->unk_1c4->mapId == 242 || STATE->unk_1c4->mapId == 247) {
+          MAP_STATE->players[i].destroyedCounts[PLAYER_DESTROYED_OOZIUM];
+      if (MAP_STATE->unk_1c4->mapId == 242 ||
+          MAP_STATE->unk_1c4->mapId == 247) {
         data_022a7a9c.unk_0d = 1;
       } else {
         data_022a7a9c.unk_0d = 0;
@@ -87,7 +83,7 @@ void BattleScore_Compute(void) {
   if (!Player1Team_HasPlayerInGame()) {
     total = 0;
   }
-  switch (STATE->gameMode) {
+  switch (MAP_STATE->gameMode) {
     case GAME_MODE_CAMPAIGN:
       if (Campaign_IsHardMode()) {
         total *= 2;
@@ -97,7 +93,7 @@ void BattleScore_Compute(void) {
       total = 0;
       break;
   }
-  if (STATE->gameMode != GAME_MODE_CAMPAIGN) {
+  if (MAP_STATE->gameMode != GAME_MODE_CAMPAIGN) {
     best = 0;
   } else {
     best = ProfileHeaders_UpdateBest(data_02290118.unk_00, total);

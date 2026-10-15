@@ -3,8 +3,6 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_ov006_0235f690.h"
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
 /* Sets the HQ position of the army that owns hqTile (an HQ tile with owner
  * 1 to 4) back to -1, meaning no HQ. Any other tile changes nothing. */
 void Ov006_ClearHqPosition(int hqTile) {

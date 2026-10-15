@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/Unk_022a7a9c.h"
 #include "game/result_sprite_task.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(ResultSpriteTask* task);
 void ResultPath_DrawAll(int lead);
 void ResultRank_PlaySe(int rank);

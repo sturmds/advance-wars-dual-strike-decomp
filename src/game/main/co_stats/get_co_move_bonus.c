@@ -6,9 +6,6 @@
 int GetUnitCombatClass(int unitType);
 int MovementBoost(int player, int slot, int unitType);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Change to a unit type's movement from one CO of a player (coSlot 0:
  * front, 1: back) in the given power state: the CO's stat rows plus
  * skills. Foot units take only their class row; other units add the

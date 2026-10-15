@@ -1,10 +1,10 @@
 #include "types.h"
 #include "game/campaign_recap.h"
 #include "game/task.h"
+#include "game/math.h"
 
 extern CampaignRecap* data_022a7ea4;
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task* task);
 void CampaignRecap_SetCamera(CampaignRecap* recap, int x, int y, int z);
 

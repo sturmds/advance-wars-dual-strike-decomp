@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/skills.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Good luck added by the skills of one CO (coSlot 0 front, 1 back) of a
  * player. */
 int LuckDamage(int playerIndex, int coSlot) {

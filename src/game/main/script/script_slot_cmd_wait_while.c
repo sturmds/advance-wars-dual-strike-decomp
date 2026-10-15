@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
-
 /* Script command: calls the function the argument points to with the slot.
  * While it returns nonzero the slot remains on this command and ends its run
  * for the frame; when it returns 0, moves on to the next command. */

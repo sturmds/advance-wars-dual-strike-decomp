@@ -3,16 +3,12 @@
 #include "game/Unk_02080440.h"
 #include "game/oam_cells.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern MovePath* gMovePath;
 
 int MovePath_DirToNext(int i);
 int MovePath_DirToPrev(int i);
 BOOL Rect_IsOnScreen(int x, int y, int width, int height);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Queues the move path arrow of every on-screen tile as a sprite, last tile
  * first; the sprite version of MovePath_DrawArrows3d. Nothing is drawn while
@@ -33,7 +29,7 @@ void MovePath_DrawArrowSprites(void) {
     y = gMovePath->y[i] << 4;
     if (Rect_IsOnScreen(x, y, 16, 16)) {
       tile = (u8)i; /* needed to match: an int copy, set before view */
-      view = GAME->unk_1c4;
+      view = MAP_STATE->unk_1c4;
       next = MovePath_DirToNext(tile);
       /* arrow cells start at OBJ tile 0x194; palette 3 */
       Sprite_QueueAt(

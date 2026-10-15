@@ -3,8 +3,6 @@
 #include "game/event_script.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern ScriptCommand gMapOverviewScript[];
 
 s16 ScriptSlot_Find(const ScriptCommand* script);
@@ -13,8 +11,7 @@ int MapScript_RunList18(int flag);
 void Counter_IncrementCapped(u32* timer);
 void EffectScene_TickProgress(void);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define CURRENT_PLAYER (STATE->players[STATE->currentPlayer])
+#define CURRENT_PLAYER (MAP_STATE->players[MAP_STATE->currentPlayer])
 
 /* Per-frame tick of the current player's timer (Player.playTimeFrames, frames; Time
  * Survival reads it). Skipped while the hook script runs, func_020d1bc4 is
@@ -27,7 +24,7 @@ void Game_TickPlayerTimer(void) {
   if (func_020d1bc4() != 0) {
     return;
   }
-  if (STATE->unk_5b != 0) {
+  if (MAP_STATE->unk_5b != 0) {
     return;
   }
   if (MapScript_RunList18(0) != 0) {

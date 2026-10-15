@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/campaign_map.h"
+#include "game/campaign_map_music.h"
 
 int CampaignMap_CenterScrollX(int x);
 
-extern CampaignMapState gCampaignMapState;
 extern CampaignMission gCampaignMissions[];
 
 #define MISSION gCampaignMissions[gCampaignMapState.mission]

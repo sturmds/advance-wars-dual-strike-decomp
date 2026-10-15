@@ -2,7 +2,6 @@
 #include "game/task.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
 extern TaskScriptCmd data_ov002_0236961c[];
 extern TaskScriptCmd data_ov002_0236963c[];
 extern TaskScriptCmd data_ov002_023604c4[];

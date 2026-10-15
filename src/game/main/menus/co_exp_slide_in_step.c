@@ -3,12 +3,10 @@
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
 #include "game/win_lose.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(void* task);
 void CoExp_DrawScreen(CoExp* exp, int a, int b, int c);
-
-extern MenuState gMenuState;
 
 #define SLIDE_FRAMES 16
 

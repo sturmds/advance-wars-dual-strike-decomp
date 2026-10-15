@@ -4,6 +4,7 @@
 #include "game/song.h"
 #include "game/task.h"
 #include "game/tile_point.h"
+#include "game/screen.h"
 
 void CannonShotTask_PlayImpact(void);
 void CannonShotTask_PlayMuzzleFlash(void);
@@ -22,7 +23,6 @@ void ObjectHealScan_StartNext(void);
 void ObjectHealTask_LoadGraphics(void);
 void ObjectHealTask_PlayEffect(void);
 void ObjectHealTask_RepairUnits(void);
-void Screen_SetBlendTopOnly(void);
 void TileListTask_MoveToNext(void);
 void TileListTask_PlayEffect(void);
 void TileStrikeTask_Init2d(void);

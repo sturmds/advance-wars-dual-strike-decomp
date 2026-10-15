@@ -6,9 +6,6 @@
 int SuperPowerCost(int player, int slot);
 int CoPowerCost(int player, int slot);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Takes the cost of a power (enum CoPowerState) from the player's front
  * CO meter, stopping at 0. CoPowerCost gives the CO Power cost. */
 void SpendPowerCharge(int player, int power) {

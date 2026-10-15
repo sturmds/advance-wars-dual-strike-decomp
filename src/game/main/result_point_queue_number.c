@@ -1,9 +1,8 @@
 #include "types.h"
 #include "game/Unk_0229c734.h"
 #include "game/oam_cells.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numer, s32 denom);
-s32 HwMod32(s32 numerator, s32 denominator);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
 #define SCORES data_0229c734

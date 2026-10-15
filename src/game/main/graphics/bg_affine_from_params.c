@@ -1,10 +1,6 @@
 #include "types.h"
 #include "game/affine_params.h"
-
-s32 HwDiv32(s32 numerator, s32 denominator);
-
-extern const s16 gSineTable
-    []; /* sine table: 256 steps per turn, 12 fraction bits; +64 gives cosine */
+#include "game/math.h"
 
 /* Builds the rotation and scale matrix of a BG2 or BG3 affine layer. It maps
  * the BG pixel (srcX, srcY) to the screen point (centerX, centerY). */

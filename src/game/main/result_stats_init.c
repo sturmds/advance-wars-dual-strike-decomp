@@ -4,6 +4,7 @@
 #include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 /* Needed to match: data_022a7a9c is read with its rows (as in
  * battle_results_fill.c), so hide the header's one-entry declaration. */
 #define data_022a7a9c data_022a7a9c_entry
@@ -11,8 +12,6 @@
 #include "game/co_data.h"
 #undef data_022a7a9c
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Screen_SetCurrentBoth(void* state);
 u8 Map_GetLoadedPlayerCount(void);
 const char* Map_GetCurrentName(void);
@@ -43,14 +42,10 @@ int UnitIcons_GetTileCount(void);
 void ResultStats_DrawPlayerTotals(int player);
 void ResultStats_PrintFirstPageLabel(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern BattleResults data_022a7a9c;
 /* On this screen gMenuState starts with a BG map of 24 rows. */
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 #define ROW(player) (data_022a7a9c.rows[player])
 
 #define MAIN_MAP (data_027c0288.unk_00)
@@ -89,7 +84,7 @@ void ResultStats_Init(Task* task) {
   task->unk_68 = 0;
   task->unk_6a = Map_GetLoadedPlayerCount();
   mapName = Map_GetCurrentName();
-  day = GAME->day;
+  day = MAP_STATE->day;
   SWITCH_BACK();
 
   {

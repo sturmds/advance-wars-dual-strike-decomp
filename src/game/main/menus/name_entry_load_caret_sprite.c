@@ -1,3 +1,5 @@
+#include "game/screen_other_map.h"
+#include "sdk/fs.h"
 /* Built without optimization, like the rest of the name entry screen. */
 #pragma optimization_level 0
 
@@ -7,9 +9,6 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-void FS_ChangeDir(const char* dir);
 void* File_Load(const char* path);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
@@ -17,9 +16,6 @@ void Palette_LoadFromFile(const char* fileName, int fileOffset,
 SpriteAnim* SpriteAnim_Create(void* file, int a, int b);
 void SpriteAnim_SetAnimation(SpriteAnim* sprite, int frame);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern char data_0216b338[];
 extern char data_0216b354[];
 extern char data_0216b358[];

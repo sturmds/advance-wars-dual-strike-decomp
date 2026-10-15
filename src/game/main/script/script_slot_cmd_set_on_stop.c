@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
-
 /* Script command: sets the slot's onStop handler to the function in the
  * argument, then goes on. */
 BOOL ScriptSlot_CmdSetOnStop(int slot) {

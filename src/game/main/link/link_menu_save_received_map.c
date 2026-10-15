@@ -3,8 +3,6 @@
 #include "game/design_map.h"
 #include "game/save_progress.h"
 
-extern SaveRecordBuffer data_02291774;
-
 int func_0207a260(void);
 void DesignMap_SaveRecordToSlot(int slot, DesignMapRecord* record);
 

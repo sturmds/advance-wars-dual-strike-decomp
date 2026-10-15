@@ -1,6 +1,6 @@
 #include "types.h"
+#include "sdk/fp_status.h"
 
-u32 *__fp_status(void);
 extern double __fp_trap_d(double a, u32 op);
 
 #ifdef __MWERKS__

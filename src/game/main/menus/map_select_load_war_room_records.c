@@ -6,8 +6,6 @@
 
 void Co_QueueSmallPicture(int coId, void* dest, int paletteSlot);
 
-extern Unk_027c0280* data_027c0280;
-
 /* Record of the selected map in place 0-2. */
 #define RECORD(place)                                                       \
   (gWarRoomRecords[TABLES.subStrip][SELECTED_MAP_ID() - WAR_ROOM_FIRST_MAP] \
@@ -20,7 +18,7 @@ extern Unk_027c0280* data_027c0280;
 void MapSelect_LoadWarRoomRecords(void) {
   int i;
 
-  if (STATE->gameMode != GAME_MODE_WAR_ROOM) {
+  if (MAP_STATE->gameMode != GAME_MODE_WAR_ROOM) {
     return;
   }
   for (i = 0; i < (int)ARRAY_COUNT(MENU->setup.recordDays); i++) {

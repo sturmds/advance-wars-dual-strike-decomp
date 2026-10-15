@@ -5,16 +5,12 @@
 #include "game/task.h"
 #include "game/unit_action.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern UnitAction data_0229d8c8;
 extern const TaskScriptCmd data_02168380[];
 
 void ActingUnit_AttackTile(int x, int y, int flag);
 void Combat_CalcDamageToTarget(int unitIndex, int target, s16* pos);
 void ScreenConfig_RunActionHook(void);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* The acting unit, from its destination, attacks the map object at (x, y),
  * or the tile there when no object stands on it. The RNG state is saved in
@@ -30,16 +26,16 @@ void ActingUnit_AttackObject(int x, int y, int flag) {
     return;
   }
   data_0229d8c8.rngState = gRngState;
-  Combat_CalcDamageToTarget(STATE->actingUnitIndex, object->kind,
-                            &STATE->actingUnitDestX);
-  if (object->hp < STATE->combatants[0].damageNoLuck) {
+  Combat_CalcDamageToTarget(MAP_STATE->actingUnitIndex, object->kind,
+                            &MAP_STATE->actingUnitDestX);
+  if (object->hp < MAP_STATE->combatants[0].damageNoLuck) {
     object->hp = 0;
   } else {
-    object->hp = object->hp - STATE->combatants[0].damageNoLuck;
+    object->hp = object->hp - MAP_STATE->combatants[0].damageNoLuck;
   }
   ScreenConfig_RunActionHook();
   task = (ObjectAttackTask*)Task_Create(data_02168380, TASK_LIST(3));
-  task->attacker = STATE->actingUnit;
+  task->attacker = MAP_STATE->actingUnit;
   task->object = object;
   task->flag = flag;
 }

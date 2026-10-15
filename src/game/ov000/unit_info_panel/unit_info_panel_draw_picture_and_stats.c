@@ -3,8 +3,8 @@
 #include "game/co_data.h"
 #include "game/unit_info_panel.h"
 #include "game/unit_stats.h"
+#include "sdk/fs.h"
 
-void FS_ChangeDir(const char* dir);
 u32 File_UnpackTo(void* dest, const char* path);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           int paletteOffset, int size);
@@ -15,7 +15,6 @@ void Number_Draw(s16 x, s16 y, u16* map, int value, u16 a, u16 b);
 void Text_PrintImmediate(int x, int y, u16* map, u32 textId, u16 unk_30,
                          int arg);
 
-extern Unk_027c0280* data_027c0280;
 extern char data_ov000_0234f9d8[];
 extern char data_ov000_0234f9e0[];
 extern const char* data_ov000_0234f398[][15];

@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int BattleSave_GetRecordId(int mode, int campaignSlot);
 void BattleRecordTask_Start(int recordId, int arg);
 

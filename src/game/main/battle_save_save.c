@@ -4,7 +4,6 @@
 #include "game/screen_other_map.h"
 #include "game/save_progress.h"
 
-extern SaveRecordBuffer data_02291774;
 extern u32 gLinkPlay;
 
 void func_02019920(void);
@@ -14,8 +13,6 @@ void DesignMap_SaveToSlot(int slot, void* map, int unused);
 void BattleSave_Pack(u8 flag);
 void Save_WriteRecord(u8 recordId, void* buffer, int size);
 void* PlayRecords_TakeSnapshot(void);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Saves the battle as save record recordId (1 to 6; 0 does nothing; never in
  * link play). Sets the record's byte (func_020193e0) to 1 if it is 0, writes a
@@ -45,12 +42,12 @@ void BattleSave_Save(int recordId, int flag) {
   Screen_SetCurrentGfx((&data_027c0288.unk_00)[data_027c0284]);
   saved = data_027c027c;
   Screen_SetCurrent((&data_027c0288.unk_00)[data_027c0284]);
-  map = STATE->unk_1c4;
+  map = MAP_STATE->unk_1c4;
   customMap = MAP_IS_CUSTOM(map->mapId);
   if (customMap) {
     DesignMap_SaveToSlot(3, map, 1);
   }
-  secondMapId = STATE->secondMapId;
+  secondMapId = MAP_STATE->secondMapId;
   Screen_SetCurrent(saved);
   Screen_SetCurrentGfx(savedGfx);
 
@@ -59,14 +56,14 @@ void BattleSave_Save(int recordId, int flag) {
   saved = data_027c027c;
   Screen_SetCurrent((&data_027c0288.unk_00)[1 - data_027c0284]);
   if (secondMapId != 0 && MAP_IS_CUSTOM(secondMapId)) {
-    DesignMap_SaveToSlot(4, STATE->unk_1c4, 1);
+    DesignMap_SaveToSlot(4, MAP_STATE->unk_1c4, 1);
   }
   Screen_SetCurrent(saved);
   Screen_SetCurrentGfx(savedGfx);
 
   BattleSave_Pack(flag);
   Save_WriteRecord(recordId, &data_02291774, BATTLE_SAVE_RECORD_SIZE);
-  if (STATE->gameMode == 0) {
+  if (MAP_STATE->gameMode == 0) {
     PlayRecords_TakeSnapshot();
   }
 }

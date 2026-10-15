@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/map_select.h"
 
-extern MenuState gMenuState;
-
 void Sound_PlaySe(int id);
 void MapSelect_StartListSlide(int slideBack);
 

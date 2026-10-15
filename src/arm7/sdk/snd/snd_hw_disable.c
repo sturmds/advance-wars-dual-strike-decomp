@@ -1,9 +1,9 @@
 #include "sdk/snd_hw.h"
 #include "sdk/os_arm7.h"
+#include "sdk/pm.h"
 
 int func_arm7_037fe63c(void);
 void func_arm7_037fe5dc(int);
-void PMi_ResetControl(int);
 
 void SndHw_Disable(void) {
   func_arm7_037fe63c();

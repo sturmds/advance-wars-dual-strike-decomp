@@ -2,12 +2,9 @@
 #include "game/menu_state.h"
 #include "game/player_info_task.h"
 #include "game/screen_other_map.h"
+#include "game/math.h"
+#include "game/win_quote.h"
 
-extern MenuState gMenuState;
-
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list,
-                            BOOL flip);
 void Co_LoadArmyGraphicsAndPalette(int coId, int firstTile, int paletteSlot,
                                    int army);
 

@@ -2,8 +2,6 @@
 #include "game/Unk_0201d320.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern Unk_0201d320 data_022977f4[];
 
 /* Event script command: adds the record's unk_08 and unk_0a to the game state's

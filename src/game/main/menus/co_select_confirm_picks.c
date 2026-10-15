@@ -4,8 +4,6 @@
 #include "game/screen_other_map.h"
 #include "game/task.h"
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* The CO the player picked for player slot column (1-4), front or back row.
  * Needed to match: coGrid read as rows of 2. */
 #define PICKED_CO(column, row) \
@@ -38,10 +36,10 @@ void CoSelect_ConfirmPicks(void) {
     }
   }
 
-  if (STATE->gameMode != GAME_MODE_SURVIVAL) {
-    Skills_SetupForBothMaps(STATE->gameMode, STATE->unk_1c4->mapId);
+  if (MAP_STATE->gameMode != GAME_MODE_SURVIVAL) {
+    Skills_SetupForBothMaps(MAP_STATE->gameMode, MAP_STATE->unk_1c4->mapId);
     MovementCost();
-    if (STATE->secondMapId != 0 && OtherMap_GetUnk30() == 0) {
+    if (MAP_STATE->secondMapId != 0 && OtherMap_GetUnk30() == 0) {
       Unk_027c0280* saved0280 = data_027c0280;
       Unk_02080440* saved027c;
 

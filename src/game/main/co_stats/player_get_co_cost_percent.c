@@ -4,9 +4,6 @@
 
 int CostReduced(int player, int slot);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Unit cost change in percent of one CO of a player (slot 0 front, 1 back)
  * in a power state: the CO's costPercent (0 with coEffectsOn clear) plus the
  * Force Rank price cuts. unitType is passed by the callers and not used. */

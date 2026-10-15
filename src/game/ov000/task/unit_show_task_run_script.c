@@ -4,8 +4,6 @@
 #include "game/player.h"
 #include "game/play_records.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u32 gLinkPlay;
 
 void UnitShowTask_Destroy(UnitShowTask* task);
@@ -15,8 +13,6 @@ void ZoomSpriteTask_StartHeld(int x, int y);
 int func_020800a4(void);
 void func_ov000_022ad610(UnitShowTask* task);
 void UnitShowTask_PlaySpecialSound(UnitShowTask* task);
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Runs the task's script, one signed byte per command, until a command
  * ends the step: -1 plays the sound and destroys the task; 0-3 set that
@@ -44,9 +40,9 @@ void UnitShowTask_RunScript(UnitShowTask* task) {
             gPlayRecords.unk_3cc++;
           }
         }
-        if (gLinkPlay != 0 ? GAME->unk_18 != 21 : 0) {
+        if (gLinkPlay != 0 ? MAP_STATE->unk_18 != 21 : 0) {
           if (func_020800a4() == 0) {
-            UnitAction_Send(2, (u8)(task->unit - GAME->units), 0, 0);
+            UnitAction_Send(2, (u8)(task->unit - MAP_STATE->units), 0, 0);
           }
         }
         return;

@@ -1,10 +1,6 @@
 #include "types.h"
+#include "sdk/gx.h"
 
-void GX_SetBankForTex(int mask);
-void GX_SetBankForBG(int mask);
-void GX_SetBankForOBJ(int mask);
-void GX_SetBankForTexPltt(int mask);
-void GX_SetBankForBGExtPltt(int mask);
 void GX_SetBankForSubBG(int mask);
 void func_0210aaf8(int mask);
 void GX_SetBankForSubBGExtPltt(int mask);

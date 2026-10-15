@@ -8,6 +8,8 @@
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bb8c.h"
 #include "game/brightness_fade.h"
+#include "game/math.h"
+#include "game/screen_other_map.h"
 
 BOOL func_020fd624(Task* task);
 void func_020fd618(Task* task);
@@ -16,17 +18,11 @@ Task* func_020fcb08(int arg);
 BOOL BrightnessFade_IsActive(Task* task);
 void func_020fccb0(Task* task);
 void Task_ResumeScript(Ov005Task* task);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 TextPrinter* Text_PrintByIdOnLayer0(int x, int y, u16* map, u32 textId,
                                     u16 unk_30, u16 unk_38);
 BOOL Text_IsPrinting(void);
 void Text_StopPrinting(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 void func_ov005_02358954(void);
 void Ov005MessageScreen_OnButtonConfirm(void);
 

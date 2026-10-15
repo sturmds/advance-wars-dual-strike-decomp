@@ -4,19 +4,14 @@
 #include "game/predeployed_unit.h"
 #include "game/unit_stats.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Puts a unit of the given type for the current player at (x, y). */
 MapUnit* Unit_Create(int x, int y, int type);
 void func_020c8888(void);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* Places a map's pre-deployed unit list, army by army, then restores the
  * current player. Fuel and ammo above the unit type's maximum are capped. */
 void Map_PlacePredeployedUnits(const PredeployedUnit* row) {
-  u16 savedPlayer = STATE->currentPlayer;
+  u16 savedPlayer = MAP_STATE->currentPlayer;
   u8 count = 0;
   u8 slots
       [56]; /* unit slot of each row in this army; length from the stack frame */
@@ -27,18 +22,18 @@ void Map_PlacePredeployedUnits(const PredeployedUnit* row) {
       break;
     }
     if (row->x == PREDEPLOYED_ARMY) {
-      STATE->currentPlayer = row->y;
+      MAP_STATE->currentPlayer = row->y;
       count = 0;
       row++;
-      STATE->currentUnitBase =
-          (STATE->currentPlayer - 1) * MAP_UNITS_PER_PLAYER;
+      MAP_STATE->currentUnitBase =
+          (MAP_STATE->currentPlayer - 1) * MAP_UNITS_PER_PLAYER;
       continue;
     }
     unit = Unit_Create(row->x, row->y, row->type);
     if (unit == NULL) {
       break;
     }
-    slots[count++] = unit - STATE->units;
+    slots[count++] = unit - MAP_STATE->units;
     unit->hp = row->hp;
     unit->fuel = row->fuel;
     if (row->ammo == PREDEPLOYED_AMMO_FULL) {
@@ -82,7 +77,8 @@ void Map_PlacePredeployedUnits(const PredeployedUnit* row) {
       unit->ammo = Ov000_gUnitStats[unit->type].ammo;
     }
   }
-  STATE->currentPlayer = savedPlayer;
+  MAP_STATE->currentPlayer = savedPlayer;
   func_020c8888();
-  STATE->currentUnitBase = (STATE->currentPlayer - 1) * MAP_UNITS_PER_PLAYER;
+  MAP_STATE->currentUnitBase =
+      (MAP_STATE->currentPlayer - 1) * MAP_UNITS_PER_PLAYER;
 }

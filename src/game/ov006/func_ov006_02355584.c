@@ -3,8 +3,6 @@
 
 void func_ov006_02359030(void);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
 void func_ov006_02355584(void) {
   if (data_ov006_0236d640->request != 6) {
     return;

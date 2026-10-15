@@ -7,8 +7,6 @@
 #include "game/script_slot.h"
 #include "game/screen_other_map.h"
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 void Task_ResumeScript(Task* task);
 s16 ScriptSlot_Find(const ScriptCommand* script);
 BOOL Player_IsInGame(u8 player);
@@ -48,13 +46,13 @@ void PowerDamage_HitNextEnemy(PowerDamageTask* task) {
       return;
     }
     if (Player_IsInGame(slot) &&
-        STATE->players[slot].team != STATE->players[task->player].team)
+        MAP_STATE->players[slot].team != MAP_STATE->players[task->player].team)
       break;
   }
   task->playerSlot = slot;
 
   for (i = task->unitIndex; i < POWER_DAMAGE_UNIT_END; i++) {
-    unit = &STATE->units[i + Ov000_gPlayerFirstUnitSlot[task->playerSlot]];
+    unit = &MAP_STATE->units[i + Ov000_gPlayerFirstUnitSlot[task->playerSlot]];
     if (unit->type == UNIT_NONE)
       continue;
     if (unit->flags & MAP_UNIT_CARRIED)

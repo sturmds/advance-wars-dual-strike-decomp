@@ -24,12 +24,6 @@ void Ov006_PlaceRoad(int x, int y);
 void Ov006_PlacePipeSeam(int x, int y);
 void Ov006_PlacePipe(int x, int y);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* Turns a property on the tile back into plain first. */
 #define CLEAR_PROPERTY(x, y)               \
   if (Ov006_GetTilePropertyKind(x, y)) {   \
@@ -52,7 +46,7 @@ void Ov006_PaintTerrainAtCursor(void) {
   y = data_ov006_0236d640->cursorY;
   x = data_ov006_0236d640->cursorX;
   data_ov006_0236d640->oldCell =
-      STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[y] + x];
+      MAP_STATE->mapTiles->mapCells[MAP_STATE->mapTiles->rowStart[y] + x];
   data_ov006_0236d640->unk_00 |= 0x1000;
   brush = data_ov006_0236d640->toolTile;
   switch (brush & 0x1f) {

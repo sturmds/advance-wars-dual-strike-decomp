@@ -3,9 +3,6 @@
 #include "game/play_records.h"
 #include "game/player.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 void Unit_MoveToOtherMap(MapUnit* unit); /* puts the unit on the other map */
 
 void UnitAction_MoveToOtherMap(void) {

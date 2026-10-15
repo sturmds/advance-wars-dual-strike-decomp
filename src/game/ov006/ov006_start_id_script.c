@@ -9,7 +9,6 @@ void Ov006_ClearWindowsAndBlend(void);
 int Ov006_HasNonSpace(u8* buf);
 void Ov006_LoadIdText(int id);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern EventScriptCommand data_ov006_0236bb60[];
 extern EventScriptCommand data_ov006_0236bc00[];
 extern EventScriptCommand data_ov006_0236bca0[];

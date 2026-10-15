@@ -3,14 +3,9 @@
 #include "game/player.h"
 #include "game/unit_stats.h"
 #include "game/Unk_02080440.h"
+#include "game/math.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-s32 HwDiv32(s32 numerator, s32 denominator);
 void Player_SpendFunds(int playerIndex, int amount);
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* HP as shown on the map: 1-10, rounded up. */
 #define SHOWN_HP(unit) ((unit)->hp != 0 ? HwDiv32((unit)->hp - 1, 10) + 1 : 0)
@@ -31,10 +26,11 @@ int Unit_Refuel(MapUnit* unit, BOOL payCost) {
       break;
     }
     if (payCost) {
-      if ((u32)GAME->players[GAME->currentPlayer].funds < costPerFuel) {
+      if ((u32)MAP_STATE->players[MAP_STATE->currentPlayer].funds <
+          costPerFuel) {
         break;
       }
-      Player_SpendFunds(GAME->currentPlayer, costPerFuel);
+      Player_SpendFunds(MAP_STATE->currentPlayer, costPerFuel);
     }
     total += costPerFuel;
     unit->fuel++;

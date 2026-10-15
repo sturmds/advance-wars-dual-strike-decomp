@@ -10,13 +10,7 @@ void Ov006_ChooseButton34(void);
 int Ov006_GetUnitCodeAt(int x, int y);
 void Ov006_LoadToolUnitPreview(void);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define OV6 data_ov006_0236d640
-#define TILE(x, y) (STATE->mapTiles->tiles[(x) + STATE->mapTiles->rowStart[y]])
 
 /* Takes the terrain (mode 0) or unit (mode 1) under the cursor as the
  * current tool, like an eyedropper. Terrain: when the tile differs from
@@ -30,7 +24,7 @@ void Ov006_PickToolAtCursor(int mode) {
 
   switch (mode) {
     case 0:
-      tile = TILE(OV6->cursorX, OV6->cursorY);
+      tile = MAP_TILE_AT(OV6->cursorX, OV6->cursorY);
       if (OV6->toolTile == tile) {
         return;
       }

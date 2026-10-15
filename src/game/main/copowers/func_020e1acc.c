@@ -3,9 +3,6 @@
 #include "game/player.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 #define PLAYER(i) (data_027c027c->unk_48[data_027c0284]->players[i])
 #define BLOCK(co, index) (gCoTable[co].blocks[index])
 

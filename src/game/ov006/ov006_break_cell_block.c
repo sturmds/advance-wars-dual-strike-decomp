@@ -7,13 +7,8 @@ void Ov006_StoreMapCell(int x, int y,
 void Ov006_SetCellAndFit(int x, int y, int cell);
 void Ov006_RefitCellToRight(int x, int y);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define CELL_AT(x, y) \
-  (STATE->mapTiles->mapCells[(x) + STATE->mapTiles->rowStart[y]])
+  (MAP_STATE->mapTiles->mapCells[(x) + MAP_STATE->mapTiles->rowStart[y]])
 
 /* Map cell codes this file handles. The block cells form a 3x3 picture; the
  * _ALT codes sit left of it in the cell set and are handled like the column

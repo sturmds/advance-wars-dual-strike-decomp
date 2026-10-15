@@ -4,9 +4,8 @@
 #include "game/keypad.h"
 #include "game/map_unit.h"
 #include "game/script_slot.h"
+#include "game/screen.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern ScriptCommand gMapScrollScript[];
 
 void func_020d1420(void);
@@ -14,7 +13,6 @@ BOOL Map_IsCoSelectPhase(void);
 void func_020bc5c0(void);
 void func_020bc56c(void);
 void func_020d1414(void);
-void SceneMode_OnButtonX(void);
 int Map_GetDisplayTile(int x, int y);
 void SecondScreen_ShowCursorInfo(int tile, MapUnit* unit);
 MapUnit* CurrentPlayer_NextIdleUnit(void);
@@ -23,8 +21,6 @@ s16 ScriptSlot_Find(const ScriptCommand* script);
 void ScreenConfig_RunActionHook(void);
 BOOL MapCursor_SelectTile(int x, int y, int a, int b);
 void MapCursor_ShowRange(int x, int y);
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Buttons on the map while nothing is selected. Start, Select, R (when
  * allowR) and X (when allowX) each start their own handler. Otherwise it
@@ -59,7 +55,7 @@ BOOL MapCursor_HandleButtons(BOOL allowR, BOOL allowX) {
     SceneMode_OnButtonX();
     return TRUE;
   }
-  game = GAME;
+  game = MAP_STATE;
   y = game->cursorY;
   x = game->cursorX;
   tiles = game->mapTiles;
@@ -81,13 +77,13 @@ BOOL MapCursor_HandleButtons(BOOL allowR, BOOL allowX) {
       func_020bc5c0();
       return TRUE;
     }
-    if (MapCursor_SelectTile(GAME->cursorX, GAME->cursorY, 1, 1)) {
+    if (MapCursor_SelectTile(MAP_STATE->cursorX, MAP_STATE->cursorY, 1, 1)) {
       return TRUE;
     }
   }
   if (!(gKeypad->pressed & PAD_BUTTON_B)) {
     return FALSE;
   }
-  MapCursor_ShowRange(GAME->cursorX, GAME->cursorY);
+  MapCursor_ShowRange(MAP_STATE->cursorX, MAP_STATE->cursorY);
   return TRUE;
 }

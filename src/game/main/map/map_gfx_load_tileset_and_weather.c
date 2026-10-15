@@ -2,8 +2,8 @@
 #include "game/Unk_02088d04.h"
 #include "game/map_tileset_files.h"
 #include "game/weather.h"
+#include "sdk/fs.h"
 
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           int paletteOffset, int size);
@@ -15,7 +15,6 @@ void WeatherFx_InitSnow(void);
 void WeatherFx_InitRain(void);
 void WeatherFx_InitSand(void);
 
-extern Unk_027c0280* data_027c0280;
 extern char data_0216a1a0[]; /* "/bmap" */
 
 /* Loads the tiles and palette of a tileset, the weather's tile graphics, and

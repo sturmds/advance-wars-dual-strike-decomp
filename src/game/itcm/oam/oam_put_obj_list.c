@@ -2,8 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/oam_buffer.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Queues a sprite made of several OBJs. sprite is a count followed by that
  * many (attribute 0, 1, 2) triples; x and y are added to each OBJ's
  * position and tileAdd to its tile number. */

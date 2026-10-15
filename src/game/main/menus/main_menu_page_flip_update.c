@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/main_menu.h"
+#include "sdk/gx.h"
 
 void Gfx3d_InitScene(void);
-void G3_RotX(int sin, int cos);
 void MainMenu_DrawPage(void);
 void MainMenu_DrawPicture192x144(void);
 void func_02028644(void);

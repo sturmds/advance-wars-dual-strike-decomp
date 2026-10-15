@@ -6,11 +6,11 @@
 #include "game/unlocks.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen.h"
+#include "game/screen_other_map.h"
+#include "game/text_print.h"
 
 void Gfx_InitBothScreens(void);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-void Screen_SetLayerScreenSize(int layer, int screenSize);
 void Gfx_ClearLayerMap(int layer);
 u8* File_Load(const char* path);
 const char* File_LocalizePath(const char* path);
@@ -29,16 +29,11 @@ int CampaignRecords_GetAverageScore(void);
 CampaignTopCo* Campaign_GetUnlockedCos(void);
 void Co_LoadSmallPicture(int coId, void* dest, int paletteSlot);
 void Co_UnpackPicture(int coId, int firstTile);
-s8 Text_PrintId(s16 x, s16 y, u16* map, u32 textId, u16 unk_30, u16 unk_32);
 void Text_PrintImmediate(s16 x, s16 y, u16* map, u32 textId, u16 unk_30,
                          int arg);
 void Number_Draw(s16 x, s16 y, u16* map, u32 value, u16 entryBits,
                  u16 digitSet);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
 extern const char gTotalRankPath[];      /* "/ohashi/res_totalrank" */
 extern const char gTotalRankLangPath[];  /* "/ohashi/res_totalrank_lang" */
 extern const char gTotalRankWall3Path[]; /* "/ohashi/res_totalrank_wall3" */

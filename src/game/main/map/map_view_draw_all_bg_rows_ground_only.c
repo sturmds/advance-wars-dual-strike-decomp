@@ -4,8 +4,7 @@
 
 void MapBg_DrawMaskRow(u16 startCol, u16 row, s16 tileX, s16 tileY);
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
-#define VIEW (GAME->unk_1c4)
+#define VIEW (MAP_STATE->unk_1c4)
 #define HOOKS (data_027c027c->unk_50[data_027c0284])
 
 /* Like MapView_DrawAllBgRows with MapBg_DrawMaskRow drawing each row, and only

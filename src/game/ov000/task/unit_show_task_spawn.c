@@ -4,10 +4,8 @@
 #include "game/Unk_02080440.h"
 #include "game/task.h"
 #include "game/unit_show_task.h"
+#include "sdk/fs.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 char data_ov000_022dbd20[] = {
 #include "data/ov000/data_ov000_022dbd20.inc.c"
 };
@@ -20,14 +18,11 @@ char data_ov000_022dbd24[] = {
 extern const TaskScriptCmd data_ov000_022db6cc[];
 extern const u16 gArmyPalettes[][16];
 
-extern Unk_022a7c5c* data_022a7c5c;
-
 int UnitShowTask_FindFreeSlot(void);
 const char* UnitShowEntry_GetSpritePath(int type);
 const char* UnitShowTask_GetPalettePath(UnitShowTask* task);
 int UnitShowEntry_GetStepSize(int entry);
 u32 UnitShowTask_GetObjBase(int slot);
-int FS_ChangeDir(const char* path);
 void* File_Load(const char* path);
 void Palette_Load(const void* src, u32 offset, u32 size);
 void GfxQueue_AddKind2(const void* src, void* dst, u32 size);
@@ -35,8 +30,6 @@ ShowSprite* SpriteAnim_Create(void* file, int a, int b);
 void SpriteAnim_SetAnimation(ShowSprite* sprite, int frame);
 int UnitShowTask_CheckVisible(UnitShowTask* task);
 void UnitShowTask_PlaceSprite(UnitShowTask* task);
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Makes a show task for a unit of the given type at tile (x, y). It takes a
  * free show slot (NULL when both are taken), loads the unit's sprite files
@@ -86,12 +79,13 @@ UnitShowTask* UnitShowTask_Spawn(int x, int y, int owner, int type) {
     task->sprite->unk_24 = UnitShowTask_GetObjBase(task->slot);
     task->sprite->unk_28 = data_022a7c5c->unk_64;
     GfxQueue_AddKind2(
-        gArmyPalettes[GAME->players[task->owner + 1].armyColour - 1],
+        gArmyPalettes[MAP_STATE->players[task->owner + 1].armyColour - 1],
         (void*)data_022a7c5c->unk_64, 32); /* a texture palette offset */
   } else {
     task->sprite->unk_24 = (task->slot << 4) + 0x264 | 0x4000;
-    Palette_Load(gArmyPalettes[GAME->players[task->owner + 1].armyColour - 1],
-                 640, 32);
+    Palette_Load(
+        gArmyPalettes[MAP_STATE->players[task->owner + 1].armyColour - 1], 640,
+        32);
   }
   if (UnitShowTask_CheckVisible(task)) {
     UnitShowTask_PlaceSprite(task);

@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/task.h"
+#include "game/menu_button.h"
 
-void MenuButtons_DisableTouch(void);
 extern const TaskScriptCmd data_0216a52c[];
 
 Task* func_020fc234(void) {

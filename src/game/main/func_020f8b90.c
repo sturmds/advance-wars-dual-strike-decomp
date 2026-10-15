@@ -1,7 +1,5 @@
 #include "types.h"
-
-void Screen_ResetBlend(void);
-void Screen_ResetWindows(void);
+#include "game/screen.h"
 
 void func_020f8b90(void) {
   Screen_ResetBlend();

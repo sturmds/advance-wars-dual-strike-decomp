@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ov003_object.h"
+#include "game/math.h"
 
-int Math_Distance(int x1, int y1, int x2, int y2);
 void Ov003_StepToward(int x1, int y1, int x2, int y2, int length, int* outX,
                       int* outY);
 void Ov003Object_Impact(Ov003Object* object);

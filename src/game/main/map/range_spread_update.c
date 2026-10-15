@@ -13,13 +13,8 @@ void SpriteCells_Draw3d(void* data, VecFx32* pos, u32 a2, u32 a3, int a4,
 int func_020224ec(void);
 void func_020f78b8(int a0);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern u8 data_02169d8c[];
 extern u8 data_02169d94[];
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Update of the range spread task: moves each dot one step and draws it.
  * The task ends after RANGE_SPREAD_FRAMES frames and starts the task of
@@ -57,8 +52,9 @@ void RangeSpread_Update(Task* task) {
       SpriteCells_Draw3d(data_02169d94, &pos, data_022a7c5c->unk_38,
                          data_022a7c5c->unk_3c, 0, 0);
     } else {
-      Sprite_QueueAt(0, dots[i].x - GAME->unk_1c4->scrollX,
-                     dots[i].y - GAME->unk_1c4->scrollY, data_02169d8c, 0, 0);
+      Sprite_QueueAt(0, dots[i].x - MAP_STATE->unk_1c4->scrollX,
+                     dots[i].y - MAP_STATE->unk_1c4->scrollY, data_02169d8c, 0,
+                     0);
     }
   }
 }

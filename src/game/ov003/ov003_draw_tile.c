@@ -4,13 +4,7 @@
 #include "game/Ov003Fx.h"
 #include "game/ov003_marker.h"
 #include "game/terrain.h"
-
-extern Unk_027c0280* data_027c0280;
-extern u8
-    data_ov003_02365d10[]; /* per tile code: bits 5-7 owner, bits 0-4 terrain */
-extern u16 data_ov003_02366110[][4]; /* layer 1 map entries per 16x16 tile */
-extern u16
-    data_ov003_02367110[][4]; /* layer 2 and 3 map entries per 16x16 tile */
+#include "game/ov003_gfx.h"
 
 Ov003Marker* Ov003_FindMarkerAtTile(int x, int y);
 int Ov003_IsCurrentSlotRowOpen(void);

@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/screen_other_map.h"
+#include "game/ov003_unit.h"
 
 void File_UnpackTo(void* dest, const char* fileName);
 static char Ov003_MapPanelMainPath[] = {
@@ -8,7 +9,6 @@ static char Ov003_MapPanelMainPath[] = {
 extern char Ov003_MapPanelSeaPath[];
 extern char Ov003_MapPanelRiverPath[];
 extern char data_ov003_023649f4[];
-extern u8 data_ov003_02365d10[];
 
 void Ov003_LoadMapPanelGraphics(void) {
   File_UnpackTo(

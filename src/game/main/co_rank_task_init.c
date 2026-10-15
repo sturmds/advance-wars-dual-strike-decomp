@@ -3,20 +3,14 @@
 #include "game/player.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen.h"
+#include "game/math.h"
 
-s32 HwMod32(s32 numerator, s32 denominator);
 int Co_GetRank(u32 co);
 u32 Co_GetExperience(u32 co);
 void Gfx_RequestLayerCopy(int layer);
 void Gfx_ClearLayerMap(int layer);
-void Screen_SetLayerScreenSize(int layer, int screenSize);
 void func_0201e6e8(int x, int y, int width, int height);
-
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0280* data_027c0280;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Sets up layers 0 and 1 for the rank screen (layer 1 scrolled 256
  * pixels right), fills an 8 by 5 tile area of layer 1 per CO shown
@@ -42,15 +36,17 @@ void CoRankTask_Init(CoRankTask* task) {
     func_0201e6e8(21, 17, 8, 5);
   }
   task->cos[0].rank =
-      Co_GetRank(STATE->players[1].front.id & PLAYER_CO_ID_MASK);
+      Co_GetRank(MAP_STATE->players[1].front.id & PLAYER_CO_ID_MASK);
   task->cos[0].exp = HwMod32(
-      Co_GetExperience(STATE->players[1].front.id & PLAYER_CO_ID_MASK), 1000);
+      Co_GetExperience(MAP_STATE->players[1].front.id & PLAYER_CO_ID_MASK),
+      1000);
   task->cos[0].frame = 0;
   if (task->hasBackCo == 1) {
     task->cos[1].rank =
-        Co_GetRank(STATE->players[1].back.id & PLAYER_CO_ID_MASK);
+        Co_GetRank(MAP_STATE->players[1].back.id & PLAYER_CO_ID_MASK);
     task->cos[1].exp = HwMod32(
-        Co_GetExperience(STATE->players[1].back.id & PLAYER_CO_ID_MASK), 1000);
+        Co_GetExperience(MAP_STATE->players[1].back.id & PLAYER_CO_ID_MASK),
+        1000);
   } else {
     task->cos[1].rank = 0;
     task->cos[1].exp = 0;

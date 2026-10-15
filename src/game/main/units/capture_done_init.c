@@ -1,14 +1,13 @@
 #include "types.h"
 #include "game/sprite_anim.h"
 #include "game/capture_picture_task.h"
+#include "game/oam_buffer.h"
+#include "game/math.h"
 
 extern const u8 data_0214a670[];
-extern s16 gSineTable[];
 
 SpriteAnim* SpriteAnim_Create(const void* file, int a, int b);
 void SpriteAnim_SetAnimation(void* sprite, int animation);
-s32 HwDiv32(s32 numer, s32 denom);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 
 /* Script step that starts the task shown when a capture completes: creates
  * its sprite, sets affine matrix 0 to the unrotated, full-size matrix

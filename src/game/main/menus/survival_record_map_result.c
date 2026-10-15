@@ -7,11 +7,7 @@
 BOOL Player1Team_HasPlayerInGame(void);
 int Survival_GetMapCost(int mode);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern Unk_022a7b80 data_022a7b80;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 #define POINTS_MAX 9999
 
@@ -23,13 +19,13 @@ void Survival_RecordMapResult(void) {
   int i;
   u32 cost;
 
-  if (STATE->gameMode != GAME_MODE_SURVIVAL) {
+  if (MAP_STATE->gameMode != GAME_MODE_SURVIVAL) {
     return;
   }
   for (i = 0; i < (int)ARRAY_COUNT(data_022a7b80.coIds); i++) {
     data_022a7b80.coIds[i] =
-        (&STATE->players[1].front)[i].id & PLAYER_CO_ID_MASK;
-    data_022a7b80.powerCharge[i] = (&STATE->players[1].front)[i].charge;
+        (&MAP_STATE->players[1].front)[i].id & PLAYER_CO_ID_MASK;
+    data_022a7b80.powerCharge[i] = (&MAP_STATE->players[1].front)[i].charge;
   }
   if (Player1Team_HasPlayerInGame()) {
     data_022a7b80.mapIndex++;

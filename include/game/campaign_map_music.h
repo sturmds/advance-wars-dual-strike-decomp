@@ -1,10 +1,9 @@
+#include "game/song.h"
 #ifndef GAME_CAMPAIGN_MAP_MUSIC_H
 #define GAME_CAMPAIGN_MAP_MUSIC_H
 
 #include "types.h"
 #include "game/campaign_map.h"
-
-void Sound_StartSong(int songId);
 
 extern CampaignMapState gCampaignMapState;
 

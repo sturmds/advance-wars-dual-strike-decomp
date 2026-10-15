@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/map_select.h"
+#include "game/math.h"
 
-int HwDiv32(int a, int b);
-int HwMod32(int a, int b);
 int MapSelect_GetPageMapCount(void);
 
 /* Position on the page one row down from pos; the last row wraps to the first

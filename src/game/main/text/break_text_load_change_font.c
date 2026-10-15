@@ -9,7 +9,6 @@ void Palette_Load(const void* src, int offset, u32 size);
 void Data_Unpack(const void* src, void* dest);
 u8* File_Load(const char* path);
 
-extern Unk_027c0280* data_027c0280;
 extern char data_021597c8[]; /* "/ohashi/res_changefont" */
 
 #define CHANGE_FONT_GLYPHS 27         /* A-Z, then '*' */

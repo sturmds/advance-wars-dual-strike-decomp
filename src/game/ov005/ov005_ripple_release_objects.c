@@ -3,16 +3,11 @@
 #include "game/Unk_02088d04.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bb80.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void SpriteAnim_Free(u32* handle);
 void Task_Destroy(Task* task);
 void Mem_Free(void* block);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* Clears the sprite handles, destroys the two tasks (on the second screen's
  * state) and frees block80. The work block itself is freed by a later step. */

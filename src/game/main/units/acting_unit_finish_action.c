@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 void ActingUnit_ResetCaptureIfMoved(void);
 void func_02017cf4(void);
 void Unit_SubtractMoveFuel(
@@ -14,27 +11,26 @@ void func_020c8888(void);
 void func_020c7398(int unitSlot); /* removes the unit */
 void MapScript_RunList0c(MapUnit* unit);
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
-
 /* Ends the acting unit's action: puts it on its destination tile, takes off
  * the fuel used (not in fog or rain), marks it waited and removes it when
  * its HP are 0. */
 void ActingUnit_FinishAction(void) {
   ActingUnit_ResetCaptureIfMoved();
   func_02017cf4();
-  GAME->actingUnit->x = GAME->actingUnitDestX;
-  GAME->actingUnit->y = GAME->actingUnitDestY;
-  if (GAME->unk_1c4->fog == 0 && GAME->unk_1c4->weather != WEATHER_RAIN) {
-    Unit_SubtractMoveFuel(GAME->actingUnit, GAME->unk_46);
+  MAP_STATE->actingUnit->x = MAP_STATE->actingUnitDestX;
+  MAP_STATE->actingUnit->y = MAP_STATE->actingUnitDestY;
+  if (MAP_STATE->unk_1c4->fog == 0 &&
+      MAP_STATE->unk_1c4->weather != WEATHER_RAIN) {
+    Unit_SubtractMoveFuel(MAP_STATE->actingUnit, MAP_STATE->unk_46);
   }
   UnitShowTask_DestroyRunning();
-  GAME->actingUnit->flags |= MAP_UNIT_WAITED;
-  if (GAME->actingUnit->flags & MAP_UNIT_CARRIED) {
-    GAME->actingUnit->flags |= MAP_UNIT_SELECTED;
+  MAP_STATE->actingUnit->flags |= MAP_UNIT_WAITED;
+  if (MAP_STATE->actingUnit->flags & MAP_UNIT_CARRIED) {
+    MAP_STATE->actingUnit->flags |= MAP_UNIT_SELECTED;
   }
   func_020c8888();
-  if (GAME->actingUnit->hp == 0) {
-    func_020c7398(GAME->actingUnit - GAME->units);
+  if (MAP_STATE->actingUnit->hp == 0) {
+    func_020c7398(MAP_STATE->actingUnit - MAP_STATE->units);
   }
-  MapScript_RunList0c(GAME->actingUnit);
+  MapScript_RunList0c(MAP_STATE->actingUnit);
 }

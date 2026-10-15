@@ -1,5 +1,7 @@
 #include "types.h"
 #include "game/Unk_022a7c5c.h"
+#include "sdk/gx_load.h"
+#include "sdk/fs.h"
 
 extern const u16 gArmyPalettes[][16];
 extern char data_0216a45c[]; /* "/bmap" */
@@ -14,11 +16,6 @@ extern char data_0216a480[]; /* "02a" */
 extern char data_0216a484[]; /* "02b" */
 extern char data_0216a488[]; /* "02c" */
 
-void GX_BeginLoadTex(void); /* begins a texture image load */
-void GX_LoadTex(const void* src, u32 offset,
-                u32 size); /* copies to texture image VRAM */
-void GX_EndLoadTex(void);  /* ends the load */
-void FS_ChangeDir(const char* dir);
 void Gfx_LoadTexImageFile(const char* fileName, u32 offset);
 void Gfx_LoadTexPaletteFile(const char* fileName, u32 offset, u32 size);
 void Gfx_LoadTexPalette(const void* src, u32 offset, u32 size);

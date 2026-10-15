@@ -4,7 +4,6 @@
 u8* Palette_GetBlock(int index, int player);
 void TransferQueue_Add(const void* src, void* dst, u32 size);
 
-extern Unk_027c0280* data_027c0280;
 extern const u8 data_ov006_0236a4cc[];
 /* Blank object tiles: nothing writes them, so they stay zero. 0x100 bytes up
  * to the next variable; the users copy at most 128. */

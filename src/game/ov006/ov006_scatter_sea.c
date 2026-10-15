@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/design_map_gen.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 s32 Rng_Range(s32 min, s32 max);
 int Ov006_FindRandomCell(int* x, int* y, int cell);
 void Ov006_SetMapCell(int x, int y, int cell);
@@ -12,7 +9,6 @@ void Ov006_GrowCells(int cell, int fromCell);
 void Ov006_SettleSeedTiles(void);
 void Ov006_MarkMapBorder(void);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define CELL_PLAIN 1
 #define CELL_SEA 42
 /* Ov006_gGenMarks mark for a tile that a grow step starts from. */
@@ -42,11 +38,11 @@ void Ov006_ScatterSea(void) {
       Ov006_SetMapCell(x, y - 1, CELL_SEA);
       Ov006_gGenMarks[y - 1][x] = MARK_SEED;
     }
-    if (x + 1 < STATE->unk_1c4->mapWidth) {
+    if (x + 1 < MAP_STATE->unk_1c4->mapWidth) {
       Ov006_SetMapCell(x + 1, y, CELL_SEA);
       Ov006_gGenMarks[y][x + 1] = MARK_SEED;
     }
-    if (y + 1 < STATE->unk_1c4->mapHeight) {
+    if (y + 1 < MAP_STATE->unk_1c4->mapHeight) {
       Ov006_SetMapCell(x, y + 1, CELL_SEA);
       Ov006_gGenMarks[y + 1][x] = MARK_SEED;
     }

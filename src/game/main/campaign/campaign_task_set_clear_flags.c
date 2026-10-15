@@ -5,16 +5,11 @@
 #include "game/task.h"
 #include "game/unlocks.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int Campaign_IsHardMode(void);
 int func_0210391c(void);
 void func_020fd874(Task* parent);
 void func_020fd88c(Task* parent);
 void func_020fd8a4(Task* parent);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Campaign missions that set a game flag when finished. Mission 24 is the
  * last story map (CampaignMap_IsFinalMission). */
@@ -37,10 +32,10 @@ void func_020fd8a4(Task* parent);
  * normal or hard, unless func_0210391c returns nonzero. Other game modes
  * and maps do nothing. */
 void CampaignTask_SetClearFlags(Task* task) {
-  if (STATE->gameMode != GAME_MODE_CAMPAIGN) {
+  if (MAP_STATE->gameMode != GAME_MODE_CAMPAIGN) {
     return;
   }
-  switch (STATE->unk_1c4->mapId) {
+  switch (MAP_STATE->unk_1c4->mapId) {
     case MAP_CAMPAIGN_MISSION_8:
       GameFlag_Set(GAME_FLAG_MISSION_8_CLEARED, 1);
       func_020fd874(task);

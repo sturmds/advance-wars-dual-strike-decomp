@@ -2,9 +2,6 @@
 #include "game/design_map_edit.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int Ov006_GetPipeSeamCell(int x,
                           int y); /* guess: the seam cell that fits tile x, y */
 int Ov006_IsJoinedPieceConnected(
@@ -16,9 +13,9 @@ int Ov006_GetPipeLink(
     int x, int y,
     int dir); /* 0-3: what the neighbour in dir is; 0 nothing to join */
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 #define CELL_AT(x, y) \
-  (STATE->mapTiles->mapCells[(x) + STATE->mapTiles->rowStart[y]])
+  (MAP_STATE->mapTiles->mapCells[(x) + MAP_STATE->mapTiles->rowStart[y]])
 
 /* Map cell codes. The cell set is 32 cells wide: the four corners form a 2x2
  * block at rows 10-11, with the straight pieces and the seams beside them.

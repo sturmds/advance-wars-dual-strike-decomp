@@ -4,7 +4,6 @@
 
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern u32 data_ov006_0236a528[];
 extern u32 data_ov006_0236a558[];
 extern u32 data_ov006_0236a6c8[];

@@ -5,7 +5,6 @@
 #include "game/screen_other_map.h"
 #include "game/save_progress.h"
 
-extern SaveRecordBuffer data_02291774;
 extern u8 gGameFlagsLow[];
 extern BattleSaveSkillSet
     data_022a72c8[][2]; /* skills a tag partner lends, per player and CO slot */
@@ -13,8 +12,6 @@ extern BattleSaveBlock40 data_022a7b98;
 
 void BattleSave_LoadMap(BattleSaveMap* save);
 void ForceRank_LoadSets(int mode);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Applies the battle save record in data_02291774 to the game: the map on
  * the current screen and, in a two-map battle, the map on the other screen
@@ -38,7 +35,7 @@ void BattleSave_Unpack(void) {
   saved = data_027c027c;
   Screen_SetCurrent((&data_027c0288.unk_00)[data_027c0284]);
   BattleSave_LoadMap(&record->maps[0]);
-  secondMapId = STATE->secondMapId;
+  secondMapId = MAP_STATE->secondMapId;
   Screen_SetCurrent(saved);
   Screen_SetCurrentGfx(savedGfx);
 
@@ -53,7 +50,7 @@ void BattleSave_Unpack(void) {
   }
 
   if (record->unk_00 != 0) {
-    STATE->unk_18 = 4;
+    MAP_STATE->unk_18 = 4;
   }
   gRngState = record->rngState;
   for (i = 0; i < GAME_FLAGS_LOW_SIZE; i++) {
@@ -61,7 +58,7 @@ void BattleSave_Unpack(void) {
   }
   data_022977a4 = record->eventScript;
   data_022a7b98 = record->unk_98;
-  ForceRank_LoadSets(STATE->gameMode);
+  ForceRank_LoadSets(MAP_STATE->gameMode);
   for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     /* Needed to match: the original tests the player again. */
     if (player != 0) {

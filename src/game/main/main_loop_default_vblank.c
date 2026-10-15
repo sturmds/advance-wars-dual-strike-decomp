@@ -2,21 +2,16 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/task.h"
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
+#include "game/screen.h"
+#include "game/screen_other_map.h"
 
 int func_01ff9f0c(void);
 void func_01ff9f1c(int value);
 void GfxQueue_Flush(void);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Task_RunList(Task* task);
 void CallbackSlots_RunAll(void);
 void OamBuffer_FlushHead(void);
 void OamBuffer_FlushTail(void);
-void Screen_ApplyAll(void);
 void TransferQueue_Run(void);
 void Gfx_CopyRequestedLayers(void);
 void CallbackList_RunAndClear(void);

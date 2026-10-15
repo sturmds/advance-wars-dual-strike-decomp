@@ -1,11 +1,8 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 num, s32 den);
 u32 Team_GetSecondsUsed(int unused);
-
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 
 /* Frames left of the map time limit (timeLimitFrames) after the seconds
  * Team_GetSecondsUsed counts; 0 when it is used up. The argument 1 is passed

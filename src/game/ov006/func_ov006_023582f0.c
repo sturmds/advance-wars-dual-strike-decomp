@@ -8,9 +8,6 @@ void Ov006_ClearWindowsAndBlend(void);
 void DesignMap_DrawSlotPreview(int a, int b, int c, int d, u8 e);
 void Ov006_DarkenPreviewBox(void);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-extern Unk_027c0280* data_027c0280;
-
 /* Clears the layer 0 box. If design map slot id holds a map, draws it through
  * DesignMap_DrawSlotPreview and resets the layer 0 scroll; otherwise clears windows and blending. */
 void func_ov006_023582f0(int id) {

@@ -3,8 +3,6 @@
 #include "game/Unk_ov005_0235a30c.h"
 #include "game/Unk_ov005_0235b574.h"
 
-extern Unk_027c0280* data_027c0280;
-
 int Ov005_CharToGlyphIndex(int code);
 void Ov005_DrawGlyph(void* work, int cell, int glyph);
 void TransferQueue_Add(const void* src, void* dst, u32 size);

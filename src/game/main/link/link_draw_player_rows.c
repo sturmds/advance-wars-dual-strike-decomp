@@ -13,7 +13,6 @@ typedef struct LinkPlayerInfo {
   LinkPlayerData data;
 } LinkPlayerInfo;
 
-extern Unk_027c0280* data_027c0280;
 extern char data_02167c88[];
 
 void Mem_Copy32(const void* src, void* dst, u32 size);

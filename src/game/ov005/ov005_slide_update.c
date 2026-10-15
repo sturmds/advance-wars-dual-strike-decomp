@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/ov005_slide_task.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Ov005SlideTask* task);
 
 /* Step 1 eases the entry's pos from `from` to `to`; step 2 resumes the parent

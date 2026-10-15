@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
-
 BOOL ScriptSlot_AnyPending(void);
 void ScriptSlot_RunPendingByPriority(void);
 

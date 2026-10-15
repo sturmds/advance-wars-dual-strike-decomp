@@ -3,18 +3,14 @@
 #include "game/sprite_task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern const TaskScriptCmd gSpriteTaskScript[];
 extern const char data_0216074c[];
 
 /* Bytes of the picture at the start of the data_0216074c file; its palette follows. */
 #define SPRITE_TASK_PICTURE_SIZE 0x200
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void* File_Load(const char* path);
 void Mem_Free(void* file);
 void Mem_Copy32(const void* src, void* dst, u32 size);

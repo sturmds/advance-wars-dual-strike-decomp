@@ -8,8 +8,6 @@ void Gfx_RequestLayerCopy(int layer);
 void func_020c4018(void);
 void Ov006_OpenPopupMenu(void);
 
-extern Unk_027c0280* data_027c0280;
-
 void func_ov006_023545ec(void) {
   PopupMenu_PushState();
   func_0201e954();

@@ -6,9 +6,6 @@
 void SpriteAnim_Draw(struct ShowSprite* sprite, int x, int y);
 s32 Rng_Range(s32 min, s32 max);
 
-extern Unk_027c0280* data_027c0280;
-extern MenuState gMenuState;
-
 #define SCROLL_X (data_027c0280->bgScrollX[data_027c0280->layer3Bg])
 #define SCROLL_Y (data_027c0280->bgScrollY[data_027c0280->layer3Bg])
 

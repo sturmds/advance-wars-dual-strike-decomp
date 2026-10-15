@@ -11,12 +11,6 @@ void func_ov006_02363198(int x, int y);
 void Ov006_FindHqs(void);
 u8 Ov006_CountPropertyTiles(void);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* Sets up the map for ov006 screen screenId (negative: Ov006_NewMap
  * does it). Builds the row start table, then sets every tile: terrain 1
  * (plain), 4 (wood) or 7 (sea) for screens 1, 4 and 7, and for screen 3 mountain
@@ -33,20 +27,22 @@ void Ov006_FillMapForScreen(int screenId) {
   }
   Units_ClearAll();
   data_ov006_0236d640->unk_2c[0] = 0;
-  for (i = 0; i < STATE->unk_1c4->mapHeight; i++) {
-    STATE->mapTiles->rowStart[i] = i * STATE->unk_1c4->mapWidth;
+  for (i = 0; i < MAP_STATE->unk_1c4->mapHeight; i++) {
+    MAP_STATE->mapTiles->rowStart[i] = i * MAP_STATE->unk_1c4->mapWidth;
   }
-  for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-    for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
+  for (y = 0; y < MAP_STATE->unk_1c4->mapHeight; y++) {
+    for (x = 0; x < MAP_STATE->unk_1c4->mapWidth; x++) {
       switch (screenId) {
         case 7:
-          STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[y] + x] = 42;
-          (STATE->mapTiles->tiles + x)[STATE->mapTiles->rowStart[y]] =
+          MAP_STATE->mapTiles->mapCells[MAP_STATE->mapTiles->rowStart[y] + x] =
+              42;
+          (MAP_STATE->mapTiles->tiles + x)[MAP_STATE->mapTiles->rowStart[y]] =
               TERRAIN_SEA;
           break;
         case 1:
-          STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[y] + x] = 1;
-          (STATE->mapTiles->tiles + x)[STATE->mapTiles->rowStart[y]] =
+          MAP_STATE->mapTiles->mapCells[MAP_STATE->mapTiles->rowStart[y] + x] =
+              1;
+          (MAP_STATE->mapTiles->tiles + x)[MAP_STATE->mapTiles->rowStart[y]] =
               TERRAIN_PLAIN;
           break;
         case 3:
@@ -54,8 +50,9 @@ void Ov006_FillMapForScreen(int screenId) {
           func_ov006_02363198(x, y);
           break;
         case 4:
-          STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[y] + x] = 135;
-          (STATE->mapTiles->tiles + x)[STATE->mapTiles->rowStart[y]] =
+          MAP_STATE->mapTiles->mapCells[MAP_STATE->mapTiles->rowStart[y] + x] =
+              135;
+          (MAP_STATE->mapTiles->tiles + x)[MAP_STATE->mapTiles->rowStart[y]] =
               TERRAIN_WOOD;
           break;
       }

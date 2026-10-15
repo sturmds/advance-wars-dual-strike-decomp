@@ -6,9 +6,6 @@
 /* Nonzero when tile (x, y) is visible to the current player under fog. */
 int Map_IsTileVisible(int x, int y);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Scores a strike centred on (x, y) for playerSlot: gStrikeUnitScore over
  * every unit within radius tiles (Manhattan distance), summed apart for
  * own-team and enemy units, combined by gStrikeSiteScore. visibleOnly == 1

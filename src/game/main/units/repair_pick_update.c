@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/task.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 u32 NeighborTilePicker_Update(int* direction, int mask);
 void Task_Destroy(Task* task);
 void Task_ResumeScript(Task* task);
@@ -15,8 +12,6 @@ void UnitAction_Repair(int direction);
 /* Bits NeighborTilePicker_Update returns: A and B. */
 #define INPUT_CONFIRM 0x10
 #define INPUT_CANCEL 0x20
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Script step of the repair tile picker (data_02166678), like
  * UnloadTask_PickTile: unk_64 holds the mask of directions with a unit to
@@ -35,8 +30,8 @@ void RepairPick_Update(Task* task) {
     Task_Destroy(task);
     MenuDepth_Pop();
     UnitMenu_Open();
-    STATE->cursorX = STATE->actingUnitStartX;
-    STATE->cursorY = STATE->actingUnitStartY;
+    MAP_STATE->cursorX = MAP_STATE->actingUnitStartX;
+    MAP_STATE->cursorY = MAP_STATE->actingUnitStartY;
     return;
   }
   if (!(input & INPUT_CONFIRM)) {

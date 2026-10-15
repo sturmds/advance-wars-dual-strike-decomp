@@ -1,8 +1,8 @@
 #include "types.h"
+#include "game/math.h"
 
 u16* Survival_GetMapList(int mode);
 int Survival_GetMapCount(int mode);
-s32 HwMod32(s32 num, s32 den);
 
 /* Map id (an index into Ov000_gMapHeaders) at position index of the mode
  * variant's map list; the position wraps past the end of the list. */

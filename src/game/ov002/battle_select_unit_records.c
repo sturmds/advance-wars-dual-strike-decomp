@@ -2,7 +2,6 @@
 #include "game/BattleSideData.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
 /* One BattleSideData per unit type. */
 extern BattleSideData data_ov002_0236b170[];
 

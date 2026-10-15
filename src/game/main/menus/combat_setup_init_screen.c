@@ -17,7 +17,6 @@ void CombatSetup_DrawShopHelp(void);
 void CombatSetup_DrawShop(void);
 void func_02088528(int a0);
 
-extern MenuState gMenuState;
 extern u8 data_02160ae0[];
 extern const MenuButtonTemplate data_02160e08;
 

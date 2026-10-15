@@ -2,9 +2,8 @@
 #include "game/task.h"
 #include "game/Unk_022a7b80.h"
 #include "game/Unk_02088d04.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numerator, s32 denominator);
-s32 HwMod32(s32 numerator, s32 denominator);
 void Text_PrintImmediate(int x, int y, u16* map, u32 textId, u16 unk_30,
                          int arg);
 void Layer0_PutRatio(int x, int y, u32 first, u32 second);
@@ -20,7 +19,6 @@ int Survival_GetModeBudget(int mode);
 int Survival_GetMapCount(int mode);
 
 extern Unk_022a7b80 data_022a7b80;
-extern Unk_027c0280* data_027c0280;
 
 /* Draws the two summary rows (19 and 21) of layer 0 for the mode variant in
  * data_022a7b80.mode: 0/3 a time in seconds (h:mm), 2/5 a number, 1/4 a

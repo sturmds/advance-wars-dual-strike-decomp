@@ -10,12 +10,7 @@ u8* UnitIcons_GetTiles(void);
 int UnitIcons_GetTileCount(void);
 u8* UnitBadges_GetTiles(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
 extern const u16 gArmyPalettes[][16];
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 #define UNIT_ICON_FIRST_TILE 0x1e1
 #define UNIT_BADGE_FIRST_TILE 0x26a
@@ -35,9 +30,9 @@ void UnitIcons_LoadMapGraphics(void) {
       UnitBadges_GetTiles(),
       (u8*)data_027c0280->unk_f8 + UNIT_BADGE_FIRST_TILE * TILE_4BPP_SIZE,
       UNIT_BADGE_TILES * TILE_4BPP_SIZE);
-  Palette_Load(gArmyPalettes[GAME->players[1].armyColour - 1], 0x180, 32);
-  Palette_Load(gArmyPalettes[GAME->players[2].armyColour - 1], 0x1a0, 32);
-  Palette_Load(gArmyPalettes[GAME->players[3].armyColour - 1], 0x1c0, 32);
-  Palette_Load(gArmyPalettes[GAME->players[4].armyColour - 1], 0x1e0, 32);
-  Palette_LoadPlayerArmyBgRow(GAME->currentPlayer);
+  Palette_Load(gArmyPalettes[MAP_STATE->players[1].armyColour - 1], 0x180, 32);
+  Palette_Load(gArmyPalettes[MAP_STATE->players[2].armyColour - 1], 0x1a0, 32);
+  Palette_Load(gArmyPalettes[MAP_STATE->players[3].armyColour - 1], 0x1c0, 32);
+  Palette_Load(gArmyPalettes[MAP_STATE->players[4].armyColour - 1], 0x1e0, 32);
+  Palette_LoadPlayerArmyBgRow(MAP_STATE->currentPlayer);
 }

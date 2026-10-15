@@ -6,11 +6,10 @@
 #include "game/ov003_unit.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov003_0235dd38.h"
+#include "game/math.h"
 
-extern Unk_027c0280* data_027c0280;
 extern u8 (*data_ov003_02365b10)[CO_LARGE_PICTURE_SIZE];
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 int CombatCo_IdFromNumber(int mode);
 void Co_LoadArmyPalette(int coId, int paletteSlot, int army);

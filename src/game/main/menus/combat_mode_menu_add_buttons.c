@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/menu_button.h"
 #include "game/Unk_02160ac0.h"
+#include "game/math.h"
 
-int HwMod32(int a, int b);
 BOOL CombatModeMenu_IsSlotAvailable(u8 slot);
 void func_0208ad2c(void);
 

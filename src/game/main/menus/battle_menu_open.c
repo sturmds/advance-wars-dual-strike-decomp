@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/menu_item.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 void ScreenConfig_RunActionHook(void);
 void Font_LoadDigits(int baseTile);
 void func_020c4018(void);

@@ -2,9 +2,7 @@
 #include "game/task.h"
 #include "game/ov005_task.h"
 #include "game/ov005_large_work.h"
-
-Task* PaletteFade_StartFromBlack(Ov005Task* parent, void* palette, int arg2,
-                                 int arg3, int arg4);
+#include "game/palette_fade.h"
 
 /* Starts a palette task on the large work block's palettes; its purpose is a guess. */
 void Ov005Screen_StartPaletteTask(Ov005Task* task) {

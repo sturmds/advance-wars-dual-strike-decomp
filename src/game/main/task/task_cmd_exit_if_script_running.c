@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/task.h"
 
-extern Unk_02080440* data_027c027c;
-
 void Task_Destroy(Task* task);
 
 /* Script command: lets the task go on only if no other task runs the same

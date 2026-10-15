@@ -2,14 +2,7 @@
 #include "sdk/gx.h"
 #include "game/Unk_02088d04.h"
 #include "game/screen_contexts.h"
-
-void Screen_SetBgMode(int bgMode);
-void Screen_InitLayers(const GfxLayer* config);
-
-extern Unk_027c0280* data_027c0280;
-extern u8 data_02178b08[];
-extern u8 data_02179b08[];
-extern u8 data_0217ab08[];
+#include "game/screen.h"
 
 static GfxLayer Ov002_gBattleLayerConfig[] = {
 #include "data/ov002/Ov002_gBattleLayerConfig.inc.c"

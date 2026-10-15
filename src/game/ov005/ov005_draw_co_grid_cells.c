@@ -3,18 +3,13 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov005_0236bba8.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Gfx3d_InitScene(void);
 int func_02028644(void);
 void Gx_DrawTexturedQuadFormat(int x, int y, int a2, int a3, int a4, int a5,
                                int a6, int a7, int a8, int a9);
 void Sprite_QueueCoSlotFrame(int a0, u16 x, u16 y, int a3);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* On the first screen, inside a 3D scene: for each filled cell of the CO
  * grid, two Gx_DrawTexturedQuadFormat draws (at x and x + 32) and one queued sprite.

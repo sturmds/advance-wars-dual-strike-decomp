@@ -5,9 +5,6 @@
 
 int PowerStarCharge(int player, int slot);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Meter charge a CO Power costs for the CO in a player's slot (0 front, 1
  * back): the CO's CO Power star count times the charge per star. */
 int CoPowerCost(int player, int slot) {

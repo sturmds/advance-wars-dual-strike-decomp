@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/co_select_screen.h"
-
-u8 Unlock_IsSet(int coId);
+#include "game/unlocks.h"
 
 /* Zero-terminated lists of CO ids. */
 extern u8 gDefaultCoList[];

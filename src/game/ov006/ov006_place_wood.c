@@ -16,9 +16,6 @@ void func_ov006_0235dd24(int x, int y);
 void Ov006_RefitCellsAround(int x, int y);
 void Ov006_RefreshNeighborRiverCells(int x, int y);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 #define PROPERTY_NONE 0
 
 /* data_027c027c->unk_48[data_027c0284], written so that the compiler loads

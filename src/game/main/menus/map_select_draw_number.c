@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/oam_cells.h"
+#include "game/math.h"
 
-int HwDiv32(int num, int denom);
-int HwMod32(int num, int denom);
 void Sprite_QueueAt(int a0, int x, int y, void* a3, int attr, int tile);
 
 /* Draws value (0-999) as digit sprites 8 pixels apart from x, without leading

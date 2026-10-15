@@ -1,19 +1,16 @@
 #include "types.h"
 #include "game/ov003_message_task.h"
 #include "game/ov003_unit.h"
+#include "game/oam_buffer.h"
+#include "game/math.h"
 
 #define STATE_BYTE_1D7 (((u8*)&data_ov003_02364928->unk_1d6)[1])
 
-s32 HwDiv32(s32 numer, s32 denom);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 const u8* Text_Get(u32 textId);
 int strlen(const u8* str);
 int Ov003_GetTextWidth(const u8* str);
 int Ov003_DrawLetterAlt(u8 ch, u16 x, u16 y);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Task_ResumeScript(Ov003MessageTask* task);
-
-extern s16 gSineTable[];
 
 #define MESSAGE_TOP_TEXT 0x7d000021
 #define MESSAGE_BOTTOM_TEXT 0x7d000022

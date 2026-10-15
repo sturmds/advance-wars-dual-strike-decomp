@@ -3,7 +3,6 @@
 #include "game/screen_other_map.h"
 #include "game/oam_cells.h"
 
-extern Unk_02160ac0* data_02160ac0;
 extern u8 data_02160b9c[];
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);

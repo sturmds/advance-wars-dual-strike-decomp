@@ -1,7 +1,6 @@
 #include "types.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numer, s32 denom);
-s32 HwMod32(s32 numerator, s32 denominator);
 void DigitSprite_QueuePopIn(int x, int y, int digit, int matrixIndex,
                             int frame);
 

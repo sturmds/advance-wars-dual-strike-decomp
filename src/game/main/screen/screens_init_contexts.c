@@ -3,11 +3,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/battle_save.h"
 #include "game/screen_contexts.h"
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
+#include "game/screen_other_map.h"
 
 /* The two screen contexts in DTCM; data_027c0288 points to them. */
 extern u8 gMainScreenContext[];
@@ -32,10 +28,8 @@ extern Unk_02080440_5c data_0216e5c9;
 
 void func_0200a630(void);
 void Screen_SetCurrentBoth(void* screen);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Screen_SetBgMode(int mode);
-void Screen_InitLayers(const void* config);
+void Screen_InitLayers(const GfxLayer* config);
 
 /* Hardware addresses (GBATEK memory map); DB_ is the sub engine. */
 #define HW_OAM ((u8*)0x07000000)
@@ -48,8 +42,6 @@ void Screen_InitLayers(const void* config);
 #define HW_DB_OBJ_VRAM ((u8*)0x06600000)
 #define HW_DB_BG_PLTT ((u8*)0x05000400)
 #define HW_DB_OBJ_PLTT ((u8*)0x05000600)
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Called once from main. Points data_027c0288 at the two screen contexts
  * and fills each one: its layers, its VRAM, OAM and palette addresses
@@ -101,12 +93,12 @@ void Screens_InitContexts(void) {
   data_027c027c->unk_5c[0] = data_0216e5c0;
   data_027c027c->unk_5c[1] = &data_0216e5c9;
   data_027c027c->weatherFx = &data_0216ebf4;
-  STATE->unk_1c4 = (Unk_02080440_1c4*)&STATE->unk_184;
-  STATE->mapTiles = (MapTiles*)STATE->mapTilesBuf;
-  STATE->units = STATE_UNIT_SLOTS(STATE);
-  STATE->players = STATE->playerSlots;
-  STATE->tileCodeTerrain = STATE->tileCodeTerrainBuf;
-  STATE->unk_6088 = STATE->unk_6088Buf;
+  MAP_STATE->unk_1c4 = (Unk_02080440_1c4*)&MAP_STATE->unk_184;
+  MAP_STATE->mapTiles = (MapTiles*)MAP_STATE->mapTilesBuf;
+  MAP_STATE->units = STATE_UNIT_SLOTS(MAP_STATE);
+  MAP_STATE->players = MAP_STATE->playerSlots;
+  MAP_STATE->tileCodeTerrain = MAP_STATE->tileCodeTerrainBuf;
+  MAP_STATE->unk_6088 = MAP_STATE->unk_6088Buf;
   Screen_SetCurrent(savedState);
   Screen_SetCurrentGfx(savedGfx);
 
@@ -146,12 +138,12 @@ void Screens_InitContexts(void) {
   data_027c027c->unk_5c[0] = &data_0216e5c9;
   data_027c027c->unk_5c[1] = data_0216e5c0;
   data_027c027c->weatherFx = &data_0216edc4;
-  STATE->unk_1c4 = (Unk_02080440_1c4*)&STATE->unk_184;
-  STATE->mapTiles = (MapTiles*)STATE->mapTilesBuf;
-  STATE->units = STATE_UNIT_SLOTS(STATE);
-  STATE->players = STATE->playerSlots;
-  STATE->tileCodeTerrain = STATE->tileCodeTerrainBuf;
-  STATE->unk_6088 = STATE->unk_6088Buf;
+  MAP_STATE->unk_1c4 = (Unk_02080440_1c4*)&MAP_STATE->unk_184;
+  MAP_STATE->mapTiles = (MapTiles*)MAP_STATE->mapTilesBuf;
+  MAP_STATE->units = STATE_UNIT_SLOTS(MAP_STATE);
+  MAP_STATE->players = MAP_STATE->playerSlots;
+  MAP_STATE->tileCodeTerrain = MAP_STATE->tileCodeTerrainBuf;
+  MAP_STATE->unk_6088 = MAP_STATE->unk_6088Buf;
   Screen_SetCurrent(savedState);
   Screen_SetCurrentGfx(savedGfx);
 }

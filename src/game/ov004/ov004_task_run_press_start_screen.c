@@ -4,19 +4,18 @@
 #include "game/task.h"
 #include "game/Unk_ov004_022bf158.h"
 #include "game/brightness_fade.h"
+#include "game/screen.h"
+#include "game/math.h"
+#include "game/campaign_map_music.h"
+#include "game/song.h"
 
 BOOL func_020fd624(Task* task);
 void func_020fd618(Task* task);
 BOOL Touch_IsPressed(void);
 BOOL Keypad_ConfirmPressed(void);
 void Screens_BlackOut(void);
-BOOL Screens_IsTransitionRunning(void);
 void func_0200493c(u16 value);
-void Screen_SetBothNibbles(int weather);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Sound_PlaySe(u32 soundId);
-void Sound_StartSong(int songId);
-void Sound_FadeOutSongOver(int length);
 void Task_ResumeScript(Ov004Task* task);
 void Ov004_Init3d(void);
 void Ov004_SendTexturedQuad256(int x, int y, int z, int sSize, int tSize, int w,

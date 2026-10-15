@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/Unk_022a7b80.h"
-
-s32 HwDiv32(s32 num, s32 den);
+#include "game/math.h"
 
 extern Unk_022a7b80 data_022a7b80;
 

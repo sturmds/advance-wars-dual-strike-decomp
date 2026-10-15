@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Writes two tiles side by side into the 32-tile-wide BG screen at
  * layer0Map: tiles firstTile and firstTile + 1 at (x, y), with palette. */
 void Bg_PutTwoTiles(int x, int y, int firstTile, int palette) {

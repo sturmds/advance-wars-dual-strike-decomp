@@ -9,10 +9,6 @@ void ForceRankScreen_PutNoSkillIcon(int x, int y);
 void ForceRankScreen_PutSkillIcon(int x, int y, int skill);
 void Gfx_RequestLayerCopy(int layer);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-
 /* Redraws one row of the skill slot list: clears 30x2 tiles at (x, y), then
  * puts the skill's icon, name and description (name at x + 2, description at
  * x + 11; textTile is the first text tile, the description uses the 16

@@ -4,7 +4,7 @@
 
 /* Returns how the current player's unitType attacks, from its range after
  * CO bonuses: 0 direct, 1 indirect, 2 no weapon, 3 Black Bomb, 4 Oozium. */
-int UnitType_GetAttackKind(int unitType);
+int UnitType_GetAttackKind(u8 unitType);
 
 /* One of the target scores for the CO power strikes (Covering Fire and
  * Ex Machina): the strike AI scores each unit in the blast area and sums

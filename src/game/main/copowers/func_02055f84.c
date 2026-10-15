@@ -3,9 +3,9 @@
 #include "game/screen_other_map.h"
 #include "game/tag_break_task.h"
 #include "game/Unk_02088d04.h"
+#include "game/math.h"
 
 void Screen_SetCurrentBoth(void* state);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void TagBreak_DrawSidePiece(int x, int y, int side);
 s16 BreakText_GetScreenX(u8 slot);
 void BreakText_QueueLetter(u8 slot, u16 x, int y, int attr, int arg);

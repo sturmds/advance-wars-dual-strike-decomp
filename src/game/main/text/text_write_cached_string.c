@@ -1,11 +1,9 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
-
-extern Unk_027c0280* data_027c0280;
+#include "sdk/msl.h"
 
 int FontCache_Add(const char* str, int colour);
 void Text_PutGlyphTiles(u16* map, int tile, int count);
-u32 strlen(const char* str);
 
 /* Draws str in colour through the font cache and writes its tiles into the
  * screen map at map, with tileBase added to the cache's tile numbers.

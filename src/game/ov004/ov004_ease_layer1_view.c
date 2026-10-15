@@ -1,13 +1,13 @@
 #include "types.h"
 #include "game/Unk_ov004_022bf158.h"
 #include "game/screen_other_map.h"
+#include "game/math.h"
+#include "game/screen.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(void* task);
 void Ov004_CopyViewToBgMap(Unk_ov004_022bf158* state, u16* map);
 void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);
 BOOL Screen_IsTextBg(int layer);
-BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 
 extern Unk_ov004_022bf158* data_ov004_022bf158;

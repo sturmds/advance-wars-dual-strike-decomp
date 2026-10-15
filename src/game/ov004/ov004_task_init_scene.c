@@ -2,12 +2,11 @@
 #include "game/Unk_02088d04.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov004_022bf158.h"
+#include "game/song.h"
+#include "game/screen.h"
 
 #define REG_DISPCNT (*(volatile u32*)0x04000000)
 
-void Screen_SetBgMode(int mode);
-void Screen_InitLayers(const void* config);
-void Sound_StopSong(void);
 void Ov004_LoadRikiishiTextures(Unk_ov004_022bf158* state);
 void Ov004_ResetControl(Unk_ov004_022bf158* state);
 void Ov004_ClearSlots(Unk_ov004_022bf158* state);

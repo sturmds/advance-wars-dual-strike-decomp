@@ -3,8 +3,6 @@
 
 void Sound_PlaySe(u32 soundId);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
 /* In request 6, state 1 moves to state 10 and state 11 to state 0, each with a
  * sound effect. Returns 1 if it did. */
 int func_ov006_02359030(void) {

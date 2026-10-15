@@ -2,14 +2,12 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 #include "game/text_printer.h"
+#include "game/math.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern ScriptCommand data_02158364[];
 extern ScriptCommand data_021584f8[];
 extern ScriptCommand data_02158520[];
 
-s32 HwDiv32(s32 numer, s32 denom);
 ScriptSlot* ScriptSlot_Start(const void* descriptor, int arg);
 int TextPrinter_ReadControlCode(TextPrinter* printer, u16* entry);
 int func_02015ec8(TextPrinter* printer);
@@ -22,7 +20,6 @@ void UnitIcon_DrawEntries(u16* dest, int unitType, int base, int cargo, int a4,
 
 #define TEXT ((const u8*)printer->text) /* TextPrinter.text is a bare pointer */
 #define ADVANCE(n) (*(const u8**)& printer->text += (n))
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Handles the control code at the printer's text position; entry is the
  * screen map cell at the cursor. Bytes 16 to 19 set TextPrinter.unk_32 and
@@ -145,22 +142,22 @@ int TextPrinter_ReadControlCode(TextPrinter* printer, u16* entry) {
       return 3;
     case 10:
       if (text[1] == 17) {
-        unit = &STATE->units[STATE->actingUnit->cargo[0]];
+        unit = &MAP_STATE->units[MAP_STATE->actingUnit->cargo[0]];
         hp = unit->hp == 0 ? 0 : HwDiv32(unit->hp - 1, 10) + 1;
         UnitIcon_DrawEntries(
             printer->screen + printer->cursorX + printer->cursorY * 32,
-            unit->type, STATE->currentUnitBase, unit->cargo[0], 0, hp, 0, 0, 0,
-            0, 0);
+            unit->type, MAP_STATE->currentUnitBase, unit->cargo[0], 0, hp, 0, 0,
+            0, 0, 0);
         printer->cursorX += 2;
         ADVANCE(2);
         return 3;
       } else { /* needed to match: the original has both copies in full */
-        unit = &STATE->units[STATE->actingUnit->cargo[1]];
+        unit = &MAP_STATE->units[MAP_STATE->actingUnit->cargo[1]];
         hp = unit->hp == 0 ? 0 : HwDiv32(unit->hp - 1, 10) + 1;
         UnitIcon_DrawEntries(
             printer->screen + printer->cursorX + printer->cursorY * 32,
-            unit->type, STATE->currentUnitBase, unit->cargo[0], 0, hp, 0, 0, 0,
-            0, 0);
+            unit->type, MAP_STATE->currentUnitBase, unit->cargo[0], 0, hp, 0, 0,
+            0, 0, 0);
         printer->cursorX += 2;
         ADVANCE(2);
         return 3;

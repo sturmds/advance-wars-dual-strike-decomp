@@ -1,22 +1,15 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen.h"
 
-void Screen_FillBlack(void);
-void Screen_FillWhite(void);
 void Map3d_Init(void);
-void Screens_SetUp3dLayers(const void* unused);
-void Screen_ResetLayerScroll(void);
-void Screen_ApplyAll(void);
 void NumberFont_LoadLow(void);
 void UnitIcons_LoadMapGraphics(void);
 void func_020f88ec(void);
 void func_020f8848(void);
 void func_020f882c(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
 extern u8 data_02166dc8[];
 
 void func_020f8764(int mode) {

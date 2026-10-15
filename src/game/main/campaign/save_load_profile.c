@@ -3,8 +3,7 @@
 #include "game/play_records.h"
 #include "game/save_progress.h"
 #include "game/Unk_02290118.h"
-
-extern CampaignMapState gCampaignMapState;
+#include "game/campaign_map_music.h"
 
 int Save_LoadRecord(int recordId, void* buffer);
 void Co_SetAvailable(int co, int value);

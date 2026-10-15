@@ -2,19 +2,12 @@
 #include "game/menu_state.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Palette_Load(const void* src, u32 offset, u32 size);
 int MainLoop_GetFrameCount(void);
 void Sprite_QueuePicture192x160(s16 x, int y, int attr, int tile, int list);
 void LinkPhase_DrawPlayerMarker(int player);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
 
 /* Per-frame draw of the link phase screen (set up by LinkPhase_InitScreen;
  * both are referenced from the screen table at data_0215f824). Draws each

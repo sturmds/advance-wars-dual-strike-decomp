@@ -3,8 +3,6 @@
 #include "game/menu_state.h"
 #include "game/battle_fighter_sprites.h"
 
-extern MenuState gMenuState;
-
 void Sound_PlaySe(u32 soundId);
 void Battle_FadeAttackerSubSe(int side);
 

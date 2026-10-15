@@ -1,11 +1,9 @@
 #include "types.h"
 #include "game/co_swap.h"
+#include "game/math.h"
+#include "game/oam_buffer.h"
+#include "game/win_quote.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-s32 HwDiv32(s32 numerator, s32 denominator);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
-void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list,
-                            BOOL flip);
 s16 BreakText_GetScreenX(u8 slot);
 void BreakText_QueueLetter(u8 slot, u16 x, int y, int attr, int arg);
 void Task_ResumeScript(Task* task);
@@ -13,7 +11,6 @@ void Task_ResumeScript(Task* task);
 /* Looks like a 256-entry sine table: index 0 is the sine of 0, index 64 its
  * cosine, so the matrices below have no rotation. const lets the compiler
  * read it once before the loop, as the original does. */
-extern const s16 gSineTable[];
 
 #define LETTER_DELAY 4           /* frames between two letters starting */
 #define LETTER_FRAMES 24         /* frames one letter takes to grow */

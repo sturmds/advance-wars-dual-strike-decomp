@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/co_data.h"
+#include "sdk/fs.h"
 
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Mem_Zero32(u32 ignored, void* dst, u32 size);
 int Co_GetArmyPictureVariant(int coId, int army);

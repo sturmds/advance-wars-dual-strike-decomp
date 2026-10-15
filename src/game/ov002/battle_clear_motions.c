@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 /* Clears the first word of each motion and of each entry in the table after it. */
 void Battle_ClearMotions(void) {
   int i;

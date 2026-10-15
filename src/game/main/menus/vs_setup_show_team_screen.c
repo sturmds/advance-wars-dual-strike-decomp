@@ -16,8 +16,6 @@ void VsSetup_AddTeamArrowButtons(void);
 void HelpText_Show(u32 textId, int tile);
 void Task_JumpToLabel(Task* task, int label);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offsets out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

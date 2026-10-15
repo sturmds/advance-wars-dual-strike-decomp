@@ -1,15 +1,14 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/screen_other_map.h"
+#include "game/screen.h"
 
 void func_0200a5e0(int screen);
 void Screens_SelectConfigs(void);
 void func_020c4018(void);
 void CurrentPlayer_LoadPalettes(void);
 void func_020c0734(void);
-int SceneMode_IsCurrent(int a0);
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
 #define HOOKS (data_027c027c->unk_50[data_027c0284])
 
 /* Makes screen 0 current, picks the screen configs, then on screen 0's map
@@ -29,7 +28,7 @@ void func_020c9778(void) {
   saved027c = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_00);
   if (HOOKS->unk_58 != NULL) {
-    HOOKS->unk_58(GAME->unk_1c4->weather, GAME->unk_1c4->tileset);
+    HOOKS->unk_58(MAP_STATE->unk_1c4->weather, MAP_STATE->unk_1c4->tileset);
   }
   func_020c4018();
   CurrentPlayer_LoadPalettes();
@@ -45,7 +44,7 @@ void func_020c9778(void) {
   saved027c = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_04);
   if (HOOKS->unk_58 != NULL) {
-    HOOKS->unk_58(GAME->unk_1c4->weather, GAME->unk_1c4->tileset);
+    HOOKS->unk_58(MAP_STATE->unk_1c4->weather, MAP_STATE->unk_1c4->tileset);
   }
   func_020c4018();
   CurrentPlayer_LoadPalettes();

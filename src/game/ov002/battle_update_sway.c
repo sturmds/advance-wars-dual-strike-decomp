@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/battle_scene.h"
 #include "game/menu_state.h"
+#include "game/math.h"
 
-extern MenuState gMenuState;
 s16 data_ov002_023604dc[][3] = {
 #include "data/ov002/data_ov002_023604dc.inc.c"
 };
@@ -10,7 +10,6 @@ volatile s32 data_ov002_023604f4[] = {
 #include "data/ov002/data_ov002_023604f4.inc.c"
 };
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(void* task);
 
 /* Eases both sides' sway to 0 over 50 frames, then resumes the task's script. */

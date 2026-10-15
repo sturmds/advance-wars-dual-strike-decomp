@@ -3,8 +3,8 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/icon.h"
+#include "game/screen_other_map.h"
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
 /* Needed to match: the cast keeps the field offsets out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 
@@ -32,9 +32,7 @@ void ModeFont_Load(int x, int y);
 void ModeFont_ShowTextOnScreen(const char* text, int tile, int paletteSlot,
                                int unk_56, u8 unk_5c, int unk_58);
 void Palette_Load(const void* src, u32 offset, u32 size);
-void Screen_SetCurrent(void* state);
 void Screen_SetCurrentBoth(void* state);
-void Screen_SetCurrentGfx(void* state);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 const void* Text_Get(u32 textId);
 void Wallpaper_LoadBoth(void);
@@ -45,11 +43,6 @@ void func_0202b7e0(int a0);
 void func_0202b804(void* dest);
 int Link_IsActive(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
 extern char data_0215d278[]; /* "/ohashi/res_versus" */
 extern char data_0215d28c[]; /* "/commo/res_linkcommon_lang" */
 extern char data_0215d2a8[]; /* "/commo/res_linkcommon" */
@@ -181,12 +174,12 @@ void VsSetup_Init(void) {
     Mem_Copy32(res + 0x20, MENU->colours, sizeof(MENU->colours));
     Mem_Free(res);
   }
-  ForceRank_LoadSets(STATE->gameMode);
+  ForceRank_LoadSets(MAP_STATE->gameMode);
   NumberFont_LoadLow();
   TpIcon_Load();
   TpIcon2_LoadTo(data_027c0280->objVram + 0x8000);
   ModeFont_Load(0x2c8, 10);
-  if (STATE->twoMaps == 0) {
+  if (MAP_STATE->twoMaps == 0) {
     ModeFont_ShowTextOnScreen(Text_Get(0x7d000017), 0x2c8, 10, 0x800, 0, 0);
   } else {
     ModeFont_ShowTextOnScreen(Text_Get(0x7d000018), 0x2c8, 10, 0x800, 0, 0);

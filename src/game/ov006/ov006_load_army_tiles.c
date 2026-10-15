@@ -6,8 +6,6 @@ void Palette_QueueBlockCopy(int id, int army, void* dest, int copy);
 const void* Terrain_GetPalette(int id, int army);
 void Palette_Load(const void* src, u32 offset, u32 size);
 
-extern Unk_027c0280* data_027c0280;
-
 /* Loads the tiles for an army into object VRAM, 8 tiles apart: the property
  * entries of data_ov006_0236a7a0, or all but the HQ (from tile 0x2c6) when
  * army is 0.

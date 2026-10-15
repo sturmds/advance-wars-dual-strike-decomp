@@ -6,9 +6,6 @@ void Player_AddFunds(int playerIndex, int amount);
 void Sound_PlaySe(int id);
 void func_020e2670(int priority);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Colin's CO Power: funds x1.5. Adds half of the current funds to the
  * current player, then passes id 0xdf to Sound_PlaySe (doc 890 calls
  * it a sound) and starts the task shared with other CO Powers. */

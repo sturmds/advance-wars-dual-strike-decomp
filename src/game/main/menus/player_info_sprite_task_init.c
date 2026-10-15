@@ -2,8 +2,6 @@
 #include "game/menu_state.h"
 #include "game/player_info_task.h"
 
-extern MenuState gMenuState;
-
 /* Sets up the sprite task of the player info screen for the shown CO. */
 void PlayerInfo_SpriteTaskInit(PlayerInfoSpriteTask* task) {
   task->slideStartX = 0;

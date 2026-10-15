@@ -1,6 +1,6 @@
 #include "types.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numerator, s32 denominator);
 int TabList_GetEntryCount(int tab);
 
 /* Pages of a tab, nine entries each; an empty tab still has one page. */

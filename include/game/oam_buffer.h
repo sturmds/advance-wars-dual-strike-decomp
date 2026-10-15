@@ -41,4 +41,6 @@ typedef struct OamBuffer {
   OamRegion head;
 } OamBuffer;
 
+void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
+
 #endif

@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/campaign_recap.h"
 #include "game/Unk_02088d04.h"
+#include "sdk/fs.h"
 
-extern Unk_027c0280* data_027c0280;
 extern const char data_0216a928[]; /* "/rikiishi" */
 extern const char data_0216a940[]; /* "/ohashi/res_result_obj" */
 extern const char data_0216a958[]; /* "/ohashi/res_result_point" */
@@ -13,7 +13,6 @@ u8* File_Load(const char* path);
 void Data_Unpack(const void* src, void* dst);
 void Mem_Free(void* block);
 void Palette_Load(const void* src, u32 offset, u32 size);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           int paletteOffset, int size);

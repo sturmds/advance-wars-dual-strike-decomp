@@ -1,13 +1,11 @@
 #include "types.h"
 #include "game/Unk_02031a14.h"
 #include "game/oam_cells.h"
+#include "game/oam_buffer.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numer, s32 denom);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Task_ResumeScript(Unk_02031a14* task);
-extern s16 gSineTable[];
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 
 void func_02049410(Unk_02031a14* task) {

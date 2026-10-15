@@ -1,11 +1,8 @@
 #include "types.h"
 #include "game/battle_scene.h"
 #include "game/menu_state.h"
+#include "game/math.h"
 
-extern MenuState gMenuState;
-
-u32 HwDiv32(u32 num, u32 den);
-int HwMod32(int num, int denom);
 int MainLoop_GetFrameCount(void);
 
 #define MENU ((MenuState*)&gMenuState)

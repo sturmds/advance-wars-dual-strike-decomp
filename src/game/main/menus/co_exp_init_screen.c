@@ -8,9 +8,9 @@
 #include "game/menu_state.h"
 #include "game/player.h"
 #include "game/win_lose.h"
+#include "game/math.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Gfx_ClearLayerMap(int layer);
 void Gfx_LoadBmap09f(void* target, int a, int b);
 void Font_LoadDigits(int a);
@@ -22,15 +22,7 @@ void Co_LoadSmallPicture(int coId, void* dest, int paletteSlot);
 void Co_UnpackPicture(int coId, int firstTile);
 void Palette_LoadObjRow(int row);
 void Mem_Copy32(const void* src, void* dst, u32 size);
-s32 HwMod32(s32 numerator, s32 denominator);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 #define MAIN_MAP (data_027c0288.unk_00)
 #define ENTRY(player) ((&data_022a7a9c)[player])
 #define ROWS (((BattleResults*)&data_022a7a9c)->rows)
@@ -63,10 +55,10 @@ void CoExp_InitScreen(void) {
   Font_LoadDigits(0);
   data_027c0280->bgScrollX[data_027c0280->layer1Bg] = 0xff00;
   data_027c0280->bgScrollY[data_027c0280->layer1Bg] = 0;
-  if (GAME->gameMode == GAME_MODE_CAMPAIGN && !Campaign_IsHardMode() &&
-      GAME->unk_1c4->mapId <= 231) {
+  if (MAP_STATE->gameMode == GAME_MODE_CAMPAIGN && !Campaign_IsHardMode() &&
+      MAP_STATE->unk_1c4->mapId <= 231) {
     Bg_PutTileBlock(data_027c0280->layer1Map, 9, 8, RES + 0x16c, 0);
-  } else if (GAME->gameMode == GAME_MODE_WAR_ROOM) {
+  } else if (MAP_STATE->gameMode == GAME_MODE_WAR_ROOM) {
     if (CoExp_IsSingleColumn() == 1) {
       Bg_PutTileBlock(data_027c0280->layer1Map, 9, 6, RES + 0x16c, 0);
       Bg_PutTileBlock(data_027c0280->layer1Map, 13, 12, RES + 0x218, 0);
@@ -126,12 +118,12 @@ void CoExp_InitScreen(void) {
   for (i = 0; i < ICON_DIGIT_COUNT; i++) {
     Icon_LoadTo(ICON_DIGITS_SMALL + i, data_027c0280->objVram, 816 + i * 2);
   }
-  if (GAME->gameMode == GAME_MODE_WAR_ROOM) {
-    if (GAME->unk_59 == 0) {
+  if (MAP_STATE->gameMode == GAME_MODE_WAR_ROOM) {
+    if (MAP_STATE->unk_59 == 0) {
       Icon_LoadTo(187, data_027c0280->objVram, 836);
-    } else if (GAME->unk_59 == 1) {
+    } else if (MAP_STATE->unk_59 == 1) {
       Icon_LoadTo(186, data_027c0280->objVram, 836);
-    } else if (GAME->unk_59 == 2) {
+    } else if (MAP_STATE->unk_59 == 2) {
       Icon_LoadTo(185, data_027c0280->objVram, 836);
     } else {
       Icon_LoadTo(184, data_027c0280->objVram, 836);
@@ -162,8 +154,8 @@ void CoExp_InitScreen(void) {
     EXP[i * 2 + 1].levelUpFrame = 0;
   }
 
-  if (GAME->gameMode == GAME_MODE_CAMPAIGN && !Campaign_IsHardMode() &&
-      GAME->unk_1c4->mapId <= 231) {
+  if (MAP_STATE->gameMode == GAME_MODE_CAMPAIGN && !Campaign_IsHardMode() &&
+      MAP_STATE->unk_1c4->mapId <= 231) {
     /* exp[1] gets level 0 and 0 points, back CO or not. */
     EXP[1].level = 0;
     EXP[1].points = 0;

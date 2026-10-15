@@ -2,8 +2,6 @@
 #include "game/menu_state.h"
 #include "game/BattleSideData.h"
 
-extern MenuState gMenuState;
-
 int Battle_GetAirGroundMatchup(int side);
 
 /* Needed to match: the 0x27c is added to the symbol at run time, and every case

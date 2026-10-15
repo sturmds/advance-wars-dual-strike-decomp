@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 #define WIPE_FIRST_TILE \
   0x288 /* the wipe tiles unpack here (ScreenWipe_PhaseDownInit) */
 #define WIPE_PHASE_MAX 6

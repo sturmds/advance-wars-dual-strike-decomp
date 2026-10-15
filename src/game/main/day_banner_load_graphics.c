@@ -10,7 +10,6 @@ void Mem_Copy32(const void* src, void* dst, u32 size);
 void Mem_Free(void* block);
 
 extern char data_0215c004[];
-extern MenuState gMenuState;
 
 #define ARMY_BLACK_HOLE 5
 

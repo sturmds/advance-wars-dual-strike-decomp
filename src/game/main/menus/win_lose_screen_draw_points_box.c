@@ -2,17 +2,11 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/oam_cells.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void WinLoseScreen_DrawNumber(int x, int y, int value);
 void WinLoseScreen_DrawPoints(int x, int y, int value, int frame);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 
 /* Draws the points box of the win/lose screen on the main screen, like
  * PointsTally_Draw: in Survival only the total (at y 153), otherwise the

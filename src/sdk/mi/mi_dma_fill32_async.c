@@ -1,11 +1,10 @@
 #include "sdk/mi.h"
+#include "sdk/os.h"
+#include "sdk/gx_load.h"
 
 /* Needed to match: this function was compiled at -O2, and needs the src local. */
 #pragma optimization_level 2
 
-int OS_DisableInterrupts(void);
-void OS_RestoreInterrupts(int irqState);
-void MI_WaitDma(u32 dmaNo);
 void MIi_DmaSetParams(u32 dmaNo, u32 src, u32 dest, u32 control);
 void OSi_EnterDmaCallback(u32 dmaNo, void (*callback)(void*), void* arg);
 

@@ -1,16 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
-
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
+#include "game/screen_other_map.h"
 
 /* The 0x64 bytes of Unk_02080440_48 from gameMode (0x58) to 0xbc. */
 typedef struct GameSettings {
@@ -34,7 +25,7 @@ void func_020f3ee4(void) {
   Screen_SetCurrentGfx(data_027c0288.unk_00);
   savedScreen = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_00);
-  settings = GAME_SETTINGS(GAME);
+  settings = GAME_SETTINGS(MAP_STATE);
   Screen_SetCurrent(savedScreen);
   Screen_SetCurrentGfx(savedGfx);
 
@@ -43,14 +34,14 @@ void func_020f3ee4(void) {
   savedScreen = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_04);
   for (i = 1; i < ARMY_SLOT_COUNT; i++) {
-    controllers[i] = GAME->slotControllers[i];
+    controllers[i] = MAP_STATE->slotControllers[i];
   }
-  GAME_SETTINGS(GAME) = settings;
-  if (GAME->gameMode == GAME_MODE_WAR_ROOM || GAME->gameMode == 2) {
+  GAME_SETTINGS(MAP_STATE) = settings;
+  if (MAP_STATE->gameMode == GAME_MODE_WAR_ROOM || MAP_STATE->gameMode == 2) {
     for (j = 1; j < ARMY_SLOT_COUNT; j++) {
-      GAME->slotControllers[j] = controllers[j];
+      MAP_STATE->slotControllers[j] = controllers[j];
     }
-    GAME->propertyGoal = 0;
+    MAP_STATE->propertyGoal = 0;
   }
   Screen_SetCurrent(savedScreen);
   Screen_SetCurrentGfx(savedGfx);

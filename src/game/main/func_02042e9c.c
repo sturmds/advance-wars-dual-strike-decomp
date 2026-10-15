@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/co_select_screen.h"
 
-extern CoSelectScreen* data_0229c73c;
 void PlayerInfo_StartTaskFor(int, int, int);
 
 void func_02042e9c(int a0) {

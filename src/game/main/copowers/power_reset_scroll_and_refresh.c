@@ -6,10 +6,6 @@ void Player_CommitPowerState(u16 player);
 void MovementCost(void);
 void func_020c4018(void);
 
-extern Unk_027c0280* data_027c0280;
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* After a power changes the map (Blizzard): resets the scroll of layer 0's BG,
  * then runs Player_CommitPowerState for the current player, MovementCost and func_020c4018. */
 void Power_ResetScrollAndRefresh(void) {

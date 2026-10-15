@@ -3,14 +3,12 @@
 #include "game/task.h"
 #include "game/screen_other_map.h"
 #include "game/window_wipe.h"
+#include "game/screen.h"
+#include "game/screen_wipe.h"
 
-int Screen_GetNibble(void);
-void Screen_SetNibble(int value);
 int func_02007710(int screens);
-void Screen_EnableEmptyWindows(void);
 void DmaTask_Start(const void* src, volatile void* dest, int unk34, int unk36,
                    void (*callback)(void));
-void WindowWipe_BuildCenterOut(void);
 void Task_Destroy(Task* task);
 
 /* Script step: like WindowWipe_StartHide, but for the current screen only.

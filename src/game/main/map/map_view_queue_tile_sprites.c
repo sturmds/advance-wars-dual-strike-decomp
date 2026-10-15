@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/terrain.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u8 data_02168220[];
 extern u8 data_02168228[];
 extern u8 data_02168230[];
@@ -16,8 +14,7 @@ void MapObjects_QueueSpritesInRect(int left, int top, int width, int height);
  * does not read. */
 void Map_QueueTileSprite(int x, int y, void* data, int palette, int unused);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define SITE (STATE->unk_608c[i])
+#define SITE (MAP_STATE->unk_608c[i])
 
 /* Queues the sprites drawn over the visible map tiles: map objects, then
  * from the site list each minicannon (one of four sprites by the owner bits
@@ -36,13 +33,13 @@ void MapView_QueueTileSprites(void) {
 
   width = 16;
   height = 12;
-  left = STATE->unk_1c4->scrollX / 16;
-  top = STATE->unk_1c4->scrollY / 16;
+  left = MAP_STATE->unk_1c4->scrollX / 16;
+  top = MAP_STATE->unk_1c4->scrollY / 16;
 
-  if (left + 16 == STATE->unk_1c4->mapWidth) {
+  if (left + 16 == MAP_STATE->unk_1c4->mapWidth) {
     width--;
   }
-  if (top + 12 == STATE->unk_1c4->mapHeight) {
+  if (top + 12 == MAP_STATE->unk_1c4->mapHeight) {
     height--;
   }
   MapObjects_QueueSpritesInRect(left, top, width, height);

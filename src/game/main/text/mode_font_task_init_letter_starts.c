@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/mode_font_task.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_JumpToLabel(Task* task, int label);
 
 /* Task step: resets the frame counter and spreads the letters' start frames

@@ -1,3 +1,4 @@
+#include "game/campaign_map_music.h"
 /* Needed to match: the original reads gCampaignMapState.mission again at the
  * end, which mwcc only does with common subexpression removal off. */
 #pragma opt_common_subs off
@@ -8,7 +9,6 @@
 int CampaignMap_CenterScrollX(int x);
 int func_0204ec34(int y);
 
-extern CampaignMapState gCampaignMapState;
 extern CampaignMission gCampaignMissions[];
 
 /* Sets up a scroll from the mission just played (gCampaignMapState.playedMission)

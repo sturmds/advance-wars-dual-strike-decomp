@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ov003_unit.h"
+#include "game/math.h"
 
-s32 HwMod32(s32 numer, s32 denom);
 int Ov003_IsRowPowerActive(int row);
 void Ov003_DrawTexturedQuad(int x, int y, int a, int b, int c, int d, int e,
                             int f, int g);

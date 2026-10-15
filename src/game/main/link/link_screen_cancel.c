@@ -1,6 +1,6 @@
 #include "types.h"
+#include "game/menu_button.h"
 
-void MenuButtons_CloseAll(void);
 void Sound_PlaySe(u32 soundId);
 void func_02072a28(void);
 void func_020b9864(void);

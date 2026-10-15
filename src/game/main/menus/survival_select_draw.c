@@ -4,12 +4,12 @@
 #include "game/Unk_022a7b80.h"
 #include "game/Unk_02088d04.h"
 #include "game/oam_cells.h"
+#include "game/screen_other_map.h"
 
 u32 HwMod32(int num, int denom);
 int MainLoop_GetFrameCount(void);
 int Map_GetPlayerCount(int mapId);
 void Palette_Load(const void* src, int offset, int size);
-void Screen_SetCurrentGfx(void* state);
 void Sprite_QueueAt(int a0, int x, int y, void* a3, int attr, int tile);
 void Sprite_QueuePicture192x160(s16 x, int y, int a2, int a3, int a4);
 void Co_QueueSmallPictureSpriteAtTile(int x, int y, int attr, int tile, int a4);
@@ -21,8 +21,6 @@ int SurvivalRecord_Exists(int mode);
 int Survival_GetMapId(int mode, int index);
 
 extern Unk_022a7b80 data_022a7b80;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* Draws one frame of the Survival map select. Top screen: one tab per entry of
  * the current list (the selected one 32 pixels wide, the others 16) with a

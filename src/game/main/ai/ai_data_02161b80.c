@@ -1,16 +1,8 @@
 #include "types.h"
 #include "game/ai_profile.h"
+#include "game/ai/ai_power_check.h"
+#include "game/ai/ai_power.h"
 
-void AiPowerCheck_EnemiesOnProperties(void);
-void AiPowerCheck_HasFactoryOrFreeCity(void);
-void AiTurn_IsPhase3(void);
-void func_02098e7c(void);
-void func_020990c4(void);
-void func_020991b0(void);
-void func_020991f4(void);
-void func_020992c8(void);
-void func_02099338(void);
-void func_020994b8(void);
 void func_02099520(void);
 
 /* per target group: the unit type that stands for it */

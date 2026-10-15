@@ -1,9 +1,8 @@
 #include "types.h"
 #include "game/day_banner_task.h"
 #include "game/screen_other_map.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numerator, s32 denominator);
-s32 HwMod32(s32 numerator, s32 denominator);
 void DayBanner_RefreshLayer(void);
 
 #define WORD_WIDTH 104 /* the three word sprites */

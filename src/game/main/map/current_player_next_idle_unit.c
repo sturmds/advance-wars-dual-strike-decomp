@@ -2,11 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/map_unit.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
-#define UNIT(i) (GAME->units[(i) + GAME->currentUnitBase])
+#define UNIT(i) (MAP_STATE->units[(i) + MAP_STATE->currentUnitBase])
 
 /* The L button: the current player's next unit that has not waited this turn,
  * looking at slots 1-50 after cycleUnitIndex, then wrapping round to 1. NULL
@@ -14,20 +10,20 @@ extern int data_027c0284;
 MapUnit* CurrentPlayer_NextIdleUnit(void) {
   u16 i;
 
-  for (i = GAME->cycleUnitIndex + 1; i < MAP_UNITS_MAX + 1; i++) {
+  for (i = MAP_STATE->cycleUnitIndex + 1; i < MAP_UNITS_MAX + 1; i++) {
     if (UNIT(i).type != 0 && !(UNIT(i).flags & MAP_UNIT_WAITED)) {
-      GAME->cycleUnitIndex = i;
-      if (GAME->cycleUnitIndex >= MAP_UNITS_MAX) {
-        GAME->cycleUnitIndex = 0;
+      MAP_STATE->cycleUnitIndex = i;
+      if (MAP_STATE->cycleUnitIndex >= MAP_UNITS_MAX) {
+        MAP_STATE->cycleUnitIndex = 0;
       }
       return &UNIT(i);
     }
   }
-  for (i = 1; i < GAME->cycleUnitIndex + 1; i++) {
+  for (i = 1; i < MAP_STATE->cycleUnitIndex + 1; i++) {
     if (UNIT(i).type != 0 && !(UNIT(i).flags & MAP_UNIT_WAITED)) {
-      GAME->cycleUnitIndex = i;
-      if (GAME->cycleUnitIndex >= MAP_UNITS_MAX) {
-        GAME->cycleUnitIndex = 0;
+      MAP_STATE->cycleUnitIndex = i;
+      if (MAP_STATE->cycleUnitIndex >= MAP_UNITS_MAX) {
+        MAP_STATE->cycleUnitIndex = 0;
       }
       return &UNIT(i);
     }

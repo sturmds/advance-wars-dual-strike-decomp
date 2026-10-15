@@ -4,6 +4,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/unit_list_task.h"
+#include "game/math.h"
 
 void Number_Draw(s16 x, s16 y, u16* map, u32 value, u16 entryBits,
                  u16 digitSet);
@@ -14,11 +15,7 @@ void UnitIcon_Draw(u16* map, u16 x, u16 y, u8 unitType, u16 a, u8 b,
                    u8 c); /* unit icon */
 int UnitList_GetCargoBranch(
     int slot); /* which cargo tree piece goes before the unit: 0 none, 1-6 */
-s32 HwDiv32(s32 a, s32 b);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
 /* Font glyphs that draw the cargo tree in front of a carried unit. */
 extern char data_02167c74[];
 extern char data_02167c78[];
@@ -26,7 +23,7 @@ extern char data_02167c7c[];
 extern char data_02167c84[];
 extern char data_02167c88[]; /* "/" between a value and its maximum */
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Text ids printed in the ammo column of a unit type without ammo. */
 #define TEXT_NO_AMMO_UNK_17 0xc00000a8 /* UnitStats.unk_17 set */
@@ -48,7 +45,7 @@ void UnitList_DrawRow(int y, int index) {
   if (gUnitListRows[index] == 0) {
     return;
   }
-  unit = &GAME->units[gUnitListRows[index] + GAME->currentUnitBase];
+  unit = &MAP_STATE->units[gUnitListRows[index] + MAP_STATE->currentUnitBase];
   if (unit->flags & MAP_UNIT_CARRIED) {
     textStyle = 1;
   } else {
@@ -57,7 +54,8 @@ void UnitList_DrawRow(int y, int index) {
   if (unit->flags & MAP_UNIT_WAITED) {
     iconFlags = 0x100;
   } else {
-    iconFlags = GAME->currentUnitBase; /* as read, like BuildMenu_DrawColumn */
+    iconFlags =
+        MAP_STATE->currentUnitBase; /* as read, like BuildMenu_DrawColumn */
   }
   branchX = 0;
   switch (UnitList_GetCargoBranch(gUnitListRows[index])) {

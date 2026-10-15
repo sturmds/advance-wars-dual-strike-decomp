@@ -1,12 +1,11 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov004_022bf158.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void SpriteAnim_Draw(struct ShowSprite* sprite, int x,
                      int y); /* guess: sets the sprite's screen position */
 
-extern s16 gSineTable[];    /* looks like a 256-entry sine table */
 extern s16 data_02138a68[]; /* the same table from entry 64: cosine */
 
 /* Script step: waits unk_50 frames, then moves the task's sprite out from

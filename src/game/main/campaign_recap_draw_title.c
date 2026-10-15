@@ -2,13 +2,10 @@
 #include "game/campaign_recap.h"
 #include "game/menu_state.h"
 #include "game/oam_cells.h"
+#include "game/screen.h"
+#include "game/math.h"
 
-int TitleCall_GetDigitWidth(int digit);
-s32 HwDiv32(s32 numer, s32 denom);
-s32 HwMod32(s32 numerator, s32 denominator);
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
-
-extern MenuState gMenuState;
 
 #define TITLE ((CampaignRecapTitle*)&gMenuState)
 

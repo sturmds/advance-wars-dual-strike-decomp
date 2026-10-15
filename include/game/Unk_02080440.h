@@ -105,8 +105,7 @@ typedef struct Unk_02080440_1c4 {
 #define WEATHER_SAND 3
 
 /* data_027c027c->unk_48[data_027c0284], written so that the compiler adds the
- * scaled index before the field offset; needed to match in some places. The
- * including file declares data_027c027c and data_027c0284. */
+ * scaled index before the field offset; needed to match in some places. */
 #define STATE_IDX_FIRST                                                        \
   (*(Unk_02080440_48**)((u8*)data_027c027c +                                   \
                             data_027c0284 * sizeof(Unk_02080440_48*) + (u32) & \
@@ -341,5 +340,20 @@ typedef struct Unk_02080440 {
   struct WeatherFx*
       weatherFx; /* particles and clouds the map screen draws, see game/weather.h */
 } Unk_02080440;
+
+extern Unk_02080440* data_027c027c;
+extern int data_027c0284;
+
+/* The current map state: the one of the two in unk_48 that data_027c0284 picks. */
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
+
+/* The tiles of the current map state. */
+#define MAP_TILES (MAP_STATE->mapTiles)
+
+/* Index of tile (x, y) in the current map's tile arrays. */
+#define MAP_TILE_INDEX(x, y) ((x) + MAP_TILES->rowStart[y])
+
+/* Tile (x, y) of the current map: its terrain and owner (MapTiles.tiles). */
+#define MAP_TILE_AT(x, y) (MAP_TILES->tiles[MAP_TILE_INDEX(x, y)])
 
 #endif

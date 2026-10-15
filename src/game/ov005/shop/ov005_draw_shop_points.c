@@ -3,14 +3,8 @@
 #include "game/Unk_02088d04.h"
 #include "game/icon.h"
 #include "game/Unk_ov005_0236bbb0.h"
-
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-s32 HwDiv32(s32 numerator, s32 denominator);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
+#include "game/math.h"
+#include "game/screen_other_map.h"
 
 /* Leading zeros become -1 (not drawn) until the first nonzero digit. */
 #define NEXT_DIGIT(digit, unit) \

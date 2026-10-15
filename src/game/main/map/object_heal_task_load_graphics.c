@@ -5,10 +5,8 @@
 #include "game/map_object.h"
 #include "game/object_heal_task.h"
 #include "game/task.h"
+#include "sdk/fs.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern char data_021681d8[];
 extern char data_021681e0[];
 extern char data_021681e4[];
@@ -17,7 +15,6 @@ extern char data_021681ec[];
 extern char data_021681f0[];
 extern char data_021681f4[];
 
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_LoadFromFile(const char* fileName, int a, int b, int c);
 void Gfx_QueueUnpackedFileCopy(const char* fileName, void* dest);

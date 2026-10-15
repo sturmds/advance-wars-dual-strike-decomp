@@ -2,15 +2,13 @@
 #include "game/campaign_map.h"
 #include "game/menu_state.h"
 #include "game/Unk_02088d04.h"
+#include "game/campaign_map_music.h"
 
 struct SpriteAnimTask* SpriteAnimTask_Start(const void* file, int x, int y,
                                             u32 tileBase, int animation,
                                             int layer);
 
-extern CampaignMapState gCampaignMapState;
 extern CampaignMission gCampaignMissions[];
-extern Unk_027c0280* data_027c0280;
-extern MenuState gMenuState;
 
 /* Needed to match: the original adds the field offset to the address of
  * gMenuState at run time instead of folding it into the relocation. */

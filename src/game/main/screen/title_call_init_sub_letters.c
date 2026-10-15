@@ -1,11 +1,8 @@
 #include "types.h"
 #include "game/title_call_task.h"
 #include "game/screen_other_map.h"
-
-int HwDiv32(int num, int den);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
-
-extern const s16 gSineTable[];
+#include "game/oam_buffer.h"
+#include "game/math.h"
 
 /* Title call script step on the sub screen: resets the frame counter and
  * sets OBJ affine matrix 0 to the unscaled, unrotated matrix. */

@@ -6,7 +6,6 @@
 const void* Terrain_GetIconTiles(int id);
 void TransferQueue_Add(const void* src, void* dst, u32 size);
 
-extern Unk_027c0280* data_027c0280;
 Ov006TerrainEntries data_ov006_0236a7a0 = {
 #include "data/ov006/data_ov006_0236a7a0.inc.c"
 };

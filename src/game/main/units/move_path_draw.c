@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0288 data_027c0288;
-
 void MovePath_FollowCursor(void);
 void MovePath_DrawArrows3d(void);
 void MovePath_DrawArrowSprites(void);

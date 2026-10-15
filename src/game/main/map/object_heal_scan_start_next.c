@@ -4,15 +4,11 @@
 #include "game/object_heal_task.h"
 #include "game/task.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern const TaskScriptCmd data_02167ff0[];
 
 void* Task_FindByScript(const TaskScriptCmd* script);
 void Task_ResumeScript(void* task);
 void MapObject_GetKindOffset(int kind, s16* offset);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Tile offset lists (Map_AddTileOffset) and HP each object heals. */
 #define CRYSTAL_HEAL_OFFSETS 2
@@ -31,7 +27,7 @@ void ObjectHealScan_StartNext(ObjectHealScanTask* task) {
   if (Task_FindByScript(data_02167ff0) != NULL) {
     return;
   }
-  object = &STATE->objects[task->nextObject];
+  object = &MAP_STATE->objects[task->nextObject];
   while (object->kind != 0) {
     task->nextObject++;
     if (MapObject_IsStanding(object)) {

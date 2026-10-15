@@ -15,11 +15,7 @@ void SavedArmyColours_Reset(void);
 void MapPreview_DrawBlock(void* dst, s16 x, s16 y, int width, int height);
 void MapPreview_DrawBlockUnits(void* dst, u16 x, u16 y, int width, int height);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define MAP_ID (STATE->unk_1c4->mapId)
+#define MAP_ID (MAP_STATE->unk_1c4->mapId)
 
 #define VIEW_WIDTH 16
 #define VIEW_HEIGHT 8
@@ -41,7 +37,7 @@ void MapPreview_DrawPlayerViews(u8 (*dst)[32]) {
   u8 hq[ARMY_SLOT_COUNT][2];
 
   Map_LoadData(MAP_ID);
-  if (STATE->gameMode == 3) {
+  if (MAP_STATE->gameMode == 3) {
     Map_LoadArmyColours();
   } else {
     Map_LoadArmyColoursFromPlayers();
@@ -50,7 +46,7 @@ void MapPreview_DrawPlayerViews(u8 (*dst)[32]) {
   for (mapY = 0; mapY < data_0229eadc->height; mapY++) {
     for (mapX = 0; mapX < data_0229eadc->width; mapX++) {
       u8 tile =
-          STATE->tileCodeTerrain
+          MAP_STATE->tileCodeTerrain
               [data_0229eadc->tileCodes[mapY * data_0229eadc->width + mapX]];
 
       if ((tile & 0xe0) != 0) {
@@ -62,7 +58,7 @@ void MapPreview_DrawPlayerViews(u8 (*dst)[32]) {
     }
   }
 
-  if ((u8)(STATE->gameMode + 255) <= 1) {
+  if ((u8)(MAP_STATE->gameMode + 255) <= 1) {
     SavedArmyColours_Reset();
   } else {
     Player_SaveArmyColours();

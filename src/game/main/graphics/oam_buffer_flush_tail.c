@@ -2,8 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/oam_buffer.h"
 
-extern Unk_027c0280* data_027c0280;
-
 void Mem_Copy32(const void* src, void* dst, u32 size);
 void Oam_HideEntries(
     void* entries,

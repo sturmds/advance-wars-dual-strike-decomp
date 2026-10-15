@@ -3,7 +3,6 @@
 #include "game/Unk_ov006_0235f690.h"
 #include "game/menu_button.h"
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern const MenuButtonTemplate gOv006ToolButtonTemplate;
 
 #define OV6 data_ov006_0236d640

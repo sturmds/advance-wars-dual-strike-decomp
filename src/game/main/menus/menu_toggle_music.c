@@ -3,21 +3,11 @@
 #include "game/Unk_02088d04.h"
 #include "game/menu_help.h"
 #include "game/play_records.h"
+#include "game/screen_other_map.h"
+#include "game/song.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-BOOL Sound_IsSongFadingOut(void);
-void Sound_FadeOutSongOver(int length);
 void Player_PlayTheme(int playerIndex);
 void PopupMenu_Refresh(void);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-extern PlayRecords gPlayRecords;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 #define CURRENT_MAP ((&data_027c0288.unk_00)[data_027c0284])
 #define OTHER_MAP ((&data_027c0288.unk_00)[1 - data_027c0284])
@@ -48,28 +38,28 @@ void Menu_ToggleMusic(int a0, int a1, u32 flags) {
     return;
   }
   SWITCH_TO(CURRENT_MAP, savedGfx, savedGame);
-  GAME->musicReady = 1 - GAME->musicReady;
-  musicReady = GAME->musicReady;
+  MAP_STATE->musicReady = 1 - MAP_STATE->musicReady;
+  musicReady = MAP_STATE->musicReady;
   SWITCH_BACK(savedGfx, savedGame);
-  if (GAME->secondMapId != 0) {
+  if (MAP_STATE->secondMapId != 0) {
     SWITCH_TO(OTHER_MAP, savedGfx, savedGame);
-    otherUnk30 = GAME->unk_1c4->unk_30;
+    otherUnk30 = MAP_STATE->unk_1c4->unk_30;
     SWITCH_BACK(savedGfx, savedGame);
     if (otherUnk30 == 0) {
       SWITCH_TO(OTHER_MAP, savedGfx, savedGame);
-      GAME->musicReady = musicReady;
+      MAP_STATE->musicReady = musicReady;
       SWITCH_BACK(savedGfx, savedGame);
     }
   }
-  switch (GAME->musicReady) {
+  switch (MAP_STATE->musicReady) {
     case 0:
       Sound_FadeOutSongOver(1);
       break;
     case 1:
-      Player_PlayTheme((u8)GAME->currentPlayer);
+      Player_PlayTheme((u8)MAP_STATE->currentPlayer);
       break;
   }
-  help.fn[GAME->musicReady](a0, a1, flags);
+  help.fn[MAP_STATE->musicReady](a0, a1, flags);
   PopupMenu_Refresh();
-  gPlayRecords.unk_0e = GAME->musicReady;
+  gPlayRecords.unk_0e = MAP_STATE->musicReady;
 }

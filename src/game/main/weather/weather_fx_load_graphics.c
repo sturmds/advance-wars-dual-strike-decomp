@@ -7,7 +7,6 @@ void Palette_Load(const void* src, u32 offset, u32 size);
 void Mem_Free(void* ptr);
 
 extern const char data_02160608[];
-extern Unk_027c0280* data_027c0280;
 
 /* Loads the weather effect sprite tiles and palette into the OBJ areas of the screen. */
 void WeatherFx_LoadGraphics(void) {

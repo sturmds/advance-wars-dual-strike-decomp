@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/task.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 void PopupMenu_DestroyCommon(Task* task);
 void PopupMenu_ClearBox(int unused0, int unused1, int unused2, int unused3);
 void func_020f79a4(void);

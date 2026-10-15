@@ -3,9 +3,6 @@
 #include "game/unit_stats.h"
 #include "game/co_data.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Needed to match: the state array is indexed first. */
 #define STATE STATE_IDX_FIRST
 #define TILE_INDEX(x, y) ((x) + STATE->mapTiles->rowStart[y])

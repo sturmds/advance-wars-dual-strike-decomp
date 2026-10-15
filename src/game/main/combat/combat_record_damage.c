@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/combatant.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numerator, s32 denominator);
 void Unit_AddDamageTaken(MapUnit* unit, int hpLost);
 void DamageToFunds(MapUnit* attacker, MapUnit* target, int hpLost);
 

@@ -8,9 +8,6 @@ BOOL Campaign_IsHardMode(void);
 void CoSelect_ClearAvailable(void);
 void CoSelect_AddAvailable(int coId);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Fills the CO list data_022a7a68: the current map's own list when
  * state->gameMode and Campaign_IsHardMode() are both 0, otherwise every unlocked CO.
  * Then clears the CO bit mask (CoSelect_ClearAvailable) and sets the bit of each listed

@@ -4,9 +4,6 @@
 
 BOOL Player_IsInGame(u8 player);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Sets how many days a new weather lasts for every player still in the
  * game: two days for power snow, one for anything else. */
 void Weather_SetDays(int weather) {

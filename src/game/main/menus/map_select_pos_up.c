@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/map_select.h"
+#include "game/math.h"
 
-int HwDiv32(int a, int b);
 int MapSelect_GetPageMapCount(void);
 
 /* Like MapSelect_PosDown, one row up; the first row wraps to the last row of

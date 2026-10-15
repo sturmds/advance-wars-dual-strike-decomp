@@ -13,12 +13,7 @@ void Ov006_BreakCellBlock(int x, int y);
 void Ov006_PaintSea(int x, int y);
 void Ov006_RefitAround(int x, int y);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define MAP_INFO (STATE->unk_1c4)
+#define MAP_INFO (MAP_STATE->unk_1c4)
 
 /* Puts reef on the sea tile at x, y. 0: refused (not bare sea); 1: placed.
  * Afterwards each of the eight neighbours inside the map goes through
@@ -31,7 +26,7 @@ int Ov006_PlaceReef(int x, int y) {
     Ov006_RemoveProperty(x, y);
   }
   data_ov006_0236d640->oldCell =
-      STATE->mapTiles->mapCells[x + STATE->mapTiles->rowStart[y]];
+      MAP_STATE->mapTiles->mapCells[x + MAP_STATE->mapTiles->rowStart[y]];
   Ov006_SetTerrain(x, y, TERRAIN_REEF);
   Ov006_StoreMapCell(x, y, MAP_CELL_REEF);
   Ov006_BreakCellBlock(x, y);

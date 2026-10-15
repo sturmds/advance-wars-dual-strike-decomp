@@ -6,8 +6,6 @@
 #include "game/unit_target_entry.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern ScriptCommand gMapScrollScript[];
 extern int data_022a6dd4;
 
@@ -28,9 +26,6 @@ void MapScreen_DrawInfoPanel(void);
 /* Bits Keypad_ReadConfirmCancel (buttons) and MapTouch_ReadListTileTap (touch) return. */
 #define INPUT_CONFIRM 0x10
 #define INPUT_CANCEL 0x20
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
-#define TILE_INDEX(x, y) ((x) + GAME->mapTiles->rowStart[y])
 
 /* Task step of the attack target picker (script data_02166430, started by
  * TargetListPicker_Init): task->unk_64 is the picked entry of the target
@@ -58,13 +53,13 @@ void TargetListPicker_Update(Task* task) {
   buttons = Keypad_ReadConfirmCancel();
   input = buttons | MapTouch_ReadListTileTap(count);
   if (input & INPUT_CANCEL) {
-    GAME->cursorX = GAME->actingUnitDestX;
-    GAME->cursorY = GAME->actingUnitDestY;
+    MAP_STATE->cursorX = MAP_STATE->actingUnitDestX;
+    MAP_STATE->cursorY = MAP_STATE->actingUnitDestY;
     data_022a6dd4 = -1;
     ScreenConfig_RunActionHook();
     Task_Destroy(task);
     func_020f5c4c();
-    func_020f5888(GAME->cursorX, GAME->cursorY);
+    func_020f5888(MAP_STATE->cursorX, MAP_STATE->cursorY);
     return;
   }
   if (input & INPUT_CONFIRM) {
@@ -81,13 +76,14 @@ void TargetListPicker_Update(Task* task) {
   }
   task->unk_64 = index;
   target = func_020dc524((s16)task->unk_64);
-  GAME->cursorX = target->x;
-  GAME->cursorY = target->y;
+  MAP_STATE->cursorX = target->x;
+  MAP_STATE->cursorY = target->y;
   if (moved) {
     SecondScreen_ShowCursorInfo(
-        GAME->mapTiles->tiles[TILE_INDEX(GAME->cursorX, GAME->cursorY)],
-        &GAME->units[GAME->mapTiles
-                         ->unitAt[TILE_INDEX(GAME->cursorX, GAME->cursorY)]]);
+        MAP_STATE->mapTiles
+            ->tiles[MAP_TILE_INDEX(MAP_STATE->cursorX, MAP_STATE->cursorY)],
+        &MAP_STATE->units[MAP_STATE->mapTiles->unitAt[MAP_TILE_INDEX(
+            MAP_STATE->cursorX, MAP_STATE->cursorY)]]);
     Sound_PlaySe(0x1000b);
   }
   func_020f5888(target->x, target->y);

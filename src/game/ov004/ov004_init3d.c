@@ -1,5 +1,6 @@
 #include "types.h"
 #include "sdk/fx.h"
+#include "sdk/gx.h"
 
 #define GXFIFO_MTX_MODE ((volatile u32*)0x04000440)
 #define GXFIFO_MTX_PUSH ((volatile u32*)0x04000444)
@@ -11,7 +12,6 @@
 #define GXFIFO_LIGHT_VECTOR ((volatile u32*)0x040004c8)
 #define GXFIFO_LIGHT_COLOR ((volatile u32*)0x040004cc)
 
-void G3X_Reset(void);
 void G3i_LookAt_(const void* a, const void* b, void* c, int d, int e);
 
 extern u8 data_ov004_022bdcec[];

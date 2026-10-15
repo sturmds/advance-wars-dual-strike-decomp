@@ -3,14 +3,14 @@
 #include "game/task.h"
 #include "game/screen_other_map.h"
 #include "game/window_wipe.h"
+#include "game/screen.h"
+#include "game/screen_wipe.h"
 
 void DmaTasks_StartSameSource(const void* src, volatile void* dest,
                               volatile void* dest2, int unk34, int unk36,
                               void (*callback)(void));
 void DmaTask_Start(const void* src, volatile void* dest, int unk34, int unk36,
                    void (*callback)(void));
-void Screen_EnableEmptyWindows(void);
-void WindowWipe_BuildCenterOut(void);
 
 /* Task step: starts a wipe that hides the chosen screens behind window 0.
  * Window 0 shows no layers; WindowWipe_BuildCenterOut widens it line by

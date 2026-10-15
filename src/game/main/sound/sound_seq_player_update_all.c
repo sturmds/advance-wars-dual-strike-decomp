@@ -1,13 +1,12 @@
 #include "types.h"
 #include "game/sound_handle.h"
+#include "sdk/snd.h"
 
 extern s16 data_02151534[]; /* volume table */
 
 /* Lowest volume value the hardware channels take. */
 #define SOUND_DECIBEL_FLOOR (-723)
 
-u32 SND_GetPlayerStatus(void);
-BOOL SND_IsFinishedCommandTag(u32 tick);
 void SoundSeqPlayer_Release(SoundSeqPlayer* player);
 void func_0210fe48(int hwChannel, int volume);
 BOOL func_0210928c(SoundFader* fader);

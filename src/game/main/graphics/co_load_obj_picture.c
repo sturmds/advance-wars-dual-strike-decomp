@@ -2,13 +2,12 @@
 #include "game/co_graphics.h"
 #include "game/Unk_02088d04.h"
 #include "game/co_data.h"
+#include "sdk/fs.h"
 
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 int Co_GetArmyPictureVariant(int coId, int army);
 
 extern u32 gLinkPlay;
-extern Unk_027c0280* data_027c0280;
 extern char data_02151e44[]; /* "/syogun" */
 /* gCoGraphics + 4, one row per CO: read as CoPictureFiles, its name is
  * the unk_04 file name of each picture variant. */

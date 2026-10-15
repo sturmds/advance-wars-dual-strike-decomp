@@ -10,9 +10,6 @@
 /* The CO picture that event scripts show next to their text: a 6 by 6 tile
  * block in the layer tile map buffer gEventTextMap. */
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 #define EVENT_PICTURE_SIZE 6 /* tiles per side */
 #define EVENT_PICTURE_TILE_BASE \
   0x1b3 /* first tile of the picture, stored by rows */

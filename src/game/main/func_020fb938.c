@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/camera_pan.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern Camera data_022a7d5c;
 void Camera_TileToWorld(s32* out, int x, int y);
 

@@ -2,8 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/popup_menu.h"
 
-extern Unk_027c0280* data_027c0280;
-
 void Bg_SetScroll(int layer, int scrollX, int scrollY);
 void PopupMenu_InitIcons(PopupMenuTask* menu);
 void Layer0_ClearMap(void);

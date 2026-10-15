@@ -2,10 +2,10 @@
 #include "game/co_data.h"
 #include "game/Unk_02160ac0.h"
 #include "game/oam_cells.h"
+#include "game/math.h"
+#include "game/menu_button.h"
 
-int Menu_GetSelectedId(void);
 int Co_GetNation(int co);
-s32 HwMod32(s32 numerator, s32 denominator);
 void Sprite_QueueAt(int list, int x, int y, const void* data, int attr,
                     int tile);
 void Sprite_QueueDefault(int x, int y, int attr, int list);

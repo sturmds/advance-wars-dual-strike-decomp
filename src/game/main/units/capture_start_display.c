@@ -3,13 +3,8 @@
 #include "game/capture_picture_task.h"
 #include "game/task.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern const TaskScriptCmd data_021690f8[];
 extern const TaskScriptCmd data_02168df0[];
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
-#define TILE(x, y) (GAME->mapTiles->tiles[(x) + GAME->mapTiles->rowStart[y]])
 
 /* Starts the capture display for the property at tile (x, y): a task on
  * list 3 (script data_021690f8) that knows the tile with its new owner, and
@@ -20,8 +15,8 @@ extern const TaskScriptCmd data_02168df0[];
 void Capture_StartDisplay(int x, int y, int oldPoints, int newPoints,
                           int owner) {
   CapturePictureTask* task;
-  int screenX = x * 16 - GAME->unk_1c4->scrollX + 8;
-  int screenY = y * 16 - GAME->unk_1c4->scrollY + 16;
+  int screenX = x * 16 - MAP_STATE->unk_1c4->scrollX + 8;
+  int screenY = y * 16 - MAP_STATE->unk_1c4->scrollY + 16;
 
   if (screenX < 32) {
     screenX = 32;
@@ -41,13 +36,13 @@ void Capture_StartDisplay(int x, int y, int oldPoints, int newPoints,
   task->oldPoints = oldPoints;
   task->newPoints = newPoints;
   task->owner = owner;
-  task->tile = MAP_TILE_TERRAIN(TILE(x, y)) | (owner << 5);
+  task->tile = MAP_TILE_TERRAIN(MAP_TILE_AT(x, y)) | (owner << 5);
   task = (CapturePictureTask*)Task_Create(data_02168df0, task);
   task->x = screenX;
   task->y = screenY;
   task->oldPoints = oldPoints;
   task->newPoints = newPoints;
   task->owner = owner;
-  task->oldOwner = MAP_TILE_OWNER(TILE(x, y));
-  task->tile = TILE(x, y);
+  task->oldOwner = MAP_TILE_OWNER(MAP_TILE_AT(x, y));
+  task->tile = MAP_TILE_AT(x, y);
 }

@@ -5,27 +5,21 @@
 #include "game/task.h"
 
 void Screens_SetupLayer0AlphaBlend(void);
-void Screens_ZoomInFadeUpdate(void);
+void Screens_ZoomInFadeUpdate(Task* task);
 void TitleCall_HoldNumber(void);
 void TitleCall_HoldSubLetters(void);
 void TitleCall_InitNumber(void);
 void TitleCall_InitSubLetters(void);
-void TitleCall_NumberSlideIn(void);
-void TitleCall_ScrollWalls(void);
+void TitleCall_NumberSlideIn(Task* task);
+void TitleCall_ScrollWalls(Task* task);
 void TitleCall_SetUpScreens(void);
-void TitleCall_SpriteZoomIn(void);
+void TitleCall_SpriteZoomIn(Task* task);
 void TitleCall_StartSong(void);
-void TitleCall_SubLettersGrowIn(void);
+void TitleCall_SubLettersGrowIn(Task* task);
 extern TaskScriptCmd data_0215bc10[];
-extern u8 data_02178b08[];
-extern u8 data_0217ab08[];
-extern u8 data_0217eb08[];
-extern u8 data_02180b08[];
 void func_02050c9c(void);
 void func_0205102c(void);
 void func_020517cc(void);
-extern u8 data_02179b08[];
-extern u8 data_0217fb08[];
 
 u8 data_0215bb60[] = {
 #include "data/main/data_0215bb60.inc.c"

@@ -7,9 +7,8 @@
 #include "game/map_header.h"
 #include "game/design_map.h"
 #include "game/visual_mode.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 u8 Player_GetCoId(int player, int slot);
 int Co_GetForceRankSetIndex(int co, int player);
 void Map_LoadAndCountProperties(int mapId, u8* a, u8* b);
@@ -21,11 +20,6 @@ int Link_GetOwnPlayer(void);
 int Link_FindSlotOfPlayer(int a);
 u8 Map_GetPlayerCount(int mapId);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
 extern u32 gLinkPlay;
 extern DesignMap data_022a6c84[];
 

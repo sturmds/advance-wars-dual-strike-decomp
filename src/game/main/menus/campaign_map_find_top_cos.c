@@ -5,7 +5,6 @@
 
 int Co_GetRank(u32 co);
 
-extern MenuState gMenuState;
 extern u8 data_021687c4[];
 
 /* Needed to match: the original adds the offset of topCos to the address of

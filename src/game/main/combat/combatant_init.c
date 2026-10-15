@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/combatant.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int DoubleTerrainStars(int playerIndex, int unitType, int terrain);
 
 /* Fills one side of a battle from a unit slot: terrain under the unit, its

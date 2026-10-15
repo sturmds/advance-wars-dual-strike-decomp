@@ -1,11 +1,8 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
-
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
+#include "game/screen.h"
 
 void Battle_RegisterFrameCallbacks(void);
-void Screen_ResetWindows(void);
 
 #define HOOKS (data_027c027c->unk_50[data_027c0284])
 

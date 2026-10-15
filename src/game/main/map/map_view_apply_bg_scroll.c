@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 BOOL func_020f788c(void);
 void Bg_SetScroll(int layer, int scrollX, int scrollY);
 

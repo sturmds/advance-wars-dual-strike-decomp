@@ -2,6 +2,9 @@
 #include "game/Unk_ov004_022bf158.h"
 #include "game/screen_other_map.h"
 #include "game/task.h"
+#include "game/campaign_map_music.h"
+#include "game/menu_button.h"
+#include "game/song.h"
 
 void Ov004_StartControlTask(Unk_ov004_022bf158* state,
                             const TaskScriptCmd* script);
@@ -10,8 +13,6 @@ void Ov004_DestroyAllSlotTasks(Unk_ov004_022bf158* state);
 BOOL Ov004_SkipOnInput(Unk_ov004_022bf158* state, Ov004Task* task);
 void Ov004_StartClock(Unk_ov004_022bf158* state);
 void Ov004_ResetClock(Unk_ov004_022bf158* state);
-void Sound_StartSong(int songId);
-void MenuButton_Remove(int id);
 void func_020fcb08(int a);
 void Task_ResumeScript(void* task);
 void Ov004_DestroySlotTasks(Unk_ov004_022bf158* state);

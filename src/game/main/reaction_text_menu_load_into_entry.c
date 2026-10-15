@@ -1,11 +1,11 @@
 #include "types.h"
 #include "game/reaction_text_menu_task.h"
 #include "game/task.h"
+#include "sdk/msl_string.h"
 
 ReactionTextMenuTask* Task_FindByScript(const void* script);
 void NameEntry_ClearBuffer(void);
 u8* func_021016e4(void);
-char* strcpy(char* dst, const char* src);
 void NameEntry_StartTask(int arg, int size);
 
 extern TaskScriptCmd data_0215fc0c[];

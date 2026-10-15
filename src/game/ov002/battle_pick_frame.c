@@ -2,10 +2,10 @@
 #include "game/battle_scene.h"
 #include "game/Unk_0229fb30.h"
 #include "game/unit_stats.h"
+#include "game/math.h"
 
-int HwDiv32(int num, int den);
 int UnitType_BestBaseDamage(int unitType, int targetType);
-int UnitType_GetAttackKind(int unitType);
+int UnitType_GetAttackKind(u8 unitType);
 int Battle_GetSideUnitType(int side);
 int Battle_IsArmyNotHuman(int army);
 

@@ -7,10 +7,6 @@
  * before SaveProgress.profileSets. */
 #define SAVE_PROFILE_BLOCKS_OFFSET 0x10b4
 
-extern SaveProfileBlock data_02290298[];
-extern SaveBytes30 data_022900bc[];
-extern Unk_02290118 data_02290118;
-
 int Save_LoadRecord(
     int recordId,
     void*

@@ -2,9 +2,6 @@
 #include "game/event_script.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Event script command: clears the map time limit (timeLimitFrames) and
  * moves to the next command. */
 BOOL EventScript_ClearTimeLimit(s16 index) {

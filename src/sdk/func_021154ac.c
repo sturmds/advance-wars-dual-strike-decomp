@@ -1,7 +1,7 @@
 #include "types.h"
+#include "sdk/os.h"
 
 int func_021154d8(void);
-void OS_Terminate(void);
 
 void func_021154ac(void) {
   if (func_021154d8() != 0) {

@@ -3,7 +3,6 @@
 #include "game/screen_other_map.h"
 #include "game/save_progress.h"
 
-extern SaveRecordBuffer data_02291774;
 extern DesignMapRecord data_02291e98;
 extern u32 gLinkPlay;
 

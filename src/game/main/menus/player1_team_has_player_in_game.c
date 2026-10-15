@@ -3,9 +3,6 @@
 
 BOOL Player_IsInGame(u8 player);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* TRUE when a player still in the game is on player 1's team. Player 1
  * counts itself, so it is also TRUE whenever player 1 is in the game. */
 BOOL Player1Team_HasPlayerInGame(void) {

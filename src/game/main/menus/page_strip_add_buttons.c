@@ -1,10 +1,10 @@
 #include "types.h"
 #include "game/page_strip.h"
 #include "game/menu_button.h"
+#include "game/math.h"
 
 PageStrip* data_0229c744;
 
-int HwMod32(int num, int denom);
 int SurvivalSelect_GetList(void);
 
 extern MenuButtonTemplate data_0215ac24;

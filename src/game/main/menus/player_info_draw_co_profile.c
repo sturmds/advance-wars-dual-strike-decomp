@@ -4,8 +4,6 @@
 #include "game/screen_other_map.h"
 #include "game/text_print.h"
 
-extern MenuState gMenuState;
-
 /* CoRecord.profiles[0] and [1] of every CO, one CoRecord apart. The original
  * names them as their own symbols, so they are declared here that way. */
 typedef struct CoProfileText {

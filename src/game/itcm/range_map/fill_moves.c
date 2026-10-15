@@ -3,8 +3,6 @@
 #include "game/range_map.h"
 #include "game/unit_stats.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern s8 data_027c074c;
 extern int data_027c0750;
 extern MoveSearchNode* data_027c0754;
@@ -15,8 +13,6 @@ void MoveSearch_LoadMoveCosts(int unitType);
 /* Queues the tile (dx, dy) away from the node being expanded, coming from
  * direction. */
 void RangeMap_QueueStep(int direction, u8 dx, u8 dy);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 #define FROM_START 1
 #define DIR_UP 2
@@ -40,7 +36,7 @@ void RangeMap_FillMoves(int x, int y, int unitType, s16 maxCost,
   data_027c0758->maxCost = maxCost;
   data_027c0758->moveRange = moveRange;
   /* the team of player unk_1e, in the field MoveSearch_FindTile uses for a unit type */
-  data_027c0758->unitType = STATE->players[STATE->unk_1e].team;
+  data_027c0758->unitType = MAP_STATE->players[MAP_STATE->unk_1e].team;
   if (unitType == UNIT_OOZIUM) {
     data_027c0758->moveRange = 0;
   }
@@ -50,7 +46,7 @@ void RangeMap_FillMoves(int x, int y, int unitType, s16 maxCost,
   data_027c075c->y = y;
   data_027c075c->from = FROM_START;
   data_027c075c->cost = 0;
-  STATE->rangeMap[y][x] = 0;
+  MAP_STATE->rangeMap[y][x] = 0;
   data_027c075c++;
   data_027c075c->from = 0;
   for (;;) {

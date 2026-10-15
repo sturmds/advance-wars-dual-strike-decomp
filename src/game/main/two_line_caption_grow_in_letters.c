@@ -1,10 +1,9 @@
 #include "types.h"
 #include "game/caption_task.h"
 #include "game/screen_other_map.h"
+#include "game/math.h"
+#include "game/oam_buffer.h"
 
-s32 HwDiv32(s32 numer, s32 denom);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 const u8* Text_Get(u32 textId);
 int strlen(const u8* str);
 int func_02039f20(const u8* str);
@@ -14,7 +13,6 @@ void Task_ResumeScript(CaptionTask* task);
 
 /* Needed to match: const lets mwcc load the sine and cosine once, before
  * the loop. */
-extern const s16 gSineTable[];
 
 /* Divisor for one matrix entry: the eased scale, or 2 if it is 0. */
 #define DIVISOR(scale) ((scale) ? (scale) : 2)

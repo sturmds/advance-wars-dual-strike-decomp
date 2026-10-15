@@ -2,13 +2,11 @@
 #include "sdk/os_arm7.h"
 #include "sdk/pm.h"
 #include "sdk/snd_hw.h"
+#include "sdk/rtc.h"
 
-void func_arm7_037fe3e0(int mode);
 void func_arm7_037fe3fc(int mask, int value);
 void func_arm7_0380513c(int command, int arg, int data);
 void func_arm7_0380566c(void);
-
-extern PowerRequestInbox data_arm7_03809ffc;
 
 /* IME writes that return the old value, as the SDK's IRQ helpers do. */
 static inline u16 SetIme(u16 value) {

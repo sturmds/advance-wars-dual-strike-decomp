@@ -1,6 +1,6 @@
 #include "types.h"
+#include "sdk/fs.h"
 
-void FS_ChangeDir(const char* dir);
 void Battle_LoadSideGraphics(void);
 void Battle_LoadSideBackgrounds(void);
 void Battle_LoadSideBackgroundPalettes(void);

@@ -4,24 +4,20 @@
 #include "game/Unk_022a7b80.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/math.h"
+#include "game/screen_other_map.h"
 
-s32 HwDiv32(s32 num, s32 den);
 void* Mem_Alloc(u32 size);
 void ModeFont_Load(int a, int b);
 void ModeFont_ShowText(const void* text, int tile, int paletteSlot, int a,
                        int b);
-void Screen_SetCurrent(void* state);
 void Screen_SetCurrentBoth(void* state);
-void Screen_SetCurrentGfx(void* state);
 int Survival_GetMapCount(int mode);
 const void* Text_Get(u32 textId);
 void Wallpaper_LoadSelected(void);
 void func_02028a30(void);
 
 extern Unk_022a7b80 data_022a7b80;
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* Allocates the page strip work area of the Survival map select. List 0
  * holds the maps of mode variant n (0-2) and list 1 those of n + 3, cut to

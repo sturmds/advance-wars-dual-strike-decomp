@@ -1,11 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 extern u8 data_ov000_0234ec00[];
 extern u8 data_ov000_0234ec08[];
 extern u8 data_ov000_0234ec10[];
@@ -33,11 +28,12 @@ void PlayerHud_DrawSlot(int x, int y, int slot, int frontCo, int backCo,
 
   Sprite_QueueAt(5, x + 4, y + 14, data_ov000_0234ec10,
                  (paletteBank << 12) | 20, 0);
-  if ((STATE->unk_1c4->fog != 0 || STATE->unk_1c4->weather == WEATHER_RAIN) &&
-      (STATE->players[slot].visionGrids & 2) == 0) {
+  if ((MAP_STATE->unk_1c4->fog != 0 ||
+       MAP_STATE->unk_1c4->weather == WEATHER_RAIN) &&
+      (MAP_STATE->players[slot].visionGrids & 2) == 0) {
     Oam_PutTextString((x + 56) & 0x1ff, y + 14, data_ov000_0234ec6c);
   } else {
-    Oam_PutNumber((x + 56) & 0x1ff, y + 14, STATE->players[slot].funds,
+    Oam_PutNumber((x + 56) & 0x1ff, y + 14, MAP_STATE->players[slot].funds,
                   (paletteBank << 12) | 22);
   }
   if (frontCo != 0 && backCo != 0) {

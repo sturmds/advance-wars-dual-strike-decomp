@@ -7,8 +7,6 @@ int Link_GetOwnPlayer(void);
 void VsSetup_ResumePlayerTask(int player);
 void VsSetup_AddLinkSlotButtons(int player);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-extern Ov003Unit data_ov003_02369538[];
-
 /* Counts the entries in use (hp set, or unk_17_7) whose row equals the current row. */
 int Ov003Unit_CountInCurrentRow(void) {
   int count;

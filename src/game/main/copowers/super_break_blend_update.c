@@ -1,10 +1,9 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/screen_other_map.h"
+#include "game/math.h"
+#include "game/win_quote.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list,
-                            BOOL flip);
 s16 BreakText_GetCentredX(u8 slot);
 void BreakText_QueueLetterSized(u8 slot, u16 x, int y, int attr, int arg);
 void Task_ResumeScript(Task* task);

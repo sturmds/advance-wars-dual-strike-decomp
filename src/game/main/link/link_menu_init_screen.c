@@ -6,11 +6,10 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_0229fb30.h"
+#include "game/screen_other_map.h"
 
 void Gfx_InitBothScreens(void);
 void Wallpaper_LoadBoth(void);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Screen_SetCurrentBoth(void* state);
 void Gfx_LoadBmap09f(void* target, int a, int b);
 void Font_LoadDigits(int a);
@@ -33,25 +32,18 @@ void SpriteTask_Create(int a, int b, int c, int d);
 void LinkMenu_AddAllButtons(void);
 void LinkMenu_AddBackButtons(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
 extern u16 data_0229f330
     []; /* layer 2 map of the second view, beside the list's map in gMenuState */
 extern const char gLinkLoginResPath[];
 extern const char gLinkMenuCommonLangResPath[];
 extern const char gLinkMenuCommonResPath[];
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
-
 /* Script command of the link player list (LinkMenu_Start's script). Loads
  * /commo/res_linklogin, /commo/res_linkcommon_lang and /commo/res_linkcommon:
  * two layer 2 maps (the player list into gMenuState, and a second view picked
  * by func_0207a324, 2, 4 or 8, into data_0229f330), both moved to palette 1.
  * LinkMenuState.view picks the view: 0 shows the player list
- * (Link_DrawPlayerRows), 1 the second view (LinkMenu_DrawSecondView). GAME->unk_8b
+ * (Link_DrawPlayerRows), 1 the second view (LinkMenu_DrawSecondView). MAP_STATE->unk_8b
  * picks the title text. */
 
 void LinkMenu_InitScreen(Task* task) {
@@ -109,7 +101,7 @@ void LinkMenu_InitScreen(Task* task) {
   Gfx_RequestLayerCopy(2);
 
   file = File_Load(File_LocalizePath(gLinkMenuCommonLangResPath));
-  if (GAME->unk_8b == 2) {
+  if (MAP_STATE->unk_8b == 2) {
     Data_Unpack(
         file + 0x5e4,
         data_027c0280->bgVram +
@@ -136,7 +128,7 @@ void LinkMenu_InitScreen(Task* task) {
     LinkMenu_DrawSecondView();
   }
   ModeFont_Load(0, 0);
-  switch (GAME->unk_8b) {
+  switch (MAP_STATE->unk_8b) {
     default:
     case 0:
       textId = 0x7d000017;

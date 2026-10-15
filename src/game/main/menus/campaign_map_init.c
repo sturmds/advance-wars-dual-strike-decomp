@@ -4,6 +4,11 @@
 #include "game/map_header.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
+#include "game/icon.h"
+#include "game/menu_button.h"
+#include "game/campaign_map_music.h"
+#include "game/screen.h"
 
 void Gfx_RequestLayerCopy(int bg);
 void NumberFont_LoadLow(void);
@@ -13,18 +18,11 @@ void Co_UnpackPicture(int co, int a);
 void Mem_Copy32(const void* src, void* dest, u32 size);
 void Palette_Load(const void* src, int offset, u32 size);
 void Data_Unpack(const void* src, void* dest);
-void Screen_SetBgMode(int a);
-void Screen_InitLayers(const void* config);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void File_ReadAt(void* dest, const char* path, int a, int b);
 u8* File_Load(const char* path);
 void Mem_Free(void* res);
 void Gfx_LoadBmap09f(void* a, int b, int c);
 void Font_LoadDigits(int a);
-void Icon_LoadTo(int a, u8* objVram, int b);
-void IconBank_LoadPalette(int a, int b);
-void Menu_Reset(void);
 void Wallpaper_LoadSingle(void);
 void ModeFont_ShowText(const void* text, int x, int y, int a, int b);
 void ModeFont_Load(int x, int y);
@@ -36,11 +34,6 @@ const char* File_LocalizePath(const char* path);
 const void* Text_Get(u32 textId);
 u8 Map_GetPlayerCount(u16 mapId);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-extern CampaignMapState gCampaignMapState;
-extern MenuState gMenuState;
 extern CampaignMission gCampaignMissions[];
 
 extern GfxLayer data_0215b548[];

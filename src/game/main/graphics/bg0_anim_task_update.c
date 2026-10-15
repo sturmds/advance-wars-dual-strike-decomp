@@ -2,7 +2,6 @@
 #include "game/task.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
 const u8 data_02139810[] = {
 #include "data/main/data_02139810.inc.c"
 };

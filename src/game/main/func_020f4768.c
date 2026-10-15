@@ -1,11 +1,11 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_021694c0.h"
+#include "game/screen.h"
 
 extern Unk_021694c0* data_021694c0;
 
 BOOL func_020f4a18(void);
-int SceneMode_Request(int value);
 
 /* On the second screen, passes field 0x10 of the data_021694c0 record to
  * SceneMode_Request, if the data_02169a10 task is running there. */

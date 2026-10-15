@@ -4,8 +4,6 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 struct BattleSpriteTask;
 
 /* Task that moves the sprites of one HP cell of the battle animation in ov002.

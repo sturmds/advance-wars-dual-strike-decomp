@@ -1,12 +1,10 @@
 #include "types.h"
 #include "game/menu_state.h"
-
-extern MenuState gMenuState;
+#include "game/math.h"
 
 #define BATTLE_FIELD(field) \
   ((u8*)&gMenuState + (u32) & ((MenuState*)0)->battle.field)
 
-int HwDiv32(int num, int den);
 void Battle_PutMeterRow(u16* tilemap, u8 x, u8 y, u16 tile, u8 palette, u8 fill,
                         u8 length, u8 upper, u8 lower);
 

@@ -2,13 +2,11 @@
 #include "game/menu_state.h"
 #include "game/oam_cells.h"
 #include "game/war_room_records.h"
+#include "game/map_select.h"
 
-int MapSelect_GetTab(void);
 void Co_QueueSmallPictureSpriteAtTile(int x, int y, int attr, int tile, int a4);
 void Sprite_QueueAt(int a0, int x, int y, void* a3, int attr, int tile);
 void MapSelect_DrawNumber(int x, int y, int value);
-
-extern MenuState gMenuState;
 
 #define MENU ((MenuState*)&gMenuState)
 

@@ -2,7 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
 void ScriptSlot_CmdWait(void);
 void ScriptSlot_CmdSetCallback(void);
 void ScriptSlot_CmdCallFunction(void);

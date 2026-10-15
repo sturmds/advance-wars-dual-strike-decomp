@@ -2,8 +2,6 @@
 #include "game/battle_scene.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 /* Needed to match: the compiler adds the offset of hitLists at run time. */
 #define BATTLE_FIELD(field) \
   ((u8*)&gMenuState + (u32) & ((MenuState*)0)->battle.field)

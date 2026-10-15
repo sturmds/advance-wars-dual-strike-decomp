@@ -7,8 +7,6 @@ void Sprite_QueueAt(int list, int x, int y, const void* data, int unk08,
                     int unk0a);
 int VsSetup_GetSlotTileX(int player);
 
-extern MenuState gMenuState;
-
 #define MENU ((MenuState*)&gMenuState)
 
 /* With more than two player slots, queues a team marker per slot into sprite

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "sdk/fp_status.h"
 
 /*
  * Metrowerks runtime, hand-written ARM assembly: IEEE double multiplication
@@ -12,7 +13,6 @@
  * with an eor), so symbols.txt lists it as a label.
  */
 
-u32 *__fp_status(void);
 double __fp_trap_d(double a, u32 op);
 double __fp_trap_dd(double a, double b, u32 op);
 

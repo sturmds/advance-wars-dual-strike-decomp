@@ -7,12 +7,7 @@ int NeighborDir_FindAtTile(int tileX, int tileY, int mask);
 void TouchMarker_Resume(void);
 void Map3d_ScreenToTilePos(int x, int y, s32* out);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern s16 gEventScriptOwnsInput;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Bits returned, the same as func_020ef1bc returns for the A and B buttons. */
 #define INPUT_CONFIRM 0x10
@@ -42,8 +37,8 @@ u32 MapTouch_ReadNeighborTileTap(int mask) {
     return 0;
   }
   if (data_027c027c != data_027c0288.unk_00) {
-    tileX = (endX + GAME->unk_1c4->scrollX) >> 4;
-    tileY = (endY + GAME->unk_1c4->scrollY) >> 4;
+    tileX = (endX + MAP_STATE->unk_1c4->scrollX) >> 4;
+    tileY = (endY + MAP_STATE->unk_1c4->scrollY) >> 4;
   } else {
     Map3d_ScreenToTilePos(endX, endY, pos);
     pos[1] = -pos[1];
@@ -54,7 +49,7 @@ u32 MapTouch_ReadNeighborTileTap(int mask) {
   if (!IsTouchInPhase(TOUCH_RELEASED)) {
     return 0;
   }
-  if (tileX == GAME->unk_30 && tileY == GAME->unk_32) {
+  if (tileX == MAP_STATE->unk_30 && tileY == MAP_STATE->unk_32) {
     TouchMarker_Resume();
     if (NeighborDir_FindAtTile(tileX, tileY, mask) >= 0) {
       return INPUT_CONFIRM;

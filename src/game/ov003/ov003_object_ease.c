@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/ov003_object.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numerator, s32 denominator);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Ov003Object_Impact(Ov003Object* object);
 
 /* Kind 5: moves the object along the vector (offsetX, offsetY) with easing.

@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 BOOL DeployCity(u8 tile);
 
 BOOL Map_IsFreeDeployCity(int x, int y) {

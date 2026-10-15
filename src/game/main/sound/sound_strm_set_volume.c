@@ -1,11 +1,11 @@
 #include "types.h"
 #include "game/sound_strm.h"
+#include "sdk/snd.h"
 
 extern SoundStrmChannel data_022a8978
     [SOUND_STRM_CHANNEL_COUNT]; /* ring buffer of each hardware channel */
 
 void func_0210fc88(u32 channelMask, int volume, int shift);
-int SND_CalcChannelVolume(int volume);
 
 /* Sets the volume of the stream and sends it to every channel, each with its
  * own offset. */

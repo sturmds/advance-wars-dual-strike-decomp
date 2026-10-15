@@ -6,12 +6,15 @@
 #include "game/Unk_02080440.h"
 #include "game/co_data.h"
 #include "game/unit_stats.h"
-
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
+#include "game/map_unit.h"
+#include "game/player.h"
+#include "game/terrain.h"
+#include "game/ai/ai_units_in_range.h"
 
 #define CHART \
   ((const s8(*)[32])gCoTable[0].blocks[0].movementCost[MOVE_CHART_DEFAULT])
+#define MOVE_GROUP_GROUND \
+  (MOVE_GROUP_FOOT | MOVE_GROUP_TIRES | MOVE_GROUP_TREAD)
 
 /* TRUE when no unit stands on (x, y) and units of this type can move onto
  * its terrain (default movement chart). */

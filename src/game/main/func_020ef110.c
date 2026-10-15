@@ -3,8 +3,6 @@
 #include "game/event_script.h"
 #include "game/menu_button.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern EventScriptCommand data_0216923c[];
 extern MenuButtonTemplate data_02158f54;
 

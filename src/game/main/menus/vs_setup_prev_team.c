@@ -5,8 +5,6 @@
 BOOL HasTwoOrMoreTeams(void);
 int Sound_PlaySe(int);
 
-extern MenuState gMenuState;
-
 /* Like VsSetup_NextTeam, for slot (message - 19), down by one, 0 wrapping to 3. */
 void VsSetup_PrevTeam(int message) {
   /* Needed to match: the slot is added to the state's address, and teams[0]

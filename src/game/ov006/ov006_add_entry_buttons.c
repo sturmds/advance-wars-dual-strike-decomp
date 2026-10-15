@@ -4,7 +4,6 @@
 #include "game/menu_button.h"
 #include "game/unlocks.h"
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern u8 data_ov006_0236a7ec[][2]; /* (x, y) per entry when unitMode is 0 */
 extern u8 data_ov006_0236a810[][2]; /* the same for unitMode 1, 25 entries */
 extern u8 data_ov006_0236a844[][2]; /* the same, 26 entries (game flag 0x2b) */

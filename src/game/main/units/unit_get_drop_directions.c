@@ -1,12 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 BOOL Tile_IsFreeForUnitType(s16 x, s16 y, int unitType, BOOL checkUnitAt);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Direction bits of the result */
 #define DROP_UP 0x01
@@ -26,7 +21,7 @@ s8 Unit_GetDropDirections(int x, int y, int slot) {
   if (slot == 0) {
     return dirs;
   }
-  unit = &STATE->units[slot];
+  unit = &MAP_STATE->units[slot];
   if (Tile_IsFreeForUnitType(x - 1, y, unit->type, TRUE) == TRUE) {
     dirs |= DROP_LEFT;
   }

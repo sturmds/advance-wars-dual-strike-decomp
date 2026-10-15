@@ -1,11 +1,9 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/screen_other_map.h"
+#include "game/screen.h"
 
-int Screen_GetNibble(void);
-void Screen_SetNibble(int value);
 int func_02007710(int screens);
-void Screen_ResetBlendAllTop(void);
 void Task_Destroy(Task* task);
 
 /* Script step: like BlendFadeFromBlack_Start, but for the current screen

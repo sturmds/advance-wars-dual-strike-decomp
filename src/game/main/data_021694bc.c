@@ -6,6 +6,7 @@
 #include "game/task.h"
 #include "game/Unk_02169b20.h"
 #include "game/battle_save.h"
+#include "game/screen.h"
 
 void EffectScene_InitSprite(void);
 void EffectScene_ScrollEaseInit(void);
@@ -18,10 +19,6 @@ void MenuDepth_PopBothScreens(void);
 void MenuDepth_Push(void);
 void NumberSpriteTask_SlideOut(void);
 void NumberSpriteTask_Update(void);
-void SceneMode_UpdateMode5(void);
-void ScreenOverlays_Destroy(void);
-void Screen_ClearLayers01(void);
-void Screen_InitWithPlayerFrame(void);
 void TimeDial_Reset(void);
 void TimeDial_Update(void);
 void TwoMaps_MergeOtherFront(void);
@@ -30,8 +27,6 @@ void UnitInfoPanel_Close(void);
 extern u32 data_02169590[];
 extern TaskScriptCmd data_021697b8[];
 extern TaskScriptCmd data_02169818[];
-extern u8 data_0217eb08[];
-extern u8 data_02180b08[];
 extern BattleSaveBlock40 data_022a7b98;
 void func_020b97e8(void);
 void func_020b99d4(void);
@@ -57,8 +52,6 @@ void func_020f3858(void);
 void func_020f38ac(void);
 void func_020f3ec8(void);
 void func_020f4628(void);
-void ScreenOverlays_Create(void);
-extern u8 data_0217fb08[];
 void func_020f1ac4(void);
 void func_020f1bb8(void);
 void func_020f1c04(void);
@@ -67,7 +60,6 @@ void func_020f416c(void);
 void func_020f43f4(void);
 void func_020f4624(void);
 void EffectScene_ShakeStep(void);
-void SceneMode_Advance(void);
 
 #pragma explicit_zero_data on
 char data_021694c4[] = {

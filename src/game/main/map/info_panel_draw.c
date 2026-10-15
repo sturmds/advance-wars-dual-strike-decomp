@@ -6,10 +6,7 @@
 #include "game/info_panel.h"
 #include "game/unit_stats.h"
 #include "game/skills.h"
-
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0280* data_027c0280;
+#include "game/math.h"
 
 /* Per side: x of each box from the panel's x. */
 extern s16 data_0216635c[INFO_PANEL_SIDES][3]; /* terrain box */
@@ -28,7 +25,6 @@ void InfoPanel_DrawTerrainPicture(int x, int y, int panelX, int panelY,
                                   int side);
 int Map_GetDisplayTile(int x, int y);
 int DoubleTerrainStars(int playerIndex, int unitType, int terrain);
-s32 HwDiv32(s32 numerator, s32 denominator);
 void InfoPanel_DrawUnitPicture(int type, int panelX, int panelY, int side);
 void Palette_Load(const void* src, u32 offset, u32 size);
 void SpriteFile_Queue(void* data, int frame, int b, int x, int y, int tile,
@@ -42,7 +38,6 @@ void InfoPanel_DrawDamageForecast(int panelX, int panelY, int side);
 void Oam_PutSprite(int x, int y, void* shape, int tile);
 int MainLoop_GetFrameCount(void);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define GFX data_027c0280
 
 /* Screen position of a layout item in the box at boxX. */
@@ -80,11 +75,11 @@ void InfoPanel_Draw(void) {
   volatile int unusedB = 0;
 
   InfoPanel_StepAwayFromCursor();
-  state = STATE;
+  state = MAP_STATE;
   tileX = state->infoTileX;
   tileY = state->infoTileY;
   unitBoxes = InfoPanel_CountUnitBoxes(tileX, tileY);
-  state = STATE;
+  state = MAP_STATE;
   unit = &state->units[state->mapTiles
                            ->unitAt[state->mapTiles->rowStart[tileY] + tileX]];
   owner = MAP_UNIT_OWNER(state, unit);
@@ -102,7 +97,7 @@ void InfoPanel_Draw(void) {
   terrainBoxX = &data_0216635c[side][0];
   InfoPanel_DrawNumber(
       ITEM_X(*terrainBoxX, defenseStars), ITEM_Y(defenseStars),
-      HwDiv32(DoubleTerrainStars(STATE->currentPlayer, 0, terrain), 10));
+      HwDiv32(DoubleTerrainStars(MAP_STATE->currentPlayer, 0, terrain), 10));
   captureLeft = 0;
   if (Ov000_gUrbanTerrain[MAP_TILE_TERRAIN(terrain)]) {
     captureLeft = MAP_UNIT_CAPTURE_POINTS;
@@ -110,7 +105,7 @@ void InfoPanel_Draw(void) {
 
   if (unitBoxes >= 1) {
     InfoPanel_DrawUnitPicture(unit->type, panelX, panelY, side);
-    Palette_Load(gArmyPalettes[STATE->players[owner].armyColour - 1], 0x380,
+    Palette_Load(gArmyPalettes[MAP_STATE->players[owner].armyColour - 1], 0x380,
                  32);
     unitBoxX = &data_0216635e[side][0];
     /* the u8 and u16 argument casts in this block are needed to match */
@@ -127,7 +122,7 @@ void InfoPanel_Draw(void) {
                        (u8)ITEM_Y(weaponIcon) | 0x400, 0x131d, 0, 0);
     }
 
-    state = STATE;
+    state = MAP_STATE;
     if (state->players[state->currentPlayer].team !=
             state->players[MAP_UNIT_OWNER(state, unit)].team &&
         CheckSkillsEquipped(
@@ -148,7 +143,7 @@ void InfoPanel_Draw(void) {
       InfoPanel_DrawNumber(ITEM_X(*unitBoxX, ammo), ITEM_Y(ammo), unit->ammo);
     }
 
-    state = STATE;
+    state = MAP_STATE;
     if (UnitType_HidesCargo(unit->type, state->currentPlayer,
                             (u16)MAP_UNIT_OWNER(state, unit))) {
       /* cargo not shown: one mark per seat */
@@ -165,16 +160,16 @@ void InfoPanel_Draw(void) {
             ITEM_Y(cargoSecond), 1);
       }
     } else if (unit->cargo[1]) {
-      MapUnit* cargo = &STATE->units[unit->cargo[0]];
+      MapUnit* cargo = &MAP_STATE->units[unit->cargo[0]];
       InfoPanel_DrawUnit(ITEM_X(data_02166360[side][0], cargoFirst) & 0x1ff,
                          ITEM_Y(cargoFirst), cargo->type, owner,
                          (u8)(cargo->cargo[0] | cargo->cargo[1]), 0, 0, 1);
-      cargo = &STATE->units[unit->cargo[1]];
+      cargo = &MAP_STATE->units[unit->cargo[1]];
       InfoPanel_DrawUnit(ITEM_X(data_02166360[side][0], cargoSecond) & 0x1ff,
                          ITEM_Y(cargoSecond), cargo->type, owner,
                          (u8)(cargo->cargo[0] | cargo->cargo[1]), 0, 0, 2);
     } else if (unit->cargo[0]) {
-      MapUnit* cargo = &STATE->units[unit->cargo[0]];
+      MapUnit* cargo = &MAP_STATE->units[unit->cargo[0]];
       InfoPanel_DrawUnit(ITEM_X(data_02166360[side][0], cargoOnly) & 0x1ff,
                          ITEM_Y(cargoOnly), cargo->type, owner,
                          (u8)(cargo->cargo[0] | cargo->cargo[1]), 0, 0, 1);
@@ -265,7 +260,7 @@ void InfoPanel_Draw(void) {
   if (object) {
     tileHp = object->hp;
   }
-  state = STATE;
+  state = MAP_STATE;
   if (state->tileHp[state->mapTiles->rowStart[tileY] + tileX] & 0x7f) {
     tileHp = state->tileHp[state->mapTiles->rowStart[tileY] + tileX] & 0x7f;
   }

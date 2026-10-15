@@ -1,10 +1,7 @@
 #include "types.h"
 #include "game/map_select.h"
+#include "game/math.h"
 
-extern MenuState gMenuState;
-
-s32 HwDiv32(s32 numerator, s32 denominator);
-s32 HwMod32(s32 numerator, s32 denominator);
 void MapSelect_DrawMapNames(int list, int page);
 void MapSelect_AddMapButtons(void);
 

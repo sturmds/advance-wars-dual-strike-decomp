@@ -6,8 +6,6 @@ int func_020b9864(int);
 void func_0203fbc4(void);
 void func_02069b14(void);
 
-extern MenuState gMenuState;
-
 /* Back button, sound 0x10009. Setup state 0 starts a task; any other state
  * moves to 4, and state 2 calls func_0203fbc4 first. Guessed name. */
 void VsSetup_Cancel(void) {

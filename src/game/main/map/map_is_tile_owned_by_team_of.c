@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* needed to match: the original adds the scaled index to the base pointer
  * and loads the index first. */
 #define STATE_AT(index)                                             \

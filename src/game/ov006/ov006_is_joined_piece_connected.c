@@ -1,13 +1,9 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define MAP (STATE->unk_1c4)
+#define MAP (MAP_STATE->unk_1c4)
 #define CELL_AT(x, y) \
-  (STATE->mapTiles->mapCells[(x) + STATE->mapTiles->rowStart[y]])
+  (MAP_STATE->mapTiles->mapCells[(x) + MAP_STATE->mapTiles->rowStart[y]])
 
 /* Cell codes of one family of joined pieces, named by the sides they join.
  * The _ALT straights pass every test the plain ones pass; they may be pipe

@@ -7,9 +7,6 @@
 #include "game/object_heal_task.h"
 #include "game/sprite_anim.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern u8 data_0213e078[]; /* Black Crystal heal animation */
 extern u8 data_0213e2a0[]; /* Black Obelisk heal animation */
 
@@ -18,8 +15,6 @@ SpriteAnim3dTask* SpriteAnim3dTask_StartAlt(const void* file,
                                             u32 unk28, int animation,
                                             int layer);
 void Sound_PlaySe(u32 soundId);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Sprite tile base passed for the 2D animation. */
 #define HEAL_EFFECT_TILE_BASE 0x3194
@@ -41,10 +36,10 @@ void ObjectHealTask_PlayEffect(ObjectHealTask* task) {
                                   (u32)data_022a7c5c->unk_68,
                                   (u32)data_022a7c5c->unk_6c, 0, 1);
       } else {
-        SpriteAnimTask_Start(data_0213e078,
-                             task->tileX * 16 + 8 - STATE->unk_1c4->scrollX,
-                             task->tileY * 16 + 16 - STATE->unk_1c4->scrollY,
-                             HEAL_EFFECT_TILE_BASE, 0, 1);
+        SpriteAnimTask_Start(
+            data_0213e078, task->tileX * 16 + 8 - MAP_STATE->unk_1c4->scrollX,
+            task->tileY * 16 + 16 - MAP_STATE->unk_1c4->scrollY,
+            HEAL_EFFECT_TILE_BASE, 0, 1);
       }
       Sound_PlaySe(175);
       break;
@@ -57,10 +52,10 @@ void ObjectHealTask_PlayEffect(ObjectHealTask* task) {
                                   (u32)data_022a7c5c->unk_68,
                                   (u32)data_022a7c5c->unk_6c, 0, 1);
       } else {
-        SpriteAnimTask_Start(data_0213e2a0,
-                             task->tileX * 16 + 24 - STATE->unk_1c4->scrollX,
-                             task->tileY * 16 + 24 - STATE->unk_1c4->scrollY,
-                             HEAL_EFFECT_TILE_BASE, 0, 1);
+        SpriteAnimTask_Start(
+            data_0213e2a0, task->tileX * 16 + 24 - MAP_STATE->unk_1c4->scrollX,
+            task->tileY * 16 + 24 - MAP_STATE->unk_1c4->scrollY,
+            HEAL_EFFECT_TILE_BASE, 0, 1);
       }
       Sound_PlaySe(176);
       break;

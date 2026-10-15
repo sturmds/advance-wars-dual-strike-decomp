@@ -2,11 +2,10 @@
 #include "game/task.h"
 #include "game/screen_other_map.h"
 #include "game/oam_cells.h"
+#include "game/screen.h"
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Task_ResumeScript(Task* task);
-void SubScreen_QueueTwoSprites(int x);
-void TotalRankScreen_QueueTopCoSprites(int x);
 
 /* The frame counter shares its slot with Task.unk_4c. */
 #define FRAME(task) (*(s16*)&(task)->unk_4c)

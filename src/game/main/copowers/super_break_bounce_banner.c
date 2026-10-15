@@ -2,16 +2,10 @@
 #include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void PlaySuperPowerTheme(int player);
 void Task_ResumeScript(Task* task);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* The frame counter shares its slot with Task.unk_4c. */
 #define FRAME(task) (*(s16*)&(task)->unk_4c)
@@ -50,7 +44,7 @@ void SuperBreak_BounceBanner(Task* task) {
     data_027c0280->bgScrollY[bg] =
         Math_Ease(0, 2, 0, frame - 13, 1) + LAYER0_REST_Y;
   } else {
-    PlaySuperPowerTheme(GAME->currentPlayer);
+    PlaySuperPowerTheme(MAP_STATE->currentPlayer);
     FRAME(task) = 0;
     Task_ResumeScript(task);
   }

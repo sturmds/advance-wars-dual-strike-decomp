@@ -1,12 +1,12 @@
 #include "sdk/gx.h"
 #include "sdk/os.h"
 #include "sdk/pm.h"
+#include "sdk/ctrdg.h"
 
 extern PowerHookEntry* data_022ab8f0; /* pre-sleep callbacks */
 extern PowerHookEntry* data_022ab8f8; /* post-sleep callbacks */
 
 void OS_Halt(void);
-BOOL Cartridge_HeaderStillMatches(void);
 int PM_GetBackLight(int* topBackLight, int* bottomBackLight);
 int PM_ForceToPowerOff(void);
 int PM_SetBackLight(int target, int value);

@@ -1,13 +1,12 @@
 #include "types.h"
 #include "sdk/tp.h"
+#include "sdk/rtc.h"
 
 /* ARM7 key input register; bit 6 reads 0 while the pen is down. */
 #define REG_EXTKEYIN (*(volatile u16*)0x04000136)
 #define EXTKEYIN_PEN_UP 0x0040
 
 #define RCNT_GPIO 0x8000 /* serial port pins as general purpose I/O */
-
-void func_arm7_037fe3e0(int mode); /* set RCNT mode */
 
 /* Puts the controller into pen-detect mode and sends one empty byte. */
 static inline void Touch_EnterPenDetectMode(void) {

@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/reaction_text_menu_task.h"
+#include "sdk/msl_string.h"
 
 void Mem_ZeroUnits(u32 ignored, void* dst, u32 size, u32 unitBits);
 const char* Text_Get(u32 textId);
-char* strcpy(char* dst, const char* src);
 
 /* The six reaction texts, 33 bytes each. Each has a symbol of its own. */
 

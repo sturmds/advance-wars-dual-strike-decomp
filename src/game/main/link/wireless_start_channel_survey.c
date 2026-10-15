@@ -3,6 +3,7 @@
 #include "game/Unk_0215fe88.h"
 #include "game/Unk_0229c960.h"
 #include "sdk/wm.h"
+#include "sdk/gx_load.h"
 
 extern Unk_0229c960* data_0229c8a0;
 static u16 gWirelessTgidCounter;
@@ -13,7 +14,6 @@ WMBssDesc* data_0229c888;
 u32 gWirelessState;
 void* data_0229c890;
 
-void MIi_CpuCopy32(const void* src, void* dst, u32 size);
 BOOL Wireless_BeginChannelSurvey(void);
 void func_02079ee0(void);
 

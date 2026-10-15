@@ -1,12 +1,11 @@
 #include "types.h"
 #include "game/sound_strm.h"
+#include "sdk/os.h"
 
 void SoundStrm_StopIfActive(SoundStrm* strm);
 int SoundAlarm_Alloc(void);
 void SoundStrm_Refill(SoundStrm* strm, int status);
 void SoundStrm_OnAlarm(SoundStrm* strm);
-int OS_DisableInterrupts(void);
-void OS_RestoreInterrupts(int irqState);
 void SND_SetupChannelPcm(int channel, int format, u32 buffer, int loop,
                          int loopStart, u32 loopLength, int volume, int shift,
                          int timer, int pan);

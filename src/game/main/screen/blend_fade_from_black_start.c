@@ -2,8 +2,7 @@
 #include "game/task.h"
 #include "game/screen_other_map.h"
 #include "game/screen_effect.h"
-
-void Screen_ResetBlendAllTop(void);
+#include "game/screen.h"
 
 /* Task step: darkens the screens ScreenEffect_BeginShow picks to black (blend level
  * 16) and sets up BlendFadeFromBlack_Update to lighten them by one level a

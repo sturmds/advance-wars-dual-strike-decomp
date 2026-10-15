@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/screen_other_map.h"
+#include "game/screen.h"
 
-void Screen_SetBothNibbles(int value);
 int func_02007710(int screens);
 
 /* Sets up the screen effect state at start-up: both screens marked hidden,

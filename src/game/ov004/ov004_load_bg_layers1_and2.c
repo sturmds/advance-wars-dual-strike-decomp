@@ -1,16 +1,15 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
+#include "sdk/fs.h"
+#include "game/screen.h"
 
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           int paletteOffset, int size);
 void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);
 BOOL Screen_IsTextBg(int layer);
-BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 
-extern Unk_027c0280* data_027c0280;
 extern char data_ov004_022bf0dc[]; /* directory */
 extern char data_ov004_022bf104[]; /* layer 1 tiles */
 extern char data_ov004_022bf108[]; /* layer 1 map */

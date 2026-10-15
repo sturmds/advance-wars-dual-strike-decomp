@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 #define HOOKS (data_027c027c->unk_50[data_027c0284])
 
 void Battle_InitMapState(void);

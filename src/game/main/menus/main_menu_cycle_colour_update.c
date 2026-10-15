@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/main_menu.h"
-
-void GX_BeginLoadTexPltt(void);
-void GX_EndLoadTexPltt(void);
+#include "sdk/gx_load.h"
 
 #define VRAM_LCDC_F ((u16*)0x06890000)
 #define WORK ((MainMenuWork*)data_0229c71c)

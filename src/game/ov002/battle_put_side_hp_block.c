@@ -1,12 +1,10 @@
 #include "types.h"
 #include "game/menu_state.h"
-
-extern MenuState gMenuState;
+#include "game/math.h"
 
 #define BATTLE_FIELD(field) \
   ((u8*)&gMenuState + (u32) & ((MenuState*)0)->battle.field)
 
-int HwDiv32(int num, int den);
 void Bg_PutTileBlock(u16* map, int x, int y, const u8* block, u16 tileAdd);
 
 /* Puts the tile block for the side's starting HP (0 to 10 as shown on screen; 50 bytes each,

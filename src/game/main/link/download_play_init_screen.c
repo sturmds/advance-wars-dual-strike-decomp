@@ -1,11 +1,10 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
 void Gfx_InitBothScreens(void);
 void Wallpaper_LoadBoth(void);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Screen_SetCurrentBoth(void* state);
 void Gfx_LoadBmap09f(void* target, int a, int b);
 void Font_LoadDigits(int a);
@@ -22,9 +21,6 @@ const void* Text_Get(u32 textId);
 void SpriteTask_Create(int a, int b, int c, int d);
 void DownloadPlay_Start(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern const char data_0216a584[]; /* "/commo/res_linkcommon_lang" */
 extern const char data_0216a5a0[]; /* "/commo/res_linklogin" */
 

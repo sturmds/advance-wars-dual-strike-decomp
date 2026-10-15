@@ -1,11 +1,10 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
+#include "game/unlocks.h"
 
-int GameFlag_IsSet(int flag);
 void TransferQueue_Add(const void* src, void* dst, u32 size);
 u8* UnitType_GetPictureTiles(int unitType);
 
-extern Unk_027c0280* data_027c0280;
 s8 data_ov006_0236a7d0[] = {
 #include "data/ov006/data_ov006_0236a7d0.inc.c"
 };

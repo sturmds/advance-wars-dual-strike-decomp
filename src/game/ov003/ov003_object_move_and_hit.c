@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ov003_object.h"
+#include "game/math.h"
 
-s32 HwMod32(s32 numerator, s32 denominator);
 void Ov003_StepToward(int x1, int y1, int x2, int y2, int length, int* outX,
                       int* outY);
 int Ov003Object_HitAt(Ov003Object* object, int x, int y);

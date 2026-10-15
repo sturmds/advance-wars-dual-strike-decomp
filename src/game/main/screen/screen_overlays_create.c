@@ -12,8 +12,6 @@ void UnitInfoPanel_ClearUnit(void);
 int Link_IsActive(void);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 
-extern Unk_027c0280* data_027c0280;
-
 void ScreenOverlays_Create(void) {
   Sprites_ResetLists();
   OamBuffer_Split(0);

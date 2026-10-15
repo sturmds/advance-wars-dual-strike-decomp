@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov004_022bf158.h"
+#include "game/math.h"
 
 void Task_ResumeScript(Ov004Task* task);
-s32 HwDiv32(s32 numerator, s32 denominator);
 
 /* Script step: scrolls layers 1 and 2 of both screens sideways for 720
  * frames, layer 1 one pixel every 6 frames and layer 2 one every 12. */

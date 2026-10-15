@@ -2,7 +2,6 @@
 #include "game/menu_button.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
 extern MenuButtonTemplate data_0215d3a8;
 
 /* One button per CO shown on the player info screen: id = player * 2 + front

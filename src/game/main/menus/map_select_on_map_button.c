@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/menu_button.h"
+#include "game/event_queue.h"
 
 u32 Link_IsActive(void);
-void EventQueue_Push(int id, int arg);
 void MapSelect_SelectPagePosition(int pos);
 
 /* Button handler of a map on the page: the button id gives the map's position

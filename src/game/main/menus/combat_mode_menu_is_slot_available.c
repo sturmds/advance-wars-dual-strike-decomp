@@ -1,6 +1,5 @@
 #include "types.h"
-
-BOOL GameFlag_IsSet(int flag);
+#include "game/unlocks.h"
 
 /* Slots 0-2 of the Combat mode menu always exist; slots 3-6 need game
  * flags 50-53. */

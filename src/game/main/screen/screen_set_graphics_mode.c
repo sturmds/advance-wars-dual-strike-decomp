@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
-
-extern Unk_027c0280* data_027c0280;
-
-void GX_SetGraphicsMode(int displayMode, int bgMode, int bg0Is3d);
+#include "sdk/gx.h"
 
 /* Sets the display mode, BG mode and BG0 3D flag of the current screen, then
  * applies them to the main engine. */

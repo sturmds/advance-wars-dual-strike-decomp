@@ -3,16 +3,13 @@
 #include "game/menu_state.h"
 #include "game/Unk_0229fb30.h"
 #include "game/BattleZoomTask.h"
+#include "game/oam_buffer.h"
+#include "game/math.h"
 
-extern MenuState gMenuState;
 extern u32 data_ov002_023696ac[];
-extern s16 gSineTable[];
 
-s32 HwDiv32(s32 numer, s32 denom);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Palette_Load(const void* src, u32 offset, u32 size);
 BOOL Battle_IsSideAir(int side);
 

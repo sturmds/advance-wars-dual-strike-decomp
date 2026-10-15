@@ -4,7 +4,6 @@
 #include "game/Unk_ov006_0235f690.h"
 #include "game/screen_other_map.h"
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern const u16 gArmyPalettes[][16];
 
 void Palette_Load(const void* src, u32 offset, u32 size);

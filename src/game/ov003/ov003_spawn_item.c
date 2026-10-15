@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ov003_item.h"
+#include "game/math.h"
 
-s32 HwMod32(s32 numer, s32 denom);
 u32 Ov003_RandNext(void);
 
 /* Puts an item at (x, y) in a free entry. Returns 0 when none is free or on a

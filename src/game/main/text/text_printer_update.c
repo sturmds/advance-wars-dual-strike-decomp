@@ -7,7 +7,6 @@
 #define KEY_CONFIRM 0x10 /* A, or a touch in the text window */
 #define KEY_SKIP 0x400   /* Start */
 
-extern Unk_02080440* data_027c027c;
 extern u8 gEventSkipState;
 extern ScriptCommand data_02158364[];
 extern ScriptCommand data_021584f8[];

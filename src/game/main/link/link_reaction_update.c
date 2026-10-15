@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/link_reaction_queue.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int Link_GetOwnPlayer(void);
 int Link_FindSlotOfPlayer(int player);
 int Map_IsThisMapsTurn(void);

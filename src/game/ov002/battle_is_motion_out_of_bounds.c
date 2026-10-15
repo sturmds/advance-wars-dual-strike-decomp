@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 /* Needed to match: the original adds the offset of motions to the
  * displacement of each load, not to the address of gMenuState. */
 typedef struct MotionView {

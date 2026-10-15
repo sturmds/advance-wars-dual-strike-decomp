@@ -1,11 +1,11 @@
 #include "sdk/mi.h"
+#include "sdk/gx_load.h"
 
 /* Destination control 3: increment and reload the address on each repeat. */
 #define DMA_DEST_RELOAD 0x00600000
 
 void Dma_HaltOnStartModeClash(u32 dmaNo, u32 startMode);
 void MIi_CheckDma0SourceAddress(u32 dmaNo, u32 src, u32 size, u32 srcControl);
-void MI_WaitDma(u32 dmaNo);
 void Dma_LoadChannelMasked(u32 dmaNo, u32 src, u32 dest, u32 control);
 
 /* Starts a repeating 16-bit copy that runs once per HBlank, and returns without waiting. */

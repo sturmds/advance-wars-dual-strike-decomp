@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/design_map_edit.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 #pragma explicit_zero_data on
 static s16 Ov006_gDirStepX[] = {
 #include "data/ov006/Ov006_gDirStepX.inc.c"
@@ -37,8 +35,6 @@ u32 data_ov006_0236d630[] = {
 };
 #pragma explicit_zero_data reset
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 /* Straight pieces and end pieces. */
 #define IS_STRAIGHT_OR_END(c)                                      \
   ((c) == 0x142 || (c) == 0x143 || (c) == 0x121 || (c) == 0x120 || \
@@ -54,7 +50,7 @@ int Ov006_GetPipeLink(int x, int y, int dir) {
   int cell;
   int link;
 
-  state = STATE;
+  state = MAP_STATE;
   tiles = state->mapTiles;
   nx = x + Ov006_gDirStepX[dir];
   cell = tiles->mapCells[nx + tiles->rowStart[ny]];

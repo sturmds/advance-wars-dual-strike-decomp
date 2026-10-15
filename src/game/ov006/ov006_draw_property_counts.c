@@ -4,17 +4,12 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov006_0235f690.h"
 #include "game/ov006_property_counts.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Oam_PutSprite(int x, int y, void* shape, int tileAndPalette);
 void Oam_PutSmallNumber(u16 x, u16 y, int value);
 int Ov006_CountPropertyTilesMatching(int tile);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern u8 data_ov006_0236a9e8[];
 extern u8 data_ov006_0236a9f0[];
 extern u8 data_ov006_0236aa00[];

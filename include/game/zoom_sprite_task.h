@@ -1,3 +1,5 @@
+#include "game/math.h"
+#include "game/oam_buffer.h"
 #ifndef GAME_ZOOM_SPRITE_TASK_H
 #define GAME_ZOOM_SPRITE_TASK_H
 
@@ -23,16 +25,9 @@ typedef struct ZoomSpriteTask {
   s16 scale; /* 0x100 = 1x */
 } ZoomSpriteTask;
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 /* Sine by 1/256 of a turn, 4096 = 1.0. The last 64 entries repeat the first
    64, so that gSineTable[i + 64] gives the cosine of i for i up to 255. */
-extern const s16 gSineTable[];
 
-s32 HwDiv32(s32 numerator, s32 denominator);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
-int SpriteAnim_Draw(SpriteAnim* sprite, int x, int y);
 int SpriteAnim_Draw3d(SpriteAnim* sprite, VecFx32* pos, VecFx32* scale);
 
 #define ZOOM_DIVISOR(scale) ((scale) ? (scale) : 2)

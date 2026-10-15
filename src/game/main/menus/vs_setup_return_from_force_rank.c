@@ -11,7 +11,6 @@ int Task_JumpToLabel(ForceRankTask* task, int label);
 
 extern TaskScriptCmd data_0215cfe8[];
 extern const TaskScriptCmd data_0215cae8[];
-extern MenuState gMenuState;
 
 /* Script step of the Force Rank screen task. With a cancel pending (state 4
  * in setup.unk_2ea) it runs the cancel task and ends the Force Rank task.

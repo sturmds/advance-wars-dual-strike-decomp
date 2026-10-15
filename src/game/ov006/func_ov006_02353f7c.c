@@ -9,7 +9,6 @@ void func_020c4018(void);
 void PopupMenu_OpenWithSound(const void* items, int x, int y, int arg,
                              int arg2);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern MenuItem data_ov006_0236b15c[];
 
 void func_ov006_02353f7c(void) {

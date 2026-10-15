@@ -1,8 +1,8 @@
 #include "types.h"
+#include "game/math.h"
 
 int Survival_GetMapCount(int mode);
 int Survival_GetMapId(int mode, int index);
-s32 HwMod32(s32 num, s32 den);
 
 /* Record slot of the map at position index of a Survival mode's list.
  * Modes 0-2 use the position itself. Modes 3-5 share the records of modes

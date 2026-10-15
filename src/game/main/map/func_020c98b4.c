@@ -1,16 +1,15 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/screen_other_map.h"
+#include "game/screen.h"
 
 void func_0200a5e0(int screen);
 void Screens_SelectConfigs(void);
 void func_020c4018(void);
 void CurrentPlayer_LoadPalettes(void);
-int SceneMode_IsCurrent(int a0);
 
 extern Unk_02080440_48 data_02183b08;
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
 #define HOOKS (data_027c027c->unk_50[data_027c0284])
 
 /* Like func_020c9778, but keeps the current screen index (0 when the current
@@ -22,7 +21,8 @@ void func_020c98b4(void) {
   Unk_027c0280* saved0280;
   Unk_02080440* saved027c;
 
-  func_0200a5e0(GAME == &data_02183b08 ? MAP_STATE_FIRST : MAP_STATE_SECOND);
+  func_0200a5e0(MAP_STATE == &data_02183b08 ? MAP_STATE_FIRST
+                                            : MAP_STATE_SECOND);
   Screens_SelectConfigs();
 
   saved0280 = data_027c0280;
@@ -30,7 +30,7 @@ void func_020c98b4(void) {
   saved027c = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_00);
   if (HOOKS->unk_58 != NULL) {
-    HOOKS->unk_58(GAME->unk_1c4->weather, GAME->unk_1c4->tileset);
+    HOOKS->unk_58(MAP_STATE->unk_1c4->weather, MAP_STATE->unk_1c4->tileset);
   }
   func_020c4018();
   CurrentPlayer_LoadPalettes();
@@ -45,7 +45,7 @@ void func_020c98b4(void) {
   saved027c = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_04);
   if (HOOKS->unk_58 != NULL) {
-    HOOKS->unk_58(GAME->unk_1c4->weather, GAME->unk_1c4->tileset);
+    HOOKS->unk_58(MAP_STATE->unk_1c4->weather, MAP_STATE->unk_1c4->tileset);
   }
   func_020c4018();
   CurrentPlayer_LoadPalettes();

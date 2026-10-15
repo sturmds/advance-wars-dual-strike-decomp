@@ -8,8 +8,6 @@ void VsSetup_SetCo(u8 a, u8 b);
 void VsSetup_SetController(u8 a, u8 b);
 int VsSetup_PrevCo(int index);
 
-extern MenuState gMenuState;
-
 #define MENU ((MenuState*)&gMenuState)
 
 /* needed to match: the u8 casts on EventQueue_Push arguments */

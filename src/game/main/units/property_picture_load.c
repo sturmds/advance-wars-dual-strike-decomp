@@ -2,24 +2,19 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/terrain.h"
+#include "sdk/fs.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0280* data_027c0280;
 extern char data_02169180[]; /* "/bmap" */
 extern char data_021691a8[]; /* "0b9" */
 extern char data_021691ac[]; /* "0bb" */
 
 u8 Map_GetTileArmy(int tile);
-void FS_ChangeDir(const char* dir);
 void File_ReadAt(void* dest, const char* path, u32 offset, u32 size);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           u16 paletteOffset, int size);
 
 /* Bytes of one property picture in /bmap/0bb. */
 #define PICTURE_SIZE 0x400
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Loads the picture of the property on map tile `tile` into sprite tile
  * gfxTile, and its owner's army colours from /bmap/0b9 into sprite palette
@@ -28,7 +23,7 @@ void Palette_LoadFromFile(const char* fileName, int fileOffset,
  * capture of a property (CaptureTask_ShowCompletion waits for 20 capture points). */
 void PropertyPicture_Load(int tile, int gfxTile, int palette) {
   int army = Map_GetTileArmy(tile);
-  int colour = STATE->players[MAP_TILE_OWNER(tile)].armyColour;
+  int colour = MAP_STATE->players[MAP_TILE_OWNER(tile)].armyColour;
   u32 offset;
 
   switch (MAP_TILE_TERRAIN(tile)) {

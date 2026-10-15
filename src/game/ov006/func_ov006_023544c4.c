@@ -3,11 +3,10 @@
 #include "game/Unk_ov006_0235f690.h"
 #include "game/main_loop.h"
 #include "game/camera_pan.h"
+#include "sdk/msl_string.h"
 
 int func_020b983c(void);
 u8* func_021016e4(void);
-int strcmp(const char* a, const char* b);
-char* strcpy(char* dest, const char* src);
 void Ov006_DrawNameField(void);
 void Screens_SelectConfigs(void);
 void Battle_RegisterFrameCallbacks(void);
@@ -20,7 +19,6 @@ void func_020c4018(void);
 void Map_ReloadPalettes(void);
 void Ov006_LoadTerrainPalettes(void);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern Camera data_022a7d5c;
 
 void func_ov006_023544c4(void) {

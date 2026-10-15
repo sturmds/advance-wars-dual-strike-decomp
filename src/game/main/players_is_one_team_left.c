@@ -1,17 +1,12 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 BOOL Player_IsInGame(u8 player);
 int func_020cf17c(u16 player);
 int func_020ceffc(int player);
 int func_020cf090(u16 player);
 int func_020cf0e4(u16 player);
 void Player_SetUnk33(int player);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* TRUE when the players still standing are all on one team. A player
  * stands while in the game and passing the four checks that
@@ -31,12 +26,12 @@ BOOL Players_IsOneTeamLeft(void) {
       standing[i] = TRUE;
     }
   }
-  if (STATE->unk_1c4->unk_37 & 4) {
+  if (MAP_STATE->unk_1c4->unk_37 & 4) {
     for (i = 1; i < ARMY_SLOT_COUNT; i++) {
       if (standing[i]) {
         for (j = 1; j < ARMY_SLOT_COUNT; j++) {
           if (i != j && Player_IsInGame(j) &&
-              STATE->players[i].team == STATE->players[j].team &&
+              MAP_STATE->players[i].team == MAP_STATE->players[j].team &&
               !standing[j]) {
             standing[i] = FALSE;
             Player_SetUnk33(i);
@@ -50,7 +45,7 @@ BOOL Players_IsOneTeamLeft(void) {
       opponents = 0;
       for (j = 1; j < ARMY_SLOT_COUNT; j++) {
         if (i != j && standing[j] &&
-            STATE->players[i].team != STATE->players[j].team) {
+            MAP_STATE->players[i].team != MAP_STATE->players[j].team) {
           opponents++;
         }
       }

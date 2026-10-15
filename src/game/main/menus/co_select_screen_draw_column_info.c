@@ -4,20 +4,13 @@
 #include "game/Unk_02088d04.h"
 #include "game/co_select_screen.h"
 #include "game/oam_cells.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrentGfx(void* state);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 int Co_GetRank(u32 co);
 int MainLoop_GetFrameCount(void);
 BOOL Skills_AreDisabled(void);
 void CoSelectScreen_DrawRank(int x, int y, u8 rank);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* The CO picked for player slot column (1-4), front or back row. */
 #define PICKED_CO(column, row) \
@@ -48,7 +41,7 @@ void CoSelectScreen_DrawColumnInfo(void) {
   Sprite_QueueAt(4, 96, 152, &data_027c0008, 0x4000,
                  ((data_0229c73c->cursorColumn - 1) << 6) + 920);
   if ((MainLoop_GetFrameCount() & 32) &&
-      STATE->gameMode == GAME_MODE_CAMPAIGN) {
+      MAP_STATE->gameMode == GAME_MODE_CAMPAIGN) {
     Sprite_QueueAt(3, 96, 152, &data_027c0008, 0x4000,
                    ((data_0229c73c->cursorColumn - 1) << 6) + 952);
   }

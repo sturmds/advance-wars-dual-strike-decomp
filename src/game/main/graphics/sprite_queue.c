@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Queues a sprite at the head of sprite list list, using the next free
  * entry. x and y carry OAM attribute bits as well as the position. */
 void Sprite_Queue(int list, int x, int y, const void* data, int unk08,

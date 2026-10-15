@@ -1,13 +1,12 @@
 #include "types.h"
 #include "game/campaign_map.h"
 #include "game/Unk_02088d04.h"
+#include "game/campaign_map_music.h"
 
 int CampaignMap_CenterScrollX(int x);
 int func_0204ec34(int y);
 
-extern CampaignMapState gCampaignMapState;
 extern CampaignMission gCampaignMissions[];
-extern Unk_027c0280* data_027c0280;
 
 /* Like CampaignMap_CenterOnMission, but for the mission just played
  * (gCampaignMapState.playedMission, the one CampaignMap_MarkMissionDone flags), and

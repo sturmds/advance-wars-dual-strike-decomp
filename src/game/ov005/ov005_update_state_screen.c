@@ -6,14 +6,13 @@
 #include "game/sprite_anim.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bba4.h"
+#include "game/screen.h"
+#include "game/math.h"
 
 void func_020048f4(u16 frames);
-BOOL Screens_IsTransitionRunning(void);
 void func_02004284(int a0, Ov005Task* task);
 void func_0202a7c0(void);
 void Sound_PlaySe(u32 soundId);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-s32 HwDiv32(s32 numerator, s32 denominator);
 void SpriteAnim_SetAnimation(ShowSprite* sprite, int frame);
 void Task_ResumeScript(Ov005Task* task);
 void ModeFont_LoadHere(int tile, int paletteSlot);
@@ -26,7 +25,6 @@ void Ov005_UpdateStateScreenButtons(Unk_ov005_0236bba4* work, int scroll);
 void Ov005_RemoveStateScreenButtons(Unk_ov005_0236bba4* work);
 void func_ov005_0235ec40(Unk_ov005_0236bba4* work);
 
-extern Keypad* gKeypad;
 void Ov005StateScreen_OnNextTouched(void);
 
 /* "039" */

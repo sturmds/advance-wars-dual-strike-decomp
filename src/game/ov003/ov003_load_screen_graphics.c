@@ -5,8 +5,6 @@
 #include "game/menu_state.h"
 #include "game/ov003_unit.h"
 
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
 extern u8* data_ov003_02365b10;
 static char data_ov003_02364934[] = {
 #include "data/ov003/data_ov003_02364934.inc.c"

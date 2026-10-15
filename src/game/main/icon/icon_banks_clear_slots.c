@@ -2,8 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/icon.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Marks every slot of every icon bank as unused (tile 0xFFFF). */
 void IconBanks_ClearSlots(void) {
   int bank;

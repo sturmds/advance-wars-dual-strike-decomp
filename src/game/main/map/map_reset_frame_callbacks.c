@@ -11,9 +11,6 @@ void WeatherFx_UpdateFirstScreen(void);
 void MainLoop_DefaultVBlank(void);
 void MainLoop_TaskFrame(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0288 data_027c0288;
-
 /* Name is a guess. Drops the per-frame callback of the current map screen
  * (WeatherFx_UpdateFirstScreen for the main map, func_020d1be0 for the second) and puts
  * the main loop's two callbacks back to MainLoop_DefaultVBlank and MainLoop_TaskFrame. */

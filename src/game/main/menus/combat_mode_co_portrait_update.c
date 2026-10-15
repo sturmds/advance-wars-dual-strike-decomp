@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/co_portrait_task.h"
 #include "game/oam_cells.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Sprite_QueueDefault(int x, int y, int attr, int list);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void func_0200270c(int x, int y, int attr, int list, int hFlip);

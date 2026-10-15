@@ -1,16 +1,12 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/player.h"
+#include "game/ai/ai_unload.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-BOOL AiUnit_HasReachableTarget(void);
 BOOL Player_IsInGame(u8 player);
 BOOL Player_HasHq(int player);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define PLAYER(i) (STATE->players[i])
+#define PLAYER(i) (MAP_STATE->players[i])
 #define HQ_COORD_MASK 0x7f
 
 /* Tile test for AiSeaTransport_MoveLoaded's order 2 routine: TRUE when the
@@ -26,14 +22,14 @@ BOOL AiSeaTransport_CargoReachesEnemyHq(void) {
     if (!Player_IsInGame(player)) {
       continue;
     }
-    if (PLAYER(STATE->currentPlayer).team == PLAYER(player).team) {
+    if (PLAYER(MAP_STATE->currentPlayer).team == PLAYER(player).team) {
       continue;
     }
     if (!Player_HasHq(player)) {
       continue;
     }
-    if (STATE->rangeMap[PLAYER(player).hqY & HQ_COORD_MASK]
-                       [PLAYER(player).hqX & HQ_COORD_MASK] > 0) {
+    if (MAP_STATE->rangeMap[PLAYER(player).hqY & HQ_COORD_MASK]
+                           [PLAYER(player).hqX & HQ_COORD_MASK] > 0) {
       return TRUE;
     }
   }

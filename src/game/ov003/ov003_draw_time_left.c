@@ -5,15 +5,9 @@
 #include "game/Unk_02160ac0.h"
 #include "game/ov003_unit.h"
 #include "game/oam_cells.h"
+#include "game/math.h"
+#include "game/screen_other_map.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-
-s32 HwDiv32(s32 numer, s32 denom);
-s32 HwMod32(s32 numerator, s32 denominator);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void Ov003_DefeatTeam(int a);
 

@@ -8,8 +8,6 @@ void Wallpaper_DestroyTasks(void);
 void Screen1_DestroyTextTasks(void);
 int CombatCo_NumberFromId(int coId);
 
-extern MenuState gMenuState;
-extern Unk_02160ac0* data_02160ac0;
 extern u8 data_02160adc[];
 extern u8 data_02160ae0[];
 

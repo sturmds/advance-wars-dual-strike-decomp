@@ -2,16 +2,13 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/weather.h"
+#include "sdk/fs.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
 extern char gWeatherCloudDirName[];  /* "/bmap" */
 extern char gWeatherCloudFileName[]; /* "0b3" */
 /* Four rows of three: vx, vy and a third word (0) that is not read here. */
 extern u32 gWeatherCloudSpeeds[];
 
-void FS_ChangeDir(const char* dir);
 u32 File_UnpackTo(void* dest, const char* path);
 u32 Rng_Next(void);
 

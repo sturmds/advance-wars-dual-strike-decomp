@@ -4,18 +4,14 @@
 #include "game/Unk_02088d04.h"
 #include "game/co_portrait_task.h"
 #include "game/task.h"
+#include "game/screen_other_map.h"
 
 void Gfx_RequestLayerCopy(int a);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Text_PrintImmediate(int x, int y, void* target, u32 text, int a, int b);
 void Text_PrintById(int x, int y, void* target, u32 text, int a, int b);
 CoPortraitTask* Task_FindByScript(void* key);
 void Bg_ClearRect(void* target, int x, int y, int w, int h);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern u8
     gCombatModeCos[]; /* CO ids: Andy, Max, Sami, Flak, Lash, Adder, Hawke */
 extern TaskScriptCmd data_021613d8[];

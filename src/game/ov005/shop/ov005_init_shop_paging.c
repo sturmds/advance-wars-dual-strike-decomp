@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_ov005_0236bbb0.h"
+#include "game/math.h"
 
-int HwDiv32(int numerator, int denominator);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 
 static ShopButton data_ov005_0236b498[] = {

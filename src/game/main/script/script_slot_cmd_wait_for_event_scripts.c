@@ -2,7 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
 BOOL EventScript_IsRunning(void);
 
 /* Script command: waits until no event script is running, then advances. */

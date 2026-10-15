@@ -3,6 +3,7 @@
 #include "game/unit_info_panel.h"
 #include "game/unit_stats.h"
 #include "game/text_print.h"
+#include "game/screen_other_map.h"
 
 extern u32 data_ov000_022f4538[];
 extern u32 data_ov000_022f4618[];
@@ -22,14 +23,10 @@ UnitStats Ov000_gUnitStats[UNIT_TYPE_COUNT] = {
 #include "data/ov000/Ov000_gUnitStats.inc.c"
 };
 
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-
 /* Four bytes per panel page, passed on to Sprite_DrawPulsingCorners. */
 extern UnitInfoPanelMarker data_ov000_0234f9e8[];
 
 const void* Text_Get(u32 textId);
-void Screen_SetCurrentGfx(void* state);
 void Sprite_DrawPulsingCorners(int a, int b, int c, int d, int e, int f);
 
 /* Draws the current page's marker on the second screen. Pages 4 and 11 pass

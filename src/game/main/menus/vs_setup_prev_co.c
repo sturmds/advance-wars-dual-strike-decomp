@@ -3,8 +3,6 @@
 
 int VsSetup_CanPickCo(int coSlot, int co);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Same as Sprite_Queue, but x and y are plain positions: they are cut to the
  * OAM position fields (x 9 bits, y 8 bits) so no attribute bits get in. */
 void Sprite_QueueAt(int list, int x, int y, const void* data, int unk08,

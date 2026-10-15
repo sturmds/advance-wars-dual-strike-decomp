@@ -6,8 +6,6 @@ BOOL Ov006_SlotsAreShown(void);
 void Ov006_StartSlotsSlideOut(void);
 void Ov006_ToggleChosenButton(int button);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
 #define STATE data_ov006_0236d640
 
 /* Handles a press on one of the 8 editor menu buttons (ids 0x20-0x27), only

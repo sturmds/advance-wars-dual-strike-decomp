@@ -1,18 +1,17 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/screen_other_map.h"
+#include "game/screen.h"
 
 extern int gCameraPresetIndex;
 extern u8 data_021576fa[][20];
 extern u8 data_021576fb[][20];
 
 int MainLoop_GetFrameCount(void);
-int SceneMode_IsCurrent(int a0);
 int Map_IsThisMapsTurn(void);
 void Bg_SetScroll(int layer, int scrollX, int scrollY);
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
-#define VIEW (GAME->unk_1c4)
+#define VIEW (MAP_STATE->unk_1c4)
 
 /* Screen config hook (data_02169f48 record 4). Only while SceneMode_IsCurrent(4)
  * holds: when it is the other map's turn and unk_86 is set, the second map
@@ -32,7 +31,7 @@ void MapView_ApplyBgScrollPanLayer0(void) {
     return;
   }
 
-  if (!Map_IsThisMapsTurn() && GAME->unk_86 != 0) {
+  if (!Map_IsThisMapsTurn() && MAP_STATE->unk_86 != 0) {
     halfW = data_021576fa[gCameraPresetIndex][0] >> 1;
     halfH = data_021576fb[gCameraPresetIndex][0] >> 1;
     {
@@ -54,8 +53,8 @@ void MapView_ApplyBgScrollPanLayer0(void) {
       Screen_SetCurrent(data_027c0288.unk_04);
       VIEW->scrollX = scrollX;
       VIEW->scrollY = scrollY;
-      GAME->cursorX = halfW + (VIEW->scrollX >> 4);
-      GAME->cursorY = halfH + (VIEW->scrollY >> 4);
+      MAP_STATE->cursorX = halfW + (VIEW->scrollX >> 4);
+      MAP_STATE->cursorY = halfH + (VIEW->scrollY >> 4);
       Screen_SetCurrent(saved027c);
       Screen_SetCurrentGfx(saved0280);
     }

@@ -2,8 +2,9 @@
 #include "game/Unk_02160ac0.h"
 #include "game/map_data.h"
 #include "game/Unk_02088d04.h"
+#include "sdk/msl.h"
+#include "sdk/fs.h"
 
-extern Unk_027c0280* data_027c0280;
 extern const char data_021612f8[]; /* "/combat/res_combat_pnl" */
 extern const char data_02161310[]; /* "/combat" */
 extern const char data_02161318[]; /* "%03x" */
@@ -12,8 +13,6 @@ extern const u8 data_02160adc[];   /* file numbers of the combat maps */
 void* Mem_Alloc(u32 size);
 void Mem_Free(void* ptr);
 void File_UnpackTo(void* dest, const char* fileName);
-void FS_ChangeDir(const char* dir);
-int sprintf(char* dest, const char* format, ...);
 void CombatMap_DrawPreviewBlock(const MapData* map, const u8* codeTerrain,
                                 u16* dst, s16 x, s16 y, u16 width, u16 height);
 

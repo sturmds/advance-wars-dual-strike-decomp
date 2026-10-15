@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/Unk_ov004_022bf158.h"
+#include "game/math.h"
 
 extern Unk_ov004_022bf158* data_ov004_022bf158;
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(void* task);
 
 void Ov004Task_EaseUnk904TwoStage(Ov004Task* task) {

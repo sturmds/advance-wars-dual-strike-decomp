@@ -3,8 +3,6 @@
 
 int Player_GetCoCostPercent(int player, int coSlot, int powerState,
                             int unitType);
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 
 int func_020df900(int player, int unitType) {
   return Player_GetCoCostPercent(

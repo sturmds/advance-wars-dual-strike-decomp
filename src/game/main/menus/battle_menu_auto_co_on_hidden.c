@@ -4,16 +4,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/map_header.h"
 #include "game/menu_item.h"
-
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
+#include "game/screen_other_map.h"
 
 /* data_027c0288 holds two game states, one per front; Screen_SetCurrentGfx and
  * Screen_SetCurrent load one into data_027c0280 and data_027c027c. */
@@ -42,7 +33,7 @@ s8 BattleMenu_AutoCoOnHidden(void) {
   u8 player;
   u8 controller;
 
-  game = GAME;
+  game = MAP_STATE;
   if (game->gameMode != GAME_MODE_CAMPAIGN) {
     return MENU_ITEM_HIDDEN;
   }
@@ -54,7 +45,7 @@ s8 BattleMenu_AutoCoOnHidden(void) {
   hidden = TRUE;
   if (game->secondMapId != 0) {
     SWITCH_TO(OTHER_MAP);
-    otherUnk30 = GAME->unk_1c4->unk_30;
+    otherUnk30 = MAP_STATE->unk_1c4->unk_30;
     SWITCH_BACK();
     if (otherUnk30 == 0) {
       hidden = FALSE;
@@ -64,9 +55,9 @@ s8 BattleMenu_AutoCoOnHidden(void) {
     return MENU_ITEM_HIDDEN;
   }
 
-  player = GAME->currentPlayer;
+  player = MAP_STATE->currentPlayer;
   SWITCH_TO(OTHER_MAP);
-  controller = GAME->players[player].controller;
+  controller = MAP_STATE->players[player].controller;
   SWITCH_BACK();
   return controller != PLAYER_CONTROLLER_AI;
 }

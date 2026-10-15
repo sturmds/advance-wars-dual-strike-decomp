@@ -2,15 +2,11 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/task.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Mem_Fill32(u32 value, void* dst, u32 size);
 void Palette_Load(const void* src, int offset, u32 size);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern u8 data_021388f0[];
 
 /* Task init of HelpBand_Start, on the lower screen. The band's sprites are

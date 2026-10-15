@@ -6,11 +6,6 @@
  * unitType can move onto its terrain. */
 BOOL Tile_IsFreeForUnitType(int x, int y, int unitType, int arg3);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 #define NO_TILE_DIST 9999
 
 /* Moves pos to the nearest tile (by steps along rows and columns) where a
@@ -28,8 +23,8 @@ BOOL Map_FindNearestTileForUnitType(int unitType, TilePoint* pos) {
   targetY = pos->y;
   best = NO_TILE_DIST;
 
-  for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-    for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
+  for (y = 0; y < MAP_STATE->unk_1c4->mapHeight; y++) {
+    for (x = 0; x < MAP_STATE->unk_1c4->mapWidth; x++) {
       if (Tile_IsFreeForUnitType(x, y, unitType, 0)) {
         dy = y - targetY < 0 ? -(y - targetY) : y - targetY;
         dist = x - targetX;

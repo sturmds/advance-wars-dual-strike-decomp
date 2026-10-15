@@ -2,12 +2,12 @@
 #include "game/camera_pan.h"
 #include "game/camera_preset.h"
 #include "game/campaign_recap.h"
+#include "game/math.h"
 
 extern Camera data_022a7d5c;
 extern int gCameraPresetIndex;
 
 void Camera_ResetToPreset0(Camera* camera);
-s32 HwDiv32(s32 numerator, s32 denominator);
 
 /* Puts the camera at the current preset's position moved by x - 50, y and z
  * hundredths of a map tile (0x200 world units). recap is not read. */

@@ -10,9 +10,6 @@ void CoPicture_QueueSprite(int x, int y, int unk08, int unk0a, int list);
 int VsSetup_GetSlotTileX(int player);
 int VsSetup_GetPlayerOfSlot(int slot);
 
-extern MenuState gMenuState;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 
@@ -26,7 +23,7 @@ void VsSetup_DrawSlotSprites(void) {
   Unk_027c0280* saved = data_027c0280;
 
   Screen_SetCurrentGfx((&data_027c0288.unk_00)[1]);
-  if (STATE->twoMaps == 0) {
+  if (MAP_STATE->twoMaps == 0) {
     for (player = 0; player < MENU->setup.unk_2e3; player++) {
       if (MENU->setup.controllers[player][0] != PLAYER_CONTROLLER_AI) {
         Sprite_QueueAt(1, (VsSetup_GetSlotTileX(player) * 8 + 24) & 0x1ff, 56,

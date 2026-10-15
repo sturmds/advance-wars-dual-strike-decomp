@@ -1,7 +1,5 @@
 #include "sdk/mi.h"
-
-int OS_DisableInterrupts(void);
-void OS_RestoreInterrupts(int irqState);
+#include "sdk/os.h"
 
 /* Waits for a channel to finish, then re-arms channel 0 with a dummy transfer. */
 void MI_WaitDma(u32 dmaNo) {

@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/campaign_map.h"
-
-extern CampaignMapState gCampaignMapState;
+#include "game/campaign_map_music.h"
 
 /* Marks no mission as current (28 is one past the last mission) and clears
  * the per-mission flags. */

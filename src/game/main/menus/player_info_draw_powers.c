@@ -4,8 +4,6 @@
 #include "game/screen_other_map.h"
 #include "game/text_print.h"
 
-extern MenuState gMenuState;
-
 /* Text ids inside every CoRecord, one CoRecord apart. The original names
  * them as their own symbols, so they are declared here that way. */
 typedef struct CoRecordText {

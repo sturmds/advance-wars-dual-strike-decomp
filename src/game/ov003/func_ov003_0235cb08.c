@@ -3,7 +3,6 @@
 #include "game/Unk_ov003_0235dd38.h"
 #include "game/ov003_unit.h"
 
-extern Unk_027c0280* data_027c0280;
 void Ov003_StartRowPower(int rowNumber);
 
 void func_ov003_0235cb08(Unk_ov003_0235dd38* obj) {

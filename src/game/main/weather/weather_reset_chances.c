@@ -1,10 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define WEATHER (data_027c027c->unk_5c[data_027c0284])
 
 void func_020d2190(void);
@@ -22,7 +18,7 @@ void Weather_ResetChances(void) {
   chance0 = 6;
 
   for (player = 1; player <= PLAYER_SLOT_LAST; player++) {
-    if (STATE->players[player].controller != PLAYER_CONTROLLER_NONE) {
+    if (MAP_STATE->players[player].controller != PLAYER_CONTROLLER_NONE) {
       chance1--;
       chance2--;
       chance0--;

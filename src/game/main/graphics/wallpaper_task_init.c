@@ -2,8 +2,6 @@
 #include "game/wallpaper_task.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Task step that sets up the wallpaper task: clears its counters and sets an
  * alpha blend of layer 2 over layer 3 that shows layer 2 alone. */
 void WallpaperTask_Init(WallpaperTask* task) {

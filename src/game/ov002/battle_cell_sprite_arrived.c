@@ -3,8 +3,6 @@
 #include "game/menu_state.h"
 #include "game/BattleSpriteTask.h"
 
-extern MenuState gMenuState;
-
 #define MENU ((MenuState*)&gMenuState)
 
 #define SPRITE (MENU->battle.cellSprites[side][cell])

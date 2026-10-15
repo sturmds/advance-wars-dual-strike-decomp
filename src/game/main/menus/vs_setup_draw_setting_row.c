@@ -2,17 +2,12 @@
 #include "game/menu_state.h"
 #include "game/visual_mode.h"
 #include "game/oam_cells.h"
+#include "game/oam_buffer.h"
+#include "game/math.h"
 
 int MainLoop_GetFrameCount(void);
-s32 HwDiv32(s32 numerator, s32 denominator);
-s32 HwMod32(s32 numerator, s32 denominator);
-s16 Math_SinDegrees(int degrees);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
-
-extern MenuState gMenuState;
-extern s16 gSineTable[]; /* sine table, index 64 = cosine of 0 */
 
 /* Needed to match: the cast keeps the field offsets out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)

@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/sound_arc.h"
+#include "sdk/os.h"
 
-int OS_DisableInterrupts(void);
-void OS_RestoreInterrupts(int irqState);
 SoundArc* func_021066ec(SoundArc* arc);
 void* SoundArc_GetFileAddress(int itemNo);
 void SoundArc_SetFileAddress(int itemNo, void* loaded);

@@ -4,9 +4,6 @@
 #include "game/Unk_02080440.h"
 #include "game/skills.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int GetUnitCombatClass(int unitType);
 
 /* Defense bonus from skills for one CO (slot 0 front, 1 back) of a player:

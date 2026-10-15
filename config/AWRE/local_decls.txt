@@ -1,0 +1,376 @@
+# File-scope declarations that stay in a C file although a header declares the
+# name: `path name reason`. tools/decls.py check fails on any other
+# (docs/readability.md).
+src/arm7/sdk/os/user_settings_load_from_flash.c NVRAM_Read does not compile with the header's type
+src/arm7/sdk/wl/func_arm7_027c87b8.c Wifi_SpinForUs does not compile with the header's type
+src/arm7/sdk/wl/func_arm7_027cbfa4.c WifiHost_TellBeaconLost does not compile with the header's type
+src/game/main/ai/ai_show_action.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/battle_results_fill.c data_022a7a9c does not compile with the header's type
+src/game/main/boot_init_hardware.c OS_SetIrqFunction does not compile with the header's type
+src/game/main/boot_init_hardware.c OS_EnableIrqMask does not compile with the header's type
+src/game/main/campaign/campaign_continue_profile0.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/campaign/campaign_continue_profile1.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/campaign/campaign_continue_profile2.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/campaign/campaign_map_start_exit_task.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/campaign/campaign_start_hard.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/campaign/campaign_start_normal.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/caption_animate_corners.c strlen does not compile with the header's type
+src/game/main/caption_draw_text.c strlen does not compile with the header's type
+src/game/main/caption_grow_in_letters.c strlen does not compile with the header's type
+src/game/main/caption_slide_up.c strlen does not compile with the header's type
+src/game/main/caption_sweep_bars.c strlen does not compile with the header's type
+src/game/main/co_rank_marker_grow_in.c SpriteAnimTask_Start does not compile with the header's type
+src/game/main/co_rank_screen_init.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/co_stats/co_stats_screen_draw_skills.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/co_stats/player_get_co_byte.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/co_stats/player_get_co_byte_fallback.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/co_stats/player_get_shown_move_bonus.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/co_stats/player_get_shown_range_bonus.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/combat_intro_start_event_script.c EventScript_Start does not compile with the header's type
+src/game/main/copowers/func_02055f84.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/copowers/tag_break_end_blend.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/copowers/tag_break_end_blend_with_side_pieces.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/copowers/tag_break_fade_in_blend.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/copowers/tag_break_fade_to_white.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/copowers/tag_break_set_up_screens.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/copowers/tag_break_slide_in_side_pieces.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/copowers/tag_power_screen_fade_in_from_black.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/copowers/tag_power_screen_fade_to_white.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/data_0215bb60.c TitleCall_HoldNumber does not compile with the header's type
+src/game/main/data_0215bb60.c TitleCall_InitNumber does not compile with the header's type
+src/game/main/data_0215bb60.c TitleCall_InitSubLetters does not compile with the header's type
+src/game/main/effect_scene_spark_step.c SpriteAnim_Draw does not compile with the header's type
+src/game/main/func_02004a7c.c ScreenEffect_SetBrightenMode does not compile with the header's type
+src/game/main/func_02004ab0.c ScreenEffect_SetBrightenMode does not compile with the header's type
+src/game/main/func_02004b44.c ScreenEffect_SetBrightenMode does not compile with the header's type
+src/game/main/func_02004b78.c ScreenEffect_SetBrightenMode does not compile with the header's type
+src/game/main/func_0200c0c4.c OS_DisableIrqMask does not compile with the header's type
+src/game/main/func_0200c11c.c OS_SetIrqFunction does not compile with the header's type
+src/game/main/func_0200c11c.c OS_EnableIrqMask does not compile with the header's type
+src/game/main/func_020593c8.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/func_02079180.c WM_Reset does not compile with the header's type
+src/game/main/func_0207930c.c WM_SetIndCallback does not compile with the header's type
+src/game/main/func_0207d934.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/func_0207dcfc.c MenuButtons_CloseAll does not compile with the header's type
+src/game/main/func_020d69c0.c Screen_ResetWindows does not compile with the header's type
+src/game/main/func_020d69e4.c Screen_ResetWindows does not compile with the header's type
+src/game/main/func_020d7c08.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/func_020d8148.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/func_020e4e7c.c ScreenFlash_Start does not compile with the header's type
+src/game/main/func_020f1de8.c SpriteAnim_Draw does not compile with the header's type
+src/game/main/func_0210322c.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/func_02106a5c.c LinkList_Init does not compile with the header's type
+src/game/main/func_0211005c.c Sound_PendingCommandCount does not compile with the header's type
+src/game/main/func_0211e628.c Cartridge_SendWordUntilTaken does not compile with the header's type
+src/game/main/func_0211e628.c OS_Terminate does not compile with the header's type
+src/game/main/graphics/graphics_data_02169c4c.c SplashLetter_Init does not compile with the header's type
+src/game/main/graphics/graphics_data_02169c4c.c SplashLetter_Update does not compile with the header's type
+src/game/main/graphics/graphics_data_02169c4c.c Splash_FadeUpdate does not compile with the header's type
+src/game/main/graphics/graphics_data_02169c4c.c Splash_Init does not compile with the header's type
+src/game/main/graphics/graphics_data_02169c4c.c Splash_SpawnLettersUpdate does not compile with the header's type
+src/game/main/graphics/graphics_data_02169c4c.c Splash_WaitUpdate does not compile with the header's type
+src/game/main/graphics/graphics_data_02169c4c.c Splash_WhiteOutScreens does not compile with the header's type
+src/game/main/graphics/ov003_exit_task_run.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/graphics/ov003_start_exit_task.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/graphics/screens_black_out.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/graphics/wallpaper_destroy_tasks.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/graphics/wallpaper_load_both.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/graphics/wallpaper_load_selected.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/link/download_play_init_screen.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/link/link_menu_init_screen.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/link/link_menu_init_two_player_screen.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/link/wireless_on_channel_measured.c data_0229c8a0 does not compile with the header's type
+src/game/main/link/wireless_start_channel_survey.c data_0229c8a0 does not compile with the header's type
+src/game/main/link/wireless_start_mp.c WM_SetPortCallback does not compile with the header's type
+src/game/main/link/wireless_start_mp.c WM_StartMPEx does not compile with the header's type
+src/game/main/main_loop_ov003_vblank.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/map/battle_results_award_experience.c data_022a7a9c does not compile with the header's type
+src/game/main/map/campaign_add_co_scores.c data_022a7a9c does not compile with the header's type
+src/game/main/map/game_reset_settings.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/map/map_start_hint_script.c EventScript_Start does not compile with the header's type
+src/game/main/map/map_start_terms_script.c EventScript_Start does not compile with the header's type
+src/game/main/map/player_set_co.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/map/tile_effect_task_update.c SpriteAnim_Draw does not compile with the header's type
+src/game/main/map/tile_effect_task_update.c SpriteAnim_Draw3d does not compile with the header's type
+src/game/main/map/tile_strike_task_update_fall2d.c ScreenShake_Start does not compile with the header's type
+src/game/main/map/tile_strike_task_update_fall3d.c ScreenShake_Start does not compile with the header's type
+src/game/main/map/tile_strike_task_update_fall3d.c SpriteAnim_Draw3d does not compile with the header's type
+src/game/main/map/tile_strike_task_update_impact2d.c SpriteAnim_Draw does not compile with the header's type
+src/game/main/map/tile_strike_task_update_impact3d.c SpriteAnim_Draw3d does not compile with the header's type
+src/game/main/menus/both_screens_fade_to_white_update.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/campaign_map_start_mission_script.c EventScript_Start does not compile with the header's type
+src/game/main/menus/campaign_map_update_crossing_sprites.c SpriteAnim_Draw does not compile with the header's type
+src/game/main/menus/co_select_screen_init.c MenuButton_Select does not compile with the header's type
+src/game/main/menus/co_select_screen_init.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/combat_mode_menu_init.c MenuButton_Select does not compile with the header's type
+src/game/main/menus/combat_result_draw.c strlen does not compile with the header's type
+src/game/main/menus/combat_result_fade_in.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/combat_result_init.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/combat_setup_animate_palette.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/design_room_enter.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/force_rank_screen_init.c MenuButton_Select does not compile with the header's type
+src/game/main/menus/force_rank_screen_init.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/history_screen_init.c MenuButton_Select does not compile with the header's type
+src/game/main/menus/history_screen_init.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/main_menu_prepare.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/map_select_init.c MenuButton_Select does not compile with the header's type
+src/game/main/menus/menu_cycle_ai_behaviour.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/name_entry_start_script.c EventScript_Start does not compile with the header's type
+src/game/main/menus/page_strip_task_draw.c HwMod32 needed to match: the caller's code differs with the header's type
+src/game/main/menus/survival_continue.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/survival_enter_game_mode.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/survival_mode_menu_init.c MenuButton_Select does not compile with the header's type
+src/game/main/menus/survival_mode_menu_init.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/survival_progress_init.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/survival_resume_run.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/survival_save_record.c data_022a7a9c does not compile with the header's type
+src/game/main/menus/survival_select_create.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/survival_select_draw.c HwMod32 needed to match: the caller's code differs with the header's type
+src/game/main/menus/survival_select_init.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/survival_select_move_cursor.c MenuButton_Select does not compile with the header's type
+src/game/main/menus/survival_start_days_mode.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/survival_start_funds_mode.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/survival_start_time_mode.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/text_get_centered_x.c strlen does not compile with the header's type
+src/game/main/menus/versus_start.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/vs_setup_init.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/vs_setup_reopen_settings_menu.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/vs_setup_show_main_screen.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/vs_setup_show_team_screen.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/win_lose_screen_blend_in.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/win_lose_screen_fade_in_from_white.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/win_lose_screen_fade_out_layer2.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/menus/win_lose_screen_init.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/missile_strike_explode.c ScreenFlash_Start does not compile with the header's type
+src/game/main/missile_strike_explode.c ScreenShake_Start does not compile with the header's type
+src/game/main/result_screen_close_to_white.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/result_screen_init.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/result_stats_blend_in_step.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/result_stats_fade_in_step.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/result_stats_init.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/result_stats_init.c data_022a7a9c does not compile with the header's type
+src/game/main/result_stats_slide_in.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/screen/screen_darken_in_start.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/screen/screen_darken_in_update.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/screen/screen_darken_out_start.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/screen/screen_darken_out_update.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/screen/screen_reset_and_show_message.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/screen/screen_set_current_both.c Screen_SetCurrentGfx does not compile with the header's type
+src/game/main/screen/screen_set_current_both.c Screen_SetCurrent does not compile with the header's type
+src/game/main/screen/screen_transition_is_running.c ScreenFlash_End does not compile with the header's type
+src/game/main/screen/screen_transition_is_running.c ScreenFlash_Init does not compile with the header's type
+src/game/main/screen/screen_transition_is_running.c ScreenFlash_UpdateFadeIn does not compile with the header's type
+src/game/main/screen/screen_transition_is_running.c ScreenFlash_UpdateFadeOut does not compile with the header's type
+src/game/main/screen/screen_transition_is_running.c ScreenFlash_UpdateHold does not compile with the header's type
+src/game/main/screen/screen_transition_is_running.c ScreenShake_Init does not compile with the header's type
+src/game/main/screen/screen_transition_is_running.c ScreenShake_Update does not compile with the header's type
+src/game/main/screen/screen_wipe_ease_down_update.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/screen/screen_wipe_shrink_corners_update.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/screen/screens_fade_both_in_from_white_update.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/screen/screens_fade_both_to_white_update.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/screen/screens_hide_with_windows.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/screen/screens_init_contexts.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/screen/screens_setup_layer0_alpha_blend.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/screen/screens_zoom_fade_update.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/screen/screens_zoom_in_fade_update.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/screen/splash_fade_update.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/screen/splash_white_out_screens.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/screen/tag_power_screen_set_up.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/screen/title_call_scroll_walls.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/main/screen/title_text_task_animate_in.c strlen does not compile with the header's type
+src/game/main/script/func_02016e1c.c EventScript_Start does not compile with the header's type
+src/game/main/sound/nns_snd_main.c SND_RecvCommandReply does not compile with the header's type
+src/game/main/sound/sound_heap_add_level.c FrameHeap_Alloc does not compile with the header's type
+src/game/main/sound/sound_heap_alloc_item.c FrameHeap_Alloc does not compile with the header's type
+src/game/main/sound/sound_heap_create.c FrameHeap_Create does not compile with the header's type
+src/game/main/sound/sound_heap_reset.c FrameHeap_Free does not compile with the header's type
+src/game/main/touch_poll.c TP_WaitRawResult does not compile with the header's type
+src/game/main/touch_poll.c TP_GetCalibratedPoint does not compile with the header's type
+src/game/main/two_line_caption_animate_corners.c strlen does not compile with the header's type
+src/game/main/two_line_caption_draw.c strlen does not compile with the header's type
+src/game/main/two_line_caption_grow_in_letters.c strlen does not compile with the header's type
+src/game/main/two_line_caption_sweep_bars.c strlen does not compile with the header's type
+src/game/main/win_quote_init.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/ov000/task/unit_show_task_place_sprite.c SpriteAnim_Draw does not compile with the header's type
+src/game/ov000/task/unit_show_task_place_sprite.c SpriteAnim_Draw3d does not compile with the header's type
+src/game/ov001/func_ov001_02351d74.c ScreenShake_Start does not compile with the header's type
+src/game/ov001/func_ov001_02351d9c.c ScreenShake_Start does not compile with the header's type
+src/game/ov001/func_ov001_02351de8.c ScreenFlash_Start does not compile with the header's type
+src/game/ov001/func_ov001_02351e04.c ScreenFlash_Start does not compile with the header's type
+src/game/ov001/func_ov001_02351e20.c ScreenFlash_Start does not compile with the header's type
+src/game/ov002/battle_get_start_mood.c HwDiv32 needed to match: the caller's code differs with the header's type
+src/game/ov002/battle_make_fighters.c BattleCellTask_Create does not compile with the header's type
+src/game/ov002/battle_sprite_task_update.c HwDiv32 needed to match: the caller's code differs with the header's type
+src/game/ov002/func_ov002_0235643c.c BattleSpriteTask_CreateIfSet does not compile with the header's type
+src/game/ov002/func_ov002_02356604.c BattleSpriteTask_Create does not compile with the header's type
+src/game/ov003/ov003_clear_fade.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/ov003/ov003_damage_units_around.c Math_Distance needed to match: the caller's code differs with the header's type
+src/game/ov003/ov003_damage_units_near.c Math_Distance needed to match: the caller's code differs with the header's type
+src/game/ov003/ov003_fade_out_step.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/ov003/ov003_fade_with_text_step.c strlen needed to match: the caller's code differs with the header's type
+src/game/ov003/ov003_fill_screens_white_or_black.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/ov003/ov003_init.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/ov003/ov003_init_screens.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/ov003/ov003_init_screens.c data_0217ab08 does not compile with the header's type
+src/game/ov003/ov003_init_screens.c data_02180b08 does not compile with the header's type
+src/game/ov003/ov003_load_screen_graphics.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/ov003/ov003_object_impact.c Math_Distance needed to match: the caller's code differs with the header's type
+src/game/ov003/ov003_scroll_to_selected_unit.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/ov003/ov003_shake_text_step.c strlen needed to match: the caller's code differs with the header's type
+src/game/ov003/ov003_show_bouncing_message.c strlen does not compile with the header's type
+src/game/ov003/ov003_show_two_line_message.c strlen does not compile with the header's type
+src/game/ov003/ov003_show_warped_message.c strlen does not compile with the header's type
+src/game/ov003/ov003_show_warped_two_line_message.c strlen does not compile with the header's type
+src/game/ov003/ov003_unit_update_ai.c data_ov003_02364d8c does not compile with the header's type
+src/game/ov003/ov003_update.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/ov003/ov003_update_banner_text.c strlen does not compile with the header's type
+src/game/ov004/ov004_task_move_sprite_outward.c SpriteAnim_Draw does not compile with the header's type
+src/game/ov004/ov004_task_play_turning_quad_scene.c PaletteFade_StartFromBlack does not compile with the header's type
+src/game/ov004/ov004_task_play_turning_quad_scene2.c PaletteFade_StartFromBlack does not compile with the header's type
+src/game/ov004/ov004_task_run_banner_timeline.c PaletteFade_StartFromBlack does not compile with the header's type
+src/game/ov004/ov004_task_run_picture_quad_timeline.c PaletteFade_StartFromBlack does not compile with the header's type
+src/game/ov004/ov004_task_run_picture_quad_timeline.c PaletteFade_StartToBlack does not compile with the header's type
+src/game/ov004/ov004_task_run_picture_timeline.c PaletteFade_StartFromBlack does not compile with the header's type
+src/game/ov004/ov004_task_run_picture_timeline.c PaletteFade_StartLevels does not compile with the header's type
+src/game/ov004/ov004_task_run_picture_timeline.c PaletteFade_StartToBlack does not compile with the header's type
+src/game/ov005/func_ov005_02355f80.c EventScript_Start does not compile with the header's type
+src/game/ov005/func_ov005_02367ec0.c EventScript_Start does not compile with the header's type
+src/game/ov005/ov005_setup_darkened_screens_with_song.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/ov005/ov005_setup_screens_with_affine_bg.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/ov005/ov005_slide_start_all.c Ov005Slide_StartEntryA does not compile with the header's type
+src/game/ov005/ov005_slide_start_all.c Ov005Slide_StartEntryB does not compile with the header's type
+src/game/ov005/ov005_state_show_layer2_both_screens.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/ov005/ov005_state_show_layer2_picture.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/ov005/ov005_state_show_layer2_picture_a.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/ov005/ov005_state_show_total_rank_wall.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/ov005/ov005_update_affine_bg_screen.c SpriteAnim_Draw does not compile with the header's type
+src/game/ov005/ov005_update_blend_event_script_screen.c EventScript_Start does not compile with the header's type
+src/game/ov005/ov005_update_blend_event_script_screen_b.c EventScript_Start does not compile with the header's type
+src/game/ov005/ov005_update_co_list_screen.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/ov005/ov005_update_co_screen.c SpriteAnim_Draw does not compile with the header's type
+src/game/ov005/ov005_update_event_script_screen.c EventScript_Start does not compile with the header's type
+src/game/ov005/ov005_update_event_script_screen_end_song.c EventScript_Start does not compile with the header's type
+src/game/ov005/ov005_update_event_script_song_screen.c Sound_StartSongSwitchTask does not compile with the header's type
+src/game/ov005/ov005_update_event_script_song_screen.c EventScript_Start does not compile with the header's type
+src/game/ov005/ov005_update_scrolling_event_script_screen.c EventScript_Start does not compile with the header's type
+src/game/ov005/ov005_update_song_event_script_screen.c EventScript_Start does not compile with the header's type
+src/game/ov005/sound_room/ov005_sound_room_move_cursor_on_keys.c MenuButton_Select does not compile with the header's type
+src/game/ov006/ov006_set_up_screens.c Screen_SetCurrentBoth does not compile with the header's type
+src/game/ov006/ov006_start_script_after_delay.c EventScript_Start does not compile with the header's type
+src/sdk/card/cardi_init_common.c PXI_SetFifoRecvCallback does not compile with the header's type
+src/sdk/os/os_irq_handler_thread_switch.c CP_SaveContext does not compile with the header's type
+src/sdk/os/os_irq_handler_thread_switch.c CPi_RestoreContext does not compile with the header's type
+src/sdk/os/os_load_context.c CPi_RestoreContext does not compile with the header's type
+src/sdk/os/os_save_context.c CP_SaveContext does not compile with the header's type
+src/sdk/os/os_try_lock_by_word.c OSi_DoTryLockByWord does not compile with the header's type
+src/sdk/os/os_unlock_by_word.c OSi_DoUnlockByWord does not compile with the header's type
+src/sdk/os/osi_do_lock_by_word.c OSi_DoTryLockByWord does not compile with the header's type
+src/sdk/snd/sound_wait_for_arm7_listener.c PXI_SetFifoRecvCallback does not compile with the header's type
+src/sdk/wm/wm_finish.c PXI_SetFifoRecvCallback does not compile with the header's type
+src/game/itcm/main_loop/terminate.c OS_Terminate including include/sdk/os.h would clash with this file's defines macro REG_EXMEMCNT otherwise
+src/game/itcm/main_loop/terminate.c Reset_StopAndRequestArm7 including include/sdk/os.h would clash with this file's defines macro REG_EXMEMCNT otherwise
+src/game/main/co_rank_screen_init.c Screen_SetLayerScreenSize including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/copowers/tag_break_set_up_screens.c Screen_InitLayers including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/copowers/tag_break_set_up_screens.c Screen_SetBgMode including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/data_0215bb60.c Screens_SetupLayer0AlphaBlend including include/game/screen.h would clash with this file's TitleCall_HoldNumber
+src/game/main/data_0215bb60.c Screens_ZoomInFadeUpdate including include/game/screen.h would clash with this file's TitleCall_HoldNumber
+src/game/main/data_0215bb60.c TitleCall_HoldSubLetters including include/game/screen.h would clash with this file's TitleCall_HoldNumber
+src/game/main/data_0215bb60.c TitleCall_NumberSlideIn including include/game/screen.h would clash with this file's TitleCall_HoldNumber
+src/game/main/data_0215bb60.c TitleCall_ScrollWalls including include/game/screen.h would clash with this file's TitleCall_HoldNumber
+src/game/main/data_0215bb60.c TitleCall_SpriteZoomIn including include/game/screen.h would clash with this file's TitleCall_HoldNumber
+src/game/main/data_0215bb60.c TitleCall_StartSong including include/game/screen.h would clash with this file's TitleCall_HoldNumber
+src/game/main/data_0215bb60.c TitleCall_SubLettersGrowIn including include/game/screen.h would clash with this file's TitleCall_HoldNumber
+src/game/main/func_0207d934.c Screen_ApplyAll including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/func_0207dcfc.c data_0229fb30 including include/game/Unk_0229fb30.h would clash with this file's defines type Unk_0229fb30
+src/game/main/func_020d69c0.c Screen_ResetBlend including include/game/screen.h would clash with this file's Screen_ResetWindows
+src/game/main/func_020d69e4.c Screen_ResetBlend including include/game/screen.h would clash with this file's Screen_ResetWindows
+src/game/main/func_020d7c08.c Screen_ResetWindows including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/func_020d8148.c Screen_ResetWindows including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/func_0211005c.c Sound_FreeCommandCount including include/sdk/snd.h would clash with this file's Sound_PendingCommandCount
+src/game/main/graphics/graphics_data_02169c4c.c Screen_HideAllLayers including include/game/screen.h would clash with this file's SplashLetter_Init
+src/game/main/graphics/graphics_data_02169c4c.c Splash_DestroyTasks including include/game/screen.h would clash with this file's SplashLetter_Init
+src/game/main/graphics/ov003_exit_task_run.c Screen_SetBothNibbles including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/graphics/ov003_exit_task_run.c Screens_HideWithWindows including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/main_loop_ov003_vblank.c Screen_ApplyAll including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/menus/co_select_screen_init.c MenuButtons_DisableTouch including include/game/menu_button.h would clash with this file's MenuButton_Select
+src/game/main/menus/co_select_screen_init.c MenuCursor_SetRect including include/game/menu_button.h would clash with this file's MenuButton_Select
+src/game/main/menus/co_select_screen_init.c Menu_Reset including include/game/menu_button.h would clash with this file's MenuButton_Select
+src/game/main/menus/combat_mode_menu_init.c MenuCursor_SetRect including include/game/menu_button.h would clash with this file's MenuButton_Select
+src/game/main/menus/combat_mode_menu_init.c Menu_Reset including include/game/menu_button.h would clash with this file's MenuButton_Select
+src/game/main/menus/force_rank_screen_init.c MenuCursor_SetRect including include/game/menu_button.h would clash with this file's MenuButton_Select
+src/game/main/menus/force_rank_screen_init.c Menu_Reset including include/game/menu_button.h would clash with this file's MenuButton_Select
+src/game/main/menus/history_screen_init.c MenuButtons_DisableTouch including include/game/menu_button.h would clash with this file's MenuButton_Select
+src/game/main/menus/history_screen_init.c MenuCursor_SetRect including include/game/menu_button.h would clash with this file's MenuButton_Select
+src/game/main/menus/history_screen_init.c Menu_Reset including include/game/menu_button.h would clash with this file's MenuButton_Select
+src/game/main/menus/history_screen_init.c Screen_SetLayerCharBase including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/menus/map_select_draw_sub_strip.c MapSelect_GetTab including include/game/map_select.h would clash with this file's defines macro LIST otherwise
+src/game/main/menus/map_select_draw_sub_strip.c data_0229c768 including include/game/map_select.h would clash with this file's defines macro LIST otherwise
+src/game/main/menus/map_select_init.c MenuButtons_DisableTouch including include/game/menu_button.h would clash with this file's MenuButton_Select
+src/game/main/menus/map_select_init.c MenuCursor_SetRect including include/game/menu_button.h would clash with this file's MenuButton_Select
+src/game/main/menus/map_select_init.c Menu_Reset including include/game/menu_button.h would clash with this file's MenuButton_Select
+src/game/main/menus/survival_mode_menu_init.c MenuButtons_DisableTouch including include/game/menu_button.h would clash with this file's MenuButton_Select
+src/game/main/menus/survival_mode_menu_init.c MenuCursor_SetRect including include/game/menu_button.h would clash with this file's MenuButton_Select
+src/game/main/menus/survival_mode_menu_init.c Menu_Reset including include/game/menu_button.h would clash with this file's MenuButton_Select
+src/game/main/result_screen_init.c Screen_InitLayers including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/result_screen_init.c Screen_SetBgMode including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/result_screen_init.c Screens_SetBg3Zoom including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/result_stats_init.c Screen_SetLayerScreenSize including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/screen/screen_reset_and_show_message.c Screen_ApplyAll including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/screen/screen_transition_is_running.c BlendFadeFromBlack_Start including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c BlendFadeFromBlack_Update including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c BlendFadeToBlack_Start including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c BlendFadeToBlack_Update including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c ScreenBlendDarken_Start including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c ScreenBlendDarken_Update including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c ScreenBlendLighten_Start including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c ScreenBlendLighten_Update including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c ScreenFadeFromWhiteSpeed_Start including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c ScreenFadeFromWhiteSpeed_Update including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c ScreenFadeToWhiteSpeed_Start including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c ScreenFadeToWhiteSpeed_Update including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c ScreenShake_End including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c ScreenWipe_EaseDownUpdate including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c ScreenWipe_EaseUpUpdate including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c ScreenWipe_GrowCornersStart including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c ScreenWipe_GrowCornersStartCurrent including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c ScreenWipe_GrowCornersUpdate including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c ScreenWipe_ShrinkCornersStart including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c ScreenWipe_ShrinkCornersStartCurrent including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c ScreenWipe_ShrinkCornersUpdate including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c WindowWipe_StartHide including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c WindowWipe_StartHideCurrent including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c WindowWipe_StartShow including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_transition_is_running.c WindowWipe_StartShowCurrent including include/game/screen.h would clash with this file's ScreenFlash_End
+src/game/main/screen/screen_wipe_ease_down_update.c ScreenWipe_EaseDownSetWindow1Rows including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/screen/screen_wipe_shrink_corners_update.c ScreenWipe_SetTopRightBottomLeftWindows including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/screen/screens_init_contexts.c Screen_InitLayers including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/screen/screens_init_contexts.c Screen_SetBgMode including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/screen/screens_zoom_fade_update.c Screens_SetBg3Zoom including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/screen/screens_zoom_in_fade_update.c TitleCall_SetBg3Zoom including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/screen/splash_fade_update.c Screen_SetBothNibbles including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/screen/tag_power_screen_set_up.c Screen_InitLayers including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/screen/tag_power_screen_set_up.c Screen_SetBgMode including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/main/touch_poll.c TP_RequestSamplingAsync including include/sdk/tp.h would clash with this file's TP_WaitRawResult
+src/game/ov001/func_ov001_02351d74.c ScreenShake_Stop including include/game/screen.h would clash with this file's ScreenShake_Start
+src/game/ov003/ov003_init_screens.c Screen_InitLayers including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/ov003/ov003_init_screens.c Screen_SetBg0Mode including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/ov003/ov003_init_screens.c Screen_SetBgMode including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/ov004/ov004_task_run_picture_timeline.c Palette_Darken including include/game/palette_fade.h would clash with this file's PaletteFade_StartFromBlack
+src/game/ov005/ov005_setup_darkened_screens_with_song.c Screen_InitLayers including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/ov005/ov005_setup_darkened_screens_with_song.c Screen_SetBgMode including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/ov005/ov005_setup_screens_with_affine_bg.c Screen_InitLayers including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/ov005/ov005_setup_screens_with_affine_bg.c Screen_SetBgMode including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/ov005/ov005_state_show_layer2_both_screens.c Screen_IsAffineBg including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/ov005/ov005_state_show_layer2_picture.c Screen_IsAffineBg including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/ov005/ov005_state_show_layer2_picture_a.c Screen_IsAffineBg including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/ov005/ov005_state_show_total_rank_wall.c Screen_IsAffineBg including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/ov005/ov005_update_co_list_screen.c Screens_IsTransitionRunning including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/ov006/ov006_set_up_screens.c Screen_InitLayers including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/game/ov006/ov006_set_up_screens.c Screen_SetBgMode including include/game/screen.h would clash with this file's Screen_SetCurrentBoth
+src/sdk/mi/mi_dma_copy32_async.c MI_WaitDma differs from include/sdk/gx_load.h; its callers not tried yet
+src/sdk/snd/sound_wait_for_arm7_listener.c PXI_IsCallbackReady including include/sdk/pxi.h would clash with this file's PXI_SetFifoRecvCallback
+src/game/main/ai/func_02098e7c.c AiTurn_IsPhase3 needed to match: the call passes mode, which the definition ignores
+src/game/main/ai/ai_unit_claims.c AiActingUnit_GetSearchMovement needed to match: the caller's code differs with the header's type
+src/game/main/ai/ai_unit_claims.c AiUnit_GetSearchMovement needed to match: the caller's code differs with the header's type
+src/game/main/ai/ai_foot.c Unit_CapturePoints needed to match: the caller's code differs with the header's type
+src/game/main/ai/ai_unit_act.c Unit_CapturePoints needed to match: the caller's code differs with the header's type

@@ -3,7 +3,6 @@
 #include "game/menu_state.h"
 #include "game/Unk_0229fb30.h"
 
-extern MenuState gMenuState;
 extern const MenuButtonTemplate data_02160c28;
 extern const MenuButtonTemplate data_02160c78;
 

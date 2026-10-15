@@ -7,14 +7,9 @@
 #include "game/unit_stats.h"
 #include "game/vision.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int abs(int value);
 BOOL Unit_IsVisibleToActivePlayers(MapUnit* unit, s16 x, s16 y);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define MAP (STATE->mapTiles)
 #define ABS(n) ((n) < 0 ? -(n) : (n))
 
 /* Adds delta to each tile of grid within range steps of (x, y). Woods and
@@ -32,27 +27,28 @@ void VisionGrid_AddArea(s16 x, s16 y, s16 range, s8* grid, s8 delta,
   int unitClass;
 
   if (range == 0) {
-    grid[x + MAP->rowStart[y]] += delta;
+    grid[x + MAP_TILES->rowStart[y]] += delta;
     return;
   }
   for (ty = y - range, dy = -range; ty <= y + range; ty++, dy++) {
-    if (ty < 0 || ty >= STATE->unk_1c4->mapHeight) {
+    if (ty < 0 || ty >= MAP_STATE->unk_1c4->mapHeight) {
       continue;
     }
     for (tx = x - range + abs(dy); tx <= x + range - abs(dy); tx++) {
-      if (tx < 0 || tx >= STATE->unk_1c4->mapWidth) {
+      if (tx < 0 || tx >= MAP_STATE->unk_1c4->mapWidth) {
         continue;
       }
-      if (!CheckSkillsEquipped(STATE->players[player].skills[0],
+      if (!CheckSkillsEquipped(MAP_STATE->players[player].skills[0],
                                SKILL_PIERCING_VISION) &&
           ABS(tx - x) + ABS(ty - y) > 1) {
-        terrain = MAP_TILE_TERRAIN(MAP->tiles[tx + MAP->rowStart[ty]]);
+        terrain =
+            MAP_TILE_TERRAIN(MAP_TILES->tiles[tx + MAP_TILES->rowStart[ty]]);
         if (terrain == TERRAIN_WOOD || terrain == TERRAIN_REEF) {
-          slot = MAP->unk_508[tx + MAP->rowStart[ty]];
+          slot = MAP_TILES->unk_508[tx + MAP_TILES->rowStart[ty]];
           if (slot == 0) {
             continue;
           }
-          unit = &STATE->units[slot];
+          unit = &MAP_STATE->units[slot];
           unitClass = Ov000_gUnitStats[unit->type].unitClass;
           if (unitClass != UNIT_CLASS_PLANE && unitClass != UNIT_CLASS_COPTER) {
             continue;
@@ -64,7 +60,7 @@ void VisionGrid_AddArea(s16 x, s16 y, s16 range, s8* grid, s8 delta,
         }
       }
       /* needed to match: the cast puts the tile value first in the add */
-      grid[tx + MAP->rowStart[ty]] += (int)delta;
+      grid[tx + MAP_TILES->rowStart[ty]] += (int)delta;
     }
   }
 }

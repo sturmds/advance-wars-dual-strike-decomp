@@ -6,12 +6,7 @@
 #include "game/Unk_02080440.h"
 #include "game/vision.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int Player_GetUnitVision(int playerIndex, int unitType);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Adds delta to the vision grid count of each tile the unit sees, in the grids
  * its owner's Player.visionGrids bits pick. Infantry and Mech on a mountain see 3
@@ -30,12 +25,12 @@ void Unit_AddVision(MapUnit* unit, s8 delta) {
   }
   if (unit->type <= UNIT_MECH &&
       MAP_TILE_TERRAIN(
-          STATE->mapTiles
-              ->tiles[unit->x + STATE->mapTiles->rowStart[unit->y]]) ==
+          MAP_STATE->mapTiles
+              ->tiles[unit->x + MAP_STATE->mapTiles->rowStart[unit->y]]) ==
           TERRAIN_MOUNTAIN) {
     mountainBonus = 3;
   }
-  state = STATE;
+  state = MAP_STATE;
   /* needed to match: players is indexed from slot 1 by the 0-based group */
   slotGroup = (unit - state->units) >> 6;
   owner = slotGroup + 1;

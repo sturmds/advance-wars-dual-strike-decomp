@@ -2,15 +2,10 @@
 #include "game/Unk_02088d04.h"
 #include "game/menu_state.h"
 #include "game/ov003_unit.h"
-
-extern MenuState gMenuState;
+#include "sdk/gx_load.h"
 
 void Data_Unpack(const void* src, void* dst);
 void Mem_Copy32(const void* src, void* dst, u32 size);
-void GX_BeginLoadTex(void);
-void GX_EndLoadTex(void);
-void GX_BeginLoadTexPltt(void);
-void GX_EndLoadTexPltt(void);
 
 /* VRAM banks A and F while they are mapped to the CPU. */
 #define VRAM_LCDC_A(offset) ((void*)(0x06800000 + (offset)))

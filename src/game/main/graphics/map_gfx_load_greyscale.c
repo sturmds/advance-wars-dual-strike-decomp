@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/Unk_022a7c5c.h"
 #include "sdk/os.h"
+#include "sdk/gx_load.h"
 
 /* Colours of the texture palette made grey, and of the second, shorter
  * load of the same file. */
@@ -14,9 +15,6 @@ void MapGfx_LoadTextures(int variant,
 u16 Rgb_ToGrey(u16 red, u16 green, u16 blue);
 u16* File_Load(const char* path);
 void Mem_Free(void* block);
-void GX_BeginLoadTexPltt(void);
-void GX_LoadTexPltt(const void* src, u32 offset, u32 size);
-void GX_EndLoadTexPltt(void);
 void WeatherFx_InitClouds(void);
 
 /* Loads the map graphics like MapGfx_Load, but turns the map palette

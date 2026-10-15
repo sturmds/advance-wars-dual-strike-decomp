@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Ov003Fx.h"
+#include "game/math.h"
 
-s32 HwMod32(s32 numerator, s32 denominator);
 s32 MainLoop_GetFrameCount(void);
 
 #define ANIM data_ov003_02364a84

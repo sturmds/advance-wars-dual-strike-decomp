@@ -5,6 +5,9 @@
 #include "game/icon.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bbb0.h"
+#include "game/screen_other_map.h"
+#include "sdk/fs.h"
+#include "game/palette_fade.h"
 
 void func_02028a30(void);
 void Wallpaper_LoadSelected(void);
@@ -12,8 +15,6 @@ void IconBanks_ClearSlots(void);
 void TpIcon_Load(void);
 void TpIcon2_LoadTo(u8* dest);
 void TpIcon3_LoadTo(u8* dest);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void ModeFont_Load(int x, int y);
 const void* Text_Get(u32 textId);
 void ModeFont_ShowTextOnScreen(const char* text, int tile, int paletteSlot,
@@ -21,21 +22,16 @@ void ModeFont_ShowTextOnScreen(const char* text, int tile, int paletteSlot,
 void Co_LoadGraphics(int coId, int firstTile);
 void Co_LoadPalette(int coId, int paletteSlot);
 void Gfx_LoadBmap09f(void* target, int a, int b);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Gfx_RequestLayerCopy(int layer);
 void Font_LoadDigits(int baseTile);
 void Mem_Copy32(const void* src, void* dst, u32 size);
-void Palette_Lighten(u8* palette, int a, int b, int c);
 void Palette_Flush(void);
 void Ov005_LoadShopItems(Unk_ov005_0236bbb0* work);
 void Ov005_InitShopPaging(Unk_ov005_0236bbb0* work);
 struct Task* Sound_StartSongSwitch(
     int song, int arg); /* task: fade out the song, then start `song` */
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern char data_ov005_0236b4e0[]; /* "/rikiishi" */
 extern char data_ov005_0236b4ec[]; /* "044" */
 

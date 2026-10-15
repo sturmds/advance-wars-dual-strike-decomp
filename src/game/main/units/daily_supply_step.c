@@ -4,8 +4,6 @@
 #include "game/script_slot.h"
 #include "game/unit_stats.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern const ScriptCommand data_021666e8[];
 
 s8 ScriptSlot_Find(const ScriptCommand* script);
@@ -15,7 +13,6 @@ BOOL Unit_HasAdjacentSupplier(MapUnit* unit);
 int Unit_ResupplyCargo(MapUnit* transport);
 int Unit_ResupplyUnpaid(MapUnit* unit);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define CURRENT_SLOT \
   (data_027c027c->scriptSlots[*data_027c027c->scriptSlotCurrent])
 #define UNIT_SLOTS_SCANNED 51
@@ -34,7 +31,7 @@ void DailySupply_Step(void) {
     return;
   }
   for (i = CURRENT_SLOT.unk_38; i < UNIT_SLOTS_SCANNED; i++) {
-    unit = &STATE->units[i + STATE->currentUnitBase];
+    unit = &MAP_STATE->units[i + MAP_STATE->currentUnitBase];
     if (unit->type == 0) {
       continue;
     }

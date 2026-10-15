@@ -8,8 +8,6 @@ void Co_QueuePictureSpriteAtTile(int x, int y, int attr, int tile, int list);
 void CombatSetup_DrawRowPlayerIcons(int x, int y);
 void LinkMenu_DrawSetting(int x, int y, int entry, int affine);
 
-extern MenuState gMenuState;
-
 /* Queues the sprites of the Combat setup row screen (link play). Main screen:
  * one picture per row with memberCount set, on a diagonal from (32, 144) stepping
  * 64 right and 16 up, palette row + 2. Sub screen: the players on each row

@@ -3,15 +3,13 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_022a7a9c.h"
 #include "game/co_data.h"
+#include "game/math.h"
 
-s32 HwMod32(s32 numerator, s32 denominator);
 u32 Rng_Next(void);
 TextPrinter* Text_PrintByIdOnLayer0(int x, int y, u16* map, u32 textId,
                                     u16 unk_30, u16 unk_38);
 u32 Co_GetPairWinQuote(int coId, int partnerId, int speaker, int pick);
 u32 Co_PickWinQuote(int coId);
-
-extern Unk_027c0280* data_027c0280;
 
 /* Prints the win quote of result record `record`. A tag pair gets two
  * lines, one per CO, both from the same random pick of two; a single CO

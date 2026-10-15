@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 /* Id of the previous CO button before id (see PlayerInfo_AddCoButtons),
  * skipping COs without one and wrapping from the first to the last. */
 int PlayerInfo_PrevCoButton(int id) {

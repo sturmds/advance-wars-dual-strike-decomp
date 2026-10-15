@@ -2,9 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/map_object.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Writes a new object over the list terminator (the first entry with kind 0) and returns it. */
 MapObject* MapObject_Append(int x, int y, int width, int height, int kind,
                             int hp) {

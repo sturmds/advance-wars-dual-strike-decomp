@@ -2,6 +2,7 @@
 #include "game/menu_state.h"
 #include "game/task.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen.h"
 
 u8* File_Load(const char* path);
 void Mem_Free(void* res);
@@ -9,9 +10,7 @@ void Data_Unpack(const void* src, void* dest);
 void Mem_Copy32(const void* src, void* dest, u32 size);
 void Palette_Load(const void* src, u32 offset, u32 size);
 void Gfx_RequestLayerCopy(int layer);
-Task* EaseTask_Start(int from, int to, int frames, Task* parent);
 
-extern Unk_027c0280* data_027c0280;
 extern char gTagBreakThunderPath[]; /* "/ohashi/res_tagbreak_thunder" */
 
 #define LAYER_TILES(layerBg) \

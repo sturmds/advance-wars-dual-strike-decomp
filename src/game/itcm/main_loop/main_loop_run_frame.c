@@ -2,10 +2,9 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/main_loop.h"
+#include "game/screen_other_map.h"
+#include "sdk/svc.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern MainLoop gMainLoop;
 
 int func_01ff9f0c(void);
@@ -19,8 +18,6 @@ void Touch_Poll(void);
 void Keypad_Poll(void);
 void Link_HandlePackets(void);
 void Sound_Update(void);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void OamBuffer_ClearTail(void);
 void PlayRecords_CountFrame(void);
 void Link_FlushSendQueue(void);
@@ -28,7 +25,6 @@ void MenuButtons_Update(void);
 void SpriteList_Draw(int list);
 void Sprites_ResetLists(void);
 void* MainLoop_CountFrame(void);
-void SVC_WaitVBlankIntr(void);
 
 /* Runs `body` with `screen` as the current screen, then restores the
  * previous one. */

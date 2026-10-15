@@ -1,11 +1,11 @@
 #include "types.h"
 #include "game/script_slot.h"
 #include "game/task.h"
+#include "game/screen.h"
 
 extern ScriptCommand data_ov000_0234f30c[];
 extern TaskScriptCmd data_ov000_0234f33c[];
 
-int SceneMode_IsCurrent(int a0);
 s8 ScriptSlot_Find(const ScriptCommand* script);
 
 /* Makes the panel's task, but only when the panel's script is running. */

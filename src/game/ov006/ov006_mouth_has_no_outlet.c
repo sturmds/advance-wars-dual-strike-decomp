@@ -5,12 +5,9 @@ BOOL Ov006_IsLandNeighbor(
     int x,
     int y); /* guess: TRUE on water a river can run into (sea, shoal, reef, river mouth) */
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 #define CELL_AT(x, y) \
-  (STATE->mapTiles->mapCells[(x) + STATE->mapTiles->rowStart[y]])
+  (MAP_STATE->mapTiles->mapCells[(x) + MAP_STATE->mapTiles->rowStart[y]])
 
 /* River mouth cell codes; each names the side of the river it sits on. */
 #define CELL_MOUTH_UP 0xfc
@@ -37,7 +34,7 @@ BOOL Ov006_MouthHasNoOutlet(int x, int y) {
             found++;
           }
         }
-        if (found == 0 && x < STATE->unk_1c4->mapWidth - 1) {
+        if (found == 0 && x < MAP_STATE->unk_1c4->mapWidth - 1) {
           if (Ov006_IsLandNeighbor(x + 1, y - 1)) {
             found++;
           } else if (Ov006_IsLandNeighbor(x + 1, y)) {
@@ -47,7 +44,7 @@ BOOL Ov006_MouthHasNoOutlet(int x, int y) {
       }
       break;
     case CELL_MOUTH_RIGHT:
-      if (x < STATE->unk_1c4->mapWidth - 1) {
+      if (x < MAP_STATE->unk_1c4->mapWidth - 1) {
         if (Ov006_IsLandNeighbor(x + 1, y)) {
           found++;
         }
@@ -58,7 +55,7 @@ BOOL Ov006_MouthHasNoOutlet(int x, int y) {
             found++;
           }
         }
-        if (found == 0 && y < STATE->unk_1c4->mapHeight - 1) {
+        if (found == 0 && y < MAP_STATE->unk_1c4->mapHeight - 1) {
           if (Ov006_IsLandNeighbor(x + 1, y + 1)) {
             found++;
           } else if (Ov006_IsLandNeighbor(x, y + 1)) {
@@ -68,7 +65,7 @@ BOOL Ov006_MouthHasNoOutlet(int x, int y) {
       }
       break;
     case CELL_MOUTH_DOWN:
-      if (y < STATE->unk_1c4->mapHeight - 1) {
+      if (y < MAP_STATE->unk_1c4->mapHeight - 1) {
         if (Ov006_IsLandNeighbor(x, y + 1)) {
           found++;
         }
@@ -79,7 +76,7 @@ BOOL Ov006_MouthHasNoOutlet(int x, int y) {
             found++;
           }
         }
-        if (found == 0 && x < STATE->unk_1c4->mapWidth - 1) {
+        if (found == 0 && x < MAP_STATE->unk_1c4->mapWidth - 1) {
           if (Ov006_IsLandNeighbor(x + 1, y + 1)) {
             found++;
           } else if (Ov006_IsLandNeighbor(x + 1, y)) {
@@ -100,7 +97,7 @@ BOOL Ov006_MouthHasNoOutlet(int x, int y) {
             found++;
           }
         }
-        if (found == 0 && y < STATE->unk_1c4->mapHeight - 1) {
+        if (found == 0 && y < MAP_STATE->unk_1c4->mapHeight - 1) {
           if (Ov006_IsLandNeighbor(x - 1, y + 1)) {
             found++;
           } else if (Ov006_IsLandNeighbor(x, y + 1)) {

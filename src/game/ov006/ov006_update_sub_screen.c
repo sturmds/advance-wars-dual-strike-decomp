@@ -2,12 +2,11 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov006_0235f690.h"
+#include "game/screen_other_map.h"
+#include "sdk/fx.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Ov006_QueueScreen1Sprites(void);
 int Ov006_IsMapPlayable(void);
-fx32 FX_Div(fx32 numer, fx32 denom);
 BOOL SpriteFile_Queue(void* sprites, int frame, int a, int x, int y, int attr,
                       int b, int c);
 void Oam_PutSmallNumber(u16 x, u16 y, int value);
@@ -15,11 +14,6 @@ void Screen_SetLayer3Scroll(int x, int y);
 void Screen_SetLayer0Scroll(int x, int y);
 void DesignMap_DrawTemplatePreview(int a, int b, int c, int d);
 void Ov006_DrawPropertyCounts(void);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 
 #define OV6 data_ov006_0236d640
 

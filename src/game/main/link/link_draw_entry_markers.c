@@ -4,28 +4,18 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_0229fb30.h"
 #include "game/oam_cells.h"
+#include "game/oam_buffer.h"
+#include "game/screen_other_map.h"
+#include "game/math.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Palette_Load(const void* src, u32 offset, u32 size);
 int MainLoop_GetFrameCount(void);
-s32 HwDiv32(s32 numer, s32 denom);
-s32 HwMod32(s32 numer, s32 denom);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 void Sprite_QueuePicture192x160(s16 x, int y, int attr, int tile, int list);
-int Math_SinDegrees(int degrees);
 u16 Wireless_GetChildAids(void);
 int func_0207a260(void);
 int func_0207a324(void);
 BOOL LinkMenu_PlayerHasMap(int index);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
-extern const s16 gSineTable
-    []; /* needed to match: const lets the compiler move the loads out of the loop */
 
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 

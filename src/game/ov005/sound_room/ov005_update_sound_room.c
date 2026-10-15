@@ -4,12 +4,12 @@
 #include "game/screen_other_map.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bbac.h"
+#include "game/screen.h"
 
 void Sound_PlaySe(u32 soundId);
 void MenuButtons_RemoveUnselectable(void);
 void Wallpaper_DestroyTasks(void);
 void Task_ResumeScript(Ov005Task* task);
-BOOL Screens_IsTransitionRunning(void);
 void func_020048f4(u16 frames);
 void func_0200493c(u16 frames);
 void Screen1_DestroyTextTasks(void);

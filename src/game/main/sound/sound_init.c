@@ -4,7 +4,6 @@
 #include "game/sound_heap.h"
 
 extern void* data_0218feb0;
-extern u8 data_0218ff58[];
 extern SoundArc gSoundArc;
 static char gSoundArcPath[] = {
 #include "data/main/gSoundArcPath.inc.c"

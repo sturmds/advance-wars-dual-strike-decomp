@@ -3,14 +3,10 @@
 #include "game/unit_show_entry.h"
 #include "game/unit_show_task.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u32 gLinkPlay;
 
 void func_020f5888(int x, int y);
 void func_020b98e8(void);
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Copies a path into the task, sets the script state and scrolls the camera
  * to the unit's tile unless unk_18 is 21 with gLinkPlay set. The odd
@@ -30,7 +26,7 @@ void UnitShowTask_SetPath(UnitShowTask* task, const u8* path) {
   if (gLinkPlay == 0) {
     scroll = 1;
   }
-  if (scroll | (gLinkPlay != 0 ? GAME->unk_18 != 21 : 0)) {
+  if (scroll | (gLinkPlay != 0 ? MAP_STATE->unk_18 != 21 : 0)) {
     func_020f5888((s16)(task->x / 16), (s16)(task->y / 16));
   }
   func_020b98e8();

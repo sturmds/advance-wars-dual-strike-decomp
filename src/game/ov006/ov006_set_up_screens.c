@@ -1,21 +1,17 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Screen_SetCurrentBoth(void* state);
 void Screen_SetBgMode(int mode);
-void Screen_InitLayers(const void* config);
+void Screen_InitLayers(const GfxLayer* config);
 void Screen_SetLayer0Scroll(int x, int y);
 void Screen_SetLayer1Scroll(int x, int y);
 void Screen_SetLayer2Scroll(int x, int y);
 void Screen_SetLayer3Scroll(int x, int y);
 void Ov006_LoadMapeditGraphics(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern GfxLayer data_021575c8[]; /* main screen layer config */
 
 #define RESET_LAYERS()                                        \

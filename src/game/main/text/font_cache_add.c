@@ -1,11 +1,8 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
+#include "sdk/msl_string.h"
+#include "sdk/msl.h"
 
-extern Unk_027c0280* data_027c0280;
-
-int strcmp(const char* a, const char* b);
-char* strcpy(char* dst, const char* src);
-u32 strlen(const char* str);
 int Text_DrawStringToTiles(const char* str, u8* tiles, int colour);
 
 /* Returns the cache entry of str drawn in colour, drawing it first if the

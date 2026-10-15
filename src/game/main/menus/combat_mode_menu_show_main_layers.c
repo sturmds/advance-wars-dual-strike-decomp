@@ -2,16 +2,11 @@
 #include "game/menu_button.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void HelpText_Show(u32 textId, int tile);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* Clears the buttons and sets the layers shown on the main screen: BG0, BG2,
  * BG3 and OBJ on, BG1 off. Then it clears layer 0 and shows the help text. */

@@ -1,10 +1,8 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
-
-extern Unk_027c0280* data_027c0280;
+#include "game/screen.h"
 
 void Screen_SetLayerPriorities(void);
-void Screen_ResetWindows(void);
 
 /* Resets the layer priorities and windows and alpha-blends layer 1 over
  * layers 2 and 3, the sprites and the backdrop at EVA 6, EVB 16. A screen

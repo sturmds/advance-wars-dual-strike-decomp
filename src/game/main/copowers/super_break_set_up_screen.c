@@ -5,10 +5,9 @@
 #include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen.h"
 
 void func_02021b80(void);
-void Screen_SetBgMode(int mode);
-void Screen_InitLayers(const void* config);
 const char* File_LocalizePath(const char* path);
 u8* File_Load(const char* path);
 void Mem_Free(void* res);
@@ -25,10 +24,6 @@ void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 const void* Text_Get(u32 textId);
 u8 BreakText_Load(const s8* text, u16 tile, u8 palette, u32 tagFont);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern GfxLayer
     data_0215c050[]; /* layer config while the main screen is current */
 extern GfxLayer data_0215c0a0[]; /* layer config otherwise */
@@ -36,9 +31,9 @@ extern char data_0215c268[];     /* "/ohashi/res_syogunbreak" */
 extern char data_0215c280[];     /* "/ohashi/res_syogunbreak_lang" */
 extern char data_0215c2a0[];     /* "/ohashi/res_syogunchange" */
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 #define BANNER_PALETTE_COUNT 3 /* BG palettes 1-3 */
-#define PLAYER (&GAME->players[GAME->currentPlayer])
+#define PLAYER (&MAP_STATE->players[MAP_STATE->currentPlayer])
 #define LAYER_TILES(layerBg) \
   (data_027c0280->bgVram + (data_027c0280->bgCnt[layerBg].charBase << 14))
 
@@ -100,7 +95,7 @@ void SuperBreak_SetUpScreen(Task* task) {
 
   res = File_Load(data_0215c268);
   Data_Unpack(res, LAYER_TILES(data_027c0280->layer2Bg));
-  if (GAME->gameMode == GAME_MODE_CAMPAIGN) {
+  if (MAP_STATE->gameMode == GAME_MODE_CAMPAIGN) {
     if (PLAYER->armyColour == ARMY_BLACK_HOLE) {
       Data_Unpack(res + 0x418, data_027c0280->layer2Map);
     } else {
@@ -137,7 +132,8 @@ void SuperBreak_SetUpScreen(Task* task) {
   Mem_Free(res);
 
   Wallpaper_LoadOnLayer3((u8)(PLAYER->front.id & PLAYER_CO_ID_MASK));
-  Co_LoadArmyGraphicsAndPalette(PLAYER->front.id, 16, 0, GAME->currentPlayer);
+  Co_LoadArmyGraphicsAndPalette(PLAYER->front.id, 16, 0,
+                                MAP_STATE->currentPlayer);
   /* needed to match: indexing from &gCoTable[0].blocks[POWER_SUPER] keeps
      * the 0x1a0 offset in the relocation (data_021537ac) */
   task->unk_58 = BreakText_Load(

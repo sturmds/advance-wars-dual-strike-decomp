@@ -2,8 +2,9 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_022a7c5c.h"
 #include "game/missile_strike_task.h"
+#include "game/screen.h"
+#include "sdk/fs.h"
 
-extern Unk_027c0280* data_027c0280;
 extern char data_02169180[]; /* "/bmap" */
 extern char data_02169188[]; /* "089" */
 extern char data_0216918c[]; /* "08a" */
@@ -11,10 +12,8 @@ extern char data_02169190[]; /* "08b" */
 extern char data_02169194[]; /* "08c" */
 extern char data_02169198[]; /* "08d" */
 
-void Screen_SetLayerScreenSize(int layer, int screenSize);
 void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,

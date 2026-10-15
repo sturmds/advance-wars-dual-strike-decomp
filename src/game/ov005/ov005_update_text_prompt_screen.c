@@ -4,8 +4,8 @@
 #include "game/menu_button.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bb80.h"
+#include "game/screen.h"
 
-BOOL Screens_IsTransitionRunning(void);
 void func_02004d3c(int a);
 void func_02004d64(int a);
 Task* func_020fcb08(int a);

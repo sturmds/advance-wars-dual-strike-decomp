@@ -3,11 +3,9 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_022a7c5c.h"
 #include "game/map_sprite_task.h"
+#include "game/math.h"
+#include "sdk/fs.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern char data_02169180[]; /* "/bmap" */
 
 /* Files in /bmap: 3D graphics, 2D graphics and palette per effect. */
@@ -55,13 +53,11 @@ extern u8 data_0213d9c0[];
 void Sound_PlaySe(u32 soundId);
 void* SpriteAnim_Find(const void* file);
 SpriteAnim* SpriteAnim_Create(void* file, int layer, int flags);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           int paletteOffset, int size);
 void Gfx_QueueUnpackedFileCopy(const char* fileName, void* dest);
 void Gfx_QueueFileCopy(const char* fileName, void* dest, int size);
-s32 HwDiv32(s32 numer, s32 denom);
 
 /* First step of a map sprite task: picks the effect graphics for the task's
  * kind (kinds 29 and 30 also play a sound; kinds 31-35 play sound 0x84, or

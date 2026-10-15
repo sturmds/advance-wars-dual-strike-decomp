@@ -12,13 +12,7 @@ int Player_CountUnits(int player);
 MapUnit* Unit_Spawn(s16 x, s16 y, s16 type);
 void func_ov006_0235f690(void);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define OV6 data_ov006_0236d640
-#define TILE(x, y) (STATE->mapTiles->tiles[(x) + STATE->mapTiles->rowStart[y]])
 #define ARMY_UNIT_LIMIT 50 /* units one army may have on a Design Room map */
 #define CHART \
   ((const s8(*)[32])gCoTable[0].blocks[0].movementCost[MOVE_CHART_DEFAULT])
@@ -36,9 +30,9 @@ int Ov006_PlaceUnitAtCursor(void) {
   int old;
   int result = 0;
 
-  STATE->currentPlayer = OV6->unitArmy;
-  STATE->currentUnitBase = (STATE->currentPlayer - 1) << 6;
-  code = (OV6->toolUnit & 63) | STATE->currentUnitBase;
+  MAP_STATE->currentPlayer = OV6->unitArmy;
+  MAP_STATE->currentUnitBase = (MAP_STATE->currentPlayer - 1) << 6;
+  code = (OV6->toolUnit & 63) | MAP_STATE->currentUnitBase;
   x = OV6->cursorX;
   y = OV6->cursorY;
   if (OV6->unk_00 & 0x40) {
@@ -58,7 +52,7 @@ int Ov006_PlaceUnitAtCursor(void) {
         old = -1;
       }
       if (CHART[Ov000_gUnitStats[OV6->toolUnit & 63].moveType]
-               [MAP_TILE_TERRAIN(TILE(x, y))] != -1) {
+               [MAP_TILE_TERRAIN(MAP_TILE_AT(x, y))] != -1) {
         if (old > 0) {
           Ov006_RemoveUnitAt(0, x, y);
         }

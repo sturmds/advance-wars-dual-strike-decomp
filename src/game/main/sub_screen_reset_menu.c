@@ -1,16 +1,11 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
+#include "game/menu_button.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void func_02082a78(void);
-void MenuButtons_RemoveAll(void);
 void func_02088514(void);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 void SubScreen_ResetMenu(void) {
   Unk_027c0280* savedGfx = data_027c0280;

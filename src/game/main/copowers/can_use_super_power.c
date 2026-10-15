@@ -5,9 +5,6 @@
 int SuperPowerCost(int player, int slot);
 BOOL Player_IsPowerActive(int player);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* TRUE when the CO in `slot` (0 front, 1 back) has enough charge for its
  * Super CO Power and no power is on yet. */
 BOOL CanUseSuperPower(int player, int slot) {

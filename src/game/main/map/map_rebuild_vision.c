@@ -3,16 +3,11 @@
 #include "game/Unk_02080440.h"
 #include "game/vision.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 void VisionGrid_Reset(s8* grid, int value);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 static inline BOOL Map_IsFoggy(void) {
   BOOL foggy = TRUE;
-  Unk_02080440_1c4* info = STATE->unk_1c4;
+  Unk_02080440_1c4* info = MAP_STATE->unk_1c4;
 
   if (info->fog == 0 && info->weather != WEATHER_RAIN) {
     foggy = FALSE;
@@ -31,8 +26,10 @@ void Map_RebuildVision(void) {
   int x;
   int y;
 
-  VisionGrid_Reset(VISION_GRID(STATE, STATE->visionGrid0), (s16)!Map_IsFoggy());
-  VisionGrid_Reset(VISION_GRID(STATE, STATE->visionGrid1), (s16)!Map_IsFoggy());
+  VisionGrid_Reset(VISION_GRID(MAP_STATE, MAP_STATE->visionGrid0),
+                   (s16)!Map_IsFoggy());
+  VisionGrid_Reset(VISION_GRID(MAP_STATE, MAP_STATE->visionGrid1),
+                   (s16)!Map_IsFoggy());
   if (!Map_IsFoggy()) {
     return;
   }
@@ -40,7 +37,7 @@ void Map_RebuildVision(void) {
   Player_AddVision(2);
   Player_AddVision(3);
   Player_AddVision(4);
-  for (object = STATE->objects; object->kind != 0; object++) {
+  for (object = MAP_STATE->objects; object->kind != 0; object++) {
     endX = object->x + object->width;
     endY = object->y + object->height;
     for (x = object->x; x < endX; x++) {

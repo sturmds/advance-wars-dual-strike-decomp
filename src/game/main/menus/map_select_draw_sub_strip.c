@@ -5,7 +5,6 @@
 int MapSelect_GetTab(void);
 void Sprite_QueueAt(int a0, int x, int y, void* a3, int attr, int tile);
 
-extern MenuState gMenuState;
 extern MapListTables data_0229c768;
 
 #define MENU ((MenuState*)&gMenuState)

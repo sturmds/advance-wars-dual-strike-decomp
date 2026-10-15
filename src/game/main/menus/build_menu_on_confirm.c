@@ -5,12 +5,8 @@
 #include "game/task.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u32 gLinkPlay;
 extern TaskScriptCmd data_0216594c[];
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 void Sound_PlaySe(int id);
 MapUnit* Unit_FindFreeSlot(int player);
@@ -39,14 +35,14 @@ void BuildMenu_OnConfirm(MenuButton* button) {
     return;
   }
   Sound_PlaySe(0x1000a);
-  if (Unit_FindFreeSlot(GAME->currentPlayer) == NULL) {
+  if (Unit_FindFreeSlot(MAP_STATE->currentPlayer) == NULL) {
     func_020bba44();
     return;
   }
-  unit = CurrentPlayer_BuyUnit(GAME->cursorX, GAME->cursorY,
+  unit = CurrentPlayer_BuyUnit(MAP_STATE->cursorX, MAP_STATE->cursorY,
                                gBuildMenuEntries[id].unitType);
-  GAME->actingUnitDestX = GAME->cursorX;
-  GAME->actingUnitDestY = GAME->cursorY;
+  MAP_STATE->actingUnitDestX = MAP_STATE->cursorX;
+  MAP_STATE->actingUnitDestY = MAP_STATE->cursorY;
   if (gLinkPlay != 0) {
     UnitAction_Send(1, gBuildMenuEntries[id].unitType, 0, 0);
   }

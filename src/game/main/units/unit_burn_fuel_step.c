@@ -3,8 +3,6 @@
 #include "game/map_unit.h"
 #include "game/task.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern const TaskScriptCmd data_02168f48[];
 
 void* Task_FindByScript(const void* script);
@@ -12,7 +10,6 @@ BOOL Unit_BurnDailyFuel(MapUnit* unit);
 void func_020edb84(MapUnit* unit);
 void Task_ResumeScript(Task* task);
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
 #define UNIT_SLOTS_SCANNED 51
 
 /* Step of a start-of-day task script. Walks the current player's unit slots
@@ -26,7 +23,8 @@ void DailyFuel_BurnStep(Task* task) {
   }
   /* needed to match: unk_64 is read as signed */
   while (task->unk_64 < UNIT_SLOTS_SCANNED) {
-    MapUnit* unit = &GAME->units[task->unk_64 + GAME->currentUnitBase];
+    MapUnit* unit =
+        &MAP_STATE->units[task->unk_64 + MAP_STATE->currentUnitBase];
 
     if (unit->type != 0 && Unit_BurnDailyFuel(unit)) {
       func_020edb84(unit);

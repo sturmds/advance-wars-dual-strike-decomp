@@ -1,13 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-
-void Screen_SetLayer1Front(void);
-void Screen_ResetWindows(void);
+#include "game/screen.h"
 
 /* Screen_SetLayer0BlendForTileset with more of layer 0 on tilesets other
  * than 1: EVA 12, EVB 8 there, EVA 10, EVB 8 on tileset 1. A screen config

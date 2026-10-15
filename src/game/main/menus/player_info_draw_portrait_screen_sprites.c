@@ -1,10 +1,8 @@
 #include "types.h"
 #include "game/menu_state.h"
 #include "game/oam_cells.h"
+#include "game/win_quote.h"
 
-extern MenuState gMenuState;
-
-void Sprite_QueueDefaultTile(int x, int y, int attr, int tile, int list);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 void PlayerInfo_DrawRankAndExperience(void);
 

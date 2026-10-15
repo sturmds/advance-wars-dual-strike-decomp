@@ -1,11 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 void Battle_ResetTurnState(void);
 void TileCodeTable_Load(void);
 void Map_LoadVariant(int mapId, int variant);
@@ -24,10 +19,10 @@ void CurrentPlayer_StartTurn(void);
 void Battle_InitMapState(void) {
   Battle_ResetTurnState();
   TileCodeTable_Load();
-  Map_LoadVariant(STATE->unk_1c4->mapId, 0);
+  Map_LoadVariant(MAP_STATE->unk_1c4->mapId, 0);
   func_020c4fa0();
   Survival_LoadFunds();
-  Skills_SetupForBothMaps(STATE->gameMode, STATE->unk_1c4->mapId);
+  Skills_SetupForBothMaps(MAP_STATE->gameMode, MAP_STATE->unk_1c4->mapId);
   MovementCost();
   func_020c4f20();
   MapView_CentreOnPlayer1Hq();

@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/weather.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u16 gWeatherRainSprites[][4];
 
 int func_01ff9f44(void);

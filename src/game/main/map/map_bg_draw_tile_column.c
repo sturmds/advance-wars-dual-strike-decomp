@@ -4,15 +4,9 @@
 #include "game/map_bg.h"
 #include "game/terrain.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-
 /* Picks a mountain look from the tile position. */
 #define MOUNTAIN_CELL(y) \
   gMountainCellVariants[((((y) >> 3) + (tileX >> 2) + tileX) + (y) * 2) & 15]
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Draws one column of 13 map tiles into the map BG tile maps, starting at
  * map tile (tileX, tileY) and at metatile row row (0-15, wrapping) of
@@ -31,20 +25,20 @@ void MapBg_DrawTileColumn(int col, int row, int tileX, int tileY) {
   ground = data_027c0280->layer3Map + data_02169eb8[col & 31];
   overhang = data_027c0280->layer2Map + data_02169eb8[col & 31];
   for (i = 0; i < MAP_VIEW_ROWS + 1; i++) {
-    if (tileX >= 0 && tileX < STATE->unk_1c4->mapWidth && (tileY + i) >= 0 &&
-        (tileY + i) < STATE->unk_1c4->mapHeight) {
-      tile = STATE->mapTiles->rowStart[tileY + i] + tileX;
-      terrain = MAP_TILE_TERRAIN(STATE->mapTiles->tiles[tile]);
+    if (tileX >= 0 && tileX < MAP_STATE->unk_1c4->mapWidth &&
+        (tileY + i) >= 0 && (tileY + i) < MAP_STATE->unk_1c4->mapHeight) {
+      tile = MAP_STATE->mapTiles->rowStart[tileY + i] + tileX;
+      terrain = MAP_TILE_TERRAIN(MAP_STATE->mapTiles->tiles[tile]);
       if (terrain == TERRAIN_MOUNTAIN) {
         cell = MOUNTAIN_CELL(tileY + i);
       } else {
-        cell = STATE->mapTiles->mapCells[tile];
-        if (STATE->mapTiles->unk_2338[tile] == 0 &&
+        cell = MAP_STATE->mapTiles->mapCells[tile];
+        if (MAP_STATE->mapTiles->unk_2338[tile] == 0 &&
             data_02169e78[terrain] != 0) {
           cell = data_02169e78[terrain];
         }
       }
-      if (STATE->mapTiles->unk_2338[tile] == 0) {
+      if (MAP_STATE->mapTiles->unk_2338[tile] == 0) {
         cell *= 4;
         ground[at] = (gMapCellGroundTiles[cell] & BG_TILE_CHAR_AND_FLIP) +
                      BG_TILE_PALETTE(7);
@@ -73,16 +67,17 @@ void MapBg_DrawTileColumn(int col, int row, int tileX, int tileY) {
       *(ground + at + 32) = 0;
       *(ground + at + 33) = 0;
     }
-    if (tileX >= 0 && tileX < STATE->unk_1c4->mapWidth &&
-        (tileY + i + 1) >= 0 && (tileY + i + 1) < STATE->unk_1c4->mapHeight) {
-      tile = STATE->mapTiles->rowStart[tileY + i + 1] + tileX;
-      terrain = MAP_TILE_TERRAIN(STATE->mapTiles->tiles[tile]);
-      if (tileY + i < STATE->unk_1c4->mapHeight - 1) {
+    if (tileX >= 0 && tileX < MAP_STATE->unk_1c4->mapWidth &&
+        (tileY + i + 1) >= 0 &&
+        (tileY + i + 1) < MAP_STATE->unk_1c4->mapHeight) {
+      tile = MAP_STATE->mapTiles->rowStart[tileY + i + 1] + tileX;
+      terrain = MAP_TILE_TERRAIN(MAP_STATE->mapTiles->tiles[tile]);
+      if (tileY + i < MAP_STATE->unk_1c4->mapHeight - 1) {
         if (terrain == TERRAIN_MOUNTAIN) {
           cell = MOUNTAIN_CELL(tileY + i + 1);
         } else {
-          cell = STATE->mapTiles->mapCells[tile];
-          if (STATE->mapTiles->unk_2338[tile] == 0 &&
+          cell = MAP_STATE->mapTiles->mapCells[tile];
+          if (MAP_STATE->mapTiles->unk_2338[tile] == 0 &&
               data_02169e78[terrain] != 0) {
             cell = data_02169e78[terrain];
           }
@@ -90,7 +85,7 @@ void MapBg_DrawTileColumn(int col, int row, int tileX, int tileY) {
       } else {
         cell = 0;
       }
-      if (STATE->mapTiles->unk_2338[tile] == 0) {
+      if (MAP_STATE->mapTiles->unk_2338[tile] == 0) {
         cell *= 4;
         overhang[at] = (gMapCellOverhangTiles[cell] & BG_TILE_CHAR_AND_FLIP) +
                        BG_TILE_PALETTE(7);

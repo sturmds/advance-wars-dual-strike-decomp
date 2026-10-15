@@ -10,8 +10,6 @@ void Ov006_AddProperty(int x, int y, int cell);
 void func_020c4448(void);
 int Ov006_GetPipeSeamCell(int x, int y);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
 #define PROPERTY_LIMIT 60
 
 /* Puts a pipe seam on tile x, y with the cell Ov006_GetPipeSeamCell picks.

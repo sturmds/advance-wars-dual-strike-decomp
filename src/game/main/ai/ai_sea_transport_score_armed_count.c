@@ -1,7 +1,5 @@
 #include "types.h"
-
-int Ai_CountEnemyGroundUnitsInRange(void);
-int Ai_CountTeamArmedGroundUnitsInRange(void);
+#include "game/ai/ai_units_in_range.h"
 
 /* Score of a drop tile for the order 0 and 1 routine. Bits 0-6: how far the
  * armed ground units reached are from Ai_CountEnemyGroundUnitsInRange's result

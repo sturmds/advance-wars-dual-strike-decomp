@@ -5,9 +5,6 @@
 #include "game/terrain.h"
 #include "game/unit_stats.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Terrain defense, in percent (10 per star), that a unit of a player gets
  * on a terrain id. Air units get none. The player's terrain adjustment is
  * added, a negative total counts as 0, and Lash's Super Power doubles it.

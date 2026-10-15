@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-extern u8
-    data_ov003_02365d10[]; /* per tile code: bits 5-7 row, bits 0-4 terrain */
-
 #define MAP data_ov003_02364a88
 #define CELL(x, y) (MAP->cells[(y) * MAP->width + (x)])
 

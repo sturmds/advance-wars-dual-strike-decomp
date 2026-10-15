@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 /* 1 when the cursor (setup.cursorButton) is on a CO, ids 8-15. A switch, not a
  * range test, to match. */
 int BattleSetup_IsCursorOnCo(void) {

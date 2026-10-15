@@ -6,8 +6,6 @@
 BOOL Map_IsCoSelectPhase(void);
 Unk_02023724* Task_FindByScript(const void* script);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0288 data_027c0288;
 extern const TaskScriptCmd
     data_02168b94[]; /* task script of (opcode, argument) pairs */
 

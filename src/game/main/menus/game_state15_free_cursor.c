@@ -1,10 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/screen.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-int SceneMode_IsCurrent(int a0);
 BOOL func_020d194c(void);
 u32 MapTouch_ReadButtons(int rightButton, int leftButton);
 void MapScreen_DrawCenterButton(void);
@@ -25,7 +22,6 @@ BOOL Map_IsCoSelectPhase(void);
 void func_020bc5c0(void);
 void func_020bc56c(void);
 void func_020d1414(void);
-int SceneMode_OnButtonX(void);
 void MapScreen_DrawInfoPanel(void);
 void SidePanel_Place(int mode);
 
@@ -35,8 +31,6 @@ void SidePanel_Place(int mode);
 #define TAP_MAP 0x20
 #define TAP_LEFT_BUTTON 0x40
 #define TAP_RIGHT_BUTTON 0x100
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Game_State15_RunStep sub-state 0: the free map cursor. The right touch
  * button (unit info, func_020d1414) is offered only when SceneMode_IsCurrent(5)
@@ -51,8 +45,9 @@ void Game_State15_FreeCursor(void) {
   BOOL handled;
 
   if (SceneMode_IsCurrent(5)) {
-    if (GAME->mapTiles->unitAt[GAME->mapTiles->rowStart[GAME->cursorY] +
-                               GAME->cursorX] != 0) {
+    if (MAP_STATE->mapTiles
+            ->unitAt[MAP_STATE->mapTiles->rowStart[MAP_STATE->cursorY] +
+                     MAP_STATE->cursorX] != 0) {
       rightButton = TRUE;
     }
   }

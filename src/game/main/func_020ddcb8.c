@@ -4,8 +4,6 @@
 #include "game/player.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern const ScriptCommand data_02166450[];
 
 ScriptSlot* ScriptSlot_Start(const ScriptCommand* script, int arg);

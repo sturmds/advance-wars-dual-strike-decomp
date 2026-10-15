@@ -27,7 +27,7 @@ static inline BOOL IsFirstLinkPlayer(void) { return Link_GetOwnPlayer() == 0; }
 void VsSetup_AddLinkButtons(int player) {
   int other;
 
-  if (STATE->twoMaps == 1) {
+  if (MAP_STATE->twoMaps == 1) {
     MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 24, &data_0215cb20,
                    player * 2 + 1);
   }
@@ -51,7 +51,7 @@ void VsSetup_AddLinkButtons(int player) {
     MenuButton_Add(56, 152, &data_0215cda0, 251);
     MenuButton_Add(152, 152, &data_0215cb48, 250);
   }
-  if (STATE->twoMaps == 1) {
+  if (MAP_STATE->twoMaps == 1) {
     MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 8, &data_0215cdf0,
                    player * 4 + 18);
     MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 40, &data_0215cb70,

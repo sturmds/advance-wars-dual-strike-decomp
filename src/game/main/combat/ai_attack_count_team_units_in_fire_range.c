@@ -3,16 +3,12 @@
 #include "game/map_unit.h"
 #include "game/unit_stats.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 int GetUnitMaxRange(int player, int unitType);
 BOOL Unit_CanBeAttackedBy(MapUnit* target, MapUnit* attacker);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define TILE_INDEX(x, y) (STATE->mapTiles->rowStart[y] + (x))
+#define TILE_INDEX(x, y) (MAP_STATE->mapTiles->rowStart[y] + (x))
 #define MAX_RANGE(unit) \
-  GetUnitMaxRange(MAP_UNIT_OWNER(STATE, unit), (unit)->type)
+  GetUnitMaxRange(MAP_UNIT_OWNER(MAP_STATE, unit), (unit)->type)
 
 /* For a target unit that attacks indirectly: counts the current player's
  * team's units on tiles between the target's minimum range and its maximum
@@ -38,15 +34,15 @@ int AiAttack_CountTeamUnitsInFireRange(MapUnit* unit) {
   } else {
     minY = unit->y - MAX_RANGE(unit);
   }
-  if (unit->x + MAX_RANGE(unit) < STATE->unk_1c4->mapWidth - 1) {
+  if (unit->x + MAX_RANGE(unit) < MAP_STATE->unk_1c4->mapWidth - 1) {
     maxX = unit->x + MAX_RANGE(unit);
   } else {
-    maxX = STATE->unk_1c4->mapWidth - 1;
+    maxX = MAP_STATE->unk_1c4->mapWidth - 1;
   }
-  if (unit->y + MAX_RANGE(unit) < STATE->unk_1c4->mapHeight - 1) {
+  if (unit->y + MAX_RANGE(unit) < MAP_STATE->unk_1c4->mapHeight - 1) {
     maxY = unit->y + MAX_RANGE(unit);
   } else {
-    maxY = STATE->unk_1c4->mapHeight - 1;
+    maxY = MAP_STATE->unk_1c4->mapHeight - 1;
   }
   for (y = minY; y <= maxY; y++) {
     for (x = minX; x <= maxX; x++) {
@@ -65,15 +61,15 @@ int AiAttack_CountTeamUnitsInFireRange(MapUnit* unit) {
           dist > MAX_RANGE(unit)) {
         continue;
       }
-      slot = STATE->mapTiles->unitAt[TILE_INDEX(x, y)];
+      slot = MAP_STATE->mapTiles->unitAt[TILE_INDEX(x, y)];
       if (slot == 0) {
         continue;
       }
-      if (STATE->players[STATE->currentPlayer].team !=
-          STATE->players[(slot >> 6) + 1].team) {
+      if (MAP_STATE->players[MAP_STATE->currentPlayer].team !=
+          MAP_STATE->players[(slot >> 6) + 1].team) {
         continue;
       }
-      if (Unit_CanBeAttackedBy(&STATE->units[slot], unit)) {
+      if (Unit_CanBeAttackedBy(&MAP_STATE->units[slot], unit)) {
         count++;
       }
     }

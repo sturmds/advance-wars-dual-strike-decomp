@@ -1,11 +1,9 @@
 #include "types.h"
 #include "game/campaign_map.h"
 #include "game/Unk_02088d04.h"
+#include "game/math.h"
 
-int Math_EaseInOut(int from, int to, int step, int steps);
 void Task_ResumeScript(CampaignMapTask* task);
-
-extern Unk_027c0280* data_027c0280;
 
 /* Script step: eases the scroll of the two map layers (the BGs of layers 3 and
  * 2) from (fromX, fromY) to (toX, toY) over 60 frames, then resumes the

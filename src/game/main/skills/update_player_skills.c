@@ -4,16 +4,11 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/skills.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 u32* GetCoPowerSkills(int co, int powerState);
 BOOL PartnerBoost1(int player);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern Unk_02080440_48 data_02183b08;
 extern BattleSaveSkillSet data_022a72c8
     []

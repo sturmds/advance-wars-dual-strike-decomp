@@ -2,7 +2,6 @@
 #include "game/link_menu_state.h"
 #include "game/task.h"
 
-extern LinkMenuState* data_0215fed0;
 extern const TaskScriptCmd data_02160044[];
 
 void func_0207bfb8(void) {

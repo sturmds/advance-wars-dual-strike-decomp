@@ -4,9 +4,6 @@
 
 s32 Rng_Range(s32 min, s32 max);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Picks the strike site with the best score for playerSlot and writes it
  * to site[0] (x) and site[1] (y). Returns 0 when no site scores. In
  * STRIKE_MODE_AI_FUNDS, site also gives the tile to skip on input (see

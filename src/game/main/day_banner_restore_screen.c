@@ -1,10 +1,9 @@
 #include "types.h"
 #include "game/screen_other_map.h"
+#include "game/screen.h"
 
-void Screen_SetLayerScreenSize(int layer, int screenSize);
 void Gfx_LoadPlayerWindowFrame(int player);
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
 #define STATE_50 (data_027c027c->unk_50[data_027c0284])
 
 /* Script step of the day banner's early-exit script (the one DayBanner_CheckInput
@@ -15,5 +14,5 @@ void DayBanner_RestoreScreen(void) {
   if (STATE_50->unk_38 != NULL) {
     STATE_50->unk_38();
   }
-  Gfx_LoadPlayerWindowFrame(GAME->currentPlayer);
+  Gfx_LoadPlayerWindowFrame(MAP_STATE->currentPlayer);
 }

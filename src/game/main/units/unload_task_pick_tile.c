@@ -5,8 +5,6 @@
 #include "game/player.h"
 #include "game/task.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern int data_022a6dd4;
 extern u8 data_022a6b30;
 extern u8 data_022a6b34[];
@@ -30,7 +28,6 @@ void UnitType_PlayUnloadSound(int unitType);
 #define INPUT_CONFIRM 0x10
 #define INPUT_CANCEL 0x20
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
 /* player index 0-3 of the acting unit: its slot in units divided by 64 */
 #define OWNER_INDEX(s) \
   ((((u32)(((s)->actingUnit - (s)->units) & 0xc0)) << 10) >> 16)
@@ -55,33 +52,35 @@ void UnloadTask_PickTile(Task* task) {
     Task_Destroy(task);
     MenuDepth_Pop();
     UnitMenu_Open();
-    STATE->cursorX = STATE->actingUnitStartX;
-    STATE->cursorY = STATE->actingUnitStartY;
+    MAP_STATE->cursorX = MAP_STATE->actingUnitStartX;
+    MAP_STATE->cursorY = MAP_STATE->actingUnitStartY;
     return;
   }
   if (!(input & INPUT_CONFIRM)) {
     return;
   }
   data_022a6dd4 = task->unk_66;
-  cargo = &STATE->units[STATE->actingUnit->cargo[task->unk_68]];
+  cargo = &MAP_STATE->units[MAP_STATE->actingUnit->cargo[task->unk_68]];
   data_022a6b34[data_022a6b30] = task->unk_66 + 1;
-  STATE->pathSteps[0] = data_0216637b[task->unk_66 * 5];
-  STATE->pathSteps[1] = data_0216637c[task->unk_66 * 5];
-  if (UnitPath_StopAtEnemy(STATE->actingUnitDestX, STATE->actingUnitDestY,
-                           cargo->type, (s8*)STATE->pathSteps, -1) == 1) {
+  MAP_STATE->pathSteps[0] = data_0216637b[task->unk_66 * 5];
+  MAP_STATE->pathSteps[1] = data_0216637c[task->unk_66 * 5];
+  if (UnitPath_StopAtEnemy(MAP_STATE->actingUnitDestX,
+                           MAP_STATE->actingUnitDestY, cargo->type,
+                           (s8*)MAP_STATE->pathSteps, -1) == 1) {
     task->unk_6a = 1;
     data_022a6b34[data_022a6b30] = 5;
   }
-  UnitShowTask_CreateMoving((u16)STATE->actingUnitDestX,
-                            (u16)STATE->actingUnitDestY, OWNER_INDEX(STATE),
-                            cargo->type, STATE->pathSteps);
-  if (STATE->players[STATE->currentPlayer].controller ==
+  UnitShowTask_CreateMoving(
+      (u16)MAP_STATE->actingUnitDestX, (u16)MAP_STATE->actingUnitDestY,
+      OWNER_INDEX(MAP_STATE), cargo->type, MAP_STATE->pathSteps);
+  if (MAP_STATE->players[MAP_STATE->currentPlayer].controller ==
       PLAYER_CONTROLLER_HUMAN) {
-    if (gPlayRecords.tilesMoved + UnitPath_CountSteps((s8*)STATE->pathSteps) >=
+    if (gPlayRecords.tilesMoved +
+            UnitPath_CountSteps((s8*)MAP_STATE->pathSteps) >=
         999999) {
       gPlayRecords.tilesMoved = 999999;
     } else {
-      gPlayRecords.tilesMoved += UnitPath_CountSteps((s8*)STATE->pathSteps);
+      gPlayRecords.tilesMoved += UnitPath_CountSteps((s8*)MAP_STATE->pathSteps);
     }
   }
   Task_ResumeScript(task);

@@ -1,13 +1,11 @@
 #include "types.h"
 #include "game/task.h"
+#include "game/math.h"
+#include "game/oam_buffer.h"
 
 /* Needed to match: const, so the sine reads move out of the loop. */
-extern const s16 gSineTable[];
 
-s32 HwDiv32(s32 numerator, s32 denominator);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Sound_PlaySe(u32 soundId);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 s16 BreakText_GetCentredX(u8 slot);
 void BreakText_QueueLetterSized(u8 slot, u16 x, int y, int attr, int arg);
 void Task_ResumeScript(Task* task);

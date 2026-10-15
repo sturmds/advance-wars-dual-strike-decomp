@@ -1,10 +1,10 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 #include "game/win_lose.h"
+#include "game/math.h"
 
 void Screen_SetCurrentBoth(void* state);
 void Task_ResumeScript(void* task);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void* func_0203b614(void); /* adds the menu button data_0215a538 */
 void WinLoseScreen_DrawPicturesOneSide(WinLoseTask* task);
 

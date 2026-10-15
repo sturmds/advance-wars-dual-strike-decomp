@@ -2,8 +2,6 @@
 #include "game/campaign_map.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Update function: every 4 frames of step, counts the offset unk_64 down
  * (0 to 255, wrapping) and scrolls layer 1 horizontally by it relative to
  * layer 3. The name is a guess. */

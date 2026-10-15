@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bba8.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Ov005_UnpackCoScreenPicture(Unk_ov005_0236bba8* work);
 void Ov005_DrawCoGridRowIcon(Unk_ov005_0236bba8* work);
 void Ov005_QueueCoSpriteOnBothScreens(Unk_ov005_0236bba8* work, int x, int y);

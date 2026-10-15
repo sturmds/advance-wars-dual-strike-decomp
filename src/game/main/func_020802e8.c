@@ -4,8 +4,6 @@
 
 void PackNibblePairs(const u8* nibbles, u8* out);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u8 data_0229d8c0;
 extern UnitAction data_0229d8c8;
 extern u8 data_0229d8d4[];

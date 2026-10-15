@@ -1,14 +1,8 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 BOOL Unit_IsTileOwnedByTeam(int unitIndex, int tile);
 int Map_IsTeamUnitAt(s16 x, s16 y);
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
-#define MAP (GAME->mapTiles)
 
 /* TRUE when the current player can see the unit in slot unitSlot. Only dived
  * units (Sub, Stealth) can be hidden. They stay seen when they belong to the
@@ -16,7 +10,7 @@ int Map_IsTeamUnitAt(s16 x, s16 y);
  * Map_IsTeamUnitAt finds something on a neighbouring tile (it is not understood
  * yet; its count is only tested against 0). */
 BOOL Unit_IsVisibleToCurrentPlayer(int unitSlot) {
-  MapUnit* unit = &GAME->units[unitSlot];
+  MapUnit* unit = &MAP_STATE->units[unitSlot];
   s16 x = unit->x;
   s16 y = unit->y;
   u16 count = 0;
@@ -28,14 +22,14 @@ BOOL Unit_IsVisibleToCurrentPlayer(int unitSlot) {
   if (!(unit->flags & MAP_UNIT_DIVED)) {
     return TRUE;
   }
-  if (GAME->players[GAME->currentPlayer].team ==
-      GAME->players[MAP_UNIT_OWNER(GAME, unit)].team) {
+  if (MAP_STATE->players[MAP_STATE->currentPlayer].team ==
+      MAP_STATE->players[MAP_UNIT_OWNER(MAP_STATE, unit)].team) {
     return TRUE;
   }
   /* needed to match: the original reads the slot table as s16 */
   if (Unit_IsTileOwnedByTeam(
-          ((s16*)Ov000_gPlayerFirstUnitSlot)[GAME->currentPlayer],
-          MAP->tiles[x + MAP->rowStart[y]])) {
+          ((s16*)Ov000_gPlayerFirstUnitSlot)[MAP_STATE->currentPlayer],
+          MAP_TILES->tiles[x + MAP_TILES->rowStart[y]])) {
     return TRUE;
   }
   if (x > 0) {
@@ -44,10 +38,10 @@ BOOL Unit_IsVisibleToCurrentPlayer(int unitSlot) {
   if (y > 0) {
     count += Map_IsTeamUnitAt(x, y - 1);
   }
-  if (x < GAME->unk_1c4->mapWidth - 1) {
+  if (x < MAP_STATE->unk_1c4->mapWidth - 1) {
     count += Map_IsTeamUnitAt(x + 1, y);
   }
-  if (y < GAME->unk_1c4->mapHeight - 1) {
+  if (y < MAP_STATE->unk_1c4->mapHeight - 1) {
     count += Map_IsTeamUnitAt(x, y + 1);
   }
   return count != 0;

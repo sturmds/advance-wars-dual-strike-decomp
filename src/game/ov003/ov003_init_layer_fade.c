@@ -2,8 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov003_0235dd38.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Sets up a fade on the four BG layers: blend mode 3 (brightness decrease)
  * with the layers as top targets, nothing else, and all coefficients 0. */
 void Ov003_InitLayerFade(Unk_ov003_0235dd38* obj) {

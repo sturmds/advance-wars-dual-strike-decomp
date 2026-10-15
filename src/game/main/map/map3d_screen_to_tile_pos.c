@@ -2,13 +2,9 @@
 #include "sdk/fx.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern MtxFx43 data_022a7d70; /* Camera.mtx43 of the camera at data_022a7d5c */
 
 void MTX_Inverse43(const MtxFx43* src, MtxFx43* dst);
-fx32 FX_Div(fx32 numer, fx32 denom); /* FX_Div */
-void VEC_MultAdd(fx32 a, const VecFx32* v1, const VecFx32* v2, VecFx32* dst);
 
 #define FX_MUL(a, b) ((fx32)(((long long)(a) * (b) + 0x800) >> 12))
 

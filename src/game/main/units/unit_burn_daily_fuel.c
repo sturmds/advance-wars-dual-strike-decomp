@@ -2,22 +2,16 @@
 #include "game/Unk_02080440.h"
 #include "game/unit_stats.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 BOOL Unit_UsesDailyFuel(MapUnit* unit);
 int FuelConsumption(int player, int unitType, int hidden);
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
-#define MAP (GAME->mapTiles)
 
 /* Start of day: takes the unit's daily fuel, set by the terrain it stands on
  * (8 for a hidden Stealth, 5 for a dived Sub), less the owner's CO fuel
  * saving. Returns TRUE when a plane, copter or ship is left with no fuel. */
 BOOL Unit_BurnDailyFuel(MapUnit* unit) {
   int fuel = Ov000_gUnitStats[unit->type].dailyFuel[MAP_TILE_TERRAIN(
-      MAP->tiles[unit->x + MAP->rowStart[unit->y]])];
-  int owner = MAP_UNIT_OWNER(GAME, unit);
+      MAP_TILES->tiles[unit->x + MAP_TILES->rowStart[unit->y]])];
+  int owner = MAP_UNIT_OWNER(MAP_STATE, unit);
 
   if (!Unit_UsesDailyFuel(unit)) {
     return FALSE;

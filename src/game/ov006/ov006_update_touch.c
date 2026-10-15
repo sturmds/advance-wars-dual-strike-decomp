@@ -2,8 +2,6 @@
 #include "game/touch.h"
 #include "game/Unk_ov006_0235f690.h"
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
 #define OV6 data_ov006_0236d640
 
 /* Runs first in each frame of overlay 6. While the screen is touched it sets

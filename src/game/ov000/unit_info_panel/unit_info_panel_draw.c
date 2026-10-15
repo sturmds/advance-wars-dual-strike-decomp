@@ -3,8 +3,6 @@
 #include "game/unit_info_panel.h"
 #include "game/unit_stats.h"
 
-extern Unk_02080440* data_027c027c;
-
 void ScriptSlot_ClearCallback(int slot);
 void UnitInfoPanel_DrawUnit(void);
 void UnitInfoPanel_DrawAmmoAndRange(void);

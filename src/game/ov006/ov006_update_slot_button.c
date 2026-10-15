@@ -2,15 +2,13 @@
 #include "game/Unk_ov006_0235f690.h"
 #include "game/menu_button.h"
 #include "game/keypad.h"
+#include "sdk/fx.h"
 
-fx32 FX_Div(fx32 numer, fx32 denom);
 int Ov006_SlotsAreShown(void);
 void Ov006_RemoveSlotButtons(void);
 void Ov006_PressMenuButton(int buttonId);
 void func_ov006_02357760(void);
 void Ov006_PostRequest(int request);
-
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 
 #define OV6 data_ov006_0236d640
 

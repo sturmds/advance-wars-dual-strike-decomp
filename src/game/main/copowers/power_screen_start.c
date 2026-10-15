@@ -6,22 +6,20 @@
 
 void func_02055cac(Task* parent);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern const TaskScriptCmd data_0215c0f0[];
 extern const TaskScriptCmd data_0215c198[];
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Needed to match: the tag power test is turned into a BOOL twice, once by
  * the flag and once by the ternary in TagPowerOn. */
 static inline BOOL IsTagPowerOn(void) {
   BOOL tagPowerOn = FALSE;
 
-  if (STATE->players[STATE->currentPlayer].back.id != 0) {
+  if (MAP_STATE->players[MAP_STATE->currentPlayer].back.id != 0) {
     BOOL isTagHalf =
-        STATE->players[STATE->currentPlayer].tagPowerHalf == TAG_POWER_FRONT ||
-        STATE->players[STATE->currentPlayer].tagPowerHalf == TAG_POWER_BACK;
+        MAP_STATE->players[MAP_STATE->currentPlayer].tagPowerHalf ==
+            TAG_POWER_FRONT ||
+        MAP_STATE->players[MAP_STATE->currentPlayer].tagPowerHalf ==
+            TAG_POWER_BACK;
 
     if (isTagHalf) {
       tagPowerOn = TRUE;

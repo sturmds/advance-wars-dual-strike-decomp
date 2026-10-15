@@ -3,16 +3,13 @@
 #include "game/player.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_021694c0.h"
+#include "game/screen.h"
 
 extern Unk_021694c0* data_021694c0;
 extern Unk_02080440_48 data_02189cd8;
 
 BOOL Map_IsThisMapsTurn(void);
-BOOL Screens_IsTransitionRunning(void);
-int SceneMode_Request(int mode);
 void Task_ResumeScript(Task* task);
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 #define SWITCH_TO(state)       \
   saved0280 = data_027c0280;   \
@@ -45,8 +42,8 @@ void SceneMode_UpdateMode5(Task* task) {
     SWITCH_BACK();
 
     SWITCH_TO(data_027c0288.unk_00);
-    if (GAME == &data_02189cd8 &&
-        GAME->players[GAME->currentPlayer].controller !=
+    if (MAP_STATE == &data_02189cd8 &&
+        MAP_STATE->players[MAP_STATE->currentPlayer].controller !=
             PLAYER_CONTROLLER_HUMAN) {
       requestMode4 = TRUE;
     }
@@ -56,9 +53,9 @@ void SceneMode_UpdateMode5(Task* task) {
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     outer027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    if (GAME == &data_02189cd8) {
+    if (MAP_STATE == &data_02189cd8) {
       SWITCH_TO((&data_027c0288.unk_00)[1 - data_027c0284]);
-      otherUnk30 = GAME->unk_1c4->unk_30;
+      otherUnk30 = MAP_STATE->unk_1c4->unk_30;
       SWITCH_BACK();
       if (otherUnk30 != 0) {
         requestMode4 = FALSE;

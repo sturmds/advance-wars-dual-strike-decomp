@@ -4,16 +4,13 @@
 
 int Ov006_GetPipeLink(int x, int y, int dir);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 /* Steps per direction (DESIGN_DIR_*). Copies of Ov006_gDirStepX and
  * Ov006_gDirStepY that only this function reads. */
 extern s16 data_ov006_0236d608[];
 extern s16 data_ov006_0236d5f8[];
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define CELL_AT(x, y) \
-  (STATE->mapTiles->mapCells[(x) + STATE->mapTiles->rowStart[y]])
+  (MAP_STATE->mapTiles->mapCells[(x) + MAP_STATE->mapTiles->rowStart[y]])
 
 #define FIRM 2 /* the most this returns */
 
@@ -31,9 +28,9 @@ int Ov006_GetPipeNeighborHold(int x, int y, int dir) {
   u16 cell;
   int i;
 
-  if (nx < 0 || nx >= STATE->unk_1c4->mapWidth ||
+  if (nx < 0 || nx >= MAP_STATE->unk_1c4->mapWidth ||
       (ny = y + data_ov006_0236d5f8[dir]) < 0 ||
-      ny >= STATE->unk_1c4->mapHeight) {
+      ny >= MAP_STATE->unk_1c4->mapHeight) {
     return FIRM;
   }
   cell = CELL_AT(nx, ny);

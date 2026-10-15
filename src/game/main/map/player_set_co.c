@@ -2,17 +2,9 @@
 #include "game/player.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Screen_SetCurrentBoth(void* state);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 #define MAIN_MAP (data_027c0288.unk_00)
 #define SECOND_MAP (data_027c0288.unk_04)
@@ -32,11 +24,11 @@ void Player_SetCo(int slot, int which, int coId) {
   saved027c = data_027c027c;
   saved0280 = data_027c0280;
 
-  if (GAME->secondMapId != 0) {
+  if (MAP_STATE->secondMapId != 0) {
     Screen_SetCurrentGfx(OTHER_MAP);
     inner027c = data_027c027c;
     Screen_SetCurrent(OTHER_MAP);
-    otherUnk30 = GAME->unk_1c4->unk_30;
+    otherUnk30 = MAP_STATE->unk_1c4->unk_30;
     Screen_SetCurrent(inner027c);
     Screen_SetCurrentGfx(saved0280);
     if (otherUnk30 == 0) {
@@ -45,12 +37,12 @@ void Player_SetCo(int slot, int which, int coId) {
       } else {
         Screen_SetCurrentBoth(SECOND_MAP);
       }
-      GAME->players[slot].front.id = coId;
+      MAP_STATE->players[slot].front.id = coId;
       goto restore;
     }
   }
   Screen_SetCurrentBoth(MAIN_MAP);
-  (&GAME->players[slot].front)[which].id = coId;
+  (&MAP_STATE->players[slot].front)[which].id = coId;
 restore:
   Screen_SetCurrent(saved027c);
   Screen_SetCurrentGfx(saved0280);

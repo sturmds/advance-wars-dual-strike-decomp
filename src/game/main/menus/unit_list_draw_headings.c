@@ -3,8 +3,6 @@
 
 void Text_PrintImmediate(s16 x, s16 y, u16* map, u32 textId, u16 a, u16 b);
 
-extern Unk_027c0280* data_027c0280;
-
 /* Prints the four column headings of the unit list on layer 0 (tile row 6). */
 void UnitList_DrawHeadings(void) {
   Text_PrintImmediate(9, 6, data_027c0280->layer0Map, 0xc00000b5, 0, 0);

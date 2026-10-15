@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-extern Ov003Unit data_ov003_02369538[];
-
 /* Copies x, y, unk_04 and hp of each live unit into its start fields. It runs
  * every frame (from Ov003_TickUnits), so they hold the previous frame's
  * values, not the values at creation. */

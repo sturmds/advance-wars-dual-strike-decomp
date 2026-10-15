@@ -8,6 +8,8 @@
 #include "game/screen_other_map.h"
 #include "game/main_loop.h"
 #include "game/camera_pan.h"
+#include "game/campaign_map_music.h"
+#include "game/song.h"
 
 void* Mem_Alloc(u32 size);
 void MI_CpuFill8(void* dst, int value, int size);
@@ -36,10 +38,8 @@ void MainLoop_MapFrame(void);
 void Font_SetDigitEndTile(int tile);
 void MapCursor_SetTile(int x, int y, s16* tile, u16* pixel);
 void Ov006_PostRequest(int request);
-void Sound_StartSong(int songId);
 void Ov006_LoadArmyTerrainGraphics(void);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern Camera data_022a7d5c;
 extern const TaskScriptCmd data_ov006_0236a218[];
 void Ov006_UpdateSubScreen(void);
@@ -48,7 +48,6 @@ static TaskScriptCmd data_ov006_0236a1e0[] = {
 #include "data/ov006/data_ov006_0236a1e0.inc.c"
 };
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define OV6 data_ov006_0236d640
 
 /* Second step of the data_ov006_0236a1f0 task script (func_ov006_02350ec0
@@ -75,20 +74,20 @@ void DesignRoom_Init(Task* task) {
     MI_CpuFill8(OV6, 0, sizeof(Unk_ov006_0235f690));
   }
   func_020b98bc();
-  STATE->unk_1c4->playerCount = 4;
+  MAP_STATE->unk_1c4->playerCount = 4;
   func_020f4a84();
 
   saved0280 = data_027c0280;
   Screen_SetCurrentGfx(data_027c0288.unk_00);
   saved027c = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_00);
-  STATE->unk_1c4->mapId = 4;
+  MAP_STATE->unk_1c4->mapId = 4;
   Players_Reset();
   MapRules_SetDefaults();
   Players_ApplyBattleSetup();
-  STATE->currentPlayer = 1;
-  STATE->day = 1;
-  STATE->unk_1c4->unk_37 = 0;
+  MAP_STATE->currentPlayer = 1;
+  MAP_STATE->day = 1;
+  MAP_STATE->unk_1c4->unk_37 = 0;
   Ov006_ResetMapView(keep);
   Units_ClearAll();
   MapObjects_Clear();
@@ -99,25 +98,25 @@ void DesignRoom_Init(Task* task) {
   Screen_SetCurrentGfx(data_027c0288.unk_04);
   saved027c = data_027c027c;
   Screen_SetCurrent(data_027c0288.unk_04);
-  STATE->unk_1c4->mapId = 4;
+  MAP_STATE->unk_1c4->mapId = 4;
   Players_Reset();
   MapRules_SetDefaults();
   Players_ApplyBattleSetup();
-  STATE->currentPlayer = 1;
-  STATE->day = 1;
-  STATE->unk_1c4->unk_37 = 0;
+  MAP_STATE->currentPlayer = 1;
+  MAP_STATE->day = 1;
+  MAP_STATE->unk_1c4->unk_37 = 0;
   Ov006_ResetMapView(keep);
   Units_ClearAll();
   MapObjects_Clear();
   Screen_SetCurrent(saved027c);
   Screen_SetCurrentGfx(saved0280);
 
-  STATE->players[0].front.id = CO_NELL;
-  STATE->players[1].front.id = CO_ANDY;
-  STATE->players[2].front.id = CO_OLAF;
-  STATE->players[3].front.id = CO_EAGLE;
-  STATE->players[4].front.id = CO_KANBEI;
-  Skills_SetupForBothMaps(4, STATE->unk_1c4->mapId);
+  MAP_STATE->players[0].front.id = CO_NELL;
+  MAP_STATE->players[1].front.id = CO_ANDY;
+  MAP_STATE->players[2].front.id = CO_OLAF;
+  MAP_STATE->players[3].front.id = CO_EAGLE;
+  MAP_STATE->players[4].front.id = CO_KANBEI;
+  Skills_SetupForBothMaps(4, MAP_STATE->unk_1c4->mapId);
   MovementCost();
   CurrentPlayer_SyncState();
   CurrentPlayer_StartTurn();
@@ -140,7 +139,7 @@ void DesignRoom_Init(Task* task) {
   MainLoop_SetFrameCallback(MainLoop_MapFrame);
   gMapGameRunning = 0;
   Font_SetDigitEndTile(0x45);
-  MapCursor_SetTile(7, 4, &STATE->cursorX, &STATE->cursorPixelX);
+  MapCursor_SetTile(7, 4, &MAP_STATE->cursorX, &MAP_STATE->cursorPixelX);
   *(s8*)&OV6->chosenSlot = -1; /* needed to match: stored as a signed -1 */
   OV6->toolTile = 1;
   OV6->tileArmy = 1;

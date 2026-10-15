@@ -3,14 +3,9 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov005_0236bba8.h"
 #include "game/icon.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Sprite_QueueDefault(int x, int y, int attr, int list);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 
 /* On the second screen: queues a sprite at (40, 144), then draws an icon at
  * (8, 144) picked by the row of the selected CO grid cell. Rows 0-1 share

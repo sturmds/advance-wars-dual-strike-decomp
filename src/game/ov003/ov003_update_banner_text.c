@@ -3,22 +3,19 @@
 #include "game/screen_other_map.h"
 #include "game/ov003_unit.h"
 #include "game/Unk_ov003_0235dd38.h"
+#include "game/math.h"
+#include "game/oam_buffer.h"
 
-s32 HwDiv32(s32 numerator, s32 denominator);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 const u8* Text_Get(u32 textId);
 void Task_ResumeScript(void* task);
 int strlen(const u8* str); /* string length */
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc,
-                         s16 pd); /* sets OBJ affine matrix index */
 int Ov003_DrawLetterAlt(int ch, u16 attr1,
                         u16 attr0); /* queues one letter, returns its width */
 int Ov003_GetTextWidth(const u8* str); /* text width in pixels */
 
 /* Sine table: [0] sin 0, [64] cos 0. Needed to match: const, so the
  * loads move out of the loops. */
-extern const s16 gSineTable[];
 
 #define STATE data_ov003_02364928
 

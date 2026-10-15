@@ -23,7 +23,7 @@ void VsSetup_AddMapAndCoButtons(void) {
 
   if (Link_IsActive() == 1) {
     player = Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1;
-    if (STATE->twoMaps == 1) {
+    if (MAP_STATE->twoMaps == 1) {
       MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 24, &data_0215cb20,
                      player * 2 + 1);
     }
@@ -43,7 +43,7 @@ void VsSetup_AddMapAndCoButtons(void) {
     }
   } else {
     for (player = 0; player < MENU->setup.unk_2e3; player++) {
-      if (STATE->twoMaps == 0) {
+      if (MAP_STATE->twoMaps == 0) {
         MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 16, 24,
                        &data_0215cb20, player * 2);
       } else {

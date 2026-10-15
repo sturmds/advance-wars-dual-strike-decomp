@@ -5,8 +5,6 @@
 BOOL HasTwoOrMoreTeams(void);
 int Sound_PlaySe(int);
 
-extern MenuState gMenuState;
-
 /* Plays the cursor sound and moves the team of slot (message - 23) up by one,
  * 3 wrapping to 0, until at least two teams are in use. */
 void VsSetup_NextTeam(int message) {

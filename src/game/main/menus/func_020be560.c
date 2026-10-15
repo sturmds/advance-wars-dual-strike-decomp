@@ -3,18 +3,10 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/menu_item.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 s8 BattleMenu_AutoCoOnHidden(void);
 s8 BattleMenu_AutoCoOffHidden(void);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* data_027c0288 holds two game states, one per front; Screen_SetCurrentGfx and
  * Screen_SetCurrent load one into data_027c0280 and data_027c027c. */
@@ -43,16 +35,16 @@ s8 func_020be560(void) {
   u32 otherUnk30;
 
   if (BattleMenu_AutoCoOnHidden() == 0 || BattleMenu_AutoCoOffHidden() == 0) {
-    player = GAME->currentPlayer;
-    if (GAME->players[player].aiBehaviour == AI_BEHAVIOUR_STRIKE) {
+    player = MAP_STATE->currentPlayer;
+    if (MAP_STATE->players[player].aiBehaviour == AI_BEHAVIOUR_STRIKE) {
       return 0;
     }
   }
 
   hidden = TRUE;
-  if (GAME->secondMapId != 0) {
+  if (MAP_STATE->secondMapId != 0) {
     SWITCH_TO(OTHER_MAP, saved0280, saved027c);
-    otherUnk30 = GAME->unk_1c4->unk_30;
+    otherUnk30 = MAP_STATE->unk_1c4->unk_30;
     SWITCH_BACK(saved0280, saved027c);
     if (otherUnk30 == 0) {
       hidden = FALSE;
@@ -62,12 +54,12 @@ s8 func_020be560(void) {
     return MENU_ITEM_HIDDEN;
   }
 
-  player = GAME->currentPlayer;
+  player = MAP_STATE->currentPlayer;
   SWITCH_TO(data_027c0288.unk_04, savedGfx, savedState);
-  controller = GAME->players[player].controller;
+  controller = MAP_STATE->players[player].controller;
   SWITCH_BACK(savedGfx, savedState);
   if (controller != PLAYER_CONTROLLER_AI) {
     return MENU_ITEM_HIDDEN;
   }
-  return GAME->players[player].aiBehaviour != AI_BEHAVIOUR_STRIKE;
+  return MAP_STATE->players[player].aiBehaviour != AI_BEHAVIOUR_STRIKE;
 }

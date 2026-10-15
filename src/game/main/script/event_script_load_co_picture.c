@@ -1,12 +1,8 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u8* data_02297790;
 extern u32 gLinkPlay;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 void TransferQueue_AddClear16(void* dest, int size);
 void Co_LoadLargePicture(int coMood, void* dest, int paletteSlot);
@@ -28,5 +24,5 @@ void EventScript_LoadCoPicture(int coMood) {
     return;
   }
   Co_LoadArmyLargePicture(coMood, data_02297790 + 0x3660, 1,
-                          STATE->currentPlayer);
+                          MAP_STATE->currentPlayer);
 }

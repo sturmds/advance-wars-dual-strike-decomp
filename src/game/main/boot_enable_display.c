@@ -1,10 +1,10 @@
 #include "types.h"
 #include "sdk/gx.h"
+#include "sdk/svc.h"
 
 void Boot_InitHardware(void);
 void Gfx_ClearVideoMemory(void);
 void Vram_AssignAllBanks(void);
-void SVC_WaitVBlankIntr(void);
 
 #define REG_EXMEMCNT ((volatile u16*)0x04000204)
 #define EXMEMCNT_BIT15 0x8000 /* guess: main memory interface priority */

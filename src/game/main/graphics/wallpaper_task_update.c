@@ -2,8 +2,6 @@
 #include "game/wallpaper_task.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Task update of the wallpaper: every 8 frames scrolls layer 2 one pixel
  * left and layer 3 one pixel right (both wrap at 64). Every 4 frames takes
  * one step of a 128-step blend cycle: layer 2 alone, a 16-step fade to

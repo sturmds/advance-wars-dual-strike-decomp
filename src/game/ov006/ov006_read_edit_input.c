@@ -3,8 +3,6 @@
 #include "game/touch.h"
 #include "game/Unk_ov006_0235f690.h"
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
 #define OV6 data_ov006_0236d640
 
 /* Reads what the player asks of the cursor tile this frame: 1 to use the

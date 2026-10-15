@@ -7,8 +7,6 @@
 void ResultScreen_Confirm(MenuButton* button);
 void CoExp_DrawScreen(CoExp* exp, int a, int b, int c);
 
-extern MenuState gMenuState;
-
 /* Task step: redraws the CO cells, and on A, B or Start calls
  * ResultScreen_Confirm. */
 void CoExp_WaitForConfirm(void) {

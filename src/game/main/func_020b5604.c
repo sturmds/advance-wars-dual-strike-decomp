@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/ai_unit_action.h"
-
-BOOL AiSeaTransport_FewFootUnitsNoTarget(void);
-int AiSeaTransport_ScoreFootUnitsVsProperties(void);
-void func_020b5bf4(void);
+#include "game/ai/ai_unload.h"
 
 void func_020b5604(void) {
   gAiUnloadTest = AiSeaTransport_FewFootUnitsNoTarget;

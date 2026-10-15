@@ -1,7 +1,5 @@
 #include "sdk/pm.h"
 
-extern PowerChipReadSlot gPMRegisterReads[POWER_CHIP_READ_SLOTS];
-
 BOOL Power_TryTakeCommandSlot(void);
 void PMi_SendPxiData(u32 data);
 

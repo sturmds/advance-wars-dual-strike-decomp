@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 void Number_Draw(s16 x, s16 y, u16* map, u32 value, u16 entryBits,
                  u16 digitSet);
 

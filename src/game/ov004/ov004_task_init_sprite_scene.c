@@ -2,8 +2,8 @@
 #include "game/Unk_02088d04.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov004_022bf158.h"
+#include "game/screen.h"
 
-void Screen_InitLayers(const void* config);
 void Gfx_RequestLayerCopy(int layer);
 void Ov004_UnpackResource(const char* file,
                           void* dest); /* unpacks a file, see FILE_ID */

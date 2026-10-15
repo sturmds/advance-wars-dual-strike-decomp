@@ -3,8 +3,7 @@
 #include "game/co_select_screen.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
+#include "game/screen_other_map.h"
 
 /* CO in grid cell (column 1-4, row 0-1). Needed to match: coGrid read as rows of 2. */
 #define GRID_CO(column, row) \
@@ -31,9 +30,7 @@ void ModeFont_ShowTextOnScreen(const char* text, int tile, int paletteSlot,
 void PaletteCycle_Start(int a);
 void Palette_Load(const void* src, int offset, u32 size);
 void Palette_LoadObjRow(int row);
-void Screen_SetCurrent(void* state);
 void Screen_SetCurrentBoth(void* state);
-void Screen_SetCurrentGfx(void* state);
 BOOL Skills_AreDisabled(void);
 const void* Text_Get(u32 textId);
 void Wallpaper_LoadSelected(void);
@@ -54,10 +51,6 @@ int CoSelectScreen_RowTileY(int a0);
 int CoSelectScreen_ColumnTileX(u8 column);
 void CoSelectScreen_DrawColumnFrame(u8* src, u8 a1, u8 a2, u8 column);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern char data_0215ab90[]; /* "/ohashi/res_syogunselect" */
 extern char data_0215abac[]; /* "/ohashi/res_syogunselect_lang" */
 
@@ -110,7 +103,7 @@ void CoSelectScreen_Init(void) {
       data_027c0280->bgVram +
           data_027c0280->bgCnt[data_027c0280->layer1Bg].charBase * 0x4000 +
           0x4000);
-  if (STATE->gameMode == GAME_MODE_CAMPAIGN && Campaign_IsHardMode() == 0) {
+  if (MAP_STATE->gameMode == GAME_MODE_CAMPAIGN && Campaign_IsHardMode() == 0) {
     Data_Unpack(res + 0x224, data_027c0280->layer1Map);
   } else {
     Data_Unpack(res + 0x3a0, data_027c0280->layer1Map);
@@ -172,7 +165,7 @@ void CoSelectScreen_Init(void) {
   CoSelectScreen_LoadListTextures();
   CoSelectScreen_ClearCellSkills();
   if (!Skills_AreDisabled()) {
-    ForceRank_LoadSets(STATE->gameMode);
+    ForceRank_LoadSets(MAP_STATE->gameMode);
     for (rankColumn = 1; rankColumn < data_0229c73c->columnCount + 1;
          rankColumn++) {
       for (rankRow = 0; rankRow < data_0229c73c->rowCount; rankRow++) {

@@ -6,11 +6,6 @@ void Ov006_StoreMapCell(int x, int y, int cell);
 void Ov006_RefitTileByTerrain(int x, int y);
 void Ov006_RefitJoinedCellsInCross(int x, int y);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 #define REFIT(nx, ny)                                     \
   Ov006_StoreMapCell(nx, ny, Ov006_GetWaterCell(nx, ny)); \
   Ov006_RefitTileByTerrain(nx, ny)
@@ -24,22 +19,22 @@ void Ov006_RefitCellsAround(int x, int y) {
       REFIT(x - 1, y - 1);
     }
     REFIT(x, y - 1);
-    if (x < STATE->unk_1c4->mapWidth - 1) {
+    if (x < MAP_STATE->unk_1c4->mapWidth - 1) {
       REFIT(x + 1, y - 1);
     }
   }
   if (x > 0) {
     REFIT(x - 1, y);
   }
-  if (x < STATE->unk_1c4->mapWidth - 1) {
+  if (x < MAP_STATE->unk_1c4->mapWidth - 1) {
     REFIT(x + 1, y);
   }
-  if (y < STATE->unk_1c4->mapHeight - 1) {
+  if (y < MAP_STATE->unk_1c4->mapHeight - 1) {
     if (x > 0) {
       REFIT(x - 1, y + 1);
     }
     REFIT(x, y + 1);
-    if (x < STATE->unk_1c4->mapWidth - 1) {
+    if (x < MAP_STATE->unk_1c4->mapWidth - 1) {
       REFIT(x + 1, y + 1);
     }
   }

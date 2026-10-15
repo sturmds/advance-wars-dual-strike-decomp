@@ -7,8 +7,6 @@ void Gfx_RequestLayerCopy(int bg);
 void func_020c4018(void);
 void Ov006_FillMapForScreen(int id);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
 void Ov006_OpenScreen(int id) {
   func_0201e954();
   Ov006_FillMapForScreen(id);

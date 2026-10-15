@@ -3,7 +3,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/sprite_anim.h"
 
-extern Unk_027c0280* data_027c0280;
 void func_02021bac(void);
 void func_020226d4(void);
 void SpriteAnim3dTask_Update(void);

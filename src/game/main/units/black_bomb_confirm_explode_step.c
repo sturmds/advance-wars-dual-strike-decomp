@@ -3,8 +3,6 @@
 #include "game/menu_button.h"
 #include "game/task.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u32 gLinkPlay;
 
 BOOL EventScript_IsRunning(void);
@@ -23,8 +21,6 @@ void MapCursor_DrawTwoStyles(int a, int b);
 /* Bits func_020ef190 (buttons) and MapTouch_ReadCursorTileTap (touch) return. */
 #define INPUT_CONFIRM 0x10
 #define INPUT_CANCEL 0x20
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Task step while the player confirms a Black Bomb explosion. Confirm
  * removes the bomb (BlackBomb_RemoveActingUnit), starts the explosion
@@ -47,20 +43,21 @@ void BlackBomb_ConfirmExplodeStep(Task* task) {
   input = buttons | MapTouch_ReadCursorTileTap();
   if (input & INPUT_CONFIRM) {
     BlackBomb_RemoveActingUnit(task);
-    BlackBombExplosion_Start(GAME->actingUnitDestX, GAME->actingUnitDestY,
-                             GAME->cursorX, GAME->cursorY, task);
+    BlackBombExplosion_Start(MAP_STATE->actingUnitDestX,
+                             MAP_STATE->actingUnitDestY, MAP_STATE->cursorX,
+                             MAP_STATE->cursorY, task);
     MenuButtons_CloseAll();
     if (gLinkPlay != 0) {
-      UnitAction_Send(23, GAME->actingUnitIndex, 0, 0);
+      UnitAction_Send(23, MAP_STATE->actingUnitIndex, 0, 0);
     }
     Task_ResumeScript(task);
     return;
   }
   if (input & INPUT_CANCEL) {
     MenuButtons_CloseAll();
-    GAME->cursorX = GAME->actingUnitDestX;
-    GAME->cursorY = GAME->actingUnitDestY;
-    func_020f5888(GAME->cursorX, GAME->cursorY);
+    MAP_STATE->cursorX = MAP_STATE->actingUnitDestX;
+    MAP_STATE->cursorY = MAP_STATE->actingUnitDestY;
+    func_020f5888(MAP_STATE->cursorX, MAP_STATE->cursorY);
     Task_JumpToLabel(task, 0);
     Task_ResumeScript(task);
   }

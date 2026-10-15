@@ -3,6 +3,7 @@
 #include "game/task.h"
 #include "game/Unk_ov004_022bf158.h"
 #include "game/brightness_fade.h"
+#include "sdk/gx.h"
 
 #define GXFIFO_MTX_PUSH ((volatile u32*)0x04000444)
 #define GXFIFO_MTX_POP ((volatile u32*)0x04000448)
@@ -25,7 +26,6 @@ void Ov004_BlitBlock(Unk_ov004_022bf158* state, int col, int row,
 void Ov004_FillBlock(Unk_ov004_022bf158* state, int col, int row, int fill);
 void Ov004_InitTileMap(Unk_ov004_022bf158* state, int cols, int rows);
 Task* PaletteFade_StartFromBlack(int a, void* b, int c, int d, int e);
-void G3_RotY(int sin, int cos);
 void func_0200270c(int x, int y, int attr, int list, int hFlip);
 void Palette_Flush(void);
 void Task_ResumeScript(void* task);

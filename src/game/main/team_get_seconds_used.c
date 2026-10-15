@@ -1,13 +1,7 @@
 #include "types.h"
 #include "game/player.h"
 #include "game/Unk_02080440.h"
-
-s32 HwDiv32(s32 num, s32 den);
-
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
+#include "game/math.h"
 
 /* Whole seconds on the timers (Player.playTimeFrames, frames) of player 1 and every
  * player on its team. */
@@ -17,8 +11,8 @@ u32 Team_GetSecondsUsed(int unused) {
 
   seconds = 0;
   for (slot = 1; slot < ARMY_SLOT_COUNT; slot++) {
-    if (STATE->players[1].team == STATE->players[slot].team) {
-      seconds += HwDiv32(STATE->players[slot].playTimeFrames, 60);
+    if (MAP_STATE->players[1].team == MAP_STATE->players[slot].team) {
+      seconds += HwDiv32(MAP_STATE->players[slot].playTimeFrames, 60);
     }
   }
   return seconds;

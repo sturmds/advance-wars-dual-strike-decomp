@@ -5,17 +5,11 @@
 #include "game/BattleSideData.h"
 #include "game/unit_stats.h"
 #include "sdk/os.h"
-
-extern MenuState gMenuState;
+#include "sdk/gx_load.h"
+#include "sdk/fs.h"
 
 u32 File_UnpackTo(void* dest, const char* path);
-int FS_ChangeDir(const char* path);
-void GX_BeginLoadTex(void); /* guess: maps VRAM bank A to the CPU (LCDC) */
-void GX_EndLoadTex(void);   /* guess: undoes GX_BeginLoadTex */
-void GX_BeginLoadTexPltt(void);
-void GX_EndLoadTexPltt(void);
 void File_ReadTo(void* dest, const char* path);
-void GX_LoadTexPltt(const void* src, u32 offset, u32 size);
 
 extern char data_ov002_023600e4[];
 extern const BattleGfxFile* data_ov002_02369830;

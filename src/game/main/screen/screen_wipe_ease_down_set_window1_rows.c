@@ -2,8 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_0216e2b0.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Sets window 1's rows from the two line marks that WindowWipe_BuildEdgesIn
  * leaves in data_0216e2b0: from the bottom mark (unk_03) to the top mark
  * (unk_02). When the marks meet, window 1 covers all 192 rows. */

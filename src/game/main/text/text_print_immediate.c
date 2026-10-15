@@ -3,8 +3,6 @@
 #include "game/script_slot.h"
 #include "game/text_printer.h"
 
-extern Unk_02080440* data_027c027c;
-
 u16* TextPrinter_GetCursorEntry(TextPrinter* printer);
 s8 ScriptSlot_Find(const void* script);
 const void* Text_Get(u32 textId);

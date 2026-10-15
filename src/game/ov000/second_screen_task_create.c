@@ -3,14 +3,10 @@
 #include "game/second_screen.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern TaskScriptCmd data_ov000_023500f8[];
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 u8 Player_GetArmyStyle(int playerIndex);
 BOOL func_ov000_022b0138(int unitType);
 void Gfx_LoadPlayerWindowFrame(int a0);

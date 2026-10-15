@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 /* 5 bytes per direction 0-3 from data_02166378: mask bit, dx, dy, then a
  * one-step path. These two point at dx and dy. */
 extern s8 data_02166379[];
@@ -16,8 +14,6 @@ void MapTouch_UpdateNeighborCursor(int* direction, int mask);
 u32 MapTouch_ReadNeighborTileTap(int mask);
 void Sound_PlaySe(u32 soundId);
 void Map_ScrollViewToTile(int arg);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Bits Keypad_ReadNextPrev returns for the d-pad. */
 #define INPUT_NEXT 8
@@ -47,8 +43,8 @@ u32 NeighborTilePicker_Update(int* direction, int mask) {
     *direction = picked;
     Sound_PlaySe(0x10000);
   }
-  STATE->cursorX = STATE->actingUnitDestX + data_02166379[picked * 5];
-  STATE->cursorY = STATE->actingUnitDestY + data_0216637a[picked * 5];
+  MAP_STATE->cursorX = MAP_STATE->actingUnitDestX + data_02166379[picked * 5];
+  MAP_STATE->cursorY = MAP_STATE->actingUnitDestY + data_0216637a[picked * 5];
   Map_ScrollViewToTile(1);
   input = Keypad_ReadConfirmCancel();
   input |= MapTouch_ReadNeighborTileTap(mask);

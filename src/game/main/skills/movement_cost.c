@@ -7,9 +7,6 @@ BOOL Player_IsInGame(u8 player);
 void UpdatePlayerSkills(int player);
 void Map_CountPlayerProperties(void);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Players 1 to 4; Player_IsInGame tells whether one is still in the game. */
 #define PLAYERS (data_027c027c->unk_48[data_027c0284]->players)
 

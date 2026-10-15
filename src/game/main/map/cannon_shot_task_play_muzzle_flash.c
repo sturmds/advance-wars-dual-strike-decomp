@@ -6,15 +6,11 @@
 #include "game/cannon_shot_task.h"
 #include "game/map_object.h"
 #include "game/sprite_anim.h"
+#include "sdk/fs.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern char data_021681d8[];
 extern char data_0216820c[];
 
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_LoadFromFile(const char* fileName, int a, int b, int c);
 void Gfx_QueueUnpackedFileCopy(const char* fileName, void* dest);
@@ -33,8 +29,6 @@ char* CannonShot_Get3dGraphicsFile(int kind);
 char* CannonShot_Get2dGraphicsFile(int kind);
 u8* CannonShot_GetAnimFile(int kind);
 int CannonShot_GetFacingAnim(u32 facing);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Step of the cannon shot script: loads the shot graphics for the cannon
  * kind and plays the muzzle flash at the cannon (3D or sprite, as the
@@ -71,8 +65,8 @@ void CannonShotTask_PlayMuzzleFlash(CannonShotTask* task) {
     File_UnpackTo(data_027c0280->objVram + 0x3280,
                   CannonShot_Get2dGraphicsFile(task->cannonKind));
     Palette_LoadFromFile(data_0216820c, 0, 608, 64);
-    x = x + task->cannonX * 16 - STATE->unk_1c4->scrollX;
-    y = y + task->cannonY * 16 - STATE->unk_1c4->scrollY;
+    x = x + task->cannonX * 16 - MAP_STATE->unk_1c4->scrollX;
+    y = y + task->cannonY * 16 - MAP_STATE->unk_1c4->scrollY;
     SpriteAnimTask_Start(CannonShot_GetAnimFile(task->cannonKind), x, y, 0x3194,
                          CannonShot_GetFacingAnim(task->facing), 1);
   }

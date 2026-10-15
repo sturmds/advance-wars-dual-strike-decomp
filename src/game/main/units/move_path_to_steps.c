@@ -3,8 +3,6 @@
 #include "game/move_path.h"
 
 extern MovePath* gMovePath;
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 
 /* Turns the drawn move path into one step per tile (PATH_STEP_*) in
  * pathSteps, ending with PATH_STEP_END. */

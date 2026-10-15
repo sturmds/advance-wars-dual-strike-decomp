@@ -1,11 +1,11 @@
 #include "types.h"
 #include "game/campaign_map.h"
 #include "game/menu_button.h"
+#include "game/campaign_map_music.h"
 
 int CampaignMap_CenterScrollX(int x);
 int func_0204ec34(int y);
 
-extern CampaignMapState gCampaignMapState;
 extern CampaignMission gCampaignMissions[];
 extern MenuButtonTemplate data_0215b3d0;
 extern MenuButtonTemplate data_0215b3f8;

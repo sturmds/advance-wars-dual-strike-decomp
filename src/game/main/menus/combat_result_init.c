@@ -5,10 +5,11 @@
 #include "game/Unk_02160ac0.h"
 #include "game/play_records.h"
 #include "game/task.h"
+#include "game/screen_other_map.h"
+#include "game/menu_button.h"
+#include "game/unlocks.h"
 
 void func_02028a30(void);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Screen_SetCurrentBoth(void* state);
 void NumberFont_LoadLow(void);
 u8* File_Load(const char* path);
@@ -19,18 +20,13 @@ void Mem_Free(void* block);
 int CombatCo_IdFromNumber(int value); /* row CO to CO id */
 void Co_LoadGraphicsAndPalette(int co, int tile, int row);
 void func_02039f80(int firstTile, int palette);
-void Menu_Reset(void);
 void Wallpaper_LoadBothOnLayer3(int co);
-void GameFlag_Set(int id, int value);
 void ResultPoint_Init(int firstTile, int paletteSlot);
 void ResultPoint_LoadPart(int part);
 BOOL ScoreList_AddRow(int kind);
 void func_0203b194(int value);
 void ScoreList_FitFirstPage(void);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern const char gResultLionResPath[]; /* "/ohashi/res_result_lion" */
 extern const TaskScriptCmd data_0216168c[];
 

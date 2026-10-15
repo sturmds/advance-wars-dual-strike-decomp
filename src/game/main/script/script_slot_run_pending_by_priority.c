@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
-
 void ScriptSlot_RunPending(int slot);
 
 /* Runs every used slot with bit 0 of unk_12 set (see ScriptSlot_RunAll), in

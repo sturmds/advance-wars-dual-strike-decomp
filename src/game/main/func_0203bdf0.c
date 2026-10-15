@@ -1,6 +1,6 @@
 #include "types.h"
+#include "game/win_quote.h"
 
-void Sprite_QueueDefaultTile(int x, int y, int attr, int tile, int list);
 BOOL Sprite_IsOnScreenX(int x, int width);
 
 /* Queues the sprite of CO slot `slot` (two per player) at (x, y) from

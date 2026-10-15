@@ -3,24 +3,21 @@
 #include "game/survival_record.h"
 #include "game/Unk_022a7b80.h"
 #include "game/Unk_02088d04.h"
+#include "game/math.h"
+#include "game/text_print.h"
 
 void Bg_ClearRect(u16* map, int x, int y, int width, u16 height);
 void Gfx_RequestLayerCopy(int bg);
-s32 HwDiv32(s32 num, s32 den);
-s32 HwMod32(s32 num, s32 den);
 void Layer0_PutNumberThenText3(int x, int y, u32 value);
 void Layer0_PutNumberThenText4(int x, int y, u32 value);
 void Layer0_PutRatio(int x, int y, u32 first, u32 second);
 const void* Map_GetName(u16 mapId);
 int Survival_GetMapId(int mode, int index);
-s8 Text_Print(s16 x, s16 y, u16* map, const void* text, u16 unk_30, u16 unk_32);
-s8 Text_PrintId(s16 x, s16 y, u16* map, u32 textId, u16 unk_30, u16 unk_32);
 BOOL SurvivalSelect_HasRecord(int index);
 int SurvivalSelect_GetList(void);
 int Survival_GetRecordIndex(int mode, int index);
 
 extern Unk_022a7b80 data_022a7b80;
-extern Unk_027c0280* data_027c0280;
 
 #define TEXT_NO_RECORD 0xc00000af
 

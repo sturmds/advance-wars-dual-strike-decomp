@@ -5,10 +5,6 @@
 
 void Sprite_QueueAt(int a0, int x, int y, void* a3, int attr, int tile);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern MenuState gMenuState;
-
 #define MENU ((MenuState*)&gMenuState)
 #define DRAW_PIECE(px, tile)                                                  \
   if ((px) > -32 && (px) < 256) {                                             \

@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/battle_scene.h"
+#include "game/math.h"
 
-u32 HwDiv32(u32 num, u32 den);
 void Battle_PickHpDrainProfiles(void);
 void Battle_ShuffleCellOrders(void);
 void Battle_InitHpCells(int side, int shownHpBefore, int shownHpAfter);

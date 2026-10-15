@@ -13,7 +13,6 @@ void Players_RecordControllers(void);
 BOOL Player_IsInGame(u8 player);
 void EventScript_StartText(u32 script, int arg1, int arg2);
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
 #define OTHER_MAP ((&data_027c0288.unk_00)[1 - data_027c0284])
 
 #define SWITCH_TO(state, savedGfx, savedGame) \
@@ -47,7 +46,7 @@ void TwoMaps_StartResultScript(void) {
   SWITCH_TO(OTHER_MAP, savedGfx, savedGame);
   for (i = 1; i < ARMY_SLOT_COUNT; i++) {
     if (Player_IsInGame(i) && gSlotControllers[i] == PLAYER_CONTROLLER_HUMAN) {
-      script = data_021696c0[GAME->players[i].armyColour];
+      script = data_021696c0[MAP_STATE->players[i].armyColour];
     }
   }
   SWITCH_BACK(savedGfx, savedGame);
@@ -57,7 +56,7 @@ void TwoMaps_StartResultScript(void) {
     for (j = 1; j < ARMY_SLOT_COUNT; j++) {
       if (!Player_IsInGame(j) &&
           gSlotControllers[j] == PLAYER_CONTROLLER_HUMAN) {
-        script = data_02169708[GAME->players[j].armyColour];
+        script = data_02169708[MAP_STATE->players[j].armyColour];
       }
     }
     SWITCH_BACK(savedGfx, savedGame);
@@ -67,7 +66,7 @@ void TwoMaps_StartResultScript(void) {
     SWITCH_TO(OTHER_MAP, lastGfx, lastGame);
     for (k = 1; k < ARMY_SLOT_COUNT; k++) {
       if (Player_IsInGame(k)) {
-        script = data_021696c0[GAME->players[k].armyColour];
+        script = data_021696c0[MAP_STATE->players[k].armyColour];
       }
     }
     SWITCH_BACK(lastGfx, lastGame);

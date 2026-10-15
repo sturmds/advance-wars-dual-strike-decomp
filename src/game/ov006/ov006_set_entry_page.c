@@ -4,8 +4,6 @@
 int func_ov006_02357674(void);
 void Sound_PlaySe(u32 soundId);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-
 /* Shows entry list page `page` while the editor idles (screen state 51):
  * unitPage (1-4) in unit mode, terrainPage (0-4) in terrain mode. Picking the page
  * already shown plays the refuse sound. */

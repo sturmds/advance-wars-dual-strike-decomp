@@ -1,10 +1,10 @@
 #include "types.h"
 #include "game/text_print.h"
+#include "game/math.h"
 
 int gTextDrawTilePixel;
 static int gTextDrawGlyphWidth;
 
-s32 HwDiv32(s32 numer, s32 denom);
 int func_0202083c(int c, u8* tiles, int x, int colour);
 BOOL Text_AdvanceDrawPos(int pixels);
 

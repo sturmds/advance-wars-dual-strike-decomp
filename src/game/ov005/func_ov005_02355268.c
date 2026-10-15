@@ -10,18 +10,12 @@ void Ov005_UpdateBlendEventScriptScreenB(void);
 void Ov005_UpdateEventScriptScreen(void);
 void Ov005_UpdateEventScriptScreenEndSong(void);
 void Ov005_UpdateEventScriptSongScreen(void);
-extern u8 data_02178b08[];
-extern u8 data_0217ab08[];
-extern u8 data_0217eb08[];
-extern u8 data_02180b08[];
 void func_ov005_02355280(void);
 void func_ov005_0235560c(void);
 void func_ov005_02355bb0(void);
 void func_ov005_02355f80(void);
 void func_ov005_02356768(void);
 void func_ov005_02357804(void);
-extern u8 data_02179b08[];
-extern u8 data_0217fb08[];
 
 /* layer 2 tiles */
 char data_ov005_02368a14[] = {

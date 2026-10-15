@@ -7,14 +7,11 @@ int Ov006_CountRiverNeighbors(
 BOOL Ov006_IsWaterTile(int x,
                        int y); /* TRUE on sea, shoal, reef or a river mouth */
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 #define CELL_AT(x, y) \
-  (STATE->mapTiles->mapCells[(x) + STATE->mapTiles->rowStart[y]])
+  (MAP_STATE->mapTiles->mapCells[(x) + MAP_STATE->mapTiles->rowStart[y]])
 #define TILE_AT(x, y) \
-  (STATE->mapTiles->tiles[(x) + STATE->mapTiles->rowStart[y]])
+  (MAP_STATE->mapTiles->tiles[(x) + MAP_STATE->mapTiles->rowStart[y]])
 
 /* Bridge cell code that checks its left and right neighbours; the name
  * guesses the direction from that. */
@@ -38,7 +35,7 @@ BOOL Ov006_IsRiverOrBridgeOnRiver(int x, int y) {
       if (x > 0 && Ov006_IsWaterTile(x - 1, y)) {
         result = FALSE;
       }
-      if (x < STATE->unk_1c4->mapWidth - 1 && Ov006_IsWaterTile(x + 1, y)) {
+      if (x < MAP_STATE->unk_1c4->mapWidth - 1 && Ov006_IsWaterTile(x + 1, y)) {
         result = FALSE;
       }
       if (result) {
@@ -46,7 +43,7 @@ BOOL Ov006_IsRiverOrBridgeOnRiver(int x, int y) {
         if (x > 0 && TILE_AT(x - 1, y) == TERRAIN_BRIDGE) {
           count++;
         }
-        if (x < STATE->unk_1c4->mapWidth - 1 &&
+        if (x < MAP_STATE->unk_1c4->mapWidth - 1 &&
             TILE_AT(x + 1, y) == TERRAIN_BRIDGE) {
           count++;
         }
@@ -58,7 +55,8 @@ BOOL Ov006_IsRiverOrBridgeOnRiver(int x, int y) {
       if (y > 0 && Ov006_IsWaterTile(x, y - 1)) {
         result = FALSE;
       }
-      if (y < STATE->unk_1c4->mapHeight - 1 && Ov006_IsWaterTile(x, y + 1)) {
+      if (y < MAP_STATE->unk_1c4->mapHeight - 1 &&
+          Ov006_IsWaterTile(x, y + 1)) {
         result = FALSE;
       }
       if (result) {
@@ -66,7 +64,7 @@ BOOL Ov006_IsRiverOrBridgeOnRiver(int x, int y) {
         if (y > 0 && TILE_AT(x, y - 1) == TERRAIN_BRIDGE) {
           count++;
         }
-        if (y < STATE->unk_1c4->mapHeight - 1 &&
+        if (y < MAP_STATE->unk_1c4->mapHeight - 1 &&
             TILE_AT(x, y + 1) == TERRAIN_BRIDGE) {
           count++;
         }

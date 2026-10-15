@@ -3,19 +3,13 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov006_0235f690.h"
 #include "game/terrain.h"
+#include "game/screen_other_map.h"
 
 void Palette_QueueBlockCopy(int id, int army, void* dest, int copy);
 const void* Terrain_GetIconTiles(int id);
 const void* Terrain_GetPalette(int id, int army);
 void TransferQueue_Add(const void* src, void* dst, u32 size);
 void Palette_Load(const void* src, u32 offset, u32 size);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-
-extern Unk_ov006_0235f690* data_ov006_0236d640;
-extern Unk_027c0288 data_027c0288;
-extern Unk_027c0280* data_027c0280;
-extern Unk_02080440* data_027c027c;
 
 /* Picks map tile byte `tile` as the one shown in the entry view. For a
  * city, HQ, airport, port, base or com tower the army becomes the tile's

@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/tag_break_task.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task* task);
 
 /* Step of the power screen script (child task of PowerScreen_Start): eases the

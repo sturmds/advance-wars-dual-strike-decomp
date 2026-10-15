@@ -1,13 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-
-void Screen_SetLayer1Front(void);
-void Screen_ResetWindows(void);
+#include "game/screen.h"
 
 /* Like Screen_SetLayer0Additive, but blends layer 0 over layers 2 and 3,
  * the sprites and the backdrop at EVA 10, EVB 8 on tileset 1 and at EVA 6,

@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 /* Every CO power gives +10 firepower and +10 defense to the current player. */
 void PowerDefaultBonus(void) {
   data_027c027c->unk_48[data_027c0284]

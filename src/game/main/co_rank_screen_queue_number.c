@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/Unk_022a7b80.h"
 #include "game/oam_cells.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numer, s32 denom);
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
 extern Unk_022a7b80 data_022a7b80;

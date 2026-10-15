@@ -1,15 +1,10 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0288 data_027c0288;
 extern GfxLayer data_02157668[];
 extern GfxLayer data_02157618[];
-
-void Screen_SetBg0Mode(int mode);
-void Screen_SetBgMode(int mode);
-void Screen_InitLayers(const void* config);
 
 /* Gives the current screen BG mode 0 and its layer config. On the main
  * screen BG0 shows tile maps, not the 3D engine. Every caller passes

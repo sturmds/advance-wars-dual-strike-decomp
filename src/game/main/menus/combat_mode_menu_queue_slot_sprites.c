@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02160ac0.h"
+#include "game/math.h"
 
-int HwMod32(int a, int b);
 void Co_QueueSmallPictureSprite(int x, int y, int attr, int list);
 void Sprite_QueueCoSlotFrame(int a0, u16 x, u16 y, int a3);
 

@@ -3,15 +3,13 @@
 #include "game/link_marker_task.h"
 #include "game/screen_other_map.h"
 #include "game/oam_cells.h"
+#include "game/math.h"
+#include "game/oam_buffer.h"
 
-s32 HwDiv32(s32 numer, s32 denom);
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
 void Task_ResumeScript(Task* task);
 
 /* Needed to match: const lets mwcc load the sine and cosine once. */
-extern const s16 gSineTable[];
 
 /* Divisor for one matrix entry: the eased scale, or 2 if it is 0. */
 #define DIVISOR(scale) ((scale) ? (scale) : 2)

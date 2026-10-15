@@ -3,8 +3,6 @@
 #include "game/Unk_02290118.h"
 #include "game/Unk_022a7a9c.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u16 gCampaignBestAverage[];
 
 BOOL Player1Team_HasPlayerInGame(void);

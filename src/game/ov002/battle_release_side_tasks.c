@@ -2,8 +2,6 @@
 #include "game/task.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 void Task_Destroy(Task* task);
 int Battle_IsSideDrawnInAir(int side);
 

@@ -7,8 +7,8 @@
 #include "game/text_printer.h"
 #include "game/Unk_ov005_0236bb80.h"
 #include "game/brightness_fade.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 BOOL func_020fd624(Task* task);
 void func_020fd618(Task* task);
 void Screens_BlackOut(void);

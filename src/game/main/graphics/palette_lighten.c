@@ -1,6 +1,5 @@
 #include "types.h"
-
-s32 HwDiv32(s32 numerator, s32 denominator);
+#include "game/math.h"
 
 /* Lightens slotCount palettes (16 RGB555 colors each) from firstSlot toward
  * white. level 0 leaves them as they are, 16 makes them white. Same loop

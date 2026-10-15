@@ -2,7 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
 void func_02017514(int slot, s16* x, s16* y);
 void ScriptSlot_StepMove(int slot);
 

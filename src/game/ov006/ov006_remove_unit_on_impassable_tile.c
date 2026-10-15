@@ -6,10 +6,6 @@
 int Ov006_GetUnitCodeAt(int x, int y);
 int Ov006_RemoveUnitAt(int withEffect, int x, int y);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 #define CHART \
   ((const s8(*)[32])gCoTable[0].blocks[0].movementCost[MOVE_CHART_DEFAULT])
 
@@ -25,7 +21,7 @@ void Ov006_RemoveUnitOnImpassableTile(int x, int y) {
     return;
   }
   terrain = MAP_TILE_TERRAIN(
-      STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]]);
+      MAP_STATE->mapTiles->tiles[x + MAP_STATE->mapTiles->rowStart[y]]);
   if (CHART[Ov000_gUnitStats[unit & 63].moveType][terrain] == -1) {
     Ov006_RemoveUnitAt(0, x, y);
   }

@@ -4,8 +4,6 @@
 #include "game/song.h"
 
 extern u8 gEventSkipState;
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 int Player_GetCoThemeSong(int player);
 
 /* Script command: requests the theme of the current player's CO. When

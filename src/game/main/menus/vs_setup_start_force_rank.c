@@ -8,7 +8,6 @@ void* Task_FindByScript(const void* script);
 
 extern TaskScriptCmd data_0215cfe8[];
 extern const TaskScriptCmd data_0215d150[];
-extern MenuState gMenuState;
 
 /* Needed to match: the cast keeps the field offsets out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)

@@ -2,7 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/task.h"
 
-extern Unk_027c0280* data_027c0280;
 extern s16 data_0229eae0[];
 extern u16 data_0229ead8[];
 

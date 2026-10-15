@@ -7,8 +7,6 @@ int BattleSetup_IsCursorOnCo(void);
 void BattleSetup_DrawSkills(int x, int y, int set);
 int Gfx_RequestLayerCopy(int layer);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

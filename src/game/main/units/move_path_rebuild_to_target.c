@@ -1,11 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
-
 void MovePath_Truncate(int count);
 void MovePath_FillRangeFromEnd(void);
 void RangeMap_TracePath(int x, int y, u8* out);
@@ -16,6 +11,7 @@ void MovePath_AppendSteps(void);
 void MovePath_RebuildToTarget(void) {
   MovePath_Truncate(1);
   MovePath_FillRangeFromEnd();
-  RangeMap_TracePath(GAME->cursorX, GAME->cursorY, GAME->pathSteps);
+  RangeMap_TracePath(MAP_STATE->cursorX, MAP_STATE->cursorY,
+                     MAP_STATE->pathSteps);
   MovePath_AppendSteps();
 }

@@ -5,11 +5,6 @@
 #include "game/map_header.h"
 #include "game/unlocks.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
-
 /* Whether `player` may build `unitType` on the current campaign mission (the
  * build menu asks only in GAME_MODE_CAMPAIGN). Black Hole armies build
  * everything. Missions 0-4 ban Medium Tanks, Neotanks, Rockets and Missiles.
@@ -19,10 +14,10 @@ extern int data_027c0284;
 BOOL Campaign_CanPlayerBuildUnit(int player, int unitType) {
   u16 mapId;
 
-  if (GAME->players[player].armyColour == ARMY_BLACK_HOLE) {
+  if (MAP_STATE->players[player].armyColour == ARMY_BLACK_HOLE) {
     return TRUE;
   }
-  mapId = GAME->unk_1c4->mapId;
+  mapId = MAP_STATE->unk_1c4->mapId;
   if (mapId >= MAP_CAMPAIGN_FIRST && mapId <= MAP_CAMPAIGN_FIRST + 4) {
     switch (unitType) {
       case UNIT_MEDIUM_TANK:

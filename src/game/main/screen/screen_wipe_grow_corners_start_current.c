@@ -2,11 +2,9 @@
 #include "game/task.h"
 #include "game/screen_other_map.h"
 #include "game/screen_wipe.h"
+#include "game/screen.h"
 
-int Screen_GetNibble(void);
-void Screen_SetNibble(int value);
 void func_02007710(int value);
-void Screen_EnableEmptyWindows(void);
 
 /* Like ScreenWipe_GrowCornersStart, for the current screen only. Ends the
  * task when that screen is already hidden (nibble 1). */

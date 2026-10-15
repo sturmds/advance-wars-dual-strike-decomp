@@ -3,20 +3,16 @@
 #include "game/Unk_02088d04.h"
 #include "sdk/gx.h"
 #include "game/text_print.h"
+#include "game/screen_other_map.h"
+#include "game/song.h"
+#include "game/menu_button.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern u8 data_021388f0[];
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Screen_SetCurrentBoth(void* state);
 void Screen_ApplyAll(void);
-void Sound_StopSong(void);
 void Sound_StopSubSe(int fadeFrames);
 void Task_InitSystem(void);
-void Menu_Reset(void);
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Load(const void* src, int offset, u32 size);
 void Mem_Copy32(const void* src, void* dst, u32 size);

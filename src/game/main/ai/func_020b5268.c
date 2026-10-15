@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/ai_unit_action.h"
+#include "game/ai/ai_unload.h"
+#include "game/ai.h"
 
-BOOL AiSeaTransport_CargoReachesEnemyHq(void);
 int func_020b52cc(void);
-void func_020b5bf4(void);
 
 void func_020b5268(void) {
   gAiUnloadTest = AiSeaTransport_CargoReachesEnemyHq;

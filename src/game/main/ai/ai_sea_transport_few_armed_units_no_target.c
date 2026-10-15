@@ -1,8 +1,6 @@
 #include "types.h"
-
-BOOL AiUnit_HasReachableTarget(void);
-int Ai_CountEnemyGroundUnitsInRange(void);
-int Ai_CountTeamArmedGroundUnitsInRange(void);
+#include "game/ai/ai_unload.h"
+#include "game/ai/ai_units_in_range.h"
 
 /* Tile test for the order 0 and 1 routine: like AiSeaTransport_FewArmedUnitsInRange,
  * but FALSE when the acting unit has a reachable target. */

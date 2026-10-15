@@ -2,9 +2,6 @@
 #include "game/ov003_unit.h"
 #include "game/Unk_02160ac0.h"
 
-extern Unk_02160ac0* data_02160ac0;
-extern u8
-    data_ov003_02365d10[]; /* per tile code: bits 5-7 row, bits 0-4 terrain */
 /* Byte 4 of the 20-byte Ov003TileInfo entries in data_ov003_02364d88: index
  * with tile * 20. The reach in tiles, minus 1, for func_ov003_0235f8e8. */
 extern u8 data_ov003_02364d8c[];

@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/screen_other_map.h"
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-
 void func_ov000_022b04ec(void);
 BOOL Turn_NextPlayerWrapsAround(void);
 BOOL Player_IsInGame(u8 player);
@@ -22,22 +20,22 @@ void Game_State1_CheckDayLimit(void) {
   if (data_027c027c == data_027c0288.unk_00) {
     func_ov000_022b04ec();
   }
-  if (STATE->dayLimit == 0 || !Turn_NextPlayerWrapsAround() ||
-      STATE->dayLimit != STATE->day) {
-    STATE->unk_18 = 2;
+  if (MAP_STATE->dayLimit == 0 || !Turn_NextPlayerWrapsAround() ||
+      MAP_STATE->dayLimit != MAP_STATE->day) {
+    MAP_STATE->unk_18 = 2;
     Game_EnterState18();
     return;
   }
   most = 0;
   for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (Player_IsInGame(player) &&
-        most < STATE->players[player].propertyCount) {
-      most = STATE->players[player].propertyCount;
+        most < MAP_STATE->players[player].propertyCount) {
+      most = MAP_STATE->players[player].propertyCount;
     }
   }
   for (player = 1; player < ARMY_SLOT_COUNT; player++) {
     if (Player_IsInGame(player) &&
-        most > STATE->players[player].propertyCount) {
+        most > MAP_STATE->players[player].propertyCount) {
       LinkPlayer_MarkDefeated(player, 32);
     }
   }

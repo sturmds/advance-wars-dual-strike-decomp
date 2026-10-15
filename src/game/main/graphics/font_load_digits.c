@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
 extern u8 gDigitFontTiles[]; /* digit font: 40 tiles, 4bpp */
 #define DIGIT_FONT_TILES 40
 #define DIGIT_FONT_FIRST_TILE 0x36 /* after baseTile */

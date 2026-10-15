@@ -6,8 +6,6 @@
 #include "game/Unk_02080440.h"
 #include "game/map_unit.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern ScriptCommand gMapScrollScript[];
 
 void Task_ResumeScript(Task* task);
@@ -16,8 +14,7 @@ void func_020f5888(s16 x, s16 y); /* starts the map scroll to the tile */
 void PowerEffect_Start(int x, int y, int block); /* tile effect sprite */
 void func_020c4018(void);
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-#define FRONT (STATE->players[STATE->currentPlayer].front)
+#define FRONT (MAP_STATE->players[MAP_STATE->currentPlayer].front)
 #define BLOCK (gCoTable[FRONT.id & PLAYER_CO_ID_MASK].blocks[FRONT.unk_12])
 
 /* Script step of the common power script (gCoNoPowerScript): applies the
@@ -40,15 +37,16 @@ void PowerBonus_ApplyNextUnit(Task* task) {
     return;
   }
   for (; task->unk_68 < MAP_UNITS_MAX + 1; task->unk_68++) {
-    unit = &STATE->units[STATE->currentUnitBase + task->unk_68];
+    unit = &MAP_STATE->units[MAP_STATE->currentUnitBase + task->unk_68];
     if (unit->type == 0) {
       continue;
     }
     if (!BLOCK.affectsUnit(unit)) {
       continue;
     }
-    if (STATE->mapTiles
-                ->unk_2338[unit->x + STATE->mapTiles->rowStart[unit->y]] == 0 ||
+    if (MAP_STATE->mapTiles
+                ->unk_2338[unit->x + MAP_STATE->mapTiles->rowStart[unit->y]] ==
+            0 ||
         (unit->flags & MAP_UNIT_CARRIED)) {
       if (!(unit->flags & MAP_UNIT_CARRIED)) {
         func_020f5888(unit->x, unit->y);

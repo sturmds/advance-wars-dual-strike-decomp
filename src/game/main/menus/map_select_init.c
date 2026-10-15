@@ -5,14 +5,10 @@
 #include "game/Unk_02088d04.h"
 #include "game/event_queue.h"
 #include "game/war_room_records.h"
-
-extern MenuState gMenuState;
+#include "game/screen.h"
+#include "game/screen_other_map.h"
 
 void Gfx_InitBothScreens(void);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-void Screen_SetLayerCharBase(int a, u32 b);
-void Screen_SetLayerScreenSize(int layer, int screenSize);
 void Gfx_ClearLayerMap(int layer);
 void* File_Load(const char* path);
 const char* File_LocalizePath(const char* path);
@@ -52,8 +48,6 @@ void MenuButtons_DisableTouch(void);
 void Wallpaper_LoadBoth(void);
 void SpriteTask_Create(int a, int b, int c, int d);
 
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern const char gMapSelectResPath[];
 extern const char gMapSelectLangResPath[];
 extern const char gIconBlinkResPath[];
@@ -145,12 +139,12 @@ void MapSelect_Init(void) {
   data_027c0280->bgScrollY[data_027c0280->layer0Bg] = 2;
   Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
   Font_LoadDigits(0);
-  if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
+  if (MAP_STATE->gameMode == GAME_MODE_WAR_ROOM) {
     Data_Unpack(file + 0x1f8, data_027c0280->layer1Map);
     Data_Unpack(langFile + 0x770, data_027c0280->objVram);
     Palette_Load(file + 0x1d8, 0x200, 0x20);
   } else {
-    if (STATE->twoMaps == 0) {
+    if (MAP_STATE->twoMaps == 0) {
       Data_Unpack(file + 0x20, data_027c0280->layer1Map);
     } else {
       Data_Unpack(file + 0xfc, data_027c0280->layer1Map);
@@ -240,7 +234,7 @@ void MapSelect_Init(void) {
     Mem_Copy32(file + 0x20, MENU->setup.colours2, sizeof(MENU->setup.colours2));
     Mem_Free(file);
   }
-  if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
+  if (MAP_STATE->gameMode == GAME_MODE_WAR_ROOM) {
     MapSelect_BuildWarRoomLists(MENU->setup.lists);
   } else {
     MapSelect_BuildLists(MENU->setup.lists, 0);

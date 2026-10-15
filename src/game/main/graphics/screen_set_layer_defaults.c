@@ -2,8 +2,6 @@
 #include "game/BgControl.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 #define LAYER_BG(i) (GFX_LAYER(data_027c0280, i)->bg)
 
 /* Gives the four layers' BGs priorities 0 to 3, shows all BGs and OBJ, turns

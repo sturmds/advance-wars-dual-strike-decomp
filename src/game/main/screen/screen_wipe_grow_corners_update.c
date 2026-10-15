@@ -2,12 +2,10 @@
 #include "game/task.h"
 #include "game/screen_other_map.h"
 #include "game/screen_wipe.h"
+#include "game/screen.h"
+#include "game/math.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task* task);
-void Screen_EnableEmptyWindows(void);
-void Screen_ResetWindowRects(void);
-void ScreenWipe_SetTopLeftBottomRightWindows(int width, int height);
 
 #define WIPE_END 352
 

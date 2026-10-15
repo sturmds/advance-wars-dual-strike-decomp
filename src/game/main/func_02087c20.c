@@ -4,8 +4,6 @@
 #include "game/menu_button.h"
 #include "game/screen_other_map.h"
 
-extern Unk_02160ac0* data_02160ac0;
-
 void func_02082a8c(int palette);
 void func_02088528(int a0);
 void HelpText_Show(u32 textId, int tile);

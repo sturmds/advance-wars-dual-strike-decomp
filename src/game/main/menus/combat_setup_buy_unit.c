@@ -7,7 +7,6 @@
 void Sound_PlaySe(u32 soundId);
 void CombatSetup_DrawShop(void);
 
-extern MenuState gMenuState;
 extern MenuButtonTemplate data_02160e58;
 
 /* Needed to match: the cast keeps the field offset out of the literal pool. */

@@ -1,9 +1,8 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void func_0201e6e8(int x, int y, int width, int height);
 void Palette_QueueBlockCopy(int id, int army, void* dest, int copy);
 const void* Terrain_GetPalette(int id, int army);
@@ -13,13 +12,7 @@ void TransferQueue_Add(const void* src, void* dst, u32 size);
 void Palette_Load(const void* src, u32 offset, u32 size);
 void MenuBox_Draw(int x, int y, int width, int height);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern const u16 gArmyPalettes[][16];
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Loads the sub screen sprites of the count table that
  * Ov006_DrawPropertyCounts draws: eight terrain sprites (Palette_QueueBlockCopy) at
@@ -56,10 +49,10 @@ void Ov006_LoadPropertyCountGraphics(void) {
   TransferQueue_Add(UnitIcons_GetTiles() + Player_GetUnitIconTile(4, 2) * 32,
                     data_027c0280->objVram + 0x3d80, 128);
 
-  Palette_Load(gArmyPalettes[STATE->players[1].armyColour - 1], 0x360, 32);
-  Palette_Load(gArmyPalettes[STATE->players[2].armyColour - 1], 0x380, 32);
-  Palette_Load(gArmyPalettes[STATE->players[3].armyColour - 1], 0x3a0, 32);
-  Palette_Load(gArmyPalettes[STATE->players[4].armyColour - 1], 0x3c0, 32);
+  Palette_Load(gArmyPalettes[MAP_STATE->players[1].armyColour - 1], 0x360, 32);
+  Palette_Load(gArmyPalettes[MAP_STATE->players[2].armyColour - 1], 0x380, 32);
+  Palette_Load(gArmyPalettes[MAP_STATE->players[3].armyColour - 1], 0x3a0, 32);
+  Palette_Load(gArmyPalettes[MAP_STATE->players[4].armyColour - 1], 0x3c0, 32);
 
   Palette_Load(Terrain_GetPalette(20, 0), 0x280, 32);
   Palette_Load(Terrain_GetPalette(20, 1), 0x2a0, 32);

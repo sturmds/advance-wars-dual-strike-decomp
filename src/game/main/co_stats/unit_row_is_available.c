@@ -8,13 +8,10 @@
 
 BOOL Campaign_IsHardMode(void);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern MenuState gMenuState;
 extern u8 gUnitRowTypes
     []; /* unit type of each row of the list PlayerInfo_DrawUnitStats draws; UNIT_NONE: empty row */
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
+#define MAP_STATE (data_027c027c->unk_48[data_027c0284])
 
 /* playerArmy of the shown player. Needed to match: the compiler adds the
  * player index to gMenuState's address before the field offset. */
@@ -34,7 +31,7 @@ BOOL UnitRow_IsAvailable(int row) {
   if (gUnitRowTypes[row] == UNIT_NONE) {
     return FALSE;
   }
-  if (GAME->gameMode != GAME_MODE_CAMPAIGN) {
+  if (MAP_STATE->gameMode != GAME_MODE_CAMPAIGN) {
     if (gUnitRowTypes[row] == UNIT_OOZIUM && !GameFlag_IsSet(43)) {
       return FALSE;
     }
@@ -47,70 +44,70 @@ BOOL UnitRow_IsAvailable(int row) {
   if (army == ARMY_BLACK_HOLE) {
     switch (gUnitRowTypes[row]) {
       case UNIT_MEGATANK:
-        if (GAME->unk_1c4->mapId <= MAP_VERDANT_HILLS) {
+        if (MAP_STATE->unk_1c4->mapId <= MAP_VERDANT_HILLS) {
           return FALSE;
         }
-        if (GAME->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 25) {
+        if (MAP_STATE->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 25) {
           return FALSE;
         }
-        if (GAME->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 26) {
+        if (MAP_STATE->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 26) {
           return FALSE;
         }
         break;
       case UNIT_STEALTH:
       case UNIT_CARRIER:
-        if (GAME->unk_1c4->mapId <= MAP_CAMPAIGN_FIRST + 13) {
+        if (MAP_STATE->unk_1c4->mapId <= MAP_CAMPAIGN_FIRST + 13) {
           return FALSE;
         }
-        if (GAME->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 25) {
+        if (MAP_STATE->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 25) {
           return FALSE;
         }
-        if (GAME->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 26) {
+        if (MAP_STATE->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 26) {
           return FALSE;
         }
-        if (GAME->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 27) {
+        if (MAP_STATE->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 27) {
           return FALSE;
         }
         break;
       case UNIT_PIPERUNNER:
       case UNIT_BLACK_BOMB:
       case UNIT_BLACK_BOAT:
-        if (GAME->unk_1c4->mapId <= MAP_CAMPAIGN_FIRST + 8) {
+        if (MAP_STATE->unk_1c4->mapId <= MAP_CAMPAIGN_FIRST + 8) {
           return FALSE;
         }
         break;
       case UNIT_OOZIUM:
-        return GAME->unk_1c4->mapId >= MAP_MUCK_AMOK;
+        return MAP_STATE->unk_1c4->mapId >= MAP_MUCK_AMOK;
     }
   } else {
     switch (gUnitRowTypes[row]) {
       case UNIT_MEGATANK:
         /* army 3: probably Green Earth */
-        if (GAME->unk_1c4->mapId == MAP_VERDANT_HILLS && army == 3) {
+        if (MAP_STATE->unk_1c4->mapId == MAP_VERDANT_HILLS && army == 3) {
           return TRUE;
         }
-        if (GAME->unk_1c4->mapId <= MAP_VERDANT_HILLS) {
+        if (MAP_STATE->unk_1c4->mapId <= MAP_VERDANT_HILLS) {
           return FALSE;
         }
-        if (GAME->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 25) {
+        if (MAP_STATE->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 25) {
           return FALSE;
         }
-        if (GAME->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 26) {
+        if (MAP_STATE->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 26) {
           return FALSE;
         }
         break;
       case UNIT_STEALTH:
       case UNIT_CARRIER:
-        if (GAME->unk_1c4->mapId <= MAP_CAMPAIGN_FIRST + 13) {
+        if (MAP_STATE->unk_1c4->mapId <= MAP_CAMPAIGN_FIRST + 13) {
           return FALSE;
         }
-        if (GAME->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 25) {
+        if (MAP_STATE->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 25) {
           return FALSE;
         }
-        if (GAME->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 26) {
+        if (MAP_STATE->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 26) {
           return FALSE;
         }
-        if (GAME->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 27) {
+        if (MAP_STATE->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 27) {
           return FALSE;
         }
         break;

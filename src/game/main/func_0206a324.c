@@ -1,6 +1,6 @@
 #include "types.h"
+#include "game/menu_button.h"
 
-void MenuButtons_EnableTouch(void);
 void VsSetup_AddMapAndCoButtons(void);
 
 void func_0206a324(void) {

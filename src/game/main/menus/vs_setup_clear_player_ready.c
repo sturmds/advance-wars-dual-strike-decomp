@@ -6,7 +6,6 @@ int Link_FindSlotOfPlayer(int player);
 int Link_GetOwnPlayer(void);
 void VsSetup_ResumePlayerTask(int player);
 void VsSetup_AddLinkButtons(int player);
-extern MenuState gMenuState;
 #define MENU ((MenuState*)&gMenuState)
 
 /* Takes back the ready state of a player slot on the Vs setup screen, with

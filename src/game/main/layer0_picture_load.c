@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 #include "game/layer0_picture_task.h"
+#include "sdk/fs.h"
 
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           int paletteOffset, int size);

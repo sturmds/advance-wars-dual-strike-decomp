@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-
 void InfoPanel_Draw(void);
 
 /* Draws the info panel when the state byte unk_84 is set, then runs the

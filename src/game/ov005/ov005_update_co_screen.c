@@ -5,26 +5,21 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov005_0236bba8.h"
 #include "game/co_data.h"
+#include "game/screen_other_map.h"
+#include "game/menu_button.h"
+#include "sdk/fs.h"
+#include "game/screen.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           int paletteOffset, int size);
 void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);
 BOOL Screen_IsTextBg(int layer);
-BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void func_020048f4(u16 frames);
 void func_0200493c(u16 frames);
 void func_02004984(u16 frames);
 void func_020049cc(u16 frames);
-int ScreenTransition_IsRunning(void);
-void MenuCursor_SetRect(s16 left, s16 top, s16 right, s16 bottom);
-void MenuButtons_EnableTouch(void);
-void MenuButtons_DisableTouch(void);
-void MenuButtons_RemoveSelectable(void);
 void MenuButtons_RemoveUnselectable(void);
 void Sound_PlaySe(u32 soundId);
 void HelpText_Show(u32 textId, int tile);
@@ -52,9 +47,6 @@ void func_ov005_02362d68(Ov005Task* task);
 void Ov005_AddCoGridButtons(Ov005Task* task);
 void Ov005_LoadCoGridTextures(Ov005Task* task);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern char data_ov005_0236ae50[]; /* "/rikiishi" */
 extern char data_ov005_0236ae5c[]; /* "03a": grid layer 1 tiles */
 extern char data_ov005_0236ae60[]; /* "03b": grid layer 1 map */

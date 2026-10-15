@@ -2,7 +2,6 @@
 #include "game/design_map.h"
 #include "game/save_progress.h"
 
-extern SaveRecordBuffer data_02291774;
 extern DesignMap data_022a6c84[];
 
 int func_0201fe28(u8 recordId);

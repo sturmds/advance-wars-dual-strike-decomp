@@ -3,9 +3,8 @@
 #include "game/map_unit.h"
 #include "game/player.h"
 #include "game/play_records.h"
+#include "game/ai/ai_show_action.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u32 gLinkPlay;
 
 void func_020c4024(void);
@@ -20,7 +19,6 @@ void Game_State15_ReturnToCursor(void);
  * match: they keep the cursor in r0 and r1 for the call). */
 BOOL MapCursor_IsOnIdleOwnUnit(int x, int y);
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
-void func_020b8230(void);
 
 /* Bits func_020ef2c4 (buttons) and MapTouch_ReadTileTap (touch) return. */
 #define INPUT_CONFIRM 0x10
@@ -35,8 +33,6 @@ void func_020b8230(void);
   (*(Unk_02080440_48**)((u8*)((index) * sizeof(Unk_02080440_48*)) + \
                             (u32)data_027c027c + (u32) &            \
                         ((Unk_02080440*)0)->unk_48))
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Game_State15_RunStep sub-state 2: the player picks one of their own units
  * to delete. Confirm on a unit of the current player that has not waited
@@ -78,16 +74,16 @@ void Game_State15_PickUnitToDelete(void) {
     return;
   }
   if (MapCursor_IsOnIdleOwnUnit(x, y)) {
-    slot =
-        GAME->mapTiles
-            ->unitAt[GAME->mapTiles->rowStart[GAME->cursorY] + GAME->cursorX];
-    unit = &GAME->units[slot];
+    slot = MAP_STATE->mapTiles
+               ->unitAt[MAP_STATE->mapTiles->rowStart[MAP_STATE->cursorY] +
+                        MAP_STATE->cursorX];
+    unit = &MAP_STATE->units[slot];
     if (gLinkPlay != 0) {
       UnitAction_Send(UNIT_ACTION_DELETE, (u8)slot, 0, 0);
     }
-    GAME->actingUnit = unit;
+    MAP_STATE->actingUnit = unit;
     func_020b8230();
-    if (GAME->players[GAME->currentPlayer].controller ==
+    if (MAP_STATE->players[MAP_STATE->currentPlayer].controller ==
         PLAYER_CONTROLLER_HUMAN) {
       if (gPlayRecords.unitsDeleted < 999999) {
         gPlayRecords.unitsDeleted++;

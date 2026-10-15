@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/battle_scene.h"
-
-u32 HwDiv32(u32 num, u32 den);
+#include "game/math.h"
 
 /* HP as shown on screen: 1 to 10, rounded up. */
 #define SHOWN_HP(hp) ((hp) == 0 ? 0 : HwDiv32((hp) - 1, 10) + 1)

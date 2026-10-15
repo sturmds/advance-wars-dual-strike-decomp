@@ -11,7 +11,6 @@ void Ov006_RefreshSlots(void);
 void Ov006_StartScriptAfterDelay(void);
 void Task_ResumeScript(Task* task);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern int data_0229eae4;
 
 /* Dispatches on the request posted by

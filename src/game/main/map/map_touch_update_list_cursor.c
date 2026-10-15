@@ -8,12 +8,7 @@ void TouchMarker_Destroy(void);
 void TouchMarker_Create(int tileX, int tileY);
 void Map3d_ScreenToTilePos(int x, int y, s32* out);
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern s16 gEventScriptOwnsInput;
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 static inline BOOL IsTouchInPhase(int phase) {
   if (gTouch.active != 0 && gTouch.phase == phase) {
@@ -42,8 +37,8 @@ void MapTouch_UpdateListCursor(int* index, int count) {
     return;
   }
   if (data_027c027c != data_027c0288.unk_00) {
-    tileX = (touchX + GAME->unk_1c4->scrollX) >> 4;
-    tileY = (touchY + GAME->unk_1c4->scrollY) >> 4;
+    tileX = (touchX + MAP_STATE->unk_1c4->scrollX) >> 4;
+    tileY = (touchY + MAP_STATE->unk_1c4->scrollY) >> 4;
   } else {
     Map3d_ScreenToTilePos(touchX, touchY, pos);
     pos[1] = -pos[1];
@@ -53,19 +48,19 @@ void MapTouch_UpdateListCursor(int* index, int count) {
   }
   found = TargetList_FindTile(count, tileX, tileY);
   if (found >= 0) {
-    GAME->cursorX = tileX;
-    GAME->cursorY = tileY;
+    MAP_STATE->cursorX = tileX;
+    MAP_STATE->cursorY = tileY;
     *index = found;
   }
   if (IsTouchInPhase(TOUCH_PRESSED)) {
-    GAME->unk_30 = tileX;
-    GAME->unk_32 = tileY;
-    TouchMarker_Create(GAME->unk_30, GAME->unk_32);
+    MAP_STATE->unk_30 = tileX;
+    MAP_STATE->unk_32 = tileY;
+    TouchMarker_Create(MAP_STATE->unk_30, MAP_STATE->unk_32);
   }
-  if (tileX == GAME->unk_30 && tileY == GAME->unk_32) {
+  if (tileX == MAP_STATE->unk_30 && tileY == MAP_STATE->unk_32) {
     return;
   }
   TouchMarker_Destroy();
-  GAME->unk_30 = 0xff;
-  GAME->unk_32 = 0xff;
+  MAP_STATE->unk_30 = 0xff;
+  MAP_STATE->unk_32 = 0xff;
 }

@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/task.h"
 
-Task* Task_Create(const TaskScriptCmd* script, void* parentOrList);
-
 /* Creates a task under parent. The parent counts it in childCount and its
  * script waits while that is nonzero. Returns NULL when the child's script
  * already ended during its first run (the task is freed by then). */

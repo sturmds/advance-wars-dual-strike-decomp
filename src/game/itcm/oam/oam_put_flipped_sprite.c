@@ -5,8 +5,6 @@
 #include "game/oam_cells.h"
 #include "game/obj_size.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Oam_PutFlippedCells without the separate tile argument: attr2 holds the
  * first tile, priority and palette, added to each cell's attribute 2. With
  * the horizontal flip bit set in x, each cell is mirrored around x and the

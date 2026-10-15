@@ -3,7 +3,6 @@
 
 BOOL Map_IsCoSelectPhase(void);
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
 #define FIRST_MAP (data_027c0288.unk_00)
 #define CURRENT_MAP ((&data_027c0288.unk_00)[data_027c0284])
 #define OTHER_MAP ((&data_027c0288.unk_00)[1 - data_027c0284])
@@ -32,9 +31,9 @@ u16 Game_GetShownDay(void) {
 
   SWITCH_TO(FIRST_MAP, savedGfx, savedGame);
   useCurrent = TRUE;
-  if (GAME->secondMapId != 0) {
+  if (MAP_STATE->secondMapId != 0) {
     SWITCH_TO(OTHER_MAP, otherSavedGfx, otherSavedGame);
-    otherUnk30 = GAME->unk_1c4->unk_30;
+    otherUnk30 = MAP_STATE->unk_1c4->unk_30;
     SWITCH_BACK(otherSavedGfx, otherSavedGame);
     if (otherUnk30 == 0) {
       useCurrent = FALSE;
@@ -44,11 +43,11 @@ u16 Game_GetShownDay(void) {
 
   if (!useCurrent) {
     SWITCH_TO(OTHER_MAP, savedGfx, savedGame);
-    day = GAME->day;
+    day = MAP_STATE->day;
     SWITCH_BACK(savedGfx, savedGame);
   } else {
     SWITCH_TO(CURRENT_MAP, savedGfx, savedGame);
-    day = GAME->day;
+    day = MAP_STATE->day;
     SWITCH_BACK(savedGfx, savedGame);
   }
 

@@ -8,12 +8,12 @@ void Bg_ClearRect(void* target, int x, int y, int w, int h);
 void Bg_PutTileQuad(int x, int y, int tile, int size);
 int MapSelect_GetRecordMarker(int list, int mapId);
 
-extern Unk_027c0280* data_027c0280;
-
 /* As in MapSelect_DrawMapNames. */
 #define MAP_ID (listBase->setup.lists[0].mapIds[index])
-#define START_Y \
-  (STATE->gameMode == GAME_MODE_WAR_ROOM ? 9 : (STATE->twoMaps == 0 ? 5 : 7))
+#define START_Y                              \
+  (MAP_STATE->gameMode == GAME_MODE_WAR_ROOM \
+       ? 9                                   \
+       : (MAP_STATE->twoMaps == 0 ? 5 : 7))
 
 /* Redraws only the War Room record markers next to the map names of one page
  * of map list `list`, at the places MapSelect_DrawMapNames uses: clears the
@@ -26,7 +26,7 @@ void MapSelect_DrawRecordMarkers(int list, int page) {
   int index;
   MenuState* listBase;
 
-  x = STATE->gameMode == GAME_MODE_WAR_ROOM ? 17 : 1;
+  x = MAP_STATE->gameMode == GAME_MODE_WAR_ROOM ? 17 : 1;
   y = START_Y;
   /* Needed to match: the original narrows the arguments to u16. */
   Bg_ClearRect(data_027c0280->layer0Map, (u16)(x + 9), (u16)y, 2,
@@ -47,7 +47,7 @@ void MapSelect_DrawRecordMarkers(int list, int page) {
     }
     y += 2;
     if (y == START_Y + COLS * 2) {
-      x += STATE->gameMode == GAME_MODE_WAR_ROOM ? 0 : 9;
+      x += MAP_STATE->gameMode == GAME_MODE_WAR_ROOM ? 0 : 9;
       y = START_Y;
     }
   }

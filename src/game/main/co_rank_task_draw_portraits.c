@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/co_rank_task.h"
-
-void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list,
-                            BOOL flip);
+#include "game/win_quote.h"
 
 /* Script step: draws the portrait of the front CO at x 64 and, in a tag
  * battle, the back CO at x 192, mirrored. */

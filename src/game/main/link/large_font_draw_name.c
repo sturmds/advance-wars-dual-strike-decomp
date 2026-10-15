@@ -2,8 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/link_player_name.h"
 
-extern Unk_027c0280* data_027c0280;
-
 void Mem_Zero32(u32 value, void* dst, u32 size);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 int LargeFont_FindGlyph(u16 c);

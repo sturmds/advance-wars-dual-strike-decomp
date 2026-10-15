@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/script_slot.h"
+#include "game/screen.h"
 
 void MenuDepth_Push(void);
-void ScreenTransition_IsRunning(void);
 void WeatherTask_Apply(void);
 void MenuDepth_Pop(void);
 void WeatherTask_PlaySound(void);

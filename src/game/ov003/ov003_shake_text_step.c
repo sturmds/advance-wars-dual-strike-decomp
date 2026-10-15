@@ -5,8 +5,6 @@
 #include "game/Unk_ov003_0235dd38.h"
 #include "game/ov003_unit.h"
 
-extern Unk_027c0280* data_027c0280;
-
 const void* Text_Get(u32 textId);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 void Task_ResumeScript(void* task);

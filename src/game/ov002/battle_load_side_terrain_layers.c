@@ -3,8 +3,6 @@
 #include "game/terrain.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_027c0280* data_027c0280;
-
 u32 File_UnpackTo(void* dest, const char* path);
 void File_ReadTo(void* dest, const char* path);
 int Battle_IsSideDrawnInAir(int side); /* 1: the side is drawn in the sky */

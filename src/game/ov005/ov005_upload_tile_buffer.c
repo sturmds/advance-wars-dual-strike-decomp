@@ -1,11 +1,9 @@
 #include "types.h"
 #include "game/Unk_ov005_0235b574.h"
 #include "sdk/os.h"
+#include "sdk/gx_load.h"
 
 void Ov005_DrawGlyphToTexture(Unk_ov005_0235b574* work, int cell, int glyph);
-void GX_BeginLoadTex(void); /* guess: begins a VRAM load */
-void GX_LoadTex(const void* src, u32 offset, u32 size);
-void GX_EndLoadTex(void); /* guess: ends the load */
 
 void Ov005_UploadTileBuffer(Unk_ov005_0235b574* work) {
   int i;

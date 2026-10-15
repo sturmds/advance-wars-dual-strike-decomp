@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/task.h"
+#include "game/menu_button.h"
 
 void Task_ResumeByScript(const void* script);
-void MenuButtons_CloseAll(void);
 extern TaskScriptCmd data_0215af10[];
 extern const TaskScriptCmd data_0215aed0[];
 

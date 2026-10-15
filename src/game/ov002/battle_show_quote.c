@@ -3,9 +3,8 @@
 #include "game/menu_state.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_0229fb30.h"
+#include "sdk/runtime.h"
 
-extern MenuState gMenuState;
-extern Unk_027c0280* data_027c0280;
 static char Ov002_gBattleResPath[] = {
 #include "data/ov002/Ov002_gBattleResPath.inc.c"
 };
@@ -18,7 +17,6 @@ const char* File_LocalizePath(const char* path);
 void Mem_Free(void* block);
 u32 Battle_PickHappyQuote(int side);
 u32 Battle_PickAngryQuote(int side);
-s32 _s32_div_f(s32 num, s32 den);
 void Mem_Zero32(u32 value, void* dst, u32 size);
 void Gfx_ClearLayerMap(int a);
 void Gfx_RequestLayerCopy(int a);

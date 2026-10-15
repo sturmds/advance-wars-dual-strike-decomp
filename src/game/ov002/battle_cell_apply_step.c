@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 void func_ov002_0235d514(int side);
 
 /* Needed to match: a side's HP cell entry (battle.unk_310[side][cell]) as seen

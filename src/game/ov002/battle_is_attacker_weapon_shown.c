@@ -3,8 +3,6 @@
 #include "game/BattleSideData.h"
 #include "game/menu_state.h"
 
-extern MenuState gMenuState;
-
 #define MENU ((MenuState*)&gMenuState)
 
 /* TRUE for the attacking side when its animation data does not have unk_48 set to 1 and the

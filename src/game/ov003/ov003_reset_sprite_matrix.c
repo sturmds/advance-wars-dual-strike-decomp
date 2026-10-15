@@ -1,10 +1,7 @@
 #include "types.h"
 #include "game/ov003_unit.h"
-
-s32 HwDiv32(s32 numer, s32 denom);
-void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
-
-extern s16 gSineTable[];
+#include "game/oam_buffer.h"
+#include "game/math.h"
 
 /* Loads sprite matrix 0 with the rotation for angle 0 of the sine table
  * (the same loading as func_02049ddc, with divisor 256) and clears the next

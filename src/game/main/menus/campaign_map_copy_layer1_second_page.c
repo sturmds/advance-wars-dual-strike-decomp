@@ -5,8 +5,6 @@ void Gfx_ClearLayerMap(int layer);
 void Mem_Copy32(const void* src, void* dest, u32 size);
 void Gfx_RequestLayerCopy(int layer);
 
-extern Unk_027c0280* data_027c0280;
-
 /* Copies the second screen block (BG_SCREEN_SIZE bytes) of layer 1's tile map over the first and
  * redraws layers 0 and 1. Its caller runs it when the world map task exists
  * (guess: the world map is the screen that uses it). */

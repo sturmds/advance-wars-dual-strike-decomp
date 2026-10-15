@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/main_menu.h"
+#include "sdk/gx_load.h"
 
-void GX_BeginLoadTexPltt(void);
-void GX_EndLoadTexPltt(void);
 void Palette_Load(const void* src, int offset, u32 size);
 
 #define VRAM_LCDC_F ((u16*)0x06890000)

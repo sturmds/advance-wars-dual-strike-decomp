@@ -9,7 +9,6 @@ void func_020c4018(void);
 void Font_SetDigitEndTile(int tile);
 void ScriptSlot_Start(const void* script, int arg);
 
-extern Unk_ov006_0235f690* data_ov006_0236d640;
 extern ScriptCommand data_ov006_0236b978[];
 
 void func_ov006_02357eac(int id) {

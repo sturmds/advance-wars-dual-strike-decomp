@@ -1,6 +1,6 @@
 #include "types.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numerator, s32 denominator);
 int DamageChart_GetColumn(int targetType, BOOL targetDived);
 int UnitType_GetChartDamage(int unitType, int column, int weapon);
 

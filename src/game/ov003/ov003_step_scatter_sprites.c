@@ -1,10 +1,8 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 #include "game/Unk_ov003_0235dd38.h"
+#include "game/math.h"
 
-extern Ov003Unit data_ov003_02369538[];
-
-s32 HwMod32(s32 numerator, s32 denominator);
 u32 Ov003_RandNext(void);
 int Ov003_IsPhase0OrAbove6(void);
 int func_ov003_023622b8(void);

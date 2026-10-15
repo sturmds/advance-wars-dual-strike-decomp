@@ -2,7 +2,6 @@
 #include "game/menu_state.h"
 
 void Sound_PlaySe(int);
-extern MenuState gMenuState;
 int VsSetup_ShowSettingHelp2(void*);
 
 int func_02064af0(int row) {

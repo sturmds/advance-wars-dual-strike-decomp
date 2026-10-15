@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/brightness_fade.h"
 #include "game/screen_other_map.h"
-
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
+#include "game/math.h"
 
 void BrightnessFade_Update(BrightnessFadeTask* fade) {
   int start = fade->startLevel;

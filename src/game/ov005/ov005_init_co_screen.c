@@ -5,9 +5,11 @@
 #include "game/Unk_02088d04.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bba8.h"
+#include "game/screen_other_map.h"
+#include "game/icon.h"
+#include "sdk/fs.h"
+#include "game/screen.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 BOOL CoSelect_IsCoAvailable(u8 coId);
 s16 func_ov005_02362bf0(Unk_ov005_0236bba8* work, int index);
@@ -23,27 +25,20 @@ void ModeFont_ShowTextOnScreen(const char* text, int tile, int paletteSlot,
 void HelpBand_Start(int a, int b);
 void HelpText_Show(u32 textId, int tile);
 void Gfx_LoadBmap09f(void* target, int a, int b);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void* File_Load(const char* path);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           int paletteOffset, int size);
 void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);
 BOOL Screen_IsTextBg(int layer);
-BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Ov005_LoadCoGraphicsToBothScreens(Unk_ov005_0236bba8* work);
 void Ov005_UnpackCoScreenPicture(Unk_ov005_0236bba8* work);
 void IconBanks_ClearSlots(void);
-void IconBank_Init(int bank, u8* vram, int firstTile, int paletteSlot);
-void Icon_Load(int iconId);
 void Ov005_LoadCoGridTextures(Ov005Task* task);
 ShowSprite* SpriteAnim_Create(void* file, int a, int b);
 void SpriteAnim_SetAnimation(ShowSprite* sprite, int frame);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern const Ov005CoGridEntry data_ov005_0236ac90[OV005_CO_GRID_ENTRIES];
 extern const u8 data_ov005_0236ac24[];
 void Ov005_UpdateCoPicture(void);

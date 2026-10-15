@@ -1,15 +1,9 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/screen.h"
+#include "game/screen_other_map.h"
 
-void Scene_SetKind(int value);
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern s32 data_02169ba4[][5];
 extern s32 data_02169ba8[][5];
 

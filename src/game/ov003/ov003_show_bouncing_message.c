@@ -3,10 +3,10 @@
 #include "game/screen_other_map.h"
 #include "game/ov003_message_task.h"
 #include "game/ov003_unit.h"
+#include "game/math.h"
 
 #define STATE_BYTE_1D7 (((u8*)&data_ov003_02364928->unk_1d6)[1])
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Mem_Copy32(const void* src, void* dst, u32 size);
 const u8* Text_Get(u32 textId);
 int strlen(const u8* str);

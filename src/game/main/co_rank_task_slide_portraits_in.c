@@ -1,10 +1,9 @@
 #include "types.h"
 #include "game/co_rank_task.h"
+#include "game/math.h"
+#include "game/win_quote.h"
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(CoRankTask* task);
-void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list,
-                            BOOL flip);
 
 /* One frame of a 24-frame slide: the portraits of CoRankTask_DrawPortraits
  * move in from 256 pixels off. Resumes the task's script on the last frame. */

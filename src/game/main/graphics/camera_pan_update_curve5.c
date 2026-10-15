@@ -1,10 +1,10 @@
 #include "types.h"
 #include "game/camera_pan.h"
 #include "game/task.h"
+#include "game/math.h"
 
 extern Camera data_022a7d5c;
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task* task);
 
 /* One frame of a camera pan (see CameraPan_InitFromScrollTile): sets the

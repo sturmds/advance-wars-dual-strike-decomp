@@ -2,8 +2,6 @@
 #include "game/ov003_unit.h"
 #include "game/ov003_item.h"
 
-extern Ov003Unit data_ov003_02369538[];
-
 int func_ov003_023622b8(void);
 void Ov003_ApplyPickup(Ov003Unit* unit, Ov003Item* pickup);
 

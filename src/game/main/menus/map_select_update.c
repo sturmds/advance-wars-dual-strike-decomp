@@ -5,8 +5,6 @@
 #include "game/keypad.h"
 #include "game/task.h"
 
-extern MenuState gMenuState;
-
 u8* Wireless_GetSharedData(int player);
 void func_0207b48c(void);
 u32 Link_IsActive(void);
@@ -38,7 +36,7 @@ void MapSelect_Update(Task* task) {
   confirm = 0;
   MENU->setup.listChanged = 0;
   leave = 0;
-  if (STATE->gameMode == GAME_MODE_WAR_ROOM &&
+  if (MAP_STATE->gameMode == GAME_MODE_WAR_ROOM &&
       MENU->setup.subSlideFrames == 0) {
     if (gKeypad->repeat & PAD_KEY_LEFT) {
       MapSelect_PrevSubStripKey(0);
@@ -69,7 +67,7 @@ void MapSelect_Update(Task* task) {
           MapSelect_SelectPagePosition(msg[1]);
           break;
         case EVENT_MAP_SELECT_CONFIRM:
-          if (STATE->twoMaps == 1 && gMenuState.setup.firstMapId == 0) {
+          if (MAP_STATE->twoMaps == 1 && gMenuState.setup.firstMapId == 0) {
             break;
           }
           confirm = TRUE;

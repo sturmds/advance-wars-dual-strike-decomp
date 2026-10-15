@@ -5,8 +5,6 @@
 void Sound_PlaySe(u32 soundId);
 void VsSetup_ShowSettingHelp(void);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offsets out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

@@ -2,8 +2,6 @@
 #include "game/Unk_02088d04.h"
 #include "game/text_printer.h"
 
-extern Unk_027c0280* data_027c0280;
-
 /* Copies the text printer in data_027c0280 into printer, field by field. */
 void TextPrinter_CopyFromShared(TextPrinter* printer) {
   TextPrinter* src = data_027c0280->textPrinter;

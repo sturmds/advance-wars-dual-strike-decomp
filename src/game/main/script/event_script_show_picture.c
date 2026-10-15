@@ -8,15 +8,11 @@ extern Unk_0201d320 data_022977f4[];
 extern s16 gEventTextWindowPos; /* screen the picture goes on: 0 or 1 */
 /* ITCM table of two functions, one per screen */
 extern void* gScreenPanelHBlankHandlers[];
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 
 void func_0201dc44(int index);
 int Index_FromNumber(int number);
 void func_0201dc38(void* arg);
 void EventScript_StartScreenSlideOut(int index);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Record picture value with this bit set: the low bits name a player slot, and the picture is
  * that player's front CO with the mood from the record's unk_0a. */
@@ -43,13 +39,13 @@ void EventScript_ShowPicture(s16 index) {
     if (picture & PICTURE_FROM_PLAYER) {
       slot = picture & PICTURE_PLAYER_MASK;
       if (slot == PICTURE_PLAYER_CURRENT) {
-        slot = STATE->currentPlayer;
+        slot = MAP_STATE->currentPlayer;
       }
       /* the record's mood is 1-based */
       mood = Index_FromNumber(record->unk_0a);
       /* needed to match: the s16 cast gives smlabb for the index */
       data_022977a4.unk_02 =
-          (STATE->players[(s16)slot].front.id & PLAYER_CO_ID_MASK) |
+          (MAP_STATE->players[(s16)slot].front.id & PLAYER_CO_ID_MASK) |
           (mood << 8);
     } else {
       data_022977a4.unk_02 = picture;

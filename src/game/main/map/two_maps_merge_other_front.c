@@ -5,24 +5,21 @@
 #include "game/play_records.h"
 #include "game/unit_stats.h"
 #include "game/screen_other_map.h"
+#include "game/math.h"
+#include "game/screen.h"
 
-extern PlayRecords gPlayRecords;
-
-s32 HwDiv32(s32 numerator, s32 denominator);
 BOOL Player_IsInGame(int player);
 int Unit_GetChargeForHpLost(int player, int hpLost, int unitType);
 void Player_AddPowerCharge(int player, int slot, int amount);
 int Players_AnyHumanInGame(void);
 void CurrentPlayer_SyncState(void);
 void MovementCost(void);
-BOOL SceneMode_IsCurrent(int arg);
 void func_020c4018(void);
 void CurrentPlayer_LoadPalettes(void);
 
 /* HP as the map shows it: 0-10, rounded up. */
 #define SHOWN_HP(unit) ((unit)->hp != 0 ? HwDiv32((unit)->hp - 1, 10) + 1 : 0)
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
 #define OWN_MAP ((&data_027c0288.unk_00)[data_027c0284])
 #define OTHER_MAP ((&data_027c0288.unk_00)[1 - data_027c0284])
 
@@ -52,12 +49,12 @@ void TwoMaps_MergeOtherFront(void) {
     if (!Player_IsInGame(player & 0xff)) {
       continue;
     }
-    frontId = GAME->players[player].front.id;
+    frontId = MAP_STATE->players[player].front.id;
     charge = 0;
-    frontCharge = GAME->players[player].front.charge;
+    frontCharge = MAP_STATE->players[player].front.charge;
     for (i = Ov000_gPlayerFirstUnitSlot[player] + 1;
          i < Ov000_gPlayerFirstUnitSlot[player] + 51; i++) {
-      unit = &GAME->units[i];
+      unit = &MAP_STATE->units[i];
       if (unit->type != UNIT_NONE) {
         charge += Unit_GetChargeForHpLost(player, SHOWN_HP(unit), unit->type);
       }
@@ -66,8 +63,8 @@ void TwoMaps_MergeOtherFront(void) {
     Screen_SetCurrentGfx(OWN_MAP);
     inner027c = data_027c027c;
     Screen_SetCurrent(OWN_MAP);
-    GAME->players[player].back.id = frontId;
-    GAME->players[player].back.charge = frontCharge;
+    MAP_STATE->players[player].back.id = frontId;
+    MAP_STATE->players[player].back.charge = frontCharge;
     Player_AddPowerCharge(player, 0, charge);
     Player_AddPowerCharge(player, 1, charge);
     Screen_SetCurrent(inner027c);
@@ -80,7 +77,7 @@ void TwoMaps_MergeOtherFront(void) {
   Screen_SetCurrentGfx(OWN_MAP);
   saved027c = data_027c027c;
   Screen_SetCurrent(OWN_MAP);
-  GAME->currentPlayer = 1;
+  MAP_STATE->currentPlayer = 1;
   if (Players_AnyHumanInGame() && gPlayRecords.unk_380 < 999999) {
     gPlayRecords.unk_380++;
   }

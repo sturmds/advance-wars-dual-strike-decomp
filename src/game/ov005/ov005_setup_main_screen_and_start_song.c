@@ -5,25 +5,19 @@
 #include "game/task.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_023559dc.h"
+#include "game/screen_other_map.h"
+#include "game/screen.h"
+#include "sdk/fs.h"
 
-void Screen_SetCurrent(void* state);
-void Screen_SetCurrentGfx(void* state);
-void Screen_SetBgMode(int mode);
-void Screen_InitLayers(const void* config);
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 void Palette_LoadFromFile(const char* fileName, int fileOffset,
                           int paletteOffset, int size);
 void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);
 BOOL Screen_IsTextBg(int layer);
-BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 Task* Sound_StartSongSwitch(
     int song, int arg); /* task: fade out the song, then start `song` */
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern GfxLayer data_ov005_02368a58[]; /* layer config for Screen_InitLayers */
 extern char data_ov005_02369440[];     /* directory of the files below */
 extern char gRikiishiFile036[];        /* layer 2 tiles */

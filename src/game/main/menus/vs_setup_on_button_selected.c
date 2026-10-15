@@ -8,8 +8,6 @@ int BattleSetup_IsCursorOnCo(void);
 void VsSetup_RedrawSkills(void);
 void VsSetup_RedrawAllSkills(void);
 
-extern MenuState gMenuState;
-
 /* Needed to match: the cast keeps the field offsets out of the literal pool. */
 #define MENU ((MenuState*)&gMenuState)
 

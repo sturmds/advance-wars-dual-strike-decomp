@@ -1,9 +1,8 @@
 #include "types.h"
 #include "game/popup_menu.h"
+#include "game/icon.h"
 
 extern u8 data_0215875c[];
-
-void Icon_Draw(int iconId, int x, int y, int tile, int list);
 
 /* Draws the icon of each item that has one, left of the item text: the icon
  * sits one tile in from the menu corner and each item takes two tile rows. */

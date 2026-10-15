@@ -4,8 +4,6 @@
 
 void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
 
-extern MenuState gMenuState;
-
 /* Queues an icon at y 8 for each CO of each player that has coShown set:
  * 40 pixels per player, 16 per CO, tile picked by the player's army. */
 void PlayerInfo_DrawCoIcons(void) {

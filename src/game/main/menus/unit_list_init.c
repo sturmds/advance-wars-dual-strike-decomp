@@ -4,14 +4,13 @@
 #include "game/menu_state.h"
 #include "game/player.h"
 #include "game/unit_list_task.h"
+#include "game/icon.h"
 
 void* Mem_Alloc(u32 size);
 int UnitList_ClearAndCount(void);
 void UnitList_Build(int sortMode, int reverse);
 void UnitList_AddButtons(void);
 void Gfx_ClearLayerMap(int layer);
-void Icon_LoadTo(int iconId, u8* vram, int tile);
-void IconBank_LoadPalette(int bank, int paletteSlot);
 void File_ReadAt(void* dest, const char* path, u32 offset, u32 size);
 void TpIcon2_LoadTo(u8* dest);
 void File_UnpackTo(void* dest, const char* fileName);
@@ -25,15 +24,9 @@ void Gfx_RequestLayerCopy(int layer);
 void UnitList_DrawHeadings(void);
 void UnitList_DrawRows(int scroll);
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0280* data_027c0280;
-extern int data_027c0284;
-extern MenuState gMenuState;
 extern const char data_0215fb10[];
 extern const char data_0215fb28[];
 extern const u32 data_02167c9c[];
-
-#define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Sets up the unit list menu task: allocates and builds the list (type
  * order, not reversed), loads the icons, the 16-colour cycle palette
@@ -59,7 +52,7 @@ void UnitList_Init(UnitListTask* task) {
   UnitList_Build(task->sortMode, task->reverse);
   Gfx_ClearLayerMap(0);
   Gfx_ClearLayerMap(1);
-  Icon_LoadTo(GAME->players[GAME->currentPlayer].armyColour + 74,
+  Icon_LoadTo(MAP_STATE->players[MAP_STATE->currentPlayer].armyColour + 74,
               data_027c0280->objVram, 404);
   IconBank_LoadPalette(1, 22);
   Icon_LoadTo(1, data_027c0280->objVram, 414);
@@ -73,8 +66,9 @@ void UnitList_Init(UnitListTask* task) {
   map = data_027c0280->layer0Map;
   Text_PrintStringImmediate(
       5, 1, map,
-      Text_Get(data_02167c9c[GAME->players[GAME->currentPlayer].armyColour]), 0,
-      0);
+      Text_Get(data_02167c9c[MAP_STATE->players[MAP_STATE->currentPlayer]
+                                 .armyColour]),
+      0, 0);
   Number_Draw(30, 1, data_027c0280->layer0Map, task->unitCount, 0, 0);
   UnitList_DrawHeadings();
   UnitList_DrawRows(task->scroll);

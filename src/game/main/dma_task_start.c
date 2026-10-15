@@ -4,8 +4,6 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
-extern Unk_02080440* data_027c027c;
-extern Unk_027c0288 data_027c0288;
 extern u32 gTaskSystemReady;
 extern const TaskScriptCmd data_021571ac[]; /* DMA task on channel 0 */
 extern const TaskScriptCmd data_021571cc[]; /* DMA task on channel 1 */

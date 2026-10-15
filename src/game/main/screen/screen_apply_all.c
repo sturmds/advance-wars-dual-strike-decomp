@@ -1,8 +1,5 @@
 #include "types.h"
-
-void Screen_ApplyMain(void);
-void Screen_PrepareHBlankRegs(void);
-void Screen_ApplySub(void);
+#include "game/screen.h"
 
 /* Writes both screen states to the display registers: the main screen
  * (0x04000000), the DTCM copies Screen_PrepareHBlankRegs prepares, then the sub

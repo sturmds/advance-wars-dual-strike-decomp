@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/co_data.h"
+#include "sdk/fs.h"
 
-void FS_ChangeDir(const char* dir);
 void File_UnpackTo(void* dest, const char* fileName);
 int Co_GetPictureVariant(int coId);
 void Co_LoadPalette(int coId, int paletteSlot);

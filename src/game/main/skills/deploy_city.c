@@ -5,8 +5,6 @@
 #include "game/skills.h"
 #include "game/terrain.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern s8 Ov000_gGroundDeployTerrain
     []; /* nonzero where ground units can be built, by terrain id */
 

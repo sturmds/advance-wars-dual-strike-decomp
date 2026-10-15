@@ -2,8 +2,6 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440* data_027c027c;
-
 /* Script command: continues at the command the argument points to, with no
  * wait. Clears unk_38, which the move commands use as their started count. */
 BOOL ScriptSlot_CmdJump(int slot) {

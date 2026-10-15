@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/ov003_unit.h"
+#include "game/math.h"
 
-s32 HwDiv32(s32 numerator, s32 denominator);
-s32 HwMod32(s32 numerator, s32 denominator);
 int Ov003_RowKindGroup(int a0);
 int Ov003_IsPhase0OrAbove6(void);
 void Ov003_DrawTexturedQuad(int x, int y, int a2, int a3, int a4, int a5,

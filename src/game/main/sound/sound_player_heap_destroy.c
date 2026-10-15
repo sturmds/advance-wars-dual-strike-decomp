@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/sound_handle.h"
-
-void NNS_SndHeapDestroy(void* heap);
+#include "game/sound.h"
 
 /* Destroys the sound heap of a player heap and takes the player heap out of
  * use: a player that holds it loses its heap, otherwise it leaves the

@@ -1,14 +1,12 @@
 #include "types.h"
 #include "game/map_unit.h"
 #include "game/screen_other_map.h"
+#include "game/ai/ai_turn_state.h"
 
 MapUnit* Unit_FindFreeSlot(int player);
 void Player_CountArrivingUnit(int player);
-void MapUnit_ResetAiState(MapUnit* unit);
 int Unit_CopyToOtherMap(MapUnit* unit, int x, int y);
 void func_020c7398(int unitIndex);
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Two-map battles: moves unit to tile (x, y) of the other map. A free slot of
  * the current player is taken on the other map (Player_CountArrivingUnit counts the
@@ -21,7 +19,7 @@ void Unit_TransferToOtherMap(MapUnit* unit, int x, int y) {
   MapUnit* copy;
   int i;
 
-  player = STATE->currentPlayer;
+  player = MAP_STATE->currentPlayer;
   savedGfx = data_027c0280;
   Screen_SetCurrentGfx((&data_027c0288.unk_00)[1 - data_027c0284]);
   savedState = data_027c027c;
@@ -37,8 +35,9 @@ void Unit_TransferToOtherMap(MapUnit* unit, int x, int y) {
   MapUnit_ResetAiState(copy);
   for (i = 0; i < MAP_UNIT_CARGO_COUNT; i++) {
     if (unit->cargo[i] != 0) {
-      copy->cargo[i] = Unit_CopyToOtherMap(&STATE->units[unit->cargo[i]], x, y);
+      copy->cargo[i] =
+          Unit_CopyToOtherMap(&MAP_STATE->units[unit->cargo[i]], x, y);
     }
   }
-  func_020c7398(unit - STATE->units);
+  func_020c7398(unit - MAP_STATE->units);
 }

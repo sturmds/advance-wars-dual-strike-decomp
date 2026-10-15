@@ -1,11 +1,11 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/Unk_021694c0.h"
+#include "game/math.h"
 
 extern Unk_021694c0* data_021694c0;
 extern const TaskScriptCmd data_02169878[];
 
-int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 Unk_021694c0Task* Task_FindByScript(const TaskScriptCmd* script);
 void Task_ResumeScript(Unk_021694c0Task* task);
 void SpriteAnim_SetAnimation(struct ShowSprite* sprite, int frame);

@@ -1,13 +1,11 @@
 #include "types.h"
 #include "game/Unk_ov004_022bf158.h"
 #include "game/screen_other_map.h"
+#include "game/screen.h"
 
-void Screen_InitLayers(const GfxLayer* config);
-void Screen_SetBgMode(int bgMode);
 void Gfx_ClearLayerMap(int layer);
 void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);
 BOOL Screen_IsTextBg(int layer);
-BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
 void Ov004_SetupOrtho3d(void);

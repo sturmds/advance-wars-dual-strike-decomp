@@ -2,8 +2,6 @@
 #include "game/ov003_effect.h"
 #include "game/ov003_unit.h"
 
-extern Ov003Unit data_ov003_02369538[];
-
 void Sound_PlaySe(int se);
 void Ov003_StepToward(int a0, int a1, int x, int y, int limit, int* outX,
                       int* outY);

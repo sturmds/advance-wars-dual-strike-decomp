@@ -6,13 +6,7 @@
 void WallpaperSingleTask_Update(void);
 void WallpaperTask_Init(void);
 void WallpaperTask_InitScrolled(void);
-extern u8 data_02178b08[];
-extern u8 data_0217ab08[];
-extern u8 data_0217eb08[];
-extern u8 data_02180b08[];
 void WallpaperTask_Update(void);
-extern u8 data_02179b08[];
-extern u8 data_0217fb08[];
 
 u8 data_02159168[] = {
 #include "data/main/data_02159168.inc.c"

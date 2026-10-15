@@ -1,12 +1,8 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440* data_027c027c;
-extern int data_027c0284;
 extern u16 data_0213fdcc[];
 extern u16 data_0213fdec[];
-
-#define STATE (data_027c027c->unk_48[data_027c0284])
 
 int MainLoop_GetFrameCount(void);
 BOOL CanUseCoPower(int player, int slot);
@@ -20,7 +16,7 @@ void Palette_LoadWithCopy(const void* src, u16 offset, u32 size);
 void Player_AnimatePaletteColour(int player) {
   volatile u32 frame = MainLoop_GetFrameCount();
 
-  if (STATE->unk_5c == 0) {
+  if (MAP_STATE->unk_5c == 0) {
     return;
   }
   if (CanUseCoPower(player, 0)) {

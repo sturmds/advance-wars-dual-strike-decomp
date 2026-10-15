@@ -1,11 +1,10 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 #include "game/ov003_marker.h"
+#include "game/math.h"
 
-extern s16 gSineTable[];
 extern s16 data_02138ae8[];
 extern s16 data_02138be8[];
-extern Ov003TileInfo data_ov003_02364d88[];
 
 Ov003Unit* Ov003Marker_FindNearestUnit(Ov003Marker* marker);
 void Ov003Marker_SpawnEffect(Ov003Marker* marker, int velX, int velY);

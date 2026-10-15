@@ -5,14 +5,12 @@
 #include "game/unit_info_panel.h"
 #include "game/unit_stats.h"
 #include "game/force_rank_screen.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrentGfx(void* state);
 void Oam_PutSprite(int x, int y, void* shape, int tileAndPalette);
 void Oam_PutSmallNumberFromTile0(u16 x, int y, u32 value);
 void UnitInfoPanel_DrawIconList(void);
 
-extern Unk_027c0280* data_027c0280;
-extern Unk_027c0288 data_027c0288;
 extern void* data_ov000_0234f384[][15];
 extern u32 data_ov000_022f5be0[];
 extern u8 data_ov000_022f5c44[];
