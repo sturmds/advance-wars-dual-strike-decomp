@@ -1338,10 +1338,13 @@ def cmd_import(args) -> int:
     file_ids, ids = {}, {}
     for kind in ("seq", "bank", "wavearc"):
         old = entry_named(doc, kind, names[kind])
-        if old:
-            file_ids[kind], ids[kind] = old["fileId"], old["id"]
+        ids[kind] = old["id"] if old else len(doc.get(kind) or [])
+        # An entry imported before keeps its file id, unless that file is
+        # another entry's too (an entry made as a copy of another song).
+        if old and used.count(old["fileId"]) == 1:
+            file_ids[kind] = old["fileId"]
         else:
-            file_ids[kind], ids[kind] = next_file, len(doc.get(kind) or [])
+            file_ids[kind] = next_file
             next_file += 1
     paths = {kind: sound.file_name(kind, ids[kind], names[kind]) for kind in names}
     lines = text.rstrip("\n").split("\n")

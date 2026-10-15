@@ -16,7 +16,9 @@
 - A TIE in a pattern that two callers end at different times plays in the
   DS's tie mode (0xc8 1 ... 0xc8 0).
 - import adds a sequence, bank and wave archive to a made-up sound.yaml with
-  the next ids and file ids, and a second import of the same name keeps them.
+  the next ids and file ids, and a second import of the same name keeps them;
+  an entry of the name that shares another entry's file gets a file id of
+  its own.
 - The volume curve: linear 1 is 127, 0 is 0, and it never goes down.
 - With M4A_TEST_ROM naming a GBA ROM: list and convert every song of it
   (skipped with a message when unset).
@@ -172,6 +174,13 @@ def main() -> int:
         expect("import: files", (snd / "seq/001_BGM_TEST.sseq").read_bytes(), sseq)
         quiet(m4a.cmd_import, args)
         expect("import again: same sound.yaml", (snd / "sound.yaml").read_text(), first)
+        # An entry of the name that shares another's file (a copy of BGM_A) gets a file of its own.
+        (snd / "sound.yaml").write_text(first.replace(
+            "file: seq/001_BGM_TEST.sseq, fileId: 1,", "file: seq/000_BGM_A.sseq, fileId: 0,"))
+        quiet(m4a.cmd_import, args)
+        again = (snd / "sound.yaml").read_text()
+        expect("import over a copy: own file id", "- {id: 1, name: BGM_TEST, file: seq/001_BGM_TEST.sseq, fileId: 4,"
+               in again and "- {id: 0, name: BGM_A, file: seq/000_BGM_A.sseq, fileId: 0," in again, True)
 
     expect("volume curve ends", (m4a.ds_volume(1.0), m4a.ds_volume(0)), (127, 0))
     levels = [m4a.ds_volume(i / 100) for i in range(101)]
