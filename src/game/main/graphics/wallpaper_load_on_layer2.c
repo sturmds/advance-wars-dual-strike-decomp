@@ -21,8 +21,6 @@ BreakText data_0229c6c4;
 extern u16 data_021593fc[]; /* per wallpaper: offset of its tile map */
 extern u16 data_021593bc[]; /* per wallpaper: offset of its palette */
 
-#define WALLPAPER_COUNT 31
-
 /* Loads wallpaper `index` (0 if out of range) onto layer 2 of the current
  * screen: tiles, tile map, and its palette into extended palette slot 2
  * (offset 0x4000) of whichever engine the current screen is. */

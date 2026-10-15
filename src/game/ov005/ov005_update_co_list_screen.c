@@ -8,6 +8,7 @@
 #include "game/Unk_ov005_0236bba0.h"
 #include "game/math.h"
 #include "game/palette_fade.h"
+#include "game/wallpaper_task.h"
 
 void Sound_PlaySe(u32 soundId);
 void Mem_Copy32(const void* src, void* dst, u32 size);
@@ -31,9 +32,15 @@ void Ov005_RemoveScrollButtons(Ov005Task* task);
 u8 Ov005_SaveCoListEntry(int entry);
 int Ov005_ClearCoListTouchFlags(Ov005Task* task);
 
-/* CO id of each list entry */
+/* Wallpaper id of each list entry (one per CO id, then the extras), or
+ * 0xff for no entry. */
 u8 data_ov005_0236a48c[] = {
 #include "data/ov005/data_ov005_0236a48c.inc.c"
+    WALLPAPER_EXTRA_FIRST,
+    WALLPAPER_EXTRA_FIRST + 1,
+    WALLPAPER_EXTRA_FIRST + 2,
+    0xff,
+    0xff,
 };
 extern u8 data_ov005_0236a5a0
     [][4]; /* per entry: x and y in pixels, then grid column and row */

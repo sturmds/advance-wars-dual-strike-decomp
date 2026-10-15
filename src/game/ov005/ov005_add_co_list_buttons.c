@@ -5,6 +5,7 @@
 #include "game/unlocks.h"
 #include "game/Unk_ov005_0236bba0.h"
 #include "game/text_print.h"
+#include "game/wallpaper_task.h"
 
 BOOL Co_IsAvailable(int coId);
 u32 Ov005_GetCoListEntryName(int entry);
@@ -26,9 +27,9 @@ MenuButtonTemplate data_ov005_0236a500 = {
 
 /* Marks which of the 33 list entries are available, then gives each
  * available entry a button (id 128 + entry) and prints its name on the top
- * screen. An entry whose CO byte is 0 is always available and 255 never;
- * COs 28, 29 and 30 need game flags 64, 65 and 63; the others ask
- * Co_IsAvailable. Selects the button of work->selectedEntry. */
+ * screen. An entry whose wallpaper is 0 is always available and 255 never;
+ * the three extra wallpapers need game flags 64, 65 and 63; a CO's wallpaper
+ * asks Co_IsAvailable. Selects the button of work->selectedEntry. */
 void Ov005_AddCoListButtons(Ov005Task* task) {
   Unk_ov005_0236bba0* work = task->work;
   Unk_027c0280* saved0280;
@@ -43,11 +44,11 @@ void Ov005_AddCoListButtons(Ov005Task* task) {
   for (i = 0; i < OV005_CO_LIST_ENTRIES; i++, coIds++) {
     if (*coIds == 0) {
       active = 1;
-    } else if (*coIds == 30) {
+    } else if (*coIds == WALLPAPER_EXTRA_FIRST + 2) {
       active = GameFlag_IsSet(63);
-    } else if (*coIds == 28) {
+    } else if (*coIds == WALLPAPER_EXTRA_FIRST) {
       active = GameFlag_IsSet(64);
-    } else if (*coIds == 29) {
+    } else if (*coIds == WALLPAPER_EXTRA_FIRST + 1) {
       active = GameFlag_IsSet(65);
     } else if (*coIds == 255) {
       active = 0;

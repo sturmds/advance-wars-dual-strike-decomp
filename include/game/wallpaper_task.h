@@ -2,6 +2,14 @@
 #define GAME_WALLPAPER_TASK_H
 
 #include "types.h"
+#include "game/co_data.h"
+
+/* Wallpaper ids: 0 is the default, 1 to CO_COUNT - 1 the wallpaper of that
+ * CO id, then the extra wallpapers that game flags 64, 65 and 63 make
+ * available in the wallpaper list (Ov005_AddCoListButtons). */
+#define WALLPAPER_EXTRA_FIRST CO_COUNT
+#define WALLPAPER_EXTRA_COUNT 3
+#define WALLPAPER_COUNT (WALLPAPER_EXTRA_FIRST + WALLPAPER_EXTRA_COUNT)
 
 /* Bytes of wallpaper tile data the sub screen copies from the main screen. */
 #define WALLPAPER_TILES_SIZE 0x10000

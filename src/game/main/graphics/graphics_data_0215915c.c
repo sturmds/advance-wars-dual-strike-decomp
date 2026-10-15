@@ -116,10 +116,14 @@ TaskScriptCmd gWallpaperTaskScript[] = {
 /* per wallpaper: offset of its tile map */
 u16 data_021593fc[] = {
 #include "data/main/data_021593fc.inc.c"
+#include "data/main/data_021593fc_extra.inc.c"
+    0, /* the ROM's table ends in a zero, past the last wallpaper */
 };
 /* per wallpaper: offset of its palette */
 u16 data_021593bc[] = {
 #include "data/main/data_021593bc.inc.c"
+#include "data/main/data_021593bc_extra.inc.c"
+    0, /* the ROM's table ends in a zero, past the last wallpaper */
 };
 GfxLayer data_0215943c[] = {
 #include "data/main/data_0215943c.inc.c"
@@ -147,5 +151,6 @@ const char* data_021595cc[] = {
     (char*)&data_02159244, (char*)&data_0215932c, (char*)&data_02159214,
     (char*)&data_021592c4, (char*)&data_02159284, (char*)&data_02159340,
     (char*)&data_021592e4, (char*)&data_021592f4, (char*)&data_021591f4,
-    (char*)&data_02159264, (char*)&data_021591d4, (char*)&data_021591c4,
-    (char*)&data_02159304};
+    (char*)&data_02159264,
+    /* the extra wallpapers, from WALLPAPER_EXTRA_FIRST */
+    (char*)&data_021591d4, (char*)&data_021591c4, (char*)&data_02159304};

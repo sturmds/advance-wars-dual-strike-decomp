@@ -30,7 +30,7 @@ void IconBanks_ClearSlots(void);
 
 extern char data_ov005_0236a624[]; /* "/rikiishi" */
 extern char data_ov005_0236a630[]; /* "039" */
-extern u8 data_ov005_0236a48c[];   /* CO id of each list entry */
+extern u8 data_ov005_0236a48c[];   /* wallpaper id of each list entry */
 
 /* First step of the CO list screen (work block Unk_ov005_0236bba0). Both
  * screens: BG0, BG3 and OBJ on (the main screen also BG1), layer priorities

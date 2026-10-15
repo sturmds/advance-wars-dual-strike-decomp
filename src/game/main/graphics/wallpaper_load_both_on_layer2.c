@@ -20,8 +20,6 @@ extern const char*
 extern u16 data_021593fc[]; /* per wallpaper: offset of its tile map */
 extern u16 data_021593bc[]; /* per wallpaper: offset of its palette */
 
-#define WALLPAPER_COUNT 31
-
 /* Graphics state of the first screen, data_027c0288.unk_00. */
 #define FIRST_GFX ((Unk_027c0280*)data_027c0288.unk_00)
 
