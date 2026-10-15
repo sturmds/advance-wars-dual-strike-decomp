@@ -1,8 +1,0 @@
-#include "types.h"
-
-char data_ov000_022fa10c[] = {
-#include "data/ov000/data_ov000_022fa10c.inc.c"
-};
-u32 data_ov000_022fa138[] = {
-#include "data/ov000/data_ov000_022fa138.inc.c"
-};

@@ -13,11 +13,17 @@
   strings of its size; the bank file gives back the bank.
 - C: the definitions pack --c writes come out of mwcc_order's model in the
   layout's order.
+- Empty strings ("") point at the 0 byte that ends the bank's first string,
+  in the bytes and in the C; a bank of empty strings only stops pack.
+- Build: a bank without a committed file goes into the file of the next
+  bank that has one, or of the last; a table under dsd's old name gets the
+  name symbols.txt gives it now.
 - With extract/ present: `text.py check` (every bank of the ROM through
-  the file format and back to the same bytes), the gTextBanks values
-  pack --c writes against data_inc.py's, and, with the compiler from
-  make setup, the C of three banks compiled and its objects in the ROM's
-  order. Skipped with a message when there is no extract/.
+  the file format and back to the same bytes), a committed file and a
+  delinks.txt entry over its range for every bank of the ROM, and, with
+  the compiler from make setup, the C of three banks compiled and its
+  objects in the ROM's order. Skipped with a message when there is no
+  extract/.
 """
 
 import contextlib
@@ -94,6 +100,27 @@ sizes = [4 * 8 if names[n] == "table" else len(text.encode(bank["entries"][names
 expect("pack --c definition order", [names[defined[i]] for i in mwcc_order.mwcc_heapsort(sizes)],
        [k for k, _ in objects])
 
+# Empty strings: no object of their own; they share the 0 byte that ends "abc".
+empty = dict(bank, entries=["", "abc", "", "q"], order=[])
+objects, offsets = text.layout(empty)
+expect("an empty string is no object", [k for k, _ in objects], [3, 1, "table"])
+words = list(struct.unpack_from("<4I", text.pack_bytes(empty, symbols.__getitem__), offsets["table"]))
+expect("an empty string points at the end of the first string", words,
+       [0x02000007, 0x02000004, 0x02000007, 0x02000000])
+expect("an empty string in C", "    gTextBank_f1000000_001 + 3, /* 0x0 */" in text.pack_c(empty).splitlines(), True)
+raises("a bank of empty strings only stops pack", lambda: text.layout(dict(bank, entries=["", None], order=[])))
+
+# Build: new banks go into the file of the next bank that has one, or of the last.
+ids = [0xF1000000, 0xF0000000, 0xE0000000, 0xC0000000, 0x01000000]
+groups = text.slot_groups([{"first_id": i} for i in ids], [0xF0000000, 0xC0000000])
+expect("banks without a committed file", {k: [b["first_id"] for b in v] for k, v in groups.items()},
+       {0xF0000000: ids[:2], 0xC0000000: ids[2:]})
+symbols_txt, names_txt = text.read_symbols()
+if "gTextBank_f0000000" in symbols_txt:
+    old = {"table": f"data_ov000_{symbols_txt['gTextBank_f0000000'][0]:08x}"}
+    text.renamed_tables([old])
+    expect("a table under dsd's name gets its name from symbols.txt", old["table"], "gTextBank_f0000000")
+
 
 def object_symbols(obj: Path, prefix: str) -> list[str]:
     """Symbols starting with prefix, by section index: the order the linker places them in."""
@@ -120,11 +147,17 @@ if (ROOT / text.OV000).exists():
     expect("text.py check", (status, out.getvalue().split(", ")[-1].strip()), (0, "0 differ"))
     ov = text.Ov000()
     banks, end_id = text.rom_banks(ov)
-    inc = ROOT / "extracted/AWRE/data/ov000/gTextBanks.inc.c"
-    if inc.exists():
-        values = [line for line in inc.read_text().splitlines() if not line.startswith("/*")]
-        ours = [line for line in text.banks_inc(banks, end_id).splitlines() if not line.startswith("/*")]
-        expect("gTextBanks values as data_inc.py writes them", ours, values)
+    delinks = (ROOT / text.SYMBOLS).with_name("delinks.txt").read_text()
+    entries = dict(re.findall(r"^(\S+):\n    complete\n    \.data\s+(start:0x\w+ end:0x\w+)$", delinks, re.M))
+    missing = []
+    for b in banks:
+        objects, offsets = text.layout(b)
+        end = max(offsets[k] + (4 * len(b["entries"]) if raw is None else len(raw)) for k, raw in objects)
+        glue = f"{text.GLUE.as_posix()}/text_bank_{b['first_id']:08x}.c"
+        want = f"start:{b['address']:#010x} end:{(b['address'] + end + 3) & ~3:#010x}"
+        if not (ROOT / glue).exists() or entries.get(glue) != want:
+            missing.append(glue)
+    expect("every bank of the ROM has a file and a delinks.txt entry over its range", missing, [])
     cc = ROOT / configure.CC
     if cc.exists():
         with tempfile.TemporaryDirectory() as tmp:

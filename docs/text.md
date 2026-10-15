@@ -2,14 +2,15 @@
 
 The game's strings are data in overlay 0 (ov000), not files. `Text_Get(id)` (`src/game/ov000/text/text_get.c`) looks an id up in `gTextBanks`: 48 banks of `{firstId, strings}` (`TextBank`, `include/game/text_ref.h`), sorted by first id going down and ended by an entry whose table is 0. It takes the first bank whose first id is at or below the id and returns `strings[id & 0xffffff]`. The high byte of an id picks the bank (`0xf0000123` is string 0x123 of bank `0xf0000000`); a `TextRef` holds the same id as an index and a group (`0xf000`).
 
-`tools/text.py` writes every bank into a YAML file and back. Like the maps, the sound archive and the graphics, the text is game data from your ROM and never enters git (tenet 9): `make setup` unpacks it into `extracted/AWRE/assets/text/`. No ROM file is built from these files yet (issue 0090).
+`tools/text.py` writes every bank into a YAML file and back. Like the maps, the sound archive and the graphics, the text is game data from your ROM and never enters git (tenet 9): `make setup` unpacks it into `extracted/AWRE/assets/text/`, and `make` builds ov000's strings and tables from those files (below, "Build").
 
 ```
 tools/text.py unpack                       # every bank -> extracted/AWRE/assets/text/
-tools/text.py get 0xf0000002               # one string by id (from the unpacked files; --rom reads the ROM)
+tools/text.py get 0xf0000002               # one string by id (from the unpacked files; --rom reads the ROM,
+                                           #   --built the ov000 of the last build)
 tools/text.py grep "von bolt"              # ids and text of the strings a regular expression finds, any case
 tools/text.py pack                         # every bank -> build/text/<id>.bin, the bytes as in ov000
-tools/text.py pack --c --out build/text-c  # every bank -> C, plus gTextBanks.inc.c
+tools/text.py pack --c                     # every bank -> the C the build compiles, in build/gen/text/
 tools/text.py check                        # every bank of the ROM through a bank file and back; compare bytes
 ```
 
@@ -27,11 +28,11 @@ A bank file:
 
 ```yaml
 first_id: 0xf0000000
-table: data_ov000_022febc0          # the pointer table's symbol in ov000
+table: gTextBank_f0000000           # the pointer table's symbol in ov000
 address: 0x022f6d78                 # where the bank starts in ov000; only banks the ROM has
 sha1: 0123...                       # of the ROM's bytes for the bank
 strings:
-  0x000: {bss: data_ov000_023503c4} # an empty string, a 4-byte object in ov000 .bss
+  0x000: {bss: data_ov000_023503c4} # an empty string of the ROM, a 4-byte object in ov000 .bss
   0x001: "Nell"
   0x01c: "All right! And I'll win\nnext time, too!"
   0x05a: {same: 0x012}              # the same string object as entry 0x12
@@ -67,18 +68,26 @@ The strings and tables of all banks are one run of ov000 `.data`, 0x022f6d78-0x0
 
 The strings of one size are not in index order, and no simple definition order gives their order, so each bank file keeps `order`, the bank's objects as they sit in memory. `pack` places the objects by size, smallest first, and the ones of one size in the order of `order`; a string that is not in the list (a new one) goes after the listed ones of its size. An unchanged bank file gives back the ROM's bytes, which `check` and `tools/tests/test_text.py` test for every bank.
 
-## pack: bytes and C
+## Build
 
-The ROM build does not read the bank files yet. It defines every string from the ROM's bytes: `config/AWRE/data_inc.txt` has one row per string object and table, and C files such as `src/game/ov000/ov000_data_022f6d78.c` include the values (`docs/workflow.md`, "Data from the ROM"). Building the text from the bank files, as `maps.py pack` builds the map tables, would mean taking those 5,000 rows and their C files out of the build and generating them; issue 0090 tracks it. Until then `pack` writes two forms:
+1. `tools/text.py pack --c` (the `TEXT` step) reads `banks.yaml` and the bank files and writes `build/gen/text/`: `bank_<id>.inc` for each bank (its strings as `char` arrays and its table as `const void* <table>[]`), and `text_banks.h` and `text_banks.inc`, the tables' declarations and the values of `gTextBanks`. It rewrites only the files that change, so an edit to one bank recompiles that bank alone.
+2. `src/game/ov000/text/banks/text_bank_<id>.c`, one per bank of the ROM, includes its `bank_<id>.inc`; `src/game/ov000/text/text_banks.c` defines `gTextBanks` from the other two. `config/AWRE/arm9/overlays/ov000/delinks.txt` gives each bank file the bank's range in ov000 `.data`, in the order of `gTextBanks`. The empty strings of the ROM stay in `src/game/ov000/text/text_bss.c`.
+3. Each bank's C defines its objects in the order that makes mwccarm emit them as `pack` lays them out (`tools/mwcc_order.py`), so an unchanged bank file gives back the ROM's bytes. `test_text.py` compiles three banks and checks every bank's file and `delinks.txt` range.
 
-- Bytes (the default): `build/text/<id>.bin` holds the bank as it sits in ov000 from its `address`, table words included, and `pack` says whether it equals the ROM. Use it to check an edit and to compare.
-- C (`--c`): `<id>.c` defines one `char` array per string and the table (`const void* <table>[]`), in the order that makes mwccarm emit them as `pack` lays them out; `test_text.py` compiles three banks to check that. Empty strings refer to the existing `.bss` symbols. With no file named, `pack --c` also writes `gTextBanks.inc.c`, the values of `gTextBanks` from `banks.yaml`; for the ROM's banks it equals the file `data_inc.py` writes.
+The C has the symbols that `symbols.txt` gives the ROM's objects, so objdiff compares the banks symbol by symbol: the table of bank `0xf0000000` is `gTextBank_f0000000`, and the string first used by its entry 0x1c is `gTextBank_f0000000_01c`. `symbols.txt` holds each string's exact size, without the pad bytes to the next 4-byte boundary. A bank file unpacked before a table got its name says `table: data_ov000_<address>`; `pack` takes the name `symbols.txt` gives that address, and `make setup` writes the new name into the files.
+
+The step needs the unpacked files: without `make setup` the build stops on the missing `extracted/AWRE/assets/text/.unpacked`. `make setup` unpacks the text again and overwrites edits, as it does for the maps; `tools/wt_setup.sh` copies the main checkout's files into a worktree.
+
+A string or bank that changes size moves everything after it in ov000. Such a build no longer matches retail, so it belongs in a mod build, not in a commit here; the shiftable build (issue 0086) lets the rest of the game follow the move. A text bank that grows moves the end of ov000 and with it the arena start that main holds in its secure area, so `fix_header.py` stops on such a build (issue 0056).
 
 ## Adding strings and banks
 
-- A string at the end of a bank takes the next index: add `0x2fc: "..."` after the last entry of `f0000000.yaml`. Its id: the bank's first id plus the index (`0xf00002fc`). The table grows by a word.
-- A new bank is a new file with `first_id`, `table` (the name to give its table, such as `gTextBank_f1000000`) and `strings`, and its name in `banks.yaml`. The list must keep its first ids going down, since `Text_Get` takes the first bank at or below the id: a bank for ids `0xf1000000` and up goes first, before `f0000000.yaml`. A bank the ROM does not have has no `address`, so `pack` writes it only as C (`--c`); the C and `gTextBanks.inc.c` are what a build that adds the bank compiles.
+- A string at the end of a bank takes the next index: add `0x2fc: "..."` after the last entry of `f0000000.yaml` and run `make`. Its id: the bank's first id plus the index (`0xf00002fc`). The table grows by a word.
+- A new bank is a new file with `first_id`, `table` (the name to give its table, such as `gTextBank_f1000000`) and `strings`, and its name in `banks.yaml`. The list must keep its first ids going down, since `Text_Get` takes the first bank at or below the id: a bank for ids `0xf1000000` and up goes first, before `f0000000.yaml`. A bank the ROM does not have has no `address` and no file in `src/game/ov000/text/banks/`: `pack --c` writes it into the `.inc` of the next bank in `banks.yaml` that has one (of the last, for a bank at the end), and `gTextBanks` grows by an entry. `pack` without `--c` skips it, since it has no place in the ROM's layout.
+- An empty string written `""` points at the 0 byte that ends the bank's first string that is not empty: an array of its own would be all zero, and the compiler would put it in `.bss`, where the build places no bank objects. A bank whose strings are all empty writes them as `{bss: SYMBOL}`, an existing empty string such as `data_ov000_023504d0`.
+- `same: N` must name an entry that holds a string that is not empty.
 - Text_Get does not check the index against the table's length; an id past the last string reads whatever follows the table.
+- To see the strings in the build: `tools/text.py get ID --built` or `grep PATTERN --built` read the ov000 that the last `make` linked, with the symbols from `build/arm9.elf.xMAP`.
 
 ## Banks
 
@@ -110,6 +119,5 @@ What each bank holds, from its strings. `text.py get` and `grep` show the rest.
 
 ## Not covered yet
 
-- The build does not read the bank files (issue 0090).
 - The purpose of codes 0x14-0x17 and of the script `data_02158520` (issue 0091).
 - Text outside the banks: strings that functions draw straight from their own data (`Text_Print` with a pointer), and the text in `res_*` files and pictures (`docs/gfx.md`).

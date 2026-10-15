@@ -3,10 +3,11 @@
 
     text.py unpack [--out DIR]                     every bank -> DIR/banks.yaml + one YAML file per bank
     text.py pack [YAML...] [--dir DIR] [--out DIR] [--c]
-                                                   bank files -> their bytes in ov000, or C with --c
+                                                   bank files -> their bytes in ov000, or the C the
+                                                   build compiles with --c
     text.py check                                  unpack and pack every bank in memory; compare with the ROM
-    text.py get ID [--rom]                         one string by text id (0xf0000123)
-    text.py grep PATTERN [--rom]                   the ids of the strings a regular expression finds
+    text.py get ID [--rom | --built]               one string by text id (0xf0000123)
+    text.py grep PATTERN [--rom | --built]         the ids of the strings a regular expression finds
 
 Text_Get(id) walks gTextBanks (ov000), a list of {first id, string table}
 sorted by first id going down, and returns table[id & 0xffffff] of the
@@ -22,13 +23,16 @@ objects of one file (tools/mwcc_order.py). An empty string sits in ov000
 .bss, where the compiler puts objects that are all zero.
 
 The YAML files hold game data from the builder's ROM: they belong in
-extracted/ or build/ and never enter git (tenet 9). No ROM file is built
-from them yet; the build still defines the strings from the ROM's bytes
-(config/AWRE/data_inc.txt).
+extracted/ or build/ and never enter git (tenet 9). The build compiles
+ov000's text from them: `pack --c` (the TEXT step) writes the C that the
+committed files in src/game/ov000/text/ include.
 
   extracted/AWRE/assets/text/
       banks.yaml               the bank files in gTextBanks order
       f0000000.yaml            one bank, named by its first id: the strings by index
+  build/gen/text/              written by pack --c
+      bank_f0000000.inc        one bank's strings and table, for text/banks/text_bank_f0000000.c
+      text_banks.h, .inc       the tables' declarations and the values of gTextBanks
 """
 
 import argparse
@@ -45,8 +49,16 @@ ROOT = Path(__file__).resolve().parent.parent
 OV000 = Path("extract/arm9_overlays/ov000.bin")
 OVERLAYS = Path("extract/arm9_overlays/overlays.yaml")
 SYMBOLS = Path("config/AWRE/arm9/overlays/ov000/symbols.txt")
+BUILT_OV000 = Path("build/build/arm9_ov000.bin")  # get and grep --built
+BUILT_OVERLAYS = Path("build/build/arm9_overlays.yaml")
+BUILT_MAP = Path("build/arm9.elf.xMAP")
 EXTRACTED = Path("extracted/AWRE/assets/text")  # gitignored
+UNPACKED = ".unpacked"  # written last by unpack, so a build without the files fails by name
 PACKED = Path("build/text")
+GEN = Path("build/gen/text")  # pack --c; configure.py adds -i build/gen
+# One committed file per bank of the ROM, text_bank_<first id>.c, each with a
+# delinks.txt entry over the bank's range. It includes bank_<first id>.inc.
+GLUE = Path("src/game/ov000/text/banks")
 BANK_LIST = "banks.yaml"
 TABLE = "table"  # the pointer table's place in a bank's `order`
 INDEX_MASK = 0xFFFFFF
@@ -151,23 +163,18 @@ def encode_code(code: str) -> bytes:
 
 
 class Ov000:
-    def __init__(self):
-        path = ROOT / OV000
+    """ov000 of the ROM (extract/), or with built=True the one the last build
+    linked, with its symbols from the linker's map."""
+
+    def __init__(self, built: bool = False):
+        path = ROOT / (BUILT_OV000 if built else OV000)
         if not path.exists():
-            sys.exit(f"error: {OV000} not found; run make extract")
+            sys.exit(f"error: {shown(path)} not found; run {'make' if built else 'make extract'}")
         self.data = path.read_bytes()
-        info = yaml.safe_load((ROOT / OVERLAYS).read_text())["overlays"][0]
+        info = yaml.safe_load((ROOT / (BUILT_OVERLAYS if built else OVERLAYS)).read_text())["overlays"][0]
         self.base = info["base_address"]
         self.bss_end = self.base + len(self.data) + info["bss_size"]
-        self.symbols: dict[str, tuple[int, int]] = {}  # name -> (address, size)
-        self.names: dict[int, str] = {}
-        for line in (ROOT / SYMBOLS).read_text().splitlines():
-            m = re.match(r"(\S+) kind:(\S+) addr:(0x[0-9a-f]+)", line)
-            if m:
-                size = re.search(r"\[(\d+)\]|size=(0x[0-9a-f]+)", m.group(2))
-                addr = int(m.group(3), 16)
-                self.symbols[m.group(1)] = (addr, int(size.group(1) or size.group(2), 0) if size else 0)
-                self.names.setdefault(addr, m.group(1))
+        self.symbols, self.names = built_symbols(self.base, self.bss_end) if built else read_symbols()
 
     def word(self, addr: int) -> int:
         return int.from_bytes(self.data[addr - self.base:addr - self.base + 4], "little")
@@ -184,6 +191,31 @@ class Ov000:
 
     def bytes(self, addr: int, size: int) -> bytes:
         return self.data[addr - self.base:addr - self.base + size]
+
+
+def read_symbols() -> tuple[dict[str, tuple[int, int]], dict[int, str]]:
+    """ov000's symbols: name -> (address, size), and address -> the first name there."""
+    symbols, names = {}, {}
+    for line in (ROOT / SYMBOLS).read_text().splitlines():
+        m = re.match(r"(\S+) kind:(\S+) addr:(0x[0-9a-f]+)", line)
+        if m:
+            size = re.search(r"\[(\d+)\]|size=(0x[0-9a-f]+)", m.group(2))
+            addr = int(m.group(3), 16)
+            symbols[m.group(1)] = (addr, int(size.group(1) or size.group(2), 0) if size else 0)
+            names.setdefault(addr, m.group(1))
+    return symbols, names
+
+
+def built_symbols(start: int, end: int) -> tuple[dict[str, tuple[int, int]], dict[int, str]]:
+    """The symbols the linker placed in start-end, as read_symbols gives them."""
+    symbols, names = {}, {}
+    for line in (ROOT / BUILT_MAP).read_text().splitlines():
+        m = re.match(r"  ([0-9A-F]{8}) ([0-9A-F]{8}) \.(?:data|bss)\s+(\S+)\t", line)
+        if m and start <= int(m.group(1), 16) < end:
+            addr = int(m.group(1), 16)
+            symbols[m.group(3)] = (addr, int(m.group(2), 16))
+            names.setdefault(addr, m.group(3))
+    return symbols, names
 
 
 def rom_banks(ov: Ov000) -> tuple[list[dict], int]:
@@ -230,19 +262,22 @@ def layout(bank: dict) -> tuple[list[tuple[object, bytes | None]], dict[object, 
     """The bank's data objects in memory order, with their bytes (None for the
     table), and the offset of each from the bank's start. Objects go smallest
     first, as the compiler emits them; objects of one size keep the order of
-    `order`, and the ones it does not list follow in index order."""
+    `order`, and the ones it does not list follow in index order. An empty
+    string is no object (see empty_string)."""
     entries = bank["entries"]
     rank = {key: k for k, key in enumerate(bank["order"])}
     objects = []
     for i, e in enumerate(entries):
-        if isinstance(e, str):
+        if e == "":
+            empty_string(bank)  # raises if it has nowhere to point
+        elif isinstance(e, str):
             try:
                 raw = encode(e) + b"\0"
             except ValueError as err:
                 raise ValueError(f"entry {i:#x}: {err}") from None
             objects.append((len(raw), rank.get(i, len(rank) + i), i, raw))
-        elif isinstance(e, dict) and "same" in e and not isinstance(entries[e["same"]], str):
-            raise ValueError(f"entry {i:#x}: same: {e['same']:#x} is not a string")
+        elif isinstance(e, dict) and "same" in e and not (isinstance(entries[e["same"]], str) and entries[e["same"]]):
+            raise ValueError(f"entry {i:#x}: same: {e['same']:#x} is not a string, or an empty one")
     objects.append((4 * len(entries), rank.get(TABLE, len(rank) + len(entries)), TABLE, None))
     objects.sort(key=lambda o: o[:2])
     offsets, pos = {}, 0
@@ -250,6 +285,18 @@ def layout(bank: dict) -> tuple[list[tuple[object, bytes | None]], dict[object, 
         offsets[key] = pos
         pos = (pos + size + 3) & ~3
     return [(key, raw) for _, _, key, raw in objects], offsets
+
+
+def empty_string(bank: dict) -> tuple[int, int]:
+    """Where an entry written as "" points: (index, offset) of the 0 byte that
+    ends the bank's first string that is not empty. A string of its own would
+    be all zero, and the compiler would put it in .bss, where the build has
+    no place for a bank's objects; the ROM's banks point their empty strings
+    at the 4-byte objects in .bss instead ({bss: SYMBOL})."""
+    for i, e in enumerate(bank["entries"]):
+        if isinstance(e, str) and e:
+            return i, len(encode(e))
+    raise ValueError('an empty string ("") needs a string that is not empty in its bank, or write it as {bss: SYMBOL}')
 
 
 def pack_bytes(bank: dict, bss_address) -> bytes:
@@ -267,6 +314,9 @@ def pack_bytes(bank: dict, bss_address) -> bytes:
         for i, e in enumerate(bank["entries"]):
             if e is None:
                 word = 0
+            elif e == "":
+                index, offset = empty_string(bank)
+                word = base + offsets[index] + offset
             elif isinstance(e, str):
                 word = base + offsets[i]
             elif "same" in e:
@@ -307,12 +357,16 @@ def pack_c(bank: dict) -> str:
             lines.append(f"char {name[key]}[] = {c_literal(raw[:-1])};")
             defined.add(key)
             continue
-        later = [name[i] for i, e in enumerate(bank["entries"]) if isinstance(e, str) and i not in defined]
+        later = [name[i] for i, e in enumerate(bank["entries"]) if e and isinstance(e, str) and i not in defined]
         lines += [f"extern char {n}[];" for n in later]
         lines.append(f"const void* {table}[] = {{")
         for i, e in enumerate(bank["entries"]):
-            target = ("0" if e is None else name[i] if isinstance(e, str)
-                      else name[e["same"]] if "same" in e else e["bss"])
+            if e == "":
+                index, offset = empty_string(bank)
+                target = f"{name[index]} + {offset}"
+            else:
+                target = ("0" if e is None else name[i] if isinstance(e, str)
+                          else name[e["same"]] if "same" in e else e["bss"])
             lines.append(f"    {target}, /* {i:#x} */")
         lines.append("};")
     return "\n".join(lines) + "\n"
@@ -408,8 +462,15 @@ def read_dir(directory: Path) -> tuple[list[dict], int]:
     return banks, int(doc.get("end", 0xFFFFFFFF))
 
 
+def banks_h(banks: list[dict]) -> str:
+    """The declarations of the banks' tables, for the file that defines gTextBanks."""
+    lines = ["/* The banks' string tables, written by tools/text.py pack from banks.yaml. */"]
+    lines += [f"extern const void* {b['table']}[];" for b in banks]
+    return "\n".join(lines) + "\n"
+
+
 def banks_inc(banks: list[dict], end_id: int) -> str:
-    """The values of gTextBanks, for the C that includes them (as data_inc.py writes it)."""
+    """The values of gTextBanks, for the C that includes them inside its initializer."""
     lines = ["/* gTextBanks, written by tools/text.py pack from banks.yaml. */"]
     lines += [f"{b['first_id']:#010x}, (void*)&{b['table']}," for b in banks]
     lines.append(f"{end_id:#010x}, 0,")
@@ -425,8 +486,8 @@ def shown(path: Path) -> Path:
 
 
 def load(args) -> list[dict]:
-    if args.rom:
-        return rom_banks(Ov000())[0]
+    if args.rom or args.built:
+        return rom_banks(Ov000(built=args.built))[0]
     return read_dir(ROOT / args.dir)[0]
 
 
@@ -455,32 +516,103 @@ def cmd_unpack(args) -> int:
     for bank in banks:
         (out / bank_file(bank["first_id"])).write_text(bank_yaml(bank))
     (out / BANK_LIST).write_text(banks_yaml(banks, end_id))
+    (out / UNPACKED).write_text("")
     count = sum(len(b["entries"]) for b in banks)
     print(f"unpack: {len(banks)} banks, {count} strings in {shown(out)}")
     return 0
 
 
+def write_if_changed(path: Path, text: str) -> bool:
+    """Write only a changed file, so ninja (restat) recompiles only what changed."""
+    if path.exists() and path.read_text() == text:
+        return False
+    path.write_text(text)
+    return True
+
+
+def slot_ids() -> list[int]:
+    """The first ids of the banks that have a committed file in GLUE."""
+    return [int(p.stem.removeprefix("text_bank_"), 16) for p in sorted((ROOT / GLUE).glob("text_bank_*.c"))]
+
+
+def slot_groups(banks: list[dict], slots: list[int]) -> dict[int, list[dict]]:
+    """The banks each committed file defines. A bank of the ROM has its own
+    file; a bank without one (a new bank) goes into the file of the next bank
+    in the list that has one, or of the last such bank. Its objects then sit
+    among that bank's, which is no problem in a build that does not match
+    retail. A committed file left with no bank defines nothing."""
+    groups: dict[int, list[dict]] = {s: [] for s in slots}
+    waiting, last = [], None
+    for bank in banks:
+        waiting.append(bank)
+        if bank["first_id"] in groups:
+            last = bank["first_id"]
+            groups[last] += waiting
+            waiting = []
+    if waiting:
+        if last is None:
+            sys.exit(f"error: no bank of banks.yaml has a file in {GLUE}, so the new banks have no place in ov000")
+        groups[last] += waiting
+    return groups
+
+
+def renamed_tables(banks: list[dict]) -> None:
+    """A bank file unpacked before its table was renamed in symbols.txt names
+    it data_ov000_<address>, dsd's name: use the name at that address now, so
+    the strings get the names symbols.txt gives them."""
+    symbols, names = read_symbols()
+    for bank in banks:
+        m = re.fullmatch(r"data_ov000_([0-9a-f]{8})", bank["table"])
+        if m and bank["table"] not in symbols and int(m.group(1), 16) in names:
+            bank["table"] = names[int(m.group(1), 16)]
+
+
+def pack_build(banks: list[dict], end_id: int, out: Path) -> int:
+    """The C the build compiles: bank_<id>.inc for each committed file in
+    GLUE, and text_banks.h and text_banks.inc for gTextBanks."""
+    renamed_tables(banks)
+    note = "/* Generated by tools/text.py pack from the unpacked text banks. Do not edit. */\n"
+    c = {}
+    for bank in banks:
+        try:
+            c[bank["first_id"]] = pack_c(bank)
+        except ValueError as err:
+            sys.exit(f"error: {bank_file(bank['first_id'])}: {err}")
+    changed = 0
+    for slot, group in slot_groups(banks, slot_ids()).items():
+        body = "".join(c[b["first_id"]] for b in group) if group else '#include "types.h"\n'
+        changed += write_if_changed(out / f"bank_{slot:08x}.inc", note + body)
+    changed += write_if_changed(out / "text_banks.h", banks_h(banks))
+    changed += write_if_changed(out / "text_banks.inc", banks_inc(banks, end_id))
+    count = sum(len(b["entries"]) for b in banks)
+    print(f"pack: {len(banks)} banks, {count} strings as C in {shown(out)}, {changed} files changed")
+    return 0
+
+
 def cmd_pack(args) -> int:
     directory = ROOT / args.dir
-    if args.files:
+    out = ROOT / (args.out or (GEN if args.c else PACKED))
+    out.mkdir(parents=True, exist_ok=True)
+    if not args.files:
+        if not (directory / UNPACKED).exists():
+            sys.exit(f"error: no text banks in {args.dir}; run `make setup` (it unpacks them from your ROM)")
+        banks, end_id = read_dir(directory)
+        if args.c:
+            return pack_build(banks, end_id, out)
+    else:
         banks = []
         for f in args.files:
             try:
                 banks.append(read_bank(Path(f).read_text(), f))
             except (OSError, ValueError) as err:
                 sys.exit(f"error: {err}")
-        end_id = 0xFFFFFFFF
-    else:
-        banks, end_id = read_dir(directory)
-    out = ROOT / args.out
-    out.mkdir(parents=True, exist_ok=True)
     ov = None if args.c else Ov000()
     for bank in banks:
         stem = f"{bank['first_id']:08x}"
         try:
             if args.c:
-                (out / f"{stem}.c").write_text(pack_c(bank))
-                print(f"{shown(out / stem)}.c: {len(bank['entries'])} strings")
+                (out / f"bank_{stem}.inc").write_text(pack_c(bank))
+                print(f"{shown(out)}/bank_{stem}.inc: {len(bank['entries'])} strings")
                 continue
             if bank.get("address") is None:
                 print(f"{stem}: skipped, not in the ROM, so it has no address; --c writes it as C")
@@ -492,9 +624,6 @@ def cmd_pack(args) -> int:
         same = hashlib.sha1(data).hexdigest() == bank.get("sha1")
         print(f"{shown(out / stem)}.bin: {len(data)} bytes at {bank['address']:#010x}"
               f"{', same as the ROM' if same else ', changed'}")
-    if args.c and not args.files:
-        (out / "gTextBanks.inc.c").write_text(banks_inc(banks, end_id))
-        print(f"{shown(out / 'gTextBanks.inc.c')}: {len(banks)} banks")
     return 0
 
 
@@ -555,9 +684,10 @@ def main() -> int:
     p = sub.add_parser("pack", help="bank files to their bytes in ov000, or to C")
     p.add_argument("files", nargs="*", metavar="YAML", help="bank files (default: every file of banks.yaml)")
     p.add_argument("--dir", default=str(EXTRACTED), help="the unpacked directory")
-    p.add_argument("--out", default=str(PACKED))
+    p.add_argument("--out", help=f"default {PACKED}, or {GEN} with --c")
     p.add_argument("--c", action="store_true",
-                   help="write C for each bank, and gTextBanks.inc.c from banks.yaml, instead of bytes")
+                   help="write the C the build compiles instead of bytes: with no file named, one file per"
+                   f" committed file in {GLUE} and gTextBanks' tables and values from banks.yaml")
     p.set_defaults(func=cmd_pack)
     p = sub.add_parser("check", help="unpack and pack every bank in memory; compare with the ROM")
     p.set_defaults(func=cmd_check)
@@ -567,6 +697,7 @@ def main() -> int:
         p.add_argument("id" if name == "get" else "pattern")
         p.add_argument("--dir", default=str(EXTRACTED), help="the unpacked directory")
         p.add_argument("--rom", action="store_true", help="read the ROM instead of the unpacked files")
+        p.add_argument("--built", action="store_true", help="read the ov000 of the last build (build/AWRE.nds)")
         p.set_defaults(func=func)
     args = parser.parse_args()
     return args.func(args)

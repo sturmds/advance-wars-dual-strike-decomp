@@ -5,6 +5,7 @@ Pipeline:
   orig/AWRE.nds --dsd rom extract--> extract/
   config/AWRE/arm9 + extract --dsd delink--> build/delinks/**.o (original bytes)
   assets/maps/ + extracted/AWRE/assets/maps/ --tools/maps.py pack--> build/gen/maps/ (C included by src/game/ov000/map/)
+  extracted/AWRE/assets/text/ --tools/text.py pack --c--> build/gen/text/ (C included by src/game/ov000/text/)
   config/AWRE/data_inc.txt + extract --tools/data_inc.py write--> extracted/AWRE/data/ (values that C files include)
   config/AWRE/bss_gen.txt + delinks.txt + symbols.txt + include/ --tools/bss.py gen--> build/gen/bss/
                              (.bss definitions included by the files bss_gen.txt lists)
@@ -37,6 +38,7 @@ from pathlib import Path
 
 import data_inc
 import maps
+import text
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG = Path("config/AWRE/arm9")
@@ -147,6 +149,27 @@ def map_inputs() -> list[str]:
     # A map file may still name a symbol by its old dsd name (maps.SymbolNames).
     files += sorted((ROOT / maps.CONFIG).rglob("symbols.txt"))
     return [p.relative_to(ROOT).as_posix() for p in files] + [(maps.EXTRACTED / ".unpacked").as_posix()]
+
+
+# The text banks (tools/text.py, docs/text.md): what `text.py pack --c`
+# writes, by the source that includes it.
+TEXT_BANKS_SOURCE = "src/game/ov000/text/text_banks.c"
+
+
+def text_outputs() -> dict[str, list[str]]:
+    gen = text.GEN.as_posix()
+    outputs = {f"{text.GLUE.as_posix()}/text_bank_{i:08x}.c": [f"{gen}/bank_{i:08x}.inc"] for i in text.slot_ids()}
+    outputs[TEXT_BANKS_SOURCE] = [f"{gen}/text_banks.h", f"{gen}/text_banks.inc"]
+    return outputs
+
+
+def text_inputs() -> list[str]:
+    """The unpacked bank files (`make setup`), ov000's symbols.txt (for a
+    table renamed since the unpack) and the stamp unpack writes last, so a
+    missing unpack fails the build by name."""
+    files = sorted((ROOT / text.EXTRACTED).glob("*.yaml"))
+    return [p.relative_to(ROOT).as_posix() for p in files] + [
+        text.SYMBOLS.as_posix(), (text.EXTRACTED / text.UNPACKED).as_posix()]
 
 
 # Data from the ROM (tools/data_inc.py, docs/workflow.md): the .inc.c files
@@ -293,6 +316,7 @@ def main() -> int:
     data_inc_rows = data_inc.read_list()
     data_inc_outputs = [(data_inc.OUT / r.rel).as_posix() for r in data_inc_rows]
     data_inc_deps = data_inc_users(sources + sources7)
+    text_deps = text_outputs()
     bss_gen = bss_gen_outputs()
     for src, out in bss_gen.items():
         data_inc_deps.setdefault(src, []).append(out)
@@ -333,6 +357,11 @@ def main() -> int:
         "rule maps",
         "  command = $python tools/maps.py pack",
         "  description = MAPS",
+        "  restat = 1",
+        "",
+        "rule text",
+        "  command = $python tools/text.py pack --c",
+        "  description = TEXT",
         "  restat = 1",
         "",
         "rule data_inc",
@@ -426,6 +455,9 @@ def main() -> int:
         "",
         f"build {' '.join(MAP_OUTPUTS)}: maps {' '.join(map_inputs())} | tools/maps.py",
         "",
+        f"build {' '.join(sorted(o for outs in text_deps.values() for o in outs))}: text {' '.join(text_inputs())}"
+        " | tools/text.py tools/mwcc_order.py",
+        "",
         f"build {' '.join(data_inc_outputs)}: data_inc {data_inc.LIST.as_posix()}"
         f" {' '.join(data_inc.config_inputs(data_inc_rows))} | extract/config.yaml tools/data_inc.py tools/arm7.py tools/configure.py",
         "",
@@ -466,7 +498,7 @@ def main() -> int:
     exception_paths = exception_table_paths()
     for src, obj in zip(sources, objs):
         implicit = MAP_OUTPUTS if src in MAP_SOURCES else []
-        implicit = implicit + data_inc_deps.get(src, [])
+        implicit = implicit + data_inc_deps.get(src, []) + text_deps.get(src, [])
         if src in table:
             implicit = implicit + [table[src], COMPILERS.as_posix()]
         generated = f" | {' '.join(implicit)}" if implicit else ""

@@ -1,6 +1,6 @@
 # 0090: The build does not take the text from the bank files
 
-- **Status:** open
+- **Status:** closed
 - **Area:** tools
 - **Opened:** 2026-10-15
 - **Milestone:** later
@@ -28,3 +28,11 @@ To build the text from the bank files, as `maps.py pack` builds the map tables:
 ## Done when
 
 `make` builds ov000's strings and tables from the bank files, `make release` still matches retail, and an edited string or a new bank reaches `build/AWRE.nds` with `make mod`.
+
+## Fixed (2026-10-15)
+
+- `text.py pack --c` is the `TEXT` build step. It writes `build/gen/text/bank_<id>.inc` for each committed file `src/game/ov000/text/banks/text_bank_<id>.c` (one per bank of the ROM, with a `delinks.txt` entry over the bank's range), and the declarations and values of `gTextBanks`, which `src/game/ov000/text/text_banks.c` includes. The 5,023 `data_inc.txt` rows of the strings and tables, the `gTextBanks` row and the 157 C files that held them are gone.
+- `symbols.txt` names the tables `gTextBank_<id>` and the strings `gTextBank_<id>_<index>`, the names `pack --c` gives them, with each string's exact size. dsd's symbol `data_ov000_0234022c`, in the middle of the string at 0x02340224, is gone.
+- The bank `0x00000000` table left `ov000_data_0234eb60.c` (now `ov000_data_0234eb64.c`), and `gTextBanks` left `ov000_data_022f6bd8.c`.
+- The `.bss` empty strings stay in `text_bss.c`. A new `""` points at the 0 byte that ends another string of its bank.
+- A bank without a committed file (a new one) goes into the `.inc` of the next bank that has one. Tested by hand: a bank `0xf1000000` listed first, a string added at the end of `0xf0000000` and two strings made longer gave a ROM that boots to the main menu in melonDS, `text.py get --built` reads the new strings, and the edited main menu line shows on the screen.
