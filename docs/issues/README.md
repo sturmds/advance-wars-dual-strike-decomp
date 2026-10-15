@@ -117,3 +117,5 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0087](0087-fully-shiftable-source.md) | Make the source fully shiftable: addresses, sizes and bounds from the C, counted in PROGRESS.md (GitHub #2) | open | decomp | M3 |
 | [0088](0088-replay-rename-of-moved-symbol.md) | The landing replay renames a symbol that moved to a new address | closed | loop | M2 |
 | [0089](0089-function-files-and-headers.md) | One file per function, and prototypes copied into each caller | in progress | decomp | M3 |
+| [0090](0090-build-text-from-bank-files.md) | The build does not take the text from the bank files | open | tools | later |
+| [0091](0091-text-codes-0x14-0x17.md) | Text codes 0x14 to 0x17 have no names | open | decomp | later |

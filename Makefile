@@ -34,16 +34,17 @@ setup: tools assets
 tools: hooks
 	@$(PYTHON) tools/setup.py
 
-# Map files, the data in code sections and the sound archive are game data:
-# unpacked from the ROM into extracted/, never committed (docs/maps.md;
-# docs/workflow.md, "Data from the ROM"; docs/sound.md). The build also
-# rewrites the data files when they are stale.
+# Map files, the data in code sections, the sound archive and the text are
+# game data: unpacked from the ROM into extracted/, never committed
+# (docs/maps.md; docs/workflow.md, "Data from the ROM"; docs/sound.md;
+# docs/text.md). The build also rewrites the data files when they are stale.
 assets: tools extract
 	@$(MAKE) --no-print-directory dsindex
 	@$(PYTHON) tools/maps.py unpack
 	@$(PYTHON) tools/data_inc.py write
 	@$(PYTHON) tools/sound.py unpack
 	@$(PYTHON) tools/sound.py export --auto
+	@$(PYTHON) tools/text.py unpack
 
 # The sound archive's files and sound.yaml in extracted/AWRE/assets/sound/.
 # The ROM build still copies sound_data.sdat from extract/ (issue 0050).
@@ -183,14 +184,16 @@ emu-check: shift
 # the file merges of merge_files.py (test_merge_files.py), and the
 # declaration moves of decls.py (test_decls.py), and emu.py's scripts,
 # steps, recordings and key bindings (test_emu.py), and the LZ77, tile and
-# PNG code of gfx.py (test_gfx.py);
+# PNG code of gfx.py (test_gfx.py), and the encoding and layout of
+# text.py (test_text.py);
 # no ROM or build needed
 # (test_ds.py, test_pragmas.py, test_absolute.py, test_data_order.py,
 # test_bss.py, test_data.py and test_alias_check.py use the compiler from make setup; test_ds.py
 # checks more when extract/ exists, test_bss.py when build/fnindex.json and
 # build/dsindex.json exist, test_data.py when the ROM exists as well;
 # test_sound.py checks the round trip of the ROM's archive when extract/ exists,
-# test_gfx.py that of the /syogun pictures;
+# test_gfx.py that of the /syogun pictures, test_text.py that of the text
+# banks and the order of its C with the compiler;
 # test_gdb_rsp.py and test_emu.py never start melonDS).
 # Git exports GIT_DIR, GIT_INDEX_FILE and others to hooks, so a test run from
 # pre-commit would send the git commands meant for a throwaway repo to the
@@ -235,7 +238,8 @@ TESTS := \
 	tools/tests/test_emu.py \
 	tools/tests/test_maps.py \
 	tools/tests/test_savedit.py \
-	tools/tests/test_gfx.py
+	tools/tests/test_gfx.py \
+	tools/tests/test_text.py
 
 test:
 	@for t in $(CACHED_TESTS) $(TESTS); do $(TEST_ENV) $(PYTHON) $$t || exit 1; done
